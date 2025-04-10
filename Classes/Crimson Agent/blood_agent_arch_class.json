@@ -1,0 +1,160 @@
+{
+  "id": "blood_agent_arch_class",
+  "name": "Blood Agent Arch Class",
+  "description": "Advanced progression for the Crimson Agent base class, specializing in blood magic and assassination techniques",
+  "arch_class": {
+    "id": "blood_agent",
+    "name": "Blood Agent",
+    "description": "Elite operatives who have mastered the art of blood manipulation. Blood Agents can forge powerful weapons from their own vitality, track targets through mystical blood connections, and execute devastating assassination techniques.",
+    "role": "damage-utility",
+    "primary_stats": ["dex", "con"],
+    "secondary_stats": ["int", "str"],
+    "resource_mechanics": {
+      "health": {
+        "description": "Vital energy that doubles as a resource for advanced blood magic",
+        "base_amount": "Enhanced health pool based on level and Constitution",
+        "regeneration": "Enhanced health regeneration, reduced when blood essence is high",
+        "usage": "Some abilities consume health instead of or in addition to blood essence"
+      },
+      "blood_essence": {
+        "description": "Refined life force that powers blood magic and enhanced abilities",
+        "base_amount": 0,
+        "max_amount": 150,
+        "generation": "15 points when sacrificing own health, 20 points when drawing blood from enemies, 10 points when consuming blood vials",
+        "decay": "5 points per 30 seconds",
+        "thresholds": [
+          {
+            "level": 30,
+            "effect": "Minor damage increase and tracking ability"
+          },
+          {
+            "level": 75,
+            "effect": "Moderate damage increase and tracking ability, 15% reduced health cost for abilities"
+          },
+          {
+            "level": 150,
+            "effect": "Major damage increase and tracking ability, 30% reduced health cost for abilities, enhanced blood regeneration"
+          }
+        ]
+      },
+      "crimson_resonance": {
+        "description": "Harmonic connection between the agent's blood and their surroundings",
+        "base_amount": 0,
+        "max_amount": 100,
+        "generation": "5 points per successful blood ability, 10 points when defeating a blood-marked enemy, 15 points when completing a blood ritual",
+        "decay": "5 points per minute",
+        "thresholds": [
+          {
+            "level": 30,
+            "effect": "Minor enhancement to blood magic and tracking"
+          },
+          {
+            "level": 60,
+            "effect": "Moderate enhancement to blood magic and tracking, increased blood essence generation"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to blood magic and tracking, greatly increased blood essence generation, chance to avoid health costs"
+          }
+        ]
+      }
+    },
+    "armor_proficiency": ["light", "medium", "blood_forged", "assassin's_garb"],
+    "weapon_proficiency": ["daggers", "swords", "thrown", "blood_weapons", "whips", "exotic_blades"],
+    "class_mechanics": {
+      "enhanced_blood_sacrifice": {
+        "description": "Convert health into blood essence and power with greater efficiency",
+        "cost": "10% of maximum health",
+        "cooldown": "20 seconds",
+        "effect": "Gain 45 blood essence and temporarily increase damage, speed, and critical hit chance",
+        "scaling": "Power boost scales with Constitution, Dexterity, and current blood essence level"
+      },
+      "advanced_blood_forging": {
+        "description": "Create more powerful weapons and tools from solidified blood",
+        "cost": "30 blood essence + 5% of maximum health",
+        "duration": "10 minutes",
+        "creations": [
+          {
+            "name": "Crimson Blade",
+            "effect": "Weapon that deals additional bleed damage and reduces healing received"
+          },
+          {
+            "name": "Blood Aegis",
+            "effect": "Barrier that absorbs damage and returns it to attacker with additional bleed effect"
+          },
+          {
+            "name": "Blood Sentinel",
+            "effect": "Medium-sized creature that scouts, distracts enemies, and can perform basic attacks"
+          }
+        ],
+        "scaling": "Creation power and duration scale with Dexterity, Constitution, and Crimson Resonance"
+      },
+      "blood_dominion": {
+        "description": "Establish complete control over a target's blood",
+        "cost": "40 blood essence + 10 Crimson Resonance",
+        "trigger": "Successfully wounding a target",
+        "effect": "Track target's location with perfect accuracy, sense their health level and status effects, gain significant damage bonus against them, and briefly control their movements",
+        "duration": "2 hours or until target dies",
+        "scaling": "Tracking precision, damage bonus, and control duration scale with Intelligence, Dexterity, and Crimson Resonance"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Blood Artistry",
+        "focus": "Advanced blood magic and manipulation",
+        "key_abilities": [
+          "Blood Cascade: Create a torrent of blood that damages and slows all enemies in its path",
+          "Vitality Exchange: Transfer health between allies and enemies with precise control",
+          "Blood Sanctuary: Create a zone of controlled blood magic where allies gain benefits and enemies are weakened"
+        ]
+      },
+      {
+        "name": "Shadow Operations",
+        "focus": "Enhanced stealth and precision elimination",
+        "key_abilities": [
+          "Blood Veil: Become nearly invisible by bending light through blood mist",
+          "Execution Strike: Attack that deals massive damage to targets below 30% health",
+          "Phantom Step: Teleport short distances by converting your body to blood mist"
+        ]
+      },
+      {
+        "name": "Crimson Mastery",
+        "focus": "Blood ritual and combat enhancement",
+        "key_abilities": [
+          "Blood Ritual: Perform a ceremony that enhances all blood abilities for a duration",
+          "Crimson Armor: Convert your own blood into living armor that adapts to attacks",
+          "Blood Synchronization: Link with allies to share health and blood essence"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 10,
+      "crimson_agent_skills": ["Blood Magic 7", "Assassination 6", "Tracking 5"],
+      "quests": ["The Crimson Path", "Blood Awakening"]
+    },
+    "signature_abilities": [
+      {
+        "name": "Blood Transcendence",
+        "description": "Temporarily ascend to a higher state of blood mastery",
+        "cost": "50 blood essence + 50 Crimson Resonance + 15% of maximum health",
+        "cooldown": "5 minutes",
+        "duration": "30 seconds",
+        "effect": "Enter a state where all blood abilities cost no blood essence, health costs are reduced by 50%, and you gain significant bonuses to damage, speed, and critical hit chance",
+        "scaling": "Duration, cost reduction, and stat bonuses scale with Constitution, Dexterity, and Crimson Resonance"
+      },
+      {
+        "name": "Crimson Legion",
+        "description": "Create multiple blood constructs to fight alongside you",
+        "cost": "75 blood essence + 30 Crimson Resonance",
+        "cooldown": "10 minutes",
+        "duration": "1 minute",
+        "effect": "Summon three blood constructs that fight for you, each with different abilities based on your specialization",
+        "scaling": "Construct power, abilities, and duration scale with Constitution, Intelligence, and Crimson Resonance"
+      }
+    ],
+    "playstyle": "Blood Agents excel at tracking and eliminating specific targets through advanced blood magic and assassination techniques. They balance health sacrifice with combat effectiveness, using blood essence and crimson resonance to power their most devastating abilities. The class rewards strategic thinking and resource management, allowing players to adapt their approach based on the situation.",
+    "difficulty": "Hard - Requires excellent resource management and tactical decision-making",
+    "recommended_for": "Players who enjoy complex resource systems and high-risk, high-reward gameplay",
+    "base_class": "crimson_agent"
+  }
+}

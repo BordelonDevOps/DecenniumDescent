@@ -1,0 +1,181 @@
+{
+  "id": "battlemaster",
+  "name": "Battlemaster",
+  "base_class": "warrior",
+  "description": "Warriors who have refined their combat skills to become elite battlefield commanders, combining personal martial prowess with tactical leadership and inspiring allies to greater feats in battle.",
+  "level_requirement": 10,
+  "role": "Tank-Control",
+  "primary_stats": ["Strength", "Charisma"],
+  "secondary_stats": ["Constitution", "Intelligence"],
+  "resource_systems": [
+    {
+      "name": "Stamina",
+      "description": "Physical energy that powers combat abilities and martial techniques",
+      "max_value": "30 + (Constitution modifier × 6) + (level × 6)",
+      "regeneration": "4 per 6 seconds, +7 during combat",
+      "mechanics": [
+        "Stamina points are spent to perform advanced combat maneuvers and leadership techniques",
+        "Some abilities require maintaining focus, consuming stamina over time",
+        "Short rests restore a significant portion of maximum stamina",
+        "Depleted stamina causes penalties to attack speed and tactical abilities",
+        "Can be temporarily boosted through adrenaline in critical situations",
+        "Successful command abilities can restore a portion of stamina"
+      ]
+    },
+    {
+      "name": "Combat Focus",
+      "description": "Mental concentration and battlefield awareness that enhances combat effectiveness",
+      "max_value": "150",
+      "regeneration": "Builds during combat, decreases during periods of inaction",
+      "mechanics": [
+        "Increases by 15 when landing critical hits or successfully executing combat maneuvers",
+        "Increases by 10 per 10 seconds in active combat",
+        "Decreases by 15 when taking significant damage or being stunned",
+        "Decreases by 10 per minute when out of combat",
+        "Can be spent to enhance combat abilities or execute special techniques",
+        "Higher Combat Focus increases critical hit chance and defensive reactions"
+      ]
+    },
+    {
+      "name": "Command Authority",
+      "description": "Measure of leadership presence and ability to direct allies in battle",
+      "max_value": "100",
+      "regeneration": "Builds when successfully leading allies or demonstrating battlefield dominance",
+      "mechanics": [
+        "Increases by 10 when allies successfully follow tactical directions",
+        "Increases by 15 when demonstrating exceptional combat prowess",
+        "Decreases by 10 when allies are defeated or tactical plans fail",
+        "Decreases by 15 when personally suffering significant setbacks in combat",
+        "Can be spent to issue powerful command abilities that enhance allies",
+        "Higher Command Authority increases the effectiveness of leadership abilities"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Advanced Weapon Mastery",
+      "description": "Exceptional skill with weapons elevated to an art form",
+      "effects": [
+        "Can use any weapon with masterful precision and effectiveness",
+        "Able to identify and exploit the perfect weapon for any combat situation",
+        "Can perform advanced techniques that maximize weapon effectiveness",
+        "Presence inspires allies to improve their own weapon techniques",
+        "Can analyze and counter even the most exotic fighting styles"
+      ]
+    },
+    {
+      "name": "Tactical Command",
+      "description": "Ability to direct allies and control the flow of battle",
+      "effects": [
+        "Can issue tactical commands that enhance ally performance",
+        "Able to coordinate group maneuvers for maximum effectiveness",
+        "Can quickly analyze battlefield situations and develop optimal strategies",
+        "Presence naturally establishes a command hierarchy in combat groups",
+        "Can adapt tactical approaches in real-time as battlefield conditions change"
+      ]
+    },
+    {
+      "name": "Combat Resilience",
+      "description": "Exceptional ability to endure and overcome battlefield challenges",
+      "effects": [
+        "Can continue fighting effectively despite significant injuries",
+        "Able to resist effects of fatigue, pain, and environmental hazards",
+        "Can recover quickly from debilitating effects and conditions",
+        "Presence inspires allies to push beyond their normal limits",
+        "Can endure extended combat operations with minimal rest"
+      ]
+    },
+    {
+      "name": "Battlefield Control",
+      "description": "Mastery of positioning and environmental factors in combat",
+      "effects": [
+        "Can control enemy movement and positioning through superior tactics",
+        "Able to create and exploit tactical advantages in any environment",
+        "Can deny enemies favorable positions and force disadvantageous engagements",
+        "Presence enhances the tactical positioning of all allies",
+        "Can turn environmental hazards into advantages for allies"
+      ]
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Master of Arms",
+      "focus": "Supreme mastery of weapons and combat techniques",
+      "key_abilities": [
+        "Weapon Supremacy: Achieve unparalleled skill with chosen weapon types",
+        "Combat Perfection: Execute flawless attacks and defenses in any situation",
+        "Adaptive Fighting: Instantly switch combat styles to counter any opponent"
+      ]
+    },
+    {
+      "name": "Commander",
+      "focus": "Leadership and tactical control of allies in battle",
+      "key_abilities": [
+        "Inspiring Presence: Significantly enhance ally performance through leadership",
+        "Tactical Genius: Develop and execute complex battle strategies",
+        "Coordinated Assault: Direct allies in devastating synchronized attacks"
+      ]
+    },
+    {
+      "name": "Battlefield Sovereign",
+      "focus": "Control and domination of the battlefield environment",
+      "key_abilities": [
+        "Terrain Mastery: Exploit environmental factors for maximum tactical advantage",
+        "Zone Control: Dominate specific battlefield areas through superior positioning",
+        "Battlefield Manipulation: Force enemies into disadvantageous positions"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 10,
+    "quests": ["The Commander's Trial", "Battlefield Leadership"],
+    "skill_points": "At least 5 points in any warrior skill tree",
+    "challenges": ["Successfully lead allies in a significant battle", "Demonstrate mastery of multiple weapon types in combat"]
+  },
+  "progression_path": {
+    "hero_classes": [
+      {
+        "id": "champion",
+        "name": "Champion",
+        "alignment": "Good",
+        "level_requirement": 30,
+        "description": "Battlemasters who embody heroic ideals, protecting the innocent and inspiring allies through noble deeds and selfless courage."
+      },
+      {
+        "id": "warlord",
+        "name": "Warlord",
+        "alignment": "Neutral",
+        "level_requirement": 30,
+        "description": "Battlemasters who focus on tactical superiority and battlefield dominance, seeking victory through perfect strategy and disciplined execution."
+      },
+      {
+        "id": "conqueror",
+        "name": "Conqueror",
+        "alignment": "Evil",
+        "level_requirement": 30,
+        "description": "Battlemasters who seek to dominate and subjugate through overwhelming force and intimidation, crushing opposition beneath their might."
+      }
+    ]
+  },
+  "legendary_items": [
+    {
+      "name": "Commander's Blade",
+      "type": "Weapon",
+      "effects": [
+        "Increases damage based on Command Authority level",
+        "Enhances tactical command abilities when wielded",
+        "Inspires allies within visual range, improving morale and combat effectiveness"
+      ]
+    },
+    {
+      "name": "Tactician's Helm",
+      "type": "Head",
+      "effects": [
+        "Enhances battlefield awareness and tactical perception",
+        "Allows perfect assessment of enemy strengths and weaknesses",
+        "Improves command ability range and effectiveness"
+      ]
+    }
+  ],
+  "lore": "Battlemasters represent warriors who have transcended mere combat skill to become true leaders on the battlefield, combining exceptional martial prowess with tactical genius and inspirational leadership. Where ordinary warriors might focus on personal combat effectiveness, Battlemasters develop the ability to control entire battles through strategic command and tactical coordination, elevating the performance of all who fight alongside them. The path to becoming a Battlemaster often involves years of combat experience in various environments and leadership roles in military organizations, culminating in the development of a personal command style that inspires and directs allies. Those who succeed find themselves capable of turning even untrained fighters into effective combat units through sheer force of personality and tactical acumen. Battlemasters serve various roles in society, from military commanders and elite guards to mercenary captains and combat instructors. Some focus on developing their personal combat skills to legendary levels, while others emphasize tactical leadership and the ability to coordinate large-scale military operations. Their combination of individual combat prowess and leadership capability makes them invaluable in any conflict, where their presence can turn the tide of battle through superior tactics and inspiration. Though they may lack the magical capabilities of spellcasters or the specialized skills of rogues, the tactical versatility and battlefield control of Battlemasters allow them to adapt to almost any combat situation and develop effective strategies to overcome even the most challenging opponents."
+}

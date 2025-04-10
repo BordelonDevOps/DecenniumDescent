@@ -1,0 +1,208 @@
+{
+  "id": "oracle_of_light",
+  "name": "Oracle of Light",
+  "base_class": "oracle",
+  "arch_class": "fateweaver",
+  "alignment": "Good",
+  "description": "Fateweavers who use their powers to guide others toward positive destinies and protect the world from calamity, weaving threads of hope and salvation into the tapestry of fate.",
+  "level_requirement": 30,
+  "role": "Support-Healing",
+  "primary_stats": ["Wisdom", "Charisma"],
+  "secondary_stats": ["Intelligence", "Constitution"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Mystical energy that powers divination spells and prophecies",
+      "max_value": "30 + (Wisdom modifier × 4) + (level × 4)",
+      "regeneration": "3 per 6 seconds, +5 when successfully predicting an event",
+      "mechanics": [
+        "Mana points are spent to cast divination spells and invoke prophecies",
+        "Some abilities require maintaining a connection to the future, consuming mana over time",
+        "Meditation increases mana regeneration rate by 500% but prevents movement",
+        "Can channel mana into healing and protective prophecies"
+      ]
+    },
+    {
+      "name": "Fate Points",
+      "description": "Accumulated knowledge of possible futures that can be spent to alter destiny",
+      "max_value": "7 + (Wisdom modifier)",
+      "regeneration": "3 per long rest, additional points gained through significant divinations",
+      "mechanics": [
+        "Fate Points can be spent to reroll dice for self or allies",
+        "Can be used to force a critical success or failure on a single action",
+        "Powerful destiny-altering abilities consume multiple Fate Points",
+        "Can be invested in long-term prophecies of salvation and protection"
+      ]
+    },
+    {
+      "name": "Destiny Threads",
+      "description": "Tangible manifestations of fate that can be manipulated to create powerful effects",
+      "max_value": "15 + (Charisma modifier)",
+      "regeneration": "2 per hour, additional threads gained when significant events align with predictions",
+      "mechanics": [
+        "Threads can be woven into patterns that create various magical effects",
+        "Can be attached to individuals to influence their destiny toward positive outcomes",
+        "More complex patterns require more threads but produce more powerful effects",
+        "Threads can be sacrificed to immediately alter the outcome of a critical event"
+      ]
+    },
+    {
+      "name": "Divine Radiance",
+      "description": "Sacred light that illuminates the path of destiny and reveals the truth",
+      "max_value": "100",
+      "regeneration": "Builds when guiding others toward positive outcomes or preventing calamities",
+      "mechanics": [
+        "Increases by 10 when successfully guiding someone toward a positive destiny",
+        "Increases by 20 when preventing a prophesied calamity",
+        "Decreases by 5 per hour when not actively helping others",
+        "Can be spent to enhance healing abilities or create powerful protective effects"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Guiding Light",
+      "description": "The ability to illuminate the optimal path for others to follow",
+      "effects": [
+        "Can reveal the best possible future path to allies",
+        "Allies under your guidance gain 30% increased experience and success chance",
+        "Can dispel uncertainty and fear with the clarity of perfect foresight",
+        "Presence automatically reveals hidden dangers and traps within 50 meters"
+      ]
+    },
+    {
+      "name": "Prophecy of Hope",
+      "description": "Declarations of positive futures that inspire and empower",
+      "effects": [
+        "Prophecies of success grant powerful buffs to allies",
+        "Can declare area-wide prophecies that boost entire communities",
+        "Prophecies of healing restore health and remove negative status effects",
+        "Inspired allies under your prophecies gain immunity to fear and despair"
+      ]
+    },
+    {
+      "name": "Salvation Weaving",
+      "description": "Manipulation of fate to save lives and prevent disasters",
+      "effects": [
+        "Can rewrite imminent death into survival for allies",
+        "Able to divert natural disasters away from populated areas",
+        "Can weave protective fate patterns that absorb damage",
+        "Presence reduces the severity of negative events within 100 meters"
+      ]
+    },
+    {
+      "name": "Truth Revelation",
+      "description": "The power to reveal absolute truth and dispel deception",
+      "effects": [
+        "Can reveal the true nature of any being or object",
+        "Automatically dispels illusions and deceptions within 30 meters",
+        "Grants allies the ability to see through lies and manipulation",
+        "Presence prevents scrying and fate manipulation by evil entities"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Destiny Sanctuary",
+      "description": "Create a sacred space where positive destinies are protected and negative fates cannot enter",
+      "mechanics": [
+        "Establishes a 50-meter radius sanctuary that lasts for 10 minutes",
+        "Allies within the sanctuary cannot be targeted by harmful fate manipulation",
+        "All allies within gain 50% increased healing and 30% damage reduction",
+        "Enemies attempting to enter must succeed on a Wisdom save or be repelled",
+        "Costs 50 Mana, 3 Fate Points, and 30 Divine Radiance"
+      ],
+      "cooldown": "1 hour"
+    },
+    {
+      "name": "Prophecy of Salvation",
+      "description": "Declare a powerful prophecy that guarantees survival and victory for your allies",
+      "mechanics": [
+        "Target up to 10 allies within 100 meters",
+        "For the next 5 minutes, targeted allies cannot be reduced below 1 health",
+        "When the effect ends, allies are healed for 50% of their maximum health",
+        "All targeted allies gain a 50% damage boost against prophesied enemies",
+        "Costs 70 Mana, 5 Fate Points, and 50 Divine Radiance"
+      ],
+      "cooldown": "12 hours"
+    },
+    {
+      "name": "Divine Intervention",
+      "description": "Directly intervene in the flow of fate to prevent a catastrophic event",
+      "mechanics": [
+        "Can completely negate any single event, attack, or spell",
+        "Can resurrect a recently deceased ally with full health",
+        "Can completely heal all allies within 100 meters",
+        "When used to prevent a prophesied disaster, affects an entire region",
+        "Costs 100 Mana, 7 Fate Points, and 100 Divine Radiance"
+      ],
+      "cooldown": "3 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Guardian",
+      "focus": "Protection and prevention of harm",
+      "key_abilities": [
+        "Fate Shield: Create an impenetrable barrier of destiny that absorbs all damage",
+        "Calamity Diversion: Redirect a disaster away from its intended target",
+        "Destiny Ward: Place a permanent protective mark on a location or individual"
+      ]
+    },
+    {
+      "name": "Path of the Healer",
+      "focus": "Restoration and renewal",
+      "key_abilities": [
+        "Rewrite Wounds: Alter a target's fate to remove all injuries",
+        "Destiny Renewal: Restore youth and vitality to aging individuals",
+        "Purification Light: Cleanse corruption and disease from an area"
+      ]
+    },
+    {
+      "name": "Path of the Guide",
+      "focus": "Direction and inspiration",
+      "key_abilities": [
+        "Perfect Path: Reveal the exact steps needed to achieve a positive outcome",
+        "Inspiration Weave: Grant temporary divine inspiration for creative or intellectual tasks",
+        "Destiny Beacon: Create a guiding light that leads lost souls to safety"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Pilgrimage to the Divine Oracle", "Salvation of the Doomed City", "Communion with the Light"],
+    "skill_points": "At least 15 points in the Grand Prophet skill tree",
+    "alignment": "Must maintain Good alignment for at least 10 levels",
+    "challenges": ["Successfully prevent a prophesied disaster", "Guide a lost soul to their true destiny"]
+  },
+  "legendary_items": [
+    {
+      "name": "Crown of Divine Foresight",
+      "type": "Head",
+      "effects": [
+        "Wisdom increased by 5",
+        "Divine Radiance regeneration increased by 100%",
+        "Can see the optimal future path for any individual at will"
+      ]
+    },
+    {
+      "name": "Mantle of the Savior",
+      "type": "Shoulders",
+      "effects": [
+        "Prophecy of Salvation cooldown reduced by 6 hours",
+        "Automatically redirects 30% of damage from nearby allies to you",
+        "Creates a healing aura that restores 5% health per minute to all allies"
+      ]
+    },
+    {
+      "name": "Staff of Destiny's Light",
+      "type": "Two-Hand",
+      "effects": [
+        "Increases the range of all abilities by 50%",
+        "Divine Intervention cooldown reduced by 1 day",
+        "Can store up to 3 prepared prophecies for instant activation"
+      ]
+    }
+  ],
+  "lore": "Oracles of Light represent the most benevolent path a Fateweaver can take, dedicating their tremendous power over destiny to the protection and guidance of others. They perceive the tapestry of fate not as a tool for personal gain, but as a sacred responsibility to shepherd the world toward its brightest possible future. These luminous seers use their visions to prevent disasters, heal the wounded, and guide the lost toward their true purpose. Their prophecies inspire hope rather than fear, and their manipulations of fate always aim to maximize happiness and minimize suffering. Oracles of Light often establish sanctuaries where those in need can seek guidance, or they may travel the world in search of those whose destinies require intervention. Though they possess the power to dramatically alter the course of history, they use this ability with great restraint, understanding that even well-intentioned interference can have unforeseen consequences. They are revered throughout the world as beacons of hope in dark times, their mere presence often enough to turn the tide against despair."
+}

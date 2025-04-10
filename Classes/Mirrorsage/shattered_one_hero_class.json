@@ -1,0 +1,229 @@
+{
+  "id": "shattered_one_hero_class",
+  "name": "Shattered One Hero Class",
+  "description": "Hero class progression for the Reflectionist arch class of the Mirrorsage base class",
+  "hero_class": {
+    "id": "shattered_one",
+    "name": "Shattered One",
+    "description": "Fractured reflectionists who use broken mirrors to distort reality and inflict pain. Shattered Ones create jagged mirror shards that cut through both flesh and sanity, using the chaotic nature of broken reflections to tear apart their enemies.",
+    "role": "damage-control",
+    "primary_stats": ["int", "cha"],
+    "secondary_stats": ["con", "dex"],
+    "resource_mechanics": {
+      "mp": {
+        "description": "Mystical energy infused with chaotic reflections",
+        "base_amount": 200,
+        "regeneration": "7% of max per 5 seconds, +6% when enemies are affected by mirror shards",
+        "max_amount_formula": "200 + (INT * 8) + (CHA * 6) + (level * 14)"
+      },
+      "reflection_energy": {
+        "description": "Enhanced mirror essence that powers advanced illusion manipulation",
+        "base_amount": 30,
+        "max_amount": 150,
+        "generation": "20 points when creating mirror images, 25 points when enemies attack illusions, 15 points when reflecting spells",
+        "decay": "5 points per 30 seconds",
+        "thresholds": [
+          {
+            "level": 50,
+            "effect": "Significant illusion duration and realism increase, minor damage over time to enemies"
+          },
+          {
+            "level": 100,
+            "effect": "Major illusion duration and realism increase, 25% reduced MP cost for mirror spells, moderate damage over time to enemies"
+          },
+          {
+            "level": 150,
+            "effect": "Superior illusion duration and realism increase, 40% reduced MP cost for all spells, illusions deal 40% actual damage, major damage over time to enemies"
+          }
+        ]
+      },
+      "mirror_essence": {
+        "description": "Crystallized reflective energy used to create and maintain mirrors",
+        "base_amount": 20,
+        "max_amount": 120,
+        "generation": "15 points when reflecting spells, 20 points when creating mirror constructs, 10 points when observing through mirrors",
+        "decay": "5 points per 2 minutes",
+        "thresholds": [
+          {
+            "level": 40,
+            "effect": "Enhanced mirror construct durability and reflection quality, minor fear effect on enemies"
+          },
+          {
+            "level": 80,
+            "effect": "Major mirror construct durability and reflection quality, constructs cost 20% less mana, moderate fear effect on enemies"
+          },
+          {
+            "level": 120,
+            "effect": "Maximum mirror construct durability and reflection quality, constructs cost 40% less mana, chance to not consume mana, major fear effect on enemies"
+          }
+        ]
+      },
+      "fracture_energy": {
+        "description": "Chaotic energy from broken mirrors that distorts reality",
+        "base_amount": 0,
+        "max_amount": 100,
+        "generation": "10 points when shattering mirrors, 15 points when enemies are cut by mirror shards, 20 points when distorting reality",
+        "decay": "10 points per minute when not actively using fracture abilities",
+        "thresholds": [
+          {
+            "level": 30,
+            "effect": "Minor enhancement to fracture-based abilities and reality distortion"
+          },
+          {
+            "level": 70,
+            "effect": "Moderate enhancement to fracture-based abilities and reality distortion, increased damage from mirror shards"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to fracture-based abilities and reality distortion, greatly increased damage from mirror shards, chance to automatically shatter enemy magical defenses"
+          }
+        ]
+      }
+    },
+    "armor_proficiency": ["cloth", "light", "mirrored_garments", "prismatic_armor", "shard_mail"],
+    "weapon_proficiency": ["staves", "wands", "daggers", "mirror_shards", "glass_weapons", "reflection_foci", "broken_blades"],
+    "class_mechanics": {
+      "mirror_shards": {
+        "description": "Create razor-sharp shards of broken mirrors",
+        "cost": "50 MP + 30 Mirror Essence + 20 Fracture Energy",
+        "cooldown": "20 seconds",
+        "duration": "30 seconds",
+        "effect": "Create a cloud of mirror shards that orbit around you, dealing 30 damage per second to enemies within 10 yards and reducing their movement speed by 40%",
+        "scaling": "Damage, range, and slow effect scale with Intelligence and Fracture Energy"
+      },
+      "shattered_reflection": {
+        "description": "Create a distorted, broken reflection of a target",
+        "cost": "60 MP + 40 Mirror Essence + 30 Fracture Energy",
+        "cooldown": "45 seconds",
+        "duration": "20 seconds",
+        "effect": "Create a twisted reflection of a target that attacks them with 70% of their own abilities, dealing 30% of the damage back to them",
+        "scaling": "Reflection damage percentage and duration scale with Charisma and Fracture Energy"
+      },
+      "reality_fracture": {
+        "description": "Shatter the fabric of reality in an area",
+        "cost": "70 MP + 50 Mirror Essence + 40 Fracture Energy",
+        "cooldown": "2 minutes",
+        "duration": "15 seconds",
+        "effect": "Create a 20-yard radius zone where reality is fractured, causing enemies to take 40 damage per second, have a 30% chance to miss attacks, and have a 20% chance to attack their allies",
+        "scaling": "Zone size, damage, miss chance, and friendly fire chance scale with Intelligence and Fracture Energy"
+      },
+      "mind_shatter": {
+        "description": "Break a target's mental defenses with fractured reflections",
+        "cost": "55 MP + 35 Mirror Essence + 25 Fracture Energy",
+        "cooldown": "1 minute",
+        "duration": "10 seconds",
+        "effect": "Attack a target's mind with broken mirror images, causing them to be stunned for 3 seconds and then confused for 7 seconds (attacking random targets)",
+        "scaling": "Stun duration, confusion duration, and resistance penetration scale with Charisma and Fracture Energy"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Mirror Breaker",
+        "focus": "Creating and controlling broken mirror shards",
+        "key_abilities": [
+          "Glass Storm: Create a whirlwind of razor-sharp mirror fragments",
+          "Shard Explosion: Detonate mirror shards for area damage",
+          "Embedded Fragments: Cause mirror shards to lodge in enemies, dealing damage over time"
+        ]
+      },
+      {
+        "name": "Distortion Master",
+        "focus": "Warping reality through broken reflections",
+        "key_abilities": [
+          "Twisted Image: Create a distorted reflection that causes fear and confusion",
+          "Reality Warp: Bend space around a target, causing disorientation",
+          "Fractured Perception: Cause a target to see multiple conflicting realities"
+        ]
+      },
+      {
+        "name": "Mind Breaker",
+        "focus": "Attacking sanity through broken reflections",
+        "key_abilities": [
+          "Shattered Psyche: Break a target's mind with impossible reflections",
+          "Nightmare Mirror: Force a target to face their worst fears",
+          "Identity Crisis: Make a target unable to distinguish themselves from their reflections"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 30,
+      "alignment": "evil",
+      "reflectionist_skills": ["Mirror Creation 7", "Perfect Reflection 6", "Mirror Dimension 5"],
+      "quests": ["The Path of Fracture", "Communion with Chaos"]
+    },
+    "signature_abilities": [
+      {
+        "name": "Cataclysm of Shattered Glass",
+        "description": "Create a devastating storm of broken mirror shards",
+        "cost": "150 MP + 100 Mirror Essence + 80 Fracture Energy",
+        "cooldown": "30 minutes",
+        "duration": "1 minute",
+        "effect": "Create a 40-yard radius storm of razor-sharp mirror shards that deals 60 damage per second to enemies, reduces their movement speed by 70%, and has a 40% chance to critically strike for 200% damage",
+        "additional_effect": "While the storm rages, your mirror shard abilities cost 70% less MP and have their cooldowns reduced by 70%",
+        "scaling": "Storm size, damage, slow effect, and critical strike chance scale with Intelligence, Charisma, and total Fracture Energy consumed"
+      },
+      {
+        "name": "Thousand Fractured Reflections",
+        "description": "Create multiple distorted reflections of enemies",
+        "cost": "120 MP + 80 Mirror Essence + 60 Fracture Energy",
+        "cooldown": "15 minutes",
+        "duration": "30 seconds",
+        "effect": "Create twisted reflections of all enemies within 30 yards that attack their originals with 50% of their own abilities and deal 40% of the damage back to them",
+        "additional_effect": "Enemies attacked by their reflections have a 30% chance to be stunned for 2 seconds and take 50% increased damage from all sources for 5 seconds",
+        "scaling": "Number of reflections, their damage percentage, and stun chance scale with Intelligence, Charisma, and Fracture Energy"
+      },
+      {
+        "name": "Ascension of Broken Glass",
+        "description": "Transform into a being of shattered mirrors",
+        "cost": "180 MP + 120 Mirror Essence + all Fracture Energy",
+        "cooldown": "1 hour",
+        "duration": "1 minute",
+        "effect": "Transform into a being of shattered mirrors with 50% damage reduction, 100% increased damage, and the ability to instantly shatter enemy magical defenses and reflections",
+        "additional_effect": "While transformed, your mirror shard abilities cost no MP and have no cooldown, and you automatically reflect 100% of spell damage back to casters",
+        "scaling": "Duration, damage reduction, damage bonus, and reflection percentage scale with Intelligence, Charisma, and total Fracture Energy consumed"
+      }
+    ],
+    "legendary_items": [
+      {
+        "name": "The Fractured Edge",
+        "type": "Weapon",
+        "rarity": "Legendary",
+        "effects": [
+          "Mirror Shards cooldown reduced by 50% and affects twice as many enemies",
+          "Shattered Reflection effectiveness increased by 50% and duration doubled",
+          "When Fracture Energy reaches 100, automatically cast Reality Fracture at no cost"
+        ],
+        "unique_ability": {
+          "name": "Kaleidoscope of Pain",
+          "description": "Unleash the full destructive potential of broken mirrors",
+          "cooldown": "5 minutes",
+          "effect": "For 30 seconds, all your attacks create mirror shards that lodge in enemies, dealing 20% of your spell damage every 2 seconds for 20 seconds"
+        }
+      },
+      {
+        "name": "Regalia of the Shattered One",
+        "type": "Armor Set",
+        "rarity": "Legendary",
+        "set_pieces": ["Crown of Broken Glass", "Mantle of Distortion", "Robes of Fracture", "Gloves of Cutting Edges", "Boots of Shattered Reality"],
+        "set_bonuses": [
+          "(2) +30% to mirror shard damage",
+          "(3) Fracture Energy maximum increased by 25",
+          "(4) Mind Shatter cooldown reduced by 50%",
+          "(5) Cataclysm of Shattered Glass cooldown reduced by 50% and area increased by 50%"
+        ],
+        "unique_ability": {
+          "name": "Avatar of Fracture",
+          "description": "Become one with broken reflections",
+          "cooldown": "10 minutes",
+          "effect": "For 1 minute, transform into a being of shattered mirrors that automatically damages enemies within 15 yards for 40 damage per second and has a 30% chance to reflect any attack or spell back at the attacker with 150% increased power"
+        }
+      }
+    ],
+    "playstyle": "Shattered Ones excel at dealing damage and controlling enemies through broken mirror shards and distorted reflections. They build and maintain Fracture Energy to enhance their connection with chaos and distortion. The class rewards aggressive play and strategic positioning, allowing players to tear apart enemies both physically and mentally through the power of broken reflections.",
+    "difficulty": "Very Hard - Requires excellent offensive timing and positioning",
+    "recommended_for": "Players who enjoy aggressive damage dealing with a focus on control and psychological warfare",
+    "arch_class": "reflectionist",
+    "base_class": "mirrorsage",
+    "alignment": "evil"
+  }
+}

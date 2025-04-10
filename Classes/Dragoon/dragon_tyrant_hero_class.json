@@ -1,0 +1,200 @@
+{
+  "id": "dragon_tyrant_hero_class",
+  "name": "Dragon Tyrant Hero Class",
+  "description": "Hero class progression for the Dragon Lancer arch class of the Dragoon base class",
+  "hero_class": {
+    "id": "dragon_tyrant",
+    "name": "Dragon Tyrant",
+    "description": "Fearsome warriors who have subjugated chromatic dragons to their will. Dragon Tyrants command draconic power through domination rather than partnership, wielding destructive magic and inspiring terror on the battlefield.",
+    "role": "damage-control",
+    "primary_stats": ["str", "int"],
+    "secondary_stats": ["con", "cha"],
+    "resource_mechanics": {
+      "stamina": {
+        "description": "Physical energy that powers dominating jumps and combat abilities",
+        "base_amount": 200,
+        "max_amount": "200 + (STR * 4) + (CON * 3)",
+        "generation": "15 points per 5 seconds, 30 points when defeating enemies with jump attacks",
+        "decay": "None while in combat, 5 points per 6 seconds when out of combat",
+        "usage": "Spent on devastating jump abilities and domination techniques"
+      },
+      "dragon_spirit": {
+        "description": "Corrupted draconic energy that enables powerful destructive abilities",
+        "base_amount": 0,
+        "max_amount": 200,
+        "generation": "10 points when dealing damage with draconic abilities, 20 points when dominating enemies, 30 points when defeating powerful foes",
+        "decay": "5 points per 5 minutes when not in combat",
+        "thresholds": [
+          {
+            "level": 50,
+            "effect": "Significant enhancement to destructive abilities and fear effects"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to destructive abilities and fear effects, 30% reduced stamina cost for domination abilities"
+          },
+          {
+            "level": 200,
+            "effect": "Superior enhancement to destructive abilities and fear effects, 50% reduced stamina cost for domination abilities, chance to instantly dominate weaker enemies"
+          }
+        ]
+      },
+      "draconic_dominance": {
+        "description": "The power exerted over chromatic dragons and lesser beings",
+        "base_amount": 0,
+        "max_amount": 100,
+        "generation": "5 points when using domination abilities, 10 points when enemies flee in fear, 15 points when subjugating powerful enemies",
+        "decay": "5 points per 3 minutes when not asserting dominance",
+        "thresholds": [
+          {
+            "level": 30,
+            "effect": "Minor enhancement to control abilities and fear duration"
+          },
+          {
+            "level": 70,
+            "effect": "Moderate enhancement to control abilities and fear duration, increased Dragon Spirit generation"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to control abilities and fear duration, greatly increased Dragon Spirit generation, chance to break enemy will completely"
+          }
+        ]
+      }
+    },
+    "armor_proficiency": ["medium", "heavy", "draconic_scale", "tyrant_plate"],
+    "weapon_proficiency": ["spears", "lances", "great_weapons", "dragon_weapons", "terror_weapons"],
+    "class_mechanics": {
+      "tyrant_leap": {
+        "description": "Dominating version of the dragoon jump ability",
+        "cost": "60 Stamina",
+        "cooldown": "15 seconds",
+        "effect": "Leap to a target location, creating a shockwave upon landing that deals 250% weapon damage in a 12-yard radius and causes enemies to cower in fear for 4 seconds",
+        "scaling": "Damage, fear duration, and area of effect scale with Strength, Intelligence, and Draconic Dominance"
+      },
+      "draconic_subjugation": {
+        "description": "Assert dominance over enemies through draconic power",
+        "cost": "50 Dragon Spirit + 30 Draconic Dominance",
+        "cooldown": "45 seconds",
+        "duration": "15 seconds",
+        "effect": "Dominate an enemy, reducing their damage by 50% and causing them to take 30% increased damage from your attacks",
+        "scaling": "Damage reduction, damage increase, and duration scale with Intelligence, Charisma, and Draconic Dominance"
+      },
+      "breath_of_destruction": {
+        "description": "Channel the devastating breath of chromatic dragons",
+        "cost": "80 Dragon Spirit + 40 Draconic Dominance",
+        "cooldown": "1 minute",
+        "effect": "Release a cone of destructive energy in a 15-yard cone, dealing damage based on your current draconic attunement and applying a debuff that reduces healing received by 70% for 10 seconds",
+        "scaling": "Damage, healing reduction, and area of effect scale with Strength, Intelligence, and Draconic Dominance"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Draconic Tyranny",
+        "focus": "Domination and control through fear",
+        "key_abilities": [
+          "Overwhelming Presence: Enemies within 20 yards deal 30% less damage and move 30% slower",
+          "Break Will: Temporarily dominate an enemy, forcing them to fight for you",
+          "Terror Incarnate: Transform into a terrifying aspect that causes weaker enemies to flee in panic"
+        ]
+      },
+      {
+        "name": "Chromatic Power",
+        "focus": "Destructive draconic magic",
+        "key_abilities": [
+          "Elemental Mastery: Cycle through different chromatic dragon elements for varied destructive effects",
+          "Draconic Corruption: Infect enemies with draconic energy that deals damage over time and spreads to nearby targets",
+          "Apocalyptic Breath: Channel the combined breath weapons of all chromatic dragons for devastating area damage"
+        ]
+      },
+      {
+        "name": "Tyrant's Might",
+        "focus": "Raw power and physical dominance",
+        "key_abilities": [
+          "Crushing Blow: Devastating attack that ignores armor and has a chance to instantly kill weaker enemies",
+          "Draconic Strength: Temporarily gain immense strength, increasing damage and allowing you to throw enemies",
+          "Unstoppable Force: Become immune to control effects and gain 50% movement speed for charging through enemy lines"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 30,
+      "alignment": "evil",
+      "dragon_lancer_skills": ["Advanced Jump 8", "Draconic Attunement 7", "Draconic Manifestation 7"],
+      "quests": ["The Path of Domination", "Chromatic Dragon Subjugation"],
+      "additional_requirements": ["Defeat and subjugate a chromatic dragon"]
+    },
+    "signature_abilities": [
+      {
+        "name": "Reign of Terror",
+        "description": "Unleash your full tyrannical power",
+        "cost": "100 Stamina + 100 Dragon Spirit + 80 Draconic Dominance",
+        "cooldown": "10 minutes",
+        "duration": "30 seconds",
+        "effect": "Enter a state of absolute dominance where all enemies within 40 yards take 30% increased damage, deal 50% less damage, and have a 20% chance to cower in fear each time they are struck",
+        "additional_effect": "While active, your abilities cost 70% less resources and have their cooldowns reduced by 50%",
+        "scaling": "Duration, damage increase, enemy damage reduction, and fear chance scale with Strength, Intelligence, and Draconic Dominance"
+      },
+      {
+        "name": "Chromatic Dragon Transformation",
+        "description": "Temporarily transform into a chromatic dragon aspect",
+        "cost": "150 Dragon Spirit + 100 Draconic Dominance",
+        "cooldown": "15 minutes",
+        "duration": "1 minute",
+        "effect": "Transform into a chromatic dragon aspect, gaining 100% increased size and strength, the ability to fly, and devastating breath attacks that apply different debuffs based on the chromatic color",
+        "scaling": "Transformation power, breath attack damage, and debuff strength scale with Strength, Intelligence, and Draconic Dominance"
+      },
+      {
+        "name": "Absolute Dominion",
+        "description": "Assert complete control over the battlefield",
+        "cost": "All Dragon Spirit + All Draconic Dominance",
+        "cooldown": "30 minutes",
+        "duration": "20 seconds",
+        "effect": "Dominate all enemies within 50 yards, reducing their movement speed by 70%, their damage by 50%, and forcing them to take 100% increased damage from all sources",
+        "additional_effect": "Elite enemies and bosses are not fully dominated but still take 50% increased damage and deal 30% less damage",
+        "scaling": "Duration, movement reduction, damage reduction, and damage increase scale with Intelligence, Charisma, and total Draconic Dominance consumed"
+      }
+    ],
+    "legendary_items": [
+      {
+        "name": "Spear of the Tyrant",
+        "type": "Weapon",
+        "rarity": "Legendary",
+        "effects": [
+          "Tyrant Leap cooldown reduced by 40%",
+          "Draconic Subjugation affects all enemies within 10 yards of the primary target at 50% effectiveness",
+          "When Draconic Dominance reaches 100, automatically cast Breath of Destruction"
+        ],
+        "unique_ability": {
+          "name": "Will Breaker",
+          "description": "Shatter the will of your enemies",
+          "cooldown": "5 minutes",
+          "effect": "Your next attack deals 500% weapon damage and has a 100% chance to dominate the target for 30 seconds, or 10 seconds for elite enemies"
+        }
+      },
+      {
+        "name": "Dragon Tyrant's Regalia",
+        "type": "Armor Set",
+        "rarity": "Legendary",
+        "set_pieces": ["Crown", "Breastplate", "Gauntlets", "Greaves", "Cloak"],
+        "set_bonuses": [
+          "(2) +30% to all fear and domination effect durations",
+          "(3) Draconic Dominance maximum increased by 25",
+          "(4) Dragon Spirit generation increased by 50% when dominating enemies",
+          "(5) Reign of Terror cooldown reduced by 50%"
+        ],
+        "unique_ability": {
+          "name": "Draconic Overlord",
+          "description": "Manifest your complete dominance",
+          "cooldown": "10 minutes",
+          "effect": "For 30 seconds, each time you use a draconic ability, summon a subjugated drake that fights for you for 1 minute, up to a maximum of 5 drakes"
+        }
+      }
+    ],
+    "playstyle": "Dragon Tyrants excel at controlling the battlefield through fear and domination while dealing devastating damage with corrupted draconic power. They balance offensive capabilities with powerful control effects, using Dragon Spirit and Draconic Dominance to assert their will over enemies. The class rewards aggressive play and tactical domination, allowing players to break the will of their enemies while unleashing destructive draconic magic.",
+    "difficulty": "Very Hard - Requires excellent target prioritization and resource management",
+    "recommended_for": "Players who enjoy dominating enemies through fear and control while dealing massive damage with corrupted draconic power",
+    "arch_class": "dragon_lancer",
+    "base_class": "dragoon",
+    "alignment": "evil"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "oracle",
+  "name": "Oracle",
+  "description": "Mystical seers who can glimpse the threads of fate and harness divine visions to guide, protect, and manipulate destiny.",
+  "level_requirement": 1,
+  "role": "Support-Control",
+  "primary_stats": ["Wisdom", "Charisma"],
+  "secondary_stats": ["Intelligence", "Constitution"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Mystical energy that powers divination spells and prophecies",
+      "max_value": "10 + (Wisdom modifier × 2) + (level × 2)",
+      "regeneration": "1 per 6 seconds, +2 when successfully predicting an event",
+      "mechanics": [
+        "Mana points are spent to cast divination spells and invoke prophecies",
+        "Some abilities require maintaining a connection to the future, consuming mana over time",
+        "Meditation increases mana regeneration rate by 300% but prevents movement"
+      ]
+    },
+    {
+      "name": "Fate Points",
+      "description": "Accumulated knowledge of possible futures that can be spent to alter destiny",
+      "max_value": "3 + (Wisdom modifier ÷ 2)",
+      "regeneration": "1 per long rest, additional points gained through significant divinations",
+      "mechanics": [
+        "Fate Points can be spent to reroll dice for self or allies",
+        "Can be used to force a critical success or failure on a single action",
+        "Powerful destiny-altering abilities consume multiple Fate Points"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Divination",
+      "description": "The ability to glimpse possible futures and gain insight into events",
+      "effects": [
+        "Can cast divination spells to gain information about people, places, or events",
+        "Higher-level divinations reveal more detailed and accurate information",
+        "Successful divinations grant temporary bonuses to related skill checks"
+      ]
+    },
+    {
+      "name": "Prophecy",
+      "description": "The ability to predict and influence future events",
+      "effects": [
+        "Can declare prophecies that grant bonuses or penalties based on fulfillment",
+        "Self-fulfilling prophecies provide powerful buffs when conditions are met",
+        "Doom prophecies apply debuffs to enemies when triggered by specific actions"
+      ]
+    },
+    {
+      "name": "Fate Weaving",
+      "description": "Manipulation of probability and destiny",
+      "effects": [
+        "Can subtly alter the outcome of events by manipulating probability",
+        "Provides passive bonuses to saving throws and resistance checks",
+        "Can protect allies from critical hits by weaving protective fate threads"
+      ]
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Seer",
+      "focus": "Divination and information gathering",
+      "key_abilities": [
+        "Vision Quest: Enter a trance to receive detailed visions about a specific target",
+        "Scrying Eye: Remote viewing of distant locations or people",
+        "Portent: Predict the outcome of specific actions before they occur"
+      ]
+    },
+    {
+      "name": "Prophet",
+      "focus": "Declaring and fulfilling prophecies",
+      "key_abilities": [
+        "Divine Proclamation: Declare a prophecy that grants powerful buffs when fulfilled",
+        "Words of Doom: Curse enemies with inevitable consequences for specific actions",
+        "Destiny Marker: Tag individuals or locations as significant to future events"
+      ]
+    },
+    {
+      "name": "Fatespinner",
+      "focus": "Manipulation of probability and destiny",
+      "key_abilities": [
+        "Thread Cutting: Sever a target's connection to a possible future",
+        "Probability Shift: Increase or decrease the likelihood of specific outcomes",
+        "Destiny Bond: Link the fates of two individuals for shared benefits or consequences"
+      ]
+    }
+  ],
+  "racial_affinities": [
+    {
+      "race": "Elf",
+      "bonuses": [
+        "Divination spells cost 15% less mana",
+        "Can see one additional future possibility when using Portent"
+      ]
+    },
+    {
+      "race": "Human",
+      "bonuses": [
+        "Gain one additional Fate Point",
+        "Prophecies have a 20% wider area of effect"
+      ]
+    },
+    {
+      "race": "Gnome",
+      "bonuses": [
+        "Fate Weaving abilities are 15% more effective",
+        "Can reroll failed divination attempts once per day"
+      ]
+    }
+  ],
+  "progression_path": {
+    "arch_classes": [
+      {
+        "id": "fateweaver",
+        "name": "Fateweaver",
+        "description": "Oracles who have mastered the manipulation of destiny and can weave the threads of fate to create powerful effects.",
+        "level_requirement": 10,
+        "skill_requirements": [
+          "At least 5 points in any oracle skill tree",
+          "Completion of the 'Threads of Destiny' quest"
+        ]
+      }
+    ]
+  },
+  "starting_equipment": [
+    "Divination focus (crystal ball, scrying mirror, or rune stones)",
+    "Ceremonial robes with celestial symbols",
+    "Journal of prophecies",
+    "Incense and herbs for rituals",
+    "Simple staff or wand"
+  ],
+  "lore": "Oracles are individuals blessed—or cursed—with the ability to glimpse the threads of fate that bind all living beings. Through meditation, ritual, and innate talent, they can peer beyond the veil of the present to witness possible futures and gain insights into events past and present. Some oracles receive their powers through divine blessing, while others are born with an innate connection to the cosmic tapestry of destiny. Regardless of their origin, all oracles bear the burden of knowledge that others do not possess, seeing the consequences of actions before they unfold. Many struggle with the weight of this responsibility, knowing when to share their visions and when to let fate run its course. Oracles often serve as advisors to the powerful, guides to the lost, or manipulators working from the shadows to ensure their preferred futures come to pass."
+}

@@ -1,0 +1,142 @@
+{
+  "id": "ranger",
+  "name": "Ranger",
+  "description": "Masters of the wilderness who blend martial prowess with natural magic, specializing in tracking, survival, and combat against chosen enemy types.",
+  "level_requirement": 1,
+  "role": "DPS-Utility",
+  "primary_stats": ["Dexterity", "Wisdom"],
+  "secondary_stats": ["Strength", "Constitution"],
+  "resource_systems": [
+    {
+      "name": "Stamina",
+      "description": "Physical energy that powers combat abilities and traversal techniques",
+      "max_value": "10 + (Constitution modifier × 2) + (level × 2)",
+      "regeneration": "1 per 6 seconds, +2 when in natural environments",
+      "mechanics": [
+        "Stamina points are spent to perform special combat maneuvers and traversal techniques",
+        "Some abilities require maintaining focus, consuming stamina over time",
+        "Resting in natural environments increases stamina regeneration rate by 300%",
+        "Depleted stamina causes penalties to movement speed and attack rate"
+      ]
+    },
+    {
+      "name": "Focus",
+      "description": "Mental concentration that enhances awareness and precision",
+      "max_value": "5 + (Wisdom modifier)",
+      "regeneration": "1 per minute, additional points gained through successful tracking or hunting",
+      "mechanics": [
+        "Focus can be spent to enhance accuracy of attacks",
+        "Can be used to heighten senses for tracking and detection",
+        "Acts as a resource for nature magic abilities",
+        "Maximum focus increases in familiar terrain"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Hunter's Mark",
+      "description": "Designate a target for focused hunting and tracking",
+      "effects": [
+        "Marked targets take additional damage from your attacks",
+        "Can track marked targets over great distances",
+        "Gain insight into marked target's weaknesses",
+        "Successful attacks against marked targets restore small amounts of stamina"
+      ]
+    },
+    {
+      "name": "Natural Explorer",
+      "description": "Exceptional skill at navigating and surviving in the wilderness",
+      "effects": [
+        "Increased movement speed in natural environments",
+        "Ability to find food, water, and shelter with minimal effort",
+        "Resistance to environmental hazards and weather effects",
+        "Can identify plants, animals, and other natural features with high accuracy"
+      ]
+    },
+    {
+      "name": "Favored Enemy",
+      "description": "Specialized knowledge and techniques against specific types of creatures",
+      "effects": [
+        "Increased damage against chosen enemy types",
+        "Enhanced ability to track and detect favored enemies",
+        "Knowledge of favored enemy weaknesses and behaviors",
+        "Can learn additional favored enemy types as you level up"
+      ]
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Hunter",
+      "focus": "Precision attacks and enemy weaknesses",
+      "key_abilities": [
+        "Precise Shot: Carefully aimed attack that targets vital points",
+        "Exploit Weakness: Identify and target enemy vulnerabilities",
+        "Rapid Fire: Fire multiple arrows in quick succession"
+      ]
+    },
+    {
+      "name": "Tracker",
+      "focus": "Survival and environmental awareness",
+      "key_abilities": [
+        "Camouflage: Blend into surroundings to avoid detection",
+        "Read Signs: Gather detailed information from tracks and traces",
+        "Pathfinder: Find the safest and most efficient route through difficult terrain"
+      ]
+    },
+    {
+      "name": "Beastmaster",
+      "focus": "Animal companionship and nature magic",
+      "key_abilities": [
+        "Animal Companion: Bond with a wild animal that fights alongside you",
+        "Beast Sense: Share senses with nearby animals",
+        "Natural Healing: Channel nature's energy to heal wounds"
+      ]
+    }
+  ],
+  "racial_affinities": [
+    {
+      "race": "Elf",
+      "bonuses": [
+        "Increased range with bow attacks",
+        "Enhanced vision in low light conditions"
+      ]
+    },
+    {
+      "race": "Human",
+      "bonuses": [
+        "Additional favored enemy type",
+        "Increased stamina regeneration"
+      ]
+    },
+    {
+      "race": "Half-Orc",
+      "bonuses": [
+        "Increased damage against marked targets",
+        "Enhanced tracking in difficult conditions"
+      ]
+    }
+  ],
+  "progression_path": {
+    "arch_classes": [
+      {
+        "id": "pathfinder",
+        "name": "Pathfinder",
+        "description": "Elite rangers who have mastered the art of wilderness survival and developed a mystical connection with nature itself.",
+        "level_requirement": 10,
+        "skill_requirements": [
+          "At least 5 points in any ranger skill tree",
+          "Completion of the 'Trial of the Wild' quest"
+        ]
+      }
+    ]
+  },
+  "starting_equipment": [
+    "Longbow and quiver of 20 arrows",
+    "Two short swords or hunting knives",
+    "Leather armor",
+    "Survival kit (flint, rope, compass, etc.)",
+    "Camouflage cloak",
+    "Animal snares and traps"
+  ],
+  "lore": "Rangers are the guardians of the wilderness, skilled hunters and trackers who have learned to survive in the harshest environments. Through years of training and experience, they develop an intimate knowledge of nature's ways and the creatures that dwell within it. While many rangers are solitary figures who prefer the company of animals to people, others serve as guides, scouts, or protectors of settlements bordering wild lands. Their combat style typically emphasizes mobility and precision, using bows for ranged attacks and dual weapons for close combat. Many rangers develop a mystical connection to nature, allowing them to cast minor spells related to animals, plants, and the elements. This connection often manifests in the form of an animal companion—a loyal beast that fights alongside them. Rangers are defined by their adaptability, resourcefulness, and deep respect for the natural world, making them invaluable allies in untamed territories and formidable opponents who use the environment itself as a weapon."
+}

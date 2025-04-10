@@ -1,0 +1,219 @@
+{
+  "id": "forestlord_hero_class",
+  "name": "Forestlord Hero Class",
+  "description": "Hero class progression for the Grovekeeper arch class of the Druid base class",
+  "hero_class": {
+    "id": "forestlord",
+    "name": "Forestlord",
+    "description": "Masters of plant life who can create entire forests at will. Forestlords command armies of treants and create sanctuaries of natural healing, serving as benevolent guardians of the wilderness.",
+    "role": "support-control",
+    "primary_stats": ["wis", "cha"],
+    "secondary_stats": ["int", "con"],
+    "resource_mechanics": {
+      "mp": {
+        "description": "Greatly enhanced natural magical energy",
+        "base_amount": 250,
+        "regeneration": "8% of max per 5 seconds, increased to 12% in forested areas",
+        "max_amount_formula": "250 + (WIS * 10) + (CHA * 5) + (level * 18)"
+      },
+      "form_energy": {
+        "description": "Primal energy that allows limited shapeshifting and maintaining plant-hybrid forms",
+        "base_amount": 150,
+        "regeneration": "8 per 5 seconds in natural environments",
+        "drain_rate": "2 per second in plant-hybrid form",
+        "max_amount_formula": "150 + (WIS * 6) + (level * 12)"
+      },
+      "natural_harmony": {
+        "description": "Deep connection to plant life and natural growth",
+        "base_amount": 20,
+        "max_amount": 150,
+        "generation": "8 points per 5 seconds in natural environments, 15 points when growing plants, 20 points when healing natural creatures",
+        "decay": "3 points per 10 seconds in unnatural environments",
+        "thresholds": [
+          {
+            "level": 50,
+            "effect": "Significant enhancement to plant control and growth speed, moderate healing boost"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to plant control and growth speed, significant healing boost, reduced MP cost for nature spells"
+          },
+          {
+            "level": 150,
+            "effect": "Superior enhancement to plant control and growth speed, major healing boost, greatly reduced MP cost for nature spells, automatic growth of protective plants when allies are damaged"
+          }
+        ]
+      },
+      "verdant_essence": {
+        "description": "The concentrated life force of the forest",
+        "base_amount": 0,
+        "max_amount": 100,
+        "generation": "5 points per 30 seconds in forests, 10 points when healing with plant-based abilities, 20 points when creating permanent plant life",
+        "decay": "None - Verdant Essence is permanent until spent",
+        "usage": "Spent to create lasting forests, empower treants, or enhance healing abilities",
+        "thresholds": [
+          {
+            "level": 30,
+            "effect": "Minor enhancement to forest creation and treant strength"
+          },
+          {
+            "level": 70,
+            "effect": "Moderate enhancement to forest creation and treant strength, increased healing from plant sources"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to forest creation and treant strength, greatly increased healing from plant sources, ability to create permanent sacred groves"
+          }
+        ]
+      }
+    },
+    "armor_proficiency": ["cloth", "light", "living_armor", "sacred_bark"],
+    "weapon_proficiency": ["staves", "spears", "sickles", "wands", "natural_weapons", "living_weapons"],
+    "class_mechanics": {
+      "forest_genesis": {
+        "description": "Create entire forests in moments",
+        "cost": "80 MP + 40 Natural Harmony + 20 Verdant Essence",
+        "cooldown": "3 minutes",
+        "duration": "10 minutes (permanent with 100 Verdant Essence)",
+        "effects": [
+          "Create a forest in a 40-yard radius",
+          "Forest provides 30% increased healing and 20% increased movement speed to allies",
+          "Enemies are slowed by 20% and take 10 nature damage per second"
+        ],
+        "scaling": "Forest size, duration, and effects scale with Wisdom, Charisma, and Natural Harmony"
+      },
+      "treant_command": {
+        "description": "Awaken trees into sentient treant allies",
+        "cost": "60 MP + 30 Natural Harmony + 15 Verdant Essence per treant",
+        "cooldown": "1 minute",
+        "duration": "5 minutes",
+        "effects": [
+          "Awaken up to 3 trees as treant guardians",
+          "Treants have 200% of your health and deal 50% of your spell damage",
+          "Treants can be commanded to attack, defend, or heal allies"
+        ],
+        "scaling": "Treant strength, abilities, and number scale with Wisdom, Charisma, and Verdant Essence"
+      },
+      "nature's_sanctuary": {
+        "description": "Create a sacred grove that greatly enhances healing and protection",
+        "cost": "100 MP + 60 Natural Harmony + 30 Verdant Essence",
+        "cooldown": "5 minutes",
+        "duration": "2 minutes",
+        "effects": [
+          "Create a 30-yard sanctuary that heals allies for 5% of their maximum health every 5 seconds",
+          "Allies within the sanctuary gain 30% damage reduction and immunity to control effects",
+          "Enemies cannot enter the sanctuary unless they destroy its heart (has 300% of your health)"
+        ],
+        "scaling": "Sanctuary size, healing power, and heart health scale with Wisdom, Charisma, and Natural Harmony"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Forest Mastery",
+        "focus": "Creating and controlling forests",
+        "key_abilities": [
+          "Ancient Forest: Create a forest with ancient, powerful trees that provide greater benefits",
+          "Forest Walk: Teleport between any two trees within your created forests",
+          "Living Landscape: Your forests become semi-sentient and automatically attack enemies"
+        ]
+      },
+      {
+        "name": "Treant Cultivation",
+        "focus": "Creating and enhancing treant allies",
+        "key_abilities": [
+          "Ancient Treants: Create more powerful treants with special abilities",
+          "Treant Army: Command up to 7 treants simultaneously",
+          "Symbiosis: Link with your treants to share health and abilities"
+        ]
+      },
+      {
+        "name": "Verdant Healing",
+        "focus": "Plant-based healing and protection",
+        "key_abilities": [
+          "Bloom of Life: Cause all plants in the area to release healing pollen",
+          "Barkskin Blessing: Grant allies living bark armor that regenerates when damaged",
+          "World Tree's Blessing: Channel the power of the World Tree to resurrect fallen allies"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 30,
+      "alignment": "good",
+      "grovekeeper_skills": ["Plant Manipulation 8", "Nature's Blessing 7", "Seasonal Shift 6"],
+      "quests": ["The Path of the Forestlord", "Communion with the World Tree"]
+    },
+    "signature_abilities": [
+      {
+        "name": "World Forest",
+        "description": "Create a vast, permanent forest that spans the battlefield",
+        "cost": "200 MP + 100 Natural Harmony + 80 Verdant Essence",
+        "cooldown": "30 minutes",
+        "duration": "Permanent",
+        "effect": "Create a massive forest in a 100-yard radius that permanently alters the terrain. The forest provides all allies with 50% increased healing, 30% increased movement speed, and 20% increased damage with nature spells. Enemies are slowed by 30% and take 20 nature damage per second.",
+        "additional_effect": "The forest contains a World Tree at its center that continuously heals allies and can be awakened as a massive treant guardian in times of need",
+        "scaling": "Forest size, effects, and World Tree power scale with Wisdom, Charisma, and total Verdant Essence consumed"
+      },
+      {
+        "name": "Verdant Rebirth",
+        "description": "Channel the pure essence of life to heal and restore",
+        "cost": "150 MP + 80 Natural Harmony + 50 Verdant Essence",
+        "cooldown": "15 minutes",
+        "effect": "Release a wave of healing energy that restores 70% of maximum health to all allies within 60 yards, removes all negative effects, and resurrects fallen allies with 50% health and mana",
+        "additional_effect": "For 30 seconds after casting, all healing effects are increased by 100% and allies cannot be reduced below 1 health",
+        "scaling": "Healing amount, resurrection health, and duration scale with Wisdom, Charisma, and Natural Harmony"
+      },
+      {
+        "name": "Nature's Guardians",
+        "description": "Summon an army of powerful treants and plant creatures",
+        "cost": "180 MP + 90 Natural Harmony + 60 Verdant Essence",
+        "cooldown": "20 minutes",
+        "duration": "5 minutes",
+        "effect": "Awaken all plants in a 80-yard radius as guardians of nature. Creates 12 treants, 24 thorn stalkers, and 1 ancient ent that fight for you with coordinated tactics",
+        "additional_effect": "While your guardians are active, you gain 50% damage reduction and your healing spells affect all allies and guardians in a 30-yard radius around their primary target",
+        "scaling": "Number of guardians, their strength, and additional effects scale with Wisdom, Charisma, and Verdant Essence"
+      }
+    ],
+    "legendary_items": [
+      {
+        "name": "Staff of the World Tree",
+        "type": "Weapon",
+        "rarity": "Legendary",
+        "effects": [
+          "Forest Genesis cooldown reduced by 50% and forests created are 50% larger",
+          "Treant Command can create treants without requiring nearby trees",
+          "When Natural Harmony reaches 150, automatically cast Bloom of Life at no cost"
+        ],
+        "unique_ability": {
+          "name": "Essence of the World Tree",
+          "description": "Channel the power of the first tree",
+          "cooldown": "5 minutes",
+          "effect": "For 30 seconds, all your plant-based abilities cost no mana, have no cooldown, and have their effectiveness increased by 100%"
+        }
+      },
+      {
+        "name": "Forestlord's Regalia",
+        "type": "Armor Set",
+        "rarity": "Legendary",
+        "set_pieces": ["Crown of Leaves", "Bark Armor", "Vine Bracers", "Root Boots", "Moss Cloak"],
+        "set_bonuses": [
+          "(2) +30% to healing spells",
+          "(3) Verdant Essence maximum increased by 25",
+          "(4) Nature's Sanctuary cooldown reduced by 50%",
+          "(5) World Forest cooldown reduced by 50% and area increased by 50%"
+        ],
+        "unique_ability": {
+          "name": "Guardian of the Forest",
+          "description": "Become one with the forest",
+          "cooldown": "10 minutes",
+          "effect": "For 1 minute, transform into a massive treant with 200% increased health, immunity to control effects, and the ability to cast all your spells while transformed"
+        }
+      }
+    ],
+    "playstyle": "Forestlords excel at controlling large areas through forest creation and treant allies while providing powerful healing and protection to their allies. They build and maintain Natural Harmony and Verdant Essence to enhance their connection with plant life and create lasting natural sanctuaries. The class rewards strategic thinking and positioning, allowing players to reshape entire battlefields while supporting their allies.",
+    "difficulty": "Hard - Requires excellent environmental awareness and strategic planning",
+    "recommended_for": "Players who enjoy support and control roles with a focus on area manipulation and ally protection",
+    "arch_class": "grovekeeper",
+    "base_class": "druid",
+    "alignment": "good"
+  }
+}

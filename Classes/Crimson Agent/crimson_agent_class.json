@@ -1,0 +1,128 @@
+{
+  "id": "crimson_agent",
+  "name": "Crimson Agent",
+  "description": "Elite operatives who blend blood magic with assassination techniques. Crimson Agents sacrifice their own vitality to empower deadly strikes, create blood-forged weapons, and track targets through mystical connections.",
+  "role": "damage-utility",
+  "primary_stats": ["dex", "con"],
+  "secondary_stats": ["str", "int"],
+  "resources": ["health", "blood_essence"],
+  "resource_mechanics": {
+    "health": {
+      "description": "Vital energy that doubles as a resource for blood magic",
+      "base_amount": "Standard health pool based on level and Constitution",
+      "regeneration": "Standard health regeneration, reduced when blood essence is high",
+      "usage": "Some abilities consume health instead of or in addition to blood essence"
+    },
+    "blood_essence": {
+      "description": "Harvested life force that powers blood magic and enhanced abilities",
+      "base_amount": 0,
+      "max_amount": 100,
+      "generation": "10 points when sacrificing own health, 15 points when drawing blood from enemies, 5 points when consuming blood vials",
+      "decay": "5 points per 20 seconds",
+      "thresholds": [
+        {
+          "level": 30,
+          "effect": "Minor damage increase and tracking ability"
+        },
+        {
+          "level": 60,
+          "effect": "Moderate damage increase and tracking ability, 10% reduced health cost for abilities"
+        },
+        {
+          "level": 100,
+          "effect": "Major damage increase and tracking ability, 20% reduced health cost for abilities, enhanced blood regeneration"
+        }
+      ]
+    }
+  },
+  "armor_proficiency": ["light", "medium", "blood_forged"],
+  "weapon_proficiency": ["daggers", "swords", "thrown", "blood_weapons", "whips"],
+  "starting_equipment": {
+    "weapons": ["crimson_daggers", "throwing_knives"],
+    "armor": ["agent_garb"],
+    "accessories": ["blood_vials", "target_dossier", "poison_kit"]
+  },
+  "class_mechanics": {
+    "blood_sacrifice": {
+      "description": "Convert health into blood essence and temporary power",
+      "cost": "10% of maximum health",
+      "cooldown": "30 seconds",
+      "effect": "Gain 30 blood essence and temporarily increase damage and speed",
+      "scaling": "Power boost scales with Constitution and current blood essence level"
+    },
+    "blood_forging": {
+      "description": "Create weapons and tools from solidified blood",
+      "cost": "20 blood essence + 5% of maximum health",
+      "duration": "5 minutes",
+      "creations": [
+        {
+          "name": "Blood Blade",
+          "effect": "Weapon that deals additional bleed damage"
+        },
+        {
+          "name": "Blood Shield",
+          "effect": "Barrier that absorbs damage and returns it to attacker"
+        },
+        {
+          "name": "Blood Familiar",
+          "effect": "Small creature that scouts and distracts enemies"
+        }
+      ],
+      "scaling": "Creation power and duration scale with Dexterity and Constitution"
+    },
+    "blood_bond": {
+      "description": "Create a mystical connection with targets through their blood",
+      "cost": "30 blood essence",
+      "trigger": "Successfully wounding a target",
+      "effect": "Track target's location, sense their health level, and gain damage bonus against them",
+      "duration": "1 hour or until target dies",
+      "scaling": "Tracking precision and damage bonus scale with Intelligence and blood essence level"
+    }
+  },
+  "skill_trees": [
+    {
+      "name": "Hemomancer",
+      "focus": "Blood magic and manipulation",
+      "key_abilities": [
+        "Blood Nova: Explosive burst of blood that damages all nearby enemies",
+        "Transfusion: Drain health from enemies to heal yourself",
+        "Blood Prison: Create a cage of solidified blood that traps enemies"
+      ]
+    },
+    {
+      "name": "Crimson Assassin",
+      "focus": "Stealth and precision killing",
+      "key_abilities": [
+        "Bloodmist: Transform into a cloud of blood mist for stealth movement",
+        "Arterial Strike: Attack that causes massive bleeding and critical damage",
+        "Blood Mark: Mark a target for death, gaining significant bonuses against them"
+      ]
+    },
+    {
+      "name": "Blood Hunter",
+      "focus": "Tracking and sustained combat",
+      "key_abilities": [
+        "Blood Scent: Detect all bleeding enemies within a large radius",
+        "Hemoplague: Inflict a disease that spreads between enemies when they bleed",
+        "Blood Frenzy: Enter a state of heightened power based on how much blood has been spilled"
+      ]
+    }
+  ],
+  "racial_affinities": {
+    "human": {
+      "bonus": "+10% to blood essence generation",
+      "special_ability": "Vital Resilience: Reduce health cost of abilities by 15%"
+    },
+    "elf": {
+      "bonus": "+15% to blood tracking abilities",
+      "special_ability": "Ancient Blood: Blood-forged creations last 50% longer"
+    },
+    "orc": {
+      "bonus": "+10% to damage while blood essence is above 50",
+      "special_ability": "Bloodthirst: Gain health when killing enemies affected by your blood abilities"
+    }
+  },
+  "playstyle": "Crimson Agents excel at tracking and eliminating specific targets through blood magic and assassination techniques. They must balance health sacrifice with combat effectiveness, using blood essence to power their most devastating abilities. The class rewards aggressive yet calculated play, with different specializations offering varied approaches to the damage-utility role.",
+  "difficulty": "Hard - Requires good resource management and risk assessment",
+  "recommended_for": "Players who enjoy high-risk, high-reward gameplay with unique resource mechanics"
+}

@@ -1,0 +1,216 @@
+{
+  "id": "oathbreaker",
+  "name": "Oathbreaker",
+  "base_class": "paladin",
+  "arch_class": "oathkeeper",
+  "alignment": "Evil",
+  "description": "Oathkeepers who have betrayed their sacred vows, corrupting their divine power for selfish or malevolent purposes and channeling dark energies that mirror their fallen state.",
+  "level_requirement": 30,
+  "role": "Damage-Control",
+  "primary_stats": ["Strength", "Intelligence"],
+  "secondary_stats": ["Constitution", "Charisma"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Corrupted divine energy that powers unholy spells and abilities",
+      "max_value": "30 + (Intelligence modifier × 4) + (level × 4)",
+      "regeneration": "3 per 6 seconds, +5 when inflicting pain or suffering",
+      "mechanics": [
+        "Mana points are spent to cast unholy spells and channel dark power",
+        "Some abilities require maintaining a connection to dark forces, consuming mana over time",
+        "Dark meditation increases mana regeneration rate by 400% but requires remaining stationary",
+        "Can channel mana into weapons and armor for unholy enchantments",
+        "Presence in desecrated places doubles mana regeneration rate"
+      ]
+    },
+    {
+      "name": "Dark Favor",
+      "description": "Blessing from dark powers that empowers malevolent actions",
+      "max_value": "15 + (Intelligence modifier)",
+      "regeneration": "3 per hour, additional points gained through breaking oaths and causing suffering",
+      "mechanics": [
+        "Dark Favor can be spent to enhance weapon attacks with unholy power",
+        "Can be used to empower curses or corrupting auras",
+        "Acts as a resource for powerful dark abilities",
+        "Acts of mercy or compassion can result in temporary loss of Dark Favor",
+        "Can be extracted from victims to increase personal power"
+      ]
+    },
+    {
+      "name": "Oath Power",
+      "description": "Manifestation of an Oathbreaker's corrupted vows, twisted into dark energy",
+      "max_value": "150",
+      "regeneration": "Builds when acting in accordance with dark tenets, decreases when showing mercy",
+      "mechanics": [
+        "Increases by 15 when performing acts of betrayal or cruelty",
+        "Decreases by 20 when showing mercy or compassion",
+        "At maximum Oath Power, enter a state of unholy exaltation with enhanced abilities",
+        "Can be spent to invoke powerful corrupted abilities",
+        "Oathbreakers generate additional Oath Power when corrupting others or desecrating holy sites"
+      ]
+    },
+    {
+      "name": "Shadow Essence",
+      "description": "Manifestation of spiritual corruption that feeds on fear and despair",
+      "max_value": "100",
+      "regeneration": "Builds when causing fear or breaking sacred things",
+      "mechanics": [
+        "Increases by 10 when causing fear in others",
+        "Increases by 20 when corrupting something pure or sacred",
+        "Decreases by 5 per hour when not actively spreading corruption",
+        "Can be spent to enhance corrupting abilities or create powerful fear effects",
+        "At maximum Shadow Essence, the Oathbreaker's presence causes corruption to spread automatically"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Corrupted Smite",
+      "description": "Channel unholy power through weapon strikes to corrupt and destroy",
+      "effects": [
+        "Divine Smite is transformed into Corrupted Smite, dealing necrotic damage instead of holy damage",
+        "Smite damage is doubled against paladins, clerics, and other divine servants",
+        "Successful smites corrupt the target, reducing their healing received and holy damage dealt",
+        "Each successful smite drains a portion of the target's life force to heal the Oathbreaker",
+        "Corrupted energy spreads from smite impacts, corrupting the environment"
+      ]
+    },
+    {
+      "name": "Touch of Corruption",
+      "description": "Channel dark energy that corrupts and degrades rather than heals",
+      "effects": [
+        "Lay on Hands is transformed into Touch of Corruption, causing necrotic damage and disease",
+        "Can corrupt healing effects targeting the victim, turning them into damage",
+        "Extended contact can permanently corrupt living beings or objects",
+        "Can extract life force from victims to heal the Oathbreaker",
+        "Touch can desecrate holy sites and objects, turning them to sources of dark power"
+      ]
+    },
+    {
+      "name": "Aura of Despair",
+      "description": "Project an aura of hopelessness and corruption",
+      "effects": [
+        "Enemies within aura suffer penalties to saving throws and attack rolls",
+        "Allies within aura gain resistance to holy damage and immunity to turn undead effects",
+        "Healing magic is 50% less effective within the aura",
+        "Aura slowly corrupts the environment, withering plants and tainting water",
+        "Can maintain two different corrupting auras simultaneously"
+      ]
+    },
+    {
+      "name": "Avatar of Darkness",
+      "description": "Transform into a dark avatar of corruption, embodying the broken oath",
+      "effects": [
+        "Physical form becomes infused with shadows and unholy energy",
+        "All abilities cost 50% less resources and are 50% more effective",
+        "Presence causes mortals to feel dread and despair",
+        "Gain shadowy wings that allow flight and can cocoon for protection",
+        "Immune to holy damage and turning effects"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Oath Violation",
+      "description": "Perform an act that fundamentally violates sacred oaths, releasing tremendous dark power",
+      "mechanics": [
+        "Desecrate a holy site or sacred object to release corrupting energy",
+        "All enemies within 50 meters take massive necrotic damage",
+        "Holy beings must make a Wisdom save or be corrupted, serving you for 1 hour",
+        "Create a zone of desecration that lasts for 24 hours",
+        "Costs 100 Mana, 10 Dark Favor, and 100 Shadow Essence"
+      ],
+      "cooldown": "3 days"
+    },
+    {
+      "name": "Control Undead",
+      "description": "Exert absolute control over undead creatures through your corrupted divine power",
+      "mechanics": [
+        "Take control of all undead within 100 meters",
+        "Controlled undead gain 50% increased damage and health",
+        "Can see through the eyes of controlled undead",
+        "Can sacrifice controlled undead to regain resources",
+        "Costs 50 Mana, 5 Dark Favor, and 50 Oath Power"
+      ],
+      "cooldown": "12 hours"
+    },
+    {
+      "name": "Blasphemous Word",
+      "description": "Speak a word of absolute corruption that shatters divine connections and sacred bonds",
+      "mechanics": [
+        "All divine spellcasters within 50 meters must make a Wisdom save or lose access to their divine magic for 1 hour",
+        "Holy objects within range are corrupted or destroyed",
+        "Divine beings take massive damage and must make a Wisdom save or be banished",
+        "Creates a wave of corruption that spreads outward, tainting everything it touches",
+        "Costs 75 Mana, 7 Dark Favor, and 75 Shadow Essence"
+      ],
+      "cooldown": "24 hours"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Corruptor",
+      "focus": "Corrupting the pure and sacred",
+      "key_abilities": [
+        "Corrupt Divinity: Turn holy energy into corrupted power",
+        "Desecration: Permanently corrupt a holy site, turning it into a source of dark power",
+        "False Prophet: Appear as a divine servant to deceive and corrupt followers of light"
+      ]
+    },
+    {
+      "name": "Path of the Tyrant",
+      "focus": "Domination and control",
+      "key_abilities": [
+        "Dominate Will: Break the will of a target, forcing them to serve you",
+        "Rule Through Fear: Create an aura of terror that forces obedience",
+        "Iron Fist: Crush resistance with overwhelming force and cruelty"
+      ]
+    },
+    {
+      "name": "Path of the Fallen",
+      "focus": "Embracing corruption and darkness",
+      "key_abilities": [
+        "Embrace Darkness: Transform into a being of pure shadow and corruption",
+        "Soul Drain: Extract the soul essence from victims to empower yourself",
+        "Void Pact: Form a pact with entities from beyond reality for greater power"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Betrayal of Sacred Trust", "Corruption of a Holy Relic", "Pact with Dark Powers"],
+    "skill_points": "At least 15 points in any Oathkeeper skill tree",
+    "alignment": "Must maintain Evil alignment for at least 10 levels",
+    "challenges": ["Corrupt a paladin or cleric", "Desecrate a major holy site"]
+  },
+  "legendary_items": [
+    {
+      "name": "Oathbreaker's Edge",
+      "type": "Weapon",
+      "effects": [
+        "Corrupted Smite damage increased by 50%",
+        "Weapon drains the life force of those it strikes",
+        "Can sever divine connections with a successful critical hit"
+      ]
+    },
+    {
+      "name": "Armor of the Fallen",
+      "type": "Chest",
+      "effects": [
+        "Reduces holy damage taken by 75%",
+        "Automatically corrupts divine magic that targets you",
+        "Avatar of Darkness transformation duration increased by 1 minute"
+      ]
+    },
+    {
+      "name": "Crown of Corruption",
+      "type": "Head",
+      "effects": [
+        "Intelligence increased by 5",
+        "Aura of Despair radius increased by 20 meters",
+        "Blasphemous Word cooldown reduced by 12 hours"
+      ]
+    }
+  ],
+  "lore": "Oathbreakers represent the darkest path an Oathkeeper can take, having betrayed their sacred vows and corrupted their divine connection for selfish or malevolent purposes. The very power that once made them champions of light and justice now fuels their capacity for corruption and domination. The transformation into an Oathbreaker is not merely a fall from grace but a deliberate inversion of everything the paladin once stood for, twisting their divine abilities into dark reflections of their former selves. Their healing touch becomes a corrupting grasp, their holy smite transforms into necrotic destruction, and their protective auras warp into fields of despair and weakness. Oathbreakers are feared throughout the world, not only for their formidable combat abilities but for their capacity to corrupt and desecrate that which others hold sacred. Many become leaders of dark cults or unholy armies, while others operate alone, spreading corruption wherever they go. Some seek to corrupt other paladins, finding particular satisfaction in turning the righteous to darkness. The path of the Oathbreaker offers tremendous power, but at the cost of being reviled by former allies and hunted by those who still uphold the oaths they have abandoned."
+}

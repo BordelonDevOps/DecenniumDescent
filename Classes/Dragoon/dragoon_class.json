@@ -1,0 +1,129 @@
+{
+  "id": "dragoon",
+  "name": "Dragoon",
+  "description": "Elite spear-wielding warriors who harness draconic power to perform devastating aerial attacks and jumps. Dragoons combine exceptional mobility with powerful strikes from above.",
+  "role": "dps-mobility",
+  "primary_stats": ["str", "agi"],
+  "secondary_stats": ["con", "dex"],
+  "resources": ["stamina", "dragon_spirit"],
+  "resource_mechanics": {
+    "stamina": {
+      "description": "Physical energy that powers jumps and combat abilities",
+      "base_amount": 150,
+      "max_amount": "150 + (STR * 3) + (AGI * 3)",
+      "generation": "10 points per 5 seconds, 20 points when landing jump attacks",
+      "decay": "None while in combat, 5 points per 3 seconds when out of combat",
+      "usage": "Spent on jump attacks and aerial maneuvers"
+    },
+    "dragon_spirit": {
+      "description": "Draconic energy that enhances combat abilities and enables transformation",
+      "base_amount": 0,
+      "max_amount": 100,
+      "generation": "5 points when dealing damage with spears, 10 points when performing jump attacks, 15 points when defeating enemies",
+      "decay": "5 points per minute when out of combat",
+      "thresholds": [
+        {
+          "level": 30,
+          "effect": "Minor draconic enhancement to attacks and jump height"
+        },
+        {
+          "level": 60,
+          "effect": "Moderate draconic enhancement to attacks and jump height, 10% reduced stamina cost for jump abilities"
+        },
+        {
+          "level": 100,
+          "effect": "Major draconic enhancement to attacks and jump height, 25% reduced stamina cost for jump abilities, chance for draconic manifestation during jumps"
+        }
+      ]
+    }
+  },
+  "armor_proficiency": ["light", "medium", "heavy"],
+  "weapon_proficiency": ["spears", "polearms", "lances", "javelins"],
+  "starting_equipment": {
+    "weapons": ["dragon_spear", "javelin"],
+    "armor": ["scale_mail"],
+    "accessories": ["dragon_tooth_charm", "healing_potion", "jump_boots"]
+  },
+  "class_mechanics": {
+    "jump": {
+      "description": "Signature dragoon ability to leap high into the air and crash down on enemies",
+      "cost": "40 Stamina",
+      "cooldown": "12 seconds",
+      "effect": "Leap up to 30 yards into the air and crash down on a target, dealing 200% weapon damage in a 5-yard radius",
+      "scaling": "Jump height and damage scale with Agility and Strength"
+    },
+    "spear_mastery": {
+      "description": "Specialized training with spears and polearms",
+      "passive_effect": "Gain bonuses based on equipped spear type",
+      "weapon_bonuses": [
+        {
+          "type": "Standard Spear",
+          "bonus": "Balanced damage and reach, 10% chance for extra thrust attack"
+        },
+        {
+          "type": "Heavy Lance",
+          "bonus": "Increased damage and knockback potential, 15% armor penetration"
+        },
+        {
+          "type": "Dual-wielded Javelins",
+          "bonus": "Increased attack speed and mobility, can perform ranged attacks"
+        }
+      ],
+      "scaling": "Bonuses scale with Strength and Agility"
+    },
+    "draconic_essence": {
+      "description": "Channel draconic power into your weapon and body",
+      "cost": "30 Stamina + 20 Dragon Spirit",
+      "cooldown": "30 seconds",
+      "duration": "15 seconds",
+      "effect": "Weapon deals additional 25% damage as elemental damage, and jump attacks create small elemental explosions",
+      "scaling": "Damage bonus and explosion size scale with Strength and Dragon Spirit"
+    }
+  },
+  "skill_trees": [
+    {
+      "name": "Highwind",
+      "focus": "Aerial combat and jump mastery",
+      "key_abilities": [
+        "Double Jump: Perform a second jump while airborne",
+        "Aerial Combo: Execute a series of attacks while airborne",
+        "Dive Bomb: Powerful area-of-effect attack from great height"
+      ]
+    },
+    {
+      "name": "Dragon Knight",
+      "focus": "Draconic power and transformation",
+      "key_abilities": [
+        "Dragon's Breath: Channel elemental breath through your weapon",
+        "Draconic Scales: Temporarily grow protective scales",
+        "Dragon Aspect: Partially transform into draconic form"
+      ]
+    },
+    {
+      "name": "Lancet",
+      "focus": "Spear techniques and precision strikes",
+      "key_abilities": [
+        "Piercing Thrust: Attack that ignores armor",
+        "Whirling Lance: Spin attack that hits all surrounding enemies",
+        "Vital Strike: Precision attack targeting enemy weak points"
+      ]
+    }
+  ],
+  "racial_affinities": {
+    "human": {
+      "bonus": "+10% to jump height",
+      "special_ability": "Versatile Jumper: Can change direction mid-jump once per minute"
+    },
+    "elf": {
+      "bonus": "+15% to aerial attack damage",
+      "special_ability": "Graceful Landing: Can perform a free attack immediately after landing"
+    },
+    "dragonborn": {
+      "bonus": "+20% to Dragon Spirit generation",
+      "special_ability": "Draconic Heritage: Can manifest wings briefly during jumps for extended air time"
+    }
+  },
+  "playstyle": "Dragoons excel at mobility and burst damage through their signature jump attacks. They build Dragon Spirit through combat, gaining increasing draconic powers as they fight. The class rewards aggressive aerial combat and precise positioning, with different specializations offering varied approaches to the dps-mobility role. Masters of the dragoon class can remain airborne for extended periods, raining destruction from above while being difficult to target.",
+  "difficulty": "High - Requires good timing, positioning, and resource management",
+  "recommended_for": "Players who enjoy high-mobility combat with powerful burst damage and a dynamic playstyle"
+}

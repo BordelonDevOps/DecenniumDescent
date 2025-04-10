@@ -1,0 +1,223 @@
+{
+  "id": "shadowblade",
+  "name": "Shadowblade",
+  "base_class": "thief",
+  "arch_class": "rake",
+  "alignment": "Neutral",
+  "description": "Rakes who have mastered the manipulation of shadows and stealth, becoming one with the darkness to strike with lethal precision while maintaining a pragmatic approach to their profession.",
+  "level_requirement": 30,
+  "role": "DPS-Mobility",
+  "primary_stats": ["Dexterity", "Wisdom"],
+  "secondary_stats": ["Constitution", "Intelligence"],
+  "resource_systems": [
+    {
+      "name": "Energy",
+      "description": "Physical energy that powers stealth abilities and precision strikes",
+      "max_value": "40 + (Dexterity modifier × 8) + (level × 8)",
+      "regeneration": "5 per 6 seconds, +8 when in shadows or darkness",
+      "mechanics": [
+        "Energy points are spent to perform special stealth maneuvers and precision attacks",
+        "Some abilities require maintaining focus, consuming energy over time",
+        "Short rests restore a significant portion of maximum energy",
+        "Depleted energy causes penalties to stealth and attack speed",
+        "Can be temporarily boosted through adrenaline in critical situations",
+        "Successful shadow manipulation or stealth kills restore a portion of energy"
+      ]
+    },
+    {
+      "name": "Cunning",
+      "description": "Mental acuity and tactical awareness that enhances deception and exploitation of weaknesses",
+      "max_value": "200",
+      "regeneration": "Builds when successfully using stealth or exploiting weaknesses",
+      "mechanics": [
+        "Increases by 20 when successfully executing precision strikes from stealth",
+        "Increases by 25 when manipulating shadows to gain tactical advantages",
+        "Decreases by 20 when detected during stealth or when tactical plans fail",
+        "Decreases by 25 when forced into direct confrontation without preparation",
+        "Can be spent to enhance stealth abilities or execute precision strikes",
+        "Higher Cunning increases critical hit chance and shadow manipulation effectiveness"
+      ]
+    },
+    {
+      "name": "Infamy",
+      "description": "Reputation and notoriety that can be leveraged for intimidation or respect",
+      "max_value": "150",
+      "regeneration": "Builds when successfully completing difficult contracts or operations",
+      "mechanics": [
+        "Increases by 15 when completing challenging contracts with perfect execution",
+        "Increases by 10 when demonstrating exceptional skill to potential clients",
+        "Decreases by 15 when failing publicly or being captured",
+        "Decreases by 10 when reputation is questioned or undermined",
+        "Can be spent to intimidate targets or impress potential clients",
+        "Higher Infamy increases the effectiveness of intimidation and reputation-based negotiations"
+      ]
+    },
+    {
+      "name": "Shadow Essence",
+      "description": "Mystical connection to shadows and darkness that enhances stealth abilities",
+      "max_value": "100",
+      "regeneration": "Builds when in darkness or manipulating shadows",
+      "mechanics": [
+        "Increases by 15 when operating in complete darkness",
+        "Increases by 10 when successfully manipulating shadows for tactical advantage",
+        "Decreases by 15 when exposed to bright light for extended periods",
+        "Decreases by 10 when shadow abilities are countered or dispelled",
+        "Can be spent to enhance shadow manipulation or execute shadow-based attacks",
+        "At maximum Shadow Essence, gain the ability to temporarily become one with shadows"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Shadow Manipulation",
+      "description": "Ability to control and shape shadows for various effects",
+      "effects": [
+        "Can shape and solidify shadows to create temporary tools or weapons",
+        "Able to darken areas to create advantageous conditions for stealth",
+        "Can create shadow duplicates that mimic basic movements",
+        "Presence naturally dims lights and enhances shadows in the vicinity",
+        "Can use shadows as sensory extensions to scout areas without exposure"
+      ]
+    },
+    {
+      "name": "Void Step",
+      "description": "Ability to step through shadows to move quickly or escape danger",
+      "effects": [
+        "Can teleport short distances between shadows or dark areas",
+        "Able to partially phase into the shadow realm to avoid attacks",
+        "Can move at enhanced speed when traveling through shadows",
+        "Presence leaves minimal traces when moving through shadows",
+        "Can temporarily hide within shadows, becoming nearly undetectable"
+      ]
+    },
+    {
+      "name": "Perfect Assassination",
+      "description": "Mastery of precision strikes and lethal techniques",
+      "effects": [
+        "Significantly increased critical hit chance and damage from stealth",
+        "Can identify and target vital points with unerring accuracy",
+        "Able to execute kills silently and without leaving evidence",
+        "Presence is difficult to detect even by those actively searching",
+        "Can analyze targets to determine the most efficient elimination method"
+      ]
+    },
+    {
+      "name": "Professional Pragmatism",
+      "description": "Practical approach to contracts and operations without moral constraints",
+      "effects": [
+        "Can objectively assess contracts and situations without emotional bias",
+        "Able to maintain focus and efficiency regardless of mission parameters",
+        "Can adapt plans quickly when circumstances change",
+        "Presence conveys professional detachment that intimidates targets",
+        "Can establish and maintain a reputation for reliability and discretion"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Shadow Meld",
+      "description": "Become one with the shadows, gaining extraordinary stealth and combat abilities",
+      "mechanics": [
+        "For 5 minutes, transform into a semi-corporeal shadow form",
+        "Gain near-perfect invisibility in any area not in direct bright light",
+        "Movement speed increased by 50% and can pass through narrow openings",
+        "Attacks deal additional shadow damage and have 100% critical chance from stealth",
+        "Immune to most physical traps and can briefly phase through thin barriers",
+        "Costs 100 Energy, 50 Cunning, and 75 Shadow Essence"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Shadow Network",
+      "description": "Create a network of connected shadows for unprecedented mobility and awareness",
+      "mechanics": [
+        "For 10 minutes, mark up to 5 shadows within line of sight",
+        "Can instantly teleport between marked shadows at will",
+        "Gain sensory awareness of the area surrounding each marked shadow",
+        "Can launch attacks from any marked shadow as if you were physically present",
+        "Perfect for surveillance, escape, or coordinated strikes from multiple angles",
+        "Costs 75 Energy, 30 Infamy, and 50 Shadow Essence"
+      ],
+      "cooldown": "3 days"
+    },
+    {
+      "name": "Perfect Execution",
+      "description": "Enter a state of perfect focus and precision for unmatched assassination capability",
+      "mechanics": [
+        "For 3 minutes, gain perfect awareness of all targets within 100 meters",
+        "Can identify vital points and weaknesses with 100% accuracy",
+        "Movement becomes perfectly silent and leaves no traces",
+        "Each successful assassination extends the duration by 30 seconds",
+        "Time appears to slow during critical moments, allowing for perfect precision",
+        "Costs 50 Energy, 100 Shadow Essence, and 25 Cunning"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of Shadows",
+      "focus": "Mastery of shadow manipulation and movement",
+      "key_abilities": [
+        "Shadow Walk: Move through shadows at incredible speed",
+        "Umbral Weapons: Create weapons from solidified shadow that bypass normal defenses",
+        "Dark Sanctuary: Create a zone of absolute darkness that only you can see through"
+      ]
+    },
+    {
+      "name": "Path of the Assassin",
+      "focus": "Precision killing and stealth elimination",
+      "key_abilities": [
+        "Vital Strike: Target critical vulnerabilities for instant kills",
+        "Ghost Kill: Eliminate targets without leaving any evidence",
+        "Death Mark: Tag a target for enhanced tracking and guaranteed critical strikes"
+      ]
+    },
+    {
+      "name": "Path of the Professional",
+      "focus": "Practical skills and reliable execution",
+      "key_abilities": [
+        "Contingency Plan: Prepare fallback strategies that activate automatically when needed",
+        "Perfect Timing: Identify and exploit optimal moments for action",
+        "Professional Reputation: Leverage your reputation for intimidation or negotiation advantages"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Mastery of the Shadows", "The Perfect Assassination", "Establishment of Professional Reputation"],
+    "skill_points": "At least 15 points in the Shadow Operative skill tree",
+    "alignment": "Must maintain Neutral alignment for at least 10 levels",
+    "challenges": ["Successfully manipulate shadows for tactical advantage", "Execute a perfect assassination without being detected"]
+  },
+  "legendary_items": [
+    {
+      "name": "Umbral Blade",
+      "type": "Weapon",
+      "effects": [
+        "Dexterity increased by 5",
+        "Can temporarily transform into shadow form when striking from stealth",
+        "Kills performed with this weapon leave no physical evidence"
+      ]
+    },
+    {
+      "name": "Shadowveil Cloak",
+      "type": "Back",
+      "effects": [
+        "Shadow Essence maximum increased by 50",
+        "Can create areas of darkness that only you can see through",
+        "Shadow Meld cooldown reduced by 8 hours"
+      ]
+    },
+    {
+      "name": "Assassin's Mark",
+      "type": "Accessory",
+      "effects": [
+        "Can mark targets for perfect tracking across any distance",
+        "Marked targets cannot detect your presence until you strike",
+        "Perfect Execution cooldown reduced by 2 days"
+      ]
+    }
+  ],
+  "lore": "Shadowblades represent the pinnacle of stealth and precision among Rakes, having developed an unprecedented connection to shadows and darkness that allows them to move unseen and strike with lethal efficiency. These master assassins have transcended ordinary stealth techniques to develop an almost supernatural relationship with shadows, using them not just as concealment but as weapons, tools, and means of transportation. The path to becoming a Shadowblade requires not only exceptional stealth and combat skills but also a pragmatic mindset and the discipline to maintain professional detachment regardless of the mission. Those who succeed find themselves capable of seemingly impossible feats of infiltration and assassination, moving through heavily guarded locations like ghosts and eliminating targets without leaving a trace. Shadowblades typically operate as independent contractors, offering their specialized services to clients who can afford their considerable fees. Many establish reputations for absolute reliability and discretion, becoming the go-to operatives for high-risk, high-reward contracts that require perfect execution. Some specialize in specific types of targets or operations, developing unique techniques that make them unparalleled in their niche. Their combination of shadow manipulation, mobility, and lethal precision makes them feared by even the most well-protected individuals, who know that conventional security measures offer little protection against an experienced Shadowblade. Though they possess tremendous power, Shadowblades approach their profession with pragmatic detachment, viewing their abilities as tools of their trade rather than means for personal vendettas or political agendas. This professional neutrality allows them to work for various clients across the moral spectrum, though individual Shadowblades may establish personal codes regarding what contracts they will accept."
+}

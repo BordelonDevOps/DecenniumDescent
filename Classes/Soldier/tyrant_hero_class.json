@@ -1,0 +1,224 @@
+{
+  "id": "tyrant",
+  "name": "Tyrant",
+  "base_class": "soldier",
+  "arch_class": "commander",
+  "alignment": "Evil",
+  "description": "Commanders who rule through fear and intimidation, crushing opposition with brutal tactics and forcing absolute obedience from their followers while building empires on the broken wills of others.",
+  "level_requirement": 30,
+  "role": "Tank-Control",
+  "primary_stats": ["Strength", "Charisma"],
+  "secondary_stats": ["Constitution", "Intelligence"],
+  "resource_systems": [
+    {
+      "name": "Stamina",
+      "description": "Physical energy that powers combat abilities and brutal tactics",
+      "max_value": "40 + (Constitution modifier × 8) + (level × 8)",
+      "regeneration": "5 per 6 seconds, +8 when inflicting fear or pain",
+      "mechanics": [
+        "Stamina points are spent to perform special combat maneuvers and intimidation tactics",
+        "Some abilities require maintaining focus, consuming stamina over time",
+        "Short rests restore a significant portion of maximum stamina",
+        "Depleted stamina causes penalties to attack speed and intimidation effectiveness",
+        "Can be temporarily boosted through displays of dominance in critical situations",
+        "Inflicting pain and fear on enemies increases stamina regeneration"
+      ]
+    },
+    {
+      "name": "Combat Readiness",
+      "description": "State of tactical awareness and preparation that enhances combat effectiveness",
+      "max_value": "200",
+      "regeneration": "Builds during combat, decreases during periods of inaction",
+      "mechanics": [
+        "Increases by 20 when landing critical hits or successfully intimidating enemies",
+        "Increases by 15 per 10 seconds in active combat",
+        "Decreases by 20 when intimidation fails or when challenged successfully",
+        "Decreases by 15 per minute when out of combat",
+        "Can be spent to enhance combat abilities or execute brutal maneuvers",
+        "Can be partially transferred to subordinates to improve their combat performance",
+        "Displays of dominance significantly increase Combat Readiness"
+      ]
+    },
+    {
+      "name": "Command Authority",
+      "description": "Measure of leadership influence and control over subordinates",
+      "max_value": "150",
+      "regeneration": "Builds when successfully intimidating others or demonstrating power",
+      "mechanics": [
+        "Increases by 15 when subordinates obey commands out of fear",
+        "Increases by 10 when crushing opposition or making examples of enemies",
+        "Decreases by 15 when subordinates defy orders or show resistance",
+        "Decreases by 10 when showing weakness or failing to maintain dominance",
+        "Can be spent to issue powerful commands or implement brutal battle strategies",
+        "Higher Command Authority increases the fear and submission of subordinates"
+      ]
+    },
+    {
+      "name": "Reign of Terror",
+      "description": "Measure of the fear and intimidation you instill in both enemies and followers",
+      "max_value": "100",
+      "regeneration": "Builds when demonstrating cruelty or crushing opposition",
+      "mechanics": [
+        "Increases by 15 when executing brutal punishments or displays of power",
+        "Increases by 20 when breaking an enemy's will completely",
+        "Decreases by 10 when showing mercy or compassion",
+        "Decreases by 15 when challenged without immediate retaliation",
+        "Can be spent to create overwhelming fear or force absolute obedience",
+        "At maximum Reign of Terror, enter a state of terrifying dominance that paralyzes enemies with fear"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Brutal Intimidation",
+      "description": "Ability to instill paralyzing fear in enemies and absolute obedience in followers",
+      "effects": [
+        "Can terrify enemies, potentially causing them to flee or surrender",
+        "Able to force obedience from subordinates through fear alone",
+        "Can break the will of captured enemies, turning them into loyal servants",
+        "Presence naturally causes unease and hesitation in opponents",
+        "Can establish dominance hierarchies that function even in your absence"
+      ]
+    },
+    {
+      "name": "Cruel Efficiency",
+      "description": "Ruthless approach to warfare that prioritizes results over all other concerns",
+      "effects": [
+        "Can implement brutal tactics that other commanders would find unconscionable",
+        "Able to sacrifice subordinates without hesitation for tactical advantage",
+        "Can exploit fear and pain to extract maximum performance from followers",
+        "Presence drives subordinates to exceed their normal capabilities out of fear",
+        "Can identify and exploit the most psychologically devastating tactics"
+      ]
+    },
+    {
+      "name": "Iron Rule",
+      "description": "Absolute control over subordinates through a combination of fear and reward",
+      "effects": [
+        "Can establish a system of punishment and reward that ensures absolute loyalty",
+        "Able to detect and preempt betrayal or disobedience before it occurs",
+        "Can force subordinates to fight beyond their normal limits",
+        "Presence reinforces the hierarchy of command, preventing dissent",
+        "Can break and rebuild the will of potential rivals, turning them into servants"
+      ]
+    },
+    {
+      "name": "Dominating Presence",
+      "description": "Overwhelming physical and psychological presence that intimidates enemies and inspires fear",
+      "effects": [
+        "Physical presence appears more imposing and threatening than normal",
+        "Can focus attention on a single target, causing them to feel isolated and vulnerable",
+        "Able to project an aura of menace that weakens enemy resolve",
+        "Presence can cause physical symptoms of fear in susceptible targets",
+        "Can establish psychological dominance in social interactions through subtle cues"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Absolute Dominance",
+      "description": "Assert complete psychological control over the battlefield through overwhelming fear",
+      "mechanics": [
+        "For 3 minutes, project an aura of terror that affects all enemies within 50 meters",
+        "Weaker enemies flee in terror or surrender immediately",
+        "Stronger enemies suffer significant penalties to attack, defense, and morale",
+        "Allies gain immunity to fear and significant bonuses to damage",
+        "Each enemy that flees or surrenders extends the duration by 10 seconds",
+        "Costs 100 Stamina, 50 Command Authority, and 75 Reign of Terror"
+      ],
+      "cooldown": "3 days"
+    },
+    {
+      "name": "Rule Through Fear",
+      "description": "Make a brutal example of an enemy to terrify others and empower followers",
+      "mechanics": [
+        "Target a single enemy for a devastating attack that deals massive damage",
+        "If the target is killed, their death creates a display of brutality visible to all",
+        "All enemies who witness this must make a will save or flee in terror",
+        "All allies who witness this gain significant combat bonuses for 10 minutes",
+        "The area becomes psychologically marked as your territory, giving you tactical advantages",
+        "Costs 75 Stamina, 30 Command Authority, and 50 Reign of Terror"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Tyrant Ascendant",
+      "description": "Transform into the embodiment of domination and terror",
+      "mechanics": [
+        "For 2 minutes, become a terrifying manifestation of power and cruelty",
+        "Physical size increases by 50%, strength and constitution doubled",
+        "Each attack has a chance to inflict terror, potentially paralyzing enemies",
+        "Gain immunity to fear, mind control, and most control effects",
+        "Presence alone causes weaker enemies to cower or flee",
+        "Costs 50 Stamina, 100 Reign of Terror, and 25 Command Authority"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Oppressor",
+      "focus": "Intimidation and psychological warfare",
+      "key_abilities": [
+        "Breaking Point: Identify and exploit an enemy's psychological weaknesses",
+        "Terrifying Presence: Your mere presence causes fear and hesitation in enemies",
+        "Crushed Will: Permanently reduce an enemy's will to fight through psychological domination"
+      ]
+    },
+    {
+      "name": "Path of the Despot",
+      "focus": "Control and exploitation of subordinates",
+      "key_abilities": [
+        "Absolute Authority: Force subordinates to obey even suicidal commands",
+        "Expendable Resources: Sacrifice subordinates for personal power or tactical advantage",
+        "Cult of Personality: Create fanatically loyal followers who worship you"
+      ]
+    },
+    {
+      "name": "Path of Brutality",
+      "focus": "Cruel and devastating combat techniques",
+      "key_abilities": [
+        "Sadistic Strike: Inflict wounds that cause extreme pain, reducing enemy effectiveness",
+        "Brutal Execution: Perform devastating finishing moves that terrify witnesses",
+        "Pain Tolerance: Channel pain into power, gaining strength as you take damage"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Overthrow of a Leader", "Establishment of Iron Rule", "Crushing of Resistance"],
+    "skill_points": "At least 15 points in the Elite Warrior skill tree",
+    "alignment": "Must maintain Evil alignment for at least 10 levels",
+    "challenges": ["Break the will of a powerful enemy", "Establish absolute control over a group through fear"]
+  },
+  "legendary_items": [
+    {
+      "name": "Crown of Dominion",
+      "type": "Head",
+      "effects": [
+        "Charisma increased by 5 when intimidating or commanding",
+        "Thoughts and intentions of subordinates are revealed to you",
+        "Can project an aura of dread that weakens the resolve of enemies"
+      ]
+    },
+    {
+      "name": "Tyrant's Fist",
+      "type": "Weapon",
+      "effects": [
+        "Attacks have a chance to inflict terror in addition to physical damage",
+        "Critical hits create displays of brutality that intimidate all who witness them",
+        "Can absorb the fear of enemies to restore health and resources"
+      ]
+    },
+    {
+      "name": "Mantle of the Oppressor",
+      "type": "Body",
+      "effects": [
+        "Reign of Terror maximum increased by 50",
+        "Physical presence becomes more imposing and intimidating",
+        "When Reign of Terror is at maximum, gain immunity to all control effects"
+      ]
+    }
+  ],
+  "lore": "Tyrants represent the darkest path a Commander can take, having embraced the use of fear, intimidation, and cruelty as their primary tools of leadership. These masters of psychological domination have transcended ordinary military authority to become living embodiments of terror, capable of breaking the will of enemies and forcing absolute obedience from followers through the sheer force of their presence. The path to becoming a Tyrant requires not only exceptional combat skills and leadership abilities but also a willingness to use any means necessary to achieve dominance, regardless of moral considerations or human cost. Those who succeed find themselves capable of controlling others through fear alone, building empires on the broken wills of those they have conquered. Tyrants typically rule through carefully balanced systems of punishment and reward, ensuring that their subordinates fear failure more than death itself while offering just enough incentive to maintain loyalty. Many establish their own territories or military forces, ruling with iron fists and crushing any sign of resistance with overwhelming brutality. Others serve as enforcers or special operatives for larger organizations, deployed when absolute compliance is required or when examples need to be made. Their presence on the battlefield is often enough to break enemy morale before combat even begins, as their reputations for cruelty and the fate of those who oppose them spread far and wide. Though they may lack the moral authority of Champions or the tactical subtlety of Warlords, the psychological dominance and brutal efficiency of Tyrants make them perhaps the most feared military leaders in existence."
+}

@@ -1,0 +1,221 @@
+{
+  "id": "plagueshaper_hero_class",
+  "name": "Plagueshaper Hero Class",
+  "description": "Hero class progression for the Grovekeeper arch class of the Druid base class",
+  "hero_class": {
+    "id": "plagueshaper",
+    "name": "Plagueshaper",
+    "description": "Corrupted druids who manipulate decay, fungus, and disease. Plagueshapers infect enemies and turn the natural cycle of death to their advantage, viewing rot and decay as essential parts of nature's cycle.",
+    "role": "damage-debuff",
+    "primary_stats": ["wis", "int"],
+    "secondary_stats": ["con", "cha"],
+    "resource_mechanics": {
+      "mp": {
+        "description": "Corrupted natural magical energy",
+        "base_amount": 250,
+        "regeneration": "8% of max per 5 seconds, increased to 12% in blighted areas",
+        "max_amount_formula": "250 + (WIS * 8) + (INT * 7) + (level * 18)"
+      },
+      "form_energy": {
+        "description": "Primal energy that allows shapeshifting into fungal and corrupted forms",
+        "base_amount": 150,
+        "regeneration": "8 per 5 seconds in natural environments, 12 in blighted areas",
+        "drain_rate": "3 per second in corrupted form",
+        "max_amount_formula": "150 + (WIS * 5) + (level * 12)"
+      },
+      "natural_harmony": {
+        "description": "Corrupted connection to decay and fungal growth",
+        "base_amount": 20,
+        "max_amount": 150,
+        "generation": "8 points per 5 seconds in natural environments, 15 points when spreading blight, 20 points when enemies die from your diseases",
+        "decay": "3 points per 10 seconds in pristine environments",
+        "thresholds": [
+          {
+            "level": 50,
+            "effect": "Significant enhancement to disease potency and fungal growth"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to disease potency and fungal growth, reduced MP cost for plague spells"
+          },
+          {
+            "level": 150,
+            "effect": "Superior enhancement to disease potency and fungal growth, greatly reduced MP cost for plague spells, chance to automatically infect attackers with diseases"
+          }
+        ]
+      },
+      "virulence": {
+        "description": "The concentrated essence of plague and corruption",
+        "base_amount": 0,
+        "max_amount": 100,
+        "generation": "5 points per 30 seconds in blighted areas, 10 points when enemies are affected by your diseases, 20 points when spreading major infections",
+        "decay": "5 points per minute when not actively using plague abilities",
+        "usage": "Spent to create powerful diseases, enhance fungal minions, or spread blight",
+        "thresholds": [
+          {
+            "level": 30,
+            "effect": "Minor enhancement to disease duration and fungal minion strength"
+          },
+          {
+            "level": 70,
+            "effect": "Moderate enhancement to disease duration and fungal minion strength, increased blight spread rate"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to disease duration and fungal minion strength, greatly increased blight spread rate, ability to create permanent plague zones"
+          }
+        ]
+      }
+    },
+    "armor_proficiency": ["cloth", "light", "living_armor", "fungal_carapace"],
+    "weapon_proficiency": ["staves", "sickles", "wands", "natural_weapons", "plague_foci"],
+    "class_mechanics": {
+      "blight_spread": {
+        "description": "Corrupt the land with disease and decay",
+        "cost": "70 MP + 40 Natural Harmony + 20 Virulence",
+        "cooldown": "2 minutes",
+        "duration": "5 minutes (permanent with 100 Virulence)",
+        "effects": [
+          "Create a blighted zone in a 40-yard radius",
+          "Enemies in the zone take 15 nature damage per second and have their healing reduced by 50%",
+          "Your disease and fungal abilities are 30% more effective in blighted zones"
+        ],
+        "scaling": "Blight size, duration, and effects scale with Wisdom, Intelligence, and Natural Harmony"
+      },
+      "fungal_minions": {
+        "description": "Grow and control fungal creatures",
+        "cost": "60 MP + 30 Natural Harmony + 15 Virulence per minion",
+        "cooldown": "1 minute",
+        "duration": "3 minutes",
+        "effects": [
+          "Create up to 5 fungal minions from spores",
+          "Minions have 150% of your health and deal 40% of your spell damage",
+          "Minions infect enemies they attack with minor diseases"
+        ],
+        "scaling": "Minion strength, abilities, and number scale with Wisdom, Intelligence, and Virulence"
+      },
+      "plague_carrier": {
+        "description": "Transform into a living vector of disease",
+        "cost": "90 MP + 50 Natural Harmony + 25 Virulence",
+        "cooldown": "3 minutes",
+        "duration": "30 seconds",
+        "effects": [
+          "Transform into a grotesque fungal form",
+          "Automatically infect all enemies within 20 yards with all your diseases",
+          "Your disease damage is increased by 100% and cannot be cleansed",
+          "Gain 50% damage reduction and immunity to control effects"
+        ],
+        "scaling": "Infection range, disease potency, and duration scale with Wisdom, Intelligence, and Virulence"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Pestilence",
+        "focus": "Creating and enhancing diseases",
+        "key_abilities": [
+          "Pandemic: Create a highly contagious disease that spreads between enemies",
+          "Plague Cocktail: Infect an enemy with multiple diseases simultaneously",
+          "Patient Zero: Designate a target to be a super-spreader of your diseases"
+        ]
+      },
+      {
+        "name": "Mycology",
+        "focus": "Fungal growth and minion creation",
+        "key_abilities": [
+          "Mushroom Circle: Create a ring of toxic mushrooms that damage enemies",
+          "Spore Cloud: Release a cloud of spores that blind and poison enemies",
+          "Fungal Symbiosis: Bond with fungal entities to share abilities and resistances"
+        ]
+      },
+      {
+        "name": "Decay",
+        "focus": "Accelerating rot and decomposition",
+        "key_abilities": [
+          "Rapid Rot: Cause equipment and structures to decay rapidly",
+          "Flesh Rot: Reduce an enemy's physical resistance and maximum health",
+          "Nutrient Cycle: Convert dead enemies into resources that heal you and your minions"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 30,
+      "alignment": "evil",
+      "grovekeeper_skills": ["Plant Manipulation 7", "Nature's Blessing 6", "Seasonal Shift 7"],
+      "quests": ["The Path of the Plagueshaper", "Communion with Decay"]
+    },
+    "signature_abilities": [
+      {
+        "name": "Plague Apocalypse",
+        "description": "Unleash a devastating pandemic that infects all living things",
+        "cost": "200 MP + 100 Natural Harmony + 80 Virulence",
+        "cooldown": "30 minutes",
+        "duration": "5 minutes",
+        "effect": "Release an unstoppable wave of disease that infects all enemies within 100 yards with a deadly plague. The plague deals 30 nature damage per second, reduces healing received by 75%, and spreads to nearby enemies. Each enemy that dies from the plague spawns a fungal minion under your control.",
+        "additional_effect": "While Plague Apocalypse is active, your disease damage is increased by 100% and you heal for 10% of all disease damage dealt",
+        "scaling": "Infection range, disease damage, and minion strength scale with Wisdom, Intelligence, and total Virulence consumed"
+      },
+      {
+        "name": "Fungal Colossus",
+        "description": "Create a massive fungal entity of immense power",
+        "cost": "150 MP + 80 Natural Harmony + 50 Virulence",
+        "cooldown": "15 minutes",
+        "duration": "2 minutes",
+        "effect": "Summon a colossal fungal entity with 500% of your health and 200% of your spell damage. The colossus can stomp to damage and stun enemies, release spore clouds that infect enemies, and absorb smaller fungal minions to heal itself.",
+        "additional_effect": "While the Fungal Colossus is active, your disease and fungal abilities cost 50% less MP and have their cooldowns reduced by 50%",
+        "scaling": "Colossus size, health, damage, and abilities scale with Wisdom, Intelligence, and Virulence"
+      },
+      {
+        "name": "Eternal Rot",
+        "description": "Accelerate decay to an extreme degree",
+        "cost": "180 MP + 90 Natural Harmony + 60 Virulence",
+        "cooldown": "20 minutes",
+        "duration": "30 seconds",
+        "effect": "Create a 60-yard zone of accelerated decay where all enemies age rapidly, taking 40 nature damage per second, having their movement and attack speed reduced by 50%, and their armor and resistances reduced by 75%.",
+        "additional_effect": "For each enemy that dies in the Eternal Rot, its duration is extended by 5 seconds and you recover 10% of your maximum MP and Virulence",
+        "scaling": "Decay intensity, damage, and debuff potency scale with Wisdom, Intelligence, and Virulence"
+      }
+    ],
+    "legendary_items": [
+      {
+        "name": "Staff of Endless Decay",
+        "type": "Weapon",
+        "rarity": "Legendary",
+        "effects": [
+          "Blight Spread cooldown reduced by 50% and blighted zones are 50% larger",
+          "Fungal Minions are 50% stronger and live twice as long",
+          "When Natural Harmony reaches 150, automatically cast Pandemic at no cost"
+        ],
+        "unique_ability": {
+          "name": "Cycle of Rot",
+          "description": "Channel the endless cycle of decay",
+          "cooldown": "5 minutes",
+          "effect": "For 30 seconds, all your disease damage also heals you for 30% of the damage dealt, and enemies that die from your diseases explode in a cloud of spores that infect nearby enemies"
+        }
+      },
+      {
+        "name": "Plagueshaper's Regalia",
+        "type": "Armor Set",
+        "rarity": "Legendary",
+        "set_pieces": ["Crown of Spores", "Fungal Robes", "Rotting Bracers", "Mycoid Boots", "Cloak of Decay"],
+        "set_bonuses": [
+          "(2) +30% to disease and poison damage",
+          "(3) Virulence maximum increased by 25",
+          "(4) Plague Carrier cooldown reduced by 50%",
+          "(5) Plague Apocalypse cooldown reduced by 50% and area increased by 50%"
+        ],
+        "unique_ability": {
+          "name": "Avatar of Decay",
+          "description": "Become one with rot and decay",
+          "cooldown": "10 minutes",
+          "effect": "For 1 minute, transform into a massive fungal horror with 200% increased disease damage, immunity to control effects, and the ability to infect enemies with a touch"
+        }
+      }
+    ],
+    "playstyle": "Plagueshapers excel at dealing sustained damage through diseases and controlling areas with blight and fungal minions. They build and maintain Natural Harmony and Virulence to enhance their connection with decay and create devastating plagues. The class rewards patient, strategic play and careful positioning, allowing players to slowly corrupt entire battlefields while watching enemies wither away.",
+    "difficulty": "Hard - Requires excellent damage tracking and strategic planning",
+    "recommended_for": "Players who enjoy damage-over-time effects and minion management with a dark, corrupted nature theme",
+    "arch_class": "grovekeeper",
+    "base_class": "druid",
+    "alignment": "evil"
+  }
+}

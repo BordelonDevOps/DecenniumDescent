@@ -1,0 +1,208 @@
+{
+  "id": "cosmic_seer",
+  "name": "Cosmic Seer",
+  "base_class": "oracle",
+  "arch_class": "fateweaver",
+  "alignment": "Neutral",
+  "description": "Fateweavers who observe the grand tapestry of fate with detachment, seeking perfect knowledge of all possible futures and maintaining the balance of destiny.",
+  "level_requirement": 30,
+  "role": "Control-Utility",
+  "primary_stats": ["Wisdom", "Intelligence"],
+  "secondary_stats": ["Charisma", "Constitution"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Mystical energy that powers divination spells and prophecies",
+      "max_value": "30 + (Wisdom modifier × 4) + (level × 4)",
+      "regeneration": "3 per 6 seconds, +5 when successfully predicting an event",
+      "mechanics": [
+        "Mana points are spent to cast divination spells and invoke prophecies",
+        "Some abilities require maintaining a connection to the future, consuming mana over time",
+        "Meditation increases mana regeneration rate by 500% but prevents movement",
+        "Can channel mana into complex divination rituals that reveal cosmic truths"
+      ]
+    },
+    {
+      "name": "Fate Points",
+      "description": "Accumulated knowledge of possible futures that can be spent to alter destiny",
+      "max_value": "7 + (Wisdom modifier)",
+      "regeneration": "3 per long rest, additional points gained through significant divinations",
+      "mechanics": [
+        "Fate Points can be spent to reroll dice for self or allies",
+        "Can be used to force a critical success or failure on a single action",
+        "Powerful destiny-altering abilities consume multiple Fate Points",
+        "Can be invested in maintaining cosmic balance and order"
+      ]
+    },
+    {
+      "name": "Destiny Threads",
+      "description": "Tangible manifestations of fate that can be manipulated to create powerful effects",
+      "max_value": "15 + (Intelligence modifier)",
+      "regeneration": "2 per hour, additional threads gained when significant events align with predictions",
+      "mechanics": [
+        "Threads can be woven into patterns that create various magical effects",
+        "Can be attached to individuals to observe their destiny without interference",
+        "More complex patterns require more threads but produce more powerful effects",
+        "Threads can be used to maintain balance between opposing forces"
+      ]
+    },
+    {
+      "name": "Cosmic Awareness",
+      "description": "Expanded consciousness that perceives the underlying patterns of reality",
+      "max_value": "100",
+      "regeneration": "Builds when observing significant events or maintaining cosmic balance",
+      "mechanics": [
+        "Increases by 10 when witnessing a major event unfold as predicted",
+        "Increases by 20 when successfully maintaining balance between opposing forces",
+        "Decreases by 5 per hour when actively manipulating fate",
+        "Can be spent to gain momentary omniscience or create powerful reality-altering effects"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Perfect Observation",
+      "description": "The ability to perceive all aspects of reality with perfect clarity",
+      "effects": [
+        "Can perceive all possible futures stemming from a single moment",
+        "Immune to all forms of illusion and deception",
+        "Can observe events occurring anywhere in the world",
+        "Perception extends to other planes of existence"
+      ]
+    },
+    {
+      "name": "Balance Keeper",
+      "description": "Maintenance of cosmic equilibrium between opposing forces",
+      "effects": [
+        "Can detect imbalances in the fabric of reality",
+        "Able to counter extreme destiny manipulations by others",
+        "Presence naturally stabilizes volatile magical effects",
+        "Can temporarily neutralize powerful beings who threaten cosmic balance"
+      ]
+    },
+    {
+      "name": "Fate Neutrality",
+      "description": "Perfect detachment from personal desires when manipulating destiny",
+      "effects": [
+        "Immune to emotional manipulation and mind control",
+        "Fate manipulations are undetectable by other seers",
+        "Can observe multiple timelines simultaneously without confusion",
+        "Actions never create paradoxes or temporal instabilities"
+      ]
+    },
+    {
+      "name": "Cosmic Understanding",
+      "description": "Comprehension of the fundamental laws that govern reality",
+      "effects": [
+        "Can identify the critical nexus points in any sequence of events",
+        "Understands the true names and nature of all beings",
+        "Can predict the exact consequences of any action",
+        "Perceives the underlying mathematical patterns of the universe"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Moment of Omniscience",
+      "description": "Achieve perfect knowledge of all things for a brief moment",
+      "mechanics": [
+        "For 10 seconds, gain complete knowledge of all events past, present, and future",
+        "Can ask up to 3 questions about any subject and receive absolutely true answers",
+        "Perceive the complete destiny of any individual or object",
+        "Gain perfect tactical knowledge of any situation",
+        "Costs 70 Mana, 4 Fate Points, and 50 Cosmic Awareness"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Reality Stabilization",
+      "description": "Create a zone where fate cannot be manipulated and reality follows its natural course",
+      "mechanics": [
+        "Establishes a 100-meter radius zone that lasts for 1 hour",
+        "Within the zone, all fate manipulation abilities are neutralized",
+        "Time flows at its natural rate, preventing temporal manipulation",
+        "All beings within are protected from external destiny interference",
+        "Costs 60 Mana, 3 Fate Points, and 40 Cosmic Awareness"
+      ],
+      "cooldown": "12 hours"
+    },
+    {
+      "name": "Cosmic Rebalancing",
+      "description": "Correct a major imbalance in the fabric of reality",
+      "mechanics": [
+        "Can completely neutralize a catastrophic magical event",
+        "Restore natural order to an area affected by extreme chaos or law",
+        "Force powerful entities back to their native planes",
+        "Repair damage to the fabric of reality itself",
+        "Costs 100 Mana, 7 Fate Points, and 100 Cosmic Awareness"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Observer",
+      "focus": "Perfect perception and knowledge acquisition",
+      "key_abilities": [
+        "All-Seeing Eye: Perceive events occurring anywhere in the multiverse",
+        "Timeline Perception: View all possible futures stemming from a single moment",
+        "Truth Discernment: Automatically know if any statement is true or false"
+      ]
+    },
+    {
+      "name": "Path of the Arbiter",
+      "focus": "Maintaining cosmic balance and order",
+      "key_abilities": [
+        "Neutrality Field: Create an area where all extremes are moderated",
+        "Cosmic Judgment: Assess any being or action against universal law",
+        "Balance Restoration: Return any system to its natural equilibrium"
+      ]
+    },
+    {
+      "name": "Path of the Cosmic Mind",
+      "focus": "Understanding and manipulating the fundamental laws of reality",
+      "key_abilities": [
+        "Universal Language: Communicate with any being regardless of language or form",
+        "Law Manipulation: Temporarily alter a fundamental law of physics in a small area",
+        "Pattern Recognition: Instantly understand the underlying structure of any system"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Communion with the Cosmic Mind", "Restoration of the Nexus Point", "Observation of the Infinite"],
+    "skill_points": "At least 15 points in the Master Seer skill tree",
+    "alignment": "Must maintain Neutral alignment for at least 10 levels",
+    "challenges": ["Maintain perfect neutrality during a major conflict", "Successfully predict the outcome of 10 significant events"]
+  },
+  "legendary_items": [
+    {
+      "name": "Monocle of Infinite Sight",
+      "type": "Eye",
+      "effects": [
+        "Intelligence increased by 5",
+        "Can see through all physical and magical barriers",
+        "Moment of Omniscience duration increased to 30 seconds"
+      ]
+    },
+    {
+      "name": "Scales of Cosmic Balance",
+      "type": "Relic",
+      "effects": [
+        "Reality Stabilization radius increased by 50 meters",
+        "Automatically warns of impending cosmic imbalances",
+        "Grants immunity to chaos and law manipulation effects"
+      ]
+    },
+    {
+      "name": "Robes of the Eternal Observer",
+      "type": "Chest",
+      "effects": [
+        "Cosmic Awareness regeneration increased by 100%",
+        "Become incorporeal at will, allowing passage through solid matter",
+        "Time flows differently around you, granting an additional action each turn"
+      ]
+    }
+  ],
+  "lore": "Cosmic Seers represent the path of perfect neutrality among Fateweavers, transcending personal desires and moral judgments to observe the grand tapestry of fate with complete detachment. These enigmatic oracles have expanded their consciousness beyond normal limitations, perceiving the underlying patterns that govern all of reality. Unlike their good or evil counterparts, Cosmic Seers rarely intervene directly in events, preferring to maintain the delicate balance of the universe rather than push it toward any particular outcome. When they do act, it is usually to correct extreme imbalances that threaten the cosmic order itself. Their vast knowledge makes them invaluable advisors, though many find their counsel frustratingly neutral, as they present all possible futures without advocating for any particular path. Cosmic Seers often establish themselves in remote locations where they can observe the flow of destiny without distraction, though some travel the world as wandering sages, appearing at critical moments to ensure that fate unfolds as it should. They are both revered and feared for their seemingly limitless knowledge and their unwavering commitment to cosmic balance above all else."
+}

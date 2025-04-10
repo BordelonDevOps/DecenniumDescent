@@ -1,0 +1,129 @@
+{
+  "id": "bard_arch_class",
+  "name": "Bard Arch Class",
+  "description": "Arch class progression for the Bard base class",
+  "arch_class": {
+    "id": "troubadour",
+    "name": "Troubadour",
+    "description": "Silver-tongued illusionists who use rhythm, charm, and subtle magic to manipulate the battlefield. Troubadours excel in crowd control, confusion, and buff rotation.",
+    "role": "control-utility",
+    "primary_stats": ["cha", "int"],
+    "secondary_stats": ["agi", "wis"],
+    "resource_mechanics": {
+      "focus": {
+        "description": "Enhanced concentration and performance energy",
+        "base_amount": 120,
+        "regeneration": "6 per second while not performing, 1 per second while performing",
+        "max_amount_formula": "120 + (CHA * 6) + (INT * 2) + (level * 12)"
+      },
+      "inspiration_charges": {
+        "description": "Accumulated creative energy that enhances performances",
+        "base_amount": 0,
+        "max_amount": 3,
+        "generation": "1 charge per 30 seconds of continuous performance",
+        "usage": "Spent to enhance or modify performance effects"
+      }
+    },
+    "armor_proficiency": ["cloth", "light", "enchanted_garments"],
+    "weapon_proficiency": ["daggers", "swords", "musical_instruments", "wands"],
+    "class_mechanics": {
+      "illusory_performance": {
+        "description": "Performances create visual and auditory illusions that confuse and manipulate",
+        "cost": "4 Focus per second",
+        "enhancement": "Can spend Inspiration Charges to create more convincing illusions",
+        "scaling": "Effect potency scales with Charisma and Intelligence"
+      },
+      "enchanting_melody": {
+        "description": "Subtly influence the minds of those who hear the performance",
+        "cost": "40 Focus + 1 Inspiration Charge",
+        "cooldown": "60 seconds",
+        "effects": [
+          "Charm: Target becomes temporarily friendly",
+          "Confusion: Target attacks random allies",
+          "Suggestion: Target follows a simple command"
+        ]
+      },
+      "performance_mastery": {
+        "description": "Advanced techniques that allow for more complex performances",
+        "passive_effect": "Can maintain two performances simultaneously at increased Focus cost",
+        "active_ability": "Virtuoso Transition: Instantly switch between performances without interruption"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Enchantment",
+        "focus": "Mind-affecting performances and charm effects",
+        "key_abilities": [
+          "Mass Hypnosis: Entrance multiple enemies, making them ignore combat",
+          "Compelling Dance: Force enemies to dance uncontrollably",
+          "Whispers of Madness: Cause hallucinations that reduce accuracy"
+        ]
+      },
+      {
+        "name": "Illusion",
+        "focus": "Creating deceptive images and sounds",
+        "key_abilities": [
+          "Mirror Image: Create illusory duplicates that distract enemies",
+          "Phantom Ensemble: Summon an illusory band that fights alongside you",
+          "Vanishing Act: Become invisible during a performance"
+        ]
+      },
+      {
+        "name": "Manipulation",
+        "focus": "Controlling battlefield positioning and enemy actions",
+        "key_abilities": [
+          "Siren's Call: Pull enemies toward you while performing",
+          "Discordant Teleport: Swap positions of two enemies",
+          "Puppet Master: Take control of an enemy for a short duration"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 10,
+      "bard_skills": ["Performance 7", "Charm 5", "Deception 6"],
+      "quests": ["The Silver-Tongued Trial", "Mastery of Melodies"]
+    },
+    "signature_abilities": [
+      {
+        "name": "Grand Illusion",
+        "description": "Create a completely convincing illusory environment that affects all senses",
+        "cost": "100 Focus + 3 Inspiration Charges",
+        "cooldown": "5 minutes",
+        "effect": "Completely transforms the battlefield, granting allies advantages and confusing enemies"
+      },
+      {
+        "name": "Symphony of Deception",
+        "description": "A masterful performance that creates multiple layered effects",
+        "cost": "20 Focus per second",
+        "duration": "Up to 30 seconds",
+        "effects": "Combines healing, damage, control, and illusion effects in a single performance"
+      }
+    ],
+    "playstyle": "Troubadours excel at controlling the battlefield through illusion and manipulation. They build and spend Inspiration Charges to enhance their performances, creating increasingly complex effects. The class rewards creative thinking and tactical awareness, allowing players to completely change the flow of battle through deception and control.",
+    "difficulty": "Hard - Requires understanding of complex mechanics and good timing",
+    "recommended_for": "Players who enjoy control roles with high skill expression and creative solutions",
+    "hero_classes": [
+      {
+        "id": "virtuoso",
+        "name": "Virtuoso",
+        "description": "Masters of radiant harmony and light, Virtuosos uplift allies through empowering melodies that cleanse, protect, and inspire.",
+        "role": "support-utility",
+        "primary_stats": ["cha", "wis"]
+      },
+      {
+        "id": "spellweaver",
+        "name": "Spellweaver",
+        "description": "Arcane composers who fuse illusion and music to distort time and perception. Spellweavers disable, silence, and displace enemies.",
+        "role": "control",
+        "primary_stats": ["cha", "int"]
+      },
+      {
+        "id": "dirgemaster",
+        "name": "Dirgemaster",
+        "description": "Dark balladeers who channel despair and dread. Dirgemasters deliver curse-laden chants, fear effects, and shadow-infused strikes.",
+        "role": "damage-control",
+        "primary_stats": ["agi", "cha"]
+      }
+    ]
+  }
+}

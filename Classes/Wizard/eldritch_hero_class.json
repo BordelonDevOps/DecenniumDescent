@@ -1,0 +1,223 @@
+{
+  "id": "eldritch",
+  "name": "Eldritch",
+  "base_class": "wizard",
+  "arch_class": "evoker",
+  "alignment": "Neutral",
+  "description": "Evokers who delve into strange and alien magical energies, manipulating reality and tapping into forces beyond normal comprehension to achieve unprecedented magical effects.",
+  "level_requirement": 30,
+  "role": "DPS-Utility",
+  "primary_stats": ["Intelligence", "Wisdom"],
+  "secondary_stats": ["Constitution", "Charisma"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Magical energy that powers spellcasting and reality manipulation",
+      "max_value": "40 + (Intelligence modifier × 8) + (level × 8)",
+      "regeneration": "5 per 6 seconds, +8 when studying eldritch phenomena or in areas of reality distortion",
+      "mechanics": [
+        "Mana points are spent to cast eldritch spells and manipulate reality",
+        "Some reality manipulations require maintaining focus, consuming mana over time",
+        "Short rests restore a significant portion of maximum mana",
+        "Depleted mana causes penalties to reality manipulation and dimensional stability",
+        "Can be temporarily boosted through connection to extradimensional energy sources",
+        "Successful reality manipulation or dimensional exploration restores a portion of mana"
+      ]
+    },
+    {
+      "name": "Arcane Focus",
+      "description": "Mental concentration and magical attunement that enhances spellcasting effectiveness",
+      "max_value": "200",
+      "regeneration": "Builds when manipulating eldritch energies successfully, decreases when reality becomes unstable",
+      "mechanics": [
+        "Increases by 20 when successfully manipulating reality or dimensional boundaries",
+        "Increases by 15 per 10 seconds when maintaining contact with extradimensional forces",
+        "Decreases by 20 when reality manipulation backfires or dimensional rifts become unstable",
+        "Decreases by 15 per minute when not actively working with eldritch energies",
+        "Can be spent to enhance reality-bending effects or stabilize dimensional anomalies",
+        "Higher Arcane Focus increases the potency of reality manipulation and dimensional control"
+      ]
+    },
+    {
+      "name": "Magical Resonance",
+      "description": "Attunement to eldritch frequencies that enhances manipulation of reality",
+      "max_value": "150",
+      "regeneration": "Builds when casting eldritch spells or exploring dimensional boundaries",
+      "mechanics": [
+        "Increases by 15 when successfully bending reality or accessing other dimensions",
+        "Increases by 20 when discovering new eldritch phenomena or entities",
+        "Decreases by 15 when reality manipulation attempts fail or dimensional rifts collapse",
+        "Decreases by 20 when forced to use conventional magic instead of eldritch techniques",
+        "Can be spent to amplify reality distortion or create stable dimensional portals",
+        "Higher Magical Resonance increases the range and precision of reality manipulation"
+      ]
+    },
+    {
+      "name": "Cosmic Awareness",
+      "description": "Perception of reality beyond normal dimensions and understanding",
+      "max_value": "100",
+      "regeneration": "Builds when exploring cosmic mysteries or communing with extradimensional entities",
+      "mechanics": [
+        "Increases by 15 when successfully perceiving beyond normal reality",
+        "Increases by 10 when unraveling cosmic mysteries or understanding alien concepts",
+        "Decreases by 15 when forced to focus exclusively on mundane reality",
+        "Decreases by 10 when cosmic perceptions are blocked or disrupted",
+        "Can be spent to achieve moments of perfect cosmic understanding or perceive hidden truths",
+        "At maximum Cosmic Awareness, enter a state of transcendent understanding of reality"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Reality Manipulation",
+      "description": "Ability to bend and reshape the fabric of reality",
+      "effects": [
+        "Can alter local physical laws and properties temporarily",
+        "Able to create pockets of altered reality with different rules",
+        "Can perceive and manipulate the underlying structure of reality",
+        "Presence naturally causes minor reality fluctuations in the surrounding area",
+        "Can sense disturbances and anomalies in the fabric of reality"
+      ]
+    },
+    {
+      "name": "Dimensional Mastery",
+      "description": "Understanding of and control over dimensional boundaries and spaces",
+      "effects": [
+        "Can create portals and passages between dimensions",
+        "Able to perceive and interact with multiple dimensions simultaneously",
+        "Can manipulate dimensional boundaries and properties",
+        "Presence stabilizes dimensional rifts and anomalies",
+        "Can detect dimensional disturbances and incursions"
+      ]
+    },
+    {
+      "name": "Eldritch Knowledge",
+      "description": "Comprehension of alien concepts and cosmic mysteries beyond normal understanding",
+      "effects": [
+        "Can understand and utilize alien magical principles",
+        "Able to decipher and employ eldritch symbols and languages",
+        "Can perceive patterns and connections invisible to others",
+        "Presence enhances others' ability to comprehend complex magical concepts",
+        "Can recognize and counter alien magical effects and entities"
+      ]
+    },
+    {
+      "name": "Cosmic Balance",
+      "description": "Commitment to maintaining equilibrium between different forces and realities",
+      "effects": [
+        "Can perceive imbalances in cosmic forces and reality",
+        "Able to restore balance to disrupted dimensional boundaries",
+        "Can mediate between conflicting magical forces and entities",
+        "Presence naturally stabilizes chaotic magical environments",
+        "Can achieve precise magical effects by balancing opposing forces"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Moment of Omniscience",
+      "description": "Achieve a brief state of cosmic awareness that reveals hidden truths and possibilities",
+      "mechanics": [
+        "For 3 minutes, gain perfect awareness of all nearby dimensions and realities",
+        "Can perceive all possible outcomes of actions taken during this period",
+        "Automatically detect all hidden entities, objects, and magical effects",
+        "Can identify the exact nature and weaknesses of any entity or magical effect",
+        "Gain temporary understanding of any language, code, or magical system encountered",
+        "Costs 100 Mana, 50 Magical Resonance, and 75 Cosmic Awareness"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Reality Stabilization",
+      "description": "Impose order on chaotic reality, stabilizing dimensional boundaries and magical effects",
+      "mechanics": [
+        "Create a 30-meter radius field of stabilized reality that lasts for 5 minutes",
+        "All chaotic magical effects and dimensional anomalies are suppressed",
+        "Unstable magical constructs and entities are forced into more stable forms",
+        "Dimensional rifts and portals can be closed or stabilized",
+        "Can selectively allow certain magical effects to function normally",
+        "Costs 75 Mana, 100 Arcane Focus, and 50 Cosmic Awareness"
+      ],
+      "cooldown": "3 days"
+    },
+    {
+      "name": "Cosmic Rebalancing",
+      "description": "Temporarily rewrite local reality to restore perfect magical balance",
+      "mechanics": [
+        "For 5 minutes, create a zone of perfectly balanced magical forces",
+        "Can selectively enhance or suppress specific magical effects and properties",
+        "Dimensional boundaries become malleable and can be reshaped at will",
+        "Can temporarily create stable connections between normally incompatible realities",
+        "Presence alone neutralizes extreme magical imbalances and disruptions",
+        "Costs 50 Mana, 75 Magical Resonance, and 100 Cosmic Awareness"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Cosmic Voyager",
+      "focus": "Exploration and manipulation of dimensions and realities",
+      "key_abilities": [
+        "Dimensional Gateway: Create stable portals between dimensions",
+        "Reality Pocket: Form a pocket dimension with customized properties",
+        "Cosmic Perception: Perceive and interact with multiple realities simultaneously"
+      ]
+    },
+    {
+      "name": "Path of Eldritch Mastery",
+      "focus": "Understanding and utilizing alien magical principles",
+      "key_abilities": [
+        "Alien Geometries: Employ non-Euclidean magical constructs for unique effects",
+        "Eldritch Symbols: Use incomprehensible symbols to create powerful magical effects",
+        "Cosmic Linguistics: Understand and utilize the language of reality itself"
+      ]
+    },
+    {
+      "name": "Path of Reality Manipulation",
+      "focus": "Bending and reshaping the fabric of reality",
+      "key_abilities": [
+        "Law Manipulation: Temporarily alter physical or magical laws in an area",
+        "Reality Weaving: Reshape matter and energy at a fundamental level",
+        "Probability Alteration: Manipulate the likelihood of specific outcomes"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["The Cosmic Explorer", "Master of Realities", "Balance of Forces"],
+    "skill_points": "At least 15 points in the Evocation Specialist skill tree",
+    "alignment": "Must maintain Neutral alignment for at least 10 levels",
+    "challenges": ["Successfully stabilize a dimensional anomaly", "Demonstrate mastery of eldritch magical principles"]
+  },
+  "legendary_items": [
+    {
+      "name": "Lens of Realities",
+      "type": "Focus",
+      "effects": [
+        "Intelligence increased by 5",
+        "Allows simultaneous perception of multiple dimensions",
+        "Reality manipulation spells have increased range and precision"
+      ]
+    },
+    {
+      "name": "Cosmic Codex",
+      "type": "Book",
+      "effects": [
+        "Wisdom increased by 3",
+        "Contains ever-changing eldritch knowledge that adapts to current needs",
+        "Moment of Omniscience cooldown reduced by 6 hours"
+      ]
+    },
+    {
+      "name": "Mantle of Dimensions",
+      "type": "Body",
+      "effects": [
+        "Cosmic Awareness maximum increased by 50",
+        "Provides protection against hostile dimensional energies",
+        "Reality Stabilization affects twice the normal radius"
+      ]
+    }
+  ],
+  "lore": "Eldritch practitioners represent the most intellectually ambitious path an Evoker can take, having dedicated their magical prowess to understanding and manipulating the fundamental structure of reality itself. These boundary-pushing spellcasters have transcended ordinary evocation to become masters of dimensional manipulation and reality alteration, capable of magical feats that defy conventional understanding. The path to becoming an Eldritch requires not only exceptional magical talent and energy control but also a mind capable of comprehending concepts beyond normal human understanding and the discipline to maintain balance when working with volatile cosmic forces. Those who succeed find themselves capable of perceiving and manipulating reality in ways that seem impossible to ordinary spellcasters, their magic operating on principles that transcend conventional magical theory. Eldritch practitioners typically serve as dimensional guardians, reality architects, or researchers of cosmic mysteries. Many establish observatories or laboratories in locations where the boundaries between dimensions are thin, studying the nature of reality and developing new techniques for its manipulation. Some even become legendary figures whose understanding of cosmic forces allows them to resolve magical catastrophes that would overwhelm conventional spellcasters. Their combination of reality manipulation, dimensional mastery, and cosmic understanding makes them invaluable allies in conflicts involving dimensional threats or reality disruption, where their ability to perceive and manipulate the underlying structure of existence can overcome seemingly insurmountable obstacles. Though they may lack the raw healing power of Channelers or the minion control of Necromancers, the reality-bending capabilities and dimensional mastery of Eldritch practitioners make them perhaps the most versatile problem-solvers when conventional magical approaches prove insufficient."
+}

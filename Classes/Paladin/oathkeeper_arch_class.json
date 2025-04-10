@@ -1,0 +1,177 @@
+{
+  "id": "oathkeeper",
+  "name": "Oathkeeper",
+  "base_class": "paladin",
+  "description": "Paladins who have deepened their divine connection through unwavering devotion to their sacred oaths, becoming living embodiments of their divine principles.",
+  "level_requirement": 10,
+  "role": "Tank-Support",
+  "primary_stats": ["Strength", "Charisma"],
+  "secondary_stats": ["Constitution", "Wisdom"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Divine energy that powers holy spells and abilities",
+      "max_value": "20 + (Wisdom modifier × 3) + (level × 3)",
+      "regeneration": "2 per 6 seconds, +3 when smiting evil creatures",
+      "mechanics": [
+        "Mana points are spent to cast divine spells and channel holy power",
+        "Some abilities require maintaining a divine connection, consuming mana over time",
+        "Prayer increases mana regeneration rate by 400% but requires remaining stationary",
+        "Can channel mana into weapons and armor for divine enchantments"
+      ]
+    },
+    {
+      "name": "Divine Favor",
+      "description": "Blessing from the divine that empowers righteous actions",
+      "max_value": "10 + (Charisma modifier)",
+      "regeneration": "2 per hour, additional points gained through upholding oaths and defeating evil",
+      "mechanics": [
+        "Divine Favor can be spent to enhance weapon attacks with holy power",
+        "Can be used to empower healing spells or protective auras",
+        "Acts as a resource for powerful oath abilities",
+        "Violations of paladin code can result in temporary loss of Divine Favor",
+        "Can be shared with allies to grant them temporary divine blessings"
+      ]
+    },
+    {
+      "name": "Oath Power",
+      "description": "Manifestation of an Oathkeeper's unwavering commitment to their sacred vows",
+      "max_value": "100",
+      "regeneration": "Builds when acting in accordance with oath tenets, decreases when violating them",
+      "mechanics": [
+        "Increases by 10 when performing actions that exemplify oath tenets",
+        "Decreases by 20 when acting against oath tenets",
+        "At maximum Oath Power, enter an exalted state with enhanced abilities",
+        "Can be spent to invoke powerful oath-specific abilities",
+        "Different oaths generate and consume Oath Power in different ways"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Greater Divine Smite",
+      "description": "Channel enhanced divine power through weapon strikes to devastate enemies",
+      "effects": [
+        "Can infuse weapon attacks with holy energy for significant additional damage",
+        "Smite damage is tripled against undead and fiends",
+        "Critical hits with Divine Smite cause enemies to be stunned for 3 seconds",
+        "Each successful smite generates 200% additional threat against the target",
+        "Can apply various divine effects based on the active oath"
+      ]
+    },
+    {
+      "name": "Enhanced Lay on Hands",
+      "description": "Channel powerful healing energy directly into wounded allies",
+      "effects": [
+        "Heal allies by touch for substantial amounts based on paladin level",
+        "Can be used to cure diseases, neutralize poisons, and remove curses",
+        "Healing pool refreshes after a long rest and partially refreshes after a short rest",
+        "Can distribute healing among multiple targets simultaneously",
+        "Healing can now restore spiritual damage and mental afflictions"
+      ]
+    },
+    {
+      "name": "Expanded Divine Aura",
+      "description": "Project a powerful aura of divine energy that significantly affects nearby allies and enemies",
+      "effects": [
+        "Provides stronger passive bonuses to nearby allies based on the active aura",
+        "Can maintain two different auras simultaneously",
+        "Aura range increased by 50% compared to base paladin",
+        "Presence causes fear in evil creatures and inspiration in good ones",
+        "Auras can now provide specific benefits based on the active oath"
+      ]
+    },
+    {
+      "name": "Oath Manifestation",
+      "description": "Physically manifest the power of your oath, temporarily transforming into a divine avatar",
+      "effects": [
+        "Transform appearance to reflect the nature of your oath",
+        "Gain specific powers and abilities based on your oath",
+        "Inspire allies and intimidate enemies within visual range",
+        "Immune to fear, charm, and corruption while manifested",
+        "Manifestation lasts for 1 minute and requires 50 Oath Power to activate"
+      ]
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Greater Oath of Devotion",
+      "focus": "Enhanced protection and healing",
+      "key_abilities": [
+        "Holy Avenger: Weapon becomes a legendary holy weapon for 1 minute",
+        "Divine Sanctuary: Create a zone where allies cannot be harmed",
+        "Banish Evil: Send undead, fiends, and other evil entities back to their native planes"
+      ]
+    },
+    {
+      "name": "Greater Oath of Justice",
+      "focus": "Enhanced combat and judgment",
+      "key_abilities": [
+        "Divine Tribunal: Mark multiple enemies for judgment, increasing damage taken",
+        "Executioner's Strike: Instantly slay evil creatures below 20% health",
+        "Aura of Retribution: Enemies that attack allies suffer divine retribution damage"
+      ]
+    },
+    {
+      "name": "Greater Oath of Sacrifice",
+      "focus": "Enhanced self-sacrifice and group support",
+      "key_abilities": [
+        "Ultimate Sacrifice: Redirect all damage from allies to yourself for 10 seconds",
+        "Redemptive Suffering: Convert damage taken into healing for allies",
+        "Immortal Resolve: Continue fighting for 30 seconds after reaching 0 health"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 10,
+    "quests": ["Trial of Faith", "Pilgrimage to the Holy Shrine"],
+    "skill_points": "At least 5 points in any paladin oath skill tree",
+    "challenges": ["Defeat a powerful undead or fiend without taking damage"]
+  },
+  "progression_path": {
+    "hero_classes": [
+      {
+        "id": "templar",
+        "name": "Templar",
+        "alignment": "Good",
+        "level_requirement": 30,
+        "description": "Oathkeepers who embody the purest ideals of light and righteousness, becoming divine champions against darkness."
+      },
+      {
+        "id": "warlord",
+        "name": "Warlord",
+        "alignment": "Neutral",
+        "level_requirement": 30,
+        "description": "Oathkeepers who focus on martial excellence and leadership, commanding armies in the name of order and stability."
+      },
+      {
+        "id": "oathbreaker",
+        "name": "Oathbreaker",
+        "alignment": "Evil",
+        "level_requirement": 30,
+        "description": "Oathkeepers who have betrayed their sacred vows, corrupting their divine power for selfish or malevolent purposes."
+      }
+    ]
+  },
+  "legendary_items": [
+    {
+      "name": "Blade of Sacred Oaths",
+      "type": "Weapon",
+      "effects": [
+        "Divine Smite damage increased by 30%",
+        "Generates 1 Divine Favor when defeating evil creatures",
+        "Can store up to 3 prepared smites for instant activation"
+      ]
+    },
+    {
+      "name": "Shield of the Faithful",
+      "type": "Shield",
+      "effects": [
+        "Divine Aura range increased by 10 meters",
+        "Reduces damage taken by nearby allies by 15%",
+        "Can reflect spell damage back at casters once per minute"
+      ]
+    }
+  ],
+  "lore": "Oathkeepers represent paladins who have transcended the ordinary bounds of their calling, forging an even deeper connection with the divine through unwavering devotion to their sacred oaths. Where ordinary paladins are guided by their vows, Oathkeepers become living embodiments of them, their very essence intertwined with the principles they uphold. This profound connection manifests physically in moments of great need, allowing them to temporarily transform into divine avatars that reflect the nature of their oath. The path to becoming an Oathkeeper is arduous, requiring not only martial skill and divine favor but also absolute conviction and numerous tests of faith. Those who succeed find their divine abilities greatly enhanced, able to channel more powerful healing, protection, and holy wrath against the forces of darkness. Their expanded auras affect larger areas with stronger effects, and their divine smites can devastate even the most powerful undead and fiends. Oathkeepers serve as inspirational leaders, their mere presence bolstering the resolve of allies and striking fear into evil creatures. Whether they continue on the path of righteousness, focus on maintaining order, or fall to corruption, all Oathkeepers command tremendous respect and influence in the world."
+}

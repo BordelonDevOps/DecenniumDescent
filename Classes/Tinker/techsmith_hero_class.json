@@ -1,0 +1,223 @@
+{
+  "id": "techsmith",
+  "name": "Techsmith",
+  "base_class": "tinker",
+  "arch_class": "mechanist",
+  "alignment": "Neutral",
+  "description": "Mechanists who focus on pushing the boundaries of technological innovation, creating increasingly advanced and efficient machines that represent the pinnacle of engineering excellence.",
+  "level_requirement": 30,
+  "role": "Utility-Control",
+  "primary_stats": ["Intelligence", "Dexterity"],
+  "secondary_stats": ["Constitution", "Wisdom"],
+  "resource_systems": [
+    {
+      "name": "Energy",
+      "description": "Physical and mental energy that powers invention and device operation",
+      "max_value": "40 + (Constitution modifier × 8) + (level × 8)",
+      "regeneration": "5 per 6 seconds, +8 when operating or optimizing advanced technology",
+      "mechanics": [
+        "Energy points are spent to operate devices and power advanced constructs",
+        "Some constructs require maintaining focus, consuming energy over time",
+        "Short rests restore a significant portion of maximum energy",
+        "Depleted energy causes penalties to construct effectiveness and operation",
+        "Can be temporarily boosted through inspiration in critical situations",
+        "Successful technological innovation or optimization restores a portion of energy"
+      ]
+    },
+    {
+      "name": "Scrap",
+      "description": "Raw materials and components that can be salvaged and repurposed for inventions",
+      "max_value": "200",
+      "regeneration": "Builds when salvaging items or collecting materials, decreases when crafting",
+      "mechanics": [
+        "Increases by 20 when salvaging mechanical items or technological components",
+        "Increases by 25 when discovering rare or advanced materials",
+        "Decreases when crafting advanced constructs or inventions based on complexity",
+        "Decreases by 15 per hour when maintaining multiple active advanced constructs",
+        "Can be spent to create temporary advanced devices or upgrade existing inventions",
+        "Higher Scrap quality increases technological effectiveness and innovation potential"
+      ]
+    },
+    {
+      "name": "Automation",
+      "description": "Measure of your ability to create and control automated systems",
+      "max_value": "150",
+      "regeneration": "Builds when successfully operating or improving automated advanced systems",
+      "mechanics": [
+        "Increases by 15 when constructs successfully complete complex tasks",
+        "Increases by 20 when improving or optimizing automated systems beyond current limits",
+        "Decreases by 15 when advanced constructs malfunction or fail assigned tasks",
+        "Decreases by 20 when experimental automated systems are damaged or destroyed",
+        "Can be spent to enhance construct performance or execute complex technological sequences",
+        "Higher Automation increases the intelligence and independence of advanced constructs"
+      ]
+    },
+    {
+      "name": "Innovation",
+      "description": "Measure of creative insight and technological breakthrough potential",
+      "max_value": "100",
+      "regeneration": "Builds when successfully developing new technologies or optimizing existing ones",
+      "mechanics": [
+        "Increases by 15 when developing entirely new technological solutions",
+        "Increases by 10 when significantly improving existing technologies",
+        "Decreases by 15 when technological experiments fail catastrophically",
+        "Decreases by 10 when forced to use conventional solutions instead of innovations",
+        "Can be spent to push technological limits or achieve breakthrough moments",
+        "At maximum Innovation, enter a state of perfect technological insight"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Technological Mastery",
+      "description": "Unparalleled understanding of technological principles and applications",
+      "effects": [
+        "Can understand and operate any technological device encountered",
+        "Able to identify optimal improvements for any technological system",
+        "Can reverse-engineer advanced technology with minimal examination",
+        "Presence enhances the performance of all nearby technology",
+        "Can predict technological behavior and limitations with perfect accuracy"
+      ]
+    },
+    {
+      "name": "Efficiency Perfection",
+      "description": "Ability to optimize systems to their theoretical maximum performance",
+      "effects": [
+        "Can identify and eliminate inefficiencies in any technological system",
+        "Able to reduce resource consumption while increasing output",
+        "Can optimize multiple interacting systems for synergistic effects",
+        "Presence naturally improves the efficiency of nearby technology",
+        "Can push systems beyond normal operational parameters without damage"
+      ]
+    },
+    {
+      "name": "Breakthrough Design",
+      "description": "Ability to create revolutionary technological innovations",
+      "effects": [
+        "Can develop entirely new technological principles and applications",
+        "Able to combine disparate technologies in unprecedented ways",
+        "Can solve seemingly impossible technical challenges through innovation",
+        "Presence stimulates creative thinking and technological insight",
+        "Can visualize and implement complex technological systems with perfect clarity"
+      ]
+    },
+    {
+      "name": "Technological Pragmatism",
+      "description": "Practical approach to technology focused on results and advancement",
+      "effects": [
+        "Can objectively evaluate technologies without emotional or ethical bias",
+        "Able to determine the most efficient path to technological advancement",
+        "Can adapt technological approach based on available resources and constraints",
+        "Presence encourages rational, results-oriented technological development",
+        "Can balance innovation with practicality for optimal technological progress"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Technological Singularity",
+      "description": "Achieve a state of perfect technological insight and innovation",
+      "mechanics": [
+        "For 5 minutes, enter a state of unprecedented technological clarity",
+        "All technological devices and constructs operate at maximum theoretical efficiency",
+        "Can instantly understand, operate, and improve any technology encountered",
+        "Can create temporary technological solutions to almost any problem",
+        "Each successful technological application extends the duration by 10 seconds",
+        "Costs 100 Energy, 50 Automation, and 75 Innovation"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Advanced Construct Array",
+      "description": "Deploy a network of specialized constructs that work together with perfect coordination",
+      "mechanics": [
+        "Create and deploy up to 7 advanced constructs with specialized functions",
+        "Constructs operate with perfect coordination and efficiency",
+        "Each construct can be assigned different tasks or combined for complex operations",
+        "System lasts for 10 minutes or until constructs are destroyed",
+        "Constructs can be reconfigured during operation to adapt to changing needs",
+        "Costs 75 Energy, 30 Scrap, and 50 Innovation"
+      ],
+      "cooldown": "3 days"
+    },
+    {
+      "name": "Technological Transcendence",
+      "description": "Temporarily merge with your technological creations for unprecedented control and capability",
+      "mechanics": [
+        "For 3 minutes, establish a perfect neural link with all your technological creations",
+        "Can perceive through all constructs simultaneously with perfect clarity",
+        "Control all constructs as natural extensions of your own body",
+        "Dramatically enhance the capabilities and efficiency of all linked technology",
+        "Can rapidly reconfigure and adapt technology to meet changing situations",
+        "Costs 50 Energy, 100 Innovation, and 25 Automation"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of Innovation",
+      "focus": "Creating revolutionary technological breakthroughs",
+      "key_abilities": [
+        "Technological Revolution: Develop entirely new technological paradigms",
+        "Inspired Design: Create solutions that transcend current technological limitations",
+        "Adaptive Technology: Develop systems that evolve and improve automatically"
+      ]
+    },
+    {
+      "name": "Path of Optimization",
+      "focus": "Perfecting and maximizing technological efficiency",
+      "key_abilities": [
+        "Perfect Efficiency: Optimize systems to operate at theoretical maximum performance",
+        "Resource Minimization: Dramatically reduce resource requirements for technological operation",
+        "Synergistic Systems: Create technologies that enhance each other when operating together"
+      ]
+    },
+    {
+      "name": "Path of Integration",
+      "focus": "Combining and unifying technological systems",
+      "key_abilities": [
+        "Unified Field: Create a network of perfectly integrated technological systems",
+        "Technological Ecosystem: Develop self-sustaining technological environments",
+        "Seamless Interface: Perfect the connection between operator and technology"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Technological Breakthrough", "The Perfect Machine", "Integration of Systems"],
+    "skill_points": "At least 15 points in the Systems Engineer skill tree",
+    "alignment": "Must maintain Neutral alignment for at least 10 levels",
+    "challenges": ["Create a technological innovation that transcends current limitations", "Optimize a complex system to its theoretical maximum efficiency"]
+  },
+  "legendary_items": [
+    {
+      "name": "Innovator's Lens",
+      "type": "Head",
+      "effects": [
+        "Intelligence increased by 5",
+        "Can analyze any technology to identify optimal improvements",
+        "Provides perfect visualization of complex technological systems"
+      ]
+    },
+    {
+      "name": "Efficiency Core",
+      "type": "Accessory",
+      "effects": [
+        "All technological devices operate at 30% increased efficiency",
+        "Resource consumption of all constructs reduced by 40%",
+        "Can temporarily overclock any technological device without damage"
+      ]
+    },
+    {
+      "name": "Integration Matrix",
+      "type": "Body",
+      "effects": [
+        "Innovation maximum increased by 50",
+        "Can establish perfect neural links with technological constructs",
+        "Technological Transcendence cooldown reduced by 2 days"
+      ]
+    }
+  ],
+  "lore": "Techsmiths represent the pinnacle of technological innovation among Mechanists, having dedicated themselves to pushing the boundaries of what's possible through engineering excellence and revolutionary design. These brilliant innovators have transcended conventional technological limitations to develop systems and constructs of unprecedented sophistication and efficiency, constantly striving to perfect their creations and discover new technological frontiers. The path to becoming a Techsmith requires not only exceptional technical knowledge and mechanical aptitude but also a relentless drive for improvement and a mind capable of envisioning possibilities beyond current paradigms. Those who succeed find themselves capable of creating technological marvels that others would consider impossible or magical, solving complex problems through innovations that fundamentally change what technology can accomplish. Techsmiths typically operate as independent researchers or as part of advanced technological institutes, where they can focus on pushing boundaries without the constraints of immediate practical applications. Many establish specialized workshops filled with experimental devices and prototypes, constantly iterating and improving their designs in pursuit of technological perfection. Some even create technological enclaves where like-minded innovators can collaborate on breakthrough projects that might take decades to fully realize. Their combination of theoretical insight, practical engineering skill, and innovative thinking makes them unparalleled problem-solvers, capable of developing technological solutions to challenges that would stymie conventional approaches. Though they may lack the moral certainty of Artificers or the destructive focus of Warmachines, the technological brilliance and adaptive innovation of Techsmiths make them perhaps the most versatile and forward-thinking of all technological specialists."
+}

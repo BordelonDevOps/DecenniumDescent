@@ -1,0 +1,190 @@
+{
+  "id": "priest_hero_class",
+  "name": "Priest Hero Class",
+  "description": "Hero class progression for the Bishop arch class of the Cleric base class",
+  "hero_class": {
+    "id": "priest",
+    "name": "Priest",
+    "description": "Balanced divine spellcasters who blend healing with offensive divine magic. Priests support allies while smiting enemies with holy fire, maintaining equilibrium between restoration and retribution.",
+    "role": "healer-support",
+    "primary_stats": ["wis", "int"],
+    "secondary_stats": ["cha", "con"],
+    "resource_mechanics": {
+      "mp": {
+        "description": "Balanced divine magical energy for spellcasting",
+        "base_amount": 220,
+        "regeneration": "8% of max per 5 seconds",
+        "max_amount_formula": "220 + (WIS * 10) + (INT * 7) + (level * 18)"
+      },
+      "faith_points": {
+        "description": "Divine favor accumulated through prayer and righteous actions",
+        "base_amount": 8,
+        "regeneration": "1 point per successful healing spell, 1 point per successful smite, 1 point per 20 seconds in combat",
+        "max_amount_formula": "8 + (WIS / 4) + (INT / 6)",
+        "usage": "Spent to empower healing and offensive spells"
+      },
+      "divine_balance": {
+        "description": "The equilibrium between healing and smiting powers",
+        "base_amount": 50,
+        "max_amount": 100,
+        "generation": {
+          "healing": "Healing spells shift balance toward 0 (5 points per spell)",
+          "smiting": "Offensive spells shift balance toward 100 (5 points per spell)"
+        },
+        "decay": "5 points toward 50 per minute when not casting spells",
+        "thresholds": [
+          {
+            "level": 0,
+            "effect": "Maximum healing power, reduced offensive capabilities"
+          },
+          {
+            "level": 50,
+            "effect": "Balanced healing and offensive capabilities"
+          },
+          {
+            "level": 100,
+            "effect": "Maximum offensive power, reduced healing capabilities"
+          }
+        ]
+      }
+    },
+    "class_mechanics": {
+      "balanced_casting": {
+        "description": "Maintain equilibrium between healing and offensive magic",
+        "passive_effect": "Casting healing spells increases the power of your next offensive spell, and vice versa",
+        "bonus_cap": "Up to 50% increased effectiveness",
+        "scaling": "Bonus effectiveness scales with Wisdom and Intelligence"
+      },
+      "divine_word": {
+        "description": "Speak a word of divine power with varying effects",
+        "cost": "60 MP + 2 Faith Points",
+        "cooldown": "45 seconds",
+        "effects": {
+          "healing": "Divine Word: Heal - Restore 40% of an ally's maximum health",
+          "balanced": "Divine Word: Shield - Create a barrier that absorbs damage and reflects 30% back to attackers",
+          "offensive": "Divine Word: Smite - Deal holy damage equal to 60% of an enemy's maximum health"
+        },
+        "effect_determination": "Based on current Divine Balance level",
+        "scaling": "Effect potency scales with Wisdom, Intelligence, and distance from balanced Divine Balance (50)"
+      },
+      "divine_channeling": {
+        "description": "Channel divine energy for sustained effects",
+        "cost": "15 MP per second + 1 Faith Point to initiate",
+        "duration": "Up to 10 seconds",
+        "effects": {
+          "healing": "Channel Divinity: Restoration - Continuous healing to all allies within 20 yards",
+          "balanced": "Channel Divinity: Judgment - Heal allies and damage enemies within 20 yards",
+          "offensive": "Channel Divinity: Punishment - Continuous holy damage to all enemies within 20 yards"
+        },
+        "effect_determination": "Based on current Divine Balance level",
+        "scaling": "Effect potency scales with Wisdom, Intelligence, and channeling duration"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Divine Healing",
+        "focus": "Restoration and protection through divine magic",
+        "key_abilities": [
+          "Holy Mending: A powerful single-target heal that also increases the target's healing received for 10 seconds",
+          "Circle of Restoration: Create a zone that continuously heals allies standing within it",
+          "Divine Intervention: Prevent an ally from dying, placing them in stasis for 3 seconds and then healing them"
+        ]
+      },
+      {
+        "name": "Holy Retribution",
+        "focus": "Smiting enemies with divine power",
+        "key_abilities": [
+          "Holy Fire: Engulf an enemy in sacred flames that deal damage over time",
+          "Divine Judgment: Call down a pillar of light that damages enemies and heals allies in the area",
+          "Banishment: Temporarily remove an enemy from the battlefield"
+        ]
+      },
+      {
+        "name": "Divine Balance",
+        "focus": "Maintaining equilibrium between healing and offense",
+        "key_abilities": [
+          "Balanced State: Enter a state of perfect balance for 15 seconds, enhancing both healing and offensive abilities",
+          "Conversion: Transform damage into healing or healing into damage",
+          "Divine Harmony: Synchronize with an ally, sharing health and resources"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 30,
+      "alignment": "neutral",
+      "bishop_skills": ["Divine Magic 10", "Healing 8", "Smiting 8"],
+      "quests": ["The Balanced Path", "Divine Equilibrium"]
+    },
+    "signature_abilities": [
+      {
+        "name": "Divine Equilibrium",
+        "description": "Achieve perfect balance between healing and offensive divine magic",
+        "cost": "150 MP + 5 Faith Points",
+        "cooldown": "10 minutes",
+        "duration": "30 seconds",
+        "effect": "Set Divine Balance to exactly 50 and lock it there, allowing simultaneous use of both healing and offensive abilities at full power",
+        "additional_effect": "All spells cost 30% less MP and have their cooldowns reduced by 30%",
+        "scaling": "Duration, MP reduction, and cooldown reduction scale with Wisdom and Intelligence"
+      },
+      {
+        "name": "Word of Creation",
+        "description": "Speak a word of pure divine power that creates rather than destroys",
+        "cost": "180 MP + 4 Faith Points",
+        "cooldown": "15 minutes",
+        "effect": "Create a divine construct that fights alongside you, healing allies and damaging enemies based on your Divine Balance",
+        "construct_duration": "1 minute",
+        "scaling": "Construct power, abilities, and duration scale with Wisdom, Intelligence, and current Divine Balance"
+      },
+      {
+        "name": "Divine Judgment",
+        "description": "Call down the ultimate judgment upon the battlefield",
+        "cost": "200 MP + All Faith Points",
+        "cooldown": "30 minutes",
+        "effect": "Create a 30-yard zone where allies are continuously healed and protected while enemies take holy damage and are slowed",
+        "duration": "20 seconds",
+        "scaling": "Zone size, healing, protection, damage, and slow effect scale with Wisdom, Intelligence, and total Faith Points consumed"
+      }
+    ],
+    "legendary_items": [
+      {
+        "name": "Scepter of Divine Balance",
+        "type": "Weapon",
+        "rarity": "Legendary",
+        "effects": [
+          "Divine Balance naturally shifts toward 50 at twice the normal rate",
+          "Spells cast at exactly 50 Divine Balance are 25% more effective",
+          "Gain 1 Faith Point whenever Divine Balance shifts from one threshold to another"
+        ],
+        "unique_ability": {
+          "name": "Perfect Equilibrium",
+          "description": "Channel the perfect balance of divine power",
+          "cooldown": "5 minutes",
+          "effect": "For 15 seconds, all spells apply both their healing and offensive effects at 75% effectiveness, regardless of Divine Balance"
+        }
+      },
+      {
+        "name": "Priest's Regalia",
+        "type": "Armor Set",
+        "rarity": "Legendary",
+        "set_pieces": ["Mitre", "Vestments", "Gloves", "Sandals", "Stole"],
+        "set_bonuses": [
+          "(2) +15% to all healing and holy damage",
+          "(3) Faith Points maximum increased by 3",
+          "(4) Divine Word cooldown reduced by 30%",
+          "(5) Divine Equilibrium cooldown reduced by 40%"
+        ],
+        "unique_ability": {
+          "name": "Divine Mandate",
+          "description": "Invoke your divine authority",
+          "cooldown": "10 minutes",
+          "effect": "For 20 seconds, your healing spells also deal 40% of their healing value as holy damage to nearby enemies, and your offensive spells also heal nearby allies for 40% of their damage value"
+        }
+      }
+    ],
+    "playstyle": "Priests excel at balancing healing and offensive divine magic, adapting to the needs of the battlefield. They manage their Divine Balance resource to enhance either healing or offensive capabilities as needed, while still maintaining effectiveness in both roles. The class rewards strategic thinking and adaptability, allowing players to shift between supporting allies and smiting enemies as the situation demands. Priests are the ultimate balanced divine spellcasters, capable of filling multiple roles within a party.",
+    "difficulty": "Medium-Hard - Requires good awareness of party needs and strategic management of Divine Balance",
+    "recommended_for": "Players who enjoy versatile support roles with the ability to both heal allies and damage enemies effectively",
+    "arch_class": "bishop",
+    "base_class": "cleric"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "id": "champion",
+  "name": "Champion",
+  "base_class": "soldier",
+  "arch_class": "commander",
+  "alignment": "Good",
+  "description": "Commanders who embody the highest ideals of honor and justice, inspiring allies with their heroic deeds and selfless protection of the innocent while standing as beacons of hope against darkness.",
+  "level_requirement": 30,
+  "role": "Tank-Support",
+  "primary_stats": ["Strength", "Charisma"],
+  "secondary_stats": ["Constitution", "Wisdom"],
+  "resource_systems": [
+    {
+      "name": "Stamina",
+      "description": "Physical energy that powers combat abilities and heroic feats",
+      "max_value": "40 + (Constitution modifier × 8) + (level × 8)",
+      "regeneration": "5 per 6 seconds, +8 when protecting allies",
+      "mechanics": [
+        "Stamina points are spent to perform special combat maneuvers and heroic abilities",
+        "Some abilities require maintaining focus, consuming stamina over time",
+        "Short rests restore a significant portion of maximum stamina",
+        "Depleted stamina causes penalties to attack speed and defensive capabilities",
+        "Can be temporarily boosted through righteous determination in critical situations",
+        "Protecting allies and upholding justice increases stamina regeneration"
+      ]
+    },
+    {
+      "name": "Combat Readiness",
+      "description": "State of tactical awareness and preparation that enhances combat effectiveness",
+      "max_value": "200",
+      "regeneration": "Builds during combat, decreases during periods of inaction",
+      "mechanics": [
+        "Increases by 20 when landing critical hits or successfully defending against attacks",
+        "Increases by 15 per 10 seconds in active combat",
+        "Decreases by 20 when taking critical hits or being caught off-guard",
+        "Decreases by 15 per minute when out of combat",
+        "Can be spent to enhance combat abilities or execute special maneuvers",
+        "Can be partially transferred to allies to improve their combat performance",
+        "Performing heroic deeds significantly increases Combat Readiness"
+      ]
+    },
+    {
+      "name": "Command Authority",
+      "description": "Measure of leadership influence and tactical control over the battlefield",
+      "max_value": "150",
+      "regeneration": "Builds when successfully leading allies or protecting the innocent",
+      "mechanics": [
+        "Increases by 15 when allies successfully follow your tactical directions",
+        "Increases by 10 when protecting innocent civilians or upholding justice",
+        "Decreases by 15 when allies suffer significant casualties under your command",
+        "Decreases by 10 when forced to retreat or compromise your principles",
+        "Can be spent to issue powerful commands or implement heroic battle strategies",
+        "Higher Command Authority increases the morale and courage of all allies"
+      ]
+    },
+    {
+      "name": "Heroic Inspiration",
+      "description": "Measure of your ability to inspire others through heroic deeds and noble example",
+      "max_value": "100",
+      "regeneration": "Builds when performing heroic actions or upholding ideals of justice",
+      "mechanics": [
+        "Increases by 15 when performing selfless acts to protect others",
+        "Increases by 20 when defeating powerful evil entities",
+        "Decreases by 10 when failing to protect innocents",
+        "Decreases by 15 when compromising moral principles for expedience",
+        "Can be spent to perform extraordinary heroic feats or inspire allies to greatness",
+        "At maximum Heroic Inspiration, enter a state of heroic excellence that greatly enhances all abilities"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Heroic Leadership",
+      "description": "Ability to inspire allies through personal example and heroic deeds",
+      "effects": [
+        "Allies gain significant bonuses to courage, morale, and combat effectiveness",
+        "Can inspire ordinary people to perform extraordinary feats in times of need",
+        "Presence naturally draws enemy attention away from vulnerable allies",
+        "Can rally demoralized allies with displays of heroism and courage",
+        "Heroic deeds create lasting inspiration that continues to benefit allies"
+      ]
+    },
+    {
+      "name": "Righteous Protection",
+      "description": "Supernatural ability to defend allies and innocents from harm",
+      "effects": [
+        "Can intercept attacks meant for allies, taking reduced damage",
+        "Able to create protective auras that shield allies from harm",
+        "Gain significant defensive bonuses when protecting others",
+        "Can extend defensive abilities to cover multiple allies simultaneously",
+        "Presence creates a zone of safety that enemies find difficult to violate"
+      ]
+    },
+    {
+      "name": "Paragon of Virtue",
+      "description": "Embodiment of heroic virtues that grants special abilities and resistances",
+      "effects": [
+        "Gain resistance to fear, mind control, and corruption effects",
+        "Weapons deal additional damage against evil or corrupt entities",
+        "Can detect evil intentions and corruption in others",
+        "Presence weakens the resolve and power of evil entities",
+        "Can inspire redemption in those who have fallen to darkness"
+      ]
+    },
+    {
+      "name": "Legendary Prowess",
+      "description": "Combat excellence that transcends ordinary human limitations",
+      "effects": [
+        "Physical abilities exceed normal human limitations in critical situations",
+        "Can perform extraordinary feats of strength, speed, and endurance",
+        "Weapons and armor perform beyond their normal capabilities",
+        "Can continue fighting effectively despite severe injuries",
+        "Presence inspires awe and respect in allies and enemies alike"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Heroic Sacrifice",
+      "description": "Willingly take damage meant for allies, gaining tremendous power in return",
+      "mechanics": [
+        "For 1 minute, intercept all attacks directed at allies within 30 meters",
+        "Damage taken from intercepted attacks is reduced by 50%",
+        "For each attack intercepted, gain stacking bonuses to strength, speed, and damage",
+        "At the end of the duration, release a wave of healing energy proportional to damage absorbed",
+        "If you would be defeated during this ability, instead remain at 1 health until it ends",
+        "Costs 100 Stamina, 50 Command Authority, and 75 Heroic Inspiration"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Banner of Hope",
+      "description": "Plant a magical banner that inspires allies and weakens enemies",
+      "mechanics": [
+        "Create a banner that remains for 10 minutes or until destroyed",
+        "Allies within 50 meters gain significant bonuses to attack, defense, and morale",
+        "Allies are immune to fear and gain accelerated resource regeneration",
+        "Evil entities within range suffer penalties to attack and defense",
+        "The banner can be seen from great distances, rallying scattered allies",
+        "Costs 75 Stamina, 30 Command Authority, and 50 Heroic Inspiration"
+      ],
+      "cooldown": "12 hours"
+    },
+    {
+      "name": "Moment of Glory",
+      "description": "Channel heroic energy to perform extraordinary feats beyond mortal limitations",
+      "mechanics": [
+        "For 3 minutes, transcend normal limitations and become a paragon of heroic might",
+        "All attributes increased by 50%, all damage dealt increased by 100%",
+        "Gain immunity to fear, mind control, and most negative status effects",
+        "Weapons and armor become temporarily legendary, gaining powerful enchantments",
+        "Presence creates an aura that heals allies and damages evil entities",
+        "Costs 50 Stamina, 100 Heroic Inspiration, and 25 Command Authority"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Protector",
+      "focus": "Defense and protection of allies",
+      "key_abilities": [
+        "Guardian's Shield: Create a protective barrier around an ally that absorbs significant damage",
+        "Sacrificial Defense: Take damage meant for nearby allies, gaining defensive bonuses in return",
+        "Bulwark of Faith: Become immovable and nearly invulnerable while defending a position"
+      ]
+    },
+    {
+      "name": "Path of Inspiration",
+      "focus": "Leadership and motivation of allies",
+      "key_abilities": [
+        "Heroic Speech: Deliver an inspiring address that grants powerful buffs to all allies",
+        "Lead by Example: Your combat actions inspire similar actions from allies with enhanced effects",
+        "Beacon of Hope: Emanate an aura that continuously strengthens allies and weakens evil entities"
+      ]
+    },
+    {
+      "name": "Path of the Hero",
+      "focus": "Personal heroic excellence and legendary feats",
+      "key_abilities": [
+        "Heroic Might: Temporarily gain supernatural strength for extraordinary feats",
+        "Legendary Resilience: Ignore fatal damage once per day, returning with partial health",
+        "Epic Confrontation: Challenge a powerful enemy to single combat with significant advantages"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Trial of Heroism", "Defense of the Innocent", "Confrontation with Darkness"],
+    "skill_points": "At least 15 points in the Inspiring Leader skill tree",
+    "alignment": "Must maintain Good alignment for at least 10 levels",
+    "challenges": ["Protect innocent civilians from certain harm", "Defeat a powerful evil entity"]
+  },
+  "legendary_items": [
+    {
+      "name": "Aegis of the Righteous",
+      "type": "Shield",
+      "effects": [
+        "Charisma increased by 5",
+        "Can extend shield protection to cover nearby allies",
+        "When blocking attacks meant for others, reflect 30% of damage back to attacker"
+      ]
+    },
+    {
+      "name": "Sword of Virtue",
+      "type": "Weapon",
+      "effects": [
+        "Deals additional holy damage against evil entities",
+        "Each successful strike inspires allies, granting them small combat bonuses",
+        "Can release a wave of purifying energy that damages evil and heals allies"
+      ]
+    },
+    {
+      "name": "Mantle of the Champion",
+      "type": "Back",
+      "effects": [
+        "Heroic Inspiration regeneration increased by 100%",
+        "Creates an aura of courage that makes allies immune to fear",
+        "When Heroic Inspiration is at maximum, gain the ability to fly for short periods"
+      ]
+    }
+  ],
+  "lore": "Champions represent the pinnacle of heroic leadership among Commanders, having dedicated themselves to the highest ideals of honor, justice, and self-sacrifice. These paragons of virtue have transcended ordinary leadership to become living symbols of hope and courage, inspiring allies through personal example and unwavering dedication to protecting the innocent. The path to becoming a Champion requires not only exceptional combat skills and leadership abilities but also a genuine commitment to upholding moral principles even in the most challenging circumstances. Those who succeed find themselves blessed with abilities that seem to transcend mortal limitations, especially when fighting to protect others or oppose evil. Champions often serve as the moral compass of military organizations, ensuring that power is used responsibly and in service to justice rather than personal gain. Many become legendary figures whose deeds are celebrated in song and story, inspiring future generations to follow their example. Some dedicate themselves to protecting vulnerable communities from threats, while others lead crusades against powerful evil entities that threaten the world. Their presence on the battlefield can turn the tide of seemingly hopeless situations, not just through their own considerable combat prowess but through their ability to bring out the best in those who fight alongside them. Though they possess tremendous power, Champions use their abilities with humility and restraint, understanding that true heroism lies not in personal glory but in service to others and unwavering dedication to justice."
+}

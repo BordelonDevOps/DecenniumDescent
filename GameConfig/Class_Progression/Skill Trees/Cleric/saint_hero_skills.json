@@ -1,0 +1,328 @@
+{
+  "id": "saint_hero_skills",
+  "name": "Saint Hero Skills",
+  "description": "Skills available to the Saint hero class, focusing on divine healing, celestial protection, and resurrection.",
+  "class_id": "saint",
+  "arch_class_id": "bishop",
+  "base_class_id": "cleric",
+  "skill_categories": [
+    {
+      "name": "Divine Restoration",
+      "description": "Mastery of healing and life restoration",
+      "skills": [
+        {
+          "id": "celestial_renewal",
+          "name": "Celestial Renewal",
+          "description": "A powerful heal over time that increases in potency the longer it remains active.",
+          "type": "spell",
+          "level_requirement": 30,
+          "max_rank": 5,
+          "mp_cost": 60,
+          "faith_points_cost": 1,
+          "divine_radiance_cost": 10,
+          "cooldown": 45,
+          "effects_by_rank": [
+            {"initial_healing_per_second": 20, "max_healing_per_second": 40, "ramp_up_time": 10, "duration": 20},
+            {"initial_healing_per_second": 30, "max_healing_per_second": 60, "ramp_up_time": 8, "duration": 25},
+            {"initial_healing_per_second": 40, "max_healing_per_second": 80, "ramp_up_time": 6, "duration": 30},
+            {"initial_healing_per_second": 50, "max_healing_per_second": 100, "ramp_up_time": 4, "duration": 35},
+            {"initial_healing_per_second": 60, "max_healing_per_second": 120, "ramp_up_time": 3, "duration": 40}
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "divine_touch",
+          "name": "Divine Touch",
+          "description": "Channel celestial energy through your hands to provide powerful instant healing.",
+          "type": "spell",
+          "level_requirement": 32,
+          "max_rank": 5,
+          "mp_cost": 70,
+          "faith_points_cost": 1,
+          "divine_radiance_cost": 15,
+          "cooldown": 20,
+          "effects_by_rank": [
+            {"healing": 150, "bonus_healing_below_30_percent": 50, "range": 20},
+            {"healing": 200, "bonus_healing_below_30_percent": 75, "range": 25},
+            {"healing": 250, "bonus_healing_below_30_percent": 100, "range": 30},
+            {"healing": 300, "bonus_healing_below_30_percent": 125, "range": 35},
+            {"healing": 350, "bonus_healing_below_30_percent": 150, "range": 40}
+          ],
+          "prerequisites": ["celestial_renewal:2"]
+        },
+        {
+          "id": "mass_salvation",
+          "name": "Mass Salvation",
+          "description": "Instantly heal all allies within range for a significant portion of their maximum health.",
+          "type": "spell",
+          "level_requirement": 36,
+          "max_rank": 5,
+          "mp_cost": 100,
+          "faith_points_cost": 2,
+          "divine_radiance_cost": 30,
+          "cooldown": 120,
+          "effects_by_rank": [
+            {"healing_percent": 30, "radius": 20, "cooldown_reduction": 0},
+            {"healing_percent": 35, "radius": 25, "cooldown_reduction": 15},
+            {"healing_percent": 40, "radius": 30, "cooldown_reduction": 30},
+            {"healing_percent": 45, "radius": 35, "cooldown_reduction": 45},
+            {"healing_percent": 50, "radius": 40, "cooldown_reduction": 60}
+          ],
+          "prerequisites": ["divine_touch:3"]
+        },
+        {
+          "id": "divine_transfusion",
+          "name": "Divine Transfusion",
+          "description": "Transfer your own health to an ally, healing them for significantly more than the amount transferred.",
+          "type": "spell",
+          "level_requirement": 40,
+          "max_rank": 5,
+          "mp_cost": 50,
+          "faith_points_cost": 1,
+          "divine_radiance_cost": 20,
+          "cooldown": 60,
+          "effects_by_rank": [
+            {"health_transfer_percent": 20, "healing_multiplier": 160, "range": 20},
+            {"health_transfer_percent": 20, "healing_multiplier": 180, "range": 25},
+            {"health_transfer_percent": 20, "healing_multiplier": 200, "range": 30},
+            {"health_transfer_percent": 20, "healing_multiplier": 220, "range": 35},
+            {"health_transfer_percent": 20, "healing_multiplier": 250, "range": 40}
+          ],
+          "prerequisites": ["mass_salvation:2"]
+        },
+        {
+          "id": "celestial_mending",
+          "name": "Celestial Mending",
+          "description": "Your healing becomes infused with celestial energy, providing additional effects.",
+          "type": "passive",
+          "level_requirement": 45,
+          "max_rank": 5,
+          "mp_cost": 0,
+          "faith_points_cost": 0,
+          "divine_radiance_cost": 0,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"healing_bonus": 10, "cleanse_chance": 20, "divine_radiance_generation": 1},
+            {"healing_bonus": 15, "cleanse_chance": 30, "divine_radiance_generation": 2},
+            {"healing_bonus": 20, "cleanse_chance": 40, "divine_radiance_generation": 3},
+            {"healing_bonus": 25, "cleanse_chance": 50, "divine_radiance_generation": 4},
+            {"healing_bonus": 30, "cleanse_chance": 60, "divine_radiance_generation": 5}
+          ],
+          "prerequisites": ["divine_transfusion:3"]
+        }
+      ]
+    },
+    {
+      "name": "Celestial Protection",
+      "description": "Creating divine barriers and preventing damage",
+      "skills": [
+        {
+          "id": "divine_shield",
+          "name": "Divine Shield",
+          "description": "Surround an ally with a powerful shield of divine light that absorbs damage.",
+          "type": "spell",
+          "level_requirement": 31,
+          "max_rank": 5,
+          "mp_cost": 60,
+          "faith_points_cost": 1,
+          "divine_radiance_cost": 10,
+          "cooldown": 30,
+          "effects_by_rank": [
+            {"absorption_amount": 200, "duration": 15, "range": 20},
+            {"absorption_amount": 300, "duration": 20, "range": 25},
+            {"absorption_amount": 400, "duration": 25, "range": 30},
+            {"absorption_amount": 500, "duration": 30, "range": 35},
+            {"absorption_amount": 600, "duration": 40, "range": 40}
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "aegis_of_light",
+          "name": "Aegis of Light",
+          "description": "Create an impenetrable barrier around an ally that makes them immune to damage for a short time.",
+          "type": "spell",
+          "level_requirement": 34,
+          "max_rank": 5,
+          "mp_cost": 80,
+          "faith_points_cost": 2,
+          "divine_radiance_cost": 25,
+          "cooldown": 180,
+          "effects_by_rank": [
+            {"immunity_duration": 3, "cooldown_reduction": 0},
+            {"immunity_duration": 4, "cooldown_reduction": 15},
+            {"immunity_duration": 5, "cooldown_reduction": 30},
+            {"immunity_duration": 6, "cooldown_reduction": 45},
+            {"immunity_duration": 8, "cooldown_reduction": 60}
+          ],
+          "prerequisites": ["divine_shield:2"]
+        },
+        {
+          "id": "sanctuary_aura",
+          "name": "Sanctuary Aura",
+          "description": "Create an aura that reduces damage taken by all allies within range.",
+          "type": "aura",
+          "level_requirement": 38,
+          "max_rank": 5,
+          "mp_cost": 70,
+          "faith_points_cost": 1,
+          "divine_radiance_cost": 20,
+          "cooldown": 60,
+          "effects_by_rank": [
+            {"damage_reduction": 20, "radius": 15, "duration": 15},
+            {"damage_reduction": 25, "radius": 18, "duration": 20},
+            {"damage_reduction": 30, "radius": 20, "duration": 25},
+            {"damage_reduction": 35, "radius": 22, "duration": 30},
+            {"damage_reduction": 40, "radius": 25, "duration": 40}
+          ],
+          "prerequisites": ["aegis_of_light:2"]
+        },
+        {
+          "id": "divine_intervention",
+          "name": "Divine Intervention",
+          "description": "Automatically save an ally from a killing blow, placing them in stasis and then healing them.",
+          "type": "spell",
+          "level_requirement": 42,
+          "max_rank": 5,
+          "mp_cost": 100,
+          "faith_points_cost": 2,
+          "divine_radiance_cost": 40,
+          "cooldown": 300,
+          "effects_by_rank": [
+            {"stasis_duration": 3, "healing_after_stasis": 30, "cooldown_reduction": 0},
+            {"stasis_duration": 3, "healing_after_stasis": 40, "cooldown_reduction": 30},
+            {"stasis_duration": 3, "healing_after_stasis": 50, "cooldown_reduction": 60},
+            {"stasis_duration": 3, "healing_after_stasis": 60, "cooldown_reduction": 90},
+            {"stasis_duration": 3, "healing_after_stasis": 70, "cooldown_reduction": 120}
+          ],
+          "prerequisites": ["sanctuary_aura:3"]
+        },
+        {
+          "id": "divine_grace",
+          "name": "Divine Grace",
+          "description": "Your protective abilities become infused with divine grace, providing additional effects.",
+          "type": "passive",
+          "level_requirement": 46,
+          "max_rank": 5,
+          "mp_cost": 0,
+          "faith_points_cost": 0,
+          "divine_radiance_cost": 0,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"shield_strength_bonus": 10, "duration_bonus": 10, "divine_radiance_generation": 1},
+            {"shield_strength_bonus": 15, "duration_bonus": 15, "divine_radiance_generation": 2},
+            {"shield_strength_bonus": 20, "duration_bonus": 20, "divine_radiance_generation": 3},
+            {"shield_strength_bonus": 25, "duration_bonus": 25, "divine_radiance_generation": 4},
+            {"shield_strength_bonus": 30, "duration_bonus": 30, "divine_radiance_generation": 5}
+          ],
+          "prerequisites": ["divine_intervention:3"]
+        }
+      ]
+    },
+    {
+      "name": "Resurrection",
+      "description": "Mastery of life and death",
+      "skills": [
+        {
+          "id": "revive",
+          "name": "Revive",
+          "description": "Resurrect a fallen ally with a portion of their health and resources.",
+          "type": "spell",
+          "level_requirement": 33,
+          "max_rank": 5,
+          "mp_cost": 100,
+          "faith_points_cost": 2,
+          "divine_radiance_cost": 20,
+          "cooldown": 180,
+          "effects_by_rank": [
+            {"health_percent": 30, "resource_percent": 20, "cast_time": 6, "range": 20},
+            {"health_percent": 40, "resource_percent": 30, "cast_time": 5, "range": 25},
+            {"health_percent": 50, "resource_percent": 40, "cast_time": 4, "range": 30},
+            {"health_percent": 60, "resource_percent": 50, "cast_time": 3, "range": 35},
+            {"health_percent": 70, "resource_percent": 60, "cast_time": 2, "range": 40}
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "true_resurrection",
+          "name": "True Resurrection",
+          "description": "Resurrect a fallen ally with full health and resources.",
+          "type": "spell",
+          "level_requirement": 37,
+          "max_rank": 5,
+          "mp_cost": 150,
+          "faith_points_cost": 3,
+          "divine_radiance_cost": 40,
+          "cooldown": 300,
+          "effects_by_rank": [
+            {"health_percent": 80, "resource_percent": 70, "cast_time": 5, "cooldown_reduction": 0},
+            {"health_percent": 90, "resource_percent": 80, "cast_time": 4, "cooldown_reduction": 30},
+            {"health_percent": 100, "resource_percent": 90, "cast_time": 3, "cooldown_reduction": 60},
+            {"health_percent": 100, "resource_percent": 100, "cast_time": 2, "cooldown_reduction": 90},
+            {"health_percent": 100, "resource_percent": 100, "cast_time": 1, "cooldown_reduction": 120}
+          ],
+          "prerequisites": ["revive:3"]
+        },
+        {
+          "id": "mass_revival",
+          "name": "Mass Revival",
+          "description": "Resurrect all fallen allies within range with a portion of their health and resources.",
+          "type": "spell",
+          "level_requirement": 41,
+          "max_rank": 5,
+          "mp_cost": 200,
+          "faith_points_cost": 4,
+          "divine_radiance_cost": 60,
+          "cooldown": 600,
+          "effects_by_rank": [
+            {"health_percent": 30, "resource_percent": 20, "radius": 20, "cast_time": 8, "cooldown_reduction": 0},
+            {"health_percent": 35, "resource_percent": 25, "radius": 25, "cast_time": 7, "cooldown_reduction": 60},
+            {"health_percent": 40, "resource_percent": 30, "radius": 30, "cast_time": 6, "cooldown_reduction": 120},
+            {"health_percent": 45, "resource_percent": 35, "radius": 35, "cast_time": 5, "cooldown_reduction": 180},
+            {"health_percent": 50, "resource_percent": 40, "radius": 40, "cast_time": 4, "cooldown_reduction": 240}
+          ],
+          "prerequisites": ["true_resurrection:2"]
+        },
+        {
+          "id": "second_chance",
+          "name": "Second Chance",
+          "description": "Place a blessing on an ally that automatically resurrects them if they die within the duration.",
+          "type": "spell",
+          "level_requirement": 44,
+          "max_rank": 5,
+          "mp_cost": 120,
+          "faith_points_cost": 2,
+          "divine_radiance_cost": 30,
+          "cooldown": 300,
+          "effects_by_rank": [
+            {"duration": 300, "health_on_resurrection": 30, "cooldown_reduction": 0},
+            {"duration": 450, "health_on_resurrection": 40, "cooldown_reduction": 30},
+            {"duration": 600, "health_on_resurrection": 50, "cooldown_reduction": 60},
+            {"duration": 750, "health_on_resurrection": 60, "cooldown_reduction": 90},
+            {"duration": 900, "health_on_resurrection": 70, "cooldown_reduction": 120}
+          ],
+          "prerequisites": ["mass_revival:2"]
+        },
+        {
+          "id": "divine_providence",
+          "name": "Divine Providence",
+          "description": "Your resurrection abilities become infused with divine providence, providing additional effects.",
+          "type": "passive",
+          "level_requirement": 48,
+          "max_rank": 5,
+          "mp_cost": 0,
+          "faith_points_cost": 0,
+          "divine_radiance_cost": 0,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"resurrection_health_bonus": 10, "cast_time_reduction": 10, "divine_radiance_generation": 2},
+            {"resurrection_health_bonus": 15, "cast_time_reduction": 15, "divine_radiance_generation": 4},
+            {"resurrection_health_bonus": 20, "cast_time_reduction": 20, "divine_radiance_generation": 6},
+            {"resurrection_health_bonus": 25, "cast_time_reduction": 25, "divine_radiance_generation": 8},
+            {"resurrection_health_bonus": 30, "cast_time_reduction": 30, "divine_radiance_generation": 10}
+          ],
+          "prerequisites": ["second_chance:3"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "wizard",
+  "name": "Wizard",
+  "description": "Masters of arcane magic who study the fundamental forces of the universe, harnessing powerful spells through rigorous study and precise incantations.",
+  "level_requirement": 1,
+  "role": "DPS-Control",
+  "primary_stats": ["Intelligence", "Wisdom"],
+  "secondary_stats": ["Constitution", "Charisma"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Magical energy that powers spellcasting and arcane abilities",
+      "max_value": "20 + (Intelligence modifier × 5) + (level × 5)",
+      "regeneration": "3 per 6 seconds, +5 when studying or meditating",
+      "mechanics": [
+        "Mana points are spent to cast spells and power magical abilities",
+        "Some spells require maintaining focus, consuming mana over time",
+        "Short rests restore a portion of maximum mana",
+        "Depleted mana causes penalties to spell effectiveness and casting speed",
+        "Can be temporarily boosted through magical artifacts or rituals",
+        "Successful spell research or magical discovery restores a portion of mana"
+      ]
+    },
+    {
+      "name": "Arcane Focus",
+      "description": "Mental concentration and magical attunement that enhances spellcasting effectiveness",
+      "max_value": "100",
+      "regeneration": "Builds when casting spells successfully, decreases when spells fail or are interrupted",
+      "mechanics": [
+        "Increases by 10 when successfully casting complex spells or countering enemy magic",
+        "Increases by 5 per 10 seconds when maintaining concentration on ongoing spells",
+        "Decreases by 10 when spells are interrupted or countered",
+        "Decreases by 5 per minute when not actively using magic",
+        "Can be spent to enhance spell effects or execute special magical techniques",
+        "Higher Arcane Focus increases spell critical chance and reduces chance of magical mishaps"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Spellcasting",
+      "description": "Ability to cast arcane spells from a learned spellbook",
+      "effects": [
+        "Can cast a variety of arcane spells with different effects and power levels",
+        "Able to prepare a limited number of spells each day from a larger spellbook",
+        "Can identify magical effects and properties through arcane knowledge",
+        "Presence naturally attunes to magical energies in the environment",
+        "Can counter or dispel magical effects through opposing arcane forces"
+      ]
+    },
+    {
+      "name": "Arcane Knowledge",
+      "description": "Comprehensive understanding of magical theory and principles",
+      "effects": [
+        "Can research and develop new spells through study and experimentation",
+        "Able to identify magical items and understand their properties",
+        "Can analyze magical phenomena and determine their causes and effects",
+        "Presence enhances the magical aptitude of allies",
+        "Can predict the behavior of magical forces and energies"
+      ]
+    },
+    {
+      "name": "Magical Specialization",
+      "description": "Focus on specific schools of magic for enhanced effectiveness",
+      "effects": [
+        "Can specialize in particular schools of magic for increased power",
+        "Able to cast specialized spells with greater efficiency and effect",
+        "Can develop unique magical techniques within chosen specializations",
+        "Presence strengthens environmental magic aligned with specializations",
+        "Can combine specialized knowledge for unique magical effects"
+      ]
+    },
+    {
+      "name": "Arcane Manipulation",
+      "description": "Ability to directly manipulate magical energies and effects",
+      "effects": [
+        "Can shape and direct magical energies with precise control",
+        "Able to modify spell effects on the fly for specific situations",
+        "Can absorb and redirect magical energies under certain conditions",
+        "Presence naturally stabilizes wild magic and chaotic magical effects",
+        "Can sense magical disturbances and anomalies in the surrounding area"
+      ]
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Elemental Magic",
+      "focus": "Mastery of spells that manipulate elemental forces",
+      "key_abilities": [
+        "Elemental Mastery: Gain significant bonuses with chosen elemental spells",
+        "Elemental Attunement: Develop resistance to elemental damage types",
+        "Elemental Fusion: Combine multiple elements for enhanced spell effects"
+      ]
+    },
+    {
+      "name": "Arcane Theory",
+      "focus": "Deep understanding of magical principles and research",
+      "key_abilities": [
+        "Spell Research: Develop new spells through magical experimentation",
+        "Magical Analysis: Identify and understand complex magical phenomena",
+        "Arcane Efficiency: Reduce mana costs and increase spell effectiveness"
+      ]
+    },
+    {
+      "name": "Magical Control",
+      "focus": "Precise manipulation and control of magical energies",
+      "key_abilities": [
+        "Spell Shaping: Modify spell area and effects for tactical advantage",
+        "Counterspell Mastery: Effectively counter and dispel enemy magic",
+        "Magical Precision: Increase spell accuracy and reduce collateral effects"
+      ]
+    }
+  ],
+  "progression_path": {
+    "arch_classes": [
+      {
+        "id": "evoker",
+        "name": "Evoker",
+        "level_requirement": 10,
+        "description": "Wizards who have specialized in channeling and manipulating raw magical energies, creating powerful effects that can both destroy and transform."
+      }
+    ]
+  },
+  "lore": "Wizards represent the scholarly approach to magic, having dedicated their lives to understanding and mastering arcane forces through rigorous study and experimentation. Unlike the intuitive magic of sorcerers or the divine powers of clerics, wizards rely on accumulated knowledge, precise formulas, and theoretical understanding to shape magical energies to their will. Their training encompasses not just spellcasting but also magical theory, history, and research methodologies, making them versatile practitioners with a deep understanding of how magic functions. Many wizards begin their careers in magical academies or as apprentices to established mages, where they can develop their skills under experienced guidance. Others are self-taught scholars who pieced together magical knowledge from ancient texts and personal experimentation. Regardless of their background, all wizards share a thirst for magical knowledge and a methodical approach to expanding their arcane capabilities. In dangerous situations, wizards excel at analyzing magical threats and deploying precisely the right spell for each challenge, adapting their approach as circumstances change. Their ability to prepare different spells each day allows them to tailor their magical arsenal to anticipated challenges, making them incredibly versatile when given time to prepare. Though they may lack the physical resilience of more combat-focused classes, the sheer versatility and power of wizards' spellcasting makes them formidable allies whose contributions can completely transform challenging encounters through clever application of magical solutions."
+}

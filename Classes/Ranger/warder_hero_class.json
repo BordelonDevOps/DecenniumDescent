@@ -1,0 +1,222 @@
+{
+  "id": "warder",
+  "name": "Warder",
+  "base_class": "ranger",
+  "arch_class": "pathfinder",
+  "alignment": "Good",
+  "description": "Pathfinders who have formed deep spiritual bonds with the natural world, becoming guardians of wilderness and protectors of the balance between civilization and nature.",
+  "level_requirement": 30,
+  "role": "DPS-Support",
+  "primary_stats": ["Wisdom", "Dexterity"],
+  "secondary_stats": ["Constitution", "Charisma"],
+  "resource_systems": [
+    {
+      "name": "Stamina",
+      "description": "Physical energy that powers combat abilities and traversal techniques",
+      "max_value": "30 + (Constitution modifier × 4) + (level × 4)",
+      "regeneration": "3 per 6 seconds, +5 when in natural environments",
+      "mechanics": [
+        "Stamina points are spent to perform special combat maneuvers and traversal techniques",
+        "Some abilities require maintaining focus, consuming stamina over time",
+        "Resting in natural environments increases stamina regeneration rate by 500%",
+        "Depleted stamina causes penalties to movement speed and attack rate",
+        "Can channel stamina into enhanced mobility or combat techniques",
+        "Can share stamina with animal companions to enhance their abilities"
+      ]
+    },
+    {
+      "name": "Focus",
+      "description": "Mental concentration that enhances awareness and precision",
+      "max_value": "15 + (Wisdom modifier)",
+      "regeneration": "3 per minute, additional points gained through successful tracking or hunting",
+      "mechanics": [
+        "Focus can be spent to enhance accuracy of attacks",
+        "Can be used to heighten senses for tracking and detection",
+        "Acts as a resource for nature magic abilities",
+        "Maximum focus increases in familiar terrain",
+        "Can be shared with animal companions to enhance their abilities",
+        "Can be used to coordinate complex maneuvers with multiple animal companions"
+      ]
+    },
+    {
+      "name": "Nature's Blessing",
+      "description": "Mystical connection to the natural world that grants special abilities",
+      "max_value": "150",
+      "regeneration": "Builds when in harmony with nature, decreases in corrupted or unnatural environments",
+      "mechanics": [
+        "Increases by 15 when helping to restore natural balance",
+        "Increases by 10 per hour when in pristine wilderness",
+        "Decreases by 15 when harming natural environments",
+        "Decreases by 10 per hour when in heavily urbanized or corrupted areas",
+        "Can be spent to commune with nature spirits or enhance nature-based abilities",
+        "Can be used to heal and empower animal companions"
+      ]
+    },
+    {
+      "name": "Guardian Spirit",
+      "description": "Spiritual connection with the essence of nature that empowers protective abilities",
+      "max_value": "100",
+      "regeneration": "Builds when protecting natural environments and innocent creatures",
+      "mechanics": [
+        "Increases by 10 when preventing harm to natural environments",
+        "Increases by 20 when saving an innocent creature from harm",
+        "Decreases by 5 per hour when in corrupted or unnatural environments",
+        "Can be spent to create powerful protective effects and healing",
+        "At maximum Guardian Spirit, enter a state of perfect harmony with nature, gaining enhanced abilities"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Nature's Warden",
+      "description": "Deep connection with natural environments that grants protective abilities",
+      "effects": [
+        "Can create protective barriers of natural energy around allies and environments",
+        "Able to sense threats to natural areas across great distances",
+        "Can purify corrupted environments and creatures",
+        "Presence accelerates natural healing and growth in damaged environments",
+        "Can call upon local flora and fauna to aid in defense of an area"
+      ]
+    },
+    {
+      "name": "Animal Kinship",
+      "description": "Spiritual bond with animals that allows for communication and cooperation",
+      "effects": [
+        "Can communicate with any animal as if speaking a common language",
+        "Wild animals will not attack unless provoked or controlled",
+        "Can calm enraged or corrupted animals",
+        "Can request assistance from local wildlife for information or aid",
+        "Can form temporary bonds with wild animals for specific tasks"
+      ]
+    },
+    {
+      "name": "Verdant Magic",
+      "description": "Nature-based magic that focuses on healing, growth, and protection",
+      "effects": [
+        "Can heal wounds using the restorative power of nature",
+        "Able to accelerate plant growth and manipulate vegetation",
+        "Can create natural remedies and antidotes for any poison or disease",
+        "Presence neutralizes harmful magic affecting natural environments",
+        "Can channel nature's energy to enhance allies' abilities"
+      ]
+    },
+    {
+      "name": "Guardian's Vigilance",
+      "description": "Enhanced awareness and protective instincts",
+      "effects": [
+        "Can sense danger to allies and natural environments within a large radius",
+        "Able to create early warning systems using natural elements",
+        "Can track multiple threats simultaneously with perfect accuracy",
+        "Presence makes ambushing allies nearly impossible",
+        "Can establish protected territories that alert when intruders enter"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Nature's Sanctuary",
+      "description": "Create a sacred area of natural power that protects and heals",
+      "mechanics": [
+        "Establish a 100-meter radius sanctuary that lasts for 1 hour",
+        "Within the sanctuary, allies heal 5% of their maximum health per minute",
+        "Enemies within the sanctuary suffer penalties to attack and movement",
+        "Corrupted creatures and unnatural entities cannot enter the sanctuary",
+        "The environment within the sanctuary is temporarily restored to its pristine state",
+        "Costs 75 Stamina, 10 Focus, and 50 Guardian Spirit"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Wild Guardians",
+      "description": "Summon the spirits of ancient animal guardians to protect an area",
+      "mechanics": [
+        "Summon 3-5 spectral animal guardians appropriate to the environment",
+        "Guardians are extremely powerful and follow your commands",
+        "Each guardian has unique abilities based on its animal type",
+        "Guardians remain for 10 minutes or until dismissed",
+        "Guardians can merge with you temporarily, granting their abilities",
+        "Costs 50 Stamina, 8 Focus, and 75 Nature's Blessing"
+      ],
+      "cooldown": "12 hours"
+    },
+    {
+      "name": "Renewal",
+      "description": "Channel the full power of nature to restore and rejuvenate",
+      "mechanics": [
+        "Create a wave of restorative energy that spreads outward for 1 kilometer",
+        "All allies within range are fully healed and cleansed of negative effects",
+        "Damaged environments begin rapid restoration to their natural state",
+        "Corrupted creatures have a chance to be purified and restored",
+        "You enter a state of perfect harmony with nature for 5 minutes, gaining tremendous power",
+        "Costs 100 Stamina, 15 Focus, and 100 Guardian Spirit"
+      ],
+      "cooldown": "3 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Protector",
+      "focus": "Defense and safeguarding of natural areas",
+      "key_abilities": [
+        "Natural Barrier: Create impenetrable walls of natural energy",
+        "Purifying Presence: Gradually cleanse corruption from an area by your presence",
+        "Guardian's Resolve: Take damage intended for allies or protected environments"
+      ]
+    },
+    {
+      "name": "Path of the Healer",
+      "focus": "Restoration and rejuvenation",
+      "key_abilities": [
+        "Nature's Touch: Channel natural energy to heal wounds and cure ailments",
+        "Seed of Life: Plant a magical seed that grows into a healing tree",
+        "Circle of Renewal: Create a zone where allies rapidly regenerate health and resources"
+      ]
+    },
+    {
+      "name": "Path of the Beastfriend",
+      "focus": "Animal companionship and communication",
+      "key_abilities": [
+        "Spirit Guide: Form a bond with a powerful animal spirit that grants special abilities",
+        "Wild Speech: Communicate with plants and animals across vast distances",
+        "Beast Legion: Call upon all animals in the area to aid you temporarily"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Communion with the Ancient Grove", "Defense of the Sacred Springs", "Healing of the Blighted Forest"],
+    "skill_points": "At least 15 points in the Wayfinder skill tree",
+    "alignment": "Must maintain Good alignment for at least 10 levels",
+    "challenges": ["Successfully defend a natural area from corruption", "Heal a critically endangered ecosystem"]
+  },
+  "legendary_items": [
+    {
+      "name": "Staff of the Ancient Grove",
+      "type": "Weapon",
+      "effects": [
+        "Wisdom increased by 5",
+        "Verdant Magic abilities cost 30% less resources",
+        "Can instantly grow a small forest in barren land once per week"
+      ]
+    },
+    {
+      "name": "Cloak of the Seasons",
+      "type": "Back",
+      "effects": [
+        "Guardian Spirit regeneration increased by 100%",
+        "Changes appearance and grants different abilities based on the current season",
+        "Creates a field of natural energy that heals allies within 10 meters"
+      ]
+    },
+    {
+      "name": "Crown of Thorns and Flowers",
+      "type": "Head",
+      "effects": [
+        "Nature's Sanctuary cooldown reduced by 12 hours",
+        "Can control plants within 50 meters as if they were extensions of your body",
+        "Automatically detects threats to natural balance within 1 kilometer"
+      ]
+    }
+  ],
+  "lore": "Warders represent the pinnacle of harmony between humanity and the natural world, having transcended the ordinary bonds between ranger and nature to become true guardians of wilderness. These extraordinary pathfinders have developed a profound spiritual connection with the natural world, allowing them to sense disturbances in the balance from great distances and channel nature's power to protect and restore. The path to becoming a Warder requires not only exceptional skill in tracking and survival but also a compassionate heart and unwavering dedication to protecting the natural world from exploitation and corruption. Warders often establish protected territories around sacred natural sites, ancient groves, or endangered ecosystems, using their powers to shield these areas from harm. Many develop deep relationships with the spirits of nature, calling upon ancient guardians when threats arise that they cannot handle alone. Though they possess tremendous power, Warders use their abilities with restraint and wisdom, understanding that their role is to maintain the delicate balance between civilization and wilderness, not to reject human progress entirely. They often serve as mediators between human settlements and the wild, teaching sustainable practices and ensuring that expansion does not come at the cost of irreparable damage to natural systems."
+}

@@ -1,0 +1,250 @@
+{
+  "id": "lich_hero_class",
+  "name": "Lich Hero Class",
+  "description": "Hero class progression for the Arcanist arch class of the Mage base class",
+  "hero_class": {
+    "id": "lich",
+    "name": "Lich",
+    "description": "Arcane masters who have transcended mortality through dark necromantic rituals. Liches command the powers of death and undeath, wielding forbidden magic that blends arcane mastery with necromantic dominion to achieve immortality at a terrible cost.",
+    "role": "damage-control",
+    "primary_stats": ["int", "con"],
+    "secondary_stats": ["wis", "cha"],
+    "resource_mechanics": {
+      "mp": {
+        "description": "Undying magical energy that regenerates even faster in the presence of death",
+        "base_amount": 450,
+        "regeneration": "9% of max per 5 seconds, increased to 15% when near dying creatures",
+        "max_amount_formula": "450 + (INT * 14) + (level * 24)"
+      },
+      "arcane_charges": {
+        "description": "Accumulated magical energy that enhances necromantic spell effects",
+        "base_amount": 0,
+        "max_amount": 8,
+        "generation": "1 charge per spell cast, 2 additional charges when killing enemies with spells",
+        "usage": "Spent to empower necromantic spells or control undead minions"
+      },
+      "arcane_resonance": {
+        "description": "Harmonic energy created by balancing arcane and necromantic forces",
+        "base_amount": 0,
+        "max_amount": 120,
+        "generation": "Varies based on spell combinations and death proximity",
+        "decay": "8 points per 10 seconds",
+        "thresholds": [
+          {
+            "level": 40,
+            "effect": "Moderate spell damage and increased control over undead"
+          },
+          {
+            "level": 80,
+            "effect": "Major spell damage and increased control over undead, chance for free necromantic spells"
+          },
+          {
+            "level": 120,
+            "effect": "Superior spell damage and increased control over undead, guaranteed free necromantic spells, chance to automatically raise slain enemies"
+          }
+        ]
+      },
+      "soul_energy": {
+        "description": "The harvested life force of defeated enemies",
+        "base_amount": 0,
+        "max_amount": 100,
+        "generation": "10 points when an enemy dies nearby, 25 points when you kill an enemy with a spell, 50 points when consuming a soul",
+        "decay": "None - Soul Energy is permanent until spent",
+        "usage": "Spent to power phylactery abilities, create powerful undead, or enhance necromantic spells",
+        "thresholds": [
+          {
+            "level": 30,
+            "effect": "Minor enhancement to necromantic spells and undead minions"
+          },
+          {
+            "level": 70,
+            "effect": "Moderate enhancement to necromantic spells and undead minions, increased life drain effects"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to necromantic spells and undead minions, greatly increased life drain effects, chance to instantly kill weaker enemies"
+          }
+        ]
+      }
+    },
+    "armor_proficiency": ["cloth", "enchanted_cloth", "lich_vestments", "bone_armor"],
+    "weapon_proficiency": ["staves", "wands", "orbs", "necromantic_implements", "soul_weapons"],
+    "class_mechanics": {
+      "phylactery": {
+        "description": "The vessel containing your soul that grants immortality",
+        "passive_effect": "Upon death, you reform at your phylactery after 30 seconds with 50% health and mana",
+        "cooldown": "10 minutes",
+        "active_abilities": [
+          {
+            "name": "Soul Drain",
+            "cost": "50 Soul Energy",
+            "effect": "Drain life from all enemies within 20 yards, healing yourself for 30% of your maximum health and restoring 30% of your maximum mana"
+          },
+          {
+            "name": "Undead Mastery",
+            "cost": "30 Soul Energy",
+            "effect": "Enhance all your undead minions, increasing their damage by 50%, health by 50%, and granting them special abilities based on their type"
+          },
+          {
+            "name": "Immortal Coil",
+            "cost": "70 Soul Energy",
+            "effect": "Become immune to all damage for 10 seconds, but unable to cast offensive spells during this time"
+          }
+        ],
+        "scaling": "Ability effectiveness scales with Intelligence and Soul Energy"
+      },
+      "necromantic_mastery": {
+        "description": "Command the forces of death and undeath",
+        "cost": "Varies by spell",
+        "abilities": [
+          {
+            "name": "Raise Dead",
+            "cost": "60 MP + 20 Soul Energy",
+            "effect": "Raise slain enemies as undead minions that fight for you for 2 minutes"
+          },
+          {
+            "name": "Death Pact",
+            "cost": "40 MP + 3 Arcane Charges",
+            "effect": "Sacrifice an undead minion to heal yourself for 200% of the minion's remaining health"
+          },
+          {
+            "name": "Soul Harvest",
+            "cost": "80 MP + 4 Arcane Charges",
+            "effect": "Extract and consume the soul of a weakened enemy, instantly killing them and granting you 50 Soul Energy"
+          }
+        ],
+        "scaling": "Ability effectiveness scales with Intelligence and Soul Energy"
+      },
+      "forbidden_knowledge": {
+        "description": "Access to dark arcane secrets beyond mortal understanding",
+        "cost": "100 MP + 5 Arcane Charges + 40 Soul Energy",
+        "cooldown": "2 minutes",
+        "effect": "Cast a powerful forbidden spell with devastating effects",
+        "forbidden_spells": [
+          {
+            "name": "Death Wave",
+            "effect": "Send forth a wave of necrotic energy that deals heavy damage to all enemies in a 30-yard cone and has a chance to instantly kill enemies below 20% health"
+          },
+          {
+            "name": "Soul Vortex",
+            "effect": "Create a swirling vortex that pulls in enemy souls, dealing damage over time and preventing resurrection or healing"
+          },
+          {
+            "name": "Plague of Undeath",
+            "effect": "Inflict a virulent plague that deals damage over time, spreads to nearby enemies, and raises victims as undead minions"
+          }
+        ],
+        "scaling": "Spell power and effects scale with Intelligence, Arcane Resonance, and Soul Energy"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Necromancy",
+        "focus": "Mastery over death and undead minions",
+        "key_abilities": [
+          "Army of the Dead: Raise a large number of undead minions simultaneously",
+          "Undead Specialization: Create specialized undead with unique abilities",
+          "Death Domain: Create an aura of death that weakens enemies and strengthens undead"
+        ]
+      },
+      {
+        "name": "Soul Magic",
+        "focus": "Manipulation of souls and life force",
+        "key_abilities": [
+          "Soul Cage: Capture an enemy's soul to use as a power source",
+          "Life Tap: Convert your health into mana at a favorable ratio",
+          "Soul Link: Create a connection with a target that transfers damage you take to them"
+        ]
+      },
+      {
+        "name": "Immortality",
+        "focus": "Enhancing lichdom and phylactery powers",
+        "key_abilities": [
+          "Improved Phylactery: Reduce reformation time and increase health/mana on revival",
+          "Essence Drain: Passively drain life from nearby enemies",
+          "Undying: Automatically enter a death-immune state when taking fatal damage"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 30,
+      "alignment": "evil",
+      "arcanist_skills": ["Spell Weaving 8", "Arcane Manipulation 7", "Reality Alteration 7"],
+      "quests": ["The Path to Immortality", "The Lichdom Ritual"],
+      "additional_requirements": ["Sacrifice a significant portion of your life force", "Create a phylactery"]
+    },
+    "signature_abilities": [
+      {
+        "name": "Apocalypse",
+        "description": "Unleash a cataclysmic wave of death magic",
+        "cost": "200 MP + 8 Arcane Charges + 80 Soul Energy",
+        "cooldown": "10 minutes",
+        "effect": "Release a massive wave of necrotic energy that deals 300 damage to all enemies within 40 yards, has a 50% chance to instantly kill enemies below 30% health, and raises all slain enemies as powerful undead servants",
+        "additional_effect": "For 30 seconds after casting, all your necromantic spells cost 50% less MP and have their effectiveness increased by 50%",
+        "scaling": "Damage, instant kill threshold, and undead servant power scale with Intelligence and Soul Energy"
+      },
+      {
+        "name": "Transcendent Phylactery",
+        "description": "Achieve the pinnacle of lichdom through phylactery mastery",
+        "cost": "150 MP + 100 Soul Energy",
+        "cooldown": "15 minutes",
+        "duration": "1 minute",
+        "effect": "Your phylactery enters an empowered state, granting you immunity to control effects, 50% damage reduction, and empowering all your abilities",
+        "additional_effect": "While active, killing enemies automatically raises them as undead and restores 10% of your maximum health and mana",
+        "scaling": "Duration, damage reduction, and healing scale with Intelligence and Soul Energy"
+      },
+      {
+        "name": "Eternal Darkness",
+        "description": "Tap into the ultimate powers of undeath",
+        "cost": "All MP + All Arcane Charges + All Soul Energy",
+        "cooldown": "30 minutes",
+        "duration": "30 seconds",
+        "effect": "Transform into an avatar of death, gaining 100% increased spell damage, the ability to cast while moving, and all your spells apply additional necrotic effects",
+        "additional_effect": "While transformed, you drain 5% of maximum health from all enemies within 30 yards every second, and all your cooldowns are reduced by 75%",
+        "scaling": "Duration, damage increase, and health drain scale with Intelligence and total Soul Energy consumed"
+      }
+    ],
+    "legendary_items": [
+      {
+        "name": "Staff of the Lich King",
+        "type": "Weapon",
+        "rarity": "Legendary",
+        "effects": [
+          "Necromantic Mastery abilities cost 40% less MP and Soul Energy",
+          "Undead minions deal 50% more damage and have 50% more health",
+          "When Soul Energy reaches 100, automatically cast Death Wave at no cost"
+        ],
+        "unique_ability": {
+          "name": "Undead Overlord",
+          "description": "Assert complete dominion over the dead",
+          "cooldown": "5 minutes",
+          "effect": "For 30 seconds, you can control any undead creature, even those not raised by you, and your undead minions are empowered with special abilities"
+        }
+      },
+      {
+        "name": "Lich's Regalia",
+        "type": "Armor Set",
+        "rarity": "Legendary",
+        "set_pieces": ["Crown", "Robes", "Gauntlets", "Boots", "Phylactery Housing"],
+        "set_bonuses": [
+          "(2) +30% to necromantic spell damage",
+          "(3) Soul Energy maximum increased by 25",
+          "(4) Phylactery cooldown reduced by 50%",
+          "(5) Apocalypse cooldown reduced by 50% and damage increased by 50%"
+        ],
+        "unique_ability": {
+          "name": "Death's Domain",
+          "description": "Create a realm of absolute death",
+          "cooldown": "10 minutes",
+          "effect": "For 20 seconds, create a 30-yard aura where enemies take 10% of their maximum health as damage per second, all healing is reduced by 75%, and all your necromantic abilities have their cooldowns reset when an enemy dies"
+        }
+      }
+    ],
+    "playstyle": "Liches excel at dealing devastating damage through necromantic magic while controlling the battlefield with undead minions. They balance offensive power with survivability through their phylactery and life-draining abilities. The class rewards strategic use of Soul Energy and careful minion management, allowing players to overwhelm enemies with the forces of death while remaining virtually unkillable.",
+    "difficulty": "Very Hard - Requires excellent resource management and strategic planning",
+    "recommended_for": "Players who enjoy commanding undead minions while wielding powerful death magic and maintaining near-immortality through careful phylactery management",
+    "arch_class": "arcanist",
+    "base_class": "mage",
+    "alignment": "evil"
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "id": "spellweaver_hero_skills",
+  "name": "Spellweaver Hero Skills",
+  "description": "Skills available to the Spellweaver hero class, focusing on arcane composition, time manipulation, and reality distortion.",
+  "class_id": "spellweaver",
+  "arch_class_id": "troubadour",
+  "base_class_id": "bard",
+  "alignment": "neutral",
+  "skill_categories": [
+    {
+      "name": "Arcane Composition",
+      "description": "Weaving magic directly into musical compositions",
+      "skills": [
+        {
+          "id": "arcane_crescendo",
+          "name": "Arcane Crescendo",
+          "description": "Infuse your performance with arcane energy, causing magical damage to enemies while enhancing allies' spellcasting.",
+          "type": "performance",
+          "level_requirement": 30,
+          "max_rank": 5,
+          "focus_cost": 20,
+          "inspiration_cost": 1,
+          "cosmic_awareness_cost": 10,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"damage_per_second": 15, "spell_damage_bonus": 10, "duration": 30, "radius": 20},
+            {"damage_per_second": 20, "spell_damage_bonus": 15, "duration": 45, "radius": 25},
+            {"damage_per_second": 25, "spell_damage_bonus": 20, "duration": 60, "radius": 30},
+            {"damage_per_second": 30, "spell_damage_bonus": 25, "duration": 75, "radius": 35},
+            {"damage_per_second": 40, "spell_damage_bonus": 30, "duration": 90, "radius": 40}
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "spell_harmony",
+          "name": "Spell Harmony",
+          "description": "Create a harmonic field that reduces spell costs and cooldowns for all allies.",
+          "type": "performance",
+          "level_requirement": 35,
+          "max_rank": 5,
+          "focus_cost": 25,
+          "inspiration_cost": 1,
+          "cosmic_awareness_cost": 15,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"resource_cost_reduction": 10, "cooldown_reduction_percent": 10, "duration": 30, "radius": 20},
+            {"resource_cost_reduction": 15, "cooldown_reduction_percent": 15, "duration": 45, "radius": 25},
+            {"resource_cost_reduction": 20, "cooldown_reduction_percent": 20, "duration": 60, "radius": 30},
+            {"resource_cost_reduction": 25, "cooldown_reduction_percent": 25, "duration": 75, "radius": 35},
+            {"resource_cost_reduction": 30, "cooldown_reduction_percent": 30, "duration": 90, "radius": 40}
+          ],
+          "prerequisites": ["arcane_crescendo:2"]
+        },
+        {
+          "id": "counterspell_aria",
+          "name": "Counterspell Aria",
+          "description": "Perform an aria that disrupts enemy spellcasting and can reflect spells back at casters.",
+          "type": "performance",
+          "level_requirement": 40,
+          "max_rank": 5,
+          "focus_cost": 30,
+          "inspiration_cost": 1,
+          "cosmic_awareness_cost": 20,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"spell_interrupt_chance": 20, "spell_reflection_chance": 10, "duration": 30, "radius": 20},
+            {"spell_interrupt_chance": 30, "spell_reflection_chance": 15, "duration": 45, "radius": 25},
+            {"spell_interrupt_chance": 40, "spell_reflection_chance": 20, "duration": 60, "radius": 30},
+            {"spell_interrupt_chance": 50, "spell_reflection_chance": 25, "duration": 75, "radius": 35},
+            {"spell_interrupt_chance": 60, "spell_reflection_chance": 30, "duration": 90, "radius": 40}
+          ],
+          "prerequisites": ["spell_harmony:2"]
+        },
+        {
+          "id": "arcane_channeling",
+          "name": "Arcane Channeling",
+          "description": "Channel raw arcane energy through your performance, creating powerful magical effects.",
+          "type": "shout",
+          "level_requirement": 45,
+          "max_rank": 3,
+          "focus_cost": 80,
+          "inspiration_cost": 2,
+          "cosmic_awareness_cost": 40,
+          "cooldown": 240,
+          "effects_by_rank": [
+            {"arcane_damage": 200, "arcane_vulnerability": 20, "duration": 15, "radius": 20, "cooldown_reduction": 0},
+            {"arcane_damage": 300, "arcane_vulnerability": 30, "duration": 20, "radius": 30, "cooldown_reduction": 60},
+            {"arcane_damage": 400, "arcane_vulnerability": 40, "duration": 30, "radius": 40, "cooldown_reduction": 120}
+          ],
+          "prerequisites": ["counterspell_aria:3"]
+        },
+        {
+          "id": "reality_distortion",
+          "name": "Reality Distortion",
+          "description": "Distort reality through your performance, causing enemies to phase in and out of existence.",
+          "type": "performance",
+          "level_requirement": 50,
+          "max_rank": 3,
+          "focus_cost": 35,
+          "inspiration_cost": 2,
+          "cosmic_awareness_cost": 30,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"phase_out_chance": 20, "phase_damage": 30, "duration": 30, "radius": 20},
+            {"phase_out_chance": 30, "phase_damage": 45, "duration": 45, "radius": 30},
+            {"phase_out_chance": 40, "phase_damage": 60, "duration": 60, "radius": 40}
+          ],
+          "prerequisites": ["arcane_channeling:2"]
+        }
+      ]
+    },
+    {
+      "name": "Temporal Manipulation",
+      "description": "Altering the flow of time through music",
+      "skills": [
+        {
+          "id": "time_dilation",
+          "name": "Time Dilation",
+          "description": "Alter the flow of time around allies, increasing their action speed while slowing enemies.",
+          "type": "performance",
+          "level_requirement": 30,
+          "max_rank": 5,
+          "focus_cost": 20,
+          "inspiration_cost": 1,
+          "cosmic_awareness_cost": 10,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"ally_haste": 15, "enemy_slow": 15, "duration": 30, "radius": 20},
+            {"ally_haste": 20, "enemy_slow": 20, "duration": 45, "radius": 25},
+            {"ally_haste": 25, "enemy_slow": 25, "duration": 60, "radius": 30},
+            {"ally_haste": 30, "enemy_slow": 30, "duration": 75, "radius": 35},
+            {"ally_haste": 40, "enemy_slow": 40, "duration": 90, "radius": 40}
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "temporal_echo",
+          "name": "Temporal Echo",
+          "description": "Create echoes of allies' actions in time, causing their abilities to repeat.",
+          "type": "shout",
+          "level_requirement": 35,
+          "max_rank": 5,
+          "focus_cost": 60,
+          "inspiration_cost": 1,
+          "cosmic_awareness_cost": 20,
+          "cooldown": 180,
+          "effects_by_rank": [
+            {"echo_chance": 20, "duration": 15, "max_targets": 2, "cooldown_reduction": 0},
+            {"echo_chance": 30, "duration": 20, "max_targets": 3, "cooldown_reduction": 20},
+            {"echo_chance": 40, "duration": 25, "max_targets": 4, "cooldown_reduction": 40},
+            {"echo_chance": 50, "duration": 30, "max_targets": 5, "cooldown_reduction": 60},
+            {"echo_chance": 60, "duration": 40, "max_targets": 6, "cooldown_reduction": 90}
+          ],
+          "prerequisites": ["time_dilation:2"]
+        },
+        {
+          "id": "stasis_field",
+          "name": "Stasis Field",
+          "description": "Create a field of frozen time that immobilizes enemies while allowing allies to move freely.",
+          "type": "performance",
+          "level_requirement": 40,
+          "max_rank": 5,
+          "focus_cost": 25,
+          "inspiration_cost": 1,
+          "cosmic_awareness_cost": 15,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"stasis_chance": 20, "duration": 30, "radius": 20},
+            {"stasis_chance": 30, "duration": 45, "radius": 25},
+            {"stasis_chance": 40, "duration": 60, "radius": 30},
+            {"stasis_chance": 50, "duration": 75, "radius": 35},
+            {"stasis_chance": 60, "duration": 90, "radius": 40}
+          ],
+          "prerequisites": ["temporal_echo:2"]
+        },
+        {
+          "id": "rewind",
+          "name": "Rewind",
+          "description": "Rewind time for an ally, restoring their health and removing negative effects.",
+          "type": "shout",
+          "level_requirement": 45,
+          "max_rank": 3,
+          "focus_cost": 70,
+          "inspiration_cost": 2,
+          "cosmic_awareness_cost": 30,
+          "cooldown": 300,
+          "effects_by_rank": [
+            {"health_restored_percent": 30, "rewind_duration": 5, "cooldown_reduction": 0},
+            {"health_restored_percent": 50, "rewind_duration": 8, "cooldown_reduction": 60},
+            {"health_restored_percent": 70, "rewind_duration": 10, "cooldown_reduction": 120}
+          ],
+          "prerequisites": ["stasis_field:3"]
+        },
+        {
+          "id": "moment_of_omniscience",
+          "name": "Moment of Omniscience",
+          "description": "Briefly step outside the flow of time, gaining perfect awareness of all possible futures.",
+          "type": "shout",
+          "level_requirement": 50,
+          "max_rank": 3,
+          "focus_cost": 100,
+          "inspiration_cost": 3,
+          "cosmic_awareness_cost": 75,
+          "cooldown": 600,
+          "effects_by_rank": [
+            {"duration": 10, "dodge_chance": 100, "critical_chance": 100, "cooldown_reduction": 0},
+            {"duration": 15, "dodge_chance": 100, "critical_chance": 100, "cooldown_reduction": 120},
+            {"duration": 20, "dodge_chance": 100, "critical_chance": 100, "cooldown_reduction": 240}
+          ],
+          "prerequisites": ["rewind:2"]
+        }
+      ]
+    },
+    {
+      "name": "Reality Weaving",
+      "description": "Manipulating the fabric of reality through musical patterns",
+      "skills": [
+        {
+          "id": "dimensional_harmony",
+          "name": "Dimensional Harmony",
+          "description": "Create a harmonic connection between dimensions, allowing allies to phase through solid objects.",
+          "type": "performance",
+          "level_requirement": 30,
+          "max_rank": 5,
+          "focus_cost": 20,
+          "inspiration_cost": 1,
+          "cosmic_awareness_cost": 10,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"phase_walk": true, "damage_reduction": 10, "duration": 30, "radius": 20},
+            {"phase_walk": true, "damage_reduction": 15, "duration": 45, "radius": 25},
+            {"phase_walk": true, "damage_reduction": 20, "duration": 60, "radius": 30},
+            {"phase_walk": true, "damage_reduction": 25, "duration": 75, "radius": 35},
+            {"phase_walk": true, "damage_reduction": 30, "duration": 90, "radius": 40}
+          ],
+          "prerequisites": []
+        },
+        {
+          "id": "spatial_distortion",
+          "name": "Spatial Distortion",
+          "description": "Distort space around enemies, causing them to miss attacks and collide with each other.",
+          "type": "performance",
+          "level_requirement": 35,
+          "max_rank": 5,
+          "focus_cost": 25,
+          "inspiration_cost": 1,
+          "cosmic_awareness_cost": 15,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"miss_chance": 15, "collision_damage": 10, "duration": 30, "radius": 20},
+            {"miss_chance": 20, "collision_damage": 15, "duration": 45, "radius": 25},
+            {"miss_chance": 25, "collision_damage": 20, "duration": 60, "radius": 30},
+            {"miss_chance": 30, "collision_damage": 25, "duration": 75, "radius": 35},
+            {"miss_chance": 40, "collision_damage": 30, "duration": 90, "radius": 40}
+          ],
+          "prerequisites": ["dimensional_harmony:2"]
+        },
+        {
+          "id": "reality_shift",
+          "name": "Reality Shift",
+          "description": "Temporarily shift reality, teleporting allies to safety or enemies into dangerous positions.",
+          "type": "shout",
+          "level_requirement": 40,
+          "max_rank": 5,
+          "focus_cost": 70,
+          "inspiration_cost": 2,
+          "cosmic_awareness_cost": 30,
+          "cooldown": 120,
+          "effects_by_rank": [
+            {"teleport_distance": 20, "max_targets": 2, "cooldown_reduction": 0},
+            {"teleport_distance": 30, "max_targets": 3, "cooldown_reduction": 15},
+            {"teleport_distance": 40, "max_targets": 4, "cooldown_reduction": 30},
+            {"teleport_distance": 50, "max_targets": 5, "cooldown_reduction": 45},
+            {"teleport_distance": 60, "max_targets": 6, "cooldown_reduction": 60}
+          ],
+          "prerequisites": ["spatial_distortion:2"]
+        },
+        {
+          "id": "pocket_dimension",
+          "name": "Pocket Dimension",
+          "description": "Create a pocket dimension that allies can enter to recover or avoid danger.",
+          "type": "shout",
+          "level_requirement": 45,
+          "max_rank": 3,
+          "focus_cost": 80,
+          "inspiration_cost": 2,
+          "cosmic_awareness_cost": 40,
+          "cooldown": 300,
+          "effects_by_rank": [
+            {"duration": 10, "max_targets": 3, "recovery_percent": 5, "cooldown_reduction": 0},
+            {"duration": 15, "max_targets": 4, "recovery_percent": 8, "cooldown_reduction": 60},
+            {"duration": 20, "max_targets": 5, "recovery_percent": 10, "cooldown_reduction": 120}
+          ],
+          "prerequisites": ["reality_shift:3"]
+        },
+        {
+          "id": "cosmic_rebalancing",
+          "name": "Cosmic Rebalancing",
+          "description": "Rebalance the cosmic forces, redistributing health and resources among allies.",
+          "type": "performance",
+          "level_requirement": 50,
+          "max_rank": 3,
+          "focus_cost": 30,
+          "inspiration_cost": 3,
+          "cosmic_awareness_cost": 50,
+          "cooldown": 0,
+          "effects_by_rank": [
+            {"balance_percent": 30, "bonus_resources": 10, "duration": 30, "radius": 20},
+            {"balance_percent": 50, "bonus_resources": 20, "duration": 45, "radius": 30},
+            {"balance_percent": 70, "bonus_resources": 30, "duration": 60, "radius": 40}
+          ],
+          "prerequisites": ["pocket_dimension:2"]
+        }
+      ]
+    }
+  ]
+}

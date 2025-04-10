@@ -1,0 +1,210 @@
+{
+  "id": "doom_prophet",
+  "name": "Doom Prophet",
+  "base_class": "oracle",
+  "arch_class": "fateweaver",
+  "alignment": "Evil",
+  "description": "Fateweavers who manipulate destiny to bring about catastrophe and rule through fear of their terrible predictions, weaving threads of destruction and despair into the tapestry of fate.",
+  "level_requirement": 30,
+  "role": "Damage-Control",
+  "primary_stats": ["Wisdom", "Intelligence"],
+  "secondary_stats": ["Charisma", "Constitution"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Mystical energy that powers divination spells and prophecies",
+      "max_value": "30 + (Wisdom modifier × 4) + (level × 4)",
+      "regeneration": "3 per 6 seconds, +5 when successfully predicting an event",
+      "mechanics": [
+        "Mana points are spent to cast divination spells and invoke prophecies",
+        "Some abilities require maintaining a connection to the future, consuming mana over time",
+        "Meditation increases mana regeneration rate by 500% but prevents movement",
+        "Can channel mana into destructive prophecies and curses"
+      ]
+    },
+    {
+      "name": "Fate Points",
+      "description": "Accumulated knowledge of possible futures that can be spent to alter destiny",
+      "max_value": "7 + (Wisdom modifier)",
+      "regeneration": "3 per long rest, additional points gained through significant divinations",
+      "mechanics": [
+        "Fate Points can be spent to reroll dice for self or enemies (forcing worse outcomes)",
+        "Can be used to force a critical failure on an enemy's action",
+        "Powerful destiny-altering abilities consume multiple Fate Points",
+        "Can be invested in long-term prophecies of doom and destruction"
+      ]
+    },
+    {
+      "name": "Destiny Threads",
+      "description": "Tangible manifestations of fate that can be manipulated to create powerful effects",
+      "max_value": "15 + (Intelligence modifier)",
+      "regeneration": "2 per hour, additional threads gained when significant events align with predictions",
+      "mechanics": [
+        "Threads can be woven into patterns that create various magical effects",
+        "Can be attached to individuals to influence their destiny toward negative outcomes",
+        "More complex patterns require more threads but produce more powerful effects",
+        "Threads can be corrupted to create particularly devastating fate alterations"
+      ]
+    },
+    {
+      "name": "Dread Power",
+      "description": "Energy harvested from fear and despair caused by your prophecies",
+      "max_value": "100",
+      "regeneration": "Builds when causing fear or when prophecies of doom come true",
+      "mechanics": [
+        "Increases by 10 when a target is affected by fear from your prophecies",
+        "Increases by 25 when a prophesied disaster comes to pass",
+        "Decreases by 5 per hour when not actively spreading doom",
+        "Can be spent to enhance destructive abilities or create powerful fear effects"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Harbinger of Doom",
+      "description": "The ability to foresee and bring about the worst possible futures",
+      "effects": [
+        "Can identify the most catastrophic possible future for any situation",
+        "Prophecies of doom have a 50% increased chance of coming true",
+        "Presence causes unease and dread in all nearby creatures",
+        "Can implant visions of doom in the minds of targets, causing fear and despair"
+      ]
+    },
+    {
+      "name": "Curse Weaving",
+      "description": "The ability to bind individuals to terrible fates",
+      "effects": [
+        "Can place powerful curses that alter a target's destiny",
+        "Cursed targets suffer increasing misfortune over time",
+        "Can create hereditary curses that affect entire bloodlines",
+        "Curses are extremely difficult to remove, requiring powerful magic or specific conditions"
+      ]
+    },
+    {
+      "name": "Catastrophe Manipulation",
+      "description": "Direct control over disasters and calamitous events",
+      "effects": [
+        "Can trigger natural disasters in areas of instability",
+        "Able to magnify the severity of existing calamities",
+        "Can redirect disasters toward specific targets",
+        "Presence increases the likelihood of accidents and misfortune"
+      ]
+    },
+    {
+      "name": "Fear Harvesting",
+      "description": "The ability to draw power from the fear and despair of others",
+      "effects": [
+        "Gains strength from the fear of nearby creatures",
+        "Can extract and consume the essence of fear directly",
+        "Able to sense fear across vast distances",
+        "Can implant nightmares that generate fear even in sleeping victims"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Apocalyptic Vision",
+      "description": "Share a vision of the apocalypse with all creatures in the area, causing terror and despair",
+      "mechanics": [
+        "Affects all creatures within a 100-meter radius",
+        "Targets must make a Wisdom save or be paralyzed with fear for 1 minute",
+        "Even on successful saves, targets suffer -50% to all actions for 5 minutes",
+        "Generates massive amounts of Dread Power based on the number of affected targets",
+        "Costs 70 Mana, 4 Fate Points, and 30 Dread Power"
+      ],
+      "cooldown": "1 hour"
+    },
+    {
+      "name": "Doom Proclamation",
+      "description": "Declare an inevitable doom upon a target, binding their fate to a terrible end",
+      "mechanics": [
+        "Target must be within sight and hearing range",
+        "Proclamation specifies the nature and timing of the target's doom",
+        "Target suffers increasing penalties as the proclaimed time approaches",
+        "When the time arrives, target must make a Wisdom save at -10 or suffer the proclaimed fate",
+        "Even on a successful save, target takes massive damage and suffers severe debuffs",
+        "Costs 80 Mana, 5 Fate Points, and 50 Dread Power"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Cataclysm Summoning",
+      "description": "Manipulate fate to bring about a massive disaster in the targeted area",
+      "mechanics": [
+        "Target an area within 1 kilometer",
+        "Over 1-10 minutes (depending on scale), a natural disaster forms in the area",
+        "Can create earthquakes, storms, floods, fires, or other calamities",
+        "Disaster causes massive damage and leaves lasting environmental effects",
+        "Each victim of the disaster generates Dread Power for you",
+        "Costs 100 Mana, 7 Fate Points, and 100 Dread Power"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Doomsayer",
+      "focus": "Prophecies of destruction and despair",
+      "key_abilities": [
+        "Inevitable Doom: Prophecy that cannot be averted by any means",
+        "Mass Terror: Implant visions of doom in multiple targets simultaneously",
+        "End Times Vision: Create an illusion of the apocalypse so convincing it causes physical damage"
+      ]
+    },
+    {
+      "name": "Path of the Curseweaver",
+      "focus": "Creation and manipulation of powerful curses",
+      "key_abilities": [
+        "Bloodline Curse: Create a curse that affects all members of a family",
+        "Fate Binding: Link a target's destiny to a specific doom",
+        "Soul Corruption: Permanently alter a target's fate thread, making them prone to misfortune"
+      ]
+    },
+    {
+      "name": "Path of the Catastrophe",
+      "focus": "Control over disasters and calamities",
+      "key_abilities": [
+        "Disaster Master: Gain complete control over natural disasters",
+        "Plague Weaving: Create and spread magical diseases",
+        "World Breaker: Cause permanent damage to the fabric of reality in an area"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["Communion with the Void", "Destruction of a Sacred Site", "Harvesting of 1000 Souls"],
+    "skill_points": "At least 15 points in the Destiny Architect skill tree",
+    "alignment": "Must maintain Evil alignment for at least 10 levels",
+    "challenges": ["Successfully bring about a prophesied disaster", "Cause a powerful entity to fall through a curse"]
+  },
+  "legendary_items": [
+    {
+      "name": "Crown of Inevitable Doom",
+      "type": "Head",
+      "effects": [
+        "Wisdom increased by 5",
+        "Doom Proclamation cooldown reduced by 12 hours",
+        "Prophecies of doom have a 75% increased chance of coming true"
+      ]
+    },
+    {
+      "name": "Robes of the Apocalypse",
+      "type": "Chest",
+      "effects": [
+        "Dread Power regeneration increased by 100%",
+        "Presence causes fear in all creatures within 30 meters",
+        "Gain immunity to fear and despair effects"
+      ]
+    },
+    {
+      "name": "Staff of Catastrophe",
+      "type": "Two-Hand",
+      "effects": [
+        "Cataclysm Summoning cooldown reduced by 3 days",
+        "Natural disasters under your control are 50% more powerful",
+        "Can store the essence of a disaster to release later"
+      ]
+    }
+  ],
+  "lore": "Doom Prophets represent the darkest path a Fateweaver can take, using their mastery over destiny to orchestrate suffering and catastrophe on a massive scale. These sinister oracles have twisted their gift of foresight into a weapon, using their knowledge of possible futures to ensure the worst outcomes come to pass. They rule through fear, making terrible predictions that inevitably come true and offering protection from doom only to those who serve them. Some Doom Prophets seek to bring about the apocalypse itself, believing that the current world must be destroyed to make way for a new reality shaped by their vision. Others simply revel in the power that comes from controlling the fates of others, addicted to the fear they harvest from their victims. Their prophecies are delivered with theatrical flair designed to maximize terror, often accompanied by signs and portents that reinforce their supernatural authority. Kingdoms have fallen at the mere arrival of a Doom Prophet at their gates, as rulers surrender rather than face the meticulously detailed horrors that have been foretold. Those few who dare to defy these dark oracles often find themselves bound to particularly cruel fates, serving as examples of the futility of resistance against one who controls destiny itself."
+}

@@ -1,0 +1,199 @@
+{
+  "id": "shadow_operative_hero_class",
+  "name": "Shadow Operative Hero Class",
+  "description": "Hero class progression for the Blood Agent arch class of the Crimson Agent base class",
+  "hero_class": {
+    "id": "shadow_operative",
+    "name": "Shadow Operative",
+    "description": "Elite covert agents who blend blood magic with unparalleled stealth and infiltration techniques. Shadow Operatives move unseen through enemy territory, gathering intelligence and eliminating high-value targets with surgical precision.",
+    "role": "stealth-utility",
+    "primary_stats": ["dex", "int"],
+    "secondary_stats": ["con", "cha"],
+    "resource_mechanics": {
+      "health": {
+        "description": "Vital energy that doubles as a resource for tactical blood magic",
+        "base_amount": "Standard health pool based on level and Constitution",
+        "regeneration": "Standard health regeneration, increased while in stealth",
+        "usage": "Some abilities consume health for enhanced stealth and mobility"
+      },
+      "blood_essence": {
+        "description": "Refined life force that powers blood magic and infiltration abilities",
+        "base_amount": 0,
+        "max_amount": 200,
+        "generation": "10 points when sacrificing own health, 20 points when eliminating targets, 15 points when completing objectives",
+        "decay": "5 points per minute",
+        "thresholds": [
+          {
+            "level": 50,
+            "effect": "Minor stealth enhancement and detection reduction"
+          },
+          {
+            "level": 100,
+            "effect": "Moderate stealth enhancement and detection reduction, 15% reduced health cost for abilities"
+          },
+          {
+            "level": 200,
+            "effect": "Major stealth enhancement and detection reduction, 30% reduced health cost for abilities, chance to remain in stealth after attacking"
+          }
+        ]
+      },
+      "shadow_affinity": {
+        "description": "The operative's connection to shadows and darkness",
+        "base_amount": 50,
+        "max_amount": 100,
+        "generation": "5 points per 10 seconds in stealth, 10 points when eliminating targets without being detected, 15 points when completing objectives undetected",
+        "decay": "10 points per minute when not in stealth",
+        "thresholds": [
+          {
+            "level": 30,
+            "effect": "Minor enhancement to stealth abilities and movement speed"
+          },
+          {
+            "level": 70,
+            "effect": "Moderate enhancement to stealth abilities and movement speed, reduced detection radius"
+          },
+          {
+            "level": 100,
+            "effect": "Major enhancement to stealth abilities and movement speed, greatly reduced detection radius, chance to become temporarily invisible after taking damage"
+          }
+        ]
+      }
+    },
+    "armor_proficiency": ["light", "blood_forged", "infiltrator's_garb"],
+    "weapon_proficiency": ["daggers", "thrown", "blood_weapons", "garrotes", "hand_crossbows"],
+    "class_mechanics": {
+      "blood_shroud": {
+        "description": "Manipulate blood to enhance stealth capabilities",
+        "cost": "30 blood essence + 5% of maximum health",
+        "cooldown": "45 seconds",
+        "duration": "30 seconds",
+        "effect": "Enter an enhanced stealth state that reduces detection radius by 50%, increases movement speed by 30%, and allows limited actions without breaking stealth",
+        "scaling": "Duration, detection reduction, and movement speed bonus scale with Dexterity, Intelligence, and Shadow Affinity"
+      },
+      "shadow_step": {
+        "description": "Teleport short distances through shadows",
+        "cost": "25 blood essence + 10 Shadow Affinity",
+        "cooldown": "20 seconds",
+        "range": "20 yards",
+        "effect": "Instantly teleport to a shadowy location within range, gaining 3 seconds of stealth upon arrival",
+        "scaling": "Range, stealth duration, and cooldown reduction scale with Dexterity, Intelligence, and Shadow Affinity"
+      },
+      "mark_of_shadows": {
+        "description": "Tag targets with a blood mark that enhances tracking and assassination",
+        "cost": "40 blood essence + 20 Shadow Affinity",
+        "cooldown": "1 minute",
+        "duration": "10 minutes",
+        "effect": "Mark a target, revealing their location through walls, increasing damage against them by 30%, and allowing Shadow Step to be used directly to their location",
+        "scaling": "Duration, damage bonus, and additional effects scale with Intelligence, Dexterity, and Shadow Affinity"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Infiltration",
+        "focus": "Stealth, mobility, and information gathering",
+        "key_abilities": [
+          "Ghost Walk: Move through physical barriers for a short duration",
+          "Perfect Disguise: Temporarily take on the appearance of a humanoid target",
+          "Information Extraction: Gain intelligence about an area or target through blood analysis"
+        ]
+      },
+      {
+        "name": "Assassination",
+        "focus": "Precision elimination and critical strikes",
+        "key_abilities": [
+          "Vital Strike: Attack that deals massive damage to unaware targets",
+          "Poison Blood: Infect a target with a blood toxin that deals damage over time and reduces healing",
+          "Execution: Instantly eliminate targets below 20% health"
+        ]
+      },
+      {
+        "name": "Shadow Arts",
+        "focus": "Manipulation of shadows and perception",
+        "key_abilities": [
+          "Shadow Clone: Create a duplicate that mimics your actions and can take damage for you",
+          "Blackout: Temporarily blind all enemies in an area",
+          "Memory Wipe: Remove a target's memory of the last 30 seconds"
+        ]
+      }
+    ],
+    "advancement_requirements": {
+      "level": 30,
+      "alignment": "neutral",
+      "blood_agent_skills": ["Blood Magic 8", "Stealth 10", "Assassination 8"],
+      "quests": ["The Shadow's Path", "Blood and Darkness"]
+    },
+    "signature_abilities": [
+      {
+        "name": "Perfect Infiltration",
+        "description": "Become one with the shadows",
+        "cost": "100 blood essence + 80 Shadow Affinity + 10% of maximum health",
+        "cooldown": "15 minutes",
+        "duration": "3 minutes",
+        "effect": "Enter a state of perfect stealth where detection is nearly impossible, movement speed is increased by 50%, and you can pass through physical barriers",
+        "additional_effect": "Attacks from stealth deal 100% increased damage and do not break stealth for 2 seconds",
+        "scaling": "Duration, damage bonus, and stealth recovery scale with Dexterity, Intelligence, and Shadow Affinity"
+      },
+      {
+        "name": "Shadow Network",
+        "description": "Create a network of shadow portals",
+        "cost": "150 blood essence + 50 Shadow Affinity",
+        "cooldown": "30 minutes",
+        "duration": "5 minutes",
+        "effect": "Place up to 5 shadow markers that you can instantly teleport between, with each teleport granting 5 seconds of stealth",
+        "scaling": "Number of markers, teleport range, and stealth duration scale with Dexterity, Intelligence, and Shadow Affinity"
+      },
+      {
+        "name": "Ghost Protocol",
+        "description": "Become a phantom that exists between worlds",
+        "cost": "200 blood essence + All Shadow Affinity",
+        "cooldown": "1 hour",
+        "duration": "1 minute",
+        "effect": "Transform into a ghost-like state where you are immune to physical damage, can move through all barriers, and your attacks bypass armor",
+        "limitation": "Cannot be healed while active and ends if you drop below 20% health",
+        "scaling": "Duration, damage bypass, and health threshold scale with Dexterity, Intelligence, and total Shadow Affinity consumed"
+      }
+    ],
+    "legendary_items": [
+      {
+        "name": "Shadowstep Daggers",
+        "type": "Weapon",
+        "rarity": "Legendary",
+        "effects": [
+          "Shadow Step cooldown reduced by 50%",
+          "Attacks from stealth generate 15 Shadow Affinity",
+          "When Shadow Affinity reaches 100, automatically cast Blood Shroud"
+        ],
+        "unique_ability": {
+          "name": "Phantom Strike",
+          "description": "Attack from between dimensions",
+          "cooldown": "5 minutes",
+          "effect": "Teleport behind all enemies within 20 yards in sequence, dealing critical damage to each and ending in stealth"
+        }
+      },
+      {
+        "name": "Shadow Operative's Kit",
+        "type": "Armor Set",
+        "rarity": "Legendary",
+        "set_pieces": ["Mask", "Bodysuit", "Gloves", "Boots", "Belt"],
+        "set_bonuses": [
+          "(2) +30% to stealth effectiveness",
+          "(3) Shadow Affinity maximum increased by 25",
+          "(4) Blood essence generation increased by 40% while in stealth",
+          "(5) Perfect Infiltration cooldown reduced by 50%"
+        ],
+        "unique_ability": {
+          "name": "Phantom Protocol",
+          "description": "Activate emergency extraction measures",
+          "cooldown": "10 minutes",
+          "effect": "When dropping below 30% health, automatically enter stealth, increase movement speed by 100%, and become immune to control effects for 10 seconds"
+        }
+      }
+    ],
+    "playstyle": "Shadow Operatives excel at infiltration, reconnaissance, and precision elimination. They balance stealth with deadly efficiency, using blood essence and shadow affinity to enhance their abilities. The class rewards careful planning and tactical execution, allowing players to complete objectives without being detected or eliminate high-value targets with surgical precision.",
+    "difficulty": "Hard - Requires excellent situational awareness and strategic planning",
+    "recommended_for": "Players who enjoy stealth gameplay with unique mobility options and the thrill of perfect execution",
+    "arch_class": "blood_agent",
+    "base_class": "crimson_agent",
+    "alignment": "neutral"
+  }
+}

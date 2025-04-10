@@ -1,0 +1,223 @@
+{
+  "id": "champion",
+  "name": "Champion",
+  "base_class": "warrior",
+  "arch_class": "battlemaster",
+  "alignment": "Good",
+  "description": "Battlemasters who embody heroic ideals, protecting the innocent and inspiring allies through noble deeds and selfless courage, becoming beacons of hope on the battlefield.",
+  "level_requirement": 30,
+  "role": "Tank-Support",
+  "primary_stats": ["Strength", "Charisma"],
+  "secondary_stats": ["Constitution", "Wisdom"],
+  "resource_systems": [
+    {
+      "name": "Stamina",
+      "description": "Physical energy that powers combat abilities and heroic techniques",
+      "max_value": "40 + (Constitution modifier × 8) + (level × 8)",
+      "regeneration": "5 per 6 seconds, +8 during combat, +10 when protecting allies",
+      "mechanics": [
+        "Stamina points are spent to perform heroic combat maneuvers and protective techniques",
+        "Some abilities require maintaining focus, consuming stamina over time",
+        "Short rests restore a significant portion of maximum stamina",
+        "Depleted stamina causes penalties to protective abilities and inspirational presence",
+        "Can be temporarily boosted through heroic resolve in critical situations",
+        "Successful protection of allies restores a portion of stamina"
+      ]
+    },
+    {
+      "name": "Combat Focus",
+      "description": "Mental concentration and battlefield awareness that enhances combat effectiveness",
+      "max_value": "200",
+      "regeneration": "Builds during combat, decreases during periods of inaction",
+      "mechanics": [
+        "Increases by 20 when landing critical hits or successfully protecting allies",
+        "Increases by 15 per 10 seconds in active combat",
+        "Decreases by 20 when allies take significant damage despite protection",
+        "Decreases by 15 per minute when out of combat",
+        "Can be spent to enhance protective abilities or execute heroic techniques",
+        "Higher Combat Focus increases defensive reactions and inspirational effects"
+      ]
+    },
+    {
+      "name": "Command Authority",
+      "description": "Measure of leadership presence and ability to inspire allies in battle",
+      "max_value": "150",
+      "regeneration": "Builds when successfully protecting allies or demonstrating heroic deeds",
+      "mechanics": [
+        "Increases by 15 when successfully protecting allies from harm",
+        "Increases by 20 when performing heroic deeds that inspire others",
+        "Decreases by 15 when allies are defeated despite protection attempts",
+        "Decreases by 20 when forced to retreat or abandon allies",
+        "Can be spent to issue powerful inspirational abilities that enhance allies",
+        "Higher Command Authority increases the effectiveness of protective and inspirational abilities"
+      ]
+    },
+    {
+      "name": "Heroic Inspiration",
+      "description": "Measure of inspirational presence and ability to embody heroic ideals",
+      "max_value": "100",
+      "regeneration": "Builds when performing heroic deeds or inspiring others through noble actions",
+      "mechanics": [
+        "Increases by 15 when performing selfless acts to protect others",
+        "Increases by 10 when inspiring allies to overcome seemingly impossible odds",
+        "Decreases by 15 when forced to act against heroic ideals",
+        "Decreases by 10 when allies lose hope despite inspirational efforts",
+        "Can be spent to perform legendary heroic deeds or inspire extraordinary courage",
+        "At maximum Heroic Inspiration, enter a state of perfect heroic embodiment"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Heroic Presence",
+      "description": "Inspirational aura that embodies heroic ideals and inspires allies",
+      "effects": [
+        "Naturally inspires courage and hope in allies within visual range",
+        "Able to bolster ally morale and resistance to fear effects",
+        "Can project an aura of protection that enhances ally defensive capabilities",
+        "Presence causes uncertainty and hesitation in evil-aligned enemies",
+        "Can inspire ordinary people to perform extraordinary feats of courage"
+      ]
+    },
+    {
+      "name": "Protector's Resolve",
+      "description": "Exceptional ability to defend allies and absorb damage meant for others",
+      "effects": [
+        "Can intercept attacks meant for allies within range",
+        "Able to establish protective zones that reduce damage to allies within",
+        "Can enhance personal defensive capabilities when protecting others",
+        "Presence naturally draws enemy attention away from vulnerable allies",
+        "Can endure extraordinary punishment when defending others"
+      ]
+    },
+    {
+      "name": "Heroic Combat",
+      "description": "Combat style that emphasizes honorable engagement and inspiring techniques",
+      "effects": [
+        "Can perform combat maneuvers that inspire allies while damaging enemies",
+        "Able to challenge powerful enemies to honorable combat, focusing their attention",
+        "Can execute perfect defensive techniques that demonstrate martial mastery",
+        "Presence enhances the combat effectiveness of honorable allies",
+        "Can defeat enemies in ways that maximize inspirational impact"
+      ]
+    },
+    {
+      "name": "Selfless Courage",
+      "description": "Willingness to sacrifice personal safety for the good of others",
+      "effects": [
+        "Gains power bonuses when taking risks to protect others",
+        "Able to endure normally debilitating injuries when fighting for a noble cause",
+        "Can inspire similar selflessness in allies, creating a chain of protective actions",
+        "Presence naturally calms and reassures those in danger",
+        "Can achieve seemingly impossible feats when protecting the innocent"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Heroic Sacrifice",
+      "description": "Temporarily redirect all damage meant for nearby allies to yourself while gaining extraordinary defensive capabilities",
+      "mechanics": [
+        "For 1 minute, intercept all attacks and harmful effects targeting allies within 30 meters",
+        "Gain 50% damage reduction and immunity to stun, fear, and mind control effects",
+        "Each intercepted attack increases your offensive capabilities against the attacker",
+        "If health drops below 25%, gain temporary invulnerability for 10 seconds",
+        "At the end of the effect, release a wave of healing energy to all nearby allies",
+        "Costs 100 Stamina, 50 Command Authority, and 75 Heroic Inspiration"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Banner of Hope",
+      "description": "Plant a magical banner that inspires extraordinary courage and resilience in all allies",
+      "mechanics": [
+        "Create a magical banner that remains for 5 minutes or until destroyed",
+        "All allies within 50 meters gain significant bonuses to attack, defense, and morale",
+        "Allies near the banner recover from negative status effects more quickly",
+        "Enemies within range must pass a willpower check or suffer penalties to attack",
+        "If the banner would be destroyed, can sacrifice personal health to maintain it",
+        "Costs 75 Stamina, 100 Command Authority, and 50 Heroic Inspiration"
+      ],
+      "cooldown": "3 days"
+    },
+    {
+      "name": "Moment of Glory",
+      "description": "Enter a state of perfect heroic embodiment, becoming a legendary warrior of light",
+      "mechanics": [
+        "For 3 minutes, transform into a radiant embodiment of heroic ideals",
+        "Size increases by 25%, strength and charisma doubled",
+        "Weapons glow with holy light, dealing additional damage to evil creatures",
+        "Each attack inspires nearby allies, granting them temporary combat bonuses",
+        "Presence alone causes fear and demoralization in evil enemies",
+        "Costs 50 Stamina, 75 Command Authority, and 100 Heroic Inspiration"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of the Protector",
+      "focus": "Defending allies and absorbing damage",
+      "key_abilities": [
+        "Guardian's Shield: Redirect damage from allies to yourself with enhanced damage reduction",
+        "Protective Aura: Create a zone of protection that reduces damage to all allies within",
+        "Selfless Interception: Instantly move to intercept attacks targeting vulnerable allies"
+      ]
+    },
+    {
+      "name": "Path of Inspiration",
+      "focus": "Inspiring allies and bolstering morale",
+      "key_abilities": [
+        "Heroic Presence: Inspire extraordinary courage and performance in all nearby allies",
+        "Rally the Fallen: Revitalize defeated or demoralized allies with renewed strength",
+        "Beacon of Hope: Become a shining symbol that dispels fear and doubt in allies"
+      ]
+    },
+    {
+      "name": "Path of the Hero",
+      "focus": "Embodying heroic ideals through combat excellence",
+      "key_abilities": [
+        "Heroic Challenge: Force powerful enemies to engage you in honorable combat",
+        "Legendary Deed: Perform combat maneuvers of such perfection they inspire all who witness them",
+        "Champion's Resolve: Overcome seemingly impossible odds through sheer heroic determination"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["The Hero's Journey", "Defender of the Innocent", "Beacon of Hope"],
+    "skill_points": "At least 15 points in the Commander skill tree",
+    "alignment": "Must maintain Good alignment for at least 10 levels",
+    "challenges": ["Sacrifice personal safety to protect others in a critical situation", "Inspire allies to victory against overwhelming odds"]
+  },
+  "legendary_items": [
+    {
+      "name": "Lightbringer",
+      "type": "Weapon",
+      "effects": [
+        "Strength increased by 5",
+        "Weapon glows with holy light, dealing additional damage to evil creatures",
+        "Inspires all allies within visual range, improving morale and combat effectiveness"
+      ]
+    },
+    {
+      "name": "Champion's Aegis",
+      "type": "Shield",
+      "effects": [
+        "Constitution increased by 3",
+        "Can redirect attacks targeting nearby allies to yourself",
+        "Heroic Sacrifice cooldown reduced by 6 hours"
+      ]
+    },
+    {
+      "name": "Crown of Inspiration",
+      "type": "Head",
+      "effects": [
+        "Charisma increased by 5",
+        "Heroic Inspiration maximum increased by 50",
+        "Banner of Hope affects twice the normal radius"
+      ]
+    }
+  ],
+  "lore": "Champions represent the most noble path a Battlemaster can take, having dedicated their martial prowess and leadership abilities to protecting the innocent and inspiring others through heroic deeds. These paragons of virtue have transcended ordinary combat leadership to become living symbols of hope and courage, capable of turning even the most desperate situation into victory through selfless sacrifice and inspirational presence. The path to becoming a Champion requires not only exceptional combat skills and tactical acumen but also unwavering moral conviction and a genuine desire to protect others at any cost. Those who succeed find themselves capable of inspiring extraordinary courage in allies and striking fear into the hearts of evil, their very presence changing the dynamics of any battlefield they enter. Champions typically serve as elite protectors of important people or places, leaders of righteous military orders, or wandering heroes who travel to where they are most needed. Many establish or join knightly orders dedicated to protecting the innocent and fighting injustice, training others to follow their heroic example. Some even become legendary figures whose mere mention inspires courage in the downtrodden and fear in tyrants. Their combination of combat prowess, protective abilities, and inspirational leadership makes them invaluable in conflicts against overwhelming evil, where their presence can rally otherwise hopeless resistance and turn the tide against seemingly unstoppable foes. Though they may lack the raw destructive power of more offense-focused classes, the protective strength and morale-boosting capabilities of Champions make them perhaps the most valuable allies when facing truly dire threats that would break the spirit of ordinary warriors."
+}

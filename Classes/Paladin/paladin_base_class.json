@@ -1,0 +1,141 @@
+{
+  "id": "paladin",
+  "name": "Paladin",
+  "description": "Holy warriors who combine martial prowess with divine magic, sworn to uphold sacred oaths and vanquish evil from the world.",
+  "level_requirement": 1,
+  "role": "Tank-Support",
+  "primary_stats": ["Strength", "Charisma"],
+  "secondary_stats": ["Constitution", "Wisdom"],
+  "resource_systems": [
+    {
+      "name": "Mana",
+      "description": "Divine energy that powers holy spells and abilities",
+      "max_value": "10 + (Wisdom modifier × 2) + (level × 2)",
+      "regeneration": "1 per 6 seconds, +2 when smiting evil creatures",
+      "mechanics": [
+        "Mana points are spent to cast divine spells and channel holy power",
+        "Some abilities require maintaining a divine connection, consuming mana over time",
+        "Prayer increases mana regeneration rate by 300% but requires remaining stationary"
+      ]
+    },
+    {
+      "name": "Divine Favor",
+      "description": "Blessing from the divine that empowers righteous actions",
+      "max_value": "5 + (Charisma modifier)",
+      "regeneration": "1 per hour, additional points gained through upholding oaths and defeating evil",
+      "mechanics": [
+        "Divine Favor can be spent to enhance weapon attacks with holy power",
+        "Can be used to empower healing spells or protective auras",
+        "Acts as a resource for powerful oath abilities",
+        "Violations of paladin code can result in temporary loss of Divine Favor"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Divine Smite",
+      "description": "Channel divine power through weapon strikes to smite enemies",
+      "effects": [
+        "Can infuse weapon attacks with holy energy for additional damage",
+        "Smite damage is doubled against undead and fiends",
+        "Critical hits with Divine Smite cause enemies to be briefly stunned",
+        "Each successful smite generates additional threat against the target"
+      ]
+    },
+    {
+      "name": "Lay on Hands",
+      "description": "Channel healing energy directly into wounded allies",
+      "effects": [
+        "Heal allies by touch for significant amounts based on paladin level",
+        "Can be used to cure diseases and neutralize poisons",
+        "Healing pool refreshes after a long rest",
+        "Can distribute healing among multiple targets as needed"
+      ]
+    },
+    {
+      "name": "Divine Aura",
+      "description": "Project an aura of divine energy that affects nearby allies and enemies",
+      "effects": [
+        "Provides passive bonuses to nearby allies based on the active aura",
+        "Can switch between different auras as needed (protection, courage, etc.)",
+        "Aura range increases with paladin level",
+        "Presence causes unease in evil creatures and comfort to good ones"
+      ]
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Oath of Devotion",
+      "focus": "Protection and healing",
+      "key_abilities": [
+        "Sacred Weapon: Imbue weapon with holy light that never misses",
+        "Divine Shield: Create a protective barrier around an ally",
+        "Turn the Unholy: Force undead and fiends to flee in terror"
+      ]
+    },
+    {
+      "name": "Oath of Justice",
+      "focus": "Combat and judgment",
+      "key_abilities": [
+        "Divine Judgment: Mark an enemy for judgment, increasing damage taken",
+        "Righteous Strike: Guaranteed critical hit against evil creatures",
+        "Aura of Justice: Allies deal additional holy damage to marked targets"
+      ]
+    },
+    {
+      "name": "Oath of Sacrifice",
+      "focus": "Self-sacrifice and group support",
+      "key_abilities": [
+        "Martyr's Blessing: Take damage intended for an ally",
+        "Sacrificial Healing: Convert own health into healing for allies",
+        "Final Stand: Become invulnerable for a short time while at low health"
+      ]
+    }
+  ],
+  "racial_affinities": [
+    {
+      "race": "Human",
+      "bonuses": [
+        "Divine Favor maximum increased by 2",
+        "Aura range increased by 5 meters"
+      ]
+    },
+    {
+      "race": "Dwarf",
+      "bonuses": [
+        "Divine Smite damage increased by 15% against undead and demons",
+        "Resistance to corruption and evil magic increased by 20%"
+      ]
+    },
+    {
+      "race": "Elf",
+      "bonuses": [
+        "Mana regeneration increased by 20%",
+        "Divine spells cost 10% less mana"
+      ]
+    }
+  ],
+  "progression_path": {
+    "arch_classes": [
+      {
+        "id": "oathkeeper",
+        "name": "Oathkeeper",
+        "description": "Paladins who have deepened their divine connection through unwavering devotion to their sacred oaths.",
+        "level_requirement": 10,
+        "skill_requirements": [
+          "At least 5 points in any paladin oath skill tree",
+          "Completion of the 'Trial of Faith' quest"
+        ]
+      }
+    ]
+  },
+  "starting_equipment": [
+    "Longsword or warhammer",
+    "Shield emblazoned with holy symbol",
+    "Chain mail armor",
+    "Holy symbol pendant",
+    "Prayer book",
+    "3 healing potions"
+  ],
+  "lore": "Paladins are holy warriors who have sworn sacred oaths to uphold justice, righteousness, and the light of the divine. Through unwavering faith and rigorous training, they combine martial prowess with divine magic, becoming beacons of hope in a world often threatened by darkness. Each paladin serves a higher power—be it a specific deity, an abstract concept like justice, or the very essence of light itself—and draws strength from this connection. Their divine magic manifests primarily through their weapons, healing touch, and protective auras, allowing them to smite evil, protect the innocent, and inspire allies. The path of a paladin is one of strict discipline and moral code, requiring adherence to principles like honesty, courage, compassion, honor, and duty. Those who stray from their oaths risk losing their divine connection, though redemption is always possible through atonement. Paladins are respected and sometimes feared for their unwavering conviction, serving as both warriors and spiritual leaders in communities across the realm."
+}

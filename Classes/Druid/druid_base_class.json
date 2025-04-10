@@ -1,0 +1,112 @@
+{
+  "id": "druid_base_class",
+  "name": "Druid Base Class",
+  "description": "Base class information for the Druid",
+  "base_class": {
+    "id": "druid",
+    "name": "Druid",
+    "description": "Guardians of nature and spirit, Druids draw power from the land, commanding storms, healing allies, or transforming into beasts. Their mastery lies in the balance of creation and decay.",
+    "role": "support-control",
+    "primary_stats": ["wis", "int"],
+    "secondary_stats": ["con", "agi"],
+    "resources": ["mp", "form_energy"],
+    "resource_mechanics": {
+      "mp": {
+        "description": "Magical energy used for spellcasting",
+        "base_amount": 130,
+        "regeneration": "4% of max per 5 seconds",
+        "max_amount_formula": "130 + (WIS * 7) + (INT * 3) + (level * 12)"
+      },
+      "form_energy": {
+        "description": "Primal energy that allows shapeshifting and maintaining animal forms",
+        "base_amount": 100,
+        "regeneration": "None while in human form, drains while shapeshifted",
+        "drain_rate": "5 per second in animal form",
+        "max_amount_formula": "100 + (WIS * 4) + (level * 8)"
+      }
+    },
+    "armor_proficiency": ["cloth", "light", "shields (non-metal)"],
+    "weapon_proficiency": ["staves", "daggers", "spears", "sickles", "natural_weapons"],
+    "starting_equipment": {
+      "weapons": ["wooden_staff", "sickle"],
+      "armor": ["hide_armor"],
+      "accessories": ["herbalism_kit", "druidic_focus", "nature_journal"]
+    },
+    "class_mechanics": {
+      "shapeshifting": {
+        "description": "Transform into various animal forms with unique abilities",
+        "cost": "25 Form Energy to transform, continuous drain while active",
+        "limitations": "Cannot cast most spells while shapeshifted",
+        "scaling": "Form abilities scale with Wisdom and level"
+      },
+      "nature_attunement": {
+        "description": "Passive connection to natural surroundings",
+        "effect": "Provides awareness of nearby plants, animals, and environmental changes",
+        "bonus": "Increased effectiveness of nature spells in natural environments"
+      },
+      "wild_growth": {
+        "description": "Manipulate plants and natural terrain",
+        "cost": "Varies by effect (30-60 MP)",
+        "cooldown": "Varies by effect (15-45 seconds)",
+        "scaling": "Effect potency scales with Wisdom and Intelligence"
+      }
+    },
+    "skill_trees": [
+      {
+        "name": "Beast",
+        "focus": "Shapeshifting and physical combat",
+        "key_abilities": [
+          "Primal Rage: Increases damage and attack speed in animal forms",
+          "Adaptive Hide: Gains resistance to the most recent damage type received",
+          "Pack Leader: Summons animal companions to fight alongside"
+        ]
+      },
+      {
+        "name": "Storm",
+        "focus": "Elemental magic and weather control",
+        "key_abilities": [
+          "Hurricane: Creates a storm that damages and slows enemies",
+          "Lightning Strike: Powerful single-target damage with chain potential",
+          "Soothing Rains: Healing rain that restores allies over time"
+        ]
+      },
+      {
+        "name": "Growth",
+        "focus": "Healing and terrain manipulation",
+        "key_abilities": [
+          "Regrowth: Powerful healing over time with initial burst",
+          "Entangling Roots: Immobilizes enemies and damages them",
+          "Nature's Bounty: Creates healing fruits that allies can consume"
+        ]
+      }
+    ],
+    "racial_affinities": {
+      "elf": {
+        "bonus": "+15% to nature spell effectiveness",
+        "special_ability": "Ancient Bond: Form Energy drains 20% slower"
+      },
+      "tauren": {
+        "bonus": "+10% to physical damage in animal forms",
+        "special_ability": "Natural Affinity: Transformation cost reduced by 5 Form Energy"
+      },
+      "troll": {
+        "bonus": "+15% to healing spells",
+        "special_ability": "Regenerative Forms: Gain health regeneration in all forms"
+      }
+    },
+    "playstyle": "Druids are versatile casters who can adapt to multiple roles. They balance between casting powerful nature spells in humanoid form and transforming into animals for different combat styles. Resource management is crucial, especially Form Energy when shapeshifting frequently. The class rewards tactical flexibility and environmental awareness.",
+    "difficulty": "Hard - Requires understanding multiple forms and situational abilities",
+    "recommended_for": "Players who enjoy adaptable playstyles and nature themes",
+    "advancement_paths": [
+      {
+        "name": "Grovekeeper",
+        "description": "Guardians of plant life who command flora and manipulate natural growth",
+        "requirements": {
+          "level": 10,
+          "skills": ["Nature Magic 7", "Herbalism 6", "Survival 5"],
+          "quests": ["The Verdant Trial", "Communion with the Grove"]
+        }
+      }
+    ]
+  }
+}

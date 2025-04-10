@@ -1,0 +1,223 @@
+{
+  "id": "conqueror",
+  "name": "Conqueror",
+  "base_class": "warrior",
+  "arch_class": "battlemaster",
+  "alignment": "Evil",
+  "description": "Battlemasters who seek to dominate and subjugate through overwhelming force and intimidation, crushing opposition beneath their might and ruling through fear and absolute power.",
+  "level_requirement": 30,
+  "role": "Tank-Control",
+  "primary_stats": ["Strength", "Charisma"],
+  "secondary_stats": ["Constitution", "Intelligence"],
+  "resource_systems": [
+    {
+      "name": "Stamina",
+      "description": "Physical energy that powers combat abilities and domination techniques",
+      "max_value": "40 + (Constitution modifier × 8) + (level × 8)",
+      "regeneration": "5 per 6 seconds, +8 during combat, +10 when dominating opponents",
+      "mechanics": [
+        "Stamina points are spent to perform devastating combat maneuvers and intimidation techniques",
+        "Some abilities require maintaining focus, consuming stamina over time",
+        "Short rests restore a significant portion of maximum stamina",
+        "Depleted stamina causes penalties to intimidation abilities and dominating presence",
+        "Can be temporarily boosted through rage in critical situations",
+        "Successful domination of opponents restores a portion of stamina"
+      ]
+    },
+    {
+      "name": "Combat Focus",
+      "description": "Mental concentration and battlefield awareness that enhances combat effectiveness",
+      "max_value": "200",
+      "regeneration": "Builds during combat, decreases during periods of inaction",
+      "mechanics": [
+        "Increases by 20 when landing critical hits or successfully intimidating opponents",
+        "Increases by 15 per 10 seconds in active combat",
+        "Decreases by 20 when intimidation attempts fail or are resisted",
+        "Decreases by 15 per minute when out of combat",
+        "Can be spent to enhance intimidation abilities or execute devastating techniques",
+        "Higher Combat Focus increases critical damage and intimidation effectiveness"
+      ]
+    },
+    {
+      "name": "Command Authority",
+      "description": "Measure of dominating presence and ability to control others through fear",
+      "max_value": "150",
+      "regeneration": "Builds when successfully intimidating opponents or demonstrating overwhelming power",
+      "mechanics": [
+        "Increases by 15 when forcing enemies to submit through intimidation",
+        "Increases by 20 when demonstrating overwhelming power through devastating attacks",
+        "Decreases by 15 when intimidation attempts are resisted or countered",
+        "Decreases by 20 when personally suffering humiliation or defeat",
+        "Can be spent to issue powerful intimidation abilities that control enemies",
+        "Higher Command Authority increases the effectiveness of fear-based abilities"
+      ]
+    },
+    {
+      "name": "Dominance",
+      "description": "Measure of overwhelming power and ability to subjugate others through force",
+      "max_value": "100",
+      "regeneration": "Builds when successfully dominating opponents or crushing resistance",
+      "mechanics": [
+        "Increases by 15 when defeating powerful opponents in humiliating ways",
+        "Increases by 10 when forcing submission through overwhelming force",
+        "Decreases by 15 when domination attempts are successfully resisted",
+        "Decreases by 10 when forced to retreat or acknowledge another's superiority",
+        "Can be spent to execute devastating displays of power or break enemy will",
+        "At maximum Dominance, enter a state of terrifying battlefield supremacy"
+      ]
+    }
+  ],
+  "class_mechanics": [
+    {
+      "name": "Overwhelming Force",
+      "description": "Combat style that emphasizes devastating power and crushing opponents",
+      "effects": [
+        "Can perform attacks of such power they shatter defenses and break spirits",
+        "Able to channel rage and aggression into increased combat effectiveness",
+        "Can execute devastating finishing moves that serve as examples to others",
+        "Presence naturally intimidates lesser opponents through sheer power projection",
+        "Can break enemy morale through displays of overwhelming strength"
+      ]
+    },
+    {
+      "name": "Intimidating Presence",
+      "description": "Aura of fear and dominance that breaks enemy will to fight",
+      "effects": [
+        "Can project an aura of dread that weakens enemy resolve",
+        "Able to target specific enemies with focused intimidation",
+        "Can break enemy morale through terrifying displays of power",
+        "Presence causes hesitation and fear in opponents before combat begins",
+        "Can force weaker enemies to flee or surrender through sheer intimidation"
+      ]
+    },
+    {
+      "name": "Rule Through Fear",
+      "description": "Leadership style based on intimidation and absolute authority",
+      "effects": [
+        "Can command allies through fear and intimidation rather than respect",
+        "Able to punish disobedience in ways that ensure future compliance",
+        "Can establish dominance hierarchies that function through fear",
+        "Presence naturally establishes you at the top of any power structure",
+        "Can break resistance to authority through examples of terrible punishment"
+      ]
+    },
+    {
+      "name": "Ruthless Domination",
+      "description": "Willingness to use any means necessary to achieve dominance",
+      "effects": [
+        "Can identify and exploit any weakness without moral hesitation",
+        "Able to sacrifice pawns and lesser allies for personal advantage",
+        "Can use cruel and unusual tactics that break enemy spirit",
+        "Presence encourages similar ruthlessness in subordinates",
+        "Can achieve victory through methods others would find unconscionable"
+      ]
+    }
+  ],
+  "signature_abilities": [
+    {
+      "name": "Reign of Terror",
+      "description": "Project an overwhelming aura of dread that breaks enemy will to fight",
+      "mechanics": [
+        "For 3 minutes, emit an aura of terror that affects all enemies within 50 meters",
+        "Weaker enemies flee in terror or cower in submission",
+        "Stronger enemies suffer significant penalties to attack, defense, and morale",
+        "Each successful intimidation extends duration by 10 seconds",
+        "Can focus the terror effect on specific targets for enhanced effect",
+        "Costs 100 Stamina, 50 Command Authority, and 75 Dominance"
+      ],
+      "cooldown": "24 hours"
+    },
+    {
+      "name": "Crushing Dominance",
+      "description": "Demonstrate overwhelming power that forces submission and breaks resistance",
+      "mechanics": [
+        "For 5 minutes, all attacks have increased chance to stun, knockdown, or demoralize",
+        "Successful attacks against the same target stack increasing penalties",
+        "Can execute devastating finishing moves that serve as examples to other enemies",
+        "Defeated enemies may become temporary thralls who fight for you out of fear",
+        "Presence alone causes weaker enemies to hesitate before attacking",
+        "Costs 75 Stamina, 100 Command Authority, and 50 Dominance"
+      ],
+      "cooldown": "3 days"
+    },
+    {
+      "name": "Tyrant Ascendant",
+      "description": "Transform into the embodiment of domination and tyrannical power",
+      "mechanics": [
+        "For 3 minutes, transform into a terrifying embodiment of conquering might",
+        "Size increases by 50%, strength and charisma doubled",
+        "Each attack has a chance to break enemy will, forcing temporary submission",
+        "Voice carries supernatural authority that can command even resistant enemies",
+        "Presence alone forces weaker enemies to kneel in submission",
+        "Costs 50 Stamina, 75 Command Authority, and 100 Dominance"
+      ],
+      "cooldown": "7 days"
+    }
+  ],
+  "skill_trees": [
+    {
+      "name": "Path of Domination",
+      "focus": "Breaking enemy will and forcing submission",
+      "key_abilities": [
+        "Will Breaker: Shatter enemy resolve through overwhelming displays of power",
+        "Forced Submission: Compel enemies to serve you through fear and intimidation",
+        "Dominating Presence: Project an aura of such power that resistance seems futile"
+      ]
+    },
+    {
+      "name": "Path of Conquest",
+      "focus": "Overwhelming force and battlefield supremacy",
+      "key_abilities": [
+        "Unstoppable Advance: Break through enemy lines with devastating force",
+        "Conqueror's Might: Channel overwhelming power into attacks that shatter defenses",
+        "Victory at Any Cost: Achieve triumph through methods others find unconscionable"
+      ]
+    },
+    {
+      "name": "Path of Tyranny",
+      "focus": "Ruling through fear and absolute authority",
+      "key_abilities": [
+        "Iron Rule: Establish absolute authority that none dare challenge",
+        "Terrible Example: Use brutal punishment of some to ensure obedience from all",
+        "Fearful Respect: Command through a combination of fear and grudging respect"
+      ]
+    }
+  ],
+  "advancement_requirements": {
+    "level": 30,
+    "quests": ["The Iron Fist", "Dominance Through Fear", "Conquest Absolute"],
+    "skill_points": "At least 15 points in the Commander skill tree",
+    "alignment": "Must maintain Evil alignment for at least 10 levels",
+    "challenges": ["Break enemy will through intimidation and displays of power", "Establish dominance over a significant force through fear"]
+  },
+  "legendary_items": [
+    {
+      "name": "Tyrant's Mace",
+      "type": "Weapon",
+      "effects": [
+        "Strength increased by 5",
+        "Attacks have chance to shatter enemy will, forcing temporary submission",
+        "Grows in power with each enemy dominated, increasing intimidation effectiveness"
+      ]
+    },
+    {
+      "name": "Crown of Domination",
+      "type": "Head",
+      "effects": [
+        "Charisma increased by 5",
+        "Enhances intimidation abilities and fear-based control",
+        "Reign of Terror affects twice the normal radius"
+      ]
+    },
+    {
+      "name": "Conqueror's Plate",
+      "type": "Body",
+      "effects": [
+        "Dominance maximum increased by 50",
+        "Projects an aura of dread that weakens enemy resolve",
+        "Tyrant Ascendant cooldown reduced by 2 days"
+      ]
+    }
+  ],
+  "lore": "Conquerors represent the most dominating path a Battlemaster can take, having dedicated their martial prowess and leadership abilities to subjugating others through overwhelming force and fear. These masters of intimidation have transcended ordinary combat leadership to become terrifying figures of absolute authority, capable of breaking enemy will through sheer presence and forcing submission from all but the most resolute opponents. The path to becoming a Conqueror requires not only exceptional combat skills and tactical acumen but also a ruthless mindset that prioritizes dominance and control over all other considerations. Those who succeed find themselves capable of commanding through fear rather than respect, their very presence causing lesser warriors to question their resolve to fight. Conquerors typically serve as warlords of conquered territories, leaders of feared military forces, or personal enforcers for tyrannical rulers. Many establish their own domains through force, ruling with an iron fist and crushing any who dare to challenge their authority. Some even become legendary figures of such terrifying reputation that entire regions surrender rather than face their wrath. Their combination of overwhelming combat power, intimidating presence, and ruthless determination makes them feared opponents in any conflict, where their ability to break enemy morale before battle is even joined can prevent resistance from forming in the first place. Though they may lack the noble inspiration of Champions or the tactical precision of Warlords, the dominating presence and fear-inducing capabilities of Conquerors make them perhaps the most psychologically devastating battlefield commanders when submission through overwhelming force is the primary objective."
+}

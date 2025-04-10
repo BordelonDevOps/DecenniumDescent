@@ -1,0 +1,189 @@
+{
+  "alchemist_tools": {
+    "tool_id": "alchemist_tools",
+    "tool_name": "Alchemist's Supplies",
+    "description": "Tools used for creating potions, oils, and other alchemical substances",
+    "tool_category": "artisan",
+    "durability": 100,
+    "weight": 8,
+    "value": 50,
+    "crafting_capabilities": [
+      "potions",
+      "oils",
+      "acids",
+      "alchemical_items"
+    ],
+    "skill_requirements": {
+      "alchemy": 1
+    },
+    "material_requirements": [
+      {
+        "material_id": "common_glass",
+        "quantity": 3
+      },
+      {
+        "material_id": "common_metal",
+        "quantity": 2
+      }
+    ],
+    "crafting_stations": [
+      "laboratory",
+      "heat_source"
+    ],
+    "quality_levels": [
+      {
+        "quality_id": 1,
+        "quality_name": "Common",
+        "durability_modifier": 0,
+        "crafting_bonus": 0,
+        "value_modifier": 1
+      },
+      {
+        "quality_id": 2,
+        "quality_name": "Uncommon",
+        "durability_modifier": 10,
+        "crafting_bonus": 5,
+        "value_modifier": 2
+      },
+      {
+        "quality_id": 3,
+        "quality_name": "Rare",
+        "durability_modifier": 25,
+        "crafting_bonus": 10,
+        "value_modifier": 4
+      },
+      {
+        "quality_id": 4,
+        "quality_name": "Very Rare",
+        "durability_modifier": 50,
+        "crafting_bonus": 15,
+        "value_modifier": 8
+      },
+      {
+        "quality_id": 5,
+        "quality_name": "Legendary",
+        "durability_modifier": 100,
+        "crafting_bonus": 20,
+        "value_modifier": 16
+      }
+    ],
+    "racial_bonuses": {
+      "gnome": {
+        "crafting_bonus": 10,
+        "value_modifier": 1.5
+      },
+      "elf": {
+        "crafting_bonus": 5,
+        "quality_bonus": 10
+      }
+    },
+    "harvesting_capabilities": {
+      "monster_parts": [
+        "organ",
+        "essence",
+        "venom",
+        "blood"
+      ],
+      "efficiency_bonus": 15,
+      "quality_bonus": 10,
+      "applicable_monster_types": [
+        "beast",
+        "monstrosity",
+        "aberration",
+        "elemental"
+      ]
+    },
+    "example_items": [
+      "Moor's Head",
+      "Alembic",
+      "Retort",
+      "Mortar and Pestle",
+      "Stirring Rod",
+      "Flask"
+    ],
+    "crafting_restrictions": [
+      "Requires access to heat"
+    ],
+    "primary_crafting_stat": "INT",
+    "base_cost_per_day": 5,
+    "base_gp_progress": 5,
+    "mundane_items": [
+      "Acid",
+      "Alchemist's Fire",
+      "Antitoxin",
+      "Candle",
+      "Chalk",
+      "Ink",
+      "Oil",
+      "Perfume",
+      "Sealing Wax",
+      "Soap",
+      "Torch"
+    ],
+    "assisted_items": [
+      "Lamp",
+      "Bullseye Lantern",
+      "Hooded Lantern",
+      "Basic Poison"
+    ],
+    "magic_items": {
+      "types": [
+        "Potions",
+        "Alchemy-based Wondrous Items",
+        "Transmuted Metals"
+      ],
+      "examples": [
+        "Potion of Healing",
+        "Potion of Strength",
+        "Potion of Resistance",
+        "Oil of Sharpness",
+        "Dust of Disappearance",
+        "Sovereign Glue",
+        "Universal Solvent"
+      ]
+    },
+    "artwork": {
+      "enabled": true,
+      "description": "Creative but harmless potions with minor effects like visual gags or scented clouds.",
+      "examples": [
+        "Potion that changes voice pitch",
+        "Potion that causes glowing freckles",
+        "Potion that makes flatulence smell like cinnamon"
+      ],
+      "bonus": "None (restricted to flavor and roleplay effects)"
+    },
+    "adventuring_utility": [
+      "Add proficiency to potion identification checks",
+      "Add proficiency to attacks using alchemical items (e.g. acid, alchemist's fire)",
+      "Add proficiency when analyzing alchemical residues or substances"
+    ],
+    "special_properties": [
+      {
+        "type": "imbuing_bonus",
+        "bonus": 10,
+        "applies_to": "Magical consumables"
+      },
+      {
+        "type": "field_crafting_enabled",
+        "requires_condition": "Access to fire"
+      },
+      {
+        "type": "auto_unlock_synergy",
+        "unlocks": "Herbalism"
+      },
+      {
+        "type": "research_unlocked",
+        "based_on": "INT"
+      },
+      {
+        "type": "stat_bonus_per_tier",
+        "stats": [
+          "INT"
+        ],
+        "bonus_per_tier": 1,
+        "max_bonus": 5,
+        "applies_to": "Crafting, research, potion brewing, and identification"
+      }
+    ]
+  }
+}
