@@ -1,0 +1,371 @@
+/* Main styles for Party UI */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+}
+
+/* UI Panel Styles */
+.ui-panel {
+    position: absolute;
+    background-image: url('../img/wnd_bg_dark_rock.tga');
+    background-color: rgba(20, 20, 20, 0.85);
+    border: 2px solid #444;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    min-width: 150px;
+    min-height: 100px;
+    z-index: 10;
+}
+
+.panel-header {
+    background-image: url('../img/window_pieces01.tga');
+    background-color: #333;
+    border-bottom: 1px solid #555;
+    padding: 5px 10px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.panel-title {
+    color: #ffcc00;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.panel-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.panel-controls button {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 5px;
+}
+
+.panel-controls button:hover {
+    color: #fff;
+}
+
+.panel-content {
+    padding: 10px;
+    overflow: auto;
+}
+
+.resize-handle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: 0;
+    bottom: 0;
+    cursor: nwse-resize;
+    z-index: 10;
+}
+
+.resize-handle::after {
+    content: '';
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+}
+
+/* Panel Positions */
+#chat-log {
+    top: 20px;
+    left: 20px;
+    width: 300px;
+    height: 200px;
+}
+
+#mini-map {
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+#battle-menu {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 80px;
+}
+
+#enemy-display {
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 200px;
+}
+
+#party-panel {
+    bottom: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 200px;
+}
+
+/* Chat Log Styles */
+.log-filters {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 5px;
+    background-color: #333;
+    color: #ccc;
+    border: 1px solid #555;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background-color: #555;
+    color: #ffcc00;
+    border-color: #ffcc00;
+}
+
+.log-entries {
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    padding: 3px;
+    border-bottom: 1px solid #333;
+}
+
+.log-entry.combat {
+    color: #e74c3c;
+}
+
+.log-entry.speech {
+    color: #3498db;
+}
+
+.log-entry.system {
+    color: #2ecc71;
+}
+
+/* Mini Map Styles */
+.map-container {
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    border: 1px solid #444;
+}
+
+/* Battle Menu Styles */
+.battle-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.battle-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 8px 12px;
+    background-image: url('../img/window_pieces02.tga');
+    background-color: #333;
+    color: #ffcc00;
+    border: 1px solid #555;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+    transition: all 0.2s;
+}
+
+.battle-btn:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.battle-btn:active {
+    background-color: #222;
+    transform: translateY(1px);
+}
+
+/* Enemy Display Styles (Direct on screen) */
+#enemy-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+.enemy-character {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.enemy-image {
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(128, 0, 128, 0.5));
+}
+
+.enemy-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffcc00;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.enemy-stats {
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* Party Member Styles */
+.party-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    height: 100%;
+}
+
+.party-member {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(30, 30, 30, 0.7);
+    border: 1px solid #444;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.member-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffcc00;
+    text-shadow: 1px 1px 2px #000;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.member-portrait {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    background-color: #222;
+    border: 1px solid #555;
+    margin-bottom: 5px;
+}
+
+.member-portrait.warrior { background-color: #8e44ad; }
+.member-portrait.cleric { background-color: #2ecc71; }
+.member-portrait.wizard { background-color: #3498db; }
+.member-portrait.rogue { background-color: #e67e22; }
+.member-portrait.bard { background-color: #f1c40f; }
+.member-portrait.druid { background-color: #27ae60; }
+
+.member-stats {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Stat Bar Styles */
+.stat-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stat-label {
+    width: 40px;
+    font-size: 12px;
+    color: #ddd;
+}
+
+.stat-bar-container {
+    flex: 1;
+    height: 10px;
+    background-color: #222;
+    border: 1px solid #444;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.stat-bar {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.life-bar {
+    background-color: #e74c3c;
+}
+
+.mana-bar {
+    background-color: #3498db;
+}
+
+.melee-bar {
+    background-color: #e67e22;
+}
+
+.battle-timer {
+    background-color: #f1c40f; /* Yellow as requested */
+}
+
+.battle-timer.ready {
+    background-color: #2ecc71; /* Green when ready */
+}
+
+/* Dragging state */
+.ui-panel.dragging {
+    opacity: 0.8;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+}
+
+/* Resizing state */
+.ui-panel.resizing {
+    opacity: 0.8;
+}
+
+/* Minimized state */
+.ui-panel.minimized .panel-content {
+    display: none;
+}

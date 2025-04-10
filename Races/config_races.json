@@ -1,0 +1,997 @@
+{
+  "races_system": {
+    "system_id": "races",
+    "version": "1.0",
+    "races": [
+      {
+        "race_id": "human",
+        "race_name": "Human",
+        "description": "Adaptable and diverse, humans are capable of excelling in any path with determination and ingenuity.",
+        "racial_passive": {
+          "name": "Jack of All Trades",
+          "description": "+5% XP gain across all skills and +2% to all crafting success rates",
+          "effects": {
+            "xp_gain_bonus": 5,
+            "crafting_success_bonus": 2,
+            "skill_cap_bonus": 1
+          }
+        },
+        "racial_active": {
+          "name": "Inspiration Surge",
+          "description": "1/rest, restore 25% mana and stamina instantly and gain +10% crafting speed for 5 minutes",
+          "cooldown": "1/rest",
+          "effects": {
+            "mana_restore_percent": 25,
+            "stamina_restore_percent": 25,
+            "crafting_speed_bonus": 10,
+            "crafting_speed_duration": 300
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Humans learn about all monster types more quickly",
+            "monster_knowledge_gain": 10
+          },
+          "harvesting_bonus": {
+            "description": "No specific monster type bonuses, but +5% chance to harvest any material",
+            "general_harvest_chance_bonus": 5
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["all_tools"],
+          "crafting_bonus": {
+            "description": "Versatile crafters who can adapt to any crafting discipline",
+            "all_crafting_speed": 5,
+            "recipe_learning_bonus": 10
+          }
+        },
+        "starting_stats": {
+          "strength": 10,
+          "dexterity": 10,
+          "constitution": 10,
+          "intelligence": 10,
+          "wisdom": 10,
+          "charisma": 10
+        },
+        "recommended_classes": ["any"],
+        "zone_bonuses": {
+          "description": "Humans adapt quickly to any environment",
+          "all_zones": {
+            "resource_discovery": 5
+          }
+        }
+      },
+      {
+        "race_id": "elf",
+        "race_name": "Elf",
+        "description": "Elegant and long-lived, elves are known for their deep affinity with nature and arcane magic.",
+        "racial_passive": {
+          "name": "Arcane Precision",
+          "description": "+10% spell crit chance and +15% to herb gathering success rate",
+          "effects": {
+            "spell_crit_chance": 10,
+            "herb_gathering_bonus": 15,
+            "night_vision": true
+          }
+        },
+        "racial_active": {
+          "name": "Feystep",
+          "description": "1/combat, teleport a short distance ignoring terrain and gain +20% harvesting speed for 1 minute",
+          "cooldown": "1/combat",
+          "effects": {
+            "teleport_distance": 15,
+            "harvesting_speed_bonus": 20,
+            "harvesting_speed_duration": 60
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Elves have ancient knowledge of magical creatures",
+            "monster_types": ["elemental", "fey", "plant"],
+            "knowledge_bonus": 20
+          },
+          "harvesting_bonus": {
+            "description": "Elves excel at harvesting delicate materials",
+            "material_types": ["herb", "essence", "magical_component"],
+            "harvest_chance_bonus": 15,
+            "quality_tier_bonus": 1
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["alchemist_tools", "calligrapher_tools", "herbalism_tools", "weaver_tools"],
+          "crafting_bonus": {
+            "description": "Masters of alchemy and enchanting",
+            "alchemy_success_rate": 15,
+            "enchanting_power": 10,
+            "potion_duration": 20
+          }
+        },
+        "starting_stats": {
+          "strength": 8,
+          "dexterity": 12,
+          "constitution": 8,
+          "intelligence": 12,
+          "wisdom": 12,
+          "charisma": 10
+        },
+        "recommended_classes": ["mage", "ranger", "druid", "bard"],
+        "zone_bonuses": {
+          "description": "Elves thrive in natural environments",
+          "forest": {
+            "movement_speed": 10,
+            "stealth": 15,
+            "resource_discovery": 20
+          },
+          "swamp": {
+            "resource_discovery": 10
+          }
+        }
+      },
+      {
+        "race_id": "dwarf",
+        "race_name": "Dwarf",
+        "description": "Stalwart defenders and master craftsmen, dwarves endure and thrive underground or on the battlefield.",
+        "racial_passive": {
+          "name": "Stoneform",
+          "description": "+15% resistance to knockback and poison, +20% mining and smithing success rate",
+          "effects": {
+            "knockback_resistance": 15,
+            "poison_resistance": 15,
+            "mining_success_bonus": 20,
+            "smithing_success_bonus": 20
+          }
+        },
+        "racial_active": {
+          "name": "Iron Resolve",
+          "description": "1/rest, become immune to status effects for 2 turns and gain +25% crafting quality for metalwork for 5 minutes",
+          "cooldown": "1/rest",
+          "effects": {
+            "status_immunity_turns": 2,
+            "metalwork_quality_bonus": 25,
+            "metalwork_quality_duration": 300
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Dwarves have ancient knowledge of earth-based creatures",
+            "monster_types": ["elemental_earth", "construct", "giant"],
+            "knowledge_bonus": 20
+          },
+          "harvesting_bonus": {
+            "description": "Dwarves excel at extracting minerals and metals",
+            "material_types": ["ore", "gem", "stone", "metal"],
+            "harvest_chance_bonus": 20,
+            "quality_tier_bonus": 1
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["smith_tools", "mason_tools", "mining_tools", "jeweler_tools"],
+          "crafting_bonus": {
+            "description": "Unparalleled metalworkers and jewelers",
+            "smithing_quality": 20,
+            "armor_crafting_bonus": 15,
+            "gem_setting_bonus": 25,
+            "weapon_durability_bonus": 20
+          }
+        },
+        "starting_stats": {
+          "strength": 12,
+          "dexterity": 8,
+          "constitution": 14,
+          "intelligence": 10,
+          "wisdom": 10,
+          "charisma": 8
+        },
+        "recommended_classes": ["warrior", "paladin", "cleric", "artificer"],
+        "zone_bonuses": {
+          "description": "Dwarves excel in mountainous and underground environments",
+          "mountain": {
+            "mining_speed": 20,
+            "fall_damage_reduction": 50
+          },
+          "cave": {
+            "darkvision": true,
+            "mining_speed": 25,
+            "resource_discovery": 20
+          }
+        }
+      },
+      {
+        "race_id": "orc",
+        "race_name": "Orc",
+        "description": "Fierce warriors molded by conflict, orcs possess great strength and the will to dominate any battlefield.",
+        "racial_passive": {
+          "name": "Battleborn",
+          "description": "+10% damage when below 50% HP and +15% to butchering and skinning success rate",
+          "effects": {
+            "low_health_damage_bonus": 10,
+            "butchering_success_bonus": 15,
+            "skinning_success_bonus": 15
+          }
+        },
+        "racial_active": {
+          "name": "Blood Fury",
+          "description": "1/combat, enter rage state for 3 turns, gaining +20% attack speed and +25% harvesting speed",
+          "cooldown": "1/combat",
+          "effects": {
+            "rage_duration_turns": 3,
+            "attack_speed_bonus": 20,
+            "harvesting_speed_bonus": 25
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Orcs understand beasts and predators instinctively",
+            "monster_types": ["beast", "monstrosity", "giant"],
+            "knowledge_bonus": 15
+          },
+          "harvesting_bonus": {
+            "description": "Orcs excel at harvesting from large creatures",
+            "material_types": ["hide", "bone", "meat", "trophy"],
+            "harvest_chance_bonus": 20,
+            "quantity_bonus": 1
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["butcher_tools", "leatherworker_tools", "bone_harvesting_tools"],
+          "crafting_bonus": {
+            "description": "Skilled at creating armor and weapons from hunted creatures",
+            "leather_armor_quality": 15,
+            "bone_weapon_damage": 20,
+            "trophy_value": 25
+          }
+        },
+        "starting_stats": {
+          "strength": 14,
+          "dexterity": 10,
+          "constitution": 12,
+          "intelligence": 8,
+          "wisdom": 8,
+          "charisma": 8
+        },
+        "recommended_classes": ["warrior", "barbarian", "hunter", "shaman"],
+        "zone_bonuses": {
+          "description": "Orcs thrive in harsh wilderness",
+          "plains": {
+            "movement_speed": 10,
+            "hunting_success": 15
+          },
+          "mountain": {
+            "stamina_regeneration": 10
+          }
+        }
+      },
+      {
+        "race_id": "gnome",
+        "race_name": "Gnome",
+        "description": "Inventive and eccentric, gnomes blend magic and mechanical genius in unpredictable ways.",
+        "racial_passive": {
+          "name": "Tinkerer's Wit",
+          "description": "+10% trap detection and device effectiveness, +20% to engineering and alchemy crafting",
+          "effects": {
+            "trap_detection": 10,
+            "device_effectiveness": 10,
+            "engineering_success_bonus": 20,
+            "alchemy_success_bonus": 20
+          }
+        },
+        "racial_active": {
+          "name": "Gadget Blitz",
+          "description": "1/combat, instantly recharge traps or turrets and gain +30% crafting speed for gadgets for 5 minutes",
+          "cooldown": "1/combat",
+          "effects": {
+            "trap_recharge": true,
+            "turret_recharge": true,
+            "gadget_crafting_speed": 30,
+            "gadget_crafting_duration": 300
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Gnomes are curious about mechanical and magical creatures",
+            "monster_types": ["construct", "elemental", "aberration"],
+            "knowledge_bonus": 20
+          },
+          "harvesting_bonus": {
+            "description": "Gnomes excel at salvaging complex components",
+            "material_types": ["mechanical_part", "essence", "crystal", "volatile_material"],
+            "harvest_chance_bonus": 20,
+            "quality_tier_bonus": 1
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["tinker_tools", "alchemist_tools", "jeweler_tools", "glassblower_tools"],
+          "crafting_bonus": {
+            "description": "Brilliant inventors and alchemists",
+            "gadget_effectiveness": 25,
+            "potion_potency": 15,
+            "gem_cutting_precision": 20
+          }
+        },
+        "starting_stats": {
+          "strength": 6,
+          "dexterity": 12,
+          "constitution": 8,
+          "intelligence": 14,
+          "wisdom": 10,
+          "charisma": 10
+        },
+        "recommended_classes": ["artificer", "alchemist", "mage", "rogue"],
+        "zone_bonuses": {
+          "description": "Gnomes adapt well to urban and workshop environments",
+          "urban": {
+            "trap_detection": 20,
+            "crafting_speed": 10
+          },
+          "workshop": {
+            "invention_discovery": 25,
+            "crafting_quality": 15
+          }
+        }
+      },
+      {
+        "race_id": "goblin",
+        "race_name": "Goblin",
+        "description": "Quick-witted and cunning, goblins are scavengers and opportunists with an explosive touch.",
+        "racial_passive": {
+          "name": "Scrap Instinct",
+          "description": "+15% bonus loot from destructibles and +20% to salvaging and recycling materials",
+          "effects": {
+            "destructible_loot_bonus": 15,
+            "salvaging_bonus": 20,
+            "recycling_efficiency": 20
+          }
+        },
+        "racial_active": {
+          "name": "Boom Bounce",
+          "description": "1/combat, drop a smoke bomb and evade the next hit, gain +25% movement speed for 30 seconds",
+          "cooldown": "1/combat",
+          "effects": {
+            "evade_next_hit": true,
+            "smoke_bomb_radius": 5,
+            "movement_speed_bonus": 25,
+            "movement_speed_duration": 30
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Goblins understand how to exploit weaknesses in all creatures",
+            "all_monsters": {
+              "weak_point_detection": 10
+            }
+          },
+          "harvesting_bonus": {
+            "description": "Goblins can salvage materials others would overlook",
+            "all_materials": {
+              "salvage_chance": 15
+            },
+            "junk_materials": {
+              "upcycling_chance": 25
+            }
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["tinker_tools", "alchemist_tools", "specialized_containment"],
+          "crafting_bonus": {
+            "description": "Masters of improvisation and explosive crafting",
+            "explosive_potency": 25,
+            "trap_damage": 20,
+            "improvised_crafting_speed": 30
+          }
+        },
+        "starting_stats": {
+          "strength": 8,
+          "dexterity": 14,
+          "constitution": 8,
+          "intelligence": 12,
+          "wisdom": 8,
+          "charisma": 8
+        },
+        "recommended_classes": ["rogue", "artificer", "alchemist", "tinker"],
+        "zone_bonuses": {
+          "description": "Goblins thrive in chaotic environments",
+          "junkyard": {
+            "scavenging_bonus": 30,
+            "trap_detection": 20
+          },
+          "ruins": {
+            "stealth": 15,
+            "treasure_finding": 20
+          }
+        }
+      },
+      {
+        "race_id": "drow",
+        "race_name": "Drow",
+        "description": "Dark elves from deep underground, Drow wield shadow and poison with dangerous grace.",
+        "racial_passive": {
+          "name": "Shadowborn",
+          "description": "+10% stealth effectiveness and +20% to poison crafting and extraction",
+          "effects": {
+            "stealth_effectiveness": 10,
+            "poison_crafting_bonus": 20,
+            "poison_extraction_bonus": 20,
+            "darkvision": true
+          }
+        },
+        "racial_active": {
+          "name": "Web Snare",
+          "description": "1/combat, trap a target in shadowy webs and gain +25% critical strike chance for 3 turns",
+          "cooldown": "1/combat",
+          "effects": {
+            "web_snare_duration": 2,
+            "critical_strike_bonus": 25,
+            "critical_strike_duration": 3
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Drow have ancient knowledge of underground creatures",
+            "monster_types": ["aberration", "undead", "insect"],
+            "knowledge_bonus": 20
+          },
+          "harvesting_bonus": {
+            "description": "Drow excel at extracting poisons and venoms",
+            "material_types": ["poison", "venom", "toxin", "shadow_essence"],
+            "harvest_chance_bonus": 25,
+            "quality_tier_bonus": 1
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["poisoner_tools", "alchemist_tools", "weaver_tools"],
+          "crafting_bonus": {
+            "description": "Masters of poison and shadow magic",
+            "poison_potency": 25,
+            "shadow_enchantment": 20,
+            "stealth_gear_quality": 15
+          }
+        },
+        "starting_stats": {
+          "strength": 8,
+          "dexterity": 14,
+          "constitution": 8,
+          "intelligence": 12,
+          "wisdom": 10,
+          "charisma": 10
+        },
+        "recommended_classes": ["rogue", "warlock", "assassin", "dark priest"],
+        "zone_bonuses": {
+          "description": "Drow excel in dark, underground environments",
+          "cave": {
+            "movement_speed": 15,
+            "stealth": 20,
+            "darkvision_range": 30
+          },
+          "night": {
+            "stealth": 15,
+            "attack_bonus": 10
+          }
+        }
+      },
+      {
+        "race_id": "feykin",
+        "race_name": "Feykin",
+        "description": "Mystic descendants of otherworldly spirits, Feykin possess magical talents and whimsical insight.",
+        "racial_passive": {
+          "name": "Charm Resist",
+          "description": "+20% resistance to mental effects and +15% to enchanting and illusion magic",
+          "effects": {
+            "mental_effect_resistance": 20,
+            "enchanting_bonus": 15,
+            "illusion_magic_bonus": 15
+          }
+        },
+        "racial_active": {
+          "name": "Glamour Veil",
+          "description": "1/rest, become invisible to enemies for 2 turns and gain +30% magic harvesting efficiency for 5 minutes",
+          "cooldown": "1/rest",
+          "effects": {
+            "invisibility_turns": 2,
+            "magic_harvesting_bonus": 30,
+            "magic_harvesting_duration": 300
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Feykin intuitively understand magical creatures",
+            "monster_types": ["fey", "elemental", "celestial", "fiend"],
+            "knowledge_bonus": 25
+          },
+          "harvesting_bonus": {
+            "description": "Feykin excel at harvesting magical essences",
+            "material_types": ["magical_essence", "fey_dust", "ethereal_component", "dream_fragment"],
+            "harvest_chance_bonus": 25,
+            "quality_tier_bonus": 2
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["calligrapher_tools", "alchemist_tools", "essence_extraction_tools"],
+          "crafting_bonus": {
+            "description": "Natural enchanters and illusionists",
+            "enchantment_power": 25,
+            "illusion_duration": 30,
+            "magical_item_quality": 20
+          }
+        },
+        "starting_stats": {
+          "strength": 6,
+          "dexterity": 12,
+          "constitution": 8,
+          "intelligence": 12,
+          "wisdom": 12,
+          "charisma": 14
+        },
+        "recommended_classes": ["bard", "enchanter", "illusionist", "druid"],
+        "zone_bonuses": {
+          "description": "Feykin thrive in magical and natural environments",
+          "enchanted_forest": {
+            "magic_regeneration": 25,
+            "stealth": 15,
+            "magical_discovery": 30
+          },
+          "magical_nexus": {
+            "spell_power": 20,
+            "magical_crafting": 25
+          }
+        }
+      },
+      {
+        "race_id": "drakari",
+        "race_name": "Drakari",
+        "description": "Descended from ancient dragons, Drakari carry elemental power in their blood.",
+        "racial_passive": {
+          "name": "Elemental Skin",
+          "description": "+5% resistance to all elemental damage and +20% to elemental crafting and harvesting",
+          "effects": {
+            "elemental_resistance": 5,
+            "elemental_crafting_bonus": 20,
+            "elemental_harvesting_bonus": 20
+          }
+        },
+        "racial_active": {
+          "name": "Draconic Roar",
+          "description": "1/rest, deal AoE damage and lower enemy defense, gain +25% elemental damage for 3 turns",
+          "cooldown": "1/rest",
+          "effects": {
+            "aoe_damage": "2d6",
+            "defense_reduction": 10,
+            "elemental_damage_bonus": 25,
+            "elemental_damage_duration": 3
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Drakari have innate knowledge of draconic creatures",
+            "monster_types": ["dragon", "drake", "wyvern", "elemental"],
+            "knowledge_bonus": 30
+          },
+          "harvesting_bonus": {
+            "description": "Drakari excel at harvesting dragon materials",
+            "material_types": ["dragon_scale", "dragon_bone", "elemental_core", "dragon_blood"],
+            "harvest_chance_bonus": 30,
+            "quality_tier_bonus": 2
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["smith_tools", "alchemist_tools", "specialized_containment"],
+          "crafting_bonus": {
+            "description": "Masters of elemental infusion and draconic crafting",
+            "elemental_infusion_power": 30,
+            "draconic_item_quality": 25,
+            "scale_armor_durability": 20
+          }
+        },
+        "starting_stats": {
+          "strength": 12,
+          "dexterity": 10,
+          "constitution": 12,
+          "intelligence": 10,
+          "wisdom": 10,
+          "charisma": 10
+        },
+        "recommended_classes": ["elementalist", "dragon knight", "sorcerer", "paladin"],
+        "zone_bonuses": {
+          "description": "Drakari thrive in elemental and mountainous environments",
+          "volcanic": {
+            "fire_resistance": 25,
+            "heat_vision": true
+          },
+          "mountain_peak": {
+            "cold_resistance": 20,
+            "gliding_ability": true
+          }
+        }
+      },
+      {
+        "race_id": "troll",
+        "race_name": "Troll",
+        "description": "Regenerative brutes of the wilds, trolls can survive wounds that would kill most.",
+        "racial_passive": {
+          "name": "Regeneration",
+          "description": "Recover 5% HP every round out of combat and +25% to harvesting regenerative materials",
+          "effects": {
+            "health_regeneration": 5,
+            "regenerative_harvesting_bonus": 25
+          }
+        },
+        "racial_active": {
+          "name": "Flesh Rebind",
+          "description": "1/combat, instantly heal 20% HP and gain +30% harvesting speed for 2 minutes",
+          "cooldown": "1/combat",
+          "effects": {
+            "instant_heal_percent": 20,
+            "harvesting_speed_bonus": 30,
+            "harvesting_speed_duration": 120
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Trolls understand regenerative creatures instinctively",
+            "monster_types": ["troll", "regenerative", "aberration"],
+            "knowledge_bonus": 25
+          },
+          "harvesting_bonus": {
+            "description": "Trolls excel at harvesting regenerative materials",
+            "material_types": ["regenerative_tissue", "troll_blood", "healing_organ", "vitality_essence"],
+            "harvest_chance_bonus": 30,
+            "quantity_bonus": 2
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["butcher_tools", "alchemist_tools", "bone_harvesting_tools"],
+          "crafting_bonus": {
+            "description": "Natural healers who can create powerful regenerative items",
+            "healing_potion_potency": 30,
+            "regenerative_item_duration": 25,
+            "vitality_enchantment": 20
+          }
+        },
+        "starting_stats": {
+          "strength": 14,
+          "dexterity": 8,
+          "constitution": 16,
+          "intelligence": 6,
+          "wisdom": 8,
+          "charisma": 6
+        },
+        "recommended_classes": ["berserker", "shaman", "blood mage", "tank"],
+        "zone_bonuses": {
+          "description": "Trolls thrive in swampy and wild environments",
+          "swamp": {
+            "health_regeneration": 10,
+            "poison_resistance": 20
+          },
+          "wilderness": {
+            "stamina_regeneration": 15,
+            "foraging_bonus": 20
+          }
+        }
+      },
+      {
+        "race_id": "ogre",
+        "race_name": "Ogre",
+        "description": "Towering and immensely strong, ogres favor overwhelming force over finesse.",
+        "racial_passive": {
+          "name": "Massive Frame",
+          "description": "+2 tile melee reach and +30% to harvesting large materials",
+          "effects": {
+            "melee_reach_bonus": 2,
+            "large_material_harvesting_bonus": 30,
+            "carrying_capacity_bonus": 50
+          }
+        },
+        "racial_active": {
+          "name": "Ground Slam",
+          "description": "1/combat, knock down all enemies in melee range and gain +40% strength for harvesting for 1 minute",
+          "cooldown": "1/combat",
+          "effects": {
+            "knockdown_radius": 3,
+            "harvesting_strength_bonus": 40,
+            "harvesting_strength_duration": 60
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Ogres understand large creatures instinctively",
+            "monster_types": ["giant", "large_beast", "golem"],
+            "knowledge_bonus": 20
+          },
+          "harvesting_bonus": {
+            "description": "Ogres excel at harvesting from massive creatures",
+            "material_types": ["giant_bone", "massive_hide", "colossal_organ", "huge_trophy"],
+            "harvest_chance_bonus": 25,
+            "quantity_bonus": 3
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["smith_tools", "butcher_tools", "mason_tools"],
+          "crafting_bonus": {
+            "description": "Brute force crafters who excel with large items",
+            "large_weapon_damage": 30,
+            "heavy_armor_protection": 25,
+            "massive_structure_durability": 40
+          }
+        },
+        "starting_stats": {
+          "strength": 16,
+          "dexterity": 6,
+          "constitution": 14,
+          "intelligence": 6,
+          "wisdom": 8,
+          "charisma": 6
+        },
+        "recommended_classes": ["warrior", "berserker", "juggernaut", "demolisher"],
+        "zone_bonuses": {
+          "description": "Ogres thrive in rugged terrain",
+          "hills": {
+            "movement_speed": 10,
+            "throwing_distance": 30
+          },
+          "battlefield": {
+            "intimidation": 25,
+            "damage_reduction": 10
+          }
+        }
+      },
+      {
+        "race_id": "amphibian",
+        "race_name": "Amphibian",
+        "description": "Semi-aquatic humanoids of wetlands and rainforests, Amphibians blend stealth with survival.",
+        "racial_passive": {
+          "name": "Slippery Skin",
+          "description": "+10% dodge chance in rain or swamp zones and +20% to aquatic harvesting",
+          "effects": {
+            "wet_environment_dodge": 10,
+            "aquatic_harvesting_bonus": 20,
+            "swimming_speed": 50
+          }
+        },
+        "racial_active": {
+          "name": "Tongue Lash",
+          "description": "1/combat, pull small enemy or item to self and gain +25% harvesting range for 2 minutes",
+          "cooldown": "1/combat",
+          "effects": {
+            "pull_range": 10,
+            "harvesting_range_bonus": 25,
+            "harvesting_range_duration": 120
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Amphibians understand aquatic and swamp creatures",
+            "monster_types": ["aquatic", "amphibian", "reptile", "insect"],
+            "knowledge_bonus": 25
+          },
+          "harvesting_bonus": {
+            "description": "Amphibians excel at harvesting aquatic materials",
+            "material_types": ["aquatic_plant", "fish_scale", "water_essence", "swamp_material"],
+            "harvest_chance_bonus": 25,
+            "quality_tier_bonus": 1
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["alchemist_tools", "poisoner_tools", "herbalism_tools"],
+          "crafting_bonus": {
+            "description": "Natural alchemists who excel with water and poison",
+            "water_potion_potency": 25,
+            "poison_duration": 20,
+            "waterproof_item_quality": 30
+          }
+        },
+        "starting_stats": {
+          "strength": 10,
+          "dexterity": 12,
+          "constitution": 12,
+          "intelligence": 10,
+          "wisdom": 10,
+          "charisma": 8
+        },
+        "recommended_classes": ["rogue", "alchemist", "shaman", "hunter"],
+        "zone_bonuses": {
+          "description": "Amphibians thrive in wet environments",
+          "swamp": {
+            "movement_speed": 20,
+            "stealth": 15,
+            "poison_resistance": 25
+          },
+          "water": {
+            "swimming_speed": 50,
+            "breath_holding": 300,
+            "underwater_vision": true
+          }
+        }
+      },
+      {
+        "race_id": "mycelian",
+        "race_name": "Mycelian",
+        "description": "Fungal hive-beings who feed on decay, Mycelians share strength through a hidden network.",
+        "racial_passive": {
+          "name": "Spore Communion",
+          "description": "+2% HP regen when near other Mycelians and +25% to fungal harvesting",
+          "effects": {
+            "group_health_regeneration": 2,
+            "fungal_harvesting_bonus": 25,
+            "decay_resistance": 50
+          }
+        },
+        "racial_active": {
+          "name": "Blight Spores",
+          "description": "1/combat, inflict disease on enemies in area and gain +30% decay harvesting for 3 minutes",
+          "cooldown": "1/combat",
+          "effects": {
+            "disease_radius": 8,
+            "disease_damage": "2d4",
+            "decay_harvesting_bonus": 30,
+            "decay_harvesting_duration": 180
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Mycelians understand fungal and plant creatures",
+            "monster_types": ["plant", "fungus", "undead", "ooze"],
+            "knowledge_bonus": 30
+          },
+          "harvesting_bonus": {
+            "description": "Mycelians excel at harvesting fungal and decay materials",
+            "material_types": ["fungus", "spore", "decay_matter", "plant_fiber"],
+            "harvest_chance_bonus": 30,
+            "quality_tier_bonus": 2
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["alchemist_tools", "herbalism_tools", "specialized_containment"],
+          "crafting_bonus": {
+            "description": "Masters of decay and transformation",
+            "poison_potency": 25,
+            "disease_duration": 30,
+            "transformation_potion_quality": 25
+          }
+        },
+        "starting_stats": {
+          "strength": 8,
+          "dexterity": 10,
+          "constitution": 12,
+          "intelligence": 12,
+          "wisdom": 12,
+          "charisma": 6
+        },
+        "recommended_classes": ["alchemist", "plague doctor", "druid", "necromancer"],
+        "zone_bonuses": {
+          "description": "Mycelians thrive in dark, damp environments",
+          "underground": {
+            "darkvision": true,
+            "fungal_detection": 30
+          },
+          "decaying_forest": {
+            "health_regeneration": 15,
+            "poison_immunity": true
+          }
+        }
+      },
+      {
+        "race_id": "undead",
+        "race_name": "Undead",
+        "description": "Beings who have transcended mortal death, fueled by necrotic energies. A path few can return from.",
+        "subraces": [
+          {
+            "subrace_id": "lichborn",
+            "subrace_name": "Lichborn",
+            "description": "Powerful undead who have preserved their intelligence and magical abilities through necromantic rituals.",
+            "traits": [
+              "No healing from normal sources",
+              "Immune to poison and fear",
+              "Grave Recall: auto-revive 1/day"
+            ],
+            "stat_bonus": {"int": 2, "wis": 1},
+            "preferred_classes": ["necromancer", "occultist", "mirrorborn"]
+          }
+        ],
+        "racial_passive": {
+          "name": "Undying Will",
+          "description": "Immune to fear and morale debuffs, +30% to harvesting necrotic materials",
+          "effects": {
+            "fear_immunity": true,
+            "morale_debuff_immunity": true,
+            "necrotic_harvesting_bonus": 30,
+            "undead_detection": 20
+          }
+        },
+        "racial_active": {
+          "name": "Necrotic Pulse",
+          "description": "1/rest, emit pulse that deals damage and weakens healing on enemies, gain +40% necrotic crafting for 5 minutes",
+          "cooldown": "1/rest",
+          "effects": {
+            "necrotic_damage": "3d6",
+            "healing_reduction": 50,
+            "necrotic_crafting_bonus": 40,
+            "necrotic_crafting_duration": 300
+          }
+        },
+        "bestiary_integration": {
+          "knowledge_bonus": {
+            "description": "Undead have innate knowledge of death and undeath",
+            "monster_types": ["undead", "spirit", "necromantic", "shadow"],
+            "knowledge_bonus": 35
+          },
+          "harvesting_bonus": {
+            "description": "Undead excel at harvesting necrotic materials",
+            "material_types": ["necrotic_essence", "spirit_remnant", "bone", "death_energy"],
+            "harvest_chance_bonus": 35,
+            "quality_tier_bonus": 2
+          }
+        },
+        "crafting_integration": {
+          "tool_affinity": ["bone_harvesting_tools", "essence_extraction_tools", "calligrapher_tools"],
+          "crafting_bonus": {
+            "description": "Masters of necromancy and soul manipulation",
+            "necromantic_item_power": 35,
+            "soul_binding_strength": 30,
+            "undead_minion_quality": 25
+          }
+        },
+        "starting_stats": {
+          "strength": 10,
+          "dexterity": 8,
+          "constitution": 10,
+          "intelligence": 14,
+          "wisdom": 12,
+          "charisma": 6
+        },
+        "recommended_classes": ["necromancer", "death knight", "shadow priest", "warlock"],
+        "zone_bonuses": {
+          "description": "Undead thrive in places of death",
+          "graveyard": {
+            "necrotic_power": 30,
+            "undead_command": 25
+          },
+          "battlefield": {
+            "soul_harvesting": 20,
+            "fear_aura": 15
+          }
+        },
+        "unlock": "Unlocked by choosing to fully embrace undeath after reaching the Lich hero class.",
+        "notes": [
+          "Player choice at Lich unlock: transform race to Undead (Lichborn) OR unlock 3 unique undead mercenaries",
+          "Undead Mercenaries: Deathmage (caster), Boneblade (warrior), Gravecrawler (thief) — auto-level with player, not class-based"
+        ]
+      }
+    ],
+    "party_composition_bonuses": {
+      "diverse_knowledge": {
+        "description": "Having diverse races in your party improves monster knowledge",
+        "requirement": "At least 3 different races in party",
+        "effect": {
+          "all_monster_knowledge": 10,
+          "rare_material_discovery": 15
+        }
+      },
+      "crafting_circle": {
+        "description": "Different racial crafting specialties complement each other",
+        "requirement": "At least 3 different races with different crafting bonuses",
+        "effect": {
+          "all_crafting_quality": 10,
+          "crafting_speed": 15,
+          "unique_recipe_chance": 10
+        }
+      },
+      "harvesting_team": {
+        "description": "Different racial harvesting specialties allow for more efficient gathering",
+        "requirement": "At least 3 different races with different harvesting bonuses",
+        "effect": {
+          "all_harvesting_chance": 10,
+          "material_quantity": 1,
+          "quality_tier_chance": 15
+        }
+      },
+      "elemental_balance": {
+        "description": "Having races with different elemental affinities creates harmony",
+        "requirement": "At least one race each with fire, water, earth, and air affinity",
+        "effect": {
+          "elemental_resistance": 10,
+          "elemental_damage": 15,
+          "environmental_adaptation": 20
+        }
+      }
+    }
+  }
+}

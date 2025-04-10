@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decennium's Descent - Medieval Fantasy UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Metamorphous&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/medieval_theme.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Chat Log Panel -->
+        <div id="chat-log" class="ui-panel">
+            <div class="panel-header">
+                <div class="panel-title">Chronicles</div>
+                <div class="panel-controls">
+                    <button class="minimize-btn">_</button>
+                </div>
+            </div>
+            <div class="panel-content">
+                <div class="log-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="combat">Combat</button>
+                    <button class="filter-btn" data-filter="speech">Speech</button>
+                    <button class="filter-btn" data-filter="system">System</button>
+                </div>
+                <div class="log-entries">
+                    <div class="log-entry system">You enter the ancient crypt, torches flickering on the walls.</div>
+                    <div class="log-entry system">A skeletal lich materializes before you!</div>
+                    <div class="log-entry combat">Warrior strikes the Lich with Blade of Valor for 15 damage.</div>
+                    <div class="log-entry combat">Cleric channels divine light, healing Warrior for 12 points.</div>
+                    <div class="log-entry combat">Lich casts Necrotic Bolt at Warrior for 8 damage.</div>
+                    <div class="log-entry speech">Warrior: "Stand fast, companions! This foe is formidable!"</div>
+                    <div class="log-entry speech">Cleric: "The light shall protect us from this darkness."</div>
+                    <div class="log-entry system">A mysterious rune glows on the floor nearby...</div>
+                </div>
+            </div>
+            <div class="resize-handle"></div>
+        </div>
+
+        <!-- Mini Map Panel -->
+        <div id="mini-map" class="ui-panel">
+            <div class="panel-header">
+                <div class="panel-title">Cartography</div>
+                <div class="panel-controls">
+                    <button class="minimize-btn">_</button>
+                </div>
+            </div>
+            <div class="panel-content">
+                <div class="map-container">
+                    <!-- Map content will be added here -->
+                </div>
+            </div>
+            <div class="resize-handle"></div>
+        </div>
+
+        <!-- Battle Menu Panel -->
+        <div id="battle-menu" class="ui-panel">
+            <div class="panel-header">
+                <div class="panel-title">Actions</div>
+                <div class="panel-controls">
+                    <button class="minimize-btn">_</button>
+                </div>
+            </div>
+            <div class="panel-content">
+                <div class="battle-buttons">
+                    <button id="fight-btn" class="battle-btn">Attack</button>
+                    <button id="magic-btn" class="battle-btn">Spell</button>
+                    <button id="ability-btn" class="battle-btn">Ability</button>
+                    <button id="item-btn" class="battle-btn">Item</button>
+                    <button id="search-btn" class="battle-btn">Search</button>
+                    <button id="flee-btn" class="battle-btn">Retreat</button>
+                </div>
+            </div>
+            <div class="resize-handle"></div>
+        </div>
+
+        <!-- Directional Control Pad -->
+        <div id="direction-pad">
+            <div class="d-pad">
+                <button class="d-pad-button d-pad-up">▲</button>
+                <button class="d-pad-button d-pad-right">▶</button>
+                <button class="d-pad-button d-pad-down">▼</button>
+                <button class="d-pad-button d-pad-left">◀</button>
+                <button class="d-pad-button d-pad-center">●</button>
+            </div>
+        </div>
+
+        <!-- Enemy Display (Direct on screen) -->
+        <div id="enemy-area">
+            <div class="enemy-character">
+                <img src="img/lich.png" alt="Lich" class="enemy-image">
+                <div class="enemy-name">Ancient Lich</div>
+                <div class="enemy-stats">
+                    <div class="stat-container">
+                        <div class="stat-label">Life</div>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar life-bar" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div class="stat-container">
+                        <div class="stat-label">Battle</div>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar battle-timer" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Party Members Panel -->
+        <div id="party-panel" class="ui-panel">
+            <div class="panel-header">
+                <div class="panel-title">Adventuring Party</div>
+                <div class="panel-controls">
+                    <button class="minimize-btn">_</button>
+                </div>
+            </div>
+            <div class="panel-content">
+                <div class="party-container">
+                    <!-- Party Member 1 -->
+                    <div class="party-member">
+                        <div class="member-name">Sir Gawain</div>
+                        <div class="member-portrait warrior"></div>
+                        <div class="member-stats">
+                            <div class="stat-container">
+                                <div class="stat-label">Life</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar life-bar" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Mana</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar mana-bar" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Vigor</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar melee-bar" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Battle</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar battle-timer" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Party Member 2 -->
+                    <div class="party-member">
+                        <div class="member-name">Lady Elara</div>
+                        <div class="member-portrait cleric"></div>
+                        <div class="member-stats">
+                            <div class="stat-container">
+                                <div class="stat-label">Life</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar life-bar" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Mana</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar mana-bar" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Vigor</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar melee-bar" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Battle</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar battle-timer" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Party Member 3 -->
+                    <div class="party-member">
+                        <div class="member-name">Magus Thorne</div>
+                        <div class="member-portrait wizard"></div>
+                        <div class="member-stats">
+                            <div class="stat-container">
+                                <div class="stat-label">Life</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar life-bar" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Mana</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar mana-bar" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Vigor</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar melee-bar" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Battle</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar battle-timer" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Party Member 4 -->
+                    <div class="party-member">
+                        <div class="member-name">Vex Shadowstep</div>
+                        <div class="member-portrait rogue"></div>
+                        <div class="member-stats">
+                            <div class="stat-container">
+                                <div class="stat-label">Life</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar life-bar" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Mana</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar mana-bar" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Vigor</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar melee-bar" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Battle</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar battle-timer" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Party Member 5 -->
+                    <div class="party-member">
+                        <div class="member-name">Lyric Songweaver</div>
+                        <div class="member-portrait bard"></div>
+                        <div class="member-stats">
+                            <div class="stat-container">
+                                <div class="stat-label">Life</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar life-bar" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Mana</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar mana-bar" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Vigor</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar melee-bar" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Battle</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar battle-timer" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Party Member 6 -->
+                    <div class="party-member">
+                        <div class="member-name">Willow Oakenheart</div>
+                        <div class="member-portrait druid"></div>
+                        <div class="member-stats">
+                            <div class="stat-container">
+                                <div class="stat-label">Life</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar life-bar" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Mana</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar mana-bar" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Vigor</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar melee-bar" style="width: 40%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-container">
+                                <div class="stat-label">Battle</div>
+                                <div class="stat-bar-container">
+                                    <div class="stat-bar battle-timer" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resize-handle"></div>
+        </div>
+    </div>
+
+    <script src="js/draggable.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
