@@ -3,319 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decennium's Descent - Medieval Fantasy UI</title>
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Metamorphous&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/medieval_theme.css">
+    <title>Decennium Descent Character Builder</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="game-container">
-        <!-- Chat Log Panel -->
-        <div id="chat-log" class="ui-panel">
-            <div class="panel-header">
-                <div class="panel-title">Chronicles</div>
-                <div class="panel-controls">
-                    <button class="minimize-btn">_</button>
-                </div>
-            </div>
-            <div class="panel-content">
-                <div class="log-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="combat">Combat</button>
-                    <button class="filter-btn" data-filter="speech">Speech</button>
-                    <button class="filter-btn" data-filter="system">System</button>
-                </div>
-                <div class="log-entries">
-                    <div class="log-entry system">You enter the ancient crypt, torches flickering on the walls.</div>
-                    <div class="log-entry system">A skeletal lich materializes before you!</div>
-                    <div class="log-entry combat">Warrior strikes the Lich with Blade of Valor for 15 damage.</div>
-                    <div class="log-entry combat">Cleric channels divine light, healing Warrior for 12 points.</div>
-                    <div class="log-entry combat">Lich casts Necrotic Bolt at Warrior for 8 damage.</div>
-                    <div class="log-entry speech">Warrior: "Stand fast, companions! This foe is formidable!"</div>
-                    <div class="log-entry speech">Cleric: "The light shall protect us from this darkness."</div>
-                    <div class="log-entry system">A mysterious rune glows on the floor nearby...</div>
-                </div>
-            </div>
-            <div class="resize-handle"></div>
-        </div>
+    <div class="container">
+        <header>
+            <h1>🎲 Decennium Descent Character Builder</h1>
+            <p>Create your epic adventure character</p>
+        </header>
 
-        <!-- Mini Map Panel -->
-        <div id="mini-map" class="ui-panel">
-            <div class="panel-header">
-                <div class="panel-title">Cartography</div>
-                <div class="panel-controls">
-                    <button class="minimize-btn">_</button>
+        <main>
+            <!-- Character Overview -->
+            <section class="character-overview">
+                <h2>Character Overview</h2>
+                <div class="overview-grid">
+                    <div class="overview-item">
+                        <label for="character-name">Character Name:</label>
+                        <input type="text" id="character-name" placeholder="Enter character name">
+                    </div>
+                    <div class="overview-item">
+                        <label for="character-level">Level:</label>
+                        <input type="number" id="character-level" min="1" max="20" value="1">
+                    </div>
                 </div>
-            </div>
-            <div class="panel-content">
-                <div class="map-container">
-                    <!-- Map content will be added here -->
-                </div>
-            </div>
-            <div class="resize-handle"></div>
-        </div>
+            </section>
 
-        <!-- Battle Menu Panel -->
-        <div id="battle-menu" class="ui-panel">
-            <div class="panel-header">
-                <div class="panel-title">Actions</div>
-                <div class="panel-controls">
-                    <button class="minimize-btn">_</button>
+            <!-- Race Selection -->
+            <section class="race-selection">
+                <h2>Race Selection</h2>
+                <div class="selection-container">
+                    <div class="dropdown-container">
+                        <label for="race-select">Choose Race:</label>
+                        <select id="race-select">
+                            <option value="">Select a race...</option>
+                        </select>
+                    </div>
+                    <div class="dropdown-container">
+                        <label for="subrace-select">Choose Subrace:</label>
+                        <select id="subrace-select" disabled>
+                            <option value="">Select a subrace...</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="panel-content">
-                <div class="battle-buttons">
-                    <button id="fight-btn" class="battle-btn">Attack</button>
-                    <button id="magic-btn" class="battle-btn">Spell</button>
-                    <button id="ability-btn" class="battle-btn">Ability</button>
-                    <button id="item-btn" class="battle-btn">Item</button>
-                    <button id="search-btn" class="battle-btn">Search</button>
-                    <button id="flee-btn" class="battle-btn">Retreat</button>
+                <div class="race-info">
+                    <div class="race-description"></div>
+                    <div class="race-stats"></div>
                 </div>
-            </div>
-            <div class="resize-handle"></div>
-        </div>
+            </section>
 
-        <!-- Directional Control Pad -->
-        <div id="direction-pad">
-            <div class="d-pad">
-                <button class="d-pad-button d-pad-up">▲</button>
-                <button class="d-pad-button d-pad-right">▶</button>
-                <button class="d-pad-button d-pad-down">▼</button>
-                <button class="d-pad-button d-pad-left">◀</button>
-                <button class="d-pad-button d-pad-center">●</button>
-            </div>
-        </div>
+            <!-- Class Selection -->
+            <section class="class-selection">
+                <h2>Class Selection</h2>
+                <div class="selection-container">
+                    <div class="dropdown-container">
+                        <label for="class-select">Choose Class:</label>
+                        <select id="class-select">
+                            <option value="">Select a class...</option>
+                        </select>
+                    </div>
+                    <div class="dropdown-container">
+                        <label for="subclass-select">Choose Subclass:</label>
+                        <select id="subclass-select" disabled>
+                            <option value="">Select a subclass...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="class-info">
+                    <div class="class-description"></div>
+                    <div class="class-stats"></div>
+                </div>
+            </section>
 
-        <!-- Enemy Display (Direct on screen) -->
-        <div id="enemy-area">
-            <div class="enemy-character">
-                <img src="img/lich.png" alt="Lich" class="enemy-image">
-                <div class="enemy-name">Ancient Lich</div>
-                <div class="enemy-stats">
-                    <div class="stat-container">
-                        <div class="stat-label">Life</div>
-                        <div class="stat-bar-container">
-                            <div class="stat-bar life-bar" style="width: 70%;"></div>
-                        </div>
-                    </div>
-                    <div class="stat-container">
-                        <div class="stat-label">Battle</div>
-                        <div class="stat-bar-container">
-                            <div class="stat-bar battle-timer" style="width: 40%;"></div>
-                        </div>
+            <!-- Background Selection -->
+            <section class="background-selection">
+                <h2>Background Selection</h2>
+                <div class="selection-container">
+                    <div class="dropdown-container">
+                        <label for="background-select">Choose Background:</label>
+                        <select id="background-select">
+                            <option value="">Select a background...</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="background-info">
+                    <div class="background-description"></div>
+                    <div class="background-stats"></div>
+                </div>
+            </section>
 
-        <!-- Party Members Panel -->
-        <div id="party-panel" class="ui-panel">
-            <div class="panel-header">
-                <div class="panel-title">Adventuring Party</div>
-                <div class="panel-controls">
-                    <button class="minimize-btn">_</button>
+            <!-- Ability Scores -->
+            <section class="ability-scores">
+                <h2>Ability Scores</h2>
+                <div class="ability-method">
+                    <label for="ability-method">Method:</label>
+                    <select id="ability-method">
+                        <option value="point-buy">Point Buy</option>
+                        <option value="standard-array">Standard Array</option>
+                        <option value="random-roll">Random Roll (4d6 drop lowest)</option>
+                        <option value="manual">Manual Entry</option>
+                    </select>
+                    <button id="roll-all-btn" class="roll-all-button" style="display: none;">Roll All Abilities</button>
                 </div>
-            </div>
-            <div class="panel-content">
-                <div class="party-container">
-                    <!-- Party Member 1 -->
-                    <div class="party-member">
-                        <div class="member-name">Sir Gawain</div>
-                        <div class="member-portrait warrior"></div>
-                        <div class="member-stats">
-                            <div class="stat-container">
-                                <div class="stat-label">Life</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar life-bar" style="width: 80%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Mana</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar mana-bar" style="width: 60%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Vigor</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar melee-bar" style="width: 90%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Battle</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar battle-timer" style="width: 75%;"></div>
-                                </div>
-                            </div>
+                <div class="ability-grid">
+                    <div class="ability-score">
+                        <label>Strength</label>
+                        <div class="score-controls">
+                            <button class="score-btn decrease" data-ability="strength">-</button>
+                            <input type="number" id="strength" min="8" max="15" value="8" data-ability="strength">
+                            <button class="score-btn increase" data-ability="strength">+</button>
+                        </div>
+                        <div class="modifier" id="strength-modifier">+0</div>
+                    </div>
+                    <div class="ability-score">
+                        <label>Dexterity</label>
+                        <div class="score-controls">
+                            <button class="score-btn decrease" data-ability="dexterity">-</button>
+                            <input type="number" id="dexterity" min="8" max="15" value="8" data-ability="dexterity">
+                            <button class="score-btn increase" data-ability="dexterity">+</button>
+                        </div>
+                        <div class="modifier" id="dexterity-modifier">+0</div>
+                    </div>
+                    <div class="ability-score">
+                        <label>Constitution</label>
+                        <div class="score-controls">
+                            <button class="score-btn decrease" data-ability="constitution">-</button>
+                            <input type="number" id="constitution" min="8" max="15" value="8" data-ability="constitution">
+                            <button class="score-btn increase" data-ability="constitution">+</button>
+                        </div>
+                        <div class="modifier" id="constitution-modifier">+0</div>
+                    </div>
+                    <div class="ability-score">
+                        <label>Intelligence</label>
+                        <div class="score-controls">
+                            <button class="score-btn decrease" data-ability="intelligence">-</button>
+                            <input type="number" id="intelligence" min="8" max="15" value="8" data-ability="intelligence">
+                            <button class="score-btn increase" data-ability="intelligence">+</button>
+                        </div>
+                        <div class="modifier" id="intelligence-modifier">+0</div>
+                    </div>
+                    <div class="ability-score">
+                        <label>Wisdom</label>
+                        <div class="score-controls">
+                            <button class="score-btn decrease" data-ability="wisdom">-</button>
+                            <input type="number" id="wisdom" min="8" max="15" value="8" data-ability="wisdom">
+                            <button class="score-btn increase" data-ability="wisdom">+</button>
+                        </div>
+                        <div class="modifier" id="wisdom-modifier">+0</div>
+                    </div>
+                    <div class="ability-score">
+                        <label>Charisma</label>
+                        <div class="score-controls">
+                            <button class="score-btn decrease" data-ability="charisma">-</button>
+                            <input type="number" id="charisma" min="8" max="15" value="8" data-ability="charisma">
+                            <button class="score-btn increase" data-ability="charisma">+</button>
+                        </div>
+                        <div class="modifier" id="charisma-modifier">+0</div>
+                    </div>
+                </div>
+                <div class="points-remaining">
+                    <span>Points Remaining: <span id="points-remaining">27</span></span>
+                </div>
+            </section>
+
+            <!-- Feats Selection -->
+            <section class="feats-selection">
+                <h2>Feats</h2>
+                <div class="feat-categories">
+                    <button class="category-btn active" data-category="all">All Feats</button>
+                    <button class="category-btn" data-category="combat">Combat</button>
+                    <button class="category-btn" data-category="magic">Magic</button>
+                    <button class="category-btn" data-category="skill">Skill</button>
+                    <button class="category-btn" data-category="racial">Racial</button>
+                </div>
+                <div class="feat-search">
+                    <input type="text" id="feat-search" placeholder="Search feats...">
+                </div>
+                <div class="feat-list" id="feat-list">
+                    <!-- Feats will be populated here -->
+                </div>
+                <div class="feat-pagination">
+                    <button id="prev-page" disabled>Previous</button>
+                    <span id="page-info">Page 1 of 1</span>
+                    <button id="next-page" disabled>Next</button>
+                </div>
+            </section>
+
+            <!-- Character Summary -->
+            <section class="character-summary">
+                <h2>Character Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-section">
+                        <h3>Final Stats</h3>
+                        <div id="final-stats">
+                            <!-- Final stats will be populated here -->
                         </div>
                     </div>
-                    
-                    <!-- Party Member 2 -->
-                    <div class="party-member">
-                        <div class="member-name">Lady Elara</div>
-                        <div class="member-portrait cleric"></div>
-                        <div class="member-stats">
-                            <div class="stat-container">
-                                <div class="stat-label">Life</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar life-bar" style="width: 90%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Mana</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar mana-bar" style="width: 70%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Vigor</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar melee-bar" style="width: 50%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Battle</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar battle-timer" style="width: 60%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Party Member 3 -->
-                    <div class="party-member">
-                        <div class="member-name">Magus Thorne</div>
-                        <div class="member-portrait wizard"></div>
-                        <div class="member-stats">
-                            <div class="stat-container">
-                                <div class="stat-label">Life</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar life-bar" style="width: 60%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Mana</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar mana-bar" style="width: 90%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Vigor</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar melee-bar" style="width: 30%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Battle</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar battle-timer" style="width: 85%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Party Member 4 -->
-                    <div class="party-member">
-                        <div class="member-name">Vex Shadowstep</div>
-                        <div class="member-portrait rogue"></div>
-                        <div class="member-stats">
-                            <div class="stat-container">
-                                <div class="stat-label">Life</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar life-bar" style="width: 70%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Mana</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar mana-bar" style="width: 50%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Vigor</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar melee-bar" style="width: 80%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Battle</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar battle-timer" style="width: 95%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Party Member 5 -->
-                    <div class="party-member">
-                        <div class="member-name">Lyric Songweaver</div>
-                        <div class="member-portrait bard"></div>
-                        <div class="member-stats">
-                            <div class="stat-container">
-                                <div class="stat-label">Life</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar life-bar" style="width: 85%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Mana</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar mana-bar" style="width: 75%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Vigor</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar melee-bar" style="width: 60%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Battle</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar battle-timer" style="width: 50%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Party Member 6 -->
-                    <div class="party-member">
-                        <div class="member-name">Willow Oakenheart</div>
-                        <div class="member-portrait druid"></div>
-                        <div class="member-stats">
-                            <div class="stat-container">
-                                <div class="stat-label">Life</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar life-bar" style="width: 75%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Mana</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar mana-bar" style="width: 80%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Vigor</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar melee-bar" style="width: 40%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-container">
-                                <div class="stat-label">Battle</div>
-                                <div class="stat-bar-container">
-                                    <div class="stat-bar battle-timer" style="width: 30%;"></div>
-                                </div>
-                            </div>
+                    <div class="summary-section">
+                        <h3>Selected Feats</h3>
+                        <div id="selected-feats">
+                            <!-- Selected feats will be populated here -->
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="resize-handle"></div>
-        </div>
+            </section>
+        </main>
     </div>
 
-    <script src="js/draggable.js"></script>
-    <script src="js/game.js"></script>
+    <script src="game-data.js"></script>
+    <script src="additional-feats.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
