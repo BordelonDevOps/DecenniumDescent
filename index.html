@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decennium Descent - Interactive RPG System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Decennium Descent</h1>
+            <p class="subtitle">Interactive Character Creator & Game System</p>
+        </header>
+
+        <nav class="tab-navigation">
+            <button class="tab-btn active" data-tab="character-creation">Character Creation</button>
+            <button class="tab-btn" data-tab="cosmology">Cosmology Viewer</button>
+            <button class="tab-btn" data-tab="bestiary">Bestiary</button>
+            <button class="tab-btn" data-tab="crafting">Crafting</button>
+            <button class="tab-btn" data-tab="dice-roller">Dice Roller</button>
+            <button class="tab-btn" data-tab="combat">Combat Tracker</button>
+        </nav>
+
+        <!-- Character Creation Tab -->
+        <div id="character-creation" class="tab-content active">
+            <div class="character-builder">
+                <div class="builder-layout">
+                    <!-- Left Column: Inputs -->
+                    <div class="left-column">
+                        <!-- Step Navigation -->
+                        <div class="step-navigation">
+                            <div class="step-item active" data-step="race">
+                                <span class="step-number">1</span>
+                                <span class="step-label">Race</span>
+                            </div>
+                            <div class="step-item" data-step="class">
+                                <span class="step-number">2</span>
+                                <span class="step-label">Class</span>
+                            </div>
+                            <div class="step-item" data-step="abilities">
+                                <span class="step-number">3</span>
+                                <span class="step-label">Abilities</span>
+                            </div>
+                            <div class="step-item" data-step="feats">
+                                <span class="step-number">4</span>
+                                <span class="step-label">Feats</span>
+                            </div>
+                            <div class="step-item" data-step="background">
+                                <span class="step-number">5</span>
+                                <span class="step-label">Background</span>
+                            </div>
+                            <div class="step-item" data-step="alignment">
+                                <span class="step-number">6</span>
+                                <span class="step-label">Alignment</span>
+                            </div>
+                            <div class="step-item" data-step="planar">
+                                <span class="step-number">7</span>
+                                <span class="step-label">Planar Ties</span>
+                            </div>
+                            <div class="step-item" data-step="summary">
+                                <span class="step-number">8</span>
+                                <span class="step-label">Summary</span>
+                            </div>
+                            <div class="step-item" data-step="final">
+                                <span class="step-number">9</span>
+                                <span class="step-label">Final Stats</span>
+                            </div>
+                        </div>
+
+                        <!-- Input Sections -->
+                        <div class="input-sections">
+                            <!-- Race Selection -->
+                            <div class="input-section active" id="race-section">
+                                <h3>Race Selection</h3>
+                                <div class="race-grid">
+                                    <div class="race-option" data-race="amphibian">
+                                        <span class="race-name">Amphibian</span>
+                                    </div>
+                                    <div class="race-option" data-race="drakari">
+                                        <span class="race-name">Drakari</span>
+                                    </div>
+                                    <div class="race-option" data-race="drow">
+                                        <span class="race-name">Drow</span>
+                                    </div>
+                                    <div class="race-option" data-race="dwarf">
+                                        <span class="race-name">Dwarf</span>
+                                    </div>
+                                    <div class="race-option" data-race="elf">
+                                        <span class="race-name">Elf</span>
+                                    </div>
+                                    <div class="race-option" data-race="feykin">
+                                        <span class="race-name">Feykin</span>
+                                    </div>
+                                    <div class="race-option" data-race="gnome">
+                                        <span class="race-name">Gnome</span>
+                                    </div>
+                                    <div class="race-option" data-race="goblin">
+                                        <span class="race-name">Goblin</span>
+                                    </div>
+                                    <div class="race-option" data-race="human">
+                                        <span class="race-name">Human</span>
+                                    </div>
+                                    <div class="race-option" data-race="mycelian">
+                                        <span class="race-name">Mycelian</span>
+                                    </div>
+                                    <div class="race-option" data-race="ogre">
+                                        <span class="race-name">Ogre</span>
+                                    </div>
+                                    <div class="race-option" data-race="orc">
+                                        <span class="race-name">Orc</span>
+                                    </div>
+                                    <div class="race-option" data-race="troll">
+                                        <span class="race-name">Troll</span>
+                                    </div>
+                                    <div class="race-option" data-race="undead">
+                                        <span class="race-name">Undead</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Subrace Selection -->
+                                <div class="subrace-selection" id="subrace-selection" style="display: none;">
+                                    <h4>Choose Racial Variant</h4>
+                                    <div class="subrace-grid" id="subrace-grid">
+                                        <!-- Subraces will be populated dynamically -->
+                                    </div>
+                                </div>
+                                
+                                <div class="section-navigation">
+                                    <button class="nav-btn" data-next="abilities">Next: Abilities</button>
+                                </div>
+                            </div>
+
+                            <!-- Class Selection -->
+                            <div class="input-section" id="class-section">
+                                <h3>Class Selection</h3>
+                                <div class="class-grid">
+                                    <div class="class-option" data-class="bard">
+                                        <span class="class-name">Bard</span>
+                                    </div>
+                                    <div class="class-option" data-class="cleric">
+                                        <span class="class-name">Cleric</span>
+                                    </div>
+                                    <div class="class-option" data-class="crimsonAgent">
+                                        <span class="class-name">Crimson Agent</span>
+                                    </div>
+                                    <div class="class-option" data-class="dragoon">
+                                        <span class="class-name">Dragoon</span>
+                                    </div>
+                                    <div class="class-option" data-class="druid">
+                                        <span class="class-name">Druid</span>
+                                    </div>
+                                    <div class="class-option" data-class="mage">
+                                        <span class="class-name">Mage</span>
+                                    </div>
+                                    <div class="class-option" data-class="mirrorsage">
+                                        <span class="class-name">Mirrorsage</span>
+                                    </div>
+                                    <div class="class-option" data-class="monk">
+                                        <span class="class-name">Monk</span>
+                                    </div>
+                                    <div class="class-option" data-class="oracle">
+                                        <span class="class-name">Oracle</span>
+                                    </div>
+                                    <div class="class-option" data-class="paladin">
+                                        <span class="class-name">Paladin</span>
+                                    </div>
+                                    <div class="class-option" data-class="ranger">
+                                        <span class="class-name">Ranger</span>
+                                    </div>
+                                    <div class="class-option" data-class="shaman">
+                                        <span class="class-name">Shaman</span>
+                                    </div>
+                                    <div class="class-option" data-class="soldier">
+                                        <span class="class-name">Soldier</span>
+                                    </div>
+                                    <div class="class-option" data-class="thief">
+                                        <span class="class-name">Thief</span>
+                                    </div>
+                                    <div class="class-option" data-class="tinker">
+                                        <span class="class-name">Tinker</span>
+                                    </div>
+                                    <div class="class-option" data-class="warrior">
+                                        <span class="class-name">Warrior</span>
+                                    </div>
+                                    <div class="class-option" data-class="wizard">
+                                        <span class="class-name">Wizard</span>
+                                    </div>
+                                </div>
+                                <div class="level-selection">
+                                    <label for="character-level">Level:</label>
+                                    <input type="number" id="character-level" min="1" max="20" value="1">
+                                </div>
+                                
+                                <div class="section-navigation">
+                                    <button class="nav-btn" data-prev="race">Previous: Race</button>
+                                    <button class="nav-btn" data-next="abilities">Next: Abilities</button>
+                                </div>
+                            </div>
+
+                            <!-- Ability Scores -->
+                            <div class="input-section" id="abilities-section">
+                                <h3>Ability Scores</h3>
+                                <div class="ability-method">
+                                    <label>Method:</label>
+                                    <select id="ability-method">
+                                        <option value="point-buy">Point Buy</option>
+                                        <option value="standard">Standard Array</option>
+                                        <option value="random-roll">Random Roll (4d6 drop lowest)</option>
+                                        <option value="manual">Manual Entry</option>
+                                    </select>
+                                    <button id="roll-all-btn" class="roll-all-button" style="display: none;">Roll All Abilities</button>
+                                </div>
+                                <div class="ability-scores">
+                                    <div class="ability-score">
+                                        <label>Strength</label>
+                                        <div class="score-controls">
+                                            <button class="score-btn" data-ability="strength" data-action="decrease">-</button>
+                                            <input type="number" id="str-score" min="8" max="15" value="8" readonly>
+                                            <button class="score-btn" data-ability="strength" data-action="increase">+</button>
+                                        </div>
+                                        <span class="modifier" id="str-mod">-1</span>
+                                    </div>
+                                    <div class="ability-score">
+                                        <label>Dexterity</label>
+                                        <div class="score-controls">
+                                            <button class="score-btn" data-ability="dexterity" data-action="decrease">-</button>
+                                            <input type="number" id="dex-score" min="8" max="15" value="8" readonly>
+                                            <button class="score-btn" data-ability="dexterity" data-action="increase">+</button>
+                                        </div>
+                                        <span class="modifier" id="dex-mod">-1</span>
+                                    </div>
+                                    <div class="ability-score">
+                                        <label>Constitution</label>
+                                        <div class="score-controls">
+                                            <button class="score-btn" data-ability="constitution" data-action="decrease">-</button>
+                                            <input type="number" id="con-score" min="8" max="15" value="8" readonly>
+                                            <button class="score-btn" data-ability="constitution" data-action="increase">+</button>
+                                        </div>
+                                        <span class="modifier" id="con-mod">-1</span>
+                                    </div>
+                                    <div class="ability-score">
+                                        <label>Intelligence</label>
+                                        <div class="score-controls">
+                                            <button class="score-btn" data-ability="intelligence" data-action="decrease">-</button>
+                                            <input type="number" id="int-score" min="8" max="15" value="8" readonly>
+                                            <button class="score-btn" data-ability="intelligence" data-action="increase">+</button>
+                                        </div>
+                                        <span class="modifier" id="int-mod">-1</span>
+                                    </div>
+                                    <div class="ability-score">
+                                        <label>Wisdom</label>
+                                        <div class="score-controls">
+                                            <button class="score-btn" data-ability="wisdom" data-action="decrease">-</button>
+                                            <input type="number" id="wis-score" min="8" max="15" value="8" readonly>
+                                            <button class="score-btn" data-ability="wisdom" data-action="increase">+</button>
+                                        </div>
+                                        <span class="modifier" id="wis-mod">-1</span>
+                                    </div>
+                                    <div class="ability-score">
+                                        <label>Charisma</label>
+                                        <div class="score-controls">
+                                            <button class="score-btn" data-ability="charisma" data-action="decrease">-</button>
+                                            <input type="number" id="cha-score" min="8" max="15" value="8" readonly>
+                                            <button class="score-btn" data-ability="charisma" data-action="increase">+</button>
+                                        </div>
+                                        <span class="modifier" id="cha-mod">-1</span>
+                                    </div>
+                                </div>
+                                <div class="points-remaining">
+                                    <span>Points Remaining: <span id="points-left">27</span></span>
+                                </div>
+                                
+                                <div class="section-navigation">
+                                    <button class="nav-btn" data-prev="race">Previous: Race</button>
+                                    <button class="nav-btn" data-next="feats">Next: Feats</button>
+                                </div>
+                            </div>
+
+                            <!-- Feats Selection -->
+                            <div class="input-section" id="feats-section">
+                                <h3>Feat Selection</h3>
+                                <div class="feat-search">
+                                    <input type="text" id="feat-search" placeholder="Search feats...">
+                                </div>
+                                <div class="feat-categories">
+                                    <button class="category-btn active" data-category="all">All</button>
+                                    <button class="category-btn" data-category="general">General</button>
+                                    <button class="category-btn" data-category="combat">Combat</button>
+                                    <button class="category-btn" data-category="magic">Magic</button>
+                                    <button class="category-btn" data-category="skill">Skill</button>
+                                    <button class="category-btn" data-category="planar">Planar</button>
+                                </div>
+                                <div class="feat-grid" id="feat-grid">
+                                    <!-- Feats populated by JavaScript -->
+                                </div>
+                                <div class="feat-pagination">
+                                    <button id="prev-feat-page">Previous</button>
+                                    <span id="feat-page-info">Page 1 of 1</span>
+                                    <button id="next-feat-page">Next</button>
+                                </div>
+                                
+                                <div class="section-navigation">
+                                    <button class="nav-btn" data-prev="abilities">Previous: Abilities</button>
+                                    <button class="nav-btn" data-next="background">Next: Background</button>
+                                </div>
+                            </div>
+
+                            <!-- Background Selection -->
+                            <div class="input-section" id="background-section">
+                                <h3>Background Selection</h3>
+                                <select id="background-select">
+                                    <option value="">Select Background</option>
+                                    <option value="acolyte">Acolyte</option>
+                                    <option value="criminal">Criminal</option>
+                                    <option value="folk-hero">Folk Hero</option>
+                                    <option value="noble">Noble</option>
+                                    <option value="sage">Sage</option>
+                                    <option value="soldier">Soldier</option>
+                                    <option value="charlatan">Charlatan</option>
+                                    <option value="entertainer">Entertainer</option>
+                                    <option value="guild-artisan">Guild Artisan</option>
+                                    <option value="hermit">Hermit</option>
+                                    <option value="outlander">Outlander</option>
+                                    <option value="sailor">Sailor</option>
+                                    <option value="planar-touched">Planar-Touched</option>
+                                    <option value="void-wanderer">Void Wanderer</option>
+                                    <option value="celestial-envoy">Celestial Envoy</option>
+                                </select>
+                                
+                                <div class="section-navigation">
+                                    <button class="nav-btn" data-prev="feats">Previous: Feats</button>
+                                    <button class="nav-btn" data-next="alignment">Next: Alignment</button>
+                                </div>
+                            </div>
+
+                            <!-- Alignment Selection -->
+                            <div class="input-section" id="alignment-section">
+                                <h3>Alignment Selection</h3>
+                                <div class="alignment-grid">
+                                    <div class="alignment-option" data-alignment="lawful-good">Lawful Good</div>
+                                    <div class="alignment-option" data-alignment="neutral-good">Neutral Good</div>
+                                    <div class="alignment-option" data-alignment="chaotic-good">Chaotic Good</div>
+                                    <div class="alignment-option" data-alignment="lawful-neutral">Lawful Neutral</div>
+                                    <div class="alignment-option" data-alignment="true-neutral">True Neutral</div>
+                                    <div class="alignment-option" data-alignment="chaotic-neutral">Chaotic Neutral</div>
+                                    <div class="alignment-option" data-alignment="lawful-evil">Lawful Evil</div>
+                                    <div class="alignment-option" data-alignment="neutral-evil">Neutral Evil</div>
+                                    <div class="alignment-option" data-alignment="chaotic-evil">Chaotic Evil</div>
+                                </div>
+                                
+                                <div class="section-navigation">
+                                    <button class="nav-btn" data-prev="background">Previous: Background</button>
+                                    <button class="nav-btn" data-next="planar">Next: Planar Ties</button>
+                                </div>
+                            </div>
+
+                            <!-- NEW: Planar Ties Section -->
+                            <div class="input-section" id="planar-section">
+                                <h3>Planar Connections</h3>
+                                <p>Your character's ties to the cosmic planes of existence</p>
+                                
+                                <div class="plane-selection">
+                                    <h4>Primary Planar Affinity</h4>
+                                    <div class="planar-affinity" id="planar-affinity">
+                                        <div class="planar-option" data-plane="material">Material Plane</div>
+                                        <div class="planar-option" data-plane="fire">Plane of Fire</div>
+                                        <div class="planar-option" data-plane="water">Plane of Water</div>
+                                        <div class="planar-option" data-plane="air">Plane of Air</div>
+                                        <div class="planar-option" data-plane="earth">Plane of Earth</div>
+                                        <div class="planar-option" data-plane="celestial">Celestial Realms</div>
+                                        <div class="planar-option" data-plane="infernal">Infernal Realms</div>
+                                        <div class="planar-option" data-plane="order">Plane of Order</div>
+                                        <div class="planar-option" data-plane="chaos">Plane of Chaos</div>
+                                        <div class="planar-option" data-plane="life">Plane of Life</div>
+                                        <div class="planar-option" data-plane="discord">Plane of Discord</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="planar-benefits" id="planar-benefits">
+                                    <h4>Planar Benefits</h4>
+                                    <p>Select a planar affinity to see its mechanical benefits</p>
+                                </div>
+                                
+                                <div class="section-navigation">
+                                    <button class="nav-btn" data-prev="alignment">Previous: Alignment</button>
+                                    <button class="nav-btn" data-next="summary">Next: Summary</button>
+                                </div>
+                            </div>
+
+                            <!-- Character Summary -->
+                            <div class="input-section" id="summary-section">
+                                <h3>Character Summary</h3>
+                                <div class="character-name">
+                                    <label for="character-name">Character Name:</label>
+                                    <input type="text" id="character-name" placeholder="Enter character name">
+                                </div>
+                                <div class="summary-box" id="character-summary">
+                                    <!-- Auto-generated summary -->
+                                </div>
+                                
+                                <div class="section-navigation">
+                                    <button class="nav-btn" data-prev="planar">Previous: Planar Ties</button>
+                                    <button class="nav-btn" data-next="final">Next: Final Stats</button>
+                                </div>
+                                
+                                <div class="character-lore">
+                                    <h4>Character Lore Integration</h4>
+                                    <div id="lore-summary">
+                                        <p>Complete character creation to see how
