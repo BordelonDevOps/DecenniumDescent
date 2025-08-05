@@ -239,11 +239,19 @@ const RACES = {
                 weaponProficiency: ["longsword", "shortbow", "longbow"],
                 traits: ["Mask of the Wild", "Fleet of Foot"]
             },
+<<<<<<< HEAD
             twilight: {
                 name: "Twilight Elf",
                 description: "Elves who dwell in the liminal spaces between day and night, possessing abilities that bridge light and shadow.",
                 abilityScoreIncrease: { charisma: 1 },
                 traits: ["Twilight Magic", "Enhanced Darkvision", "Dusk Walker"]
+=======
+            dark: {
+                name: "Dark Elf",
+                description: "Elves touched by shadow magic with enhanced stealth abilities.",
+                abilityScoreIncrease: { charisma: 1 },
+                traits: ["Shadow Magic", "Superior Darkvision", "Light Sensitivity"]
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
             }
         }
     },
@@ -730,12 +738,16 @@ const CLASSES = {
         circles: {
             land: "Enhanced spellcasting and terrain-based abilities",
             moon: "Improved wild shape and combat forms",
+<<<<<<< HEAD
             stars: "Cosmic magic and stellar guidance",
             fang: "Primal hunters who embrace the savage aspects of nature",
             grove: "Guardians of sacred groves and ancient wisdom",
             tempest: "Masters of storms and elemental fury",
             decay: "Shepherds of death and renewal in nature's cycle",
             tides: "Coastal druids who command the power of the seas"
+=======
+            stars: "Cosmic magic and stellar guidance"
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
         }
     },
     mage: {
@@ -861,6 +873,7 @@ const CLASSES = {
             4: ["Ability Score Improvement"]
         },
         oaths: {
+<<<<<<< HEAD
             mercy: "Protection, healing, and preservation of life",
             vengeance: "Fury, execution, and relentless pursuit of enemies",
             dominion: "Authority, law, and divine rulership",
@@ -883,6 +896,44 @@ const CLASSES = {
             gravetongue: "Corrupted Grief - spreads despair and prevents rest",
             unboundFlame: "Corrupted Chains Broken - burns freedom itself",
             usurpersCrown: "Corrupted Martyr King - steals power from others"
+=======
+            devotion: "Dedication to the highest ideals of justice and virtue",
+            ancients: "Preservation of the light and beauty of the world",
+            vengeance: "Pursuit of justice through any means necessary"
+        }
+    },
+    druid: {
+        name: "Druid",
+        description: "Nature-focused spellcasters who can shapeshift and command the forces of the natural world. They serve as guardians of the wilderness and its creatures.",
+        hitDie: 8,
+        primaryAbility: ["Wisdom"],
+        savingThrows: ["Intelligence", "Wisdom"],
+        skillChoices: 2,
+        skillList: ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"],
+        armorProficiency: ["Light armor", "Medium armor", "Shields (non-metal)"],
+        weaponProficiency: ["Clubs", "Daggers", "Darts", "Javelins", "Maces", "Quarterstaffs", "Scimitars", "Sickles", "Slings", "Spears"],
+        toolProficiency: ["Herbalism kit"],
+        spellcasting: {
+            ability: "Wisdom",
+            ritual: true,
+            prepared: true
+        },
+        startingEquipment: {
+            armor: "Leather armor",
+            weapons: ["Scimitar or simple weapon", "Shield"],
+            tools: ["Explorer's pack", "Herbalism kit"]
+        },
+        features: {
+            1: ["Druidcraft", "Spellcasting"],
+            2: ["Wild Shape", "Druid Circle"],
+            3: ["Circle feature"],
+            4: ["Ability Score Improvement"]
+        },
+        circles: {
+            land: "Enhanced spellcasting and terrain-based abilities",
+            moon: "Improved wild shape and combat forms",
+            stars: "Cosmic magic and stellar guidance"
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
         }
     },
     monk: {

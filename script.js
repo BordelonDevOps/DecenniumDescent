@@ -13,6 +13,7 @@ const characterState = {
         charisma: 10
     },
     abilityMethod: 'point-buy',
+<<<<<<< HEAD
     abilityBoosts: {
         strength: 0,
         dexterity: 0,
@@ -22,6 +23,9 @@ const characterState = {
         charisma: 0
     },
     boostsRemaining: 4,
+=======
+    pointsRemaining: 27,
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     selectedFeats: [],
     background: null,
     alignment: null,
@@ -33,6 +37,7 @@ let currentStep = 'race';
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
+<<<<<<< HEAD
     console.log('DEBUG: DOM Content Loaded - Initializing application');
     console.log('DEBUG: Initial characterState:', characterState);
     
@@ -42,6 +47,11 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDisplay();
     
     console.log('DEBUG: Application initialization completed');
+=======
+    initializeCharacterBuilder();
+    setupEventListeners();
+    updateDisplay();
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
 });
 
 function initializeCharacterBuilder() {
@@ -113,6 +123,7 @@ function setupEventListeners() {
             updateDisplay();
         });
     }
+<<<<<<< HEAD
     
     // Section navigation buttons
     document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -171,6 +182,8 @@ function validateCurrentSection() {
             break;
     }
     return true;
+=======
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
 }
 
 function setupStepNavigation() {
@@ -232,6 +245,7 @@ function showTab(tabName) {
             content.classList.add('active');
         }
     });
+<<<<<<< HEAD
     
     // Initialize cosmology viewer when tab is activated
     if (tabName === 'cosmology') {
@@ -250,6 +264,8 @@ function showTab(tabName) {
     document.dispatchEvent(new CustomEvent('tabChanged', {
         detail: { tab: tabName }
     }));
+=======
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
 }
 
 // Race Selection
@@ -265,6 +281,7 @@ function setupRaceSelection() {
 }
 
 function selectRace(raceId, raceName) {
+<<<<<<< HEAD
     console.log('DEBUG: selectRace called with:', { raceId, raceName });
     
     characterState.race = { id: raceId, name: raceName };
@@ -273,6 +290,11 @@ function selectRace(raceId, raceName) {
     console.log('DEBUG: characterState.race set to:', characterState.race);
     console.log('DEBUG: RACES data for selected race:', RACES[raceId]);
     
+=======
+    characterState.race = { id: raceId, name: raceName };
+    characterState.subrace = null; // Reset subrace when race changes
+    
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     // Update UI
     document.querySelectorAll('.race-option').forEach(option => {
         option.classList.remove('selected');
@@ -288,6 +310,7 @@ function selectRace(raceId, raceName) {
 }
 
 function showSubraces(raceId) {
+<<<<<<< HEAD
     console.log('DEBUG: showSubraces called with raceId:', raceId);
     
     const subraceSelection = document.getElementById('subrace-selection');
@@ -299,6 +322,13 @@ function showSubraces(raceId) {
     if (RACES[raceId] && RACES[raceId].subraces) {
         const subraces = RACES[raceId].subraces;
         console.log('DEBUG: Found subraces for race:', subraces);
+=======
+    const subraceSelection = document.getElementById('subrace-selection');
+    const subraceGrid = document.getElementById('subrace-grid');
+    
+    if (RACES[raceId] && RACES[raceId].subraces) {
+        const subraces = RACES[raceId].subraces;
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
         
         // Clear existing subraces
         subraceGrid.innerHTML = '';
@@ -306,12 +336,19 @@ function showSubraces(raceId) {
         // Add subrace options
         Object.keys(subraces).forEach(subraceKey => {
             const subrace = subraces[subraceKey];
+<<<<<<< HEAD
             console.log('DEBUG: Creating subrace option for:', { subraceKey, subrace });
             
             const subraceOption = document.createElement('div');
             subraceOption.className = 'variant-option';
             subraceOption.setAttribute('data-subrace', subraceKey);
             subraceOption.textContent = subrace.name;
+=======
+            const subraceOption = document.createElement('div');
+            subraceOption.className = 'subrace-option';
+            subraceOption.setAttribute('data-subrace', subraceKey);
+            subraceOption.innerHTML = `<span class="subrace-name">${subrace.name}</span>`;
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
             
             subraceOption.addEventListener('click', function() {
                 selectSubrace(subraceKey, subrace.name);
@@ -321,6 +358,7 @@ function showSubraces(raceId) {
         });
         
         subraceSelection.style.display = 'block';
+<<<<<<< HEAD
         console.log('DEBUG: Subrace selection shown');
     } else {
         console.log('DEBUG: No subraces found for race:', raceId);
@@ -330,10 +368,15 @@ function showSubraces(raceId) {
         subraceSelection.style.display = 'none';
         // If no subraces, proceed to class selection
         showClassSelection();
+=======
+    } else {
+        subraceSelection.style.display = 'none';
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     }
 }
 
 function selectSubrace(subraceId, subraceName) {
+<<<<<<< HEAD
     console.log('DEBUG: selectSubrace called with:', { subraceId, subraceName });
     
     characterState.subrace = { id: subraceId, name: subraceName };
@@ -358,6 +401,21 @@ function selectSubrace(subraceId, subraceName) {
 
 
 
+=======
+    characterState.subrace = { id: subraceId, name: subraceName };
+    
+    // Update UI
+    document.querySelectorAll('.subrace-option').forEach(option => {
+        option.classList.remove('selected');
+        if (option.getAttribute('data-subrace') === subraceId) {
+            option.classList.add('selected');
+        }
+    });
+    
+    updateDisplay();
+}
+
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
 // Class Selection
 function setupClassSelection() {
     // Add event listeners to existing class options
@@ -425,12 +483,15 @@ function setupAbilityScores() {
                 
                 if (characterState.abilityMethod === 'random-roll') {
                     characterState.abilityScores[ability] = Math.max(3, Math.min(18, value));
+<<<<<<< HEAD
                 } else if (characterState.abilityMethod === 'point-buy') {
                     // PF2e point buy: scores can only be 10 or 12
                     const validScores = [10, 12];
                     const newScore = validScores.includes(value) ? value : 10;
                     characterState.abilityScores[ability] = newScore;
                     characterState.abilityBoosts[ability] = newScore === 12 ? 1 : 0;
+=======
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
                 } else {
                     characterState.abilityScores[ability] = Math.max(8, Math.min(15, value));
                 }
@@ -450,6 +511,7 @@ function setupAbilityScores() {
 
 function changeAbilityScore(ability, change) {
     if (characterState.abilityMethod === 'point-buy') {
+<<<<<<< HEAD
         const currentBoosts = characterState.abilityBoosts[ability];
         const newBoosts = currentBoosts + change;
         
@@ -463,6 +525,19 @@ function changeAbilityScore(ability, change) {
                 
                 // Update the actual ability score (base 10 + 2 per boost)
                 characterState.abilityScores[ability] = 10 + (newBoosts * 2);
+=======
+        const currentScore = characterState.abilityScores[ability];
+        const newScore = currentScore + change;
+        
+        if (newScore >= 8 && newScore <= 15) {
+            const currentCost = getPointCost(currentScore);
+            const newCost = getPointCost(newScore);
+            const costDifference = newCost - currentCost;
+            
+            if (characterState.pointsRemaining >= costDifference) {
+                characterState.abilityScores[ability] = newScore;
+                characterState.pointsRemaining -= costDifference;
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
                 updateAbilityScores();
             }
         }
@@ -479,6 +554,7 @@ function changeAbilityScore(ability, change) {
     }
 }
 
+<<<<<<< HEAD
 function resetAbilityScores() {
     if (characterState.abilityMethod === 'point-buy') {
         // Reset all ability scores to 10 and boosts to 0
@@ -487,6 +563,19 @@ function resetAbilityScores() {
             characterState.abilityBoosts[ability] = 0;
         });
         characterState.boostsRemaining = 4;
+=======
+function getPointCost(score) {
+    const costs = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 };
+    return costs[score] || 0;
+}
+
+function resetAbilityScores() {
+    if (characterState.abilityMethod === 'point-buy') {
+        Object.keys(characterState.abilityScores).forEach(ability => {
+            characterState.abilityScores[ability] = 8;
+        });
+        characterState.pointsRemaining = 27;
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     } else if (characterState.abilityMethod === 'standard-array') {
         const standardArray = [15, 14, 13, 12, 10, 8];
         const abilities = Object.keys(characterState.abilityScores);
@@ -535,11 +624,14 @@ function updateAbilityScores() {
             if (characterState.abilityMethod === 'random-roll') {
                 scoreInput.min = 3;
                 scoreInput.max = 18;
+<<<<<<< HEAD
             } else if (characterState.abilityMethod === 'point-buy') {
                 // PF2e point buy: only 10 or 12 allowed
                 scoreInput.min = 10;
                 scoreInput.max = 12;
                 scoreInput.step = 2;
+=======
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
             } else {
                 scoreInput.min = 8;
                 scoreInput.max = 15;
@@ -552,7 +644,11 @@ function updateAbilityScores() {
     
     const pointsDisplay = document.getElementById('points-left');
     if (pointsDisplay && characterState.abilityMethod === 'point-buy') {
+<<<<<<< HEAD
         pointsDisplay.textContent = characterState.boostsRemaining;
+=======
+        pointsDisplay.textContent = characterState.pointsRemaining;
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     }
     
     updateDisplay();
@@ -560,6 +656,7 @@ function updateAbilityScores() {
 
 // Feat Selection
 function setupFeatSelection() {
+<<<<<<< HEAD
     // Load feats from game-data.js and organize by category
     window.featsData = {
         all: [],
@@ -614,6 +711,75 @@ function setupFeatCategories() {
             if (searchInput) {
                 searchInput.value = '';
             }
+=======
+    // Sample feats data
+    window.featsData = {
+        general: [
+            {
+                name: "Alert",
+                description: "Always on the lookout for danger, you gain the following benefits:",
+                effect: "+5 bonus to initiative. You can't be surprised while conscious. Other creatures don't gain advantage on attack rolls against you as a result of being unseen by you.",
+                prerequisite: "None"
+            },
+            {
+                name: "Athlete",
+                description: "You have undergone extensive physical training to gain the following benefits:",
+                effect: "Increase your Strength or Dexterity score by 1, to a maximum of 20. When you are prone, standing up uses only 5 feet of your movement. Climbing doesn't cost you extra movement.",
+                prerequisite: "None"
+            },
+            {
+                name: "Actor",
+                description: "Skilled at mimicry and dramatics, you gain the following benefits:",
+                effect: "Increase your Charisma score by 1, to a maximum of 20. You have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.",
+                prerequisite: "None"
+            }
+        ],
+        combat: [
+            {
+                name: "Great Weapon Master",
+                description: "You've learned to put the weight of a weapon to your advantage, letting its momentum empower your strikes.",
+                effect: "On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action. Before you make a melee attack with a heavy weapon that you are proficient with, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage.",
+                prerequisite: "Strength 13 or higher"
+            },
+            {
+                name: "Sharpshooter",
+                description: "You have mastered ranged weapons and can make shots that others find impossible.",
+                effect: "Attacking at long range doesn't impose disadvantage on your ranged weapon attack rolls. Your ranged weapon attacks ignore half cover and three-quarters cover. Before you make an attack with a ranged weapon that you are proficient with, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage.",
+                prerequisite: "Dexterity 13 or higher"
+            }
+        ],
+        magic: [
+            {
+                name: "Magic Initiate",
+                description: "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list.",
+                effect: "You learn two cantrips and one 1st-level spell from the chosen class. You can cast the 1st-level spell once without expending a spell slot, and you regain the ability to do so when you finish a long rest.",
+                prerequisite: "None"
+            },
+            {
+                name: "Ritual Caster",
+                description: "You have learned a number of spells that you can cast as rituals.",
+                effect: "Choose one of the following classes: bard, cleric, druid, sorcerer, warlock, or wizard. You acquire a ritual book holding two 1st-level spells of your choice. If you come across a spell in written form, such as a magical spell scroll or a wizard's spellbook, you might be able to add it to your ritual book if the spell is on the spell list for the class you chose.",
+                prerequisite: "Intelligence or Wisdom 13 or higher"
+            }
+        ]
+    };
+    
+    setupFeatCategories();
+    setupFeatSearch();
+    displayFeats('general');
+}
+
+function setupFeatCategories() {
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+            
+            // Update active category
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            displayFeats(category);
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
         });
     });
 }
@@ -755,9 +921,12 @@ function selectAlignment(alignment) {
 
 // Display Updates
 function updateDisplay() {
+<<<<<<< HEAD
     console.log('DEBUG: updateDisplay called');
     console.log('DEBUG: Current characterState:', JSON.stringify(characterState, null, 2));
     
+=======
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     updateRaceOutput();
     updateClassOutput();
     updateQualifyingFeats();
@@ -766,6 +935,7 @@ function updateDisplay() {
     updateAlignmentOutput();
     updateCharacterSummary();
     updateFinalStats();
+<<<<<<< HEAD
     
     console.log('DEBUG: updateDisplay completed');
 }
@@ -783,6 +953,15 @@ function updateRaceOutput() {
             const raceData = RACES[characterState.race.id];
             console.log('DEBUG: Race data found:', raceData);
             
+=======
+}
+
+function updateRaceOutput() {
+    const raceDetails = document.querySelector('#race-output .race-details');
+    if (raceDetails) {
+        if (characterState.race) {
+            const raceData = RACES[characterState.race.id];
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
             if (raceData) {
                 let output = `
                     <h4>${raceData.name}</h4>
@@ -825,6 +1004,7 @@ function updateRaceOutput() {
                 `;
                 
                 // Display subrace information if selected
+<<<<<<< HEAD
                 console.log('DEBUG: Checking subrace - characterState.subrace:', characterState.subrace);
                 console.log('DEBUG: raceData.subraces:', raceData.subraces);
                 
@@ -832,6 +1012,10 @@ function updateRaceOutput() {
                     const subraceData = raceData.subraces[characterState.subrace.id];
                     console.log('DEBUG: Subrace data found:', subraceData);
                     
+=======
+                if (characterState.subrace && raceData.subraces && raceData.subraces[characterState.subrace.id]) {
+                    const subraceData = raceData.subraces[characterState.subrace.id];
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
                     output += `
                         <div class="subrace-info">
                             <h5>${subraceData.name}</h5>
@@ -875,6 +1059,7 @@ function updateRaceOutput() {
                     }
                     
                     output += `</div>`;
+<<<<<<< HEAD
                 } else {
                     console.log('DEBUG: No subrace to display or subrace data not found');
                     if (characterState.subrace) {
@@ -894,6 +1079,17 @@ function updateRaceOutput() {
         }
     } else {
         console.log('DEBUG: raceDetails element not found');
+=======
+                }
+                
+                raceDetails.innerHTML = output;
+            } else {
+                raceDetails.innerHTML = `<h4>${characterState.race.name}</h4><p>Race data not found.</p>`;
+            }
+        } else {
+            raceDetails.innerHTML = '<p>Select a race to see its details and traits.</p>';
+        }
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     }
 }
 
@@ -1289,6 +1485,7 @@ function getAlignmentDivine(alignment) {
         'Chaotic Evil': 'Favored by demons and chaotic evil deities.'
     };
     return divine[alignment] || 'Varies';
+<<<<<<< HEAD
 }
 
 // Enhanced Tab Navigation for Cosmology Integration
@@ -1299,4 +1496,6 @@ function initializeTabNavigation() {
             showTab(targetTab);
         });
     });
+=======
+>>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
 }
