@@ -725,7 +725,7 @@ export default function CharacterBuilder() {
   }, [selectedRace, abilityGenerationMethod, standardArrayAssignments]);
 
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
       {/* Title and Action Buttons */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-4xl font-bold text-white">Character Builder</h1>
@@ -754,10 +754,10 @@ export default function CharacterBuilder() {
       </div>
 
       {/* Support Banner */}
-      <div className="bg-amber-600/20 border border-amber-600 rounded-lg p-4 mb-6 text-center">
+      <div className="bg-gray-600/20 border border-gray-600 rounded-lg p-4 mb-6 text-center">
         <div className="text-white mb-2">Every lone dollar you throw into our coffers is a spark of resonance, another skirmish in the Grand Weave that keeps the Old Gods snoring. Donate now and help us fend off the reset…for one more glorious day of adventuring!</div>
-        <div className="text-lg text-amber-300 font-semibold mb-3">Ignite the Resonance with $1</div>
-        <Button className="bg-amber-600 hover:bg-amber-700 text-white">
+        <div className="text-lg text-gray-300 font-semibold mb-3">Ignite the Resonance with $1</div>
+        <Button className="bg-gray-600 hover:bg-gray-700 text-white">
           Become a Patron today
         </Button>
       </div>
