@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -25,8 +26,12 @@ import {
   Download,
   Info,
   Lock,
-  Settings
+  Settings,
+  Search,
+  BookOpen,
+  Zap
 } from "lucide-react";
+import { SPELLS, SPELL_SCHOOLS, SPELL_LEVELS, searchSpells, getSpellsBySchool, getSpellsByLevel } from "@/data/spells";
 
 const races = [
   {
@@ -595,6 +600,56 @@ export default function CharacterBuilder() {
   const [abilities, setAbilities] = useState(defaultAbilities);
   const [pointBuyRemaining, setPointBuyRemaining] = useState<number>(pointBuyPoints);
   const [standardArrayAssignments, setStandardArrayAssignments] = useState<number[]>([15, 14, 13, 12, 10, 8]);
+  
+  // Spell management state
+  const [spellSearchQuery, setSpellSearchQuery] = useState<string>("");
+  const [selectedSpellSchool, setSelectedSpellSchool] = useState<string>("All");
+  const [selectedSpellLevel, setSelectedSpellLevel] = useState<string>("All");
+  const [knownSpells, setKnownSpells] = useState<string[]>([]);
+  const [preparedSpells, setPreparedSpells] = useState<string[]>([]);
+
+  // Spell filtering logic
+  const getFilteredSpells = () => {
+    let filteredSpells = Object.values(SPELLS);
+    
+    // Apply search filter
+    if (spellSearchQuery.trim()) {
+      filteredSpells = searchSpells(spellSearchQuery);
+    }
+    
+    // Apply school filter
+    if (selectedSpellSchool !== "All") {
+      filteredSpells = filteredSpells.filter(spell => spell.school === selectedSpellSchool);
+    }
+    
+    // Apply level filter
+    if (selectedSpellLevel !== "All") {
+      const level = selectedSpellLevel === "Cantrips" ? 0 : parseInt(selectedSpellLevel);
+      filteredSpells = filteredSpells.filter(spell => spell.level === level);
+    }
+    
+    return filteredSpells.sort((a, b) => {
+      if (a.level !== b.level) return a.level - b.level;
+      return a.name.localeCompare(b.name);
+    });
+  };
+
+  const toggleKnownSpell = (spellKey: string) => {
+    setKnownSpells(prev => 
+      prev.includes(spellKey) 
+        ? prev.filter(key => key !== spellKey)
+        : [...prev, spellKey]
+    );
+  };
+
+  const togglePreparedSpell = (spellKey: string) => {
+    if (!knownSpells.includes(spellKey)) return;
+    setPreparedSpells(prev => 
+      prev.includes(spellKey) 
+        ? prev.filter(key => key !== spellKey)
+        : [...prev, spellKey]
+    );
+  };
 
   // Handle ability generation method changes
   const handleGenerationMethodChange = (method: string) => {
@@ -700,9 +755,9 @@ export default function CharacterBuilder() {
 
       {/* Support Banner */}
       <div className="bg-amber-600/20 border border-amber-600 rounded-lg p-4 mb-6 text-center">
-        <div className="text-white">Please consider a gift of $1 to support this site.</div>
-        <div className="text-sm text-gray-300">Your support of $1 will provide the server with one lunch because no server should go hungry.</div>
-        <Button className="mt-2 bg-amber-600 hover:bg-amber-700 text-white">
+        <div className="text-white mb-2">Every lone dollar you throw into our coffers is a spark of resonance, another skirmish in the Grand Weave that keeps the Old Gods snoring. Donate now and help us fend off the reset…for one more glorious day of adventuring!</div>
+        <div className="text-lg text-amber-300 font-semibold mb-3">Ignite the Resonance with $1</div>
+        <Button className="bg-amber-600 hover:bg-amber-700 text-white">
           Become a Patron today
         </Button>
       </div>
@@ -804,9 +859,6 @@ export default function CharacterBuilder() {
                             {race.subraces && (
                               <div><span className="text-orange-400">Subraces:</span> <span className="text-gray-300">{race.subraces.join(", ")}</span></div>
                             )}
-                            {race.variants && (
-                              <div><span className="text-orange-400">Variants:</span> <span className="text-gray-300">{race.variants.join(", ")}</span></div>
-                            )}
                           </div>
                         </div>
                       ))}
@@ -816,6 +868,36 @@ export default function CharacterBuilder() {
                       <Plus className="w-4 h-4 mr-2" />
                       Add Race
                     </Button>
+                  </div>
+                </TabsContent>
+
+                {/* Combat Tab */}
+                <TabsContent value="combat" className="space-y-4">
+                  <div className="space-y-4">
+                    <h3 className="text-white font-semibold text-center">Combat Information</h3>
+                    <div className="text-center text-gray-400">
+                      Combat features and abilities will be displayed here.
+                    </div>
+                  </div>
+                </TabsContent>
+
+                {/* Proficiencies Tab */}
+                <TabsContent value="proficiencies" className="space-y-4">
+                  <div className="space-y-4">
+                    <h3 className="text-white font-semibold text-center">Proficiencies</h3>
+                    <div className="text-center text-gray-400">
+                      Character proficiencies will be displayed here.
+                    </div>
+                  </div>
+                </TabsContent>
+
+                {/* Features Tab */}
+                <TabsContent value="features" className="space-y-4">
+                  <div className="space-y-4">
+                    <h3 className="text-white font-semibold text-center">Class Features</h3>
+                    <div className="text-center text-gray-400">
+                      Class features and abilities will be displayed here.
+                    </div>
                   </div>
                 </TabsContent>
 
@@ -977,15 +1059,58 @@ export default function CharacterBuilder() {
                         startingReputation: "Neutral with Aethel authorities, Liked among common folk"
                       },
                       {
-                        name: "Rift Scarred Survivor",
-                        description: "You were present during a Rift event and survived, but the experience left indelible marks.",
-                        skillProficiencies: ["Survival", "Arcana"],
+                        name: "Arcane Academy Dropout",
+                        description: "You studied at a prestigious arcane academy but left before graduation due to expulsion, restrictive policies, or disturbing discoveries.",
+                        skillProficiencies: ["Arcana", "History"],
                         toolProficiencies: [],
-                        languages: ["One Exotic language (Abyssal, Celestial, Primordial, or Deep Speech)"],
-                        feature: "Planar Sense",
-                        featureDescription: "You have advantage on saving throws against being frightened or charmed by aberrations, celestials, elementals, fey, or fiends.",
+                        languages: ["Two of your choice"],
+                        feature: "Theoretical Knowledge",
+                        featureDescription: "You have advantage on Intelligence (Arcana) checks to identify magical effects, traditions, or items.",
                         alignmentTendency: "Often Chaotic",
-                        startingReputation: "Neutral with planar scholars, Disliked by mundane authorities"
+                        startingReputation: "Disliked by formal arcane institutions, Neutral with independent mages"
+                      },
+                      {
+                        name: "Battlefield Medic",
+                        description: "You served as a healer during conflicts, tending to the wounded on blood-soaked battlefields.",
+                        skillProficiencies: ["Medicine", "Insight"],
+                        toolProficiencies: ["Healer's kit", "Herbalism kit"],
+                        feature: "Trauma Response",
+                        featureDescription: "When you use a healer's kit to stabilize a dying creature, they regain 1 hit point immediately.",
+                        alignmentTendency: "Often Good",
+                        startingReputation: "Liked by veterans, Neutral with opposing forces"
+                      },
+                      {
+                        name: "Corruption Survivor",
+                        description: "You were exposed to a corrupting force and survived, though not without scars both physical and psychological.",
+                        skillProficiencies: ["Religion", "Insight"],
+                        toolProficiencies: ["Herbalism kit"],
+                        languages: ["One exotic language (Abyssal, Infernal, or Deep Speech)"],
+                        feature: "Corruption Sense",
+                        featureDescription: "You can sense strong sources of corruption within 60 feet and have advantage on saves against diseases and corruption.",
+                        alignmentTendency: "Often Good",
+                        startingReputation: "Liked by cleansing orders, Disliked by those who study corruption"
+                      },
+                      {
+                        name: "Cult Escapee",
+                        description: "You were once part of a secretive cult but broke free. You live with memories of what you witnessed and fear of reclamation.",
+                        skillProficiencies: ["Religion", "Deception"],
+                        toolProficiencies: ["Disguise Kit"],
+                        languages: ["One exotic language (Abyssal, Infernal, or Deep Speech)"],
+                        feature: "Dark Insights",
+                        featureDescription: "You have advantage on Intelligence (Religion) checks related to dark cults, eldritch entities, or occult practices.",
+                        alignmentTendency: "Often Good or Neutral",
+                        startingReputation: "Hated by former cult, Liked by groups that oppose cults"
+                      },
+                      {
+                        name: "Dimensional Refugee",
+                        description: "You are not originally from Aethel but from another plane or dimension that was destroyed or became uninhabitable.",
+                        skillProficiencies: ["Survival", "History"],
+                        toolProficiencies: [],
+                        languages: ["Two of your choice"],
+                        feature: "Otherworldly Perspective",
+                        featureDescription: "You have advantage on Intelligence checks related to identifying extraplanar phenomena and can suggest unconventional solutions.",
+                        alignmentTendency: "Any",
+                        startingReputation: "Neutral with most natives, Liked by multiverse scholars"
                       },
                       {
                         name: "Disgraced Noble Scion",
@@ -999,17 +1124,6 @@ export default function CharacterBuilder() {
                         startingReputation: "Disliked by established nobility, Neutral with underground groups"
                       },
                       {
-                        name: "Branded Exile",
-                        description: "You carry something you were never meant to have: a relic, secret, stolen spell, or divine fragment.",
-                        skillProficiencies: ["Stealth", "Arcana"],
-                        toolProficiencies: ["Thieves' Tools"],
-                        languages: ["One obscure or factional language"],
-                        feature: "Echo of the Stolen",
-                        featureDescription: "Once per long rest, you may replicate a 1st-level spell you've seen cast within the last hour.",
-                        alignmentTendency: "Often Chaotic",
-                        startingReputation: "Liked by resistance movements, Hated by the faction you stole from"
-                      },
-                      {
                         name: "Expedition Cartographer",
                         description: "You've made your living mapping the unknown territories of Aethel, accompanying merchants and adventuring parties.",
                         skillProficiencies: ["Survival", "Investigation"],
@@ -1020,26 +1134,90 @@ export default function CharacterBuilder() {
                         startingReputation: "Liked by merchant guilds and explorers' societies, Neutral with indigenous tribes"
                       },
                       {
-                        name: "Arcane Academy Dropout",
-                        description: "You studied at a prestigious arcane academy but left before graduation due to expulsion, restrictive policies, or disturbing discoveries.",
-                        skillProficiencies: ["Arcana", "History"],
-                        toolProficiencies: [],
-                        languages: ["Two of your choice"],
-                        feature: "Theoretical Knowledge",
-                        featureDescription: "You have advantage on Intelligence (Arcana) checks to identify magical effects, traditions, or items.",
-                        alignmentTendency: "Often Chaotic",
-                        startingReputation: "Disliked by formal arcane institutions, Neutral with independent mages"
+                        name: "Frontier Settler",
+                        description: "You helped establish or maintain frontier settlements on the edges of civilization, wilderness, or unexplored territories.",
+                        skillProficiencies: ["Survival", "Animal Handling"],
+                        toolProficiencies: ["One type of artisan's tools", "Vehicles (land)"],
+                        feature: "Frontier Adaptability",
+                        featureDescription: "You excel at making do with limited resources, improvising tools, and creating shelter in wilderness environments.",
+                        alignmentTendency: "Often Neutral",
+                        startingReputation: "Liked by frontier communities and traders, Neutral with urban elites"
                       },
                       {
-                        name: "Cult Escapee",
-                        description: "You were once part of a secretive cult but broke free. You live with memories of what you witnessed and fear of reclamation.",
-                        skillProficiencies: ["Religion", "Deception"],
-                        toolProficiencies: ["Disguise Kit"],
-                        languages: ["One exotic language (Abyssal, Infernal, or Deep Speech)"],
-                        feature: "Hidden Knowledge",
-                        featureDescription: "You know the signs and practices of various cults and can identify their symbols and rituals.",
-                        alignmentTendency: "Often Good (seeking redemption)",
-                        startingReputation: "Feared by cult members, Neutral with religious authorities"
+                        name: "Guild Artisan Dropout",
+                        description: "You left your guild before completing your training, taking your skills but losing the protection of organized craftsmanship.",
+                        skillProficiencies: ["Investigation", "Persuasion"],
+                        toolProficiencies: ["One type of artisan's tools"],
+                        feature: "Trade Secret",
+                        featureDescription: "You retain knowledge of your former craft and can identify quality craftsmanship and navigate guild bureaucracy.",
+                        alignmentTendency: "Often Chaotic",
+                        startingReputation: "Disliked by former guild, Neutral with rival guilds"
+                      },
+                      {
+                        name: "Marked Fugitive",
+                        description: "You carry something you were never meant to have: a relic, secret, stolen spell, or divine fragment, and are hunted for it.",
+                        skillProficiencies: ["Stealth", "Arcana"],
+                        toolProficiencies: ["Thieves' Tools"],
+                        languages: ["One obscure or factional language"],
+                        feature: "Echo of the Stolen",
+                        featureDescription: "Once per long rest, you may replicate a 1st-level spell you've seen cast within the last hour.",
+                        alignmentTendency: "Often Chaotic",
+                        startingReputation: "Liked by underground resistance, Hated by the faction you stole from"
+                      },
+                      {
+                        name: "Planar Merchant",
+                        description: "You've made your living trading goods between planes or dealing in items with extraplanar origins.",
+                        skillProficiencies: ["Persuasion", "Arcana"],
+                        toolProficiencies: ["One type of artisan's tools or gaming set"],
+                        languages: ["Two of your choice"],
+                        feature: "Planar Connections",
+                        featureDescription: "Once per week, you can attempt to acquire rare items with planar origins or gain information about planar phenomena.",
+                        alignmentTendency: "Often Neutral",
+                        startingReputation: "Liked by planar trading guilds, Disliked by planar customs authorities"
+                      },
+                      {
+                        name: "Relic Hunter",
+                        description: "You make your living discovering, identifying, and sometimes selling ancient artifacts and relics.",
+                        skillProficiencies: ["History", "Investigation"],
+                        toolProficiencies: ["Cartographer's tools or Thieves' tools"],
+                        languages: ["One of your choice"],
+                        feature: "Relic Lore",
+                        featureDescription: "You can accurately identify the culture, age, and significance of ancient artifacts with Intelligence (History) checks.",
+                        alignmentTendency: "Any",
+                        startingReputation: "Liked by museums and collectors, Disliked by indigenous peoples"
+                      },
+                      {
+                        name: "Rift Scarred Survivor",
+                        description: "You were present during a Rift event and survived, but the experience left indelible marks.",
+                        skillProficiencies: ["Survival", "Arcana"],
+                        toolProficiencies: [],
+                        languages: ["One Exotic language (Abyssal, Celestial, Primordial, or Deep Speech)"],
+                        feature: "Planar Sense",
+                        featureDescription: "You have advantage on saving throws against being frightened or charmed by aberrations, celestials, elementals, fey, or fiends.",
+                        alignmentTendency: "Often Chaotic",
+                        startingReputation: "Neutral with planar scholars, Disliked by mundane authorities"
+                      },
+                      {
+                        name: "Seeker of the Lost Pantheon",
+                        description: "You are driven by a quest to uncover truths behind Aethel's Lost Pantheon – deities worshiped in ages past but now forgotten.",
+                        skillProficiencies: ["Religion", "History"],
+                        toolProficiencies: ["Calligrapher's supplies or Cartographer's tools"],
+                        languages: ["Two of your choice (often ancient or obscure)"],
+                        feature: "Whispers of the Past",
+                        featureDescription: "You have advantage on Intelligence checks to decipher ancient ruins, symbols, or texts related to Aethel's pre-current faith history.",
+                        alignmentTendency: "Often Neutral or Chaotic",
+                        startingReputation: "Neutral with mainstream religious orders, Liked with fringe historians"
+                      },
+                      {
+                        name: "Wildling Herbalist",
+                        description: "You lived on the fringes of civilization, learning the secrets of plants, natural remedies, and wilderness survival.",
+                        skillProficiencies: ["Nature", "Medicine"],
+                        toolProficiencies: ["Herbalism Kit"],
+                        languages: ["One of your choice"],
+                        feature: "Natural Remedies",
+                        featureDescription: "You can identify beneficial and harmful plants, create basic healing salves, and find natural shelter.",
+                        alignmentTendency: "Often Neutral",
+                        startingReputation: "Liked by rural communities, Neutral with urban dwellers"
                       }
                     ];
 
@@ -1188,6 +1366,133 @@ export default function CharacterBuilder() {
                         Selected: <span className="font-semibold">{selectedAlignment}</span>
                       </div>
                     )}
+                  </div>
+                </TabsContent>
+
+                {/* Spells Tab */}
+                <TabsContent value="spells" className="space-y-4">
+                  <div className="space-y-4">
+                    {/* Search and Filter Controls */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                        <Input
+                          placeholder="Search spells..."
+                          value={spellSearchQuery}
+                          onChange={(e) => setSpellSearchQuery(e.target.value)}
+                          className="pl-10 bg-gray-800/50 border-gray-600 text-white placeholder-gray-400"
+                        />
+                      </div>
+                      <Select value={selectedSpellSchool} onValueChange={setSelectedSpellSchool}>
+                        <SelectTrigger className="bg-gray-800/50 border-gray-600 text-white">
+                          <SelectValue placeholder="Select School" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-gray-800 border-gray-600">
+                          <SelectItem value="All" className="text-white">All Schools</SelectItem>
+                          {SPELL_SCHOOLS.map(school => (
+                            <SelectItem key={school} value={school} className="text-white">
+                              {school}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Select value={selectedSpellLevel} onValueChange={setSelectedSpellLevel}>
+                        <SelectTrigger className="bg-gray-800/50 border-gray-600 text-white">
+                          <SelectValue placeholder="Select Level" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-gray-800 border-gray-600">
+                          <SelectItem value="All" className="text-white">All Levels</SelectItem>
+                          <SelectItem value="Cantrips" className="text-white">Cantrips (0)</SelectItem>
+                          {SPELL_LEVELS.slice(1).map(level => (
+                            <SelectItem key={level} value={level.toString()} className="text-white">
+                              Level {level}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Spell Statistics */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="bg-gray-800/30 p-3 rounded-lg text-center">
+                        <BookOpen className="h-5 w-5 text-blue-400 mx-auto mb-1" />
+                        <div className="text-sm text-gray-400">Known Spells</div>
+                        <div className="text-lg font-bold text-white">{knownSpells.length}</div>
+                      </div>
+                      <div className="bg-gray-800/30 p-3 rounded-lg text-center">
+                        <Zap className="h-5 w-5 text-yellow-400 mx-auto mb-1" />
+                        <div className="text-sm text-gray-400">Prepared</div>
+                        <div className="text-lg font-bold text-white">{preparedSpells.length}</div>
+                      </div>
+                      <div className="bg-gray-800/30 p-3 rounded-lg text-center">
+                        <div className="text-sm text-gray-400">Available</div>
+                        <div className="text-lg font-bold text-white">{getFilteredSpells().length}</div>
+                      </div>
+                      <div className="bg-gray-800/30 p-3 rounded-lg text-center">
+                        <div className="text-sm text-gray-400">Total Spells</div>
+                        <div className="text-lg font-bold text-white">{Object.keys(SPELLS).length}</div>
+                      </div>
+                    </div>
+
+                    {/* Spell List */}
+                    <div className="max-h-96 overflow-y-auto space-y-2">
+                      {getFilteredSpells().map((spell) => {
+                        const spellKey = spell.name.toLowerCase().replace(/\s+/g, '_');
+                        const isKnown = knownSpells.includes(spellKey);
+                        const isPrepared = preparedSpells.includes(spellKey);
+                        
+                        return (
+                          <div key={spellKey} className="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <h3 className="font-semibold text-white">{spell.name}</h3>
+                                  <span className="text-xs px-2 py-1 bg-blue-600 text-white rounded">
+                                    {spell.level === 0 ? 'Cantrip' : `Level ${spell.level}`}
+                                  </span>
+                                  <span className="text-xs px-2 py-1 bg-purple-600 text-white rounded">
+                                    {spell.school}
+                                  </span>
+                                </div>
+                                <div className="text-sm text-gray-300 space-y-1">
+                                  <div><strong>Casting Time:</strong> {spell.castingTime}</div>
+                                  <div><strong>Range:</strong> {spell.range}</div>
+                                  <div><strong>Components:</strong> {spell.components}</div>
+                                  <div><strong>Duration:</strong> {spell.duration}</div>
+                                  <div><strong>Classes:</strong> {spell.classes.join(', ')}</div>
+                                </div>
+                                <p className="text-sm text-gray-400 mt-2">{spell.description}</p>
+                              </div>
+                              <div className="flex flex-col gap-2 ml-4">
+                                <Button
+                                  size="sm"
+                                  variant={isKnown ? "default" : "outline"}
+                                  onClick={() => toggleKnownSpell(spellKey)}
+                                  className={isKnown ? "bg-green-600 hover:bg-green-700" : "border-green-600 text-green-600 hover:bg-green-600 hover:text-white"}
+                                >
+                                  {isKnown ? "Known" : "Learn"}
+                                </Button>
+                                {isKnown && (
+                                  <Button
+                                    size="sm"
+                                    variant={isPrepared ? "default" : "outline"}
+                                    onClick={() => togglePreparedSpell(spellKey)}
+                                    className={isPrepared ? "bg-yellow-600 hover:bg-yellow-700" : "border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white"}
+                                  >
+                                    {isPrepared ? "Prepared" : "Prepare"}
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                      {getFilteredSpells().length === 0 && (
+                        <div className="text-center text-gray-400 py-8">
+                          No spells found matching your criteria.
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </TabsContent>
               </Tabs>

@@ -40,10 +40,7 @@ export default function Footer() {
 
         <div className="border-t border-border pt-4">
           <p className="mb-2">
-            © 2025{" "}
-            <a href="#" className="text-amber-400 hover:text-amber-300">
-              www.dungeonmastersvault.com
-            </a>
+            © 2025 Decennium's Descent
           </p>
           <p className="mb-2">
             This site is based on{" "}
@@ -53,7 +50,7 @@ export default function Footer() {
             - Wizards of the Coast, Dungeons & Dragons, D&D, and their logos are trademarks of Wizards of the Coast LLC in the United States and other countries. © 2025 Wizards. All Rights Reserved.
           </p>
           <p className="mb-2">
-            DungeonMastersVault.com is not affiliated with, endorsed, sponsored, or specifically approved by Wizards of the Coast LLC.
+            Decennium's Descent is not affiliated with, endorsed, sponsored, or specifically approved by Wizards of the Coast LLC.
           </p>
           <p className="text-xs">
             Version v2.5.0.26 (01-14-2025) Mihel the Dragonslayer edition

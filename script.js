@@ -13,7 +13,6 @@ const characterState = {
         charisma: 10
     },
     abilityMethod: 'point-buy',
-<<<<<<< HEAD
     abilityBoosts: {
         strength: 0,
         dexterity: 0,
@@ -23,9 +22,6 @@ const characterState = {
         charisma: 0
     },
     boostsRemaining: 4,
-=======
-    pointsRemaining: 27,
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     selectedFeats: [],
     background: null,
     alignment: null,
@@ -37,7 +33,6 @@ let currentStep = 'race';
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-<<<<<<< HEAD
     console.log('DEBUG: DOM Content Loaded - Initializing application');
     console.log('DEBUG: Initial characterState:', characterState);
     
@@ -47,11 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDisplay();
     
     console.log('DEBUG: Application initialization completed');
-=======
-    initializeCharacterBuilder();
-    setupEventListeners();
-    updateDisplay();
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
 });
 
 function initializeCharacterBuilder() {
@@ -78,6 +68,92 @@ function initializeCharacterBuilder() {
     
     // Show first step
     showStep('race');
+}
+
+function setupStepNavigation() {
+    const nextBtns = document.querySelectorAll('.next-btn');
+    const prevBtns = document.querySelectorAll('.prev-btn');
+    
+    nextBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const nextStep = this.getAttribute('data-next');
+            if (nextStep) {
+                showStep(nextStep);
+            }
+        });
+    });
+    
+    prevBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const prevStep = this.getAttribute('data-prev');
+            if (prevStep) {
+                showStep(prevStep);
+            }
+        });
+    });
+}
+
+function setupRaceSelection() {
+    document.querySelectorAll('.race-option').forEach(raceOption => {
+        raceOption.addEventListener('click', function() {
+            const raceId = this.getAttribute('data-race');
+            const raceName = this.querySelector('.race-name')?.textContent || this.textContent;
+            selectRace(raceId, raceName);
+        });
+    });
+}
+
+function showStep(stepName) {
+    currentStep = stepName;
+    
+    // Hide all steps
+    document.querySelectorAll('.step').forEach(step => {
+        step.style.display = 'none';
+    });
+    
+    // Show current step
+    const currentStepElement = document.getElementById(`${stepName}-step`);
+    if (currentStepElement) {
+        currentStepElement.style.display = 'block';
+    }
+    
+    // Update step indicators
+    document.querySelectorAll('.step-indicator').forEach(indicator => {
+        indicator.classList.remove('active');
+        if (indicator.getAttribute('data-step') === stepName) {
+            indicator.classList.add('active');
+        }
+    });
+}
+
+function showTab(tabName) {
+    // Hide all tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+    
+    // Show selected tab
+    const selectedTab = document.getElementById(`${tabName}-tab`);
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+    }
+    
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-tab') === tabName) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+function initializeTabNavigation() {
+    // Set default active tab
+    const firstTab = document.querySelector('.tab-btn');
+    if (firstTab) {
+        const defaultTab = firstTab.getAttribute('data-tab');
+        showTab(defaultTab);
+    }
 }
 
 function setupEventListeners() {
@@ -123,178 +199,11 @@ function setupEventListeners() {
             updateDisplay();
         });
     }
-<<<<<<< HEAD
-    
-    // Section navigation buttons
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            if (this.hasAttribute('data-next')) {
-                const nextSection = this.getAttribute('data-next');
-                navigateToSection(nextSection);
-            } else if (this.hasAttribute('data-prev')) {
-                const prevSection = this.getAttribute('data-prev');
-                navigateToSection(prevSection);
-            }
-        });
-    });
 }
-
-function navigateToSection(sectionName) {
-    // Validate current section before moving
-    if (!validateCurrentSection()) {
-        return;
-    }
-    
-    currentStep = sectionName;
-    showStep(sectionName);
-    updateDisplay();
-}
-
-function validateCurrentSection() {
-    switch(currentStep) {
-        case 'race':
-            if (!characterState.race) {
-                alert('Please select a race before continuing.');
-                return false;
-            }
-            if (!characterState.class) {
-                alert('Please select a class before continuing.');
-                return false;
-            }
-            break;
-        case 'abilities':
-            if (characterState.abilityMethod === 'point-buy' && characterState.boostsRemaining > 0) {
-                alert('Please allocate all ability boosts before continuing.');
-                return false;
-            }
-            break;
-        case 'background':
-            if (!characterState.background) {
-                alert('Please select a background before continuing.');
-                return false;
-            }
-            break;
-        case 'alignment':
-            if (!characterState.alignment) {
-                alert('Please select an alignment before continuing.');
-                return false;
-            }
-            break;
-    }
-    return true;
-=======
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
-}
-
-function setupStepNavigation() {
-    document.querySelectorAll('.step-item').forEach(step => {
-        step.addEventListener('click', function() {
-            const stepName = this.getAttribute('data-step');
-            showStep(stepName);
-        });
-    });
-}
-
-function showStep(stepName) {
-    currentStep = stepName;
-    
-    // Update step navigation
-    document.querySelectorAll('.step-item').forEach(step => {
-        step.classList.remove('active');
-        if (step.getAttribute('data-step') === stepName) {
-            step.classList.add('active');
-        }
-    });
-    
-    // Update input sections
-    document.querySelectorAll('.input-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    const activeSection = document.getElementById(`${stepName}-section`);
-    if (activeSection) {
-        activeSection.classList.add('active');
-    }
-    
-    // Update output sections
-    document.querySelectorAll('.output-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    const activeOutput = document.getElementById(`${stepName}-output`);
-    if (activeOutput) {
-        activeOutput.classList.add('active');
-    }
-    
-    updateDisplay();
-}
-
-function showTab(tabName) {
-    // Update tab buttons
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('data-tab') === tabName) {
-            btn.classList.add('active');
-        }
-    });
-    
-    // Update tab content
-    document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-        if (content.id === tabName) {
-            content.classList.add('active');
-        }
-    });
-<<<<<<< HEAD
-    
-    // Initialize cosmology viewer when tab is activated
-    if (tabName === 'cosmology') {
-        setTimeout(() => {
-            if (!window.cosmologyViewer) {
-                window.cosmologyViewer = new CosmologyViewer('cosmology-canvas');
-            }
-            // Trigger resize to ensure proper canvas sizing
-            if (window.cosmologyViewer && window.cosmologyViewer.resize) {
-                window.cosmologyViewer.resize();
-            }
-        }, 100);
-    }
-    
-    // Dispatch tab change event for other modules
-    document.dispatchEvent(new CustomEvent('tabChanged', {
-        detail: { tab: tabName }
-    }));
-=======
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
-}
-
-// Race Selection
-function setupRaceSelection() {
-    // Add event listeners to existing race options
-    document.querySelectorAll('.race-option').forEach(raceOption => {
-        raceOption.addEventListener('click', function() {
-            const raceId = this.getAttribute('data-race');
-            const raceName = this.querySelector('.race-name').textContent;
-            selectRace(raceId, raceName);
-        });
-    });
-}
-
 function selectRace(raceId, raceName) {
-<<<<<<< HEAD
-    console.log('DEBUG: selectRace called with:', { raceId, raceName });
-    
     characterState.race = { id: raceId, name: raceName };
-    characterState.subrace = null; // Reset subrace when race changes
+    characterState.subrace = null;
     
-    console.log('DEBUG: characterState.race set to:', characterState.race);
-    console.log('DEBUG: RACES data for selected race:', RACES[raceId]);
-    
-=======
-    characterState.race = { id: raceId, name: raceName };
-    characterState.subrace = null; // Reset subrace when race changes
-    
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     // Update UI
     document.querySelectorAll('.race-option').forEach(option => {
         option.classList.remove('selected');
@@ -303,105 +212,22 @@ function selectRace(raceId, raceName) {
         }
     });
     
-    // Show subraces if available
-    showSubraces(raceId);
+    // Show/hide subrace options
+    const subraceContainer = document.getElementById('subrace-options');
+    if (subraceContainer) {
+        const raceData = RACES[raceId];
+        if (raceData && raceData.subraces && raceData.subraces.length > 0) {
+            displaySubraces(raceId);
+            subraceContainer.style.display = 'block';
+        } else {
+            subraceContainer.style.display = 'none';
+        }
+    }
     
     updateDisplay();
-}
-
-function showSubraces(raceId) {
-<<<<<<< HEAD
-    console.log('DEBUG: showSubraces called with raceId:', raceId);
-    
-    const subraceSelection = document.getElementById('subrace-selection');
-    const subraceGrid = document.getElementById('subrace-grid');
-    
-    console.log('DEBUG: subraceSelection element:', subraceSelection);
-    console.log('DEBUG: subraceGrid element:', subraceGrid);
-    
-    if (RACES[raceId] && RACES[raceId].subraces) {
-        const subraces = RACES[raceId].subraces;
-        console.log('DEBUG: Found subraces for race:', subraces);
-=======
-    const subraceSelection = document.getElementById('subrace-selection');
-    const subraceGrid = document.getElementById('subrace-grid');
-    
-    if (RACES[raceId] && RACES[raceId].subraces) {
-        const subraces = RACES[raceId].subraces;
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
-        
-        // Clear existing subraces
-        subraceGrid.innerHTML = '';
-        
-        // Add subrace options
-        Object.keys(subraces).forEach(subraceKey => {
-            const subrace = subraces[subraceKey];
-<<<<<<< HEAD
-            console.log('DEBUG: Creating subrace option for:', { subraceKey, subrace });
-            
-            const subraceOption = document.createElement('div');
-            subraceOption.className = 'variant-option';
-            subraceOption.setAttribute('data-subrace', subraceKey);
-            subraceOption.textContent = subrace.name;
-=======
-            const subraceOption = document.createElement('div');
-            subraceOption.className = 'subrace-option';
-            subraceOption.setAttribute('data-subrace', subraceKey);
-            subraceOption.innerHTML = `<span class="subrace-name">${subrace.name}</span>`;
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
-            
-            subraceOption.addEventListener('click', function() {
-                selectSubrace(subraceKey, subrace.name);
-            });
-            
-            subraceGrid.appendChild(subraceOption);
-        });
-        
-        subraceSelection.style.display = 'block';
-<<<<<<< HEAD
-        console.log('DEBUG: Subrace selection shown');
-    } else {
-        console.log('DEBUG: No subraces found for race:', raceId);
-        console.log('DEBUG: RACES[raceId]:', RACES[raceId]);
-        console.log('DEBUG: RACES[raceId].subraces:', RACES[raceId] ? RACES[raceId].subraces : 'Race not found');
-        
-        subraceSelection.style.display = 'none';
-        // If no subraces, proceed to class selection
-        showClassSelection();
-=======
-    } else {
-        subraceSelection.style.display = 'none';
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
-    }
 }
 
 function selectSubrace(subraceId, subraceName) {
-<<<<<<< HEAD
-    console.log('DEBUG: selectSubrace called with:', { subraceId, subraceName });
-    
-    characterState.subrace = { id: subraceId, name: subraceName };
-    
-    console.log('DEBUG: characterState.subrace set to:', characterState.subrace);
-    console.log('DEBUG: Full characterState:', characterState);
-    
-    // Update UI
-    document.querySelectorAll('.variant-option').forEach(option => {
-        option.classList.remove('selected');
-        if (option.getAttribute('data-subrace') === subraceId) {
-            option.classList.add('selected');
-            console.log('DEBUG: Selected subrace option in UI:', option);
-        }
-    });
-    
-    // Show class selection after subrace is chosen
-    showClassSelection();
-    
-    updateDisplay();
-}
-
-
-
-=======
     characterState.subrace = { id: subraceId, name: subraceName };
     
     // Update UI
@@ -415,7 +241,32 @@ function selectSubrace(subraceId, subraceName) {
     updateDisplay();
 }
 
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
+function displaySubraces(raceId) {
+    const subraceContainer = document.getElementById('subrace-options');
+    if (!subraceContainer) return;
+    
+    const raceData = RACES[raceId];
+    if (!raceData || !raceData.subraces) return;
+    
+    subraceContainer.innerHTML = '';
+    
+    raceData.subraces.forEach(subrace => {
+        const subraceDiv = document.createElement('div');
+        subraceDiv.className = 'subrace-option';
+        subraceDiv.setAttribute('data-subrace', subrace.id);
+        subraceDiv.innerHTML = `
+            <h4>${subrace.name}</h4>
+            <p>${subrace.description || ''}</p>
+        `;
+        
+        subraceDiv.addEventListener('click', function() {
+            selectSubrace(subrace.id, subrace.name);
+        });
+        
+        subraceContainer.appendChild(subraceDiv);
+    });
+}
+
 // Class Selection
 function setupClassSelection() {
     // Add event listeners to existing class options
@@ -483,15 +334,7 @@ function setupAbilityScores() {
                 
                 if (characterState.abilityMethod === 'random-roll') {
                     characterState.abilityScores[ability] = Math.max(3, Math.min(18, value));
-<<<<<<< HEAD
-                } else if (characterState.abilityMethod === 'point-buy') {
-                    // PF2e point buy: scores can only be 10 or 12
-                    const validScores = [10, 12];
-                    const newScore = validScores.includes(value) ? value : 10;
-                    characterState.abilityScores[ability] = newScore;
-                    characterState.abilityBoosts[ability] = newScore === 12 ? 1 : 0;
-=======
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
+
                 } else {
                     characterState.abilityScores[ability] = Math.max(8, Math.min(15, value));
                 }
@@ -511,35 +354,22 @@ function setupAbilityScores() {
 
 function changeAbilityScore(ability, change) {
     if (characterState.abilityMethod === 'point-buy') {
-<<<<<<< HEAD
-        const currentBoosts = characterState.abilityBoosts[ability];
-        const newBoosts = currentBoosts + change;
-        
-        // In PF2e, you can only have 0 or 1 boost per ability during character creation
-        if (newBoosts >= 0 && newBoosts <= 1) {
-            const boostDifference = newBoosts - currentBoosts;
-            
-            if (characterState.boostsRemaining >= boostDifference) {
-                characterState.abilityBoosts[ability] = newBoosts;
-                characterState.boostsRemaining -= boostDifference;
-                
-                // Update the actual ability score (base 10 + 2 per boost)
-                characterState.abilityScores[ability] = 10 + (newBoosts * 2);
-=======
         const currentScore = characterState.abilityScores[ability];
-        const newScore = currentScore + change;
+        const newScore = Math.max(8, Math.min(15, currentScore + change));
         
-        if (newScore >= 8 && newScore <= 15) {
-            const currentCost = getPointCost(currentScore);
-            const newCost = getPointCost(newScore);
-            const costDifference = newCost - currentCost;
-            
-            if (characterState.pointsRemaining >= costDifference) {
-                characterState.abilityScores[ability] = newScore;
-                characterState.pointsRemaining -= costDifference;
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
-                updateAbilityScores();
-            }
+        // Calculate point cost difference
+        const pointCosts = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 };
+        const currentCost = pointCosts[currentScore] || 0;
+        const newCost = pointCosts[newScore] || 0;
+        const costDifference = newCost - currentCost;
+        
+        // Check if we have enough points
+        const pointsUsed = calculatePointsUsed();
+        const pointsRemaining = 27 - pointsUsed;
+        
+        if (costDifference <= pointsRemaining) {
+            characterState.abilityScores[ability] = newScore;
+            updateAbilityScores();
         }
     } else if (characterState.abilityMethod === 'random-roll') {
         // Random roll method allows wider range (3-18)
@@ -554,28 +384,12 @@ function changeAbilityScore(ability, change) {
     }
 }
 
-<<<<<<< HEAD
 function resetAbilityScores() {
     if (characterState.abilityMethod === 'point-buy') {
-        // Reset all ability scores to 10 and boosts to 0
-        Object.keys(characterState.abilityScores).forEach(ability => {
-            characterState.abilityScores[ability] = 10;
-            characterState.abilityBoosts[ability] = 0;
-        });
-        characterState.boostsRemaining = 4;
-=======
-function getPointCost(score) {
-    const costs = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 };
-    return costs[score] || 0;
-}
-
-function resetAbilityScores() {
-    if (characterState.abilityMethod === 'point-buy') {
+        // Reset to base 8 for point buy
         Object.keys(characterState.abilityScores).forEach(ability => {
             characterState.abilityScores[ability] = 8;
         });
-        characterState.pointsRemaining = 27;
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
     } else if (characterState.abilityMethod === 'standard-array') {
         const standardArray = [15, 14, 13, 12, 10, 8];
         const abilities = Object.keys(characterState.abilityScores);
@@ -624,14 +438,7 @@ function updateAbilityScores() {
             if (characterState.abilityMethod === 'random-roll') {
                 scoreInput.min = 3;
                 scoreInput.max = 18;
-<<<<<<< HEAD
-            } else if (characterState.abilityMethod === 'point-buy') {
-                // PF2e point buy: only 10 or 12 allowed
-                scoreInput.min = 10;
-                scoreInput.max = 12;
-                scoreInput.step = 2;
-=======
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
+
             } else {
                 scoreInput.min = 8;
                 scoreInput.max = 15;
@@ -644,142 +451,42 @@ function updateAbilityScores() {
     
     const pointsDisplay = document.getElementById('points-left');
     if (pointsDisplay && characterState.abilityMethod === 'point-buy') {
-<<<<<<< HEAD
-        pointsDisplay.textContent = characterState.boostsRemaining;
-=======
-        pointsDisplay.textContent = characterState.pointsRemaining;
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
+        const pointsUsed = calculatePointsUsed();
+        const pointsRemaining = 27 - pointsUsed;
+        pointsDisplay.textContent = pointsRemaining;
     }
     
     updateDisplay();
 }
 
+function calculatePointsUsed() {
+    let pointsUsed = 0;
+    const pointCosts = { 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 };
+    
+    Object.values(characterState.abilityScores).forEach(score => {
+        pointsUsed += pointCosts[score] || 0;
+    });
+    
+    return pointsUsed;
+}
+
+function rollAbilityScore() {
+    // Roll 4d6, drop lowest
+    const rolls = [];
+    for (let i = 0; i < 4; i++) {
+        rolls.push(Math.floor(Math.random() * 6) + 1);
+    }
+    rolls.sort((a, b) => b - a);
+    return rolls[0] + rolls[1] + rolls[2];
+}
+
 // Feat Selection
 function setupFeatSelection() {
-<<<<<<< HEAD
-    // Load feats from game-data.js and organize by category
-    window.featsData = {
-        all: [],
-        general: [],
-        combat: [],
-        magic: [],
-        skill: []
-    };
-    
-    // Convert FEATS object to categorized arrays
-    if (typeof FEATS !== 'undefined') {
-        Object.keys(FEATS).forEach(featKey => {
-            const feat = {
-                name: FEATS[featKey].name,
-                description: FEATS[featKey].description,
-                effect: FEATS[featKey].effect,
-                prerequisite: FEATS[featKey].prerequisite || "None",
-                type: FEATS[featKey].type || "general"
-            };
-            
-            // Add to all feats
-            window.featsData.all.push(feat);
-            
-            // Add to specific category
-            const category = feat.type;
-            if (window.featsData[category]) {
-                window.featsData[category].push(feat);
-            } else {
-                window.featsData.general.push(feat);
-            }
-        });
-    }
-    
-    setupFeatCategories();
-    setupFeatSearch();
-    displayFeats('all');
-}
-
-function setupFeatCategories() {
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            categoryButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            button.classList.add('active');
-            // Display feats for selected category
-            const category = button.dataset.category;
-            displayFeats(category);
-            // Clear search when switching categories
-            const searchInput = document.getElementById('feat-search');
-            if (searchInput) {
-                searchInput.value = '';
-            }
-=======
-    // Sample feats data
-    window.featsData = {
-        general: [
-            {
-                name: "Alert",
-                description: "Always on the lookout for danger, you gain the following benefits:",
-                effect: "+5 bonus to initiative. You can't be surprised while conscious. Other creatures don't gain advantage on attack rolls against you as a result of being unseen by you.",
-                prerequisite: "None"
-            },
-            {
-                name: "Athlete",
-                description: "You have undergone extensive physical training to gain the following benefits:",
-                effect: "Increase your Strength or Dexterity score by 1, to a maximum of 20. When you are prone, standing up uses only 5 feet of your movement. Climbing doesn't cost you extra movement.",
-                prerequisite: "None"
-            },
-            {
-                name: "Actor",
-                description: "Skilled at mimicry and dramatics, you gain the following benefits:",
-                effect: "Increase your Charisma score by 1, to a maximum of 20. You have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.",
-                prerequisite: "None"
-            }
-        ],
-        combat: [
-            {
-                name: "Great Weapon Master",
-                description: "You've learned to put the weight of a weapon to your advantage, letting its momentum empower your strikes.",
-                effect: "On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action. Before you make a melee attack with a heavy weapon that you are proficient with, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage.",
-                prerequisite: "Strength 13 or higher"
-            },
-            {
-                name: "Sharpshooter",
-                description: "You have mastered ranged weapons and can make shots that others find impossible.",
-                effect: "Attacking at long range doesn't impose disadvantage on your ranged weapon attack rolls. Your ranged weapon attacks ignore half cover and three-quarters cover. Before you make an attack with a ranged weapon that you are proficient with, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage.",
-                prerequisite: "Dexterity 13 or higher"
-            }
-        ],
-        magic: [
-            {
-                name: "Magic Initiate",
-                description: "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list.",
-                effect: "You learn two cantrips and one 1st-level spell from the chosen class. You can cast the 1st-level spell once without expending a spell slot, and you regain the ability to do so when you finish a long rest.",
-                prerequisite: "None"
-            },
-            {
-                name: "Ritual Caster",
-                description: "You have learned a number of spells that you can cast as rituals.",
-                effect: "Choose one of the following classes: bard, cleric, druid, sorcerer, warlock, or wizard. You acquire a ritual book holding two 1st-level spells of your choice. If you come across a spell in written form, such as a magical spell scroll or a wizard's spellbook, you might be able to add it to your ritual book if the spell is on the spell list for the class you chose.",
-                prerequisite: "Intelligence or Wisdom 13 or higher"
-            }
-        ]
-    };
-    
-    setupFeatCategories();
-    setupFeatSearch();
-    displayFeats('general');
-}
-
-function setupFeatCategories() {
-    document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const category = this.getAttribute('data-category');
-            
-            // Update active category
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            displayFeats(category);
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
+    const featCategories = document.querySelectorAll('.feat-category');
+    featCategories.forEach(category => {
+        category.addEventListener('click', function() {
+            const categoryName = this.getAttribute('data-category');
+            displayFeats(categoryName);
         });
     });
 }
@@ -921,12 +628,7 @@ function selectAlignment(alignment) {
 
 // Display Updates
 function updateDisplay() {
-<<<<<<< HEAD
-    console.log('DEBUG: updateDisplay called');
-    console.log('DEBUG: Current characterState:', JSON.stringify(characterState, null, 2));
-    
-=======
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
+
     updateRaceOutput();
     updateClassOutput();
     updateQualifyingFeats();
@@ -935,33 +637,7 @@ function updateDisplay() {
     updateAlignmentOutput();
     updateCharacterSummary();
     updateFinalStats();
-<<<<<<< HEAD
-    
-    console.log('DEBUG: updateDisplay completed');
-}
 
-function updateRaceOutput() {
-    console.log('DEBUG: updateRaceOutput called');
-    console.log('DEBUG: characterState in updateRaceOutput:', characterState);
-    
-    const raceDetails = document.querySelector('#race-output .race-details');
-    console.log('DEBUG: raceDetails element:', raceDetails);
-    
-    if (raceDetails) {
-        if (characterState.race) {
-            console.log('DEBUG: Race selected:', characterState.race);
-            const raceData = RACES[characterState.race.id];
-            console.log('DEBUG: Race data found:', raceData);
-            
-=======
-}
-
-function updateRaceOutput() {
-    const raceDetails = document.querySelector('#race-output .race-details');
-    if (raceDetails) {
-        if (characterState.race) {
-            const raceData = RACES[characterState.race.id];
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
             if (raceData) {
                 let output = `
                     <h4>${raceData.name}</h4>
@@ -1004,18 +680,7 @@ function updateRaceOutput() {
                 `;
                 
                 // Display subrace information if selected
-<<<<<<< HEAD
-                console.log('DEBUG: Checking subrace - characterState.subrace:', characterState.subrace);
-                console.log('DEBUG: raceData.subraces:', raceData.subraces);
-                
-                if (characterState.subrace && raceData.subraces && raceData.subraces[characterState.subrace.id]) {
-                    const subraceData = raceData.subraces[characterState.subrace.id];
-                    console.log('DEBUG: Subrace data found:', subraceData);
-                    
-=======
-                if (characterState.subrace && raceData.subraces && raceData.subraces[characterState.subrace.id]) {
-                    const subraceData = raceData.subraces[characterState.subrace.id];
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
+
                     output += `
                         <div class="subrace-info">
                             <h5>${subraceData.name}</h5>
@@ -1059,37 +724,7 @@ function updateRaceOutput() {
                     }
                     
                     output += `</div>`;
-<<<<<<< HEAD
-                } else {
-                    console.log('DEBUG: No subrace to display or subrace data not found');
-                    if (characterState.subrace) {
-                        console.log('DEBUG: Subrace exists but data missing for:', characterState.subrace.id);
-                    }
-                }
-                
-                console.log('DEBUG: Final output HTML:', output);
-                raceDetails.innerHTML = output;
-            } else {
-                console.log('DEBUG: Race data not found for:', characterState.race.id);
-                raceDetails.innerHTML = `<h4>${characterState.race.name}</h4><p>Race data not found.</p>`;
-            }
-        } else {
-            console.log('DEBUG: No race selected');
-            raceDetails.innerHTML = '<p>Select a race to see its details and traits.</p>';
-        }
-    } else {
-        console.log('DEBUG: raceDetails element not found');
-=======
-                }
-                
-                raceDetails.innerHTML = output;
-            } else {
-                raceDetails.innerHTML = `<h4>${characterState.race.name}</h4><p>Race data not found.</p>`;
-            }
-        } else {
-            raceDetails.innerHTML = '<p>Select a race to see its details and traits.</p>';
-        }
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
+
     }
 }
 
@@ -1485,17 +1120,5 @@ function getAlignmentDivine(alignment) {
         'Chaotic Evil': 'Favored by demons and chaotic evil deities.'
     };
     return divine[alignment] || 'Varies';
-<<<<<<< HEAD
-}
 
-// Enhanced Tab Navigation for Cosmology Integration
-function initializeTabNavigation() {
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const targetTab = this.getAttribute('data-tab');
-            showTab(targetTab);
-        });
-    });
-=======
->>>>>>> 642aa2d830010e520f787835ae620af1a3ee996b
 }
