@@ -1,8 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Decennium Descent
 
-## Getting Started
+A comprehensive tabletop role-playing game (TTRPG) experience set in the world of Aethel. This repository contains the companion website and digital tools to enhance your Decennium Descent gaming sessions.
 
-First, run the development server:
+## About Decennium Descent
+
+Decennium Descent is a rich TTRPG that combines deep lore, strategic combat, and immersive storytelling. Players venture into the mysterious dungeon known as the Decennium, where danger and discovery await at every turn.
+
+### Key Features
+
+- **Comprehensive Monster Library** - Browse creatures by tier zones with detailed lore from the Floor Encounters
+- **Spell Compendium** - Complete spell lists organized by school of magic
+- **Crafting System** - Detailed recipes and materials for creating magical items
+- **Character Builder** - Tools for creating and managing your characters
+- **Dungeon Lore** - Rich background information about the world of Aethel and the Decennium
+
+### The Decennium
+
+The central dungeon features 10 distinct tier zones, each with unique environments, creatures, and challenges. Only the first 5 tiers have been fully mapped:
+
+1. **Yieldheart Caverns** - Ancient mining tunnels with crystalline formations
+2. **Bloomdeep Marsh** - Twisted wetlands filled with dangerous flora
+3. **Anvil of Brogi** - Dwarven forges and mechanical constructs
+4. **Isles of Eternal Radiance** - Floating islands bathed in perpetual light
+5. **Sanctum of Echoing Choirs** - Sacred halls resonating with divine music
+
+**Warning**: A giant horn sounds at 120 hours, marking the point of no return. Adventurers must choose to retreat or risk being trapped for 10 years.
+
+## Development
+
+This companion website is built with Next.js to provide digital tools and references for your TTRPG sessions.
+
+### Getting Started
 
 ```bash
 npm run dev
@@ -10,27 +38,14 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to access the companion tools.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is part of an ongoing TTRPG development. Contributions to improve the digital companion tools are welcome.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Decennium Descent TTRPG content and companion website.
