@@ -43,7 +43,7 @@ def read_doc_file(file_path):
 def main():
     # List of DOCX files to read
     file_paths = [
-        r'C:\Users\cbord\OneDrive\Documents\GitHub\Arena Fighter\decennium descent player rulebook.docx'
+        r'C:\Users\cbord\OneDrive\Documents\GitHub\Arena Fighter\Floor Encounters.docx'
     ]
     
     all_content = {}

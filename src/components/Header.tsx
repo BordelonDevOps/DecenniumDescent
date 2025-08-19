@@ -99,6 +99,17 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
               <span className="text-xs font-semibold">ITEMS</span>
             </div>
 
+            {/* Dungeon Guide */}
+            <div 
+              className={`flex flex-col items-center p-4 text-white cursor-pointer ${
+                activeTab === "dungeon-guide" ? "bg-amber-600" : "hover:bg-white/10"
+              }`}
+              onClick={() => setActiveTab("dungeon-guide")}
+            >
+              <img src="https://ext.same-assets.com/804965517/1180557428.svg" className="nav-icon" alt="Dungeon Guide" />
+              <span className="text-xs font-semibold">DUNGEON GUIDE</span>
+            </div>
+
             {/* Encounters */}
             <div 
               className={`flex flex-col items-center p-4 text-white cursor-pointer ${

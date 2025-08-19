@@ -6,6 +6,7 @@ import CharacterBuilder from "@/components/CharacterBuilder";
 import SpellsLibrary from "@/components/SpellsLibrary";
 import MonstersLibrary from "@/components/MonstersLibrary";
 import ItemsLibrary from "@/components/ItemsLibrary";
+import DungeonGuide from "@/components/DungeonGuide";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("characters");
@@ -20,6 +21,8 @@ export default function Home() {
         return <MonstersLibrary />;
       case "items":
         return <ItemsLibrary />;
+      case "dungeon-guide":
+        return <DungeonGuide />;
       case "encounters":
         return <div className="p-8 text-white text-center">Encounters content coming soon...</div>;
       case "generators":

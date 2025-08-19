@@ -107,7 +107,7 @@ const extractCraftingComponents = (): CraftingComponent[] => {
           tier: index + 1,
           rarity,
           category,
-          value: parseInt(loot.value) || 0,
+          value: (loot.value && loot.value !== 'nan') ? parseInt(loot.value) || 0 : 0,
           weight: Math.random() * 2,
           quantity: 1,
           properties

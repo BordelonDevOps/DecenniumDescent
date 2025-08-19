@@ -82,7 +82,7 @@ const extractDroppedItems = (): DroppedItem[] => {
   bestiaryData.forEach((monster: any) => {
     if (monster.loot) {
       // Process tier 1 loot
-      if (monster.loot.tier1 && monster.loot.tier1.drop !== 'None') {
+      if (monster.loot.tier1 && monster.loot.tier1.drop !== 'None' && monster.loot.tier1.drop !== 'nan' && monster.loot.tier1.drop !== null && monster.loot.tier1.drop !== undefined) {
         const existingItem = droppedItems.find(item => 
           item.name.toLowerCase() === monster.loot.tier1.drop.toLowerCase()
         );
@@ -95,9 +95,9 @@ const extractDroppedItems = (): DroppedItem[] => {
             rarity: 'Common',
             category: 'Material',
             tier: 1,
-            value: parseInt(monster.loot.tier1.value) || 1,
+            value: (monster.loot.tier1.value && monster.loot.tier1.value !== 'nan') ? parseInt(monster.loot.tier1.value) || 1 : 1,
             type: 'dropped',
-            dropRate: Math.round(parseFloat(monster.loot.tier1.rate) * 100),
+            dropRate: (monster.loot.tier1.rate && monster.loot.tier1.rate !== 'nan') ? Math.round(parseFloat(monster.loot.tier1.rate) * 100) : 0,
             quantity: '1-3',
             sourceMonsters: [monster.name]
           });
@@ -109,7 +109,7 @@ const extractDroppedItems = (): DroppedItem[] => {
       }
       
       // Process tier 2 loot
-      if (monster.loot.tier2 && monster.loot.tier2.drop !== 'None') {
+      if (monster.loot.tier2 && monster.loot.tier2.drop !== 'None' && monster.loot.tier2.drop !== 'nan' && monster.loot.tier2.drop !== null && monster.loot.tier2.drop !== undefined) {
         const existingItem = droppedItems.find(item => 
           item.name.toLowerCase() === monster.loot.tier2.drop.toLowerCase()
         );
@@ -122,9 +122,9 @@ const extractDroppedItems = (): DroppedItem[] => {
             rarity: 'Uncommon',
             category: 'Material',
             tier: 2,
-            value: parseInt(monster.loot.tier2.value) || 5,
+            value: (monster.loot.tier2.value && monster.loot.tier2.value !== 'nan') ? parseInt(monster.loot.tier2.value) || 5 : 5,
             type: 'dropped',
-            dropRate: Math.round(parseFloat(monster.loot.tier2.rate) * 100),
+            dropRate: (monster.loot.tier2.rate && monster.loot.tier2.rate !== 'nan') ? Math.round(parseFloat(monster.loot.tier2.rate) * 100) : 0,
             quantity: '1-2',
             sourceMonsters: [monster.name]
           });
@@ -136,7 +136,7 @@ const extractDroppedItems = (): DroppedItem[] => {
       }
       
       // Process tier 3 loot
-      if (monster.loot.tier3 && monster.loot.tier3.drop !== 'None') {
+      if (monster.loot.tier3 && monster.loot.tier3.drop !== 'None' && monster.loot.tier3.drop !== 'nan' && monster.loot.tier3.drop !== null && monster.loot.tier3.drop !== undefined) {
         const existingItem = droppedItems.find(item => 
           item.name.toLowerCase() === monster.loot.tier3.drop.toLowerCase()
         );
@@ -149,9 +149,9 @@ const extractDroppedItems = (): DroppedItem[] => {
             rarity: 'Rare',
             category: 'Material',
             tier: 3,
-            value: parseInt(monster.loot.tier3.value) || 15,
+            value: (monster.loot.tier3.value && monster.loot.tier3.value !== 'nan') ? parseInt(monster.loot.tier3.value) || 15 : 15,
             type: 'dropped',
-            dropRate: Math.round(parseFloat(monster.loot.tier3.rate) * 100),
+            dropRate: (monster.loot.tier3.rate && monster.loot.tier3.rate !== 'nan') ? Math.round(parseFloat(monster.loot.tier3.rate) * 100) : 0,
             quantity: '1',
             sourceMonsters: [monster.name]
           });
@@ -210,7 +210,7 @@ const ItemsLibrary: React.FC = () => {
           </p>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs value={activeTab} onValueChange={(value: string) => setActiveTab(value as 'dropped' | 'crafted' | 'builder')}>
           <TabsList className="grid w-full grid-cols-3 bg-amber-600/20 border border-amber-600/30">
             <TabsTrigger value="dropped" className="data-[state=active]:bg-amber-600 data-[state=active]:text-white">
               <Package className="w-4 h-4" />
