@@ -1,0 +1,191 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-DEEP",
+  "runId": "EXP-DEEP-cau-L10-P6-unk",
+  "seed": 1743922,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.3775,
+    "wipeRate": 0.0,
+    "abortRate": 0.6225,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 2.255,
+    "meanWatches": 8.174,
+    "meanHours": 69.11,
+    "meanTrueProfit": 413.05,
+    "medianTrueProfit": 331.65,
+    "profitLossRate": 0.269,
+    "meanCargoRetainedLoad": 7.916,
+    "meanExtractionFailRate": 0.465,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 10,
+    "party": 6,
+    "mapping": "Unknown",
+    "policy": "cautious",
+    "objective": "Tier IV risk frontier",
+    "requestedRuns": 2000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    },
+    {
+      "code": "UNKNOWN-PROGRESS-ZERO",
+      "note": "progressPerWatch.Unknown=0; without Map Route success, expedition cannot meet Progress targets \u2014 intentional deadlock risk."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-DEEP/cau-L10-P6-unk.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 1,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 6,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 17.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 3,
+      "pressure": 0,
+      "supply": 20.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 16.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 5,
+      "hour": 40,
+      "progress": 5,
+      "pressure": 0,
+      "supply": 16.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 6,
+      "hour": 48,
+      "progress": 6,
+      "pressure": 0,
+      "supply": 18.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 7,
+      "hour": 56,
+      "progress": 7,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 8,
+      "hour": 64,
+      "progress": 8,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 9,
+      "hour": 72,
+      "progress": 9,
+      "pressure": 0,
+      "supply": 17.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 10,
+      "hour": 80,
+      "progress": 10,
+      "pressure": 0,
+      "supply": 13.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 11,
+      "hour": 88,
+      "progress": 11,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 12,
+      "hour": 96,
+      "progress": 12,
+      "pressure": 1,
+      "supply": 15.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 13,
+      "hour": 104,
+      "progress": 13,
+      "pressure": 1,
+      "supply": 9.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

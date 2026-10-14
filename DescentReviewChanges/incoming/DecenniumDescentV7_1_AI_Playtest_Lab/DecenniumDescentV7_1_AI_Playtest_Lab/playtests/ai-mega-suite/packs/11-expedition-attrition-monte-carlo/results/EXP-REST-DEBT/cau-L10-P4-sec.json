@@ -1,0 +1,81 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-REST-DEBT",
+  "runId": "EXP-REST-DEBT-cau-L10-P4-sec",
+  "seed": 2853377,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.922,
+    "wipeRate": 0.0,
+    "abortRate": 0.078,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0.676,
+    "meanWatches": 3.947,
+    "meanHours": 34.82,
+    "meanTrueProfit": 217.78,
+    "medianTrueProfit": 194.82,
+    "profitLossRate": 0.469,
+    "meanCargoRetainedLoad": 3.746,
+    "meanExtractionFailRate": 0.406,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 10,
+    "party": 4,
+    "mapping": "Secured",
+    "policy": "cautious",
+    "objective": "interrupted rest and attrition",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    },
+    {
+      "code": "REST-DEBT-INTERRUPT-TIMING",
+      "note": "Rest Debt deadline 'next two Watches and before next day boundary' \u2014 applied as day-boundary failure; interrupt mid-rest timing vs Evening camp workers remains underspecified in JSON."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-REST-DEBT/cau-L10-P4-sec.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 11.0,
+      "load": 4,
+      "mapping": "Secured",
+      "alive": 4,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 13.0,
+      "load": 4,
+      "mapping": "Secured",
+      "alive": 4,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 6,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 4,
+      "mapping": "Secured",
+      "alive": 4,
+      "extracting": false
+    }
+  ]
+}

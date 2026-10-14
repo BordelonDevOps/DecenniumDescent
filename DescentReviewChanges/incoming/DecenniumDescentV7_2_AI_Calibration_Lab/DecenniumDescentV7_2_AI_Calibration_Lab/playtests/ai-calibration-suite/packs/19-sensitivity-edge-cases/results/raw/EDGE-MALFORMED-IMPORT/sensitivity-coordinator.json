@@ -1,0 +1,28 @@
+{
+  "pack": "19-sensitivity-edge-cases",
+  "scenarioId": "EDGE-MALFORMED-IMPORT",
+  "runId": "2026-08-06T151746Z-EDGE-MALFORMED-IMPORT-sensitivity-coordinator",
+  "seed": 78008,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "f8250d8efae7af8fd7fd8968e2376cf49050f2f81ee56e98026c5aa643eb62ed",
+  "evidenceLevel": "A",
+  "outcome": "FAIL_CLOSED",
+  "metrics": {
+    "fixture": {
+      "mode": "fail-closed",
+      "note": "Malformed gameplay-state / fixture import must reject"
+    },
+    "agentRole": "sensitivity-coordinator",
+    "seed": 78008
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "Malformed import rejected without mutating frozen sources.",
+      "citation": "tools/validate_gameplay_state.py"
+    }
+  ],
+  "rawEvidencePath": "results/raw/EDGE-MALFORMED-IMPORT/sensitivity-coordinator.json",
+  "agentId": "sensitivity-coordinator"
+}

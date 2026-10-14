@@ -1,0 +1,243 @@
+{
+  "request": "Verify the actual revised fields close all12 findings, and confer on the remaining falling interface.",
+  "changedCards": [
+    {
+      "id": "shield",
+      "activation": "Reaction — when the chosen creature is targeted by an attack roll or Magic Missile, before the attack or damage resolves",
+      "rangeFeet": 30,
+      "targets": "Self or one willing creature you can perceive within 30 feet",
+      "duration": "Until the start of your next regular turn",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None. Re-evaluate the triggering attack against the chosen creature's increased AC; negate Magic Missile damage to that creature while the spell lasts.",
+      "effect": "The chosen creature gains +5 AC until the start of your next regular turn. During the same duration, Magic Missile cannot deal damage to that creature.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Does not protect against saving-throw effects, attacks that already resolved, or other automatically hitting effects unless explicitly named Magic Missile. Multiple Shield casts do not stack. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions.  GPT conference correction: retain Core30ft range; self-only narrowing rejected. One willing recipient is a provisional target specification.",
+      "previousDraftDesignNotes": "NEW provisional Reaction trigger and exact timing; numerical effects are preserved from both source placements."
+    },
+    {
+      "id": "predict-movement",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within 30 feet",
+      "duration": "Until the end of your next regular turn or until consumed",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Choose attack or Dexterity save when cast. Before the duration ends, the target adds +1 to its next attack roll or next Dexterity save of the chosen kind; that roll consumes the benefit. The target must commit to applying it before the roll.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Choice cannot be changed after casting. Multiple Predict Movement effects do not stack; a new cast replaces the prior one. Cannot be applied after seeing the result of the roll. Grants no extra Action, movement, reroll, AC, or foreknowledge beyond the +1. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. The beneficial source effect does not call for a hostile Dexterity save despite Core resolution metadata. Retain Core30ft range; consuming the bonus before end of next turn operationalizes an otherwise instantaneous future-roll benefit. GPT conference: target is one willing creature, not self-only.",
+      "previousDraftDesignNotes": "NEW provisional Bonus Action timing, choice-at-cast requirement, and expiration; source +1 to next Dexterity save or attack roll is preserved."
+    },
+    {
+      "id": "resonance-shield",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within 30 feet",
+      "duration": "Until the temporary HP are lost or you complete a long rest",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "In addition to the class-specific rank cost and any Dissonance surcharge, spend 1 RP. Roll 1d4; the chosen creature gains that many temporary HP. It keeps the higher of these or its existing temporary HP; they never add together.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "The additional 1 RP conversion cost is mandatory. Temporary HP never restore real HP and cannot generate resources when gained or lost. Recasting requires a new paid cast and roll; keep the higher remaining amount. Rank is class-specific, so this spell is not necessarily a cantrip for every class. If the Core source placement matching the class-specific school and rank includes F, an existing class casting focus is additionally required.",
+      "designNotes": "Conference decision: use the rank-0 1d4 effect plus mandatory1RP as the provisional single-ID rule. Retain all variants: rank0 catalog/Core1d4; rank2 catalog5tempHP perRP; rank2 Core2tempHP perRP. Rank2 alternatives are preserved as evidence, not cumulative effects or optional upgrades. Use Core30ft range and placement-specific focus requirement. Temporary HP end on next long rest; no fixed5 buff.",
+      "previousDraftDesignNotes": "NEW provisional reconciliation of conflicting source placements. The source contains both 'convert 1 RP into 1d4 temporary HP' and '5 temporary HP per RP spent.' This unified playtest record uses the explicit +1 RP interface requested for the tranche and the fixed 5-HP value from the stronger detailed summary; the 1d4 variant remains preserved in the source ledger."
+    },
+    {
+      "id": "false-life",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing living creature you can perceive within 30 feet",
+      "duration": "Until the temporary HP are lost or you complete a long rest",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "The chosen creature gains 1d4+4 temporary HP.",
+      "scaling": "None; remains 1d4+4 temporary HP.",
+      "limitations": "Temporary HP do not stack; keep the higher remaining amount. They are not healing, cannot exceed this spell's rolled amount from one cast, and cannot generate damage, healing, resource, or death-prevention triggers when lost. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 Action, V/S/F components, and source 1d4+4 temporary HP are preserved. Core metadata gives 30-foot range, but the source says 'Gain,' indicating the caster; operational range is therefore Self as a labeled provisional source-effect reconciliation. The continuing temporary-HP lifetime is also specified because Core lists only Instantaneous casting duration. Conference decision: retain Core30ft; one willing living target is the explicit provisional recipient."
+    },
+    {
+      "id": "locate-object",
+      "activation": "Action",
+      "rangeFeet": 0,
+      "targets": "Self; one specific object personally familiar to you through at least 1 minute of prior direct observation or handling",
+      "duration": "Concentration, up to 10 minutes",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "If the specified familiar object is within 1,000 feet on the same plane and is not protected from divination, sense the direction from you to its current location. The directional sense updates while the spell lasts.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Provides direction only, not exact distance, route, floor, container, bearer identity, object condition, surrounding creatures, or a path around barriers. Fails if the object is outside 1,000 feet, on another plane, transformed beyond recognition into a different object, or protected by an effect explicitly blocking divination. Repeated casts cannot reveal protected/secret facts beyond the object's direction. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Conference decision: casting range0/self is separate from the source effect's1000ft detection radius. Preserve conflicting Universal30ft metadata as evidence. Ten-minute concentration and familiarity threshold are provisional specifications; no exact location, distance or hidden properties are revealed.",
+      "previousDraftDesignNotes": "NEW provisional familiarity requirement, 10-minute concentration duration, and divination limits. Source 1,000-foot directional location of a familiar object is preserved despite conflicting source placement levels."
+    },
+    {
+      "id": "conjure-water",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One open container or unoccupied surface you can see within 30 feet; up to 1 gallon",
+      "duration": "Up to 1 hour; ends earlier if consumed, dispersed, or you cast Conjure Water again",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Create up to 1 gallon of clean, drinkable water in the chosen legal location. A creature may satisfy its ordinary water need from Conjure Water once per 24 elapsed in-world hours. This replaces no food, equipment, camp supplies or abstract expedition Supply units.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "You can maintain only one batch of water from this spell at a time; casting it again causes any unconsumed prior conjured water to vanish. Cannot create water inside a creature, sealed object, occupied body space, machinery, or a location where creation itself would deal damage. Conjured water cannot be sold, stockpiled beyond the one active batch, fermented into permanent commodities, or count as a permanent crafting/industrial ingredient. It provides ordinary hydration while it exists. Repeated cantrip casts use shared Refrain rules. Consuming or replacing batches never bypasses the once-per-recipient-per-24-hours hydration limit. Conjured water in a creature does not disappear harmfully. The limit is an explicit provisional expedition-economy guard.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core instantaneous creation is given a one-hour conjured-object lifetime and one active batch, plus once-per-recipient hydration, as explicit new test limits. Conference decision: hydration resets on elapsed24hours, independent of ability to complete a long rest.",
+      "previousDraftDesignNotes": "NEW provisional one-batch/1-hour anti-stockpile rule and legal-placement boundary. Source amount of up to 1 gallon of clean water is preserved."
+    },
+    {
+      "id": "unseen-servant",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One unoccupied space you can perceive within range; creates one invisible noncombat helper force",
+      "duration": "1 hour",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "Create an invisible force that can move at Speed 30 feet and perform simple mundane tasks you could direct an unskilled helper to perform, such as carrying up to 10 pounds, opening an unlocked door, fetching an unattended object, sweeping, cleaning, arranging mundane items, holding a light object, or operating a simple harmless mechanism. It obeys simple instructions while within 60 feet and able to receive your verbal directions. Giving or changing an instruction in combat uses your Bonus Action and shares the companion command budget; it performs at most one simple noncombat object interaction on that turn. It cannot make attacks or grant the Help action. The servant has a notional location but occupies no space, blocks no movement and provides no cover. It performs its commanded interaction only on an object within 5 feet of that location.",
+      "scaling": "None.",
+      "limitations": "The servant is not a combat creature and cannot attack, deal damage, impose conditions, provide flanking, make skill checks requiring proficiency or judgment, use weapons, traps, bombs, poisons, healing items, spell items, or other combat consumables, activate class abilities, cast spells, create commodities, perform paid labor that generates free wages or economic output, craft valuable goods, carry creatures, trigger resource/death effects, or serve as physical cover. It cannot manipulate attended objects against resistance. You may maintain only one Unseen Servant at a time. It has no corporeal HP or body and cannot intercept damage; it can be ended by an effect explicitly dispelling or suppressing the sustaining spell. Recasting replaces it and pays the full RP cost.",
+      "designNotes": "Core V2 Action, 30-foot range, and V/S/F components are retained. Core lists Instantaneous duration despite creating an ongoing helper. One-hour duration, Speed 30, 10-pound carrying limit, 60-foot command range, and explicit noncombat-helper boundaries are NEW provisional mechanics. A combat command costs the shared Bonus Action; one harmless interaction per command prevents unpriced parallel combat activity."
+    },
+    {
+      "id": "message",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "One creature you can perceive within range",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Transmit one brief whispered message that could ordinarily be spoken during one Action directly to the target, so only it clearly hears the magical whisper.",
+      "scaling": "None.",
+      "limitations": "The spell does not grant a reply, language comprehension, mind reading, command authority, guaranteed identity verification, communication through total cover or an effect explicitly blocking magical communication, or transmission across planes. The target hears the actual words used and may respond only through ordinary means. Cantrip repeats use Refrain.",
+      "designNotes": "Core V2 Action, 120-foot range, Instantaneous duration, and V/S components are retained. The 25-word cap, direct-hearing procedure, and no-reply boundary are NEW provisional mechanics because the source only says to whisper to a creature within 120 feet. Conference correction: remove unsupported25-word limit; one Action bounds ordinary speech."
+    },
+    {
+      "id": "mental-flicker",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One non-boss creature you can perceive within 30 feet",
+      "duration": "Damage instantaneous; attack penalty until the end of the target's next regular turn",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "The target makes an Intelligence save against your spell save DC. On failure, it takes 1d4 psychic damage and suffers -1 on its next attack roll before the end of its next regular turn. On success, no damage or penalty.",
+      "effect": "Create a brief mental disruption. A failed Intelligence save deals 1d4 psychic damage and imposes a bounded -1 penalty on the target's next attack.",
+      "scaling": "None; damage remains 1d4 at all class levels.",
+      "limitations": "The source's undefined 'disorient' wording is represented only by the -1 next-attack penalty; it does not remove Actions, Reactions, movement, or awareness. No damage on a successful save. The penalty does not stack with another Mental Flicker. Cantrip repeats use Refrain.",
+      "designNotes": "Core V2 Action, 30-foot range, V/S components, and Instantaneous damage are retained. Core resolution is 'Automatic or opposed as described,' which does not define an opposition mechanic; Intelligence save and the bounded disorientation rider are NEW provisional specifications. Conference decision: non-boss is the provisional meaning of source minor creature. Director encounter data determines boss/legendary status before targeting; no automatic bypass."
+    },
+    {
+      "id": "summon-lesser-skeleton",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One unoccupied space you can perceive within range; summons one Lesser Skeleton companion",
+      "duration": "Concentration, up to 1 minute",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "No initial roll. The skeleton's commanded melee attack uses your spell attack bonus.",
+      "effect": "Summon one Lesser Skeleton with AC 13, 10 HP, Speed 30 feet, saves equal to your PB, other checks +0, and one melee attack with 5-foot reach that deals 1d6 bludgeoning, piercing or slashing damage (choose one type on casting and keep it fixed for that summon) on a hit. It acts immediately after you. While within 60 feet and able to perceive your command, it may be commanded with your Bonus Action to move and take its one attack or another basic action; without a command it may move and Dodge.",
+      "scaling": "None for source-specific AC, HP, and attack die; AC remains 13, HP remains 10, and damage remains 1d6.",
+      "limitations": "All companions you control share one Bonus Action command and one damaging companion action total per round. The skeleton has no unstated resistances, immunities, multiattack, spellcasting, loot, XP, resource generation, death trigger, corpse-proc eligibility, or free healing. It disappears at 0 HP or when concentration ends. Recasting replaces your prior Lesser Skeleton from this spell. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 Action, 30-foot range, concentration up to 1 minute, and V/S/F components are retained. Source-specific AC 13, HP 10, and 1d6 melee override generic companion values. Speed, saves, checks, attack bonus, command economy, and anti-loop restrictions are NEW provisional specifications required by the shared summon interface. Conference decision: unspecified source melee damage gets a choice of bludgeoning, piercing or slashing, fixed when summoned; this is explicitly provisional."
+    },
+    {
+      "id": "seal-minor-wound",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One living creature you can perceive within 30 feet",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Choose one: stabilize a living creature at 0 HP without restoring HP, or end one ordinary Bleed/minor ongoing bleeding effect on the target.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Restores no HP, removes no Wound, disease, poison, curse, death consequence, internal injury, or non-bleeding damage-over-time effect. A stabilized creature remains at 0 HP. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional definition of 'minor bleeding'; healing was intentionally not added because the source specified stabilization or stopping minor bleeding only."
+    },
+    {
+      "id": "earthen-grip",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One Large-or-smaller creature touching solid ground that you can perceive within 30 feet",
+      "duration": "Concentration, until the end of the target's next turn",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Target makes a Strength save. On failure it is Restrained until the end of its next turn. On success there is no effect.",
+      "effect": "Conjured earth grips the target in place, inflicting the CoreV2 Restrained condition until the end of its next turn on a failed Strength save; ending concentration ends the restraint sooner.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Does not affect creatures not touching a solid surface, creatures larger than Large, or targets whose anatomy or explicit immunity prevents restraint. The effect ends automatically at the stated time and does not require repeated escape checks. It is not a whole-Action denial. Ranked casting causes normal Dissonance and Refrain. An affected target may use an Action for STR(Athletics) or DEX(Acrobatics) against your spell DC to escape early.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Catalog one-round restraint limits Core one-minute metadata; retain Core concentration. The target can use an Action for STR(Athletics) or DEX(Acrobatics) against your spell DC to end restraint early.",
+      "previousDraftDesignNotes": "NEW provisional 60-foot range, size/ground eligibility, and CoreV2 Restrained mapping. Source specified a Strength save and one-round immobilization/restraint."
+    }
+  ],
+  "recoveryText": "## Recovery bridge and unresolved integration\n\nThe class suite's **Retune** formula is the active RP rule for this combined test: recover max(0, floor(maxRP/4 + 0.5) + actual casting modifier), capped at maximum, and clear Dissonance after a completed one-hour short rest. Retain the expedition rule of at most **two beneficial short rests between long rests**, and one beneficial eight-hour long rest per **24 hours**. A long rest restores RP and clears Dissonance; expedition time, supply, pressure, Wounds and rest legality still apply. Count time once, not once in each tracker. Oracle and other non-RP engines use their class-specific recovery, not this formula.\n\nThis bridge explicitly chooses the class Retune formula over the gameplay draft's quarter-pool-only RP paragraph. Both originals remain preserved. A completed long rest also resets the remembered spell name and Refrain counter. A short rest clears Dissonance through Retune but does not reset Refrain unless a class feature expressly says so. This reset convention is an explicit provisional decision agreed in the notebook review. Broader recovery decisions for all class resources still require the character/campaign integration pass.\n\n",
+  "featherFall": {
+    "id": "feather-fall",
+    "activation": "Action",
+    "rangeFeet": 60,
+    "targets": "Up to 5 willing falling creatures you can perceive within range",
+    "duration": "Until each target lands, stops falling, or 1 minute passes, whichever occurs first",
+    "concentration": false,
+    "components": [
+      "V",
+      "S",
+      "F"
+    ],
+    "resolution": "None; willing legal targets are affected automatically.",
+    "effect": "Slow each target's downward descent so it falls no more than 60 feet during each round while the spell remains on that target.",
+    "scaling": "None; maximum descent remains 60 feet per round and target cap remains 5.",
+    "limitations": "Does not grant flight, hovering, lateral movement, immunity to falling consequences, or automatic safe landing beyond whatever the existing falling rules produce from the reduced descent. A creature ceases to be affected once it lands or is no longer falling. Targets cannot be added after casting. Ranked casting causes normal Dissonance and Refrain. This Action spell requires targets that are still falling when your turn allows the cast; it is not a Reaction rescue after an already resolved impact. Fall damage itself remains the existing rule and is not automatically negated.",
+    "designNotes": "Core V2 consistently gives Action, 60-foot range, V/S/F components, and the five-creature/60-feet-per-round source effect, but lists Instantaneous duration despite a sustained descent change. This pilot uses a non-concentration duration until landing or 1 minute as a NEW bounded operational decision and deliberately does not import a Reaction casting time or automatic fall-damage immunity. F is represented as an existing class casting focus."
+  },
+  "fallingEvidence": "Focused searches of current rulebook extracts, CoreV2 JSON, main and ReviewBible mechanics/manual text found the Feather Fall and Featherstep summaries but no operational descent timing or impact formula. This is search scope, not proof no historical file anywhere has one.",
+  "fallingRequest": "Please propose a minimal explicitly NEW provisional falling procedure that preserves Feather Fall as an Action spell, permits a clearly defined Action rescue window without retroactively undoing an impact, distinguishes its60ft/round slowing from ordinary fall speed, and resolves landing damage. Exact timing is required, but do not portray invented values as recovered source. We can place it in the spell integration guide as a bounded test rule pending broader combat integration. If this needs a further source check, state which concrete source rather than approve an undefined interface."
+}

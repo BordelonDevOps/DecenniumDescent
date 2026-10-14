@@ -1,0 +1,35 @@
+{
+  "pack": "05-readability-speed-onboarding",
+  "scenarioId": "USE-WATCH",
+  "agentId": "facilitator",
+  "seed": 52682,
+  "observations": [
+    "Ran USE-WATCH exactly; first pass pointed to rule paths only; second pass used one-page summary.",
+    "Separated writing/clarity failures from balance claims; no numerical tuning recommended from this pack alone."
+  ],
+  "metrics": {
+    "personasCompleted": 8,
+    "coachingStates": 2,
+    "sourceManifestGap": false,
+    "evidenceLevel": "B",
+    "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014"
+  },
+  "rulesQuestions": [
+    "ExpeditionTracker Rest debt shows /3 while canon Rest Debt is 'within next two Watches' — which governs?",
+    "Does every member need an activity even on Rest Watch?"
+  ],
+  "exploits": [],
+  "recommendations": [
+    "Align ExpeditionTracker Rest-debt UI copy with GAMEPLAY_LOOP_CANON §5 wording.",
+    "Add a Watch sheet: team activity + Pressure d6 + Supply tick."
+  ],
+  "confidence": "high",
+  "rulesHalts": [
+    {
+      "id": "RH-05-REST-DEBT-UI",
+      "rule": "Rest Debt timing",
+      "conflict": "Canon: clear Rest Debt within next two Watches / before day boundary. UI: watchesWithoutRest/3.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Rest Debt / Strain vs src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    }
+  ]
+}

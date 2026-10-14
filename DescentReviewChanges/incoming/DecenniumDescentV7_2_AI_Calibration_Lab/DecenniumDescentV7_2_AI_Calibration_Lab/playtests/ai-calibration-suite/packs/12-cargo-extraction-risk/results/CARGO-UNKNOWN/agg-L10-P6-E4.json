@@ -1,0 +1,40 @@
+{
+  "pack": "12-cargo-extraction-risk",
+  "scenarioId": "CARGO-UNKNOWN",
+  "runId": "CARGO-UNKNOWN-agg-L10-P6-E4",
+  "seed": 2561831,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2500,
+    "level": 10,
+    "party": 6,
+    "extractionClass": 4,
+    "policy": "aggressive",
+    "mapping": "Unknown",
+    "havenRate": 0.7452,
+    "meanRetainedLoadFrac": 0.4428,
+    "medianRetainedLoadFrac": 0.0,
+    "cargoLossRate": 0.5572,
+    "meanExtractionFailCount": 0.423,
+    "meanCasualties": 1.478,
+    "meanTrueProfit": -16.51,
+    "medianTrueProfit": -72.0,
+    "profitP10": -480.0,
+    "profitP90": 439.6
+  },
+  "rulesHalts": [
+    {
+      "code": "UNKNOWN-PROGRESS-ZERO",
+      "note": "progressPerWatch.Unknown=0; without Map Route success, expedition cannot meet Progress targets \u2014 intentional deadlock risk."
+    },
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/CARGO-UNKNOWN/agg-L10-P6-E4.json"
+}

@@ -1,0 +1,97 @@
+{
+  "addendumId": "EX58-EDIT-01",
+  "parentReviewId": "EX58-SOURCE-2026-10-11",
+  "status": "FINAL scoped source-conformity correction; not exact-candidate approval",
+  "historicalPackage": {
+    "file": "DD_Expedition_58_Source_Verdict_and_Evidence_2026_10_11.zip",
+    "bytes": 439330,
+    "sha256": "98444b380e08aba6f3848cd2824245b52c8428e6a1b913907567dceeee04470e",
+    "preserveUnchanged": true
+  },
+  "source": {
+    "archive": "DD_Expedition_Transport_Social_58_Source_v3.zip",
+    "archiveSha256": "be4ea5aaf98a44faa05c2f270ceb25f3877c8c9be761cac7c99389d62cbe9b93",
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md",
+    "sha256": "ba5ebcbdb77a27cb8fde88ba13fd05216d6808b10f7b58b64e6cba54eed62066",
+    "section": "3. Expedition organization",
+    "lines": {
+      "officeList": [
+        101,
+        107
+      ],
+      "multipleOfficesAndClassRestriction": [
+        109,
+        109
+      ]
+    }
+  },
+  "classification": "Correct the office-name transcription in EC-01 to implement retained FL-02; no NEW office or gameplay procedure.",
+  "affectedRepresentations": [
+    {
+      "operationId": "EX58-EDIT-01.1",
+      "op": "replace_json_string",
+      "path": "EX58_FIELD_CONTRACTS.json",
+      "pointer": "/contracts/0/requiredFields/offices",
+      "recordGuard": {
+        "pointer": "/contracts/0/id",
+        "equals": "EC-01"
+      },
+      "submittedLine": 30,
+      "old": "Leader, Quartermaster, Routekeeper, Lorekeeper and other source offices bound to real people; one person may hold multiple offices but not incompatible simultaneous work.",
+      "replacement": "Expedition Leader, Quartermaster, Routekeeper, Surgeon, and Claimant of Record, each bound to a real person; one person may hold multiple offices but not incompatible simultaneous work.",
+      "expectedOccurrences": 1,
+      "parentFileSha256": "776a94d70c17dbfd78bf99ed643c9df90ae9ac57f98a0aee01c37ce2ccea92f9",
+      "minimalReplacementResult": {
+        "bytes": 32008,
+        "sha256": "ff2213df5867e7ec47c22f8cce2ea1a1dfc95a959b7ee11ee6da822eb991a43c"
+      }
+    },
+    {
+      "operationId": "EX58-EDIT-01.2",
+      "op": "replace_text",
+      "path": "EX58_CONTRACTS_AND_EXACT_REVIEW.md",
+      "section": "EC-01 — Expedition, charter and roster; Required field table; offices row",
+      "submittedLine": 35,
+      "old": "| `offices` | Leader, Quartermaster, Routekeeper, Lorekeeper and other source offices bound to real people; one person may hold multiple offices but not incompatible simultaneous work. |",
+      "replacement": "| `offices` | Expedition Leader, Quartermaster, Routekeeper, Surgeon, and Claimant of Record, each bound to a real person; one person may hold multiple offices but not incompatible simultaneous work. |",
+      "expectedOccurrences": 1,
+      "parentFileSha256": "153e91eefe53ebac4c3814eb19ed5458b8c23feb7109e2fac6ccfff9f96fb520",
+      "minimalReplacementResult": {
+        "bytes": 36922,
+        "sha256": "fb958ab50044d44c54cbbfedf24cffffde85d95a0039941601fbdfe19a313dcd"
+      }
+    }
+  ],
+  "unchangedControllingRepresentations": [
+    "EX58_AUTHORING_VERDICT.md: FL-02",
+    "EX58_AUTHORING_REGISTER.json: /directions/1/authoringWording (id FL-02)",
+    "EX58_CONFLICT_DISPOSITIONS.json: existing FL-02 wording"
+  ],
+  "acceptanceExpectations": [
+    {
+      "id": "EX58-EDIT-01-A1",
+      "expected": "The corrected EC-01 field names exactly Expedition Leader, Quartermaster, Routekeeper, Surgeon, and Claimant of Record, with no Lorekeeper or open-ended additional-office grant."
+    },
+    {
+      "id": "EX58-EDIT-01-A2",
+      "expected": "The EC-01 JSON value and Markdown meaning cell contain the exact same replacement wording."
+    },
+    {
+      "id": "EX58-EDIT-01-A3",
+      "expected": "One person may hold multiple offices, but receives no extra simultaneous labor, skills, Actions, class abilities, or authority beyond FL-02. No requirement for five distinct characters is introduced."
+    },
+    {
+      "id": "EX58-EDIT-01-A4",
+      "expected": "All five source duties, FL-02, all other EX58 decisions, record fields, source values, and review boundaries remain unchanged."
+    },
+    {
+      "id": "EX58-EDIT-01-A5",
+      "expected": "Keep the original package, manifest, 2,316-check report, receipt, source hashes, and sources immutable. Record this correction and any measured descendant hashes separately; do not overwrite historical provenance."
+    }
+  ],
+  "application": "Apply only to current/derived authoring material. Two representations implement one correction. Historical archives and receipts are not patched. Minimal-replacement hashes apply only when every other byte is preserved.",
+  "newPromotions": 0,
+  "runtimeApproval": false,
+  "sourceConferenceReopened": false,
+  "repositoryModifiedByReviewer": false
+}

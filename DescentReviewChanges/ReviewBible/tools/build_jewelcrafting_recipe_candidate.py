@@ -1,0 +1,109 @@
+"""Author all Jewelcrafting source records under JC-D01..16, without promotion."""
+from pathlib import Path
+from fractions import Fraction as F
+from copy import deepcopy
+import json, math, re
+from build_leatherworking_recipe_candidate import read, sha, write, dump, ratio, unr, fmt, public_projection
+
+ROOT=Path(__file__).resolve().parents[1]
+GAME=ROOT.parents[1]
+AUDIT=GAME/'docs/audit/2026-10-08/full-game'
+STATUS='authored-draft-awaiting-exact-review'
+AUTH={'threadId':'6aca4e7e-fd2c-83ea-bf0f-971997ed1a9b','turnId':'96dbc19c-068f-4f2c-a81f-c2ea87d75f25','replyId':'c510dda9-431e-478b-92ee-5ea6d42407e8','scope':'JC-D01..16 source/interface decisions; exact-card approval pending'}
+SLOTS={'Bracelet':['wrist-adornment'],'Earring':['ear-adornment'],'Crown':['head'],'Amulet':['neck-adornment'],'Ring':['ring-1','ring-2'],'Tiara':['head'],'Necklace':['neck-adornment'],'Brooch':['chest-adornment'],'Gem':['chest-adornment'],'Pendant':['neck-adornment']}
+EXCLUSIONS=['attack','damage','initiative','death-save','concentration','crafting-completion','formula-research','harvesting-extraction','repair','combat-maneuver']
+
+def domains():
+    text=(AUDIT/'GPT_JEWELCRAFTING_SOURCE_CONFERENCE.md').read_text(encoding='utf-8')
+    rows=re.findall(r'^\| \*\*([^*]+)\*\* \| (.+?) \| (.+?) \|$',text,re.M)
+    out={tag:{'tag':tag,'abilityCheckPredicate':check,'savingThrowPredicate':save,'authority':'NEW JC-D03'} for tag,check,save in rows}
+    assert len(out)==14
+    return out
+
+def make_models():
+    rows=[
+      ('Bracelet','bracelet','Fitted steel wrist chain/band with clasp',1,.1,19),
+      ('Earring','earring','Single steel ear ornament with fitted clip or fastening',.5,.02,19),
+      ('Crown','crown','Complete fitted steel circlet-style Crown',5,.5,19),
+      ('Amulet','amulet','Steel medallion Amulet with integral neck chain and closure',1,.1,19),
+      ('Ring','ring','Fitted steel signet-pattern Ring',5,.02,19),
+      ('Tiara','tiara','Complete fitted open steel headband Tiara',3,.25,19),
+      ('Necklace','necklace','Complete decorative steel Necklace with closure',2,.2,19),
+      ('Brooch','brooch','Steel ornament with complete pin and keeper',1,.05,19),
+      ('Gem','mounted-gem','Ordinary ornamental crystal in fitted steel cup with pin and keeper',2,.05,13),
+      ('Pendant','pendant','Steel drop ornament with integral neck chain and closure',1,.1,19)]
+    return {'jewelcrafting.'+key:{'id':'jewelcrafting.'+key,'family':family,'name':name,'baselinePriceGp':price,'baselineWeightLb':weight,'ordinaryMaximumStructuralHP':5,'structuralAC':ac,'dominantMaterial':'crystal' if family=='Gem' else 'steel','gradePolicy':'Standard only','largePriceWeightHPMultiplier':2,'baselineSizes':['Tiny','Small','Medium'],'benefitSlots':SLOTS[family],'donActions':1,'doffActions':1,'redesignationActions':1,'outputUnit':'one complete item; Earring is one piece, not a pair' if family=='Earring' else 'one complete physical assembly','requiresSeparateCompatibleHost':family in ('Brooch','Gem'),'requiredOriginalAssembly':'original crystal and original primary mounting' if family=='Gem' else 'original primary body and all prerecorded required original stones/primary settings','provenance':'NEW JC-D05; comparison equipment unchanged','ordinaryArmorFormula':None,'armorBonusCandidate':None} for family,key,name,price,weight,ac in rows}
+
+def model_id(r):return 'jewelcrafting.'+('mounted-gem' if r['recipeFamily']=='Gem' else r['recipeFamily'].lower())
+
+def operational(r,models):
+    m=r['mechanics'];q=r['quantity'];mid=model_id(r);b=models[mid];h=r['workRequirements']['activeWorkHours'];assert h is not None
+    forge=math.ceil(F(str(h))*45);unit=F(str(r['economy']['recommendedMarketValue']))/q
+    text=(f"While complete, at positive structural HP, unsuppressed, unmelded, fitted and actually worn in one designated legal {', '.join(b['benefitSlots'])} position, the actual wearer gains +{m['bonus']} once on each independently qualifying {m['tag']}-related ability check or saving throw under the exact predicates below. This passive benefit is not spent and remains with zero charges. "
+          f"This physical item has maximum {m['charges']} charges. A conscious, non-Incapacitated wearer may voluntarily spend one before an eligible roll commits to gain advantage on that event, with no separate Action, Bonus Action, Reaction, RP, speech or hand use. Declare before any die or replacement result; no retrospective reroll. "
+          "At most one Jewelcrafting charge is spent per event, and ordinary advantage/disadvantage cancellation applies. The spending item must independently qualify but need not supply the strongest flat modifier. Ability-check modifiers share equipment.leather-task-enhancement with independently qualified Leatherworking/Tailoring; save modifiers share equipment.jewel-save-enhancement with other jewels. Use the strongest within the applicable family once. "
+          "Charges initialize once at lawful creation and refill only at legitimate Jewelcrafting dawn events under the shared guide. Transfer, equipping, repair, suppression ending, new scenes and copied records never refill or reinitialize them. This grants no AC candidate, even zero; no resistance, attack modifier, proficiency, extra hand, focus permission or carrying relief.")
+    if r['recipeFamily']=='Earring':text+=' This is one fitted Earring; a second earring is a separate item and cannot share its active position.'
+    if r['recipeFamily']=='Gem':text+=' The original crystal and primary mounting form one body and ledger; loose, carried and weapon-mounted gems are not this worn assembly.'
+    return {'sharedProfileId':'jewelcrafting.shared.v1','text':text,'baseModelIds':[mid],'effect':{'tag':m['tag'],'flatBonus':m['bonus'],'maximumCharges':m['charges'],'abilityCheckFamily':'equipment.leather-task-enhancement','savingThrowFamily':'equipment.jewel-save-enhancement','armorBonusCandidate':None,'eligibleBeneficiary':'actual wearer','chargeSpendsPerRollEvent':1},'standardQuantity':q,'maximumBaseReserve':3*q//2,'outcomes':{'Standard':q,'ExceptionalYield':5*q//4,'MasterworkYield':3*q//2,'DurabilityOptionQuantity':q,'FlawedQuantity':q//2 if q>=2 else 1,'SingletonFlawedAddsPersistentFlaw':q==1,'Failed':0,'Mishap':0,'maximumEligibleCatalystReturnUnits':1 if any(z['role']=='catalyst' and z['consumed'] for z in r['components']) else 0,'chargeImprovementPermitted':False},'work':{'sourceActiveWorkHours':h,'operationalActiveWorkHours':h,'ordinaryFirstStablePhaseHours':min(8,h),'eligibleForgeDwarfActiveMinutes':forge,'eligibleForgeDwarfFirstPhaseMinutes':min(480,forge),'maximumAssistants':r['workRequirements']['maximumAssistants'],'trivialAtSkillLevel':r['skillProgression']['trivialAtSkillLevel'],'requiredAbilityChoice':['DEX','INT'],'actualToolkitRequired':True,'stationRequired':True,'fieldCraftable':False},'sourceProcessUnitReferenceGp':ratio(unit),'standardModelExamples':[{'baseModelId':mid,'finishedUnitReferenceGp':ratio(unit+F(str(b['baselinePriceGp'])))}],'largeModelExamples':[{'baseModelId':mid,'finishedUnitReferenceGp':ratio(unit+2*F(str(b['baselinePriceGp'])))}]}
+
+def body_table(models):
+    lines=['| Complete mundane body | gp | lb | Ordinary HP / structural AC | Legal designation |','|---|---:|---:|---|---|']
+    lines += [f"| {b['name']} | {b['baselinePriceGp']} | {b['baselineWeightLb']} | 5 / {b['structuralAC']} | {', '.join(b['benefitSlots'])} |" for b in models.values()]
+    return '\n'.join(lines)
+
+def domain_table(registry):
+    return '\n'.join(['| Operative tag | Actual ability checks | Actual saving throws |','|---|---|---|']+[f"| {tag} | {d['abilityCheckPredicate']} | {d['savingThrowPredicate']} |" for tag,d in registry.items()])
+
+def slot_table(models):
+    mapping={}
+    for b in models.values():
+        for slot in b['benefitSlots']:mapping.setdefault(slot,[]).append(b['family'])
+    mapping['head']+=['Tailoring Hat','Blacksmithing Helm']
+    return '\n'.join(['| Benefit position | Maximum | Competing families |','|---|---:|---|']+[f"| {k} | 1 | {', '.join(v)} |" for k,v in mapping.items()])
+
+def shared_profile(registry):
+    return {'id':'jewelcrafting.shared.v1','classification':{'magical':True,'artifact':False,'attunementRequired':False,'resourceCost':0,'concentration':False,'spellActivationRequired':False},'sourceAuthority':AUTH,'tagPredicates':registry,'excludedRollDomains':EXCLUSIONS,'abilityCheckFamily':'equipment.leather-task-enhancement','savingThrowFamily':'equipment.jewel-save-enhancement','maximumActiveJewels':7,'headConflictFamilies':['Crown','Tiara','Tailoring Hat','Blacksmithing Helm'],'ringLimit':{'total':2,'perActualCompatibleHand':1},'allDesignationsBeforeFiltering':True,'perPhysicalItemEligibility':True,'chargeLedger':{'initializeOnce':True,'initialCurrent':'exact source maximum','maximumSpendPerRollEvent':1,'commitBeforeAnyDieOrReplacementResult':True,'postCommitRefund':False,'newEventForGenuinelyNewSave':True,'sameEventReplacementHasNoNewSpend':True,'transferAndRepairPreserve':True,'orderedCampaignEventCheckpointRequired':True,'allPrecedingDawnsBeforeSpend':True,'rejectEarlierTransitions':True,'oneAuthoritativeLedger':True},'crossTradeRollIdentity':{'canonicalEventRequired':True,'match':['kind','actor','ability','proficiency','actualRoll','automaticResult'],'currentEventItemPremisesOnly':True,'identicalDomainVocabularyRequired':False},'dawn':{'hour':'06:00','periodCampaignSeconds':86400,'oneFixedEpochRequired':True,'eventIdentity':['campaignId','jewelcrafting-dawn','n'],'refill':'set current to maximum','processIneligibleEvent':True,'catchUpMissedRefill':False,'historyAtActualEventRequired':True,'scope':'NEW Jewelcrafting-only convention; no astronomy/cosmology or Time Loop activation'},'rechargeStates':{'wornCompleteFunctionalUnsuppressed':True,'stowedCompleteFunctionalUnsuppressed':True,'meldedCompleteFunctionalUnsuppressed':True,'wearerIncapacitatedButItemEligible':True,'suppressed':False,'Broken':False,'incomplete':False,'destroyedPrimaryBody':False},'fineFilesNewMundaneImplement':{'priceGp':1,'weightLb':.1,'ordinaryHP':5,'structuralAC':19,'dominantMaterial':'steel','suppliesProficiencyOrNumericalBonus':False},'sourceInputsUntouched':True}
+
+def card_md(c,models,registry,internal):
+    r=c['sourceRecipe'];o=c['operational'];m=r['mechanics'];b=models[model_id(r)];q=r['quantity'];w=r['workRequirements'];h=o['work'];cat=[i for i,z in enumerate(r['components']) if z['role']=='catalyst' and z['consumed']]
+    lines=[f"## {r['id']} — {r['name']}",'',f"**DRAFT; exact review pending.** {r['visibility']}; Jewelcrafting level {r['skillLevel']}; tier {r['tier']}; {r['rarity']}; crafting DC {r['craftingCheck']['targetDC']}; Standard quantity {q}.",'','**Preserved source effect:** '+r['effects'],'','**Operational effect:** '+o['text'],'',domain_table({m['tag']:registry[m['tag']]}),'','Common exclusions: '+', '.join(EXCLUSIONS)+'. These predicates supply no missing roll, access, tool or permission. A later unrelated check is not qualified by an earlier poison, magical or other eligible event.','',body_table({b['id']:b}),'',f"**Body and reserve:** Reserve {o['maximumBaseReserve']} actual complete mundane functional bodies in stable physical-ID order. One model, fitted size and Standard grade; no prior magical alteration. Latest lawful completion HP/condition controls. Missing, Broken, incomplete or unavailable reserves pause before the roll; replacement retains the same position. Transform the first resolved N with no post-roll selection. Unused bodies remain mundane objects, not recovered ingredients. Large doubles only body gp/lb/ordinary HP. One Action each to don/doff or lawfully redesignate; actual clearance, supporting host and cross-trade position conflicts still govern.",'','**Source component occurrences:**','','| # | Component | Quantity | Tier | Role | Consumed | Unit lb | Unit gp | Properties |','|---|---|---:|---:|---|---|---:|---:|---|']
+    for i,z in enumerate(r['components']):lines.append(f"| {i} | {z['name']} | {z['quantity']} | {z['tier']} | {z['role']} | {z['consumed']} | {z['weight']} | {z['value']} | {', '.join(z['properties'])} |")
+    lines+=['','All listed occurrences are mandatory process inputs paid once per batch, separately from reserved bodies. Finished body mass is the actual selected body mass; no extra body or saleable waste is created. '+(f"Masterwork may retain at most one eligible actual catalyst unit total from component indices {', '.join(map(str,cat))}; retain identity, age, condition and remaining shelf life. Choose after the roll; participation is not premature destructive consumption. All other eligible units are consumed." if cat else 'No component in this formula is an eligible catalyst; no catalyst return occurs.')+' Failed recovery excludes catalysts; Mishap/abandonment return none. Names and categories cannot change roles.', '',f"**Work and tools:** Choose DEX or INT before work; actual Jeweler's-tools credential, Jeweler's toolkit, {w['station']}, Fine files and Magnifying lens. Source requiredTools: {', '.join(w['requiredTools'])}. Actual documented compatible implements may overlap; ownership grants no proficiency or bonus. Source fieldCraftable={str(w['fieldCraftable']).lower()} controls despite timeMode={w['timeMode']}. Source time {r['craftingTime']}; {h['operationalActiveWorkHours']} active hours, first included stable phase {h['ordinaryFirstStablePhaseHours']} hours. Eligible Forge Dwarf creation {h['eligibleForgeDwarfActiveMinutes']} whole active minutes, first phase {h['eligibleForgeDwarfFirstPhaseMinutes']} minutes. Maximum assistants {h['maximumAssistants']}. Actual station access, Watches, rest and lawful incorporation/preservation remain required.",'',f"**Access and progression:** {json.dumps(r['discovery'],ensure_ascii=False)}. Exact trivialAtSkillLevel={h['trivialAtSkillLevel']}; do not regenerate level+5. Apply framework training/formula gates; trade level is never added to the roll. Untouched, replacement and recoverable catalyst lots retain their own clocks, and replacement grants no input or phase refund.",'',f"**Quality:** Standard {q}; Exceptional yield {o['outcomes']['ExceptionalYield']}; Masterwork yield {o['outcomes']['MasterworkYield']}; or {q} bodies with the strongest legal 25%/50% durability improvement. Flawed {o['outcomes']['FlawedQuantity']} "+('with one persistent singleton structural flaw' if q==1 else 'with ordinary effects and all existing flaws')+'. Failed/Mishap transform none. Select yield or durability once per batch. Apply the strongest noncompounding percentage to ordinary size-adjusted HP, then one flaw last, preserving latest damage deficit. A functional damaged body can emerge Broken. Tag, flat bonus, charges, dawn, grade and permission never improve through quality.', '',f"**Charges:** Maximum {m['charges']}; initialize current to {m['charges']} once at first lawful imprint creation, including Broken output. Mark each before-dice roll transaction once. Refill at the shared fixed 06:00 campaign dawn only when complete, positive-HP and unsuppressed, including stowed/melded states. Mark ineligible dawns processed; no catch-up. Transfers, repair, fitting, suppression ending and new scenes preserve the ledger. Melded items cannot grant bonuses or spend. On return, existing external equipment and the recorded position govern, otherwise lawful carried/drop/pending placement; preserve actual elevation.",'',f"**Repair:** Actual Jeweler's-tools proficiency, toolkit, bench, Fine files and Magnifying lens; choose DEX or INT. Functional HP≥1: DC10, max(1 hour, recorded maximum HP/10), materials25% undamaged mundane body reference. Broken HP0: DC{r['craftingCheck']['targetDC']}, max(8 hours, recorded maximum HP/10), materials25% undamaged finished unit reference. Require {b['requiredOriginalAssembly']}. Subordinate links/pins/closures may be replaced; missing primary bodies/settings/required stones cannot. Core binary success restores recorded maximum HP; failure consumes work/materials. No formula/original trade-level requirement, XP, quality roll, catalyst return, flaw removal or Forge Dwarf repair reduction. Preserve identity, fit, grade, durability, flaw, current/max charges and dawn history. Actual state at any intervening dawn governs; no repair refill.",'',f"**Ordinary finished unit reference:** {fmt(unr(o['standardModelExamples'][0]['finishedUnitReferenceGp']))} gp; Large fitted body {fmt(unr(o['largeModelExamples'][0]['finishedUnitReferenceGp']))} gp. Source Standard batch/Q plus actual undamaged body reference, not final yield. Do not add process materials or toolkit purchases again. Exact fractions persist until a real transaction; buy up/sell down to copper. Owned reserves need no repurchase. Depletion/damage/flaws grant no automatic sale or repair discount, guaranteed buyer, melt value, artifact multiplier or standard mundane buyback.",'','**Preserved tags:** '+', '.join(r['tags'])+'. Names and donor metadata supply no unprinted power or available ingredient.','']
+    if c.get('publicBookBinding'):lines+=['**Public V5 source paragraphs:** '+', '.join(str(p['index']) for p in c['publicBookBinding']['paragraphs'])+'.','']
+    legacy={k:r[k] for k in ('legacyName','legacyEffect','wholeCreatureUse') if k in r}
+    if legacy:lines+=['**Preserved inactive metadata:** '+json.dumps(legacy,ensure_ascii=False),'']
+    if internal and 'directorGuidance' in r:lines+=['**Preserved optional Director guidance:** '+json.dumps(r['directorGuidance'],ensure_ascii=False),'']
+    return '\n'.join(lines)
+
+def main():
+    assert not (ROOT/'docs/mechanics/JEWELCRAFTING_REVIEW_STATUS.json').exists(),'Already reviewed; do not overwrite.'
+    baseline=read(AUDIT/'JEWELCRAFTING_PART2_SUBMISSION.json')['protectedFiles']
+    assert all(sha(GAME/p)==h for p,h in baseline.items()),'Protected input changed'
+    source=ROOT/'data/crafting/Decennium_Descent_Crafting_Bible_v4.json';evidence=read(AUDIT/'JEWELCRAFTING_SOURCE_PREPARATION.json')
+    recipes=[r for r in read(source)['recipes'] if r['skill']=='Jewelcrafting'];assert recipes==evidence['recipes'] and len(recipes)==43
+    models=make_models();registry=domains();bindings={z['recipeId']:z for z in evidence['publicBookBindings']}
+    cards=[{'recipeId':r['id'],'name':r['name'],'visibility':r['visibility'],'status':STATUS,'sourceRecipeIndex':evidence['sourceIndices'][r['id']],'sourceRecipe':deepcopy(r),'publicBookBinding':deepcopy(bindings.get(r['id'])),'operational':operational(r,models)} for r in recipes]
+    public=[public_projection(c) for c in cards if c['visibility']=='public'];assert len(public)==26
+    pmodels={i:b for i,b in models.items() if any(i in c['operational']['baseModelIds'] for c in public)}
+    pregistry={tag:d for tag,d in registry.items() if any(c['operational']['effect']['tag']==tag for c in public)}
+    assert len(pmodels)==9 and len(pregistry)==12 and not {'Water','Acid'}.intersection(pregistry)
+    template=(ROOT/'tools/templates/jewelcrafting_rules.md').read_text(encoding='utf-8')
+    for internal,cs,bs,ds,base in [(True,cards,models,registry,'director'),(False,public,pmodels,pregistry,'playtest')]:
+        folder='director-only' if internal else 'mechanics';prefix='INTERNAL' if internal else 'PUBLIC'
+        guide=f'docs/{folder}/JEWELCRAFTING_'+('INTERNAL_GUIDE' if internal else 'RECIPE_PLAYTEST')+'.md'
+        cardpath=f'docs/{folder}/JEWELCRAFTING_{prefix}_RECIPE_CARDS.md';suffix='_internal' if internal else ''
+        obj={'schemaVersion':1,'status':STATUS,'visibility':'director-internal' if internal else 'public','sourceSha256':sha(source),'sourceAuthority':AUTH,'sharedOperationalProfile':shared_profile(ds),'sharedGuide':guide,'baseModels':bs,'cards':cs,'exactRecipeApproval':False,'runtimeImplemented':False,'balanceApproved':False,'cosmology':'post-push only'}
+        dump(ROOT/f'data/{base}/jewelcrafting_recipe_candidate{suffix}.json',obj)
+        audience='Internal: all 43 formulas, including one restricted and sixteen Director-only records.' if internal else 'Public: 26 formulas with their nine body models and twelve operative tags.'
+        text=template.replace('{{AUDIENCE}}',audience).replace('{{DOMAIN_TABLE}}',domain_table(ds)).replace('{{BODY_TABLE}}',body_table(bs)).replace('{{SLOT_TABLE}}',slot_table(bs))
+        for token,name in [('CRAFTING_LINK','CRAFTING_HARVEST_PLAYTEST.md'),('CORE_LINK','CORE_RESOLUTION_PLAYTEST.md'),('BODY_LINK','BODY_EQUIPMENT_PLAYTEST.md')]:
+            text=text.replace('{{'+token+'}}',('../mechanics/' if internal else '')+name)
+        assert '{{' not in text
+        write(ROOT/guide,text)
+        write(ROOT/cardpath,'# Jewelcrafting '+('internal' if internal else 'public')+' recipe cards\n\n**DRAFT — exact review pending.** '+audience+'\n\nEvery card uses the complete [shared guide]('+Path(guide).name+'). Full preserved source objects accompany the JSON.\n\n'+'\n'.join(card_md(c,bs,ds,internal) for c in cs))
+    assert all(sha(GAME/p)==h for p,h in baseline.items()),'Protected input changed'
+    dump(AUDIT/'JEWELCRAFTING_AUTHORING_STATUS.json',{'status':STATUS,'authoredCards':43,'publicCards':26,'internalBaseModels':10,'publicBaseModels':9,'internalTags':14,'publicTags':12,'ordinaryModelValueCombinations':43,'largeModelValueCombinations':43,'protectedFilesUnchanged':len(baseline),'recipesApproved':0,'sourceVerdict':AUTH,'currentReviewedRecipes':305,'remainingRecipes':382,'cosmology':'post-push only','next':'validate source-valid behavior, complete envelope/public projection and exact source preservation, then submit separate exact review'})
+    print(json.dumps({'cards':43,'public':26,'models':10,'publicModels':9,'tags':14,'publicTags':12,'recipesApproved':0}))
+
+if __name__=='__main__':main()

@@ -1,0 +1,307 @@
+{
+  "pack": "08-encounter-budget-calibration",
+  "scenarioId": "BUDGET-AMBUSH",
+  "runId": "BUDGET-AMBUSH-80800",
+  "seed": 80800,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": "2e3371752a11853a3fd768f146cbc1798bb1fe20abb847468751d24c9fc69f71",
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "cells": [
+      {
+        "level": 3,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 0.45,
+        "meanHpPct": 0.3108,
+        "meanRounds": 15.045,
+        "budget": 90.0
+      },
+      {
+        "level": 3,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 0.9,
+        "meanHpPct": 0.0541,
+        "meanRounds": 7.775,
+        "budget": 130.0
+      },
+      {
+        "level": 3,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 1.0,
+        "meanHpPct": 0.0,
+        "meanRounds": 3.835,
+        "budget": 180.0
+      },
+      {
+        "level": 5,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 0.025,
+        "meanHpPct": 0.6007,
+        "meanRounds": 19.815,
+        "budget": 90.0
+      },
+      {
+        "level": 5,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 0.4,
+        "meanHpPct": 0.3151,
+        "meanRounds": 16.03,
+        "budget": 130.0
+      },
+      {
+        "level": 5,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 0.995,
+        "meanHpPct": 0.0025,
+        "meanRounds": 5.31,
+        "budget": 180.0
+      },
+      {
+        "level": 10,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 0.6058,
+        "meanRounds": 20.0,
+        "budget": 90.0
+      },
+      {
+        "level": 10,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 0.215,
+        "meanHpPct": 0.3901,
+        "meanRounds": 18.535,
+        "budget": 130.0
+      },
+      {
+        "level": 10,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 0.995,
+        "meanHpPct": 0.0025,
+        "meanRounds": 7.46,
+        "budget": 180.0
+      }
+    ],
+    "cellCount": 9,
+    "runsPerCell": 200,
+    "objective": "surprise disadvantage"
+  },
+  "rulesHalts": [
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 3,
+      "partySize": 4,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 3,
+      "partySize": 4,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "confirmed",
+      "type": "budget_collapse_across_band",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 3,
+      "partySize": 4,
+      "successRates": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": "All difficulty bands within 12pp \u2014 budgets do not produce predictable distinct bands."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 5,
+      "partySize": 4,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 5,
+      "partySize": 4,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "confirmed",
+      "type": "budget_collapse_across_band",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 5,
+      "partySize": 4,
+      "successRates": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": "All difficulty bands within 12pp \u2014 budgets do not produce predictable distinct bands."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 10,
+      "partySize": 4,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 10,
+      "partySize": 4,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "confirmed",
+      "type": "budget_collapse_across_band",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 10,
+      "partySize": 4,
+      "successRates": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": "All difficulty bands within 12pp \u2014 budgets do not produce predictable distinct bands."
+    }
+  ],
+  "rawEvidencePath": "results/08-encounter-budget-calibration/BUDGET-AMBUSH/"
+}

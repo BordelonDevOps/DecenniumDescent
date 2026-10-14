@@ -1,0 +1,551 @@
+{
+  "addendumId": "FEAT327-ACQ-03",
+  "scope": "Read-only identity/pointer inventory from the retained training/ownership attachment. Current repository and newer Magic Initiate fixtures were not accessed or tested. Match current records by exact ID and node, not old list index. This is not candidate approval.",
+  "inputArchive": "DD_FEAT327_FXC05_Training_Ownership_Evidence.zip",
+  "inputArchiveSha256": "03622d0434adf687705ea64284a5a4782d654ba8e22d41fe5f190a2d09dd8586",
+  "sourcePath": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+  "sourcePathSha256": "60797d899ffb93e6b0199bb0e03cff1f14b289c493873e559e7b1dda14ae8c62",
+  "counts": {
+    "actualSpellcastingRoute": 25,
+    "actualCastAccess": 8
+  },
+  "operations": [
+    {
+      "featId": "arcaneFocus",
+      "sourcePrintedPrerequisite": "Spellcasting ability",
+      "recordSelector": {
+        "id": "arcaneFocus"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/14/requirements",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "arcaneResonance",
+      "sourcePrintedPrerequisite": "Spellcasting ability, Level 3",
+      "recordSelector": {
+        "id": "arcaneResonance"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/17/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "battleMage",
+      "sourcePrintedPrerequisite": "Spellcasting ability, proficiency with martial weapons",
+      "recordSelector": {
+        "id": "battleMage"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/27/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "cantrip_mastery",
+      "sourcePrintedPrerequisite": "Ability to cast cantrips",
+      "recordSelector": {
+        "id": "cantrip_mastery"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/48/requirements",
+      "observedNode": {
+        "kind": "actualCastAccess",
+        "exactRank": 0,
+        "notJustCapacityOrRP": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "combatCasting",
+      "sourcePrintedPrerequisite": "Spellcasting ability",
+      "recordSelector": {
+        "id": "combatCasting"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/61/requirements",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "dispel_mastery",
+      "sourcePrintedPrerequisite": "Ability to cast dispel magic",
+      "recordSelector": {
+        "id": "dispel_mastery"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/89/requirements",
+      "observedNode": {
+        "kind": "actualCastAccess",
+        "spellId": "dispel-magic",
+        "notJustCapacityOrRP": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "elementalAdept",
+      "sourcePrintedPrerequisite": "Ability to cast at least one spell",
+      "recordSelector": {
+        "id": "elementalAdept"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/102/requirements",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "elemental_mastery",
+      "sourcePrintedPrerequisite": "Ability to cast 3rd level spells",
+      "recordSelector": {
+        "id": "elemental_mastery"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/105/requirements",
+      "observedNode": {
+        "kind": "actualCastAccess",
+        "minimumRank": 3,
+        "notJustCapacityOrRP": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "enchantment_focus",
+      "sourcePrintedPrerequisite": "Ability to cast enchantment spells",
+      "recordSelector": {
+        "id": "enchantment_focus"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/109/requirements",
+      "observedNode": {
+        "kind": "actualCastAccess",
+        "school": "Enchantment",
+        "notJustCapacityOrRP": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "evocation_focus",
+      "sourcePrintedPrerequisite": "Ability to cast evocation spells",
+      "recordSelector": {
+        "id": "evocation_focus"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/115/requirements",
+      "observedNode": {
+        "kind": "actualCastAccess",
+        "school": "Evocation",
+        "notJustCapacityOrRP": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "familiar_bond",
+      "sourcePrintedPrerequisite": "Ability to cast find familiar",
+      "recordSelector": {
+        "id": "familiar_bond"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/118/requirements",
+      "observedNode": {
+        "kind": "actualCastAccess",
+        "spellId": "find-familiar",
+        "notJustCapacityOrRP": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "heighten_spell",
+      "sourcePrintedPrerequisite": "Ability to cast 3rd level spells",
+      "recordSelector": {
+        "id": "heighten_spell"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/142/requirements",
+      "observedNode": {
+        "kind": "actualCastAccess",
+        "minimumRank": 3,
+        "notJustCapacityOrRP": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "metamagicAdept",
+      "sourcePrintedPrerequisite": "Spellcasting ability, Level 4",
+      "recordSelector": {
+        "id": "metamagicAdept"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/186/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "planar_binding",
+      "sourcePrintedPrerequisite": "Charisma 15+, ability to cast 5th level spells",
+      "recordSelector": {
+        "id": "planar_binding"
+      },
+      "relativePointer": "/requirements/requirements/1",
+      "observedSnapshotPointer": "/records/205/requirements/requirements/1",
+      "observedNode": {
+        "kind": "actualCastAccess",
+        "minimumRank": 5,
+        "notJustCapacityOrRP": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "spellPenetration",
+      "sourcePrintedPrerequisite": "Spellcasting ability, Level 5",
+      "recordSelector": {
+        "id": "spellPenetration"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/248/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "spell_sniper",
+      "sourcePrintedPrerequisite": "Ability to cast at least one spell",
+      "recordSelector": {
+        "id": "spell_sniper"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/251/requirements",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "war_caster",
+      "sourcePrintedPrerequisite": "Ability to cast at least one spell",
+      "recordSelector": {
+        "id": "war_caster"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/281/requirements",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "arcane_adaptation",
+      "sourcePrintedPrerequisite": "Spellcasting ability, Intelligence 13+",
+      "recordSelector": {
+        "id": "arcane_adaptation"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/291/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "arcane_momentum",
+      "sourcePrintedPrerequisite": "Power Attack or Combat Casting, spellcasting ability",
+      "recordSelector": {
+        "id": "arcane_momentum"
+      },
+      "relativePointer": "/requirements/requirements/1",
+      "observedSnapshotPointer": "/records/293/requirements/requirements/1",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "conjure_flora",
+      "sourcePrintedPrerequisite": "Spellcasting ability, proficiency in Nature",
+      "recordSelector": {
+        "id": "conjure_flora"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/298/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "core_infusion",
+      "sourcePrintedPrerequisite": "Proficiency in Craft (Blacksmith), spellcasting ability or Engineering",
+      "recordSelector": {
+        "id": "core_infusion"
+      },
+      "relativePointer": "/requirements/requirements/1/requirements/0",
+      "observedSnapshotPointer": "/records/299/requirements/requirements/1/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "curse_channeling",
+      "sourcePrintedPrerequisite": "Spellcasting ability or proficiency in Arcana, level 6+",
+      "recordSelector": {
+        "id": "curse_channeling"
+      },
+      "relativePointer": "/requirements/requirements/0/requirements/0",
+      "observedSnapshotPointer": "/records/300/requirements/requirements/0/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "curse_weaving",
+      "sourcePrintedPrerequisite": "Spellcasting ability, Charisma 13+",
+      "recordSelector": {
+        "id": "curse_weaving"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/301/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "eldritch_combat",
+      "sourcePrintedPrerequisite": "Spellcasting ability, proficiency with martial weapons",
+      "recordSelector": {
+        "id": "eldritch_combat"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/306/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "eldritch_echo",
+      "sourcePrintedPrerequisite": "Forbidden Pact or spellcasting ability, level 3+",
+      "recordSelector": {
+        "id": "eldritch_echo"
+      },
+      "relativePointer": "/requirements/requirements/0/requirements/1",
+      "observedSnapshotPointer": "/records/307/requirements/requirements/0/requirements/1",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "lifeleech",
+      "sourcePrintedPrerequisite": "Spellcasting ability",
+      "recordSelector": {
+        "id": "lifeleech"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/315/requirements",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "lightning_affinity",
+      "sourcePrintedPrerequisite": "Spellcasting ability or proficiency in Nature",
+      "recordSelector": {
+        "id": "lightning_affinity"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/316/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "mimicry",
+      "sourcePrintedPrerequisite": "Spellcasting ability, Intelligence 15+",
+      "recordSelector": {
+        "id": "mimicry"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/318/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "soul_cage",
+      "sourcePrintedPrerequisite": "Lifeleech or spellcasting ability, level 8+",
+      "recordSelector": {
+        "id": "soul_cage"
+      },
+      "relativePointer": "/requirements/requirements/0/requirements/1",
+      "observedSnapshotPointer": "/records/325/requirements/requirements/0/requirements/1",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "spell_reflection",
+      "sourcePrintedPrerequisite": "Spellcasting ability, level 8+",
+      "recordSelector": {
+        "id": "spell_reflection"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/326/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "stormcaller",
+      "sourcePrintedPrerequisite": "Spellcasting ability, proficiency in Nature or Spellcraft",
+      "recordSelector": {
+        "id": "stormcaller"
+      },
+      "relativePointer": "/requirements/requirements/0",
+      "observedSnapshotPointer": "/records/327/requirements/requirements/0",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "verdant_bond",
+      "sourcePrintedPrerequisite": "Proficiency in Nature, spellcasting ability",
+      "recordSelector": {
+        "id": "verdant_bond"
+      },
+      "relativePointer": "/requirements/requirements/1",
+      "observedSnapshotPointer": "/records/332/requirements/requirements/1",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    },
+    {
+      "featId": "wounding_magic",
+      "sourcePrintedPrerequisite": "Spellcasting ability",
+      "recordSelector": {
+        "id": "wounding_magic"
+      },
+      "relativePointer": "/requirements",
+      "observedSnapshotPointer": "/records/334/requirements",
+      "observedNode": {
+        "kind": "actualSpellcastingRoute",
+        "grantsNoPoolRankOrClass": true
+      },
+      "derivedAnnotationToAdd": {
+        "castingPrerequisitePolicyRef": "FEAT327-ACQ-03"
+      }
+    }
+  ],
+  "preserve": "All original/source objects, printed strings, Boolean alternatives, class/ability/level/ownership gates, unassigned/absent/null fields and selection/approval flags. No deferred operational payload is supplied."
+}

@@ -1,0 +1,186 @@
+"""Author source-faithful Blacksmithing cards from the two actual GPT conferences."""
+from pathlib import Path
+from fractions import Fraction
+from copy import deepcopy
+import json,hashlib,math
+
+ROOT=Path(__file__).resolve().parents[1];GAME=ROOT.parents[1];AUDIT=GAME/'docs/audit/2026-10-08/full-game'
+SOURCE_TURN='5869023f-1971-470c-9a61-27c9e5b04668';SOURCE_REPLY='cf2d76f8-6a76-4f9c-9b1a-090902276b54'
+INTERFACE_TURN='a184686d-59a2-4c32-8cca-797b936060d5';INTERFACE_REPLY='b6a2393c-128e-4d3e-8111-07130d94daa2'
+EXACT_THREAD='6aca4e7e-fd2c-83ea-bf0f-971997ed1a9b'
+EXACT_TURN='35fd3b6f-faf2-498b-850f-122d008c7c1c';EXACT_REPLY='920e8050-e44a-4e33-91bb-b2180232ce00'
+REPAIR_STATUS='exact-review-finite-repairs-awaiting-validation'
+FAMILIES={
+ 'Sword':['Shortsword','Longsword','Greatsword','Rapier','Scimitar'],
+ 'Hammer':['Light hammer','Warhammer','Maul'],
+ 'Axe':['Handaxe','Battleaxe','Greataxe'],
+ 'Mace':['Mace','Flail','Morningstar'],
+ 'Spear':['Spear','Javelin','Trident','Pike','Lance'],
+ 'Weapon':['Dagger','Dart','Handaxe','Javelin','Light hammer','Mace','Sickle','Spear','Battleaxe','Flail','Glaive','Greataxe','Greatsword','Halberd','Lance','Longsword','Maul','Morningstar','Pike','Rapier','Scimitar','Shortsword','Trident','War pick','Warhammer','Kama'],
+ 'Shield':['Buckler','Shield','Tower shield'],
+ 'Armor':['Chain shirt','Scale mail','Breastplate','Half plate','Ring mail','Chain mail','Splint','Plate','Dwarven plate'],
+ 'Helm':['Helm blank'],'Gauntlets':['Gauntlets blank']}
+FIXED={'recipe-628':['Scale mail'],'recipe-631':['Breastplate']}
+
+def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def dump(p,x):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+def ratio(x):
+    x=Fraction(x);return {'numerator':x.numerator,'denominator':x.denominator}
+def fmt(x):
+    x=Fraction(x)
+    return str(x.numerator) if x.denominator==1 else str(float(x)) if x.denominator in (2,4,5,10,20,25,50,100) else f'{x.numerator}/{x.denominator}'
+def structural_max(ordinary,percent=0,flawed=False):
+    assert ordinary>=1 and percent in (0,25,50)
+    improved=ordinary+(max(1,ordinary*percent//100) if percent else 0)
+    return max(1,improved//2) if flawed else improved
+def project_durability(ordinary,old_percent,old_flawed,old_current,new_percent=0,new_flawed=False):
+    oldmax=structural_max(ordinary,old_percent,old_flawed)
+    assert 0<=old_current<=oldmax
+    percent=max(old_percent,new_percent);flawed=old_flawed or new_flawed
+    newmax=structural_max(ordinary,percent,flawed)
+    return {'ordinaryMaximumHP':ordinary,'positiveDurabilityPercent':percent,'persistentFlaw':flawed,'maximumHP':newmax,'currentHP':max(0,newmax-(oldmax-old_current))}
+
+SHARED={
+ 'id':'blacksmithing.shared.v1','status':'draft-awaiting-exact-review',
+ 'classification':{'magical':True,'artifact':False,'spell':False,'attunementRequired':False,'resourceCost':0,'concentration':False,'activationAction':None},
+ 'baseReservation':{'completeMundaneBodyPerOutput':True,'maximumCountFormula':'floor(1.5 * sourceQuantity)','reserveBeforeAnyWork':True,'singleModelSizeGradePerBatch':True,'stableOrderedList':True,'transformFirstResolvedN':True,'durabilityOptionUsesFirstStandardQ':True,'brokenInputEligible':False,'imprintedInputEligible':False,'preexistingPhysicalDurabilityModifiersEligible':True,'basesCannotBeSharedAcrossOrders':True,'allBasesLegalAtCompletionCheck':True,'missingCommittedOrBrokenPausesBeforeRoll':True,'replacementKeepsExactListPosition':True,'postRollReorderOrAcquisition':False,'failedMishapTransformsZero':True,'untransformedBasesReturnWithActualCondition':True,'baseIncludedInSourceFailureRecovery':False,'transformationPreservesPhysicalIdentity':True},
+ 'mass':{'finishedWeight':'actual selected mundane base weight after legal size/grade','sourceComponentMassAddedToFinishedWeight':False,'toolFuelSolventStructuralCredit':0,'printedSourceIngredientsStillRequired':True,'returnedCatalystIncorporated':False,'processWasteAutomaticSalvageOrValue':False},
+ 'work':{'abilityOptions':['Strength','Intelligence'],'primaryProficiency':"Smith's tools",'artisanCreation':True,'station':'Forge and Anvil','requiredTools':["Smith's tools",'Forge','Anvil','Tongs'],'duplicateForgeAnvilRequired':False,'fieldFlagOverridesTimeModeLabel':True,'firstStablePhaseHours':'min(8, final actual required active work hours)','timeReductionsBeforePhaseBoundary':True,'firstPhaseIncludedInTotal':True,'incorporatedComponentsStabilizeAtFirstPhase':True,'unincorporatedComponentsKeepActualAge':True,'extraQuantifiedUnprintedFuelCost':False,'printedCoalIsSeparateRequiredInput':True,'forgeWaterReturnsExactOccurrence':True,'optionalDirectorGuidanceAutomaticallyBinding':False,'forgeDwarfCreationTimeMultiplier':0.75,'forgeDwarfCreationTimeRoundedUpToWholeMinute':True,'forgeDwarfActualStandardOutputTreatedExceptional':True,'forgeDwarfUpgradesFlawedFailedMishap':False},
+ 'weapon':{'actualPhysicalWeaponAttackRequired':True,'carryingGrantsBonus':False,'legalThrownAndOffhandEligible':True,'proficiencyGranted':False,'flatDamageApplicationsPerHit':1,'flatDamageFollowsOrdinaryWeaponComponent':True,'flatDamageMultipliesAcrossTypes':False,'flatDamageDoubledOnCritical':False,'flatDamageRequiresAbilityDamage':False,'objectAttacksRequireActualEligibility':True,'unsuppressedBPSCountsMagical':True,'accuracyFamily':'equipment.weapon-accuracy','gradeAndRecipeAccuracyCombination':'strongest actual applicable modifier','implicitZeroModifier':False,'gradeCriticalDiceRetained':True,'universalStrongestOtherBonusRule':False},
+ 'elementalRider':{'requiresActualPrintedBonusDamage':True,'trigger':'legal hit with actual intact unsuppressed physical weapon','optional':True,'chooseAfterHitBeforeDamageFinalized':True,'declineSpendsBudget':False,'sameAttackDamageEvent':True,'createsAdditionalAttackHitProcOrSave':False,'criticalDoublesDice':True,'frequencyKey':['physicalItemId','actualTurnInstanceId'],'usesPerTurn':1,'copiesHaveIndependentPhysicalItemBudgets':True,'differentWeaponsShareGlobalBudget':False,'transferResets':False,'extraActionResets':False,'genuineExtraTurnCreatesNewBudget':True,'offTurnAttackUsesActualHostTurn':True,'legalAllyTargetEligible':True,'selfAttackPermissionGranted':False,'legalObjectTargetEligible':True,'copyCreatesAnotherTrigger':False,'companionWeaponPermissionGranted':False,'companionRequiresIndependentActualWeaponEligibility':True,'outsideWindowSeconds':6,'outsideWindowEstablishedByFirstRelevantAttack':True,'outsideAdditionalRollCreatesWindow':False,'encounterStartingAttackGetsOutsideBudget':False,'initiativeEntryAfterOutsideTriggerFirstActualTurnSpentBeforeSeconds':6,'initiativeExitLockoutSecondsAfterLastTrigger':6,'lastTriggerTimePreservedAcrossModes':True,'suppressionResetsBudget':False},
+ 'defense':{'family':'equipment.defense-enhancement','combination':'strongest actual eligible Blacksmith recipe armorBonus or worn-suit grade AC modifier','implicitZeroModifier':False,'baseShieldBonusOutsideFamily':True,'suitRequiresSelectedWornArmorFormula':True,'shieldACRequiresSelectedUsableShield':True,'accessoryRequiresWornIntactUnsuppressed':True,'independentClassSpellAncestryRulesReclassified':False,'resistanceIndependentOfEnhancementWinner':True,'eachActuallyDonnedFunctionalShieldGrantsPrintedResistance':True,'stowedOrBackSlungShieldGrantsResistance':False,'sameTypeResistanceStacksToImmunity':False,'newShieldGradeGranted':False,'shieldDefaultsStandard':True,'preexistingShieldGradeRequiresSeparatelyReviewedProperties':True,'suitOnlyGradePropertiesImportedOntoShield':False},
+ 'accessory':{'helmBenefitSlots':1,'gauntletPairBenefitSlots':1,'gauntletOutputUnitIsMatchedPair':True,'gauntletsOccupyHands':False,'gauntletsCreateFreeHands':False,'gauntletsGrantWeaponOrUnarmedBonus':False,'armorProficiencyRequired':False,'countsAsArmorSuit':False,'genericStrengthMinimum':None,'genericStealthDisadvantage':False,'somaticAndFocusManipulationUseNormalHands':True,'suitDescriptionCreatesExtraSlots':False,'donActions':1,'doffActions':1,'allowedGrade':'Standard'},
+ 'physical':{'ordinaryHP':{'weapon':5,'buckler':10,'shield':10,'towerShield':15,'mediumArmor':15,'heavyArmor':20,'helm':5,'gauntletPair':5},'largePriceWeightAndOrdinaryHPMultiplier':2,'smallMediumTinyUseListedBaseline':True,'dominantLoadBearingMaterialRecordedBeforeWork':True,'structuralAC':'actual base reviewed material AC; iron/steel 19, wood/leather 15, other genuinely reviewed profile as recorded','ingredientTagsAlterStructuralStats':False,'wornHeldSunderAC':'max(materialAC, actual wearer AC)','brokenAtHP':0,'brokenLosesMundaneAndMagicalPositiveFunction':True,'brokenRetainsBodyWeightSlotsAndDrawbacks':True,'brokenImprintDormantIfMainBodyRecoverable':True,'restRepairs':False},
+ 'durability':{'ordinaryBaseB':'model HP after size and actual equipment-grade HP rule','positivePercentChoices':[0,25,50],'positivePercentCombines':'strongest; never multiply an already-improved maximum','improvedMaximum':'B + (P>0 ? max(1, floor(B*P/100)) : 0)','persistentFlawAppliedLast':True,'flawedMaximum':'max(1, floor(improvedMaximum / 2))','repeatedFlawHalvesAgain':False,'damageDeficit':'oldMaximum - oldCurrent','newCurrent':'max(0, finalMaximum - oldDamageDeficit), capped at finalMaximum','qualityChangesPotency':False,'repairOrSuppressionRemovesFlaw':False,'repairCompoundsDurability':False,'structuralModifiersSuppressed':False},
+ 'repair':{'requiresActualSmithsToolsProficiency':True,'formulaRequired':False,'originalRecipeTradeLevelRequired':False,'teachesFormula':False,'facilities':['Forge','Anvil','Tongs',"Smith's tools"],'abilityOptions':['Strength','Intelligence'],'actualPBOnce':True,'positiveHP':{'minimumCurrentHP':1,'DC':10,'hours':'max(1, actualMaximumHP/10)','materials':'25% actual undamaged mundane size/grade base reference'},'zeroHP':{'mainBodyRequired':True,'DC':'original recipe crafting DC','hours':'max(8, actualMaximumHP/10)','materials':'25% undamaged finished per-item reference'},'binaryTask':True,'successRestoresRecordedMaximum':True,'reactivationStillSubjectToSuppression':True,'failureConsumesActualMaterialsAndTime':True,'qualityYieldCatalystXPGranted':False,'forgeDwarfCreationReductionApplies':False,'missingBodyReconstruction':False,'flawRemovalOrRecipeUpgradeGranted':False},
+ 'suppression':{'mundaneBaseRemainsFunctionalIfNotBroken':True,'recipeAttackDamageACResistanceRiderAndMagicalBPSInactive':True,'changesStructuralHPMaterialSizeGrade':False,'resetsItemRiderBudget':False},
+ 'valuation':{'sourceMarketValueIsStandardBatch':True,'sourceUnitReference':'source batch reference / source quantity','finishedUnitReference':'source unit reference + actual undamaged mundane size/grade base reference','supplementalPurchaseChangesSourceEconomyFields':False,'ownedBasesRequireRepurchase':False,'qualityAutomaticMarketMultiplier':False,'mundaneResaleTableAutomaticallyPricesMagicItems':False,'actualFiniteBuyerAndQuoteRequired':True,'artifactValuationAutomaticallyApplies':False,'zeroHPReconstructionUsesFinishedReference':True},
+ 'sourceBoundaries':{'mechanicsTagOnlyOperative':True,'secondaryTagsGrantEffects':False,'legacyEffectOperative':False,'wholeCreatureMetadataGrantsTraits':False,'sourceMonsterNamesGuaranteeAvailability':False,'sourceInformationDeleted':0,'cosmologyReviewed':False}}
+
+# These additions implement the captured Part 2 BS-01 through BS-03 verdict.
+# Original source recipes and equipment records are never mutated here.
+SHARED['status']=REPAIR_STATUS
+SHARED['outputState']={
+ 'physicalIdentityPreserved':True,'imprintGrantsRepair':False,
+ 'functionalMinimumCurrentStructuralHP':1,'functionalRequiresMaximumHP':False,
+ 'actualPhysicalUseRequirementsStillApply':True,
+ 'damageSnapshot':'latest lawful maximum/current structural HP immediately before applying completion outcome',
+ 'includeInterveningDamageRepairAndLegalReplacement':True,'reservationSnapshotFreezesHP':False,
+ 'singletonFlawedMayProduceBrokenDormantImprint':True,'brokenOutputGrantsRefundOrExtraOutput':False}
+SHARED['elementalRider']['exactTiming']={
+ 'timeBasis':'elapsed game seconds; not table time or six seconds per creature turn',
+ 'origin':'first relevant lawful non-copied weapon attack resolved genuinely outside initiative, hit or miss, used or declined',
+ 'windowIndex':'floor((t - outsideWindowOriginTime) / 6)',
+ 'windowBounds':'[origin + 6*k, origin + 6*(k+1))','usesPerWindow':1,
+ 'reanchorEvents':[],'skippedWindowsBankUses':False,'ordinaryRollingOutsideCooldown':False,
+ 'stateFields':['outsideWindowOriginTime','spentOutsideWindowIndices','lastActualTriggerTime','lastActualTriggerContext','lastActualTriggerEventId','transitionGuardsByOriginatingTriggerEvent','actualTurnExpendituresIncludingResumableParents'],
+ 'guardFields':['originatingTriggerEventId','assignmentDeadline','status: pending/assigned/expired','assignedHostTurnId'],
+ 'entryGuardCondition':'most recent actual trigger is outside and entry < triggerTime + 6',
+ 'guardAssignment':'current actual host immediately; otherwise first genuine regular or extra turn beginning before deadline',
+ 'assignmentImmediatelySpendsHostTurn':True,'assignmentNeedsAttackHolderOrEligibleWielder':False,
+ 'assignmentIsActualTrigger':False,'assignedGuardLastsEntireHostTurn':True,
+ 'unusedGuardCarriesToNextTurn':False,'unassignedGuardExpiresAtDeadline':True,
+ 'firstHostExactlyAtDeadlineBlocked':False,'subsequentGenuineTurnsUseNormalBudgets':True,
+ 'resumedParentRetainsExpenditure':True,'virtualMarkersOrEmptySlotsCreateTurns':False,
+ 'initiativeWithoutActualHostGrantsBudget':False,'nullTurnPool':False,'initiativeBorrowsOutsideWindow':False,
+ 'exitLockout':'most recent actual trigger was in initiative: outside use prohibited before triggerTime + 6; then require unspent anchored window',
+ 'guardKey':'originating actual trigger-event identity; repeated entry cannot duplicate or move assignment',
+ 'modeChangesPreserveOriginExpendituresAndGuardHistory':True,
+ 'acceptedUseSpendsAndRecordsBeforeMitigation':True,'zeroDamageRefundsUse':False,
+ 'missDeclineIneligibleSuppressedUnavailableSpendsActualUse':False,
+ 'unsuppressionRequiresUnspentUnblockedBudget':True,'ordinaryInitiativeSixSecondCooldown':False}
+SHARED['defense'].update(functionalMinimumCurrentStructuralHP=1,
+ meldedCountsActuallyWornOrDonned=False,suitResistanceRequiresSelectedArmorFormula=False)
+
+def defensive_eligibility(family):
+    return {'functionalMinimumCurrentStructuralHP':1,'unsuppressed':True,'notMelded':True,
+      'actualWearingState':'donned' if family=='Shield' else 'worn',
+      'acRequiresSelectedWornArmorFormula':family=='Armor',
+      'acRequiresSelectedUsableShield':family=='Shield',
+      'oneLegalAccessorySlotRequired':family in ('Helm','Gauntlets'),
+      'outputIsMatchedPair':family=='Gauntlets',
+      'resistanceRequiresSelectedFormulaOrShieldAC':False}
+
+def make_models(equipment):
+    by={z['name']:z for z in equipment};models={}
+    for name in sorted(set(n for ns in FAMILIES.values() for n in ns)):
+        if name.endswith(' blank'):
+            helm=name=='Helm blank';id='blacksmith.helm-blank' if helm else 'blacksmith.gauntlets-blank'
+            models[id]={'id':id,'name':name,'kind':'helm' if helm else 'gauntletPair','ordinaryMaximumStructuralHP':5,'baselineWeightLb':5 if helm else 4,'baselinePriceGp':10,'baselinePriceGpRational':ratio(10),'baselineCombatProfile':'No mundane AC bonus; recipe supplies actual enhancement/resistance.','dominantMaterial':'iron/steel','structuralAC':19,'sourceEquipmentRecord':None,'provenance':'NEW source-conference profile','gradePolicy':'Standard only','outputUnit':'one helm' if helm else 'one matched pair'}
+            continue
+        z=by[name];group=z.get('group');weapon='weapon' in z['category'].lower()
+        kind='weapon' if weapon else 'towerShield' if name=='Tower shield' else 'buckler' if name=='Buckler' else 'shield' if name=='Shield' else 'mediumArmor' if group=='Medium Armor' else 'heavyArmor'
+        hp=SHARED['physical']['ordinaryHP'][kind];fields=z.get('sourceFields') or {}
+        profile=fields.get('Damage',fields.get('Armor Class (AC)',z.get('profile','')))
+        if fields.get('Properties'):profile+='; '+fields['Properties']
+        price=Fraction(str(z['unitPriceCp']))/100
+        models[z['id']]={'id':z['id'],'name':name,'kind':kind,'ordinaryMaximumStructuralHP':hp,'baselineWeightLb':z['unitWeightLb'],'baselinePriceGp':float(price),'baselinePriceGpRational':ratio(price),'baselineCombatProfile':profile,'dominantMaterial':'actual base, recorded before work','structuralAC':'actual recorded reviewed material AC','sourceEquipmentRecord':deepcopy(z),'provenance':'reviewed equipment catalog','gradePolicy':'Standard default; preexisting shield grade only within its independently reviewed properties' if kind in ['shield','buckler','towerShield'] else 'preserve actual legal V6 grade','outputUnit':'one complete item'}
+    return models
+
+def operational(r,models):
+    names=FIXED.get(r['id'],FAMILIES[r['recipeFamily']]);byname={m['name']:m for m in models.values()};q=r['quantity'];maximum=3*q//2;m=r['mechanics'];unit=Fraction(r['economy']['recommendedMarketValue'],q)
+    effect={'classification':'durable-magical-nonartifact','type':m['type'],'operativeTags':[m['tag']],'attackBonus':m.get('attackBonus'),'damageBonus':m.get('damageBonus'),'bonusDamage':m.get('bonusDamage'),'armorBonus':m.get('armorBonus'),'resistance':m.get('resistance')}
+    examples=[]
+    for name in names:
+        model=byname[name];b=model['ordinaryMaximumStructuralHP'];base=Fraction(model['baselinePriceGpRational']['numerator'],model['baselinePriceGpRational']['denominator']);finished=unit+base
+        examples.append({'baseModelId':model['id'],'exampleScope':'ordinary Standard Small/Medium/Tiny base with no prior durability modifier, undamaged','baseMaximumHP':b,'standardQuantityTotalBaseMassLb':float(Fraction(str(model['baselineWeightLb']))*q),'maximumReserveTotalBaseMassLb':float(Fraction(str(model['baselineWeightLb']))*maximum),'maximumReserveBaseReferenceGp':ratio(base*maximum),'finishedUnitReferenceGp':ratio(finished),'positiveHPRepairMaterialReferenceGp':ratio(base/4),'zeroHPReconstructionMaterialReferenceGp':ratio(finished/4),'exceptionalDurabilityMaximumHP':structural_max(b,25),'masterworkDurabilityMaximumHP':structural_max(b,50),'singletonFlawedMaximumHP':structural_max(b,0,True) if q==1 else None})
+    work=r['workRequirements'];hours=work['activeWorkHours'];dwarf_minutes=math.ceil(Fraction(str(hours))*45)
+    text=(f"Each actually transformed reserved {r['recipeFamily'].lower()} base receives the magical nonartifact recipe imprint and retains its physical identity. " if r['recipeFamily']!='Gauntlets' else 'Each actually transformed reserved matched Gauntlets pair receives the magical nonartifact recipe imprint and retains its physical identity as one pair. ')
+    text+='Use its latest lawful structural state immediately before applying the completion outcome; imprinting grants no repair or guarantee of positive HP. Functional means at least 1 current structural HP, subject to actual physical-use requirements. A singleton Flawed output may be Broken at 0 HP with a dormant imprint. '
+    if m['type']=='weapon':
+        text+=f"With this weapon's actual attacks, use recipe +{m['attackBonus']} in the item-accuracy family and add +{m['damageBonus']} once to ordinary weapon-hit damage. Legal thrown/off-hand attacks retain these benefits; carrying it does not. Unsuppressed ordinary B/P/S counts magical. "
+        if m['bonusDamage']:text+=f"On a legal hit, optionally add {m['bonusDamage']} as part of that same attack damage event, once per physical item per actual turn; choose before damage. Criticals double these dice, never the flat bonus. Use the shared off-turn, copy, companion and six-second transition rules. "
+        else:text+='No elemental damage rider is granted by its title, ingredient or tag. '
+    else:
+        effect['eligibility']=defensive_eligibility(r['recipeFamily'])
+        predicate={'Armor':'While functional, unsuppressed and actually worn, and while its worn-armor AC formula is the one being used',
+          'Shield':'While functional, unsuppressed and actually donned, and while it is the selected usable shield supplying the ordinary shield AC contribution',
+          'Helm':'While functional, unsuppressed and actually worn in its one legal accessory slot',
+          'Gauntlets':'While the matched pair is functional, unsuppressed and actually worn in its one legal accessory slot'}[r['recipeFamily']]
+        text+=f"{predicate}, offer +{m['armorBonus']} to equipment.defense-enhancement, using the strongest actual eligible recipe/suit-grade modifier; retain the base suit formula or shield contribution where applicable. "
+        if m['resistance']:
+            wearing='lawfully donned' if r['recipeFamily']=='Shield' else 'actually worn'+(' in its one legal accessory slot' if r['recipeFamily'] in ('Helm','Gauntlets') else '')
+            text+=f"While functional, unsuppressed and {wearing}, separately supply {m['resistance']} resistance regardless of which eligible AC enhancement wins or which suit formula/shield supplies AC. "
+        else:text+='No resistance is granted by its title, ingredient or tag. '
+        text+='Melded equipment is not actually worn or donned for active benefits; a recorded former slot is not an active equipped state. '
+    text+='Broken stops positive functions; suppression stops recipe magic only. The complete base, quality, repair and value rules apply.'
+    return {'sharedProfileId':SHARED['id'],'text':text,'effect':effect,'baseModelIds':[byname[n]['id'] for n in names],'fixedModelBinding':r['id'] in FIXED,'standardQuantity':q,'maximumBaseReserve':maximum,'outcomes':{'Standard':q,'ExceptionalYield':5*q//4,'MasterworkYield':maximum,'DurabilityOptionQuantity':q,'FlawedQuantity':q//2 if q>=2 else 1,'SingletonFlawedAddsPersistentFlaw':q==1,'Failed':0,'Mishap':0},'work':{'sourceActiveWorkHours':hours,'operationalActiveWorkHours':hours,'ordinaryFirstStablePhaseHours':min(8,hours),'eligibleForgeDwarfActiveMinutes':dwarf_minutes,'eligibleForgeDwarfFirstStablePhaseMinutes':min(480,dwarf_minutes),'sourceFieldCraftable':work['fieldCraftable'],'sourceTimeMode':work['timeMode'],'sourceMaximumAssistants':work['maximumAssistants'],'craftingDC':r['craftingCheck']['targetDC']},'value':{'standardSourceBatchReferenceGp':r['economy']['recommendedMarketValue'],'sourceMagicProcessUnitReferenceGp':ratio(unit),'finishedReferenceRequiresActualBase':True},'standardModelExamples':examples,'nonconsumedSourceComponents':[i for i,c in enumerate(r['components']) if not c['consumed']],'consumedCatalystOccurrences':[i for i,c in enumerate(r['components']) if c['consumed'] and c['role']=='catalyst'],'maximumRetainedCatalystUnits':1,'ingredientMassDoesNotReplaceBases':True}
+
+def card_md(c,models,internal):
+    r=c['sourceRecipe'];o=c['operational'];w=r['workRequirements'];q=r['quantity'];m=r['mechanics'];names=[models[id]['name'] for id in o['baseModelIds']]
+    lines=[f"## {r['id']} — {r['name']}",'',f"**Source:** {r['visibility']}; Blacksmithing level {r['skillLevel']}; tier {r['tier']}; {r['rarity']}; crafting DC {r['craftingCheck']['targetDC']}; {r['craftingTime']} / {w['activeWorkHours']} active hours; Standard quantity {q}. Source Standard batch reference {r['economy']['recommendedMarketValue']} gp.",'','**Preserved effect:** '+r['effects'],'','**Operational effect:** '+o['text'],'','**Legal base models:** '+', '.join(names)+'. '+('This card fixes its base model.' if o['fixedModelBinding'] else 'Choose one model, size and actual legal equipment grade for the whole batch before work.'),'',f"**Physical reserve:** {o['maximumBaseReserve']} complete legal mundane bases, ordered before work. Transform the first resolved N; keep original inventory identity, actual grade/material/damage and source access. All source ingredients below are additional inputs; none supplies a free body.",'',
+      '| Base model | Ordinary Standard price | Weight | Ordinary max HP | Actual base combat profile | Finished unit reference with this ordinary base |','|---|---:|---:|---:|---|---:|']
+    for ex in o['standardModelExamples']:
+        model=models[ex['baseModelId']];price=model['baselinePriceGpRational'];v=ex['finishedUnitReferenceGp']
+        lines.append(f"| {model['name']} | {fmt(Fraction(price['numerator'],price['denominator']))} gp | {model['baselineWeightLb']:g} lb | {model['ordinaryMaximumStructuralHP']} | {model['baselineCombatProfile'].replace('|','/')} | {fmt(Fraction(v['numerator'],v['denominator']))} gp |")
+    lines+=['','These are Small/Medium/Tiny ordinary Standard examples, not automatic item grants or material-AC assignments. Actual bases retain the complete equipment profile, requirements and legitimate size/grade valuation. Large doubles base price/weight/ordinary HP, not the source magic/process share. Record actual dominant material before work; the shared structural and damage-preservation rules apply.','',
+      '**Exact source components:**','','| Occurrence | Component | Quantity | Tier | Role / consumed | Unit mass | Unit source value | Required properties |','|---|---|---:|---:|---|---:|---:|---|']
+    for i,z in enumerate(r['components']):lines.append(f"| {i} | {z['name']} | {z['quantity']} | {z['tier']} | {z['role']} / {str(z['consumed']).lower()} | {z['weight']:g} lb | {z['value']} gp | {', '.join(z['properties'])} |")
+    lines+=['',f"**Work:** STR or INT under the shared crafting check; {w['station']}; tools: {', '.join(w['requiredTools'])}. Maximum assistants {w['maximumAssistants']}; fieldCraftable={str(w['fieldCraftable']).lower()}, preserved timeMode={w['timeMode']}. The false field flag controls: an actual Forge-and-Anvil worksite is still required. Ordinary first stable phase {o['work']['ordinaryFirstStablePhaseHours']:g} active hour(s), included in total. An eligible Forge Dwarf uses {o['work']['eligibleForgeDwarfActiveMinutes']} actual active minutes, first phase {o['work']['eligibleForgeDwarfFirstStablePhaseMinutes']} minutes; no extra time reduction from assistants.",'',
+      f"**Results:** Standard {q}; Exceptional yield {o['outcomes']['ExceptionalYield']}; Masterwork yield {o['outcomes']['MasterworkYield']}; structural option {q} with strongest noncompounding 25%/50% durability layer. Flawed: "+(f"{q//2} ordinary-effect units with existing durability state preserved." if q>=2 else 'one unit establishing the single persistent half-maximum flaw after ordinary size/grade and strongest durability improvement; preserve damage deficit, possibly emerging Broken.')+' Failed/Mishap transforms no base; source ingredient recovery/loss still applies. Masterwork returns at most one eligible consumed catalyst unit total, never one per occurrence or finished item.','',
+      '**Repair:** functioning HP≥1 uses trained Smith\'s tools, actual Forge/Anvil/Tongs, STR/INT DC10, max(1 hour, actual max HP/10 hours), materials 25% mundane size/grade base value. HP0 with recoverable main body uses original recipe DC '+str(r['craftingCheck']['targetDC'])+', max(8 hours, actual max HP/10 hours), materials 25% undamaged finished unit reference. Both are binary repair tasks; no formula/trade-level entitlement required or granted, no creation-only time reduction, crafting XP, quality roll or catalyst. Existing grade, durability state and flaw persist.','',
+      '**Reference accounting:** source magic/process share '+fmt(Fraction(o['value']['sourceMagicProcessUnitReferenceGp']['numerator'],o['value']['sourceMagicProcessUnitReferenceGp']['denominator']))+' gp per unit, plus the actual transformed base\'s undamaged mundane size/grade reference. Real owned bases need no repurchase; purchased reserves are separate expenses. No automatic artifact multiplier, quality markup or guaranteed mundane-table magic buyback.','',
+      '**Source access:** '+json.dumps(r['discovery'],ensure_ascii=False,separators=(',',':'))+'. Visibility and actual ingredient availability remain source-controlled.','',
+      '**Preserved tags:** '+', '.join(r['tags'])+'. **Operative tag:** '+m['tag']+'. Secondary tags grant no additional mechanics.','']
+    if r.get('wholeCreatureUse'):lines+=['**Whole-creature metadata:** retained source label, with no borrowed trait, anatomy ability or extra donor effect.','']
+    if len(o['consumedCatalystOccurrences'])>1:lines+=['**Separate catalysts:** every listed occurrence requires its actual quantity, even when names/IDs repeat. The Masterwork return remains one eligible unit total.','']
+    if 'legacyName' in r or 'legacyEffect' in r:lines+=['**Preserved legacy (inactive):** '+json.dumps({k:r[k] for k in ['legacyName','legacyEffect'] if k in r},ensure_ascii=False)+'.','']
+    if internal and 'directorGuidance' in r:lines+=['**Optional preserved Director guidance:** '+json.dumps(r['directorGuidance'],ensure_ascii=False)+'. This is not an automatic extra gate.','']
+    return '\n'.join(lines)
+
+def main():
+    assert not (ROOT/'docs/mechanics/BLACKSMITHING_REVIEW_STATUS.json').exists(),'Already reviewed; do not regenerate final artifacts.'
+    source=read(ROOT/'data/crafting/Decennium_Descent_Crafting_Bible_v4.json');evidence=read(AUDIT/'BLACKSMITHING_SOURCE_PREPARATION.json');rs=[r for r in source['recipes'] if r['skill']=='Blacksmithing'];assert rs==evidence['recipes']
+    models=make_models(read(ROOT/'data/playtest/equipment_acquisition_candidate.json')['items']);cards=[]
+    for r in rs:cards.append({'recipeId':r['id'],'name':r['name'],'visibility':r['visibility'],'status':REPAIR_STATUS,'sourceSha256':evidence['sourceSha256'],'sourceRecipeIndex':source['recipes'].index(r),'sourceRecipe':deepcopy(r),'operational':operational(r,models)})
+    assert len(cards)==43 and len(models)==40
+    envelope={'schemaVersion':1,'status':REPAIR_STATUS,'sourceConferenceTurnId':SOURCE_TURN,'sourceConferenceReplyId':SOURCE_REPLY,'interfaceTurnId':INTERFACE_TURN,'interfaceReplyId':INTERFACE_REPLY,'exactReviewThreadId':EXACT_THREAD,'exactReviewTurnId':EXACT_TURN,'exactReplyId':EXACT_REPLY,'sourceSha256':evidence['sourceSha256'],'sharedGuide':'docs/mechanics/BLACKSMITHING_RECIPE_PLAYTEST.md','sharedOperationalProfile':SHARED,'baseModels':models,'runtimeImplemented':False,'balanceApproved':False,'pendingBindings':[],'cosmology':'Deferred until successful authorized GitHub push and verified remote commit.'}
+    dump(ROOT/'data/director/blacksmithing_recipe_candidate_internal.json',{**envelope,'visibility':'director-internal','cards':cards})
+    public=[c for c in cards if c['visibility']=='public'];assert len(public)==27
+    dump(ROOT/'data/playtest/blacksmithing_recipe_candidate.json',{**envelope,'visibility':'public','cards':public})
+    for internal,chosen,p in [(False,public,ROOT/'docs/mechanics/BLACKSMITHING_PUBLIC_RECIPE_CARDS.md'),(True,cards,ROOT/'docs/director-only/BLACKSMITHING_INTERNAL_RECIPE_CARDS.md')]:
+        head='# Blacksmithing '+('internal' if internal else 'public')+' recipe cards\n\n**Exact review finite repairs applied; validation pending.** '+str(len(chosen))+' source formulas.\n\nEvery card uses the complete shared Blacksmithing guide: real predeclared base bodies, exact ingredients, grade/quality separation, damage preservation, lawful wearing, source access and finite repair. Source originals are preserved in the paired JSON. These are provisional authored mechanics, not runtime or human balance approval.\n\n'
+        p.write_text(head+'\n'.join(card_md(c,models,internal) for c in chosen),encoding='utf-8')
+    print(json.dumps({'authoredCards':len(cards),'publicCards':len(public),'baseModels':len(models),'recipesApproved':0}))
+if __name__=='__main__':main()

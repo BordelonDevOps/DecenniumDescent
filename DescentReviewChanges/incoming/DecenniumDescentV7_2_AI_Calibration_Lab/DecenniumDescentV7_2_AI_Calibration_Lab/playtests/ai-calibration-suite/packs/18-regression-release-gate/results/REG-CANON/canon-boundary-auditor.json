@@ -1,0 +1,33 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-CANON",
+  "runId": "2026-08-06T151746Z-REG-CANON",
+  "seed": 77300,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "PASS",
+  "metrics": {
+    "publicCanonValidatorFailed": false,
+    "visibilityRule": "Public-player agents may not read directorOnlyOptional.",
+    "usabilityPacksThisRun": {
+      "05": 152,
+      "17": 178
+    }
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "null",
+      "summary": "Public canon validator passed.",
+      "citation": "tools/validate_public_canon.py"
+    },
+    {
+      "severity": "observed",
+      "summary": "Packs 05 and 17 completed in this run; their COMPILED_REPORT findings are usability-only and must not silently rewrite combat math baselines.",
+      "citation": "packs/05 and packs/17 COMPILED_REPORT.md"
+    }
+  ],
+  "rawEvidencePath": "results/18-regression-release-gate/validator_rerun.json",
+  "agentId": "canon-boundary-auditor"
+}

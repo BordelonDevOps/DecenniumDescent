@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "pack",
+    "scenarioId",
+    "runId",
+    "seed",
+    "sourceHash",
+    "evidenceLevel",
+    "outcome",
+    "metrics",
+    "rulesHalts",
+    "findings"
+  ],
+  "properties": {
+    "pack": {
+      "const": "12-cargo-extraction-risk"
+    },
+    "scenarioId": {
+      "type": "string"
+    },
+    "runId": {
+      "type": "string"
+    },
+    "seed": {
+      "type": [
+        "integer",
+        "string",
+        "null"
+      ]
+    },
+    "sourceHash": {
+      "type": "string"
+    },
+    "fixtureHash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidenceLevel": {
+      "enum": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    "outcome": {
+      "type": "string"
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "rulesHalts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "rawEvidencePath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

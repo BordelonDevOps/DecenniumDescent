@@ -1,0 +1,136 @@
+## Cooking source-conference disposition: APPROVED FOR AUTHORING
+
+These decisions are sufficient to author the 44 exact cards. This does **not** increment the reviewed-recipe count yet; Cooking remains unreviewed until the completed cards receive exact manuscript approval. Herbalism stays at **90/687 reviewed, 597 remaining**.
+
+I found no additional source-family blocker beyond the exceptions below. The **30 public / 2 restricted / 12 Director-only** split is internally consistent.
+
+1. **Consumption and one-feast rule — approve with an atomic replacement rule.** One serving takes one uninterrupted ten-minute meal. In initiative, one designated eater or feeder spends 100 consecutive regular-turn Actions and at least 600 elapsed seconds; resolution occurs the first moment both conditions are satisfied, with no 101st Action. A capable creature can feed itself; an Incapacitated recipient requires a helper and an actually compatible swallowing route. No handoff preserves progress. The serving is spent at legal start. Interruption loses it and leaves the recipient's existing feast untouched.
+
+   At successful completion, the recipient chooses either **accept the complete new feast magic** or **decline all of it**. Declining preserves the old feast but still counts the completed food as eaten for nutrition. No RP, rider, temporary HP, or other feast benefit can be taken from a declined feast.
+
+   On acceptance, atomically end the prior Cooking-feast record and every still-active rider belonging to it. Remove remaining temporary HP only if that temporary HP actually came from the old feast; unrelated temporary HP is untouched. Then establish the new feast and offer its printed temporary HP under the normal nonstacking temporary-HP rule. Keeping a stronger independent temporary-HP grant does **not** suppress the new feast's other riders. A blocked or zero-value rider likewise does not undo acceptance. Depletion of feast temporary HP later does not end its surviving riders.
+
+   Recipe-633's contaminated failed product is **not a successful feast record** and therefore does not replace an existing feast.
+
+2. **Durations and riders — approve the proposed hierarchy.** For recipes 81–120, 632, 634 and 635, the parent feast and its temporary HP end at the recipient's next **completed beneficial Long Rest**, unless the card expressly supplies a different parent duration. Explicit one-hour or four-hour secondary riders have their own shorter clocks and do not inherit the parent endpoint.
+
+   Therefore Athletics on 83/94/118, CON saves on 90/109, Stealth on 115, Flora poison/disease advantage on 84/96/97/99, and recipe-95's first charm/fear save remain available until the parent feast ends. Recipe-95 spends its rider when the recipient actually resolves its first qualifying charm-or-fear saving throw; another source already granting advantage does not preserve the charge. If no save occurs because no save is required, it is not spent.
+
+   Recipe-633 is the exception: its **entire successful feast**, including its 6 temporary HP and poison-save advantage, lasts **8 elapsed hours**. A Long Rest does not independently end it.
+
+   Unqualified "+1/+2/+3 to Constitution saves" means exactly that: any actual Constitution saving throw qualifies, including concentration and Wound/Injury saves when those procedures actually call for a Constitution save. It does not turn a non-CON death save or other roll into a Constitution save.
+
+   Athletics and Stealth bonuses modify only those actual named skills.
+
+   For movement meals, make the new bounded integration:
+   > **Increase the recipient's walking speed by 10 feet. Existing climb, swim, fly or other movement modes are not independently increased unless another rule expressly derives them from walking speed.**
+
+   Swimming-speed meals give a swimming speed equal to the recipient's **current effective walking speed**, recalculated while the rider is active. They do not grant water breathing, underwater sight, special current resistance, or create a walking mode that does not exist.
+
+   "Advantage against being knocked prone" applies to an actual check or saving throw whose direct consequence includes becoming Prone. It grants no immunity to automatic Prone effects and no advantage or reduction when standing up.
+
+3. **Resonance meals — no new cap.** Nothing supplied for recipes 88 or 103 establishes a once-per-rest limitation, so do not import Alchemy's restriction.
+
+   Each genuinely consumed, fully completed and **accepted** serving restores exactly **1 expended RP**, capped by an existing actual RP maximum. A recipient with no RP pool or no missing RP gains zero. It creates no pool, RC conversion, Dissonance/Refrain change, extra Action or delayed restoration.
+
+   Every separately paid and completed serving can do this. Finite food, ingredients, ten-minute consumption and the one-feast replacement rule are the limiting mechanisms currently supported by source. A replayed inventory record, partial meal, declined feast or duplicated serving record cannot retrigger it.
+
+4. **Serving mass, nutrition and packaging — use a 2/3-lb meal standard.** For this Cooking overlay only:
+
+   - One finished serving contains **2/3 lb of finished edible food**, excluding its container.
+   - One completed serving supplies **1/3 of a Small/Medium creature's daily food requirement**, matching three meals to the reviewed 2-lb daily ration.
+   - The same serving supplies **1/6 of a Large creature's daily food requirement**.
+   - This is strictly a **food ledger**. It does not define or replace Supply, water, fuel or the still-open food/water-to-Supply conversion.
+
+   Water, salt and mechanically inert non-food matter contribute physical recipe mass but **not nutrition**. A source component offsets the 2/3-lb nutritional requirement only when the card can honestly identify it as edible food after successful preparation: ordinary meat, milk, fruit, vegetables, flour, butter, honey, sugar, eggs, cooking oil, or an actually documented edible donor part are examples. Properties or a monster-source list alone do not prove edibility.
+
+   Each card should therefore record `nutritiveInputMassLb`. At maximum Masterwork yield, after assuming the heaviest eligible catalyst is retained, reserve enough actual ordinary ration-equivalent food to bring every possible serving to 2/3 lb. Record the deficit to 0.01 lb. Use the **actual reviewed ration price prorated by weight**; do not invent a second food price. Supplementary food does not replace any listed ingredient, tier, property or role.
+
+   Excess legal process mass becomes waste unless another rule expressly returns it. It does not create bonus rations, resale goods or Supply.
+
+   Add one mundane packaging baseline:
+
+   **Lidded Meal Crock:** 2 sp; 0.5 lb; 1-quart capacity; glazed ceramic; AC 13; structural HP 2; holds one finished serving; reusable; no numeric bonus or preservation effect.
+
+   Every serving must have actual food-safe storage capacity reserved before the completion check unless it is consumed immediately at completion. An existing mess kit, bowl, or returned pot/pan can satisfy this requirement to its actual capacity and is not bought twice. The source-required cooking pot/pan remains a tool; sequentially using that same actual object to hold food after cooking is allowed. It cannot simultaneously provide invented extra container capacity.
+
+   Wet/loose food requires an actual container. Dry solid food may use another actual food-safe wrapping/container, but if no reviewed profile exists, use the Meal Crock baseline rather than invent free packaging.
+
+   Maximum-yield **nutrition and packaging capacity** must be reserved before rolling.
+
+5. **Manufacture and shelf life — approve with a cooked-food-specific clock.** The first 15 active minutes are the binding/cooking phase inside the printed work time. Actual heat, Cook's utensils and the recipe's other requirements must be present. Perishables must remain legal until that phase completes. Afterward, the mixture is stabilized only inside that work order; it cannot be withdrawn as preserved raw stock.
+
+   Cooking uses Cook's utensils, an artisan tool, so an actually applicable Forge Dwarf artisan-crafting time feature may reduce eligible active work. It does not waive station/facility requirements, ingredient aging before binding, rest, storage or calendar-only waiting. Recipe-120 continues to use the already reviewed **1 workyear = 1,920 active hours overlay**, while retaining the immutable source `activeWorkHours:null`; if Forge Dwarf legally applies, it modifies those active hours under the existing time rule rather than rewriting the source.
+
+   Finished successful meals begin a new **24-hour cooked-food shelf clock at completion**. At 24 elapsed unprotected hours they become **Spoiled**: no Cooking magic, no meal-nutrition credit, and no ordinary finished-meal market value. This finished-food rule intentionally bypasses an intermediate Degraded stage.
+
+   Existing mundane food-preservation procedures may pause that age through their real time, cost, containers and check. Opening or repackaging does not reset age.
+
+   A legal ten-minute meal begun before the shelf deadline may finish after it: legal start commits the entire serving to that uninterrupted consumption. Opening alone does not commit it.
+
+   Successful cooking neutralizes **unprinted incidental ingestion hazards of its recipe ingredients for that finished serving only**. This grants no general purification rule, harvest permission or ingredient safety outside the recipe. Recipe-633's explicit failed-neutralization clause overrides this.
+
+6. **Quality and whole-creature critical success — use actual Masterwork margin.** For recipes 632, 634 and 635, "critical success" means a real crafting result of **margin +10 or greater**, i.e. Masterwork under the six-band crafting table.
+
+   A natural 20 does not trigger the trait unless the numerical total reaches that margin. Forge Dwarf's Standard→Exceptional ancestry bridge does not trigger it. Natural 1 remains Mishap.
+
+   The whole-creature trait is **additional** to the normal Masterwork quality choice and eligible catalyst return. It is not the Masterwork improvement option itself.
+
+   Q≥2 Flawed batches still produce `floor(Q/2)` ordinary servings. A singleton whose parent is until Long Rest has no coherent half-duration profile and therefore treats Flawed as Failed. Recipe-633 overrides that rule with its contaminated-meal procedure below.
+
+   Quality never increases temporary HP, RP, bonus magnitude, resistance, duration, borrowed-trait strength or servings beyond the normal yield formula.
+
+   For container durability, close one potential exploit: only a **dedicated mundane packaging container assigned to the finished serving** may receive the generic durability improvement. Cooking cannot permanently improve an unrelated mess kit, magical container, station pot or reusable tool merely because it held the food. A baseline Meal Crock at HP 2 becomes HP 3 under either Exceptional or Masterwork because the framework's minimum improvement is +1. Standard-quantity containers only; never combine durability and bonus yield.
+
+7. **Recipe-633 Neutralized Serpent Skewers — approve the explicit contaminated failure profile.** This source needs its own outcome override:
+
+   - **Standard / Exceptional / Masterwork:** normal beneficial recipe-633 feast.
+   - **Any total below DC**, including the Flawed and Failed bands: one contaminated serving, no temporary HP and no poison-save advantage.
+   - **Mishap**, including natural 1: one contaminated serving plus the normal crafting Mishap result.
+
+   Because the source expressly says failed cooking leaves the meal poisonous, this contaminated serving replaces generic Failed/Flawed product handling. **No 25% material recovery applies.** All consumed inputs are expended once. No ingredient may simultaneously remain inside the contaminated meal and be "recovered."
+
+   New bounded exposure:
+   > After a creature completes the full ten-minute consumption of one contaminated serving, it makes a **DC 13 Constitution saving throw**. On a failure it gains one **Poisoned** source from the skewers for **1 elapsed hour**. On a success it gains no condition. No damage or other condition is added.
+
+   Actual poison immunity or other directly applicable defenses still work. The exposure occurs only after the whole serving; partial/interrupted consumption creates no subdivided poison dose. The contaminated serving has the normal 24-hour finished-food shelf clock and can count as ordinary meal nutrition if fully consumed, but it creates **no feast record** and therefore does not replace an existing magical feast.
+
+   The cook knows that neutralization failed. The result has no guaranteed buyer, safe-food certification, weapon coating, extractable poison dose or automatic resale value.
+
+8. **Whole-creature temporary traits — require verified provenance and predeclared eligible trait.** Do **not** create a fallback trait. A fallback would invent power where the source instead promises a trait tied to the actual donor.
+
+   Before beginning 632, 634 or 635, record either:
+   - **same-creature provenance:** all monster-part lots came from the same recorded donor; or
+   - **shared-ecology provenance:** each lot has an actual donor and the campaign's approved source/harvest record establishes those donors as part of the same concrete ecology.
+
+   A compressed `sourceMonsters` compatibility list is never evidence that the inventory actually came from one of those creatures.
+
+   Choose one **trait donor** that actually supplied at least one consumed monster component, and predeclare one exact borrowed trait from that donor's approved profile before rolling. If there is no approved donor profile with an eligible trait, **the work order cannot begin under this operational overlay**. This avoids promising a critical-success result that the rules cannot legally resolve.
+
+   Eligible borrowed profiles are narrowly:
+   - a printed **walking, climbing or swimming speed**; during the rider, that movement mode is at least the donor's printed value. A missing climb/swim mode may be gained at that speed. No fly/burrow speed, water breathing or traversal exception follows;
+   - exactly **one printed damage resistance**;
+   - a bounded ordinary sensory trait explicitly printed in the donor profile, such as darkvision or a named ordinary-sense Perception benefit. No blindsight, truesight, tremorsense or telepathy through this generic permission;
+   - another passive trait only after separate exact review if it falls outside those categories.
+
+   Explicitly exclude attacks, Multiattack, Action/Bonus Action/Reaction abilities, save DCs, copied ability scores/HP, spellcasting, resource creation/recovery, regeneration/healing, temporary HP generation, damage or condition immunities, legendary/lair powers, identity/lifecycle effects, or anything requiring another unreviewed subsystem.
+
+   The borrowed trait lasts **1 elapsed hour or until the parent feast ends/replaces, whichever comes first**. Depletion of temporary HP does not end it.
+
+   Under the supplied approved bestiary evidence:
+   - **Cave Bear:** walking speed 40 ft. is eligible. Mauling Claws and Multiattack are not. Territorial Morale is Director behavior rather than a transferable player-facing mechanical trait. There is no printed Keen Smell to borrow.
+   - **Sporefolk Adult:** walking speed 40 ft. and **poison resistance** are eligible. Poisoned immunity is not. Living Substrate is not, because it changes action origins. Its attacks are not.
+   - **recipe-634:** the broad catalog lists establish no actual donor. Its card must require recorded blood/marrow donor provenance and an approved trait profile before crafting.
+   - **recipe-635:** Sporefolk poison resistance is usable only when an actual Sporefolk-sourced component participates and the other component's donor is legally connected through the recorded shared ecology.
+
+9. **Remaining source-specific boundaries.** Active finished-recipe tags come only from current `mechanics.tag`. `secondaryTag`, ingredient properties, legacy names/effects and source-monster lists do not create additional finished-food tags. Recipe-633 therefore has **no generic active recipe tag** despite its explicit poison mechanics.
+
+   Keep these distinct special families when authoring cards: 88/103 RP restoration; 95 first charm/fear save; 89/91/117 walking-speed rider; 90/109 unrestricted CON-save bonus; 104/105/107/111 dynamic swimming speed; 83/94/118 Athletics; 115 Stealth; 98/101/108/112/113/120 knockdown advantage; 84/96/97/99 poison-and-disease save advantage; 632/634/635 Masterwork donor trait; and 633 contaminated failure.
+
+   The meal's title never imports alcohol dependence, drug tolerance, poison coating, spellcasting, artifact status or other unprinted mechanics. Source values remain **Standard batch references**, and all extra food/carrier/container costs stay outside immutable source economics with finite actual supplier/buyer quotes.
+
+### Authoring status
+
+With those decisions, I see **no remaining Cooking-family source blocker**. Codex can author all 44 exact cards against this conference without another generic Cooking conference.
+
+The next exact review should verify the 44 card identities, 30/2/12 visibility split, nutritional/carrier reservation arithmetic, recipe-633 override, the three whole-creature provenance profiles, and the source-specific rider/duration mappings. Numerical balance and runtime remain open, and cosmology remains post-push only.

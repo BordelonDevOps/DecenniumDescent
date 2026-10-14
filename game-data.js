@@ -100,38 +100,38 @@ const RACES = {
             }
         }
     },
-    drow: {
-        name: "Drow",
-        description: "Subterranean elves with a complex society and innate magical abilities. Their long history in the Murk has shaped their physiology and culture.",
-        image: "https://i.imgur.com/drow-race.jpg",
+    umbrin: {
+        name: "Umbrin",
+        description: "Truly dark and mysterious elves of The Murk — obsidian-skinned children of exile. Calan'thir and the First Choir shunned them and burned their flesh to living obsidian when they were banished from his light. They worship a perverse idea of Umbra, not the wholesome faith of the Choir, and are hated by most surface folk — yet capable of very strange alliances when necessity demands.",
+        image: "https://i.imgur.com/umbrin-race.jpg",
         abilityScoreIncrease: { dexterity: 2 },
         statCaps: { strength: 14, dexterity: 20, constitution: 14, intelligence: 18, wisdom: 16, charisma: 20 },
         size: "Medium",
         speed: 30,
-        languages: ["Common", "Elvish", "Undercommon"],
+        languages: ["Common", "Elvish", "Murkish"],
         traits: [
             "Superior Darkvision: See in darkness within 120 feet",
             "Sunlight Sensitivity: Disadvantage on attacks and Perception in sunlight",
-            "Drow Magic: Dancing lights cantrip, faerie fire (3rd level), darkness (5th level)",
-            "Keen Senses: Proficiency in Perception",
+            "Umbrin Magic: Dancing lights cantrip, faerie fire (3rd level), darkness (5th level)",
+            "Umbrin Weapon Training: Proficiency with rapier, shortsword, and hand crossbow",
             "Trance: 4 hours of meditation instead of sleep"
         ],
         subraces: {
             noble: {
-                name: "Noble Drow",
-                description: "Aristocratic drow with stronger magic and command presence.",
+                name: "Obsidian Highborn",
+                description: "Aristocratic Umbrin with stronger magic and command presence.",
                 abilityScoreIncrease: { charisma: 1 },
-                traits: ["Enhanced Drow Magic", "Command Presence", "Noble Training"]
+                traits: ["Enhanced Umbrin Magic", "Command Presence", "Noble Training"]
             },
             shadowblade: {
                 name: "Shadow Blade",
-                description: "Drow trained in stealth, assassination, and poison.",
+                description: "Umbrin trained in stealth, assassination, and poison.",
                 abilityScoreIncrease: { wisdom: 1 },
                 traits: ["Shadow Step", "Poison Expert", "Assassin's Training"]
             },
             mystic: {
                 name: "Cavern Mystic",
-                description: "Drow with spiritual connection to the Murk and earth.",
+                description: "Umbrin with spiritual connection to the Murk and earth.",
                 abilityScoreIncrease: { wisdom: 1 },
                 traits: ["Earth Communion", "Stone Sense", "Murkish Lore"]
             }
@@ -395,7 +395,7 @@ const RACES = {
         statCaps: { strength: 14, dexterity: 14, constitution: 20, intelligence: 16, wisdom: 20, charisma: 12 },
         size: "Medium",
         speed: 30,
-        languages: ["Common", "Undercommon"],
+        languages: ["Common", "Mycelian"],
         traits: [
             "Darkvision: See in dim light within 60 feet",
             "Fungal Nature: Resistance to poison, don't need to breathe",

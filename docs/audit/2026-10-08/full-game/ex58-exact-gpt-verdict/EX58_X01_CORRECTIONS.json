@@ -1,0 +1,351 @@
+{
+  "reviewId": "EX58-EXACT-2026-10-11",
+  "id": "EX58-X01",
+  "title": "EX-W13 must use the actual Mage3 and Dragoon8 RP pools",
+  "submissionSha256": "ab16fff6b7e80d755a6b4d1971c9d7e8fbe20442a1876178073b7f546edd946a",
+  "manifestSha256": "d79469ef1ad372fbe156cef094c59ecb9bfae827b389b3041de3f5c6b74a03e5",
+  "disposition": "REQUIRED EXACT EXAMPLE CORRECTION; no change to a class, spell, source direction, body or finished procedure.",
+  "questions": [
+    "TR-03",
+    "TR-04",
+    "TR-05",
+    "TR-06"
+  ],
+  "acceptanceRequirements": [
+    "ECX-07",
+    "ECX-14"
+  ],
+  "logicalReplacements": [
+    {
+      "relativePointer": "/actualSyntheticPremises",
+      "old": "A level-8 Dragoon has genuinely acquired Featherstep. A level-3 Mage ally already cast and maintains actual Swiftness, legally raising the Dragoon’s walking Speed from 30 to 40 for its minute. No pending feat is used.",
+      "replacement": "A level-8 Dragoon has genuinely acquired Featherstep and starts this fixture at 7/7 RP. A level-3 Mage ally starts at 8/8 RP and pays the actual 3 RP to cast Swiftness, leaving 5/8 RP, then continues holding its concentration. Swiftness legally raises the Dragoon’s walking Speed from 30 to 40 for its minute. On the Dragoon’s later own turn, Featherstep’s normal 2 RP is paid from 7 RP, leaving 5/7 RP. The two actors retain their own concentration and resource histories. No pending feat or unstated increase to either RP maximum is used."
+    },
+    {
+      "relativePointer": "/records/ongoingEffect/RPBefore",
+      "old": 10,
+      "replacement": 8
+    },
+    {
+      "relativePointer": "/records/ongoingEffect/RPAfter",
+      "old": 7,
+      "replacement": 5
+    },
+    {
+      "relativePointer": "/records/ownTurn/RPBefore",
+      "old": 10,
+      "replacement": 7
+    },
+    {
+      "relativePointer": "/records/ownTurn/RPAfter",
+      "old": 8,
+      "replacement": 5
+    }
+  ],
+  "jsonViews": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json",
+      "casePointer": "/cases/12"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json",
+      "casePointer": "/publicEnvelope/cases/12"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "casePointer": "/components/boundary_records/cases/12"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "casePointer": "/reading/boundaryCases/12"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json",
+      "casePointer": "/completeComponents/boundary_records/publicEnvelope/cases/12"
+    }
+  ],
+  "affectedCandidateFiles": [
+    "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json",
+    "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json",
+    "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json",
+    "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_BOUNDARY_RECORDS.md",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_BOUNDARY_WALKTHROUGHS.md",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md"
+  ],
+  "submittedFileBindings": {
+    "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json": {
+      "bytes": 617575,
+      "sha256": "d2db130ea9d734f9469eca500159d3e903f44b10cb839b23e218cbdf479a835e"
+    },
+    "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json": {
+      "bytes": 8560924,
+      "sha256": "3cd3a8da8301497821f000d1cfca406f2c60aee17875cff393919611d6627df4"
+    },
+    "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json": {
+      "bytes": 140216,
+      "sha256": "d7617ed8e13b359ddee4c7d65912259a1896f815cb2e211875f52ec3fe93de04"
+    },
+    "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json": {
+      "bytes": 2316368,
+      "sha256": "2ce8f8e3ab7f8098fb7f635ee62b468068f4b366379bc8fd42617f2b6ef137da"
+    },
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_BOUNDARY_RECORDS.md": {
+      "bytes": 128884,
+      "sha256": "8b66588c0b8f766b4e46d95ce5a1bb5e89bc09f67594c0e51c0f0c91eca584a2"
+    },
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_BOUNDARY_WALKTHROUGHS.md": {
+      "bytes": 18846,
+      "sha256": "33118e5be0414d31125eb6dd286e93ff1a146b6fc350b544ee63f321457541d7"
+    },
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md": {
+      "bytes": 910181,
+      "sha256": "e2ca8ec61500cf01c0b9b029dc56e42f50dd65051f97894eddf304069cfd553e"
+    },
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md": {
+      "bytes": 307212,
+      "sha256": "2492eedadeb30948b6a228903fbf8081d925f5551c35268bc94568d0971fe5bf"
+    }
+  },
+  "concreteJSONOperations": [
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json",
+      "pointer": "/cases/12/actualSyntheticPremises",
+      "old": "A level-8 Dragoon has genuinely acquired Featherstep. A level-3 Mage ally already cast and maintains actual Swiftness, legally raising the Dragoon’s walking Speed from 30 to 40 for its minute. No pending feat is used.",
+      "replacement": "A level-8 Dragoon has genuinely acquired Featherstep and starts this fixture at 7/7 RP. A level-3 Mage ally starts at 8/8 RP and pays the actual 3 RP to cast Swiftness, leaving 5/8 RP, then continues holding its concentration. Swiftness legally raises the Dragoon’s walking Speed from 30 to 40 for its minute. On the Dragoon’s later own turn, Featherstep’s normal 2 RP is paid from 7 RP, leaving 5/7 RP. The two actors retain their own concentration and resource histories. No pending feat or unstated increase to either RP maximum is used.",
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json",
+      "pointer": "/cases/12/records/ongoingEffect/RPBefore",
+      "old": 10,
+      "replacement": 8,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json",
+      "pointer": "/cases/12/records/ongoingEffect/RPAfter",
+      "old": 7,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json",
+      "pointer": "/cases/12/records/ownTurn/RPBefore",
+      "old": 10,
+      "replacement": 7,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json",
+      "pointer": "/cases/12/records/ownTurn/RPAfter",
+      "old": 8,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json",
+      "pointer": "/publicEnvelope/cases/12/actualSyntheticPremises",
+      "old": "A level-8 Dragoon has genuinely acquired Featherstep. A level-3 Mage ally already cast and maintains actual Swiftness, legally raising the Dragoon’s walking Speed from 30 to 40 for its minute. No pending feat is used.",
+      "replacement": "A level-8 Dragoon has genuinely acquired Featherstep and starts this fixture at 7/7 RP. A level-3 Mage ally starts at 8/8 RP and pays the actual 3 RP to cast Swiftness, leaving 5/8 RP, then continues holding its concentration. Swiftness legally raises the Dragoon’s walking Speed from 30 to 40 for its minute. On the Dragoon’s later own turn, Featherstep’s normal 2 RP is paid from 7 RP, leaving 5/7 RP. The two actors retain their own concentration and resource histories. No pending feat or unstated increase to either RP maximum is used.",
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json",
+      "pointer": "/publicEnvelope/cases/12/records/ongoingEffect/RPBefore",
+      "old": 10,
+      "replacement": 8,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json",
+      "pointer": "/publicEnvelope/cases/12/records/ongoingEffect/RPAfter",
+      "old": 7,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json",
+      "pointer": "/publicEnvelope/cases/12/records/ownTurn/RPBefore",
+      "old": 10,
+      "replacement": 7,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json",
+      "pointer": "/publicEnvelope/cases/12/records/ownTurn/RPAfter",
+      "old": 8,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/components/boundary_records/cases/12/actualSyntheticPremises",
+      "old": "A level-8 Dragoon has genuinely acquired Featherstep. A level-3 Mage ally already cast and maintains actual Swiftness, legally raising the Dragoon’s walking Speed from 30 to 40 for its minute. No pending feat is used.",
+      "replacement": "A level-8 Dragoon has genuinely acquired Featherstep and starts this fixture at 7/7 RP. A level-3 Mage ally starts at 8/8 RP and pays the actual 3 RP to cast Swiftness, leaving 5/8 RP, then continues holding its concentration. Swiftness legally raises the Dragoon’s walking Speed from 30 to 40 for its minute. On the Dragoon’s later own turn, Featherstep’s normal 2 RP is paid from 7 RP, leaving 5/7 RP. The two actors retain their own concentration and resource histories. No pending feat or unstated increase to either RP maximum is used.",
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/components/boundary_records/cases/12/records/ongoingEffect/RPBefore",
+      "old": 10,
+      "replacement": 8,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/components/boundary_records/cases/12/records/ongoingEffect/RPAfter",
+      "old": 7,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/components/boundary_records/cases/12/records/ownTurn/RPBefore",
+      "old": 10,
+      "replacement": 7,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/components/boundary_records/cases/12/records/ownTurn/RPAfter",
+      "old": 8,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/reading/boundaryCases/12/actualSyntheticPremises",
+      "old": "A level-8 Dragoon has genuinely acquired Featherstep. A level-3 Mage ally already cast and maintains actual Swiftness, legally raising the Dragoon’s walking Speed from 30 to 40 for its minute. No pending feat is used.",
+      "replacement": "A level-8 Dragoon has genuinely acquired Featherstep and starts this fixture at 7/7 RP. A level-3 Mage ally starts at 8/8 RP and pays the actual 3 RP to cast Swiftness, leaving 5/8 RP, then continues holding its concentration. Swiftness legally raises the Dragoon’s walking Speed from 30 to 40 for its minute. On the Dragoon’s later own turn, Featherstep’s normal 2 RP is paid from 7 RP, leaving 5/7 RP. The two actors retain their own concentration and resource histories. No pending feat or unstated increase to either RP maximum is used.",
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/reading/boundaryCases/12/records/ongoingEffect/RPBefore",
+      "old": 10,
+      "replacement": 8,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/reading/boundaryCases/12/records/ongoingEffect/RPAfter",
+      "old": 7,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/reading/boundaryCases/12/records/ownTurn/RPBefore",
+      "old": 10,
+      "replacement": 7,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/complete_candidate.json",
+      "pointer": "/reading/boundaryCases/12/records/ownTurn/RPAfter",
+      "old": 8,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json",
+      "pointer": "/completeComponents/boundary_records/publicEnvelope/cases/12/actualSyntheticPremises",
+      "old": "A level-8 Dragoon has genuinely acquired Featherstep. A level-3 Mage ally already cast and maintains actual Swiftness, legally raising the Dragoon’s walking Speed from 30 to 40 for its minute. No pending feat is used.",
+      "replacement": "A level-8 Dragoon has genuinely acquired Featherstep and starts this fixture at 7/7 RP. A level-3 Mage ally starts at 8/8 RP and pays the actual 3 RP to cast Swiftness, leaving 5/8 RP, then continues holding its concentration. Swiftness legally raises the Dragoon’s walking Speed from 30 to 40 for its minute. On the Dragoon’s later own turn, Featherstep’s normal 2 RP is paid from 7 RP, leaving 5/7 RP. The two actors retain their own concentration and resource histories. No pending feat or unstated increase to either RP maximum is used.",
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json",
+      "pointer": "/completeComponents/boundary_records/publicEnvelope/cases/12/records/ongoingEffect/RPBefore",
+      "old": 10,
+      "replacement": 8,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json",
+      "pointer": "/completeComponents/boundary_records/publicEnvelope/cases/12/records/ongoingEffect/RPAfter",
+      "old": 7,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json",
+      "pointer": "/completeComponents/boundary_records/publicEnvelope/cases/12/records/ownTurn/RPBefore",
+      "old": 10,
+      "replacement": 7,
+      "guardCaseId": "EX-W13"
+    },
+    {
+      "op": "replace_json_value",
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json",
+      "pointer": "/completeComponents/boundary_records/publicEnvelope/cases/12/records/ownTurn/RPAfter",
+      "old": 8,
+      "replacement": 5,
+      "guardCaseId": "EX-W13"
+    }
+  ],
+  "renderingOperations": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_BOUNDARY_WALKTHROUGHS.md",
+      "operation": "Replace the one exact EX-W13 actualSyntheticPremises paragraph with the complete replacement above; retain all other text."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_BOUNDARY_RECORDS.md",
+      "operation": "Replace the one full indented EX-W13 case object with the corrected reference object; retain surrounding text."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "operation": "Regenerate with the unchanged supplied render_player from the corrected full public object."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md",
+      "operation": "Regenerate with the unchanged supplied render_director from the corrected full internal object."
+    }
+  ],
+  "derivedBindings": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/complete_candidate.json",
+    "location": "/componentBindings",
+    "keysToRefresh": [
+      "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/boundary_records.json",
+      "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/boundary_records.json"
+    ],
+    "rule": "Update only these two current component bindings to measured descendant byte counts/SHA256. The original complete object, outer manifest, old source deliveries, sourceVerdict hashes and old receipts remain historical and unchanged; append new current receipt/hashes rather than editing the original authority."
+  },
+  "generatorMaintenance": "The frozen tools/build_ex58_boundary_candidate.py remains source history. If maintaining an active descendant of that builder, apply the same four numeric substitutions and full premise to its EX-W13 constructor only; record that descendant separately. Do not run the unamended frozen constructor over corrected outputs. No unrelated generator/main or source field changes are authorized.",
+  "preserve": [
+    "Source levels Mage3/Dragoon8; existing maximum RP8/7",
+    "Swiftness actual 3RP cast, 60-second duration and independent Mage concentration",
+    "Featherstep rank1 actual 2RP, existing effect, legal components/access and Dragoon concentration",
+    "Walking Speed40; dismount20; self-powered20; zero movement remaining",
+    "Momentum+1 from actual self-motion; Dissonance reduction1, not RP discount",
+    "All expectedOutcomes, other 27 boundaries, 190 chapter examples, 24 social cases, flow/events/contracts, transport models and source class/spell/feat records",
+    "All 304 V3 payloads, original ZIP, source package/EX58-EDIT-01/-02, all historical manifests and fulfilled gates"
+  ],
+  "conditionalFulfillment": "The named correction and finite checks in the final verdict permit reviewed-authored EX58 candidate status without another generic source conference or unchanged full resubmission. This is not runtime, human, balance, bestiary, class/feat/spell promotion or final whole-game approval."
+}

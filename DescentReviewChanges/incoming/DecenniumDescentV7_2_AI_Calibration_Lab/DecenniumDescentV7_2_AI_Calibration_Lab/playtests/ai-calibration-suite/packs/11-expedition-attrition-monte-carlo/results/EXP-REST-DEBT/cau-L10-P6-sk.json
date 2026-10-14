@@ -1,0 +1,125 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-REST-DEBT",
+  "runId": "EXP-REST-DEBT-cau-L10-P6-sk",
+  "seed": 3515136,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.703,
+    "wipeRate": 0.0,
+    "abortRate": 0.297,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 1.454,
+    "meanWatches": 7.341,
+    "meanHours": 62.3,
+    "meanTrueProfit": 374.69,
+    "medianTrueProfit": 310.65,
+    "profitLossRate": 0.247,
+    "meanCargoRetainedLoad": 7.046,
+    "meanExtractionFailRate": 0.446,
+    "meanRestDebtEvents": 0.204,
+    "meanDeaths": 0,
+    "level": 10,
+    "party": 6,
+    "mapping": "Sketched",
+    "policy": "cautious",
+    "objective": "interrupted rest and attrition",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    },
+    {
+      "code": "REST-DEBT-INTERRUPT-TIMING",
+      "note": "Rest Debt deadline 'next two Watches and before next day boundary' \u2014 applied as day-boundary failure; interrupt mid-rest timing vs Evening camp workers remains underspecified in JSON."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-REST-DEBT/cau-L10-P6-sk.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 1,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 6,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 2,
+      "pressure": 1,
+      "supply": 14.0,
+      "load": 12,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 3,
+      "pressure": 1,
+      "supply": 16.0,
+      "load": 12,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 4,
+      "pressure": 1,
+      "supply": 13.0,
+      "load": 12,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 5,
+      "hour": 40,
+      "progress": 5,
+      "pressure": 1,
+      "supply": 15.0,
+      "load": 12,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 6,
+      "hour": 48,
+      "progress": 6,
+      "pressure": 2,
+      "supply": 17.0,
+      "load": 18,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 7,
+      "hour": 56,
+      "progress": 7,
+      "pressure": 2,
+      "supply": 13.5,
+      "load": 18,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

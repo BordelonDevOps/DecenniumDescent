@@ -1,0 +1,104 @@
+# Decennium Descent — current development roadmap
+
+**Updated 11 October 2026.** The working deliverable is the complete, coherent authored campaign-playtest candidate requested by the owner. [Start Here](../../../../START_HERE.md) records the active conference and current catalog counts. The [75-area ledger](GAME_DEVELOPMENT_COVERAGE.md) owns the individual acceptance criteria and source-linked review evidence. Its open requirements remain part of the work.
+
+## Remaining development
+
+| Workstream | Required outcome and working evidence |
+|---|---|
+| Player options | Complete every ordinary spell, feat and remaining class/ancestry/background interaction with exact source-linked operating rules, reviewed conflicts and appropriate checks. Use the [class index](CLASS_PLAYTEST_INDEX.md), [spell index](SPELL_PLAYTEST_STARTER.md), [feat index](FEAT_PLAYTEST_INDEX.md), and [language conference](../../../../docs/audit/2026-10-08/full-game/LANGUAGE_COMMUNICATION_V2_SUBMISSION.json). A prepared source packet is not a completed option. |
+| Expedition and opposition | Reconcile encounters, hazards, survival, rests, rewards, extraction, Supply, transport, reputation and Haven settlement. The [expedition source cases](../../../../docs/audit/2026-10-08/full-game/EXPEDITION_HAVEN_FLOW_SOURCE_AUDIT.md) and [bestiary/material audit](../../../../docs/audit/2026-10-08/full-game/BESTIARY_CRAFTING_CROSSLINK_AUDIT.md) retain the actual unresolved interfaces. |
+| Crafting and economy | Carry the completed authored recipe reviews forward through availability, equipment use, project time, research and expedition economy. The [reviewed recipe index](CRAFTING_RECIPE_REVIEW_INDEX.md) records each scope; individual recipe acceptance does not settle the entire economy. |
+| Director and campaign procedures | Complete ordinary adventure/campaign preparation, social play, factions, geography, chronology and campaign outcomes within the owner's phase sequence. Resolve the [Director tablecraft cases](../../../../docs/audit/2026-10-08/full-game/DIRECTOR_TABLECRAFT_SOURCE_AUDIT.md) and build complete worked session/adventure materials. Literal deferred setting dependencies remain explicit. |
+| Teaching and reference | Carry the [fulfilled six-manuscript review](../../../../docs/audit/2026-10-08/full-game/ONBOARDING_CHARTER_EXACT_FULFILLMENT.json) into the finished whole-game candidate. Complete missing examples, references and the starter-session path after their content dependencies settle. Human teaching and balance outcomes require actual human evidence. |
+| Companion interfaces and packaging | Reconcile source-aware character state, saved-state compatibility, timing/resource ownership and public/Director separation. Keep unfinished full Time Loop execution and other runtime gates explicit. Deliver usable authored procedures without presenting reference calculations as a working companion implementation. |
+| Joint flow and delivery | Review the complete player and Director paths with GPT, apply real corrections, and preserve both parties' final agreement. Then perform the already-authorized [GitHub delivery](../../../../docs/audit/2026-10-08/full-game/FINAL_FLOW_AND_GITHUB_DELIVERY.md) safely against current remote history and verify the remote commit. |
+| Careful post-push review | Only after verified GitHub delivery, undertake the [cosmology review](../../../../docs/audit/2026-10-08/full-game/POST_GITHUB_COSMOLOGY_REVIEW.md). Preserve the existing material and audience boundaries until its specific issues are jointly resolved. |
+
+Use the [live notebook handoff](../../../../docs/audit/2026-10-08/full-game/GPT_REVIEW_CONTINUATION_HANDOFF.md) to resume the current request. Do not restart an active conference because an observation times out. Reviewed subpackages keep their stated scope; every broader open acceptance criterion still needs evidence. Preserve sources and alternatives. Delete historical material only after both the file audit and GPT establish it is obsolete.
+
+Human playtesting, numerical balance, full companion implementation and publication approval remain distinct claims. The requested authored candidate and delivery must not be relabelled as those completed milestones.
+
+## Preserved earlier roadmap
+
+The notes below retain the previous roadmap and its accumulated appendices verbatim. Their dated counts, “current conference” statements and pending labels are historical. Use the current entrypoint and ledger above for active status. The [byte-exact prior file](../../../../docs/audit/2026-10-08/full-game/DEVELOPMENT_ROADMAP_before_current_navigation_2026-10-11.md) is also preserved.
+
+<details>
+<summary>Earlier roadmap and accumulated review history</summary>
+
+# Decennium Descent — development roadmap
+
+**Updated 9 October 2026. Working target: a coherent campaign-playtest candidate.** GPT was asked to review the next game-wide needs after the 17-class pass. Its [full response is preserved](../../../../docs/audit/2026-10-08/spell-integration/GPT_READINESS_REVIEW.md). File evidence determines what already exists; recommendations do not prove a document is missing.
+
+## Current working material
+
+**Current conference:** eight rank-two Evocation cards are [jointly manuscript-approved](../../../../docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_EXACT_AND_DELIVERY_REVIEW.md) without repairs. The [spell index](SPELL_PLAYTEST_STARTER.md) has 269 reviewed drafts and 579 unfinished identities, retaining all 848 IDs and 936 placements. The same conference agrees to dependency-ordered game-flow work: character creation/advancement, equipment/acquisition, expedition/encounter/reward/extraction/Haven, Director interfaces and packaging. Continue the remaining catalogs in larger batches using already reviewed shared procedures; reserve further source conferences for substantive conflicts. Human balance, runtime and publication remain separate gates. This is a change in workflow, not a reduction of the full objective or final flow approval.
+
+The thirty-seven added Abjuration identities and thirty-nine additional Conjuration identities are complete in their stated authored scope; unassigned source variants retain separate review requirements. Continue the remaining low-rank spells in source-linked batches. Across the full catalog, 144 unfinished identities have at least one class access at ranks 0–3. Finish usable rules and source conflicts in substantial content batches; develop companion automation against those rules. A complete simulator is not a prerequisite to writing a tabletop procedure. Existing runtime gates, including the disabled full Time Loop implementation, stay in place until their own integration requirements are met.
+
+- [Complete game coverage ledger](GAME_DEVELOPMENT_COVERAGE.md): 75 review areas, individual acceptance criteria, source and review evidence, and explicit open work. This is the active whole-game continuation record.
+- [Core resolution and injury overlay](CORE_RESOLUTION_PLAYTEST.md): source-reconciled attacks/checks/saves, HP, Wounds, death, Stable recovery and linked injuries. [Reference validation](CORE_PLAYTEST_VALIDATION.json) and [GPT closure](../../../../docs/audit/2026-10-08/full-game/GPT_CORE_FINAL_CLOSURE.md) cover this bounded interface.
+- [Combat action/timing/vision candidate](COMBAT_ACTION_PLAYTEST.md): 217 exact source paragraphs, revised movement and event-order procedures, Ready, stances, maneuvers, observer-specific Hide/Search and cover. [112 checks and 285 movement-budget states](COMBAT_PLAYTEST_VALIDATION.json) exercise the bounded reference. [GPT closed this supplied scope](../../../../docs/audit/2026-10-08/full-game/GPT_STRAIN_FIRST_REVIEW.md); broader domain completion remains open.
+- [Strain namespace and recovery reference](STRAIN_PLAYTEST.md): separate serum/expedition tracks, explicit caps, Dash locks, maximumHP composition and finite recovery. [71 transition checks,30 exact source checks and4,949 maximumHP states](STRAIN_PLAYTEST_VALIDATION.json) support its [bounded GPT closure](../../../../docs/audit/2026-10-08/full-game/GPT_STRAIN_FINAL_REVIEW.md). Broader rest, travel, class grants and resurrection remain open.
+- [Control-state candidate](CONTROL_STATES_PLAYTEST.md): 219 source passages, source-qualified marks/roots/slows, component suppression, custom Staggered, elemental extension and corrected clocks. [150 interface checks and9,393 Speed states](CONTROL_PLAYTEST_VALIDATION.json) pass; [GPT closed this bounded scope](../../../../docs/audit/2026-10-08/full-game/GPT_CONTROL_FINAL_REVIEW.md). Whole-source semantic coverage remains open.
+- [Healing/death working guide](HEALING_DEATH_PLAYTEST.md):153 exact sources;164 selected checks and120 unchanged Core damage states. [GPT closed this bounded interface](../../../../docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_CLOSURE.md); six individually reviewed spells are promoted to the operational overlay. The131-source remainder and temporal world rules remain open.
+- [Selected healing extensions](HEALING_SOURCE_EXTENSIONS.md): all131 remaining passages now discussed individually; three corrected numeric interfaces reviewed with21 checks. Selected maximum-HP, pulse scheduling and device/Totem interfaces are closed below. Wider creature companions, forms/tempHP, copy semantics and other catalogs remain open.
+- [Damage sharing/interception reference](DAMAGE_SHARING_PLAYTEST.md):39 exact passages plus two supporting device-engine passages;94 checks/186 conservation states. [Final notebook review](../../../../docs/audit/2026-10-08/full-game/GPT_REDIRECTION_FINAL_CLOSURE.md) closes this bounded interface. 
+- [All 28 Core conditions](CONDITIONS_PLAYTEST.md) and [condition recovery procedures](CONDITION_RECOVERY_PLAYTEST.md): reviewed generic definitions and finite recovery; [82 reference checks and 4,200 Exhaustion scenarios](CONDITION_PLAYTEST_VALIDATION.json). The [custom rider reference](CUSTOM_CONDITION_BINDINGS.md) currently binds 57 definitions and 14 feature interfaces, with [114 source references and98 interface checks](CUSTOM_CONDITION_BINDING_VALIDATION.json). Generic and custom Bleed/fire now use one explicitly superseding periodic overlay. Remaining names, cure metadata and full semantic coverage keep this area open.
+
+- [All 17 class families](CLASS_PLAYTEST_INDEX.md): Base, Arch and Hero drafts, 1,223 cards, source links and structural validation. Human balance testing remains.
+- [All Paladin Oaths and Oathbreakers](PALADIN_OATHS_AND_OATHBREAKERS.md): ten pairs, their conduct clauses and every path card.
+- [First ordinary-spell packet](SPELL_PLAYTEST_STARTER.md), [integration rules](SPELL_INTEGRATION_RULES.md) and [complete source register](../../data/public/spell_playtests/catalog.json).
+- [Notebook review and decisions](../../../../docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md): twelve corrections jointly closed; provisional falling procedure revised after initiative and damage counterexamples. [Validation results](SPELL_PLAYTEST_VALIDATION.json) state the limited automated coverage.
+- [Existing quickstart](QUICKSTART_LEVEL_1.md), [campaign procedures](GAMEPLAY_LOOP_CANON.md) and [shared combat/condition rules](CLASS_PLAYTEST_RULES.md). These need integration and table testing; they are not absent.
+- [Recovery and canon evidence](../../../../docs/audit/2026-10-08/READINESS.md). Approved books and frozen incoming labs remain preserved.
+
+## Prioritized work
+
+**Owner sequencing amendment, 9 October 2026:** review cosmology only after the authorized GitHub push has succeeded and its remote commit is verified. Complete the other delivery work and joint flow review with cosmology explicitly recorded as deferred. Preserve its existing sources and visibility boundaries. Then use the [careful cosmology review procedure](../../../../docs/audit/2026-10-08/full-game/POST_GITHUB_COSMOLOGY_REVIEW.md); this deferral is not cosmology approval or broader-game closure.
+
+| Order | Work package | Actual status and dependency | Deliverable and completion gate |
+|---:|---|---|---|
+| 1 | Ordinary spells and class integration | **In progress.** 269 individual drafts reviewed, including 72 starters, 6 healing/death additions, 5 transformation/buffer spells, 37 additional Abjuration identities, 39 additional Conjuration identities, 39 additional Divination identities, 39 additional Enchantment identities and 32 additional Evocation identities through rank two; 579 unfinished. All 848 IDs, Core V2 evidence and original variants are retained. | All 848 records have individually reviewed operational rules or an explicit unresolved status; resolve source conflicts and class references. Complete ranks 0–3, then later ranks. Stable IDs, class rank/cost gates, exact timing, components and source provenance must validate. |
+| 2 | Character creation and advancement | Books, builder and class schedules already exist. Their agreement with the current class/spell drafts needs verification. Depends on a usable spell selection. | Source-linked blank-sheet procedure; ancestry/background, attributes, HP, skills, saves, equipment and all class resources. A legal character for each of 17 classes at 1, 3, 10 and 20; no duplicate grants or stage leakage. Spell/feat choices cannot reference unfinished mechanics. |
+| 3 | Shared combat and conditions | Core conditions and shared draft guards exist. Full terminology coverage across spells, classes and monsters has not been certified. | Resolve every actually used condition, attack, save, damage, cover, downed/death and resurrection reference. Record source conflicts and one active interpretation per candidate. Extend meaningful interaction tests. |
+| 4 | Equipment, feats and crafting | 335 feat and 433 public recipe records exist; these counts alone do not prove integration. Can proceed in parallel with character specifications after source inspection. | Exact item and feat prerequisites, inventory quantities, prices, uses, repairs and recipe outputs. Validate resource, healing and sale loops against the approved economy. All generated items must have usable rules. |
+| 5 | Monsters and encounter interfaces | Public and sealed source packs exist; runtime visibility and stat interfaces need reconciliation. Depends on combat/condition decisions. | Source-grounded stat blocks, explicit boss defenses, action/recharge rules and at least three test encounters per Base/Arch/Hero stage. Encounter difficulty remains a test hypothesis until played. |
+| 6 | Expedition and recovery integration | Watch, route, Pressure, cargo, extraction and Haven procedures exist. Short-rest RP formulas conflict; a provisional bridge is recorded in the spell rules. | One three-session expedition through entry, travel, combat, depletion, rest, extraction and settlement. Every class resource has a recovery rule. Repair tracker return-progress/cadence defects before relying on automation. |
+| 7 | Public and Director packaging | The canon manifest already owns visibility by domain. A verified distribution build is still open. Must be resolved before handing a public packet to players. | Reuse existing visibility/build filters; export separate packets from an allowlist. Verify all public references and inspect output for sealed content. Preserve full Director/source archives. |
+| 8 | Live companion integration | Current class/spell packets are reference data, not wired into saved-character or combat state. Depends on contracts above. | Versioned imports, non-destructive saved-character migration, builder/sheet/session parity, resource and advancement tests, typecheck/build and focused browser verification. |
+| 9 | Human playtesting | Not performed by these audits. Requires playable characters, encounters and procedures. | Record actual people/sessions, builds, rulings, timings, resources and failures at all three stages. Separate rules gaps, tool bugs and balance concerns. Use the existing session log. |
+| 10 | Publication | Later milestone after content decisions and playtesting. | Edited player/Director books, consistent terminology, index and references, rendered layout inspection and explicit release decision. |
+
+## Decisions that require evidence and notebook review
+
+Owner-directed working method: confer with the GPT notebook over source conflicts, missing mechanics and consequential integration decisions. Supply exact file evidence and revised text, challenge counterexamples, and preserve the decision record. Do not delete historical material unless the file audit and notebook review both confirm it is obsolete.
+
+| Issue | Evidence / current treatment | Remaining resolution |
+|---|---|---|
+| Spell metadata | All companion entries leave four fields unspecified; Core V2 has 936 richer blocks, mostly generic resolution text. Both are retained. | Confer over each conflict; explicit provisional decisions rather than silently filling from another game. |
+| Historical spell names | Eleven possible aliases differ from Core V2. Harmonic Bulwark/Mana Shield also differs numerically. | Compare exact effects and authority; preserve both. Alias inference is not a mechanical merge. |
+| RP and Dissonance | Class pilot intentionally uses Core V2 prices with protected Dissonance/Refrain. | Keep Burn/fizzle and old rank×2 pricing inactive in this candidate. Verify class cadence hooks separately. |
+| Rest recovery | Class Retune and expedition quarter-pool paragraph disagree. The notebook reviewed a provisional bridge, including long-rest Refrain reset. | Test the bridge with expedition rest-frequency/time restrictions. Oracle recovery remains its own engine. |
+| Ordinary spells vs class cards | Identical names can refer to different mechanics. | Stable namespaces, no duplicate free grants. Textual name matches are review candidates, not proof of dependency. |
+| Multiclassing | Existing book rules and legacy formulas are present; full integration is not verified. | Define per-class progression, repertoire, pool calculation and resource ownership before generating mixed-class pregens. |
+| Public knowledge | Existing manifest and source-pack filters define the boundary. | Use those boundaries in exports; do not label a local folder “public” as proof that every historical entry is safe to distribute. |
+
+The class draft is complete in its stated authoring scope. The game-wide candidate is still in development. Completing a source register, receiving a GPT draft or passing a structural check does not by itself finish a spell, certify an interaction or establish balance.
+
+- [Maximum-HP and exact thresholds](MAXIMUM_HP_PLAYTEST.md):58 supplied records,60 targeted checks and909 systemic states; [GPT closure](../../../../docs/audit/2026-10-08/full-game/GPT_MAXIMUM_HP_FINAL_CLOSURE.md). Other advancement, companion and modifier sources remain open.
+
+- [Recurring healing, zones and upkeep](HEALING_PULSE_PLAYTEST.md):100 roles plus6 supporting passages;89 checks,301 reserve partitions and33 source-linked aliases. [GPT closure](../../../../docs/audit/2026-10-08/full-game/GPT_HEALING_PULSE_FINAL_CLOSURE.md) applies only to this bounded interface. The selected device/Totem lifecycle is also closed below; broader creature companions are next.
+
+- [Devices, Totems and shared commands](DEVICE_LIFECYCLE_PLAYTEST.md):74 class roles plus3 frozen paragraphs,132 checks and1,200 reconfiguration states. [Final notebook review](../../../../docs/audit/2026-10-08/full-game/GPT_DEVICE_LIFECYCLE_FINAL_CLOSURE.md) closes this bounded interface; creature companions, forms/tempHP and wider catalogs remain open.
+
+- [Selected creature companion lifecycle](CREATURE_LIFECYCLE_PLAYTEST.md):100 source roles+5 frozen supports jointly reviewed,121 checks and2,800 Ranger conversion states. Shared commands, physical-body identity, Auto-Raise, Mage return, Mirror/Reflective and Druid summon dependencies are bounded. Remaining companions, Wizard elite acquisition/return, full forms/tempHP and broader catalogs stay open.
+
+- [Remaining companion and Soldier structure rules](REMAINING_LIFECYCLE_PLAYTEST.md): selected80+5 interfaces jointly reviewed with129 checks; source-specific command/control/interception, finite bodies, scout/Echo, Palisade kits and repair, Quick Deploy and turrets. Full forms/tempHP and other unimplemented card components remain open.
+
+### Eight-feat reviewed playtest overlay
+
+Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and the Soul Cage feat are reviewed in full with131 targeted checks and2,520 funding cases. All335 original records are preserved:8 reviewed/327 unfinished. [Current feat index](FEAT_PLAYTEST_INDEX.md). The next source conference addresses Time Loop world/body/inventory/clock conservation; this is not whole-game completion.
+
+
+</details>

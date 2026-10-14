@@ -1,0 +1,723 @@
+{
+  "status": "PASS — command ledger, roll and source checks for an unsent companion teaching draft",
+  "atUtc": "2026-10-11T09:15:55.445349+00:00",
+  "manuscript": "DescentReviewChanges/ReviewBible/docs/playtest/COMPANION_COMMAND_WALKTHROUGH.md",
+  "manuscriptSha256": "095e3b2daceb6515b135f9430fa25b5a70df9615e2a3bc1f0dca0572a4d0ba59",
+  "sourceHashes": {
+    "DescentReviewChanges/ReviewBible/data/crafting/advanced_craft_recipe_candidate_public.json": "718e7b849d38598a29ce2f34983733c5a3ea2fed2e9aaa62defb3f0f52b00f95",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md": "6986ed6bee0e88a1f5308bba534ebb0c2538d21c9ee3fc61e7c462246ac2fd60",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_BODY_CATALOGUE.md": "40b41bead211f6769610638e641c7bdf9894f6a0b7029aee6ac2471628ec8340",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/TINKERING_CANDIDATE_RECIPE_CARDS.md": "ef66d1d88f6611a839baa6b97e2971a57e57e5f0f548df73a872ce4765daba25",
+    "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json": "f087cc9250f1864e60209fb13bff86800d45b7238dc09e8eac2dbf2272b09c1d",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/classes/tinker.md": "5242b35f53bbbf1129a96b357220e89ca0a8197276047de8c5fa9b62a7c44c07",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_PLAYTEST.md": "3211acc70441de0a2b59221efd57c9a6ff74155e9afcd9a4b5458bb0a2644a73",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md": "0fcc8fefe5eb7f90b2997fb2fbb6f4cf2b70d32d16952544fc0d0f2ff9eea023",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_WORKED_SEQUENCES.md": "b8fa55453b8ff1a280c79f001e5f98b3cad944ff8c7f145f738559a7443460fd",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_REVIEW_STATUS.json": "83a4c65f707a94a87d446dbe0ae03e2598948fbdad464d672a0570d4e96e71ec",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_REVIEW_STATUS.json": "15545e33196b95f669cda0144d45fa1c05a360c9b3c78204fde437fc05330f51",
+    "DescentReviewChanges/ReviewBible/tools/core_playtest_rules.py": "a162117cf2c0c96a77ef5e594ce7247593930c57e6223fc7291ab12fc45c8d7d",
+    "DescentReviewChanges/ReviewBible/tools/device_lifecycle_playtest_rules.py": "f474ef83e12066aab4325a275e2ae6113f7dee0d446f0c79e25141130f71c451",
+    "DescentReviewChanges/ReviewBible/tools/spell_playtest_rules.py": "16e31c5668fcd318433104fa7d67c499b76a1057c460cf8d3c63668aa096019e",
+    "DescentReviewChanges/ReviewBible/tools/control_playtest_rules.py": "816df3eef6d1f0591de424308ccb48e0998a7b0c8a268f9d0201e971939ac263",
+    "DescentReviewChanges/ReviewBible/tools/redirection_playtest_rules.py": "f2a2049a34b0bdbf31638f67fa610ff5d212a904b4c4e28809bea8b912f94d09",
+    "docs/audit/2026-10-08/full-game/ADVANCED_167_EXACT_PROMOTION_RECEIPT.json": "d816e98927ad83a1df7e306925a483e3909fdebad0ae84100e9d58d3e5ae9a25",
+    "docs/audit/2026-10-08/full-game/LANGUAGE_EXACT_FULFILLMENT.json": "f8960b83c6c22d358e55ea73ea6fd9d06e4087f1edcece5779cc492873c0567f"
+  },
+  "selectedPublicRecipe": {
+    "recipeId": "recipe-596",
+    "name": "Field Mighty Clockwork",
+    "visibility": "public",
+    "status": "reviewed-authored-operational-playtest",
+    "sourceRecipe": {
+      "id": "recipe-596",
+      "name": "Field Mighty Clockwork",
+      "skill": "Tinkering",
+      "skillLevel": 1,
+      "difficulty": 8,
+      "difficultyBand": "routine",
+      "craftingTime": "8 hours",
+      "rarity": "Common",
+      "quantity": 5,
+      "tags": [
+        "Strength"
+      ],
+      "recipeFamily": "Clockwork",
+      "outputType": "device",
+      "effects": "Creates a Tiny or Small automaton (AC 12, 12 HP) able to perform one programmed task and make a basic force attack. It functions for 1 encounter before servicing.",
+      "mechanics": {
+        "type": "device",
+        "tag": "Strength",
+        "tier": 1,
+        "deviceKind": "automaton",
+        "hitPoints": 12,
+        "armorClass": 12,
+        "charges": 1
+      },
+      "workRequirements": {
+        "station": "Tinker's Workshop",
+        "requiredTools": [
+          "Tinker's tools",
+          "Precision drivers",
+          "Calibration gauge"
+        ],
+        "fieldCraftable": false,
+        "timeMode": "expedition",
+        "activeWorkHours": 8,
+        "maximumAssistants": 0,
+        "facilityBonusEligible": true
+      },
+      "craftingCheck": {
+        "abilityOptions": [
+          "Intelligence"
+        ],
+        "formula": "d20 + chosen ability modifier + proficiency bonus + tool bonus + facility bonus + assistant bonus",
+        "targetDC": 8,
+        "qualityOutcomes": [
+          {
+            "margin": "10+",
+            "result": "Masterwork",
+            "effect": "Increase yield by 50% or improve one item property; preserve one catalyst."
+          },
+          {
+            "margin": "5 to 9",
+            "result": "Exceptional",
+            "effect": "Increase yield by 25% or improve durability/charges."
+          },
+          {
+            "margin": "0 to 4",
+            "result": "Standard",
+            "effect": "Create the listed result."
+          },
+          {
+            "margin": "-1 to -4",
+            "result": "Flawed",
+            "effect": "Create half yield or one reduced-duration/flawed result."
+          },
+          {
+            "margin": "-5 to -9",
+            "result": "Failed",
+            "effect": "No finished item; recover 25% of non-catalyst materials."
+          },
+          {
+            "margin": "-10 or natural 1",
+            "result": "Mishap",
+            "effect": "Lose consumed materials and roll on the tradeskill mishap table."
+          }
+        ]
+      },
+      "discovery": {
+        "sources": [
+          "trainer",
+          "starter manual",
+          "common experimentation"
+        ],
+        "minimumResearchHours": 0,
+        "requiresFormula": false,
+        "formulaConsumed": false
+      },
+      "economy": {
+        "consumedMaterialValue": 14,
+        "consumedWeight": 1.13,
+        "laborValue": 4.0,
+        "recommendedMarketValue": 78,
+        "commissionDepositPercent": 50,
+        "salvageRecoveryOnFailurePercent": 25
+      },
+      "skillProgression": {
+        "skillXPOnSuccess": 4,
+        "trivialAtSkillLevel": 6,
+        "firstCraftBonus": true
+      },
+      "tier": 1,
+      "visibility": "public",
+      "knowledgeStatus": "established formula",
+      "publicAvailability": "Available through ordinary or licensed Haven channels.",
+      "components": [
+        {
+          "name": "Springs",
+          "quantity": 4,
+          "role": "reinforcement",
+          "consumed": true
+        },
+        {
+          "name": "copper dragon fang",
+          "quantity": 1,
+          "role": "material",
+          "consumed": true,
+          "publicMaterialProfile": {
+            "name": "copper dragon fang",
+            "tier": 1,
+            "rarity": "Common",
+            "category": "bone",
+            "value": 6,
+            "weight": 0.73,
+            "properties": [
+              "draconic",
+              "rigid",
+              "structural"
+            ]
+          }
+        }
+      ]
+    },
+    "publicBookBinding": {
+      "recipeId": "recipe-596",
+      "effectMatches": true,
+      "paragraphs": [
+        {
+          "index": 3157,
+          "text": "Field Mighty Clockwork  [Skill 1 • Tier 1 • DC 8 • Common]"
+        },
+        {
+          "index": 3158,
+          "text": "Effect. Creates a Tiny or Small automaton (AC 12, 12 HP) able to perform one programmed task and make a basic force attack. It functions for 1 encounter before servicing."
+        },
+        {
+          "index": 3159,
+          "text": "Components. 4 × Springs; 1 × copper dragon fang"
+        },
+        {
+          "index": 3160,
+          "text": "Work. 8 hours at Tinker's Workshop; tools: Tinker's tools, Precision drivers, Calibration gauge."
+        },
+        {
+          "index": 3161,
+          "text": "Yield and value. 5 item(s); recommended market value 78 gp."
+        },
+        {
+          "index": 3162,
+          "text": "Formula ID: recipe-596 • Knowledge: established formula"
+        }
+      ]
+    },
+    "operational": {
+      "profile": "TI-automaton",
+      "useBinding": {
+        "hitPoints": 12,
+        "armorClass": 12,
+        "charges": 1,
+        "attack": {
+          "bonus": 3,
+          "dice": "1d6",
+          "damageType": "force",
+          "reachFeet": 5,
+          "attackKind": "melee nonspell magical attack",
+          "abilityDamage": 0
+        },
+        "serviceMaximum": 1,
+        "serviceUnit": "First actual operation of this automaton in a genuine encounter spends one service unit and opens that encounter's paid operating block, lasting at most ten elapsed minutes from that operation. Mere encounter start does not debit a stored or otherwise unoperated automaton. Ordinary idleness before a block starts spends nothing and grants no active behavior. Continuing operation beyond a block's expiry needs another paid block; a distinct genuine encounter has its own service requirement. Preserve TI-05's transition from an operating noncombat block into a genuine encounter, its no-refund/no-clock-pause rules and its physical-identity history.",
+        "TinySpeedFeet": 20,
+        "SmallSpeedFeet": 25,
+        "sizeChoice": "registered before work, fixed thereafter",
+        "HPkind": "Construct creature; source values unchanged; no structural quality increase",
+        "damageTypeProvenance": "Printed source effect prose, retained despite absence in source mechanics",
+        "NEWdefenses": {
+          "damageImmunities": [
+            "poison"
+          ],
+          "conditionImmunities": [
+            "Poisoned"
+          ]
+        },
+        "NEWcarryingCapLbBySize": {
+          "Tiny": 5,
+          "Small": 20
+        },
+        "commandRule": "TI-04 and current lifecycle: one owner-wide command and offensive allowance per numbered round; attached after whole turn; subject cannot act twice via transfer"
+      },
+      "bodyModelIds": [
+        "TI-auto-tiny",
+        "TI-auto-small"
+      ],
+      "standardQuantity": 5,
+      "maximumOrderedBodyReserve": 7,
+      "work": {
+        "ability": "Intelligence",
+        "credential": "Tinker's tools",
+        "artisan": true,
+        "sourceRequirements": {
+          "station": "Tinker's Workshop",
+          "requiredTools": [
+            "Tinker's tools",
+            "Precision drivers",
+            "Calibration gauge"
+          ],
+          "fieldCraftable": false,
+          "timeMode": "expedition",
+          "activeWorkHours": 8,
+          "maximumAssistants": 0,
+          "facilityBonusEligible": true
+        },
+        "sourceActiveHours": 8,
+        "activeMinutes": 480,
+        "forgeDwarfActiveMinutes": 360,
+        "includedFirstPhaseMinutes": 15,
+        "dwarfIncludedFirstPhaseMinutes": 15,
+        "remainingActiveMinutes": 465,
+        "dwarfRemainingActiveMinutes": 345,
+        "laterPhaseMaximumMinutes": 480,
+        "DC": 8,
+        "sourceDiscovery": {
+          "sources": [
+            "trainer",
+            "starter manual",
+            "common experimentation"
+          ],
+          "minimumResearchHours": 0,
+          "requiresFormula": false,
+          "formulaConsumed": false
+        },
+        "sourceSkillProgression": {
+          "skillXPOnSuccess": 4,
+          "trivialAtSkillLevel": 6,
+          "firstCraftBonus": true
+        }
+      },
+      "creation": {
+        "sixBands": {
+          "Mishap": 0,
+          "Failed": 0,
+          "Flawed": 2,
+          "Standard": 5,
+          "Exceptional": 6,
+          "Masterwork": 7
+        },
+        "structuralAlternativeQuantity": 5,
+        "structuralAlternativePercent": [],
+        "creatureQualityAlternativeHasNoMechanicalImprovement": true,
+        "singletonFlawedMapsToFailed": false,
+        "singletonFlawedAddsPersistentStructuralFlaw": false,
+        "naturalOneIsMishap": true,
+        "naturalTwentyShiftsBand": false,
+        "forgeDwarfStandardBecomesExceptional": true,
+        "masterworkCatalystMaximumUnits": 0
+      },
+      "references": [
+        {
+          "body": "TI-auto-tiny",
+          "finishedReferenceGp": {
+            "numerator": 203,
+            "denominator": 5
+          },
+          "functionalRepairGp": "25/4",
+          "brokenReconstructionGp": "203/20"
+        },
+        {
+          "body": "TI-auto-small",
+          "finishedReferenceGp": {
+            "numerator": 328,
+            "denominator": 5
+          },
+          "functionalRepairGp": "25/2",
+          "brokenReconstructionGp": "82/5"
+        }
+      ],
+      "creatureOutput": true,
+      "sourceStandardBatchReferenceGp": {
+        "numerator": 78,
+        "denominator": 1
+      },
+      "sourceProcessUnitReferenceGp": {
+        "numerator": 78,
+        "denominator": 5
+      },
+      "bodyVariants": [
+        {
+          "bodyModelId": "TI-auto-tiny",
+          "mundaneBodyReferenceGp": {
+            "numerator": 25,
+            "denominator": 1
+          },
+          "bodyMassLb": 8,
+          "ordinaryB": 5,
+          "sourceCreatureMaxHP": 12,
+          "unflawedStructuralMaximumByChoice": null,
+          "functionalRepair": {
+            "DC": 10,
+            "materialReferenceGp": {
+              "numerator": 25,
+              "denominator": 4
+            },
+            "defaultMaxHPHours": {
+              "numerator": 6,
+              "denominator": 5
+            }
+          },
+          "brokenReconstruction": {
+            "DC": 8,
+            "materialReferenceGp": {
+              "numerator": 203,
+              "denominator": 20
+            },
+            "defaultMaxHPHours": {
+              "numerator": 8,
+              "denominator": 1
+            }
+          },
+          "repairUsesActualRecordedMaximum": true,
+          "requiresOriginalCreationAndPrimaries": true,
+          "servicing": {
+            "DC": 10,
+            "activeMinutes": 60,
+            "packGp": {
+              "numerator": 5,
+              "denominator": 2
+            },
+            "packMassLb": {
+              "numerator": 2,
+              "denominator": 25
+            },
+            "restoresPrintedMaximum": 1,
+            "restoresHP": false,
+            "trainedCredential": "Tinker's tools",
+            "ability": "Intelligence"
+          }
+        },
+        {
+          "bodyModelId": "TI-auto-small",
+          "mundaneBodyReferenceGp": {
+            "numerator": 50,
+            "denominator": 1
+          },
+          "bodyMassLb": 25,
+          "ordinaryB": 5,
+          "sourceCreatureMaxHP": 12,
+          "unflawedStructuralMaximumByChoice": null,
+          "functionalRepair": {
+            "DC": 10,
+            "materialReferenceGp": {
+              "numerator": 25,
+              "denominator": 2
+            },
+            "defaultMaxHPHours": {
+              "numerator": 6,
+              "denominator": 5
+            }
+          },
+          "brokenReconstruction": {
+            "DC": 8,
+            "materialReferenceGp": {
+              "numerator": 82,
+              "denominator": 5
+            },
+            "defaultMaxHPHours": {
+              "numerator": 8,
+              "denominator": 1
+            }
+          },
+          "repairUsesActualRecordedMaximum": true,
+          "requiresOriginalCreationAndPrimaries": true,
+          "servicing": {
+            "DC": 10,
+            "activeMinutes": 60,
+            "packGp": {
+              "numerator": 5,
+              "denominator": 1
+            },
+            "packMassLb": {
+              "numerator": 1,
+              "denominator": 4
+            },
+            "restoresPrintedMaximum": 1,
+            "restoresHP": false,
+            "trainedCredential": "Tinker's tools",
+            "ability": "Intelligence"
+          }
+        }
+      ],
+      "componentOccurrences": [
+        {
+          "index": 0,
+          "retainedTool": false,
+          "consumedTool": false,
+          "masterworkCatalystEligible": false,
+          "failedRecoveryEligible": true,
+          "defaultFailurePrecision": {
+            "numerator": 1,
+            "denominator": 1
+          },
+          "precisionCondition": "0.01 requires the actual declared divisible form; otherwise unit 1. A genuinely independent ingredient source may specify a different legal subdivision.",
+          "physicalIdentityMustRemainDistinct": true,
+          "componentMention": {
+            "name": "Springs",
+            "quantity": 4,
+            "role": "reinforcement",
+            "consumed": true
+          }
+        },
+        {
+          "index": 1,
+          "retainedTool": false,
+          "consumedTool": false,
+          "masterworkCatalystEligible": false,
+          "failedRecoveryEligible": true,
+          "defaultFailurePrecision": {
+            "numerator": 1,
+            "denominator": 1
+          },
+          "precisionCondition": "0.01 requires the actual declared divisible form; otherwise unit 1. A genuinely independent ingredient source may specify a different legal subdivision.",
+          "physicalIdentityMustRemainDistinct": true,
+          "componentMention": {
+            "name": "copper dragon fang",
+            "quantity": 1,
+            "role": "material",
+            "consumed": true,
+            "publicMaterialProfile": {
+              "name": "copper dragon fang",
+              "tier": 1,
+              "rarity": "Common",
+              "category": "bone",
+              "value": 6,
+              "weight": 0.73,
+              "properties": [
+                "draconic",
+                "rigid",
+                "structural"
+              ]
+            }
+          }
+        }
+      ],
+      "guide": "docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md",
+      "bodyGuide": "docs/mechanics/ADVANCED_CRAFT_CANDIDATE_BODY_CATALOGUE.md",
+      "paragraphs": [
+        {
+          "label": "Effect and operation",
+          "text": "Choose Tiny or Small before work and keep that size. The finished Construct has AC 12 and maximum 12 HP; full unmodified B5 chassis gives full HP, otherwise initial HP is max(1, floor(12 × latest chassis HP / 5)). Its fixed magical nonspell melee attack is +3 to hit, reach 5 feet, 1d6 force on hit, no ability damage or condition rider. Ordinary attack natural results apply. Tiny: STR 6, DEX 12, CON 10, INT 3, WIS 10, CHA 1, walk 20 feet, gripper load at most 5 lb. Small: STR 12, DEX 10, CON 12, INT 3, WIS 10, CHA 1, walk 25 feet, at most 20 lb. Ordinary senses/passive 10; no flight, PB, equipment slots or Anacite modules. Poison damage and Poisoned immunity only; other defenses are not inferred. Maximum service units 1: First actual operation of this automaton in a genuine encounter spends one service unit and opens that encounter's paid operating block, lasting at most ten elapsed minutes from that operation. Mere encounter start does not debit a stored or otherwise unoperated automaton. Ordinary idleness before a block starts spends nothing and grants no active behavior. Continuing operation beyond a block's expiry needs another paid block; a distinct genuine encounter has its own service requirement. Preserve TI-05's transition from an operating noncombat block into a genuine encounter, its no-refund/no-clock-pause rules and its physical-identity history. Outside encounters, first actual operation spends one service unit for one ten-elapsed-minute noncombat block. Continuing past expiry needs another; entering combat closes the noncombat block and spends a new unit. Zero units inside an already paid block permits that block only. Suppression/shutdown keeps the clock running. TI-04 binds a capable consenting INT-6+ controller with ten minutes of real tools/permission, at most three active ordinary crafted automata; class companion/deployable slots keep their separate source limits. One owner-wide Bonus Action command and one relevant offensive allowance per numbered round across class/crafted devices; actual communication within 60 feet, execution after the whole controller turn, no independent Reaction. The commanded creature moves and makes one attack or permitted task; powered uncommanded behavior is only defensive movement/Dodge. Transfer cannot give a second attack. Finite noncombat programming is ten minutes, with Action start and paid blocks; no professional crafting, script use or ram crew. At zero HP it is a destroyed recoverable wreck if original primaries survive; no death saves, Wounds or ordinary biological healing. TI-06 servicing and AC-09/TD-07 restoration are distinct. Structural quality never changes the printed creature statistics. TI-03–07 govern the complete procedure."
+        },
+        {
+          "label": "Routed Dissonance",
+          "text": "Only the acquired TD-08 feature, once per genuine short rest, permits a Bonus Action to route up to two current Dissonance into one own active qualifying device within 30 feet. The routed disabled state prevents movement, attacks, auras, triggers and every other active device use. A routed trap cannot discharge, and a routed utility cannot provide its charged task benefit while disabled. Existing durations and paid service/winding clocks continue. Clearing the disable requires its existing specifically authorized completed removal procedure; it does not refill charges, service, RP or Refrain, erase expenditures, or grant a queued activation. An invalid blocked declaration spends nothing; a later disable does not refund a previously legal committed cost. Actual Field Repair, the existing ten-active-minute/1RP/Tinker's-tools procedure, the origin Tinker's next completed genuine short rest or completed qualifying ordinary repair may clear only the permitted functional state. A buyer's unrelated rest does not clear it."
+        },
+        {
+          "label": "Complete output bodies",
+          "text": "Choose before any work: TI-auto-tiny: Mundane pre-animation Tiny chassis; finished creature uses source AC/HP, not this stock HP/AC. 25 gp, 8 lb, ordinary B5, structural AC 19, dimensions 12 × 8 × 8 inches; TI-auto-small: Mundane pre-animation Small chassis; finished creature uses source AC/HP, not this stock HP/AC. 50 gp, 25 lb, ordinary B5, structural AC 19, dimensions 24 × 16 × 20 inches. See the complete body catalogue for original primaries, constituent masses, hands, capacity and support. A creature output replaces stock object HP/AC with its printed creature statistics. EN alternate weapon/suit hosts use their exact registered existing equipment profile; these default figures do not overwrite that alternate body."
+        },
+        {
+          "label": "Before creation",
+          "text": "Reserve 7 actual complete never-magically-altered bodies, one model/size per order, in an exclusive fixed order. All must be complete and positive-HP immediately before the completion roll, even if fewer outputs will result. Bodies are additional to the exact source batch components and working tools. Pre-roll lawful replacement keeps its ordered position; no post-roll acquisition, substitution or reordering. Transform the first resolved outputs; unused bodies remain actual mundane stock. Use unmodified, unflawed B5 chassis; a former creature/class device is not a blank. Record material identity, condition, real storage, actual station capacity, preservation and safe handling; a quoted price supplies none of those facts."
+        },
+        {
+          "label": "Creation check and work",
+          "text": "Tinkering level 1; INT with actual Tinker's tools training, one PB or replacing expertise, DC 8. Untrained otherwise eligible level 1–4 uses no tool PB and disadvantage; trained recipe eligibility is max(4, trade level), with actual formula access. Source duration 8 hours; operational 480 active minutes, or 360 for an eligible Forge Dwarf. The included first stable phase is 15 minutes (15 for that Dwarf); remaining work is 465/345 minutes respectively, in declared phases of at most 480 minutes. Only actual incorporated inputs stabilize; raw/returned catalyst clocks continue. Interruption loses unfinished-phase progress, not costs or completed work."
+        },
+        {
+          "label": "Facility and assistance",
+          "text": "Actual Tinker's Workshop, with Tinker's tools, Precision drivers, Calibration gauge; fieldCraftable=false, source timeMode=expedition. A field label never overrides the false creation flag. Fixed compatible facilities, actual minimum surface/bay/fixtures, safe access and expedition-site permissions remain required. Maximum 0 eligible assistants work all required hours without shortening the task or gaining assistant XP. Ordinary facilities/tools grant +0. Two active work Watches, no overlapping labor/rest credit, actual hired capacity and lawful access still apply."
+        },
+        {
+          "label": "Formula and advancement",
+          "text": "Preserve the exact discovery and progression records: {\"discovery\": {\"sources\": [\"trainer\", \"starter manual\", \"common experimentation\"], \"minimumResearchHours\": 0, \"requiresFormula\": false, \"formulaConsumed\": false}, \"skillProgression\": {\"skillXPOnSuccess\": 4, \"trivialAtSkillLevel\": 6, \"firstCraftBonus\": true}}. The crafting framework determines actual first/repeat/qualified-failure/triviality XP. Source skillXPOnSuccess is not an extra award on use, repair, study, service or temporary class fabrication. A finished item supplies no formula/proficiency."
+        },
+        {
+          "label": "Manufacturing outcomes",
+          "text": "Mishap 0; Failed 0; Flawed 2; Standard 5; Exceptional yield 6; Masterwork yield 7. Natural 1 is Mishap; natural 20 adds no band shift. An eligible Forge Dwarf's Standard becomes Exceptional. Creature outputs retain printed AC/HP; the alternative quality choice keeps 5 with a label only, no mechanical improvement. Q1 Flawed maps to Failed, including its recovery route; Q≥2 uses reduced yield. Initial creature HP uses max(1, floor(sourceHP × latest chassis HP / 5)). No outcome improves charges, potency, source DC, spell rank, capacities or permissions; later repair does not remove a flaw or reapply manufacturing quality."
+        },
+        {
+          "label": "Required component occurrences",
+          "text": "Required whole-batch occurrences; each row remains a separate physical quantity. Match the complete formula’s actual stock before committing; withheld metadata supplies neither free stock nor a substitution.\n\n- [0] Springs: quantity 4; role reinforcement; consumed=true. Exact required stock must be verified with the Director.\n- [1] copper dragon fang: quantity 1; role material; consumed=true. Independently public profile: tier 1, source unit 6 gp / 0.73 lb."
+        },
+        {
+          "label": "Retention and failure",
+          "text": "This recipe has no eligible catalyst-return occurrence. On Failed creation, for each eligible exact consumed non-catalyst input identity, recover at most one quarter of its fixed consumed-input quantity for this batch, capped by the eligible amount actually remaining from those same inputs, and rounded down once to that identity's legal source-unit precision. Do not take one quarter of the surviving remainder. Previously returned, forfeited or lost quantities and unrelated stock cannot fund this recovery. For each exact eligible identity in this batch, use `recovered_i = u_i × floor(min(Q_i / 4, R_i) / u_i)`. Q_i is its fixed consumed-input quantity; R_i is the eligible amount surviving from those same inputs; u_i is its legal source-unit precision. Group only genuinely identical eligible inputs within this same batch while retaining every physical occurrence. Catalysts and unrelated batches do not enter that recovery group. The per-occurrence record identifies only expressly divisible bulk; otherwise floor to indivisible units. No quarter tool/lens/core, money conversion, duplicate catalyst, or second salvage pass over waste. Mishap/abandonment returns no consumed inputs. Retained working tools and unused complete bodies survive only as they actually exist. Returned material retains real age, vessels and history; a retained catalyst is not also inside the finished item."
+        },
+        {
+          "label": "Restoration and reference prices",
+          "text": "TI-auto-tiny: finished unit 203/5 gp, functional repair material 25/4 gp and default 6/5 hours at DC 10; recoverable Broken/wreck reconstruction material 203/20 gp and default 8 hours at original DC 8; TI-auto-small: finished unit 328/5 gp, functional repair material 25/2 gp and default 6/5 hours at DC 10; recoverable Broken/wreck reconstruction material 82/5 gp and default 8 hours at original DC 8. Recompute actual time from current recorded maximum HP: max(1, maxHP/10) or max(8, maxHP/10). Alternate admitted host price/size/grade uses its actual reference. Trained primary trade + INT, original station/implements and host-compatible repair fixtures are required. Original creation record and all magic-bearing primaries must survive; missing/burnt pages, missing model-designated primary frame/actuator, sacrificed or already-consumed debris are not reconstructible by payment. Core task natural shifts collapse to success/failure; failure spends time/material. Restore only recorded HP and lawful function, never charges/service/spell uses, flaws or prior deadlines. No Forge reduction, quality, extra generic assistants or XP. Reference = original batch market value / original Q + actual body; keep exact fractions until final copper purchase-ceiling/sale-floor. Actual quotes, availability, service and ownership are separate."
+        },
+        {
+          "label": "Separate servicing",
+          "text": "TI-auto-tiny: actual maintenance pack 5/2 gp / 2/25 lb; TI-auto-small: actual maintenance pack 5 gp / 1/4 lb. End active operation first; with the complete positive-HP body, actual trained Tinker's tools, a genuinely safe surface and one active hour, make INT tool DC 10 as a Core binary task. Success sets the printed maximum to 1; failure spends the pack/work. No HP repair, surplus, XP, Forge discount or reset of prior round/block history. Field servicing can qualify here while field creation remains false. TI-06 governs pack identity, procedure and failed materials."
+        },
+        {
+          "label": "State and interaction",
+          "text": "Initialize each actual output’s budget once at completion. Track physical identity, controller/holder, complete structure, current HP, suppression/meld, permissions, exact clock/expedition/round events and expenditures. Only actual legal commitment spends resources; legal committed misses/prevention/interruption do not refund them. No transfers, snapshots, copies, repair or relabeling reset state. The Tinker class-interface procedures in the player guide apply; class-only bombs, turrets, Anacite modules, deployment costs and caps are not recipe grants. All pending feat interactions remain unapproved. Use the complete shared guide alongside this card. Source titles/donors/private research do not create targets, facts, custody, permissions or cosmology."
+        },
+        {
+          "label": "Unchanged source effect",
+          "text": "Creates a Tiny or Small automaton (AC 12, 12 HP) able to perform one programmed task and make a basic force attack. It functions for 1 encounter before servicing."
+        }
+      ]
+    },
+    "manuscriptText": "## Field Mighty Clockwork — recipe-596\n\n**Reviewed player playtest; Tinkering level 1; DC 8; authored-operational exact review complete.**\n\nUse the [complete operating guide](ADVANCED_CRAFT_CANDIDATE_GUIDE.md) and [body catalogue](ADVANCED_CRAFT_CANDIDATE_BODY_CATALOGUE.md).\n\n**Effect and operation**\n\nChoose Tiny or Small before work and keep that size. The finished Construct has AC 12 and maximum 12 HP; full unmodified B5 chassis gives full HP, otherwise initial HP is max(1, floor(12 × latest chassis HP / 5)). Its fixed magical nonspell melee attack is +3 to hit, reach 5 feet, 1d6 force on hit, no ability damage or condition rider. Ordinary attack natural results apply. Tiny: STR 6, DEX 12, CON 10, INT 3, WIS 10, CHA 1, walk 20 feet, gripper load at most 5 lb. Small: STR 12, DEX 10, CON 12, INT 3, WIS 10, CHA 1, walk 25 feet, at most 20 lb. Ordinary senses/passive 10; no flight, PB, equipment slots or Anacite modules. Poison damage and Poisoned immunity only; other defenses are not inferred. Maximum service units 1: First actual operation of this automaton in a genuine encounter spends one service unit and opens that encounter's paid operating block, lasting at most ten elapsed minutes from that operation. Mere encounter start does not debit a stored or otherwise unoperated automaton. Ordinary idleness before a block starts spends nothing and grants no active behavior. Continuing operation beyond a block's expiry needs another paid block; a distinct genuine encounter has its own service requirement. Preserve TI-05's transition from an operating noncombat block into a genuine encounter, its no-refund/no-clock-pause rules and its physical-identity history. Outside encounters, first actual operation spends one service unit for one ten-elapsed-minute noncombat block. Continuing past expiry needs another; entering combat closes the noncombat block and spends a new unit. Zero units inside an already paid block permits that block only. Suppression/shutdown keeps the clock running. TI-04 binds a capable consenting INT-6+ controller with ten minutes of real tools/permission, at most three active ordinary crafted automata; class companion/deployable slots keep their separate source limits. One owner-wide Bonus Action command and one relevant offensive allowance per numbered round across class/crafted devices; actual communication within 60 feet, execution after the whole controller turn, no independent Reaction. The commanded creature moves and makes one attack or permitted task; powered uncommanded behavior is only defensive movement/Dodge. Transfer cannot give a second attack. Finite noncombat programming is ten minutes, with Action start and paid blocks; no professional crafting, script use or ram crew. At zero HP it is a destroyed recoverable wreck if original primaries survive; no death saves, Wounds or ordinary biological healing. TI-06 servicing and AC-09/TD-07 restoration are distinct. Structural quality never changes the printed creature statistics. TI-03–07 govern the complete procedure.\n\n**Routed Dissonance**\n\nOnly the acquired TD-08 feature, once per genuine short rest, permits a Bonus Action to route up to two current Dissonance into one own active qualifying device within 30 feet. The routed disabled state prevents movement, attacks, auras, triggers and every other active device use. A routed trap cannot discharge, and a routed utility cannot provide its charged task benefit while disabled. Existing durations and paid service/winding clocks continue. Clearing the disable requires its existing specifically authorized completed removal procedure; it does not refill charges, service, RP or Refrain, erase expenditures, or grant a queued activation. An invalid blocked declaration spends nothing; a later disable does not refund a previously legal committed cost. Actual Field Repair, the existing ten-active-minute/1RP/Tinker's-tools procedure, the origin Tinker's next completed genuine short rest or completed qualifying ordinary repair may clear only the permitted functional state. A buyer's unrelated rest does not clear it.\n\n**Complete output bodies**\n\nChoose before any work: TI-auto-tiny: Mundane pre-animation Tiny chassis; finished creature uses source AC/HP, not this stock HP/AC. 25 gp, 8 lb, ordinary B5, structural AC 19, dimensions 12 × 8 × 8 inches; TI-auto-small: Mundane pre-animation Small chassis; finished creature uses source AC/HP, not this stock HP/AC. 50 gp, 25 lb, ordinary B5, structural AC 19, dimensions 24 × 16 × 20 inches. See the complete body catalogue for original primaries, constituent masses, hands, capacity and support. A creature output replaces stock object HP/AC with its printed creature statistics. EN alternate weapon/suit hosts use their exact registered existing equipment profile; these default figures do not overwrite that alternate body.\n\n**Before creation**\n\nReserve 7 actual complete never-magically-altered bodies, one model/size per order, in an exclusive fixed order. All must be complete and positive-HP immediately before the completion roll, even if fewer outputs will result. Bodies are additional to the exact source batch components and working tools. Pre-roll lawful replacement keeps its ordered position; no post-roll acquisition, substitution or reordering. Transform the first resolved outputs; unused bodies remain actual mundane stock. Use unmodified, unflawed B5 chassis; a former creature/class device is not a blank. Record material identity, condition, real storage, actual station capacity, preservation and safe handling; a quoted price supplies none of those facts.\n\n**Creation check and work**\n\nTinkering level 1; INT with actual Tinker's tools training, one PB or replacing expertise, DC 8. Untrained otherwise eligible level 1–4 uses no tool PB and disadvantage; trained recipe eligibility is max(4, trade level), with actual formula access. Source duration 8 hours; operational 480 active minutes, or 360 for an eligible Forge Dwarf. The included first stable phase is 15 minutes (15 for that Dwarf); remaining work is 465/345 minutes respectively, in declared phases of at most 480 minutes. Only actual incorporated inputs stabilize; raw/returned catalyst clocks continue. Interruption loses unfinished-phase progress, not costs or completed work.\n\n**Facility and assistance**\n\nActual Tinker's Workshop, with Tinker's tools, Precision drivers, Calibration gauge; fieldCraftable=false, source timeMode=expedition. A field label never overrides the false creation flag. Fixed compatible facilities, actual minimum surface/bay/fixtures, safe access and expedition-site permissions remain required. Maximum 0 eligible assistants work all required hours without shortening the task or gaining assistant XP. Ordinary facilities/tools grant +0. Two active work Watches, no overlapping labor/rest credit, actual hired capacity and lawful access still apply.\n\n**Formula and advancement**\n\nPreserve the exact discovery and progression records: {\"discovery\": {\"sources\": [\"trainer\", \"starter manual\", \"common experimentation\"], \"minimumResearchHours\": 0, \"requiresFormula\": false, \"formulaConsumed\": false}, \"skillProgression\": {\"skillXPOnSuccess\": 4, \"trivialAtSkillLevel\": 6, \"firstCraftBonus\": true}}. The crafting framework determines actual first/repeat/qualified-failure/triviality XP. Source skillXPOnSuccess is not an extra award on use, repair, study, service or temporary class fabrication. A finished item supplies no formula/proficiency.\n\n**Manufacturing outcomes**\n\nMishap 0; Failed 0; Flawed 2; Standard 5; Exceptional yield 6; Masterwork yield 7. Natural 1 is Mishap; natural 20 adds no band shift. An eligible Forge Dwarf's Standard becomes Exceptional. Creature outputs retain printed AC/HP; the alternative quality choice keeps 5 with a label only, no mechanical improvement. Q1 Flawed maps to Failed, including its recovery route; Q≥2 uses reduced yield. Initial creature HP uses max(1, floor(sourceHP × latest chassis HP / 5)). No outcome improves charges, potency, source DC, spell rank, capacities or permissions; later repair does not remove a flaw or reapply manufacturing quality.\n\n**Required component occurrences**\n\nRequired whole-batch occurrences; each row remains a separate physical quantity. Match the complete formula’s actual stock before committing; withheld metadata supplies neither free stock nor a substitution.\n\n- [0] Springs: quantity 4; role reinforcement; consumed=true. Exact required stock must be verified with the Director.\n- [1] copper dragon fang: quantity 1; role material; consumed=true. Independently public profile: tier 1, source unit 6 gp / 0.73 lb.\n\n**Retention and failure**\n\nThis recipe has no eligible catalyst-return occurrence. On Failed creation, for each eligible exact consumed non-catalyst input identity, recover at most one quarter of its fixed consumed-input quantity for this batch, capped by the eligible amount actually remaining from those same inputs, and rounded down once to that identity's legal source-unit precision. Do not take one quarter of the surviving remainder. Previously returned, forfeited or lost quantities and unrelated stock cannot fund this recovery. For each exact eligible identity in this batch, use `recovered_i = u_i × floor(min(Q_i / 4, R_i) / u_i)`. Q_i is its fixed consumed-input quantity; R_i is the eligible amount surviving from those same inputs; u_i is its legal source-unit precision. Group only genuinely identical eligible inputs within this same batch while retaining every physical occurrence. Catalysts and unrelated batches do not enter that recovery group. The per-occurrence record identifies only expressly divisible bulk; otherwise floor to indivisible units. No quarter tool/lens/core, money conversion, duplicate catalyst, or second salvage pass over waste. Mishap/abandonment returns no consumed inputs. Retained working tools and unused complete bodies survive only as they actually exist. Returned material retains real age, vessels and history; a retained catalyst is not also inside the finished item.\n\n**Restoration and reference prices**\n\nTI-auto-tiny: finished unit 203/5 gp, functional repair material 25/4 gp and default 6/5 hours at DC 10; recoverable Broken/wreck reconstruction material 203/20 gp and default 8 hours at original DC 8; TI-auto-small: finished unit 328/5 gp, functional repair material 25/2 gp and default 6/5 hours at DC 10; recoverable Broken/wreck reconstruction material 82/5 gp and default 8 hours at original DC 8. Recompute actual time from current recorded maximum HP: max(1, maxHP/10) or max(8, maxHP/10). Alternate admitted host price/size/grade uses its actual reference. Trained primary trade + INT, original station/implements and host-compatible repair fixtures are required. Original creation record and all magic-bearing primaries must survive; missing/burnt pages, missing model-designated primary frame/actuator, sacrificed or already-consumed debris are not reconstructible by payment. Core task natural shifts collapse to success/failure; failure spends time/material. Restore only recorded HP and lawful function, never charges/service/spell uses, flaws or prior deadlines. No Forge reduction, quality, extra generic assistants or XP. Reference = original batch market value / original Q + actual body; keep exact fractions until final copper purchase-ceiling/sale-floor. Actual quotes, availability, service and ownership are separate.\n\n**Separate servicing**\n\nTI-auto-tiny: actual maintenance pack 5/2 gp / 2/25 lb; TI-auto-small: actual maintenance pack 5 gp / 1/4 lb. End active operation first; with the complete positive-HP body, actual trained Tinker's tools, a genuinely safe surface and one active hour, make INT tool DC 10 as a Core binary task. Success sets the printed maximum to 1; failure spends the pack/work. No HP repair, surplus, XP, Forge discount or reset of prior round/block history. Field servicing can qualify here while field creation remains false. TI-06 governs pack identity, procedure and failed materials.\n\n**State and interaction**\n\nInitialize each actual output’s budget once at completion. Track physical identity, controller/holder, complete structure, current HP, suppression/meld, permissions, exact clock/expedition/round events and expenditures. Only actual legal commitment spends resources; legal committed misses/prevention/interruption do not refund them. No transfers, snapshots, copies, repair or relabeling reset state. The Tinker class-interface procedures in the player guide apply; class-only bombs, turrets, Anacite modules, deployment costs and caps are not recipe grants. All pending feat interactions remain unapproved. Use the complete shared guide alongside this card. Source titles/donors/private research do not create targets, facts, custody, permissions or cosmology.\n\n**Unchanged source effect**\n\nCreates a Tiny or Small automaton (AC 12, 12 HP) able to perform one programmed task and make a basic force attack. It functions for 1 encounter before servicing.\n\n**Six original public-book paragraphs, unchanged**\n\nParagraph 3157: Field Mighty Clockwork  [Skill 1 • Tier 1 • DC 8 • Common]\n\nParagraph 3158: Effect. Creates a Tiny or Small automaton (AC 12, 12 HP) able to perform one programmed task and make a basic force attack. It functions for 1 encounter before servicing.\n\nParagraph 3159: Components. 4 × Springs; 1 × copper dragon fang\n\nParagraph 3160: Work. 8 hours at Tinker's Workshop; tools: Tinker's tools, Precision drivers, Calibration gauge.\n\nParagraph 3161: Yield and value. 5 item(s); recommended market value 78 gp.\n\nParagraph 3162: Formula ID: recipe-596 • Knowledge: established formula\n"
+  },
+  "selectedFieldRepairCard": {
+    "id": "tinker.base.field-repair",
+    "name": "Field Repair",
+    "className": "Tinker",
+    "band": "Base",
+    "path": null,
+    "sourceKind": "active",
+    "minimumClassLevel": 1,
+    "acquisition": "selection",
+    "activation": "Action",
+    "cost": "1 RP",
+    "rangeAndTarget": "One construct/device touched",
+    "duration": "Instant",
+    "frequency": "Recharge 2",
+    "effect": "Restore S d8+M HP, up to maximum, to functional damaged machine. Cannot revive destroyed objects, heal organic allies, reset duration or recharge limited uses. If the target is disabled by the Tinker’s protected Dissonance-routing feature, Field Repair also clears that disabled state. It does not reset duration, recharge, ammunition or per-rest uses.",
+    "source": {
+      "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "line": 4585,
+      "originalText": "Field Repair: Quickly fix a damaged mechanical device or construct."
+    },
+    "designStatus": "provisional-playtest",
+    "spellRank": null
+  },
+  "selectedAnaciteEngine": "At 1 automatically own one Anacite Drone: AC 13+INT modifier, HP 5+INT modifier+class level (minimum 1), flight 30 ft, ranged bolt 60 ft attack PB+INT for 1d6 piercing. Bonus Action commands one move and one attack or named module action; otherwise it Dodges and may follow you. On bolt hit roll d4; on 4 target CON save or cannot take Reactions through end next turn (Shock, no automatic Stun). All drones/turrets/scraplings share ONE damaging action per Bonus Action command per regular turn unless a card explicitly supplies a priced extra attack. No autonomous barrage. Drone is a construct, not immune to all conditions; poison/psychic immunity, no charm. Carry/retract it in 1 minute; no pocket extra world or passenger flight.",
+  "roundTrace": [
+    {
+      "round": 1,
+      "subject": "Alpha",
+      "companionPhaseAt": "10:00:00",
+      "payment": {
+        "commandSpent": true,
+        "damagingActivationSpent": true
+      },
+      "roll": {
+        "total": 12,
+        "hit": true,
+        "critical": false
+      },
+      "damage": 4,
+      "damageType": "force",
+      "enemyHPAfter": 26,
+      "repairBeforeCommand": null,
+      "sameRoundSecondCommandRejected": "Round companion command spent",
+      "ownerRPAfter": 1,
+      "ownerRoundLedger": {
+        "command": true,
+        "damage": true
+      }
+    },
+    {
+      "round": 2,
+      "subject": "Anacite",
+      "companionPhaseAt": "10:00:06",
+      "payment": {
+        "commandSpent": true,
+        "damagingActivationSpent": true
+      },
+      "roll": {
+        "total": 12,
+        "hit": true,
+        "critical": false
+      },
+      "damage": 3,
+      "damageType": "piercing",
+      "enemyHPAfter": 23,
+      "repairBeforeCommand": null,
+      "sameRoundSecondCommandRejected": "Round companion command spent",
+      "ownerRPAfter": 1,
+      "ownerRoundLedger": {
+        "command": true,
+        "damage": true
+      }
+    },
+    {
+      "round": 3,
+      "subject": "Beta",
+      "companionPhaseAt": "10:00:12",
+      "payment": {
+        "commandSpent": true,
+        "damagingActivationSpent": true
+      },
+      "roll": {
+        "total": 11,
+        "hit": false,
+        "critical": false
+      },
+      "damage": 0,
+      "damageType": "force",
+      "enemyHPAfter": 23,
+      "repairBeforeCommand": null,
+      "sameRoundSecondCommandRejected": "Round companion command spent",
+      "ownerRPAfter": 1,
+      "ownerRoundLedger": {
+        "command": true,
+        "damage": true
+      }
+    },
+    {
+      "round": 4,
+      "subject": "Alpha",
+      "companionPhaseAt": "10:00:18",
+      "payment": {
+        "commandSpent": true,
+        "damagingActivationSpent": true
+      },
+      "roll": {
+        "total": 13,
+        "hit": true,
+        "critical": false
+      },
+      "damage": 2,
+      "damageType": "force",
+      "enemyHPAfter": 21,
+      "repairBeforeCommand": {
+        "alphaBeforeHP": 7,
+        "offeredHP": 6,
+        "gainedHP": 5,
+        "alphaAfterHP": 12,
+        "rechargeAfter": 2,
+        "serviceUnitsBeforeAndAfter": 0,
+        "samePaidBlock": true
+      },
+      "sameRoundSecondCommandRejected": "Round companion command spent",
+      "ownerRPAfter": 0,
+      "ownerRoundLedger": {
+        "command": true,
+        "damage": true
+      }
+    }
+  ],
+  "supportOnlyBoundary": {
+    "commandSpent": true,
+    "damagingActivationSpent": false
+  },
+  "extraTurnCommandRejection": "Tinker command requires a regular turn",
+  "servicingRoll": {
+    "total": 10,
+    "degree": "success",
+    "success": true
+  },
+  "sourceArithmetic": {
+    "AnaciteAC": 15,
+    "AnaciteHP": 8,
+    "AnaciteAttack": 4,
+    "craftAttackFixed": 3,
+    "TinyMaintenancePackGp": "5/2",
+    "TinyMaintenancePackLb": "2/25",
+    "AlphaFirstBlockMaximumDeadline": "10:10:00",
+    "BetaFirstBlockMaximumDeadline": "10:10:12",
+    "activeOrdinaryCraftedCount": 2,
+    "ordinaryCraftedCap": 3,
+    "bindTwoSeparateBodiesActiveMinutes": 20
+  },
+  "manualSourceCheckedSequence": [
+    "Actual lawful binding and configured channels; stored tasks unstarted",
+    "Owner-wide command/offense, with support-only distinction preserved",
+    "Actual first operation debits that automaton; already paid block survives zero unspent units",
+    "Field Repair restores5HP and spends1RP/Action with Recharge2; no servicing",
+    "OneTiny maintenance pack plus successful one-hour servicing refills onlyAlpha",
+    "Unchanged bound noncombat task usesAction start without second programming; actual paid power required",
+    "Genuine combat closes noncombat block and requires new service unit; zero remaining prevents operation"
+  ],
+  "referenceScope": "Existing helpers verify owner command/offense accounting and rolls. This does not execute a crafted-service runtime, scene geometry, communication hardware, full class effects, repairs, inventory or block transitions; those remain explicit authored/source-checked fixtures.",
+  "activeReviewInputsUnchanged": 342,
+  "localLinksAndAnchors": [
+    "../mechanics/classes/tinker.md",
+    "../mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md#tinkering",
+    "../mechanics/TINKERING_CANDIDATE_RECIPE_CARDS.md",
+    "../mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md#scribing-runes-and-devices"
+  ],
+  "sourceInformationDeleted": false,
+  "newRules": false,
+  "presentationReviewComplete": false,
+  "submittedToGPT": false,
+  "runtimeImplemented": false,
+  "humanTeachingVerified": false,
+  "balanceApproved": false
+}

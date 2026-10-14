@@ -1,0 +1,33 @@
+{
+  "pack": "17-gm-readiness-usability",
+  "scenarioId": "GM-RULE-LOOKUP",
+  "runId": "2026-08-06T122200Z-LOOKUP-031",
+  "seed": 54731,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": null,
+  "evidenceLevel": "B",
+  "outcome": "RULES_HALT_OR_MISSING",
+  "metrics": {
+    "promptIndex": 31,
+    "prompt": "Can Retreat Escape come from both check and winning round same round?",
+    "located": false,
+    "secondsProxy": 120
+  },
+  "rulesHalts": [
+    {
+      "id": "RH-17-LOOKUP-031",
+      "prompt": "Can Retreat Escape come from both check and winning round same round?",
+      "status": "RULES_HALT",
+      "note": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §12 — AMBIGUOUS"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "defect",
+      "summary": "Lookup 'Can Retreat Escape come from both check and winning round same round?': ambiguous/missing → docs/mechanics/GAMEPLAY_LOOP_CANON.md §12 — AMBIGUOUS",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §12 — AMBIGUOUS"
+    }
+  ],
+  "rawEvidencePath": "results/GM-RULE-LOOKUP/031-novice-director.json",
+  "agentId": "novice-director"
+}

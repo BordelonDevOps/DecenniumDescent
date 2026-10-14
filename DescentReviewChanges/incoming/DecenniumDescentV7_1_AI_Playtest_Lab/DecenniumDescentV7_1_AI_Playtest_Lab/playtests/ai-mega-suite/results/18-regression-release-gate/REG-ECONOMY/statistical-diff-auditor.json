@@ -1,0 +1,44 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-ECONOMY",
+  "runId": "2026-08-06T122200Z-REG-ECONOMY",
+  "seed": 56803,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": "61d48ca3568e3faa1ce7d2947d315544aadf121c081d55a6e77d40ba1c7c8daa",
+  "evidenceLevel": "A",
+  "outcome": "BASELINE_LOCKED",
+  "metrics": {
+    "baselineFile": "playtests\\ai-mega-suite\\results\\00-baseline-simulations\\economy_baseline.csv",
+    "rows": 5,
+    "summary": {
+      "runsPerCombatFixture": 500,
+      "combatRows": 72,
+      "expeditionRows": 60,
+      "economyRows": 5,
+      "warning": "These are chassis proxies, not full class-balance evidence."
+    },
+    "dependencyPackJsonCounts": {
+      "01": 0,
+      "07": 7,
+      "11": 0,
+      "13": 0
+    },
+    "note": "No approved patch branch present; gate compares untouched V7.1 chassis baselines on disk.",
+    "economyRows": 5
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "REG-ECONOMY: chassis baseline rows=5 (summary economyRows=5). Full pack agent results mostly absent on disk; regression uses 00-baseline + pack 16 fuzz + packs 05/17 from this run.",
+      "citation": "playtests/ai-mega-suite/results/00-baseline-simulations/economy_baseline.csv"
+    },
+    {
+      "severity": "null",
+      "summary": "No proposed-patches/ deltas to diff; release gate is baseline integrity + validator status + usability packs completed this run.",
+      "citation": "playtests/ai-mega-suite/proposed-patches/"
+    }
+  ],
+  "rawEvidencePath": "results/00-baseline-simulations/economy_baseline.csv",
+  "agentId": "statistical-diff-auditor"
+}

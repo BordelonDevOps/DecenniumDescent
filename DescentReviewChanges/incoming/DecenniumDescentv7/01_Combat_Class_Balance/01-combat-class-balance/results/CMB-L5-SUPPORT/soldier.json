@@ -1,0 +1,38 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L5-SUPPORT",
+  "agentId": "soldier",
+  "seed": "agg-15-seeds",
+  "observations": [
+    "Played 15 seeds as Soldier (Palisade/Overwatch) under scenario CMB-L5-SUPPORT.",
+    "Identity loop remained: Palisade/Overwatch; role=frontline.",
+    "Aggregate win_rate=1.0, objective_rate=1.0, avg_rounds=15.6.",
+    "Decision steps avg=1.5; rule lookups avg=1.85.",
+    "Sample actions: Overwatch/Guard prevention; Overwatch/Guard prevention; Overwatch/Guard prevention; Overwatch/Guard prevention; Overwatch/Guard prevention",
+    "Meaningful recurring choice preserved (Guard/Surge vs damage), but surge stacking with ally grants needed adjudication."
+  ],
+  "metrics": {
+    "class": "Soldier",
+    "role": "frontline",
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 15.6,
+    "avg_party_damage": 463.09,
+    "avg_healing": 139.6,
+    "avg_prevented": 77.88,
+    "avg_control_applied": 22.93,
+    "avg_lookups": 1.85,
+    "avg_decision_steps": 1.5,
+    "avg_rp_spent": 76.04,
+    "class_dpr_model": 9.11
+  },
+  "rulesQuestions": [
+    "Oracle attempted second full-turn denial from same control source without new save/escalation (Loop \u00a7Encounter)."
+  ],
+  "exploits": [
+    "Action-economy stack attempt on Soldier: class Action Surge/extra + Bard/support grant; Loop limit = choose one additional Action.",
+    "Full-turn denial chain by Oracle without escalation cost \u2014 blocked by Loop rule in adjudication."
+  ],
+  "recommendations": [],
+  "confidence": "medium"
+}

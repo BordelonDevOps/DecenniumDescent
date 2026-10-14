@@ -1,0 +1,65 @@
+{
+  "pack": "16-rules-fuzz-property-tests",
+  "scenarioId": "FUZZ-ACTIONS",
+  "runId": "FUZZ-ACTIONS-71600",
+  "seed": 71600,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "runs": 25000,
+    "failureCount": 522,
+    "failureTypes": {
+      "illegal_extra_action_accepted": 522
+    },
+    "objective": "actions, reactions, Additional Action Slot, cooldowns"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "confirmed",
+      "type": "illegal_extra_action_accepted",
+      "count": 522,
+      "detail": "illegal_extra_action_accepted observed 522/25000 transitions",
+      "sample": [
+        [
+          "illegal_extra_action_accepted",
+          131,
+          {
+            "extra": 2
+          }
+        ],
+        [
+          "illegal_extra_action_accepted",
+          150,
+          {
+            "extra": 2
+          }
+        ],
+        [
+          "illegal_extra_action_accepted",
+          162,
+          {
+            "extra": 2
+          }
+        ],
+        [
+          "illegal_extra_action_accepted",
+          166,
+          {
+            "extra": 2
+          }
+        ],
+        [
+          "illegal_extra_action_accepted",
+          170,
+          {
+            "extra": 2
+          }
+        ]
+      ]
+    }
+  ],
+  "rawEvidencePath": "results/16-rules-fuzz-property-tests/FUZZ-ACTIONS/"
+}

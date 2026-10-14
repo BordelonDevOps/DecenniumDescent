@@ -1,0 +1,237 @@
+{
+  "status": "PASS",
+  "sourceSpells": 848,
+  "operationalDrafts": 276,
+  "unfinishedSpells": 572,
+  "accessBoundaryCases": 89040,
+  "classStarterCoverage": {
+    "Bard": {
+      "cantripOptions": 27,
+      "rank1Options": 30
+    },
+    "Cleric": {
+      "cantripOptions": 41,
+      "rank1Options": 41
+    },
+    "Crimson Agent": {
+      "cantripOptions": 41,
+      "rank1Options": 41
+    },
+    "Dragoon": {
+      "cantripOptions": 39,
+      "rank1Options": 36
+    },
+    "Druid": {
+      "cantripOptions": 44,
+      "rank1Options": 41
+    },
+    "Mage": {
+      "cantripOptions": 60,
+      "rank1Options": 60
+    },
+    "Monk": {
+      "cantripOptions": 29,
+      "rank1Options": 27
+    },
+    "Mirrorsage": {
+      "cantripOptions": 43,
+      "rank1Options": 43
+    },
+    "Ranger": {
+      "cantripOptions": 39,
+      "rank1Options": 36
+    },
+    "Shaman": {
+      "cantripOptions": 44,
+      "rank1Options": 41
+    },
+    "Thief": {
+      "cantripOptions": 34,
+      "rank1Options": 30
+    },
+    "Tinker": {
+      "cantripOptions": 44,
+      "rank1Options": 44
+    },
+    "Wizard": {
+      "cantripOptions": 100,
+      "rank1Options": 96
+    },
+    "Paladin": {
+      "cantripOptions": 53,
+      "rank1Options": 52
+    }
+  },
+  "checks": [
+    {
+      "name": "848 original IDs preserved exactly once",
+      "pass": true
+    },
+    {
+      "name": "936 source placements preserved exactly",
+      "pass": true
+    },
+    {
+      "name": "All catalog objects preserved without alteration",
+      "pass": true
+    },
+    {
+      "name": "Core936 full entries retained",
+      "pass": true
+    },
+    {
+      "name": "Sources match pre-build hashes",
+      "pass": true
+    },
+    {
+      "name": "All276 individually reviewed selected IDs have operational drafts",
+      "pass": true
+    },
+    {
+      "name": "Remaining572 explicitly blocked",
+      "pass": true
+    },
+    {
+      "name": "No unreviewed spell selectable",
+      "pass": true
+    },
+    {
+      "name": "Complete typed operational fields",
+      "pass": true
+    },
+    {
+      "name": "Components have explicit vocabulary",
+      "pass": true
+    },
+    {
+      "name": "Core prices preserved for every class-specific rank",
+      "pass": true
+    },
+    {
+      "name": "Class access ranks and levels preserved exactly",
+      "pass": true
+    },
+    {
+      "name": "Oracle Soldier Warrior never gain ordinary access",
+      "pass": true
+    },
+    {
+      "name": "All 89040 class/level access boundaries",
+      "pass": true
+    },
+    {
+      "name": "Starter choice coverage for all14 Weave classes",
+      "pass": true
+    },
+    {
+      "name": "First cantrip zero common cost/strain",
+      "pass": true
+    },
+    {
+      "name": "Repeated cantrip adds Refrain despite rank0",
+      "pass": true
+    },
+    {
+      "name": "Refrain caps at3",
+      "pass": true
+    },
+    {
+      "name": "Different named spell clears Refrain, not accumulatedD",
+      "pass": true
+    },
+    {
+      "name": "Rank1 baseline costs2RP",
+      "pass": true
+    },
+    {
+      "name": "Strain surcharge evaluated before cast",
+      "pass": true
+    },
+    {
+      "name": "Ordinary fractured ranked cast rejected",
+      "pass": true
+    },
+    {
+      "name": "Fractured cantrip remains legal without ranked surcharge",
+      "pass": true
+    },
+    {
+      "name": "Explicit traumatic exception pays cost and trauma",
+      "pass": true
+    },
+    {
+      "name": "Insufficient RP rejected",
+      "pass": true
+    },
+    {
+      "name": "Unknown or unprepared spell rejected",
+      "pass": true
+    },
+    {
+      "name": "Invalid negative and over-cap pools rejected",
+      "pass": true
+    },
+    {
+      "name": "Rank/access not gained by abundantRP",
+      "pass": true
+    },
+    {
+      "name": "Paladin cantrip gate2 retained",
+      "pass": true
+    },
+    {
+      "name": "Resonance Shield mandatory extraRP",
+      "pass": true
+    },
+    {
+      "name": "Resonance Shield source1d4 retained",
+      "pass": true
+    },
+    {
+      "name": "Core numeric Retune rounding bounded",
+      "pass": true
+    },
+    {
+      "name": "Multi-rank spells priced perclass",
+      "pass": true
+    },
+    {
+      "name": "Ordinary fall thresholds and cumulative remainders",
+      "pass": true
+    },
+    {
+      "name": "Slowed landing keeps cumulative distance and3d6cap",
+      "pass": true
+    },
+    {
+      "name": "Expiry after120ft leaves190uncontrolled for9d6",
+      "pass": true
+    },
+    {
+      "name": "Late slowing dissipates uncontrolled momentum, retains distance",
+      "pass": true
+    },
+    {
+      "name": "Premature repeated or moved marker rejected",
+      "pass": true
+    },
+    {
+      "name": "Late slowing still caps eventual impact",
+      "pass": true
+    },
+    {
+      "name": "Resolved impact cannot be undone",
+      "pass": true
+    },
+    {
+      "name": "All initiative orders have a normal rescue opportunity",
+      "pass": true
+    },
+    {
+      "name": "Development document links resolve",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "limits": "Source/schema/access/common-cost checks and provisional falling regressions only. Not all spell effects, class cadence hooks, human balance, full baseline completion or live-app integration."
+}

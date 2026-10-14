@@ -1,0 +1,29 @@
+{
+  "id": "DI7-alignment-copied-generating-source-lookup",
+  "recordedAtUtc": "2026-10-14T03:25:59.761875+00:00",
+  "classification": "Evaluator correction; existing Fate source identity rule unchanged.",
+  "changes": [
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/tools/di7_alignment_transactions.py",
+        "bytes": 3771,
+        "sha256": "ab11389859c2fd22e1639d68ba2f0dd7e6cac289fbbafdece3360fa648ccfaa8",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-di7-alignment-copy-source/DescentReviewChanges/ReviewBible/tools/di7_alignment_transactions.py"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/tools/di7_alignment_transactions.py",
+        "bytes": 4089,
+        "sha256": "4c7121ca63a2416afabb7cba05637ea30ad453627870c9f93f181c676a5dff2b"
+      },
+      "operation": {
+        "old": "            op = self.sources.spell(cast['spellId'], cast['provider'])[1]\n",
+        "replacement": "            source_provider = self.casts[cast['copyLineage']['original']]['provider'] if cast.get('route') == 'fate-echo-copy' else cast['provider']\n            _, op, source_binding, _ = self.sources.spell(cast['spellId'], source_provider)\n            if source_binding != cast['sourceBinding']:\n                raise ValueError('Exact generating source binding must survive to resolution')\n"
+      },
+      "exactInverseBytesVerified": true
+    }
+  ],
+  "reason": "A Fate child uses its original generating spell source, while its actual Fate caster supplies ability/PB/class-level stats. Looking up ordinary access through the echoer wrongly rejects Cleric/Shaman copying a Wizard Alignment Suggestion.",
+  "ordinarySourceRecordsChanged": false,
+  "sourceInformationDeleted": 0,
+  "newRules": 0
+}

@@ -1,0 +1,121 @@
+## Verdict: CONDITIONALLY APPROVE with four finite exact repairs
+
+The 45-card Herbalism set is mechanically coherent with the settled source-conference rulings. I found **no additional recipe-family blocker, visibility error, ingredient-consumption conflict, work-time conflict, or source-effect conflict** in the supplied manuscripts.
+
+The accounting closes correctly:
+
+- **18 topical healing:** 201, 202, 203, 205, 208, 212, 213, 217, 221, 225, 226, 230, 231, 232, 234, 237, 240, 645.
+- **22 hazard buffs:** 204, 206, 207, 209, 210, 211, 214, 215, 216, 218, 219, 222, 223, 224, 227, 228, 229, 233, 235, 236, 239, 644.
+- **4 antidotes:** 200, 220, 238, 646.
+- **1 Panacea:** 647.
+- Visibility is internally correct at **29 public / 3 restricted / 13 Director-only**. Restricted is exactly 226, 227, 230; Director-only is 229, 231–240, 646, 647.
+
+Application of the following four repairs satisfies my approval. **No further generic Herbalism conference is required** unless those edits introduce materially different behavior.
+
+### 1. Repair operational recipe-tag contamination
+
+This is the one substantive machine-projection problem I found.
+
+Several `sourceTags` arrays contain tags inferred from ingredients/legacy associations rather than the recipe's actual current `mechanics.tag`. That conflicts with the manuscript's own rule that ingredients, legacy labels, and flavor do not create powers, and it becomes consequential because the guide explicitly allows other rules to inspect tags.
+
+Replace the shared tag sentence with:
+
+> **Only the recipe's explicit current `mechanics.tag`, when present, is an operational finished-dose recipe tag. Ingredient properties, ingredient names, legacy names/effects, and inferred thematic labels remain source/component metadata and are not added to the finished dose's recipe-tag set. A rule that explicitly inspects recipe tags may inspect only that current recipe tag. A recipe with no current `mechanics.tag` has no operational recipe tag.**
+
+Then make the operational fields:
+
+- recipe-232 → `["Acid"]`, not `["Acid","Strength"]`
+- recipe-233 → `["Lightning"]`, not `["Lightning","Earth"]`
+- recipe-234 → `["Earth"]`, not `["Earth","Lightning"]`
+- recipe-235 → `["Cold"]`, not `["Cold","Arcane"]`
+- recipe-236 → `["Fire"]`, not `["Fire","Vitality"]`
+- recipe-237 → `["Poison"]`, not `["Poison","Psychic"]`
+- recipe-238 → `["Unholy"]`, not `["Unholy","Vitality"]`
+- recipe-239 → `["Psychic"]`, not `["Psychic","Acid"]`
+- recipe-240 → `["Lightning"]`, not `["Lightning","Cold","Flora"]`
+- recipe-647 → `[]`/null. Its supplied current source mechanics contain **no tag**; `Flora` cannot be inferred from Worldroot or other ingredients.
+
+Do not alter the ingredient property arrays themselves. Those remain preserved source data.
+
+### 2. Repair the per-card packaging sentence
+
+The shared guide correctly requires the **maximum Masterwork reservation before the roll**, but each card ends its packaging paragraph with:
+
+> “All chosen-output packaging and carrier must be present before the check.”
+
+“Chosen-output” weakens the rule and can be read as permitting Standard-only reservation before discovering the outcome.
+
+Replace that sentence on all 45 cards with:
+
+> **The full Masterwork-reserve amount shown above, including all required vials and any listed supplementary carrier, must be physically available and reserved before the completion check regardless of the intended quality option. Consume only the amount required by the resolved output; unused reserved packaging and carrier return to ordinary inventory under the shared procedure.**
+
+The machine field `packagingAndCarrierReservedBeforeCheck:true` is already correct.
+
+This preserves the important recipe-201 case: six-dose Masterwork capacity requires the six vials **and 0.14 lb of actual clean supplementary carrier** before rolling.
+
+### 3. Close the final timed-application timing point
+
+Your substantive ruling is approved: **10 regular-turn Actions + ≥60 seconds**, and Panacea **100 Actions + ≥600 seconds**. Extra Actions and inserted turns do not accelerate it; damage alone does not interrupt it.
+
+Add this sentence after the existing “finish only when both requirements are met” language:
+
+> **Resolution occurs at the first moment both the required regular-turn Action count and the elapsed-time minimum are satisfied; no eleventh Action, or one-hundred-first Action for Panacea, is required. If the final required Action occurs before the elapsed minimum, the application remains continuously in progress until that elapsed deadline and resolves then, provided all required hand, touch/access and recipient eligibility have remained uninterrupted.**
+
+That removes the last ambiguity around a tenth Action occurring before the absolute 60-second endpoint.
+
+### 4. Tighten the Local Treatment duplicate-record sentence
+
+The intended rule is correct, but this sentence is still slightly ambiguous:
+
+> “A different present eligible Bleeding record may be selected if this dose has not already attempted its healing endpoint.”
+
+Make the record identity explicit. Replace the relevant passage with:
+
+> **Do not make the extra Medicine check against a Bleeding record if this same dose's healing already resolved an explicit removal or treatment attempt for that same record, including an unsuccessful source save. An ended record cannot be selected. A different present eligible Bleeding record may be selected only if this dose's healing did not already resolve an explicit removal or treatment attempt for that different record.**
+
+This preserves the accepted behavior: one Blood Curse cannot receive its healing-triggered save and then a second Medicine attempt from the same dose merely because the first failed, while a genuinely separate Bleeding record remains separately selectable.
+
+## The three submitted clarifications
+
+**1. Panacea successful-benefit commitment: APPROVED as written.** The physical dose is committed at legal start, but the once-per-season entitlement is committed only on actual benefit. Your definition of benefit is bounded enough: actual eligible source/Exhaustion removal, positive current HP actually restored, or an actual legitimate healing-triggered condition removal. A callback roll that accomplishes nothing does not count.
+
+The attempt lock is also correct. It prevents parallel applications from racing one available entitlement while avoiding the harsher result of consuming the season entitlement when a ten-minute application is interrupted. Rechecking eligibility atomically before resolution is appropriate.
+
+“No eligible cure target” correctly skips the cure without blocking the independent healing. That follows the source's combined cure-and-heal structure without manufacturing a requirement that the recipient must presently be diseased/poisoned/cursed/exhausted to receive HP.
+
+The registered-season / fixed 100-day fallback is retained exactly as previously ruled.
+
+**2. Timed applications: APPROVED with repair 3 above.** Requiring both Actions and elapsed time is the correct way to prevent Action-economy manipulation from compressing “1 minute” or “10 minutes.” Damage by itself should not generate an invented concentration check. Existing incapacity, loss of access, failure to spend a required regular-turn Action, or recipient ineligibility already handles genuine interruption.
+
+The dying clock continuing normally is also correct.
+
+**3. Opened-potency rule: APPROVED as written.** The application need only **begin before the one-hour opened-dose deadline**. Once legally begun, the whole dose is committed to that single uninterrupted application and may finish after the inventory potency deadline.
+
+I would **not** require the application to finish before the one-hour deadline. Doing so would create the odd result that a perfectly valid Panacea begun at 59 minutes becomes chemically invalid halfway through an already committed continuous application. Your rule avoids stockpiling or partial-dose abuse because opening alone does nothing, legal start consumes the entire dose, interruption loses it, and it can never return to inventory.
+
+## Recipe/source disposition
+
+The source-specific exceptions are correctly carried through:
+
+- **200 / 220 / 238 / 646:** all removable Poisoned applications end; independent causes remain; no source `bonus 1/3` numerical modifier survives.
+- **220:** Flawed retains the immediate Poisoned removal and reduces its one-hour prospective advantage to 30 minutes.
+- **238 / 646:** singleton until-beneficial-Long-Rest effects correctly treat Flawed as Failed.
+- **644:** no sleep effect.
+- **645:** no regeneration-over-time.
+- **647:** no automatic Wound, intrinsic curse, Corruption, identity alteration, or resurrection effect.
+- All 18 topical recipes use the same bounded Local Treatment and do not convert “treats one wound, burn, or infection” into a universal condition eraser.
+- The source `Mortar and pestle` components marked `consumed:false` remain reusable source objects rather than being charged as consumed material. This includes the supplied rows on 202, 216, 224, 225, 227, 230, 232, 234, 235, 236, 237, 238, 239, and 240.
+- Recipe-201's **0.14-lb carrier deficit** is correctly isolated as supplementary material rather than rewriting its immutable source ingredients.
+- Herbalism remains non-artisan for the Forge Dwarf time bridge absent an independently applicable feature.
+- The 14 active hazard categories are bounded correctly; ingredient/legacy metadata does not expand them.
+- The strongest Herbalism numeric hazard bonus applies once per qualifying roll while independent advantage/disadvantage remains its separate mechanic.
+- Quality affects finite yield or physical vial durability, never potency, cure breadth, healing dice, bonus magnitude, duration, charges, or use limits.
+- All source batch values remain batch references rather than per-unit multiplied values.
+
+### Final disposition after the four edits
+
+After those four finite repairs, I approve the complete **45-formula Herbalism set as a provisional authored operational PLAYTEST recipe set**.
+
+That approval covers the shared Herbalism procedure, all 45 card effects and their source-bound ingredients/work requirements, the 29/3/13 visibility partition, manufacture/packaging accounting, application timing, quality/Flawed behavior, and the narrow Panacea recipient-limit implementation.
+
+It does **not** approve numerical balance, ingredient/drop availability, runtime/companion implementation, broader recipe families, whole-game flow, or final GitHub delivery. Cosmology remains entirely deferred until the authorized push succeeds and the remote commit is verified.

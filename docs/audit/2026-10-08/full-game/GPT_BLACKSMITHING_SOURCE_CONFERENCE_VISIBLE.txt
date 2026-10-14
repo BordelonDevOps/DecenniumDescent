@@ -1,0 +1,506 @@
+ChatGPT said:
+Blacksmithing source-conference verdict
+
+The 43 formulas have enough source support to author complete operational cards. The cleanest construction model is an actual mundane base item plus the exact source recipe components. That avoids inventing per-pound metal pricing and prevents low-mass ingredient batches from creating full weapons or armor from nothing.
+
+Everything below is authoring direction only. It does not approve the unwritten cards, balance, availability, runtime, or the remaining 512 recipe effects.
+
+1. Base models
+
+RECOVERED: each recipe's recipeFamily, outputType, exact effect, and numerical mechanics remain controlling. A title never grants a different weapon die, property, armor formula, or resistance.
+
+NEW — predeclared base mapping:
+
+Recipe family	Legal mundane base models
+Sword	Shortsword, Longsword, Greatsword, Rapier, Scimitar
+Hammer	Light hammer, Warhammer, Maul
+Axe	Handaxe, Battleaxe, Greataxe
+Mace	Mace, Flail, Morningstar
+Spear	Spear, Javelin, Trident, Pike, Lance
+Weapon	Dagger, Dart, Handaxe, Javelin, Light hammer, Mace, Sickle, Spear, Battleaxe, Flail, Glaive, Greataxe, Greatsword, Halberd, Lance, Longsword, Maul, Morningstar, Pike, Rapier, Scimitar, Shortsword, Trident, War pick, Warhammer, Kama
+Shield	Buckler, Shield, Tower shield
+Armor	Chain shirt, Scale mail, Breastplate, Half plate, Ring mail, Chain mail, Splint, Plate, Dwarven plate
+Helm	new Helm blank below
+Gauntlets	new Gauntlets blank below
+
+Generic Weapon therefore does not authorize bows, crossbows, repeating crossbows, firearms, ammunition, blowguns, nets, natural weapons, clubs, greatclubs, quarterstaffs, slings, whips or nunchaku.
+
+Dart is legal because it is itself a discrete reviewed thrown weapon, not ammunition.
+
+Specific bindings:
+
+recipe-628 Alien-Chitin Lamellar uses the existing Scale mail profile: 14 + DEX max 2, Stealth disadvantage, 45 lb, 50 gp Medium Standard baseline.
+recipe-631 Ancient Red-Scale Cuirass uses the existing Breastplate profile: 14 + DEX max 2, no Stealth disadvantage, 20 lb, 400 gp Medium Standard baseline.
+
+These names do not create new armor formulas.
+
+For every work order, declare one base model, one fitted size and one legal equipment grade before work. Every unit in that batch uses that same model, size and grade. Individual current structural HP may differ, but Broken bases are not legal inputs.
+
+A base must be a complete mundane item. An item already carrying a magical Blacksmithing recipe imprint is not a legal generic base for another Blacksmithing recipe.
+
+2. Construction and physical conservation
+
+Use complete mundane base items, not a new structural-stock system.
+
+NEW procedure:
+
+Before work begins, reserve maximumYield = floor(1.5 × source quantity) complete legal base items of the selected model/size/grade. These bases are supplemental structural inputs and do not replace any printed recipe component.
+
+The source recipe components are then the special alloying, reinforcement, magical integration and process materials. Their source identities and consumed flags remain exact.
+
+For construction accounting:
+
+role=tool, including Forge water, supplies zero finished structural mass.
+Fuel supplies zero finished structural mass.
+Solvent supplies zero finished structural mass.
+Binder, substrate, material and catalyst components are consumed as exact recipe inputs but do not add their listed mass to the finished item's operational weight unless a future card expressly says otherwise.
+The completed item's mass is the actual selected base item's mass.
+Excess ingredient mass is slag, trimming, evaporation or process waste with no automatic sale/salvage identity.
+A returned Masterwork catalyst keeps its original identity and never becomes part of the finished body's mass.
+
+On resolution:
+
+Standard: transform source quantity reserved bases.
+Exceptional yield: transform floor(1.25Q) bases.
+Masterwork yield: transform floor(1.5Q) bases.
+Flawed Q≥2: transform floor(Q/2) bases.
+Singleton Flawed: transform one base with the structural flaw described below.
+Failed/Mishap: no reserved base receives the recipe imprint. Reserved mundane bases remain mundane and return to inventory unless a separately resolved physical event actually damages one. Source consumed-material recovery/loss follows the existing crafting result exactly.
+
+This does not refund source ingredients. The base is not a source component and is therefore not included in source 25% failure recovery.
+
+A base cannot be counted twice for two simultaneous work orders.
+
+Worked example — recipe-45. Superior Vital Axe of Putrid Marrow has Q=5, so maximum yield is 7. If Battleaxe is chosen, reserve seven actual Battleaxes. Medium Standard Battleaxes are 4 lb and 10 gp each. The recipe still consumes its exact four Brightsteel Ingots plus putrid marrow once. Standard transforms five Battleaxes and returns two mundane ones. Masterwork yield transforms all seven. The finished weapons remain 4 lb each; the source's 4.18 lb of consumed recipe material does not somehow become seven complete axe bodies.
+
+Worked example — recipe-53. Refined Veiled Shield has Q=5, maximum yield 7. If Tower shield is declared, reserve seven actual Tower shields, each 15 lb/50 gp before any legitimate size/grade adjustment. Standard transforms five; two remain mundane. The recipe's 5.43 lb source mass does not replace 75 lb of structural shield bodies.
+
+This is the central conservation rule for all 43.
+
+3. Weapon enhancement, grade and attack resolution
+
+RECOVERED: the exact recipe attackBonus and damageBonus are real +1/+2/+3 values.
+
+NEW integration:
+
+An intact, unsuppressed Blacksmith weapon adds its recipe attackBonus to attacks actually made with that physical weapon, including legal melee, off-hand and Thrown use. It grants no proficiency and does nothing merely because it is carried.
+
+Its damageBonus is added once to that attack's ordinary weapon-damage component on a hit.
+
+Thus:
+
+normal STR/DEX and weapon rules still determine the attack and ordinary ability damage;
+if an off-hand procedure omits ordinary ability damage, the recipe's magical flat damage bonus still applies;
+a lawful Thrown attack receives the same recipe attack/damage enhancement;
+object attacks receive the bonuses when that weapon can legally attack the object;
+the flat recipe damage bonus never multiplies across multiple damage types;
+if a reviewed effect lawfully changes the weapon's ordinary damage type for that attack, the recipe flat bonus follows that actual weapon-damage component;
+flat bonuses do not double on critical hits.
+
+An unsuppressed Blacksmith weapon's ordinary bludgeoning/piercing/slashing weapon damage counts as magical for resistance/immunity classification. Suppression removes that magical classification until the recipe magic resumes.
+
+Equipment-grade interaction
+
+The mundane base retains its actual V6 equipment grade. Blacksmithing does not change that grade.
+
+NEW item-enhancement arbitration: the V6 weapon-grade attack bonus and this Blacksmith recipe's attackBonus occupy one item-derived weapon-accuracy family. Use the stronger value; do not add them.
+
+Examples:
+
+Standard weapon + Blacksmith +2 → +2 item attack bonus.
+Fine weapon +1 grade processed by a +2 recipe → +2, not +3.
+Exceptional weapon +3 processed by a +1 recipe → +3 attack, plus the recipe's +1 damage.
+The retained Superior/Exceptional critical-grade dice remain separate because they are not a flat attack bonus.
+
+No generic second Blacksmith recipe imprint stacks on the same item. Applying another Blacksmith formula to an already imprinted item requires a future explicit replacement/upgrade procedure.
+
+Another non-Blacksmith spell/class/item bonus follows its own reviewed combination rule; this conference does not create a universal strongest-bonus rule.
+
+All newly created mundane bases default to Standard equipment grade unless the actual supplied base already has another legal recorded grade.
+
+No recipe rarity, recipe title, Exceptional crafting outcome or Forge Dwarf result silently changes that equipment grade.
+
+NEW classification: no attunement, RP expenditure, concentration or activation Action is required. These are passive magical weapon properties while the item is intact and unsuppressed.
+
+4. Elemental weapon riders
+
+This applies only where bonusDamage actually exists. No name or secondary source tag creates one.
+
+NEW operational rule:
+
+Once during each actual turn, when a creature hits a legal target with an attack actually made using this intact, unsuppressed weapon, that attacking creature may cause the weapon to deal its printed bonusDamage to the same target.
+
+The choice is made after the hit is known and before that attack's damage is finalized. Declining it does not spend the budget.
+
+The rider is an additional typed damage component of the same attack damage event. It is not another attack, hit, proc, target, save or action.
+
+Critical hit: the rider's dice are attack damage dice and are doubled normally. The flat recipe damageBonus is not doubled.
+
+Frequency identity is the physical item + current turn instance.
+
+Consequences:
+
+two physical copies each have their own once-per-turn budget;
+two different Blacksmith weapons can each trigger once on the same turn;
+wielding two weapons therefore does not collapse their budgets into one global elemental proc;
+transferring the weapon during the same turn does not reset its used budget;
+an extra Action during the same turn does not reset it;
+an actual extra turn is a new turn instance and therefore has a new budget;
+a Reaction or Readied attack made during somebody else's turn can trigger the item on that other turn if its budget for that turn remains unused;
+an opportunity attack on another creature's turn follows the same rule.
+
+A legal attack against an ally still qualifies, but because triggering is optional the wielder can decline the rider. There is no generic permission to attack oneself.
+
+A legal object hit may receive the rider, subject to actual object/damage compatibility. For example, an object's existing psychic immunity still defeats psychic rider damage.
+
+Copies of attacks or damage do not create another trigger, refresh the item budget, or spend it a second time. A copied already-resolved damage event follows the copy effect's own text; the Blacksmith weapon itself does not proc again.
+
+A companion receives no new permission or proficiency to wield one. If some separately reviewed companion rule genuinely permits an attack using the physical weapon, its attack can use the item's remaining turn budget normally.
+
+5. Armor, shields and AC
+
+The printed armorBonus is an enhancement bonus, not the item's entire AC.
+
+A selected armor base keeps its complete existing armor profile: base AC formula, DEX cap, STR requirement, Stealth property, weight, proficiency, don/doff and size.
+
+A selected shield keeps its actual base shield bonus and all existing hand/STR/proficiency rules.
+
+Shield family includes all three: Buckler, Shield and Tower shield.
+
+NEW defensive-enhancement family
+
+V6 worn-armor grade AC and all active Blacksmith recipe armorBonus values occupy one named family:
+
+equipment.defense-enhancement
+
+Use the strongest single value from that family. Do not add multiple grade/Blacksmith enhancement values together.
+
+The base shield contribution is not part of this family; it remains the item's normal +1/+2/+3.
+
+Eligibility:
+
+a suit's Blacksmith enhancement qualifies only when that suit's AC formula is the worn-armor formula being used;
+a shield's Blacksmith enhancement qualifies only when that shield is the one usable shield contributing its ordinary shield bonus;
+a worn Helm or Gauntlets pair qualifies while intact, worn and unsuppressed;
+a V6 armor-grade AC bonus qualifies from the worn suit under its normal rules.
+
+Independent class, spell, ancestry or natural/unarmored rules remain governed by their own wording. This new family does not convert those into Blacksmith bonuses.
+
+Examples:
+
+recipe-53 on ordinary Shield
+
+ordinary Shield: +2 AC
+recipe enhancement: +1
+total contribution when it is the active strongest enhancement: +3 AC
+
+recipe-630 on ordinary Shield
+
+ordinary Shield: +2
+recipe enhancement: +3
+total: +5 AC
+
+If recipe-630 instead uses a Tower shield:
+
+base Tower shield +3
+recipe enhancement +3
+effective shield-related total = +6
+Tower shield's STR 13, Stealth disadvantage, hand use, proficiency and weight remain unchanged.
+
+A Fine worn armor suit's +1 grade and a +3 Blacksmith Helm do not add to +4; the family contributes +3.
+
+Resistance is separate from AC enhancement. A weaker item's AC bonus can be inactive while its printed resistance remains active.
+
+Different resistance types can coexist. Two sources of resistance to the same damage type remain resistance, never immunity.
+
+6. Helm and Gauntlet profiles
+
+These require genuine NEW equipment bodies because no reviewed standalone profiles exist.
+
+NEW Helm blank
+
+one Helm = one item
+Standard Medium baseline price: 10 gp
+weight: 5 lb
+dominant material: iron/steel
+structural AC: 19
+maximum structural HP: 5
+slot: one head slot
+don: 1 Action
+doff: 1 Action
+
+NEW Gauntlets blank
+
+one recipe unit means one matched pair, not one glove
+Standard Medium baseline price: 10 gp per pair
+weight: 4 lb per pair
+dominant material: iron/steel
+structural AC: 19
+maximum structural HP: 5 for the pair as one tracked object
+slot: one gauntlet/handwear pair
+don pair: 1 Action
+doff pair: 1 Action
+
+One creature cannot gain benefits from multiple simultaneous Helms or multiple Gauntlet pairs. Additional copies remain carried/stowed objects.
+
+Helms and Gauntlets are defensive accessories, not full armor suits:
+
+they do not themselves require armor proficiency;
+they create no armor STR minimum;
+they create no generic Stealth penalty;
+wearing them alone does not count as wearing light/medium/heavy armor for an unarmored-formula restriction;
+Gauntlets do not occupy the creature's hands;
+the wearer can hold weapons, manipulate objects, perform S components and manipulate a legal focus normally;
+they do not create a free hand if the hand is otherwise occupied;
+they do not become weapons or unarmed-strike enhancements merely because they are metal.
+
+A suit descriptively containing a helm or gloves does not create extra accessory slots and does not prohibit equipping these separately.
+
+For Large fittings, extend the reviewed Large wearable rule: ×2 price, ×2 weight, ×2 structural HP, with no AC increase. Small/Medium/Tiny retain the listed profile unless another rule says otherwise.
+
+Helm/Gauntlet blanks currently have no independent V6 equipment-grade track beyond Standard. A later explicit rule would be required to create Fine/Superior/Exceptional accessory grades.
+
+7. Magic, suppression and breakage
+
+NEW classification: every completed Blacksmith recipe output in this set is a durable magical nonartifact item.
+
+This classification does not make its ingredients artifacts, reveal origin, establish ontology or answer cosmology.
+
+While intact and unsuppressed, use its exact reviewed recipe properties.
+
+While its magic is legally suppressed:
+
+the mundane base item's normal profile remains usable;
+size, mundane equipment grade, weight, hands, armor formula, STR minimum, Stealth properties, don/doff and physical drawbacks remain;
+recipe attack bonus is inactive;
+recipe damage bonus is inactive;
+elemental rider is inactive;
+recipe AC enhancement is inactive;
+recipe resistance is inactive;
+weapon B/P/S no longer receives magical classification from this recipe.
+
+Suppression does not restore durability or reset once-per-turn use.
+
+If a rider was already used earlier in the current turn, later suppression/unsuppression does not refresh it. If it had not been used, ending suppression later in that same turn can leave the unused item budget available.
+
+At 0 structural HP, the whole item is Broken under the existing equipment procedure:
+
+mundane weapon/shield/armor positive function stops;
+all recipe magical benefits stop;
+mass, slot occupation, worn drawbacks and don/doff remain;
+the magical imprint becomes dormant, not automatically erased, provided the recoverable main body still exists.
+
+Ordinary rest restores neither structural HP nor magical function.
+
+A missing/destroyed main body cannot be reconstructed by saying its magical imprint once existed.
+
+8. Quality, damage, repair and rework
+
+Use this order:
+
+establish mundane model and fitted size;
+apply the actual preserved mundane equipment grade, including grade price/weight/stat/Crude HP effects;
+record actual maximum HP and current HP and therefore the current damage deficit;
+apply the Blacksmith magical recipe imprint;
+resolve the crafting outcome's structural effect.
+
+The crafting outcome never changes recipe potency.
+
+Damaged input
+
+A damaged but functional base with HP ≥1 is legal.
+
+Standard output preserves its exact structural damage.
+
+For an Exceptional/Masterwork structural-HP improvement:
+
+calculate the new maximum from the existing post-size/post-grade maximum;
+increase current HP by the same numerical increase;
+therefore preserve the existing damage deficit.
+
+Example: a 3/5 weapon receiving +1 maximum becomes 4/6, not 6/6.
+
+This improvement is recorded once as part of that work order and never compounds from repair/reuse.
+
+Singleton Flawed
+
+Apply the existing crafting flaw after size and equipment grade.
+
+New maximum HP = half the post-size/post-grade ordinary maximum, rounded down, minimum 1.
+
+Preserve preexisting damage deficit:
+
+new current HP = max(0, flawed maximum HP − prior damage deficit).
+
+It is therefore possible for an already badly damaged base to emerge Broken on a Flawed result.
+
+Ordinary repair cannot remove that reduced maximum.
+
+Repair while HP is positive
+
+An intact Blacksmith magical item with HP ≥1 still has an intact magical imprint. Use the reviewed structural self-repair procedure, with this binding:
+
+Smith's tools;
+actual Forge and Anvil plus Tongs for these Blacksmith outputs;
+STR or INT, chosen before the check;
+PB once from Smith's-tools proficiency;
+DC 10;
+existing max(1 hour, max structural HP / 10 hours) active work;
+materials cost 25% of the item's mundane size-and-equipment-grade base value, not its magical recipe value.
+
+Success restores current HP to its already recorded maximum. It does not reroll quality, change grade, remove a Flawed maximum, re-award catalysts or improve the magic.
+
+Reconstruction from HP 0
+
+NEW magical reconstruction interface:
+
+A Broken Blacksmith magic item at 0 HP with its recoverable main body may be reconstructed at Forge and Anvil with Smith's tools and Tongs.
+
+ability: STR or INT
+PB: Smith's-tools proficiency once
+DC: the item's original recipe crafting DC
+active work: max(8 hours, maximum structural HP / 10 hours)
+materials: 25% of that item's undamaged Blacksmith finished reference value, rounded as an actual purchase
+result is binary; this is a repair task, not the six-band crafting table
+success restores current HP to the item's existing maximum and reactivates its dormant imprint
+failure consumes the repair materials and work time but leaves it Broken
+
+No crafting XP, quality roll, yield increase, first-craft award or catalyst return occurs.
+
+Forge Dwarf's reviewed creation-time reduction does not shorten this reconstruction because this is repair, not creation.
+
+The reconstruction preserves:
+
+base model;
+size;
+equipment grade;
+recipe identity;
+existing crafting quality;
+Flawed maximum if applicable;
+prior noncompounding quality HP increase.
+
+No generic Blacksmith rework removes a crafting flaw. No generic procedure replaces one Blacksmith recipe with another. No stacking/upgrading the same body through repeated recipes is authorized by this conference.
+
+A missing main body requires a new craft using a new base and new recipe ingredients.
+
+9. Work, phases and source conservation
+
+RECOVERED:
+
+Blacksmithing uses STR or INT.
+Primary proficiency is Smith's tools.
+It is an artisan trade.
+Every source record has populated activeWorkHours.
+Exact station/tools/components/assistants remain source-controlled.
+Forge Dwarf applies because Blacksmithing is an artisan-tool creation trade, within the ancestry's already-reviewed scope.
+
+NEW first stable phase:
+
+The first Blacksmithing stable integration phase is min(8 active hours, final actual required work time).
+
+Calculate lawful time reductions first, then establish phases.
+
+So an eligible Forge Dwarf:
+
+source 8 hours → 6 actual hours → one 6-hour first phase;
+source 4 hours → 3 actual hours → one 3-hour first phase;
+source 80 hours → 60 actual hours → first phase 8 hours, then ordinary remaining phases.
+
+At completion of the first stable phase, perishable/reactive recipe components already incorporated into the workpiece are stable as part of that work order. Before that point they retain their normal preservation clocks. Reserved components not yet physically incorporated remain subject to their own actual clocks.
+
+This phase does not create a second ingredient charge or early crafting roll.
+
+Assistants work the same actual modified hours as the lead, under the already-reviewed rules.
+
+Forge/station overlap
+
+station: Forge and Anvil plus requiredTools:["Smith's tools","Forge","Anvil","Tongs"] does not require two separate forges and two anvils.
+
+One actual operational Forge and one actual Anvil satisfy both the station identity and those listed fixture requirements.
+
+Smith's tools and Tongs must also actually be available.
+
+Ordinary unquantified forge heat/fuel required simply to operate a proper Forge is part of lawful station operation. Do not invent another coal charge where the recipe prints none.
+
+If the recipe actually lists Coal, that Coal is a separate exact consumed recipe input in addition to ordinary station operation.
+
+If the recipe lists Forge water, that exact source component must be present. Its consumed:false flag means it returns unchanged unless some separately resolved event damages/destroys it. It is not generic free water and is not structural item mass.
+
+Optional Director guidance remains optional and cannot silently add Gate materials, rituals or hours.
+
+Important source conflict: fieldCraftable
+
+All 43 inherit fieldCraftable:false from COMMON.
+
+That boolean remains controlling.
+
+Therefore a source timeMode:"field" does not authorize the framework's portable field-crafting route. Such a recipe still requires its actual Forge-and-Anvil worksite. Likewise, expedition can be performed only where an expedition site actually provides the required Forge and Anvil; the label does not conjure them.
+
+Do not silently rewrite the preserved source flag.
+
+10. Economics, access and visibility
+
+The source recommendedMarketValue remains the Standard source batch reference, exactly as stored. It is never multiplied by quantity again.
+
+Because the new construction rule requires a real base, define a separate finished reference.
+
+For source Standard quantity Q:
+
+source magic/process unit reference = recommendedMarketValue / Q
+
+For each finished unit:
+
+Blacksmith finished reference = source magic/process unit reference + actual undamaged mundane baseline value of that transformed base
+
+The base baseline includes its legitimate size and preserved equipment grade.
+
+Thus the source field remains untouched while model/size/grade choices have finite economic consequences.
+
+For an output count N, sum the N actual finished-unit references. Crafting quality itself grants no automatic market multiplier.
+
+Examples:
+
+recipe-42 source batch reference 92 gp, Q1, on a Medium Standard Longsword: nominal finished reference = 92 + 15 = 107 gp.
+the same recipe on a Large Standard Longsword uses the reviewed ×2 base price, so base reference 30 gp → 122 gp.
+recipe-53 source batch 94 gp/Q5 = 18.8 gp source-reference per shield. A Medium Standard ordinary Shield adds 10 gp → 28.8 gp nominal reference per finished unit before an actual market quote.
+
+The supplemental base purchase is a real character expense when purchased. It does not alter consumedMaterialValue, laborValue, or any original source economy field.
+
+If the character already owns the base, no purchase occurs; the asset is simply transformed and ceases to exist as the separate mundane item.
+
+Damage, Flawed condition, scarcity, law, reputation and demand remain actual quote concerns; there is no guaranteed adjustment factor.
+
+Once transformed, the output is magical nonartifact equipment, so the ordinary mundane resale standing table is not automatically a guaranteed magic-item buyback formula. Require a legitimate buyer and quote using the finished reference above. Do not invoke artifact valuation merely because the item is magical or high tier.
+
+The HP-0 reconstruction price in §8 uses that same undamaged finished per-item reference.
+
+Visibility remains exactly:
+
+27 public
+4 restricted
+12 Director-only
+
+A public card cannot expose restricted/Director formulas, their effects, components, donor identities or guidance.
+
+Monster/source names create no availability right or bestiary statistics. wholeCreatureUse:true creates no donor ability, anatomy power or trait transfer.
+
+Only mechanics.tag is mechanically operative. Secondary source tags remain metadata unless another reviewed rule expressly uses them. Therefore, for example:
+
+recipe-74's extra Cold metadata does not create cold damage/resistance;
+recipe-75's Poison metadata does not turn its psychic rider into a poison effect;
+recipe-73's Vitality metadata adds no healing;
+recipe-80's Poison/Vitality metadata adds no poison or regeneration mechanics.
+
+No cosmology/origin/soul conclusion is made here.
+
+Additional issues revealed by the records
+
+Three items should be explicitly carried into the authored manuscript even though they were not separate numbered questions.
+
+First, recipe-80 contains three separate consumed catalyst occurrences of green dragon heartstone. They require three actual units. The repeated component ID/name does not merge them into one reusable object. On a Masterwork result, the existing catalyst rule may preserve at most one eligible catalyst unit total, not all three, unless the exact formula later marks one irreplaceable.
+
+Second, all maximum-yield batches need enough predeclared base bodies even when the source ingredient mass is tiny. That includes recipes such as recipe-44 Q3→max4, recipe-45 Q5→max7, recipe-48 Q5→max7, recipe-50 Q5→max7 and recipe-53 Q5→max7. The base-body reserve must be machine-audited just as Poisoncrafting audited containers.
+
+Third, the eventual machine projection should track base model ID, fitted size, preserved equipment grade, base maximum/current HP, source recipe imprint ID, crafting-quality HP modifier, source unit reference, base mundane reference, finished reference and magical suppression/broken state separately. Collapsing those into one generic quality or value field would recreate the grade/crafting/artifact ambiguity the existing framework already removed.
+
+With these decisions, the complete 43-card Blacksmithing family can now be authored for exact review. No additional generic source conference is required unless the later manuscript introduces behavior outside these bindings.

@@ -1,0 +1,189 @@
+ChatGPT said:
+Disposition: REPAIR, then approve
+
+The manuscripts are mechanically coherent and the twelve prior conference repairs are substantially implemented correctly. I found six consequential exact-manuscript/data repairs. I approve the two newly exposed completions: one oil-coating entitlement per creature with refresh rather than stacking, and Seeker = 1 incense block / Cartographer = 3 blank parchments + 3 partial-map documents.
+
+Everything not identified below is approved for the bounded equipment/acquisition scope.
+
+1. Class-kit ammunition encoding is ambiguous and presently reads as 20 retail bundles
+
+The prose and JSON currently use entries such as:
+
+20 × Crossbow bolts (20)
+
+and:
+
+JSON
+{"itemId":"ammunition.crossbow-bolts-20","quantity":20}
+
+But that item ID represents a retail bundle of 20. Taken literally, the record grants 400 bolts. Your calculated kit weights clearly use 20 individual units, so the mechanics and serialization disagree.
+
+Repair all four kits:
+
+Mirrorsage: 20 individual crossbow bolts
+Ranger: 20 individual arrows
+Soldier: 20 individual crossbow bolts
+Tinker: 20 individual crossbow bolts
+
+Use an explicit representation such as:
+
+JSON
+{
+  "itemId": "ammunition.crossbow-bolts-20",
+  "quantity": 1,
+  "grantedUnits": 20
+}
+
+and for Ranger:
+
+JSON
+{
+  "itemId": "ammunition.arrows-20",
+  "quantity": 1,
+  "grantedUnits": 20
+}
+
+The Markdown package rows should say simply “20 crossbow bolts” or “20 arrows,” not 20 × Crossbow bolts (20).
+
+Add to the equipment guide:
+
+Ammunition retail units. A source ammunition bundle remains the ordinary market purchase unit. unitPriceCp and unitWeightLb are derived inventory/accounting values and do not by themselves guarantee that a merchant sells fractional bundles. If an actual buyer or seller agrees to split a bundle, price the agreed quantity proportionally and apply transaction rounding once to the final transaction.
+
+That also resolves the 0.2 cp derived sling-bullet value without creating guaranteed fifth-of-a-copper retail purchases.
+
+2. Filled consumable weights need an explicit inclusive-weight field
+
+The manuscript correctly says full potions/vials do not receive a second contents weight, but several JSON records still have:
+
+JSON
+"sourceWeightIncludesContents": false
+
+for obviously filled source consumables.
+
+For source records with a printed gross filled weight, set the source interpretation to inclusive:
+
+adventuring-gear.acid-vial
+adventuring-gear.alchemist-s-fire-flask
+adventuring-gear.holy-water-flask
+adventuring-gear.oil-flask
+adventuring-gear.potion-of-healing
+
+For filled items whose source weight was null and whose operational 0.1-lb weight is new, preserve the source null rather than pretending the source supplied the interpretation. Add a separate field such as:
+
+JSON
+"operationalWeightIncludesContents": true
+
+to:
+
+Antitoxin
+Ink bottle
+Perfume vial
+Basic poison vial
+any other completed filled-vial record using the 0.1-lb gross profile.
+
+Empty Glass Vial, Crystal Vial, generic Vial, Alchemist's Bottle and Reinforced Flask remain empty-container records unless actually filled.
+
+Healer's-kit mass
+
+The current proportional-mass sentence refers to an unspecified empty-container mass. That leaves an unnecessary runtime ambiguity.
+
+Replace it with:
+
+A healer's kit remains the source 3 lb while it exists in this candidate, regardless of remaining charges. Charge depletion changes its uses, not its recorded weight. Do not invent a separate empty-container weight or proportional mass until such a profile is expressly authored.
+
+This is cleaner and strictly source-bound.
+
+3. Broken worn/held equipment needs its negative-state behavior stated
+
+You correctly preserve the physical slot/hand and mass at 0 structural HP, but it is presently unclear whether breaking armor conveniently removes its Stealth, STR-minimum, nonproficiency and hand restrictions.
+
+Append to the Broken paragraph:
+
+A Broken item grants none of its positive usable benefits, but it remains physically worn, held or strapped until removed. It therefore continues to occupy its hand/slot and contribute weight/Load, and retains physical drawbacks that arise from still wearing or carrying it, including applicable don/doff requirements, armor Stealth disadvantage, STR-minimum movement penalty and nonproficiency consequences. A Broken shield grants no AC bonus but still occupies its actual hand/forearm until doffed. A specific source may state otherwise.
+
+That closes a meaningful Sunder exploit.
+
+4. Oil ground-fire cadence needs one wording correction
+
+I approve the single creature-coating record rule. It is the right completion: later successful oil application spends another flask and refreshes that creature's pending coating expiry rather than banking multiple +5 packets.
+
+For maximum exactness, add:
+
+Track one mundane oil-coating record per creature across all users. A later successful coating replaces its deadline with application +60 elapsed seconds but does not add another pending 5-fire entitlement.
+
+The ground-fire wording currently says:
+
+“at most once per creature turn”
+
+which is ambiguous for forced entry during somebody else's turn.
+
+Replace the ground damage sentence with:
+
+It deals one 5-fire packet when a creature first enters the square during a turn, or at that creature's regular-turn start while it occupies the square, at most once to that creature during any one turn regardless of whose turn it is.
+
+Thus push-out/push-in loops on the same turn do not retrigger it, while entering on different turns can.
+
+The creature coating remains not Burning. Alchemist's Fire remains an actual Burning record with its independent regular-end family clock. That separation is approved.
+
+5. Core repair-service percentage needs a noncircular valuation base
+
+The text currently says Core repair costs 10%/15% of the item's current value while damaged-item market value separately requires an explicit quote. If “current value” means the damaged resale quote, breaking an item can perversely make professional restoration arbitrarily cheap.
+
+Replace the Core-service paragraph with:
+
+Core dungeon repair service. Where an appropriate service is actually available, Tier I–III costs 10% and Tier IV–VI costs 15% of the item's applicable undamaged valuation immediately before structural-damage discounting. For an ordinary mundane item, use its legitimate current size and equipment-grade baseline value before damage; for an actual artifact or magic item, use its separately established applicable valuation. Do not apply a damaged-resale discount, buyer-standing sale fraction or transaction-sale penalty to the repair-price base. This quoted percentage is the complete repair service unless that specific service expressly lists additional costs.
+
+Self-repair remains correctly based on 25% of equipment-grade baseline purchase price, including Large sizing.
+
+Transaction rounding then naturally applies when paying either purchased materials or a commercial repair quote.
+
+6. Component pouch needs an actual storage capacity if it is retained as “ordinary storage”
+
+You correctly declined to turn it into a universal F substitute. However, it is presently a 2-lb “storage” object with no storage capacity.
+
+Add:
+
+Component pouch: for mundane storage only, use the ordinary Pouch contents limit of 6 lb and 0.2 cubic feet, while retaining the component pouch's own source weight of 2 lb and 25-gp source price. This grants no universal F substitution, automatic materials, costly component waiver or spell access.
+
+This makes the stated storage function executable without changing spellcasting.
+
+Explicit approvals
+
+The following exact areas are approved as written.
+
+Armor/shields: light/medium/heavy AC math; negative DEX on medium; one shield; Tower Shield only its printed +3/STR13/Stealth disadvantage; nonproficient shield distinction; RP surcharge only from nonproficient worn armor; charge-only/Oracle casts acquiring no RP price; Dwarf heavy-armor Speed exception; one total −10-foot STR-minimum penalty; don/doff procedure.
+
+Hands/focuses: buckler's limited carrying permission without a free S/loading/weapon/focus hand; ordinary/tower shield hand occupancy; two-handed release/regrip; same focus hand supplying F+S only when otherwise usable; worn/shield-borne holy symbol not supplying S; background-granted real focus usable only by a casting source already entitled to that focus category; component pouch not automatically a focus.
+
+Weapons: all source properties; Tiny Heavy disadvantage as NEW; Loading per Action/BA/Reaction; ammunition recovery; lance; net; improvised weapons; silvering; repeating heavy crossbow; kama; nunchaku; exact Sidearm tag set.
+
+Equipment quality: V6 equipment grade, crafting outcome and Core artifact-market Quality are correctly separated. Superior/Exceptional critical bonus dice are correctly single base-profile dice and are not doubled again. Structural damage does not silently downgrade grade. Shield AC receives no generic armor-grade modifier. Exceptional's undefined property grants nothing yet.
+
+Carrying/containers: source nulls are retained; small-weight completions are properly labeled NEW; ink bottle 0.1 lb is acceptable; 50 coins/lb is acceptable; water/waterskin reconciliation is coherent; alchemical container capacities do not manufacture doses; pack prices are package prices rather than forced sums; storage/capacity legality remains real.
+
+Size: Large ordinary armor/shields/weapons ×2 price, ×2 mass and ×2 generic HP while retaining AC/damage/reach is approved as provisional. Fixed creation packages provide the required Large fitting without an extra creation payment. Replacement, resale and repair use the sized baseline thereafter.
+
+Sunder: separately tracked object/component requirement; no fabricated straps/pins; worn gear AC = max(material AC, wearer AC); no wearer damage; object-only effects remain object scoped; Buckler correctly uses ordinary shield 10 HP; zero structural HP leaves the item physically present rather than deleting it.
+
+Starting packages: all 17 are approved, including Warrior's repaired two tridents. Druid preserves its exact choices without manufacturing proficiency or ammunition. Soldier's shield/crossbow coexist in inventory but simultaneous use remains gated by actual Shield Trained. Package weights are internally consistent once the ammunition serialization repair above is made.
+
+Backgrounds: all 20 physical mappings are acceptable. In particular, a real Arcane Academy focus/holy-symbol background item keeps its ordinary legal focus function without granting spell access. Elemental Touched's merely descriptive “focus item” does not become casting F. Celestial Emissary's separate reliquary remains 5 gp/2 lb with only dim light 5 feet in darkness.
+
+The two new quantity completions are approved:
+
+Seeker of the Lost Pantheon: 1 incense block.
+Expedition Cartographer: 3 blank parchment sheets and 3 partially completed map documents.
+
+They are local creation-package completions, not universal meanings of “incense,” “several,” or “collection.”
+
+Promotion disposition
+
+After the six repairs above, I would approve these manuscripts/data as:
+
+REVIEWED authored operational PLAYTEST equipment/acquisition scope
+
+covering the mundane catalog projection, common equipment procedures, seven packs, 17 class starting packages, 20 background physical mappings, mundane Sunder/durability/repair and ordinary acquisition/resale interfaces.
+
+That approval still does not certify the 687 recipe mechanics, harvesting/preservation, vehicles or mounted combat, full artifact/faction economy, runtime inventory/companion parity, numerical balance, whole-game flow, or final GitHub delivery.
+
+Cosmology remains entirely deferred until the successful authorized GitHub push and remote commit verification.

@@ -1,0 +1,53 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L20-CEILING",
+  "agentId": "combat-metrics",
+  "seed": "agg-5-seeds",
+  "observations": [
+    "Recorded rounds, damage, healing, prevention, control, summons peak, retreat progress, KOs, Wounds, RP proxy spend.",
+    "DPR is model-estimated from class identity + level breakpoints (Extra Attack / Dual Cast / Nuke), not table dice transcripts."
+  ],
+  "metrics": {
+    "iterations": 5,
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 3.0,
+    "avg_party_damage": 806.34,
+    "avg_enemy_damage": 138.28,
+    "avg_healing": 47.62,
+    "avg_prevented": 97.0,
+    "avg_control_applied": 5.6,
+    "avg_full_turns_denied": 0.0,
+    "max_summons_peak": 2,
+    "summons_illegal_rate": 0.0,
+    "extra_action_stack_rate": 0.0,
+    "avg_tenacity_triggers": 0.0,
+    "avg_knockouts": 0.0,
+    "avg_wounds": 0.0,
+    "avg_rp_spent": 21.6,
+    "avg_decision_steps": 2.83,
+    "avg_lookups": 2.87,
+    "deadlock_seeds": 0,
+    "retreat_success_rate": null,
+    "dpr_party_estimate": 268.78,
+    "effective_prevention_per_round": 32.33,
+    "heal_to_damage_taken_ratio": 0.344,
+    "cargo_intact_rounds_avg": 0.0,
+    "objectives_held_max_avg": 0.0,
+    "party": [
+      "Soldier",
+      "Cleric",
+      "Thief",
+      "Mage",
+      "Paladin",
+      "Ranger"
+    ]
+  },
+  "rulesQuestions": [],
+  "exploits": [],
+  "recommendations": [
+    "Keep outliers: report min/max rounds alongside averages in future tooling.",
+    "Instrument live companion combat log to replace model DPR in later packs."
+  ],
+  "confidence": "medium"
+}

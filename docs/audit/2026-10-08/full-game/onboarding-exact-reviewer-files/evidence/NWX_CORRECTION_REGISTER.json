@@ -1,0 +1,436 @@
+{
+  "reviewId": "NWX-EXACT-2026-10-11",
+  "archive": "DD_Onboarding_and_Design_Charter_Exact_Review_v2.zip",
+  "archiveSha256": "ef1e3c0c4d865de2295662fa94e13ba25f2be250ff918b3c133779445ded2302",
+  "verdict": "REVISE by six named editorial/teaching corrections; conditional authored-teaching acceptance, no mechanical/card promotion",
+  "submittedSourcesChanged": false,
+  "correctedTeachingManuscriptsWritten": false,
+  "corrections": [
+    {
+      "id": "NWX-01",
+      "title": "Teach mandatory stance selection and complete Mira’s two-turn state",
+      "cases": [
+        "NW-02",
+        "NW-06",
+        "NW-08",
+        "NW-15",
+        "NW-16",
+        "NW-20"
+      ],
+      "earlierRule": "KEEP; teaching amendment only",
+      "governingSources": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md § Stances (submitted lines 113–123)"
+      ],
+      "edits": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md",
+          "section": "What happens on your turn, immediately after the turn-resource table",
+          "operation": "replace_exact_once",
+          "old": "| Reaction | Use a legal trigger when the resource is available. It refreshes at your regular turn's start. |",
+          "replacement": "| Reaction | Use a legal trigger when the resource is available. It refreshes at your regular turn's start. |\n\nA stance is also a required regular-turn choice. Choose one during your regular turn before the first attack, spell, relevant check/save or movement that would use its benefit or restriction; if none occurs, choose before turn end. It lasts until your next regular-turn start. Selection is not retroactive, and an extra turn neither selects a new stance nor replenishes its spent allowance. Use the complete Aggressive, Guarded, Mobile, Focused or Carrying procedure in the [combat guide](../mechanics/COMBAT_ACTION_PLAYTEST.md#stances); do not assume a neutral default. The choices can change AC, movement, damage or Reaction permission."
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md",
+          "section": "Resolve a scene, regular-turn-start paragraph",
+          "operation": "replace_exact_once",
+          "old": "At a regular turn's start, follow the combat guide's ordered processing: expire start-ending effects, refresh Reaction and tick eligible clocks, process due recovery, make a required death save, then resolve other start effects before voluntary choices. Extra turns do not refresh these regular-turn clocks by themselves. Changing initiative never restarts an existing duration.",
+          "replacement": "At a regular turn's start, follow the combat guide's ordered processing: expire start-ending effects, refresh Reaction and tick eligible clocks, process due recovery, make a required death save, then resolve other start effects before voluntary choices. Extra turns do not refresh these regular-turn clocks by themselves. Changing initiative never restarts an existing duration. After mandatory start processing, prompt the player to choose one stance before the first event that would use its benefit or restriction, or before turn end if no such event occurs. Apply its actual AC, movement, damage and Reaction consequences; do not supply an unprinted neutral stance. Extra turns retain the existing stance and its spent allowances."
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+          "section": "§5 Work through two Bard turns, step 1",
+          "operation": "replace_exact_once",
+          "old": "1. **First turn, Action:** Mira starts Verse of Courage. This first performance gains 1 Crescendo. Her roll 7 + 5 hits AC 12; the d6 shows 4. The enemy falls from 30 to 26 HP. The other ally receives the card's encouragement.",
+          "replacement": "1. **First regular turn, stance then Action:** Mira chooses Mobile before acting. For this example she makes no movement or opportunity attack, so Mobile changes none of the listed AC, Speed, attack or damage values. It grants no free movement. Mira starts Verse of Courage. This first performance gains 1 Crescendo. Her roll 7 + 5 hits AC 12; the d6 shows 4. The enemy falls from 30 to 26 HP. The other ally receives the card's encouragement."
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+          "section": "§5 Work through two Bard turns, step 5",
+          "operation": "replace_exact_once",
+          "old": "5. **Second turn, Action:** Mira pays her last RP for Dissonant Note. RP becomes 0 and its recharge becomes 2. It is the first performance since the damage reset, so Crescendo becomes 1. The enemy's WIS save totals 7 against DC 13 and fails. Its Reaction is unavailable until Mira's next regular-turn start. Assume it is not concentrating; there is no concentration save. It is not Stunned and can still act normally within its other restrictions.",
+          "replacement": "5. **Second turn, stance then Action:** After the automatic start effects in step 4 resolve, Mira chooses Mobile again before acting. She again makes no movement or opportunity attack. Mira pays her last RP for Dissonant Note. RP becomes 0 and its recharge becomes 2. It is the first performance since the damage reset, so Crescendo becomes 1. The enemy's WIS save totals 7 against DC 13 and fails. Its Reaction is unavailable until Mira's next regular-turn start. Assume it is not concentrating; there is no concentration save. It is not Stunned and can still act normally within its other restrictions."
+        }
+      ]
+    },
+    {
+      "id": "NWX-02",
+      "title": "Keep spell repetition history through Retune; reset it at a beneficial long rest",
+      "cases": [
+        "NW-13",
+        "NW-14",
+        "NW-15",
+        "NW-16",
+        "NW-20"
+      ],
+      "earlierRule": "KEEP; teaching amendment only",
+      "governingSources": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md § Recovery bridge and unresolved integration (lines 130–134)",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md, beneficial-rest limits"
+      ],
+      "edits": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/RESONANCE_CHEATSHEET.md",
+          "section": "Recovery, short-rest row",
+          "operation": "replace_exact_once",
+          "old": "| Beneficial completed short rest | Retune once: recover `max(0, round-half-up(maximum RP / 4) + primary RP class casting modifier)`, capped at maximum; clear Dissonance. |",
+          "replacement": "| Beneficial completed short rest | Retune once: recover `max(0, round-half-up(maximum RP / 4) + primary RP class casting modifier)`, capped at maximum; clear Dissonance. Keep the remembered ordinary-spell name and Refrain counter unless an actual class feature expressly resets them. |"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/RESONANCE_CHEATSHEET.md",
+          "section": "Recovery, long-rest row",
+          "operation": "replace_exact_once",
+          "old": "| Beneficial completed long rest | Restore RP to maximum and clear Dissonance. |",
+          "replacement": "| Beneficial completed long rest | Restore RP to maximum, clear Dissonance, clear the remembered ordinary-spell name and reset its Refrain counter to 0. |"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md",
+          "section": "Rest and recovery, Retune paragraph",
+          "operation": "replace_exact_once",
+          "old": "Retune at an eligible short-rest completion restores the amount on the Resonance reference and clears Dissonance. A beneficial long rest restores the RP pool and clears Dissonance. Other resources recover only by their own rules. Rest, healing and leveling are different events; gaining a level does not refill spent resources or current HP.",
+          "replacement": "Retune at an eligible short-rest completion restores the amount on the Resonance reference and clears Dissonance, but keeps the remembered ordinary-spell name and Refrain counter unless an actual class feature expressly resets them. A beneficial completed long rest restores the RP pool, clears Dissonance, clears that remembered name and resets the Refrain counter to 0. Other resources recover only by their own rules. Rest, healing and leveling are different events; gaining a level does not refill spent resources or current HP."
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+          "section": "§8 Recover, then advance only when earned, first paragraph",
+          "operation": "replace_exact_once",
+          "old": "After the party actually reaches a permitted recovery opportunity, a completed beneficial one-hour short rest allows Retune. For Mira, the recovery calculation is **round-half-up(2 ÷ 4) + 3 = 1 + 3 = 4**, capped by the 2-RP maximum. From 0 RP she returns to 2, and Dissonance clears. She gains no spare RP from the excess calculation. Track HP treatment and Hit Dice separately; quoting Retune is not healing. The ordinary limit is two beneficial short rests between beneficial long rests, with one beneficial long rest per 24 elapsed hours.",
+          "replacement": "After the party actually reaches a permitted recovery opportunity, a completed beneficial one-hour short rest allows Retune. For Mira, the recovery calculation is **round-half-up(2 ÷ 4) + 3 = 1 + 3 = 4**, capped by the 2-RP maximum. From 0 RP she returns to 2, and Dissonance clears. She gains no spare RP from the excess calculation. Track HP treatment and Hit Dice separately; quoting Retune is not healing. The ordinary limit is two beneficial short rests between beneficial long rests, with one beneficial long rest per 24 elapsed hours. Retune does not clear Mira's remembered ordinary-spell name or Refrain counter. In the §7 sequence, a short rest after the fifth turn clears Dissonance but leaves Message and its second-repeat history; another legal Message would be the third repeat and add 3 Dissonance. A beneficial completed long rest instead clears the remembered name and resets that counter, so the next legal Message begins a new sequence."
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md",
+          "section": "Teach the current magic configuration, rest paragraph",
+          "operation": "replace_exact_once",
+          "old": "The [Strain guide](../mechanics/STRAIN_PLAYTEST.md) caps beneficial rests: two short rests between beneficial long rests, and one long rest per 24 elapsed hours. Track completion times. An additional safe Rest Watch can clear eligible Rest Debt without granting another resource refill. Rest does not automatically remove Wounds or resolve supply and security questions.",
+          "replacement": "The [Strain guide](../mechanics/STRAIN_PLAYTEST.md) caps beneficial rests: two short rests between beneficial long rests, and one long rest per 24 elapsed hours. Track completion times. An additional safe Rest Watch can clear eligible Rest Debt without granting another resource refill. Rest does not automatically remove Wounds or resolve supply and security questions. Retune clears Dissonance but preserves ordinary-spell repetition history unless a specific feature changes it. A beneficial completed long rest also clears the remembered ordinary-spell name and resets Refrain to 0; a debt-clearing Rest Watch without another permitted beneficial long rest does not supply those resource/history resets."
+        }
+      ]
+    },
+    {
+      "id": "NWX-03",
+      "title": "Complete the player-facing healer-kit stabilization predicate",
+      "cases": [
+        "NW-12",
+        "NW-15",
+        "NW-16",
+        "NW-20"
+      ],
+      "earlierRule": "KEEP; teaching amendment only",
+      "governingSources": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md, introductory use rule and Medicine and alchemy healer-kit row (lines 5–13)",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md, stabilization",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md"
+      ],
+      "edits": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md",
+          "section": "Help someone at zero HP, opening sentence of the stabilization paragraph",
+          "operation": "replace_exact_once",
+          "old": "Use an Action and a DC 10 Wisdom (Medicine) check to stabilize a living dying creature, or an Action and one healer's-kit use for automatic stabilization.",
+          "replacement": "Use an Action and a DC 10 Wisdom (Medicine) check to stabilize a living dying creature under the Core procedure. Alternatively, an Action and one actual healer's-kit charge automatically stabilize an adjacent living dying creature; this requires an available hand and access to the kit under the [item procedures](../mechanics/EQUIPMENT_ITEM_PROCEDURES.md#medicine-and-alchemy). Normal retrieval and hand-occupancy rules still apply. Stabilization alone restores no HP; an actual feature such as Trauma Response supplies only its own additional recovery."
+        }
+      ]
+    },
+    {
+      "id": "NWX-04",
+      "title": "Make the worked intervention premises and Bard notation explicit",
+      "cases": [
+        "NW-04",
+        "NW-06",
+        "NW-09",
+        "NW-10",
+        "NW-11",
+        "NW-20"
+      ],
+      "earlierRule": "KEEP; teaching amendment only",
+      "governingSources": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/BARD_PLAYTEST_v0_1.md §§ At the table; Crescendo and rhythm; Actions, recharge and concentration; Healing, damage and Echoes",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md, ordinary healing and Critical ceiling",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json, shield complete operational record",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md, focus and hands"
+      ],
+      "edits": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+          "section": "§2 Select four Base abilities and four ordinary spells, notation sentence",
+          "operation": "replace_exact_once",
+          "old": "**Performance attack +5; performance DC 13; S = 1 and C = 3.**",
+          "replacement": "**Performance attack +5; performance DC 13; S = 1 song die and C = max(1, Charisma modifier) = 3.** C is the printed-effect Charisma value, not Mira's changing Crescendo stack count."
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+          "section": "§6 Compare three different interventions, Healing paragraph",
+          "operation": "replace_exact_once",
+          "old": "**Healing with 2 RP.** Mira starts Chant of Renewal on a living ally at 3/10 HP within 15 feet. She pays 2 RP, starts concentration and rolls a 4: **4 + C 3 = 7 healing**, bringing the ally to 10 HP. At 0 RP she cannot pay the next turn's 1-RP maintenance. Without a genuine intervening recovery, the Chant ends at that turn's end with no second pulse. The selected feature can offer three pulses; her current resources fund only one. It removes no Wound.",
+          "replacement": "**Healing with 2 RP.** At her regular-turn start in this separate genuine encounter, Mira has 2 RP, 0 Crescendo, no last performance and no concentration. After mandatory start processing, she chooses Mobile before her first performance of the turn. She and the target satisfy the Chant's actual voice, hearing, perception and line-of-effect requirements. The living ally is at 3/10 normal HP within 15 feet, has no Wounds or other healing modifiers/blockers, and has not received Chant of Renewal healing this round. Mira starts the Chant, pays 2 RP, starts concentration and rolls a 4: **4 + C 3 = 7 healing**, bringing the ally to 10 HP. Starting gains the one eligible Crescendo stack, not a five-stack rider. At 0 RP she cannot pay the next turn's 1-RP maintenance. Without a genuine intervening recovery, the Chant ends at that turn's end with no second pulse. The selected feature can offer three pulses; her current resources fund only one. This is no Wound treatment, free Echo or reset of the preceding encounter."
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+          "section": "§6 Compare three different interventions, Shield paragraph",
+          "operation": "replace_exact_once",
+          "old": "**Preventing a hit with 2 RP and an available Reaction.** When Mira becomes the legal target of an attack, she can commit Shield before that attack resolves, using her available components and flute focus. AC becomes 18. An attack total of 15 then misses. RP becomes 0, and a first ordinary rank-1 cast adds 1 Dissonance. Shield expires at her next regular-turn start. Casting it after HP has already been lost would be too late. A previously spent Reaction would also prevent activation.",
+          "replacement": "**Preventing a hit with 2 RP and an available Reaction.** In this separate fixture, Mira is in Mobile stance and has 2 RP, 0 Dissonance, no remembered ordinary spell and an available Reaction, with no condition barring the cast. Before the trigger, her flute is already held in a hand containing no other object; she can provide V and use that hand for S/F. This does not grant a free off-turn draw. When Mira becomes the legal target of an attack, she can commit Shield before that attack resolves. AC becomes 18. An attack total of 15 then misses. RP becomes 0, and a first ordinary rank-1 cast adds 1 Dissonance. Shield expires at her next regular-turn start. Casting it after HP has already been lost would be too late. A previously spent Reaction, an applicable Reaction prohibition, missing components or only 1 RP would prevent activation. Keep the spell's actual trigger; this example does not introduce an outside game's casting window."
+        }
+      ]
+    },
+    {
+      "id": "NWX-05",
+      "title": "Carry forward the fulfilled recipe gate in active teaching/navigation text",
+      "cases": [
+        "NW-16",
+        "NW-19",
+        "NW-20"
+      ],
+      "earlierRule": "KEEP; teaching amendment only",
+      "governingSources": [
+        "docs/audit/2026-10-08/full-game/ADVANCED_167_EXACT_PROMOTION_RECEIPT.json",
+        "docs/audit/2026-10-08/full-game/ADVANCED_PROMOTION_NAVIGATION_RECEIPT.json",
+        "START_HERE.md, current recipe totals",
+        "Current completion notice"
+      ],
+      "edits": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md",
+          "section": "Keep the expedition and records coherent, crafting paragraph",
+          "operation": "replace_exact_once",
+          "old": "The remaining advanced recipes and the full expedition/Haven loop retain their review gates.",
+          "replacement": "All 687 recipes, including all 433 public recipes, have completed their authored-operational review gates in their stated scopes. Actual ingredient availability, particular-operation prerequisites, runtime and human balance remain separate; the full expedition/Haven integration and final whole-game flow gates are still open. Do not reopen the fulfilled gathering or advanced-recipe review merely because preserved preparation packets call them pending."
+        },
+        {
+          "path": "START_HERE.md",
+          "section": "Current completion picture, recipe-pass paragraph",
+          "operation": "replace_exact_once",
+          "old": "The current recipe pass includes Alchemy, Herbalism, Cooking, Poisoncrafting, Blacksmithing, Leatherworking, Tailoring, Jewelcrafting, Fishing, Mining, Skinning and Salvaging.",
+          "replacement": "The completed recipe review covers all 16 trades: Alchemy, Blacksmithing, Cooking, Enchanting, Fishing, Herbalism, Jewelcrafting, Leatherworking, Mining, Poisoncrafting, Rune Carving, Salvaging, Scribing, Skinning, Tailoring and Tinkering."
+        }
+      ]
+    },
+    {
+      "id": "NWX-06",
+      "title": "Distinguish the expedition charter from the player-promise charter",
+      "cases": [
+        "NW-17",
+        "NW-20"
+      ],
+      "earlierRule": "KEEP; teaching amendment only",
+      "governingSources": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md §4 Expedition objectives and abort conditions (lines 111–125)",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DESIGN_DOCTRINE.md",
+        "docs/audit/2026-10-08/full-game/EXPEDITION_HAVEN_FLOW_SOURCE_AUDIT.md"
+      ],
+      "edits": [
+        {
+          "path": "docs/audit/2026-10-08/full-game/DESIGN_CHARTER_CANDIDATE.md",
+          "section": "Opening synthesis, third paragraph beginning A successful withdrawal",
+          "operation": "replace_exact_once",
+          "old": "The charter's casualty, reserve-supply and return-time limits make those choices concrete.",
+          "replacement": "The party's expedition charter records its casualty, reserve-Supply and latest-return limits. Those expedition-specific thresholds make withdrawal choices concrete; this player-promise charter supplies no new numerical limits or independent withdrawal procedure."
+        }
+      ]
+    }
+  ],
+  "caseDispositions": [
+    {
+      "id": "NW-01",
+      "disposition": "KEEP",
+      "assessment": "Session Zero: all six steps and twelve agreement rows provide pause/skip/private communication, cooperative-PvP consent, absence permission, accessibility and no demanded personal explanation. Table consent does not waive fictional components or costs."
+    },
+    {
+      "id": "NW-02",
+      "disposition": "KEEP creation; NWX-01 for turn instruction",
+      "assessment": "The seven creation steps and source-specific class schedules grant no extra feature. The missing required turn stance is now explicit; no class is promoted by being linked."
+    },
+    {
+      "id": "NW-03",
+      "disposition": "KEEP",
+      "assessment": "Mira: STR11 DEX15 CON15 INT13 WIS10 CHA16; HP10, PB2, RP2; seven distinct skills, DEX/CHA saves, five tool proficiencies and Common/Dwarvish literacy match the actual selected records."
+    },
+    {
+      "id": "NW-04",
+      "disposition": "KEEP numbers/access; NWX-04 notation",
+      "assessment": "Four eligible Base actives are separate from the two cantrips and two rank-1 spells. S1, printed C3, +5 attacks/DC13 and Limit7 are correct. C is not Crescendo. No later Bard grant moves to level1."
+    },
+    {
+      "id": "NW-05",
+      "disposition": "KEEP",
+      "assessment": "50.5+8.3=58.8lb; pack contents22.5lb, pouch contents0.3lb, 5.88Load against11, Burden threshold5.5, Speed20. Both shape/volume and weight remain real prerequisites, not demonstrated physical packing."
+    },
+    {
+      "id": "NW-06",
+      "disposition": "KEEP equipment mechanics; NWX-01/04 complete use state",
+      "assessment": "Leather AC13, dagger +4/1d4+2 and20/60 range match. Bard focus and same-cast S/F hand are legal; the revised Shield fixture already holds the flute and grants no off-turn retrieval."
+    },
+    {
+      "id": "NW-07",
+      "disposition": "KEEP",
+      "assessment": "Perception uses Core task degrees/natural shifts; Verse uses attack/AC and natural criticals; Note uses the actual binary save. Beating AC by10 is not an attack critical."
+    },
+    {
+      "id": "NW-08",
+      "disposition": "NWX-01; KEEP all numerical transitions",
+      "assessment": "Declare Mobile on each regular turn at the specified times. Verse/Echo/3 damage/next-start Echo/Note preserves the submitted HP, RP, rhythm, recharge and target histories."
+    },
+    {
+      "id": "NW-09",
+      "disposition": "KEEP; NWX-04 explicit supplemental premises",
+      "assessment": "The enemy and ally values are declared examples, not new bestiary facts. Genuine encounter predicates prevent rehearsal stockpiling; the two-turn excerpt never establishes whole-encounter or expedition success."
+    },
+    {
+      "id": "NW-10",
+      "disposition": "NWX-04",
+      "assessment": "The 3/10-to10 Chant result needs a clean healing-state premise. No Wounds, blockers, modifiers or prior same-round Chant benefit is assumed implicitly. Paid later maintenance, one concentration slot and no free Echo remain."
+    },
+    {
+      "id": "NW-11",
+      "disposition": "NWX-04; KEEP selected Shield procedure",
+      "assessment": "With2RP, legal V/S/F and available permitted Reaction,13→18AC and first-cast Dissonance1 are correct.1RP cannot pay. Use the actual before-resolution trigger, not an imported pre-roll requirement."
+    },
+    {
+      "id": "NW-12",
+      "disposition": "KEEP Mira aid; NWX-03 general summary",
+      "assessment": "Mira already requires adjacent living dying target, actual kit/charge/Action/hand and permitted recovery. Stabilization then Trauma Response1HP clears dying counters, not Wounds/Prone/death or other unconsciousness causes."
+    },
+    {
+      "id": "NW-13",
+      "disposition": "KEEP sequence; NWX-02 rest continuation",
+      "assessment": "Mage Light→Message→Message→quiet turn→Message gives0/0/1/0/2 Dissonance. Idle retains repetition; ordinary cantrips give no Crescendo. Retune does not restart the sequence."
+    },
+    {
+      "id": "NW-14",
+      "disposition": "NWX-02; KEEP arithmetic/advancement",
+      "assessment": "Retune raw4 capped at2; resource-rest limits persist. Bard2 maxima17HP/3RP do not heal/refill current amounts; add only the new unspent Hit Die. Arch3/Hero10 remain later stages."
+    },
+    {
+      "id": "NW-15",
+      "disposition": "NWX-01/02/03; KEEP native rules",
+      "assessment": "Director start, damage/Wound/death ordering and Oracle RC schedule remain correct. Complete stance, history-reset and kit-access teaching; do not imply these reference checks execute an encounter runtime."
+    },
+    {
+      "id": "NW-16",
+      "disposition": "NWX-01/02/03/05 and bounded navigation condition",
+      "assessment": "The contained entry path and Mira dependencies are available. Replace active stale recipe status. Optional omitted repository links need the finite link check described in the verdict, not a reopened source queue."
+    },
+    {
+      "id": "NW-17",
+      "disposition": "KEEP source synthesis with NWX-06",
+      "assessment": "Doctrine priorities and encounter/Watch/Haven/withdrawal summary are source-grounded. Name the expedition charter explicitly; calibration is not observed probability and no unresolved flow case or setting branch is settled."
+    },
+    {
+      "id": "NW-18",
+      "disposition": "KEEP",
+      "assessment": "Actual Base/Arch/Hero schedules, announced milestones, separate optional XP and spent-state continuity are retained. No unearned progress, automatic healing or guaranteed survival is promised."
+    },
+    {
+      "id": "NW-19",
+      "disposition": "KEEP",
+      "assessment": "Session duration, breaks, attendance, consent and tone are table choices. No fixed real-world session count, human teaching/balance evidence, runtime certification or whole-game completion is claimed."
+    },
+    {
+      "id": "NW-20",
+      "disposition": "CONDITIONAL ACCEPT after NWX-01–06 and finite receipt",
+      "assessment": "The six texts provide an authored entry path. Accept corrected teaching drafts without a new generic conference when the named text/preservation/focused checks pass. DD-01 final systemic consistency remains open."
+    }
+  ],
+  "editorialDryRun": {
+    "scope": "Exact unique-anchor replacements in memory only, not revised-file approval or game runtime",
+    "checks": [
+      {
+        "id": "NWX-01.1",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-01.2",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-01.3",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-01.4",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-02.1",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/RESONANCE_CHEATSHEET.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-02.2",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/RESONANCE_CHEATSHEET.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-02.3",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-02.4",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-02.5",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-03.1",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-04.1",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-04.2",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-04.3",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-05.1",
+        "path": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-05.2",
+        "path": "START_HERE.md",
+        "uniqueAnchor": true,
+        "pass": true
+      },
+      {
+        "id": "NWX-06.1",
+        "path": "docs/audit/2026-10-08/full-game/DESIGN_CHARTER_CANDIDATE.md",
+        "uniqueAnchor": true,
+        "pass": true
+      }
+    ],
+    "failed": 0
+  },
+  "conditionalAuthority": "Apply only the named corrections, preserve original bytes, run the finite checks and record the version-bound fulfillment receipt. Accept the six corrected authored teaching manuscripts without another generic source conference. No class/spell/feat/recipe promotion or DD-01 closure is authorized."
+}

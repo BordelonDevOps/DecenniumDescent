@@ -1,0 +1,44 @@
+[
+  {
+    "command": "C:\\Python\\python.exe tools/validate_magic_system.py",
+    "returncode": 0,
+    "stdout": "PASS spells=848 placements=936 varied_acquisition=619 classes=17\n",
+    "stderr": ""
+  },
+  {
+    "command": "node --no-warnings tools/validate_class_abilities.mjs",
+    "returncode": 0,
+    "stdout": "PASS classes=17 core=17 feats=335 oaths=10 mysteries=10 curses=10\n",
+    "stderr": ""
+  },
+  {
+    "command": "C:\\Python\\python.exe tools/validate_public_canon.py",
+    "returncode": 0,
+    "stdout": "PASS public-canon-boundary bestiary=65 tiers<=6 crafting=public\n",
+    "stderr": ""
+  },
+  {
+    "command": "C:\\Python\\python.exe tools/validate_gameplay_loop.py",
+    "returncode": 0,
+    "stdout": "Gameplay loop validation: PASS - preparation -> descent -> extraction -> Haven -> one decennial Opening\n",
+    "stderr": ""
+  },
+  {
+    "command": "C:\\Python\\python.exe playtests/ai-calibration-suite/tools/preflight.py",
+    "returncode": 0,
+    "stdout": "PASS spells=848 placements=936 varied_acquisition=619 classes=17\nPASS classes=17 core=17 feats=335 oaths=10 mysteries=10 curses=10\nPASS public-canon-boundary bestiary=65 tiers<=6 crafting=public\nGameplay loop validation: PASS - preparation -> descent -> extraction -> Haven -> one decennial Opening\nPrestige snapshot validation: PASS - 18 paths\nGameplay state validation: PASS - roster, Rest Debt, action, extraction, Haven guards present\n{\n  \"release\": \"V7.2\",\n  \"profiles\": 68,\n  \"packs\": 20,\n  \"sourceHashes\": \"source-hashes.json\",\n  \"sourceMutationAllowed\": false\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "C:\\Python\\python.exe tools/validate_prestige_snapshot.py",
+    "returncode": 0,
+    "stdout": "Prestige snapshot validation: PASS - 18 paths\n",
+    "stderr": ""
+  },
+  {
+    "command": "C:\\Python\\python.exe tools/validate_gameplay_state.py",
+    "returncode": 0,
+    "stdout": "Gameplay state validation: PASS - roster, Rest Debt, action, extraction, Haven guards present\n",
+    "stderr": ""
+  }
+]

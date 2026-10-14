@@ -1,0 +1,135 @@
+{
+  "reviewId": "TEX-EXACT-2026-10-11",
+  "scope": "One existing-rule reconciliation (TEX-01) and presentation completions (TEX-02–04); no new gameplay rule/card promotion.",
+  "operations": [
+    {
+      "id": "TEX-01.1",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md",
+      "jsonPointer": null,
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "6986ed6bee0e88a1f5308bba534ebb0c2538d21c9ee3fc61e7c462246ac2fd60",
+      "before": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device, after its genuine enemy destruction and the feature's real one-minute/once-per-short-rest salvage procedure. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+      "replacement": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device. Enemy cause is not required. Its actual card and lifecycle rules still exclude deliberate sacrifice, copied devices, spent debris and prohibited resource-generation branches. After combat, use its real one-minute salvage procedure and once-per-short-rest allowance, consuming that device’s qualifying usable debris. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+      "sourceLocation": "outer submitted payload",
+      "line": 181
+    },
+    {
+      "id": "TEX-01.2",
+      "path": "DescentReviewChanges/ReviewBible/data/crafting/advanced_craft_recipe_candidate_public.json",
+      "jsonPointer": "/operatingGuideText",
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "718e7b849d38598a29ce2f34983733c5a3ea2fed2e9aaa62defb3f0f52b00f95",
+      "before": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device, after its genuine enemy destruction and the feature's real one-minute/once-per-short-rest salvage procedure. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+      "replacement": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device. Enemy cause is not required. Its actual card and lifecycle rules still exclude deliberate sacrifice, copied devices, spent debris and prohibited resource-generation branches. After combat, use its real one-minute salvage procedure and once-per-short-rest allowance, consuming that device’s qualifying usable debris. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+      "sourceLocation": "outer submitted payload",
+      "line": null
+    },
+    {
+      "id": "TEX-01.3",
+      "path": "DescentReviewChanges/ReviewBible/data/director/advanced_craft_recipe_candidate_internal.json",
+      "jsonPointer": "/tinkerInterfaceRegister/cards/31/authoringDisposition",
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "e200829356160960cac6bebc033245272df34b16a01f334a722a629f84230e9e",
+      "before": "Ordinary deployment of all43 crafted items paid0RP; later activation/repair RP and GP price are not deployment credits. TD-13.",
+      "replacement": "Ordinary deployment of all43 crafted items paid0RP; later activation/repair RP and GP price are not deployment credits. TD-13 applies with TC-RECYCLING-01 / TEX-01: enemy cause is not required for Efficient Recycling. Keep its actual owned-device, non-copy, non-sacrifice, one-minute postcombat, once-per-short-rest and single-consumer debris requirements, including the lifecycle's prohibited resource-generation and no-own-destruction-chain branches. No class-card status or recipe permission is changed.",
+      "sourceLocation": "included immutable low-rank exact ZIP; hashes also match advanced review status",
+      "line": null
+    },
+    {
+      "id": "TEX-01.4",
+      "path": "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md",
+      "jsonPointer": null,
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "63ad1ba77cac748207a6d68c7d359d7efa14825d4aee374a8318215fedf0d69a",
+      "before": "Efficient Recycling's eligibility wording is awaiting a focused reconciliation; do not use this sheet to settle that separate issue.",
+      "replacement": "Efficient Recycling does not require enemy cause. When the feature is actually acquired, its one-minute postcombat use and once-per-short-rest allowance can refund at most min(1 RP, the RP actually paid to deploy that same owned device), consuming its qualifying usable debris once. Deliberate sacrifice, copied devices, previously consumed debris and prohibited resource-generation or no-own-destruction-chain branches remain excluded. GP construction, service, activation and repair costs are not deployment RP. Other debris consumers retain their own enemy-cause or enemy-hit requirements; use the [source-specific lifecycle predicates](../mechanics/DEVICE_LIFECYCLE_PLAYTEST.md#destruction-debris-and-source-specific-opportunities).",
+      "sourceLocation": "outer submitted payload",
+      "line": 161
+    },
+    {
+      "id": "TEX-02.1",
+      "path": "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md",
+      "jsonPointer": null,
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "63ad1ba77cac748207a6d68c7d359d7efa14825d4aee374a8318215fedf0d69a",
+      "before": "**Blood Gauge maximum: 3; 6 with Spill Control.**",
+      "replacement": "**Blood Gauge maximum: 3; 6 with acquired Spill Control, or automatically at Crimson Agent 9.** Spill Control can provide capacity 6 earlier but never raises it above 6. The automatic capacity increase does not itself grant Blood Gauge or refill the current amount.",
+      "sourceLocation": "outer submitted payload",
+      "line": 61
+    },
+    {
+      "id": "TEX-02.2",
+      "path": "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md",
+      "jsonPointer": null,
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "63ad1ba77cac748207a6d68c7d359d7efa14825d4aee374a8318215fedf0d69a",
+      "before": "Track each totem's duration and the shared concentration burden. Renewal costs 2 RP to start, then 1 RP and a Bonus Action on each of the next two turns for three pulses: 4 RP total. Other totem auras have no automatic Renewal upkeep. Moving a totem competes for your Bonus Action; crossing the same creature repeatedly does not renew its once-per-round benefit. Destruction refunds nothing by default.",
+      "replacement": "**Totem capacity is 1, becoming 2 at Shaman 13.** An ordinary new Totem placed at capacity replaces one chosen active Totem; an optional Echo requires its own free capacity and does not evict a Totem. Ending, replacing, destroying or expiring a parent ends its dependent Echo and releases their occupied capacities; administrative Echo ending is not another destruction reward. Track each totem's duration and the shared concentration burden. Renewal costs 2 RP to start, then 1 RP and a Bonus Action on each of the next two turns for three pulses: 4 RP total. Other totem auras have no automatic Renewal upkeep. Moving a totem competes for your Bonus Action; crossing the same creature repeatedly does not renew its once-per-round benefit. Destruction refunds nothing by default. Use the [capacity and dependent-Echo rules](../mechanics/DEVICE_LIFECYCLE_PLAYTEST.md#capacity-placement-and-dependent-totems).",
+      "sourceLocation": "outer submitted payload",
+      "line": 137
+    },
+    {
+      "id": "TEX-03.1",
+      "path": "DescentReviewChanges/ReviewBible/docs/playtest/PLAYTEST_TERMS_GLOSSARY.md",
+      "jsonPointer": null,
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "7d981c6b6bd2f9583727e554252f7d71865d3f345425418c7a61f3d35bc188a0",
+      "before": "| Task, skill or tool check | Uses the task procedure and its four outcome degrees. If the task provides only success/failure effects, use those effects without inventing extra critical consequences. | [Core resolution](../mechanics/CORE_RESOLUTION_PLAYTEST.md#rolls) |",
+      "replacement": "| Task, skill or tool check | Default Core task checks use four outcome degrees and natural-1/20 shifts; when only success/failure effects are provided, collapse those degrees. An explicit exception controls instead: manufacturing uses its six bands, while basic mundane dismantling is binary with no natural-die shifts. Do not import one route's critical benefits into another. | [Core resolution](../mechanics/CORE_RESOLUTION_PLAYTEST.md#rolls), [crafting and dismantling exceptions](../mechanics/CRAFTING_HARVEST_PLAYTEST.md) |",
+      "sourceLocation": "outer submitted payload",
+      "line": 27
+    },
+    {
+      "id": "TEX-04.1",
+      "path": "DescentReviewChanges/ReviewBible/docs/playtest/CHARACTER_SHEET_PLAYTEST.md",
+      "jsonPointer": null,
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "446f472cec1efafb4e0ac68d1c01d8a02481ac534631da8640666ec2b84d5c47",
+      "before": "Record the actual encounter and numbered round, regular-turn marker, initiative, root body, current form, size, space and movement. Use one legal AC calculation and its eligible bonuses, keeping suppressed or inaccessible equipment separate. The [combat procedures](../mechanics/COMBAT_ACTION_PLAYTEST.md), [body/equipment rules](../mechanics/BODY_EQUIPMENT_PLAYTEST.md) and exact source effects govern those values.",
+      "replacement": "Record the actual encounter and numbered round, regular-turn marker, initiative, root body, current form, size, space and movement. Use one legal AC calculation and its eligible bonuses, keeping suppressed or inaccessible equipment separate. The [combat procedures](../mechanics/COMBAT_ACTION_PLAYTEST.md), [body/equipment rules](../mechanics/BODY_EQUIPMENT_PLAYTEST.md) and exact source effects govern those values.\n\nRecord the required **Core combat stance** in an existing page-2 active-effects row: its name and source, the character who chose it, its restrictions and spent allowances, and its ending at that character's next regular-turn start. Choose one during each regular turn before the first event to which a stance benefit or restriction applies; if no such event occurs, choose it before that turn ends. An extra turn grants neither another choice nor refreshed stance allowances. There is no implicit neutral stance. Keep this record distinct from a Monk's separate class stance. The existing effects rows or a linked continuation record suffice; this adds no PDF field or new stance rule. Follow the [five actual combat stances](../mechanics/COMBAT_ACTION_PLAYTEST.md#stances).",
+      "sourceLocation": "outer submitted payload",
+      "line": 21
+    },
+    {
+      "id": "TEX-04.2",
+      "path": "DescentReviewChanges/ReviewBible/docs/playtest/COMPANION_COMMAND_WALKTHROUGH.md",
+      "jsonPointer": null,
+      "kind": "replace-exact-once",
+      "beforeFileSha256": "095e3b2daceb6515b135f9430fa25b5a70df9615e2a3bc1f0dca0572a4d0ba59",
+      "before": "A genuine hostile encounter begins. The example enemy has **AC 12, 30 HP and no relevant defenses**; these are illustrative inputs, not a new bestiary entry or a balance recommendation. On each listed regular turn, Ilan has an available Bonus Action, his chosen subject is within 60 feet with the actual configured communication channel available, and the legal target is reachable through the subject's real movement/range. No terrain, condition or feature changes the listed rolls.",
+      "replacement": "A genuine hostile encounter begins. The example enemy has **AC 12, 30 HP and no relevant defenses**; these are illustrative inputs, not a new bestiary entry or a balance recommendation. On each listed regular turn, Ilan has an available Bonus Action, his chosen subject is within 60 feet with the actual configured communication channel available, and the legal target is reachable through the subject's real movement/range. No terrain, condition or feature changes the listed rolls. Ilan chooses **Mobile** during each listed regular turn, after its automatic start events and before his first applicable action, movement or check. Record its ending at his next regular-turn start and retain that choice and its spent allowances across any extra turn. No opportunity attack or other stance-dependent numerical event occurs in this fixture; Mobile adds no bonus to his companions' attacks, repair or service.",
+      "sourceLocation": "outer submitted payload",
+      "line": 29
+    }
+  ],
+  "operationCount": 9,
+  "erratumArtifact": "TC_RECYCLING_01_CONTROLLING_ERRATUM.md",
+  "erratumRepositoryPath": "docs/audit/2026-10-08/full-game/TC_RECYCLING_01_CONTROLLING_ERRATUM.md",
+  "archivedTD13Replacement": "KEEP your own destroyed device, one minute after combat, once per short rest, consume its qualifying usable debris and return at most1RP actually paid to **deploy that same device**. Enemy cause is **not required** for Efficient Recycling. Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. A quoted recipe value does not create paid RP; retain the actual deployment transaction and its paid amount. Deliberate sacrifice, copied objects, already-consumed debris, prohibited resource-generation branches and applicable no-own-destruction-chain restrictions remain excluded. Use only the original instance's qualifying single-consumer material; no repeated salvage or reconstructed-instance refresh. Do not transfer this ruling to Scrap Salvage, Scrap Reaper, Volatile Components or another feature with its own hostile-cause or enemy-hit predicate. No unspecified material salvage percentage is added by the class's legacy name.",
+  "administrativeFulfillment": {
+    "scope": "Only after actual correction fulfillment; no other area or catalog closure. Preserve old records and append new receipt/history.",
+    "coverageOriginalIssue": "Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate.",
+    "coverageResolution": "TC-RECYCLING-01 resolved by TEX-EXACT-2026-10-11 / TEX-01: Efficient Recycling does not require enemy cause. Actual owned-device, non-copy/non-sacrifice, one-minute postcombat, once-per-short-rest, actual deployment-RP and single-consumer debris requirements remain, including prohibited resource-generation branches. The corrected derived guide/envelope is recorded in the fulfillment receipt. Other recipe, device, human/runtime and whole-game scopes are unchanged.",
+    "coverageJsonPath": "DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+    "coverageOldPointers": [
+      "/aspects/9/openIssues/4",
+      "/aspects/29/openIssues/11",
+      "/aspects/35/openIssues/10",
+      "/aspects/63/openIssues/9",
+      "/aspects/66/openIssues/7"
+    ],
+    "coverageProcedure": "For each listed aspect, copy the exact old issue and the resolution into resolvedInterfaceIssues as an object with id TC-RECYCLING-01, priorText and resolution; remove only that copied entry from openIssues. Keep every other issue, source and area status. In the derived GAME_DEVELOPMENT_COVERAGE.md replace the five exact old issue strings with coverageResolution; do not alter any other prose or status.",
+    "advancedStatusPath": "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_REVIEW_STATUS.json",
+    "advancedStatusProcedure": "Append a subsequentInterfaceErrata entry naming TC-RECYCLING-01, TEX-01 and the actual new fulfillment receipt with its measured hash. Add the measured changed-current-artifact hashes inside that new entry; retain all original artifactHashes, authority, AEX conditions, counts and receipt hashes unchanged.",
+    "historyPreserved": [
+      "GPT_ADVANCED_167_SOURCE_AUTHORING_VERDICT.md",
+      "CROSS_GUIDE_EFFICIENT_RECYCLING_CONFLICT.json",
+      "ADVANCED_167_EXACT_PROMOTION_RECEIPT.json"
+    ],
+    "recipeArraysMustBeEqual": true,
+    "classCardObjectsMustBeEqual": true,
+    "newRuntimeApproval": false
+  },
+  "blankPdfChanged": false,
+  "pdfFieldCount": 364
+}

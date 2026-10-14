@@ -1,0 +1,386 @@
+{
+  "generatedAt": "2026-07-29",
+  "continuityPass": "2026-07-29",
+  "strategy": "TTRPG-first; rulebook/lorebook is canon; no SWTOR/Unity in product path",
+  "sourceInventory": {
+    "rulebook": [
+      "decennium descent player rulebook.docx",
+      "rulebook_output.txt"
+    ],
+    "characters": [
+      "Backgrounds.docx",
+      "Decennium_Descent_Finalized_Racial_Abilities_and_Feats.docx",
+      "Decennium_Prestige_Classes.docx",
+      "Paladin_Class_Overview.docx",
+      "Paladin_Oaths_Core.docx",
+      "Paladin_Oaths_Oathbreaker_Revised.docx",
+      "Druid_Shapeshifting_System.docx"
+    ],
+    "feats": [
+      "Decennium_Descent_330_Feat_Compendium.docx",
+      "Decennium_Descent_Feats.docx",
+      "Decennium_Descent_Combat_Feats.docx",
+      "Decennium_Descent_Magic_Feats.docx",
+      "Decennium_Descent_Skill_Feats.docx",
+      "feat_compendium_output.txt",
+      "additional-feats.js"
+    ],
+    "spells": [
+      "Abjuration_Spell_List.docx",
+      "Conjuration_Spell_List.docx",
+      "Divination_Spell_List.docx",
+      "Enchantment_Spell_List.docx",
+      "Evocation_Spell_List.docx",
+      "Illusion_Spell_List.docx",
+      "Necromancy_Spell_List.docx",
+      "Transmutation_Spell_List.docx",
+      "Universal_Spell_List.docx",
+      "abjuration_school_rebalanced.md",
+      "conjuration_school_rebalanced.md",
+      "divination_school_rebalanced.md",
+      "enchantment_school_rebalanced.md",
+      "evocation_school_spells_expanded.md",
+      "illusion_school_rebalanced.md",
+      "necromancy_school_spells_expanded.md",
+      "transmutation_school_spells_expanded.md",
+      "universal_school_spells_expanded.md",
+      "class_spell_school_mapping.csv"
+    ],
+    "bestiary": [
+      "final_bestiary.xlsx",
+      "bestiary_data.json"
+    ],
+    "dungeon": [
+      "Floor Encounters.docx",
+      "floor_encounters_actual.txt",
+      "floor_encounters_content.txt",
+      "floor_encounters_final.txt",
+      "floor_encounters_output.txt"
+    ],
+    "crafting": [
+      "decennium_descent_crafting_recipes_validated.xlsx",
+      "temp_crafting_recipes.xlsx"
+    ],
+    "cosmology": [
+      "The Cosmology of Decennium Descent.docx",
+      "The_Cosmology_of_Decennium_Descent_EXTRACT.txt",
+      "temp_cosmology.docx",
+      "temp_cosmology_EXTRACT.txt",
+      "The_World_of_Aethel_Lore.docx",
+      "The_World_of_Aethel_Lore_EXTRACT.txt"
+    ],
+    "legacyUnwired": [
+      "game-data.js",
+      "ENHANCED-FEATURES.JS",
+      "COSMOLOGY-VIEWER.JS",
+      "script.js",
+      "webpage.html"
+    ],
+    "ingestScripts": [
+      "scripts/ingest-data.mjs",
+      "scripts/reparse-crafting.mjs",
+      "scripts/parse-encounters.js"
+    ]
+  },
+  "liveDataSummary": {
+    "feats": 336,
+    "spells": 832,
+    "canonClasses": 17,
+    "classesInBuilder": 17,
+    "classesInClassDetails": 18,
+    "classesOrphanReference": 1,
+    "canonClassesSource": "rulebook_output.txt Classes Table (861-877)",
+    "rulebookProseNote": "Rulebook prose says eighteen; product uses 17-row Classes Table (user confirmed 2026-07-29).",
+    "prestigePaths": 18,
+    "backgrounds": 20,
+    "builderRaces": 14,
+    "racialVariants": 42,
+    "bestiaryMonsters": 718,
+    "craftingRecipes": 623,
+    "encounterTiers": 10,
+    "cosmologyPlanes": 7
+  },
+  "gaps": [
+    {
+      "id": "classes-monk-dragoon-builder",
+      "category": "classes",
+      "gap": "Monk and Dragoon have full rulebook chapters and entries in class-details/class-paths/class-draft-levels, but are absent from the Character Builder class picker (15 classes only).",
+      "sourceFile": "rulebook_output.txt",
+      "status": "ok",
+      "priority": "high",
+      "draft": false,
+      "resolvedNote": "Monk and Dragoon in CharacterBuilder classes array (17 classes total, 2026-07-29)."
+    },
+    {
+      "id": "classes-paladin-oaths",
+      "category": "classes",
+      "gap": "Paladin Sacred Oath system (10 oaths: Mercy, Vengeance, Dominion, Flame, Ancients, Silence, Chain, Grief, Chains Broken, Martyr King) exists in rulebook and Paladin_Oaths_*.docx but is not modeled in src/data or selectable in UI.",
+      "sourceFile": "Paladin_Oaths_Core.docx",
+      "status": "partial",
+      "priority": "high",
+      "draft": true,
+      "resolvedNote": "src/data/paladin-oaths.js + CharacterBuilder/Sheet oath selector. Grief approved; Mercy + 8 oaths draft revelation lists pending docx author review."
+    },
+    {
+      "id": "classes-oracle-mysteries",
+      "category": "classes",
+      "gap": "Oracle mysteries: 10 named in rulebook; only Ancestor has full tier tree in rulebook. Nine others need playable revelation bodies.",
+      "sourceFile": "rulebook_output.txt",
+      "status": "partial",
+      "priority": "high",
+      "draft": true,
+      "resolvedNote": "All 10 mysteries wired in oracle-mysteries.js with full tier trees. Ancestor rulebook canon; Battle–Time Aethel draft (draft: true). Character Builder + Sheet pickers. Author review to promote drafts."
+    },
+    {
+      "id": "classes-oracle-curses",
+      "category": "classes",
+      "gap": "Oracle curses: 10 named in rulebook; only Spiral-Touched has full boon tree in rulebook. Nine others need playable curse bodies.",
+      "sourceFile": "rulebook_output.txt",
+      "status": "partial",
+      "priority": "high",
+      "draft": true,
+      "resolvedNote": "All 10 curses wired in oracle-curses.js with full boon trees. Spiral-Touched rulebook canon; nine Aethel draft (draft: true). Character Builder + Sheet pickers. Author review to promote drafts."
+    },
+    {
+      "id": "classes-paths-druid-oracle-paladin",
+      "category": "classes",
+      "gap": "class-paths.js has arch/hero skill trees for 14 classes but omits Druid, Oracle, and Paladin despite rulebook L3–9 / L10+ sections for those classes.",
+      "sourceFile": "rulebook_output.txt",
+      "status": "ok",
+      "priority": "high",
+      "draft": false,
+      "resolvedNote": "Druid Circles, Oracle Mystery progression framework, Paladin Oath progression in class-paths.js + dedicated modules (2026-07-29)."
+    },
+    {
+      "id": "classes-druid-shapeshift",
+      "category": "classes",
+      "gap": "Druid_Shapeshifting_System.docx (Arch Druid Forms, circle tables, CR progression) is not ingested. class-details lists Wild Shape milestones only at summary level.",
+      "sourceFile": "Druid_Shapeshifting_System.docx",
+      "status": "partial",
+      "priority": "high",
+      "draft": true,
+      "resolvedNote": "src/data/druid-shapeshifting.js + CharacterBuilder circle/form UI. Session tracker filters still unwired."
+    },
+    {
+      "id": "classes-levels-draft",
+      "category": "classes",
+      "gap": "class-draft-levels.js fills L11–20 for 12 classes with draft: true flags. Oracle, Paladin, and Cleric upper tiers still sparse or missing compared to rulebook.",
+      "sourceFile": "src/data/class-draft-levels.js",
+      "status": "partial",
+      "priority": "high",
+      "draft": true,
+      "suggestedAction": "Author review of draft milestones; replace with rulebook tables where they exist."
+    },
+    {
+      "id": "classes-swashbuckler-canonicality",
+      "category": "classes",
+      "gap": "Swashbuckler appears in class-details.js but has no matching rulebook chapter header; may be legacy or renamed Thief arch path. Risk of non-canon content in product.",
+      "sourceFile": "rulebook_output.txt",
+      "status": "ok",
+      "priority": "high",
+      "draft": false,
+      "resolvedNote": "Follow Classes Table: Swashbuckler not selectable. Orphan reference retained in class-details.js with comment; CANON_CLASSES + canon-classes.js is source of truth for UI (2026-07-29)."
+    },
+    {
+      "id": "classes-fighter-rulebook",
+      "category": "classes",
+      "gap": "Rulebook references Fighter in party examples and starting gold tables but Fighter is not in the 17-class Classes Table (Warrior/Soldier cover martial roles).",
+      "sourceFile": "rulebook_output.txt",
+      "status": "ok",
+      "priority": "med",
+      "draft": false,
+      "resolvedNote": "Follow Classes Table: Fighter not added to builder. Full rulebook chapter kept as archive/reference only; prestige.js maps Fighter reqs to Warrior (2026-07-29)."
+    },
+    {
+      "id": "dungeon-gate-bosses",
+      "category": "dungeon",
+      "gap": "dungeon-mechanics.json gateBosses was empty while floor-encounters.json and MonstersLibrary tier zones already define all 10 gate bosses.",
+      "sourceFile": "src/data/floor-encounters.json",
+      "status": "ok",
+      "priority": "med",
+      "draft": false,
+      "resolvedNote": "Wired gateBosses array from existing tier boss names (2026-07-29 audit)."
+    },
+    {
+      "id": "dungeon-cycle-entry-classes",
+      "category": "dungeon",
+      "gap": "dungeon-mechanics cycle.entryClasses contained placeholder strings ('Classes of Entry:') rather than parsed rulebook content on who may enter each Cycle.",
+      "sourceFile": "The_World_of_Aethel_Lore_EXTRACT.txt",
+      "status": "draft-filled",
+      "priority": "med",
+      "draft": true,
+      "resolvedNote": "Director default overnight (2026-07-29): entryClasses filled from the 17 CANON_CLASSES roster (no class restriction found in source); victoryConsequences drafted per-tier from floor-encounters.json boss/zone themes. Both flagged draft:true pending rulebook Ch XII / World lore confirmation — see dungeon-mechanics.json directorNote fields and CONTINUITY_REPORT.md ASK OWNER #5.",
+      "suggestedAction": "Author/Continuity review the draft entryClasses policy + per-tier victoryConsequences against rulebook Ch XII or World lore when a source is found; promote to non-draft or revise."
+    },
+    {
+      "id": "feats-compendium-delta",
+      "category": "feats",
+      "gap": "Live feats.js has 336 entries vs 330-title compendium doc. Multiple entries use placeholder descriptions ('General feat from the Decennium Descent compendium'). additional-feats.js and game-data.js at repo root remain unwired legacy.",
+      "sourceFile": "Decennium_Descent_330_Feat_Compendium.docx",
+      "status": "partial",
+      "priority": "high",
+      "draft": false,
+      "suggestedAction": "Sibling agent: reconcile compendium ingest, dedupe, replace placeholder text from source docs."
+    },
+    {
+      "id": "feats-racial-feats",
+      "category": "feats",
+      "gap": "Decennium_Descent_Finalized_Racial_Abilities_and_Feats.docx racial feats are partially represented in racial-variants.json (42 subraces) but not as searchable feats in Feats tab.",
+      "sourceFile": "Decennium_Descent_Finalized_Racial_Abilities_and_Feats.docx",
+      "status": "partial",
+      "priority": "med",
+      "draft": false,
+      "suggestedAction": "Cross-check racial feat names in variants vs compendium; surface in Spells/Feats library if distinct."
+    },
+    {
+      "id": "spells-school-coverage",
+      "category": "spells",
+      "gap": "832 spells ingested and wired to SpellsLibrary + Character Builder. School rebalance markdown (~700 headings) may not fully match live spell keys; class_spell_school_mapping.csv not referenced in spell-utils.",
+      "sourceFile": "class_spell_school_mapping.csv",
+      "status": "partial",
+      "priority": "med",
+      "draft": false,
+      "suggestedAction": "Run diff script: school MD extracts vs spells.js keys; wire CSV if it adds restrictions."
+    },
+    {
+      "id": "prestige-lorebook",
+      "category": "prestige",
+      "gap": "18 prestige paths ingested from prestige-lorebook.json and shown in Character Builder Paths tab. Decennium_Prestige_Classes.docx should be spot-checked for parity.",
+      "sourceFile": "Decennium_Prestige_Classes.docx",
+      "status": "ok",
+      "priority": "low",
+      "draft": false
+    },
+    {
+      "id": "races-builder-parity",
+      "category": "races",
+      "gap": "14 builder races + 42 racial variants wired. races.js duplicate exists alongside builder-races.js; rulebook lists additional lore-only races in cosmology (Eldrin, Dreadborn, etc.) not in player builder.",
+      "sourceFile": "rulebook_output.txt",
+      "status": "partial",
+      "priority": "med",
+      "draft": false,
+      "suggestedAction": "Cosmology-only races stay lore unless promoted to rulebook Ch2; dedupe races.js vs builder-races.js."
+    },
+    {
+      "id": "backgrounds-parity",
+      "category": "backgrounds",
+      "gap": "20 backgrounds in backgrounds.js align with ~20 rulebook Ch4 skill-proficiency blocks. Backgrounds.docx should be diffed for naming drift.",
+      "sourceFile": "Backgrounds.docx",
+      "status": "ok",
+      "priority": "low",
+      "draft": false
+    },
+    {
+      "id": "monsters-bestiary-location",
+      "category": "monsters",
+      "gap": "718 monsters live in src/bestiary_data_full.json (wired to Monsters, Items loot, Session). Not under src/data/; root bestiary_data.json is stale 50-entry subset.",
+      "sourceFile": "final_bestiary.xlsx",
+      "status": "partial",
+      "priority": "med",
+      "draft": false,
+      "suggestedAction": "Move canonical bestiary to src/data/bestiary.json via ingest script; delete or archive root subset."
+    },
+    {
+      "id": "encounters-floor-detail",
+      "category": "dungeon",
+      "gap": "10 tiers with havens/POIs/bosses wired to Dungeon Guide, Encounters, Generators, Session. Per-floor encounter tables from Floor Encounters.docx may be richer than JSON narrative fields.",
+      "sourceFile": "Floor Encounters.docx",
+      "status": "partial",
+      "priority": "med",
+      "draft": false,
+      "suggestedAction": "Re-run scripts/ingest-data.mjs against latest docx extract if tables expanded."
+    },
+    {
+      "id": "crafting-recipes",
+      "category": "crafting",
+      "gap": "623 recipes from validated xlsx wired to Items and CraftingBuilder. Generators use recipe names for loot only.",
+      "sourceFile": "decennium_descent_crafting_recipes_validated.xlsx",
+      "status": "ok",
+      "priority": "low",
+      "draft": false
+    },
+    {
+      "id": "cosmology-first-song",
+      "category": "cosmology",
+      "gap": "CosmologyViewer shows planes + First Song (single concatenated string) + world sections VII–XV. firstSongChapters list ends at incomplete 'Chapter XII'; chapters IX–XI body text not split for navigation.",
+      "sourceFile": "The_Cosmology_of_Decennium_Descent_EXTRACT.txt",
+      "status": "partial",
+      "priority": "high",
+      "draft": true,
+      "suggestedAction": "Split extract into per-chapter JSON; mark any synthesized section headers as draft until author confirms."
+    },
+    {
+      "id": "cosmology-world-sections",
+      "category": "cosmology",
+      "gap": "worldSections cover VII–XV but many subsections (Economy exports, Forbidden Schools, Calendar detail) are bullet stubs parsed from outline, not full prose from The_World_of_Aethel_Lore.docx.",
+      "sourceFile": "The_World_of_Aethel_Lore.docx",
+      "status": "partial",
+      "priority": "med",
+      "draft": true,
+      "suggestedAction": "Ingest full section prose; flag incomplete bullets as draft."
+    },
+    {
+      "id": "ui-global-search",
+      "category": "ui",
+      "gap": "Header search input is decorative — no handler, no cross-tab search over spells/monsters/feats/encounters.",
+      "sourceFile": null,
+      "status": "missing_source",
+      "priority": "high",
+      "draft": true,
+      "suggestedAction": "Implement lightweight client search index over src/data modules (no new lore)."
+    },
+    {
+      "id": "ui-reputation-system",
+      "category": "ui",
+      "gap": "Rulebook Ch4 Reputation (Liked/Disliked/Hated by faction) is stored as startingReputation on backgrounds only. No session or character reputation tracker.",
+      "sourceFile": "rulebook_output.txt",
+      "status": "partial",
+      "priority": "med",
+      "draft": true,
+      "suggestedAction": "Draft reputation state on saved characters + Session tab faction chips; mechanics from rulebook only."
+    },
+    {
+      "id": "ui-skills-hardcoded",
+      "category": "ui",
+      "gap": "CharacterBuilder skills list uses static modifiers (+2, +0, etc.) not derived from ability scores, class proficiencies, or background.",
+      "sourceFile": "rulebook_output.txt",
+      "status": "partial",
+      "priority": "med",
+      "draft": false,
+      "suggestedAction": "Compute skill modifiers from abilities + selected proficiencies."
+    },
+    {
+      "id": "ui-class-paths-display",
+      "category": "ui",
+      "gap": "ClassPathDisplay wired for classes with class-paths data. Druid/Oracle/Paladin show level stubs only — no arch/hero trees until class-paths filled.",
+      "sourceFile": "src/data/class-paths.js",
+      "status": "ok",
+      "priority": "med",
+      "draft": false,
+      "resolvedNote": "Druid (7 circles), Oracle (Mystery/Curse framework), Paladin (Sacred Oath) arch/hero paths in class-paths.js; continuity pass 2026-07-29 added Thorns/Winterfang/Rotshaper/Ashen Grove arch paths."
+    },
+    {
+      "id": "legacy-game-data",
+      "category": "ui",
+      "gap": "Pre-Next.js game-data.js (116KB), script.js, ENHANCED-FEATURES.JS contain older companion logic not imported by src/app.",
+      "sourceFile": "game-data.js",
+      "status": "unwired",
+      "priority": "low",
+      "draft": false,
+      "suggestedAction": "Archive after confirming no unique canon remains outside src/data."
+    }
+  ],
+  "topHighPriority": [
+    "classes-monk-dragoon-builder",
+    "classes-oracle-mysteries",
+    "classes-paladin-oaths",
+    "classes-paths-druid-oracle-paladin",
+    "classes-druid-shapeshift",
+    "classes-levels-draft",
+    "classes-swashbuckler-canonicality",
+    "feats-compendium-delta",
+    "cosmology-first-song",
+    "ui-global-search",
+    "ui-reputation-system"
+  ]
+}

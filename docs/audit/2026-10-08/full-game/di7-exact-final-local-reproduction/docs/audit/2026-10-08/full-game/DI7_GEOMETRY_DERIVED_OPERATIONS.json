@@ -1,0 +1,861 @@
+{
+  "id": "DI7-GEOMETRY-3D-01",
+  "recordedAtUtc": "2026-10-14T02:15:13.965810+00:00",
+  "authority": {
+    "path": "docs/audit/2026-10-08/full-game/DI7_GEOMETRY_3D_RECEIVED.json",
+    "bytes": 1875,
+    "sha256": "092db9df39f2b100360df0a2323861ab7a956fe19afa5a931332509586449a78"
+  },
+  "changes": [
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+        "bytes": 128641,
+        "sha256": "ec6db3fe57c9b465fcebad760be6956aefdf6e5d5764a46e6749285d9c2ac4c0",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-di7-geometry/DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+        "bytes": 132734,
+        "sha256": "5ff3228d7954b05e1881d0f6c62090be4d2c038c9b4a3a959ac5acdcb1da093b"
+      },
+      "operations": [
+        {
+          "pointer": "/cards/0/operationalCandidate/completeProcedure",
+          "spellIdGuard": "mass-revelation",
+          "old": "KEEP Action/V/S/F, base 17 RP, one instantaneous 60-foot cone from the caster, and all four categories: hidden traps, enemies, magic and lies. NEW choose and record the cone direction at commitment; the caster alone receives the resolution-time snapshot, with no creature-count cap. The cone is an informational area, not a sight-required individual targeting attempt. Hidden or Invisible unprotected contents can qualify. Source-origin line of effect clips each readable portion; a wall cannot be bypassed merely because another sense sees through it.\n\nNEW exact fallback template, because the supplied combat guide leaves exact templates open: use a cone with 60-foot forward axial length and circular cross-section of diameter equal to distance along its axis (diameter 60 feet at its far end). Record an actual origin and facing vector before the cast. On the existing 5-foot grid, use cell centers in that volume; a body/feature qualifies through a genuinely occupied included cell and only its readable local footprint is disclosed. Do not include a creature merely because an empty corner of its rectangular bounding box touches the volume. The origin cell itself is excluded; a source may choose a forward origin on its own actual space boundary. This is a NEW DI7 template choice, not recovered ordinary cone text. Existing range metric, total-cover, actual vertical placement and no-corner-cutting constraints still apply; this template gives no generic new geometry to other spells.\n\nHidden traps: reveal the current physical site, occupied footprint, armed/dormant state and immediate trigger category of every actual readable trap. A concealed plate qualifies; an ordinary dangerous creature is not automatically a trap. No disarm solution, code, future die or automatic Search/disarm Action is granted. Enemies: reveal the current occupied footprint and readable creature count of actual beings presently intending or executing a meaningful hostile act against the caster or a member of the caster's current party. This NEW predicate is not alignment, species, reputation, mere disagreement or a caller's enemy flag. It reads no plan, memory, full identity or stat block. Intent, location and existence protections retain their independent actual scopes; never count protected existences.\n\nMagic: reveal each current actual magical effect's local footprint, spell/nonspell category, generating school/rank when its source supplies them, and active/suppressed state. A dormant enchanted object's still-existing enchantment may be distinguished from an active spell when readable; this does not invent charges, attunement, powers or an absent school/rank. Overlapping effects stay separate. Lies: NEW examine assertions made during the inclusive six elapsed seconds ending at resolution by a creature presently in the readable cone, only where the caster actually perceived and understood that assertion. Report deliberate deception when the speaker knowingly asserted what they then believed false; a sincere error is not a lie. Irony, uncertainty, misunderstood content, mere recorded sounds or a speaker now outside the area create no invented belief or objective replacement truth. Current relevant belief/existence protections still apply. A valid decoded sign can be an assertion; the spell supplies no language or general translation.\n\nNo generic save is added. An actual defense's own check/threshold applies only within its source scope. Apply the shared information rule without a free preflight search for hidden facts. The spell disarms, dispels, damages and compels nothing. CORRECTION to the proposal's blanket retained-concealment language: learning a location ends Hidden for this caster and removes Invisible's own attack modifiers against this informed observer, as already reviewed; it does not make an Invisible creature visible or satisfy a sight-required spell. Independent concealment still applies. The record is a snapshot, not a tracking feed. No ally receives the knowledge or observer-state change without actually obtaining that information through a legal channel.",
+          "replacement": "KEEP Action/V/S/F, base 17 RP, one instantaneous 60-foot cone from the caster, and all four categories: hidden traps, enemies, magic and lies. NEW choose and record the cone direction at commitment; the caster alone receives the resolution-time snapshot, with no creature-count cap. The cone is an informational area, not a sight-required individual targeting attempt. Hidden or Invisible unprotected contents can qualify. Source-origin line of effect clips each readable portion; a wall cannot be bypassed merely because another sense sees through it.\n\nKEEP the previously authored DI7 cone template: 60-foot forward axial length, with circular cross-section diameter equal to forward axial distance. Before commitment, record actual source origin O, its nominated genuinely occupied source cell, and a nonzero facing vector. Normalize that vector by its Euclidean length to obtain unit direction F; do not snap it to a grid axis. A source may choose a forward origin on its own actual space boundary, recording the originating occupied source cell rather than treating both cells adjacent to that boundary as origin cells.\n\nFor a candidate cell center P, let V=P−O, a=dot(V,F), and W=V−aF. Geometric membership requires 0<a≤60 and 4×dot(W,W)≤a². Include equality at the lateral surface and far axial face; exclude the nominated origin cell. The 60-foot figure and rangeFeet:60 describe forward axial extent for this template. Apply no additional Euclidean or grid-metric 60-foot radial cap to its included cells. In particular, forward distance60 with perpendicular distance30 is inside. This exact template controls Mass Revelation’s shape rather than converting its circular sections into grid-metric squares.\n\nUse actual 3D cell centers and genuinely occupied body/feature/effect footprints. An empty part of a bounding box is not occupancy. Disclose only actual readable local portions within included cells after current source-origin line-of-effect, total-cover and existing no-corner-cutting clipping. Distance or a geometrically included cell supplies no path around a wall, no assumed vertical occupancy and no new sight-required targeting restriction on the cone’s hidden contents.\n\nNEW fixed-origin resolution rule: O, F and the nominated origin cell are fixed world-space records at commitment. Legal caster displacement or rotation does not translate or rotate this pending cone. Immediately before the snapshot, the recorded O must still be a legal origin within the caster’s current actual occupied space, or on its forward boundary under the stated boundary option. If it no longer qualifies, the committed cast produces no effect, with no refund, replacement origin or direction; it cannot project remotely from the caster’s former empty position. If O still qualifies, resolve the unchanged cone using current contents and current line of effect. Genuine departure and return before this checkpoint do not independently cancel the cast, although any other applicable interruption remains controlling. This adds no displacement permission, continuous sensor, second cast or general geometry rule.\n\nHidden traps: reveal the current physical site, occupied footprint, armed/dormant state and immediate trigger category of every actual readable trap. A concealed plate qualifies; an ordinary dangerous creature is not automatically a trap. No disarm solution, code, future die or automatic Search/disarm Action is granted. Enemies: reveal the current occupied footprint and readable creature count of actual beings presently intending or executing a meaningful hostile act against the caster or a member of the caster's current party. This NEW predicate is not alignment, species, reputation, mere disagreement or a caller's enemy flag. It reads no plan, memory, full identity or stat block. Intent, location and existence protections retain their independent actual scopes; never count protected existences.\n\nMagic: reveal each current actual magical effect's local footprint, spell/nonspell category, generating school/rank when its source supplies them, and active/suppressed state. A dormant enchanted object's still-existing enchantment may be distinguished from an active spell when readable; this does not invent charges, attunement, powers or an absent school/rank. Overlapping effects stay separate. Lies: NEW examine assertions made during the inclusive six elapsed seconds ending at resolution by a creature presently in the readable cone, only where the caster actually perceived and understood that assertion. Report deliberate deception when the speaker knowingly asserted what they then believed false; a sincere error is not a lie. Irony, uncertainty, misunderstood content, mere recorded sounds or a speaker now outside the area create no invented belief or objective replacement truth. Current relevant belief/existence protections still apply. A valid decoded sign can be an assertion; the spell supplies no language or general translation.\n\nNo generic save is added. An actual defense's own check/threshold applies only within its source scope. Apply the shared information rule without a free preflight search for hidden facts. The spell disarms, dispels, damages and compels nothing. CORRECTION to the proposal's blanket retained-concealment language: learning a location ends Hidden for this caster and removes Invisible's own attack modifiers against this informed observer, as already reviewed; it does not make an Invisible creature visible or satisfy a sight-required spell. Independent concealment still applies. The record is a snapshot, not a tracking feed. No ally receives the knowledge or observer-state change without actually obtaining that information through a legal channel."
+        },
+        {
+          "pointer": "/cards/6/operationalCandidate/completeProcedure",
+          "spellIdGuard": "resonance-sight-supreme",
+          "old": "KEEP Action/V/S/F/base 17 RP, range 120 feet, instantaneous reading, and all past and present magical effects in an area. NEW choose a perceived point within 120 feet and line of effect; at resolution use one fixed 20-foot-radius sphere and current center-to-portion line of effect, with the reviewed grid metric for membership. Solid total cover clips the readable portion. This is a spatial-history query of those actual readable places, not a remote view through today's walls; a presently open portion can still reveal its established earlier local history even if the ancient layout differed.\n\nPrivately receive every actual established magical-effect occurrence whose historical footprint intersected those readable spatial portions while the event existed, plus current readable magic there. There is no arbitrary lookback age, rank or record-count ceiling. An ended/destroyed effect remains eligible as history, including one that ended long ago; destruction does not recreate a present object or resource. The Director's actual established history is sufficient without a previously implemented event log, but absence of historical evidence is not proof of no ancient magic. NEW interval representation: one continuing unchanged effect is one interval with its genuinely known transitions, not a generated casting every second. A moving effect has its real local visits/intervals, not a new spell per tile; overlaps retain separate original effect identities.\n\nFor each readable occurrence give its actual spell/effect identity, or its established bounded category when no named identity is supplied; generating school/rank only when its source actually defines those fields; readable local footprint; time/relative ordering at its real established precision; and starts, persistence, changes, suppression and endings there. Actual magical nonspell class/item effects and existing dormant enchantments can qualify through their real magic/history, without inventing rank 0 or a school. A record that was never magical is not made magical by nearby events. An effect currently elsewhere has only its local historical footprint here, not a disclosed current remote destination.\n\nThis does not automatically reveal a caster's personal identity, private memory, current pool, attunement, full blueprint, upstream origin or unrelated history. Those require their own actual readable manifestation/source permission. Apply each genuine present/historical information defense to the facts and time intervals it really covers: a current-only ward does not retroactively erase unrelated old history; an express historical-trace protection still applies. Do not disclose protected existence through count, placeholders, missing sequence numbers or conspicuous gaps. Undefined precision stays uncertain rather than being rounded into an invented date. Supply all independently useful readable information, not only public facts or a single trace.\n\nThe snapshot can be remembered/recorded through ordinary time and tools. It grants no ongoing sensory feed, targeting sight, time travel, replay, dispel, reconstruction, spell acquisition or Fate Echo observation receipt. Learning a cast's past existence now is not directly witnessing that original cast in its original time window. Equivalent unchanged paid inquiries return consistent overlapping records; genuine new events/protection/evidence can change them. No spent material, soul, class permission or cosmological origin is recovered or interpreted.",
+          "replacement": "KEEP Action/V/S/F/base 17 RP, range 120 feet, instantaneous reading, and all past and present magical effects in an area. NEW DI7-only three-dimensional grid completion: use actual world coordinates in feet on the existing 5-foot grid. For points A and B, define D(A,B) = max(abs(Ax−Bx), abs(Ay−By), abs(Az−Bz)). This preserves the existing horizontal diagonal metric and explicitly extends it to vertical and combined-axis separation. Choose one actually perceived point C with D(caster’s actual casting position,C) ≤ 120 and actual line of effect before commitment. Record C as a fixed world-space point; do not snap, round or relocate it to obtain eligibility.\n\nAt effect resolution, the 20-foot-radius grid-metric sphere includes exactly those spatial cells whose centers P satisfy D(C,P) ≤ 20. Boundary equality is included. This is a sphere under the specified game metric, not a Euclidean ball; impose no additional Euclidean-radius test. Cell inclusion establishes only spatial membership. Current center-to-portion line of effect and solid total cover still clip the actual readable portions, and the existing no-corner-cutting restriction is not bypassed by diagonal distance. Do not disclose a whole footprint merely because one included cell intersects it. A readable historical location need not contain a creature, object or active effect now.\n\nNEW resolution checkpoint: immediately before producing the snapshot, revalidate that the same recorded C remains actually perceived, within D ≤ 120 of the caster’s current actual casting position, and in current caster-to-center line of effect. A legally displaced caster does not move C. If any of those requirements fails, the committed cast produces no information and no refund, substitute center or deferred resolution. An intervening spatial failure that has genuinely ended before this checkpoint does not itself create a continuous-range failure; any independently applicable casting interruption still governs. This adds no second payment, component performance or casting event.\n\nWhen the center passes, evaluate the readable spatial portions and their history at that resolution checkpoint. This is a spatial-history query of those actual readable places, not a remote view through today’s walls; a presently open portion can still reveal its established earlier local history even if the ancient layout differed. These metric and checkpoint completions govern this Supreme Sight procedure only, not other spells, movement, mounts or general combat geometry.\n\nPrivately receive every actual established magical-effect occurrence whose historical footprint intersected those readable spatial portions while the event existed, plus current readable magic there. There is no arbitrary lookback age, rank or record-count ceiling. An ended/destroyed effect remains eligible as history, including one that ended long ago; destruction does not recreate a present object or resource. The Director's actual established history is sufficient without a previously implemented event log, but absence of historical evidence is not proof of no ancient magic. NEW interval representation: one continuing unchanged effect is one interval with its genuinely known transitions, not a generated casting every second. A moving effect has its real local visits/intervals, not a new spell per tile; overlaps retain separate original effect identities.\n\nFor each readable occurrence give its actual spell/effect identity, or its established bounded category when no named identity is supplied; generating school/rank only when its source actually defines those fields; readable local footprint; time/relative ordering at its real established precision; and starts, persistence, changes, suppression and endings there. Actual magical nonspell class/item effects and existing dormant enchantments can qualify through their real magic/history, without inventing rank 0 or a school. A record that was never magical is not made magical by nearby events. An effect currently elsewhere has only its local historical footprint here, not a disclosed current remote destination.\n\nThis does not automatically reveal a caster's personal identity, private memory, current pool, attunement, full blueprint, upstream origin or unrelated history. Those require their own actual readable manifestation/source permission. Apply each genuine present/historical information defense to the facts and time intervals it really covers: a current-only ward does not retroactively erase unrelated old history; an express historical-trace protection still applies. Do not disclose protected existence through count, placeholders, missing sequence numbers or conspicuous gaps. Undefined precision stays uncertain rather than being rounded into an invented date. Supply all independently useful readable information, not only public facts or a single trace.\n\nThe snapshot can be remembered/recorded through ordinary time and tools. It grants no ongoing sensory feed, targeting sight, time travel, replay, dispel, reconstruction, spell acquisition or Fate Echo observation receipt. Learning a cast's past existence now is not directly witnessing that original cast in its original time window. Equivalent unchanged paid inquiries return consistent overlapping records; genuine new events/protection/evidence can change them. No spent material, soul, class permission or cosmological origin is recovered or interpreted."
+        },
+        {
+          "pointer": "/sourceDirectionAddenda",
+          "old": [
+            {
+              "id": "DI7-SHIELD-LATE-01",
+              "affectedSpellId": "premonition-shield",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_SHIELD_LATE_ADMISSION_RECEIVED.json",
+                "bytes": 2267,
+                "sha256": "fc969d97c095a19dfaf94d609f99bdee3292a27253edde0c6364c31ee466c497"
+              },
+              "scope": "KEEP existing first-component and same-live-record principles; NEW minimal completion closes negative admission and replacement across the ward family.",
+              "exactApproval": false
+            }
+          ],
+          "replacement": [
+            {
+              "id": "DI7-SHIELD-LATE-01",
+              "affectedSpellId": "premonition-shield",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_SHIELD_LATE_ADMISSION_RECEIVED.json",
+                "bytes": 2267,
+                "sha256": "fc969d97c095a19dfaf94d609f99bdee3292a27253edde0c6364c31ee466c497"
+              },
+              "scope": "KEEP existing first-component and same-live-record principles; NEW minimal completion closes negative admission and replacement across the ward family.",
+              "exactApproval": false
+            },
+            {
+              "id": "DI7-GEOMETRY-3D-01",
+              "affectedSpellIds": [
+                "mass-revelation",
+                "resonance-sight-supreme"
+              ],
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_GEOMETRY_3D_RECEIVED.json",
+                "bytes": 1875,
+                "sha256": "092db9df39f2b100360df0a2323861ab7a956fe19afa5a931332509586449a78"
+              },
+              "scope": "Scoped 3D area definitions and fixed committed geometry resolution checkpoints.",
+              "exactApproval": false
+            }
+          ]
+        }
+      ],
+      "exactInverseBytesVerified": true
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/divination_rank7_exact_01_expectations.json",
+        "bytes": 23079,
+        "sha256": "dfe90ca59dace12eba02e8c643d8235a09a5d3b60ae27231bd91683f0913b6bb",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-di7-geometry/DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/divination_rank7_exact_01_expectations.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/divination_rank7_exact_01_expectations.json",
+        "bytes": 30326,
+        "sha256": "c25fc42ec5028f17bc33748a263a5108598474b3cb981b15f137c5586a37c9bf"
+      },
+      "operations": [
+        {
+          "pointer": "/supplementalSourceExpectations",
+          "old": [
+            {
+              "id": "DI7-SHIELD-LATE-01",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_SHIELD_LATE_ADMISSION_RECEIVED.json",
+                "bytes": 2267,
+                "sha256": "fc969d97c095a19dfaf94d609f99bdee3292a27253edde0c6364c31ee466c497"
+              },
+              "evidenceKind": "Authored expected outcomes; execution evidence is separate.",
+              "original49Unchanged": true,
+              "variants": [
+                {
+                  "id": "DI7-SHIELD-LATE-A",
+                  "expected": "Ward suppressed at the recipient first beam: zero uses spent, no prevention on any immediate beam after suppression ends, two uses and original deadline retained for distinct subsequent occurrences."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-B1",
+                  "expected": "No ward at recipient first beam; a later separately legally established paid ward cannot admit remaining beams. New ward retains two uses and its own60-second deadline; no cast refund."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-B2",
+                  "expected": "Old ward admitted first beam, then legally replaced: prior prevention remains, old application ends and discards unused remainder. Neither old nor new application protects subsequent beams. New ward spends no use on that occurrence and retains its own two uses/deadline."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-C",
+                  "expected": "Same live ward admitted first beam, suppressed only at second, then returns before third and before expiry: first/third protected, second unprotected, only one use spent. The same holds when initial commitment spent its second use, until occurrence completion; an unrelated interleaved event gains none."
+                }
+              ],
+              "interfaceNotes": [
+                "Each recipient has its own checkpoint; another recipient first affected later may commit then.",
+                "For share-only recipients only first positive pre-mitigation share creates the checkpoint; zero/post-defense skipPrevention branches create none.",
+                "Prior qualifying direct component closes admission before any later share for the same recipient and occurrence.",
+                "Failed/countered replacement retains old admitted coverage; exact deadline excludes even previously admitted later components."
+              ]
+            }
+          ],
+          "replacement": [
+            {
+              "id": "DI7-SHIELD-LATE-01",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_SHIELD_LATE_ADMISSION_RECEIVED.json",
+                "bytes": 2267,
+                "sha256": "fc969d97c095a19dfaf94d609f99bdee3292a27253edde0c6364c31ee466c497"
+              },
+              "evidenceKind": "Authored expected outcomes; execution evidence is separate.",
+              "original49Unchanged": true,
+              "variants": [
+                {
+                  "id": "DI7-SHIELD-LATE-A",
+                  "expected": "Ward suppressed at the recipient first beam: zero uses spent, no prevention on any immediate beam after suppression ends, two uses and original deadline retained for distinct subsequent occurrences."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-B1",
+                  "expected": "No ward at recipient first beam; a later separately legally established paid ward cannot admit remaining beams. New ward retains two uses and its own60-second deadline; no cast refund."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-B2",
+                  "expected": "Old ward admitted first beam, then legally replaced: prior prevention remains, old application ends and discards unused remainder. Neither old nor new application protects subsequent beams. New ward spends no use on that occurrence and retains its own two uses/deadline."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-C",
+                  "expected": "Same live ward admitted first beam, suppressed only at second, then returns before third and before expiry: first/third protected, second unprotected, only one use spent. The same holds when initial commitment spent its second use, until occurrence completion; an unrelated interleaved event gains none."
+                }
+              ],
+              "interfaceNotes": [
+                "Each recipient has its own checkpoint; another recipient first affected later may commit then.",
+                "For share-only recipients only first positive pre-mitigation share creates the checkpoint; zero/post-defense skipPrevention branches create none.",
+                "Prior qualifying direct component closes admission before any later share for the same recipient and occurrence.",
+                "Failed/countered replacement retains old admitted coverage; exact deadline excludes even previously admitted later components."
+              ]
+            },
+            {
+              "id": "DI7-GEOMETRY-3D-01",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_GEOMETRY_3D_RECEIVED.json",
+                "bytes": 1875,
+                "sha256": "092db9df39f2b100360df0a2323861ab7a956fe19afa5a931332509586449a78"
+              },
+              "evidenceKind": "Authored source expectations only; execution evidence separate.",
+              "original49Unchanged": true,
+              "variants": [
+                {
+                  "id": "DI7-GEO-S1",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    20,
+                    20,
+                    0
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-S2",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    20,
+                    20,
+                    20
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-S3",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    0,
+                    0,
+                    20
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-S4",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    20,
+                    0,
+                    5
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-S5",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    25,
+                    0,
+                    0
+                  ],
+                  "expectedInside": false,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-R1",
+                  "kind": "supreme-caster-center-range",
+                  "offset": [
+                    120,
+                    120,
+                    120
+                  ],
+                  "expectedWithinRange": true,
+                  "qualification": "Actual perception and line of effect separately required."
+                },
+                {
+                  "id": "DI7-GEO-R2",
+                  "kind": "supreme-caster-center-range",
+                  "offset": [
+                    125,
+                    0,
+                    0
+                  ],
+                  "expectedWithinRange": false,
+                  "qualification": "Actual perception and line of effect separately required."
+                },
+                {
+                  "id": "DI7-GEO-M1",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    60,
+                    30,
+                    0
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M2",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    60,
+                    0,
+                    30
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M3",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    60,
+                    25,
+                    25
+                  ],
+                  "expectedInside": false,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M4",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    60,
+                    35,
+                    0
+                  ],
+                  "expectedInside": false,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M5",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    65,
+                    0,
+                    0
+                  ],
+                  "expectedInside": false,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M6",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    12,
+                    5,
+                    0
+                  ],
+                  "cellCenter": [
+                    65,
+                    0,
+                    0
+                  ],
+                  "expectedInside": true,
+                  "expectedAxial": 60,
+                  "expectedPerpendicular": 25,
+                  "qualification": "Normalize facing to (12/13,5/13,0); no radial rejection at65."
+                },
+                {
+                  "id": "DI7-GEO-I1",
+                  "kind": "resolution-interruption",
+                  "expected": "Supreme committed from(0,0,0) to C=(120,0,0); legal displacement to(0,5,0) keeps fixed C at grid distance120. Resolve if perception and line of effect survive."
+                },
+                {
+                  "id": "DI7-GEO-I2",
+                  "kind": "resolution-interruption",
+                  "expected": "Same Supreme commitment; displacement to(-5,0,0) makes range125. No information, refund or substitute center."
+                },
+                {
+                  "id": "DI7-GEO-I3",
+                  "kind": "resolution-interruption",
+                  "expected": "Supreme fixed C in range but perception or caster-to-center line of effect fails at resolution: no information. Only center-to-portion obstruction clips its own portions."
+                },
+                {
+                  "id": "DI7-GEO-I4",
+                  "kind": "resolution-interruption",
+                  "expected": "Mass O at source-cell center; displacement to nonoverlapping cell no longer containing O: no effect, remote old-position cone, translated new-position cone or refund."
+                },
+                {
+                  "id": "DI7-GEO-I5",
+                  "kind": "resolution-interruption",
+                  "expected": "Mass caster changes position while O remains legal in actual occupied space, or genuinely returns before resolution: unchanged O/F cone if other requirements survive; no new direction."
+                },
+                {
+                  "id": "DI7-GEO-I6",
+                  "kind": "resolution-interruption",
+                  "expected": "Illegal geometry before commitment rejects activation rather than producing a paid post-interruption failure."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exactInverseBytesVerified": true
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_candidates/divination_rank7_exact_01.json",
+        "bytes": 5456391,
+        "sha256": "04fe0e9f5f9e095269b136060eb3977ef5523bc6ce900394a3c6fb09f066a0cb",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-di7-geometry/DescentReviewChanges/ReviewBible/data/director/spell_candidates/divination_rank7_exact_01.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_candidates/divination_rank7_exact_01.json",
+        "bytes": 5468253,
+        "sha256": "02cc2359d147bd529e76341b75b6b47f8b3931249bbfad050ae76800155a6ab3"
+      },
+      "operations": [
+        {
+          "pointer": "/completePublicEnvelope/cards/0/operationalCandidate/completeProcedure",
+          "spellIdGuard": "mass-revelation",
+          "old": "KEEP Action/V/S/F, base 17 RP, one instantaneous 60-foot cone from the caster, and all four categories: hidden traps, enemies, magic and lies. NEW choose and record the cone direction at commitment; the caster alone receives the resolution-time snapshot, with no creature-count cap. The cone is an informational area, not a sight-required individual targeting attempt. Hidden or Invisible unprotected contents can qualify. Source-origin line of effect clips each readable portion; a wall cannot be bypassed merely because another sense sees through it.\n\nNEW exact fallback template, because the supplied combat guide leaves exact templates open: use a cone with 60-foot forward axial length and circular cross-section of diameter equal to distance along its axis (diameter 60 feet at its far end). Record an actual origin and facing vector before the cast. On the existing 5-foot grid, use cell centers in that volume; a body/feature qualifies through a genuinely occupied included cell and only its readable local footprint is disclosed. Do not include a creature merely because an empty corner of its rectangular bounding box touches the volume. The origin cell itself is excluded; a source may choose a forward origin on its own actual space boundary. This is a NEW DI7 template choice, not recovered ordinary cone text. Existing range metric, total-cover, actual vertical placement and no-corner-cutting constraints still apply; this template gives no generic new geometry to other spells.\n\nHidden traps: reveal the current physical site, occupied footprint, armed/dormant state and immediate trigger category of every actual readable trap. A concealed plate qualifies; an ordinary dangerous creature is not automatically a trap. No disarm solution, code, future die or automatic Search/disarm Action is granted. Enemies: reveal the current occupied footprint and readable creature count of actual beings presently intending or executing a meaningful hostile act against the caster or a member of the caster's current party. This NEW predicate is not alignment, species, reputation, mere disagreement or a caller's enemy flag. It reads no plan, memory, full identity or stat block. Intent, location and existence protections retain their independent actual scopes; never count protected existences.\n\nMagic: reveal each current actual magical effect's local footprint, spell/nonspell category, generating school/rank when its source supplies them, and active/suppressed state. A dormant enchanted object's still-existing enchantment may be distinguished from an active spell when readable; this does not invent charges, attunement, powers or an absent school/rank. Overlapping effects stay separate. Lies: NEW examine assertions made during the inclusive six elapsed seconds ending at resolution by a creature presently in the readable cone, only where the caster actually perceived and understood that assertion. Report deliberate deception when the speaker knowingly asserted what they then believed false; a sincere error is not a lie. Irony, uncertainty, misunderstood content, mere recorded sounds or a speaker now outside the area create no invented belief or objective replacement truth. Current relevant belief/existence protections still apply. A valid decoded sign can be an assertion; the spell supplies no language or general translation.\n\nNo generic save is added. An actual defense's own check/threshold applies only within its source scope. Apply the shared information rule without a free preflight search for hidden facts. The spell disarms, dispels, damages and compels nothing. CORRECTION to the proposal's blanket retained-concealment language: learning a location ends Hidden for this caster and removes Invisible's own attack modifiers against this informed observer, as already reviewed; it does not make an Invisible creature visible or satisfy a sight-required spell. Independent concealment still applies. The record is a snapshot, not a tracking feed. No ally receives the knowledge or observer-state change without actually obtaining that information through a legal channel.",
+          "replacement": "KEEP Action/V/S/F, base 17 RP, one instantaneous 60-foot cone from the caster, and all four categories: hidden traps, enemies, magic and lies. NEW choose and record the cone direction at commitment; the caster alone receives the resolution-time snapshot, with no creature-count cap. The cone is an informational area, not a sight-required individual targeting attempt. Hidden or Invisible unprotected contents can qualify. Source-origin line of effect clips each readable portion; a wall cannot be bypassed merely because another sense sees through it.\n\nKEEP the previously authored DI7 cone template: 60-foot forward axial length, with circular cross-section diameter equal to forward axial distance. Before commitment, record actual source origin O, its nominated genuinely occupied source cell, and a nonzero facing vector. Normalize that vector by its Euclidean length to obtain unit direction F; do not snap it to a grid axis. A source may choose a forward origin on its own actual space boundary, recording the originating occupied source cell rather than treating both cells adjacent to that boundary as origin cells.\n\nFor a candidate cell center P, let V=P−O, a=dot(V,F), and W=V−aF. Geometric membership requires 0<a≤60 and 4×dot(W,W)≤a². Include equality at the lateral surface and far axial face; exclude the nominated origin cell. The 60-foot figure and rangeFeet:60 describe forward axial extent for this template. Apply no additional Euclidean or grid-metric 60-foot radial cap to its included cells. In particular, forward distance60 with perpendicular distance30 is inside. This exact template controls Mass Revelation’s shape rather than converting its circular sections into grid-metric squares.\n\nUse actual 3D cell centers and genuinely occupied body/feature/effect footprints. An empty part of a bounding box is not occupancy. Disclose only actual readable local portions within included cells after current source-origin line-of-effect, total-cover and existing no-corner-cutting clipping. Distance or a geometrically included cell supplies no path around a wall, no assumed vertical occupancy and no new sight-required targeting restriction on the cone’s hidden contents.\n\nNEW fixed-origin resolution rule: O, F and the nominated origin cell are fixed world-space records at commitment. Legal caster displacement or rotation does not translate or rotate this pending cone. Immediately before the snapshot, the recorded O must still be a legal origin within the caster’s current actual occupied space, or on its forward boundary under the stated boundary option. If it no longer qualifies, the committed cast produces no effect, with no refund, replacement origin or direction; it cannot project remotely from the caster’s former empty position. If O still qualifies, resolve the unchanged cone using current contents and current line of effect. Genuine departure and return before this checkpoint do not independently cancel the cast, although any other applicable interruption remains controlling. This adds no displacement permission, continuous sensor, second cast or general geometry rule.\n\nHidden traps: reveal the current physical site, occupied footprint, armed/dormant state and immediate trigger category of every actual readable trap. A concealed plate qualifies; an ordinary dangerous creature is not automatically a trap. No disarm solution, code, future die or automatic Search/disarm Action is granted. Enemies: reveal the current occupied footprint and readable creature count of actual beings presently intending or executing a meaningful hostile act against the caster or a member of the caster's current party. This NEW predicate is not alignment, species, reputation, mere disagreement or a caller's enemy flag. It reads no plan, memory, full identity or stat block. Intent, location and existence protections retain their independent actual scopes; never count protected existences.\n\nMagic: reveal each current actual magical effect's local footprint, spell/nonspell category, generating school/rank when its source supplies them, and active/suppressed state. A dormant enchanted object's still-existing enchantment may be distinguished from an active spell when readable; this does not invent charges, attunement, powers or an absent school/rank. Overlapping effects stay separate. Lies: NEW examine assertions made during the inclusive six elapsed seconds ending at resolution by a creature presently in the readable cone, only where the caster actually perceived and understood that assertion. Report deliberate deception when the speaker knowingly asserted what they then believed false; a sincere error is not a lie. Irony, uncertainty, misunderstood content, mere recorded sounds or a speaker now outside the area create no invented belief or objective replacement truth. Current relevant belief/existence protections still apply. A valid decoded sign can be an assertion; the spell supplies no language or general translation.\n\nNo generic save is added. An actual defense's own check/threshold applies only within its source scope. Apply the shared information rule without a free preflight search for hidden facts. The spell disarms, dispels, damages and compels nothing. CORRECTION to the proposal's blanket retained-concealment language: learning a location ends Hidden for this caster and removes Invisible's own attack modifiers against this informed observer, as already reviewed; it does not make an Invisible creature visible or satisfy a sight-required spell. Independent concealment still applies. The record is a snapshot, not a tracking feed. No ally receives the knowledge or observer-state change without actually obtaining that information through a legal channel."
+        },
+        {
+          "pointer": "/completePublicEnvelope/cards/6/operationalCandidate/completeProcedure",
+          "spellIdGuard": "resonance-sight-supreme",
+          "old": "KEEP Action/V/S/F/base 17 RP, range 120 feet, instantaneous reading, and all past and present magical effects in an area. NEW choose a perceived point within 120 feet and line of effect; at resolution use one fixed 20-foot-radius sphere and current center-to-portion line of effect, with the reviewed grid metric for membership. Solid total cover clips the readable portion. This is a spatial-history query of those actual readable places, not a remote view through today's walls; a presently open portion can still reveal its established earlier local history even if the ancient layout differed.\n\nPrivately receive every actual established magical-effect occurrence whose historical footprint intersected those readable spatial portions while the event existed, plus current readable magic there. There is no arbitrary lookback age, rank or record-count ceiling. An ended/destroyed effect remains eligible as history, including one that ended long ago; destruction does not recreate a present object or resource. The Director's actual established history is sufficient without a previously implemented event log, but absence of historical evidence is not proof of no ancient magic. NEW interval representation: one continuing unchanged effect is one interval with its genuinely known transitions, not a generated casting every second. A moving effect has its real local visits/intervals, not a new spell per tile; overlaps retain separate original effect identities.\n\nFor each readable occurrence give its actual spell/effect identity, or its established bounded category when no named identity is supplied; generating school/rank only when its source actually defines those fields; readable local footprint; time/relative ordering at its real established precision; and starts, persistence, changes, suppression and endings there. Actual magical nonspell class/item effects and existing dormant enchantments can qualify through their real magic/history, without inventing rank 0 or a school. A record that was never magical is not made magical by nearby events. An effect currently elsewhere has only its local historical footprint here, not a disclosed current remote destination.\n\nThis does not automatically reveal a caster's personal identity, private memory, current pool, attunement, full blueprint, upstream origin or unrelated history. Those require their own actual readable manifestation/source permission. Apply each genuine present/historical information defense to the facts and time intervals it really covers: a current-only ward does not retroactively erase unrelated old history; an express historical-trace protection still applies. Do not disclose protected existence through count, placeholders, missing sequence numbers or conspicuous gaps. Undefined precision stays uncertain rather than being rounded into an invented date. Supply all independently useful readable information, not only public facts or a single trace.\n\nThe snapshot can be remembered/recorded through ordinary time and tools. It grants no ongoing sensory feed, targeting sight, time travel, replay, dispel, reconstruction, spell acquisition or Fate Echo observation receipt. Learning a cast's past existence now is not directly witnessing that original cast in its original time window. Equivalent unchanged paid inquiries return consistent overlapping records; genuine new events/protection/evidence can change them. No spent material, soul, class permission or cosmological origin is recovered or interpreted.",
+          "replacement": "KEEP Action/V/S/F/base 17 RP, range 120 feet, instantaneous reading, and all past and present magical effects in an area. NEW DI7-only three-dimensional grid completion: use actual world coordinates in feet on the existing 5-foot grid. For points A and B, define D(A,B) = max(abs(Ax−Bx), abs(Ay−By), abs(Az−Bz)). This preserves the existing horizontal diagonal metric and explicitly extends it to vertical and combined-axis separation. Choose one actually perceived point C with D(caster’s actual casting position,C) ≤ 120 and actual line of effect before commitment. Record C as a fixed world-space point; do not snap, round or relocate it to obtain eligibility.\n\nAt effect resolution, the 20-foot-radius grid-metric sphere includes exactly those spatial cells whose centers P satisfy D(C,P) ≤ 20. Boundary equality is included. This is a sphere under the specified game metric, not a Euclidean ball; impose no additional Euclidean-radius test. Cell inclusion establishes only spatial membership. Current center-to-portion line of effect and solid total cover still clip the actual readable portions, and the existing no-corner-cutting restriction is not bypassed by diagonal distance. Do not disclose a whole footprint merely because one included cell intersects it. A readable historical location need not contain a creature, object or active effect now.\n\nNEW resolution checkpoint: immediately before producing the snapshot, revalidate that the same recorded C remains actually perceived, within D ≤ 120 of the caster’s current actual casting position, and in current caster-to-center line of effect. A legally displaced caster does not move C. If any of those requirements fails, the committed cast produces no information and no refund, substitute center or deferred resolution. An intervening spatial failure that has genuinely ended before this checkpoint does not itself create a continuous-range failure; any independently applicable casting interruption still governs. This adds no second payment, component performance or casting event.\n\nWhen the center passes, evaluate the readable spatial portions and their history at that resolution checkpoint. This is a spatial-history query of those actual readable places, not a remote view through today’s walls; a presently open portion can still reveal its established earlier local history even if the ancient layout differed. These metric and checkpoint completions govern this Supreme Sight procedure only, not other spells, movement, mounts or general combat geometry.\n\nPrivately receive every actual established magical-effect occurrence whose historical footprint intersected those readable spatial portions while the event existed, plus current readable magic there. There is no arbitrary lookback age, rank or record-count ceiling. An ended/destroyed effect remains eligible as history, including one that ended long ago; destruction does not recreate a present object or resource. The Director's actual established history is sufficient without a previously implemented event log, but absence of historical evidence is not proof of no ancient magic. NEW interval representation: one continuing unchanged effect is one interval with its genuinely known transitions, not a generated casting every second. A moving effect has its real local visits/intervals, not a new spell per tile; overlaps retain separate original effect identities.\n\nFor each readable occurrence give its actual spell/effect identity, or its established bounded category when no named identity is supplied; generating school/rank only when its source actually defines those fields; readable local footprint; time/relative ordering at its real established precision; and starts, persistence, changes, suppression and endings there. Actual magical nonspell class/item effects and existing dormant enchantments can qualify through their real magic/history, without inventing rank 0 or a school. A record that was never magical is not made magical by nearby events. An effect currently elsewhere has only its local historical footprint here, not a disclosed current remote destination.\n\nThis does not automatically reveal a caster's personal identity, private memory, current pool, attunement, full blueprint, upstream origin or unrelated history. Those require their own actual readable manifestation/source permission. Apply each genuine present/historical information defense to the facts and time intervals it really covers: a current-only ward does not retroactively erase unrelated old history; an express historical-trace protection still applies. Do not disclose protected existence through count, placeholders, missing sequence numbers or conspicuous gaps. Undefined precision stays uncertain rather than being rounded into an invented date. Supply all independently useful readable information, not only public facts or a single trace.\n\nThe snapshot can be remembered/recorded through ordinary time and tools. It grants no ongoing sensory feed, targeting sight, time travel, replay, dispel, reconstruction, spell acquisition or Fate Echo observation receipt. Learning a cast's past existence now is not directly witnessing that original cast in its original time window. Equivalent unchanged paid inquiries return consistent overlapping records; genuine new events/protection/evidence can change them. No spent material, soul, class permission or cosmological origin is recovered or interpreted."
+        },
+        {
+          "pointer": "/completePublicEnvelope/sourceDirectionAddenda",
+          "old": [
+            {
+              "id": "DI7-SHIELD-LATE-01",
+              "affectedSpellId": "premonition-shield",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_SHIELD_LATE_ADMISSION_RECEIVED.json",
+                "bytes": 2267,
+                "sha256": "fc969d97c095a19dfaf94d609f99bdee3292a27253edde0c6364c31ee466c497"
+              },
+              "scope": "KEEP existing first-component and same-live-record principles; NEW minimal completion closes negative admission and replacement across the ward family.",
+              "exactApproval": false
+            }
+          ],
+          "replacement": [
+            {
+              "id": "DI7-SHIELD-LATE-01",
+              "affectedSpellId": "premonition-shield",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_SHIELD_LATE_ADMISSION_RECEIVED.json",
+                "bytes": 2267,
+                "sha256": "fc969d97c095a19dfaf94d609f99bdee3292a27253edde0c6364c31ee466c497"
+              },
+              "scope": "KEEP existing first-component and same-live-record principles; NEW minimal completion closes negative admission and replacement across the ward family.",
+              "exactApproval": false
+            },
+            {
+              "id": "DI7-GEOMETRY-3D-01",
+              "affectedSpellIds": [
+                "mass-revelation",
+                "resonance-sight-supreme"
+              ],
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_GEOMETRY_3D_RECEIVED.json",
+                "bytes": 1875,
+                "sha256": "092db9df39f2b100360df0a2323861ab7a956fe19afa5a931332509586449a78"
+              },
+              "scope": "Scoped 3D area definitions and fixed committed geometry resolution checkpoints.",
+              "exactApproval": false
+            }
+          ]
+        },
+        {
+          "pointer": "/publicEnvelopeBinding",
+          "old": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+            "bytes": 128641,
+            "sha256": "ec6db3fe57c9b465fcebad760be6956aefdf6e5d5764a46e6749285d9c2ac4c0"
+          },
+          "replacement": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+            "bytes": 132734,
+            "sha256": "5ff3228d7954b05e1881d0f6c62090be4d2c038c9b4a3a959ac5acdcb1da093b"
+          }
+        },
+        {
+          "pointer": "/finiteExpectations/supplementalSourceExpectations",
+          "old": [
+            {
+              "id": "DI7-SHIELD-LATE-01",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_SHIELD_LATE_ADMISSION_RECEIVED.json",
+                "bytes": 2267,
+                "sha256": "fc969d97c095a19dfaf94d609f99bdee3292a27253edde0c6364c31ee466c497"
+              },
+              "evidenceKind": "Authored expected outcomes; execution evidence is separate.",
+              "original49Unchanged": true,
+              "variants": [
+                {
+                  "id": "DI7-SHIELD-LATE-A",
+                  "expected": "Ward suppressed at the recipient first beam: zero uses spent, no prevention on any immediate beam after suppression ends, two uses and original deadline retained for distinct subsequent occurrences."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-B1",
+                  "expected": "No ward at recipient first beam; a later separately legally established paid ward cannot admit remaining beams. New ward retains two uses and its own60-second deadline; no cast refund."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-B2",
+                  "expected": "Old ward admitted first beam, then legally replaced: prior prevention remains, old application ends and discards unused remainder. Neither old nor new application protects subsequent beams. New ward spends no use on that occurrence and retains its own two uses/deadline."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-C",
+                  "expected": "Same live ward admitted first beam, suppressed only at second, then returns before third and before expiry: first/third protected, second unprotected, only one use spent. The same holds when initial commitment spent its second use, until occurrence completion; an unrelated interleaved event gains none."
+                }
+              ],
+              "interfaceNotes": [
+                "Each recipient has its own checkpoint; another recipient first affected later may commit then.",
+                "For share-only recipients only first positive pre-mitigation share creates the checkpoint; zero/post-defense skipPrevention branches create none.",
+                "Prior qualifying direct component closes admission before any later share for the same recipient and occurrence.",
+                "Failed/countered replacement retains old admitted coverage; exact deadline excludes even previously admitted later components."
+              ]
+            }
+          ],
+          "replacement": [
+            {
+              "id": "DI7-SHIELD-LATE-01",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_SHIELD_LATE_ADMISSION_RECEIVED.json",
+                "bytes": 2267,
+                "sha256": "fc969d97c095a19dfaf94d609f99bdee3292a27253edde0c6364c31ee466c497"
+              },
+              "evidenceKind": "Authored expected outcomes; execution evidence is separate.",
+              "original49Unchanged": true,
+              "variants": [
+                {
+                  "id": "DI7-SHIELD-LATE-A",
+                  "expected": "Ward suppressed at the recipient first beam: zero uses spent, no prevention on any immediate beam after suppression ends, two uses and original deadline retained for distinct subsequent occurrences."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-B1",
+                  "expected": "No ward at recipient first beam; a later separately legally established paid ward cannot admit remaining beams. New ward retains two uses and its own60-second deadline; no cast refund."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-B2",
+                  "expected": "Old ward admitted first beam, then legally replaced: prior prevention remains, old application ends and discards unused remainder. Neither old nor new application protects subsequent beams. New ward spends no use on that occurrence and retains its own two uses/deadline."
+                },
+                {
+                  "id": "DI7-SHIELD-LATE-C",
+                  "expected": "Same live ward admitted first beam, suppressed only at second, then returns before third and before expiry: first/third protected, second unprotected, only one use spent. The same holds when initial commitment spent its second use, until occurrence completion; an unrelated interleaved event gains none."
+                }
+              ],
+              "interfaceNotes": [
+                "Each recipient has its own checkpoint; another recipient first affected later may commit then.",
+                "For share-only recipients only first positive pre-mitigation share creates the checkpoint; zero/post-defense skipPrevention branches create none.",
+                "Prior qualifying direct component closes admission before any later share for the same recipient and occurrence.",
+                "Failed/countered replacement retains old admitted coverage; exact deadline excludes even previously admitted later components."
+              ]
+            },
+            {
+              "id": "DI7-GEOMETRY-3D-01",
+              "authority": {
+                "path": "docs/audit/2026-10-08/full-game/DI7_GEOMETRY_3D_RECEIVED.json",
+                "bytes": 1875,
+                "sha256": "092db9df39f2b100360df0a2323861ab7a956fe19afa5a931332509586449a78"
+              },
+              "evidenceKind": "Authored source expectations only; execution evidence separate.",
+              "original49Unchanged": true,
+              "variants": [
+                {
+                  "id": "DI7-GEO-S1",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    20,
+                    20,
+                    0
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-S2",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    20,
+                    20,
+                    20
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-S3",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    0,
+                    0,
+                    20
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-S4",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    20,
+                    0,
+                    5
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-S5",
+                  "kind": "supreme-cell-membership",
+                  "offset": [
+                    25,
+                    0,
+                    0
+                  ],
+                  "expectedInside": false,
+                  "qualification": "Membership only; actual current clipping and information protections remain."
+                },
+                {
+                  "id": "DI7-GEO-R1",
+                  "kind": "supreme-caster-center-range",
+                  "offset": [
+                    120,
+                    120,
+                    120
+                  ],
+                  "expectedWithinRange": true,
+                  "qualification": "Actual perception and line of effect separately required."
+                },
+                {
+                  "id": "DI7-GEO-R2",
+                  "kind": "supreme-caster-center-range",
+                  "offset": [
+                    125,
+                    0,
+                    0
+                  ],
+                  "expectedWithinRange": false,
+                  "qualification": "Actual perception and line of effect separately required."
+                },
+                {
+                  "id": "DI7-GEO-M1",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    60,
+                    30,
+                    0
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M2",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    60,
+                    0,
+                    30
+                  ],
+                  "expectedInside": true,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M3",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    60,
+                    25,
+                    25
+                  ],
+                  "expectedInside": false,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M4",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    60,
+                    35,
+                    0
+                  ],
+                  "expectedInside": false,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M5",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "cellCenter": [
+                    65,
+                    0,
+                    0
+                  ],
+                  "expectedInside": false,
+                  "qualification": "Actual occupied non-origin cell and current clipping separately required; no extra radial cap."
+                },
+                {
+                  "id": "DI7-GEO-M6",
+                  "kind": "mass-cell-membership",
+                  "origin": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "facing": [
+                    12,
+                    5,
+                    0
+                  ],
+                  "cellCenter": [
+                    65,
+                    0,
+                    0
+                  ],
+                  "expectedInside": true,
+                  "expectedAxial": 60,
+                  "expectedPerpendicular": 25,
+                  "qualification": "Normalize facing to (12/13,5/13,0); no radial rejection at65."
+                },
+                {
+                  "id": "DI7-GEO-I1",
+                  "kind": "resolution-interruption",
+                  "expected": "Supreme committed from(0,0,0) to C=(120,0,0); legal displacement to(0,5,0) keeps fixed C at grid distance120. Resolve if perception and line of effect survive."
+                },
+                {
+                  "id": "DI7-GEO-I2",
+                  "kind": "resolution-interruption",
+                  "expected": "Same Supreme commitment; displacement to(-5,0,0) makes range125. No information, refund or substitute center."
+                },
+                {
+                  "id": "DI7-GEO-I3",
+                  "kind": "resolution-interruption",
+                  "expected": "Supreme fixed C in range but perception or caster-to-center line of effect fails at resolution: no information. Only center-to-portion obstruction clips its own portions."
+                },
+                {
+                  "id": "DI7-GEO-I4",
+                  "kind": "resolution-interruption",
+                  "expected": "Mass O at source-cell center; displacement to nonoverlapping cell no longer containing O: no effect, remote old-position cone, translated new-position cone or refund."
+                },
+                {
+                  "id": "DI7-GEO-I5",
+                  "kind": "resolution-interruption",
+                  "expected": "Mass caster changes position while O remains legal in actual occupied space, or genuinely returns before resolution: unchanged O/F cone if other requirements survive; no new direction."
+                },
+                {
+                  "id": "DI7-GEO-I6",
+                  "kind": "resolution-interruption",
+                  "expected": "Illegal geometry before commitment rejects activation rather than producing a paid post-interruption failure."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exactInverseBytesVerified": true
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/docs/spells/candidates/DIVINATION_RANK7_EXACT_01.md",
+        "bytes": 57620,
+        "sha256": "9998b20f86bedfca451e95c86e675cc4fca5e722327041328d043c2ba5a22d75",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-di7-geometry/DescentReviewChanges/ReviewBible/docs/spells/candidates/DIVINATION_RANK7_EXACT_01.md"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/docs/spells/candidates/DIVINATION_RANK7_EXACT_01.md",
+        "bytes": 61210,
+        "sha256": "8a9172b68043831c24659be797dec9cad7de0ae07b7b50b261e9d8ea7df9aedb"
+      },
+      "operations": [
+        {
+          "textReplace": true,
+          "spellIdGuard": "mass-revelation",
+          "old": "KEEP Action/V/S/F, base 17 RP, one instantaneous 60-foot cone from the caster, and all four categories: hidden traps, enemies, magic and lies. NEW choose and record the cone direction at commitment; the caster alone receives the resolution-time snapshot, with no creature-count cap. The cone is an informational area, not a sight-required individual targeting attempt. Hidden or Invisible unprotected contents can qualify. Source-origin line of effect clips each readable portion; a wall cannot be bypassed merely because another sense sees through it.\n\nNEW exact fallback template, because the supplied combat guide leaves exact templates open: use a cone with 60-foot forward axial length and circular cross-section of diameter equal to distance along its axis (diameter 60 feet at its far end). Record an actual origin and facing vector before the cast. On the existing 5-foot grid, use cell centers in that volume; a body/feature qualifies through a genuinely occupied included cell and only its readable local footprint is disclosed. Do not include a creature merely because an empty corner of its rectangular bounding box touches the volume. The origin cell itself is excluded; a source may choose a forward origin on its own actual space boundary. This is a NEW DI7 template choice, not recovered ordinary cone text. Existing range metric, total-cover, actual vertical placement and no-corner-cutting constraints still apply; this template gives no generic new geometry to other spells.\n\nHidden traps: reveal the current physical site, occupied footprint, armed/dormant state and immediate trigger category of every actual readable trap. A concealed plate qualifies; an ordinary dangerous creature is not automatically a trap. No disarm solution, code, future die or automatic Search/disarm Action is granted. Enemies: reveal the current occupied footprint and readable creature count of actual beings presently intending or executing a meaningful hostile act against the caster or a member of the caster's current party. This NEW predicate is not alignment, species, reputation, mere disagreement or a caller's enemy flag. It reads no plan, memory, full identity or stat block. Intent, location and existence protections retain their independent actual scopes; never count protected existences.\n\nMagic: reveal each current actual magical effect's local footprint, spell/nonspell category, generating school/rank when its source supplies them, and active/suppressed state. A dormant enchanted object's still-existing enchantment may be distinguished from an active spell when readable; this does not invent charges, attunement, powers or an absent school/rank. Overlapping effects stay separate. Lies: NEW examine assertions made during the inclusive six elapsed seconds ending at resolution by a creature presently in the readable cone, only where the caster actually perceived and understood that assertion. Report deliberate deception when the speaker knowingly asserted what they then believed false; a sincere error is not a lie. Irony, uncertainty, misunderstood content, mere recorded sounds or a speaker now outside the area create no invented belief or objective replacement truth. Current relevant belief/existence protections still apply. A valid decoded sign can be an assertion; the spell supplies no language or general translation.\n\nNo generic save is added. An actual defense's own check/threshold applies only within its source scope. Apply the shared information rule without a free preflight search for hidden facts. The spell disarms, dispels, damages and compels nothing. CORRECTION to the proposal's blanket retained-concealment language: learning a location ends Hidden for this caster and removes Invisible's own attack modifiers against this informed observer, as already reviewed; it does not make an Invisible creature visible or satisfy a sight-required spell. Independent concealment still applies. The record is a snapshot, not a tracking feed. No ally receives the knowledge or observer-state change without actually obtaining that information through a legal channel.",
+          "replacement": "KEEP Action/V/S/F, base 17 RP, one instantaneous 60-foot cone from the caster, and all four categories: hidden traps, enemies, magic and lies. NEW choose and record the cone direction at commitment; the caster alone receives the resolution-time snapshot, with no creature-count cap. The cone is an informational area, not a sight-required individual targeting attempt. Hidden or Invisible unprotected contents can qualify. Source-origin line of effect clips each readable portion; a wall cannot be bypassed merely because another sense sees through it.\n\nKEEP the previously authored DI7 cone template: 60-foot forward axial length, with circular cross-section diameter equal to forward axial distance. Before commitment, record actual source origin O, its nominated genuinely occupied source cell, and a nonzero facing vector. Normalize that vector by its Euclidean length to obtain unit direction F; do not snap it to a grid axis. A source may choose a forward origin on its own actual space boundary, recording the originating occupied source cell rather than treating both cells adjacent to that boundary as origin cells.\n\nFor a candidate cell center P, let V=P−O, a=dot(V,F), and W=V−aF. Geometric membership requires 0<a≤60 and 4×dot(W,W)≤a². Include equality at the lateral surface and far axial face; exclude the nominated origin cell. The 60-foot figure and rangeFeet:60 describe forward axial extent for this template. Apply no additional Euclidean or grid-metric 60-foot radial cap to its included cells. In particular, forward distance60 with perpendicular distance30 is inside. This exact template controls Mass Revelation’s shape rather than converting its circular sections into grid-metric squares.\n\nUse actual 3D cell centers and genuinely occupied body/feature/effect footprints. An empty part of a bounding box is not occupancy. Disclose only actual readable local portions within included cells after current source-origin line-of-effect, total-cover and existing no-corner-cutting clipping. Distance or a geometrically included cell supplies no path around a wall, no assumed vertical occupancy and no new sight-required targeting restriction on the cone’s hidden contents.\n\nNEW fixed-origin resolution rule: O, F and the nominated origin cell are fixed world-space records at commitment. Legal caster displacement or rotation does not translate or rotate this pending cone. Immediately before the snapshot, the recorded O must still be a legal origin within the caster’s current actual occupied space, or on its forward boundary under the stated boundary option. If it no longer qualifies, the committed cast produces no effect, with no refund, replacement origin or direction; it cannot project remotely from the caster’s former empty position. If O still qualifies, resolve the unchanged cone using current contents and current line of effect. Genuine departure and return before this checkpoint do not independently cancel the cast, although any other applicable interruption remains controlling. This adds no displacement permission, continuous sensor, second cast or general geometry rule.\n\nHidden traps: reveal the current physical site, occupied footprint, armed/dormant state and immediate trigger category of every actual readable trap. A concealed plate qualifies; an ordinary dangerous creature is not automatically a trap. No disarm solution, code, future die or automatic Search/disarm Action is granted. Enemies: reveal the current occupied footprint and readable creature count of actual beings presently intending or executing a meaningful hostile act against the caster or a member of the caster's current party. This NEW predicate is not alignment, species, reputation, mere disagreement or a caller's enemy flag. It reads no plan, memory, full identity or stat block. Intent, location and existence protections retain their independent actual scopes; never count protected existences.\n\nMagic: reveal each current actual magical effect's local footprint, spell/nonspell category, generating school/rank when its source supplies them, and active/suppressed state. A dormant enchanted object's still-existing enchantment may be distinguished from an active spell when readable; this does not invent charges, attunement, powers or an absent school/rank. Overlapping effects stay separate. Lies: NEW examine assertions made during the inclusive six elapsed seconds ending at resolution by a creature presently in the readable cone, only where the caster actually perceived and understood that assertion. Report deliberate deception when the speaker knowingly asserted what they then believed false; a sincere error is not a lie. Irony, uncertainty, misunderstood content, mere recorded sounds or a speaker now outside the area create no invented belief or objective replacement truth. Current relevant belief/existence protections still apply. A valid decoded sign can be an assertion; the spell supplies no language or general translation.\n\nNo generic save is added. An actual defense's own check/threshold applies only within its source scope. Apply the shared information rule without a free preflight search for hidden facts. The spell disarms, dispels, damages and compels nothing. CORRECTION to the proposal's blanket retained-concealment language: learning a location ends Hidden for this caster and removes Invisible's own attack modifiers against this informed observer, as already reviewed; it does not make an Invisible creature visible or satisfy a sight-required spell. Independent concealment still applies. The record is a snapshot, not a tracking feed. No ally receives the knowledge or observer-state change without actually obtaining that information through a legal channel."
+        },
+        {
+          "textReplace": true,
+          "spellIdGuard": "resonance-sight-supreme",
+          "old": "KEEP Action/V/S/F/base 17 RP, range 120 feet, instantaneous reading, and all past and present magical effects in an area. NEW choose a perceived point within 120 feet and line of effect; at resolution use one fixed 20-foot-radius sphere and current center-to-portion line of effect, with the reviewed grid metric for membership. Solid total cover clips the readable portion. This is a spatial-history query of those actual readable places, not a remote view through today's walls; a presently open portion can still reveal its established earlier local history even if the ancient layout differed.\n\nPrivately receive every actual established magical-effect occurrence whose historical footprint intersected those readable spatial portions while the event existed, plus current readable magic there. There is no arbitrary lookback age, rank or record-count ceiling. An ended/destroyed effect remains eligible as history, including one that ended long ago; destruction does not recreate a present object or resource. The Director's actual established history is sufficient without a previously implemented event log, but absence of historical evidence is not proof of no ancient magic. NEW interval representation: one continuing unchanged effect is one interval with its genuinely known transitions, not a generated casting every second. A moving effect has its real local visits/intervals, not a new spell per tile; overlaps retain separate original effect identities.\n\nFor each readable occurrence give its actual spell/effect identity, or its established bounded category when no named identity is supplied; generating school/rank only when its source actually defines those fields; readable local footprint; time/relative ordering at its real established precision; and starts, persistence, changes, suppression and endings there. Actual magical nonspell class/item effects and existing dormant enchantments can qualify through their real magic/history, without inventing rank 0 or a school. A record that was never magical is not made magical by nearby events. An effect currently elsewhere has only its local historical footprint here, not a disclosed current remote destination.\n\nThis does not automatically reveal a caster's personal identity, private memory, current pool, attunement, full blueprint, upstream origin or unrelated history. Those require their own actual readable manifestation/source permission. Apply each genuine present/historical information defense to the facts and time intervals it really covers: a current-only ward does not retroactively erase unrelated old history; an express historical-trace protection still applies. Do not disclose protected existence through count, placeholders, missing sequence numbers or conspicuous gaps. Undefined precision stays uncertain rather than being rounded into an invented date. Supply all independently useful readable information, not only public facts or a single trace.\n\nThe snapshot can be remembered/recorded through ordinary time and tools. It grants no ongoing sensory feed, targeting sight, time travel, replay, dispel, reconstruction, spell acquisition or Fate Echo observation receipt. Learning a cast's past existence now is not directly witnessing that original cast in its original time window. Equivalent unchanged paid inquiries return consistent overlapping records; genuine new events/protection/evidence can change them. No spent material, soul, class permission or cosmological origin is recovered or interpreted.",
+          "replacement": "KEEP Action/V/S/F/base 17 RP, range 120 feet, instantaneous reading, and all past and present magical effects in an area. NEW DI7-only three-dimensional grid completion: use actual world coordinates in feet on the existing 5-foot grid. For points A and B, define D(A,B) = max(abs(Ax−Bx), abs(Ay−By), abs(Az−Bz)). This preserves the existing horizontal diagonal metric and explicitly extends it to vertical and combined-axis separation. Choose one actually perceived point C with D(caster’s actual casting position,C) ≤ 120 and actual line of effect before commitment. Record C as a fixed world-space point; do not snap, round or relocate it to obtain eligibility.\n\nAt effect resolution, the 20-foot-radius grid-metric sphere includes exactly those spatial cells whose centers P satisfy D(C,P) ≤ 20. Boundary equality is included. This is a sphere under the specified game metric, not a Euclidean ball; impose no additional Euclidean-radius test. Cell inclusion establishes only spatial membership. Current center-to-portion line of effect and solid total cover still clip the actual readable portions, and the existing no-corner-cutting restriction is not bypassed by diagonal distance. Do not disclose a whole footprint merely because one included cell intersects it. A readable historical location need not contain a creature, object or active effect now.\n\nNEW resolution checkpoint: immediately before producing the snapshot, revalidate that the same recorded C remains actually perceived, within D ≤ 120 of the caster’s current actual casting position, and in current caster-to-center line of effect. A legally displaced caster does not move C. If any of those requirements fails, the committed cast produces no information and no refund, substitute center or deferred resolution. An intervening spatial failure that has genuinely ended before this checkpoint does not itself create a continuous-range failure; any independently applicable casting interruption still governs. This adds no second payment, component performance or casting event.\n\nWhen the center passes, evaluate the readable spatial portions and their history at that resolution checkpoint. This is a spatial-history query of those actual readable places, not a remote view through today’s walls; a presently open portion can still reveal its established earlier local history even if the ancient layout differed. These metric and checkpoint completions govern this Supreme Sight procedure only, not other spells, movement, mounts or general combat geometry.\n\nPrivately receive every actual established magical-effect occurrence whose historical footprint intersected those readable spatial portions while the event existed, plus current readable magic there. There is no arbitrary lookback age, rank or record-count ceiling. An ended/destroyed effect remains eligible as history, including one that ended long ago; destruction does not recreate a present object or resource. The Director's actual established history is sufficient without a previously implemented event log, but absence of historical evidence is not proof of no ancient magic. NEW interval representation: one continuing unchanged effect is one interval with its genuinely known transitions, not a generated casting every second. A moving effect has its real local visits/intervals, not a new spell per tile; overlaps retain separate original effect identities.\n\nFor each readable occurrence give its actual spell/effect identity, or its established bounded category when no named identity is supplied; generating school/rank only when its source actually defines those fields; readable local footprint; time/relative ordering at its real established precision; and starts, persistence, changes, suppression and endings there. Actual magical nonspell class/item effects and existing dormant enchantments can qualify through their real magic/history, without inventing rank 0 or a school. A record that was never magical is not made magical by nearby events. An effect currently elsewhere has only its local historical footprint here, not a disclosed current remote destination.\n\nThis does not automatically reveal a caster's personal identity, private memory, current pool, attunement, full blueprint, upstream origin or unrelated history. Those require their own actual readable manifestation/source permission. Apply each genuine present/historical information defense to the facts and time intervals it really covers: a current-only ward does not retroactively erase unrelated old history; an express historical-trace protection still applies. Do not disclose protected existence through count, placeholders, missing sequence numbers or conspicuous gaps. Undefined precision stays uncertain rather than being rounded into an invented date. Supply all independently useful readable information, not only public facts or a single trace.\n\nThe snapshot can be remembered/recorded through ordinary time and tools. It grants no ongoing sensory feed, targeting sight, time travel, replay, dispel, reconstruction, spell acquisition or Fate Echo observation receipt. Learning a cast's past existence now is not directly witnessing that original cast in its original time window. Equivalent unchanged paid inquiries return consistent overlapping records; genuine new events/protection/evidence can change them. No spent material, soul, class permission or cosmological origin is recovered or interpreted."
+        }
+      ],
+      "exactInverseBytesVerified": true
+    }
+  ],
+  "newRuleAdoptions": 3,
+  "original49ExpectationsAndFourShieldSupplementUnchanged": true,
+  "newSupplementalExpectations": 19,
+  "allOtherCandidateContentUnchanged": true,
+  "allCostAccessApprovalSelectionFieldsUnchanged": true,
+  "sourceInformationDeleted": 0,
+  "spellPromotions": 0
+}

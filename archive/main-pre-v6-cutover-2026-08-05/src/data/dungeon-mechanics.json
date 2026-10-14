@@ -1,0 +1,100 @@
+{
+  "source": "decennium descent player rulebook.docx + The World of Aethel Lore.docx",
+  "hornRule": "At 1200 hours (day 50 of the 2400-hour Opening), a giant horn sounds throughout the Decennium — the point of no return. Adventurers must retreat or risk being trapped in the depths for 10 years until the next Cycle. Soft quit at Floor 50 Canticle is separate from the Horn.",
+  "cycle": {
+    "calendar": "400-day year, 10 months of 40 days; Holyday on the 10th of each month; final 10 days = Twilight Week when divine and mortal boundaries blur.",
+    "rotation": "10-year rotation — the Shardspire activates in the tenth year. Cycles are named after their victor.",
+    "entryClasses": {
+      "draft": true,
+      "directorNote": "Director default, 2026-07-29 overnight (per Continuity referral, ASK OWNER #5 in CONTINUITY_REPORT.md / CHARGEN_PROGRESSION.md). No rulebook Ch XII source found restricting Cycle entry by class — filled from the 17 CANON_CLASSES roster rather than left as a placeholder bullet. Re-open only if `rulebook_output.txt` Ch XII or a lore extract is found specifying real restrictions.",
+      "eligible": ["Bard", "Cleric", "Crimson Agent", "Dragoon", "Druid", "Mage", "Monk", "Mirrorsage", "Oracle", "Paladin", "Ranger", "Shaman", "Soldier", "Tinker", "Thief", "Warrior", "Wizard"],
+      "policy": "All 17 canon classes may attempt entry when the Shardspire activates; the Great Descent does not bar entry by class. Fighter/Swashbuckler are non-canon for v1 and do not enter as base classes."
+    },
+    "victoryConsequences": {
+      "draft": true,
+      "directorNote": "Director default, 2026-07-29 overnight — draft flavor consequences derived from each tier's boss/zone theme in floor-encounters.json, in the spirit of the rulebook's 'new laws, weather, or rulers based on the god favored by the victor' line and the existing mythHistory entries below. Not mechanical rules; author/Continuity review before treating as canon.",
+      "summary": "A Cycle's victor is whoever holds the deepest gate they cleared when the horn sounds for the last time before the tenth year turns. The tier reached — not just the final one — colors the new Cycle's laws, weather, and ruling houses, echoing the pattern set by the First Cycle (a farmer's crown of flame founding Tyrnathar).",
+      "byTier": [
+        { "tier": 1, "zone": "Yieldheart Caverns", "boss": "Vaskor, the Stone Maw", "consequence": "Automaton labor charters and cavern mining rights are reopened or revoked at the victor's word; crystal-light guilds gain a seat at court." },
+        { "tier": 2, "zone": "Bloomdeep Marsh", "boss": "The Bloom That Hungers", "consequence": "Quarantine and foraging law reform; druidic and swamp-warden circles gain jurisdiction over marsh territories; hunger-cult purges or protections follow depending on the victor's temperament." },
+        { "tier": 3, "zone": "Anvil of Brogi", "boss": "Ashthirst the Hollow", "consequence": "Brogi's forge-priesthood is elevated to state smiths; new weapon-tax and fire-safety edicts are issued in the victor's name." },
+        { "tier": 4, "zone": "Isles of Eternal Radiance", "boss": "Gor Vekk, Architect of Ends", "consequence": "Calendar and liturgical reform around the radiant sects; 'Architect' cults are either declared orthodox or outlawed depending on the victor's alignment." },
+        { "tier": 5, "zone": "Sanctum of Echoing Choirs", "boss": "Choralith, Voice Below", "consequence": "A Choir doctrine schism or unification follows; new liturgical law on public silence/song; the Bar of Last Refuge becomes a formal pilgrimage waypoint." },
+        { "tier": 6, "zone": "Crossroads of the Shattered Thread", "boss": "Lumen of the Shattered Thread", "consequence": "Academic Factions researching the Weave gain new charters and travel-portal law changes; Weave-thread scholarship is formally sponsored by the victor's house." },
+        { "tier": 7, "zone": "Pactbound Arena", "boss": "Xarog, the Pactbound Furnace", "consequence": "A new oath-law is codified; bloodsport arenas are legalized and regulated, and Paladin oath orders gain political weight at court." },
+        { "tier": 8, "zone": "Duskshard Pools", "boss": "Eirfax, the Dusk Crowned", "consequence": "Twilight Week rites are formalized under the victor's house; 'Dusk Crowned' becomes a ceremonial title passed to the victor's line." },
+        { "tier": 9, "zone": "Veiled Iron Spiral", "boss": "Threxus, the Iron Spiral", "consequence": "The Turning Spiral's patronage (Oracle Mystery of Time) is elevated toward a state cult; iron-working guilds receive monopoly charters." },
+        { "tier": 10, "zone": "Silencebound Void", "boss": "The Marquis of Silence", "consequence": "Full Shardspire victory — the new Cycle is named after the victor; Hush Beneath the Song patronage becomes the dominant state rite until the next Cycle, per the mythHistory pattern below." }
+      ]
+    },
+    "mythHistory": [
+      "The Age of Dawns: When the First Light split, the world was shaped by the Tenfold Truths. The continents formed from divine clashes. Rivers ran where Velkyrion’s blade cut mountains. Forests grew where Kharix fell in grief.",
+      "The Binding of the Old God: An eleventh shard, unnamed and unclaimed, attempted to consume the Pantheon. The gods united to imprison it in the deepest level of the Great Descent, Level 97, and forbade any further contact.",
+      "The First Cycle: The Shardspire glowed, and mortals entered. A farmer emerged with a crown of flame, founding Tyrnathar. The advent of divine war through mortals began.",
+      "The Sundering of the Beastlands: When Threxian's forces cut through the Thauren Expanse, Kharix retaliated with living storms. Half the tribes were lost. Terhakor was born in the aftermath.",
+      "The Betrayal of the Veil: Yshael, once an ally to Elyria, tricked her into transferring a third of her power into a relic. This relic vanished into the dungeon, altering its structure permanently."
+    ]
+  },
+  "expedition": {
+    "maxSize": 12,
+    "summary": "Expeditions distribute up to 12 characters across combat, reconnaissance, research, resource, and support activities — not every member delves at once.",
+    "teams": [
+      {
+        "name": "Combat Team",
+        "size": "4–6",
+        "function": "Battles, dungeon delving, immediate threats"
+      },
+      {
+        "name": "Reconnaissance",
+        "size": "1–3",
+        "function": "Scouting, mapping, intelligence"
+      },
+      {
+        "name": "Research",
+        "size": "1–3",
+        "function": "Artifacts, lore, identification"
+      },
+      {
+        "name": "Resource",
+        "size": "2–4",
+        "function": "Hunting, gathering, crafting"
+      },
+      {
+        "name": "Support",
+        "size": "1–3",
+        "function": "Camp, healing, equipment maintenance"
+      }
+    ],
+    "timePeriods": [
+      "morning",
+      "afternoon",
+      "evening"
+    ]
+  },
+  "gateBosses": [
+    { "tier": 1, "name": "Vaskor, the Stone Maw", "zone": "Yieldheart Caverns", "floors": "1–10" },
+    { "tier": 2, "name": "The Bloom That Hungers", "zone": "Bloomdeep Marsh", "floors": "11–20" },
+    { "tier": 3, "name": "Ashthirst the Hollow", "zone": "Anvil of Brogi", "floors": "21–30" },
+    { "tier": 4, "name": "Gor Vekk, Architect of Ends", "zone": "Isles of Eternal Radiance", "floors": "31–40" },
+    { "tier": 5, "name": "Choralith, Voice Below", "zone": "Sanctum of Echoing Choirs", "floors": "41–50" },
+    { "tier": 6, "name": "Lumen of the Shattered Thread", "zone": "Crossroads of the Shattered Thread", "floors": "51–60", "draft": true, "encounterTitle": "The Thread That Remembers", "encounterVibe": "Disorienting weave-puzzle skirmishes; thread-wraith rumor." },
+    { "tier": 7, "name": "Xarog, the Pactbound Furnace", "zone": "Pactbound Arena", "floors": "61–70", "draft": true, "encounterTitle": "The Furnace That Collects Oaths", "encounterVibe": "Gladiatorial oath-pressure; Blackglass Reach slang in survivor accounts." },
+    { "tier": 8, "name": "Eirfax, the Dusk Crowned", "zone": "Duskshard Pools", "floors": "71–80", "draft": true, "encounterTitle": "The Crown in Still Water", "encounterVibe": "Twilight reverence; Veyr-Obsid obsidian-gleam poetry in rumor." },
+    { "tier": 9, "name": "Threxus, the Iron Spiral", "zone": "Veiled Iron Spiral", "floors": "81–90", "draft": true, "encounterTitle": "The Spiral That Will Not Unwind", "encounterVibe": "Claustrophobic helix; Turning Spiral name collision in theology." },
+    { "tier": 10, "name": "The Marquis of Silence", "zone": "Silencebound Void", "floors": "91–100", "draft": true, "encounterTitle": "The Marquis Who Waits Without Title", "encounterVibe": "Anti-resonance hush; Quiet Deep myth at the Shardspire's edge." }
+  ],
+  "timeline": [
+    "0 AE: Fracturing of the First Light",
+    "87 AE: First Cycle begins",
+    "301 AE: Betrayal of the Veil",
+    "666 AE: Imprisonment of the Old God",
+    "710 AE: Current Cycle begins",
+    "400-day year, 10 months of 40 days",
+    "10th day of each month = Holyday",
+    "Final 10 days of year = Twilight Week, the time when divine and mortal boundaries blur"
+  ],
+  "prestigeUnlock": {
+    "prerequisitePath": "Minimum base-class level, feats, skills, and a unique unlock event.",
+    "discoveryPath": "Narrative discovery via location, NPC, ritual, or thematic quest chain."
+  }
+}

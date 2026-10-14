@@ -1,0 +1,110 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-DEEP",
+  "runId": "EXP-DEEP-bal-L15-P6-sk",
+  "seed": 8859007,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.157,
+    "wipeRate": 0.0,
+    "abortRate": 0.843,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 3.791,
+    "meanWatches": 9.788,
+    "meanHours": 82.56,
+    "meanTrueProfit": 3360.22,
+    "medianTrueProfit": 3211.98,
+    "profitLossRate": 0.0915,
+    "meanCargoRetainedLoad": 19.236,
+    "meanExtractionFailRate": 0.5315,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 15,
+    "party": 6,
+    "mapping": "Sketched",
+    "policy": "balanced",
+    "objective": "Tier IV risk frontier",
+    "requestedRuns": 2000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-DEEP/bal-L15-P6-sk.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 1,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 6,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 6,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 3,
+      "pressure": 1,
+      "supply": 12.0,
+      "load": 6,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 4,
+      "pressure": 3,
+      "supply": 6.0,
+      "load": 19,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 5,
+      "hour": 40,
+      "progress": 5,
+      "pressure": 3,
+      "supply": 8.0,
+      "load": 19,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 6,
+      "hour": 48,
+      "progress": 6,
+      "pressure": 3,
+      "supply": 11.0,
+      "load": 19,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

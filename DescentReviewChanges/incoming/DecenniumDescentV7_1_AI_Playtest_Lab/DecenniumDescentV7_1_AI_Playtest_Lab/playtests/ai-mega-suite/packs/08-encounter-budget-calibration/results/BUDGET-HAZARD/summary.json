@@ -1,0 +1,188 @@
+{
+  "pack": "08-encounter-budget-calibration",
+  "scenarioId": "BUDGET-HAZARD",
+  "runId": "BUDGET-HAZARD-80800",
+  "seed": 80800,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": "fced67267849be457c04bb9ce2f673bc22253960699209fa751ebc5d98f2dcc7",
+  "evidenceLevel": "A",
+  "outcome": "WARN",
+  "metrics": {
+    "cells": [
+      {
+        "level": 5,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 200,
+        "successRate": 0.45,
+        "successCI95": [
+          0.3809,
+          0.5191
+        ],
+        "wipeRate": 0.55,
+        "meanHpPct": 0.1315,
+        "meanRounds": 15.12,
+        "budget": 90.0
+      },
+      {
+        "level": 5,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 200,
+        "successRate": 0.095,
+        "successCI95": [
+          0.0543,
+          0.1357
+        ],
+        "wipeRate": 0.905,
+        "meanHpPct": 0.0242,
+        "meanRounds": 7.635,
+        "budget": 130.0
+      },
+      {
+        "level": 5,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 1.0,
+        "meanHpPct": 0.0,
+        "meanRounds": 4.33,
+        "budget": 180.0
+      },
+      {
+        "level": 10,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 200,
+        "successRate": 0.585,
+        "successCI95": [
+          0.5165,
+          0.6535
+        ],
+        "wipeRate": 0.415,
+        "meanHpPct": 0.1456,
+        "meanRounds": 17.115,
+        "budget": 90.0
+      },
+      {
+        "level": 10,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 200,
+        "successRate": 0.085,
+        "successCI95": [
+          0.0463,
+          0.1237
+        ],
+        "wipeRate": 0.915,
+        "meanHpPct": 0.0203,
+        "meanRounds": 8.575,
+        "budget": 130.0
+      },
+      {
+        "level": 10,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 1.0,
+        "meanHpPct": 0.0,
+        "meanRounds": 5.685,
+        "budget": 180.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 200,
+        "successRate": 0.46,
+        "successCI95": [
+          0.3908,
+          0.5292
+        ],
+        "wipeRate": 0.54,
+        "meanHpPct": 0.0983,
+        "meanRounds": 15.855,
+        "budget": 90.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 200,
+        "successRate": 0.005,
+        "successCI95": [
+          -0.0048,
+          0.0148
+        ],
+        "wipeRate": 0.995,
+        "meanHpPct": 0.0016,
+        "meanRounds": 7.72,
+        "budget": 130.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 0.0,
+        "successCI95": [
+          0.0,
+          0.0
+        ],
+        "wipeRate": 1.0,
+        "meanHpPct": 0.0,
+        "meanRounds": 6.35,
+        "budget": 180.0
+      }
+    ],
+    "cellCount": 9,
+    "runsPerCell": 200,
+    "objective": "combat plus complex hazard"
+  },
+  "rulesHalts": [
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-HAZARD",
+      "level": 15,
+      "partySize": 4,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.005,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    }
+  ],
+  "rawEvidencePath": "results/08-encounter-budget-calibration/BUDGET-HAZARD/"
+}

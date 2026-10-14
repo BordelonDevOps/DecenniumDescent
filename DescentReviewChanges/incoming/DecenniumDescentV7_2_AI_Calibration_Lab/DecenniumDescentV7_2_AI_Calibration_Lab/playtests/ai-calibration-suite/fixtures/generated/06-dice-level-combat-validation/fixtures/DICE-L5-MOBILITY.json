@@ -1,0 +1,144 @@
+{
+  "scenarioId": "DICE-L5-MOBILITY",
+  "level": 5,
+  "budget": "Hard",
+  "objective": "cross hazardous arena and disable anchor",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "dragoon",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "monk",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "ranger",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "bard",
+        "x": 0,
+        "y": 15
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Chaos-Husk Tadpole",
+        "x": 30,
+        "y": 0
+      },
+      {
+        "id": "Deep Scion",
+        "x": 30,
+        "y": 5
+      }
+    ]
+  },
+  "cargo": null,
+  "partyBuildHashes": [
+    "fa7af029f0abe4d006f83fc7b544f756a832a812cc6595e9f30c03463bf6cfa8",
+    "9c3143fd506bd362d84d1e060ebe6746f97164226afdf0fb0bf329c10efb3963",
+    "2edb4a97fcb9113f9819b15f88d226bf7e8a4dc6682e79a10bd07df03fcf5fd3",
+    "2413a8f31a14a7bcc9f80d2913bcbd6ea67038fb87a2f451426cef7daa7f1b3c"
+  ],
+  "enemies": [
+    {
+      "name": "Chaos-Husk Tadpole",
+      "hitPoints": 142,
+      "armorClass": 15,
+      "challengeRating": "5",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Void Rend",
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+5 psychic damage (average 14)."
+        },
+        {
+          "name": "Psychic Pulse",
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+4 psychic damage (average 13)."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Unstable Geometry",
+          "text": "The first time each round a creature repeats the same movement path or action sequence, the monster gains a defensive reaction."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Void Rend",
+          "bonus": 6,
+          "n": 2,
+          "sides": 8,
+          "mod": 5,
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+5 psychic damage (average 14).",
+          "dc": null
+        },
+        {
+          "name": "Psychic Pulse",
+          "bonus": 6,
+          "n": 2,
+          "sides": 8,
+          "mod": 4,
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+4 psychic damage (average 13).",
+          "dc": null
+        }
+      ],
+      "multiattack": 1,
+      "isBoss": false,
+      "tenacityPerRound": 0,
+      "source": "src/bestiary_data_full.json"
+    },
+    {
+      "name": "Deep Scion",
+      "hitPoints": 75,
+      "armorClass": 14,
+      "challengeRating": "4",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Weapon Strike",
+          "text": "Attack: +6 to hit, one target. Hit: 2d6+3 slashing damage (average 10)."
+        },
+        {
+          "name": "Pressure Wave (Recharge 5-6)",
+          "text": "Creatures in the affected area make a DC 14 Constitution save, taking 4d6 bludgeoning damage (average 14) on a failure and half on a success. The Director should describe the charge-up before resolving it."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Prepared Ground",
+          "text": "It gains advantage on the first attack or check made from a fortified position in its lair."
+        },
+        {
+          "name": "Escalation Pulse",
+          "text": "Pressure Wave recharges on 5-6; visible signs appear one round before the first use."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Weapon Strike",
+          "bonus": 6,
+          "n": 2,
+          "sides": 6,
+          "mod": 3,
+          "text": "Attack: +6 to hit, one target. Hit: 2d6+3 slashing damage (average 10).",
+          "dc": null
+        }
+      ],
+      "multiattack": 1,
+      "isBoss": false,
+      "tenacityPerRound": 0,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "827a80f121b92c0dbb1fe19544686636803426faddffaf8fcdeebeb1ddf7712e"
+}

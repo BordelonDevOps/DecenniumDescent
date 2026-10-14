@@ -1,0 +1,2533 @@
+{
+  "scope": "Crafting/harvesting operational framework. Cosmology excluded until after verified authorized GitHub push.",
+  "crafting": {
+    "path": "DescentReviewChanges\\ReviewBible\\data\\crafting\\Decennium_Descent_Crafting_Bible_v4.json",
+    "sha256": "32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e",
+    "system": {
+      "coreLoop": [
+        "Identify",
+        "Harvest",
+        "Preserve",
+        "Transport",
+        "Refine",
+        "Discover or obtain formula",
+        "Craft",
+        "Evaluate quality",
+        "Use, sell, study, or salvage"
+      ],
+      "craftingCheck": {
+        "formula": "d20 + chosen ability modifier + proficiency bonus + tool bonus + facility bonus + assistant bonus",
+        "target": "Recipe difficulty",
+        "untrained": "A character without the tradeskill or required tool proficiency rolls with disadvantage and cannot attempt recipes above skill level 4.",
+        "assistants": "Each qualified assistant adds +1, up to the recipe maximum. Assistants must spend the same active work time.",
+        "takeTen": "In a safe workshop, a crafter may use a result of 10 on the die for recipes at least 5 skill levels below their current tradeskill.",
+        "qualityOutcomes": [
+          {
+            "margin": "10+",
+            "result": "Masterwork",
+            "effect": "Increase yield by 50% or improve one item property; preserve one catalyst."
+          },
+          {
+            "margin": "5 to 9",
+            "result": "Exceptional",
+            "effect": "Increase yield by 25% or improve durability/charges."
+          },
+          {
+            "margin": "0 to 4",
+            "result": "Standard",
+            "effect": "Create the listed result."
+          },
+          {
+            "margin": "-1 to -4",
+            "result": "Flawed",
+            "effect": "Create half yield or one reduced-duration/flawed result."
+          },
+          {
+            "margin": "-5 to -9",
+            "result": "Failed",
+            "effect": "No finished item; recover 25% of non-catalyst materials."
+          },
+          {
+            "margin": "-10 or natural 1",
+            "result": "Mishap",
+            "effect": "Lose consumed materials and roll on the tradeskill mishap table."
+          }
+        ]
+      },
+      "skillAdvancement": {
+        "maximumLevel": 20,
+        "ranks": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ],
+        "gain": "First-time crafts and recipes near the crafter’s current level grant the most skill experience. Trivial recipes eventually stop advancing the skill.",
+        "suggestedXP": "4 XP for first successful craft, 2 XP for a nontrivial repeat, 1 XP for a difficult failed attempt that produces usable research, 0 XP for trivial mass production.",
+        "levelCost": "Advancing a tradeskill level requires 10 + current level skill XP.",
+        "specialization": "At skill level 10, choose one specialty within the tradeskill. Specialty recipes gain +1 and may unlock unique substitutions."
+      },
+      "materialTiers": [
+        {
+          "tier": 1,
+          "rarity": "Common",
+          "use": "Basic carcass parts and ordinary supplies"
+        },
+        {
+          "tier": 2,
+          "rarity": "Uncommon",
+          "use": "Specialized organs, quality hides, uncommon minerals"
+        },
+        {
+          "tier": 3,
+          "rarity": "Rare",
+          "use": "Elite anatomy, magical tissues, refined cores"
+        },
+        {
+          "tier": 4,
+          "rarity": "Very Rare",
+          "use": "Named-monster parts and high-energy structures"
+        },
+        {
+          "tier": 5,
+          "rarity": "Epic",
+          "use": "Ancient scales, heartstones, soul gems, alpha trophies"
+        },
+        {
+          "tier": 6,
+          "rarity": "Legendary",
+          "use": "Mythic cores, pure essences, sentience, worldroot, and campaign-defining components"
+        }
+      ],
+      "materialRoles": [
+        "substrate",
+        "structure",
+        "edge",
+        "binder",
+        "solvent",
+        "stabilizer",
+        "catalyst",
+        "fuel",
+        "vessel",
+        "pigment",
+        "reagent",
+        "seasoning",
+        "reinforcement",
+        "tool"
+      ],
+      "materialProperties": {
+        "physical": [
+          "rigid",
+          "flexible",
+          "protective",
+          "structural",
+          "piercing",
+          "weavable",
+          "adhesive",
+          "viscous",
+          "liquid",
+          "fine",
+          "dispersible"
+        ],
+        "elemental": [
+          "fire",
+          "cold",
+          "lightning",
+          "water",
+          "air",
+          "earth",
+          "acid",
+          "poison"
+        ],
+        "metaphysical": [
+          "arcane",
+          "resonant",
+          "shadow",
+          "psychic",
+          "unholy",
+          "fey",
+          "draconic",
+          "sentient",
+          "regenerative",
+          "construct",
+          "vital"
+        ],
+        "rule": "A property recipe may accept any component of the required tier carrying the listed properties, unless the formula names a specific irreplaceable part."
+      },
+      "harvesting": {
+        "check": "Use the creature type’s knowledge skill to identify components, then the relevant gathering tradeskill to remove them.",
+        "typeSkills": {
+          "Beast": "Nature",
+          "Dragon": "Arcana",
+          "Monstrosity": "Nature",
+          "Giant": "History",
+          "Aberration": "Arcana",
+          "Construct": "Engineering",
+          "Elemental": "Arcana",
+          "Undead": "Religion",
+          "Fiend": "Religion",
+          "Celestial": "Religion",
+          "Fey": "Nature",
+          "Plant": "Nature",
+          "Ooze": "Nature",
+          "Humanoid": "Medicine"
+        },
+        "timeBySize": {
+          "Tiny": "10 minutes",
+          "Small": "20 minutes",
+          "Medium": "30 minutes",
+          "Large": "1 hour",
+          "Huge": "2 hours",
+          "Gargantuan": "4 hours"
+        },
+        "baseYieldBySize": {
+          "Tiny": "1",
+          "Small": "1d2",
+          "Medium": "1d4",
+          "Large": "2d4",
+          "Huge": "4d4",
+          "Gargantuan": "8d4"
+        },
+        "wholeCreatureRule": "A successful full harvest normally exposes four to six component categories. The listed bestiary drops are exceptional components, not the only usable remains.",
+        "partialHarvest": "The expedition may take only selected parts, reducing time and weight but forfeiting the remainder.",
+        "damageSpoilage": "The damage type and condition of the corpse can ruin, alter, or improve specific components.",
+        "sentientRestriction": "Humanoid and celestial remains require consent, lawful authority, or explicit dark-path play. Their bodies are not ordinary resource nodes."
+      },
+      "preservation": {
+        "windows": {
+          "blood and delicate organs": "1-4 hours",
+          "magical essence": "30 minutes-2 hours unless contained",
+          "meat": "8-24 hours",
+          "hide and membrane": "12-24 hours before curing",
+          "bone, horn, teeth, mineral": "Indefinite if kept dry",
+          "construct parts": "Indefinite, except active cores"
+        },
+        "methods": [
+          "salting",
+          "smoking",
+          "drying",
+          "pickling",
+          "rendering",
+          "fermentation",
+          "freezing",
+          "alchemical suspension",
+          "sealed specimen jars",
+          "magical stasis"
+        ],
+        "failure": "Expired materials lose one quality step per preservation interval and may become contaminated, inert, or dangerous."
+      },
+      "stationsAndTime": {
+        "field": "Up to 2 active hours; improvised camp tools; no permanent legendary items.",
+        "expedition": "Up to 8 active hours at a fortified camp or research station.",
+        "workshop": "One to five workdays at a proper dungeon haven or surface facility.",
+        "haven": "One week to one month; requires a named workshop, secure storage, and uninterrupted phases.",
+        "legacy": "More than one month; completed between seasons, by a retired crafter, or through a protected long-term facility.",
+        "seasonRule": "Crafting time represents active work. The 240-hour descent makes long projects strategic commitments rather than free downtime."
+      },
+      "economy": {
+        "pricing": "Recommended market value includes consumed materials, labor, rarity, risk, and access. Required tools are not consumed.",
+        "commission": "Standard commissions require a 50% deposit plus all irreplaceable monster parts.",
+        "failureRecovery": "Ordinary failure recovers 25% of non-catalyst materials; skilled Salvaging can improve this.",
+        "antiLoop": "Selling crafted goods below an appropriate market or faction demand avoids infinite-profit loops. Repeated mass production can saturate a local market.",
+        "retirement": "Retired crafters may maintain workshops, teach formulas, complete legacy projects, and improve starting expedition equipment."
+      },
+      "recipeDiscovery": {
+        "sources": [
+          "trainers",
+          "guilds",
+          "faction stores",
+          "monster research",
+          "reverse engineering",
+          "experimentation",
+          "dungeon libraries",
+          "boss caches",
+          "Gate zones",
+          "retired masters"
+        ],
+        "formulaRules": "Recipes above skill level 4 normally require a formula, schema, pattern, or documented oral tradition.",
+        "experimentRules": "Experimentation requires a stated desired result, components with relevant properties, a station, and a research check. Failure creates notes and may reveal partial properties."
+      }
+    },
+    "tradeskills": {
+      "Alchemy": {
+        "focus": "Potions, elixirs, oils, bombs, solvents, and transmutation compounds.",
+        "abilityOptions": [
+          "Intelligence"
+        ],
+        "station": "Alchemical Bench",
+        "requiredTools": [
+          "Alchemist's supplies",
+          "Heat source",
+          "Measuring glassware"
+        ],
+        "fieldCapable": true,
+        "preferredMaterialCategories": [
+          "fluid",
+          "organ",
+          "slime",
+          "essence",
+          "powder",
+          "plant",
+          "misc",
+          "core"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Blacksmithing": {
+        "focus": "Weapons, armor, shields, metal tools, and monster-reinforced alloys.",
+        "abilityOptions": [
+          "Strength",
+          "Intelligence"
+        ],
+        "station": "Forge and Anvil",
+        "requiredTools": [
+          "Smith's tools",
+          "Forge",
+          "Anvil",
+          "Tongs"
+        ],
+        "fieldCapable": false,
+        "preferredMaterialCategories": [
+          "mineral",
+          "scale",
+          "bone",
+          "horn",
+          "core",
+          "misc"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Cooking": {
+        "focus": "Meals, preserved food, monster cuisine, feasts, and temporary physiological traits.",
+        "abilityOptions": [
+          "Wisdom"
+        ],
+        "station": "Cookfire or Kitchen",
+        "requiredTools": [
+          "Cook's utensils",
+          "Knife",
+          "Pot or pan"
+        ],
+        "fieldCapable": true,
+        "preferredMaterialCategories": [
+          "fluid",
+          "organ",
+          "plant",
+          "misc",
+          "bone",
+          "slime"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Enchanting": {
+        "focus": "Permanent and charged magical effects placed on compatible items.",
+        "abilityOptions": [
+          "Intelligence"
+        ],
+        "station": "Resonance Circle",
+        "requiredTools": [
+          "Enchanter's tools",
+          "Focusing lens",
+          "Inscription stylus"
+        ],
+        "fieldCapable": false,
+        "preferredMaterialCategories": [
+          "essence",
+          "core",
+          "mineral",
+          "powder",
+          "organ",
+          "misc"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Fishing": {
+        "focus": "Tackle, bait, nets, traps, aquatic harvesting, and specialized catch processing.",
+        "abilityOptions": [
+          "Wisdom"
+        ],
+        "station": "Shoreline, dock, or fishing station",
+        "requiredTools": [
+          "Fishing tackle",
+          "Knife",
+          "Bait container"
+        ],
+        "fieldCapable": true,
+        "preferredMaterialCategories": [
+          "fiber",
+          "hide",
+          "bone",
+          "scale",
+          "misc",
+          "plant"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Herbalism": {
+        "focus": "Salves, poultices, teas, antidotes, botanical processing, and field medicine.",
+        "abilityOptions": [
+          "Wisdom"
+        ],
+        "station": "Herbalist's Table",
+        "requiredTools": [
+          "Herbalism kit",
+          "Mortar and pestle",
+          "Drying rack"
+        ],
+        "fieldCapable": true,
+        "preferredMaterialCategories": [
+          "plant",
+          "fluid",
+          "powder",
+          "slime",
+          "organ",
+          "misc"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Jewelcrafting": {
+        "focus": "Rings, amulets, settings, focusing gems, and worn magical accessories.",
+        "abilityOptions": [
+          "Dexterity",
+          "Intelligence"
+        ],
+        "station": "Jeweler's Bench",
+        "requiredTools": [
+          "Jeweler's tools",
+          "Fine files",
+          "Magnifying lens"
+        ],
+        "fieldCapable": false,
+        "preferredMaterialCategories": [
+          "mineral",
+          "core",
+          "essence",
+          "bone",
+          "horn",
+          "scale"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Leatherworking": {
+        "focus": "Armor, packs, quivers, boots, harnesses, and treated hides or scales.",
+        "abilityOptions": [
+          "Dexterity"
+        ],
+        "station": "Tannery Bench",
+        "requiredTools": [
+          "Leatherworker's tools",
+          "Awl",
+          "Cutting knife"
+        ],
+        "fieldCapable": false,
+        "preferredMaterialCategories": [
+          "hide",
+          "scale",
+          "bone",
+          "fiber",
+          "misc"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Mining": {
+        "focus": "Ore extraction, prospecting, assaying, mineral recovery, and dungeon geology.",
+        "abilityOptions": [
+          "Strength",
+          "Wisdom"
+        ],
+        "station": "Mine Face or Assay Bench",
+        "requiredTools": [
+          "Miner's tools",
+          "Pick",
+          "Assay kit"
+        ],
+        "fieldCapable": true,
+        "preferredMaterialCategories": [
+          "mineral",
+          "core",
+          "bone",
+          "misc"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Poisoncrafting": {
+        "focus": "Injury, contact, ingested, and inhaled poisons plus delivery systems.",
+        "abilityOptions": [
+          "Intelligence"
+        ],
+        "station": "Poisoner's Bench",
+        "requiredTools": [
+          "Poisoner's kit",
+          "Sealed glassware",
+          "Protective gloves"
+        ],
+        "fieldCapable": true,
+        "preferredMaterialCategories": [
+          "fluid",
+          "organ",
+          "slime",
+          "plant",
+          "misc",
+          "essence"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Rune Carving": {
+        "focus": "Triggered runes, wards, bindings, seals, and inscribed item modifications.",
+        "abilityOptions": [
+          "Intelligence"
+        ],
+        "station": "Runecarver's Slab",
+        "requiredTools": [
+          "Runecarver's tools",
+          "Carving stylus",
+          "Focusing crystal"
+        ],
+        "fieldCapable": false,
+        "preferredMaterialCategories": [
+          "mineral",
+          "core",
+          "essence",
+          "powder",
+          "bone",
+          "horn"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Salvaging": {
+        "focus": "Dismantling items, recovering components, separating essences, and reclaiming constructs.",
+        "abilityOptions": [
+          "Intelligence",
+          "Wisdom"
+        ],
+        "station": "Salvage Table",
+        "requiredTools": [
+          "Salvager's tools",
+          "Separation trays",
+          "Containment box"
+        ],
+        "fieldCapable": true,
+        "preferredMaterialCategories": [
+          "misc",
+          "core",
+          "mineral",
+          "bone",
+          "scale",
+          "essence"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Scribing": {
+        "focus": "Scrolls, codices, diagrams, maps, lexicons, formulas, and research records.",
+        "abilityOptions": [
+          "Intelligence"
+        ],
+        "station": "Scribe's Desk",
+        "requiredTools": [
+          "Calligrapher's supplies",
+          "Quill",
+          "Straightedge"
+        ],
+        "fieldCapable": false,
+        "preferredMaterialCategories": [
+          "powder",
+          "fluid",
+          "plant",
+          "hide",
+          "essence",
+          "organ",
+          "misc"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Skinning": {
+        "focus": "Field dressing, hide/scale removal, carcass preservation, and harvest quality.",
+        "abilityOptions": [
+          "Dexterity",
+          "Wisdom"
+        ],
+        "station": "Harvesting Rack",
+        "requiredTools": [
+          "Skinning knife",
+          "Bone saw",
+          "Scraper"
+        ],
+        "fieldCapable": true,
+        "preferredMaterialCategories": [
+          "hide",
+          "scale",
+          "bone",
+          "organ",
+          "misc"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Tailoring": {
+        "focus": "Clothing, bags, robes, veils, padded gear, fibers, and enchanted textiles.",
+        "abilityOptions": [
+          "Dexterity"
+        ],
+        "station": "Loom and Cutting Table",
+        "requiredTools": [
+          "Tailor's tools",
+          "Needles",
+          "Shears"
+        ],
+        "fieldCapable": false,
+        "preferredMaterialCategories": [
+          "fiber",
+          "hide",
+          "plant",
+          "misc",
+          "scale"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      },
+      "Tinkering": {
+        "focus": "Traps, automatons, sensors, tools, siege devices, and mechanical systems.",
+        "abilityOptions": [
+          "Intelligence"
+        ],
+        "station": "Tinker's Workshop",
+        "requiredTools": [
+          "Tinker's tools",
+          "Precision drivers",
+          "Calibration gauge"
+        ],
+        "fieldCapable": false,
+        "preferredMaterialCategories": [
+          "mineral",
+          "core",
+          "misc",
+          "bone",
+          "essence",
+          "scale"
+        ],
+        "rankBands": [
+          {
+            "levels": "1-4",
+            "rank": "Novice",
+            "access": "Common recipes, field processing, basic tools",
+            "recipeTier": "1-2"
+          },
+          {
+            "levels": "5-8",
+            "rank": "Apprentice",
+            "access": "Uncommon recipes, specialization ingredients, improved stations",
+            "recipeTier": "2-4"
+          },
+          {
+            "levels": "9-12",
+            "rank": "Journeyman",
+            "access": "Rare recipes, cross-tradeskill components, dungeon workshops",
+            "recipeTier": "4-6"
+          },
+          {
+            "levels": "13-16",
+            "rank": "Expert",
+            "access": "Very Rare recipes, named masters, forbidden archives",
+            "recipeTier": "6-8"
+          },
+          {
+            "levels": "17-19",
+            "rank": "Master",
+            "access": "Legendary recipes, Gate-zone facilities, seasonal commissions",
+            "recipeTier": "8-9"
+          },
+          {
+            "levels": "20",
+            "rank": "Grandmaster",
+            "access": "Mythic recipes, unique formulas, multiseason projects",
+            "recipeTier": "10"
+          }
+        ]
+      }
+    }
+  },
+  "publicBook": {
+    "path": "books\\player\\Decennium_Descent_Crafting_Bible_v5_Known_Descent.docx",
+    "sha256": "38eac505991a944ea557afa27751f510f773744734dc7a8e84c52b9bf7dcb099",
+    "paragraphConvention": "zero-based all w:p including table cells",
+    "passages": [
+      {
+        "paragraph": 0,
+        "text": "DECENNIUM DESCENT"
+      },
+      {
+        "paragraph": 1,
+        "text": "CRAFTING BIBLE"
+      },
+      {
+        "paragraph": 2,
+        "text": "Known Descent Edition"
+      },
+      {
+        "paragraph": 3,
+        "text": "433 established formulas • 604 documented materials • 16 tradeskills"
+      },
+      {
+        "paragraph": 4,
+        "text": ""
+      },
+      {
+        "paragraph": 5,
+        "text": "Harvest what survives. Preserve what matters. Carry home what changes the world."
+      },
+      {
+        "paragraph": 6,
+        "text": ""
+      },
+      {
+        "paragraph": 7,
+        "text": "Using This Book"
+      },
+      {
+        "paragraph": 8,
+        "text": "This volume contains the player-facing crafting rules and formulas established through the Haven and the first five documented Gate tiers. Tier VI formulas survive only as restricted fragments from the failed Sixth Gate expedition and are not printed here. No formula beyond the Sixth Gate is treated as public knowledge."
+      },
+      {
+        "paragraph": 9,
+        "text": "The Crafting Loop"
+      },
+      {
+        "paragraph": 10,
+        "text": "Identify a resource, harvest it without ruining the useful anatomy, preserve it, transport it, refine it, obtain or discover a formula, craft the item, determine quality, and then use, sell, study, repair, or salvage the result."
+      },
+      {
+        "paragraph": 11,
+        "text": "The 100-Day Opening"
+      },
+      {
+        "paragraph": 12,
+        "text": "The dungeon remains open for 2,400 hours. Crafting time is active work, not free downtime. Every hour spent refining, repairing, brewing, or experimenting competes with exploration and extraction."
+      },
+      {
+        "paragraph": 13,
+        "text": "The Crafting Check"
+      },
+      {
+        "paragraph": 14,
+        "text": "d20 + chosen ability modifier + proficiency bonus + tool bonus + facility bonus + assistant bonus"
+      },
+      {
+        "paragraph": 15,
+        "text": "Untrained. A character without the tradeskill or required tool proficiency rolls with disadvantage and cannot attempt recipes above skill level 4."
+      },
+      {
+        "paragraph": 16,
+        "text": "Assistants. Each qualified assistant adds +1, up to the recipe maximum. Assistants must spend the same active work time."
+      },
+      {
+        "paragraph": 17,
+        "text": "Take Ten. In a safe workshop, a crafter may use a result of 10 on the die for recipes at least 5 skill levels below their current tradeskill."
+      },
+      {
+        "paragraph": 18,
+        "text": "Margin"
+      },
+      {
+        "paragraph": 19,
+        "text": "Result"
+      },
+      {
+        "paragraph": 20,
+        "text": "Effect"
+      },
+      {
+        "paragraph": 21,
+        "text": "10+"
+      },
+      {
+        "paragraph": 22,
+        "text": "Masterwork"
+      },
+      {
+        "paragraph": 23,
+        "text": "Increase yield by 50% or improve one item property; preserve one catalyst."
+      },
+      {
+        "paragraph": 24,
+        "text": "5 to 9"
+      },
+      {
+        "paragraph": 25,
+        "text": "Exceptional"
+      },
+      {
+        "paragraph": 26,
+        "text": "Increase yield by 25% or improve durability/charges."
+      },
+      {
+        "paragraph": 27,
+        "text": "0 to 4"
+      },
+      {
+        "paragraph": 28,
+        "text": "Standard"
+      },
+      {
+        "paragraph": 29,
+        "text": "Create the listed result."
+      },
+      {
+        "paragraph": 30,
+        "text": "-1 to -4"
+      },
+      {
+        "paragraph": 31,
+        "text": "Flawed"
+      },
+      {
+        "paragraph": 32,
+        "text": "Create half yield or one reduced-duration/flawed result."
+      },
+      {
+        "paragraph": 33,
+        "text": "-5 to -9"
+      },
+      {
+        "paragraph": 34,
+        "text": "Failed"
+      },
+      {
+        "paragraph": 35,
+        "text": "No finished item; recover 25% of non-catalyst materials."
+      },
+      {
+        "paragraph": 36,
+        "text": "-10 or natural 1"
+      },
+      {
+        "paragraph": 37,
+        "text": "Mishap"
+      },
+      {
+        "paragraph": 38,
+        "text": "Lose consumed materials and roll on the tradeskill mishap table."
+      },
+      {
+        "paragraph": 39,
+        "text": "Tradeskill Advancement"
+      },
+      {
+        "paragraph": 40,
+        "text": "Levels"
+      },
+      {
+        "paragraph": 41,
+        "text": "Rank"
+      },
+      {
+        "paragraph": 42,
+        "text": "Access"
+      },
+      {
+        "paragraph": 43,
+        "text": "Formula Tier"
+      },
+      {
+        "paragraph": 44,
+        "text": "1-4"
+      },
+      {
+        "paragraph": 45,
+        "text": "Novice"
+      },
+      {
+        "paragraph": 46,
+        "text": "Common recipes, field processing, basic tools"
+      },
+      {
+        "paragraph": 47,
+        "text": "1-2"
+      },
+      {
+        "paragraph": 48,
+        "text": "5-8"
+      },
+      {
+        "paragraph": 49,
+        "text": "Apprentice"
+      },
+      {
+        "paragraph": 50,
+        "text": "Uncommon recipes, specialization ingredients, improved stations"
+      },
+      {
+        "paragraph": 51,
+        "text": "2-4"
+      },
+      {
+        "paragraph": 52,
+        "text": "9-12"
+      },
+      {
+        "paragraph": 53,
+        "text": "Journeyman"
+      },
+      {
+        "paragraph": 54,
+        "text": "Rare recipes, cross-tradeskill components, dungeon workshops"
+      },
+      {
+        "paragraph": 55,
+        "text": "4-6"
+      },
+      {
+        "paragraph": 56,
+        "text": "13-16"
+      },
+      {
+        "paragraph": 57,
+        "text": "Expert"
+      },
+      {
+        "paragraph": 58,
+        "text": "Very Rare recipes, named masters, restricted archives"
+      },
+      {
+        "paragraph": 59,
+        "text": "6-8"
+      },
+      {
+        "paragraph": 60,
+        "text": "17-19"
+      },
+      {
+        "paragraph": 61,
+        "text": "Master"
+      },
+      {
+        "paragraph": 62,
+        "text": "Legendary recipes, named expedition facilities, seasonal commissions"
+      },
+      {
+        "paragraph": 63,
+        "text": "8-9"
+      },
+      {
+        "paragraph": 64,
+        "text": "20"
+      },
+      {
+        "paragraph": 65,
+        "text": "Grandmaster"
+      },
+      {
+        "paragraph": 66,
+        "text": "Mythic recipes, unique formulas, multiseason projects"
+      },
+      {
+        "paragraph": 67,
+        "text": "10"
+      },
+      {
+        "paragraph": 68,
+        "text": "Player-facing formula access in this edition ends at formula tier 5. Higher skill ranks remain relevant for quality, substitution, research, and Director-approved restricted formulas."
+      },
+      {
+        "paragraph": 69,
+        "text": "Harvesting Whole Creatures"
+      },
+      {
+        "paragraph": 70,
+        "text": "Check. Use the creature type’s knowledge skill to identify components, then the relevant gathering tradeskill to remove them."
+      },
+      {
+        "paragraph": 71,
+        "text": "Typeskills. Beast: Nature; Dragon: Arcana; Monstrosity: Nature; Giant: History; Aberration: Arcana; Construct: Engineering; Elemental: Arcana; Undead: Religion; Fiend: Religion; Celestial: Religion; Fey: Nature; Plant: Nature; Ooze: Nature; Humanoid: Medicine"
+      },
+      {
+        "paragraph": 72,
+        "text": "Timebysize. Tiny: 10 minutes; Small: 20 minutes; Medium: 30 minutes; Large: 1 hour; Huge: 2 hours; Gargantuan: 4 hours"
+      },
+      {
+        "paragraph": 73,
+        "text": "Baseyieldbysize. Tiny: 1; Small: 1d2; Medium: 1d4; Large: 2d4; Huge: 4d4; Gargantuan: 8d4"
+      },
+      {
+        "paragraph": 74,
+        "text": "Wholecreaturerule. A successful full harvest normally exposes four to six component categories. The listed bestiary drops are exceptional components, not the only usable remains."
+      },
+      {
+        "paragraph": 75,
+        "text": "Partialharvest. The expedition may take only selected parts, reducing time and weight but forfeiting the remainder."
+      },
+      {
+        "paragraph": 76,
+        "text": "Damagespoilage. The damage type and condition of the corpse can ruin, alter, or improve specific components."
+      },
+      {
+        "paragraph": 77,
+        "text": "Sentientrestriction. Humanoid and celestial remains require consent, lawful authority, or explicit dark-path play. Their bodies are not ordinary resource nodes."
+      },
+      {
+        "paragraph": 78,
+        "text": "Preservation and Spoilage"
+      },
+      {
+        "paragraph": 79,
+        "text": "Windows. blood and delicate organs: 1-4 hours; magical essence: 30 minutes-2 hours unless contained; meat: 8-24 hours; hide and membrane: 12-24 hours before curing; bone, horn, teeth, mineral: Indefinite if kept dry; construct parts: Indefinite, except active cores"
+      },
+      {
+        "paragraph": 80,
+        "text": "Methods. salting, smoking, drying, pickling, rendering, fermentation, freezing, alchemical suspension, sealed specimen jars, magical stasis"
+      },
+      {
+        "paragraph": 81,
+        "text": "Failure. Expired materials lose one quality step per preservation interval and may become contaminated, inert, or dangerous."
+      },
+      {
+        "paragraph": 82,
+        "text": "Stations and Active Work"
+      },
+      {
+        "paragraph": 83,
+        "text": "Field. Up to 2 active hours; improvised camp tools; no permanent legendary items."
+      },
+      {
+        "paragraph": 84,
+        "text": "Expedition. Up to 8 active hours at a fortified camp or research station."
+      },
+      {
+        "paragraph": 85,
+        "text": "Workshop. One to five workdays at a proper dungeon haven or surface facility."
+      },
+      {
+        "paragraph": 86,
+        "text": "Haven. One week to one month; requires a named workshop, secure storage, and uninterrupted phases."
+      },
+      {
+        "paragraph": 87,
+        "text": "Legacy. More than one month; completed between seasons, by a retired crafter, or through a protected long-term facility."
+      },
+      {
+        "paragraph": 88,
+        "text": "Seasonrule. Crafting time represents active work. The 2,400-hour descent makes long projects strategic commitments rather than free downtime."
+      },
+      {
+        "paragraph": 89,
+        "text": "Formula Discovery"
+      },
+      {
+        "paragraph": 90,
+        "text": "Sources. trainers, guilds, faction stores, monster research, reverse engineering, experimentation, dungeon libraries, boss caches, Gate zones, retired masters"
+      },
+      {
+        "paragraph": 91,
+        "text": "Formularules. Recipes above skill level 4 normally require a formula, schema, pattern, or documented oral tradition."
+      },
+      {
+        "paragraph": 92,
+        "text": "Experimentrules. Experimentation requires a stated desired result, components with relevant properties, a station, and a research check. Failure creates notes and may reveal partial properties."
+      },
+      {
+        "paragraph": 94,
+        "text": "Crafting Economy"
+      },
+      {
+        "paragraph": 95,
+        "text": "Pricing. Recommended market value includes consumed materials, labor, rarity, risk, and access. Required tools are not consumed."
+      },
+      {
+        "paragraph": 96,
+        "text": "Commission. Standard commissions require a 50% deposit plus all irreplaceable monster parts."
+      },
+      {
+        "paragraph": 97,
+        "text": "Failurerecovery. Ordinary failure recovers 25% of non-catalyst materials; skilled Salvaging can improve this."
+      },
+      {
+        "paragraph": 98,
+        "text": "Antiloop. Selling crafted goods below an appropriate market or faction demand avoids infinite-profit loops. Repeated mass production can saturate a local market."
+      },
+      {
+        "paragraph": 99,
+        "text": "Retirement. Retired crafters may maintain workshops, teach formulas, complete legacy projects, and improve starting expedition equipment."
+      },
+      {
+        "paragraph": 100,
+        "text": "Alchemy"
+      },
+      {
+        "paragraph": 101,
+        "text": "Potions, elixirs, oils, bombs, solvents, and transmutation compounds."
+      },
+      {
+        "paragraph": 102,
+        "text": "Ability"
+      },
+      {
+        "paragraph": 103,
+        "text": "Intelligence"
+      },
+      {
+        "paragraph": 104,
+        "text": "Primary station"
+      },
+      {
+        "paragraph": 105,
+        "text": "Alchemical Bench"
+      },
+      {
+        "paragraph": 106,
+        "text": "Required tools"
+      },
+      {
+        "paragraph": 107,
+        "text": "Alchemist's supplies, Heat source, Measuring glassware"
+      },
+      {
+        "paragraph": 108,
+        "text": "Field capable"
+      },
+      {
+        "paragraph": 109,
+        "text": "Yes"
+      },
+      {
+        "paragraph": 110,
+        "text": "Preferred materials"
+      },
+      {
+        "paragraph": 111,
+        "text": "fluid, organ, slime, essence, powder, plant, misc, core"
+      },
+      {
+        "paragraph": 112,
+        "text": "Established Alchemy Formulas"
+      },
+      {
+        "paragraph": 113,
+        "text": "Field Resonant Elixir  [Skill 1 • Tier 1 • DC 9 • Common]"
+      },
+      {
+        "paragraph": 114,
+        "text": "Effect. Restore 1 expended Resonance Point. A creature can benefit from this recipe only once per long rest."
+      },
+      {
+        "paragraph": 115,
+        "text": "Components. 4 × Binding agent; 1 × fiendish ichor"
+      },
+      {
+        "paragraph": 116,
+        "text": "Work. 1 hour at Alchemical Bench; tools: Alchemist's supplies, Heat source, Measuring glassware."
+      },
+      {
+        "paragraph": 117,
+        "text": "Yield and value. 2 item(s); recommended market value 47 gp."
+      },
+      {
+        "paragraph": 118,
+        "text": "Formula ID: recipe-3 • Knowledge: established formula"
+      }
+    ]
+  },
+  "loop": {
+    "path": "DescentReviewChanges\\ReviewBible\\docs\\mechanics\\GAMEPLAY_LOOP_CANON.md",
+    "sha256": "ba5ebcbdb77a27cb8fde88ba13fd05216d6808b10f7b58b64e6cba54eed62066",
+    "passages": [
+      {
+        "line": 43,
+        "text": ""
+      },
+      {
+        "line": 44,
+        "text": "Use Expedition Watches when hours matter. One Watch is eight hours. Every twenty-four-hour day contains three Watches: Morning, Afternoon, and Evening."
+      },
+      {
+        "line": 45,
+        "text": ""
+      },
+      {
+        "line": 46,
+        "text": "Every member must be assigned to one activity during every Watch. A character may Rest instead of joining a team."
+      },
+      {
+        "line": 47,
+        "text": ""
+      },
+      {
+        "line": 48,
+        "text": "### Haven and Downtime Mode"
+      },
+      {
+        "line": 49,
+        "text": ""
+      },
+      {
+        "line": 50,
+        "text": "Use days or weeks for recovery, crafting, research, business, training, politics, and preparation. One Haven Turn is normally one day unless the activity states otherwise."
+      },
+      {
+        "line": 52,
+        "text": "## 2. Core resolution"
+      },
+      {
+        "line": 53,
+        "text": ""
+      },
+      {
+        "line": 54,
+        "text": "Roll:"
+      },
+      {
+        "line": 55,
+        "text": ""
+      },
+      {
+        "line": 56,
+        "text": "`d20 + ability modifier + proficiency, when trained + circumstance modifiers`"
+      },
+      {
+        "line": 57,
+        "text": ""
+      },
+      {
+        "line": 58,
+        "text": "### Difficulty Classes"
+      },
+      {
+        "line": 59,
+        "text": ""
+      },
+      {
+        "line": 60,
+        "text": "| Circumstance | DC |"
+      },
+      {
+        "line": 61,
+        "text": "|---|---:|"
+      },
+      {
+        "line": 62,
+        "text": "| Routine under pressure | 10 |"
+      },
+      {
+        "line": 63,
+        "text": "| Tier I standard | 12 |"
+      },
+      {
+        "line": 64,
+        "text": "| Tier II standard | 13 |"
+      },
+      {
+        "line": 65,
+        "text": "| Tier III standard | 15 |"
+      },
+      {
+        "line": 66,
+        "text": "| Tier IV standard | 16 |"
+      },
+      {
+        "line": 67,
+        "text": "| Tier V standard | 18 |"
+      },
+      {
+        "line": 68,
+        "text": "| Tier VI documented limit | 19 |"
+      },
+      {
+        "line": 69,
+        "text": ""
+      },
+      {
+        "line": 70,
+        "text": "Use +3 DC for a hard version of the task and +6 DC for a severe version. Use -3 DC when preparation or superior tools make the task favorable."
+      },
+      {
+        "line": 71,
+        "text": ""
+      },
+      {
+        "line": 72,
+        "text": "### Degrees of outcome"
+      },
+      {
+        "line": 73,
+        "text": ""
+      },
+      {
+        "line": 74,
+        "text": "- **Critical Success:** Total is at least DC + 10."
+      },
+      {
+        "line": 75,
+        "text": "- **Success:** Total meets or exceeds the DC."
+      },
+      {
+        "line": 76,
+        "text": "- **Failure:** Total is below the DC."
+      },
+      {
+        "line": 77,
+        "text": "- **Critical Failure:** Total is at least 10 below the DC."
+      },
+      {
+        "line": 78,
+        "text": ""
+      },
+      {
+        "line": 79,
+        "text": "A natural 20 improves the result by one degree. A natural 1 worsens the result by one degree. It never improves beyond Critical Success or worsens beyond Critical Failure."
+      },
+      {
+        "line": 80,
+        "text": ""
+      },
+      {
+        "line": 81,
+        "text": "### Advantage and disadvantage"
+      },
+      {
+        "line": 82,
+        "text": ""
+      },
+      {
+        "line": 83,
+        "text": "Roll two d20s and use the higher result for advantage or the lower result for disadvantage. Multiple sources do not stack. If both apply, they cancel."
+      },
+      {
+        "line": 84,
+        "text": ""
+      },
+      {
+        "line": 85,
+        "text": "### Assistance"
+      },
+      {
+        "line": 86,
+        "text": ""
+      },
+      {
+        "line": 87,
+        "text": "A trained assistant who can meaningfully participate grants +1. Up to three assistants may contribute, for a maximum +3. An assistant exposed to the same danger suffers consequences on a Critical Failure."
+      },
+      {
+        "line": 88,
+        "text": ""
+      },
+      {
+        "line": 89,
+        "text": "## 3. Expedition organization"
+      },
+      {
+        "line": 90,
+        "text": ""
+      },
+      {
+        "line": 297,
+        "text": "### Equipment Integrity"
+      },
+      {
+        "line": 298,
+        "text": ""
+      },
+      {
+        "line": 299,
+        "text": "Important equipment, vehicles, and transport have Integrity 0–3."
+      },
+      {
+        "line": 300,
+        "text": ""
+      },
+      {
+        "line": 301,
+        "text": "- 3: Sound."
+      },
+      {
+        "line": 302,
+        "text": "- 2: Worn; no penalty."
+      },
+      {
+        "line": 303,
+        "text": "- 1: Damaged; checks using it suffer -2."
+      },
+      {
+        "line": 304,
+        "text": "- 0: Broken; unusable until repaired."
+      },
+      {
+        "line": 305,
+        "text": ""
+      },
+      {
+        "line": 306,
+        "text": "A Repair activity restores 1 Integrity on Success and 2 on Critical Success if materials are available."
+      },
+      {
+        "line": 502,
+        "text": "## 15. Harvesting and salvage"
+      },
+      {
+        "line": 503,
+        "text": ""
+      },
+      {
+        "line": 504,
+        "text": "After an encounter, the Resource Team may Harvest or Salvage during the current or next Watch."
+      },
+      {
+        "line": 505,
+        "text": ""
+      },
+      {
+        "line": 506,
+        "text": "- A hurried attempt takes one hour and suffers disadvantage."
+      },
+      {
+        "line": 507,
+        "text": "- A normal attempt consumes one activity assignment."
+      },
+      {
+        "line": 508,
+        "text": "- Failure damages or contaminates one recoverable component."
+      },
+      {
+        "line": 509,
+        "text": "- Critical Failure may expose the team to poison, disease, curse, or Pressure."
+      },
+      {
+        "line": 510,
+        "text": ""
+      },
+      {
+        "line": 511,
+        "text": "Harvested material becomes cargo immediately and must be preserved if Perishable."
+      },
+      {
+        "line": 645,
+        "text": "During one Haven Turn a character may:"
+      },
+      {
+        "line": 646,
+        "text": ""
+      },
+      {
+        "line": 647,
+        "text": "- **Seek Patronage or Information:** Pay an appropriate lifestyle cost and make a social check; Success gains a contact, lead, or audience, while Critical Failure creates rumor, blackmail, or unwanted attention."
+      },
+      {
+        "line": 648,
+        "text": "- **Secure a License:** Pay the district fee and satisfy the relevant guild or health check to operate legally."
+      },
+      {
+        "line": 649,
+        "text": "- **Brew a Batch:** Use the crafting formula, ingredients, facility, and one day of work; illegal substances also create Underways Heat."
+      },
+      {
+        "line": 650,
+        "text": "- **Treat Dependence or Withdrawal:** Spend one day under qualified care to gain advantage on the next recovery check and prevent one ordinary withdrawal escalation."
+      }
+    ]
+  },
+  "structuralAudit": {
+    "recipes": 687,
+    "materials": 696,
+    "trades": 16,
+    "recipeVisibility": {
+      "public": 433,
+      "director-only": 215,
+      "restricted": 39
+    },
+    "materialVisibility": {
+      "public": 604,
+      "restricted": 92
+    },
+    "timeConversions": [
+      {
+        "printed": "1 day",
+        "activeHours": 8
+      },
+      {
+        "printed": "1 hour",
+        "activeHours": 1
+      },
+      {
+        "printed": "1 month",
+        "activeHours": 160
+      },
+      {
+        "printed": "1 week",
+        "activeHours": 40
+      },
+      {
+        "printed": "1 year",
+        "activeHours": null
+      },
+      {
+        "printed": "10 days",
+        "activeHours": 80
+      },
+      {
+        "printed": "2 days",
+        "activeHours": 16
+      },
+      {
+        "printed": "2 hours",
+        "activeHours": 2
+      },
+      {
+        "printed": "2 months",
+        "activeHours": 320
+      },
+      {
+        "printed": "2 weeks",
+        "activeHours": 80
+      },
+      {
+        "printed": "3 days",
+        "activeHours": 24
+      },
+      {
+        "printed": "3 months",
+        "activeHours": 480
+      },
+      {
+        "printed": "3 weeks",
+        "activeHours": 120
+      },
+      {
+        "printed": "4 hours",
+        "activeHours": 4
+      },
+      {
+        "printed": "6 months",
+        "activeHours": 960
+      },
+      {
+        "printed": "8 hours",
+        "activeHours": 8
+      }
+    ],
+    "specialUnresolvedTimes": [
+      "recipe-120",
+      "recipe-319",
+      "recipe-395",
+      "recipe-584",
+      "recipe-623"
+    ],
+    "rankBandConflicts": [
+      "recipe-78",
+      "recipe-119",
+      "recipe-157",
+      "recipe-196",
+      "recipe-197",
+      "recipe-239",
+      "recipe-277",
+      "recipe-357",
+      "recipe-394",
+      "recipe-468",
+      "recipe-542",
+      "recipe-544",
+      "recipe-581",
+      "recipe-583",
+      "recipe-621",
+      "recipe-622",
+      "recipe-626",
+      "recipe-630",
+      "recipe-631",
+      "recipe-633",
+      "recipe-637",
+      "recipe-641",
+      "recipe-642",
+      "recipe-643",
+      "recipe-646",
+      "recipe-648",
+      "recipe-649",
+      "recipe-650",
+      "recipe-651",
+      "recipe-652",
+      "recipe-653",
+      "recipe-654",
+      "recipe-655",
+      "recipe-656",
+      "recipe-657",
+      "recipe-661",
+      "recipe-662",
+      "recipe-663",
+      "recipe-664",
+      "recipe-665",
+      "recipe-666",
+      "recipe-669",
+      "recipe-673",
+      "recipe-676",
+      "recipe-679",
+      "recipe-680",
+      "recipe-682",
+      "recipe-684",
+      "recipe-685"
+    ],
+    "consumedToolRows": [
+      {
+        "id": "recipe-637",
+        "component": {
+          "id": "supply-focusing_lens-t9",
+          "name": "Focusing lens",
+          "tier": 9,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 7500,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-639",
+        "component": {
+          "id": "supply-focusing_lens-t10",
+          "name": "Focusing lens",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-657",
+        "component": {
+          "id": "supply-magnifying_lens-t7",
+          "name": "Magnifying lens",
+          "tier": 7,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 1200,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-657",
+        "component": {
+          "id": "supply-extraction_tools-t7",
+          "name": "Extraction tools",
+          "tier": 7,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 1200,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-657",
+        "component": {
+          "id": "supply-sorting_pan-t7",
+          "name": "Sorting pan",
+          "tier": 7,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 1200,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-658",
+        "component": {
+          "id": "supply-safety_lantern-t10",
+          "name": "Safety lantern",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-659",
+        "component": {
+          "id": "supply-extraction_tools-t10",
+          "name": "Extraction tools",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-659",
+        "component": {
+          "id": "supply-safety_lantern-t10",
+          "name": "Safety lantern",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-661",
+        "component": {
+          "id": "supply-applicator-t5",
+          "name": "Applicator",
+          "tier": 5,
+          "rarity": "Epic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 200,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-668",
+        "component": {
+          "id": "supply-precision_tools-t3",
+          "name": "Precision tools",
+          "tier": 3,
+          "rarity": "Rare",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 25,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-668",
+        "component": {
+          "id": "supply-sorting_containers-t3",
+          "name": "Sorting containers",
+          "tier": 3,
+          "rarity": "Rare",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 25,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-669",
+        "component": {
+          "id": "supply-separation_matrix-t7",
+          "name": "Separation matrix",
+          "tier": 7,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 1200,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-670",
+        "component": {
+          "id": "supply-precision_tools-t10",
+          "name": "Precision tools",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-670",
+        "component": {
+          "id": "supply-weave_filter-t10",
+          "name": "Weave Filter",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-671",
+        "component": {
+          "id": "supply-separation_matrix-t10",
+          "name": "Separation matrix",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-673",
+        "component": {
+          "id": "supply-protective_case-t5",
+          "name": "Protective case",
+          "tier": 5,
+          "rarity": "Epic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 200,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-685",
+        "component": {
+          "id": "supply-control_mechanism-t5",
+          "name": "Control mechanism",
+          "tier": 5,
+          "rarity": "Epic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 200,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-686",
+        "component": {
+          "id": "supply-control_mechanism-t10",
+          "name": "Control mechanism",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      },
+      {
+        "id": "recipe-687",
+        "component": {
+          "id": "supply-connecting_rods-t10",
+          "name": "Connecting rods",
+          "tier": 10,
+          "rarity": "Mythic",
+          "category": "crafting_supply",
+          "materialCategory": "tool",
+          "value": 18000,
+          "weight": 1.0,
+          "quantity": 1,
+          "properties": [
+            "tool"
+          ],
+          "consumed": true,
+          "role": "tool"
+        }
+      }
+    ],
+    "maxAssistants": {
+      "0": 450,
+      "1": 95,
+      "2": 96,
+      "3": 46
+    },
+    "allFormulaFlagsMatchSkillAbove4": true,
+    "allResultQuantitiesMatch": true,
+    "allResultValuesMatchRecommended": true,
+    "allCheckDCsMatch": true,
+    "mishapBookReferences": [
+      {
+        "paragraph": 37,
+        "text": "Mishap"
+      },
+      {
+        "paragraph": 38,
+        "text": "Lose consumed materials and roll on the tradeskill mishap table."
+      }
+    ],
+    "effectReviewStatus": "All recipe effects still require individual/family review; structural checks grant no approval."
+  }
+}

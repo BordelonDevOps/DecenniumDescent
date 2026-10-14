@@ -1,0 +1,1202 @@
+{
+  "status": "UNREVIEWED_SOURCE_CANDIDATES",
+  "scope": "Lexical candidates include exclusions/forbidden redirection, not just sources granting transfer. Needed to distinguish source-owned pre/post-defense sequence from new numeric actualDamageDealt; no completeness claim.",
+  "counts": {
+    "cards": 32,
+    "engines": 7
+  },
+  "classRecords": [
+    {
+      "kind": "class-card",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "card": {
+        "id": "cleric.hero.priest.cosmic-equilibrium",
+        "name": "Cosmic Equilibrium",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Priest",
+        "sourceKind": "active",
+        "minimumClassLevel": 16,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "7 RP",
+        "rangeAndTarget": "15-foot-radius fixed zone centered within 30 feet",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Cosmic Equilibrium. Tags: priest, zone, healing, radiant. Once per round, when a living ally in the zone receives healing beyond its missing HP, redirect up to S+M of that excess as radiant damage to one enemy in the zone. Separately, once per round when an enemy in the zone takes radiant damage from one of your Cleric features, one ally in the zone regains up to S+M HP, not exceeding half the actual radiant damage dealt. These two conversions cannot trigger each other.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2042,
+          "originalText": "Cosmic Equilibrium: Create a zone where healing and harm are balanced, converting excess damage to healing and vice versa."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "511b9a9abd80cc33649c3a30d73c03139189a2443a25ae92b7905fbdb0251787"
+    },
+    {
+      "kind": "class-card",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "card": {
+        "id": "cleric.hero.cultist.blood-sacrifice",
+        "name": "Blood Sacrifice",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Cultist",
+        "sourceKind": "active",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "Lose S+M actual HP from yourself or one willing ally within 5 ft",
+        "rangeAndTarget": "Self or one willing ally within 5 feet",
+        "duration": "Empowerment lasts until end of your next regular turn",
+        "frequency": "1/short rest",
+        "effect": "Blood Sacrifice. Tags: cultist, sacrifice, conviction. The chosen creature loses S+M actual HP; this loss cannot be reduced, redirected or transferred and cannot reduce it below 1 HP. The donor must have strictly more current HP than this cost before activation; otherwise it is illegal. You gain 1 Conviction. Your next damaging or healing Rite or Invocation before the end of your next regular turn adds 1d8 to one rolled damage or healing component. A creature must be willing unless the target is you.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2055,
+          "originalText": "Blood Sacrifice: Sacrifice a portion of your health or an ally's to generate Conviction and empower your next divine ability."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "073e2e574467aaae7193dfd80d27b74c4b3ccc4db41a45a4d59ab3208ad335fe"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "engineIndex": 4,
+      "text": "Veinweaves are self buffs unless their card expressly allows an ally. They require concentration and one may be active. Crimson Harmony is an explicit exception permitting two Veinweaves as one linked concentration burden; a failed concentration check ends both. A non-Veinweave concentration effect replaces the whole group. BG is spent on activation; no upkeep unless printed. Damage-sharing is redirection before mitigation, not extra damage: apply each recipient's own defenses once and never redirect the redirected portion again.",
+      "textSha256": "d0684cf6ddc12e65f87fcef501168f0a256d9bd62bb8a9d1377c978a682eadb7"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "engineIndex": 5,
+      "text": "The healing, execution and denial text below deliberately bounds the source's vague percentage/instant-kill claims. HP sacrificed is direct loss, bypasses temporary HP and defenses, cannot be redirected, and cannot reduce the donor below 1. Only a willing ally can donate. HP sacrifice is never damage for class triggers. No class feature here restores the dead or removes Wounds.",
+      "textSha256": "f0909f1cf6ccaa56c2438dd0a9dd04e6b96640047167d9f79da6298b765de52a"
+    },
+    {
+      "kind": "class-card",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "card": {
+        "id": "crimson-agent.hero.bloodweaver.bloodbond",
+        "name": "Bloodbond",
+        "className": "Crimson Agent",
+        "band": "Hero",
+        "path": "Bloodweaver",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One willing ally within 30 ft",
+        "duration": "Concentration, 3 of your turns",
+        "frequency": "Recharge 3",
+        "effect": "Create Bloodbond while both remain within 30 ft. When ally takes damage, you may use Reaction to redirect floor(one-quarter of pre-mitigation damage) to yourself; each recipient applies its own defenses once. Once/round when a paid technique heals you, ally gains M temporary HP. No recursive transfers.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2165,
+          "originalText": "Bloodbond: Link with an ally; share 25% incoming damage and transfer 10% healing to them."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "1113d2b822287bb66bb1759c1d7e674dbcb87534005a9e65e5111bb51b5c1263"
+    },
+    {
+      "kind": "class-card",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "card": {
+        "id": "crimson-agent.hero.bloodweaver.veinlock-tether",
+        "name": "Veinlock Tether",
+        "className": "Crimson Agent",
+        "band": "Hero",
+        "path": "Bloodweaver",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "1 BG",
+        "rangeAndTarget": "Willing linked ally within 30 ft being damaged",
+        "duration": "This damage only",
+        "frequency": "Once/round",
+        "effect": "While your Bloodbond or Vitality Link is active, redirect up to S+M damage to yourself before mitigation. This is an alternative to Bloodbond's quarter-sharing reaction, not an additional redirection. Redirected damage cannot be redirected again.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2168,
+          "originalText": "Veinlock Tether: Form a damage-sharing link with an ally for 3 turns."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "2b7d8566a5825d619cde6e1a7c9ed56616c05c75df3864153fbc830fa33f5f96"
+    },
+    {
+      "kind": "class-card",
+      "owner": "mage",
+      "path": "data/public/class_playtests/mage.json",
+      "card": {
+        "id": "mage.hero.elementalist.elemental-absorption",
+        "name": "Elemental Absorption",
+        "className": "Mage",
+        "band": "Hero",
+        "path": "Elementalist",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "3 RP",
+        "rangeAndTarget": "Self",
+        "duration": "Until end of your next regular turn",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Elemental Absorption. Tags: mage-spell, elementalist, protection. Trigger when you would take fire, cold or lightning damage. Gain resistance to that triggering damage type for the triggering event and until the end of your next regular turn. Your next damaging Mage spell before then adds 1d8 of the absorbed type to one damage roll; the bonus is lost after use or expiry. This Reaction spell clears an incompatible current Nuke Chain unless the absorbed type is your current Focus.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2957,
+          "originalText": "Elemental Absorption: Temporarily absorb incoming elemental damage to enhance your next spell."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 7
+      },
+      "sourceObjectSha256": "4c696eef48c76379d0a6320cbac2b23324a197d1db8d6394b249a95750f1ec56"
+    },
+    {
+      "kind": "class-card",
+      "owner": "mage",
+      "path": "data/public/class_playtests/mage.json",
+      "card": {
+        "id": "mage.hero.lich.resonance-to-flesh",
+        "name": "Resonance to Flesh",
+        "className": "Mage",
+        "band": "Hero",
+        "path": "Lich",
+        "sourceKind": "active",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "Variable conversion",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "1/short rest",
+        "effect": "Resonance to Flesh. Tags: lich, resonance, blood. Choose one direction. RP to Flesh: spend 1-5 RP and regain 2 HP per RP spent. Flesh to RP: lose 2-10 HP in even increments and restore 1 RP per 2 HP lost. HP loss cannot be reduced, redirected or transferred and cannot reduce you below 1 HP. RP cannot exceed maximum. This feature cannot be repeated through Echoes or companions.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2986,
+          "originalText": "Resonance to Flesh: Convert Resonance into HP (or vice versa) once per rest."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "5692ac39a7de506bcf79cfcb7273630cf1f18c27e6d663ae380f764b78e3e8b2"
+    },
+    {
+      "kind": "class-card",
+      "owner": "mirrorsage",
+      "path": "data/public/class_playtests/mirrorsage.json",
+      "card": {
+        "id": "mirrorsage.arch.mirror-shell",
+        "name": "Mirror Shell",
+        "className": "Mirrorsage",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 7,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "3 RP; 1 long-rest use",
+        "rangeAndTarget": "A hostile spell targeting only you within 60 ft",
+        "duration": "This spell",
+        "frequency": "1/long rest",
+        "effect": "After a successful save against the spell or after its spell attack misses, choose its caster; it makes WIS save or takes S d8 force. Original damage/control follow normal results. No copying arbitrary spell text or redirecting an area spell.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3088,
+          "originalText": "Mirror Shell: Once per long rest, reflect the first ability cast at you."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "9885dead731ef2fecb13b62062346b24887c7a4ec5ae54de7089512ee3fac586"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "monk",
+      "path": "data/public/class_playtests/monk.json",
+      "engineIndex": 13,
+      "text": "Discipline Initiate is an optional Base selection. Choosing Tank does not grant five free Base abilities: it unlocks the four non-final Tortoise Discipline cards as additional Arch-selection options at their listed Monk levels. Final Form — Bastion of Breath is never a normal selection; at Monk 9 or the first later level when eligible it is gained automatically only if you chose Tank through Discipline Initiate and know at least three of Stone Shell Discipline, Redirecting Palm, Iron Shell Pulse and Echoing Guard. Tortoise Discipline remains compatible with any Hero path chosen later.",
+      "textSha256": "f6939b2e3293635fc6a652667c81e94984b14f8dfc5b43f3b86730e5b21f3584"
+    },
+    {
+      "kind": "class-card",
+      "owner": "monk",
+      "path": "data/public/class_playtests/monk.json",
+      "card": {
+        "id": "monk.arch.tortoise.redirecting-palm",
+        "name": "Redirecting Palm",
+        "className": "Monk",
+        "band": "Arch",
+        "path": "Tortoise",
+        "sourceKind": "supplement",
+        "minimumClassLevel": 5,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "1 Ki; requires Discipline Initiate: Tank",
+        "rangeAndTarget": "Triggering melee attacker and one other enemy within 5 feet of you",
+        "duration": "Instantaneous",
+        "frequency": "Once per round",
+        "effect": "Redirecting Palm. Tags: arch, tortoise, discipline, counter. When a melee attack damages you, spend 1 Ki. Reduce the actual damage you take by half, rounded down. Choose one enemy other than you within 5 feet; it takes force damage equal to the amount prevented, maximum Monk level. If no second enemy is present, you still receive the reduction but redirect no damage.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3259,
+          "originalText": "Redirecting Palm: Spend 1 Ki to redirect 50% of incoming melee damage to a nearby enemy."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "a849f3afc8e0ea4efe8243f4d150c8d6830c8f2e65f7681bd98b893406ac407a"
+    },
+    {
+      "kind": "class-card",
+      "owner": "monk",
+      "path": "data/public/class_playtests/monk.json",
+      "card": {
+        "id": "monk.hero.enlightened-master.shared-breath",
+        "name": "Shared Breath",
+        "className": "Monk",
+        "band": "Hero",
+        "path": "Enlightened Master",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "3 Ki + 2 RP",
+        "rangeAndTarget": "One willing ally you touch",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "Recharge 4 rounds",
+        "effect": "Shared Breath. Tags: hero, enlightened, link, weave. Link yourself to one willing ally. Once per round when either linked creature takes damage, the other may use its Reaction to take up to S+M of that damage instead; transferred damage cannot be reduced or redirected again. HP healing received by either creature also grants the other S HP once per round. The link ends if you separate by more than 30 feet.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3287,
+          "originalText": "Shared Breath: Temporarily link your life force with an ally, sharing damage and healing effects."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "da2757b79d797600e0823eed7b615b9165e4c9d81c88fbb6affa18018695c52e"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "engineIndex": 14,
+      "text": "Copied, echoed, repeated or redirected damage/healing uses only the explicitly copied numeric component. It cannot repeat RC recovery, Prophecy Triggers, action grants, conditions, passive triggers, resource restoration or another copy effect unless the copying feature explicitly says otherwise.",
+      "textSha256": "53c0ee49032421d155b7c10311016dcaf92540557980c6b9553327dc3f2f575d"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "engineIndex": 29,
+      "text": "Extra attacks and echoed damage use base weapon/spell dice before critical-hit extra dice. A redirected damage event cannot be reduced a second time, reflected again or generate RC. Charmed alone does not grant command of a creature's actions.",
+      "textSha256": "b1f27c6149ea8d930f2b1ac29e2e5a73de9991ef98d53045b5ba8b4f055fde81"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.bones.bones-revelation-mastery",
+        "name": "Bones Revelation Mastery",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Bones",
+        "sourceKind": "revelation-mastery",
+        "minimumClassLevel": 15,
+        "acquisition": "choose one eligible enhancement at Oracle 15",
+        "activation": "Passive",
+        "cost": "0 RC",
+        "rangeAndTarget": "One eligible known Bones Revelation",
+        "duration": "Permanent",
+        "frequency": "Choose one upgrade at Oracle 15",
+        "effect": "Choose one mastery for a Revelation you know. Enhanced Marrow Drain: a living target hit also has Speed reduced by 1 tile until the end of its next turn. Enhanced Ledger's Command: may target up to 3 undead, but all controlled undead still share one Bonus Action command per round. Enhanced Unfinished Chorus: when its drain resolves, you may always redirect the healing to one ally within 3 tiles of you rather than yourself; its healing cap remains S+M.",
+        "prerequisite": "Oracle 15; Mystery: Bones; Revelation Mastery",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[2].revelationMastery",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[2].revelationMastery",
+              "value": [
+                "Enhanced Marrow Drain: also slows target movement by 1 tile",
+                "Enhanced Ledger's Command: affects 3 undead",
+                "Enhanced Unfinished Chorus: you may redirect drained HP to an ally within 3 tiles"
+              ]
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "14d4537572a0e9d37eb62850c1881097ec9da711640be7b293b0ff0918640577"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.life.bloom-ward",
+        "name": "Bloom Ward",
+        "className": "Oracle",
+        "band": "Base",
+        "path": "Life",
+        "sourceKind": "mystery-feature",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic for chosen Mystery",
+        "activation": "Passive and Bonus Action",
+        "cost": "0 RC",
+        "rangeAndTarget": "Self; allies within 2 tiles; one ally within 3 tiles for bloom",
+        "duration": "Passive permanent; bloom until consumed or 1 minute",
+        "frequency": "Bloom 1/long rest",
+        "effect": "Once per round when a living ally within 2 tiles receives HP healing from a paid or finite-use effect, add S HP to that healing. Reduce the first necrotic or poison damage you take each round by 1. Once per long rest place a protective bloom on one ally within 3 tiles. It absorbs the next 10+Oracle level damage dealt to that ally, then ends. When it ends, the ally gains +1 on saves against Frightened until the end of its next turn.",
+        "prerequisite": "Oracle 1; Mystery: Life",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[6].level1",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[6].level1",
+              "value": {
+                "name": "Bloom Ward",
+                "kind": "active",
+                "description": "Passive: allies within 2 tiles gain +5% healing received, and you gain +5% resistance to necrotic and poison damage. Once per long rest, sprout a protective bloom on an ally within 3 tiles — absorb next 10 + level damage, then wilt and scatter petals granting +5% saves vs fear for 1 round."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "0252c7014f1020fe92cdd9c29f41c074d47a6d8c6babf5665f939529eb6a0543"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.life.life-linked",
+        "name": "Life Linked",
+        "className": "Oracle",
+        "band": "Arch",
+        "path": "Life",
+        "sourceKind": "tier-ii-revelation",
+        "minimumClassLevel": 6,
+        "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+        "activation": "Action",
+        "cost": "2 RC",
+        "rangeAndTarget": "One willing living ally within 5 tiles",
+        "duration": "2 rounds",
+        "frequency": "At will while RC remains; one Life Link at a time",
+        "effect": "Link yourself to the ally. Once per round when it takes damage, you may use your Reaction to transfer up to half that actual damage rounded down to yourself. Transferred damage keeps its type and cannot be redirected again. The ally reduces the first necrotic damage it takes each round by S. Once per round when one of your paid or finite Oracle effects restores HP to the linked ally, it regains an additional 1d4 HP. The link ends if you are more than 5 tiles apart. Apply mitigation to the original damage once before splitting. The transferred portion cannot be mitigated again and cannot generate recovery or retaliation triggers.",
+        "prerequisite": "Oracle 6; Mystery: Life; selected Tier II Revelation",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[6].tierII[1]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[6].tierII[1]",
+              "value": {
+                "name": "Life Linked",
+                "charges": 2,
+                "kind": "active",
+                "description": "Spend 2 charges: link yourself to one ally within 5 tiles for 2 rounds through the Verdant Resonance — you may transfer up to half damage they take to yourself (after DR); while linked, they gain +5% healing received and +10% DR vs necrotic, and when you heal them through the link they heal an additional 1d4 as blooms echo between you."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "e85dca21885aff801dd806929d567b1bfc05ea921792d259bab918337ea74c80"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "engineIndex": 10,
+      "text": "Oath integration limits: one paid Smite total per round, including the level-7 Reaction; one Oath-aura reactive event per round. Multiple damage-redirection options share one event per round unless Crown Undying expressly allows two. Apply original-target defenses once, then split actual damage; transferred damage cannot be mitigated again, reflected, redirected again or generate resources. This explicit rule supersedes wording that permits recipient defenses again.",
+      "textSha256": "240e342dd180de5c960ceeabad4c9a8302f5c4a1d0ddcb324310c42669cc4c93"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "engineIndex": 14,
+      "text": "For any one damage event choose exactly one Paladin redirection feature. Using it consumes the shared redirection allowance for that round. Crown Undying permits two DIFFERENT ally-damage events per round, but still only one redirection feature may modify each event.",
+      "textSha256": "b38dbf499f21d489b9848610ad2d5bd91a94b22ccb0a92ca613d3fbb6fa51c0d"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.base.protective-stance",
+        "name": "Protective Stance",
+        "className": "Paladin",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "feature",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "One short-rest use",
+        "rangeAndTarget": "Self; adjacent ally",
+        "duration": "Until start next turn",
+        "frequency": "1/short rest",
+        "effect": "Gain+1 AC. Once before end, Reaction interpose for adjacent ally hit by weapon: reduce its damage by S+M and take that much unpreventable damage yourself. Cannot redirect again or create resource/damage triggers. You must remain conscious.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3649,
+          "originalText": "Protective Stance: Enter a defensive posture that increases your AC and allows you to intercept attacks meant for nearby allies."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "71f0333a1fa9bee2ffd004f8327f542364d847dfd263df4bf80cb0fe324de5c7"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oathbreaker-shared.profane-exchange",
+        "name": "Profane Exchange",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oathbreaker shared",
+        "sourceKind": "new forbidden spell",
+        "minimumClassLevel": 9,
+        "acquisition": "automatic for selected Oathbreaker",
+        "activation": "Action",
+        "cost": "5 RP and S+M actual HP",
+        "rangeAndTarget": "One creature touched",
+        "duration": "Instant",
+        "frequency": "Recharge 3",
+        "effect": "New rank 3 Forbidden spell. You must have more current HP than the unpreventable HP cost. Target CON save, 2 S d8 necrotic on failure, half success. HP loss cannot be reduced, redirected, refunded or used for another resource trigger.",
+        "prerequisite": "Paladin 9; selected Oathbreaker inversion",
+        "source": {
+          "line": null,
+          "reference": null,
+          "originalText": "",
+          "status": "explicit-new-playtest-completion"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 3
+      },
+      "sourceObjectSha256": "bdd5dd43a3c0724146dadcb94d4907c4b169263f843b175a7e0f949404c32542"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-mercy.channel-life",
+        "name": "Channel Life",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of Mercy",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 9,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "5 RP",
+        "rangeAndTarget": "Self and one living ally within 30 feet",
+        "duration": "Instantaneous",
+        "frequency": "At will while RP remains",
+        "effect": "Choose X from 1 to Paladin level+M, limited so your current HP remains at least 1. Lose X HP; this loss cannot be reduced, redirected or prevented. The target regains X HP. This is a direct transfer, cannot exceed the target's maximum HP and cannot remove Wounds or create excess temporary HP.",
+        "prerequisite": "Paladin 9; Oath of Mercy",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[0].revelationSpells[2]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[0].revelationSpells[2]",
+              "value": {
+                "level": 9,
+                "spell": "Channel Life — transfer HP from self to ally"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 3,
+        "oathId": "mercy",
+        "oathName": "Oath of Mercy",
+        "oathbreakerName": "Cruelty",
+        "displayPath": "Oath of Mercy"
+      },
+      "sourceObjectSha256": "791e5b9a6f7de5962bffa02d02d406a4eba8aedc125391595cd002581a5f6610"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.chainbound-smite",
+        "name": "Chainbound Smite",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Chain",
+        "sourceKind": "oathSmite",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Triggered",
+        "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+        "rangeAndTarget": "Creature hit by your melee weapon attack; one bonded ally in your aura",
+        "duration": "Smite instantaneous; redirection once before your next turn",
+        "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+        "effect": "The Smite deals radiant damage normally. After it resolves, choose one ally in your aura as bonded until the start of your next regular turn. Once before then when that ally takes damage, you may redirect up to max(3, actual Charisma modifier) of that damage to yourself. Redirected damage retains type and cannot be redirected again; the original target’s defenses apply once before transfer, with no further mitigation.",
+        "prerequisite": "Paladin 3; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].smiteType",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].smiteType",
+              "value": "Radiant — bonus damage; when a bonded ally within aura takes damage, redirect up to CHA mod (min 3) to yourself once/round"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "conductClauses": [
+          "Stand between the helpless and harm, even when the cost is yours to bear",
+          "Keep every ward entrusted to you; do not abandon the bound when danger closes",
+          "Take suffering freely to spare another, but never make a chain of their sacrifice"
+        ],
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "e53ece673479a5f3c060e02521f0fc3941e296d875fd5dae13c785a8823741f4"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.aura-of-bonds",
+        "name": "Aura of Bonds",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Chain",
+        "sourceKind": "oathAura",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Up to 3 chosen allies in your Oath aura",
+        "duration": "While conscious and target remains in aura",
+        "frequency": "Choose targets at start of each turn",
+        "effect": "Each selected ally reduces the first damage it takes each round by S. Multiple Aura of Bonds effects do not stack. This protection does not redirect damage and therefore does not trigger effects that require you to personally absorb damage.",
+        "prerequisite": "Paladin 3; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].auraEffect",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].auraEffect",
+              "value": "Aura of Bonds — allies within aura share 10% damage reduction"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "e27219c1a397ba23aafd062a1d00d12b6e445eef8fd126f58dba8dadde534db1"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.linked-ward",
+        "name": "Linked Ward",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Chain",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One willing ally in your Oath aura",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "At will while RP remains",
+        "effect": "Mark one willing ally. Once per round when it takes damage, use your Reaction to redirect up to 2 times your actual Charisma modifier, minimum 2, of that damage to yourself. Redirected damage keeps its type and cannot be redirected again. If this redirected damage reduces you to 0 HP, the ally gains temporary HP equal to the amount you actually absorbed, maximum Paladin level+M.",
+        "prerequisite": "Paladin 3; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].revelationSpells[0]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].revelationSpells[0]",
+              "value": {
+                "level": 3,
+                "spell": "Linked Ward — mark ally within aura; as reaction when they take damage, redirect up to 2× CHA mod radiant to yourself; if you fall to 0 HP this round, ally gains temp HP equal to damage redirected"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 1,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "e733a4a1f12c01e46fa3b2bd23f1f24f319fbb98dd023f68575687a51eb8fba2"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.martyr-s-share",
+        "name": "Martyr's Share",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Chain",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 9,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Reaction",
+        "cost": "5 RP",
+        "rangeAndTarget": "One ally in your Oath aura taking damage",
+        "duration": "Instantaneous",
+        "frequency": "At will while RP remains",
+        "effect": "Redirect half the ally's incoming damage, rounded down, to yourself. The ally takes the remainder. Redirected damage keeps its original type and cannot be redirected again. Your portion cannot be mitigated again after the original target’s defenses have applied. Effects attached to the original hit remain on the original target unless they explicitly depend on damage being dealt.",
+        "prerequisite": "Paladin 9; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].revelationSpells[2]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].revelationSpells[2]",
+              "value": {
+                "level": 9,
+                "spell": "Martyr's Share — take half ally's damage as reaction"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 3,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "a4bd7d95ebde62b625301dc9c6061ae018522e75796bd4586372f6ce0eb28851"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.final-stand",
+        "name": "Final Stand",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of the Chain",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 17,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "10 RP",
+        "rangeAndTarget": "One willing ally in your Oath aura",
+        "duration": "Until start of your next regular turn",
+        "frequency": "At will while RP remains",
+        "effect": "Until the start of your next turn, all damage that would be dealt to the chosen ally is redirected to you instead. The redirected damage retains type, cannot be redirected again and cannot be mitigated again after the original target’s defenses apply once. If redirected damage reduces you to 0 HP, the ally immediately gains temporary HP equal to your Paladin level and resistance to all damage until the end of its next turn. This effect ends if you die outright.",
+        "prerequisite": "Paladin 17; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].revelationSpells[4]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].revelationSpells[4]",
+              "value": {
+                "level": 17,
+                "spell": "Final Stand — for 1 round, absorb all damage dealt to one chosen ally in aura; if you fall to 0 HP from redirected damage, ally gains temp HP equal to your level and resistance to all damage until end of next turn"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 5,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "a30dfed5eb1e4a23d6db023e47c779202eb684a6a71013dd12ddf7e5cbbf77e0"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.unbroken-covenant",
+        "name": "Unbroken Covenant",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of the Chain",
+        "sourceKind": "finalOathGift",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Bonus Action",
+        "cost": "0 RP",
+        "rangeAndTarget": "Your full Oath aura; up to 3 bonded allies",
+        "duration": "3 rounds",
+        "frequency": "1/long rest",
+        "effect": "For 3 rounds Warden's Lock fills your entire current Oath aura. Choose up to 3 allies there as bonded. Each bonded ally uses your AC if it is higher and cannot be forcibly moved against its will. Whenever you redirect damage from a bonded ally to yourself, that ally gains temporary HP equal to half the actual damage you absorb, rounded down, maximum S+M per event. Temporary HP do not stack. This Final grants no extra Reactions.",
+        "prerequisite": "Paladin 20; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].finalOathGift",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].finalOathGift",
+              "value": "Unbroken Covenant — once per day, Warden's Lock expands to your full aura radius for 3 rounds; bonded allies share your AC, cannot be moved against their will, and when you redirect damage to yourself they gain temp HP equal to half damage absorbed until the lock ends."
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "513944a1ffe10dd0f5c74def4fee7a4d1248ee05fa668cceba673d4e1beb9f1c"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-martyr-king.king-s-smite",
+        "name": "King's Smite",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Martyr King",
+        "sourceKind": "oathSmite",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Triggered",
+        "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+        "rangeAndTarget": "Creature hit by your melee weapon attack; one ally in your aura",
+        "duration": "Smite instantaneous; temporary HP until lost; redirection passive while this Oath is active",
+        "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+        "effect": "The Smite deals radiant damage normally. After it resolves, choose one ally in your aura; it gains temporary HP equal to half the actual radiant Smite damage dealt, rounded down, maximum S+M. Separately, once per round when an ally in your aura takes damage, you may redirect up to 5 of that damage to yourself. Apply the original target’s defenses once, then transfer up to 5 of the remaining damage. Transferred damage keeps its type and cannot be reduced again, reflected, redirected again or generate resources.",
+        "prerequisite": "Paladin 3; Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].smiteType",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].smiteType",
+              "value": "Radiant — bonus damage; allies in aura gain temp HP when you smite; you may redirect 5 damage from one ally per round"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "conductClauses": [
+          "Bear the responsibility of command without treating those in your care as a means to your glory",
+          "Set the realm's need above personal gain, and spend your own strength before you spend another's",
+          "Never demand a burden you would not freely take upon yourself"
+        ],
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Oath of the Martyr King"
+      },
+      "sourceObjectSha256": "d477840b93208eb5bca4155cbd47f455ccac24e5625dfdd29affc907abcf4b8c"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-martyr-king.aura-of-the-crown",
+        "name": "Aura of the Crown",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Martyr King",
+        "sourceKind": "oathAura",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Up to 3 chosen allies in your Oath aura",
+        "duration": "While conscious and target remains in aura",
+        "frequency": "Choose targets at start of each turn; redirect once per round",
+        "effect": "Selected allies gain +1 on saving throws. Once per round when one selected ally takes damage, you may use your Reaction after that target applies its defenses once to redirect up to M of its remaining damage to yourself. The transferred amount cannot be reduced, reflected, redirected again or generate resources. This consumes the shared Paladin redirection allowance.",
+        "prerequisite": "Paladin 3; Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].auraEffect",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].auraEffect",
+              "value": "Aura of the Crown — allies +1 saves; you may redirect damage from one ally per round"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Oath of the Martyr King"
+      },
+      "sourceObjectSha256": "8e16b8a024ca633bd4d3be4340aed54a46e4a2618dd1a4dfd70cda0742090783"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-martyr-king.crown-of-embers",
+        "name": "Crown of Embers",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of the Martyr King",
+        "sourceKind": "signaturePower",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Up to 3 allies in your Oath aura",
+        "duration": "Until start of your next regular turn",
+        "frequency": "1/short rest",
+        "effect": "Selected allies reduce the first damage they take before the start of your next turn by S. During this period you may redirect damage from one selected ally to yourself without using a Reaction, once total for the Crown, up to Paladin level+M damage. Redirected damage retains type and cannot be redirected again. The Crown grants no healing by itself.",
+        "prerequisite": "Paladin 11; Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].signaturePower",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].signaturePower",
+              "value": "Crown of Embers — team-wide DR + damage redirection (1/rest)"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Oath of the Martyr King"
+      },
+      "sourceObjectSha256": "0ff07991fa0838522e96deb9434534c8c584850c6203ed3b47e8eeaf4246980f"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-martyr-king.burden-shared",
+        "name": "Burden Shared",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Martyr King",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 9,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Reaction when an ally takes damage",
+        "cost": "5 RP",
+        "rangeAndTarget": "Triggering ally and up to two other willing allies in your aura",
+        "duration": "One damage event",
+        "frequency": "While RP remains",
+        "effect": "After applying the original target’s defenses once, divide up to Paladin level+M of the remaining damage among the willing recipients as you choose; each recipient must explicitly accept its amount. The original ally takes the remainder. Transferred damage keeps its type and cannot be reduced again, redirected, reflected or trigger healing/resources. This uses the one redirection event per round.",
+        "prerequisite": "Paladin 9; Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].revelationSpells[2]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].revelationSpells[2]",
+              "value": {
+                "level": 9,
+                "spell": "Burden Shared — distribute damage among willing allies"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 3,
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Oath of the Martyr King"
+      },
+      "sourceObjectSha256": "2a0ff54276d9127ac30458bae7ea5dc0f1295b5ec34ca63bb5ce22efdabb29d1"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-martyr-king.crown-undying",
+        "name": "Crown Undying",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of the Martyr King",
+        "sourceKind": "finalOathGift",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Bonus Action",
+        "cost": "0 RP",
+        "rangeAndTarget": "Up to three selected allies in your aura",
+        "duration": "Three rounds; no concentration",
+        "frequency": "1/long rest",
+        "effect": "For three rounds apply Crown of Embers protection without consuming its short-rest use. Selected allies reduce their first damage each round by S and gain +1 on saves; this save bonus does not stack with Aura of the Crown. You may redirect from up to two selected allies each round, at most Paladin level+M damage total per round, without a Reaction. Original-target defenses apply once; redirected damage cannot be reduced again. Each protected ally then heals half the damage you actually absorbed for it, rounded down, maximum S+M per ally per round. This is a finite Final healing exception, cannot heal you, cannot exceed maximum HP, and cannot trigger another redirection or heal-copy chain. It does not reset the daily Lay on Hands pool.",
+        "prerequisite": "Paladin 20; Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].finalOathGift",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].finalOathGift",
+              "value": "Crown Undying — once per day, Crown of Embers lasts 3 rounds without concentration; damage you redirect heals the ally for half absorbed, allies in aura gain +1 saves while the crown persists, and you may redirect from two allies per round."
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Oath of the Martyr King"
+      },
+      "sourceObjectSha256": "f8de6f3fe586c6b30d10bbdd31c93e0976aa46dfb3631afbbcbebe8ebe1d0b1d"
+    },
+    {
+      "kind": "class-card",
+      "owner": "shaman",
+      "path": "data/public/class_playtests/shaman.json",
+      "card": {
+        "id": "shaman.arch.ancestral-guardian",
+        "name": "Ancestral Guardian",
+        "className": "Shaman",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "2 RP",
+        "rangeAndTarget": "Ally within 30 ft being damaged",
+        "duration": "One damage instance",
+        "frequency": "Recharge 3",
+        "effect": "A guardian prevents S d8+M damage, minimum 0. It then vanishes and creates no companion action, corpse or refund. Cannot prevent sacrifice/trauma or redirect prevented damage into another trigger.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4037,
+          "originalText": "Ancestral Guardian: Summon a protective spirit that intercepts damage meant for you."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "2017eae94ed31d166adb032bf4a724b44206a006fbf7fc23ec6eb0e6fa5aae8e"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.hero.champion.selfless-guardian",
+        "name": "Selfless Guardian",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": "Champion",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "0",
+        "rangeAndTarget": "One adjacent ally taking direct weapon damage",
+        "duration": "One hit",
+        "frequency": "Once/round",
+        "effect": "Redirect up to S+M of that damage to yourself. Redirected damage cannot be reduced, redirected again or trigger retaliation. The ally takes the rest after its own mitigation.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4230,
+          "originalText": "Selfless Guardian: Take reduced damage when intercepting attacks meant for allies."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "1ee9c213d3529b63f88c35415e680695e87faf9a6e5459903c12ebcf04c25c56"
+    },
+    {
+      "kind": "class-card",
+      "owner": "tinker",
+      "path": "data/public/class_playtests/tinker.json",
+      "card": {
+        "id": "tinker.arch.emergency-protocols",
+        "name": "Emergency Protocols",
+        "className": "Tinker",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "1 encounter use",
+        "rangeAndTarget": "Drone within 10 ft when attack hits you",
+        "duration": "One hit",
+        "frequency": "1/encounter",
+        "effect": "Drone intercepts: reduce damage to you by S+M and takes same amount unmitigated. It must be active/conscious. Does not redirect again or trigger retaliation loops.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4604,
+          "originalText": "Emergency Protocols: Your drone automatically intercepts an attack meant for you once per encounter."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "ac7d27cd219c8e7e7ee81ba88425c48850dbac9861ea85a06d715ab99ad905ff"
+    },
+    {
+      "kind": "class-card",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "card": {
+        "id": "warrior.hero.wardborn.guardian-tissue",
+        "name": "Guardian Tissue",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": "Wardborn",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "0",
+        "rangeAndTarget": "One adjacent ally and self",
+        "duration": "Instantaneous",
+        "frequency": "Once per round",
+        "effect": "Guardian Tissue. When an adjacent ally would take damage, reduce that ally's incoming damage by one-third rounded down. You take the prevented amount as damage of the same type. This transferred damage cannot be redirected again and cannot trigger another Guardian Tissue. Transferred damage cannot be reduced again, redirected again or generate BT.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4847,
+          "originalText": "Guardian Tissue: When an adjacent ally would take damage, you can absorb 30% of it as a reaction."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "6758edbc7d9cf5f27f4866127fc8ef9b9df2a71a2d6f056030ca253381fdc1d6"
+    },
+    {
+      "kind": "class-card",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "card": {
+        "id": "warrior.hero.wardborn.aegis-incarnate",
+        "name": "Aegis Incarnate",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": "Wardborn",
+        "sourceKind": "passive",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "0",
+        "rangeAndTarget": "Self and allies within 15 feet",
+        "duration": "3 rounds",
+        "frequency": "1/long rest; automatic Wardborn Final Form",
+        "effect": "Final Form – Aegis Incarnate. For 3 rounds you cannot be forcibly moved or knocked Prone. Whenever an ally within 15 feet takes damage, automatically redirect half that damage rounded down to yourself after the ally's resistance but before its temporary HP; the ally takes the remainder. Redirected damage keeps its type, cannot be reduced again or generate BT, and cannot be redirected again. If taking the redirected damage would kill you outright, the redirection still occurs. This grants no extra Reaction requirement and does not stack with Guardian Tissue on the same damage event.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4851,
+          "originalText": "Final Form – Aegis Incarnate: Transform into a living shield for 3 rounds, becoming immovable and redirecting 50% of all damage dealt to allies within 15 feet to yourself."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "5e223de7f6a979dac5c81bb5b26b2c3796c41100d9cbe813da435aa9cac54c6b"
+    },
+    {
+      "kind": "class-card",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "card": {
+        "id": "warrior.hero.wardborn.guardian-pulse",
+        "name": "Guardian Pulse",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": "Wardborn",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "0",
+        "rangeAndTarget": "One adjacent ally and triggering attacker",
+        "duration": "Instantaneous",
+        "frequency": "1/short rest",
+        "effect": "Guardian Pulse. Trigger when an adjacent ally is targeted by an attack. You become the target instead; resolve the original attack roll against your AC and defenses. After that attack fully resolves, if the attacker is within your melee reach, make one melee weapon attack against it. This counterattack is a free attack, cannot grant another free attack or Action, and occurs whether the redirected attack hit or missed.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4859,
+          "originalText": "Guardian Pulse: 1/rest, redirect an attack from an adjacent ally to yourself and immediately counterstrike"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "b0bb1ba7e3a0716a83932ecee97cafdc14a082891419ebdcf3299b674e6a4da9"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "pack": "13-haven-economy-stress",
+  "scenarioId": "HAVEN-FACTION",
+  "runId": "HAVEN-FACTION-R-4",
+  "seed": 83100,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 5000,
+    "reputation": -4,
+    "label": "Hunted",
+    "access": {
+      "marketDesk": false,
+      "licensedMaterials": false,
+      "strategicAuctions": false,
+      "sovereignContracts": false,
+      "proscribed": true
+    },
+    "blockedActionRate": 1.0
+  },
+  "rulesHalts": [
+    {
+      "code": "FACTION-ACCESS-THRESHOLDS",
+      "note": "reputation labels exist (-5..+5) but numeric access gates for desks/licenses are not fully tabulated in Gameplay Loop JSON; sim uses inferred thresholds."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/HAVEN-FACTION/HAVEN-FACTION-R-4.json"
+}

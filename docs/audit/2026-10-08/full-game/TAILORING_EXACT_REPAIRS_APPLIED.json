@@ -1,0 +1,173 @@
+{
+  "status": "PASS — exact-review conditions fulfilled",
+  "threadId": "6aca4e7e-fd2c-83ea-bf0f-971997ed1a9b",
+  "turnId": "b6984844-5544-4ff0-9624-50bab432dbb2",
+  "replyId": "54b2b40e-cce6-48c4-8aa6-51ea7c535f0c",
+  "preservedSubmittedRevision": "docs/audit/2026-10-08/full-game/tailoring-before-part2-repairs",
+  "repairs": {
+    "TA-ER01": "Each physical item has its own task premises; missing premises fail closed. Slots are validated before filtering. Hidden/noncontributing/inadequately covering stronger outfits and Bags cannot borrow qualification; genuine qualifiers use the strongest once. Independent radiant resistance remains. Leatherworking qualification and task IDs are item-specific too.",
+    "TA-ER02": "Cross-trade containers use actual operator, garments use wearer; no ownership/wearer fallback. Source652 tests B operating A-worn container, self-operation, nonoperator wearer and inactive/access cases.",
+    "TA-ER03": "All named equipment fixtures derive from actual saved cards/models. Recipe577 acid Garment;546 Bag+1;306 Leatherworking Gloves+2;actual Hat/Helm/Gauntlets metadata. Nested546 Bag fits280 Backpack, giving7 physical lb/3.6 canonicalLoad and5 countedlb/3.4 effectiveLoad; suppression retains7/3.6. Correct548/584 reconstruction DC11/28 asserted.",
+    "TA-ER04": "Both guides and all43/29 card Repair paragraphs explicitly require actual Weaver tools with Tailor binding, Loom and Cutting Table, Needles and Shears. Compatible overlapping implements allowed; rare creation rows remain outside generic repair. Missing toolkit bars starting; quotation helper grants no permission."
+  },
+  "correctedChecks": [
+    {
+      "name": "TA-ER01 no task-wide premise fallback",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 visible682+2 defeats irrelevant hidden584+3",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 independently required visibleAttire",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 independently required actualContribution",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 independently required coverageSufficient",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 two qualifying items strongest once",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 irrelevant outfit keeps radiant resistance",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 filtering cannot legalize competing slots",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 source-valid577 Garment acid resistance",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 nested occupied exterior and aperture fit",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 old bag10-in-bag10 geometry rejected",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 source-valid nested7lb3.6Load relief",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 suppression retains7lb3.6Load",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 source546 Bag actual operator at table+1",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 stronger irrelevant Bag cannot borrow contribution",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 two qualifying Bags use strongest once",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 source306 Gloves+2 strongest one check",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 cross-trade independent actualContribution",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 cross-trade independent leatherCriteriaMet",
+      "pass": true
+    },
+    {
+      "name": "TA-ER01 cross-trade task IDs independently qualify",
+      "pass": true
+    },
+    {
+      "name": "TA-ER02 B operates A-worn Backpack gains+2",
+      "pass": true
+    },
+    {
+      "name": "TA-ER02 wearer operating own Backpack gains+2",
+      "pass": true
+    },
+    {
+      "name": "TA-ER02 nonoperator wearer gains nothing",
+      "pass": true
+    },
+    {
+      "name": "TA-ER02 no ownership or wearer operator fallback",
+      "pass": true
+    },
+    {
+      "name": "TA-ER02 inactive container inaccessible",
+      "pass": true
+    },
+    {
+      "name": "TA-ER02 inactive container suppressed",
+      "pass": true
+    },
+    {
+      "name": "TA-ER02 inactive container Broken",
+      "pass": true
+    },
+    {
+      "name": "TA-ER02 inactive container melded",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 recipe548 reconstruction DC11",
+      "pass": true
+    },
+    {
+      "name": "TA-ER03 recipe584 reconstruction DC28",
+      "pass": true
+    },
+    {
+      "name": "TA-ER04 explicit physical-tool contract docs/director-only/TAILORING_INTERNAL_RECIPE_CARDS.md",
+      "pass": true
+    },
+    {
+      "name": "TA-ER04 explicit physical-tool contract docs/mechanics/TAILORING_PUBLIC_RECIPE_CARDS.md",
+      "pass": true
+    },
+    {
+      "name": "TA-ER04 explicit physical-tool contract docs/director-only/TAILORING_INTERNAL_GUIDE.md",
+      "pass": true
+    },
+    {
+      "name": "TA-ER04 explicit physical-tool contract docs/mechanics/TAILORING_RECIPE_PLAYTEST.md",
+      "pass": true
+    },
+    {
+      "name": "TA-ER04 quotation not permission contract",
+      "pass": true
+    }
+  ],
+  "statusOnlyArtifactChanges": {
+    "data/director/tailoring_recipe_candidate_internal.json": "Only operational status, approval flag and exact-review provenance; complete sources and all operational values preserved.",
+    "data/playtest/tailoring_recipe_candidate.json": "Only operational status, approval flag and exact-review provenance; complete sources and all operational values preserved.",
+    "docs/director-only/TAILORING_INTERNAL_GUIDE.md": "Review labels and exact-review provenance only after the separately verified TA-ER01/04 prose repairs.",
+    "docs/director-only/TAILORING_INTERNAL_RECIPE_CARDS.md": "Review labels and exact-review provenance only after the separately verified TA-ER01/04 prose repairs.",
+    "docs/mechanics/TAILORING_RECIPE_PLAYTEST.md": "Review labels and exact-review provenance only after the separately verified TA-ER01/04 prose repairs.",
+    "docs/mechanics/TAILORING_PUBLIC_RECIPE_CARDS.md": "Review labels and exact-review provenance only after the separately verified TA-ER01/04 prose repairs."
+  },
+  "checks": 157,
+  "durabilityStates": 558,
+  "protectedFilesUnchanged": 53,
+  "paragraphProjectionSha256": "274f29d42e7f2f0c9516e4afcc7b8ac511ad39a0092b4d14c993366a50df84ed",
+  "referenceSha256": "5f4f206f1b33eeeecdb814744ddca2f1ec402ab4b89a5ff02853565179e491e0",
+  "validatorSha256": "221f238c85c9803a72e408bff815cc229d4b180894e76ed31f29592cb763b30e",
+  "verdictSha256": "dc1d218435adc3455618f48d63d415ed331eeb65660a2af841e9d73c607e19c3",
+  "reviewerArchiveSha256": "1ea2d9687e5a92b7763fb84ff32a1a80e099ed8cb7dc23bc6ee078abf4056cc1",
+  "reviewerArchiveInternalHashesVerified": 13,
+  "sourceInformationDeleted": 0
+}

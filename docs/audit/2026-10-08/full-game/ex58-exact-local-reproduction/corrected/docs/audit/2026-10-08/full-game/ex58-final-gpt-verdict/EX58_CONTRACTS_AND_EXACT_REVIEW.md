@@ -1,0 +1,501 @@
+# Record contracts and finite exact-candidate acceptance
+
+Explicit authoring specifications, not an implemented adapter. Raw/source, operational, actual campaign and evidence records remain separate.
+
+## Common envelope
+
+**id:** Stable nonblank identifier scoped to the actual physical/event identity; no renaming renewal.
+
+**schemaVersion:** Exact declared contract version.
+
+**sourceBindings:** Array of actual source path/hash/record/section plus reviewed-overlay IDs; not truth certification.
+
+**audience:** public|director-only|restricted with explicit per-field publication rules.
+
+**expectedPredecessorVersion:** Exact state version consumed by this transition; stale/missing history rejects the write.
+
+**time:** {epochId, elapsedSeconds:int>=0, phase, sequence}; same authoritative campaign clock.
+
+**status:** Explicit proposed|reserved|in-progress|resolved|cancelled|terminal|unresolved, narrowed by each contract.
+
+**evidence:** Actual provided knowledge/authority/objects/events; reported, inferred, synthetic and verified-source arithmetic remain distinct.
+
+Every nonintegral value is an exact rational {numerator:int, denominator:positive int}; reject nonfinite/negative amounts except explicitly signed deltas/money estimates. A missing field is represented through presence, not filled withnull.
+
+## EC-01 — Expedition, charter and roster
+
+Authority: FL-01, FL-02, FL-03, FL-26
+
+| Required field | Exact meaning |
+|---|---|
+| `expeditionId` | Actual continuing organization identifier. |
+| `charterVersion` | Prospectively accepted objective/finance/safety agreement and its predecessor. |
+| `roster` | Distinct character IDs, player/NPC classification, actual class/source state and entry/exit intervals, at most12 concurrently. |
+| `teams` | Combat, Reconnaissance, Research, Resource, Support; explicit actual member/time assignments, not five free staffing pools. |
+| `offices` | Leader, Quartermaster, Routekeeper, Lorekeeper and other source offices bound to real people; one person may hold multiple offices but not incompatible simultaneous work. |
+| `objective` | Destination, actual success evidence and unique achievement identity. |
+| `thresholds` | Prospective casualty, reserve, latest-return, gross/net/true-profit goals with units, comparator, source and evaluation times; no default promise inferred. |
+| `finance` | Actual quoted/paid financing, sponsor and insurance contract IDs, real balances and liabilities. |
+| `participants` | Each actual encounter/retreat/travel cohort references roster and genuine attached actors; external service providers separately classified. |
+| `closure` | Real return timestamp, outcomes and unresolved obligations plus next charter; no clock, inventory or source-status reset. |
+
+**Invariants**
+
+- No more than12 Expedition characters; assistants and hirelings counted by actual role, not a label loophole.
+- Suggested team sizes are recommendations. Small parties may assign several offices without receiving absent workers or bonuses.
+- Joining/leaving does not replicate advancement, resources, prior claims or elapsed hours.
+
+## EC-02 — Clock, assignment, work and rest
+
+Authority: FL-03, FL-24, SO-06, SO-11
+
+| Required field | Exact meaning |
+|---|---|
+| `epochId` | One absolute campaign origin, including recorded Opening/Horn schedule receipts. |
+| `interval` | [startSeconds,endSeconds), nonnegative ordered integers; all active minutes measured from actual seconds. |
+| `actorId` | One real worker/creature; location and access over the interval. |
+| `activityId` | Parent task and task kind, governing exact duration and native interruption/assistant rules. |
+| `reservedResources` | Actual hands, Action/Reaction/regular-turn markers when applicable, tools, gear, station, receivers and persons. |
+| `activeProgressSeconds` | Only genuinely performed compatible work; nominal route effort is separate from modified actual travel duration. |
+| `rest` | Scheduled Rest slot fixed prospectively; actual safe rest start/end, interruptions, support, last beneficial Long Rest and Short Rest count. |
+| `restDebt` | Owed flag, cause event, opening Watch, deadline Watch/time, assessed missed-rest/deadline Strain IDs and clearing event. |
+| `completion` | Exactly one native check/result/receipt, or explicit incomplete/terminal outcome; no completion from a scheduling label. |
+
+**Invariants**
+
+- Watch=28800 seconds; day=86400; round=6. Parallel people do not multiply elapsed clock.
+- Conflicting per-actor hands/work/control/rest reservations are rejected. Passive effects only coexist when their exact source permits.
+- Only route-duration adjustments change a nominal travel tranche; unrelated480-minute forage/build work remains480actual minutes.
+- Core combat endpoints and exact domain interruption rules override generic progress retention.
+- A safe debt-clearing8-hour Rest within the reward lockout clears debt without another resource refill.
+
+## EC-03 — Physical lots, Supply and daily support
+
+Authority: FL-04, FL-05, FL-06, FL-12, TR-07
+
+| Required field | Exact meaning |
+|---|---|
+| `lotId` | Real original or physically traced descendant lot; parent memberships conserved. |
+| `identity` | Exact source item/form/tier/properties/recipe occurrence as applicable; unknown identity is explicitly unknown. |
+| `amount` | Exact rational {numerator,denominator>0} in specified physical/source units; indivisibility/precision explicit. |
+| `massAndGeometry` | Actual material plus each container tare once, occupied volume/shape and allowed openings. |
+| `clockAndCondition` | Original death/removal/manufacture/opening times, accumulated unprotected age, exact protection intervals, condition and disposal. |
+| `custody` | Owner/title claimant, actual custodian and nested location chain without duplicate parent/child accounting. |
+| `originRestrictions` | Immutable no-resource/source restrictions and existing finite harvesting/claim histories. |
+| `allocation` | Recipient/day/procedure, actual committed/consumed amounts and unique consumption IDs. |
+| `dailyDemand` | Piecewise actual recipient dietary coefficients over canonical day; food/water independently specified, including species-specific feed. |
+| `support` | Actual required light/fuel/camp plan, paid usage, shortages and one daily Strain assessment per recipient. |
+
+**Invariants**
+
+- No virtual Supply inventory in addition to its real constituents. Full procedure basket and actual nutrition credits reference the same consumption, not two assets.
+- Transfers, packing, riding, form changes, assembly and return do not reset freshness or origin.
+- Container fit requires mass, volume, shape, closure and material compatibility independently.
+- A food/water spell only supplies its actual selected permitted output, costs, time, lifecycle and diet contribution; no invented oil/medical supplies.
+
+## EC-04 — Opportunity and camp
+
+Authority: FL-06, FL-07
+
+| Required field | Exact meaning |
+|---|---|
+| `opportunityId` | Actual finite site/deposit/donor/forage source and predecessor depletion history. |
+| `ordinaryAllocation` | Real food/water baseline, critical reserve and unavailable/forfeited matter, all disjoint. |
+| `site` | Position, accessible working/sleeping area, actual environment/permissions and hazard assumptions. |
+| `campTierAndMarks` | Bivouac / Temporary / Fortified / Research / Forward, exact completed Support/Research marks and source versions. |
+| `materialBill` | Actual installed, stored, lost and replaced material IDs, no free new kits on a failed roll. |
+| `functionalFacts` | Sleeping capacity, available tents, perimeter/watch, concealment, safe access, lights, care/work facilities, containment and current compromises. |
+| `storage` | Current tier cap and actual pound/Load/volume occupancy, accessible locations for any overflow. |
+| `supplyLine` | Real provider/endpoints/crew/carrier, capacity, promised and actual departure/arrival, paid charges and missed deliveries. |
+
+**Invariants**
+
+- Sustenance baseline0..4 is capped by actual original finite food/water; a critical adds at most ceil(S/2) real original reserve.
+- A new Watch, worker, map or site ID does not replenish depleted material. A real new source/replenishment event needs explicit physical evidence.
+- Tier storage replaces, not sums, previous capacity. Camp tier does not assert safe rest or create every recipe station.
+- Camp marks and fixtures survive honestly; compromised functionality is restored only by actual necessary work/replacement.
+
+## EC-05 — Route and travel tranche
+
+Authority: FL-10, FL-11, TR-08, TR-09, TR-13
+
+| Required field | Exact meaning |
+|---|---|
+| `routeId` | Stable directed segment with actual endpoints and geometry; reverse/one-way/current distinctions explicit. |
+| `lengthProgress` | Finite nonnegative exact route length and position→progress map; no repeated zero-length award. |
+| `riskMappingQuality` | Risk0..5 where0requires actually Secured; Mapping Unknown / Sketched / Mapped / Secured; independent Core routeQuality. |
+| `capacityAndAccess` | Route CapacityLoad, bridge gross weight, clearance, draft, terrain, actual closures and route-specific permission. |
+| `pace` | Actual slowest required moving member/carrier, current modifiers and real current/wind; mph before and after factors. |
+| `tranche` | 480nominal minutes, actualSeconds after exact single quality and pace application, actor labor and pauses. |
+| `mappingAndRecon` | Original marks, one applicable recon+1Progress and−1Pressure per cohort/tranche, actual evidence and completion check. |
+| `forcedMarch` | Predeclared Severe task, actual roster/extra basket allocation, sole check and real spent/unspent dispositions. |
+| `result` | Actual traversed path, exact credited Progress, passed obstacles, pending checkpoints and remaining time. |
+
+**Invariants**
+
+- Pace never overrides a full-capacity or geometric prohibition. Tactical Dash is not a perpetual overland multiplier.
+- Hours and Progress describe one real traverse; no separate mileage entitlement and no abstract movement through blocked geometry.
+- Route-quality/time, Burden and Strain penalties apply once each when genuinely distinct; no repeated same named penalty.
+- Travel interruptions consume actual elapsed time without creating another full Watch or resolved-attempt retry.
+
+## EC-06 — Pressure, complications and extraction queue
+
+Authority: FL-08, FL-09, FL-12, FL-13, FL-14
+
+| Required field | Exact meaning |
+|---|---|
+| `cohortId` | Actual group with parent Expedition and split/merge predecessor histories. |
+| `pressure` | Integer0..6, actual current Risk floor, signed events, blocked reductions and at most2reduction credits perWatch. |
+| `causeEvents` | Unique physical incident/lot/revelation/Watch IDs, distinguishing continuing and discrete causes. |
+| `extractionEpisode` | Genuine return decision and destination, cargo-high-Class surcharge high-water mark, root lineage and terminal state. |
+| `checkpoints` | Frozen ordered actual route positions with reason lists, processed IDs, future revisions and secondary-root references. |
+| `test` | Native actor/ability/PB/assistants, tier DC and exact modifiers, actual die/roll ID, degree and declared stakes. |
+| `complication` | Root causal ID, actual predeclared entry/severity/stakes, modified d6/natural face and modifier/reroll provenance. |
+| `response` | Chosen actual8hdelay or finite risk, separate rescue/hazard method, costs, labor, deadlines and real losses. |
+| `queue` | Finite ordered pending events at canonical time/phase/sequence, at most one Severe-linked secondary test per root. |
+
+**Invariants**
+
+- No old checkpoint or root event is reopened by re-entry, container transfer, a new leader or a later stronger check.
+- Pressure6 produces one Severe at its due checkpoint, not recursion on every arithmetic intermediate.
+- One root incident may coalesce reasons but cannot erase genuinely unrelated actual incidents.
+- Extra Progress traverses only actual reachable positions and queues their finite unprocessed checkpoints.
+
+## EC-07 — Encounter participants and retreat
+
+Authority: FL-15, FL-16, TR-02, TR-03
+
+| Required field | Exact meaning |
+|---|---|
+| `encounterId` | Genuine continuing conflict and canonical numbered rounds. |
+| `participants` | Actual entry/exit/turn form, character levels, source-qualified companions/devices and opposing profiles. |
+| `estimate` | Mixed party level, exact enemy level/CR, ThreatPoints, N_eff, multiplier, source budget and nonduplicated objective/hazard adjustments. |
+| `retreat` | Real escape route, predeclared task DC/stakes, lead and one meaningful threat perround. |
+| `roundBudgets` | Actual spent movement/Action/BonusAction/Reaction/stance/command/offensive allowances; retained across mode changes. |
+| `counters` | Escape0..3/Pursuit0..3, unique cause increments, actual carrying/sacrifice/obstruction facts and terminal comparison. |
+| `consequences` | Actual HP/Wounds/Strain/death/custody/lost members/Pressure, not copied encounter rewards. |
+
+**Invariants**
+
+- Roster12 is not automatic N_eff12; absent actors contribute no turn or free bonus.
+- Core task degrees do not become attack criticals/opposed shifts/save benefits.
+- Retreat permits at most one ordinaryEscape or two from its actual lead critical, with one threat instead of full enemy nova plus chase punishment.
+- Escape3must occur beforePursuit3; simultaneous3/3fails. No resource reset at mode change.
+
+## EC-08 — Transport body, control and movement
+
+Authority: TR-01, TR-02, TR-03, TR-04, TR-05, TR-06, TR-07, TR-08, TR-09, TR-10, TR-11, TR-12, TR-14
+
+| Required field | Exact meaning |
+|---|---|
+| `sourceRow` | Exact retained29-row record or distinct Core/NEW auxiliary identity, with source-null/absent fields unchanged. |
+| `body` | Actual complete source/NEW profile and original constituents, current HP/AC or creature scores/HP/dice/Wounds, mass/geometry. |
+| `payload` | Named riders/crew/casualties/gear/containers/cargo, actual individual and total pounds/Load/volume/seat point. |
+| `controller` | Real current operator, willingness/training/authorization, actual audible/tactile/other source-qualified channel and occupied hands. |
+| `turnSchedule` | One physical regular slot/round for each creature; current and prospective controlled initiative relation, spent budgets. |
+| `movement` | mover,carrier,initiator,path,distance,selfPowered/forced/teleport,actual budget, current regular turn and final position. |
+| `crewReservations` | Actual distinct helm/rower/puller Actions and availability; one coordinated vehicle movement after all necessary current contributions. |
+| `operation` | Real feed/water/fuel/service counters, paid source supplies, environmental current/wind/draft/road restrictions. |
+| `repair` | Real damage/loss event and surviving primary members, authorized method/materials/cost/time/check, no terminal-claim renewal. |
+| `hireContract` | Provider/recipient/period/allowance/danger/fee/wages/title/liability and actual fulfillment, no free actors. |
+
+**Invariants**
+
+- Both pound andLoad limits, shape and clearance must pass. Barding/tack/gear included once, no empty-source-weight filled as historical fact.
+- A controlled mount takes one whole turn after rider, never interleaving; attached class companions retain their own separate procedure.
+- No vehicle native turn, attack, RP, dawn charges or autonomy from its name; hauler fuel/service are their own NEW finite procedure.
+- One drive event per vessel/drawn vehicle/round after actual contributors; no controller swap or extra Action double move.
+- Repairs do not refill fuel/charges/service, reset clocks, recreate missing primary bodies or reopen dismantled residue.
+- Suppression, melding, fallen rider, failed support and current control use actual source histories; no beneficial offscreen teleport.
+
+## EC-09 — Haven intake, claim and quote
+
+Authority: FL-19, FL-20, FL-22, FL-25
+
+| Required field | Exact meaning |
+|---|---|
+| `arrival` | Real episode/cohort/entry-time and safe-access facts; fast or full intake with already completed steps. |
+| `lot` | Exact current object/quantity/condition/title/custody/containment and provenance evidence, no mere appraisal→ownership. |
+| `claimants` | Actual authority, priority, dispute status, permitted disposition and resolved/owed obligations. |
+| `inspection` | Actual worker, method, time, skills/tools/check if uncertain, known facts versus reports and unknown effects. |
+| `valuationDomain` | reviewed mundane equipment / reviewed recipe / unpriced ordinary finite lot / actual artifact / actual currency/service; one formula only. |
+| `offer` | Real buyer/seller, finite quantity, exact rational price, expiry, included charges, required permits and accepted status. |
+| `artifactInputs` | Actual BaseFunctionValue andGateTierMultiplier or actual finite buyer offer, allowed factors/ranges and discrete actual costs; missing inputs remain unresolved. |
+| `quarantine` | Actual cause, permissible holding, compatible location, staff/time/cost and release evidence. |
+
+**Invariants**
+
+- Identify/research/Insight does not reveal unsupported market demand, private legal title, hidden lore or complete missing spell effects.
+- Source grade/quality words do not stack multiple valuation domains; crafted Masterwork or prepared materials do not acquire artifact multipliers.
+- A negative value estimate is neither automatic debt nor a forced transaction.
+- An actual licensed source offer may be unavailable. Unavailable stock/authority is a particular operation prerequisite, not a newly required generic source conference.
+
+## EC-10 — Money, sponsor and insurance settlement
+
+Authority: FL-21, FL-22, FL-25
+
+| Required field | Exact meaning |
+|---|---|
+| `transactionId` | Unique real payment/receipt/refund/owed entry, not each intermediate multiplication. |
+| `payerPayee` | Actual authorized parties and coin accounts; anonymous/unknown marked. |
+| `currencyAndExactAmount` | Known exchange domain and exact rational copper result, not floating point approximations. |
+| `rounding` | Final purchase/tax/feeceilcp; salefloorcp once per actual transaction; separately preserve exact quote. |
+| `paymentStatus` | quoted / reserved / paid / owed / refunded / lawfully-written-off with actual timestamp and predecessor. |
+| `sponsor` | Actual chosen contract/rate/gross-or-net base/grant-or-loan/contribution/claims, no automatic combination. |
+| `insurance` | Actual insured lot IDs, value,premiumpaid-before-loss,term,trigger,provenance,deductible/formula/cap,claimnotice and prior payouts. |
+| `settlement` | G,T,RQ,contractbase/share,NetExpedition,all unique costs,TrueProfit,cash,debt and required next-expedition reserves. |
+
+**Invariants**
+
+- One highest applicable sale tax bracket. Tax and sponsor priority do not multiply one invoice or waive an actual sovereign claim.
+- Premium paid once; deductible once per policy episode; entitlement cumulative less prior actual payouts.
+- Supply purchases already paid, structural replacement bills, loans/principal and reusable capital must not be silently charged twice as expenses.
+- No negative coin inventory or compulsory automatic borrowing; real unpaid obligations remain obligations.
+
+## EC-11 — Ordinary social scene and communication
+
+Authority: SO-01, SO-02, SO-03, SO-04, SO-05, SO-06, SO-07, SO-08, SO-09, SO-10
+
+| Required field | Exact meaning |
+|---|---|
+| `sceneId` | One actual encounter/request opportunity and unchanged-evidence history. |
+| `frame` | Want,Leverage,Limit,Clock,Witness plus exact decision-maker/authority and feasible requested result. |
+| `channel` | Actual source-qualified speaking/hearing/reading/signs/interpretation and participant knowledge; not cosmetic prose. |
+| `stakes` | Declared promisedSuccess,criticalExtra,Failure,criticalPenalty and optional costlyAgreement with exact payment/choice window. |
+| `resolutionRoute` | noCheck / impossibleNow / CorefixedDC / opposedTotals / actualSpecificSource; actual skill/ability/PB and legal modifiers. |
+| `timing` | Actual participant intervals, six-second aggregate speech in initiative, serial interpretation and precise effect deadlines. |
+| `help` | Named real helper, full qualifying work or actual initiative HelpAction/expiry; no stacking multiple advantages. |
+| `outcome` | Actual degree/result, optional separate acceptance/decline of costlyoffer, known information and authority-limited concession. |
+| `retries` | New material evidence/approach/source permission required; no speaker rotation or accepting a cost relabeled as dieSuccess. |
+
+**Invariants**
+
+- Meet stated DC honors stated successful result; no undisclosed higher threshold or mandatory after-roll fee.
+- Charmed/Frightened/magic retain exact predicates and acquired status, not obedience, authority or a newcondition from intimidation.
+- No automaticalignment/standing d20 modifier under these NEW boundaries; actual independently reviewed modifier still governs.
+- NPC agreement never transfers absent owners property or overrides SessionZero/player consent.
+
+## EC-12 — Lossless reputation source envelope
+
+Authority: RP-A01, RP-A02, RP-A03, RP-A04, RP-A05, RP-A06, FL-23
+
+| Required field | Exact meaning |
+|---|---|
+| `rawSource` | Immutable exact UTF8/source bytes or preserved backing path+SHA; complete ordered source members, including duplicate keys. |
+| `sourceVersion` | Exact evidenced producer/schema/version or explicitunknown; never inferred merely from numeric magnitude. |
+| `presence` | One of absent / null / value / ambiguousDuplicate; raw value/type unchanged, includingfalse, strings and out-of-range numbers. |
+| `subjectAndBinding` | Actual character/institution/jurisdiction and explicit alias/category resolution; unknown keys retained. |
+| `interpretation` | Named adopted policy ID, original raw locator, current mechanical interpretability, recorded timestamp and authorizing source. |
+| `initialContribution` | Once-only character/background/source-version binding, exact qualitative source clause and any correction lineage. |
+| `events` | Actual unique scene/cause/attribution/knowledge event, recipient/institution, signed proposed delta and original scene opening score. |
+| `derivedView` | Currentvalidinteger−3..3andband ORunresolved/ineligible/hidden; raw source never overwritten. |
+| `history` | Earned changes, initial-contribution repair/replay, cap overflow, reversible label changes and current descriptor all retained. |
+
+**Invariants**
+
+- Unversioned+5is not silently3. Absent is notnull/0. False is not0. Numeric strings do not become numbers.
+- Old qualitative labels do not uniquely invert numeric states; priorHonoredmay2or3, never forced2.
+- FreshCultEscapee suspicious religious authority usesDisliked−1; known erroneous+1initial contribution is corrected separately then genuine earned events replayed.
+- Unknown faction keys are preserved without inventing institution/lore/access. No live saves are read or migrated in this conference.
+- Per actual institution/scene signed total delta clamps±2 from the original opening score; then currentstanding clamps±3, with overflow retained as nonbankable history.
+
+## EC-13 — Institution, faction action and rival clock
+
+Authority: SO-10, SO-11, SO-12, RP-A05, RP-A06
+
+| Required field | Exact meaning |
+|---|---|
+| `institution` | Stable exact source identifier plus actual campaign instance/jurisdiction, agents, authority and knowledge; names are not universalaliases. |
+| `sourceRecord` | Entire original faction record, draft/resonanceTrack/private flags and arbitrary unknown fields preserved. |
+| `rivalFrame` | Exact nine source fields: public identity, backer, current depth, primary objective, preferred method, professed limit, need from the party, feared disclosure, current relationship. Added resources/actors/action evidence are separate fields, not replacements for these nine. |
+| `action` | Unique objective/method, real actors/tools/stock/permissions, source-required labor, start/finish, commitments and outcomes. |
+| `checkpoint` | Canonical24hslot or genuine return, frozen atmost3watchedfactions, coalesced coincident reasons and considered actionIDs. |
+| `clocks` | Depth4..8,Claim4,Grudge4,Collapse4..6 chosen/fixed prospectively with actualsegmentevents, thresholdprerequisites/consequence. |
+| `publication` | Player-visible observed events/access/standing only; private plans, memberships/dossiers and source-onlyresonanceflags not leaked. |
+
+**Invariants**
+
+- Checkpoint reporting grants no elapsed labor, free recruit, resource, travel or immediateattack.
+- One real event increments a matching clock once; duplicate reports0. Threshold without actual prerequisite isblocked, notteleport.
+- Oldsource keys and facts retain history; source-version reconciliation does not authorize cosmology, faction-level mindcontrol or soulcurrency interpretation.
+
+## EC-14 — Service, instruction and advancement
+
+Authority: FL-24, FL-25, FL-26, SO-06
+
+| Required field | Exact meaning |
+|---|---|
+| `serviceOrder` | Actual provider/qualification, namedrecipient, precise sourceprocedure, prerequisites/location, fullterms and paymententry. |
+| `labor` | Actual active intervals and interruptionrule; sourcehours maintained rather than oneHavencheckbox. |
+| `inputs` | Actual supplies/tools/library/evidence/source spell/class permission, expenditure and retained stock. |
+| `result` | Native check/outcome when required, actual completed training/repair/translation/care, learnedscope and explicit unavailablepieces. |
+| `advancement` | Campaignmilestone-or-XPchoice, uniqueachievement, materialcontributors, frozenperrecipientnextlevelgap and percent/cap/rounding. |
+| `stateCarry` | CurrentHP/resources/HD/Wounds/Strain/condition/claimhistory before/after, no unearned refill. |
+| `continuation` | Remaining source-specific work, owed costs and next legal task after completion. |
+
+**Invariants**
+
+- Actual recipes remain original hours/caps/formulas. LAX learning, Scribing consultation/Insight, TI04commands and TEXrecycling/recharge staytheirscopes.
+- Service quote supplies only explicitly included real materials; repair, maintenance, dawn recharge and beneficialrest are not synonyms.
+- Pending feat/class/spell options staypending; awardedleveldoesnotpromote them.
+- Milestone andXPnotbothforoneachievement; sameeventreport cannot duplicate anaward.
+
+## EC-15 — Source preservation, candidate projection and review evidence
+
+Authority: FL-01, FL-26, RP-A02, RP-A05
+
+| Required field | Exact meaning |
+|---|---|
+| `sourceManifest` | Actual frozen V3 filepaths/bytecounts/hashes, originalV2 history and old/currentpairs. |
+| `directionBindings` | Each of58 original questionIDs maps one full governing wording and relevant profiles/contracts/examples. |
+| `candidateTexts` | Complete future playerchapter,Directorchapter,body/servicecatalogues,envelopes andexact operationalwording parity. |
+| `audienceProjection` | Public approvedmechanics/dependencies, no private dossier inferred from a publicname; independently reconstructed full envelope. |
+| `evidenceClass` | executedsource-integrity / executedreference-arithmetic / authoredexpectation / reportedpriorreceipt / actualcampaignfact; neverconflated. |
+| `status` | Sourceauthoringonlyuntil actualcomplete exactcandidate reviewed; existing fulfilled domain labels preserved. |
+| `deliveryGate` | Actualjointwholegameflowagreement→already-authorizedpush→verifiedremotecommit→carefulcosmology; no extraownerconfirmation. |
+
+**Invariants**
+
+- No deletion, automatic migration, newcard promotion, runtime certification, humanbalanceclaim or cosmology interpretation.
+- Unadoptedoriginalproposals, originalsourcefields and disputed earlierlabelsremainimmutable beside newdirections.
+- Ordinaryworld prerequisites are per-operation records, not an endless genericpreliminary source queue.
+
+## Finite exact-candidate requirements
+
+### ECX-01 — Authentic version and source preservation
+
+Keep the exact V3 manifest, original194-fileV2 bytes andsix old/currentpairs, all complete58 originalquestions, unadoptedproposaltext and prior fulfilled receipts. Compare actual bytes; no rewriting a source to make a decision seem old.
+
+### ECX-02 — Complete player and Director reading path
+
+Submit complete actual player chapter, Director operating chapter, all referenced charts/contracts/profiles, internal/public JSON and full worked chapter. Currentauthoringdecisions must be present, not linked to an unsupplied live draft. No exact acceptance by aggregate count.
+
+### ECX-03 — All transport
+
+Include all29 source rows, ninecompleteNEW livingmountprofiles,14 tack/drawn/service entries,sixwatercraft, fourseparateauxiliaries and Core service binders. Validate knownnumericfields unchanged andsource-null/commas/absencepreserved. Every added number taggedNEW; actualbody/action/crew/turn/custody/repaircompared.
+
+### ECX-04 — Clock/work/rest
+
+Exercise actual parallelteamintervals, extraunplannedtime, source-specificinterruption, two-productive-Watchlimit, scheduledRestDebt, foodblocks, beneficialrestlockouts andequal-timeordering. ExposedpartialWatchsettlesonlyonceon safeexit. NoProgress-plus-mileage/time doublecredit.
+
+### ECX-05 — Supply and matter
+
+Test allquantities/prices/tare/partialfuel, foodversuswater/treatment, SmallMediumLarge andactualmountdiet, genuineforage/donorreserves, depletion, spills/breaches/clocks, no-originresourcecases andpairedcontainerparent/child conservation. A label isnotphysicalevidence.
+
+### ECX-06 — Route and extraction
+
+Fullpressureseveritytable,0and6, actualmodifiers/rerolls,equality,rootcausesandreductioncaps; Classhighwater,allcadences,fractionalcrossings,dupetransitions,once-per-rootsecondary andreal delay/riskresponse. Preserve actual route access/obstacles and convoy hard limits.
+
+### ECX-07 — Encounter and transport actors
+
+Actualparticipants versusroster; mixedlevel/CR/N_effcalibration; nativeattack/task/save distinctions; retreat3-before3andone threat. Mountedwholeturn,prospectiveslotchanges, no late/copy actor, driver/puller/crew actual contributions, no vehicle native turn or classcommandmerge. Compareallcurrentclasshookswithinactualscope,notstringmatching.
+
+### ECX-08 — Valuation and claims
+
+Select one valuationdomain, exactfinitebuyer,sourceprices,correctQ/bodyreferenceandnoartifactwordupgrade. Testsub-copperrounding,negativeestimates,no doublypaidtax/fee, netversusgrosssponsors, realclaims, alltaxbrackets, policyordinary/dangerous/Attentionpremiumsandfinitecumulativepartialclaims, no repeateddeductible/payout.
+
+### ECX-09 — Social source clauses
+
+All12SOdecisionsand24originalproposals:metDCpromisedsuccess, separatelyacceptedcostlyagreement, Core/opposed/sourceexceptiondistinction, actualspeech/interpretation/Help/retries, noalignmentautobonus, no mindcontrol/authorityfromskills, witnessedinstitution-specificevents.
+
+### ECX-10 — Standing preservation
+
+All44fullfactionsand20backgrounds plus12originalprobesandtheirnewdispositions. Preserveunknownkeys/zero/null/absence/false/strings/duplicatekeys/rawversionsandearnedhistory. VerifyCultinitial-contributioncorrectionandothernarrowcategorygrants, rawversusderivedlabels, signedscene-openingdeltaandoverflow, no real-savewrite.
+
+### ECX-11 — Faction work and clocks
+
+Global24-hourandreturncoalescing,atmost3watchedfactions, allnineactiontypeswithactualresourcesandtime, independentproject progress andreceivedinformation. Clocksatthresholdbutblocked,dupereports,privateplansnotpublicationandnonewfictionalworldfact.
+
+### ECX-12 — Services, instruction and continuation
+
+Exacttrade/recipe/learning/Scribing/conditioncarehoursandresources; no1-Havenvisitcompletion, no service/repair/rest/chargeconfusion. Finite actualcoin/claim/serviceproviders and mundanelegalstaterecords. Earnedadvancementwithoutnewpendingoptionapproval, resource refill, materialregenerationorclockreset.
+
+### ECX-13 — Public envelope
+
+Independently reconstructwholepublicenvelope/chapterandtextparity, notonlyvisibleeffectstrings. Publicgeneralprocedures/sourceprintednames arenotapprovaltopublish44privatedossiers/backers/resonancekeys/hiddenplans. Preservefullinternaloriginals andactualsupplementalvisibility bindings.
+
+### ECX-14 — Finite examples and evidence labels
+
+Return thefull integrated21-eventchain, all28cross-domainboundaries andall24preserved/adjudicatedproposal scenarios, with actual candidate recordinstances and outcomes. Reference equations mayexecute; qualitativepremise checksremain clearlyauthored untilactualgameplay/human evidence exists.
+
+### ECX-15 — Scope and gate
+
+Source directions are sufficient to author complete exact candidates NOW. A new generic source conference isnot required. Actualcompletecandidate returnsforseparateexactreview. No source-onlyconditionalpromotion, runtime/human/wholegame/cosmology approval. Existingfulfilledrecipes/LAX/NWX/LRX/TEXcarryunchanged.
+
+## Question-to-example map
+
+| Question | Required examples |
+|---|---|
+| FL-01 | EX-FLOW-01, EX-W01 |
+| FL-02 | EX-FLOW-01, EX-W01 |
+| FL-03 | EX-FLOW-01, EX-W01, EX-W02 |
+| FL-04 | EX-FLOW-01, EX-W02, EX-W03, EX-W04 |
+| FL-05 | EX-FLOW-01, EX-W03, EX-W04 |
+| FL-06 | EX-W04 |
+| FL-07 | EX-W05 |
+| FL-08 | EX-FLOW-01, EX-W06 |
+| FL-09 | EX-FLOW-01, EX-W06, EX-W07 |
+| FL-10 | EX-FLOW-01, EX-W08 |
+| FL-11 | EX-W08, EX-W09 |
+| FL-12 | EX-FLOW-01, EX-W07, EX-W09 |
+| FL-13 | EX-FLOW-01, EX-W07, EX-W10 |
+| FL-14 | EX-W10 |
+| FL-15 | EX-FLOW-01, EX-W11 |
+| FL-16 | EX-FLOW-01, EX-W11 |
+| FL-17 | EX-FLOW-01, EX-W18 |
+| FL-18 | EX-W05, EX-W16, EX-W18, EX-W19 |
+| FL-19 | EX-FLOW-01, EX-W20 |
+| FL-20 | EX-FLOW-01, EX-W20 |
+| FL-21 | EX-FLOW-01, EX-W20, EX-W21 |
+| FL-22 | EX-FLOW-01, EX-W21, EX-W22 |
+| FL-23 | EX-FLOW-01, EX-W23, EX-W24 |
+| FL-24 | EX-FLOW-01, EX-W01, EX-W28 |
+| FL-25 | EX-W28 |
+| FL-26 | EX-FLOW-01, EX-W28 |
+| SO-01 | EX-FLOW-01, EX-W25, SO-P-01, SO-P-02 |
+| SO-02 | EX-FLOW-01, EX-W25, SO-P-03, SO-P-04 |
+| SO-03 | EX-W25, SO-P-05, SO-P-06 |
+| SO-04 | EX-W26, SO-P-07, SO-P-08 |
+| SO-05 | EX-W26, SO-P-09, SO-P-10 |
+| SO-06 | EX-W25, SO-P-11, SO-P-12 |
+| SO-07 | EX-W25, SO-P-13, SO-P-14 |
+| SO-08 | EX-W26, SO-P-15, SO-P-16 |
+| SO-09 | EX-W25, SO-P-17, SO-P-18 |
+| SO-10 | EX-FLOW-01, EX-W24, EX-W26, SO-P-19, SO-P-20 |
+| SO-11 | EX-FLOW-01, EX-W27, SO-P-21, SO-P-22 |
+| SO-12 | EX-W27, SO-P-23, SO-P-24 |
+| TR-01 | EX-FLOW-01, EX-W12 |
+| TR-02 | EX-FLOW-01, EX-W12 |
+| TR-03 | EX-FLOW-01, EX-W12, EX-W13 |
+| TR-04 | EX-W12, EX-W13 |
+| TR-05 | EX-W12, EX-W13 |
+| TR-06 | EX-W13 |
+| TR-07 | EX-FLOW-01, EX-W03, EX-W14 |
+| TR-08 | EX-FLOW-01, EX-W14 |
+| TR-09 | EX-W15, EX-W16 |
+| TR-10 | EX-FLOW-01, EX-W15, EX-W17 |
+| TR-11 | EX-W17 |
+| TR-12 | EX-FLOW-01, EX-W14, EX-W17, EX-W18 |
+| TR-13 | EX-FLOW-01, EX-W08 |
+| TR-14 | EX-W16, EX-W19 |
+| RP-A01 | EX-W23, EX-W24 |
+| RP-A02 | EX-W23 |
+| RP-A03 | EX-W23 |
+| RP-A04 | EX-W23, EX-W24 |
+| RP-A05 | EX-W23, EX-W27 |
+| RP-A06 | EX-FLOW-01, EX-W23, EX-W24 |
+
+## Particular-operation dependencies, not generic authoring blockers
+
+**OP-01:** Actual campaign geography, route/current/weather/clearance, forage/donor matter, hazard/bestiary facts and legal site access. The ordinaryprocedures andNEWprofiles arecomplete forauthorship; theydo notmake particular fictionalpremises true.
+
+**OP-02:** Actual NPC/provider/buyer/institution authority, available finite stock/crew, written rates/term/benefit where source offers ranges or omits a market quote. Complete the ordinary prospective offer record; no new generic source conference required and no guaranteed buyer/insurance.
+
+**OP-03:** An actual exceptional artifact BaseFunctionValue and GateTierMultiplier/profile or genuine finite buyer offer. No general numeric BaseFunctionValue/GateTierMultiplier was supplied in the sourceformula. Such a particular artifact cannotbepriced byinvented default; ordinary equipment/recipe/commodityprice paths remainusable.
+
+**OP-04:** The actual operative teleport/waypoint/spatial carrier/living-changing-route permission, endpoint/capacity/containment, where a specialistservice is selected. A Core rateorproper name cannot supply a missing spell effect. Those specific operations stayunavailablewithouttheir actualexisting rule/finite profile; notablock onordinary29-optionauthorship.
+
+**OP-05:** Actual source-version and institution binding for importedunknown/ambiguousstanding; actual originalinitialization andearnedhistory forcorrectingstoredCultEscapeestanding. Keep unresolvedrawhistorymechanicallyunapplied ratherthanclamping,discardingorrequestinggenericreauthoring.
+
+**OP-06:** Actual separately reviewed class/spell/feat permissions and current-source audience visibility forselectedextraeffects/dossiers. Full comparison sourcesremainasprovided; pendingchoicesarenotactivatedbythisconference. No publicdossierfromaningredient/factionname.
+

@@ -1,0 +1,146 @@
+{
+  "status": "PREPARED supporting evidence; not a new rule or source merge",
+  "sourcePath": "data/public/spell_playtests/catalog.json",
+  "spellId": "soul-bind",
+  "wholeOverlay": {
+    "id": "soul-bind",
+    "name": "Soul Bind",
+    "schools": [
+      "Necromancy"
+    ],
+    "status": "operational-playtest-draft",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Necromancy",
+        "baseRpCost": 26
+      },
+      "Druid": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Necromancy",
+        "baseRpCost": 26
+      },
+      "Wizard": {
+        "rank": 9,
+        "minimumClassLevel": 17,
+        "school": "Necromancy",
+        "baseRpCost": 26
+      }
+    },
+    "operational": {
+      "id": "soul-bind",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "One living dying creature at0HP you can perceive within range and line of effect; a Dead or Stable creature is ineligible",
+      "duration": "Pending tether up to1 minute; if target dies while pending, bound identity for24 elapsed hours from that death",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Target makes a Charisma save against your spell save DC. On success no effect. On failure create a pending Soul Bind tether with an absolute expiry60 seconds after resolution. Target death before that expiry converts it into one soul-bound identity record with expiry24 hours after the death.",
+      "effect": "Before death, gaining positiveHP or becoming Stable ends the pending tether. After conversion, that identity cannot return by resurrection until the24-hour record ends or a legally capable source removes it. Neither state requires concentration or ends merely because a caster dies/incapacitates. If death begins at or after the pending absolute expiry, conversion does not occur. Only one Soul Bind family record may exist per identity; another failed-save application while still living/dying refreshes to the later pending endpoint without stacked prisons. No post-death recast is legal because the spell targets a living dying creature.",
+      "scaling": "None. No increased targets, indefinite duration or automatic save failure.",
+      "limitations": "Pending dispel/removal targets the creature. After death, existing remains serve as the local magical anchor for an otherwise eligible dispel/removal; if no remains exist, a source must expressly free the bound identity/soul rather than inventing a physical anchor. A generic cure or under-ranked dispel is not sufficient. The spell grants no commands, ownership, memories, personality change or control over the player. Soul-specific temporal restoration uses its own reviewed interface. Normal costs, Dissonance, Refrain and countering apply.",
+      "designNotes": "Core Necromancy rank9, 26RP, Action, 120ft, V/S/F and dying-target/resurrection-block purpose retained with Cleric/Druid/Wizard17 access. NEW: Charisma save,1-minute pending/24-hour bound states, no concentration, exact expiry collision, source-family refresh and local removal anchor. These replace the otherwise nonoperational Instantaneous summary with explicit finite aftermath. Wider soul cosmology remains open; individually reviewed for the operational playtest overlay.",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_CLOSURE.md"
+      ],
+      "authoringFile": "data/playtest/spell_drafts/batch_healing_death.json"
+    },
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "soul-bind",
+      "original": {
+        "name": "Soul Bind",
+        "level": 9,
+        "resonanceRank": 9,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "Soul Bind",
+            "school": "Necromancy",
+            "level": 9,
+            "summary": "Trap a dying creature's soul, preventing resurrection."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 9,
+          "Druid": 9,
+          "Wizard": 9
+        },
+        "classRanks": {
+          "Cleric": 9,
+          "Druid": 9,
+          "Wizard": 9
+        },
+        "classLearnLevels": {
+          "Cleric": 17,
+          "Druid": 17,
+          "Wizard": 17
+        },
+        "classSchools": {
+          "Cleric": "Necromancy",
+          "Druid": "Necromancy",
+          "Wizard": "Necromancy"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Trap a dying creature's soul, preventing resurrection.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 725,
+          "original": {
+            "school": "Necromancy",
+            "level": 9,
+            "name": "Soul Bind",
+            "effect": "Trap a dying creature's soul, preventing resurrection.",
+            "source_paragraph": 9876,
+            "casting_time": "1 action",
+            "range": "120 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 26
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation"
+    ]
+  },
+  "wholeOverlaySha256": "e6e88072ea0d7099f4d0b6eb2272c495e4b9b6f14a00937afcb80b43a7c98669",
+  "relationship": "Soul Cage/Lifeleech charge design must explicitly state how it interacts with this already-reviewed per-identity resurrection blocker. Similar names alone confer no compatibility.",
+  "nonAliases": [
+    "Paladin Lifeleech Bloom Aura",
+    "Paladin Lifeleech Bloom"
+  ],
+  "nonAliasReason": "Distinct preserved class-source IDs; not the Lifeleech feat and not evidence of an identical soul-charge feature."
+}

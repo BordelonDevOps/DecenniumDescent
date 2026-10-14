@@ -1,0 +1,1410 @@
+{
+  "status": "prepared-not-sent; source evidence andquestions only",
+  "sourceFile": "DescentReviewChanges/ReviewBible/src/data/feats.js",
+  "sourceFileSha256": "842d14e868aa93d51fc6f21e39bc9dd3a1b872cdffcf467ffaa99a4cc3f779b6",
+  "selection": "Every remaining pending source type Skill, excluding11 already in crafting packet; categories are navigation only",
+  "selectedFeats": [
+    {
+      "featId": "acrobatic_mastery",
+      "sourceObject": {
+        "id": "acrobatic_mastery",
+        "name": "Acrobatic Mastery",
+        "description": "Disciplined balance turns a failed Acrobatics attempt into a practiced recovery.",
+        "prerequisite": "Dexterity 15+",
+        "effect": "When you fail a Dexterity (Acrobatics) check, reroll it. You must use the new result. You regain this use after a long rest.",
+        "type": "Skill",
+        "legacyEffect": "Reroll failed Acrobatics check once per day",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "df891d04d2ad8a633013ef25ea196a6a4f7c1d441db3cba320096fd2b2102567",
+      "questionId": "SF-01",
+      "fullClauseQuestion": "Bind Failure versus Critical Failure under task degrees, opposed-check loss, selection of the rerolled d20 under advantage/disadvantage, natural shifts, information window and mandatory new result. Define Long Rest recovery and interaction with other rerolls without assuming a daily clock.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "battlefield_tactician",
+      "sourceObject": {
+        "id": "battlefield_tactician",
+        "name": "Battlefield Tactician",
+        "description": "Soldierly analysis lends a practiced edge to every tactics roll.",
+        "prerequisite": "Intelligence 14+, Soldier",
+        "effect": "+2 bonus to tactics rolls.",
+        "type": "Skill",
+        "legacyEffect": "+2 bonus to tactics rolls",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "34bdfcc4bd5a3738717e693a974c4a08b427bfd5dd700909ae5e7bf0aa72aa27",
+      "questionId": "SF-02",
+      "fullClauseQuestion": "Bind Soldier to the actual class or another sourced credential and define tactics rolls against the20 basic skills. Preserve+2 as a task bonus, not an automatic attack, class save-DC or engine-resource improvement. Identify actual tactics situations and stacking.",
+      "literalReviewSignals": [
+        {
+          "field": "effect",
+          "span": [
+            12,
+            25
+          ],
+          "exactText": "tactics rolls"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "beast_whisperer",
+      "sourceObject": {
+        "id": "beast_whisperer",
+        "name": "Beast Whisperer",
+        "description": "Steady rapport with animals keeps a handling attempt from becoming a critical failure.",
+        "prerequisite": "Charisma 13+",
+        "effect": "When you roll a natural 1 on an Animal Handling check, treat the die as a 2. You can communicate simple emotional intent to beasts through posture and sound.",
+        "type": "Skill",
+        "legacyEffect": "Handle animal checks never fail critically",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "20839853ec3e6bc6a781d75c1cbd718fd3c8692cec167f3238b2f84dde0e0c8c",
+      "questionId": "SF-03",
+      "fullClauseQuestion": "Resolve natural1→2 before task-degree shifts, both dice under advantage/disadvantage and repeated rerolls. A2 can still fail critically by margin: preserve the current effect separately from the broader inactive legacy promise. Bound simple emotional communication, actual beast senses and no language/command authority.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "climb_anywhere",
+      "sourceObject": {
+        "id": "climb_anywhere",
+        "name": "Climb Anywhere",
+        "description": "Practiced athletics removes the listed check penalty when scaling vertical surfaces.",
+        "prerequisite": "Athletics 4+, Strength 13+",
+        "effect": "You gain a climbing speed equal to your walking speed on surfaces with handholds. Climbing sheer or inverted surfaces still requires a check, but you do not suffer disadvantage solely because of the angle.",
+        "type": "Skill",
+        "legacyEffect": "No check penalty on vertical surfaces",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "08783a1e0cd85c503bec743746c1e76f862478b4b6e36e9ca5db88f36b7746d9",
+      "questionId": "SF-04",
+      "fullClauseQuestion": "Resolve Athletics4+ and the actual walking-to-climb Speed binding, handholds/hands/anatomy, encumbrance, armor, terrain and dynamic Speed changes. Define checks on sheer/inverted surfaces, failure/fall consequences and which angle-only disadvantage is removed without granting adhesive support.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            12
+          ],
+          "exactText": "Athletics 4+"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "cold_reader",
+      "sourceObject": {
+        "id": "cold_reader",
+        "name": "Cold Reader",
+        "description": "Careful insight and presence let the character read the listed surface thoughts in dialogue.",
+        "prerequisite": "Insight 5+, Charisma 13+",
+        "effect": "After observing a creature speak for 1 minute, make an Insight check contested by its Deception. On a success, learn one surface motive, emotional pressure, or conversational goal; this is not telepathy.",
+        "type": "Skill",
+        "legacyEffect": "Read surface thoughts during dialogue",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "b0726ca0f061ad9f15fd6c53ec20d28e7500b622d7744d39f14f2e041a37101c",
+      "questionId": "SF-05",
+      "fullClauseQuestion": "Resolve Insight5+, the full minute of actual observable speech, hearing/language/access requirements and the opposed Insight/Deception tie rule. Define one genuine surface motive/pressure/goal, retries, duration and no telepathy, hidden fact creation or compelled truth.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            10
+          ],
+          "exactText": "Insight 5+"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "cultural_expert",
+      "sourceObject": {
+        "id": "cultural_expert",
+        "name": "Cultural Expert",
+        "description": "Studied history or lore receives the listed +2 bonus on related knowledge checks.",
+        "prerequisite": "Intelligence 12+",
+        "effect": "Choose History, Religion, or a culture-specific Lore skill. Gain proficiency; if already proficient, add double your proficiency bonus to checks concerning cultures, customs, and historical context.",
+        "type": "Skill",
+        "legacyEffect": "Gain +2 on all knowledge checks involving history or lore",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "ba475be2773f55c15c72068a4a216013802a5f34973d5d8977894bc3dbe478c4",
+      "questionId": "SF-06",
+      "fullClauseQuestion": "Choose actual History, Religion or supported culture-specific Lore credential; resolve duplicate training and whether expertise applies only to the listed cultural subject matter. Define an unsupported Lore label without inventing automatic knowledge, new histories or cosmology.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "disguise_expert",
+      "sourceObject": {
+        "id": "disguise_expert",
+        "name": "Disguise Expert",
+        "description": "Practiced deception adds the listed +5 when the character is disguised.",
+        "prerequisite": "Charisma 14+, Deception 4+",
+        "effect": "While wearing a prepared disguise, add +2 to Deception checks made to maintain the assumed identity. Creating a convincing disguise requires appropriate materials and 10 minutes.",
+        "type": "Skill",
+        "legacyEffect": "Add +5 to deception when disguised",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "2b27d74e4564d4e49d39a2cd6f4856ed2bb5a45b84566bd5c217ba318eabef87",
+      "questionId": "SF-07",
+      "fullClauseQuestion": "Resolve Deception4+, actual10-minute materials/kit procedure, creator versus wearer, identity constraints and detection. Define the+2 bonus layer alongside current Tailoring/Leatherworking task families and actor-specific attire checks without publishing private garment formulas.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            14,
+            26
+          ],
+          "exactText": "Deception 4+"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "dungeon_cartographer",
+      "sourceObject": {
+        "id": "dungeon_cartographer",
+        "name": "Dungeon Cartographer",
+        "description": "An experienced explorer builds a map while moving through a dungeon.",
+        "prerequisite": "Intelligence 12+, Level 4",
+        "effect": "You can create reliable maps while traveling at a normal pace. After mapping an area for 10 minutes, you and allies using the map gain advantage on checks to retrace that route until the dungeon reshapes it.",
+        "type": "Skill",
+        "legacyEffect": "Create map as you explore",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "779a58262cf237c3e0f79991735e2195298665aadf90e30db8bc2dd2fa3878e5",
+      "questionId": "SF-08",
+      "fullClauseQuestion": "Define normal travel pace, actual visibility/recording tools, ten-minute mapping requirement and what reliable means. Bind map access/copies, actual users, retrace-check scope, changing routes and reshape invalidation; no omniscient floor map or automatic navigation.",
+      "literalReviewSignals": [
+        {
+          "field": "effect",
+          "span": [
+            50,
+            61
+          ],
+          "exactText": "normal pace"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "field_surgeon",
+      "sourceObject": {
+        "id": "field_surgeon",
+        "name": "Field Surgeon",
+        "description": "A Wisdom-trained medic uses Medicine to stabilize an ally at 1 HP.",
+        "prerequisite": "Wisdom 14+",
+        "effect": "When you successfully stabilize a dying creature with Medicine or a healer’s kit, it regains 1 hit point. A creature can benefit from this feat once per long rest.",
+        "type": "Skill",
+        "legacyEffect": "Stabilize ally with 1 HP using Medicine",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "c1b43b9247c526cea5fde9068a612fce5900228d8a56c3c8348a5bd126d9dcd9",
+      "questionId": "SF-09",
+      "fullClauseQuestion": "Bind genuine stabilization of a dying creature through Medicine or an actual kit, action/payment and successful event timing. Resolve once-per-Long-Rest per recipient versus practitioner, positive-healing gates, anti-loop ledgers and coexistence with reviewed Field Medic tempHP. Stable/already-conscious/dead subjects do not manufacture a new stabilization event.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "forensic_investigator",
+      "sourceObject": {
+        "id": "forensic_investigator",
+        "name": "Forensic Investigator",
+        "description": "Investigative training reveals the listed hidden clues from a scene.",
+        "prerequisite": "Investigation 5+",
+        "effect": "When examining a scene for at least 10 minutes, the Director must reveal one additional physical clue that could reasonably be discovered there on a successful Investigation check.",
+        "type": "Skill",
+        "legacyEffect": "Gain hidden clues from scene",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "cb7421e794cf0bd4a6e291ebe8ed8abb4b81cf74689890355261899b3822d23e",
+      "questionId": "SF-10",
+      "fullClauseQuestion": "Resolve Investigation5+, ten-minute scene examination, appropriate senses/access, actual successful check and a finite additional physical clue. Define no-extra-clue cases, repeat examinations, lost/moved evidence and no fabricated suspect identity or Director duty to create impossible evidence.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            16
+          ],
+          "exactText": "Investigation 5+"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "intuitive_reflex",
+      "sourceObject": {
+        "id": "intuitive_reflex",
+        "name": "Intuitive Reflex",
+        "description": "Dexterity 14+ lends the listed initiative bonus to an intuitive reflex.",
+        "prerequisite": "Dexterity 14+",
+        "effect": "Gain +2 to initiative rolls.",
+        "type": "Skill",
+        "legacyEffect": "+2 bonus to Initiative",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "c99a54151a4fe1d614253c6e20caeaef765bd3938fca3efdbcd9407e685538c6",
+      "questionId": "SF-11",
+      "fullClauseQuestion": "Bind+2 initiative as the actual Dexterity check bonus, stacking with Alert/Alertness and other bonus families, future rolls versus rewriting established order, rerolls, injuries and extra turns. Resolve whether its source category affects acquisition only.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "librarian_s_eye",
+      "sourceObject": {
+        "id": "librarian_s_eye",
+        "name": "Librarian's Eye",
+        "description": "Intelligence 15+ supports recalling read text with the listed +5 recall bonus.",
+        "prerequisite": "Intelligence 15+",
+        "effect": "You can accurately recall the substance of text you have read. Gain +2 on checks to quote, locate, or compare previously studied written material.",
+        "type": "Skill",
+        "legacyEffect": "Recall any read text with +5 recall bonus",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "9b0e03181944b60ce9f5b5113188aa0d9c8446e07dbca3f2e7b25c34f66d88df",
+      "questionId": "SF-12",
+      "fullClauseQuestion": "Define substance versus verbatim recall, actual prior reading/study, language/decoding, damaged or altered memory, and quote/locate/compare check domains. Bind+2 to actual tasks without remote text access, automatic factual truth or free research/formula acquisition.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "lock_savant",
+      "sourceObject": {
+        "id": "lock_savant",
+        "name": "Lock Savant",
+        "description": "Dexterity 15+ and Thievery 5+ provide the listed success increase on complex locks.",
+        "prerequisite": "Dexterity 15+, Thievery 5+",
+        "effect": "Gain +2 on checks to open complex locks. A failed attempt does not trigger the lock’s trap unless you fail by 5 or more.",
+        "type": "Skill",
+        "legacyEffect": "+15% success on complex locks",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "b45357302270e8827ffed9d108a5903a14f332294b3ae783c5c1b69b0312db02",
+      "questionId": "SF-13",
+      "fullClauseQuestion": "Resolve Thievery5+ against current tools/skills; define complex locks, required implements/access, actual+2 check and trap eligibility. Resolve fail-by5 versus natural1 task downgrade, repeated attempts, multiple/independent triggers and magical locks. It does not waive physically triggered traps merely by renaming the task.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            15,
+            26
+          ],
+          "exactText": "Thievery 5+"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "master_tracker",
+      "sourceObject": {
+        "id": "master_tracker",
+        "name": "Master Tracker",
+        "description": "Survival 4+ and Wisdom 13+ support the listed tracking with +10 accuracy.",
+        "prerequisite": "Survival 4+, Wisdom 13+",
+        "effect": "Gain +2 on Survival checks to track. You can track at a normal travel pace and identify the approximate number, size, and age of tracks on a successful check.",
+        "type": "Skill",
+        "compatibilityAliases": [
+          "skill_feats1_master_tracker"
+        ],
+        "legacyEffect": "Track creatures with +10 accuracy",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "627d40e4ef297a4228dc8cb3816db96a4f91d760f7d03fd1c1c3b81cb22ac47e",
+      "questionId": "SF-14",
+      "fullClauseQuestion": "Preserve compatibilityAliases as an alias of this source identity, not another acquisition or bonus. Resolve Survival4+, normal travel pace, actual track availability and environment, approximate count/size/age on success, task degrees and no information from nonexistent tracks.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            11
+          ],
+          "exactText": "Survival 4+"
+        },
+        {
+          "field": "effect",
+          "span": [
+            56,
+            74
+          ],
+          "exactText": "normal travel pace"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "rogue_s_escape",
+      "sourceObject": {
+        "id": "rogue_s_escape",
+        "name": "Rogue’s Escape",
+        "description": "Dexterity 15+ at level 7 supports the listed one automatic Escape Artist success each day.",
+        "prerequisite": "Dexterity 15+, Level 7",
+        "effect": "Once per long rest, when restrained or grappled, you may automatically succeed on the check or save to escape.",
+        "type": "Skill",
+        "legacyEffect": "Auto succeed 1 Escape Artist roll/day",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "290242a35716d2ef4fe3e2426069a310340e1bd00e560ed4b0fb4e2a61fcbcc0",
+      "questionId": "SF-15",
+      "fullClauseQuestion": "Define declaration and charge use for automatic success on an actual allowed grapple/restraint escape check or save. Bind action/time, source-specific escape availability, multiple restraints, no-save/no-check prisons and physical destination. It does not automatically grant teleportation or an escape roll absent from the source.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "runic_scholar",
+      "sourceObject": {
+        "id": "runic_scholar",
+        "name": "Runic Scholar",
+        "description": "Arcana 5+ and Intelligence 14+ support the listed instant identification of magical symbols.",
+        "prerequisite": "Arcana 5+, Intelligence 14+",
+        "effect": "After studying a magical symbol for 1 minute, identify its school, activation method, and whether it is harmful without triggering it, unless it is protected by mythic concealment.",
+        "type": "Skill",
+        "legacyEffect": "Identify magical symbols instantly",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "a6de1e5c54b7b7f8b1765a327e2d54d736db45a5986160781b080b6a2418c1df",
+      "questionId": "SF-16",
+      "fullClauseQuestion": "Resolve Arcana5+, one-minute real study/sight/language requirements, school and activation-method information, harmfulness and mythic concealment. Define the no-trigger protection's exact scope against proximity/touch/time triggers without making all runes inert or granting activation/control/formula knowledge.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            9
+          ],
+          "exactText": "Arcana 5+"
+        },
+        {
+          "field": "effect",
+          "span": [
+            161,
+            179
+          ],
+          "exactText": "mythic concealment"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "silent_movement",
+      "sourceObject": {
+        "id": "silent_movement",
+        "name": "Silent Movement",
+        "description": "Stealth 4+ supports the listed no-penalty movement through difficult terrain.",
+        "prerequisite": "Stealth 4+",
+        "effect": "Nonmagical difficult terrain does not impose disadvantage on your Stealth checks, and moving at half speed allows you to remain silent across ordinary debris.",
+        "type": "Skill",
+        "legacyEffect": "No penalty when moving through difficult terrain",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "c8fb4499c7104c0e3e9f6e68f6bb7839709ff9ba6612af95a983e33c82251905",
+      "questionId": "SF-17",
+      "fullClauseQuestion": "Identify source authority for any difficult-terrain Stealth disadvantage; remove only the actual nonmagical terrain cause. Define half-Speed silent travel, costs on debris, sound versus visual detection, armor noise, legal Hide and magical terrain. No automatic Hidden or ignored movement cost.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            10
+          ],
+          "exactText": "Stealth 4+"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "silver_tongue",
+      "sourceObject": {
+        "id": "silver_tongue",
+        "name": "Silver Tongue",
+        "description": "Charisma 14+ supports the listed +5 to persuasion when speaking diplomatically.",
+        "prerequisite": "Charisma 14+",
+        "effect": "Gain +2 on Persuasion checks made through formal diplomacy, negotiation, or mediation.",
+        "type": "Skill",
+        "legacyEffect": "+5 to persuasion when speaking diplomatically",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "fbadb8c6c593b12ac8dd198e74d6bdbc956f392fdb30fe9e8cd2eff7e8399686",
+      "questionId": "SF-18",
+      "fullClauseQuestion": "Define formal diplomacy/negotiation/mediation and the actual Persuasion checks receiving+2. Resolve other skill/tool/attire bonus families, genuine social stakes and no automatic consent, compelled attitude change or universal discount.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "spell_scribe",
+      "sourceObject": {
+        "id": "spell_scribe",
+        "name": "Spell Scribe",
+        "description": "Arcana 4+ and Intelligence 14+ support the listed faster, reduced-cost scroll copying.",
+        "prerequisite": "Arcana 4+, Intelligence 14+",
+        "effect": "Copying a spell or scroll takes half the normal active time and costs 25 percent fewer mundane materials. Rare inks and unique components are unchanged.",
+        "type": "Skill",
+        "legacyEffect": "Copy scrolls faster and at reduced cost",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "c66016591fdeb69374cd31d4db22b2a42aa621cb730225edf64c22a4d3e516a2",
+      "questionId": "SF-19",
+      "fullClauseQuestion": "Distinguish spellbook learning/copying, actual scroll duplication and Scribing craft formulas. Bind source access, repertoire/rank/language, half active time and25-percent mundane-material reduction with exact quantities/rounding; rare inks/unique components unchanged. Resolve Craftsman/Forge Dwarf/research reductions without creating a copying procedure or free outputs.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            9
+          ],
+          "exactText": "Arcana 4+"
+        },
+        {
+          "field": "effect",
+          "span": [
+            70,
+            80
+          ],
+          "exactText": "25 percent"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "steady_hands",
+      "sourceObject": {
+        "id": "steady_hands",
+        "name": "Steady Hands",
+        "description": "Dexterity 14+ supports the listed removal of disadvantage from Sleight of Hand checks.",
+        "prerequisite": "Dexterity 14+",
+        "effect": "You ignore disadvantage on Sleight of Hand checks caused by motion, poor footing, or minor injury.",
+        "type": "Skill",
+        "legacyEffect": "Ignore disadvantage on Sleight of Hand checks",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "d34a512ef6cc0228b5287dda06ad4e23d0afd3f76154d43a3d7092f9654be830",
+      "questionId": "SF-20",
+      "fullClauseQuestion": "Define motion, poor footing and minor injury causes of Sleight of Hand disadvantage, especially existing Injury penalties versus disadvantage. Remove only qualifying causes; keep blindness, hostile interference, bad tools, no hands and other restrictions. Apply ordinary cancellation afterward.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "trap_sense",
+      "sourceObject": {
+        "id": "trap_sense",
+        "name": "Trap Sense",
+        "description": "Perception 4+ and Level 5 support the listed passive trap detection.",
+        "prerequisite": "Perception 4+, Level 5",
+        "effect": "You may notice traps with passive Perception even while moving at a normal pace, and gain +2 on saves against traps you can see.",
+        "type": "Skill",
+        "legacyEffect": "Detect traps passively",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "f18d84a98d227a73cafdd39ea394d7dcfa3e431c413c9f02c35d7052b20f8c82",
+      "questionId": "SF-21",
+      "fullClauseQuestion": "Resolve Perception4+, normal travel pace, passive detection procedure, actual senses and detectable clues. Define trap versus creature/spell/hazard, sight at the saving-throw event and the+2 save modifier. Detecting a trap neither disarms it nor cancels unseen portions or independent triggers.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            13
+          ],
+          "exactText": "Perception 4+"
+        },
+        {
+          "field": "effect",
+          "span": [
+            68,
+            79
+          ],
+          "exactText": "normal pace"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "unshakeable",
+      "sourceObject": {
+        "id": "unshakeable",
+        "name": "Unshakeable",
+        "description": "Wisdom 14+ supports the listed +2 to Intimidation resistance.",
+        "prerequisite": "Wisdom 14+",
+        "effect": "Gain +2 on saves and contested checks against intimidation, coercion, and fear.",
+        "type": "Skill",
+        "legacyEffect": "+2 to Intimidation resistance",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "babc2521edeec6ed9affe6fefadbd5c8fc9bccac6d7adfe6b2e720782566293a",
+      "questionId": "SF-22",
+      "fullClauseQuestion": "Bind intimidation/coercion/fear as actual saves or opposed checks and identify the defending skill/ability, preserving+2. Resolve ordinary fixed-DC tasks, social influence, Frightened condition/escape saves and immunity versus bonus; no universal mind-control immunity.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "wilderness_chef",
+      "sourceObject": {
+        "id": "wilderness_chef",
+        "name": "Wilderness Chef",
+        "description": "Nature 4+ and Wisdom 13+ support the listed forage bonus effects.",
+        "prerequisite": "Nature 4+, Wisdom 13+",
+        "effect": "Forage creates +2 bonus effects.",
+        "type": "Skill",
+        "legacyEffect": "Forage creates +10% bonus effects",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "a907fddf6271b0c1a53610c0133c795784f5d1a3425c8e62e22f0c2dd16d7b1a",
+      "questionId": "SF-23",
+      "fullClauseQuestion": "Resolve Nature4+ and define what the source's two bonus effects are, to which real forage output they attach, activation/duration/frequency/recipients and consumable cost. Compare reviewed Chef/Cooking/Herbalism/finite harvest without inventing extra biomass or treating legacy+10% as a second benefit.",
+      "literalReviewSignals": [
+        {
+          "field": "prerequisite",
+          "span": [
+            0,
+            9
+          ],
+          "exactText": "Nature 4+"
+        },
+        {
+          "field": "effect",
+          "span": [
+            18,
+            31
+          ],
+          "exactText": "bonus effects"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "anatomy_lore",
+      "sourceObject": {
+        "id": "anatomy_lore",
+        "name": "Anatomy Lore",
+        "description": "You have studied the weak joints, organs, and pressure points of giants, ogres, and other colossal foes common to Aethel's wilds. Prestige lineage: Giant Killer. completed from the existing development record.)",
+        "prerequisite": "Intelligence 13+, proficiency in Knowledge (Monstrous Humanoids) or Survival",
+        "effect": "As a bonus action, you can identify one weak point on a Large or larger creature you can see. Your next attack against that creature deals +50% damage if it hits, or you gain advantage on the attack if the target is Huge or larger. Once per short rest, when you hit a colossal foe with this advantage, you may force it to succeed on a Strength save or have its speed halved until the end of your next turn.",
+        "type": "Skill",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "legacyEffect": "As a bonus action, you can identify one weak point on a Large or larger creature you can see. Your next attack against that creature deals +50% damage if it hits, or you gain advantage on the attack if the target is Huge or larger. Once per short rest, when you hit a colossal foe with this advantage, you may force it to succeed on a Strength save or have its speed halved until the end of your next turn.",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "7c610196e25650e55c220e7e4169416c74ff4448bddab6eeed40923ddd6a9063",
+      "questionId": "SF-24",
+      "fullClauseQuestion": "Bind Knowledge (Monstrous Humanoids) OR Survival to actual credentials; Bonus Action, range/line, one weak-point mark and expiry. Define next-hit+50% damage OR Huge-target advantage choice, payment/miss handling, short-rest Strength save DC and half-Speed timing. Resolve Precision Strike/Giant Slayer/critical multipliers without anatomical or cosmological retcons.",
+      "literalReviewSignals": [
+        {
+          "field": "effect",
+          "span": [
+            140,
+            143
+          ],
+          "exactText": "50%"
+        }
+      ],
+      "currentOperationalStatus": "full-feat-review-pending"
+    },
+    {
+      "featId": "beast_lore",
+      "sourceObject": {
+        "id": "beast_lore",
+        "name": "Beast Lore",
+        "description": "Tracks, calls, and temperaments— you read the wild the way scholars read ledgers. Prestige lineage: Beastmaster. completed from the existing development record.)",
+        "prerequisite": "Wisdom 13+, proficiency in Survival",
+        "effect": "You have advantage on Animal Handling and Survival checks involving beasts. You can identify a beast's diet, temperament, and combat habits with a successful Survival check, granting allies +2 to hit that creature for 1 minute. Once per short rest, you may call a beast within 300 feet with a DC 15 Survival check; on success, a non-hostile beast of CR 1 or lower approaches and performs one simple task you describe (track, carry, or distract for 1 minute).",
+        "type": "Skill",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "legacyEffect": "You have advantage on Animal Handling and Survival checks involving beasts. You can identify a beast's diet, temperament, and combat habits with a successful Survival check, granting allies +2 to hit that creature for 1 minute. Once per short rest, you may call a beast within 300 feet with a DC 15 Survival check; on success, a non-hostile beast of CR 1 or lower approaches and performs one simple task you describe (track, carry, or distract for 1 minute).",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "63d4a2bd9866ccef9df3dd71e2e040a7168d1090a6653e4ea7d84d9b136eb4ad",
+      "questionId": "SF-25",
+      "fullClauseQuestion": "Preserve all three clauses: actual Animal Handling/Survival advantage, successful knowledge check granting allies+2 to hit for1minute, and once-per-Short-Rest call within300ft/DC15 for one nonhostile CR≤1 beast and a simple task. Define action/time/targets/beneficiary range, existing eligible beast availability, travel, agency, communication, duration and command budgets; no summoned or duplicate creature.",
+      "literalReviewSignals": [],
+      "currentOperationalStatus": "full-feat-review-pending"
+    }
+  ],
+  "counterpartSources": [
+    {
+      "sourceObject": {
+        "id": "alert",
+        "name": "Alert",
+        "description": "Always on the lookout for danger, you gain the following benefits:",
+        "prerequisite": "None",
+        "effect": "+5 bonus to initiative, can't be surprised while conscious, creatures don't gain advantage on attack rolls from being hidden",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "alertness",
+        "name": "Alertness",
+        "description": "You have finely tuned senses.",
+        "prerequisite": "None",
+        "effect": "+2 bonus to Perception checks and initiative rolls.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "animalAffinity",
+        "name": "Animal Affinity",
+        "description": "You have a way with animals.",
+        "prerequisite": "Wisdom 13 or higher",
+        "effect": "You gain proficiency in Animal Handling. If already proficient, you add double your proficiency bonus.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "burglar",
+        "name": "Burglar",
+        "description": "You are skilled at breaking and entering.",
+        "prerequisite": "Dexterity 13+",
+        "effect": "You gain proficiency with thieves' tools and can pick locks and disable traps more effectively.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "chef",
+        "name": "Chef",
+        "description": "You are an accomplished cook.",
+        "prerequisite": "None",
+        "effect": "You can cook special food during a long rest that provides temporary hit points to your party.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": true,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "craftsman",
+        "name": "Craftsman",
+        "description": "You are skilled in creating items.",
+        "prerequisite": "Intelligence 13 or higher",
+        "effect": "You gain proficiency with artisan's tools and can craft items in half the normal time.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "diligent_researcher",
+        "name": "Diligent Researcher",
+        "description": "An Intelligence-trained researcher completes the listed library research in half the time.",
+        "prerequisite": "Intelligence 13+",
+        "effect": "When using a library, archive, or research facility, complete ordinary research in half the usual active time. This does not bypass access, language, or material requirements.",
+        "type": "Skill",
+        "legacyEffect": "Halve research time in libraries",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "field_medic",
+        "name": "Field Medic",
+        "description": "Trained medical care stabilizes allies faster during combat.",
+        "prerequisite": "Trained in Medicine",
+        "effect": "You may use a healer’s kit as a bonus action. When you stabilize a creature, it gains temporary hit points equal to your proficiency bonus.",
+        "type": "General",
+        "legacyEffect": "Stabilize allies in combat faster",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "currentOperationalReviewed": true,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "healer",
+        "name": "Healer",
+        "description": "You are skilled in medicine and healing.",
+        "prerequisite": "Wisdom 13 or higher",
+        "effect": "You can use a healer's kit to restore hit points and stabilize dying creatures more effectively.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "keen_mind",
+        "name": "Keen Mind",
+        "description": "You have a mind that can track time, direction, and detail.",
+        "prerequisite": "Intelligence 13 or higher",
+        "effect": "You always know which way is north, the number of hours left before sunrise or sunset, and can recall anything you have seen or heard within the past month.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "linguist",
+        "name": "Linguist",
+        "description": "You have studied languages and codes.",
+        "prerequisite": "Intelligence 14+",
+        "effect": "Learn 3 additional languages",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "giant_slayer",
+        "name": "Giant Slayer",
+        "description": "Colossi fall when the small learn where the giant bleeds. Prestige lineage: Giant Killer. completed from the existing development record.)",
+        "prerequisite": "Precision Strike or level 8+",
+        "effect": "You deal +20% damage against Large or larger creatures. Once per short rest, when you hit a Huge or larger creature with a melee attack, you can cripple its movement, reducing speed by half until the end of its next turn. When a colossal foe (Huge or larger) misses you with a melee attack, you may use your reaction to step into its reach and strike a tendon or joint: the attacker takes 1d6 damage and has disadvantage on its next attack against you before the end of its next turn.",
+        "type": "Combat",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "legacyEffect": "You deal +20% damage against Large or larger creatures. Once per short rest, when you hit a Huge or larger creature with a melee attack, you can cripple its movement, reducing speed by half until the end of its next turn. When a colossal foe (Huge or larger) misses you with a melee attack, you may use your reaction to step into its reach and strike a tendon or joint: the attacker takes 1d6 damage and has disadvantage on its next attack against you before the end of its next turn.",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    },
+    {
+      "sourceObject": {
+        "id": "precision_strike",
+        "name": "Precision Strike",
+        "description": "One opening. One breath. One strike where the giant's armor forgot to cover bone. Prestige lineage: Giant Killer. completed from the existing development record.)",
+        "prerequisite": "Dexterity 13+ or Weapon Focus",
+        "effect": "Once per turn when you make a weapon attack, you may take –2 to the attack roll to deal +50% damage on a hit. Against a restrained, grappled, or identified weak point (via Anatomy Lore), you may instead treat a hit as a critical hit once per short rest.",
+        "type": "Combat",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "legacyEffect": "Once per turn when you make a weapon attack, you may take –2 to the attack roll to deal +50% damage on a hit. Against a restrained, grappled, or identified weak point (via Anatomy Lore), you may instead treat a hit as a critical hit once per short rest.",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "currentOperationalReviewed": false,
+      "scope": "dependency evidence, not another approval"
+    }
+  ],
+  "foundationAndClassDependencies": {
+    "skillAbilities": {
+      "STR": [
+        "Athletics"
+      ],
+      "DEX": [
+        "Acrobatics",
+        "Sleight of Hand",
+        "Stealth"
+      ],
+      "INT": [
+        "Arcana",
+        "Engineering",
+        "History",
+        "Investigation",
+        "Nature",
+        "Religion"
+      ],
+      "WIS": [
+        "Animal Handling",
+        "Insight",
+        "Medicine",
+        "Perception",
+        "Survival"
+      ],
+      "CHA": [
+        "Deception",
+        "Intimidation",
+        "Performance",
+        "Persuasion",
+        "Reputation"
+      ]
+    },
+    "soldierFoundation": {
+      "class": "Soldier",
+      "slug": "soldier",
+      "hitDie": 10,
+      "fixedLaterLevelHpBase": 6,
+      "savingThrowProficiencies": [
+        "STR",
+        "CON"
+      ],
+      "weaveTier": "none",
+      "armor": "Light; Medium; Heavy; Shields",
+      "weapons": "Repeating heavy crossbows; actual equipment explicitly classified as a sidearm",
+      "tools": "Carpenter's tools; siege engineer's kit",
+      "skillChoices": 2,
+      "skillOptions": [
+        "Athletics",
+        "Intimidation",
+        "Perception",
+        "Survival"
+      ],
+      "startingWealth": {
+        "diceCount": 5,
+        "dieSides": 4,
+        "multiplierGp": 10
+      },
+      "multiclassPrerequisites": {
+        "STR": 13,
+        "CON": 13
+      },
+      "multiclassProficiencies": "Light armor; medium armor; heavy armor; shields; simple weapons; martial weapons",
+      "rpByClassLevel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "asiClassLevels": [
+        4,
+        8,
+        12,
+        16,
+        19
+      ],
+      "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "classCandidateSha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+      "sourceChassisLines": [
+        4180,
+        4181,
+        4182,
+        4183
+      ],
+      "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+    },
+    "soldierEngine": [
+      "A martial class with d10 Hit Die, all armor and shields, repeating crossbows, sidearms and siege tools. Dexterity governs ranged attacks; Constitution governs class DC/M and defensive techniques. No RP, ordinary spellcasting, Refrain or Dissonance engine. Names such as Divine Lockdown describe disciplined suppression; they do not grant divine magic.",
+      "Overwatch is an automatic Base engine at 1. Bonus Action designate a visible 15 ft square within weapon range until start next regular turn. Once during that interval, spend your Reaction when a perceived enemy enters, moves inside, attacks an ally from, or reveals itself inside the zone. Make one legal ranged attack with ammunition and line of fire, normally 1d8+DEX piercing. On hit choose Snare (Speed-10 ft until end next turn), Bleed (1d4 at start next turn), or Push 5 ft (STR save negates push). Concealment still applies. Only one Overwatch zone; no extra Reaction. The optional Overwatch card upgrades this engine. At 17 you may move 5 ft without opportunity attacks after its shot, once/round.",
+      "At 5 automatically gain Palisade Deployment. Spend one carried barricade kit and an Action to erect a 2-by 1-tile wall in contiguous unoccupied ground within 5 ft. Height 5 ft, AC 12, HP 5+CON modifier minimum 1, immunity psychic/poison; blocks movement and line of sight across its full height but can be climbed using 10 ft movement. One kit/use per encounter, two at 13; a long rest with carpentry tools replenishes 2 kits (carried maximum 2, reusable parts have no resale value). Material is required; no conjuring. At most one intact wall, two at 13. Old wall must be dismantled in 1 minute before replacement beyond cap. Once per encounter an Action repairs a wall for M HP using spare parts; destruction does not refresh uses.",
+      "Palisade Tier II at 13 doubles wall HP and grants resistance to damage from area effects. Hold Position: while adjacent to your intact wall gain+1 AC and+1 saves. Brace Line: an ally immediately behind you relative to a ranged attacker, with your wall adjacent to both of you, has 2 flat DR against that attacker. These bonuses do not stack with another Soldier wall; strongest flat DR applies. Full cover prevents attacks rather than granting an additional AC bonus.",
+      "Base 1–2, Commander Arch 3–9, then Champion/Artillerist/Tyrant Hero 10–20. Palisade 5 is automatic; Intercepting Shot has minimum 6 and Fortify Zone 9. Other cards require selection. There is no source automatic Arch capstone. At 20 gain the new Final Command below, clearly a playtest addition. No spell or sustained technique may be used to obtain infinite ammunition, structures, actions or permanent healing."
+    ],
+    "soldierStatus": "provisional-card-draft-not-balance-approved",
+    "interpretation": "preserved actual class and20 basic skills; does not itself map tactics/Thievery/Lore or approve feat prerequisites"
+  },
+  "currentGoverningExcerpts": [
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "fileSha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+      "heading": "Which rule applies",
+      "exactText": "## Which rule applies\n\nThe domain authority is [Core Systems Known Descent V2](../../../../books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx). The approved [Player Rulebook V6](../../../../books/player/Decennium_Descent_Player_Rulebook_v6.docx) supplies compatible rules that Core does not replace. This overlay states the selected interpretation or newly authored rule wherever those sources leave a gap. An explicit exception on an operative, reviewed class/spell/item card applies only within its printed scope; a historical alternate or a same-named feature is not an extra grant. This candidate does not promote an entire historical branch.\n\n| Question | Active rule and provenance | Inactive alternate |\n|---|---|---|\n| Attacks | Core V2: meet AC; natural 1 misses; natural 20 hits and doubles damage dice. | Applying the general Gameplay four-degree roll to attacks. |\n| Task checks | Explicitly adopted Gameplay four degrees and natural shifts. | Assuming every critical result creates an unprinted effect. |\n| Ordinary saves | Binary meet-DC test; printed failure margins remain literal. Natural 1/20 do not generically shift saves in this candidate. This separation is an integration choice. | Automatic critical saves or natural-result shifts inferred from the task rule. |\n| Death-save timing | Core and V6: start of turn; regular-turn-only timing is a provisional guard. | Gameplay end-of-turn saves. |\n| Wounds | Core trigger/save, Constitution-save and Hit-Dice-recovery penalties, and three-Wound Critical state. | Gameplay automatic Wound triggers, Hit Dice healing penalty, half Speed and Strain lock. |\n| Named Wounded condition | Core paragraph 782 expressly describes the same Wound count, Constitution penalty, Hit Dice recovery and three-Wound Critical state. Apply those records once. | V6 Appendix A paragraphs 9971–9974 give a conflicting temporary condition cleared by magic/rest with Constitution-save disadvantage; Core replaces it here. |\n| Stable, instant death, knockout and temporary HP | Compatible recovered V6 rules. | Treating these recovered rules as newly invented. |\n| Ordinary Wound treatment | Explicit Gameplay-derived integration below. | Claiming it is original Core wording or ordinary HP healing. |\n| Injury table and unresolved thresholds | New provisional choices below, with their search limits stated. | Dropping Core's failure-by-5 consequence because its table was not located. |\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "fileSha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+      "heading": "Rolls",
+      "exactText": "## Rolls\n\nChoose the roll type before rolling. Use the actual ability modifier, including negative values, and normal proficiency only when applicable. Existing advantage/disadvantage chooses the higher/lower of two d20s; multiple sources do not stack, and any advantage plus disadvantage cancels. Add other legal modifiers once. Fractions round down unless a rule specifies otherwise. One tile is 5 feet. Class L, S and effect M retain their definitions in the shared class rules.\n\n**Attack:** roll d20 plus the appropriate attack modifier against AC. Meeting AC hits. Natural 1 always misses; natural 20 always hits and critically doubles damage dice, not flat modifiers. Beating AC by 10 is not a critical hit. An explicit broader critical range does not stack with another; use the broadest eligible range. In this overlay, a natural result below 20 in that range must still meet AC unless the feature expressly says it always hits.\n\n**Task, skill or tool check against a fixed DC:** total at least DC+10 is Critical Success; at least DC is Success; at most DC-10 is Critical Failure; other totals below DC are Failure. Natural 20 then improves one degree and natural 1 worsens one, bounded at either end. A task printing only success/failure collapses the two upper degrees to success and two lower degrees to failure; no extra consequence is invented. A natural 20 can still fail an otherwise impossible check, and a natural 1 with sufficient modifiers can still succeed.\n\n**Saving throw:** total at least DC succeeds; otherwise it fails. Natural 1 and 20 have no generic special outcome. A printed failure by 5 or 10 compares the final total with the DC; it does not add an unprinted critical-save system. Death saves are the specific exception below.\n\n**Opposed check, new provisional tie rule:** compare final totals. Higher wins; an exact tie leaves the existing state unchanged, so the initiating creature fails to change it. Do not turn task natural shifts into hidden numeric modifiers. A maneuver explicitly printing degree outcomes must specify how those apply.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "fileSha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+      "heading": "Zero HP and recovery",
+      "exactText": "## Zero HP and recovery\n\nA living character at zero HP is Unconscious. Core's condition already includes Incapacitated, unawareness, dropping held items and falling Prone; an adjacent hit is critical as specified there. Healing does not silently remove other independent causes of Unconscious or Prone.\n\nWhile dying, make one death save at the **start of each regular initiative turn**. Roll d20 without modifiers unless a feature specifically modifies death saves. Natural 20 restores 1 HP; natural 1 adds two failures. Other results of 10 or more add one success; 9 or less add one failure. Three successes make the creature Stable; three failures make it Dead. Extra turns and Actions add no extra death saves. Stable or Dead creatures do not roll them.\n\nRegaining positive HP or becoming Stable resets both counters. Temporary HP does not raise normal HP, end Unconscious or reset counters. Fully absorbed damage does not end Stable or add a death failure in this provisional interpretation. Independent Maiming can still cause its Wound save.\n\n**Stabilize:** an Action and DC 10 Wisdom (Medicine) check, or an Action using one healer's-kit use automatically, stabilizes a living dying creature at zero. It remains Unconscious and makes no death saves. Roll 1d4 once when it becomes Stable and record its absolute recovery time that many hours later. If still Stable then, it regains 1 HP. Damage reaching normal HP cancels that deadline and resumes dying with the appropriate failures. Rest and Stable recovery use the same elapsed clock, so four hours of recovery inside an eight-hour Watch do not cost twelve hours. A later rest does not separately replay the Stable healing event.\n\n**Dead:** ordinary healing and stabilization do not restore life. Resurrection must satisfy its own willing-soul, body, time, cost and target rules. It does not automatically remove Wounds, Corruption, debts, legal death or claims upon the body. Corpses cannot supply repeated resource triggers.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "fileSha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "heading": "Encounter and action resources",
+      "exactText": "## Encounter and action resources\n\nEstablish terrain, light, hazards, objectives, exits and cargo; determine awareness; roll `d20 + DEX modifier + legal bonuses`. Highest first. Players choose player/player ties; the Director resolves ties involving NPCs. Keep the resulting ordered slots for the encounter. A round represents approximately six seconds. A **regular turn** is a creature's normal initiative slot even if it cannot act. An extra turn is distinct.\n\nA turn normally permits movement, one Action, a Bonus Action when an actual rule grants a use, and one ordinary free object interaction. A second ordinary interaction or an Action-time object activation uses an Action. Brief communication is not an extra Action. Conditions and specific features may restrict these permissions.\n\nThe shared limit is one **extra full Action per creature per numbered round**. Such an Action cannot grant another extra Action, Bonus Action or Reaction. This cap is independent of Reaction timing. Extra turns do not by themselves refresh Reactions, recharge, periodic ticks, recovery ticks or the regular-turn allowances defined here.\n\n**Reaction interpretation.** Begin an encounter with one available Reaction unless surprised or otherwise prohibited. Refresh at each regular own-turn start; never at the numbered round boundary or an extra turn. A late-initiative creature can therefore react before its first turn, refresh, and react again in the same numbered round. A legal trigger, available resource and all feature prerequisites are still required.\n\n**Explicit additional Reactions.** A reviewed card can grant a separate limited use without refreshing the ordinary resource. Warrior Mind Shock supplies its stated once-per-duration non-attack Reaction; spending one resource does not consume/reset the other. Surprise, Incapacitated and Focused still restrict both. It grants no Counterspell knowledge or waived costs. Extra turns refresh neither. Per-dose reapplication/stacking and other specific grants remain part of the class semantic pass.\n\n**Surprise — V6 plus NEW Bonus Action clarification.** On a surprised creature's first regular turn it cannot voluntarily move or take an Action or Bonus Action. It cannot react until that turn ends. Its slot, durations, passive effects, concentration, periodic effects and recharge still occur. Surprise alone is not Incapacitated or Unconscious. Brief communication and an otherwise legal simple free interaction remain possible.\n\n**Entry — NEW.** Standard end-round reinforcements roll/receive initiative and first act next round. An explicit midround entrant acts this round only if its complete ordered slot is still upcoming; entry during that exact slot counts as already passed. It has its initial Reaction unless prohibited. A summon-specific timing rule overrides this generic entry procedure.\n\nAfter the final slot, resolve Core's end-round hazards, reinforcements, morale, objectives and boss phases. Conclude the scene with surrender, capture, pursuit, harvesting access and noise consequences under their own rules; winning initiative does not resolve those automatically.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "fileSha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "heading": "Time and event ordering — NEW",
+      "exactText": "## Time and event ordering — NEW\n\nFor a duration created in initiative, record the relevant original regular start/end marker. Existing effects keep that **virtual marker**, repeating every six seconds if the creature leaves or changes initiative. Reordering, rerolling, extra turns, death/removal or leaving/reentering initiative never restart an existing duration. New effects use the current schedule. Source death still ends concentration, a source-dependent aura/tether or an effect explicitly ending on death.\n\n- A bare hostile target-bound **N rounds** ends at the Nth future regular target-end marker. An in-progress target turn's current end does not count.\n- A bare self/source buff, ally-targeted buff or source-controlled aura **N rounds** ends at the Nth future source-start marker. Explicit target-turn, pulse or absolute timing overrides this default. Activation during source turn 1 for three rounds ends at source turn 4's start.\n- **Next turn** means the next future regular turn of the named creature, not the current turn's still-upcoming end. An unqualified next turn refers to source/user under the existing shared rule. Explicit “this turn” can include the current turn.\n- An outside-initiative bare N-round effect instead gets an absolute application-time + N×6 seconds deadline. Entering initiative preserves that deadline.\n- Explicit periodic profiles retain their registered clocks and tick counts. Never create a second timer merely because a generic duration rule also exists.\n\nThe [exact GPT review](../../../../docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md) confirms ally-buff source clocks and excluding the current turn for explicit next-turn endpoints. The helper excludes a specific current-end marker only if that marker would otherwise be selected: application during a turn at time1 with end3 excludes3 and selects9; application at/after3 also selects9, without erroneously skipping again to15.\n\nAt a regular turn's **start**, resolve in this order:\n\n1. Expire start-ending effects and apply immediate state changes from those expirations.\n2. Refresh Reaction; tick regular-start recharge/non-action clocks.\n3. Resolve already-due absolute state recovery if now legal, including a previously blocked Stable recovery deadline.\n4. If still alive, dying and at 0 HP with death saves, make that turn's death save.\n5. Resolve other start effects and periodic events in application order.\n6. Begin voluntary turn decisions.\n\nAt **end**, resolve triggered effects, due damage, saves and maintenance before end-ending effects expire; then the slot finishes. No extra turn creates another regular marker. The caller must not reuse a resolved marker.\n\nFor simultaneous effects, earlier application timestamp precedes later. For simultaneous components of one source, its printed internal order controls; otherwise use stable application sequence, with source/mechanical ID as a final tie-break. Record that sequence when creating the effects. Beneficial/harmful labels do not change priority. Periodic family arbitration happens once per family/marker before its damage, retaining the family registry's consumed loser ticks.\n\nExamples: dying at 0 rolls its death save before ordinary start-turn healing; a fatal death save is not undone by ordinary healing. Stable at 0 skips the save, then start-turn damage can break Stable. A natural 20 can restore 1 HP before a due Bleed drops it to 0 as a new drop event. If Decay expires while a Stable recovery deadline is already due, the old deadline resolves once without rerolling recovery time.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "fileSha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "heading": "Movement and geometry",
+      "exactText": "## Movement and geometry\n\nTrack **spent movement cost**, not distance, for ordinary turn movement. Mode cap = `(1 + number of legal Dash actions this turn) × current Speed for that mode`; remaining = max(0, cap − spent cost). Switching modes never refunds cost. Recalculate cap on Speed changes, preserving spent cost. Stand from Prone costs floor(half current Speed) and requires nonzero Speed and enough budget. Dropping Prone costs no movement.\n\nFor each foot traveled, normal/difficult/severe terrain costs 1/2/3; use strongest terrain only. Add +1 for crawling and +1 for squeezing. Crawl in difficult =3:1; crawl+squeeze in difficult =4:1. A nonhostile occupied space counts as difficult terrain. Enter a hostile creature's space only with ≥two-size difference or an express feature; never willingly end in an occupied space. Squeeze through a space one size smaller, with own attack/DEX-save disadvantage and attacks-against advantage.\n\nWalk10 through difficult spends20; switch to Fly30 leaves10. Stand with Speed30 spends15; switching to Fly30 leaves15. Two legal Dashes at Speed30 give cap90; prior expenditure still counts. Interpose/Press grant5 budget: they cannot enter a difficult 5-ft tile costing10. Their separate budgets never refill ordinary movement. Ready movement uses Speed at release; Withdraw uses half current Speed. All voluntary movement requires nonzero relevant Speed.\n\nForced movement does not use these ledgers or provoke ordinary opportunity attacks, cannot place creatures in solid matter, and stops at obstacles. Teleport does not traverse intervening terrain or spend Speed unless printed; it requires a legal destination. Speed0 alone does not block forced movement or teleport. Flight with Prone/Speed0/lost support causes Falling unless Hover or an explicit magical support exception applies; use the existing fixed Fall Marker procedure. Reaching support ends Falling.\n\nNEW grid metric: each orthogonal or diagonal neighboring tile is 5 ft; use the same metric for ordinary ranges/areas. No diagonal cut through a corner when both adjacent orthogonal sides are completely blocked. Exact templates, 3D geometry, mounts, chases, jumping, climbing/swimming procedures and currents need further source review.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "fileSha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "heading": "Cover, sight, Hide and Search",
+      "exactText": "## Cover, sight, Hide and Search\n\nKeep **visibility**, **known location**, and **line of effect** separate. Seeing through a barrier does not itself permit attacking through it. Best cover only: half +2 AC/DEX saves; three-quarters +5; total prevents direct targeting through that obstruction. Never add +2 and +5. For areas, evaluate line/cover from the area's origin to each target; total cover there excludes a creature unless the effect explicitly travels around/through the obstruction. The origin point itself must be legally targetable.\n\nWithin normal ranged range, no range penalty; beyond normal through long, disadvantage; beyond long, illegal. Ranged attacks also have disadvantage when within5ft of a non-Incapacitated hostile that can see the attacker, even if the attacker cannot see that hostile. All advantage/disadvantage follows the single cancellation rule.\n\nNEW **Hide**: permitted only against observers unable to see you clearly or where a feature permits. Roll DEX Stealth once, record natural die and total. Against each observer's passive DC `10 + WIS Perception modifier including applicable proficiency`, use the Core four-degree task system. Meet DC succeeds before natural1/20 degree adjustment; Success/Critical Success establishes Hidden for that observer. No unsourced passive ±5 adjustment for advantage/disadvantage. Actual Search rolls use their normal modifiers.\n\nHidden means that observer cannot see you and does not know your location. Clear sight or learning your position ends Hidden for that observer. Moving between hiding places can retain Hidden only if no clear sight/revealing event occurs. A failed Hide cannot simply be rerolled unchanged; a materially new hiding position, concealment, distraction, sight-breaking event or express reroll feature is required. Hidden is not a generic immunity or a free stealth roll for every move.\n\n**Search** Action: WIS Perception for sensory detection; INT Investigation for appropriate traces/deduction; Core Arcana/Engineering where relevant. Directly locating a Hidden creature defaults to Perception against its recorded final Stealth total as a static DC, using task degrees/natural shifts. Success reveals location only to the searcher and ends Hidden for that observer, without automatically granting sight. Communicate normally to inform others. Search can be repeated on later turns by paying the Action.\n\nAttacks against unseen targets have disadvantage; unseen attackers have advantage, subject to the **Core Invisible exception**: once its position is known, Invisible's own attack modifiers end for that observer and cannot immediately return solely because it remains Invisible. Independent darkness, smoke, blindness or hiding can still supply modifiers.\n\nResolve an attack using pre-attack information; afterward reveal location to observers able to perceive its evidence. If an unseen target's location is unknown, do not directly choose it for a creature-target effect. A weapon/projectile can instead attack a suspected space: wrong space automatically misses; correct space uses unseen rules. A “creature you can see” requirement is never met by position knowledge alone. Area effects can target legal points under their own rules.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "fileSha256": "e59456f4430f7f72db0392c3a52be8ec8b7d804b4b765c0a73f81c72f060a49e",
+      "heading": "Abilities and training",
+      "exactText": "## Abilities and training\n\nAbility modifier = floor((score − 10) / 2), including negative results. For example, 8 gives −1, 13 gives +1 and 16 gives +3.\n\n**Optional new candidate method:** 27-point buy, scores 8–15 before ancestry. Costs are 8:0, 9:1, 10:2, 11:3, 12:4, 13:5, 14:7, 15:9. Spend no more than 27 points across six scores; no score outside that range. This adopts the existing companion method as a provisional option, not a claim that the book already specified it.\n\nResolve duplicate training as follows:\n\n- For a selectable grant, choose another eligible option from that grant’s own list.\n- For a fixed ancestry/background skill grant with no alternative list, choose another of the 20 basic skills.\n- For a duplicated tool, choose another eligible tool from that grant’s list; if it has no list, use another actually supported tool in the same broad category.\n- Duplicate armor, weapon, save or multiclass chassis training gives no skill or feat compensation. A new multiclass skill selection must still use its own permitted list.\n- Duplicate proficiency never creates Expertise unless an exact feature says so. If a proficiency grant requires a choice and every legal option for that grant is already possessed, that grant provides no additional proficiency. Character creation, multiclass entry or advancement remains legal. Do not substitute a feat, Expertise, another category of proficiency, an unrelated skill/tool, or a banked future selection. This applies to skill and tool lists, including a legal replacement list or category that is itself exhausted.\n\nPB is applied once to a check even if a skill and tool both qualify. An exact Expertise multiplier modifies that one proficiency contribution; it does not add another independent PB.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "fileSha256": "e59456f4430f7f72db0392c3a52be8ec8b7d804b4b765c0a73f81c72f060a49e",
+      "heading": "Gain a level",
+      "exactText": "## Gain a level\n\nOpening campaigns officially use milestones. The Director’s announced milestones grant advancement; a CR-to-XP UI helper is not the official Opening reward law. The book’s cumulative XP thresholds remain available for tables using optional XP. See [XP provenance](XP_ADVANCEMENT_CANON.md).\n\nEach earned advancement adds one total character level, to a combined maximum of 20. Choose one existing Base class to advance, or enter one new Base class if eligible. Process multiple earned levels one at a time; do not skip intervening choices.\n\n1. Record the gained class and new class level. Recalculate total level and PB: +2 at total 1–4, +3 at 5–8, +4 at 9–12, +5 at 13–16, +6 at 17–20.\n2. Add one new unspent Hit Die of the gained class’s size. Previously spent Hit Dice remain spent; gaining this die does not refresh any earlier die. For HP, roll that die or use its fixed rounded-up average: d6→4, d8→5, d10→6, d12→7. Record the base result before CON. This includes taking a new class’s first level after character level 1; maximum first-level HP is never granted again.\n3. Apply exactly the gained class’s acquisition row, automatic improvements and class-level prerequisites. Complete its choices and any newly reached Arch/Hero gate. Automatic grants, scheduled selections and ASIs are distinct; do not pay a selection twice or grant an extra selection because the same feature appears in a legacy table.\n4. At an ASI milestone, increase one score by 2 or two scores by 1, normally no higher than 20, or select one eligible operational feat. Ordinary milestones are class levels 4/8/12/16/19; Oracle uses 4/8/14/19. Follow any already-reviewed specific exception. No starting feat or repeatable feat is implied. [Eight complete feat options](FEAT_PLAYTEST_INDEX.md) do not make the other 327 complete.\n5. Update legal repertoire, prepared capacity, class scaling and resource maxima at the gained **class** level. Use class-specific Druid preparation, Wizard spellbook/matrices and other explicit rules before generic acquisition defaults. New capacity does not provide an unnamed spell, an unearned choice, a filled Echo record or an extra prepared spell without the required preparation procedure.\n6. Recompute base maximum HP from all attained-level records using current CON: sum(max(1, each stored base value + current CON modifier)). Then apply the separate [maximum-HP ledger](MAXIMUM_HP_PLAYTEST.md), including compatible bonuses, reductions and systemic factors. Do not feed an already modified maximum back in as the base.\n7. Keep current HP and spent resources unchanged except for a downward clamp when a maximum falls. An ordinary level-up is not healing or a rest: it cannot revive a downed/dead character, erase Wounds or refill already spent Hit Dice, RP, RC, class pools, item charges or uses. Newly granted features still follow an explicit acquisition/initialization clause if they have one; “gain a maximum” alone does not mean “restore current.”\n\n**New HP completion:** each level’s HP contribution has a minimum of 1. Recompute those individual floors after permanent CON changes. This preserves retroactive CON adjustment without a naive level×modifier-change formula that can bypass a floor. Capacity increases grant no current HP; decreases can clamp current HP without damage/healing triggers, consistent with the reviewed maximum-HP interface. Temporary ability effects follow their own actual source rules rather than being silently treated as permanent advancement.\n\nNo banked card selections, free retraining or free respec is introduced. Use an existing explicit replacement/retraining procedure where one exists.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "fileSha256": "8ce30a927b550d31bc981fc9537fccd178507c6b5e671fe9c6d82b987476f871",
+      "heading": "Ability-check skills",
+      "exactText": "## Ability-check skills\n\n| Ability | Skills |\n|---|---|\n| STR | Athletics |\n| DEX | Acrobatics, Sleight of Hand, Stealth |\n| INT | Arcana, Engineering, History, Investigation, Nature, Religion |\n| WIS | Animal Handling, Insight, Medicine, Perception, Survival |\n| CHA | Deception, Intimidation, Performance, Persuasion, Reputation |\n\nThere are 20 basic skills; CON has no default skill. A Director can call for another appropriate ability with a skill when circumstances justify it. Use the reviewed [core task procedure](CORE_RESOLUTION_PLAYTEST.md); attacks and ordinary saves remain distinct.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "fileSha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7",
+      "heading": "ZeroHP permissions and start timing",
+      "exactText": "## ZeroHP permissions and start timing\n\nA conscious but dying creature still rolls at each regular start unless Stable. Extra turns do not advance these regular-start deadlines. Further damage and actual death retain normal consequences.\n\nMage Undying Spellform partially overrides only zeroHP Unconscious/Incapacitated restrictions: normal speech, voluntary half-Speed movement, normal Action, legal spellcasting with that Action, and starting/maintaining concentration. No independent BA/Reaction. Existing concentration avoids automatic loss from zeroHP, but the triggering damage still requires its concentration save. Separate Stunned/Unconscious/Expedition5 or6/Silence and other restrictions still apply. Healing above0 ends the feature. Expiry at0 destabilizes, cancels the Stable recovery deadline and adds one failure; the third kills normally and permits only an eligible would-die replacement.\n\nOracle False LifeIII permits exactly one choice during the allowed zeroHP turn: move up to Speed, speak, or activate one Revelation. The latter uses its printed Action/BA/trigger (trigger must occur on that turn), costs and components. It can start concentration; the feature did not preserve earlier concentration. No independent actions accompany the choice.\n\nFalse LifeV quarter-max direct recovery resolves at its next regular start before the death save. Blocked recovery leaves0 without invented stability; dead creatures do not revive. Spiral phase expires at its next regular start before normal start processing. Fate-BoundIV rerolls a failed death save before committing natural1/counters; use the new result. Its generic death-effect save bonus is not an ordinary death-save modifier. A natural20 whose1HP is blocked uses the previously reviewed Decay bridge: Stable0, cleared counters, immediate d4-hour deadline and preserved used-turn marker. It does not spend Ward. This differs from blocked False LifeV, which remains dying.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "fileSha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7",
+      "heading": "Ordinary healing arithmetic",
+      "exactText": "## Ordinary healing arithmetic\n\nDetermine legal source, recipients, costs, clocks and available entitlements before arithmetic. The helper receives already eligible modifiers; it does not acquire class powers or validate every source for its caller.\n\nPre-resolution modifiers include Words of Equilibrium's formula M, Zealot's Fervor +S, Throne's Grace +1/die capped S+M, Benevolent Spirits' eligible paid-technique +M, Life Prophecy maximizing dice, and Crane's applicable +S. Conditional add-ons include Ground, Radiance, Aura of Faith, Ember Mantle, Life Linked's rolled1d4, Ranger Healing Touch, Aura of Mercy, Garden's stored+1 and Tranquil Lotus Step.\n\nFirst compute without conditional add-ons. Only if this preview actually restores at least1HP, recompute that same event once with its eligible add-ons. The preview changes no pools/uses. Base5 minus5 plus a conditional3 remains0; eligible pre-resolution Benevolent3 yields3. Multiple flat class bonuses use the strongest across both passes unless an explicit source exception allows stacking. Rolled extra dice/per-die changes are separate.\n\nWithin each permitted reduction plan: formula/bonuses; per-die adjustments; compatible exact fractional multipliers with one floor after multiplication; compatible flat reductions; floor at0; broad HP prohibition; maximum/Critical/reserve caps. Intrinsic Wound Eater and systemic Corrupted remain independent factors. Duplicate same-stat per-die penalties use the strongest. Dice remain dice when maximized/shared; flat Lay on Hands and stored numeric Echoes have zero healing dice.\n\nBlight Totem cannot compound other local healing reducers. Compare systemic factors plus Totem-half alone against systemic factors plus all otherwise compatible local reducers; use the lower result. Compatible halves multiply, compatible distinct flat penalties add, duplicate same-profile groups use strongest. Suppressed reducers do not participate.\n\nEvery present, operative, applicable next-positive-healing reduction consumes exactly once when the final event commits if its pre-reduction HP potential was positive. This includes reducers whose arithmetic branch lost to Totem or whose actual gain was later blocked. Zero potential and suppressed records consume none. Two-pass preview never consumes twice.\n\nCritical at3Wounds caps ordinary healing at max(1, effective maximum minus1); it is not a maximumHP reduction and healing cannot lower currentHP. Reserve spends only actualHP restored. A final heal8 with room3 spends3 reserve; blocked healing spends0, other activation costs remain paid. Revival/form changes/encounter starts do not replenish reserve.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "fileSha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7",
+      "heading": "Recovery gates, triggers and loops",
+      "exactText": "## Recovery gates, triggers and loops\n\nFalse Life curse gates another creature's healing SPELL: optional Insight vs RevelationDC; success permits; failed or declined check rolls d2,1 blocks HP and2 permits. Nonspell recovery and independent nonHP components remain distinct. Burning Blood blocks the cold-tagged HP-healing component only, not independent tempHP/stabilization/resurrection.\n\nActual positiveHP restoration is required for Radiance's cure, Renewal's Stamina, Sanctified Reprisal and Life Prophecy's RC trigger. Meditative Healing's laterKi and Transcendent Meditation's second-pulseKi are independent components and still resolve when healing caps/blocks. Blood Tithe uses its actual qualifying hostile Bleed-death trigger and finite use; not staged farming.\n\nPassive regeneration includes Bloodthick Node, Rapid Coagulation, Regenerative Mutation and Bio-Stabilizer's modification; these retain Reserve. Finite paid/limited pulses such as Aura of Grace, Living Pulse, Renewal Totem, Blood Feast, Exsanguinate, Hemostasis, Transcendent Meditation, Cellular Reconstruction and Adrenal Floodgate are not passive regeneration. Their own Downed/Incapacitated gates remain. A passive-regeneration prohibition is not a universal healing prohibition.\n\nLay on Hands retains its5×Paladin-level finite pool and ordinary Long Rest refill. Base Action spends at most level on one target; Hero1/LR spends the entire remaining pool across at most3, each allocation at least1. No RP conversion. Verdict Absolute's explicit qualifying brand-kill refill is a source exception. **Remainder-conference amendment — engine[13] cadence reconciliation:** level17 Wave is1/long rest, superseding the preserved Hero card and earlier guide's1/short-rest wording. This follows the explicit engine reconciliation; the old source remains intact. Wider pool/recharge execution still belongs to the resource pass.\n\nTransfusion donor spends K normalHP; recipient ordinary base is K+floor(K/2). Channel Life spends X; baseX. Donor must remain at least1, tempHP cannot pay, loss is not damage and cannot be prevented/redirected/refunded when recipient gets0. Recipient legal bonuses/reductions apply.\n\nSecondary healing retains root ID and visited application IDs in a shared causal ledger, including across sibling branches. Each link/application can fire at most once/root. Numeric add-ons remain the same packet, creating no new root/child. Legal finite primary healing may trigger unrelated eligible effects.\n\nStronger source flags override generic provenance: Vitality Link's child blocks every further link; Echo Leech blocks secondary healing/resource triggers; Blood Feast blocks damage/resource triggers; Merciful Smite blocks Smite/heal-copy chains; Crown Undying blocks redirection/heal-copy chains; Echoes/Spiral copies retain their explicit exclusions. Source payment and direct/actual-gain predicates still apply before a child exists.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+      "fileSha256": "f4d054a76475e8c808aa92662f8635d501f526da638b96ba5a961448ff90d7e8",
+      "heading": "Shared rules",
+      "exactText": "## Shared rules\n\nAll eight feats are nonrepeatable and require an actual legal feat selection from the character's class progression. There is no extra universal feat schedule. Use the frozen class rules and each class's actual ASI/feat milestones; Oracle and other bespoke schedules retain their exceptions. Check a prerequisite at acquisition. Temporary later loss of an ability-score prerequisite does not revoke the feat; no general retraining rule is created.\n\n“Spellcasting ability” requires a source that actually grants spellcasting and identifies a legal casting ability. Having RP, Revelation Charges or another magical resource is insufficient. A source's statistics do not transfer ownership of another creature's attacks to the statistic provider.\n\nAn ally includes the user unless a rule says **other**. Targets must satisfy their source's range, perception, line of effect and creature/living/willing restrictions. A target is counted once through multiple representations. No feature creates a new Action, Bonus Action, Reaction, command or turn unless it says so.\n\nTemporary HP use the world's single grant ledger. Keep only the strongest current grant; an equal offer retains the old grant. Pay legal costs before this comparison. Rejected offers do not refund resources or recipient entitlements. A default-lifetime grant ends at the recipient's next completed long rest, depletion, replacement or applicable dependency ending. Explicit durations replace that default where stated. Temporary HP do not restore normal HP, wake a dying creature, remove Wounds, stabilize it or resurrect it.\n\nEach turn/round/rest/death/physical body/food item/source activation has a persistent canonical identity. Extra Actions are not new turns. A genuine extra turn can satisfy a once-per-turn rule but does not create a new numbered round. Outside initiative use the world's authoritative six-second round-equivalent windows; entering/leaving combat preserves phase and never refreshes an entitlement.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+      "fileSha256": "f4d054a76475e8c808aa92662f8635d501f526da638b96ba5a961448ff90d7e8",
+      "heading": "Chef — General; no prerequisite",
+      "exactText": "## Chef — General; no prerequisite\n\nDuring an actual long-rest attempt, use cook's utensils and spend one uninterrupted hour cooking. This is permitted light activity only when the normal long-rest procedure permits that hour; the feat does not enlarge the allowance. Designate one batch of1..current PB intended servings at cooking start. Only one batch may be designated per rest attempt and only one can gain potency per successful completed rest.\n\nOn successful cooking completion, consume one real standard ration or meal-equivalent ingredient per intended serving. Create exactly that many physical prepared-food items, each with its own identity. Their food exists immediately, but they gain no feat potency before the rest actually succeeds. If the rest fails, the ingredients remain spent and the food remains ordinary. An incomplete cooking hour creates no special food.\n\nAt successful long-rest completion, first resolve old rest-expiring effects and advance the rest epoch. Then snapshot the Chef's current PB and empower up to `min(physically prepared servings still present, current PB)` items. Each grants `2 × PB at batch finalization` temporary HP. A PB increase cannot manufacture more ingredients or servings; a decrease leaves excess prepared items ordinary.\n\nA creature with a legal serving must spend one uninterrupted minute eating it. Completing a legal offer consumes the serving and the recipient's **Chef-family entitlement for its current completed-long-rest epoch**, even if an equal/stronger existing grant wins. This limit is shared across every Chef. The Chef's own rest does not reset another recipient's entitlement.\n\nPotency ends at the earlier of24 elapsed hours from successful batch creation or the Chef's next completed long rest after the creation rest. An already consumed/discarded item never returns. Expired potency leaves ordinary food, with no magical premium value. Potency expiration does not end a previously granted shield; that shield has the recipient's default lifetime.\n\nChef servings are distinct from crafted Feast recipes. Chef grants no recipe ingredients, crafting checks, RP restoration, creature traits or recipe power. It does not occupy the recipe system's one-feast-at-a-time slot. A lawful recipe rider can coexist with a Chef rider; temporary HP still do not stack. One physical meal cannot claim both effects unless an exact recipe expressly supports it. Recipe-specific ten-minute eating, longer crafting and materials remain independent.\n\n**NEW:** the finite batch transaction, quantities, preparation/eating times, recipient-family cap, potency expiry and explicit no-duplication/economy bridges. The source's long-rest cooking role is preserved.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+      "fileSha256": "f4d054a76475e8c808aa92662f8635d501f526da638b96ba5a961448ff90d7e8",
+      "heading": "Field Medic — General; trained in Medicine",
+      "exactText": "## Field Medic — General; trained in Medicine\n\nAs a Bonus Action, use one actual healer's-kit use on one legally reachable living dying creature. Resolve the canonical automatic kit stabilization, including its normal1d4-hour recovery deadline. Inventory must contain a real remaining use; this feat invents no kit capacity. This is distinct from the ordinary Action/DC10 Wisdom(Medicine) stabilization option.\n\nWhenever you actually cause a dying→Stable transition by **any legal method**, offer the target your PB temporary HP with default lifetime. Record the transition when it occurs. Already-Stable creatures cannot be stabilized again for a new grant. Record one entitlement per target + actual dying episode + feat owner, plus the actual stabilization event ID. Different owners do not share an artificial family lock, but each must actually cause a valid transition. A new episode requires a genuine exit from the old dying episode and later entry into dying; damage absorbed entirely by temporary HP does not create one.\n\nIf you also possess Battlefield Medic's separately sourced Trauma Response, first record the actual kit stabilization, then resolve that background's independent1HP recovery, then resolve Field Medic's temporary-HP offer. The later1HP does not erase the stabilization trigger. The feat itself provides no normal HP, consciousness, Wound removal or resurrection. No background is granted by acquiring this feat.\n\n**NEW integration:** event/episode anti-replay identity and ordering with independent recovery; the broad “when you stabilize” trigger is preserved.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "fileSha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+      "heading": "One work order, one batch",
+      "exactText": "## One work order, one batch\n\nBefore work, record the recipe ID and visibility, crafter and trade level, actual formula access, batch quantity, chosen ability, tools and station, component lots and substitutions, assistants, DC, expected active hours, work schedule, final product profile and market quotation. Record whether a product is an ordinary item, a magical item, a consumable or an alteration to an existing item. The name alone cannot decide that classification.\n\nCheck eligibility and reserve actual ingredients before beginning. Perform the required active work. Make one completion check for the entire batch; resolve quality, catalyst retention and failure recovery once. Debit consumed components, record returned components, add only actual finished units, and record trade XP. An interrupted batch is the same work order, with the same reserved ingredients. Neither interruptions nor moving to a new station create another roll, yield or first-craft award.\n\n**Source:** quantity, difficulty, components, workRequirements and craftingCheck come from the exact recipe. **Completion:** recipe quantity is the number of finished units in one batch. Component quantities and costs are for that batch, not for each finished unit. Do not multiply components or recommended batch value by output quantity a second time. This interpretation applies to the new playtest projection; the ambiguous source `resultItem.value` is retained unchanged.\n\nAn unfinished output profile is a real dependency. The framework cannot invent a spell effect, charge recharge, activation action, target, range, save, duration, stacking rule, output weight or item price merely because a recipe has a `developed` label.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "fileSha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+      "heading": "Training and recipe access",
+      "exactText": "## Training and recipe access\n\n**Source:** a character lacking the trade or the required tool proficiency has disadvantage and cannot attempt formulas above recipe skill level 4. Formulas above level 4 normally require a formula, schema, pattern or documented oral tradition. All 687 source formula flags agree with this threshold. Trade levels run from 1 to 20, separately from character level, class stage, PB, spell rank and material tier.\n\n**Completion:** the primary-tool bindings in `CRAFTING_TRADE_REFERENCE.md` define the relevant training. A character who already has the listed proficiency may initialize that trade at level 1, with zero trade XP, without an extra proficiency grant. Merely owning the kit grants neither PB nor a trade level. Trade training and primary-tool proficiency acquired through this procedure are one credential, not two PB contributions. Existing explicit trade-level grants remain intact. Being proficient with unrelated tools, Arcana or Survival does not automatically give this credential.\n\nAn untrained crafter has effective trade level 0. Recipes of skill levels 1–4 can be attempted with the source disadvantage when otherwise physically possible. A trained crafter can attempt recipes up to `max(4, current trade level)`. Above level 4 the crafter must also possess or be given legitimate access to the exact formula. A trained level-1 novice does not lose the basic recipes available to an untrained character. Missing necessary physical tools or the station prevents the attempt; disadvantage does not manufacture either.\n\nFor a new credential during play, complete 80 active training hours with a willing instructor proficient in that primary tool and at least level 5 in that trade. Pay a default 10 gp tuition for the course, plus actual tool ownership or rental and living costs. Hours cannot overlap other work or rest. Completion grants that tool proficiency and trade level 1 with zero XP, once; repeated courses give no duplicate benefit. This is a new playtest training route, not a revision of class/ancestry/background grants. A named source's specific training route wins for its own grant.\n\nSource rank bands (Novice, Apprentice, Journeyman, Expert, Master, Grandmaster) are descriptions of the catalog, not another hard tier gate. Forty-nine records sit outside the printed rank/tier bands. Use their exact skillLevel and explicit prerequisites rather than silently changing those recipes or denying them by a second band test. Public Tier I–V remains the public knowledge ceiling regardless of a character's high trade level. Restricted and Director recipes require actual in-world access and their separately reviewed cards; a rank title cannot reveal them.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "fileSha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+      "heading": "The crafting check",
+      "exactText": "## The crafting check\n\n**Source:** `d20 + chosen ability modifier + proficiency contribution + tool bonus + facility bonus + assistant bonus`, against the recipe difficulty. Choose one of the recipe's printed ability options before rolling. **Completion:** do not add the numerical trade level to the check. PB comes from total character level, once, when qualified by actual primary-tool training; an explicit applicable expertise feature replaces that contribution with its stated multiplier. Training in both a skill and the tool cannot double it.\n\nOrdinary functional tools and a suitable ordinary facility each give a bonus of +0. They permit the work. A specific reviewed item, facility or feature may give a stated bonus; similar descriptive words such as fine, superior or research station do not invent a crafting bonus. The expedition research station's +2 research/identification applies to those checks, not crafting. Same-named bonuses do not stack. At trade level 10, choose and record one specialty; its source +1 applies only to a work order within that specialty. No automatic free ingredient substitution follows from the word specialty.\n\nEach qualified assistant gives +1, up to the recipe's `maximumAssistants` (0–3). They must possess the relevant primary-tool proficiency, be eligible to attempt that recipe, and work all of its required active hours alongside the lead. Formula access can be shared for this work order. Assistance does not reduce time, waive ingredients, award extra output or grant assistant trade XP. Assistants cannot assist multiple simultaneous orders or perform a separate Watch activity during those same hours. General team assistance cannot bypass a recipe's zero-assistant limit.\n\nIn a safe suitable workshop, a trained lead may use 10 on the die if the recipe is at least five skill levels below their current trade level. This replaces the die, is not a natural 10/20/1, and uses the same bonuses, costs and hours. It is unavailable when under threat or when actual disadvantage remains on the crafting check. Declare it before rolling; a failed roll cannot be replaced afterward.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "fileSha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+      "heading": "Active time and expedition scheduling",
+      "exactText": "## Active time and expedition scheduling\n\n**Source recovered from public V5 P11–12 and P88:** an Opening is 100 days, or 2,400 elapsed hours. The V4 system's 240-hour references are stale. Crafting hours represent active work, not free downtime. The recipe records consistently convert a workday to 8 active hours, a workweek to 40, and a workmonth to 160. These are work units, not a promise that every calendar week/month has that many days.\n\n**Completion:** use `activeWorkHours` when present. Five Director-only one-year recipes have null hours; for this framework only, one workyear is 12 workmonths = 1,920 active hours. Preserve their source null and mark the overlay as new; these formulas remain individually unreviewed. A time-mode name is a station/access requirement, not permission to reduce required hours. An eight-hour recipe labeled expedition still needs all eight hours.\n\nField work requires its actual portable tools and a suitable place. A recipe is field-capable only when its `fieldCraftable` flag permits it; the fact that its trade is generally field-capable is insufficient. Expedition-mode work needs a fortified camp or research station. Workshop work needs a proper workshop. Haven-mode work needs a named secure workshop and storage. Legacy/special work needs a protected long-term facility or an explicitly supported between-season arrangement. Shorter time from a feature does not erase the recipe's station/access requirement.\n\nSchedule one eight-hour Watch at a time. A member assigned to crafting, gathering or preservation can perform compatible sequential tasks within that Watch, recording actual minutes. The unused minutes are not another full team activity. Travel, guarding, assisting, spellcasting, training and work cannot all claim the same minutes; only an explicit ability can authorize concurrent tasks. Each character may schedule at most two active Watches and must satisfy the separately reviewed rest rules; this is a ceiling, not an exemption from fatigue, interruption or danger. For this supplement, an active work Watch means time committed to crafting, harvesting, preservation, trade training, formula research or assisting those activities. The two-Watch ceiling limits this framework's work contribution; it does not by itself resolve whether another reviewed subsystem permits a distinct noncrafting activity in the remaining Watch. Rest, Strain, fatigue and expedition legality continue to come from their own governing rules. An eight-hour beneficial Long Rest cannot simultaneously be eight hours of crafting. Trance's sleep reduction does not shorten the required Long Rest or grant free working time.\n\nWorkday notation is normalized to active hours before a valid speed feature applies. Forge Dwarf Master Craftsman reduces eligible artisan-tool creation hours by 25%; use hours × 0.75, rounding upward only to the next whole minute. It does not shorten rest, travel, ingredient growth/spoilage, training, another person's work, harvesting, or a separately fixed natural-remedy/tinker racial procedure. It does not shorten a recipe's independently stated incubation or calendar wait. Other applicable time modifiers require their own actual text; no unprinted stacking multiplier is created here.\n\nLong orders may be paused between active phases. A default phase is at most eight active hours. Completing a phase safely permits secure storage and later resumption without lost progress. Forced interruption inside a phase loses only unfinished progress in that phase; completed phases remain. No crafting roll occurs yet. Reserved perishables still age, and explicit physical destruction can lose actual inventory. There is no arbitrary full restart or repeated free quality roll. Before an uninterrupted-phase order begins, record its phase lengths and storage needs; absent a more specific formula, use this default.\n\nAt the season boundary, unfinished work continues only if its actual location, workers and storage remain legally and physically available under the existing campaign rules. The 2,400-hour Opening does not grant 2,400 labor hours per character. The Haven activity 'Brew a Batch' supplies a workday assignment (8 hours), not automatic completion of every recipe regardless of its own duration.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "fileSha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+      "heading": "Quality and finite output",
+      "exactText": "## Quality and finite output\n\nThese are **crafting outcome labels**, separate from equipment grade and Core artifact market condition. An Exceptional craft does not automatically become Exceptional equipment (+3 statistics), and a Masterwork craft does not create a new grade or a magic item. An item named Superior does not obtain equipment-grade bonuses unless its reviewed profile explicitly binds that grade.\n\nResolve this specific six-band crafting table instead of general expedition outcome shifts. A natural 1 is a Mishap even if the total is high. A natural 20 uses its numerical total with no extra band shift. A margin of −10 or lower is a Mishap.\n\n| Total minus DC | Result | Procedure |\n|---|---|---|\n| 10 or more | Masterwork | Choose 150% batch yield, rounded down, or the improvement option below; also preserve one eligible catalyst unit. |\n| 5 through 9 | Exceptional | Choose 125% batch yield, rounded down, or the improvement option below. |\n| 0 through 4 | Standard | Listed number of ordinary finished units. |\n| −1 through −4 | Flawed | If base batch quantity is at least 2, produce half quantity rounded down, with ordinary unit effects. If quantity is 1, make one item with a defined flaw below. |\n| −5 through −9 | Failed | No product; recover 25% of consumed non-catalyst input quantity for each material identity, rounded down to that material's permitted unit. |\n| −10 or less, or natural 1 | Mishap | No product; lose consumed inputs, return nonconsumed tools, and roll the mishap procedure. |\n\n**Completion:** quality choices are declared after the check, once for the whole batch. Extra yield does not itself consume another batch of ingredients; it represents reduced processing waste. For physical outputs the card must specify lawful packaging and output mass; total output cannot exceed actual retained material plus explicitly supplied extra mundane carrier/packaging. A yield increase cannot create missing bottles, duplicate a unique named core, or duplicate the existing item being enchanted. Such an order uses its legal improvement option or retains Standard quantity and its quality label. Floor arithmetic may give no extra units; no fractional item or banked remainder is created.\n\nThe default improvement option increases explicitly defined maximum structural item HP by 25% (Exceptional) or 50% (Masterwork), rounded down, minimum +1. Current HP increases by the same amount for the new undamaged item. It never increases creature HP, AC, damage, save DC, spell rank, RP, charges or capacity. A recipe card may replace this with one precise property/charge option reviewed for that recipe. With neither known structural HP nor a reviewed improvement option, retain Standard output and the quality label only. Consumables do not gain reusable doses or longer durations from this generic option.\n\nA quantity-1 Flawed durable item has maximum structural HP equal to half its ordinary maximum, rounded down, minimum 1, and begins at that reduced maximum. This reduced maximum is a crafting flaw, not ordinary structural damage. Ordinary equipment repair may restore current structural HP only up to that reduced maximum; it does not remove the flaw, increase the item's maximum, alter its equipment grade or convert it to Standard quality. Removing a crafting flaw requires an explicit reviewed rework procedure; absent one, the reduced maximum persists. A quantity-1 consumable whose useful effect has a positive finite duration instead has half that duration, rounded down to a whole round (six seconds), minimum one round. Instant healing/damage/RP restoration and otherwise incompatible results have no generic flaw profile: treat that Flawed result as Failed with the normal 25% non-catalyst recovery. Do not halve an undefined feature or invent a permanent debuff. The completed output card must state whether either default applies.\n\nMasterwork preserves **one component unit total** bearing role catalyst and consumed=true, chosen after the check. It must be an actual catalyst used in this batch, not a named irreplaceable component whose exact formula requires destruction; an indivisible catalyst cannot be split. Return that unit to inventory unchanged rather than deducting it. With no eligible catalyst, nothing is returned. The ingredient's exact identity, tier and remaining shelf life persist; this is not a fresh item. Nonconsumed tools always remain unless a specific mishap physically damages one.\n\n**Reviewed Forge Dwarf completion:** when eligible artisan-tool creation achieves Standard, treat its output as Exceptional for the yield/improvement choice. Already Exceptional/Masterwork remains so. Failed, Flawed and Mishap do not upgrade. This gives the ancestry's quality language a bounded crafting function; it grants no equipment grade, price multiplier, success guarantee or extra XP.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "fileSha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+      "heading": "Identify and harvest",
+      "exactText": "## Identify and harvest\n\n**Source:** identify with the creature type's knowledge skill, then extract using a relevant gathering trade. The type mapping and size times/yields are in the trade reference. This procedure concerns actual remains and environmental nodes already present; it does not create a creature, corpse, mineral vein, legal entitlement or formula.\n\n**Completion:** the Director records a finite harvest manifest before checks: actual accessible categories, unit identities/tier/weight/value, quantities or yield dice, damaged/unavailable parts, preservation deadlines, and any exceptional drop. Normally expose four to six plausible categories, but a creature with fewer real categories has fewer. These are choices within one finite yield pool, not four to six copies of the yield roll. A Tiny creature cannot produce a Large creature's organ or an unlimited number of crystals.\n\nUse the exact component's explicit harvest DC when present; otherwise the highest desired material tier sets DC: I 12, II 13, III 15, IV 16, V 18, VI 19. These are the existing expedition tier DCs, not recipe crafting DCs. The generic table has no public Tier VII–X harvest entitlement. A specially restricted ingredient beyond this table needs a separately stated DC and access procedure before rolling.\n\nIdentification takes 1 minute of close examination. Use INT and the source type skill except Medicine uses WIS; PB requires actual relevant training, with existing task-scoped expertise replacing it. One lead and at most one trained assistant (+1) can participate. A success reveals the manifest's usable categories, hazards and preservation needs; failure identifies no hidden qualities. There is no invented false fact on failure. The party may still extract a plainly recognizable category such as a hide, using the declared DC with disadvantage while unidentified. Further identification attempts require new evidence, a different method or consultation, not repeated rolls by every party member on unchanged evidence. Identification does not itself extract anything.\n\nThe extraction lead selects a compatible gathering trade: Skinning for animal parts, Herbalism for plants, Mining for mineral deposits, Fishing for aquatic gathering, Salvaging for constructs and dismantled devices; a specific listed source may authorize another. Use that trade's ability and primary-tool rules. Recipe-level access gates do not apply to an unranked generic harvest; actual restricted material access still does. Up to one eligible assistant gives +1 and spends the same extraction time. Tools and access are required; no station is required for ordinary physical field removal beyond a stable accessible work surface and appropriate containers. A kit cannot contain an unsafe magical essence without a suitable actual vessel.\n\n| Size | Full extraction time | Base total units |\n|---|---|---|\n| Tiny | 10 minutes | 1 |\n| Small | 20 minutes | 1d2 |\n| Medium | 30 minutes | 1d4 |\n| Large | 1 hour | 2d4 |\n| Huge | 2 hours | 4d4 |\n| Gargantuan | 4 hours | 8d4 |\n\nRoll base yield once for the remains when the manifest is made. It is the shared total of ordinary units across categories, constrained by actual anatomy and mass. An explicit bestiary drop uses its own finite chance/quantity, once, in addition only when the source calls it an exceptional separate drop. A global material's dropRate does not add another independent roll for every identical name in the material catalog. State which exceptional drops depend on a successful extraction before rolling.\n\nFull extraction uses the listed time. For a partial harvest, select which manifest categories to attempt first. Time is full time × chosen categories / available categories, rounded up to whole minutes, minimum 1 minute. Allocation of the finite units across categories is fixed before selection, so selecting one category cannot redirect the entire pool into its most valuable part. Once partial harvesting begins, unselected ordinary categories are forfeited for this generic procedure; another worker cannot harvest the same remainder again. An explicit unique drop can retain its separately stated procedure.\n\nUse the core four-degree check for extraction: total ≥DC+10 critical success, ≥DC success, >DC−10 failure, ≤DC−10 critical failure; natural 20 improves one degree and natural 1 worsens one. Success recovers the selected allocation. Critical success additionally preserves one otherwise damaged ordinary unit within the selected attempted allocation that the manifest already recorded as damaged but potentially recoverable. If the selected allocation contains no such unit, Critical Success grants no additional unit. It cannot recover an unselected or already-forfeited category, duplicate an exceptional drop or exceed the manifest's finite anatomy. Failure ruins one selected unit (highest-value selected unit, tied at player's choice), recovers no selected units, and ends that attempt. Critical failure ruins all selected ordinary units, recovers none, and invokes only a hazard explicitly declared in the manifest; absent one, apply the gathering trade's minor accident (1d4 damage) to the lead. No reroll or new generic attempt on the same exhausted selection; named exceptional-drop procedures remain as stated.\n\nA hurried extraction takes half the listed/partial time, rounded up to whole minutes, minimum 1 minute, with disadvantage. This is a new reconciliation of the detailed size table with the older one-hour rushed Watch summary; it avoids making a hurried Tiny harvest slower than normal. Normal and hurried harvesting consume actual Watch time, not a second automatic eight-hour charge. Yield, limits and spoilage are unchanged. Resource Team membership grants no duplicate attempt or extra yield.\n\nHarvested lots become actual cargo immediately, including containers and weight. Food, water or fuel gathered separately does not magically become the complete expedition Supply bundle. An ancestry's explicit forage or Natural Remedy grant follows its own finite procedure; this generic harvest does not refresh those uses. Humanoid and celestial remains keep the source's consent, lawful-authority or explicit-dark-path restriction; the procedure supplies no blanket permission and makes no cosmological conclusion.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "fileSha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+      "heading": "Salvage, research and sale",
+      "exactText": "## Salvage, research and sale\n\nDo not confuse harvesting remains, manufacturing a Salvaging-tool recipe, and dismantling an existing item. A salvage tool's particular bonus requires its reviewed card. Ordinary failure recovery is already part of the batch check and cannot be claimed again as dismantling that failed batch.\n\n**New basic dismantling procedure:** spend 1 active hour per item of at most 50 lb with actual Salvager's tools, a stable work surface, and applicable proficiency. Larger or magical/unique items require an explicit salvage profile first. Before work begins, record each recoverable ordinary component and the maximum quantity physically remaining in the item after known prior damage, loss or consumption. On Success, recover 25% of each recorded recoverable quantity, rounded down under that component's normal unit rule. Explicitly divisible bulk material may use the framework's 0.01-source-unit precision. Failure recovers none. No later appraisal may increase the predeclared recoverable cap. An unknown bill of materials gives no invented valuable component. Roll INT or WIS plus the one applicable PB contribution against DC 10. The item is irreversibly dismantled on either result. No general recovery of catalysts, expended ammunition/consumables, enchanting power, RP, souls, formulas or previously missing parts. No sale-value-to-free-material conversion. This check uses binary success; no natural-die degree bonus or extra recovery is introduced. If there are no known recoverable materials, ordinary scrap may be described but has no assigned recipe identity or automatic resale value.\n\n**Source:** experiment with a stated goal, compatible components, station and research check; failed research can create notes. **Completion:** researching an existing available formula uses its `minimumResearchHours`, minimum 8 active hours, and a copy/sample or credible source sufficient for that knowledge. It uses the trade ability with proficiency against that recipe's DC, plus explicit applicable research bonuses. Success yields a usable transcription of the exact formula if the source actually contains enough information; failure yields notes, no formula, and consumes those research hours. No automatic ingredient consumption unless a destructive sample test is declared with actual quantities before research. Do not reroll unchanged evidence; a fresh attempt needs a new source/sample or eight additional hours of a concretely different method. Copying an already legible legitimately accessible formula requires 1 hour and 1 sp of writing supplies per recipe and no check, and grants no trade XP. These routes grant knowledge, not item effects or access through a faction's restrictions.\n\nDesigning a new recipe, a unique substitution, or reverse-engineering an unknown magical item yields a proposal for a new reviewed card. It cannot automatically invent a numerical power from a high roll. State the desired result, consumed test materials, facility, hours, DC and what information success can actually reveal before experimentation. This is an authoring boundary, not cosmology research or permission to expose Director lore.\n\n**Batch pricing completion:** `recommendedMarketValue` is the recommendation for the Standard batch. A nominal unit reference value is batch value divided by Standard batch quantity; keep exact precision until the final transaction. Market recommendation is not a guaranteed buyer or profit. Actual quotes specify units, finished quality, condition, availability, legal claims and demand. Ordinary crafted mundane equipment uses the already reviewed mundane resale standing percentages. Actual artifacts use the Core artifact market procedure only when their reviewed profiles classify them as artifacts. The frameworks are not multiplied together indiscriminately. Crafting quality alone supplies no extra sale multiplier.\n\nThe source commission default is a 50% deposit on the agreed complete quote, plus delivery of all agreed irreplaceable monster parts before work. The quote explicitly states who supplies other ingredients, whether those costs are included, delivery schedule, acceptable quality and failure/replacement terms. There is no universal refund or loss of all funds inferred from a failed roll. Record these terms before accepting a commission in the fiction. Do not charge the same supplied ingredient twice or turn returned unused ingredients into a second payout. Use reviewed equipment rounding: final purchase cost up to a copper; final sale proceeds down to a copper, once.\n\nA buyer commits to a finite quoted quantity and price before mass-production plans rely on that sale. Once it is filled, more production needs another actual buyer/quote; a reference price does not generate infinite demand. Existing Core/local market procedures can change later quotes. Generic crafting does not manufacture gold, create a guaranteed arbitrage floor, or silently apply the artifact market to every mundane crafted object.\n\nThe older expedition 0–3 Integrity scale does not replace reviewed structural HP for personal equipment or this chapter's kits. Use the equipment repair procedure for those actual items. Convoy/vehicle Integrity, wider Haven services, Supply conversion and the full expedition loop remain separate integration work; this supplement does not claim they are completed.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "fileSha256": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+      "heading": null,
+      "exactText": "# Common equipment procedures\n\n**REVIEWED authored operational PLAYTEST equipment/acquisition scope.** These new procedures complete source item names and prices under the [equipment guide](EQUIPMENT_ACQUISITION_PLAYTEST.md). They do not claim to reproduce missing Player-book effect text. Use the complete [source tables](EQUIPMENT_SOURCE_BINDINGS.md) for costs, weights and bundles.\n\nUnless stated otherwise, using a consumable requires an Action, one available hand and access to the actual item. Spend one real unit. Drinking a potion or antitoxin, or feeding one to a willing or Incapacitated living creature within 5 feet, takes an Action. Inability to swallow blocks an oral dose. This gives no free way to dose an unwilling active creature. A potion, poison and healer's kit are not spells.\n\n## Medicine and alchemy\n\n| Item | Procedure |\n|---|---|\n| Basic Potion of Healing | Drink or feed to restore 2d4 + 2 ordinary HP, subject to actual healing blockers and caps. No Wound removal, resurrection, resource refill or stabilization of a Dead target. |\n| Antitoxin | Drink or feed for advantage on saves against poison for one elapsed hour. It grants no immunity, automatic cure or advantage on unrelated CON saves. A new dose uses the later expiry without stacking advantage. |\n| Healer's kit | A full 5-gp, 3-lb kit has ten consumable charges. Action and one charge automatically stabilize an adjacent living dying creature under the reviewed Core rule. Other medical procedures retain their own time, checks and charge costs. No universal HP healing. |\n| Acid vial | Action: ranged improvised attack against one perceived creature or object within 20 feet, using DEX and PB only when actually eligible. Hit: 2d6 acid, with no ability damage. The vial is consumed hit or miss, with no splash or persistent acid pool. |\n| Alchemist's fire | Use the same 20-foot Action attack as acid. A hit applies reviewed Burning at 1d4 fire, with no immediate damage. Its missing source DC uses the existing DC 10 fallback. Burning's family arbitration, regular-end pulses, saves and extinguishing procedures apply. Another flask does not create a second simultaneous winning fire-family pulse. |\n| Holy water | Action: the same 20-foot ranged improvised attack, or a splash attack against one adjacent target. Hit: 2d6 radiant only if the target actually has Fiend or Undead type. The active Undead ancestry has that type. The flask is consumed even against an ineligible target. No inferred type from appearance or religious affiliation, and no extra exorcism. |\n| Basic poison | Action: coat one piercing/slashing weapon or up to three compatible piercing/slashing ammunition units with one dose. For one elapsed minute, the first qualifying weapon hit, or first hit by each coated ammunition unit, forces DC 10 CON: failure takes 1d4 poison, success zero. That coating is then spent. No Poisoned condition. Coatings do not stack; expiry or washing ends them. |\n\nEach coated ammunition unit keeps its own one-hit entitlement until used or expiry. Missing does not itself remove the coating, although firing still expends the ammunition normally. Recovery and physical integrity still apply.\n\nA healer's kit transferred between owners keeps its actual remaining charges. Refilling a full ten-charge allotment costs 5 gp; an empty bag or reused cloth creates no charges. A healer's kit remains the source 3 lb while it exists in this candidate, regardless of remaining charges. Charge depletion changes its uses, not its recorded weight. Do not invent a separate empty-container weight or proportional mass until such a profile is expressly authored. Battlefield Medic, Shaman Orc and other reviewed medical exceptions retain only their actual triggers.\n\nWildling Natural Remedy produces this basic healing potion or antitoxin only through its reviewed beneficial-long-rest procedure with actual available components. It does not produce Crafting recipe-1 Field Storm Potion: that recipe's resistance effect and preserved legacy healing text remain distinct. Neither ordinary healing nor stabilization restores a Dead creature.\n\n## Oil and light\n\nOne flask of oil fuels an appropriate lamp or lantern for six elapsed hours. Alternatively, spend an Action to spill it over one 5-foot square of level surface, or make the same 20-foot ranged improvised attack to coat one creature on a hit. Spilled oil does not ignite itself.\n\n**Coated creature:** the coating expires 60 elapsed seconds after application. Before expiry, its first positive resolved fire-damage packet from another source consumes the coating after that packet is established. Then resolve one separate 5-fire-damage packet through normal defenses. A fully prevented zero packet does not trigger it. The coating then ends; it does not become a repeating Burning record. Track one mundane oil-coating record per creature across all users. A later successful coating spends another flask and replaces its deadline with application +60 elapsed seconds, without adding another pending 5-fire entitlement.\n\n**Ground:** when legally ignited, the square burns for 12 elapsed seconds. It deals one 5-fire packet when a creature first enters the square during a turn, or at that creature's regular-turn start while it occupies the square, at most once to that creature during any one turn regardless of whose turn it is. Normal defenses apply. The clock does not reset when initiative begins or ends. No propagation through closed or carried containers is created by this rule. Wider environmental fire needs its own source.\n\n| Light source | Fuel and duration | Illumination |\n|---|---|---|\n| Torch | One torch; 1 hour | Bright 20 feet, then dim another 20 feet |\n| Candle | One candle; 1 hour | Bright 5 feet, then dim another 5 feet |\n| Lamp | One pint oil; 6 hours | Bright 15 feet, then dim another 30 feet |\n| Hooded lantern | One pint oil; 6 hours | Bright 30 feet, then dim another 30 feet; hooded, dim 5 feet only |\n| Bullseye lantern | One pint oil; 6 hours | Bright 60-foot cone, then dim another 60 feet along the cone |\n\nSpend an Action to light a prepared source using actual flame/tinderbox and fuel. Hooding or unhooding a lantern takes an Action. A source must be physically carried, mounted or placed; light ownership grants no extra hand. A torch used as an improvised melee weapon deals 1 fire damage with no ability damage and no automatic Burning. A candle gains no automatic combat-damage profile.\n\nA tinderbox takes an Action to ignite exposed dry tinder or a prepared candle, torch or fueled lamp. Building an ordinary prepared fire takes one minute. It does not automatically ignite wet or incombustible material or create fuel.\n\n## Traps and restraints\n\n| Item | Procedure |\n|---|---|\n| Ball bearings | Action: spread one bag of 1,000 over a 10-foot-square level floor. A creature moving through normally makes DC 10 DEX or falls Prone, once per turn for this area. Moving at half speed avoids the roll. Scattering deals no damage. One minute recovers an accessible intact bag's contents once, without duplication. |\n| Caltrops | Action: spread twenty over one 5-foot square. An entrant makes DC 15 DEX or takes 1 piercing, stops remaining movement that turn, and has walking Speed reduced by 10 feet until receiving at least 1 HP healing or spending an Action removing the caltrop. Moving at half speed avoids the save. Repeated applications from the same area do not stack reductions. This is its explicit physical control, not Root or Restrained. |\n| Hunting trap | Action: set at a suitable anchor; the first entrant makes DC 13 DEX or takes 1d4 piercing and is tethered within 3 feet of the anchor. Action DC 13 STR frees self or an adjacent other; failure deals 1 piercing to the trapped creature. Reset with an Action before another use. Establish actual anatomy/weight compatibility before deployment. The tether does not add Restrained. |\n| Manacles | Two Actions apply to a willing or Incapacitated creature with compatible anatomy within 5 feet, or follow an exact ability authorizing another binding procedure. Bind a selected pair of limbs: prevent the corresponding hand use, or hobble walking to 5 feet. Both effects require two actual sets. Action DC 20 DEX escapes, or Action DC 20 STR breaks; thieves' tools and Action DC 15 DEX unlock; a key unlocks with an Action. |\n| Ordinary lock | Key and Action unlock, or actual thieves' tools and Action DC 15 DEX pick. Proficiency is not required to attempt with actual tools, but PB requires relevant training. Special locks state their own DC/time. |\n\nManacles create one restraint record per actual device, no unconsciousness or ownership. A free object interaction cannot bypass a resisting active creature. The above printed escape procedures take precedence over generic fallback restraints. Generic object destruction remains available only when the actual item is separately targetable and its durability applies; magical-only restraints do not acquire a cutting escape.\n\n## Travel and practical tools\n\n| Item | Procedure |\n|---|---|\n| Climber's kit | Actual harness, pitons and boot tips support a sound anchor. An Action secures the user. If the system stays intact and geometry permits, a fall stops within 25 feet of the anchor; this does not erase collision with an intervening surface or allow climbing past the rope without relocating the anchor. |\n| Block and tackle | Ten minutes rigging at an actual sound anchor multiplies the user's ordinary pound lifting limit by four for a suspended load. It adds no carried Load capacity or flight. Movement still needs the actual rope, anchor, path and helpers. |\n| Crowbar | Advantage on STR checks when its leverage physically applies; no universal STR bonus or extra attack damage. |\n| Portable ram | +4 to a STR check to break a door. One actual helper can provide advantage. This grants no automatic object damage or Sunder attack bonus. |\n| Spyglass | Distant things appear twice as large. No automatic Perception bonus, darkvision or penetration of obstruction. |\n| Magnifying glass | Advantage on investigating tiny visible detail, not every Investigation check. |\n| Merchant's scale | Compares real weights using actual standards. No automatic true-value or forgery appraisal. |\n| Tent, bedroll, blanket and ordinary clothing | Actual shelter, bedding and weather coverage. No automatic safe rest, damage resistance or magical temperature protection. A two-person tent accommodates two ordinary compatible occupants, not two Large creatures without sufficient real room. |\n| Other tools, books, ink, chalk, clothes and implements | Enable ordinary physically possible tasks using real quantities and the appropriate declared check. They grant no unprinted numeric bonus, ownership-based proficiency, infinite consumables, automatic trap discovery or universal lock access. |\n\nA toolkit contains its ordinary durable implements, not every consumed ingredient or a complete workstation. Tool possession permits plausible attempted tasks; PB requires actual relevant training. Skill and tool proficiency on the same check do not add PB twice. Specific double-PB/expertise replaces the normal contribution. Recipe stations, heat sources and other separately required equipment remain separate.\n\n## Additional tools and accessories\n\nThe following are new bounded item profiles; original source fields remain unchanged.\n\n| Item | Price | Weight | Function |\n|---|---:|---:|---|\n| Religious implements | 5 gp | 2 lb | Religious practice kit with texts, cloth and censer; no automatic consecrated focus |\n| Arcana tools | 25 gp | 3 lb | Analysis implements; no RP or spell grant |\n| Divination tools | 15 gp | 2 lb | Cards/tokens and ordinary tools; no future knowledge |\n| Survival tools | 5 gp | 5 lb | Field knife, cord and repair implements; no free food |\n| Siege engineer's kit | 50 gp | 15 lb | Measuring and assembly tools, not a siege engine |\n| Divination token | 1 gp | 0.1 lb | Oracle's ordinary class-scoped focus |\n| Class token | 5 gp | 0.1 lb | Focus for its recorded eligible class only |\n| String, 10 feet | 1 cp | 0.02 lb | Ordinary string |\n| Little bag of sand | 1 cp | 1 lb | Ordinary sand and its included bag |\n| Small knife | 1 gp | 0.25 lb | Tool; not automatically a dagger profile |\n| Alms box | 1 gp | 1 lb | Ordinary receptacle |\n| Incense block | 1 sp | 0.02 lb | Finite ordinary incense; no independent spell/focus effect |\n| Censer | 5 gp | 1 lb | Ordinary incense burner |\n| Vestments | 1 gp | 4 lb | Ordinary religious clothing |\n| Journal, ledger or notebook | 1 gp | 1 lb | Ordinary writing object |\n| Compass | 5 gp | 0.25 lb | Ordinary direction; no numeric check bonus |\n| Hooded cloak | 1 gp | 2 lb | Ordinary clothing |\n\nScribe's supplies use the existing Calligrapher's supplies item/training category. Herbalism kit and Alchemist's supplies are distinct. Ceremonial clothes use Clothes, costume: 5 gp, 4 lb. Maps, letters, rubbings, false papers and prophecy fragments weigh 0.02 lb per discrete small document, without automatic sale value or check bonus. Small narrative tokens, trinkets, insignia, charms and mundane relics weigh 0.1 lb unless clearly larger, with no automatic power or sale value.\n\nA dried-herb/flower collection is one finite 0.5-lb ingredient bundle, not automatically a specific recipe component or unlimited Natural Remedy supply. A broken manacle is a 3-lb unusable fragment. Wildling's carved staff uses quarterstaff; myth/reference books use Book; a student robe uses Robes. Clearly larger or materially different objects need a recorded appropriate profile rather than the small-item fallback.\n\nCelestial Emissary's particular dim-light reliquary uses the ordinary Holy Symbol Reliquary profile, 5 gp and 2 lb, plus dim light in a 5-foot radius while in darkness. It adds no bright light, sunlight, radiant damage or other power. This physical/light procedure makes no origin or cosmology decision.\n\n## Examples\n\nAn alchemist's-fire hit applies a Burning record. At the creature's regular end, it offers its 1d4 fire through existing family arbitration; the normal ending save follows due ticks. Another ordinary attached fire may win instead. Spending the existing extinguish Action clears ordinary-extinguishable attached fires without an invented extra check.\n\nA poisoned arrow that misses still physically exists wherever it lands. Its coating persists only until the original one-minute deadline and needs a legal physical recovery before another use. Recovering it does not refresh the poison or create a second arrow.\n\nA full healer's kit with three charges spent has seven remaining. A transfer leaves seven. Battlefield Medic can change the result of its actual qualifying stabilization; using the kit repeatedly on an already Stable creature does not manufacture that trigger.\n\nA party with five actual potions can put them into five vial slots on a potion belt if their containers fit. A six-slot belt does not create the sixth potion. The belt's own weight and all five filled containers still count.\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "fileSha256": "256bb99fce3855a78b381577d7c4c1ec448c41d7cde79a6b238b01ca47ff35a3",
+      "heading": "Select a spell",
+      "exactText": "## Select a spell\n\n1. Choose the class through which you are learning/casting it. Check that class's school access and minimum **class** level on the card.\n2. Use that class's spell rank and Core V2 cost. A different eligible class may receive the same spell at a different rank and level.\n3. Record it in your allowed known, prepared or spellbook choices. An eligible catalog entry is not an automatic grant. Wizard and Druid keep their explicit preparation systems; fallback counts apply only where the class has no more specific rule.\n4. Select only a spell marked `operational-playtest-draft` in this packet, or an operational spell expressly supplied by a class card. Other records stay visible in the unfinished queue.\n5. A class card and an ordinary spell with the same name remain separate records with separate acquisition and costs. Knowing one does not grant the other. Oath spells, Matrix techniques and similar class spells use their own card.\n\nOracle uses RC and its Mystery/Curse system. Soldier and Warrior have no general Weave access. Dragoon first gains ordinary magic at class 3; Paladin at class 2. Sufficient RP, total character level, a class feature with the same name, or a borrowed spellbook cannot bypass a gate.\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "fileSha256": "256bb99fce3855a78b381577d7c4c1ec448c41d7cde79a6b238b01ca47ff35a3",
+      "heading": "Reviewed Divination cantrip information boundaries",
+      "exactText": "## Reviewed Divination cantrip information boundaries\n\nThe [eleven-card review](../../../../docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_EXACT_REVIEW.md) and [final source clarification](../../../../docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_FINAL_CLARIFICATION.md) make each spell's information output explicit. Actual hidden facts may be revealed when a spell authorizes them; undefined records must not be invented. Sense Alignment distinguishes recorded axes, Indeterminate and genuinely unaligned objects. Detect Faction requires an actual affiliation/nonaffiliation record; absence of a field is not a negative finding. Resonance Sight reads current RP only, using ordinary visibility and actual pools; unreadability is not proof of no pool.\n\nProtection from Scrying prevents new information about its subject within its actual generating-school scope, including new Far Echo retrieval. It does not erase events, ordinary recordings or known facts, nor grant blanket immunity to Foresight Flicker's roll modifier or Glimpse Future's initiative benefit. Soul Mark's record can remain while its directional information is blocked. The final clarification retains the source's creature eligibility: active creature-classified Undead/Construct targets are not excluded merely by type. Death/destruction/ended summoned existence ends the mark; ordinary shapechange or travel alone does not.\n\nOmen Whisper limits materially equivalent inquiries across casters, while genuinely different material questions can receive another clue. Far Echo uses speech produced in its fixed capture sphere and actually audible at the center in the six seconds before casting. Read Surface Thoughts yields one actual current conscious thought after its save, not memories or forced truth. Detect Weather supplies an accurate current-trajectory forecast; a later actual new cause may alter it, with that cause recorded in the game. These are authored procedures, not a complete information/weather engine or balance certification. See [review status](DIVINATION_CANTRIP_REVIEW_STATUS.json).\n\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "fileSha256": "256bb99fce3855a78b381577d7c4c1ec448c41d7cde79a6b238b01ca47ff35a3",
+      "heading": "Mark Omen and Fate Coin: reviewed spell-specific rerolls",
+      "exactText": "## Mark Omen and Fate Coin: reviewed spell-specific rerolls\n\nMark Omen and Fate Coin share one guard: an original roll event and its entire replacement lineage may receive at most one reroll from either of these two spells, across all casters, coins, marks and recasts. Reserve this allowance at the first legal activation's commitment, not after the replacement die resolves. For a multi-die roll, the whole set/pool is one original roll event; the resulting attack's separate later damage roll is a different event. A shared area-damage roll remains one event even when applied to several creatures. Other exact class reroll features keep their own permissions and timing, but do not erase this guard or create a fresh lineage for these two spells. If competing declarations are simultaneous, use current initiative order; outside initiative use a fixed neutral table order chosen before the roll. Only the first legal commitment spends a mark/coin; a later declaration barred by this guard spends nothing. No new Action, roll event, cast, payment or duplicated outcome hook is created by replacing dice.\n\nThe [rank-1 Divination exact review](../../../../docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK1_EXACT_REVIEW.md) requires Fate Coin to wait until the **complete original roll event** is rolled and its faces are available under normal table information rules. It then replaces only one chosen die before consequences apply. Mark Omen replaces the caster’s complete attack d20 procedure before hit/miss resolution. Neither creates another attack/cast, rerolls an established resource reserve, reverses applied consequences or duplicates costs/hooks. A Well’s initial reserve die may be changed before the reserve is established. These two spell grants do not rewrite the Oracle, Mirrorsage or other class reroll contracts.\n\nThe same review preserves actual distant hearing, concealed-entrance revelation, creature sight through non-solid obscurity, willing memory-sharing, and actual faction/alignment/Corruption information. Warning Ward uses established hostility and an entry-triggered six-elapsed-second glow; it does not infer hostility from creature type or faction. Alignment Sense retains its source-defined rank-1 redundancy as an open balance question. [Review status](DIVINATION_RANK1_REVIEW_STATUS.json) records manuscript scope; no full information/roll-system runtime or human balance is certified.\n\n\n",
+      "scope": "current saved manuscript and its own stated review limits"
+    }
+  ],
+  "counts": {
+    "sourceFeats": 335,
+    "operationalReviewed": 8,
+    "pending": 327,
+    "selectedSkill": 25,
+    "previouslyPreparedCrafting": 24,
+    "previouslyPreparedCombat": 47,
+    "remainingFocusedPreparation": 231,
+    "counterpartRecords": 13,
+    "reviewedCounterparts": 2,
+    "currentGuideExcerpts": 27,
+    "numericSkillPrerequisiteOccurrences": 11
+  },
+  "checks": [
+    {
+      "name": "Both335 source registries byte-identical",
+      "pass": true
+    },
+    {
+      "name": "All327 pending source records unchanged",
+      "pass": true
+    },
+    {
+      "name": "All25 remaining source-category Skill records exact",
+      "pass": true
+    },
+    {
+      "name": "No overlap with71 already routed pending feats or8 reviewed",
+      "pass": true
+    },
+    {
+      "name": "Complete source records and hashes retained",
+      "pass": true
+    },
+    {
+      "name": "25 individual full-clause questions",
+      "pass": true
+    },
+    {
+      "name": "Every literal signal has exact field span",
+      "pass": true
+    },
+    {
+      "name": "Master Tracker compatibility alias unchanged",
+      "pass": true
+    },
+    {
+      "name": "13 counterpart objects with correct prior status",
+      "pass": true
+    },
+    {
+      "name": "20 current basic skills andactual Soldier identity",
+      "pass": true
+    },
+    {
+      "name": "All boundary excerpts exactly present",
+      "pass": true
+    },
+    {
+      "name": "All protected sources andexisting candidates unchanged",
+      "pass": true
+    }
+  ],
+  "protectedFiles": {
+    "DescentReviewChanges/ReviewBible/data/crafting/Decennium_Descent_Crafting_Bible_v4.json": "32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e",
+    "data/crafting/Decennium_Descent_Crafting_Bible_v4.json": "32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e",
+    "books/player/Decennium_Descent_Crafting_Bible_v5_Known_Descent.docx": "38eac505991a944ea557afa27751f510f773744734dc7a8e84c52b9bf7dcb099",
+    "DescentReviewChanges/ReviewBible/src/data/crafting-recipes.json": "bf24ba86f50e56d56bf6c6ed5637e608c5e16d7dbd9e522db3cf03017a0af633",
+    "src/data/crafting-recipes.json": "bf24ba86f50e56d56bf6c6ed5637e608c5e16d7dbd9e522db3cf03017a0af633",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_TRADE_REFERENCE.md": "fa266be45fb9741db05f7558232bcd69025642c81961afde4f1ce84f38228318",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md": "6f6278430d48d0c74dc8e3b928b01dea3cc97d5e45226b128a405ab37b1e7148",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_RECOVERY_PLAYTEST.md": "c6d224b75f246c02f1ed6d7312c71dea40e93a2d1aa47e6fec4fafa268bd33ae",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md": "745cbd788c454e4a9a77ce30eb7ba62f27b2a84dc20b2a870ff4ca2482356830",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md": "256bb99fce3855a78b381577d7c4c1ec448c41d7cde79a6b238b01ca47ff35a3",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/ALCHEMY_RECIPE_PLAYTEST.md": "81f26be541935380e0d9c59322bdc932d1952d6ea1d616659765deaad8fd199f",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/HERBALISM_RECIPE_PLAYTEST.md": "583da73b178a8f8148b30f06033d02c1a5158bbe0cb159030ac17e31197d58a9",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/COOKING_RECIPE_PLAYTEST.md": "441499f077006e24a3115529536d066e4868e5d952108d8f8d0618d80b5db1a0",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/COOKING_REVIEW_STATUS.json": "d946e29f351a06aec48e746d8221d06bd41c51757091c54fa13df614b6254b73",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/ANCESTRY_BACKGROUND_PLAYTEST.md": "2bb46707d22caee6e669f6d5978db0ef30211d61049c7a88818f92cf7461e384",
+    "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json": "4037e188edb890c971acb39e8679cfd5a142b0042508af30c95d4703d2a2745b",
+    "DescentReviewChanges/ReviewBible/data/playtest/crafting_engine_candidate.json": "6aa9b36a53bfac8c927ef2e3689c0475aaeadf8e26ce4c9acbcb1eba08076ff4",
+    "DescentReviewChanges/ReviewBible/data/playtest/alchemy_recipe_candidate.json": "6803a38c923582e50837fe7974d7014d76d5debef64353f7df296f3dcd84d4e6",
+    "DescentReviewChanges/ReviewBible/data/playtest/herbalism_recipe_candidate.json": "26eeffd8f1d16ed02a1ddd9277d0605f3f67865c13cf29202af6e4398c05891f",
+    "DescentReviewChanges/ReviewBible/data/playtest/cooking_recipe_candidate.json": "eb82168b81879239f9e5a7e83c064d8b1281b0e088a2202b8f3d8aa80a7783f4",
+    "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/POISONCRAFTING_RECIPE_PLAYTEST.md": "7b60943cb1248939b31f2689d6368f50f8966fc5f7f27a5aece7bc2568d35872",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/POISONCRAFTING_PUBLIC_RECIPE_CARDS.md": "b4e99ddb977b4312c7aae6a320adf9a0964646f4f9d7fe0bd32f578f854f6008",
+    "DescentReviewChanges/ReviewBible/docs/director-only/POISONCRAFTING_INTERNAL_RECIPE_CARDS.md": "029e6a73ebbf55430df5ca37151a1638caef8c8af3a2383667da0ee36f41de13",
+    "DescentReviewChanges/ReviewBible/data/playtest/poisoncrafting_recipe_candidate.json": "865a5acbbedb2326934c6ef36000c26edc112ad60b1469733905b2f5c0d86313",
+    "DescentReviewChanges/ReviewBible/data/director/poisoncrafting_recipe_candidate_internal.json": "f9f00ed1cf5dc52e62133eaaf8bceb23c70b81eadf21b0dfbfab30b1b0eaa62f",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/POISONCRAFTING_REVIEW_STATUS.json": "b0e729b5b56059e082f8d689c43d80cde9b779f6ef891f8f8dd21cc0126622e5",
+    "data/director/Decennium_Descent_Crafting_Bible_v4_Full_Internal.json": "5748569b95eb7a42cc0b7243848ad940fb5065dff6e320c0a865c35b7de12bdb",
+    "DescentReviewChanges/crafting-bible/Decennium_Descent_Crafting_Bible_v2.json": "baab94ba7f4c466e7991d6705225ba69d4b1b9e76b044da13f246d68d5c61901",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3",
+    "docs/audit/2026-10-08/full-game/LEATHERWORKING_SOURCE_PREPARATION.json": "5c9b8179c4468efc3b2da4ef2275457152cf61fd5b2ed261ae43dc02d7c9c673",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BLACKSMITHING_RECIPE_PLAYTEST.md": "5933c5ecbacc9ddda3d3aec23ca2ac89925d96c5ffedc2e1a99ac8613d5b40e4",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BLACKSMITHING_PUBLIC_RECIPE_CARDS.md": "21d6175ff19bdfb1978c4ab6fdf1f8fb47a9f99fb8bb7ffc21b2268ea40a0ee9",
+    "DescentReviewChanges/ReviewBible/docs/director-only/BLACKSMITHING_INTERNAL_RECIPE_CARDS.md": "4689fbdecf6da49e7af749ed50a440456c803e513cd74bfec39f77ac0aa84338",
+    "DescentReviewChanges/ReviewBible/data/playtest/blacksmithing_recipe_candidate.json": "60b713e388339fa1c34d69bf7dcda3771cfaf0f1d2d6b0f43a66ca6092625f77",
+    "DescentReviewChanges/ReviewBible/data/director/blacksmithing_recipe_candidate_internal.json": "d4cb2aca87ea74ebb93ec9ac94f5e6679bc1b29e7714ccfae2c8537891b55bd3",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BLACKSMITHING_REVIEW_STATUS.json": "a1c6d29494a712321823ec1f6ccb78b11b8b76bb3979757160be51945296ffdb",
+    "DescentReviewChanges/ReviewBible/docs/director-only/LEATHERWORKING_INTERNAL_GUIDE.md": "e6d98665135beb2e89e72d77485866e5546f20d9b5f476888d4373a1f1912c29",
+    "DescentReviewChanges/ReviewBible/data/director/leatherworking_recipe_candidate_internal.json": "a4b283a958757306325474e0c3d68bfd384d7d4aec61b98d2fb8a23c44a859ec",
+    "DescentReviewChanges/ReviewBible/data/playtest/leatherworking_recipe_candidate.json": "531828b4b43758a795bde78cceb1811da2a1c0554e15662fd47c4e091f5d438b",
+    "DescentReviewChanges/ReviewBible/docs/director-only/LEATHERWORKING_INTERNAL_RECIPE_CARDS.md": "cac16beef034d1acf2fedb53ca7f8f386da24a148a4b35ea0ae34f912eddeefa",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/LEATHERWORKING_PUBLIC_RECIPE_CARDS.md": "317fdeecd50d7ef14378052eb25e1c8ab5b4d99b92269f4ce68c4cee6d4bde7c",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/LEATHERWORKING_RECIPE_PLAYTEST.md": "9018c9671075451b44a4dc74c106e2f858a9f0e06665bd7a8e47eec9c867cd2d",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/LEATHERWORKING_REVIEW_STATUS.json": "f1c42adbd9ec5564196cddd41af72216fc5c432837d6a899b2b8804b4a77be2f",
+    "DescentReviewChanges/ReviewBible/tools/leatherworking_reference.py": "7efd864e4f2a9254024bd01bb1e72b3f231b4de53501cbe750a0b155ca81c599",
+    "docs/audit/2026-10-08/full-game/TAILORING_SOURCE_PREPARATION.json": "5f591d03d65182220f8023054e637135b15388388d21ce10ee7aac886547e232",
+    "docs/audit/2026-10-08/full-game/TAILORING_SOURCE_VERSION_AUDIT.json": "5a70926ae844b23fdca5d49947d5da6f3e06544937113185a384d38ddc11cc8c",
+    "docs/audit/2026-10-08/full-game/CODEX_TAILORING_SOURCE_EVIDENCE_PREPARED.txt": "ad58ae2598632c183b3181ebedea8b5d144884a18f9679542b1a55d6d69e7196",
+    "DescentReviewChanges/ReviewBible/src/data/feats.js": "842d14e868aa93d51fc6f21e39bc9dd3a1b872cdffcf467ffaa99a4cc3f779b6",
+    "src/data/feats.js": "842d14e868aa93d51fc6f21e39bc9dd3a1b872cdffcf467ffaa99a4cc3f779b6",
+    "DescentReviewChanges/ReviewBible/data/public/feat_playtests/catalog.json": "7af45f6bc165fd3679b68c9dcf85ccf5a5f54af7fb9bbd44f4663b31e08a887e",
+    "DescentReviewChanges/ReviewBible/data/public/feat_playtests/manifest.json": "6f86c63ed22412c6732098560a5236678bba4bb216eaa53ba23a2bf1f0e0b2cf",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md": "f4d054a76475e8c808aa92662f8635d501f526da638b96ba5a961448ff90d7e8",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST_VALIDATION.json": "50e7f3f841d5944752c4d525803425e7860d30f19860d722c68fbec03d369d92",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_SOURCE_VALIDATION.json": "dcc7c3a6e9ab97fc870ae019b4b685251854085137f3d2302b41e359b86e0bb5",
+    "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md": "01dbb33bb0f1fd1b191b1efb292b66bf6b42009af165d7ad5a57c0601be0411f",
+    "docs/audit/2026-10-08/full-game/REMAINING_FEAT_CATALOG_PREPARATION.json": "dda0435ffa58a8bb875444008c127c98e0b7805efe1fd4fce5096f900c0de199",
+    "docs/audit/2026-10-08/full-game/FEAT_IDENTITY_CANDIDATES.json": "95fdb38046026c38afe2a2dec8aac7c36f8d72549a860f82a2c49c056300ef8f",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md": "b298415146cba6453ec33f1310b4b668ac74e0e2d2681a08e077852c065d56e1",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md": "e59456f4430f7f72db0392c3a52be8ec8b7d804b4b765c0a73f81c72f060a49e",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md": "8ce30a927b550d31bc981fc9537fccd178507c6b5e671fe9c6d82b987476f871",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+    "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f",
+    "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json": "9a7de82d75e74ae22135266cd4b0c0951ba6bd280e72584212f441d4fa91fc17",
+    "docs/audit/2026-10-08/full-game/CRAFTING_FEAT_INTERFACE_PREPARATION.json": "f3c80adf8478335a935f93a85928ab7903b9f925d804bf96dad375099dfdf8df",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7",
+    "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json": "23a3b37796c4adb8191dd0156fde8059c39c0983d494e64ec5e9445cdfad9e2f",
+    "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+    "docs/audit/2026-10-08/full-game/COMBAT_FEAT_SOURCE_PREPARATION.json": "1bf5dc5d9b24927662e6ccdcc513c6434a448ea9766c5bf7b56612405289ddab"
+  },
+  "newRules": false,
+  "featsApproved": 0,
+  "cosmology": "post-push only; no new cultures,ancestries orcreature ontology"
+}

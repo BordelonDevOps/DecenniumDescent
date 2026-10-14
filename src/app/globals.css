@@ -37,7 +37,43 @@
   }
 }
 
-/* Custom styles for D&D theme */
+/* Decennium Descent companion theme */
+@media print {
+  .fantasy-header {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  #aethel-character-sheet,
+  #dd-character-sheet {
+    break-inside: avoid;
+    box-shadow: none !important;
+    background: white !important;
+  }
+  .umbrin-lore-card {
+    background: #f8f8f8 !important;
+    border: 1px solid #666 !important;
+    color: #222 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.75rem;
+    padding: 0.65rem 0.75rem !important;
+  }
+  .umbrin-lore-card .umbrin-lore-title {
+    color: #111 !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  .umbrin-lore-card p,
+  .umbrin-lore-card span {
+    color: #333 !important;
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+}
 .fantasy-header {
   background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
               url('/banner-image.png');

@@ -1,0 +1,27 @@
+{
+  "pack": "03-haven-economy-social",
+  "scenarioId": "HAV-SMUGGLE",
+  "agentId": "pleasure-house-operator",
+  "seed": "aggregate-20seeds+5narr",
+  "observations": [
+    "Smuggle beat legal net in 0% of seeds; catch rate 15% under Director risk model.",
+    "Undercity route skips tax but undocumented x forced sale + bribes rarely beat documented legal net in 20 seeds.",
+    "Caught smuggle: cargo partial loss + standing -2; extraction risk not bypassed - crime is not free."
+  ],
+  "metrics": {
+    "seeds_run": 20,
+    "narratives_run": 5,
+    "source_gameplay_loop": "pending-review GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt (docs/mechanics/GAMEPLAY_LOOP_CANON.md missing)",
+    "source_haven": "src/data/haven.json",
+    "smuggle_beats_legal_rate": 0.0,
+    "catch_rate_observed": 0.15
+  },
+  "rulesQuestions": [
+    "GAMEPLAY_LOOP_CANON.md and DESIGN_DOCTRINE.md listed in pack README are missing on main; playtest used pending-review bible extract.",
+    "Mandatory Haven tax rate is not published; only worked-example residual 3094->2900 (~6.27%) exists - Director assumption.",
+    "reputation.js tier bands (Hated...Honored) disagree with Gameplay Loop standing scale -5..+5; which applies in Haven?"
+  ],
+  "exploits": [],
+  "recommendations": [],
+  "confidence": "medium"
+}

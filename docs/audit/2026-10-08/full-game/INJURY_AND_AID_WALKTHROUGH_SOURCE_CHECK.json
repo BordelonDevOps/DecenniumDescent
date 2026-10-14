@@ -1,0 +1,388 @@
+{
+  "status": "PASS — worked-state trace and independent boundaries match existing reviewed Core reference",
+  "atUtc": "2026-10-11T09:04:34.861384+00:00",
+  "manuscript": "DescentReviewChanges/ReviewBible/docs/playtest/INJURY_AND_AID_WALKTHROUGH.md",
+  "manuscriptSha256": "f3f2c256e607d5ce78bce281328514d68dff7222ce1152d71a2dc5af67ed4483",
+  "sourceHashes": {
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+    "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md": "9de8a0f292ecb248ada84d73a0dcaa47fe2b33e842700b2bc1c5e9bedd198c0b",
+    "DescentReviewChanges/ReviewBible/docs/playtest/ONBOARDING_REVIEW_STATUS.json": "5272bfd236188702fab76f794a5c6ecfe16498fb87e091bba57179b5e97e2777",
+    "DescentReviewChanges/ReviewBible/tools/core_playtest_rules.py": "a162117cf2c0c96a77ef5e594ce7247593930c57e6223fc7291ab12fc45c8d7d",
+    "DescentReviewChanges/ReviewBible/tools/spell_playtest_rules.py": "16e31c5668fcd318433104fa7d67c499b76a1057c460cf8d3c63668aa096019e",
+    "docs/audit/2026-10-08/full-game/GPT_CORE_FINAL_CLOSURE.md": "ae7d327d579c97895d615b9c7ba02bab342982341e7567f9218ec56d82892613",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_PLAYTEST_VALIDATION.json": "870f51543eeb0c01b8e41e141911e9ae6f58218310f83a3505a5355113303dc3",
+    "docs/audit/2026-10-08/full-game/ONBOARDING_CHARTER_EXACT_FULFILLMENT.json": "67bf41343c8b6dbc7183cb912e5b893df597ed249a17a8c3a666cd386df64b25",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md": "32ca16894c29ba2906f8d510ef9781951bc8780e4a91ee84671f250f4de62b5f",
+    "DescentReviewChanges/ReviewBible/data/playtest/strain_bindings.json": "41e1d20301713d6eb2c7bbc6f6f5b41f98da398e48e479a4c62fe7c1e4c5a5dd"
+  },
+  "continuingSequence": [
+    {
+      "step": "Mira initial state",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 10,
+        "temp_hp": 0,
+        "wounds": [],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 0
+      },
+      "events": null
+    },
+    {
+      "step": "First damage packet: W1 without Injury",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 4,
+        "temp_hp": 0,
+        "wounds": [
+          null
+        ],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 0
+      },
+      "events": {
+        "postTempDamage": 6,
+        "tempAbsorbed": 0,
+        "woundSaves": 1,
+        "injuryRolls": 0,
+        "instantDeath": false,
+        "deathFailuresAdded": 0,
+        "woundDC": 10,
+        "woundTotal": 8
+      }
+    },
+    {
+      "step": "Second packet: W2 linked to Mobility Trauma; newly dying",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 0,
+        "temp_hp": 0,
+        "wounds": [
+          null,
+          3
+        ],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 0
+      },
+      "events": {
+        "postTempDamage": 4,
+        "tempAbsorbed": 0,
+        "woundSaves": 1,
+        "injuryRolls": 1,
+        "instantDeath": false,
+        "deathFailuresAdded": 0,
+        "woundDC": 10,
+        "woundTotal": 4
+      }
+    },
+    {
+      "step": "Natural8 regular-start death save, without CON modifier",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 0,
+        "temp_hp": 0,
+        "wounds": [
+          null,
+          3
+        ],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 1,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 1
+      },
+      "events": null
+    },
+    {
+      "step": "12:00 legal kit stabilization with d4=2",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 0,
+        "temp_hp": 0,
+        "wounds": [
+          null,
+          3
+        ],
+        "stable": true,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": 50400,
+        "last_death_turn": 1
+      },
+      "events": null
+    },
+    {
+      "step": "13:59:59 no early Stable recovery",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 0,
+        "temp_hp": 0,
+        "wounds": [
+          null,
+          3
+        ],
+        "stable": true,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": 50400,
+        "last_death_turn": 1
+      },
+      "events": null
+    },
+    {
+      "step": "14:00 Stable recovery during treatment",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 1,
+        "temp_hp": 0,
+        "wounds": [
+          null,
+          3
+        ],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 1
+      },
+      "events": null
+    },
+    {
+      "step": "20:30 successful treatment removes W2 and its Injury",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 1,
+        "temp_hp": 0,
+        "wounds": [
+          null
+        ],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 1
+      },
+      "events": {
+        "total": 13,
+        "degree": "success",
+        "success": true
+      }
+    },
+    {
+      "step": "No second Stable recovery at a later time",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 1,
+        "temp_hp": 0,
+        "wounds": [
+          null
+        ],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 1
+      },
+      "events": null
+    }
+  ],
+  "independentBoundaryCases": [
+    {
+      "name": "Three temporary HP prevents this half-max Wound trigger",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 7,
+        "temp_hp": 0,
+        "wounds": [],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 0
+      },
+      "events": {
+        "postTempDamage": 3,
+        "tempAbsorbed": 3,
+        "woundSaves": 0,
+        "injuryRolls": 0,
+        "instantDeath": false,
+        "deathFailuresAdded": 0
+      }
+    },
+    {
+      "name": "One previous failure plus critical damage adds two: Dead",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 0,
+        "temp_hp": 0,
+        "wounds": [],
+        "stable": false,
+        "dead": true,
+        "death_successes": 0,
+        "death_failures": 3,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 0
+      },
+      "events": {
+        "postTempDamage": 1,
+        "tempAbsorbed": 0,
+        "woundSaves": 0,
+        "injuryRolls": 0,
+        "instantDeath": false,
+        "deathFailuresAdded": 2
+      }
+    },
+    {
+      "name": "Exact maximum excess gives Instant Death",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 0,
+        "temp_hp": 0,
+        "wounds": [],
+        "stable": false,
+        "dead": true,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 0
+      },
+      "events": {
+        "postTempDamage": 14,
+        "tempAbsorbed": 0,
+        "woundSaves": 0,
+        "injuryRolls": 0,
+        "instantDeath": true,
+        "deathFailuresAdded": 0
+      }
+    },
+    {
+      "name": "Natural20 restores1 and preserves Wounds",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 1,
+        "temp_hp": 0,
+        "wounds": [
+          null,
+          3
+        ],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 1
+      },
+      "events": null
+    },
+    {
+      "name": "Critical healing ceiling retains maximum and Wounds",
+      "state": {
+        "maximum_hp": 10,
+        "hp": 9,
+        "temp_hp": 0,
+        "wounds": [
+          null,
+          null,
+          null
+        ],
+        "stable": false,
+        "dead": false,
+        "death_successes": 0,
+        "death_failures": 0,
+        "uses_death_saves": true,
+        "stable_until_seconds": null,
+        "last_death_turn": 0
+      },
+      "events": null
+    }
+  ],
+  "externalFixtureState": {
+    "initialBurdenedSpeedFeet": 20,
+    "afterMobilityTraumaSpeedFeet": 15,
+    "afterRemovalSpeedFeet": 20,
+    "initialConSaveModifier": 2,
+    "afterW1ConSaveModifier": 1,
+    "afterW2ConSaveModifier": 0,
+    "afterW2RemovalConSaveModifier": 1,
+    "healerKitChargesBefore": 10,
+    "healerKitChargesAfter": 9,
+    "treatmentSupplyConsumed": 1,
+    "treatmentStartClock": "12:30",
+    "treatmentEndClock": "20:30",
+    "treatmentElapsedHours": 8,
+    "stabilizationToTreatmentEndElapsedHours": 8.5,
+    "pronePersistsUntilSeparatelyResolved": true
+  },
+  "referenceScope": "The existing helper handles declared legal life-state events. Action/target legality, kit/Supply consumption, timing eligibility, all conditions, rest benefits and actual class exceptions remain source-checked scene inputs, not runtime coverage. No resurrection or cosmology procedure is authored.",
+  "scenarioAssumptions": [
+    "Separate Mira level1 scene; existing Burdened load, empty hands, no concentration, independent condition, temporary HP or survival exception",
+    "Damage packets already resolved after defenses",
+    "Kit helper has actual accessible stock, one free hand, Action and adjacency; no healing-on-stabilization feature",
+    "Treatment helper has actual medical kit, one Supply, legal continuous care and Medicine+3; applicable treatment tierI/DC12",
+    "No intervening damage, recovery prohibition or interruption; no inferred rest benefits"
+  ],
+  "activeReviewInputsUnchanged": 342,
+  "localLinks": [
+    "../mechanics/CORE_RESOLUTION_PLAYTEST.md",
+    "../mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+    "FIRST_BARD_WALKTHROUGH.md",
+    "../mechanics/STRAIN_PLAYTEST.md"
+  ],
+  "sourceInformationDeleted": false,
+  "newRules": false,
+  "presentationReviewComplete": false,
+  "submittedToGPT": false,
+  "runtimeImplemented": false,
+  "humanTeachingVerified": false,
+  "balanceApproved": false,
+  "editorialClarification": {
+    "old": "A Critical Failure would additionally give the **patient** one Strain under the treatment procedure.",
+    "replacement": "A Critical Failure would additionally give the **patient one expedition Strain**, according to the [reviewed Strain binding](../mechanics/STRAIN_PLAYTEST.md).",
+    "completeReviewedBinding": {
+      "sourceId": "recovery.wound-treatment.critical-failure",
+      "trackId": "expedition.strain",
+      "role": "namespace-reference",
+      "source": {
+        "path": "docs/mechanics/GAMEPLAY_LOOP_CANON.md",
+        "kind": "campaign-reference",
+        "sha256": "ba5ebcbdb77a27cb8fde88ba13fd05216d6808b10f7b58b64e6cba54eed62066"
+      }
+    },
+    "newRule": false,
+    "presentationReviewComplete": false,
+    "previousDraftAndReportPreservedAt": "docs/audit/2026-10-08/full-game/teaching-staging-before-strain-and-recycling-followup"
+  }
+}

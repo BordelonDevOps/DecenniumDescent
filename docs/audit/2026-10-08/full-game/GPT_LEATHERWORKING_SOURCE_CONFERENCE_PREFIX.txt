@@ -1,0 +1,221 @@
+Capture provenance: completed source/interface response in Calibration Review Part 2, thread 6aca4e7e-fd2c-83ea-bf0f-971997ed1a9b, turn 86413ad7-8096-4e6f-baca-3cab34aa66a3, reply 4f808c26-f93b-4b50-ac05-a917b7ca2b7e. Introduction and LW-D01–04 are connector Markdown. LW-D05 through the final authoring requirements are complete rendered DOM text from that same final response, with tables preserved as tab-separated text. The connector enforces a 20,000-character limit; no intermediate thinking/output is treated as this verdict. This is source/interface direction, not exact card approval.
+
+# Leatherworking source-conference disposition
+
+**Proceed to author all 44 Leatherworking cards under the decisions below.** The supplied evidence supports a finite operational model for the 24 containers and 20 wearables. This is **source/interface direction, not exact approval of the unwritten cards**.
+
+**EXISTING** below identifies authority already supplied in Part A or numerical/textual fields preserved in Part B. **NEW** identifies a conflict disposition or operational completion authorized by this conference. New fields belong in the candidate overlay, not in the preserved source records.
+
+The current-pass totals remain **218/687 reviewed, 469 remaining; public 138/433**. The supplied local hash and reconstruction reports remain distinct from checks performed here.
+
+## LW-D01. Activate the eleven numerical AC bonuses through an explicit overlay
+
+**Decision: bind the eleven positive `mechanics.armorBonus` values in the operational cards.** Do not leave them silently inactive, and do not claim the original prose already printed them.
+
+The evidence establishes that these numerical fields survive in the supplied data variants. It does not establish why the prose omitted them. The conflict is resolved here by an explicit authored disposition: **the retained positive numerical field supplies an additional defensive enhancement, subject to the eligibility and arbitration below**.
+
+| Operational recipe AC enhancement | Recipe IDs |
+|---|---|
+| +1 | 306, 308, 309, 312, 314, 315, 653, 655 |
+| +2 | 317, 318, 319 |
+
+For every affected card, retain the original effect paragraph unchanged and separately state that its operational AC enhancement comes from the named numerical field. The two public discrepancies must remain individually recorded: **recipe-308, V5 paragraph 1731; recipe-653, V5 paragraph 1717**. Neither paragraph mentions AC.
+
+### Defensive arbitration
+
+**NEW cross-trade extension:** these Leatherworking enhancements join the already-reviewed **`equipment.defense-enhancement`** family. They do not create a second stacking family.
+
+Evaluate the strongest **actual eligible** modifier among the applicable worn-suit grade, Blacksmithing enhancements and these Leatherworking enhancements.
+
+A Leatherworking **Armor** enhancement qualifies only while the suit is functional, unsuppressed, actually worn, and supplies the armor formula being used. A Boots, Gloves, Leather Gear or Coat enhancement qualifies while its complete item is functional, unsuppressed and actually worn in its designated benefit slot. Carried, stowed and melded pieces do not qualify.
+
+The ordinary bonus from the one selected usable shield remains outside this family. Independent class, spell, ancestry and unarmored rules retain their own requirements.
+
+**Zero means no recipe enhancement candidate.** The nine wearable records with `armorBonus:0` do not introduce a phantom +0 that cancels a Crude suit’s −1. Recipes **289 and 301** retain zero recipe AC enhancement; **319 explicitly retains +2**.
+
+For the combination in LW-02, a Fine recipe-319 suit, recipe-653 boots and an eligible Blacksmith accessory with enhancement **H** produce:
+
+`defense enhancement = strongest eligible value among {+1 suit grade, +2 recipe-319, +1 boots, H}`
+
+There is only one worn suit supplying the armor formula. A separate Fine suit cannot be layered underneath another suit to contribute its grade.
+
+### Resistance remains separate
+
+The seven printed resistances remain exactly:
+
+| Resistance | Recipe IDs |
+|---|---|
+| Force | 312, 314 |
+| Thunder | 315, 317 |
+| Cold | 318, 319, 655 |
+
+Resistance requires the complete item to be functional, unsuppressed and actually worn. A suit’s resistance does **not** require selecting its AC formula, although wearing that suit can still invalidate an unarmored formula’s own requirements.
+
+Resistance protects the wearer, not automatically the item or its contents. Repeated resistance to the same type does not become immunity. These bindings extend the supplied Blacksmithing wearing/arbitration model without changing its existing cards.
+
+## LW-D02. Separate container capacity from encumbrance relief
+
+**Decision: `capacityPounds` supplies the recipe’s encumbrance-relief allowance, R. It is not automatically the container’s complete physical capacity.**
+
+Preserve the source field and add separate operational records:
+
+`reliefAllowanceLb`, `physicalContentWeightLimitLb`, `physicalContentVolumeFt3`, compartment limits, opening dimensions and exterior dimensions.
+
+**NEW construction decision:** physical capacity is entirely mundane. Every eligible base body must physically support at least the full printed R before enchanting. Suppression therefore removes relief, not storage space.
+
+An ordinary backpack can retain its reviewed **30-lb/1-cubic-foot** capacity while a particular recipe relieves only 10 or 20 lb. An ordinary **6-lb pouch is not a legal substitute** for a recipe promising 10, 20 or 30 lb under this model.
+
+### Finite container bodies
+
+The following table defines **twelve** container profiles. Parameter **n** takes only the listed values; it is not an unrestricted scaling formula.
+
+| Recipe family / body | Permitted n | Ordinary price | Empty weight | Physical contents limit | Contents volume | Structural HP |
+|---|---:|---:|---:|---:|---:|---:|
+| Existing Backpack | — | 2 gp | 5 lb | 30 lb | 1 ft³ | 10, NEW |
+| NEW cargo pouch | 1, 2, 3 | n gp | n+1 lb | 10n lb | n/3 ft³ | 5 |
+| NEW cargo quiver | 1, 3, 4 | 2n gp | 2n lb | 10n lb | n/3 ft³ | 5 |
+| NEW cargo belt | 1, 2, 3, 5 | 2n gp | 2n lb | 10n lb | n/3 ft³ | 5 |
+| NEW cargo harness | — | 10 gp | 10 lb | 50 lb | 5/3 ft³ | 10 |
+
+For Pouch, Quiver and Belt, select **n = R/10**. The Harness uses its single 50-lb profile. Every Backpack recipe uses the existing 30-lb backpack body.
+
+The existing backpack’s price, weight and capacity are retained from the supplied equipment records and guide. Its structural HP and geometry below are new completions. The other bodies are new ordinary equipment profiles, not revisions of the source Pouch, Quiver, Potion belt or Climber’s kit.
+
+All use leather or leather-and-wood load-bearing construction, structural **AC 15**. Metal fasteners do not by themselves make the load-bearing body iron/steel.
+
+### Geometry, compartments and closure
+
+**NEW finite geometry:**
+
+| Body | Usable interior and opening | Exterior envelope |
+|---|---|---|
+| Backpack | 18 × 12 × 8 inches; 12 × 8-inch mouth | 20 × 14 × 10 inches |
+| Cargo pouch n | 12 × 8 × 6n inches; 12 × 6n-inch mouth | 13 × 9 × (6n+1) inches |
+| Cargo quiver n | n separate sleeves, each 36 × 4 × 4 inches; each sleeve has a 4 × 4-inch mouth | 38 × 6n × 6 inches |
+| Cargo belt n | n integrated pockets, each 12 × 8 × 6 inches; each has a 12 × 6-inch mouth | Each pocket occupies 13 × 9 × 7 inches, positioned on the fitted belt |
+| Cargo harness | One 30 × 12 × 8-inch cargo cradle with retaining straps; loading face 30 × 12 inches | 32 × 14 × 10 inches |
+
+Each quiver sleeve and belt pocket independently supports at most **10 lb and 1/3 ft³**. Unused room in another compartment cannot make an oversized object fit.
+
+Pouches, backpack, sleeves and pockets have ordinary flaps and ties, not locks, airtight seals or magical preservation. The harness is an open retaining cradle; loose small objects or fluids need an actual compatible inner container.
+
+Both weight and volume limits apply. Objects must pass the opening and fit without ungranted compression, folding or disassembly. Nested containers use their **external occupied dimensions**, not merely the sum of their contents’ volumes.
+
+A quiver may contain compatible ammunition or other compatible narrow objects. Its allowance is not an ammunition count, free ammunition grant or Loading exception. Arrow and bolt masses remain their supplied equipment values.
+
+These profiles preserve the full stated relief number. They do **not** guarantee that every arbitrary collection weighing R fits its volume, shape or compartments. That physical-fit condition is explicit rather than silently limiting a 20-lb recipe to a 6-lb ordinary pouch.
+
+### Fitting and container slots
+
+Container bodies keep these fixed prices, masses, capacities and dimensions across fittings. **Do not import Large armor/weapon scaling onto the supplied backpack’s `largeSizingEligible:false` record.** Adjusting straps changes fit, not cargo capacity or R.
+
+**NEW relief slots per direct bearer:**
+
+| Relief slot | Eligible families |
+|---|---|
+| One back-cargo slot | Backpack **or** Harness |
+| One quiver slot | Quiver |
+| One waist-cargo slot | Belt |
+| Two pouch positions | Pouch |
+
+Thus, at most **five** containers can provide relief to one bearer, subject to actual anatomy, space and attachment compatibility. These slot limits are new restrictions on simultaneous equipment use, not reductions of an individual recipe’s R.
+
+A container must occupy a recorded relief slot and be properly worn or directly held by that bearer. Holding it still requires the necessary actual hands. Merely touching it, owning it, dragging it, putting it on a vehicle or strapping it to another container does not qualify.
+
+Donning or doffing one container takes **one Action**. Designation accompanies donning or a lawful take-hold operation. Changing between already-carried competing occupants without removing them takes one Action to reposition/refit; the old benefit ends before the new one begins.
+
+A backpack strapped outside another backpack is externally carried cargo, not a second active backpack and not the inner contents of the first.
+
+## LW-D03. Relief changes the direct bearer’s burden accounting, not physical mass
+
+**EXISTING:** pounds, Inventory Load, casualty Load and Extraction Class are different quantities. Containers and contents remain distinct physical records.
+
+**NEW interpretation of “without counting against normal encumbrance”:** eligible contents receive relief in the direct bearer’s ordinary pound-carrying comparison and in the pound-equivalent part of Inventory Load. Their real mass does not change.
+
+For each eligible content record **i**, retain:
+
+- `wᵢ`: its current known physical weight.
+- `lᵢ`: its canonical Load before this Leatherworking relief.
+- `rᵢ`: the pounds covered by this container’s remaining allowance.
+
+Apply:
+
+`0 ≤ rᵢ ≤ wᵢ`
+
+`total covered pounds for the container ≤ R`
+
+`Load relief for record i = min(lᵢ, rᵢ / 10)`
+
+The direct bearer therefore uses:
+
+`counted carrying pounds = actual carried pounds − total covered pounds`
+
+`effective Inventory Load = canonical carried Load − total Load relief`
+
+**Do not rewrite either physical weight or canonical Load with those derived results.**
+
+This is an explicit exception for the direct bearer’s ordinary carrying burden. It does not increase Strength, push/drag/lift limits, casualty capacity, equipment anatomy or container strength. Supports, platforms and another creature carrying the bearer still confront the full physical mass.
+
+### Allocation and contents
+
+Allocate R in a stable recorded loading order. Within an inner container, count its empty body and then its contents in their recorded order. Repacking can change that order through actual handling; a player cannot reorder the accounting after a roll or resolved hazard.
+
+Partial **accounting coverage** is allowed. A 12-lb rock may receive 10 lb of relief without being physically divided. Divisible lots retain their real quantities; allocation does not create additional lots or units.
+
+The active container’s **own empty weight receives no relief from itself**. Ordinary inner bags, bottles and their contents may qualify, counting each record once. Explicitly inclusive gross weights must be expanded or counted inclusively, never both.
+
+A record with **3 Load and 1 lb** can receive at most **0.1 Load** relief from that pound, leaving **2.9 Load**. Fifty ordinary coins weigh 1 lb under the supplied equipment convention and normally contribute 0.1 Load; that contribution can be fully relieved. An estimated `10 × Load` weight alone is insufficient to establish eligibility for pound relief; use a known weight or an expressly reviewed operational weight.
+
+The contents must be actual noncreature cargo. This procedure grants no encumbrance exemption for a creature, casualty or creature’s body, including a Petrified creature. Harvested material lots remain ordinary eligible objects when their own source rules permit them.
+
+### Nested containers and external attachments
+
+**NEW nesting rule:** an enchanted container enclosed in another container is stowed and supplies no independent relief. The active outer container may cover the inner container’s empty body and eligible descendants once.
+
+Consequently, there is no repeated inner-plus-outer credit on the same 8 lb. Retain one acyclic custody/containment tree and one physical record per item.
+
+Ordinary inner bags do not block outer relief. External attachments do not receive it, except cargo occupying the Harness’s defined cradle or the Belt’s integrated compartments. Naming arbitrary lashed equipment “contents” does not expand that scope.
+
+Transfer moves the container and its actual contents once. The former bearer loses its relief immediately; the recipient gains it only when their own slot, hold, fit and state requirements are satisfied. No depletion or refresh counter exists: recompute the continuous allowance from current contents and eligibility.
+
+## LW-D04. Suppression, Broken containers and melding
+
+### Suppression
+
+Suppression disables recipe relief, check bonuses, AC enhancement and resistance. It changes no physical capacity, actual mass, structural HP, mundane grade or persistent workmanship.
+
+Contents do not spill merely because relief stops. The body was required to support their unreduced physical weight from the outset.
+
+Recalculate the bearer’s burden immediately. An over-capacity inventory remains in custody but cannot be moved through ordinary routine carrying until made legal by dropping, transferring or another permitted handling method. This is an **overloaded-custody state**, not invented damage, forced teleportation, automatic dropping of selected valuables or a universal Speed-0 condition.
+
+### Structural breakage
+
+**NEW container-failure default:** at 0 structural HP, the body loses its ordinary secure carrying/containment function as well as its recipe benefits.
+
+Move each immediate contents record into the ordinary placement procedure at the container’s actual location. An intact inner bag moves as one physical subtree and retains its own contents; its contents do not also spill separately.
+
+An independently recorded, intact restraint or supporting container can retain what it genuinely supports. An integral strap belonging to the Broken body does not supply an invented independent exception.
+
+Place released contents at the same legal location, otherwise the nearest legal adjacent item position under the supplied placement rules. If none is legal, record pending placement. Pending items cannot simultaneously be retrieved from the former container.
+
+Spilling itself deals no automatic damage. Actual falling, immersion, fire or another already-applicable hazard can resolve normally. The Broken container’s own body and mass remain, and it remains worn/held until removed where the existing rules require that.
+
+Repairing the container does not retrieve or reload its former contents.
+
+### Melding
+
+**EXISTING:** wearing/holding-dependent benefits suspend in meld, and the original meld ceilings are ordinary pre-transformation Load and pound capacities.
+
+**NEW explicit binding:** test proposed melded cargo against those ceilings using **full physical pounds and canonical Load, without Leatherworking relief**.
+
+A voluntary transformation must preflight that result before paying. Excess equipment must be lawfully left external where the source permits and anatomy fits, or removed/dropped through the existing procedure. The relief cannot enlarge either historical meld ceiling.
+
+For this interface, an unopened loaded container is handled as a containment subtree during capture and placement. Removing selected contents first requires actual prior handling. This is not permission to treat that subtree as one light object or to meld the bag while duplicating its contents externally.
+
+For a mandatory transformation, resolve the transformation and existing overflow procedure without granting immunity through excess cargo. Use a pre-recorded disposition order; absent one, use stable physical-item-ID order for this bounded overflow decision, not a post-result tactical selection.
+
+While melded, the container supplies no relief or handling benefit. Another creature transporting the transformed bearer counts the body’s full effective weight, its applicable casualty Load, and **all melded and external equipment records** as the body guide requires. The former bearer’s container relief does not pass through to the rescuer.
+
+On return, apply the existing external-equipment priority. Relief resumes only for containers actually returned to legal worn/held relief positions. A returned container relegated to stowed inventory remains inactive. Recompute burden after legal equipment states are established, then resolve any remaining overload.
+
+

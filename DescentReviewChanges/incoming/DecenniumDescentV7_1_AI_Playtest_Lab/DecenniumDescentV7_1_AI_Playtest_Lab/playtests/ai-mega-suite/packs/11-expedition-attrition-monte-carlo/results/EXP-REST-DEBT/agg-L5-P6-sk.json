@@ -1,0 +1,121 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-REST-DEBT",
+  "runId": "EXP-REST-DEBT-agg-L5-P6-sk",
+  "seed": 621044,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.993,
+    "wipeRate": 0.0,
+    "abortRate": 0.007,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0.041,
+    "meanWatches": 8.019,
+    "meanHours": 66.98,
+    "meanTrueProfit": 213.61,
+    "medianTrueProfit": 208.79,
+    "profitLossRate": 0.044,
+    "meanCargoRetainedLoad": 16.91,
+    "meanExtractionFailRate": 0.353,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 5,
+    "party": 6,
+    "mapping": "Sketched",
+    "policy": "aggressive",
+    "objective": "interrupted rest and attrition",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-REST-DEBT/agg-L5-P6-sk.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 1,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 12,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 16,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 3,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 20,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 6.0,
+      "load": 25,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 5,
+      "hour": 40,
+      "progress": 5,
+      "pressure": 0,
+      "supply": 6.0,
+      "load": 29,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 6,
+      "hour": 48,
+      "progress": 6,
+      "pressure": 0,
+      "supply": 6.0,
+      "load": 34,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 7,
+      "hour": 56,
+      "progress": 7,
+      "pressure": 0,
+      "supply": 0.0,
+      "load": 34,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+# Poisoncrafting and reviewed Thief interfaces — exact source follow-up
+
+Before I finish authoring the 41 crafted-recipe cards, please bind these concrete class interfaces. The supplied Thief cards are already-authored class sources, not a request to replace them. Their class poison preparations have a separate replenishment cap, DC engine and one-weapon/two-projectile/two-attempt delivery; crafted Poisoncrafting items have real inventory and their separately approved delivery profiles. The complete eight cards and relevant engine statements are appended below.
+
+Please settle these finite questions using actual wording, without treating a class-engine limit as a blanket crafted-item rule or silently widening a class-prepared-dose grant:
+
+1. Apply Poison and Toxic Shiv expressly spend a **prepared dose** and use engine rules. Double Poison and Vein Cutter also explicitly use prepared doses. Proposal: these abilities continue to use the Thief's class preparations, not any of the 41 externally crafted items. They do not let a purchased high-tier recipe use Thief DC, turn into renewable class stock, gain two attempts, supply two coatings or change crafted-item action costs. Exotic Toxins researches a class-tier profile; it does not grant a crafting formula or copy unlimited output from these 41 formulas. Confirm or print one precise supported extension if the intended generic word poison overrides this prepared-dose scope.
+
+2. Venom Master instead says **Enemy critically hit by poisoned weapon**, then **If poison save fails**, once/round, -1 saves until end next target turn. It does not expressly say prepared dose. Proposal: a qualifying critical weapon hit that actually exposes its target to a crafted injury poison can trigger this feature after that poison's initial save fails. It does not modify that already-resolved initial save. It grants no new effect on a hit that fails the injury-exposure prerequisite, an initial save success, a condition-immune application with no allowed poison exposure, ordinary repeat CON saves, contact poisoning or an inhaled burst. It retains exact once/round, duration and strongest-penalty rule. Please settle whether damage immunity alone or immunity only to the inflicted condition prevents this trigger when the actual recipe save still failed and another application component resolves. Your completed source conference fixes poisonOwnerKey to the coating actor, not necessarily the weapon wielder. Does Venom Master require the critical wielder to match that key, or does its printed poisoned-weapon trigger work regardless of who coated the weapon? Keep the underlying poison owner and hard-denial key unchanged either way.
+
+3. Sneak Attack's actual qualifying state is **your Bleed/Poisoned/Crippled**. Vile Tactics requires a hit against **Bleeding/Poisoned/Crippled** without ownership in its target wording. Proposal: actual active Poisoned from a crafted recipe qualifies for the respective existing predicates, using the approved application owner for 'your'; a poison-effect application that only causes Confused/Burning/Frightened/Slowed/Weakened/Stunned does not count as Poisoned. No damage-type/name shortcut. The condition must already satisfy the hit's eligibility timing; a rider caused afterward cannot retroactively qualify that same hit. Poison ticks, save damage and copied attacks do not create extra Sneak Attack/Vile Tactics. Please confirm.
+
+4. Toxin Sense identifies an exposed perceptible poison within five feet with an Action/kit and DC12 INT+PB, but says sealed or magical substances may evade detection. All these crafted doses are magical nonspell. Give a definite visibility/identification boundary for these recipes instead of declaring every magical item automatically unknowable or automatically readable through a sealed container. Proposal: a sealed/unperceived interior has no generic passive revelation; exposed compound with actual visible/smell evidence can be recognized as poison and actively identified under Toxin Sense unless an actual concealment/identification restriction prevents it. No numerical tier/DC/crafter/hidden ingredient/lore revelation from recognition alone; a successful exact identification names its operational game recipe. Normal inability to use sight/smell still controls.
+
+5. **Two exact timing details from the completed source conference.** You use ten future regular target-end markers (five for singleton Flawed), with final repeat CON before expiry. If application occurs during the target's already-in-progress regular turn, does that turn's later end count as marker one, or do we begin with the next regular turn's end? For Burning, your order is tick, DEX if future duration remains, then CON, then expiry. Please confirm that the final marker receives its tick and CON but no DEX because no later damage marker remains, or state if DEX also occurs there. These choices should preserve actual virtual marker identity across initiative changes; no accelerated extra-turn saves.
+
+These interfaces do not change original class cards or their existing class resource budgets. Please specify any necessary shared integration overlay and whether these decisions can be included in the upcoming full Poisoncrafting exact manuscript review.
+
+
+EXACT EXISTING THIEF EVIDENCE
+{
+  "status": "existing reviewed class evidence; crafted-recipe integration question remains open",
+  "sourcePath": "data\\public\\class_playtests\\thief.json",
+  "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400",
+  "engine": [
+    "Dexterity governs weapons and class DC/M. Choose Intelligence or Wisdom for noncombat class tool/sense checks at 1. Hit Die d8; light armor, daggers, shortswords, thrown weapons and hand crossbows; thieves tools and poison kit. Sneak Attack is automatic at 1: once on your regular turn, add ceil(class level/2)d6 to one finesse/ranged weapon hit if you had advantage, an active ally threatens target within 5 ft, or target is suffering your Bleed/Poisoned/Crippled. Disadvantage prevents Sneak Attack even if canceled into a straight roll. A feature can explicitly grant Sneak Attack on a different qualifying hit but never more than once/regular turn. Copies, poison ticks and companions cannot Sneak Attack.",
+    "Prepare fictional poison doses with poison kit during a long rest: maximum 3 carried at 1, 4 at 10, 5 at 15, 6 at 20; refill to this cap, never stockpile or sell these class preparations. A destroyed/confiscated kit prevents preparation until replaced. One dose coats one melee weapon or 2 projectiles, lasts 1 minute or until 2 attack attempts; hit applies its effect, miss still spends an attempt. Apply Poison card improves Action coating to Bonus Action; baseline coating is Action. Do not coat the same weapon with multiple doses except Double Poison. Fictional reagents come from ordinary adventuring supplies; no real-world recipes. Creating an exotic source-approved recipe requires an adventure specimen and one successful INT+PB poison-kit check DC 15, one attempt per specimen. It replaces a known recipe, not unlimited extra doses.",
+    "At 1 know all four Tier I recipes, at 7 add Tier II, at 14 Tier III. Poison saving throws use Thief DC except preserved source fixed DC 12 becomes max(12, Thief DC) for Mindburn/Venombite. Unless stated damage/conditions require a failed CON save; initial weapon damage is unaffected. Critical riders also need this failed save. One ongoing instance of each recipe per target; another application refreshes rather than stacks. Maximum 2 simultaneous different poison recipes from you per target. Bleed never stops all healing by default, Poisoned uses the Core V 2 condition: disadvantage on attacks and ability checks (not saving throws), and Shaken means disadvantage on next fear save. Neither is a hidden full-turn disable.",
+    "Tier I: Bloodleech gives Bleed 1d4 at start next 2 target turns; critical restores 1d4 of your HP, once per dose. Crippler gives-1 on next attack before end next turn; critical also half Speed for that duration. Mindburn uses WIS save: -1 spell-attack rolls until end next turn, critical also no Reactions. Venombite gives Poisoned until end next turn; critical also-1 on next save. Tier II: Ashblood adds 2d6 poison now and 1 fire at start next 2 turns; critical prevents HP recovery through end next turn. Silencer prevents verbal spellcasting through end next turn, critical also drops one held nonbonded item into its space; it can retrieve normally. Shiver gives Shaken through end next turn; critical also no Reactions. Hexroot gives-1 saves for 2 target turns; critical lets next weapon hit ignore resistance, never immunity, before end next turn.",
+    "Tier III: Voidspine deals 1d6 necrotic at start next 3 turns; critical adds-1 CON saves until end next turn, never changes ability scores/derived HP. Gravepetal makes target Unconscious until damage or end next turn, subject to shared hard-denial guard; critical also Prone and 3d6 poison immediate (resolve damage before unconsciousness). Neuroshock gives disadvantage on next DEX or WIS save before end next turn; critical also no Reactions. Wraithbane suppresses one observed bonus to AC (maximum 2) or damage resistance chosen before save until end next turn; critical prevents voluntary ethereal movement for duration. No core-engine, legendary action or creature-type removal; unsupported traits cannot be targeted.",
+    "Ordinary magical Thief techniques use the provisional minor-Weave RP pool and incur 1 D on use unless an ordinary spell says otherwise. Once per round, a Weave trick cast while hidden ignores its first point of Refrain Dissonance, as the protected source contract requires. It does not reduce base Dissonance or refund RP; a technique producing only its fixed 1 D receives no Refrain reduction unless it actually incurred Refrain. Arcane Trickster is still a Thief Hero, not an unrestricted full caster. Base 1–2, Rake Arch 3–9, chosen Arcane Trickster/Shadowblade/Blackguard Hero 10–20. Preserve advanced Arch gates: Distraction Tactics 13 and Crippling Strike 15 remain Arch selections obtainable after entering Hero. There is no automatic source Arch capstone; level 9 has its normal selection. Unseen Hand is Blackguard 20 automatic; the other paths receive the new level 20 finale below."
+  ],
+  "cards": [
+    {
+      "id": "thief.base.toxin-sense",
+      "name": "Toxin Sense",
+      "className": "Thief",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Exposed fictional poison within 5 ft",
+      "duration": "While examining",
+      "frequency": "Continuous",
+      "effect": "Recognize presence of poison on sight or smell if perceptible. Action with kit identifies its game recipe on DC 12 INT+PB; sealed or magical substances may evade detection. Never grants immunity.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4374,
+        "originalText": "Toxin Sense: Identify resistances, immunities, or ideal poisons against enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "thief.base.apply-poison",
+      "name": "Apply Poison",
+      "className": "Thief",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "One prepared dose",
+      "rangeAndTarget": "One weapon or 2 projectiles touched",
+      "duration": "1 minute or 2 attack attempts",
+      "frequency": "At will while doses remain",
+      "effect": "Coat using engine rules. Replaces ordinary Action coating. Damage or critical riders use the dose profile and required save; it is not a free weapon attack.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4378,
+        "originalText": "Apply Poison: Use a bonus action to apply poison to your weapon, lasting for 2 attacks."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "thief.hero.shadowblade.double-poison",
+      "name": "Double Poison",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Shadowblade",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "One additional prepared dose",
+      "rangeAndTarget": "One weapon coating",
+      "duration": "Until coating ends",
+      "frequency": "Once per coating",
+      "effect": "You may apply two different doses using the same coating action. First critical hit may apply both with independent saves; noncritical hit applies your chosen one. Both doses consumed, total coated attack attempts remains 2.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4425,
+        "originalText": "Double Poison: Apply two poisons instead of one on critical hits."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "thief.hero.shadowblade.vein-cutter",
+      "name": "Vein Cutter",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Shadowblade",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "One dose",
+      "rangeAndTarget": "Enemy critically hit by your weapon",
+      "duration": "Until end next target turn",
+      "frequency": "Once/round",
+      "effect": "Consume prepared poison without its normal recipe effect; target CON save or Bleed 1d4 next 2 turns, Speed-10 ft and-1 next attack damage. Reapplication refreshes; source stack 3 replaced by one bounded package.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4432,
+        "originalText": "Vein Cutter: On critical hit, apply Bleed, Slow, and Weakened effects that can stack up to 3 times."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "thief.hero.blackguard.venom-master",
+      "name": "Venom Master",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Blackguard",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "Enemy critically hit by poisoned weapon",
+      "duration": "Until end next target turn",
+      "frequency": "Once/round",
+      "effect": "If poison save fails target also takes-1 saves. Does not stack with Hexroot or another Venom Master; use strongest penalty.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4442,
+        "originalText": "Venom Master: On critical hits, your poisons also apply -1 to all saves."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "thief.hero.blackguard.exotic-toxins",
+      "name": "Exotic Toxins",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Blackguard",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Downtime",
+      "cost": "One adventure specimen; poison kit",
+      "rangeAndTarget": "One known exotic recipe",
+      "duration": "Permanent knowledge",
+      "frequency": "One attempt/specimen",
+      "effect": "Use engine DC 15 INT+PB research. Director assigns it an existing Tier-appropriate poison profile with fictional name/type, no stronger numbers. No harvesting captives or arbitrary monster abilities for unlimited doses.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4443,
+        "originalText": "Exotic Toxins: You can use monster-only venoms if harvested from bestiary bosses."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "thief.hero.blackguard.toxic-shiv",
+      "name": "Toxic Shiv",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Blackguard",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "One prepared dose",
+      "rangeAndTarget": "One weapon touched",
+      "duration": "1 minute or 2 attempts",
+      "frequency": "At will while doses remain",
+      "effect": "Apply any known prepared poison, including exotic profile, using normal coating rules. You may change an existing coating by discarding it. This is not an extra attack and refunds no discarded dose.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4447,
+        "originalText": "Toxic Shiv: As a bonus action, apply any poison from your inventory with no check or delay."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "thief.hero.blackguard.vile-tactics",
+      "name": "Vile Tactics",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Blackguard",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "One weapon hit against Bleeding/Poisoned/Crippled enemy",
+      "duration": "Instant",
+      "frequency": "Once/own turn",
+      "effect": "Add 1d6 weapon damage. Separate from Sneak but neither repeats on poison ticks nor copied attacks; multiple conditions do not multiply the bonus.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4448,
+        "originalText": "Vile Tactics: Deal +1d6 damage against Bleeding, Poisoned, or Frightened enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ]
+}

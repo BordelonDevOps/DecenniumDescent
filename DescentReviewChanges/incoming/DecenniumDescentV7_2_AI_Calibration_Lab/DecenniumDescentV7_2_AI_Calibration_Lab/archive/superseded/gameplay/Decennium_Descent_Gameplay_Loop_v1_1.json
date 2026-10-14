@@ -1,0 +1,645 @@
+{
+  "meta": {
+    "title": "Decennium Descent Gameplay Loop",
+    "version": "1.1",
+    "status": "canonical",
+    "effective": "2026-08-06",
+    "designRule": "Decennium Descent should have 5e's readability and speed, Pathfinder 2e's tactical clarity and balance discipline, and its own expedition, extraction, Haven, and seasonal systems.",
+    "publicDepthBoundary": "The most famous recognized expedition failed at the Sixth Gate; deeper truth remains Director-only."
+  },
+  "modes": {
+    "encounter": {
+      "roundSeconds": 6,
+      "turn": [
+        "movement",
+        "action",
+        "bonusActionWhenGranted",
+        "objectInteraction",
+        "reactionBeforeNextTurn"
+      ]
+    },
+    "expedition": {
+      "watchHours": 8,
+      "watchesPerDay": 3,
+      "names": [
+        "Morning",
+        "Afternoon",
+        "Evening"
+      ]
+    },
+    "haven": {
+      "defaultTurn": "1 day"
+    }
+  },
+  "resolution": {
+    "formula": "d20 + ability modifier + proficiency when trained + circumstance modifiers",
+    "tierDcs": {
+      "routine": 10,
+      "tier1": 12,
+      "tier2": 13,
+      "tier3": 15,
+      "tier4": 16,
+      "tier5": 18,
+      "tier6": 19
+    },
+    "difficultyAdjustments": {
+      "hard": 3,
+      "severe": 6,
+      "favorable": -3
+    },
+    "degrees": {
+      "criticalSuccess": "total >= DC + 10",
+      "success": "total >= DC",
+      "failure": "total < DC",
+      "criticalFailure": "total <= DC - 10"
+    },
+    "naturalRoll": {
+      "20": "improve one degree",
+      "1": "worsen one degree"
+    },
+    "assistance": {
+      "bonusPerTrainedAssistant": 1,
+      "maximumAssistants": 3
+    }
+  },
+  "opening": {
+    "hours": 2400,
+    "hornHour": 1200,
+    "hornMeaning": "point of no return"
+  },
+  "expedition": {
+    "maximumRoster": 12,
+    "offices": [
+      "Expedition Leader",
+      "Quartermaster",
+      "Routekeeper",
+      "Surgeon",
+      "Claimant of Record"
+    ],
+    "teams": [
+      {
+        "id": "combat",
+        "name": "Combat Team",
+        "size": "4-6",
+        "activities": [
+          "Advance",
+          "Breach",
+          "Escort",
+          "Patrol"
+        ]
+      },
+      {
+        "id": "recon",
+        "name": "Reconnaissance",
+        "size": "1-3",
+        "activities": [
+          "Scout Ahead",
+          "Map Route",
+          "Counter-Ambush",
+          "Conceal Trail"
+        ]
+      },
+      {
+        "id": "research",
+        "name": "Research",
+        "size": "1-3",
+        "activities": [
+          "Identify",
+          "Translate",
+          "Analyze Threat",
+          "Experiment"
+        ]
+      },
+      {
+        "id": "resource",
+        "name": "Resource",
+        "size": "2-4",
+        "activities": [
+          "Harvest",
+          "Forage",
+          "Mine or Salvage",
+          "Preserve"
+        ]
+      },
+      {
+        "id": "support",
+        "name": "Support",
+        "size": "1-3",
+        "activities": [
+          "Establish Camp",
+          "Treat",
+          "Repair",
+          "Transport"
+        ]
+      },
+      {
+        "id": "rest",
+        "name": "Rest",
+        "size": "any",
+        "activities": [
+          "Long Rest",
+          "Recovery",
+          "Guarded Rest"
+        ]
+      }
+    ],
+    "requiredPlanFields": [
+      "primaryObjective",
+      "secondaryObjectives",
+      "grossCargoTarget",
+      "netExpeditionTarget",
+      "trueProfitTarget",
+      "primarySuccessMetric",
+      "maximumCasualties",
+      "minimumReserveSupply",
+      "latestReturnHour",
+      "abortConditions"
+    ]
+  },
+  "route": {
+    "ratings": [
+      "length",
+      "risk",
+      "mapping",
+      "capacity",
+      "sustenance"
+    ],
+    "mappingStates": [
+      "Unknown",
+      "Sketched",
+      "Mapped",
+      "Secured"
+    ],
+    "progressPerWatch": {
+      "Secured": 2,
+      "Mapped": 2,
+      "Sketched": 1,
+      "Unknown": 0
+    },
+    "overCapacity": {
+      "progressPenalty": 1,
+      "pressureIncrease": 1
+    },
+    "sustenance": {
+      "minimum": 0,
+      "maximum": 4,
+      "forage": {
+        "success": "Supply equal to Sustenance",
+        "criticalSuccess": "Sustenance plus half rounded up",
+        "failure": 0,
+        "criticalFailure": "contaminate one Supply or +1 Pressure"
+      }
+    }
+  },
+  "pressure": {
+    "minimum": 0,
+    "maximum": 6,
+    "states": {
+      "0": "Secured",
+      "1": "Watched",
+      "2": "Unstable",
+      "3": "Hostile",
+      "4": "Hunted",
+      "5": "Overrun",
+      "6": "Immediate crisis"
+    },
+    "check": "At end of active Watch roll 1d6; complication occurs when roll <= Pressure; Pressure 6 is automatic severe.",
+    "increaseTriggers": [
+      "open combat or explosion",
+      "convoy exceeds capacity",
+      "Attention cargo",
+      "missing/captured/pursued member",
+      "continued after abort condition",
+      "compromised camp"
+    ],
+    "reductionTriggers": [
+      "successful Counter-Ambush or Conceal Trail",
+      "secured route",
+      "concealed lay-low Watch",
+      "negotiated end to pursuit"
+    ],
+    "attentionCadence": "Add +1 when Attention cargo is first carried exposed into an active Watch, re-exposed, or loses concealment; do not add again each Watch during continuous controlled carriage."
+  },
+  "restAndAttrition": {
+    "shortRestHours": 1,
+    "shortRestsBetweenLong": 2,
+    "longRestHours": 8,
+    "supplyUnit": "one Medium character-day",
+    "strain": {
+      "0": "none",
+      "1": "-1 initiative and expedition checks",
+      "2": "Speed -10; -1 attacks and saves",
+      "3": "disadvantage expedition checks",
+      "4": "maximum HP -25%",
+      "5": "incapacitated except slow travel/rest",
+      "6": "death or permanent collapse"
+    },
+    "integrity": {
+      "3": "Sound",
+      "2": "Worn",
+      "1": "Damaged (-2)",
+      "0": "Broken"
+    },
+    "restDebt": {
+      "deadline": "next two Watches and before next day boundary",
+      "failure": "gain 1 Strain",
+      "clear": "complete owed Rest Watch"
+    }
+  },
+  "cargo": {
+    "loadUnit": "approximately ten pounds or one awkward bundle",
+    "carryLimit": "Strength score in Load; Small -2; Large double",
+    "burdenedThreshold": "more than half Carry Limit",
+    "burdenedEffect": "Speed -10 and disadvantage climbing, swimming, and silent movement",
+    "extractionClasses": {
+      "0": "ordinary trade goods",
+      "1": "common salvage",
+      "2": "uncommon/fragile/regulated",
+      "3": "rare/volatile/living",
+      "4": "very rare/strategic/cursed",
+      "5": "epic/sovereign attention",
+      "6": "legendary documented-limit operation"
+    },
+    "tags": [
+      "Fragile",
+      "Volatile",
+      "Cursed",
+      "Living",
+      "Contraband",
+      "Perishable",
+      "Attention"
+    ],
+    "casualtyLoad": {
+      "Small": 3,
+      "Medium": 6,
+      "Large": 12
+    },
+    "priorityRange": [
+      1,
+      5
+    ]
+  },
+  "camps": [
+    {
+      "id": "bivouac",
+      "name": "Exposed bivouac",
+      "successes": 0,
+      "storage": 0
+    },
+    {
+      "id": "temporary",
+      "name": "Temporary Camp",
+      "successes": 1,
+      "storage": 20
+    },
+    {
+      "id": "fortified",
+      "name": "Fortified Outpost",
+      "successes": 3,
+      "storage": 60
+    },
+    {
+      "id": "research",
+      "name": "Research Station",
+      "successes": 5,
+      "storage": 60
+    },
+    {
+      "id": "forward",
+      "name": "Forward Base",
+      "successes": 8,
+      "storage": 150
+    }
+  ],
+  "combat": {
+    "actionLimits": {
+      "extraFullActionsPerRound": 1,
+      "reactions": 1,
+      "stances": 1,
+      "independentSummons": 2,
+      "sameAbilityCooldownResetsPerRound": 1,
+      "additionalActionSlot": "One shared additional full Action slot across all sources; effects do not stack and cannot retrigger themselves.",
+      "independentActorCategories": [
+        "summons",
+        "autonomous deployables",
+        "independent reflections",
+        "companions",
+        "drones"
+      ],
+      "passiveDevicesCount": false,
+      "excessActors": "one swarm, cohort, or unit stat block",
+      "dualCast": "one Action; resolve two Tier 1-2 one-Action spells; pay both RP; only one may require concentration",
+      "traumaticCasting": "cannot refund, reset, or retrigger itself; its direct trauma cannot be prevented by itself or the forced spell"
+    },
+    "retreat": {
+      "escapeSuccesses": 3,
+      "pursuitSuccesses": 3,
+      "roundThreat": "Default to pursuit check plus one meaningful threat; full nova requires failed check, Severe complication, or trapped fiction."
+    },
+    "downed": {
+      "deathSaveDc": 10,
+      "successesToStabilize": 3,
+      "failuresToDie": 3
+    },
+    "wounds": {
+      "maximum": 3,
+      "penalty": "-1 Constitution saves and -1 healing per Hit Die",
+      "treatmentHours": 8,
+      "treatmentSupply": 1
+    },
+    "tenacity": "First full-turn control each round becomes Staggered; Gate Guardians may resist twice."
+  },
+  "encounterMath": {
+    "relativeThreatPoints": {
+      "-4": 5,
+      "-3": 10,
+      "-2": 15,
+      "-1": 25,
+      "0": 40,
+      "+1": 60,
+      "+2": 90,
+      "+3": 135,
+      "+4": 200
+    },
+    "fourCharacterBudgets": {
+      "routine": 50,
+      "standard": 90,
+      "hard": 130,
+      "severe": 180,
+      "catastrophic": 240
+    },
+    "partySizeAdjustment": "increase or reduce budget by 20% for each character above or below four",
+    "status": "canonical starting calibration; revise only with recorded playtest evidence"
+  },
+  "extraction": {
+    "pressureIncrease": "floor(highest Extraction Class / 2), maximum 3",
+    "test": "d20 + Quartermaster Survival/vehicle/tool modifier + assistants vs tier DC and cargo modifiers",
+    "criticalSuccess": "no loss; -1 Pressure or +1 Progress",
+    "success": "safe passage",
+    "failure": "lose 8 hours and standard complication, or one low-priority lot at risk",
+    "criticalFailure": "severe complication and two lots, a vehicle, or a casualty at risk",
+    "testCadence": {
+      "Secured": "route transition only",
+      "Mapped": "midpoint and exit if Length >= 6; otherwise exit",
+      "Sketched": "every 3 Progress and exit",
+      "Unknown": "every 2 Progress and exit",
+      "always": "after every Severe complication"
+    }
+  },
+  "havenResolution": [
+    "quarantine",
+    "provenance",
+    "appraisal",
+    "claims",
+    "disposition",
+    "settlement",
+    "recovery",
+    "standing",
+    "advancement",
+    "nextDescent"
+  ],
+  "saleValue": {
+    "formula": "Base Value × Provenance × Demand × Condition × Urgency",
+    "provenance": {
+      "undocumented": 0.5,
+      "disputed": 0.75,
+      "documented": 1.0,
+      "Gate-Sealed": 1.25
+    },
+    "demand": {
+      "glutted": 0.75,
+      "normal": 1.0,
+      "sought": 1.25,
+      "strategic": 1.5
+    },
+    "condition": {
+      "damaged": 0.5,
+      "worn": 0.75,
+      "sound": 1.0,
+      "exceptional": 1.25
+    },
+    "urgency": {
+      "forced": 0.75,
+      "normal": 1.0,
+      "auction": 1.1
+    }
+  },
+  "sponsorShares": {
+    "self": 0,
+    "guild": 0.2,
+    "merchantOrBank": 0.3,
+    "nobleOrTemple": 0.35,
+    "sovereign": 0.45
+  },
+  "reputation": {
+    "minimum": -5,
+    "maximum": 5,
+    "labels": {
+      "-5": "Proscribed",
+      "-4": "Hunted",
+      "-3": "Hostile",
+      "-2": "Distrusted",
+      "-1": "Unwelcome",
+      "0": "Neutral",
+      "1": "Recognized",
+      "2": "Favored",
+      "3": "Trusted",
+      "4": "Champion",
+      "5": "Authority"
+    }
+  },
+  "advancement": {
+    "xpPercentOfNextLevelGap": {
+      "routine": 0.05,
+      "standard": 0.1,
+      "hard": 0.15,
+      "severe": 0.25,
+      "gate": 0.4,
+      "profitableExtraction": 0.1
+    },
+    "sceneMaximum": 0.6,
+    "awardPrinciple": "all materially contributing Expedition members receive awards; combat body count is not privileged",
+    "default": "milestone",
+    "detailedXp": "optional; do not combine with milestone levels during the same advancement period"
+  },
+  "seasonal": {
+    "cycleRecordFields": [
+      "routes",
+      "HavenChanges",
+      "artifacts",
+      "factionsAndDebts",
+      "specialistsAndSuccessors",
+      "captivesAndRivalries",
+      "economicShocks",
+      "publicDepthRecord",
+      "directorSealedConsequence"
+    ],
+    "persistent": [
+      "knowledge",
+      "extracted artifacts",
+      "Haven civic core",
+      "faction relationships",
+      "property and titles",
+      "route principles",
+      "major consequences"
+    ],
+    "replenished": [
+      "creature populations",
+      "resource nodes",
+      "ordinary treasure",
+      "unsecured routes",
+      "local hazards",
+      "market demand",
+      "leadership",
+      "exact dungeon tests"
+    ],
+    "changeCategories": [
+      "Geography",
+      "Ecology",
+      "Economy",
+      "Politics",
+      "Resonance"
+    ],
+    "consequenceMagnitude": {
+      "minor": "localized",
+      "standard": "regional",
+      "severe": "campaign-defining"
+    },
+    "havenDistrictStates": [
+      "Intact",
+      "Strained",
+      "Damaged",
+      "Captured",
+      "Recovering"
+    ],
+    "mapPersistence": "secured trunk principles persist; unsecured spurs, chambers, nodes, and local hazards reset or transform",
+    "heirPackage": {
+      "persists": [
+        "titles",
+        "property",
+        "recognized reputation",
+        "trainers",
+        "contacts",
+        "lawful extracted artifacts"
+      ],
+      "doesNotPersist": [
+        "unsecured chambers",
+        "resource nodes",
+        "personal class resources",
+        "unrevealed Director knowledge"
+      ]
+    }
+  },
+  "havenEconomy": {
+    "taxSchedule": {
+      "routineRegisteredGoods": 0.03,
+      "licensedMaterialsOrCraftedGoods": 0.05,
+      "artifactsOrAuctionedRelics": 0.06,
+      "strategicOrRegulatedCargo": 0.08,
+      "authorizedContrabandAmnesty": 0.12
+    },
+    "coinAssay": {
+      "dcs": {
+        "obviousShaving": 10,
+        "professionalClippingOrMixedWeight": 13,
+        "platedOrSophisticatedCounterfeit": 16,
+        "masterworkFalseDieOrMint": 19
+      },
+      "assayFee": 0.01,
+      "minimumFeeGp": 1,
+      "remintFee": 0.02
+    },
+    "commodityIndex": {
+      "Tier I": {
+        "rangeGp": [
+          5,
+          15
+        ],
+        "medianGp": 10
+      },
+      "Tier II": {
+        "rangeGp": [
+          15,
+          50
+        ],
+        "medianGp": 30
+      },
+      "Tier III": {
+        "rangeGp": [
+          51,
+          148
+        ],
+        "medianGp": 100
+      },
+      "Tier IV": {
+        "rangeGp": [
+          151,
+          499
+        ],
+        "medianGp": 320
+      },
+      "Tier V": {
+        "rangeGp": [
+          512,
+          1465
+        ],
+        "medianGp": 950
+      }
+    },
+    "underwaysHeat": {
+      "minimum": 0,
+      "maximum": 6,
+      "severity": {
+        "petty": 1,
+        "restricted": 2,
+        "strategic": 3,
+        "traffickingOrForbidden": 4
+      },
+      "check": "at end of active Haven Turn, 1d6 <= Heat creates enforcement complication",
+      "bribes": {
+        "tenPercent": -1,
+        "twentyFivePercent": -2,
+        "floorWhileActive": 1
+      }
+    },
+    "labor": {
+      "statusTags": [
+        "Free",
+        "Contracted",
+        "Debt-Bound",
+        "Penal",
+        "Enslaved",
+        "Rescued",
+        "Disputed"
+      ],
+      "dailyWagesGp": {
+        "unskilled": 1,
+        "skilled": 3,
+        "specialist": 10
+      },
+      "dangerousExpeditionMultiplier": 2,
+      "debtInterestCapPerOpening": 0.1,
+      "raceBasedPriceTables": false
+    },
+    "traffickingEvidence": {
+      "minimum": 0,
+      "maximum": 4,
+      "success": 1,
+      "criticalSuccess": 2,
+      "completion": "warrant, raid, public hearing, rescue operation, or faction confrontation"
+    },
+    "downtime": [
+      "Seek Patronage or Information",
+      "Secure a License",
+      "Brew a Batch",
+      "Treat Dependence or Withdrawal",
+      "Protect Workers"
+    ]
+  },
+  "charterMetrics": {
+    "grossCargoTarget": "before taxes and shares",
+    "netExpeditionTarget": "after mandatory Haven costs and sponsor share",
+    "trueProfitTarget": "after wages, repairs, replacements, debt service, and reserve",
+    "requirePrimaryMetric": true
+  }
+}

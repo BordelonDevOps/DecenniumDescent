@@ -1,0 +1,635 @@
+{
+  "conference": [
+    {
+      "case": 1,
+      "topic": "Bleeding",
+      "status": "QUALIFY",
+      "decision": "Use the affected creature's current PB for generic Core Bleeding because the condition text addresses the conditioned creature and supplies no source-PB reference. A specific spell/class/item may print another magnitude and then replaces the generic magnitude. NEW: generic Bleeding damage uses the physical damage type that applied it when that type is bludgeoning, piercing or slashing; otherwise use slashing. NEW: Medicine DC is the applying effect's DC when one exists, otherwise DC 10. Magical healing ends Bleeding only if it actually restores at least 1 HP, unless an effect explicitly says it removes Bleeding."
+    },
+    {
+      "case": 2,
+      "topic": "Burning",
+      "status": "QUALIFY",
+      "decision": "Core supplies fire damage but no amount or DC. NEW: generic Burning deals 1d4 fire at the end of the affected creature's turn, then the creature makes a Dexterity save against the applying effect's DC, or DC 10 if none exists; success ends Burning. Spending an Action to extinguish it or sufficient immersion ends it before the end-turn tick. Specific printed Burning magnitudes replace the generic 1d4 rather than adding to it."
+    },
+    {
+      "case": 3,
+      "topic": "Incapacitated and Dazed",
+      "status": "AGREE WITH CLARIFICATION",
+      "decision": "NEW integration: Incapacitated prevents Action, Bonus Action and Reaction; passive effects remain, movement is not removed unless another condition says so, and current concentration rules end concentration on becoming Incapacitated. Dazed does not remove Reactions or concentration. At the start of the affected regular turn choose Action-mode or Movement-mode; no Bonus Action either way. Action-mode prevents voluntary Speed expenditure and Dash, though movement expressly contained in the chosen Action still resolves. Movement-mode permits ordinary movement but no Action."
+    },
+    {
+      "case": 4,
+      "topic": "Invisible",
+      "status": "CORE CONTROLS CONFLICT",
+      "decision": "Track visibility and known location separately. The creature remains unseen without special senses or magic even when its location is known. Under Core's explicit endpoint, the generic Invisible attack advantage/disadvantage against a particular observer lasts only until that observer's rules-valid detection reveals the location. V6's noise/tracks and heavily-obscured hiding details remain compatible for finding location. The condition itself does not invent a detection DC or make an attack automatically reveal location; those belong to the stealth/vision pass."
+    },
+    {
+      "case": 5,
+      "topic": "Prone",
+      "status": "CORE CONTROLS CONFLICT",
+      "decision": "Own attack rolls have disadvantage from compatible V6. Melee attacks against Prone from within 5 feet have advantage. Ranged attacks against Prone have disadvantage even from within 5 feet because Core specifically says ranged attackers have disadvantage. Compatible V6 supplies disadvantage to other attacks made from beyond 5 feet, including reach melee attacks. Standing cost remains a movement-system dependency."
+    },
+    {
+      "case": 6,
+      "topic": "Exhausted",
+      "status": "QUALIFY",
+      "decision": "Use the six cumulative V6 levels exactly. Level 4 halves current maximum HP once, not repeatedly; calculate it once while level 4+ remains active. Removing Exhaustion below level 4 restores the unhalved maximum-HP ceiling but does not heal current HP. Level 6 is death; later removal of an Exhaustion level from a corpse does not restore life. No generic recovery cadence is invented from this packet; levels persist until an explicit rest, treatment or feature removes them, pending the recovery-source audit."
+    },
+    {
+      "case": 7,
+      "topic": "Corrupted",
+      "status": "QUALIFY",
+      "decision": "Use compatible V6 specifics under Core's broader condition: healing effects restore half their normal HP once, rounded down; saves against spells/abilities from creatures actually tagged evil have disadvantage; the aura is detectable by effects that reveal evil; at the end of each long rest make the V6 DC 15 Wisdom save for the stated alignment shift. Natural-20 death-save recovery and V6 Stable 1-HP recovery are state-recovery rules, not healing effects, and still restore exactly 1 HP. Do not halve healing twice merely because both a feature and the condition restate the Corrupted reduction."
+    },
+    {
+      "case": 8,
+      "topic": "Petrified and Corruption damage",
+      "status": "CORE SPECIAL DAMAGE RULE CONTROLS",
+      "decision": "Petrified retains V6 resistance to all ordinary damage, but Core's Corruption damage exception says Corruption cannot be resisted unless an effect explicitly protects against Corruption. Petrified does not name Corruption, so its resistance does not reduce Corruption damage."
+    },
+    {
+      "case": 9,
+      "topic": "Dependence, tolerance, overdose and intoxication",
+      "status": "AGREE",
+      "decision": "Do not replace the existing procedures. Addicted, Withdrawal and Intoxicated reference the existing dose, repeated-dose save, tolerance, dependence, overdose and Intoxication Track. Missing recovery/treatment endpoints remain explicit dependencies rather than receiving a second invented subsystem."
+    },
+    {
+      "case": 10,
+      "topic": "Withdrawal and deterministic RP recovery",
+      "status": "QUALIFY",
+      "decision": "Withdrawal imposes disadvantage on ability checks immediately. Its source phrase 'disadvantage on RP recovery' applies only to an RP-recovery procedure that actually makes a roll. The current deterministic Retune formula has no roll to disadvantage, so no numeric penalty is invented here. Oracle RC is a distinct resource and is not affected by wording that names RP."
+    },
+    {
+      "case": 11,
+      "topic": "Resonance Burn",
+      "status": "AGREE",
+      "decision": "Preserve the condition and source text, but mark it inactive in the current Dissonance-only pilot. A feature whose only consequence is Resonance Burn remains non-operational until the historical Resonance Burn magnitude/failure procedure is separately reviewed. Do not run it on top of Dissonance."
+    },
+    {
+      "case": 12,
+      "topic": "Unity Exposure",
+      "status": "AGREE",
+      "decision": "Track only the explicit 0-6 score and explicit changes supplied by reviewed effects. Do not invent threshold mechanics, memories, loyalties, hidden identity truths or Director-only consequences from the public sentence. Public and Director threshold material must be reconciled in its own source pass."
+    },
+    {
+      "case": 13,
+      "topic": "Marked",
+      "status": "AGREE",
+      "decision": "Marked is a relational record, not a global tracking power. Every application records the marker source or faction and its duration. It grants only the tracking, targeting or trigger rights explicitly printed by that source's reviewed ability; the generic condition itself creates no universal location knowledge, bonus or damage rider."
+    }
+  ],
+  "conditions": [
+    {
+      "id": "addicted",
+      "name": "Addicted",
+      "coreText": "The creature has dependence on a named substance. Without a maintenance dose after a long rest, it gains Withdrawal.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "Record dependence on one named substance. After each completed long rest, if the creature has not taken the required maintenance dose for that substance, apply Withdrawal for that substance. Existing source procedures for repeated doses, dependence DC, tolerance and overdose continue to operate.",
+      "application": "Applied only by a substance or dependence procedure that explicitly creates or advances dependence. Merely consuming a substance does not automatically grant Addicted unless its procedure says so.",
+      "durationAndEnding": "Persists until an explicit dependence treatment, recovery project or other reviewed effect removes that named dependence. A maintenance dose prevents or relieves Withdrawal symptoms but does not itself remove Addicted unless its source says so. Exact treatment endpoints remain a dependency.",
+      "stacking": "Track one Addicted record per named substance. Separate substance dependencies coexist; duplicate dependence on the same substance does not create multiple copies unless a source defines severity.",
+      "immunitiesAndOverrides": "A feature explicitly preventing dependence blocks application. Magic that only removes symptoms does not automatically remove dependence, consistent with the source treatment text.",
+      "provisionalDecisions": [
+        "NEW: maintenance dose may relieve that substance's current Withdrawal symptoms without removing Addicted; exact dependence cure procedure remains deferred."
+      ],
+      "openDependencies": [
+        "General dependence-treatment DCs, project requirements and severity advancement beyond the supplied substance procedures."
+      ]
+    },
+    {
+      "id": "bleeding",
+      "name": "Bleeding",
+      "coreText": "Take damage equal to proficiency bonus at the end of each turn. An action and Medicine check or magical healing ends it.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "At the end of each affected creature turn, it takes damage equal to its current proficiency bonus. A specific reviewed effect that prints another Bleeding magnitude uses that magnitude instead.",
+      "application": "Applied only by an effect that explicitly inflicts Bleeding. Record the applying effect's DC when it has one and the physical damage type when applicable.",
+      "durationAndEnding": "Persists until ended. An affected creature or adjacent helper may spend an Action and succeed on Medicine against the recorded DC; if no applying DC exists, use DC 10. Magical healing ends Bleeding only when it actually restores at least 1 HP, unless that effect explicitly says it removes Bleeding.",
+      "stacking": "One generic Bleeding condition at a time. Reapplication does not add another end-turn tick. If two generic applications differ, retain the larger damage magnitude; on equal magnitude retain the higher Medicine DC. Explicit named effects may state a different rule.",
+      "immunitiesAndOverrides": "Creatures explicitly immune to bleeding/blood-loss effects cannot gain it. Specific spell/class/item Bleeding numbers replace the generic PB magnitude only when printed.",
+      "provisionalDecisions": [
+        "NEW: PB means the affected creature's PB.",
+        "NEW: Bleeding uses the applying effect's bludgeoning, piercing or slashing type when one exists; otherwise it is slashing damage.",
+        "NEW: Medicine uses applying-effect DC or DC 10 fallback.",
+        "NEW: magical healing must restore positive HP to end it."
+      ],
+      "openDependencies": [
+        "Whether later anatomy/creature tags create a universal bloodless immunity list."
+      ]
+    },
+    {
+      "id": "blinded",
+      "name": "Blinded",
+      "coreText": "Cannot see; automatically fails sight checks; attacks have disadvantage and attacks against it have advantage.",
+      "compatibleV6Details": [
+        "V6 matches: cannot see, automatically fails sight-required checks, own attacks have disadvantage, attacks against have advantage."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature cannot see, automatically fails checks that require sight, has disadvantage on attack rolls, and attack rolls against it have advantage.",
+      "application": "Only an effect that explicitly inflicts Blinded applies it.",
+      "durationAndEnding": "Use the applying effect's printed duration, save, cure or endpoint.",
+      "stacking": "Multiple Blinded applications do not increase the penalties; track independent durations only when needed to know when all sources have ended.",
+      "immunitiesAndOverrides": "A sense that does not require sight may still function. A feature explicitly allowing sight while Blinded overrides only its printed scope.",
+      "provisionalDecisions": [],
+      "openDependencies": [
+        "Full special-senses and vision interaction belongs to the stealth/vision pass."
+      ]
+    },
+    {
+      "id": "burning",
+      "name": "Burning",
+      "coreText": "Take fire damage at end of turn. An action, immersion, or successful Dexterity save ends it.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "At the end of the affected creature's turn, take 1d4 fire damage unless a specific reviewed application prints another Burning magnitude; then make the ending Dexterity save.",
+      "application": "Applied only by an effect that explicitly inflicts Burning. Record the applying effect's DC; if none exists, use DC 10.",
+      "durationAndEnding": "Before its end-turn tick, the creature may spend an Action to extinguish the flames, or sufficient immersion may end them immediately. Otherwise take the damage at end of turn and then make a Dexterity save against the recorded DC; success ends Burning.",
+      "stacking": "One generic Burning condition at a time; repeated applications do not create multiple end-turn ticks. A new application may replace the recorded DC if higher. A specific printed magnitude replaces the generic 1d4 for that application rather than adding to it.",
+      "immunitiesAndOverrides": "Fire immunity prevents the damage but does not automatically end Burning unless the source or immunity says so. An effect explicitly immune to Burning blocks application.",
+      "provisionalDecisions": [
+        "NEW: generic damage is 1d4 fire.",
+        "NEW: applying-effect DC or DC 10 fallback.",
+        "NEW: end-turn order is damage first, then a free Dexterity save; spending an Action or immersion can end it before that tick."
+      ],
+      "openDependencies": [
+        "Environmental definition of sufficient immersion/extinguishing conditions."
+      ]
+    },
+    {
+      "id": "charmed",
+      "name": "Charmed",
+      "coreText": "Cannot willingly harm the charmer; charmer has advantage on social checks against it.",
+      "compatibleV6Details": [
+        "V6 specifies the creature cannot attack the charmer or target the charmer with harmful abilities or magical effects, and gives the charmer advantage on social interaction checks."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature cannot willingly attack or target the charmer with a harmful ability or magical effect. The charmer has advantage on social ability checks against that creature. Charmed by itself does not command actions, alter beliefs or force allegiance.",
+      "application": "Each application identifies the charmer/source.",
+      "durationAndEnding": "Use the applying effect's printed duration and repeat-save/ending procedure.",
+      "stacking": "A creature may be Charmed by more than one source; each source relation is tracked independently. Advantage does not stack.",
+      "immunitiesAndOverrides": "Charm immunity prevents application. Forced actions from another effect are not made voluntary merely because the creature is Charmed.",
+      "provisionalDecisions": [
+        "Agency clarification: Charmed never by itself grants control over beliefs, targets or decisions beyond the explicit harm restriction."
+      ],
+      "openDependencies": []
+    },
+    {
+      "id": "corrupted",
+      "name": "Corrupted",
+      "coreText": "Healing is reduced, corruption-sensitive effects worsen, and long rests may shift behavior or form until cleansed.",
+      "compatibleV6Details": [
+        "V6: healing effects restore half normal HP; disadvantage on saves against spells/abilities from evil creatures; faint aura detectable by magic revealing evil; at end of each long rest make DC 15 Wisdom save or alignment shifts one step toward evil."
+      ],
+      "sourceConflicts": [],
+      "effect": "Healing effects restore half their normal HP, rounded down, once per healing event. The creature has disadvantage on saving throws against spells and abilities from creatures actually classified as evil. Its corruption aura is detectable by effects that reveal evil. At the end of each long rest make the V6 DC 15 Wisdom save; on failure apply the V6 alignment shift one step toward evil. Corruption-sensitive effects may apply their own explicitly printed worsening.",
+      "application": "Only effects that explicitly inflict Corrupted apply it.",
+      "durationAndEnding": "Persists until an effect explicitly cleanses Corrupted. A long rest does not remove it and may trigger its long-rest consequence.",
+      "stacking": "Corrupted does not stack with itself. Apply the generic half-healing reduction once; an effect does not halve again merely because it restates the same Corrupted penalty.",
+      "immunitiesAndOverrides": "Natural-20 death-save recovery and recovered Stable 1-HP recovery are state-recovery rules rather than healing effects and still restore exactly 1 HP. Explicit cleansing or protection may override within scope.",
+      "provisionalDecisions": [
+        "NEW integration: halve a healing effect's final HP amount once, rounding down.",
+        "NEW clarification: guaranteed 1-HP death/Stable recovery is not halved."
+      ],
+      "openDependencies": [
+        "Alignment/evil classification and its consequences.",
+        "Director/public corruption-sensitive transformation rules and cleansing sources."
+      ]
+    },
+    {
+      "id": "dazed",
+      "name": "Dazed",
+      "coreText": "Choose either action or movement on the turn, not both; no bonus action.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "At the start of each regular turn while Dazed, choose Action-mode or Movement-mode. No Bonus Action may be taken that turn. Reaction availability is unchanged by Dazed itself and Dazed does not by itself end concentration.",
+      "application": "Only an effect that explicitly inflicts Dazed applies it.",
+      "durationAndEnding": "Use the applying effect's duration. The choice is made separately on each affected regular turn.",
+      "stacking": "Multiple Dazed applications do not further reduce the turn; track only the longest/independent ending sources.",
+      "immunitiesAndOverrides": "An immunity to Dazed blocks application. Forced movement is not voluntary movement and remains possible.",
+      "provisionalDecisions": [
+        "NEW: Action-mode allows one Action but no voluntary Speed expenditure or Dash; movement/teleport expressly contained in that Action still resolves.",
+        "NEW: Movement-mode allows normal voluntary movement but no Action.",
+        "NEW: Dazed does not remove Reactions or concentration."
+      ],
+      "openDependencies": [
+        "Interaction with future nonstandard action types if any are introduced."
+      ]
+    },
+    {
+      "id": "deafened",
+      "name": "Deafened",
+      "coreText": "Cannot hear and fails hearing checks; verbal coordination may fail.",
+      "compatibleV6Details": [
+        "V6 matches inability to hear and automatic failure of hearing-required checks."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature cannot hear and automatically fails checks that require hearing. It cannot satisfy a rule that specifically requires hearing another creature's command, warning, chant or audible signal.",
+      "application": "Only effects that explicitly inflict Deafened apply it.",
+      "durationAndEnding": "Use the applying effect's duration/end condition.",
+      "stacking": "Multiple applications do not compound.",
+      "immunitiesAndOverrides": "Deafened does not prevent the creature from speaking or supplying its own verbal components unless another condition such as Silenced applies.",
+      "provisionalDecisions": [
+        "Operational clarification: 'verbal coordination may fail' means hearing-dependent coordination requirements fail; no generic roll is added."
+      ],
+      "openDependencies": [
+        "Future command/audible-coordination features must state whether hearing is required."
+      ]
+    },
+    {
+      "id": "exhausted",
+      "name": "Exhausted",
+      "coreText": "Use the six-level exhaustion track; effects are cumulative and level 6 is death.",
+      "compatibleV6Details": [
+        "Level 1: disadvantage on ability checks.",
+        "Level 2: Speed halved.",
+        "Level 3: disadvantage on attack rolls and saving throws.",
+        "Level 4: hit point maximum halved.",
+        "Level 5: Speed reduced to 0.",
+        "Level 6: death."
+      ],
+      "sourceConflicts": [],
+      "effect": "Track Exhaustion from 0 to 6. Effects are cumulative: 1 disadvantage ability checks; 2 halve Speed; 3 disadvantage attacks and saves; 4 halve current maximum HP once; 5 Speed becomes 0; 6 creature dies.",
+      "application": "An effect that grants one or more Exhaustion levels increases the track by that amount, maximum 6, unless it explicitly sets a level instead.",
+      "durationAndEnding": "Levels persist until a reviewed rule explicitly removes them. This packet supplies no generic recovery cadence, so none is invented here.",
+      "stacking": "Levels add up to 6. Level 4 halves the then-applicable maximum-HP value once regardless of later additional Exhaustion levels; it does not repeatedly halve for each application. Level 5 supersedes level-2 Speed halving.",
+      "immunitiesAndOverrides": "An explicit Exhaustion immunity blocks levels. Removing Exhaustion from a dead level-6 creature does not restore life; resurrection is still required.",
+      "provisionalDecisions": [
+        "NEW: maximum HP is halved once while level 4+ is active; dropping below 4 restores the unhalved ceiling but does not heal current HP.",
+        "NEW: removing a level after level-6 death does not revive the creature."
+      ],
+      "openDependencies": [
+        "General Exhaustion recovery/treatment procedure from the broader rest/recovery source audit."
+      ]
+    },
+    {
+      "id": "frightened",
+      "name": "Frightened",
+      "coreText": "Disadvantage while source is visible and cannot willingly move closer.",
+      "compatibleV6Details": [
+        "V6 specifies disadvantage on ability checks and attack rolls while the source of fear is within line of sight, and prohibits willingly moving closer."
+      ],
+      "sourceConflicts": [],
+      "effect": "While the source of fear is visible/in line of sight, the creature has disadvantage on ability checks and attack rolls. While Frightened it cannot willingly move closer to that source.",
+      "application": "Each application records its fear source.",
+      "durationAndEnding": "Use the applying effect's duration and repeat-save procedure.",
+      "stacking": "Separate fear sources are tracked independently. Disadvantage does not stack.",
+      "immunitiesAndOverrides": "Fear immunity blocks application. Forced movement may move the creature closer because the prohibition is on willing movement.",
+      "provisionalDecisions": [],
+      "openDependencies": [
+        "Vision rules determine when a fear source is considered visible/in line of sight."
+      ]
+    },
+    {
+      "id": "grappled",
+      "name": "Grappled",
+      "coreText": "Speed 0; ends if grappler is incapacitated or reach is broken.",
+      "compatibleV6Details": [
+        "V6 adds that the creature cannot benefit from bonuses to Speed and confirms ending when the grappler is incapacitated or an effect removes the target from reach."
+      ],
+      "sourceConflicts": [],
+      "effect": "Speed becomes 0 and cannot be increased by bonuses while Grappled.",
+      "application": "A Grappled application records the grappler/source and its reach.",
+      "durationAndEnding": "Ends if the grappler becomes Incapacitated, the grappled creature leaves the grappler's reach, or the applying effect's printed escape/end procedure succeeds. Under the existing shared playtest grapple rule, an otherwise unspecified escape uses an Action and STR (Athletics) or DEX (Acrobatics) against the source DC.",
+      "stacking": "Multiple grapplers may maintain separate Grappled records; Speed remains 0 until all relevant grapples end.",
+      "immunitiesAndOverrides": "A creature immune to Grappled cannot receive it. Teleportation or forced movement that breaks reach ends that grapple unless a specific effect says otherwise.",
+      "provisionalDecisions": [],
+      "openDependencies": [
+        "Final generic grapple/shove procedure remains part of the combat maneuver audit."
+      ]
+    },
+    {
+      "id": "incapacitated",
+      "name": "Incapacitated",
+      "coreText": "Cannot take actions or reactions.",
+      "compatibleV6Details": [
+        "V6 matches: cannot take actions or reactions."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature cannot take an Action, Bonus Action or Reaction. Passive effects continue unless their own rules require consciousness or another condition disables them. Incapacitated by itself does not reduce Speed or prohibit speech.",
+      "application": "Applied by a condition or effect that explicitly says the creature is Incapacitated.",
+      "durationAndEnding": "Use the parent condition/effect's duration.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Current shared concentration rules end concentration immediately when the creature becomes Incapacitated. A specific effect may preserve a passive benefit through Incapacitation if explicitly stated.",
+      "provisionalDecisions": [
+        "NEW integration: Bonus Actions are unavailable because they are part of the action economy even though Core names only actions/reactions.",
+        "Existing playtest concentration rule: Incapacitation ends concentration."
+      ],
+      "openDependencies": []
+    },
+    {
+      "id": "intoxicated",
+      "name": "Intoxicated",
+      "coreText": "Disadvantage on precise Dexterity and Intelligence checks; advantage on one save against fear. Stacks worsen into Dazed and Unconscious.",
+      "compatibleV6Details": [
+        "Existing Intoxication Track: 0 Sober; 1 Relaxed with advantage on one fear save and disadvantage on precise memory checks; 2 Intoxicated condition; 3 Dazed and Speed -10 ft; 4 Unconscious for 1d4 hours plus Constitution save against poisoning; 5 medical emergency, gain a Wound or die without treatment at Director discretion."
+      ],
+      "sourceConflicts": [],
+      "effect": "At Intoxication level 2, apply Intoxicated: disadvantage on precise Dexterity and Intelligence checks and one available advantage use on a save against fear. Level 3 retains Intoxicated and additionally applies Dazed and Speed -10 feet. Level 4 applies Unconscious for 1d4 hours and the source-required Constitution save against poisoning. Level 5 is the source medical-emergency state.",
+      "application": "Effects that say 'one Intoxication' increase the Intoxication Track by 1. An effect that directly applies Intoxicated sets the creature to at least level 2 unless it explicitly says otherwise.",
+      "durationAndEnding": "Use source-specific sobriety/recovery procedures. The supplied packet does not define generic track decay, the poisoning-save DC at level 4, or the medical-treatment endpoint at level 5; those remain dependencies rather than invented values.",
+      "stacking": "Use the single Intoxication Track rather than multiple duplicate Intoxicated conditions. The one fear-save advantage is consumed once while that level/state persists and does not stack with itself.",
+      "immunitiesAndOverrides": "An effect explicitly preventing intoxication blocks track gain. Unconscious at level 4 uses the normal Unconscious condition.",
+      "provisionalDecisions": [
+        "NEW: level 2 is the minimum Intoxicated state; level 3 retains Intoxicated while adding Dazed.",
+        "NEW: 'precise' checks are those the Director identifies before the roll as primarily dependent on fine Dexterity control or exact Intelligence memory/analysis; no retroactive designation."
+      ],
+      "openDependencies": [
+        "Generic intoxication decay/sobering procedure.",
+        "Level-4 poisoning save DC.",
+        "Level-5 treatment procedure and Director criteria."
+      ]
+    },
+    {
+      "id": "invisible",
+      "name": "Invisible",
+      "coreText": "Cannot be seen normally; attacks against it have disadvantage and its attacks have advantage until location is revealed.",
+      "compatibleV6Details": [
+        "V6: impossible to see without special senses or magic; heavily obscured for hiding; location may be detected by noises or tracks; attacks against have disadvantage and own attacks have advantage."
+      ],
+      "sourceConflicts": [
+        "Core explicitly ends the generic attack advantage/disadvantage when location is revealed; V6 states those attack modifiers without that endpoint. Core controls the conflict."
+      ],
+      "effect": "The creature cannot be seen normally. Until a particular observer has revealed its location under the active detection rules, that observer's attacks against it have disadvantage and its attacks against that observer have advantage. Once that observer has revealed the location, those generic Core Invisible attack modifiers end for that observer even though the creature remains unseen. The creature remains heavily obscured for hiding unless a special sense/magic actually sees it.",
+      "application": "Only an effect explicitly granting Invisible applies it.",
+      "durationAndEnding": "Use the granting effect's duration. Location knowledge is tracked per observer and may change during the condition; ending Invisible ends all Invisible-specific benefits.",
+      "stacking": "Multiple Invisible effects do not stack.",
+      "immunitiesAndOverrides": "A special sense or magic that actually sees the creature removes Invisible's unseen benefits for that observer within that sense's scope. Knowing location is not the same as seeing.",
+      "provisionalDecisions": [
+        "Operational distinction: visibility state and known location are separate.",
+        "No generic detection DC, automatic attack-reveal rule or movement-rehide rule is invented here."
+      ],
+      "openDependencies": [
+        "Stealth, sound, tracks, hiding and location-reveal procedure in the vision/stealth pass."
+      ]
+    },
+    {
+      "id": "marked",
+      "name": "Marked",
+      "coreText": "A named creature or faction can track, target, or trigger abilities against the marked creature.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "Marked establishes a source-specific relationship between the marked creature and one named creature, faction or effect. It makes the target eligible only for tracking, targeting or trigger rights explicitly printed by that reviewed source.",
+      "application": "Every application records marker source/faction, the granting ability or rule, and any rights/duration printed there.",
+      "durationAndEnding": "Use the applying source's duration/end rule. If none is supplied, that Marked application remains incomplete and should not be activated until its source is reviewed.",
+      "stacking": "Marks from different named sources may coexist. Reapplying the same mark refreshes/replaces according to that source. Generic Marked supplies no additive numerical bonus.",
+      "immunitiesAndOverrides": "An effect preventing marks blocks application within scope.",
+      "provisionalDecisions": [
+        "NEW integration: Marked alone grants no universal location knowledge, global tracking bonus, damage bonus or permission to bypass cover/planar boundaries."
+      ],
+      "openDependencies": [
+        "Individual mark-producing features must define their specific rights."
+      ]
+    },
+    {
+      "id": "paralyzed",
+      "name": "Paralyzed",
+      "coreText": "Incapacitated, cannot move or speak, fails Strength/Dexterity saves, adjacent hits are critical.",
+      "compatibleV6Details": [
+        "V6 adds attack rolls against the creature have advantage and specifies attacks that hit from within 5 feet are critical."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature is Incapacitated, cannot move or speak, automatically fails Strength and Dexterity saving throws, attack rolls against it have advantage, and any attack that hits it from within 5 feet is a critical hit.",
+      "application": "Only an effect explicitly inflicting Paralyzed applies it.",
+      "durationAndEnding": "Use the applying effect's duration and repeat-save/ending procedure.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Paralysis immunity blocks application. Incapacitated consequences, including loss of Bonus Action/Reaction and concentration ending under the shared rule, apply.",
+      "provisionalDecisions": [],
+      "openDependencies": []
+    },
+    {
+      "id": "petrified",
+      "name": "Petrified",
+      "coreText": "Incapacitated stone-like state; resistance to damage, immunity to poison/disease, weight ×10.",
+      "compatibleV6Details": [
+        "V6: transformed into inanimate substance, weight ×10, cease aging, Incapacitated, cannot move/speak, unaware, attacks against have advantage, automatically fails Strength/Dexterity saves, resistance to all damage, immunity to poison and disease, existing poison/disease suspended rather than neutralized."
+      ],
+      "sourceConflicts": [
+        "Core damage rules separately state Corruption damage cannot be resisted unless an effect explicitly protects against Corruption. Petrified does not explicitly name Corruption."
+      ],
+      "effect": "The creature becomes an inanimate stone-like substance, weight ×10, ceases aging, is Incapacitated, cannot move or speak, is unaware, automatically fails Strength and Dexterity saves, and attacks against it have advantage. It has resistance to all damage except Corruption damage, and immunity to poison and disease; existing poison/disease effects are suspended rather than removed.",
+      "application": "Only an effect explicitly inflicting Petrified applies it.",
+      "durationAndEnding": "Use the applying effect's duration/removal rule. Suspended poison/disease resumes if Petrified ends and the underlying effect has not otherwise expired or been cured.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Petrification immunity blocks application. Corruption resistance is not granted because the special Core Corruption rule requires explicit Corruption protection.",
+      "provisionalDecisions": [
+        "Integration ruling: generic all-damage resistance from Petrified does not satisfy Core's explicit-protection requirement for Corruption."
+      ],
+      "openDependencies": [
+        "Interaction with aging clocks and object-targeting effects belongs to later environment/item passes."
+      ]
+    },
+    {
+      "id": "poisoned",
+      "name": "Poisoned",
+      "coreText": "Disadvantage on attacks and ability checks.",
+      "compatibleV6Details": [
+        "V6 matches exactly."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature has disadvantage on attack rolls and ability checks.",
+      "application": "Only an effect explicitly inflicting Poisoned applies it.",
+      "durationAndEnding": "Use the applying effect's duration/removal rule.",
+      "stacking": "Multiple Poisoned applications do not stack disadvantage; independent durations may coexist.",
+      "immunitiesAndOverrides": "Poisoned immunity blocks application. Poison damage resistance alone does not imply Poisoned immunity unless stated.",
+      "provisionalDecisions": [],
+      "openDependencies": []
+    },
+    {
+      "id": "prone",
+      "name": "Prone",
+      "coreText": "Crawl or stand; melee attackers within 5 ft. have advantage; ranged attackers have disadvantage.",
+      "compatibleV6Details": [
+        "V6: only movement is crawl unless standing; own attack rolls have disadvantage; attacks from within 5 feet have advantage, otherwise disadvantage."
+      ],
+      "sourceConflicts": [
+        "For a ranged attack made from within 5 feet, V6 distance-only wording would grant advantage while Core specifically says ranged attackers have disadvantage. Core controls."
+      ],
+      "effect": "The Prone creature's own attack rolls have disadvantage. It may crawl or stand under the movement rules. Melee attacks against it from within 5 feet have advantage. Ranged attacks against it have disadvantage regardless of distance. Other attacks made from beyond 5 feet have disadvantage under the compatible V6 detail.",
+      "application": "Applied when an effect explicitly knocks a creature Prone or another rule such as Unconscious causes it.",
+      "durationAndEnding": "Ends when the creature successfully stands or an explicit effect ends Prone.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Prone immunity blocks application. A feature may explicitly ignore Prone attack penalties.",
+      "provisionalDecisions": [
+        "Core-vs-V6 conflict resolved in favor of Core for ranged attacks within 5 feet."
+      ],
+      "openDependencies": [
+        "Exact movement cost/action requirement to stand and crawl rate belong to the movement pass."
+      ]
+    },
+    {
+      "id": "resonance-burn",
+      "name": "Resonance Burn",
+      "coreText": "Maximum RP reduced and spell failure risk increases until a long rest or treatment.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [
+        "The current spell pilot explicitly uses Dissonance/Refrain and excludes the historical Burn/fizzle system to avoid stacking two strain engines."
+      ],
+      "effect": "Preserved source condition only. It is inactive in the current Dissonance-only playtest configuration and therefore applies no numeric RP-cap reduction or spell-failure procedure until separately reviewed.",
+      "application": "A feature whose only unresolved consequence is Resonance Burn remains blocked/non-operational in this configuration unless that feature separately defines all needed numbers without invoking the historical Burn engine.",
+      "durationAndEnding": "Source says until a long rest or treatment when active; exact treatment remains part of the historical Burn review.",
+      "stacking": "No stacking procedure is active in the current configuration.",
+      "immunitiesAndOverrides": "A reviewed configuration may explicitly enable Resonance Burn instead of or alongside another strain model, but that requires a separate decision.",
+      "provisionalDecisions": [
+        "Pilot decision: preserve but do not execute Resonance Burn while Dissonance/Refrain is the active strain system."
+      ],
+      "openDependencies": [
+        "Historical Resonance Burn RP-cap reduction values, spell-failure procedure and treatment rules."
+      ]
+    },
+    {
+      "id": "restrained",
+      "name": "Restrained",
+      "coreText": "Speed 0; attacks against have advantage, own attacks and Dexterity saves have disadvantage.",
+      "compatibleV6Details": [
+        "V6 adds that the creature cannot benefit from bonuses to Speed."
+      ],
+      "sourceConflicts": [],
+      "effect": "Speed becomes 0 and cannot benefit from Speed bonuses. Attack rolls against the creature have advantage; its own attack rolls and Dexterity saving throws have disadvantage.",
+      "application": "Only an effect explicitly inflicting Restrained applies it.",
+      "durationAndEnding": "Use the applying effect's printed duration, save or escape rule. If an effect creates a physical restraint and provides no escape procedure, use the existing shared playtest escape procedure only if that source is eligible for it.",
+      "stacking": "Multiple Restrained applications do not compound penalties, but all independently maintained sources must end before the creature is no longer Restrained.",
+      "immunitiesAndOverrides": "Restrained immunity blocks application. Teleportation does not automatically end a restraint unless it breaks the source relationship or the applying effect says so.",
+      "provisionalDecisions": [],
+      "openDependencies": [
+        "Final generic physical-restraint escape procedure in combat rules."
+      ]
+    },
+    {
+      "id": "silenced",
+      "name": "Silenced",
+      "coreText": "Cannot use verbal components, command words, Chants, or audible coordination.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "The creature cannot use spell/ability verbal components, command words, Chants, or any feature requiring audible coordination. It may still think, perceive, move, use somatic/nonverbal abilities and use effects that explicitly function without sound.",
+      "application": "Only effects explicitly inflicting Silenced apply it.",
+      "durationAndEnding": "Use the applying effect's duration/end rule.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "An ability explicitly usable without speech or audible sound is unaffected. Silence immunity blocks application only if explicitly defined.",
+      "provisionalDecisions": [
+        "Clarification: Silenced is not universal mental or magical shutdown."
+      ],
+      "openDependencies": [
+        "Specific audible-command features must state whether they require being heard by recipients."
+      ]
+    },
+    {
+      "id": "staggered",
+      "name": "Staggered",
+      "coreText": "Cannot react, loses Guard, and the next forced movement gains +5 ft. Ends at start of next turn.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "The creature cannot take Reactions, loses Guard benefits, and the next forced-movement event affecting it before the condition ends moves it an additional 5 feet in the same legal direction.",
+      "application": "Only an effect explicitly inflicting Staggered applies it.",
+      "durationAndEnding": "Ends at the start of the affected creature's next regular turn. The +5-foot rider is consumed by the first qualifying forced movement or expires unused.",
+      "stacking": "Multiple Staggered applications do not add multiple +5-foot increases or additional Reaction denial; later application refreshes the endpoint.",
+      "immunitiesAndOverrides": "Forced movement still obeys obstacle, solid-matter and legality rules. A feature explicitly preventing forced movement can negate the movement despite Staggered.",
+      "provisionalDecisions": [
+        "NEW endpoint clarification: 'next turn' means the affected creature's next regular turn.",
+        "NEW: +5 feet is consumed once."
+      ],
+      "openDependencies": [
+        "Guard subsystem finalization."
+      ]
+    },
+    {
+      "id": "stunned",
+      "name": "Stunned",
+      "coreText": "Incapacitated, cannot move, fails Strength/Dexterity saves, attacks against have advantage.",
+      "compatibleV6Details": [
+        "V6 adds that the creature can speak only falteringly."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature is Incapacitated, cannot move, automatically fails Strength and Dexterity saving throws, attack rolls against it have advantage, and it can speak only falteringly.",
+      "application": "Only an effect explicitly inflicting Stunned applies it; source-character hard-denial limits remain separate application rules.",
+      "durationAndEnding": "Use the applying effect's duration/repeat-save procedure.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Stun immunity blocks application. Incapacitated consequences apply, including no Bonus Action/Reaction and concentration ending under the shared rule.",
+      "provisionalDecisions": [],
+      "openDependencies": []
+    },
+    {
+      "id": "unconscious",
+      "name": "Unconscious",
+      "coreText": "Incapacitated, unaware, drops held items, falls Prone, adjacent hits are critical.",
+      "compatibleV6Details": [
+        "V6 adds cannot move or speak, automatically fails Strength/Dexterity saves, attacks against have advantage, and any hit from within 5 feet is critical."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature is Incapacitated, unaware of surroundings, cannot move or speak, drops held items, falls Prone, automatically fails Strength and Dexterity saving throws, attack rolls against it have advantage, and any attack that hits from within 5 feet is a critical hit.",
+      "application": "Applied by effects explicitly causing Unconscious, including the active 0-HP rules.",
+      "durationAndEnding": "Use the causing rule's endpoint. Healing above 0 ends only Unconscious caused solely by the 0-HP state; it does not remove an independent Unconscious effect.",
+      "stacking": "Multiple causes may coexist; the creature remains Unconscious until all relevant causes end.",
+      "immunitiesAndOverrides": "An immunity to Unconscious blocks applicable external effects but does not necessarily override death/0-HP rules unless explicitly stated. Incapacitated consequences apply.",
+      "provisionalDecisions": [],
+      "openDependencies": []
+    },
+    {
+      "id": "unity-exposure",
+      "name": "Unity Exposure",
+      "coreText": "Track exposure from 0-6. At thresholds, distinctions, memories, loyalties, and eventually identity begin to erode.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "Track a Unity Exposure score from 0 through 6. Reviewed effects may increase or reduce that score exactly as printed. No additional generic mechanical penalties or hidden revelations are created by this condition specification.",
+      "application": "Only explicit effects such as reviewed substances, hazards or Director mechanics may alter Unity Exposure.",
+      "durationAndEnding": "The score persists until an explicit reviewed effect changes it. Do not infer long-rest recovery or cleansing.",
+      "stacking": "Exposure changes modify the single 0-6 track; cap at 6 unless an authoritative source explicitly allows another state.",
+      "immunitiesAndOverrides": "An effect explicitly preventing Unity Exposure blocks only the exposure it covers.",
+      "provisionalDecisions": [
+        "NEW integration boundary: the public condition tracks score only; threshold consequences require separately reviewed public/Director source material.",
+        "No private plot truth, memory content, loyalty change or identity outcome is invented from the one-line public condition."
+      ],
+      "openDependencies": [
+        "Full public/Director Unity threshold tables and secrecy boundaries.",
+        "What mechanically occurs at each score, especially 6."
+      ]
+    },
+    {
+      "id": "withdrawal",
+      "name": "Withdrawal",
+      "coreText": "Disadvantage on ability checks and RP recovery; severity depends on substance and duration of dependence.",
+      "compatibleV6Details": [
+        "Dependence source: user needs a dose after each long rest or gains Withdrawal; treatment may use Medicine, Religion, Alchemy or a recovery project, while magic can remove symptoms without necessarily removing dependence."
+      ],
+      "sourceConflicts": [
+        "Current Retune is deterministic and has no RP-recovery roll on which disadvantage can operate."
+      ],
+      "effect": "The creature has disadvantage on ability checks. If an RP-recovery procedure actually calls for a roll, that recovery roll has disadvantage. The current deterministic Retune formula receives no invented numeric penalty from this wording. Oracle Revelation Charges are not RP and are unaffected.",
+      "application": "Applied for a named substance when its Addicted maintenance requirement is missed or another source explicitly inflicts Withdrawal. Record the substance/source separately.",
+      "durationAndEnding": "A qualifying maintenance dose may end/suppress Withdrawal symptoms for that substance's current maintenance interval without removing Addicted. A reviewed treatment may also remove symptoms. Exact dependence cure and severity endpoints remain source dependencies.",
+      "stacking": "Separate substance Withdrawal records may coexist, but disadvantage on ability checks applies only once. Severity does not numerically stack unless a substance-specific rule defines it.",
+      "immunitiesAndOverrides": "An effect explicitly preventing Withdrawal symptoms suppresses the condition within its scope but need not remove Addicted.",
+      "provisionalDecisions": [
+        "NEW: a maintenance dose can end current Withdrawal symptoms while dependence persists.",
+        "Integration decision: deterministic Retune is not numerically altered because 'disadvantage' has no roll to modify.",
+        "Oracle RC explicitly remains outside an RP-only condition."
+      ],
+      "openDependencies": [
+        "Substance-specific Withdrawal severity and duration.",
+        "Final dependence-treatment and recovery-project procedures.",
+        "Whether the broader RP recovery pass replaces the current deterministic bridge."
+      ]
+    },
+    {
+      "id": "wounded",
+      "name": "Wounded",
+      "coreText": "Each Wound imposes -1 Constitution saves and reduces Hit Dice recovery; three Wounds is Critical.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [
+        "V6 Appendix has a separate temporary Wounded condition: cannot regain HP except magical healing/long rest, disadvantage Constitution saves, damage at 0 causes one death-save failure, ends on magical healing/long rest. Core owns this conflict for the current candidate, so that V6 temporary package is preserved but inactive."
+      ],
+      "effect": "Use the existing Core Wound records from the reviewed HP/Wound overlay. Each Wound gives -1 Constitution saving throws and reduces maximum Hit Dice recovered per long rest by 1. At three Wounds the creature is Critically Wounded under that overlay's Speed, healing-ceiling and failed-Wound-save rules.",
+      "application": "Wounds are gained only through the active Wound-trigger/save system or an effect explicitly granting a Wound. Do not separately add a second condition penalty merely because a source labels the creature Wounded.",
+      "durationAndEnding": "Each Wound persists until a reviewed treatment or effect removes that Wound. Removing a Wound also removes its linked Injury. Leaving three Wounds ends Critical state under the existing overlay.",
+      "stacking": "Wound records stack numerically according to Core. The current overlay allows 0-3 living Wounds; a failed Wound save begun at three Wounds is fatal instead of creating a fourth.",
+      "immunitiesAndOverrides": "An effect explicitly preventing Wounds blocks only qualifying Wound gain within scope. Ordinary HP healing does not remove Wounds unless it explicitly says so.",
+      "provisionalDecisions": [
+        "Integration decision already reviewed: Core Wound records are the active meaning of Wounded in this candidate; the conflicting V6 temporary Wounded package is inactive and does not double-apply penalties."
+      ],
+      "openDependencies": [
+        "Specific restoration effects that remove Wounds will be cross-checked during spell/item/condition integration."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "scenarioId": "DICE-L10-RETREAT",
+  "level": 10,
+  "budget": "Catastrophic",
+  "objective": "declare retreat and carry casualty",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "soldier",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "thief",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "ranger",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "tinker",
+        "x": 0,
+        "y": 15
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Choralith, Voice Below",
+        "x": 30,
+        "y": 0
+      }
+    ]
+  },
+  "cargo": null,
+  "partyBuildHashes": [
+    "a73834abd3713676abee4629cab269775bd4790c0f708db6ef18a08e9fd8ce36",
+    "654e25ce0f74e145ecba37988297785562fdf2d18a3a7545c13e5903f4057340",
+    "13e3bc4a5b893883c89c503c7640166a0d2e5931513a5caf53b33fc3121336a1",
+    "aa10804e9473934c5efdea53e806b199e8b05a2d3dca1781bd50018477409c09"
+  ],
+  "enemies": [
+    {
+      "name": "Choralith, Voice Below",
+      "hitPoints": 483,
+      "armorClass": 19,
+      "challengeRating": "20",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Resonant Lash",
+          "text": "Attack: +11 to hit, one target. Hit: 3d12+8 thunder damage (average 28)."
+        },
+        {
+          "name": "Echo Needle",
+          "text": "Attack: +11 to hit, one target. Hit: 2d10+6 psychic damage (average 17)."
+        },
+        {
+          "name": "Subsonic Chord (Recharge 5-6)",
+          "text": "Creatures in the affected area make a DC 20 Constitution save, taking 6d10 thunder damage (average 33) on a failure and half on a success. The Director should describe the charge-up before resolving it."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Gate-Bound",
+          "text": "The Guardian cannot be permanently displaced from its arena while the Seal remains active."
+        },
+        {
+          "name": "Aerial Hunter",
+          "text": "It ignores ground difficult terrain and seeks angles that bypass front-line cover."
+        },
+        {
+          "name": "Escalation Pulse",
+          "text": "Subsonic Chord recharges on 5-6; visible signs appear one round before the first use."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Resonant Lash",
+          "bonus": 11,
+          "n": 3,
+          "sides": 12,
+          "mod": 8,
+          "text": "Attack: +11 to hit, one target. Hit: 3d12+8 thunder damage (average 28).",
+          "dc": null
+        },
+        {
+          "name": "Echo Needle",
+          "bonus": 11,
+          "n": 2,
+          "sides": 10,
+          "mod": 6,
+          "text": "Attack: +11 to hit, one target. Hit: 2d10+6 psychic damage (average 17).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": true,
+      "tenacityPerRound": 1,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "0c75d43c8415d8f4d9d5319d37ac2215e8f0de9a12d79de657dd35f59416ef6a"
+}

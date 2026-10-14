@@ -1,0 +1,1184 @@
+Next DD16 conference: custom class and spell riders. The 28 Core conditions and generic recovery procedures are closed within that scope; DD16 remains open. Inspect the actual active-card excerpts below. Please propose a compact semantic registry with source-qualified IDs, exact cross-feature hooks and concrete unresolved issues. Capitalized words are not automatically conditions, and matching names need not share mechanics.
+
+1. Preserve Warrior Shaken (-1 attacks) and Thief Shaken (disadvantage on next fear save). I propose the latter ends when that save consumes it or its printed duration expires.
+2. Mage/Wizard Dreadblade Weakened means -1 attacks; Warrior Weakened means -1 weapon/natural damage. Keep separate IDs. Cleric Judging Light can recognize a common weakened eligibility tag for either active variant without combining their penalties. A suppressed variant should not qualify.
+3. Thief references Crippled without explicitly naming it on Crippler. Does it mean the active Crippler package, including its unspent next-attack penalty and critical half-Speed rider? Does Crippling Strike also qualify? Do not automatically classify every slow as Crippled.
+4. Bleed variants need source-specific timing, damage, stacking and cures. Crimson Blood Echo explicitly permits two instances. Shaman Blood Curse says magical healing permits a CON save rather than automatically curing it. Preserve such exceptions. A Bleeding family tag can support generic cures and immunity, with exact quantities respected. Printed replacement ticks must not also receive generic end-turn ticks. Physical damage needs a concrete type; propose the applying physical type, otherwise slashing, while preserving explicit necrotic.
+5. Distinguish ongoing fire Burn from Resonance Burn, feature names such as Crown's Burn, and historical casting risk. Use the actual class engine magnitude first. Where a periodic rider merely says next turn, propose end of the next regular target turn as a new fallback. Mage's stray Core spell-risk wording must not re-enable a second Burn/fizzle engine in our Dissonance-only configuration.
+6. Oracle Dread has -1 attacks/saves. Some cards separately deny Reactions for a shorter period; Dread-only synergy must not extend or copy that rider. Apply fear immunity only where explicitly fear-tagged. Paladin Dominion's Dread mode is actually Frightened, not Oracle Dread.
+7. Keep Grief and Grief Mark separate; likewise Cleric Doomed (healing reduction/buff acceleration) and Mark of the Doomed (an attack-bonus mark). A mark never grants unstated tracking.
+8. Root means Speed 0, not Restrained. Slow/Slowed is a descriptor of a printed Speed reduction, not an imported spell package. Druid Snow Leopard's slowed-foe hook needs a boundary: I propose an active hostile reduction, including explicit Root, but excluding Prone, cargo, terrain costs and Exhaustion; Grappled/Restrained alone should not qualify unless the source also explicitly slows.
+9. Cursed and Diseased are classification hooks, not two missing generic Core packages. Judging Light should recognize an explicit active curse tagged as such, not Oracle's permanent protected Curse engine, an oath, ancestry or flavor. Cure effects retain special-cure/artifact limits. Identify any tier language needing individual follow-up.
+10. Warrior Disoriented retains Actions/movement, but its next turn's first 5 feet go in a random legal horizontal direction. Check the actual card duration and propose precise handling if Speed is 0 or no direction is legal. No free movement or extra Actions. Cellular Reconstruction's stasis is its printed package, not Downed, Unconscious or Petrified.
+11. Bound, disabled, suppressed, hidden, sleep and exposed may be ordinary descriptions or source-specific states. Define their classification boundaries without inventing global conditions. Generic Silenced does not end concentration, though an audible maintenance requirement can fail; a concentration-protection disclaimer mentioning Silence does not create a new ending rule.
+
+For each proposed mechanical family, state effect, application source, ending/cures, stacking, immunity tags and hook aliases. Preserve original display names and exact source text. Use explicit card durations where supplied. Identify missing evidence rather than inventing owner-approved canon. We will implement a separate binding overlay and validate actual card IDs; search counts alone are not completion.
+
+Active evidence packet:
+{
+  "scope": "Active engine/card evidence, not historical source summaries. Lexical terms require semantic interpretation; an occurrence is not proof of a condition.",
+  "records": [
+    {
+      "term": "Weakened",
+      "source": "data/public/class_playtests/cleric.json",
+      "owner": "Cleric",
+      "record": "cleric.base.judging-light",
+      "field": "effect",
+      "text": "Judging Light. Tags: smite, passive. When your Divine Smite damages a creature currently affected by a Cursed or Weakened condition, add S d4 radiant damage to that Smite. Roll these dice once as part of the Smite; they do not create a second hit or trigger."
+    },
+    {
+      "term": "Doomed",
+      "source": "data/public/class_playtests/cleric.json",
+      "owner": "Cleric",
+      "record": "cleric.hero.cultist.blasphemous-tongue",
+      "field": "effect",
+      "text": "Blasphemous Tongue. Tags: cultist, sacrament, doomed. At each pulse of your Sacrament, each enemy affected by that pulse makes a Wisdom save. On failure it becomes Doomed until the next pulse. While Doomed, HP healing it receives is reduced by S+M, minimum 0, and each positive timed buff on it counts down one additional round at the end of its turn. Repeated failures refresh rather than stack."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "engine",
+      "field": "2",
+      "text": "Your Bleed is a physical ongoing effect on a living, non-bloodless creature: 1d4 damage at the start of each of its next 3 turns, then ends. It is not a new attack and generates no BG or procs. Refresh duration instead of stacking; Blood Echo expressly allows two independent instances, maximum. An Action by the victim or an adjacent creature using a healer's kit ends all your Bleeds on that victim. Apply physical resistance/immunity normally. Track remaining ticks and creator per instance. Allied healing versions from Bloodweaver cost RP and never count as hostile Bleeds for detonation, spreading or generation."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "engine",
+      "field": "3",
+      "text": "One Blood Mark at a time on a living target with your Bleed, except Phantom Strike, which explicitly may apply the mark without Bleed. It does not add a free Bleed. Marks last 5 of your regular turns, expire on encounter end or if the target dies, and never create damage by themselves. Rupture requires the target still within 60 ft and line of effect; it spends the mark. A mark does not defeat cover, planar boundaries or bloodlessness. Bloodtrail has its own tracking limits."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "engine",
+      "field": "6",
+      "text": "At level 1 learn the core Blood Gauge/Bleed rules automatically. Blood Mark and Veinweaver's Core remain selections; Quickblood can be selected and used without a second unlock tax. Veinweaver's Core improves that foundation as printed. Standard scheduled acquisition applies. Bloodbound Edge is automatic 9. At 10 choose Bloodweaver, Shadow Operative or Thirstborn; its Final Cut is automatic 20. Duplicate Hemostasis names are separate Arch and Bloodweaver IDs."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.base.arterial-cut",
+      "field": "effect",
+      "text": "A critical weapon hit applies your Bleed. If it already has your Bleed, extend one instance by 2 ticks, maximum 5 ticks remaining. This damage never generates further BG."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.base.arterial-cut",
+      "field": "duration",
+      "text": "Bleed 3 turns"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.base.blood-tithe",
+      "field": "effect",
+      "text": "Regain HP equal to M+class level after a creature bearing your Bleed dies. It must have been an active hostile combatant; no ally, summon, captive or corpse farming."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.base.hemorrhage-slash",
+      "field": "effect",
+      "text": "Make one weapon attack. On hit add S d6 damage of the weapon type and apply Bleed. The usual once/turn hit trigger grants 1 BG; this card grants no separate BG."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.base.hemorrhage-slash",
+      "field": "duration",
+      "text": "Instant plus Bleed"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.base.blood-mark",
+      "field": "rangeAndTarget",
+      "text": "One living target with your Bleed within 60 ft"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.blood-echo",
+      "field": "effect",
+      "text": "Your Bleed can have two independent instances on a creature; a third application refreshes the oldest. Once on each of your turns add 1 to one Bleed instance's next tick. Never spread or detonate more instances than actually exist."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.blood-echo",
+      "field": "duration",
+      "text": "As Bleed"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.blood-echo",
+      "field": "rangeAndTarget",
+      "text": "Targets of your Bleed"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.rupture-trigger",
+      "field": "effect",
+      "text": "After Rupture damages its marked target, choose up to 2 other living enemies nearby. Each makes CON save; on failure apply one Bleed. These applications do not trigger Rupture again or grant BG."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.rupture-trigger",
+      "field": "duration",
+      "text": "Bleed 3 turns"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.bloodbound-edge",
+      "field": "effect",
+      "text": "End up to 2 of your Bleed instances per target. Each takes 1d4 per remaining tick, maximum S d4 per creature, ignoring resistance but respecting immunity. This replaces their future ticks and grants no BG, healing or kill-trigger benefit."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.bloodbound-edge",
+      "field": "rangeAndTarget",
+      "text": "Up to 3 enemies with your Bleed within 30 ft"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.rupture",
+      "field": "effect",
+      "text": "Target makes CON save: (S+1)d8 necrotic on failure, half on success. The mark ends either way; existing Bleed remains. Damage from this technique is not a weapon hit and grants no BG."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.bloodtrail",
+      "field": "rangeAndTarget",
+      "text": "One living target with your Bleed within 30 ft"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.veinweave-sensory-theft",
+      "field": "rangeAndTarget",
+      "text": "One living creature with your Bleed within 60 ft"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.arch.hemostasis",
+      "field": "effect",
+      "text": "End all Bleed on the target and restore S d6+M HP, regardless of number of ticks removed. You cannot create extra healing by inflicting extra Bleed. Works even if no Bleed is present, at the same RP cost."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.bloodweaver.hemostasis",
+      "field": "effect",
+      "text": "You may replace a new Bleed application on that ally with healing 1d4 at start of its next 3 turns. Pay extra RP even if original application was free. One such healing effect per target; it cannot spread, detonate, generate BG or trigger healing loops."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.bloodweaver.hemostasis",
+      "field": "rangeAndTarget",
+      "text": "One willing living ally in range of your Bleed application"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.shadow-operative.veinjammer",
+      "field": "effect",
+      "text": "After a Bleed tick, choose that victim: Speed reduced 5 ft, minimum 0, and its next concentration save takes-1. Nonstacking; does not remove an Action or prohibit spellcasting."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.shadow-operative.veinjammer",
+      "field": "rangeAndTarget",
+      "text": "One creature damaged by your Bleed"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.shadow-operative.blood-cipher",
+      "field": "rangeAndTarget",
+      "text": "One willing or restrained living target with your Bleed touched"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.blood-frenzy",
+      "field": "effect",
+      "text": "Add 1 to direct weapon damage per hostile creature bearing your Bleed, maximum 3. Applies once per hit, not per Bleed instance. Secondary Bleed, copies and explosions gain no bonus."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.hemorrhagic-plague",
+      "field": "effect",
+      "text": "After one of your Bleeds ticks, pay 1 BG; new target makes CON save. Failure applies one Bleed. A spread instance cannot spread again. This grants no BG and does not duplicate marks or immediate damage."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.hemorrhagic-plague",
+      "field": "duration",
+      "text": "Bleed 3 turns"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.hemorrhagic-plague",
+      "field": "rangeAndTarget",
+      "text": "One new living enemy within 5 ft of a Bleed victim"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.pain-to-power-conduction",
+      "field": "effect",
+      "text": "End one active Veinweave. Chosen enemy makes CON save: failure takes S d4 necrotic and Bleed; success takes half immediate damage only. On failure by 10 it is Frightened until end next turn. No resource refund."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.pain-to-power-conduction",
+      "field": "duration",
+      "text": "Instant plus Bleed"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.veinburst-requiem",
+      "field": "rangeAndTarget",
+      "text": "Up to 6 enemies with your Bleed within 30 ft"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.exsanguinate",
+      "field": "effect",
+      "text": "CON save: (S+1)d8 necrotic, half on success; add 1d8 if it has your Bleed. If it fails and actually takes damage, regain 1 BG within the common gain cap. The refund cannot pay activation costs retroactively."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/crimson-agent.json",
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.thirstborn.bloodstorm",
+      "field": "effect",
+      "text": "On start and each later paid pulse, targets make CON saves: S d6 necrotic, half on success; failure applies one Bleed. Maintenance costs Bonus Action+1 RP. Maximum 3 pulses. Once/turn your direct weapon attack against a creature in the storm adds 1 damage; storm/bleed damage gives no BG."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/dragoon.json",
+      "owner": "Dragoon",
+      "record": "engine",
+      "field": "4",
+      "text": "Spending Momentum pays before resolution; a hit refund cannot pay its own activation. Burn means 1d4 fire at start of target's next 2 turns, nonstacking. Bleed means 1d4 physical at start of next 2 turns; an Action with a healer's kit ends it. Do Ts give no Momentum or critical triggers. Hard denial uses the shared once-per-target/encounter guard."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/dragoon.json",
+      "owner": "Dragoon",
+      "record": "dragoon.hero.dragon-guardian.wyrmhide",
+      "field": "effect",
+      "text": "Reduce each damage instance by 2 and gain advantage on CON saves against Bleed, Burn and Poisoned. No blanket condition immunity; effects already present persist and ordinary nonstacking reduction applies."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/dragoon.json",
+      "owner": "Dragoon",
+      "record": "dragoon.hero.drake-rider.drakestorm-dive",
+      "field": "effect",
+      "text": "Choose fire/cold/lightning. DEX save:6d8 chosen damage, half on success. On failure fire applies Burn, cold reduces Speed 10 ft until end next turn, lightning prevents Reactions until then. Land in legal empty space; no additional weapon attack."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/dragoon.json",
+      "owner": "Dragoon",
+      "record": "dragoon.hero.dragon-tyrant.sovereign-descent",
+      "field": "effect",
+      "text": "STR save:6d8 bludgeoning, half on success. Failure knocks Prone and applies one Bleed and Burn. Failure by 10 also Stuns until end target's next turn, subject to denial cap. Ground becomes difficult terrain for 1 minute; no destruction of structural supports."
+    },
+    {
+      "term": "Slowed",
+      "source": "data/public/class_playtests/druid.json",
+      "owner": "Druid",
+      "record": "druid.hero.winterfang.snow-leopard",
+      "field": "effect",
+      "text": "Claw 2d6+WIS cold, +1d4 once/turn against slowed foe. +5 Stealth on ice/snow and advantage on legal Hide there; source+10 reduced provisionally. Ignore ordinary ice/snow movement penalties, not magical restraining ice."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/druid.json",
+      "owner": "Druid",
+      "record": "druid.hero.ashen-grove.charbear",
+      "field": "effect",
+      "text": "Claw 2d8+WIS fire; first hit/turn Burn 1d4 next turn. Up to 3 enemies starting 5 ft CON save or 1d6 fire. Smoke Action opaque 10 ft radius sphere centered fixed point you occupy, concentration 3 rounds; all vision blocked, no poison in this draft. Wind 20 mph disperses."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/mage.json",
+      "owner": "Mage",
+      "record": "engine",
+      "field": "2",
+      "text": "Named Mage cards tagged mage-spell, and the three Focus finishers are spells for Focus, Nuke Chain, Refrain, concentration, Counterspell and other spell-referencing mechanics. Their printed RP cost replaces an ordinary rank cost; do not charge both. Generic Overcast is disabled for these class-card spells during this pilot unless a card expressly enables it. They receive no extra class-level Burn or Dissonance simply for being card spells; ordinary Core V 2 spell-risk rules still apply where applicable."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/mage.json",
+      "owner": "Mage",
+      "record": "engine",
+      "field": "7",
+      "text": "RESONANCE SURGE. Once per short rest, when you begin casting a damaging Mage spell, you may spend 2 additional RP after validating the spell's normal cost. Add S d8 damage of one damage type already dealt by that spell to one of its damage rolls. Resonance Surge does not count as Overcast, does not independently alter Dissonance or Burn, does not create another spell cast, and does not advance the Nuke Chain separately."
+    },
+    {
+      "term": "Weakened",
+      "source": "data/public/class_playtests/mage.json",
+      "owner": "Mage",
+      "record": "engine",
+      "field": "13",
+      "text": "DREADBLADE. Medium undead; AC 16; HP = 16 + 3 × Mage level; Speed 30 feet. Disrupting Blade: melee spell attack using your Mage attack bonus, reach 5 feet, hit 1d8 + S necrotic. If the target is concentrating it immediately makes its concentration save with disadvantage. On a natural 20, the target is Weakened until the end of its next turn, taking -1 to attack rolls. Dreadblade has advantage on saves against forced movement."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/mage.json",
+      "owner": "Mage",
+      "record": "mage.base.fire.fire",
+      "field": "duration",
+      "text": "Permanent Focus; finisher instantaneous plus Burn"
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/mage.json",
+      "owner": "Mage",
+      "record": "mage.arch.elemental-surge",
+      "field": "effect",
+      "text": "Elemental Surge. Tags: mage-spell, arcanist, elemental, focus, damage. Make a Mage spell attack. On a hit deal (S+1)d8 + M damage of your current Focus. Fire also applies the Focus Burn; Cold applies the Focus Speed reduction; Lightning applies the Focus secondary arc. This is Focus-eligible and can occupy one slot in a Nuke Chain."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.haunted.haunted-boon-iv",
+      "field": "effect",
+      "text": "1/long rest as an Action, enemies of your choice within 15 feet make Wisdom saves; failure causes Dread for up to 2 rounds, giving -1 on attack rolls and saving throws. Affected creatures repeat the save at the end of each turn, ending Dread on success."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.ancestor.ghost-chant",
+      "field": "effect",
+      "text": "Each target makes a Wisdom save. On failure it suffers Dread: -1 on attack rolls and saving throws until the end of its next turn. At the end of that turn it repeats the save, ending Dread on success; failure extends Dread one final round. This is fear-based and a creature immune to fear is immune."
+    },
+    {
+      "term": "Doomed",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.battle.mark-of-the-doomed",
+      "field": "effect",
+      "text": "Mark the target. You and allies within 5 tiles gain +2 on attack rolls against it. The first critical hit against the marked creature during the mark deals +1d6 damage of the triggering attack's type. The marked creature cannot benefit from mundane concealment against you. Applying another Mark of the Doomed ends the previous mark."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.bones.unfinished-chorus",
+      "field": "effect",
+      "text": "For 2 rounds, enemies within 4 tiles suffer Dread: -1 on attack rolls and saving throws. Once on each of your turns choose one living enemy in range; it takes 1d6 necrotic damage and you either regain half the actual damage dealt, rounded down, or one living ally within 3 tiles of you regains that amount, maximum S+M HP. Undead you control add S damage to one attack each turn and reduce first damage each round by 1. Corpses in the area cannot be raised while the Chorus lasts. Afterward you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet. Choose up to three enemies and three allies. Enemies make Wisdom saves on entry and at the end of each turn, ending their debuff on success. The drain allows a Constitution save for half damage; healing is capped at S+M total per pulse. Concentration and pulse upkeep apply."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.dream.nightmare-lash",
+      "field": "effect",
+      "text": "The target makes a Wisdom save, taking 2d8+M psychic damage on failure or half on success. On failure it also suffers Dread: -1 on attack rolls and saving throws and no Reactions until the end of its next turn. It repeats the save then; failure extends the attack/save penalty one final round, but Reaction loss lasts only the first round. If the target was already Frightened or suffering Dread before the cast, add one extra d8 psychic damage and, after resolution, regain 1 RC at most once per round."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.dream.nightmare-lash",
+      "field": "duration",
+      "text": "Damage instantaneous; Dread maximum 2 rounds"
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.dream.unreality",
+      "field": "effect",
+      "text": "Once per round when an enemy attack roll would hit you, roll d4; on 4 the attack instead hits an illusory echo and misses. Separately, once per short rest when an attack would deal damage to you, use your Reaction before damage to make that attack miss and teleport to an unoccupied space 1 tile away that you can perceive. The attacker then makes a Wisdom save; on failure it suffers Dread (-1 attack and save) until the end of its next turn."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.dream.dream-revelation-mastery",
+      "field": "effect",
+      "text": "Choose one mastery for a Revelation you know. Enhanced Mirage: create two duplicates; each can absorb one failed-targeting attack and both share the same 2-round duration. Enhanced Shared Dream: affect up to 3 allies plus yourself. Enhanced Threshold Collapse: enemies inside the aura cannot take Reactions while they are currently deceived by one of your Dream illusions or while suffering Dread from you."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.dream.dream-prophecy",
+      "field": "effect",
+      "text": "Activate one known Dream Revelation for 0 RC. After it resolves, become Invisible until you attack, deal damage, force a saving throw or the end of your next regular turn. The first damaging attack you land from that concealment adds S d6 psychic damage and causes the target to make a Wisdom save; on failure it suffers Dread (-1 attack and save) until the end of its next turn. During the same interval, when a creature succeeds on its first save to disbelieve one illusion you create, require a second Wisdom save; it must succeed on both to disbelieve."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.flame.flame-revelation-mastery",
+      "field": "effect",
+      "text": "Choose one mastery for a Revelation you know. Enhanced Wrathful Brand: its maximum duration becomes 2 rounds. Enhanced Crown's Burn: its healing may target up to three living allies within 4 tiles of the burst center rather than requiring them inside the burst. Enhanced First Flame Convergence: Zealot's Renewal backlash remains suppressed for the full Convergence duration; if already suppressed by the base effect, additionally one ally healed by Zealot's Renewal during Convergence gains S temporary HP."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.shadow-prophecy-trigger",
+      "field": "effect",
+      "text": "When you damage a meaningful hostile creature that cannot see you or is currently Frightened or suffering Dread from your Oracle feature, regain 1 RC, never above maximum. Multiple qualifying hits during the same round restore only 1 RC."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.psychic-lash",
+      "field": "effect",
+      "text": "Make a Revelation attack. On hit deal 1d8+M psychic damage. If the target could not see you when the attack began, add one extra d8 psychic damage; it also makes a Wisdom save. On failure it suffers Dread (-1 on attack rolls and saving throws) and cannot take Reactions until the end of its next turn."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.psychic-lash",
+      "field": "duration",
+      "text": "Damage instantaneous; Dread until end of target's next turn"
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.night-s-embrace",
+      "field": "effect",
+      "text": "Allies in the zone gain concealment and reduce the first damage they take each round by 1. Enemies in the zone take -1 on attack rolls and -1 on saves against your Fear/Dread effects. The first damaging attack you make from inside the zone each round while concealed adds S d6 psychic damage. When an enemy first enters the zone during a round, it makes a Wisdom save; on failure it loses Reactions until the end of that turn."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.mind-spike",
+      "field": "effect",
+      "text": "The target makes a Wisdom save, taking 2d8+M psychic damage on failure or half on success. On failure it cannot take Reactions until the end of its next turn and suffers Dread (-1 attacks and saves). It repeats the save at the end of that turn; failure extends Dread one final round but not Reaction loss. If already Frightened or Dreaded before the cast, add one extra d8 psychic damage and regain 1 RC after resolution, at most once per round."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.mind-spike",
+      "field": "duration",
+      "text": "Damage instantaneous; Dread maximum 2 rounds"
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.silent-hunter",
+      "field": "effect",
+      "text": "The first damaging attack you hit with during an encounter while concealed from its target adds S d6 psychic damage; the target makes a Wisdom save and suffers Dread (-1 attacks and saves) until the end of its next turn on failure. Separately, once per round after you activate a Revelation while concealed, move 1 tile without provoking opportunity attacks and gain +1 on your next attack roll before the end of the current turn."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.silent-hunter",
+      "field": "duration",
+      "text": "Permanent; Dread until end next turn"
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.hush-descends",
+      "field": "effect",
+      "text": "For 2 rounds sound is suppressed in the aura. Hostile creatures cannot use abilities that explicitly require audible speech or verbal spell components and suffer Dread (-1 on attack rolls and saves). You and allies gain +1 on attack rolls made while concealed. At the start of each enemy's turn in the aura it makes a Wisdom save; on failure it would lose its Action to nameless dread, subject to the Oracle hard-control guard. Once per round, the first psychic Revelation you activate while inside the aura costs 1 less RC, minimum 0; a 0-RC activation cannot independently generate recursive resource refunds."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.shadow-oracle",
+      "field": "effect",
+      "text": "Gain advantage on Stealth and Insight checks. Once per long rest choose one creature within 3 tiles and spend an Action reading its surface fear. If the creature is not protected from mind-reading or divination, the Director truthfully identifies one present fear, dread or aversion known to that creature. This grants information only and does not compel behavior."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.shadow-prophecy",
+      "field": "effect",
+      "text": "Activate one known Shadow Revelation for 0 RC. After it resolves, become Invisible until you attack, deal damage, force a saving throw or the end of your next regular turn. The first damaging attack you land from that concealment adds S d6 psychic damage and forces a Wisdom save; failure inflicts Dread (-1 attacks and saves) until the end of the target's next turn."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/oracle.json",
+      "owner": "Oracle",
+      "record": "oracle.supplement.shadow.marquis-s-glimpse",
+      "field": "effect",
+      "text": "For 3 rounds, ranged attack rolls against you automatically miss unless the attacker is adjacent to you or has an effect explicitly ignoring supernatural concealment. Once on each of your turns when a psychic Revelation deals damage, add a second copy of its unmodified rolled damage dice to one target; this copied damage cannot trigger RC recovery, conditions or proc effects. At the start of each enemy's turn within 4 tiles it makes a Wisdom save; on failure it would lose its Action to nameless dread, subject to the Oracle hard-control guard. A creature already hard-denied by you this encounter instead loses its Reaction and has Speed 0 until end of that turn."
+    },
+    {
+      "term": "Dread",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-dominion.decree-of-submission",
+      "field": "effect",
+      "text": "Choose Sub mission or Dread. The target makes a Wisdom save; a source-qualified law breaker has disadvantage on the initial save. Sub mission: on failure the target is Charmed by you and you state one simple command from Approach, Retreat, Drop, Kneel, Halt or Release. On its first affected turn it follows that command in the safest reasonable way using no more than movement and one ordinary Action, then repeats the save at turn end. Dread: on failure it is Frightened of you and cannot willingly approach you, repeating the save at the end of each turn. Either mode ends on a successful repeat save. Player-controlled targets retain target choice, may never be commanded to self-harm, and cannot be forced to change beliefs or permanent allegiance. Spending that Action uses the hard-denial allowance. On later turns the effect only imposes Charmed and, on a failed repeat save, no Reactions and half Speed until the next turn; it cannot command another Action."
+    },
+    {
+      "term": "Root",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-the-ancients.ancient-smite",
+      "field": "duration",
+      "text": "Root rider until end of target's next turn"
+    },
+    {
+      "term": "Root",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-the-ancients.primordial-surge",
+      "field": "effect",
+      "text": "A selected ally gains temporary HP equal to 2 times your actual Charisma modifier, minimum 2. A selected hostile fey or elemental makes a Strength save; on failure roots bind it and its Speed becomes 0 until the end of its next turn. This root does not remove Actions or Reactions. You may mix allied and hostile targets but can select no more than 3 total creatures."
+    },
+    {
+      "term": "Root",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-the-ancients.primordial-surge",
+      "field": "duration",
+      "text": "Temporary HP until lost; root until end of target's next turn"
+    },
+    {
+      "term": "Root",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-the-ancients.primordial-crown",
+      "field": "effect",
+      "text": "For 3 rounds Thorn Crown can trigger once per round without consuming its short-rest use or paying RP. When your Ancients Smite critical-hit root successfully affects a creature, choose one adjacent hostile creature; it makes the same Strength save and becomes rooted on failure, at most one spread target per critical. A selected allied target has advantage on saves against Charmed. A selected hostile fey or elemental makes a Wisdom save at the start of each turn; on failure it cannot attack allies other than you until the start of its next turn, though it may take other actions. The same creature remains subject to the universal denial cap."
+    },
+    {
+      "term": "Grief",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-grief.mourning-smite",
+      "field": "effect",
+      "text": "Choose radiant or necrotic; the entire Smite packet uses that type. If the target personally reduced one of your allies to 0 HP earlier this encounter, add 1d8 damage of the chosen Smite type. Such a target also gains Grief Mark until the end of its next turn, taking -1 on attack rolls. The mark refreshes but does not stack."
+    },
+    {
+      "term": "Grief",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-grief.mourning-smite",
+      "field": "duration",
+      "text": "Grief Mark until end of target's next turn"
+    },
+    {
+      "term": "Grief",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oathbreaker-oath-of-grief.death-touch-gravetongue",
+      "field": "effect",
+      "text": "Make a melee divine attack using PB+Charisma. On hit deal necrotic damage equal to the declared points. The target makes a Wisdom save; on failure it suffers Grief until the end of its next turn, taking -1 on attack rolls and saving throws against Fear. This is not a full-turn denial."
+    },
+    {
+      "term": "Grief",
+      "source": "data/public/class_playtests/paladin.json",
+      "owner": "Paladin",
+      "record": "paladin.supplement.oathbreaker-oath-of-grief.death-touch-gravetongue",
+      "field": "duration",
+      "text": "Damage instantaneous; Grief until end of next turn"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/ranger.json",
+      "owner": "Ranger",
+      "record": "engine",
+      "field": "1",
+      "text": "Weapon Synergy tracks last successful direct weapon hit on your own turns. Changing melee→ranged grants+1 to that ranged attack roll if it is your first attack of the turn; changing ranged→melee makes the hit apply Bleed 1d4 on target's next 2 turns. Once/turn synergy; Do Ts, copies, companions, forced attacks and misses do not advance it. At 5 ordinary Attack Action makes two attacks; techniques use only printed counts. You may draw/stow one weapon as normal object interaction; Dual Style later improves this."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/ranger.json",
+      "owner": "Ranger",
+      "record": "engine",
+      "field": "2",
+      "text": "Elemental Attunement is defensive; Elemental Imbue is the separate Pathfinder feature gated 6. Imbue Bonus Action 2 RP, one element for 3 of your turns; once/turn a weapon hit adds 1d4 of chosen element plus fire:Burn 1d4 next target turn, cold:Speed-10 ft until end next turn, poison:CON save or-1 attack rolls until end next turn. Nonstacking; Do Ts never build Hit Chain. Switching element pays again."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/shaman.json",
+      "owner": "Shaman",
+      "record": "engine",
+      "field": "4",
+      "text": "Flask tier uses S. Mundane Base modes: Burn=one enemy 30 ft DEX save S d6 fire half, failure 1d4 fire next turn; Root=one ground enemy 30 ft STR save Speed 0 until end its next turn; Weaken=one enemy 30 ft CON save or-1 attack damage until end its next turn. Advanced Hero modes additionally: Stun=one enemy 30 ft CON save or no Reactions, failure by 10 Stunned until end its next turn; Heal=one living ally 30 ft S d6+M HP; Restore=end Frightened or Poisoned on one ally 30 ft. Every thrown flask consumes one prepared unit and 2 RP for advanced magic (Base mundane flasks cost 0 RP). Changing payload requires no separate crafting action when throwing. No flask leaves harvestable poison or another flask."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/shaman.json",
+      "owner": "Shaman",
+      "record": "shaman.base.flask-use",
+      "field": "effect",
+      "text": "Throw a Burn, Root or Weaken flask using the exact engine profile. At Hero 10 Theurgist/Soothsayer may instead throw an advanced mode as Bonus Action for 2 RP and a prepared flask. Bloodcaller does not gain that upgrade."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/shaman.json",
+      "owner": "Shaman",
+      "record": "shaman.hero.theurgist.summon-cinderflame",
+      "field": "effect",
+      "text": "Summon standard Cinderflame. Commanded hit deals fire plus Burn 1d4 next target turn. On destruction only (not dismissal), up to 3 enemies within 5 ft make DEX save for S d4 fire, half. Explosion creates no further death/resource triggers."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/shaman.json",
+      "owner": "Shaman",
+      "record": "shaman.hero.soothsayer.balanced-elements",
+      "field": "effect",
+      "text": "Choose one application: add 1 damage to its next Burn tick OR extend a Speed reduction until end target's following turn. Never extends Stunned, silence, concentration duration or whole-Action denial."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/shaman.json",
+      "owner": "Shaman",
+      "record": "shaman.hero.bloodcaller.necrotic-aura",
+      "field": "effect",
+      "text": "Pay 1 RP; CON save S d4 necrotic, half on success. This replaces unlimited free aura damage. Cannot trigger itself, create Bleed or generate additional RP from kills."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/shaman.json",
+      "owner": "Shaman",
+      "record": "shaman.hero.bloodcaller.blood-curse",
+      "field": "effect",
+      "text": "CON save or Bleed 1d4 necrotic at start of each of next 3 turns. Action plus successful Medicine check against class DC ends it; magical healing also permits an immediate CON save to end. Never permanently unhealable; no repeated stacking."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/shaman.json",
+      "owner": "Shaman",
+      "record": "shaman.hero.bloodcaller.bloodroot-trail",
+      "field": "effect",
+      "text": "Leave a visible bloodroot trail, no solid wall. Each enemy first entering/starting on it per round makes DEX save for S d6 necrotic, half on success; failure Bleed 1d4 next turn. Maximum 3 creatures damaged/round chosen in entry order; no persistent corruption after expiry."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/soldier.json",
+      "owner": "Soldier",
+      "record": "engine",
+      "field": "1",
+      "text": "Overwatch is an automatic Base engine at 1. Bonus Action designate a visible 15 ft square within weapon range until start next regular turn. Once during that interval, spend your Reaction when a perceived enemy enters, moves inside, attacks an ally from, or reveals itself inside the zone. Make one legal ranged attack with ammunition and line of fire, normally 1d8+DEX piercing. On hit choose Snare (Speed-10 ft until end next turn), Bleed (1d4 at start next turn), or Push 5 ft (STR save negates push). Concealment still applies. Only one Overwatch zone; no extra Reaction. The optional Overwatch card upgrades this engine. At 17 you may move 5 ft without opportunity attacks after its shot, once/round."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "engine",
+      "field": "0",
+      "text": "Dexterity governs weapons and class DC/M. Choose Intelligence or Wisdom for noncombat class tool/sense checks at 1. Hit Die d8; light armor, daggers, shortswords, thrown weapons and hand crossbows; thieves tools and poison kit. Sneak Attack is automatic at 1: once on your regular turn, add ceil(class level/2)d6 to one finesse/ranged weapon hit if you had advantage, an active ally threatens target within 5 ft, or target is suffering your Bleed/Poisoned/Crippled. Disadvantage prevents Sneak Attack even if canceled into a straight roll. A feature can explicitly grant Sneak Attack on a different qualifying hit but never more than once/regular turn. Copies, poison ticks and companions cannot Sneak Attack."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "engine",
+      "field": "2",
+      "text": "At 1 know all four Tier I recipes, at 7 add Tier II, at 14 Tier III. Poison saving throws use Thief DC except preserved source fixed DC 12 becomes max(12, Thief DC) for Mindburn/Venombite. Unless stated damage/conditions require a failed CON save; initial weapon damage is unaffected. Critical riders also need this failed save. One ongoing instance of each recipe per target; another application refreshes rather than stacks. Maximum 2 simultaneous different poison recipes from you per target. Bleed never stops all healing by default, Poisoned uses the Core V 2 condition: disadvantage on attacks and ability checks (not saving throws), and Shaken means disadvantage on next fear save. Neither is a hidden full-turn disable."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "engine",
+      "field": "3",
+      "text": "Tier I: Bloodleech gives Bleed 1d4 at start next 2 target turns; critical restores 1d4 of your HP, once per dose. Crippler gives-1 on next attack before end next turn; critical also half Speed for that duration. Mindburn uses WIS save: -1 spell-attack rolls until end next turn, critical also no Reactions. Venombite gives Poisoned until end next turn; critical also-1 on next save. Tier II: Ashblood adds 2d6 poison now and 1 fire at start next 2 turns; critical prevents HP recovery through end next turn. Silencer prevents verbal spellcasting through end next turn, critical also drops one held nonbonded item into its space; it can retrieve normally. Shiver gives Shaken through end next turn; critical also no Reactions. Hexroot gives-1 saves for 2 target turns; critical lets next weapon hit ignore resistance, never immunity, before end next turn."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "thief.arch.shadow-stab",
+      "field": "effect",
+      "text": "After crit, move through target to adjacent empty space within 10 ft without opportunity attacks; apply Bleed 1d4 next 2 target turns. Movement requires open route, is not teleport and does not add another attack."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "thief.arch.shadow-stab",
+      "field": "duration",
+      "text": "Instant movement; Bleed 2 turns"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "thief.hero.shadowblade.persistent-bleed",
+      "field": "effect",
+      "text": "Refresh one of your existing Bleed effects to 2 target turns. Cannot increase its dice, duplicate instances or extend a capped poison effect beyond its poison rules."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "thief.hero.shadowblade.persistent-bleed",
+      "field": "duration",
+      "text": "Bleed extension"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "thief.hero.shadowblade.vein-cutter",
+      "field": "effect",
+      "text": "Consume prepared poison without its normal recipe effect; target CON save or Bleed 1d4 next 2 turns, Speed-10 ft and-1 next attack damage. Reapplication refreshes; source stack 3 replaced by one bounded package."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "thief.hero.blackguard.prolonged-suffering",
+      "field": "effect",
+      "text": "When you apply Bleed with base 2-turn duration it lasts 4 turns instead. Never doubles dice or stacks with another extension; subsequent refresh sets to 4, not adds 4."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "thief.hero.blackguard.prolonged-suffering",
+      "field": "rangeAndTarget",
+      "text": "Your Bleed application"
+    },
+    {
+      "term": "Crippled",
+      "source": "data/public/class_playtests/thief.json",
+      "owner": "Thief",
+      "record": "thief.hero.blackguard.vile-tactics",
+      "field": "rangeAndTarget",
+      "text": "One weapon hit against Bleeding/Poisoned/Crippled enemy"
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/tinker.json",
+      "owner": "Tinker",
+      "record": "engine",
+      "field": "3",
+      "text": "At 5 automatically gain one module slot; change module during long rest. Offensive: Burn Injector first bolt hit/turn causes 1d4 fire next 2 target turns; Poison Vents d4=4 on hit CON save or-1 attack rolls until end next turn; Concussive Bolt d4=4 on hit CON save or Stunned until end next turn, once/target/encounter shared denial guard and 1/short-rest successful Stun. Defensive: Target Taunter command action once/encounter WIS save one foe 30 ft or disadvantage attacking others until end next turn; Energy Shield command gives adjacent ally+2 AC until start next turn; Smoke Cloud command once/encounter creates 5 ft radius opaque smoke centered drone until start next turn. Support: Ammo Dispenser adjacent allies first ranged hit/turn+1 damage; Target Scanner command mark 1 visible foe 60 ft first ally attack before start next turn+1 hit; Tether Grappler command once/encounter pulls 1 willing ally 15 ft within 30 ft without opportunity attacks along open route."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/tinker.json",
+      "owner": "Tinker",
+      "record": "engine",
+      "field": "4",
+      "text": "Bomb stock refills during long rest with tools to 3 at 1, 4 at 5, 5 at 11; cap equals refill, class bombs have no resale or stockpiling. Encounter throw cap 1 at 1, 2 at 5, 3 at 11. Each throw uses one stock and one encounter allowance. Basic fire/cold known 1; advanced profiles known 6; Overload Core known 9. Base throw is Action, range 30 ft, 10 ft radius up to 3 creatures, DEX save S d6 element, half success. Fire failure adds 1d4 Burn next turn; cold failure Speed-10 ft until end next turn. Explosive Handling makes throw Bonus Action; still only one bomb/regular turn. At 15 Danger Close automatically allows excluding yourself/allies. Safe Detonation grants this early. Bombs cannot critically hit or inherit weapon riders."
+    },
+    {
+      "term": "Stasis",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.hero.ironskin.cellular-reconstruction",
+      "field": "effect",
+      "text": "Cellular Reconstruction. Enter stasis until the start of your next regular turn: your Speed becomes 0, you cannot take Actions, Bonus Actions or Reactions, and attacks against you have advantage. At the start of your next turn regain 3d8 + M HP and end Poisoned plus one mundane or magical disease that does not explicitly require a special cure. This removes no Wounds and cannot function while dead."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.mythic-carapace",
+      "field": "effect",
+      "text": "Gain DR 3 against all damage and immunity to Bleed, Poisoned and Burn-style ongoing fire effects. Once per encounter when one hit deals more than 20 actual damage after mitigation, gain 1 BT and refresh the remaining duration of your other active mutations to 3 rounds. It grants no serum-profile refresh."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.splinter-bone-fangs",
+      "field": "effect",
+      "text": "A melee critical applies Bleed. The target takes 1d4 physical damage at the start of each of its next 2 turns. Reapplication refreshes rather than stacks."
+    },
+    {
+      "term": "Weakened",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.warpgrip-talons",
+      "field": "effect",
+      "text": "A melee critical applies Weakened for 2 rounds. While Weakened, the target deals 1 less damage with each weapon or natural-weapon hit, minimum 0. Reapplication refreshes rather than stacks."
+    },
+    {
+      "term": "Shaken",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.carrion-signal-gland",
+      "field": "effect",
+      "text": "The attacker makes a Wisdom save. On failure it becomes Shaken, taking -1 on attack rolls until the end of its next turn."
+    },
+    {
+      "term": "Disoriented",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.wailing-eye-cluster",
+      "field": "effect",
+      "text": "Enemies make Wisdom saves. On failure they become Disoriented: at the start of their next turn they cannot take Reactions and their first 5 feet of movement must be in a random legal horizontal direction determined by the Director. They otherwise keep their normal Action and movement."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.gore-maw",
+      "field": "effect",
+      "text": "Gain a bite attack dealing 1d8+M piercing. On hit once per turn, the target takes 1d4 Bleed damage at the start of its next 2 turns. Reapplication refreshes."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.gore-maw",
+      "field": "duration",
+      "text": "While active; Bleed 2 rounds"
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.eviscerator-protocol",
+      "field": "effect",
+      "text": "Choose Bleed or Weakened. Bleed deals 1d4 damage at the start of the target's next 2 turns. Weakened causes -1 damage on weapon and natural-weapon hits for 2 rounds. Reapplication refreshes rather than stacks."
+    },
+    {
+      "term": "Shaken",
+      "source": "data/public/class_playtests/warrior.json",
+      "owner": "Warrior",
+      "record": "warrior.supplement.terror-engine",
+      "field": "effect",
+      "text": "While at least two hostile creatures within 30 feet are currently Shaken, Frightened or Disoriented by your Warrior features, reduce the first damage you take each round by 2."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/class_playtests/wizard.json",
+      "owner": "Wizard",
+      "record": "engine",
+      "field": "11",
+      "text": "PROTECTED DISSONANCE INTERFACE. The first cast of each different prepared matrix family during an encounter generates 0 BASE Dissonance. This exemption affects only base strain. Refrain and explicitly printed strain costs still apply; the suite disables generic Overcast and does not layer historical Burn onto Dissonance. Repeating a matrix family follows normal Refrain immediately. Preparing duplicates or differently modified copies of the same underlying spell never refreshes the exemption."
+    },
+    {
+      "term": "Weakened",
+      "source": "data/public/class_playtests/wizard.json",
+      "owner": "Wizard",
+      "record": "engine",
+      "field": "22",
+      "text": "Dreadblade: AC 16, HP 16 + 3 × Wizard level, Speed 30. Disrupting Blade: reach 5 feet, Wizard spell attack, 1d8+S necrotic; a concentrating target immediately makes its concentration save with disadvantage. On a natural 20 the target is Weakened until the end of its next turn, taking -1 on attack rolls. Dreadblade has advantage on saves against forced movement."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/spell_playtests/catalog.json",
+      "owner": "ordinary-spell",
+      "record": "seal-minor-wound",
+      "field": "effect",
+      "text": "Choose one: stabilize a living creature at 0 HP without restoring HP, or end one ordinary Bleed/minor ongoing bleeding effect on the target."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/spell_playtests/catalog.json",
+      "owner": "ordinary-spell",
+      "record": "elemental-bolt",
+      "field": "limitations",
+      "text": "Choice affects damage type only and grants no automatic Burn, slow, chain, corrosion, terrain, or status rider. The damage cannot be split among multiple targets. Ranked casting causes normal Dissonance and Refrain."
+    },
+    {
+      "term": "Root",
+      "source": "data/public/spell_playtests/catalog.json",
+      "owner": "ordinary-spell",
+      "record": "ray-of-frost",
+      "field": "limitations",
+      "text": "Speed cannot be reduced below 0. Multiple Ray of Frost reductions do not stack; a later hit refreshes the duration. The spell does not Root, Restrict, or remove Actions. Cantrip repeats use Refrain."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/spell_playtests/catalog.json",
+      "owner": "ordinary-spell",
+      "record": "fireburst",
+      "field": "limitations",
+      "text": "The burst must have line of effect from its center to a target. It does not create persistent fire, Burn, difficult terrain, or ignition beyond ordinary environmental consequences of fire damage. Ranked casting causes normal Dissonance and Refrain."
+    },
+    {
+      "term": "Root",
+      "source": "data/public/spell_playtests/catalog.json",
+      "owner": "ordinary-spell",
+      "record": "frost-arrow",
+      "field": "limitations",
+      "text": "Speed reduction does not stack with itself and cannot reduce Speed below 0. The spell does not Root or remove Actions. Ranked casting causes normal Dissonance and Refrain."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/spell_playtests/catalog.json",
+      "owner": "ordinary-spell",
+      "record": "burning-hands",
+      "field": "limitations",
+      "text": "Targets behind total cover from the cone's origin are unaffected. The spell creates no persistent Burn, fire zone, or automatic ignition beyond ordinary environmental consequences of fire damage. Ranked casting causes normal Dissonance and Refrain."
+    },
+    {
+      "term": "Burn",
+      "source": "data/public/spell_playtests/catalog.json",
+      "owner": "ordinary-spell",
+      "record": "mirage-spark",
+      "field": "limitations",
+      "text": "The perceived burning creates no Fire damage, Burn condition, ongoing damage, fear, forced movement, actual wound, object ignition, or lasting false memory. Successful save negates all damage. Cantrip repeats use Refrain."
+    },
+    {
+      "term": "Bleed",
+      "source": "data/public/spell_playtests/catalog.json",
+      "owner": "ordinary-spell",
+      "record": "illusory-blade",
+      "field": "limitations",
+      "text": "Creates no physical wound, Bleed, piercing damage, weapon object, disarm interaction, or lasting false injury. The blade cannot be handed to another creature or used for opportunity attacks. Ranked casting causes normal Dissonance and Refrain."
+    },
+    {
+      "owner": "Cleric",
+      "record": "cleric.base.judging-light",
+      "field": "effect",
+      "text": "Judging Light. Tags: smite, passive. When your Divine Smite damages a creature currently affected by a Cursed or Weakened condition, add S d4 radiant damage to that Smite. Roll these dice once as part of the Smite; they do not create a second hit or trigger."
+    },
+    {
+      "owner": "Crimson Agent",
+      "record": "engine",
+      "field": 2,
+      "text": "Your Bleed is a physical ongoing effect on a living, non-bloodless creature: 1d4 damage at the start of each of its next 3 turns, then ends. It is not a new attack and generates no BG or procs. Refresh duration instead of stacking; Blood Echo expressly allows two independent instances, maximum. An Action by the victim or an adjacent creature using a healer's kit ends all your Bleeds on that victim. Apply physical resistance/immunity normally. Track remaining ticks and creator per instance. Allied healing versions from Bloodweaver cost RP and never count as hostile Bleeds for detonation, spreading or generation."
+    },
+    {
+      "owner": "Crimson Agent",
+      "record": "engine",
+      "field": 3,
+      "text": "One Blood Mark at a time on a living target with your Bleed, except Phantom Strike, which explicitly may apply the mark without Bleed. It does not add a free Bleed. Marks last 5 of your regular turns, expire on encounter end or if the target dies, and never create damage by themselves. Rupture requires the target still within 60 ft and line of effect; it spends the mark. A mark does not defeat cover, planar boundaries or bloodlessness. Bloodtrail has its own tracking limits."
+    },
+    {
+      "owner": "Crimson Agent",
+      "record": "engine",
+      "field": 6,
+      "text": "At level 1 learn the core Blood Gauge/Bleed rules automatically. Blood Mark and Veinweaver's Core remain selections; Quickblood can be selected and used without a second unlock tax. Veinweaver's Core improves that foundation as printed. Standard scheduled acquisition applies. Bloodbound Edge is automatic 9. At 10 choose Bloodweaver, Shadow Operative or Thirstborn; its Final Cut is automatic 20. Duplicate Hemostasis names are separate Arch and Bloodweaver IDs."
+    },
+    {
+      "owner": "Crimson Agent",
+      "record": "crimson-agent.hero.bloodweaver.purify-blood",
+      "field": "effect",
+      "text": "End Poisoned and one nonmagical disease. Magical disease needs a successful INT ability check against its stated treatment DC, or DC 15 if absent; failure spends the cost. No curse, Wound, death or Corruption removal."
+    },
+    {
+      "owner": "Dragoon",
+      "record": "engine",
+      "field": 4,
+      "text": "Spending Momentum pays before resolution; a hit refund cannot pay its own activation. Burn means 1d4 fire at start of target's next 2 turns, nonstacking. Bleed means 1d4 physical at start of next 2 turns; an Action with a healer's kit ends it. Do Ts give no Momentum or critical triggers. Hard denial uses the shared once-per-target/encounter guard."
+    },
+    {
+      "owner": "Druid",
+      "record": "druid.hero.land.nature-s-ward",
+      "field": "effect",
+      "text": "Immune to Charmed/Frightened from fey/elementals, poison damage, Poisoned and disease. Does not suppress all creature abilities or remove an existing curse."
+    },
+    {
+      "owner": "Mage",
+      "record": "engine",
+      "field": 7,
+      "text": "RESONANCE SURGE. Once per short rest, when you begin casting a damaging Mage spell, you may spend 2 additional RP after validating the spell's normal cost. Add S d8 damage of one damage type already dealt by that spell to one of its damage rolls. Resonance Surge does not count as Overcast, does not independently alter Dissonance or Burn, does not create another spell cast, and does not advance the Nuke Chain separately."
+    },
+    {
+      "owner": "Mage",
+      "record": "engine",
+      "field": 16,
+      "text": "Before the irreversible Lich roll, the Director must explicitly tell the player the historical failure stakes: permanent loss of spellcasting, transformation into a cursed melee undead NPC, hostile faction consequences, cursed-gear restriction and no further XP as that retired PC. The player must explicitly opt into that retirement risk before rolling. If the player declines, the ritual stops before the roll and the character must choose another Hero path for this playtest; no irreversible consequence is applied."
+    },
+    {
+      "owner": "Mirrorsage",
+      "record": "mirrorsage.hero.light-weaver.purifying-reflection",
+      "field": "effect",
+      "text": "Ally rerolls that save with advantage; use new result. If it succeeds, it regains S d6 HP. No arbitrary curse or death reversal; costs remain if it fails. This is not a captured Echo and creates no record."
+    },
+    {
+      "owner": "Monk",
+      "record": "monk.hero.enlightened-master.purifying-palm",
+      "field": "effect",
+      "text": "Purifying Palm. Tags: hero, enlightened, attack, cleanse. Make one unarmed strike. On a hit choose up to two allies within 10 feet. Each may end Frightened or Poisoned. If you spend one additional Ki after the hit, one chosen ally may instead end Charmed. It removes no curse, disease or Wound."
+    },
+    {
+      "owner": "Paladin",
+      "record": "paladin.base.sacred-touch",
+      "field": "effect",
+      "text": "Stabilize a living Downed creature at 0 HP without healing; damage/ordinary rules can end stability. Alternatively pay 1 RP and examine 1 minute to learn whether one curse/disease affects it, without revealing origin or cure. No resurrection or free healing."
+    },
+    {
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-mercy.sanctify-ground",
+      "field": "effect",
+      "text": "Resolve the first pulse on activation. On each of your next 2 regular turns you may pay 1 RP and a Bonus Action to produce another pulse. At each pulse choose up to 3 allies in the zone; each may end one of Frightened, Poisoned or Staggered, or immediately repeat one saving throw against a disease or finite-duration curse that normally allows a save. A creature receives at most one cleansing choice per pulse."
+    },
+    {
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-flame.purifying-smite",
+      "field": "effect",
+      "text": "Choose fire or radiant when you Smite; the entire Smite packet uses that type. If the target is undead or a fiend, after damage choose one temporary magical buff, disease-like enhancement, curse-derived boon or other removable beneficial condition currently affecting it. If the effect is within ordinary dispelling scope, end it. This purge never removes innate creature traits, class engines or permanent statistics."
+    },
+    {
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-flame.holy-inferno",
+      "field": "effect",
+      "text": "Choose each target as hostile or allied. A hostile target makes a Dexterity save, taking S d8 fire plus S d8 radiant damage on failure or half on success. An allied target takes no damage and may end one of Poisoned, Diseased if magically curable, or a finite curse that ordinary cleansing could remove. Holy Inferno is an Oath technique rather than an ordinary spell."
+    },
+    {
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-flame.cleansing-brand",
+      "field": "effect",
+      "text": "Make a spell attack using PB+Charisma. On hit deal 2d6 fire damage. On a natural 20, after damage you may end one curse affecting the target that an ordinary curse-removal effect of this tier could legally remove; if removing it would benefit a hostile target, you may decline. The critical cleansing removes no innate traits, Oath, class engine or artifact-level curse."
+    },
+    {
+      "owner": "Paladin",
+      "record": "paladin.supplement.oath-of-flame.sanctified-immolation",
+      "field": "effect",
+      "text": "The empowered Smite or Holy Inferno ignores fire resistance, but not immunity. Against undead, add 1d6 radiant damage to one damage roll. If a creature damaged by the empowered effect is currently affected by a removable curse or disease, you may end one such condition on that creature after damage; this cannot remove innate traits, artifact curses or class features."
+    },
+    {
+      "owner": "Ranger",
+      "record": "engine",
+      "field": 1,
+      "text": "Weapon Synergy tracks last successful direct weapon hit on your own turns. Changing melee→ranged grants+1 to that ranged attack roll if it is your first attack of the turn; changing ranged→melee makes the hit apply Bleed 1d4 on target's next 2 turns. Once/turn synergy; Do Ts, copies, companions, forced attacks and misses do not advance it. At 5 ordinary Attack Action makes two attacks; techniques use only printed counts. You may draw/stow one weapon as normal object interaction; Dual Style later improves this."
+    },
+    {
+      "owner": "Thief",
+      "record": "engine",
+      "field": 0,
+      "text": "Dexterity governs weapons and class DC/M. Choose Intelligence or Wisdom for noncombat class tool/sense checks at 1. Hit Die d8; light armor, daggers, shortswords, thrown weapons and hand crossbows; thieves tools and poison kit. Sneak Attack is automatic at 1: once on your regular turn, add ceil(class level/2)d6 to one finesse/ranged weapon hit if you had advantage, an active ally threatens target within 5 ft, or target is suffering your Bleed/Poisoned/Crippled. Disadvantage prevents Sneak Attack even if canceled into a straight roll. A feature can explicitly grant Sneak Attack on a different qualifying hit but never more than once/regular turn. Copies, poison ticks and companions cannot Sneak Attack."
+    },
+    {
+      "owner": "Warrior",
+      "record": "warrior.hero.ironskin.cellular-reconstruction",
+      "field": "effect",
+      "text": "Cellular Reconstruction. Enter stasis until the start of your next regular turn: your Speed becomes 0, you cannot take Actions, Bonus Actions or Reactions, and attacks against you have advantage. At the start of your next turn regain 3d8 + M HP and end Poisoned plus one mundane or magical disease that does not explicitly require a special cure. This removes no Wounds and cannot function while dead."
+    },
+    {
+      "owner": "Wizard",
+      "record": "engine",
+      "field": 11,
+      "text": "PROTECTED DISSONANCE INTERFACE. The first cast of each different prepared matrix family during an encounter generates 0 BASE Dissonance. This exemption affects only base strain. Refrain and explicitly printed strain costs still apply; the suite disables generic Overcast and does not layer historical Burn onto Dissonance. Repeating a matrix family follows normal Refrain immediately. Preparing duplicates or differently modified copies of the same underlying spell never refreshes the exemption."
+    },
+    {
+      "owner": "Wizard",
+      "record": "wizard.base.analyze-magic",
+      "field": "effect",
+      "text": "Analyze Magic. Tags: base, active, wizard-spell, divination, knowledge. Make an Intelligence (Arcana) check against DC 10 + the effect's spell rank, treating a non-spell effect's Director-assigned tier as rank. On success learn its school or magical category, one active mechanical property and whether it is currently sustained, cursed or bound to another effect. Failure reveals only that magic is present."
+    },
+    {
+      "owner": "Wizard",
+      "record": "wizard.arch.arcane-sight",
+      "field": "effect",
+      "text": "Arcane Sight. Tags: arch, active, wizard-spell, divination, concentration. While active you perceive magical auras within 60 feet and automatically know each visible aura's school or broad magical category. As an Action on a later turn, examine one aura to learn whether it is concentrated, summoned, cursed, warded or linked to another visible magical effect. Total cover blocks sight."
+    },
+    {
+      "owner": "Shaman",
+      "source": "data/public/class_playtests/shaman.json",
+      "record": "engine",
+      "field": "0",
+      "text": "Wisdom is the class ability. Choose Elemental Affinity automatically at 1: Fire, Ice, Air or Earth. Spellcasting/RP remain separate from Totem objects and flasks. Totem capacity 1, rises 2 at 13; any third replaces one of your existing totems. A totem is a visible Tiny magical object: AC 12+PB, HP 2 L, immobile, immune to poison/psychic/conditions, vulnerable to ordinary weapon and other damage. At 0 HP its aura ends. A new totem appears within 30 ft; cannot occupy a creature's space, serve as a bridge, trap a creature without a save or move through walls."
+    },
+    {
+      "owner": "Shaman",
+      "source": "data/public/class_playtests/shaman.json",
+      "record": "engine",
+      "field": "1",
+      "text": "Totem Casting is Action 2 RP, duration 3 of your turns, 15 ft aura. Choose Flame, Stone, Frost, Spirit or Renewal. Benefits require an ally/target in the aura, maximum 3 creatures benefiting per pulse/round chosen by you. Flame adds 1 fire to an ally's first direct weapon hit per round; on critical that target Burns 1d4 next turn. Stone reduces damage by 1 and gives enemies-1 to STR checks to shove. Frost: enemy first entering/starting each round makes CON save or Speed-10 ft until end its turn. Spirit: first necrotic/hex damage per target per round adds 1. Renewal: on start and each of next 2 turns with Bonus Action+1 RP maintenance, up to 3 allies regain 2 HP. Thus Renewal total cost 4 RP for 3 pulses; no free healing on entry. All totems share one concentration burden; losing it ends all. Other concentration effects replace them. Non-Renewal auras need no Bonus Action upkeep. Multiple same-name/stat auras do not stack."
+    },
+    {
+      "owner": "Shaman",
+      "source": "data/public/class_playtests/shaman.json",
+      "record": "engine",
+      "field": "2",
+      "text": "On your turn you may spend Bonus Action to move one totem up to 15 ft along unobstructed ground, remaining within 60 ft. This competes with healing maintenance, companion commands and advanced flasks. Moving an aura over a creature cannot trigger its once/round effect repeatedly. Totem destruction creates no resource return. Once per round, the first ordinary spell cast while inside your own active totem aura generates 1 less Dissonance, minimum 0; no RP reduction."
+    },
+    {
+      "owner": "Shaman",
+      "source": "data/public/class_playtests/shaman.json",
+      "record": "engine",
+      "field": "3",
+      "text": "The book places Flask Use at Base but describes advanced flask casting as Theurgist/Soothsayer-only. For this draft, Base Flask Use grants mundane prepared tactical flasks thrown with an Action; at Hero 10 only Theurgist/Soothsayer gain magical Bonus Action flasks. Bloodcaller retains mundane alchemical knowledge, not the advanced flask subsystem. At long rest prepare 2 flasks, rising to 3 at 5 and 4 at 11; no encounter refill or stockpiling, total carry cap 4, unused contents become inert when preparing a new batch. This finite-rest supply replaces encounter-based free heal farming."
+    },
+    {
+      "owner": "Shaman",
+      "source": "data/public/class_playtests/shaman.json",
+      "record": "engine",
+      "field": "5",
+      "text": "Choose Fire/Ice/Air/Earth bonuses through affinity card; Ember/Cold/Shock damage are fire/cold/lightning, Earth uses bludgeoning. Summoned elemental spirits use one standard companion each, maximum one normally; Elemental Chorus expressly summons a package of 4 but all share one Bonus Action command and a printed combined pulse. Companions cannot generate RP, trigger flask refunds or create corpse/kill farms."
+    },
+    {
+      "owner": "Shaman",
+      "source": "data/public/class_playtests/shaman.json",
+      "record": "engine",
+      "field": "6",
+      "text": "Bloodcaller at Hero 10 transforms permanently into Hagraven, with the player choosing this class path and its stated loss of ordinary Shaman spellcasting. It does NOT lose its RP reservoir: printed Hagraven/Totem techniques still pay RP, but it cannot cast ordinary Shaman spells or advanced magical flasks. It retains prior totem/technique selections. The change is a class choice, not permission for involuntary player-character conversion; ancestry identity and player control remain. At long rest it can prepare mundane flasks only if Base Flask Use is known."
+    },
+    {
+      "owner": "Mage",
+      "source": "data/public/class_playtests/mage.json",
+      "record": "engine",
+      "field": "11",
+      "text": "LICH COMPANION SYSTEM. A successful Lich transformation unlocks three unique bound elite companions: Boneflayer, Dreadblade and Wraithbound. You can maintain at most one of each, maximum three total. They return at full HP after a completed long rest unless a campaign consequence expressly prevents it. A destroyed elite leaves no usable corpse and cannot generate XP, loot, RP, Nuke Chain credit, Soul Reservoir or kill-based resources. Soulbound Ritual can return one before a long rest."
+    },
+    {
+      "owner": "Wizard",
+      "source": "data/public/class_playtests/wizard.json",
+      "record": "engine",
+      "field": "21",
+      "text": "ELITE UNDEAD PETS. Necromancers may bind Boneflayer, Dreadblade and Wraithbound, at most one of each and three elite pets total. They use the same shared Companion Command limit as standard undead. Boneflayer: AC 14, HP 12 + 2 × Wizard level, Speed 30. Bone Shards: range 60, Wizard spell attack, 2d6+S necrotic. Fear Pulse replaces its attack: enemies within 10 feet make Wisdom saves; failure Frightened until end of next turn; recharge 3. Grave Miasma replaces its attack: 10-foot-radius point within 30 feet until start of your next turn; enemies entering or starting there take 1d6 necrotic once; recharge 3."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# Divination cantrips — final source-fidelity clarification before promotion
+
+Your exact review is saved. I will apply Omen Whisper's exact materially-equivalent-INQUIRY replacement in the effect field; the unchanged limitations refer to rephrasing/subdividing the same inquiry and retain your approved across-caster anti-fishing rule. A genuinely different material question remains eligible. No cards are promoted yet:159 reviewed/689 unfinished.
+
+One source-fidelity issue I noticed during my own check needs your decision, rather than treating approval as a reason to ignore it. Soul Mark's original placement and Core index215 both say “Tag a creature for1minute; you know its direction if within1mile.” They do not say “living” or exclude Undead/Construct. Your source conference also initially targeted “one creature.” My exact card added “living” to distinguish a creature from a corpse, and your approval repeated it. That could accidentally exclude active undead or creature-classified constructs merely because they are not biological living beings. “Soul” in the title should not invent that restriction.
+
+I propose these exact source-faithful repairs to Soul Mark only, retaining every other approved rule:
+
+- **targets:** “One creature you perceive within 30 feet and line of effect that is not currently Dead or destroyed. An active Undead or Construct qualifies if its actual rules classify it as a creature; those tags alone do not make it ineligible. Objects and corpses are not eligible merely because they once were creatures.”
+- **resolution:** retain the existing text but replace “that living creature” with “that marked creature”.
+- **duration:** retain the exact one-minute clock, then use “Ends earlier if the marked creature dies, is destroyed, or its summoned existence ends. Mere travel out of range or to another plane does not end the mark.”
+- **effect:** replace “Death ends this application; it does not become corpse tracking, soul tracking, resurrection tracking, or a pointer to a new body” if present, or the exact candidate equivalent “Death ends this application; there is no tracking of its corpse, soul, resurrection or another body.” with “Death, destruction or the ending of the marked summon’s existence ends this application. It does not resume on revival, reconstruction or resummoning and does not track a corpse, detached soul or replacement body. A shapechange that retains the same continuing creature identity does not by itself count as death, destruction or an ended summoned existence.”
+- **designNotes:** replace “living-target/death boundary” with “creature-versus-corpse and death/destruction/summon-end boundary; no Undead/Construct exclusion based only on type”.
+
+The original already-reviewed direction, 5,280-foot same-plane gate, blocked-reading nondiagnostic result, independent caster marks, no save/concentration and information-protection-versus-mark-existence distinction remain unchanged. Physical destruction or true summon ending is different from merely crossing a plane; this creates no universal lifecycle/target-type rewrite.
+
+Please confirm whether these repairs should be applied and whether, with your exact Omen repair, the full eleven-card batch may then be promoted. If you intended a deliberate NEW exclusion of active undead/construct creatures, explain its source/design reason explicitly instead. No need to revisit the other ten approved cards.

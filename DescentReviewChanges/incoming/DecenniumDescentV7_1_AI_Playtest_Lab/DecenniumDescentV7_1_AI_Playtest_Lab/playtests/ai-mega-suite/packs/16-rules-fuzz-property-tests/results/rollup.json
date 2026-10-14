@@ -1,0 +1,175 @@
+{
+  "pack": "16-rules-fuzz-property-tests",
+  "scenarioId": "PACK16-ROLLUP",
+  "runId": "PACK16-71600",
+  "seed": 71600,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "totalTransitions": 100000,
+    "failureCount": 5769,
+    "scenarioCount": 5
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "confirmed",
+      "type": "illegal_extra_action_accepted",
+      "count": 522,
+      "detail": "illegal_extra_action_accepted observed 522/25000 transitions",
+      "sample": [
+        [
+          "illegal_extra_action_accepted",
+          131,
+          {
+            "extra": 2
+          }
+        ],
+        [
+          "illegal_extra_action_accepted",
+          150,
+          {
+            "extra": 2
+          }
+        ],
+        [
+          "illegal_extra_action_accepted",
+          162,
+          {
+            "extra": 2
+          }
+        ],
+        [
+          "illegal_extra_action_accepted",
+          166,
+          {
+            "extra": 2
+          }
+        ],
+        [
+          "illegal_extra_action_accepted",
+          170,
+          {
+            "extra": 2
+          }
+        ]
+      ]
+    },
+    {
+      "severity": "null",
+      "type": "no_invariant_breach",
+      "detail": "Encoded clamps held; does not prove all prose rules are represented in executable form."
+    },
+    {
+      "severity": "confirmed",
+      "type": "roster_over_max",
+      "count": 4968,
+      "detail": "roster_over_max observed 4968/25000 transitions",
+      "sample": [
+        [
+          "roster_over_max",
+          4,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ],
+        [
+          "roster_over_max",
+          37,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ],
+        [
+          "roster_over_max",
+          42,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ],
+        [
+          "roster_over_max",
+          51,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ],
+        [
+          "roster_over_max",
+          57,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ]
+      ]
+    },
+    {
+      "severity": "confirmed",
+      "type": "roster_cap_enforcement_gap",
+      "detail": "Generator produced party>12; invariant correctly flagged. Ensure companion UI rejects >12.",
+      "count": 4968
+    },
+    {
+      "severity": "confirmed",
+      "type": "public_depth_leak",
+      "count": 279,
+      "detail": "public_depth_leak observed 279/10000 transitions",
+      "sample": [
+        [
+          "public_depth_leak",
+          39,
+          {
+            "claimed": 9,
+            "publicMax": 6
+          }
+        ],
+        [
+          "public_depth_leak",
+          53,
+          {
+            "claimed": 11,
+            "publicMax": 6
+          }
+        ],
+        [
+          "public_depth_leak",
+          77,
+          {
+            "claimed": 9,
+            "publicMax": 6
+          }
+        ],
+        [
+          "public_depth_leak",
+          107,
+          {
+            "claimed": 10,
+            "publicMax": 6
+          }
+        ],
+        [
+          "public_depth_leak",
+          121,
+          {
+            "claimed": 9,
+            "publicMax": 6
+          }
+        ]
+      ]
+    },
+    {
+      "severity": "confirmed",
+      "type": "public_depth_boundary_leak",
+      "detail": "Public seasonal state claimed depth beyond Sixth Gate.",
+      "count": 279
+    }
+  ],
+  "rawEvidencePath": "results/16-rules-fuzz-property-tests/"
+}

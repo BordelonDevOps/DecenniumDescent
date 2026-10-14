@@ -1,0 +1,33 @@
+{
+  "pack": "17-gm-readiness-usability",
+  "scenarioId": "GM-RULE-LOOKUP",
+  "runId": "2026-08-06T151746Z-LOOKUP-068",
+  "seed": 75068,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": null,
+  "evidenceLevel": "B",
+  "outcome": "RULES_HALT_OR_MISSING",
+  "metrics": {
+    "promptIndex": 68,
+    "prompt": "Where is public-player one-page Quickstart sheet? (variant 68)",
+    "located": false,
+    "secondsProxy": 120
+  },
+  "rulesHalts": [
+    {
+      "id": "RH-17-LOOKUP-068",
+      "prompt": "Where is public-player one-page Quickstart sheet? (variant 68)",
+      "status": "RULES_HALT",
+      "note": "Not found as standalone public sheet in required sources"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "defect",
+      "summary": "Lookup 'Where is public-player one-page Quickstart sheet? (variant 68)': ambiguous/missing → Not found as standalone public sheet in required sources",
+      "citation": "Not found as standalone public sheet in required sources"
+    }
+  ],
+  "rawEvidencePath": "results/GM-RULE-LOOKUP/068-rules-indexer.json",
+  "agentId": "rules-indexer"
+}

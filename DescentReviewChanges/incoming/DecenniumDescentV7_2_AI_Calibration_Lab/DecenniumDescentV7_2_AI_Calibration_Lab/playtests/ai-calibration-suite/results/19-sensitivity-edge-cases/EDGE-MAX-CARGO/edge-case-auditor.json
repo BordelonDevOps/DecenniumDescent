@@ -1,0 +1,28 @@
+{
+  "pack": "19-sensitivity-edge-cases",
+  "scenarioId": "EDGE-MAX-CARGO",
+  "runId": "2026-08-06T151746Z-EDGE-MAX-CARGO-edge-case-auditor",
+  "seed": 78029,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "464701d303402b62f2774dbb59cb32f815c37b2e40da86420623260da927f9ef",
+  "evidenceLevel": "B",
+  "outcome": "STRESS",
+  "metrics": {
+    "fixture": {
+      "cargoLoad": "at_or_over_capacity",
+      "note": "Maximum cargo extraction"
+    },
+    "agentRole": "edge-case-auditor",
+    "seed": 78029
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "hypothesis",
+      "summary": "At/over Capacity: Progress -1 and Pressure +1; extraction risk rises — numerical severity requires pack 12 holdout evidence.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §6/§16"
+    }
+  ],
+  "rawEvidencePath": "results/raw/EDGE-MAX-CARGO/edge-case-auditor.json",
+  "agentId": "edge-case-auditor"
+}

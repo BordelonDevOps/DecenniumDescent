@@ -1,0 +1,888 @@
+{
+  "status": "PASS",
+  "reviewStatus": "REVIEWED / reference-VALIDATED in supplied bounded scope",
+  "scope": "Selected combat reference budgets, marker calculations, Ready state and HP ordering. Not a full engine, all-source semantic audit or balance test.",
+  "checks": 112,
+  "movementInvariantStates": 285,
+  "failed": [],
+  "results": [
+    {
+      "name": "Initial reaction can be spent before first regular turn",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "First regular start refreshes despite same numbered round",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Neither round boundary nor extra turn refreshes Reaction",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Repeated regular marker cannot refresh twice",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Surprised first turn refresh does not permit Reaction",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Surprise ending unlocks one available Reaction",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Second extra full Action in same numbered round rejected",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Extra Action cannot recursively grant another",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "New numbered round allows a separately granted extra Action",
+      "pass": true,
+      "actual": [
+        1,
+        2
+      ],
+      "expected": [
+        1,
+        2
+      ]
+    },
+    {
+      "name": "Midround entrant with upcoming slot acts now",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "Exact/passed slot entrant waits until next round",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "End-round entry always first acts next round",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "Difficult terrain cost retained on switch to Fly30",
+      "pass": true,
+      "actual": 10,
+      "expected": 10
+    },
+    {
+      "name": "First legal Dash adds another current Speed",
+      "pass": true,
+      "actual": 40,
+      "expected": 40
+    },
+    {
+      "name": "Second legal Dash adds Speed again",
+      "pass": true,
+      "actual": 70,
+      "expected": 70
+    },
+    {
+      "name": "Standing expenditure is retained on switching modes",
+      "pass": true,
+      "actual": 15,
+      "expected": 15
+    },
+    {
+      "name": "Speed reduction does not create negative remaining budget",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "Restored Speed restores only genuinely unspent budget",
+      "pass": true,
+      "actual": 10,
+      "expected": 10
+    },
+    {
+      "name": "Speed increase expands cap without refunding spent cost",
+      "pass": true,
+      "actual": 20,
+      "expected": 20
+    },
+    {
+      "name": "Over-budget movement is rejected",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Rejected movement leaves ledger unchanged",
+      "pass": true,
+      "actual": 20,
+      "expected": 20
+    },
+    {
+      "name": "Cannot stand at Speed0",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Crawl and squeeze in difficult terrain add costs",
+      "pass": true,
+      "actual": 20,
+      "expected": 20
+    },
+    {
+      "name": "Severe plus crawling costs4 per foot",
+      "pass": true,
+      "actual": 20,
+      "expected": 20
+    },
+    {
+      "name": "Interpose5 cannot enter difficult tile costing10",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Press5 can follow one normal tile",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Speed0 blocks positive special movement",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Interpose may stay in place at Speed0 if legally positioned",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Ready movement uses current Speed at release",
+      "pass": true,
+      "actual": 20,
+      "expected": 20
+    },
+    {
+      "name": "Withdraw odd Speed uses floor half budget",
+      "pass": true,
+      "actual": 12,
+      "expected": 12
+    },
+    {
+      "name": "Separate movement grant leaves ordinary ledger unchanged",
+      "pass": true,
+      "actual": 20,
+      "expected": 20
+    },
+    {
+      "name": "Two future target ends count two preserved markers",
+      "pass": true,
+      "actual": "9",
+      "expected": 9
+    },
+    {
+      "name": "Current in-progress target end excluded from two-turn duration",
+      "pass": true,
+      "actual": "15",
+      "expected": 15
+    },
+    {
+      "name": "Three-round self effect during turn1 expires at turn4 start",
+      "pass": true,
+      "actual": "18",
+      "expected": 18
+    },
+    {
+      "name": "Exact application/start tie means next future start",
+      "pass": true,
+      "actual": "6",
+      "expected": 6
+    },
+    {
+      "name": "Explicit next-turn end excludes current in-progress end",
+      "pass": true,
+      "actual": "9",
+      "expected": 9
+    },
+    {
+      "name": "Application after excluded end does not skip another marker",
+      "pass": true,
+      "actual": "9",
+      "expected": 9
+    },
+    {
+      "name": "Exact end-marker application does not skip twice",
+      "pass": true,
+      "actual": "9",
+      "expected": 9
+    },
+    {
+      "name": "Leaving initiative preserves original absolute marker deadline",
+      "pass": true,
+      "actual": "9",
+      "expected": 9
+    },
+    {
+      "name": "Out-of-initiative duration remains absolute through entry",
+      "pass": true,
+      "actual": "20",
+      "expected": 20
+    },
+    {
+      "name": "Readied three-round elapsed effect starts at release",
+      "pass": true,
+      "actual": "22",
+      "expected": 22
+    },
+    {
+      "name": "Readied target-marker duration counts future markers from release",
+      "pass": true,
+      "actual": "21",
+      "expected": 21
+    },
+    {
+      "name": "Effect cannot release before its preparation",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Ordinarily nonconcentration held spell replaces old concentration",
+      "pass": true,
+      "actual": "held",
+      "expected": "held"
+    },
+    {
+      "name": "Readied spell pays RP and casts at preparation",
+      "pass": true,
+      "actual": [
+        7,
+        1
+      ],
+      "expected": [
+        7,
+        1
+      ]
+    },
+    {
+      "name": "Illegal release leaves pending spell and Reaction intact",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Invalid release does not refund or repay",
+      "pass": true,
+      "actual": [
+        7,
+        "held",
+        true
+      ],
+      "expected": [
+        7,
+        "held",
+        true
+      ]
+    },
+    {
+      "name": "Nonconcentration spell releases holding concentration",
+      "pass": true,
+      "actual": [
+        "held",
+        null
+      ],
+      "expected": [
+        "held",
+        null
+      ]
+    },
+    {
+      "name": "Release consumes Reaction but does not recast",
+      "pass": true,
+      "actual": [
+        false,
+        7,
+        1
+      ],
+      "expected": [
+        false,
+        7,
+        1
+      ]
+    },
+    {
+      "name": "No second release from consumed Ready",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Concentration spell continues seamlessly after release",
+      "pass": true,
+      "actual": "sustained",
+      "expected": "sustained"
+    },
+    {
+      "name": "Replacing held spell loses costs and held concentration",
+      "pass": true,
+      "actual": [
+        4,
+        null
+      ],
+      "expected": [
+        4,
+        null
+      ]
+    },
+    {
+      "name": "Readied ordinary Attack retains legal multiple attacks",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "Ready expiry loses held spell without refund",
+      "pass": true,
+      "actual": [
+        null,
+        3,
+        null
+      ],
+      "expected": [
+        null,
+        3,
+        null
+      ]
+    },
+    {
+      "name": "Cannot Ready a Bonus Action spell",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Failed prepare does not charge setup action",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "Lost concentration loses held spell and costs",
+      "pass": true,
+      "actual": [
+        null,
+        2
+      ],
+      "expected": [
+        null,
+        2
+      ]
+    },
+    {
+      "name": "Used Reaction prevents Ready release",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Unreleased action remains pending",
+      "pass": true,
+      "actual": "wait",
+      "expected": "wait"
+    },
+    {
+      "name": "Focused Reaction restriction also blocks ordinary Ready release",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Blocked Ready release retains its pending state",
+      "pass": true,
+      "actual": "wait",
+      "expected": "wait"
+    },
+    {
+      "name": "Guard and Guarded combine for first attack",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "Miss also consumes Guard first-attack benefit",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Spent first-attack bonus preserves Interpose Guard state",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Break Formation/end clears Guard state",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Unspent Press can change target",
+      "pass": true,
+      "actual": "B",
+      "expected": "B"
+    },
+    {
+      "name": "Forced retreat cannot trigger Press",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Legal voluntary retreat consumes Press",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Cannot rearm spent Press on same regular turn",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Extra turn cannot arm fresh Press",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Multiple Pins use single penalty and highest DC",
+      "pass": true,
+      "actual": {
+        "speedPenalty": 10,
+        "dc": 16
+      },
+      "expected": {
+        "speedPenalty": 10,
+        "dc": 16
+      }
+    },
+    {
+      "name": "Suppressed Pin does not raise effective DC",
+      "pass": true,
+      "actual": {
+        "speedPenalty": 10,
+        "dc": 12
+      },
+      "expected": {
+        "speedPenalty": 10,
+        "dc": 12
+      }
+    },
+    {
+      "name": "Silence hit at zero damage forces one DC10 concentration save",
+      "pass": true,
+      "actual": {
+        "saves": 1,
+        "dc": 10
+      },
+      "expected": {
+        "saves": 1,
+        "dc": 10
+      }
+    },
+    {
+      "name": "Silence positive damage produces one concentration save",
+      "pass": true,
+      "actual": {
+        "saves": 1,
+        "dc": 15
+      },
+      "expected": {
+        "saves": 1,
+        "dc": 15
+      }
+    },
+    {
+      "name": "No concentration means no gratuitous concentration check",
+      "pass": true,
+      "actual": {
+        "saves": 0,
+        "dc": null
+      },
+      "expected": {
+        "saves": 0,
+        "dc": null
+      }
+    },
+    {
+      "name": "Opposed Grapple tie preserves state",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Legal Pin attempt charges accuracy before hit outcome",
+      "pass": true,
+      "actual": -2,
+      "expected": -2
+    },
+    {
+      "name": "A miss still consumes Pin interval token",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Extra turn and numbered-round boundary do not refresh attempt",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Independent unused Silence token works on legal off-turn attack",
+      "pass": true,
+      "actual": -2,
+      "expected": -2
+    },
+    {
+      "name": "Regular start refreshes both maneuver tokens",
+      "pass": true,
+      "actual": [
+        "pin"
+      ],
+      "expected": []
+    },
+    {
+      "name": "Illegal attack consumes no maneuver token",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Illegal declaration retains token",
+      "pass": true,
+      "actual": [
+        "pin"
+      ],
+      "expected": []
+    },
+    {
+      "name": "Cannot add another optional maneuver to same attack",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Unspent interval token works on legal readied attack",
+      "pass": true,
+      "actual": -2,
+      "expected": -2
+    },
+    {
+      "name": "Repeated regular marker cannot reset spent attempt",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Mobile steps base dice only and keeps d4 floor",
+      "pass": true,
+      "actual": [
+        4,
+        4,
+        4
+      ],
+      "expected": [
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "One Hide roll resolves observer DCs and eligibility separately",
+      "pass": true,
+      "actual": {
+        "A": true,
+        "B": false,
+        "C": false
+      },
+      "expected": {
+        "A": true,
+        "B": false,
+        "C": false
+      }
+    },
+    {
+      "name": "Natural1 shifts meet-DC Hide to failure",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Natural20 may lift below-DC result to success",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Search static-DC tie succeeds before natural adjustment",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Search natural1 can downgrade static-DC success",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Cover uses best value, never adds2and5",
+      "pass": true,
+      "actual": {
+        "directTargetLegal": true,
+        "bonus": 5
+      },
+      "expected": {
+        "directTargetLegal": true,
+        "bonus": 5
+      }
+    },
+    {
+      "name": "Total cover from actual origin bars target",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Normal range boundary legal without range disadvantage",
+      "pass": true,
+      "actual": {
+        "legal": true,
+        "disadvantage": false
+      },
+      "expected": {
+        "legal": true,
+        "disadvantage": false
+      }
+    },
+    {
+      "name": "Long range boundary legal with disadvantage",
+      "pass": true,
+      "actual": {
+        "legal": true,
+        "disadvantage": true
+      },
+      "expected": {
+        "legal": true,
+        "disadvantage": true
+      }
+    },
+    {
+      "name": "Beyond long range illegal",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Seen voluntary exit provokes",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Forced exit does not provoke",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Teleport does not provoke",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Disengage prevents ordinary opportunity trigger",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Unseen exit does not provoke ordinary opportunity attack",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Dying death save precedes ordinary start healing",
+      "pass": true,
+      "actual": [
+        "death-save",
+        "heal"
+      ],
+      "expected": [
+        "death-save",
+        "heal"
+      ]
+    },
+    {
+      "name": "Later start healing restores HP and clears failed death save",
+      "pass": true,
+      "actual": [
+        4,
+        0
+      ],
+      "expected": [
+        4,
+        0
+      ]
+    },
+    {
+      "name": "Fatal death save cannot be reversed by later ordinary healing",
+      "pass": true,
+      "actual": [
+        true,
+        [
+          "death-save",
+          "heal:dead-target-skipped"
+        ]
+      ],
+      "expected": [
+        true,
+        [
+          "death-save",
+          "heal:dead-target-skipped"
+        ]
+      ]
+    },
+    {
+      "name": "Stable victim skips death save before start damage",
+      "pass": true,
+      "actual": [
+        [
+          "bleed"
+        ],
+        false,
+        1
+      ],
+      "expected": [
+        [
+          "bleed"
+        ],
+        false,
+        1
+      ]
+    },
+    {
+      "name": "Natural20 then Bleed is new drop not already-zero failure",
+      "pass": true,
+      "actual": [
+        0,
+        0,
+        [
+          "death-save",
+          "bleed"
+        ]
+      ],
+      "expected": [
+        0,
+        0,
+        [
+          "death-save",
+          "bleed"
+        ]
+      ]
+    },
+    {
+      "name": "Expired prohibition permits due Stable recovery before death phase",
+      "pass": true,
+      "actual": [
+        1,
+        [
+          "due-stable-recovery"
+        ]
+      ],
+      "expected": [
+        1,
+        [
+          "due-stable-recovery"
+        ]
+      ]
+    },
+    {
+      "name": "Still-blocked Stable timer retains original deadline",
+      "pass": true,
+      "actual": [
+        0,
+        5,
+        []
+      ],
+      "expected": [
+        0,
+        5,
+        []
+      ]
+    },
+    {
+      "name": "Application sequence overrides caller list order",
+      "pass": true,
+      "actual": [
+        "first-heal",
+        "later-damage"
+      ],
+      "expected": [
+        "first-heal",
+        "later-damage"
+      ]
+    },
+    {
+      "name": "Start effect newly dropping to0 does not add second start save",
+      "pass": true,
+      "actual": [
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Duplicate application cannot dispatch twice",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    }
+  ],
+  "artifacts": {
+    "tools\\combat_playtest_rules.py": "e115ffba217f56e00f36b49a86a146f8aaef0a14b062628c549efd6925f45d8b",
+    "docs\\mechanics\\COMBAT_ACTION_PLAYTEST.md": "45a9693ff6e80340964ce4b4f7f25f41c69a7f9600c8be7b57fcde83bff6f312"
+  }
+}

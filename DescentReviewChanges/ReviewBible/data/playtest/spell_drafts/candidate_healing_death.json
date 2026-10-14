@@ -1,0 +1,128 @@
+{
+  "status": "IN_REVIEW_NOT_OPERATIONAL",
+  "scope": "Individual healing/death spell candidates. This filename is intentionally outside batch_*.json and is not loaded into the operational catalog. Source class access, ranks and RP costs remain in the preserved catalog.",
+  "requiredSpellIds": [
+    "stitch-fate",
+    "death-ward",
+    "resurrection",
+    "mass-resurrection-denial",
+    "true-resurrection",
+    "soul-bind"
+  ],
+  "reviewEvidence": [
+    "docs/audit/2026-10-08/full-game/GPT_HEALING_DEATH_FIRST_REVIEW.md",
+    "docs/audit/2026-10-08/full-game/GPT_HEALING_SUPPLEMENT_REVIEW.md",
+    "docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_BOUNDARIES.md"
+  ],
+  "spells": [
+    {
+      "id": "stitch-fate",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "One living dying creature at 0 HP you can perceive within range and line of effect. Dead and Stable creatures are ineligible.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Choose one mode before paying. Unravel Failure requires at least one recorded failed death save and removes one failure. Stitch Life clears death-save counters and restores 1 HP as direct state recovery.",
+      "effect": "Unravel Failure leaves the creature dying at 0 HP with its other recorded successes/failures intact. Stitch Life restores a living dying creature to 1 HP, ending its zero-HP dying state. If a broad cannot-regain-HP effect blocks that 1 HP, instead clear its death counters, make it Stable at 0, and roll its ordinary d4-hour recovery deadline from now. A still-active HP prohibition can defer that eventual recovery; damage or death cancels it normally.",
+      "scaling": "None. The spell changes only one recorded failure or the defined 1-HP state recovery.",
+      "limitations": "An Action cannot interrupt or retroactively change a completed death. This is not resurrection or ordinary HP healing; ordinary healing bonuses/halves do not alter the 1-HP state value. It removes no Wounds, Corruption, class Curse, conditions, debt or spent-resource consequences. Normal class access, RP, Dissonance, Refrain, components and countering rules apply. No refund after a legally paid cast is countered or fails at resolution.",
+      "designNotes": "Core Divination rank8, 21RP, Action, 120ft, V/S/F and Instantaneous are preserved. Source says change one failed death save or auto-revive a dying target. NEW: two explicit modes; recorded-failure removal instead of a retroactive reroll; living-dying eligibility; 1-HP state recovery and blocked-recovery Stable bridge. This draft remains inactive pending exact review."
+    },
+    {
+      "id": "death-ward",
+      "activation": "Action",
+      "rangeFeet": 60,
+      "targets": "One living creature you can perceive within range and line of effect",
+      "duration": "Concentration, up to 1 minute; ends when its prevention is used",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "No initial save. While the spell remains active, the first eligible effect that would reduce the target from positive HP to 0 without Core Instant Death or another outright-death result instead leaves it at 1 HP; then the ward ends.",
+      "effect": "Prevent one positive-to-zero HP crossing. Preserve the raw damage packet, Core Instant Death check, half-maximum/Maiming Wound triggers and attached conditions. The prevented positive-to-zero crossing does not itself create a drop-only Wound save. This is loss prevention, not healing, so a cannot-regain-HP effect does not stop it. Other eligible survival effects are rechecked after the selected prevention resolves; no duplicate automatic use is consumed after the crossing has already been prevented.",
+      "scaling": "None. Always one eligible crossing and a 1-HP floor.",
+      "limitations": "Does not trigger while the target is already at 0. Does not resurrect, repair a vital body, prevent third death-save failure/fatal Wound death/lethal-track death or override explicitly unpreventable HP loss. Cannot legalize an otherwise unaffordable HP cost. If multiple independently owned wards exist, use only the chosen eligible prevention; unused records retain their own concentration/deadline. This is distinct from Cleric Ritual of Undeath's would-die replacement. Normal spell costs and risk apply.",
+      "designNotes": "Core Necromancy rank4, 7RP, Action, 60ft and concentration1minute retained with exact class gates. M/F uses the already-reviewed class-focus alternative; no unstated material cost. NEW: living target, explicit positive crossing, outright-death exclusion and competing-prevention procedure. The agreed damage/HP-loss interface is in the candidate guide; inactive pending exact review."
+    },
+    {
+      "id": "resurrection",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "One willing dead creature whose sufficiently intact remains are within range and line of effect, and whose death occurred no more than 8 elapsed hours ago",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "No attack or save. Check the dead identity's willingness, sufficient body, exact elapsed death window, location and actual resurrection/soul blockers. On a legal successful resolution, return that identity to life at 1 HP.",
+      "effect": "Change Dead to Living, assign 1 returned HP, clear death-save counters and any previous Stable recovery deadline. Preserve Wounds, Corruption, Oracle Curse, other persistent death consequences and spent resources. This returned HP is a resurrection state transition, not ordinary healing; ordinary healing reductions and generic living HP-gain prohibitions do not change it. Explicit resurrection or soul blockers prevent return.",
+      "scaling": "None. One identity returns at 1 HP; no additional targets or restored resources.",
+      "limitations": "Does not create a missing viable body, duplicate a creature, compel an unwilling return, bypass a real planar/soul barrier, clear lethal tracks or repair otherwise lethal persistent afflictions. After successful return, retain Exhaustion6/Expedition6 and enter their protected living-collapse states. Later positive unprevented gain is lethal again; qualifying care and point gates still apply. This candidate remains inactive pending exact review. Known illegal prerequisites prevent activation; a legal cast already paid receives no refund for a later refusal, counter or changed eligibility. Normal RP, Dissonance, Refrain and component rules apply.",
+      "designNotes": "Core Necromancy rank7, 17RP, Action, 120ft, V/S/F and Instantaneous retained. Class gates remain Cleric/Druid/Wizard13 and Shaman19. NEW provisional design: one target, willingness/body/line requirements, eight-hour elapsed window and1 returned HP. No imported diamond cost or hour-long cast. Inactive pending exact source, life-state and lethal-track review."
+    },
+    {
+      "id": "mass-resurrection-denial",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "A fixed 20-foot-radius sphere centered on a point you can perceive within range and line of effect",
+      "duration": "Concentration, up to 1 minute",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "No initial attack or save. Establish the zone; only remains physically inside its area are affected while the spell remains active.",
+      "effect": "A corpse/remains inside the zone cannot serve as the target or anchor of an effect returning that creature to life. Moving the remains outside removes this spell's block; bringing remains inside while the zone exists subjects them to the block again. Ending concentration or a legal effect capable of dispelling this rank8 spell ends the zone. This spell does not itself damage creatures, animate corpses, bind souls or reverse a resurrection already completed.",
+      "scaling": "None. The radius, duration and effect do not scale.",
+      "limitations": "Bodyless True Resurrection that uses a legal formation space rather than the blocked remains is not stopped by this corpse-local prohibition alone. No generic dispel or free Counterspell is granted: a remover must already have an operational source that can affect this spell/rank. Normal concentration, costs, Dissonance and Refrain apply. Does not become a permanent resurrection ban after expiry.",
+      "designNotes": "Core Necromancy rank8, 21RP, Action, 120ft and M/F focus alternative retained; exact class gates stay Cleric/Druid/Wizard15. NEW: 20ft fixed spherical area; concentration up to1minute replaces contradictory Instantaneous metadata because the source describes an ongoing corpse block. Scope and counterplay are explicit provisional decisions. Inactive until individual review."
+    },
+    {
+      "id": "true-resurrection",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "One unambiguously identified willing dead creature that died no more than7 elapsed days ago; choose usable remains within range and line of effect or one legal unoccupied body-formation space you can perceive within range",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "No attack or save. The chosen identity must actually be dead and willing to return, satisfy the death window, and have no applicable identity/soul blocker. Usable remains may be the anchor; otherwise form a viable body in the chosen space. A true name or knowledge of an inferred afterlife-plane location is not required.",
+      "effect": "Return the one identity to life at1HP, clearing death-save counters and any former Stable recovery deadline. Preserve Wounds, linked persistent consequences, Corruption, Oracle Curse, debts and spent resources. The returned HP is a resurrection state transition, not ordinary healing. Any other remains of this identity lose eligibility to create a second living instance; they remain mundane remains/history evidence as appropriate. No equipment, resources or second creature are created from duplicate remains.",
+      "scaling": "None. One creature at1HP, with no restored class resources.",
+      "limitations": "An already-living identity is ineligible. A bodyless mode does not bypass an actual soul/identity resurrection block or a source expressly preventing return through a planar barrier. A corpse-local denial alone does not bind the identity. Lethal tracks and persistent afflictions remain; apply their reviewed reconciliation rather than silently removing them. Refusal or a counter after a legal paid activation refunds nothing. Normal spell risk and component rules apply.",
+      "designNotes": "Core Necromancy rank9, 26RP, Action, 120ft, V/S/F and explicit bodyless return retained with Cleric/Druid/Wizard17 access. NEW provisional7-day window, returned1HP, formation-space/identity eligibility and anti-duplication consequence. Soul cosmology remains a separate dependency; no true-name requirement, diamond cost or hour-long cast imported. Inactive pending individual review."
+    },
+    {
+      "id": "soul-bind",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "One living dying creature at0HP you can perceive within range and line of effect; a Dead or Stable creature is ineligible",
+      "duration": "Pending tether up to1 minute; if target dies while pending, bound identity for24 elapsed hours from that death",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Target makes a Charisma save against your spell save DC. On success no effect. On failure create a pending Soul Bind tether with an absolute expiry60 seconds after resolution. Target death before that expiry converts it into one soul-bound identity record with expiry24 hours after the death.",
+      "effect": "Before death, gaining positiveHP or becoming Stable ends the pending tether. After conversion, that identity cannot return by resurrection until the24-hour record ends or a legally capable source removes it. Neither state requires concentration or ends merely because a caster dies/incapacitates. If death begins at or after the pending absolute expiry, conversion does not occur. Only one Soul Bind family record may exist per identity; another failed-save application while still living/dying refreshes to the later pending endpoint without stacked prisons. No post-death recast is legal because the spell targets a living dying creature.",
+      "scaling": "None. No increased targets, indefinite duration or automatic save failure.",
+      "limitations": "Pending dispel/removal targets the creature. After death, existing remains serve as the local magical anchor for an otherwise eligible dispel/removal; if no remains exist, a source must expressly free the bound identity/soul rather than inventing a physical anchor. A generic cure or under-ranked dispel is not sufficient. The spell grants no commands, ownership, memories, personality change or control over the player. Soul-specific temporal restoration uses its own reviewed interface. Normal costs, Dissonance, Refrain and countering apply.",
+      "designNotes": "Core Necromancy rank9, 26RP, Action, 120ft, V/S/F and dying-target/resurrection-block purpose retained with Cleric/Druid/Wizard17 access. NEW: Charisma save,1-minute pending/24-hour bound states, no concentration, exact expiry collision, source-family refresh and local removal anchor. These replace the otherwise nonoperational Instantaneous summary with explicit finite aftermath. Wider soul cosmology remains open; inactive until individual review."
+    }
+  ],
+  "pendingIndividualDrafts": []
+}

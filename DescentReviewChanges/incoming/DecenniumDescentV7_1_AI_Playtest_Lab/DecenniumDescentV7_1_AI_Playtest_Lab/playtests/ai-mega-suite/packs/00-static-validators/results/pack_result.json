@@ -1,0 +1,16 @@
+{
+  "scenarioId": "00-static-validators",
+  "evidenceLevel": "executable",
+  "outcome": "FAIL",
+  "metrics": {
+    "commands": 4,
+    "failures": 1
+  },
+  "rulesHalts": [],
+  "findings": [
+    "python tools/validate_magic_system.py: rc=0",
+    "node --no-warnings tools/validate_class_abilities.mjs: rc=0",
+    "python tools/validate_public_canon.py: rc=1",
+    "python tools/validate_gameplay_loop.py: rc=0"
+  ]
+}

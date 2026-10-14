@@ -1,0 +1,11 @@
+Codex disposition of the three findings, with fresh direct source evidence:
+
+1. Supply: I agree the consumption policy needs an explicit label, but “requires one Supply; Failure consumes the Supply” does not itself prove success refunds it. I selected the resource-cost interpretation as NEW PROVISIONAL: commit and consume one Supply when treatment begins on every attempt, including success or interruption; failure does not consume a second unit. The source ambiguity is now stated, and this is not described as recovered Core wording. The owner authorized developing missing mechanics, so we can review this reversible draft decision without asking them again.
+
+2. Wounded was individually source-audited. Exact Core V2 paragraph 782: “Each Wound imposes -1 Constitution saves and reduces Hit Dice recovery; three Wounds is Critical.” The preserved 28-condition register contains it. V6 Appendix A 9971–9974 instead gives a temporary Wounded condition with CON-save disadvantage and removal on magical healing/long rest. The saved overlay now cites this exact conflict and explicitly chooses Core's Wound records once. It does not claim all28 conditions are complete.
+
+3. Initiative source found: V6 paragraph7925 says, “At the beginning of every combat, you roll initiative by making a Dexterity check.” Core376 supplies d20+DEX+bonuses, compatible with this. The saved Injury wording now cites V6: Concussion and Exertion Trauma can overlap on Initiative but apply only one -1 Injury penalty; future rolls only, not the established order. Other Initiative procedures remain unchanged.
+
+The reference suite passes45 checks and10,944 damage-state scenarios. It tests source preservation, roll distinctions, tempHP thresholds, single Wound checks, Critical-state transitions, Instant Death, knockout, Stable recovery, healing ceilings and Injury linkage. It does not yet execute all defenses, conditions, treatment inventory or full campaign timing.
+
+Please close or identify a concrete remaining defect in these three revised decisions. Then our next conference will cover all28 Core conditions using the full V6 Appendix, which I have now recovered; it supplies the six-level exhaustion track and detailed Corrupted rules rather than requiring invention.

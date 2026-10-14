@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Decennium Descent Usability Playtest Result",
+  "type": "object",
+  "required": [
+    "pack",
+    "scenarioId",
+    "agentId",
+    "observations",
+    "metrics",
+    "rulesQuestions",
+    "exploits",
+    "recommendations"
+  ],
+  "properties": {
+    "pack": {
+      "type": "string"
+    },
+    "scenarioId": {
+      "type": "string"
+    },
+    "agentId": {
+      "type": "string"
+    },
+    "seed": {
+      "type": [
+        "integer",
+        "string",
+        "null"
+      ]
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "rulesQuestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exploits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    }
+  }
+}

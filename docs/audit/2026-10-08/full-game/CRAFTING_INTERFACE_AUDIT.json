@@ -1,0 +1,265 @@
+{
+  "recipeCount": 687,
+  "materialCount": 696,
+  "visibility": {
+    "public": 433,
+    "director-only": 215,
+    "restricted": 39
+  },
+  "outputTypes": {
+    "consumable_resistance": 22,
+    "consumable_resonance": 3,
+    "consumable_healing": 6,
+    "consumable_buff": 6,
+    "thrown_explosive": 5,
+    "consumable_mental": 3,
+    "weapon": 27,
+    "armor": 16,
+    "meal": 44,
+    "item_enchantment": 43,
+    "fishing_gear": 44,
+    "remedy": 23,
+    "remedy_buff": 22,
+    "worn_accessory": 43,
+    "container": 29,
+    "leather_gear": 20,
+    "gathering_tool": 43,
+    "poison": 41,
+    "rune": 41,
+    "salvage_tool": 42,
+    "script": 22,
+    "reference": 18,
+    "harvesting_tool": 43,
+    "garment": 38,
+    "device": 43
+  },
+  "mechanicsTypes": {
+    "consumable_resistance": 22,
+    "consumable_resonance": 3,
+    "consumable_healing": 6,
+    "consumable_buff": 6,
+    "thrown_explosive": 5,
+    "consumable_mental": 3,
+    "weapon": 27,
+    "armor": 16,
+    "meal": 44,
+    "item_enchantment": 43,
+    "fishing_gear": 44,
+    "remedy": 23,
+    "remedy_buff": 22,
+    "worn_accessory": 43,
+    "container": 29,
+    "leather_gear": 20,
+    "gathering_tool": 43,
+    "poison": 41,
+    "rune": 41,
+    "salvage_tool": 42,
+    "script": 22,
+    "reference": 18,
+    "harvesting_tool": 43,
+    "garment": 38,
+    "device": 43
+  },
+  "statuses": {
+    "developed": 440,
+    "developed-provisional": 247
+  },
+  "publicRuntimeCount": 433,
+  "publicRuntimeIdsMatch": true,
+  "publicRuntimeExactRecordsMatch": true,
+  "sourceQualityIsNotReviewApproval": true,
+  "staleSeasonPointers": [
+    "/system/designPillars",
+    "/system/stationsAndTime/seasonRule"
+  ],
+  "openInterfaces": [
+    "craft outcome vs equipment quality vs Core market quality",
+    "batch or unit recommendedMarketValue",
+    "component identity/retail mismatch",
+    "complete output activation, targets, duration, stacking and destruction",
+    "craft access/training, tool/facility bonuses and mishap procedures",
+    "preservation intervals and partial harvest quantities"
+  ],
+  "samplePublicRecipe": {
+    "id": "recipe-1",
+    "name": "Field Storm Potion",
+    "legacyName": "Simple Potion",
+    "skill": "Alchemy",
+    "skillLevel": 2,
+    "difficulty": 8,
+    "difficultyBand": "routine",
+    "craftingTime": "1 hour",
+    "rarity": "Common",
+    "quantity": 3,
+    "tags": [
+      "Lightning"
+    ],
+    "recipeFamily": "Potion",
+    "outputType": "consumable_resistance",
+    "effects": "Gain resistance to lightning damage for 10 minutes.",
+    "legacyEffect": "Restores 2d4+2 hit points",
+    "mechanics": {
+      "type": "consumable_resistance",
+      "tag": "Lightning",
+      "tier": 1,
+      "damageType": "lightning",
+      "duration": "10 minutes"
+    },
+    "needsReview": false,
+    "needsReviewReason": null,
+    "status": "developed",
+    "provenance": "expanded-from-existing-catalog",
+    "components": [
+      {
+        "id": "ing-1-0-crystal_vial",
+        "name": "Crystal vial",
+        "tier": 1,
+        "rarity": "Common",
+        "category": "crafting_supply",
+        "value": 2,
+        "weight": 0.1,
+        "quantity": 5,
+        "properties": [
+          "vessel"
+        ],
+        "materialCategory": "vessel",
+        "consumed": true,
+        "role": "vessel"
+      },
+      {
+        "id": "ing-1-1-purified_water",
+        "name": "Purified water",
+        "tier": 1,
+        "rarity": "Common",
+        "category": "crafting_supply",
+        "value": 2,
+        "weight": 0.5,
+        "quantity": 4,
+        "properties": [
+          "solvent"
+        ],
+        "materialCategory": "solvent",
+        "consumed": true,
+        "role": "solvent"
+      },
+      {
+        "id": "drop-sparkling_petal",
+        "name": "sparkling petal",
+        "tier": 1,
+        "rarity": "Common",
+        "category": "monster_part",
+        "value": 10,
+        "weight": 0.36,
+        "quantity": 1,
+        "properties": [
+          "botanical",
+          "lightning",
+          "organic"
+        ],
+        "legacyName": "Thunder-vein Core",
+        "materialCategory": "plant",
+        "sourceMonsters": [
+          "Annis Hag",
+          "Season-Bound Autumn",
+          "Boggle",
+          "Green Hag",
+          "Satyr (and 3 more)"
+        ],
+        "dropRate": 0.83,
+        "dropQuantity": "1d4",
+        "description": "A common sparkling petal. Unusual material with various crafting applications.",
+        "consumed": true,
+        "role": "material"
+      }
+    ],
+    "workRequirements": {
+      "station": "Alchemical Bench",
+      "requiredTools": [
+        "Alchemist's supplies",
+        "Heat source",
+        "Measuring glassware"
+      ],
+      "fieldCraftable": true,
+      "timeMode": "field",
+      "activeWorkHours": 1,
+      "maximumAssistants": 0,
+      "facilityBonusEligible": true
+    },
+    "craftingCheck": {
+      "abilityOptions": [
+        "Intelligence"
+      ],
+      "formula": "d20 + chosen ability modifier + proficiency bonus + tool bonus + facility bonus + assistant bonus",
+      "targetDC": 8,
+      "qualityOutcomes": [
+        {
+          "margin": "10+",
+          "result": "Masterwork",
+          "effect": "Increase yield by 50% or improve one item property; preserve one catalyst."
+        },
+        {
+          "margin": "5 to 9",
+          "result": "Exceptional",
+          "effect": "Increase yield by 25% or improve durability/charges."
+        },
+        {
+          "margin": "0 to 4",
+          "result": "Standard",
+          "effect": "Create the listed result."
+        },
+        {
+          "margin": "-1 to -4",
+          "result": "Flawed",
+          "effect": "Create half yield or one reduced-duration/flawed result."
+        },
+        {
+          "margin": "-5 to -9",
+          "result": "Failed",
+          "effect": "No finished item; recover 25% of non-catalyst materials."
+        },
+        {
+          "margin": "-10 or natural 1",
+          "result": "Mishap",
+          "effect": "Lose consumed materials and roll on the tradeskill mishap table."
+        }
+      ]
+    },
+    "economy": {
+      "consumedMaterialValue": 28,
+      "consumedWeight": 2.86,
+      "laborValue": 1.0,
+      "recommendedMarketValue": 54,
+      "commissionDepositPercent": 50,
+      "salvageRecoveryOnFailurePercent": 25
+    },
+    "skillProgression": {
+      "skillXPOnSuccess": 4,
+      "trivialAtSkillLevel": 7,
+      "firstCraftBonus": true
+    },
+    "resultItem": {
+      "name": "Field Storm Potion",
+      "tier": 1,
+      "rarity": "Common",
+      "value": 54,
+      "properties": [
+        "Gain resistance to lightning damage for 10 minutes."
+      ],
+      "legacyName": "Simple Potion",
+      "legacyValue": 54,
+      "quantity": 3,
+      "mechanics": {
+        "type": "consumable_resistance",
+        "tag": "Lightning",
+        "tier": 1,
+        "damageType": "lightning",
+        "duration": "10 minutes"
+      },
+      "durabilityClass": "consumable"
+    },
+    "tier": 1,
+    "visibility": "public",
+    "knowledgeStatus": "established formula",
+    "publicAvailability": "Available through ordinary or licensed Haven channels."
+  }
+}

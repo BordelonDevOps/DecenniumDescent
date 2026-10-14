@@ -1,0 +1,112 @@
+from pathlib import Path
+import copy,json,hashlib,sys
+
+G=Path('C:/Github/DecenniumDescent');R=G/'DescentReviewChanges/ReviewBible';A=G/'docs/audit/2026-10-08/full-game';D=R/'data/playtest/spell_drafts'
+read=lambda p:json.loads(p.read_text(encoding='utf-8-sig'))
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+compact=lambda x:json.dumps(x,ensure_ascii=False,separators=(',',':'),sort_keys=True)
+def dump(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+common=' Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-2 placements have base 3 RP; actual source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.'
+area=' Initial area recipients are a snapshot at resolution, with no selective omission or later entry damage. Apply the stated geometry and line of effect from the origin/center before damage removes cover; allies and caster are included only when the card actually includes their occupied space. Roll the stated raw area damage once, then apply each recipient’s save and defenses independently. Halved damage rounds down before individual defenses. Distinct recipients retain separate damage packets and callbacks. No attack critical applies to area save damage.'
+objects=' A directly selected object must be perceived, within range and line of effect, and independently legal: unattended, held by the caster, or deliberately offered by a willing holder. This gives no general permission to target hostile worn/carried inventory. Use actual object AC, durability and defenses; the spell does not automatically destroy an object.'
+hostile_end='The rider ends at the target’s first future regular-turn END after application, excluding the entire current target turn if already underway. Outside initiative its deadline is application +6 elapsed seconds. Preserve that original regular/virtual marker or absolute deadline across initiative changes, absence and extra turns; no change of timing mode refreshes it.'
+source_review='docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_SOURCE_CONFERENCE.md'
+clarification_review='docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_AUTHORING_CLARIFICATION.md'
+sources=read(D/'candidate_evocation_rank2_sources.json')['spells'];source_by={s['id']:s for s in sources}
+cards={}
+def card(i,range_feet,targets,duration,resolution,effect,limitations,notes):
+ s=source_by[i]
+ cards[i]={'id':i,'activation':'Action','rangeFeet':range_feet,'targets':targets,'duration':duration,'concentration':False,'components':['V','S','F'],'resolution':resolution,'effect':effect,'scaling':'None. No automatic increase in damage, range, targets, duration, uses or magnitude.','limitations':limitations+common,'designNotes':notes,'implementationStatus':'LOCAL CANDIDATE — source-reconciled; exact review pending; not selectable','sourcePlacements':copy.deepcopy(s['sourcePlacements']),'sourceCoreEntries':copy.deepcopy(s['sourceCoreEntries']),'sourceHistoricalAliasEvidence':copy.deepcopy(s['possibleHistoricalAliases']),'classAccessEvidence':copy.deepcopy(s['classAccess']),'sourceReview':[source_review,clarification_review],'reviewEvidence':[]}
+
+card('scorching-raystorm',30,
+ 'Allocate exactly three numbered rays 1, 2, 3 at cast commitment among one to three distinct perceived creatures or independently legal objects within 30 feet and line of effect. Multiple rays may share a recipient; lock allocations and resolution order.',
+ 'Instantaneous, no concentration.',
+ 'After the cast survives its interruption window, resolve rays 1→2→3. Each makes its own ranged spell attack against its still-legal assigned target. A hit deals independently rolled 2d6 fire; a miss does nothing. A target that becomes illegal before its ray resolves loses that allocation, with no retargeting or recovered last-location attack.',
+ 'Each ray is its own attack and damage event, with its own critical dice, defenses and actual hit/damage callbacks. Do not share one damage roll among rays or combine them into one packet. Ordinary Shield contributes its actual applicable AC protection; Magic Missile Storm’s named damage-prevention bridge does not apply.',
+ 'No Burning, chaining, physical ammunition, recoverable ray or free target replacement.'+objects,
+ 'PRESERVED: three rays each 2d6 fire, Action, 30 feet and V/S/F. NEW: ranged spell attacks, fixed numbered allocation/order and independent dice/packets.')
+
+card('lightning-pulse',20,
+ 'Choose a direction for a 20-foot-long, 5-foot-wide line originating from the caster. Affect every creature whose occupied space intersects that line and has line of effect from its origin. Being the origin does not alone include the caster.',
+ 'Instantaneous, no concentration.',
+ 'Each affected creature makes a Constitution save. Roll one shared 3d6 lightning: failure takes full damage; success takes half, rounded down, followed by that creature’s actual defenses.',
+ 'The line has no persistent zone or later entry trigger. Its creature-only scope includes allies actually intersecting it.'+area,
+ 'No object or structural damage, selective ally exclusion, metal/water chaining, Stunned or Reaction denial is supplied by this spell.',
+ 'PRESERVED: Action, 20-foot line, V/S/F, 3d6 lightning and CON save halves. NEW: 5-foot width and explicit creature-only geometry.')
+
+card('arcane-implosion',30,
+ 'One creature you perceive within 30 feet and line of effect.',
+ 'Instantaneous damage plus a possible one-target-round Stunned rider, no concentration. '+hostile_end,
+ 'The still-legal creature automatically takes 4d6 force, with no attack or damage save. After that packet, if it remains a legal creature and the combined source-character/target/encounter hard-control allowance is available, it makes a Constitution save solely against Stunned. Failure attempts actual Stunned under its defenses; success does not establish Stunned. If the allowance is already unavailable, skip this Stun save; damage still resolves. Do not manufacture a postmortem save or condition if damage ended creature eligibility.',
+ 'Force defenses and Stunned/control defenses are independent. Damage reduced to 0 does not itself prevent the available Stun procedure. Spend the shared hard-control allowance only when Stunned is actually established; prevention or a successful save spends no new allowance. Ending/removing Stunned does not refund already-spent history. Use actual Stunned consequences and the stated finite endpoint.',
+ 'The CON save does not negate or halve the prior force damage. No pull, collision damage or other positional movement comes from the name. A blocked hard component supplies no invented soft fallback, new allowance or refund.',
+ 'PRESERVED: Action, 30 feet, V/S/F, 4d6 force, CON save for Stunned 1 round. NEW: automatic damage first, conditional save only while still a legal creature and hard allowance available, exact finite endpoint.')
+
+card('scorching-line',30,
+ 'Choose a direction for a 30-foot-long, 5-foot-wide line originating from the caster. Affect all creatures whose occupied space intersects it and has origin line of effect. Origin alone does not include the caster.',
+ 'Instantaneous, no concentration.',
+ 'Each affected creature makes a Dexterity save. Roll one shared 3d8 fire: failure takes full damage; success takes half, rounded down, followed by individual defenses.',
+ 'The line affects all actual creatures in its initial geometry, including allies, and ends immediately.'+area,
+ 'No object/structural damage, Burning, terrain fire, equipment destruction or lingering line. The possible historical name grants no extra spell identity, class access or external rules.',
+ 'PRESERVED: stable ID Scorching Line and catalog 30-foot line/3d8 fire. SOURCE-EVIDENCE ADOPTION: the separately retained possible Aganazzar’s Scorcher Core block supplies Action/30 feet/V,S,F/Instantaneous metadata because effect/school/rank match; identity merger remains unproven. NEW: 5-foot width and DEX full/half.')
+
+card('snowball-swarm',5,
+ 'Choose a perceived point within 5 feet and line of effect. Affect every creature in a 5-foot-radius sphere around that point with line of effect from its center, including caster/allies when geometrically inside.',
+ 'Instantaneous, no concentration.',
+ 'Each affected creature makes a Dexterity save. Roll one shared 3d6 cold: failure takes full damage; success takes half, rounded down, followed by individual defenses.',
+ 'The point’s 5-foot casting range and the sphere’s separate 5-foot radius both apply.'+area,
+ 'No object damage, Frozen, Speed penalty, lingering snow, difficult terrain or physiology-based save modifier. No imported longer range or historical-name identity/access merger.',
+ 'PRESERVED: stable ID Snowball Swarm and catalog 3d6 cold/5-foot radius. SOURCE-EVIDENCE ADOPTION: the possible Snilloc’s Snowball Swarm Core block supplies Action/5-foot range/V,S,F/Instantaneous metadata; the possible alias remains separately preserved. NEW: exact point/sphere and DEX full/half procedure.')
+
+card('frost-nova',15,
+ 'Every creature in a 15-foot-radius sphere centered on the caster with line of effect from the caster, including the caster and allies.',
+ 'Instantaneous damage plus an immediate one-target-round Speed 0 rider, no concentration. '+hostile_end+' This is the base deadline, not an anti-extension maximum; the explicit Balanced Elements bridge below can extend it.',
+ 'Each affected creature makes a Constitution save. Roll one shared 2d8 cold. Success negates both damage and the movement rider. Failure takes the cold damage and independently attempts the source-owned magical Speed 0 rider. Cold resistance/immunity does not itself prevent the rider; actual movement/Speed-control defenses may prevent it independently. Damage reduced to 0 does not itself prevent Speed 0.',
+ 'The rider sets actual Speed to 0 under CONTROL_STATES_PLAYTEST.md. Same source owner/target/group/exact profile refreshes one record to the later of its existing unexpired deadline and the new successful application’s ordinary deadline. It adds no parallel same-owner copy and never shortens a deadline. A saved-against or prevented rider does not refresh an old record. Separate paid casts still resolve their own damage. Different owners retain independent records/endpoints, and ending one cannot erase another. NEW classification: this specific rider is magical elemental Speed control and supplies eligibility.slowed-foe only while active and unsuppressed. Balanced Elements may extend this owned component using max(existingDeadline, targetFollowingRegularEndMeasuredNow), excluding the current in-progress target END; it never recursively adds a round to the old deadline, revives an ended effect, increases magnitude or repeats damage. Any actual express governing maximum still bounds that extension.'+area,
+ 'This is not Core Frozen, Restrained, Incapacitated, Prone or Root unless another exact rule independently classifies it. Frozen-only/Restrained-only cures do not remove it. A removal or suppression must actually cover this source-owned Speed 0/magical movement restriction. No whole-Action hard-control claim, ice terrain, ongoing zone or repeat save is created.',
+ 'PRESERVED: Action, V/S/F, 15-foot burst, 2d8 cold and failed-save freeze meaning Speed 0. NEW: self-centered sphere including caster, CON success-negates-both, finite immediate rider, existing refresh policy, explicit elemental classification and Balanced Elements extension of its base deadline.')
+
+card('shatter',10,
+ 'Choose a perceived point within 10 feet and line of effect. The initial area is a 10-foot-radius sphere around it. After interruption but before any damage, fix one snapshot of all eligible creatures, ordinary nonmagical discrete objects and bounded structural sections within the sphere with center line of effect.',
+ 'Instantaneous, no concentration; actual damaged objects retain ordinary damage consequences.',
+ 'Roll one shared 3d8 thunder base and one shared additional 1d8 thunder object bonus. Each affected creature makes a Constitution save: failure takes the base; success takes half the base, rounded down. Creatures never receive the object bonus. Each eligible object or selected structural section takes base plus bonus as ONE grouped thunder packet, without a save, using its actual durability/material/damage defenses. Apply recipient defenses independently; do not turn the four damage dice into separate packets.',
+ 'Eligible objects are ordinary nonmagical objects that are unattended, caster-held, or deliberately offered/exposed by willing holders; hostile worn/carried inventory is not automatically included. For each actual distinct large structural whole or terrain feature, select at most one contiguous exposed section wholly within the original sphere and bounded by a 5-foot cube. Use the eligible section containing its line-of-effect-reachable point nearest the spell center. Resolve equivalent nearest-point ties by stable neutral geometry/order fixed before damage, not caster choice or post-damage Director optimization. The Director determines actual structural identity and hidden boundaries without revealing them merely because the spell was cast. Arbitrarily naming bricks/panels/floorboards does not multiply one structure’s packets. A genuinely separate freestanding object remains independent. A large discrete object beyond the damage scale of its actual durability rules receives damage only to its legal affected section, not automatic transfer through the entire object. Fix all recipients and sections before any packet; destroying cover cannot expose new targets or cause another scan. Actual later support/collapse/falling consequences follow their own rules.'+area,
+ 'The short 10-foot point range and separate 10-foot radius both apply. No damage extends outside the selected section/sphere, no automatic whole-building collapse or propagation is granted, and no Deafened, construct vulnerability, magic-item suppression or named shattered condition is added. No one can choose a concealed load-bearing element or optimize sections after damage outcomes.',
+ 'PRESERVED: Action, 10-foot casting range, V/S/F, 3d8 thunder in 10-foot radius and extra object damage. NEW: perceived point/sphere, CON half for creatures, shared +1d8 for legal nonmagical objects in one grouped packet, fixed pre-damage snapshot and deterministic bounded structural section procedure.')
+
+card('acid-arrow',30,
+ 'One creature or independently legal object you perceive within 30 feet and line of effect.',
+ 'Instantaneous initial attack plus one finite ongoing delayed rank-2 spell rider per successful hit, no concentration. Creature: execute at its first future regular END, excluding its current turn. Object: execute at the caster’s first future regular END, excluding the caster’s current turn. Outside initiative: application +6 seconds. Preserve the original corresponding regular/virtual marker or absolute deadline across entry/exit/reorder, absence, plane change and extra turns.',
+ 'Make a ranged spell attack. Miss: no damage or delayed rider. Hit: resolve 4d4 acid, doubling only those initial attack dice on a critical. After that packet, if the same recipient remains the same continuing eligible creature/object, attach the delayed rider unless an actual defense prevents it. Initial damage reduced to 0 does not itself prevent attachment. Merely reaching 0 HP is not automatically death or loss of continuing creature identity. If the initial packet actually kills/ends that creature identity or destroys that object before attachment, no rider is created.',
+ 'At its scheduled marker, an existing unsuppressed rider deals a separately rolled 2d4 acid to the same continuing recipient as one nonattack packet, then ends. This is an existing-effect consequence, not a cast: no RP, Dissonance, Refrain, cast-begin hook or Counterspell window; ordinary damage/outcome hooks keep their actual predicates. No delayed critical dice. Every qualifying hit has an independent source-owned rider, including same-ID casts by the same or different owners; they coexist rather than refresh or replace. Simultaneous due riders resolve in stable application order as separate packets. An eligible dispel/removal can end a specific pending rank-2 rider before execution despite the source’s Instantaneous cast metadata. Suppression never pauses its marker. If suppressed when due, consume the one-shot event without damage, end that rider, and never replay it after suppression lifts. Movement, lost range/line of effect/perception, caster absence and identity-preserving transformation do not alone end the rider. Actual death/ended continuing creature identity, object destruction or replacement/resummoning ends its recipient’s rider; resurrection/recreation does not inherit it. Actual transformation/source rules may independently end or suppress it.',
+ 'No delayed retargeting to a corpse, replacement or last location; no extra-turn acceleration or timing reset; no washing/scraping removal procedure, physical recoverable arrow or mundane acid material. The ordinary attack and delayed packet remain separate.'+objects,
+ 'PRESERVED: stable ID Acid Arrow, initial 4d4 acid and next-round 2d4. SOURCE-EVIDENCE ADOPTION: possible Melf’s Acid Arrow Core metadata supplies Action/30 feet/V,S,F/Instantaneous without identity/access merger. NEW: ranged attack, miss-none, post-initial-packet attachment, exact one-shot marker, coexistence, dispellable ongoing rider and suppression-at-execution consumption.')
+
+assert len(cards)==8 and set(cards)==set(source_by)
+assert (G/source_review).exists() and (G/clarification_review).exists()
+out=D/'candidate_evocation_rank2.json';assert not out.exists() and not (D/'batch_evocation_rank2.json').exists()
+catalog=read(R/'data/public/spell_playtests/catalog.json')['spells'];by={s['id']:s for s in catalog}
+prior={s['id']:s['operational'] for s in catalog if s['operational']}
+assert len(prior)==261 and all(not by[i]['operational'] for i in cards)
+ordered=[cards[s['id']] for s in sources]
+dump(out,{'status':'LOCAL CANDIDATE — exact review pending; not selectable','scope':'Eight actual rank-two Evocation identities; three comparative historical Core records remain possible aliases. No previous card, class rule or raw source changed.','spells':ordered})
+sys.path.insert(0,str(R/'tools'));from build_spell_playtests import FIELDS
+checks={
+ 'eight_unique_unselected_cards':len(cards)==8 and not set(cards).intersection(i for v in read(D/'selected_sources.json').values() for i in v),
+ 'complete_functional_fields':all(all(k in s for k in FIELDS) for s in ordered),
+ 'exact_source_and_alias_evidence':all(s['sourcePlacements']==by[s['id']]['source']['original']['placements'] and s['sourceCoreEntries']==by[s['id']]['source']['coreEntries'] and s['sourceHistoricalAliasEvidence']==by[s['id']]['source']['possibleHistoricalAliases'] for s in ordered),
+ 'eight_placements_five_exact_three_comparative_blocks':sum(len(s['sourcePlacements']) for s in ordered)==8 and sum(len(s['sourceCoreEntries']) for s in ordered)==5 and sum(len(s['sourceHistoricalAliasEvidence']) for s in ordered)==3,
+ 'class_access_unchanged':all(s['classAccessEvidence']==by[s['id']]['classAccess'] for s in ordered),
+ 'actual_rank2_base3':all(a['rank']==2 and a['baseRpCost']==3 for s in ordered for a in s['classAccessEvidence'].values()),
+ 'source_activation_and_components_preserved':all(s['activation']=='Action' and s['components']==['V','S','F'] and s['concentration'] is False for s in ordered),
+ 'all_848_ids_936_placements_remain':len(catalog)==848 and sum(len(s['source']['original']['placements']) for s in catalog)==936,
+ 'no_catalog_or_selection_promotion':len(prior)==261 and not (D/'batch_evocation_rank2.json').exists(),
+ 'complete_source_review_evidence':all((G/p).exists() for p in [source_review,clarification_review])
+}
+dump(A/'EVOCATION_RANK2_CANDIDATE_CHECK.json',{'status':'PASS' if all(checks.values()) else 'FAIL','checks':checks,'limits':'Source/schema/nonpromotion checks only; exact manuscript, effect runtime and human balance not approved.'});assert all(checks.values()),checks
+baseline=read(A/'EVOCATION_RANK1_EXACT_SUBMISSION.json')
+sub={'status':'complete candidate authored; exact review not sent','ids':[s['id'] for s in ordered],'candidatePath':str(out),'candidateSha256BeforeReview':sha(out),'operationalBefore':261,'unfinishedBefore':587,'previousOperationalSha256':hashlib.sha256(compact(prior).encode()).hexdigest(),'frozenSourceAndClassFiles':{k:sha(R/k) for k in baseline['frozenSourceAndClassFiles']},'sourceHashLedgerBefore':read(R/'data/playtest/spell_sources/source_hashes.json'),'classRulesSha256Before':sha(R/'docs/mechanics/CLASS_PLAYTEST_RULES.md'),'reviewSourceHashes':{p:sha(G/p) for p in [source_review,clarification_review]}}
+dump(A/'EVOCATION_RANK2_EXACT_SUBMISSION.json',sub)
+p=R/'docs/mechanics/EVOCATION_RANK2_REVIEW_STATUS.json';s=read(p);s.update(status='EXACT CANDIDATE AUTHORED — not reviewed or operational',candidatePath=out.relative_to(R).as_posix(),candidateSha256=sha(out),authoringClarificationEvidence=clarification_review,authoringClarificationTurnId='5a29a3cc-dafe-4cce-bde4-e8bfc5bd61f5',candidateLocalCheck='docs/audit/2026-10-08/full-game/EVOCATION_RANK2_CANDIDATE_CHECK.json',nextWork='Review all eight exact cards, then prioritize the broader delivery-flow audit; do not automatically begin another isolated school batch.');dump(p,s)
+print(json.dumps({'cards':8,'candidateSha256':sha(out),'localChecks':len(checks),'exactApproval':False,'selected':False},indent=2))

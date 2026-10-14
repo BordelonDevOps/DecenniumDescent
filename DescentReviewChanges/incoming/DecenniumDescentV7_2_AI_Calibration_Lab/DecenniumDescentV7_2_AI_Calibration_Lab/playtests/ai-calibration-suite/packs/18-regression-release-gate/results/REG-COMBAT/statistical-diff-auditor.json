@@ -1,0 +1,50 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-COMBAT",
+  "runId": "2026-08-06T151746Z-REG-COMBAT",
+  "seed": 77101,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "5d617e52663d180ad4f80ad7bb14e4eeb3ec063fb71f0c6a23fa24bf9dca7ad7",
+  "evidenceLevel": "A",
+  "outcome": "BASELINE_LOCKED",
+  "metrics": {
+    "presentFiles": [
+      "results\\07-budget-autotune\\summary.json",
+      "results\\07-budget-autotune\\budget_calibration.csv",
+      "results\\08-objective-calibration\\summary.json",
+      "results\\08-objective-calibration\\objective_results.csv"
+    ],
+    "missingFiles": [],
+    "csvRows": 780,
+    "summaries": {
+      "summary.json": {
+        "rows": 300,
+        "runs": 60000,
+        "rule": "Each objective adjustment was represented once; kill win rate was not substituted for objective success."
+      }
+    },
+    "dependencyPackJsonCounts": {
+      "01-combat-class-balance": 160,
+      "07-statistical-combat-calibration": 8,
+      "11-expedition-attrition-monte-carlo": 198,
+      "13-haven-economy-stress": 43,
+      "16-rules-fuzz-property-tests": 6
+    },
+    "note": "No proposed-patches/ deltas; gate uses V7.2 executable math outputs + packs 05/17/19/20 from this run."
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "REG-COMBAT: present=4 missing=0 csvRows=780.",
+      "citation": "playtests/ai-calibration-suite/results/"
+    },
+    {
+      "severity": "null",
+      "summary": "Release gate is validator status + executable math integrity + usability/edge/integrity packs from this final wave.",
+      "citation": "playtests/ai-calibration-suite/proposed-patches/"
+    }
+  ],
+  "rawEvidencePath": "results\\07-budget-autotune\\summary.json",
+  "agentId": "statistical-diff-auditor"
+}

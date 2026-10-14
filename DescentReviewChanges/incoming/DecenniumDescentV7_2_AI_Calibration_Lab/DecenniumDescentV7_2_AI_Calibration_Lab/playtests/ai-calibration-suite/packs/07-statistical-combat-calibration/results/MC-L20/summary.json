@@ -1,0 +1,246 @@
+{
+  "pack": "07-statistical-combat-calibration",
+  "scenarioId": "MC-L20",
+  "runId": "MC-L20-70700",
+  "seed": 70700,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": "dcdb25f38a3e0fc63793bf488f717900d45651d045650749b6ee2b1925f5ac10",
+  "evidenceLevel": "A",
+  "outcome": "WARN",
+  "metrics": {
+    "cells": [
+      {
+        "level": 20,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6128,
+        "meanDowned": 0.032,
+        "meanRounds": 8.069,
+        "meanHitRate": 0.5,
+        "meanHealing": 128.08,
+        "meanDamageDealt": 247.55,
+        "meanRpSpent": 5.45,
+        "wipeRate": 0.0,
+        "budget": 90.0
+      },
+      {
+        "level": 20,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 1000,
+        "winRate": 0.504,
+        "winRateCI95": [
+          0.473,
+          0.535
+        ],
+        "meanHpPct": 0.1167,
+        "meanDowned": 2.518,
+        "meanRounds": 12.187,
+        "meanHitRate": 0.589,
+        "meanHealing": 236.11,
+        "meanDamageDealt": 394.36,
+        "meanRpSpent": 9.31,
+        "wipeRate": 0.496,
+        "budget": 130.0
+      },
+      {
+        "level": 20,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 1000,
+        "winRate": 0.0,
+        "winRateCI95": [
+          0.0,
+          0.0
+        ],
+        "meanHpPct": 0.0,
+        "meanDowned": 4.0,
+        "meanRounds": 9.787,
+        "meanHitRate": 0.5931,
+        "meanHealing": 197.75,
+        "meanDamageDealt": 270.26,
+        "meanRpSpent": 7.65,
+        "wipeRate": 1.0,
+        "budget": 180.0
+      },
+      {
+        "level": 20,
+        "partySize": 4,
+        "difficulty": "catastrophic",
+        "runs": 1000,
+        "winRate": 0.0,
+        "winRateCI95": [
+          0.0,
+          0.0
+        ],
+        "meanHpPct": 0.0,
+        "meanDowned": 4.0,
+        "meanRounds": 11.043,
+        "meanHitRate": 0.4876,
+        "meanHealing": 216.13,
+        "meanDamageDealt": 181.47,
+        "meanRpSpent": 8.42,
+        "wipeRate": 1.0,
+        "budget": 240.0
+      },
+      {
+        "level": 20,
+        "partySize": 6,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.5388,
+        "meanDowned": 0.118,
+        "meanRounds": 8.541,
+        "meanHitRate": 0.5581,
+        "meanHealing": 159.71,
+        "meanDamageDealt": 587.24,
+        "meanRpSpent": 7.66,
+        "wipeRate": 0.0,
+        "budget": 125.99999999999999
+      },
+      {
+        "level": 20,
+        "partySize": 6,
+        "difficulty": "hard",
+        "runs": 1000,
+        "winRate": 0.967,
+        "winRateCI95": [
+          0.9559,
+          0.9781
+        ],
+        "meanHpPct": 0.3554,
+        "meanDowned": 0.939,
+        "meanRounds": 10.68,
+        "meanHitRate": 0.5297,
+        "meanHealing": 219.5,
+        "meanDamageDealt": 622.39,
+        "meanRpSpent": 9.93,
+        "wipeRate": 0.033,
+        "budget": 182.0
+      },
+      {
+        "level": 20,
+        "partySize": 6,
+        "difficulty": "severe",
+        "runs": 1000,
+        "winRate": 0.179,
+        "winRateCI95": [
+          0.1552,
+          0.2028
+        ],
+        "meanHpPct": 0.0298,
+        "meanDowned": 5.33,
+        "meanRounds": 13.396,
+        "meanHitRate": 0.4667,
+        "meanHealing": 239.68,
+        "meanDamageDealt": 518.1,
+        "meanRpSpent": 11.06,
+        "wipeRate": 0.821,
+        "budget": 251.99999999999997
+      },
+      {
+        "level": 20,
+        "partySize": 6,
+        "difficulty": "catastrophic",
+        "runs": 1000,
+        "winRate": 0.001,
+        "winRateCI95": [
+          -0.001,
+          0.003
+        ],
+        "meanHpPct": 0.0002,
+        "meanDowned": 5.996,
+        "meanRounds": 10.629,
+        "meanHitRate": 0.4623,
+        "meanHealing": 196.26,
+        "meanDamageDealt": 323.32,
+        "meanRpSpent": 8.9,
+        "wipeRate": 0.999,
+        "budget": 336.0
+      }
+    ],
+    "cellCount": 8,
+    "runsPerCell": 1000,
+    "objective": "ceiling calibration"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "suspected",
+      "type": "band_collapse",
+      "level": 20,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "winRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent difficulty bands have overlapping outcomes (<5pp separation)."
+    },
+    {
+      "severity": "suspected",
+      "type": "standard_off_band",
+      "cell": {
+        "level": 20,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6128,
+        "meanDowned": 0.032,
+        "meanRounds": 8.069,
+        "meanHitRate": 0.5,
+        "meanHealing": 128.08,
+        "meanDamageDealt": 247.55,
+        "meanRpSpent": 5.45,
+        "wipeRate": 0.0,
+        "budget": 90.0
+      },
+      "detail": "Standard win rate outside 55\u201392% chassis expectation window."
+    },
+    {
+      "severity": "suspected",
+      "type": "standard_off_band",
+      "cell": {
+        "level": 20,
+        "partySize": 6,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.5388,
+        "meanDowned": 0.118,
+        "meanRounds": 8.541,
+        "meanHitRate": 0.5581,
+        "meanHealing": 159.71,
+        "meanDamageDealt": 587.24,
+        "meanRpSpent": 7.66,
+        "wipeRate": 0.0,
+        "budget": 125.99999999999999
+      },
+      "detail": "Standard win rate outside 55\u201392% chassis expectation window."
+    }
+  ],
+  "rawEvidencePath": "results/07-statistical-combat-calibration/MC-L20/"
+}

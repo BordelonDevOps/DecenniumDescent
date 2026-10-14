@@ -1,0 +1,274 @@
+Capture provenance: completed response in Calibration Review Part 2, thread 6aca4e7e-fd2c-83ea-bf0f-971997ed1a9b, turn 35fd3b6f-faf2-498b-850f-122d008c7c1c, reply 920e8050-e44a-4e33-91bb-b2180232ce00. Sections 1–5 (including introduction) are source Markdown from read_thread. Sections 6–7 are the complete visible DOM text from the same response; tab-separated tables preserve their cell contents. Connector output was truncated at 20,000 characters, so the remaining requirements were explicitly recovered from Chrome. Clipboard Copy returned an empty clipboard and is not the capture source.
+
+# Blacksmithing exact-review verdict
+
+**APPROVE WITH FINITE REPAIRS for the authored operational PLAYTEST scope.**
+
+This is a completed substantive review of the supplied Parts A–C, covering **all 43 recipe cards, their operational projections, the shared guide, 40 base-model projections, and the supplied worked cases**. The corrected candidate may be promoted after the four requirements below are implemented and validated. **The submitted revision should not yet be marked unconditionally approved.**
+
+No recipe needs a newly invented effect, a changed enhancement value, a different ingredient bill, or a revised source price to resolve this review.
+
+My verification concerns the text and data supplied here. I independently checked all **248 printed finished-item reference values** against the supplied source quantities, batch references and base prices, with no discrepancy. An additional **2,816-case durability reference sweep** and **12-case reference test of the timing clarification below** passed. Those are separate checks, not a claimed rerun of Codex’s local 44-check suite, its 4,116 states, its protected-file comparisons, or the live game.
+
+## 1. Whole-card disposition
+
+The current effects in Part B agree with the corresponding preserved effects and numerical projections in Part C. The following grouping accounts for every recipe exactly once.
+
+| Current effect | Recipe IDs | Count |
+|---|---|---:|
+| Weapon: +1 attack and damage; no elemental rider | 42, 43, 45, 47, 48, 50, 51, 52, 54, 55, 56, 58, 59, 63, 64, 65, 629 | 17 |
+| Defensive item: +1 enhancement; no resistance | 44, 46, 49, 53, 57, 60, 61, 62, 628 | 9 |
+| Defensive item: +2 enhancement and its printed resistance | 66 force; 67 lightning; 73 cold; 76 thunder | 4 |
+| Defensive item: +3 enhancement and its printed resistance | 80 force; 630 force; 631 fire | 3 |
+| Weapon: +2 attack and damage; 2d4 rider | 68 lightning; 69 cold; 70 cold; 71 necrotic; 72 cold | 5 |
+| Weapon: +2 attack and damage; 3d4 rider | 74 fire; 75 psychic | 2 |
+| Weapon: +3 attack and damage; 4d4 rider | 77 thunder; 78 lightning; 79 radiant | 3 |
+| **Total** | **27 weapon effects; 16 defensive effects; 10 elemental riders** | **43** |
+
+The visibility assignment also reconciles: **27 public, four restricted, twelve Director-only**. The restricted set is **66, 69, 70 and 71**. Public status does not grant formula ownership, required training, ingredients or availability.
+
+The two fixed armor mappings are correct: **recipe-628 uses Scale mail**, and **recipe-631 uses Breastplate**. The remaining model lists agree with the prior conference. The single-model accessory lists do not acquire additional choices merely because their `fixedModelBinding` field is false; their explicit `baseModelIds` still contain only their respective blank.
+
+These findings compare the supplied Part B recipe/equipment records with Part C’s cards and projections. They do not certify that separately stored files have those same bytes.
+
+## 2. BS-01 — Replace the unresolved rider timing with an exact state procedure
+
+**Decision: the first actual host turn satisfies the entry guard even when the item makes no attack during that turn. Do not defer the guard until an attempted use.**
+
+“Host turn” means the actual turn during which an attack would resolve, regardless of whose turn it is. It does **not** mean the wielder’s next own turn. At midturn entry, an already-running actual host turn counts.
+
+Outside windows use a **recorded origin and an elapsed-time window index**. They do not restart on another attack, a miss, a declined rider, suppression, transfer or an initiative-mode change.
+
+The following is the exact replacement for the shared guide’s outside-initiative and transition paragraphs.
+
+:::writing{variant="document" id="84726" title="Blacksmithing elemental-rider timing — exact playtest clarification"}
+### Outside initiative and transitions — NEW exact clarification
+
+Use the existing game timeline, measured in elapsed game seconds. Do not use real-world table time or advance the game clock by six seconds merely because another creature takes a turn.
+
+**Outside-window origin.** For each physical item with a printed elemental rider, record `outsideWindowOriginTime` when its first relevant lawful, non-copied weapon attack is resolved genuinely outside initiative. Establish this origin whether that attack hits or misses and whether its rider is used or declined. An attack routed into an encounter before resolution does not establish an outside origin.
+
+Once established, preserve that origin for the same physical item. At game time `t`, its outside-window index is:
+
+`floor((t − outsideWindowOriginTime) / 6)`
+
+Window `k` includes its starting boundary and excludes its ending boundary:
+
+`[outsideWindowOriginTime + 6k, outsideWindowOriginTime + 6(k + 1))`
+
+The item can use its rider at most once in each such window. Skipped windows supply no accumulated uses. Another attack, ownership transfer, suppression, breakage, repair, melding or initiative-mode change does not reanchor the windows or clear a spent window.
+
+This is a fixed-window allowance, not an ordinary rolling six-second cooldown measured from every outside trigger. Separate transition restrictions below still apply. The window procedure grants no attack, action, acceleration or permission to strike a target.
+
+**Entering initiative after an outside trigger.** When initiative begins governing the item, examine its most recent actual rider trigger. If that trigger occurred outside initiative at time `L`, and entry occurs before `L + 6`, establish a transition guard associated with that specific trigger event. Its assignment deadline is `L + 6`.
+
+If an actual turn is already running at entry, immediately assign the guard to that host turn. Otherwise assign it when the first genuine regular or extra turn begins before the deadline. Mark the item’s rider budget for that actual turn as spent immediately, whether or not anyone attacks with, holds, transfers or attempts to activate the item during that turn.
+
+The guard does not wait for an attack, hit, attempted activation, the wielder’s own turn or an eligible wielder. Assignment itself does not constitute a rider trigger and does not change `lastElementalRiderTriggerTime`.
+
+Once assigned, that turn’s budget remains spent for the entire actual turn, including any portion occurring after the assignment deadline. The guard does not carry forward to another turn merely because the item was unused. Subsequent genuine turns have their normal independent budgets, even if they occur before the former assignment deadline.
+
+If no actual turn has received the guard when the deadline is reached, the unassigned guard expires. A turn first becoming applicable exactly at or after the deadline is not blocked by that expired guard.
+
+**Actual turn identity.** Use the identity of the actual host turn, not merely the acting creature, a numbered round, or the most recently observed turn. Reactions and readied attacks use their host turn. A genuine extra turn has its own identity. Resuming an interrupted parent turn resumes that parent’s existing budget; it does not reopen it.
+
+Virtual duration markers, empty initiative slots and bookkeeping-only mode changes are not additional actual turns. While initiative governs but no actual turn is running, an otherwise lawful attack receives no elemental-rider allowance from this procedure. It cannot borrow an outside window. Its ordinary weapon effects still follow their own rules.
+
+**Leaving initiative.** If the item’s most recent actual rider trigger occurred in initiative at time `L`, another outside rider use is prohibited before `L + 6`. At or after that deadline, the relevant anchored outside window must also be unspent. Ending initiative does not itself establish a new origin or provide a rider use.
+
+Preserve the item’s outside-window record, actual-turn expenditure records needed for continuing or resumable turns, and transition-guard history across mode changes. A bookkeeping toggle must not manufacture another turn identity, erase expenditure, or recreate an already assigned guard as a fresh resource. Associate a guard with its originating trigger event so repeated entry does not move or duplicate that guard.
+
+**Actual expenditure.** On a qualifying hit, the attacking creature chooses whether to use the rider before finalizing damage. An accepted legal use spends the applicable item budget and records the actual trigger time, trigger context and trigger-event identity before damage mitigation. Immunity or mitigation reducing that component to zero does not refund the use.
+
+A miss, declined rider, ineligible attack, or suppressed/unavailable rider does not spend an actual rider use. None resets an established window or removes a transition guard. Suppression ending can make an otherwise unspent, unblocked budget usable; it cannot reopen a spent or guarded budget.
+:::
+
+### Required projection changes
+
+The existing scalar `initiativeEntryAfterOutsideTriggerFirstActualTurnSpentBeforeSeconds: 6` is insufficient by itself. Preserve the submitted version historically, but supplement or replace its operational meaning with the exact procedure above.
+
+The corrected specification must retain, directly or through equivalent lossless state:
+
+| State | Required meaning |
+|---|---|
+| Outside origin and spent-window record | Fixed origin; derived index; no reanchoring or banked windows |
+| Last actual trigger | Time, outside/initiative context, and event identity |
+| Transition guard | Originating trigger, deadline, pending/assigned/expired state, and assigned host-turn identity |
+| Actual-turn expenditure | Item/turn identity sufficient to preserve a suspended parent turn’s spent state |
+| Outside reentry restriction | Deadline derived from the last actual initiative trigger, not from initiative exit time |
+
+This does **not** impose a six-second cooldown on ordinary in-initiative turns. The already-approved genuine-extra-turn and off-turn behavior remains intact.
+
+## 3. BS-02 — Remove the unconditional promise of an “intact” output
+
+The first sentence of the operational paragraphs repeatedly says the base **“becomes an intact magical nonartifact output.”** That is too broad.
+
+The shared durability procedure correctly permits a damaged functional output and, after a singleton Flawed result, a **Broken output at 0 HP**. The individual operational paragraphs must not promise the opposite.
+
+Make these precise changes throughout the 43 operational paragraphs, including inline paragraphs and dictionary-derived paragraphs:
+
+**Output description:** describe receipt of the recipe imprint by each actually transformed reserved base. Do not promise full HP or positive HP merely because an output was produced. Preserve the matched-pair wording for Gauntlets.
+
+**Functional definition:** define a functional Blacksmith item as one with **current structural HP of at least 1**, subject to its actual physical-use requirements. “Functional” does not mean undamaged or at maximum HP.
+
+**Damage snapshot:** use the base’s latest lawful maximum/current HP **immediately before applying the completion outcome**, including damage, repair or a legal replacement recorded during the work order. The original reservation snapshot is historical evidence, not a frozen HP value that can restore subsequent damage.
+
+Add the following governing paragraph and make the card openings consistent with it:
+
+:::writing{variant="document" id="39158" title="Blacksmithing output state — exact playtest wording"}
+### Output state and completion snapshot
+
+Each unit actually produced is its transformed reserved base, retaining that physical item’s identity. Receiving the recipe imprint does not itself repair damage or guarantee a functional output.
+
+Immediately before applying the crafting outcome, use each transformed base’s latest lawful structural state to calculate its damage deficit and resulting maximum/current HP. Include any intervening damage, completed repair or legal replacement recorded for that reserved position. Do not substitute the earlier reservation snapshot for the item’s current state.
+
+A functional output has at least 1 current structural HP; it may still be damaged. A singleton Flawed outcome can instead produce a Broken output at 0 HP with a dormant imprint in its recoverable main body. Apply the shared Broken and reconstruction rules. Do not add another output, refund ingredients, erase damage or award an unprinted repair.
+:::
+
+This is a consistency repair to the authored text and its state specification. **Do not alter the preserved source-effect paragraphs or change the durability arithmetic.**
+
+## 4. BS-03 — Put the correct defensive eligibility directly into each defensive card
+
+The shared guide and shared machine profile correctly distinguish suit, shield and accessory eligibility. The card-level phrase **“While legally equipped, offer +X”** is less precise and can be misread when the operational paragraph is consumed separately.
+
+Replace that generic eligibility clause in the **16 defensive cards** with the appropriate explicit predicate:
+
+| Item category | Exact eligibility to offer its recipe AC enhancement |
+|---|---|
+| Armor suit | The item is functional, unsuppressed and actually worn, **and its worn-armor AC formula is the one being used**. |
+| Shield | The item is functional, unsuppressed and actually donned, **and it is the selected usable shield supplying the ordinary shield AC contribution**. |
+| Helm or Gauntlets | The item is functional, unsuppressed and actually worn in its one legal accessory slot. A Gauntlets unit remains one matched pair. |
+
+Keep resistance eligibility separate. A functional, unsuppressed, lawfully donned shield supplies its printed resistance even when another shield supplies shield AC. A suit’s printed “while worn” resistance does not acquire an additional selected-formula requirement merely because its AC enhancement has that requirement.
+
+For every wearing-dependent benefit, **melded equipment does not count as actually worn or donned for active use**. Its recorded former slot is not an active equipped state. This follows Part A’s body/equipment rules; it grants no new transformation behavior.
+
+Keep all existing enhancement values, resistance types, slots, proficiency consequences, hand occupation and don/doff costs unchanged. The shared guide already supplies these distinctions. This repair makes each card’s operational text agree with those governing predicates.
+
+Because `operationalTextSource` points to the card’s exact Operational effect paragraph, regenerate the corresponding JSON text after these edits rather than leaving an older paragraph embedded in a projection.
+
+## 5. Findings that do not require reopening
+
+### Ordered bodies, quantities and conservation
+
+The approved maximum-reserve procedure is correctly represented. For recipe-45, the seven predeclared Battleaxes fund all possible outputs; Standard transforms the first five, Exceptional yield the first six, Masterwork yield all seven, and Flawed the first two.
+
+The requirement to pause when **any required reserved position** is missing, committed elsewhere or Broken remains controlling before the roll, even when a later result might have used fewer bases. No post-roll selection or acquisition is authorized.
+
+The base bodies remain separate from printed ingredient recovery. Failed/Mishap does not transform them, duplicate them, or turn their value into an additional recovery credit. Source ingredients remain charged under the framework.
+
+The mass treatment is consistent: actual bodies supply finished operational weight; the source inputs do not fabricate additional bodies or create automatic saleable waste.
+
+### Durability and prior flaws
+
+The noncompounding calculation implements Part A’s interface review correctly:
+
+\[
+I=B+\begin{cases}
+0,&P=0\\
+\max(1,\lfloor BP/100\rfloor),&P>0
+\end{cases}
+\]
+
+\[
+M=\begin{cases}
+\max(1,\lfloor I/2\rfloor),&\text{persistent flaw}\\
+I,&\text{otherwise}
+\end{cases}
+\qquad
+C=\max(0,M-D).
+\]
+
+Here `P` is **0, 25 or 50**, and `D` comes from the latest pre-outcome state.
+
+The supplied B20, +25%, Flawed example correctly has maximum 12. At current 9, replacing +25% with +50% gives maximum 15/current 12. It does not erase the flaw.
+
+Two important qualifications remain explicit. A weaker or equal later durability option does not supply another minimum +1 increase. Also, damage-deficit preservation is subject to the zero-HP floor: B5/current1 becoming singleton-Flawed gives maximum2/current0, not negative HP.
+
+For **Q≥2**, a Flawed result producing only one finished unit still does **not** become a singleton-Flawed durability result. The branch depends on the source Standard quantity, not the final reduced quantity. The submitted per-recipe flags handle this correctly.
+
+### Accuracy and defensive arbitration
+
+Crude −1 and active recipe +1 correctly resolve to +1. Suppression leaves the real −1. Superior/Exceptional weapon-grade critical dice remain separate and are added once under their equipment rule.
+
+An empty enhancement family contributes **no modifier**, numerically zero when assembling the final total. That does not authorize inserting a zero candidate into a nonempty family to cancel a negative modifier.
+
+The defense family correctly excludes the ordinary shield bonus. Two shields do not contribute two ordinary shield bonuses or two recipe AC enhancements. Their separately eligible resistances do not combine into immunity.
+
+At Broken, do not evaluate the item’s ordinary weapon/armor enhancement arithmetic as though its normal function still existed. Its applicable physical occupation and wearing drawbacks remain.
+
+### Repair, suppression and value
+
+The two repair interfaces are correctly separated. Recipe-42 on a Standard Medium Longsword has a 107-gp finished reference. Functioning-item repair uses 25% of the 15-gp mundane base, **3.75 gp**; HP0 reconstruction uses 25% of 107 gp, **26.75 gp**.
+
+Both require actual Smith’s-tools proficiency and the specified facilities. Neither requires the original formula or recipe trade level, teaches the formula, awards crafting XP, rerolls quality, returns catalysts, or receives Forge Dwarf’s creation-only time reduction.
+
+Physical workmanship survives suppression. Suppression changes neither structural HP nor the persistent flaw. It also does not change equipment grade or supply repair.
+
+The rational values in the example matrices are reference amounts, not prematurely rounded purchases. For example, a Dart’s positive-HP repair-material reference of `1/80 gp` becomes **2 cp when purchased**, using the reviewed upward transaction rounding. Retain the exact reference before that transaction.
+
+### Current source mechanics and ingredient occurrences
+
+The source/legacy separation is correct. Recipe-74 receives fire, not an extra cold effect; recipe-75 receives psychic damage, not poison classification; recipe-80 receives force resistance, not poison resistance or regeneration.
+
+Recipe-80’s three catalyst occurrences remain three required actual units, with at most one eligible unit returned on Masterwork. Conversely, **recipe-631’s red dragon heartstone is recorded as `role:"material"`**, so its name/category does not make it a returnable catalyst. Its empty `consumedCatalystOccurrences` list is correct.
+
+All sixteen nonconsumed source-tool rows remain represented. The four `timeMode:"field"` records remain subject to `fieldCraftable:false`. Formula requirements, assistant limits, active hours and Forge Dwarf phase calculations agree with the supplied records.
+
+None of those findings authorizes a material substitution, a donor ability, or a new interpretation of historical effects.
+
+
+6. Required timing regression cases
+
+Add behavioral checks for the exact timing procedure. The existing report’s general statement that transition guards are present cannot close a deliberately unresolved assignment rule.
+
+These are required expected results, not additional attack permissions:
+
+Case	Expected result
+Origin at 0; first attack misses; rider used at 5.9	The origin remains 0. Another use before 6 is blocked; at exactly 6 the next window begins. A use there still requires a separately lawful attack.
+Outside trigger at 0; entry at 1 into turn A; no attack during A	A is marked spent immediately. The guard does not move to a later attempted-use turn.
+After that unused guarded A, a genuine turn B begins at 2	B has its normal independent budget. Do not impose an additional general cooldown through time 6.
+Guard assigned to A before 6; A continues past 6	A remains spent throughout that actual turn. The deadline does not reopen it.
+Entry before 6 with no host turn; first host starts exactly at 6	The unassigned guard has expired; that turn is not blocked by it.
+Item enters initiative during an already-running host turn	Assign the guard to that current host, not to the wielder’s next turn.
+Parent turn spends its rider; an extra turn occurs; parent resumes	The extra turn has its own budget. The resumed parent remains spent.
+Last initiative trigger at 2; initiative ends at 3	Outside use is blocked before 8, not before 9. At 8, also check the anchored outside window.
+Bookkeeping exits/reenters without a new actual trigger	Preserve the origin, expenditure and guard assignment. Do not generate a fresh turn or move the guard to obtain a use.
+Rider is legally chosen but its damage is reduced to zero	The use remains spent; the actual trigger timestamp is recorded.
+Initiative governs, but an attack resolves between actual turns	No rider budget is supplied by this procedure. Do not use a null-turn shared budget or an outside window.
+Suppression, transfer or melding occurs after expenditure	No budget refresh. Ending suppression permits only a genuinely unspent, unblocked use.
+
+Retain the existing independent-copy, off-turn, critical-dice, optional-choice and copied-event checks alongside these cases.
+
+For non-timing regression coverage, also exercise the live completion-state snapshot, a multi-quantity Flawed result yielding one unit without adding a flaw, a repeated weaker durability option, empty-versus-negative enhancement families, two-shield resistance eligibility, and recipe-631’s non-catalyst heartstone.
+
+7. BS-04 — Bind correction, validation and visibility before promotion
+
+Exact implementation of these finite repairs plus successful validation is sufficient for promotion without another generic Blacksmithing conference or resubmission of the unchanged complete packet.
+
+Promotion requires the following evidence:
+
+Corrected candidate and provenance. Preserve the submitted revision and prior decisions. Apply BS-01 through BS-03 to the guide, affected card paragraphs and corresponding shared/per-card projections. Record this completed Part 2 reply as the exact-review verdict, with its actual destination/turn/reply identifiers when captured. Do not attribute it to the interrupted Part 1 turn.
+
+Fresh conformance results. Rerun source-preservation, reconstruction, whitelist, quantity, work, component-occurrence, economics and durability checks against the corrected revision. Add the behavioral cases above. Report the actual executed checks and results; do not merely retain an earlier PASS or assume a new check count.
+
+Public/internal projection evidence. The 27 public cards are present and reviewed within the supplied 43-card manuscript. The separately stored public artifact must be shown to be their exact filtered derivation, with the corrected shared rules and permitted equipment references. The supplied operational envelope is director-internal; its existence and the V5 paragraph bindings do not independently prove the separate public artifact’s filtering. Verify that restricted/Director recipe records, effects, components, donor evidence and guidance have not leaked through nested records or envelope fields. This is a finite projection check, not a new recipe conference.
+
+Final hashes and status separation. Hash the corrected candidate artifacts and record the validation evidence before updating the index. Preserve every original sourceRecipe and referenced equipment record unchanged, including historical needsReview, status, legacy fields and optional guidance. Put this review’s status in the operational review record, not into recovered source fields. Keep runtime and balance flags false.
+
+Once those conditions pass, mark the corrected revision REVIEWED — authored operational PLAYTEST, limited to the supplied Blacksmithing scope and these exact clarifications.
+
+Only then may the current-pass index change:
+
+Current-pass measure	Before promotion	After all 43 qualify
+Reviewed recipes	175 / 687	218 / 687
+Remaining recipes	512	469
+Reviewed public recipes	111 / 433	138 / 433
+Remaining public recipes	322	295
+
+These remain operational-pass counts, not a claim about how many recipes the owner previously authored or approved.
+
+No further mechanical redesign is required by this review. A correction that changes an effect, material entitlement, model whitelist, access rule or other behavior beyond these instructions requires a targeted review of that deviation rather than being treated as covered automatically.
+
+This verdict grants no numerical-balance, ingredient-availability, runtime/companion, whole-game, publication or GitHub-delivery approval. The existing sequence remains final joint flow review → authorized successful push → verified remote commit → cosmology review.
+

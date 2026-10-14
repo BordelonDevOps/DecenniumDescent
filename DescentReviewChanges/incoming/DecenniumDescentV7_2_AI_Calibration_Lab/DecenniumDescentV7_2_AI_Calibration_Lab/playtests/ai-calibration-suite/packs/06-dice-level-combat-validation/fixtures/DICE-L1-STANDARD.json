@@ -1,0 +1,152 @@
+{
+  "scenarioId": "DICE-L1-STANDARD",
+  "level": 1,
+  "budget": "Standard",
+  "objective": "protect supply cart",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "soldier",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "cleric",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "thief",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "mage",
+        "x": 0,
+        "y": 15
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Cave Bear",
+        "x": 30,
+        "y": 0
+      },
+      {
+        "id": "Crystal Shardling",
+        "x": 30,
+        "y": 5
+      }
+    ]
+  },
+  "cargo": "supply cart",
+  "partyBuildHashes": [
+    "63284777f829a0c1527ddd1c2ccaef602e13e1bbc543fb6d92da484127af7787",
+    "cfcf0a36bc15f701b7d929447810f9fd2ea4a5488302774488a4d60a20ccfc5d",
+    "4bc266de10c79ce7602a111697c846a152b7327e2091e9c65ed21d71382b3ce5",
+    "c6cb8039f95ecff72aacddf787bde922facd0cfe0f1b6378a62d8e48064665e8"
+  ],
+  "enemies": [
+    {
+      "name": "Cave Bear",
+      "hitPoints": 68,
+      "armorClass": 13,
+      "challengeRating": "2",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Mauling Claws",
+          "text": "Attack: +5 to hit, one target. Hit: 1d10+2 slashing damage (average 8)."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Territorial Morale",
+          "text": "It may retreat or break off if food, young, or escape access is secured."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Mauling Claws",
+          "bonus": 5,
+          "n": 1,
+          "sides": 10,
+          "mod": 2,
+          "text": "Attack: +5 to hit, one target. Hit: 1d10+2 slashing damage (average 8).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": false,
+      "tenacityPerRound": 0,
+      "source": "src/bestiary_data_full.json"
+    },
+    {
+      "name": "Crystal Shardling",
+      "hitPoints": 36,
+      "armorClass": 15,
+      "challengeRating": "2",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Crystal Spike",
+          "text": "Attack: +5 to hit, one target. Hit: 1d8+3 piercing damage (average 8)."
+        },
+        {
+          "name": "Resonant Shard",
+          "text": "Attack: +5 to hit, one target. Hit: 1d6+3 force damage (average 6)."
+        },
+        {
+          "name": "Shatterburst (Recharge 5-6)",
+          "text": "Creatures in the affected area make a DC 13 Dexterity save, taking 3d6 force damage (average 10) on a failure and half on a success. The Director should describe the charge-up before resolving it."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Territorial Morale",
+          "text": "It may retreat or break off if food, young, or escape access is secured."
+        },
+        {
+          "name": "Escalation Pulse",
+          "text": "Shatterburst recharges on 5-6; visible signs appear one round before the first use."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Crystal Spike",
+          "bonus": 5,
+          "n": 1,
+          "sides": 8,
+          "mod": 3,
+          "text": "Attack: +5 to hit, one target. Hit: 1d8+3 piercing damage (average 8).",
+          "dc": null
+        },
+        {
+          "name": "Resonant Shard",
+          "bonus": 5,
+          "n": 1,
+          "sides": 6,
+          "mod": 3,
+          "text": "Attack: +5 to hit, one target. Hit: 1d6+3 force damage (average 6).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": false,
+      "tenacityPerRound": 0,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "01d738d654e5ee9f19bb64b36bc34a6bda5da491fdb4acb2bea143bd7a0f14aa"
+}

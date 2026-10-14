@@ -1,0 +1,66 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-SHORT",
+  "runId": "EXP-SHORT-agg-L5-P4-map",
+  "seed": 1329682,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2000,
+    "havenRate": 1.0,
+    "objectiveRate": 1.0,
+    "wipeRate": 0.0,
+    "abortRate": 0.0,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0,
+    "meanWatches": 3,
+    "meanHours": 26.78,
+    "meanTrueProfit": 70.99,
+    "medianTrueProfit": 63.69,
+    "profitLossRate": 0.278,
+    "meanCargoRetainedLoad": 5.568,
+    "meanExtractionFailRate": 0.3475,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 5,
+    "party": 4,
+    "mapping": "Mapped",
+    "policy": "aggressive",
+    "objective": "two-day profitable descent",
+    "requestedRuns": 2000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-SHORT/agg-L5-P4-map.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 8.0,
+      "load": 9,
+      "mapping": "Mapped",
+      "alive": 4,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 8.0,
+      "load": 14,
+      "mapping": "Mapped",
+      "alive": 4,
+      "extracting": false
+    }
+  ]
+}

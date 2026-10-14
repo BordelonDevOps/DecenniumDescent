@@ -1,0 +1,73 @@
+# Rank-three Enchantment integration — exact-review candidate
+
+LOCAL CANDIDATE — NOT ACTIVE. Proposed publication path: docs/mechanics/ENCHANTMENT_RANK3_INTEGRATION_PLAYTEST.md. This accompanies eight unselected full cards; source conference and authoring clarification establish draftability, not exact approval. The existing ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md remains authoritative in its approved scope. These additions require joint exact review and do not approve runtime, balance, whole-game closure or GitHub delivery. Cosmology remains outside this work.
+
+## Dominate Beast: independent creatures and companion execution
+
+NEW explicit binding: a Beast with an actual independent regular turn receives Dominate Beast orders at future regular STARTs, after ordinary start processing. Outside initiative it uses the reviewed shared six-second virtual control cycle. It shares the same actual budget with coexisting Dire Charm/Crown orders rather than creating another cycle. It has no repeat ending save, so virtual/real ENDs do not create one. Application after the current START grants no retrospective order. Existing ordinary real-start events still occur on entering initiative; already-received control orders/spent behavior budgets do not replay. The original maximum deadline remains.
+
+A dominated Beast using the reviewed owner-attached companion chassis receives no independent turn. At its existing original owner's regular attached companion phase, the dominator may consciously issue a mental order for that opportunity. No extra caster Action/Bonus Action is charged. Actual Dominate Beast control must still exist, the companion must still be eligible and the command must obey its source profile and resource/behavior limits. Without a valid domination order, an already-valid owner command may execute, otherwise only ordinary uncommanded defensive behavior remains.
+
+The forced execution occupies the ORIGINAL OWNER's shared command allowance for that numbered round and, if damaging/offensive under the existing chassis, its shared offensive allowance. These are structural caps; no unwilling owner's Bonus Action, RP or optional feature is charged. The dominator receives no new companion ledger. If another execution already consumed the command allowance, no extra commanded execution is created. If offense is unavailable but the command allowance remains usable, only a legal nonoffensive command can execute. An ordinary owner instruction is not a magical mandatory instruction and has no compulsion-priority timestamp; a valid domination order supersedes a contradictory owner instruction. An owner's already-paid Bonus Action is not refunded.
+
+EXACT-REVIEW COMPLETION — pending commands: redirecting a still-pending command for THIS SAME companion at THIS SAME attached phase reuses that existing execution's structural command reservation; it is not a second command. A still-pending offensive reservation on that same execution can cover the redirected ordinary attack; no duplicate offensive charge. If an existing reservation lacks offense, a new offensive redirection requires the still-free original-owner offensive allowance. Redirecting to a nonoffensive behavior does not refund an already-consumed/reserved offensive allowance. A reservation belonging to another companion, an already-completed execution or another phase cannot be stolen/reused to create this execution. Existing source-specific explicit release rules retain their scope; domination itself grants no refund.
+
+EXACT-REVIEW COMPLETION — phase availability: this bridge uses only a phase that the actual existing companion lifecycle supplies. It does not manufacture an owner phase after that lifecycle no longer permits one, duplicate it on an extra turn, or assign the companion the independent-Beast virtual control cycle. If no ordinary companion execution sequence is active and a commanded combat act matters, establish ordinary initiative with the source owner's existing companion phase. Noncombat work uses only the existing chassis's actual ordinary permissions and finite structural caps; the spell supplies no unbounded off-screen attack/action loop. Missing phase means no commanded execution, while concentration and absolute deadline continue. These bounded completions explicitly require exact approval.
+
+The original companion profile, source-owner stat/DC rules, bond, ownership, slots, HP, Load, upkeep, summon duration, recharge and limited uses remain. Do not restore the original wild animal's discarded attack profile or substitute dominator levels/DC for its attack statistics. The spell's own INT application save uses its actual caster's spell DC. A phase checkpoint supplies no new regular START/END, Reaction refresh, death save, recharge or periodic/duration tick.
+
+NEW exact completion: independent Dominate Beast casts retain separate applications and concentration. At a shared order opportunity their actual mandatory orders use Compelled Budget Arbitration, with timestamp at each order's issue and neutral same-time application/source order. A valid order never duplicates the actual creature/companion budget. Ordinary owner commands remain outside magical priority arbitration. No hard-control history is refunded if another instruction wins or an existing cap prevents execution.
+
+## Hypnotic Pattern: atomic initial application
+
+NEW spell-specific initial resolution:
+
+1. Choose the perceived legal center using actual class-school range: Enchantment 60 feet, Illusion 30 feet; cube extends 15 feet on each axis.
+2. Snapshot all creatures inside with actual center line of effect and actual sight of the pattern. Include self/allies when eligible; no selective omission.
+3. Resolve each initial WIS save and determine each failed target's independently legal Charmed/Inc components and hard-control allowance.
+4. Apply every target's determined initial components and immediate consequences. Actually applied Incapacitated ends that target's applicable existing concentration normally.
+5. If the caster's own Incapacitated ends concentration on this Pattern, queue this Pattern's concentration teardown until every snapshotted target has received its initial application. Then remove all still-maintained components from this cast.
+
+No target is skipped merely because it comes later in an implementation loop. Immediate loss of another target's unrelated concentration remains a real consequence even if Pattern then collapses. This is not a universal simultaneous-area or delayed-condition rule. It creates no late application for an initially prevented component.
+
+Helper rousing ends one selected cast's Pattern application on one creature, removing both that cast's remaining Charmed and Incapacitated components. When a helper cannot distinguish multiple actual Pattern sources, use stable application order to select one, without revealing hidden source/caster metadata. Unlike ordinary Sleep's explicit shared wake, one Action does not rouse all Patterns. Positive post-defense/pre-temp-HP damage ends each actually affected Pattern application under its own damage trigger; it does not retroactively change the waking attack's hit/crit.
+
+Recasts form independent sources under actual concentration transitions. An ordinary caster's old concentration ends before a new cast resolves; only a real multiple-concentration feature permits coexistence. Every new Incapacitated attempt checks hard history; independently legal Charmed may remain when hard control is blocked. Charmed-only applications gain no new repeat save. No general illumination, concealment, Speed 0 or ongoing entry aura is created by the persistent visual pattern.
+
+## Terrifying Gaze and Slow: ending-save clocks
+
+NEW explicit binding: Terrifying Gaze and both Slow modes have regular-target-END repeat saves, including an affected current regular turn's upcoming END. This save cadence is distinct from their maximum-duration endpoint. Extra turns grant no extra ending save.
+
+If Terrifying Gaze begins outside initiative, ending saves occur at original application +6, +12 and +18 seconds; its maximum remains +18. An otherwise legally established Slow begun without a target initiative sequence uses ending saves every six seconds after application until its original 60-second maximum. This grants no new outside-sequence Transmutation Reaction trigger.
+
+EXACT-REVIEW COMPLETION — shared END-only cadence: unlike a commanded behavior cycle, these save schedules supply no START/order or action budget. On entering initiative, preserve already-resolved saves and the original absolute maximum. The first still-unresolved save opportunity maps to the target's next actual regular END, then actual regular ENDs supply future saves; never replay a resolved END or add an immediate transition save. If the deadline precedes that next END, expiry ends the effect first. Effects established in initiative retain their original regular/virtual markers on later exit under existing timing rules. This is the explicit narrow transition for these new END-only schedules and requires exact approval.
+
+Temporary suppression of a condition/rider never pauses the underlying duration or scheduled saves. An actual successful save ends only that source's application on that target, not another independent cast.
+
+## Slow: mode-specific commitments and overlap
+
+Enchantment and Transmutation are separate actual class-school packages. One casting never receives their union. Both retain rank 3/base 5 RP and the preserved per-class level gates.
+
+Transmutation's Reaction window occurs on a perceived creature's own actual turn, including an extra turn, at the beginning of a distinct voluntary movement segment or an Action after commitment and before the first movement step/main outcome. Moving, taking an Action and resuming movement creates distinct segments; choosing another square during continuous movement does not. Each foot/tile is not a trigger. The triggering creature MUST be selected and up to five additional legal perceived creatures may be chosen.
+
+A valid committed Slow is independent of its parent. If a nested legal interruption removes the parent Action, the paid spell still resolves against still-legal chosen targets; it neither refunds nor cancels/revives that parent. The surviving parent continues after LIFO interrupts. Recalculate remaining movement before its next expenditure using actual current Speed and the unchanged spent-movement ledger. A no-Reactions rider bars future commitments only; a Reaction already legally committed in the stack is not canceled by that rider.
+
+Enchantment's one-Action ceiling counts full Actions already committed on that actual turn. It blocks a future commitment once one is already committed, while an already-committed second Action finishes. Each actual extra turn has its own ceiling; the source grants no extra turn. Actual extra-Action resources may exist but cannot be newly committed contrary to the active ceiling. Bonus Actions, Reactions, movement and inherent attacks inside one legal Attack Action remain.
+
+The Enchantment DEX rider is exactly -2 Dexterity ability checks/saves EXCEPT initiative; it changes no score/modifier, attack, damage, spell DC or unnamed derived value. AC gets its separate -2 only. Half-Speed uses existing strongest-adverse-Speed arbitration against the shared pre-control Speed, followed by the existing later systemic multipliers. Actual narrowly scoped defenses can suppress/block one component without erasing the others. Neither an Action ceiling retaining the ordinary Action nor Reaction denial claims whole-Action hard control.
+
+Each source keeps its own concentration/save/deadline. Same Slow half-Speed/-2 AC/-2 DEX riders do not add magnitude. Distinct active Enchantment/Transmutation riders can coexist through separate casts; ending one exposes whichever other sources remain, not a merged permanent package.
+
+## Suggestion: task scope and hard-control reservation
+
+NEW binding: Suggestion's persistent mandatory instruction uses its successful establishment timestamp for Compelled Budget Arbitration. It retains that priority while genuinely active, but never supplies an extra budget or overrides an earlier applicable absolute restriction. Actual task permissions and reasonable legal details remain as authored on the card.
+
+If the stated task necessarily requires whole ordinary Actions, including after an awaited conditional trigger, establish and claim the hard component once when Suggestion establishes. Do not reserve afresh per later Action. When blocked, only an independently meaningful legal soft task can establish. That surviving task may replace a prior Suggestion; an attempt with no legal meaningful task does not.
+
+A task established without hard control cannot acquire it dynamically. If changed circumstances require an unreserved whole Action, seek an achievable reasonable path within the original soft permissions, such as waiting for an ordinary door opening. If none remains, end the remaining compulsion. Ordinary temporary delay/inconvenience is not itself cancellation. Neither caster nor target/controller may reword the task to create a new hard permission or extend its original eight-hour deadline.
+
+An actually reasonable hostile task can direct the target's actual ordinary Attack Action/native attack sequence and required mundane ammunition; it does not compel optional finite features, special expendable ammunition, spells/RP or other forbidden expenditures. Reasonableness uses actual target beliefs/loyalties/knowledge/circumstances after payment without a caster diagnostic. Bonus Actions, Reactions and separately granted extra Actions are not commandeered. No repeating control cycle is added outside initiative.
+
+## Scope and explicit exact-review questions
+
+The companion pending-command/phase completions, independent Dominate Beast same-spell records, END-only transition, and Mental Chains voluntary-transport/plane completions on its card require explicit review. The Hypnotic Pattern batch is spell-specific. All prior 229 operational card records and actual source/class files remain unchanged. These are authored procedures, not executed scheduler or companion-control implementations. Human tests remain required for four-target Stunned, sustained native attacks, area Incapacitated, eight-hour Suggestion, no-repeat-save Fear and six-target Reaction Slow.

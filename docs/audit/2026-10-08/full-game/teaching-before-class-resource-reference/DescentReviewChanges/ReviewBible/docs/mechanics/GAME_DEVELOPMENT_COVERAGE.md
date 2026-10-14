@@ -1,0 +1,630 @@
+# Complete game development coverage
+
+**Active development.** This ledger covers 75 areas agreed with the GPT notebook. It separates discussion from source audit, authored rules, adversarial review, validation and actual human play. Every area remains visible until its acceptance criteria are met.
+
+[Development roadmap](DEVELOPMENT_ROADMAP.md) · [Machine-readable ledger](../../data/playtest/game_development_coverage.json) · [Full notebook conference](../../../../docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md)
+
+[Preserved checkpoint history](../../../../docs/audit/2026-10-08/full-game/COVERAGE_ISSUE_HISTORY_2026-10-11.md) — earlier queue stages remain available verbatim.
+
+## Completion standard
+
+Discussion, indexing, source counts, generic templates and blocked labels are not completion. Close an aspect only when its source audit, operational authored coverage, adversarial review and appropriate validation are evidenced. Any intentionally excluded option needs an explicit reviewed disposition, not a blanket unfinished status. Human sessions, numerical balance and publication approval remain separate gates. Owner-directed phase sequencing is explicit: cosmology remains open for review after the verified GitHub push and is excluded only from that pre-push review gate; all other acceptance criteria remain.
+
+Retain approved books and source variants. Confer with GPT on conflicts and consequential choices, supply exact evidence, test counterexamples, and save both the decision and its verified correction. A new rule stays explicitly provisional until promoted. Do not delete material unless both the file audit and notebook review establish that it is obsolete.
+
+## Review order
+
+1. Resolve shared vocabulary, rolls, time, actions, conditions, movement, defenses, death and recovery.
+2. Complete character construction and every player option: all class stages, spells, feats, ancestry, backgrounds and equipment.
+3. Complete opposition, encounters, hazards, rewards, crafting and the expedition-to-Haven economy.
+4. Reconcile history, geography, factions, social play, the decennial cycle and campaign endings. Follow the owner-directed post-push sequence for religion/cosmology; preserve its sources and deferred dependencies.
+5. Finish Director procedures, representative adventures, onboarding, reference material, accessibility, companion state and separate distribution builds.
+6. Run reproducible checks, then prepare human playtests and track balance and publication as distinct gates.
+
+## Coverage and next evidence
+
+| Area | Current status | Next required evidence |
+|---|---|---|
+| [0. Authority, provenance, versioning](#area-0) | selected-interfaces-closed-remainder-integrating | Complete rule provenance and consistent candidate entrypoint across all 75 areas. Bounded Director tablecraft source inspection prepared (unsent): DR-01. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [1. Game identity & player promise](#area-1) | teaching-scope-reviewed-broader-gate-open | The charter is a reviewed source-grounded editorial synthesis. Test every completed major system against its promise and record remaining contradictions; DD-01 final systemic consistency remains open. Human readability and balance retain separate gates. Cosmology and the seasonal chapter remain deferred until the authorized push and verified remote commit. Bounded Director tablecraft source inspection prepared (unsent): DR-13. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [2. Core resolution language](#area-2) | partially-reviewed | The bounded core interface is reviewed and validated; complete remaining domain-specific cases and cross-system integration. A48-term editorial glossary now links every definition to existing class/roll/time/resource/health/crafting/language procedures.54 local references resolve and16 referenced files are fingerprinted. Joint presentation review remains pending; no new rule, card approval or claim of full two-lookup/human usability closure. Its52 term-reference links now target actual source headings; definitions remain unchanged. Rendered link behavior and human two-lookup usability are not yet tested. |
+| [3. Time & action economy](#area-3) | selected-interfaces-closed-remainder-integrating | The bounded core interface is reviewed and validated; complete remaining domain-specific cases and cross-system integration. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. Combat feat source preparation covers47 full pending source-category identities with47 explicit questions,6 unapproved counterpart records,2 literal class cards and25 current-guide excerpts. Eleven preservation checks pass across70 inputs. Five percentage effects,action/cadence/condition/weapon boundaries andambiguous prerequisites need joint decisions. Prepared packet remains unsent;no new rule or approval. First31 Magic feats source-prepared with31 questions,11 pending counterparts,eight exact spell lookups,two provisional class cards and25 guide excerpts;13 controls,20 unchanged inputs. Actual spell/class/feat dependency gaps remain explicit. Prepared only,not sent,no approval or cosmology review. Remaining58 Magic sources prepared with58 full-clause questions,14 counterparts,five Mirrorsage cards/engine,three exact spell lookups and39 current-guide excerpts. Fourteen controls pass,22 inputs unchanged;21 prestige-lineage labels grant no class access. Eight description conflicts and missing Eldritch Blast require joint decisions. Unsent;no approval,Time Loop activation or cosmology review. Heritage/mutation source preparation covers 22 full feats, 12 Warrior counterpart pairs, 33 mutation profiles and nine complete ancestry records with 27 variants. Twelve checks pass with 25 inputs unchanged. Resolve acquisition, eligibility and all clauses jointly; packet unsent and no new approval or cosmology decision. General defensive/foundation31 full sources prepared with31 questions,14 counterparts,actual Healer kit and39 governing excerpts. Eleven checks pass,24 inputs unchanged. Reconcile HP families,healing/death/armor/survival clauses and unresolved origin prerequisites; unsent,no approval or cosmology review. All327 pending feats have full focused source packets across nine disjoint cohorts;8 of335 remain operationally reviewed. General exploration31 and General combat58 add89 full source objects/questions,39 counterpart bindings and61 current-guide excerpts. Source decisions, authoring and exact review remain open; packets unsent, no source deletion or cosmology decision. All 23 low-rank Universal identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 29 low-rank Transmutation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 30 low-rank Necromancy identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All eight rank-three Evocation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Bounded Director tablecraft source inspection prepared (unsent): DR-03, DR-08. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [4. Character creation](#area-4) | selected-interfaces-closed-remainder-integrating | Finish equipment/item profiles, Marked Fugitive Oracle mapping, numeric Supply and Reputation integration and remaining selectable options. Spore Preservation and cross-plane Vengeful Tracker are expressly deferred until verified GitHub push; do not include them as pre-push cosmology review. Live companion parity and human balance remain open. |
+| [5. Character sheet/data model](#area-5) | discussed | Implement/reconcile full source-aware character state, chronological HP/Hit Dice, acquisition order, class choices, equipment and spell preparation in the live companion; the new dataset is not that runtime. A paper language worksheet now maps all eight reviewed record definitions. Its presentation and five proposed stale character-entrypoint labels await bounded joint review; no new mechanics, source-card promotion, save migration or live character-builder parity is claimed. |
+| [6. Advancement](#area-6) | selected-interfaces-closed-remainder-integrating | Finish full mixed-class acquisition/retraining/replacement-PC procedures and all option dependencies; foundation math and class-level boundaries alone do not close every1–20 build. |
+| [7. Multiclassing](#area-7) | foundation-reviewed-broader-domain-open | Finish all mixed-class source interactions and live state/acquisition parity; entry, proficiency, mergedRP and shared strain rules are now explicit. |
+| [8. Respec/retraining/transformation](#area-8) | selected-interfaces-closed-remainder-integrating | Reconcile older chargen/path/progression guidance with the current class candidate and approved sources. Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. |
+| [9. 17 class families](#area-9) | selected-interfaces-closed-remainder-integrating | Authoring/acquisition checks passed for 17 families and 1223 cards; game-wide interactions and human use remain open. Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. The 18 TD class/device source questions have bounded authoring decisions; all 43 Tinkering recipes completed the advanced-recipe exact review. Use TD-01–18 with the fulfilled LAX TI-04 correction for identity, ownership, commands, repair, fabrication and debris resources. Retain the individual class-card review scopes; game-wide class/device integration, runtime and human use remain open. Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate. |
+| [10. Class specializations](#area-10) | validated-in-stated-scope | Authoring/acquisition checks passed for 17 families and 1223 cards; game-wide interactions and human use remain open. The 18 TD class/device source questions have bounded authoring decisions; all 43 Tinkering recipes completed the advanced-recipe exact review. Use TD-01–18 with the fulfilled LAX TI-04 correction for identity, ownership, commands, repair, fabrication and debris resources. Retain the individual class-card review scopes; game-wide class/device integration, runtime and human use remain open. |
+| [11. Ordinary spell identity/access](#area-11) | selected-interfaces-closed-remainder-integrating | All136 full low-rank mechanical candidates plus Blink receipt are authored and submitted for exact review in Calibration Review Part 2, request c18136bc-5efc-4989-a31b-613c448e9546. Full internal/public envelopes and manuscripts preserve137 originals,141 book bindings,20 shared policies and187 authored boundaries.49 bounded local checks pass; all342 original inputs unchanged. Await the final exact verdict; no operational promotion. Totals remain276 operational drafts/572 pending. 276 of848 ordinary identities operational;572 unfinished,137 with actual class rank0–3.10 additional ancestry-grant-only spells are separate and have no ordinary class access. Complete remaining source variants, aliases, rituals, individual effects and runtime interfaces. All 26 low-rank Illusion identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 23 low-rank Universal identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 29 low-rank Transmutation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 30 low-rank Necromancy identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All eight rank-three Evocation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. |
+| [12. Ordinary spell mechanics](#area-12) | selected-interfaces-closed-remainder-integrating | All136 full low-rank mechanical candidates plus Blink receipt are authored and submitted for exact review in Calibration Review Part 2, request c18136bc-5efc-4989-a31b-613c448e9546. Full internal/public envelopes and manuscripts preserve137 originals,141 book bindings,20 shared policies and187 authored boundaries.49 bounded local checks pass; all342 original inputs unchanged. Await the final exact verdict; no operational promotion. Totals remain276 operational drafts/572 pending. 276 of848 ordinary identities operational;572 unfinished,137 with actual class rank0–3.10 additional ancestry-grant-only spells are separate and have no ordinary class access. Complete remaining source variants, aliases, rituals, individual effects and runtime interfaces. All 26 low-rank Illusion identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 23 low-rank Universal identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 29 low-rank Transmutation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All eight rank-three Evocation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All572 pending ordinary identities have full source preparations across44 cohorts and627 book bindings. Six cohorts/137 identities now have136 mechanical source directions and Blink receipt-only, complete candidates now authored and submitted for exact review. The other38 cohorts/435 identities remain unsent with388 mechanical questions and47 post-push receipts; refresh current interfaces before dispatch. Totals remain276 operational/572 pending. |
+| [13. RP / Dissonance / Refrain / rituals](#area-13) | selected-interfaces-closed-remainder-integrating | 276 ordinary spell drafts are operational;572 identities remain pending. The137-identity source conference returned136 mechanical directions and Blink receipt-only. The136 candidates are now authored and submitted for exact review; complete the verdict corrections and remaining aliases, rituals and class-specific repertoire interfaces; source review alone grants no promotion. All 26 low-rank Illusion identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 23 low-rank Universal identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 29 low-rank Transmutation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 30 low-rank Necromancy identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. |
+| [14. Feats](#area-14) | eight-full-feats-reviewed-remainder-open | Complete the source audit and individual acceptance criteria. All 327 pending feat source objects are preserved in full across nine prepared, unsent cohorts; obtain source decisions, author every complete candidate and complete exact review. Only 8 of 335 feats are operationally reviewed. Keep class selections, the ordinary Soul Cage spell and Soulrender whole-soul ritual distinct, retaining deferred cosmology boundaries. Resolve24 pending feat interfaces with crafting/research/languages,including half-time creation,Masterwork wording,temporary imprints,percentage durability/damage,repair budgets,trap deployment andordinary market prices. Preserve every clause and exact original; source packet prepared,not sent; no new feat or recipe approval. Combat feat source preparation covers47 full pending source-category identities with47 explicit questions,6 unapproved counterpart records,2 literal class cards and25 current-guide excerpts. Eleven preservation checks pass across70 inputs. Five percentage effects,action/cadence/condition/weapon boundaries andambiguous prerequisites need joint decisions. Prepared packet remains unsent;no new rule or approval. All 335 feat identities remain distinct: 8 reviewed and 327 pending with complete source preparations. Source category does not define mechanical scope; General, Magic and Skill combat interfaces remain open. Counterpart records are dependency evidence only and do not increase approval counts. All25 remaining source-category Skill feats now have complete sources and25 full-clause questions,13 counterpart records,actual20-skill/Soldier data and27 exact guide excerpts. Twelve controls pass across74 protected inputs;11 numeric-skill prerequisite occurrences require decisions. Spell Scribe,Wilderness Chef,Anatomy Lore andBeast Lore interfaces remain pending;source packet unsent,no new rule/approval. First31 Magic feats source-prepared with31 questions,11 pending counterparts,eight exact spell lookups,two provisional class cards and25 guide excerpts;13 controls,20 unchanged inputs. Actual spell/class/feat dependency gaps remain explicit. Prepared only,not sent,no approval or cosmology review. Remaining58 Magic sources prepared with58 full-clause questions,14 counterparts,five Mirrorsage cards/engine,three exact spell lookups and39 current-guide excerpts. Fourteen controls pass,22 inputs unchanged;21 prestige-lineage labels grant no class access. Eight description conflicts and missing Eldritch Blast require joint decisions. Unsent;no approval,Time Loop activation or cosmology review. Heritage/mutation source preparation covers 22 full feats, 12 Warrior counterpart pairs, 33 mutation profiles and nine complete ancestry records with 27 variants. Twelve checks pass with 25 inputs unchanged. Resolve acquisition, eligibility and all clauses jointly; packet unsent and no new approval or cosmology decision. General defensive/foundation31 full sources prepared with31 questions,14 counterparts,actual Healer kit and39 governing excerpts. Eleven checks pass,24 inputs unchanged. Reconcile HP families,healing/death/armor/survival clauses and unresolved origin prerequisites; unsent,no approval or cosmology review. All327 pending feats have full focused source packets across nine disjoint cohorts;8 of335 remain operationally reviewed. General exploration31 and General combat58 add89 full source objects/questions,39 counterpart bindings and61 current-guide excerpts. Source decisions, authoring and exact review remain open; packets unsent, no source deletion or cosmology decision. |
+| [15. Skills & noncombat checks](#area-15) | selected-interfaces-closed-remainder-integrating | The bounded core interface is reviewed and validated; complete remaining domain-specific cases and cross-system integration. All25 remaining source-category Skill feats now have complete sources and25 full-clause questions,13 counterpart records,actual20-skill/Soldier data and27 exact guide excerpts. Twelve controls pass across74 protected inputs;11 numeric-skill prerequisite occurrences require decisions. Spell Scribe,Wilderness Chef,Anatomy Lore andBeast Lore interfaces remain pending;source packet unsent,no new rule/approval. |
+| [16. Conditions](#area-16) | reviewed-in-bounded-control-scope; broader-domain-open | Complete remaining all-source condition semantics and actual disease/curse catalogs; supplied219 control interfaces are reviewed. DD16 remains open. Audit all future individual condition-producing items/spells/hazards as those catalogs are completed; keep broader vision/control/recovery interfaces tracked in their rows. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. Combat feat source preparation covers47 full pending source-category identities with47 explicit questions,6 unapproved counterpart records,2 literal class cards and25 current-guide excerpts. Eleven preservation checks pass across70 inputs. Five percentage effects,action/cadence/condition/weapon boundaries andambiguous prerequisites need joint decisions. Prepared packet remains unsent;no new rule or approval. First31 Magic feats source-prepared with31 questions,11 pending counterparts,eight exact spell lookups,two provisional class cards and25 guide excerpts;13 controls,20 unchanged inputs. Actual spell/class/feat dependency gaps remain explicit. Prepared only,not sent,no approval or cosmology review. Remaining58 Magic sources prepared with58 full-clause questions,14 counterparts,five Mirrorsage cards/engine,three exact spell lookups and39 current-guide excerpts. Fourteen controls pass,22 inputs unchanged;21 prestige-lineage labels grant no class access. Eight description conflicts and missing Eldritch Blast require joint decisions. Unsent;no approval,Time Loop activation or cosmology review. Heritage/mutation source preparation covers 22 full feats, 12 Warrior counterpart pairs, 33 mutation profiles and nine complete ancestry records with 27 variants. Twelve checks pass with 25 inputs unchanged. Resolve acquisition, eligibility and all clauses jointly; packet unsent and no new approval or cosmology decision. General defensive/foundation31 full sources prepared with31 questions,14 counterparts,actual Healer kit and39 governing excerpts. Eleven checks pass,24 inputs unchanged. Reconcile HP families,healing/death/armor/survival clauses and unresolved origin prerequisites; unsent,no approval or cosmology review. All327 pending feats have full focused source packets across nine disjoint cohorts;8 of335 remain operationally reviewed. General exploration31 and General combat58 add89 full source objects/questions,39 counterpart bindings and61 current-guide excerpts. Source decisions, authoring and exact review remain open; packets unsent, no source deletion or cosmology decision. All 26 low-rank Illusion identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 23 low-rank Universal identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 29 low-rank Transmutation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 30 low-rank Necromancy identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All eight rank-three Evocation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. The complete24 Core consumable source set is prepared, unsent:12 brews/12 substances,164 exact book paragraphs/four tables/24 exact shared-field row bindings.22 pre-push source questions;Ghostwine andSovereign Reserve remain whole-record post-push receipts. Existing condition recovery and687 recipe approvals do not certify these individual items. Preserve Quickglass expedition-Strain binding; supply exact dose/effect/crash/overdose interfaces and all deferred-meaning boundaries before candidate approval. |
+| [17. Combat core](#area-17) | bounded-scope-reviewed-and-reference-validated | The bounded core interface is reviewed and validated; complete remaining domain-specific cases and cross-system integration. Combat feat source preparation covers47 full pending source-category identities with47 explicit questions,6 unapproved counterpart records,2 literal class cards and25 current-guide excerpts. Eleven preservation checks pass across70 inputs. Five percentage effects,action/cadence/condition/weapon boundaries andambiguous prerequisites need joint decisions. Prepared packet remains unsent;no new rule or approval. First31 Magic feats source-prepared with31 questions,11 pending counterparts,eight exact spell lookups,two provisional class cards and25 guide excerpts;13 controls,20 unchanged inputs. Actual spell/class/feat dependency gaps remain explicit. Prepared only,not sent,no approval or cosmology review. Remaining58 Magic sources prepared with58 full-clause questions,14 counterparts,five Mirrorsage cards/engine,three exact spell lookups and39 current-guide excerpts. Fourteen controls pass,22 inputs unchanged;21 prestige-lineage labels grant no class access. Eight description conflicts and missing Eldritch Blast require joint decisions. Unsent;no approval,Time Loop activation or cosmology review. Heritage/mutation source preparation covers 22 full feats, 12 Warrior counterpart pairs, 33 mutation profiles and nine complete ancestry records with 27 variants. Twelve checks pass with 25 inputs unchanged. Resolve acquisition, eligibility and all clauses jointly; packet unsent and no new approval or cosmology decision. General defensive/foundation31 full sources prepared with31 questions,14 counterparts,actual Healer kit and39 governing excerpts. Eleven checks pass,24 inputs unchanged. Reconcile HP families,healing/death/armor/survival clauses and unresolved origin prerequisites; unsent,no approval or cosmology review. All327 pending feats have full focused source packets across nine disjoint cohorts;8 of335 remain operationally reviewed. General exploration31 and General combat58 add89 full source objects/questions,39 counterpart bindings and61 current-guide excerpts. Source decisions, authoring and exact review remain open; packets unsent, no source deletion or cosmology decision. All 26 low-rank Illusion identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 23 low-rank Universal identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 29 low-rank Transmutation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 30 low-rank Necromancy identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All eight rank-three Evocation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. Bounded Director tablecraft source inspection prepared (unsent): DR-07. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [18. Control & action denial](#area-18) | selected-interfaces-closed-remainder-integrating | Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. Boss-interface source conference prepared, unsent:12 questions,41 exact Core Chapter10 paragraphs/one complete table,11 full class cards/six engine references/18 operational spell records. Reconcile explicit creature predicates, Gate Actions, phase reactions, repeated-tactic+2, Loop Tenacity and hard-denial history. The66 Known Descent stat blocks have no literal match for documented boss-interface terms; this is not an all-source absence proof. Existing FL-16/bestiary/Director conferences remain required; Tier6 meanings and sealed records untouched. No new creature power or approval. |
+| [19. Stealth, perception & vision](#area-19) | bounded-scope-reviewed-and-reference-validated | Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references. |
+| [20. Cover & line rules](#area-20) | bounded-scope-reviewed-and-reference-validated | Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references. Bounded Director tablecraft source inspection prepared (unsent): DR-09. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [21. Movement & positioning](#area-21) | selected-interfaces-closed-remainder-integrating | Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references. Mandatory-reversion geometry conflict: return root anatomy at same anchor, expose placementConflict and prohibit free relocation/barrier traversal; canonical conflict-resolution procedure still requires a dedicated source conference. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. |
+| [22. Hazards/environment](#area-22) | bounded-source-reconnaissance-broader-gate-open | Complete the source audit and individual acceptance criteria. Bounded environmental source reconnaissance is prepared and unsent:14 open hazard questions,22 literal book paragraphs,22 preserved Director blocks,13 complete class cards,5 ordinary spell records,3 ancestry spell records,4 ancestry records,30 public recipe cards and one separate Core brew. Reconcile Stoneback Stout exposure wording and whole governing sections; literal searches are not exhaustive semantic proof. No new rules or approval; existing Director/expedition/bestiary/spell conferences remain required. The complete24 Core consumable source set is prepared, unsent:12 brews/12 substances,164 exact book paragraphs/four tables/24 exact shared-field row bindings.22 pre-push source questions;Ghostwine andSovereign Reserve remain whole-record post-push receipts. Existing condition recovery and687 recipe approvals do not certify these individual items. Preserve Quickglass expedition-Strain binding; supply exact dose/effect/crash/overdose interfaces and all deferred-meaning boundaries before candidate approval. |
+| [23. HP, Downed, death & Wounds](#area-23) | validated-in-stated-scope | Acceptance evidence recorded. |
+| [24. Healing & resurrection](#area-24) | selected-interfaces-closed-remainder-integrating | Audit healing content in other domains; complete broader body/soul/affliction procedures. Complete temporal topology/equipment/clock package; selected participant field checks are not complete Time Loop execution. The175+5 form/tempHP interface is reviewed; finish remaining full-option clauses and Time Loop world conservation. No whole-card/catalog completion implied. Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains. Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure. All 30 low-rank Necromancy identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. The new injury/aid teaching draft follows Mira through two damage packets, linked Wounds, a death save, kit stabilization, timed Stable recovery and eight-hour treatment on one clock. Nine reference states and five independent boundaries match the reviewed Core helper; joint presentation review and human use remain pending. It adds no death rule and does not reopen the closed Core state-machine scope. |
+| [25. Weapons](#area-25) | selected-interfaces-closed-remainder-integrating | Complete the source audit and individual acceptance criteria. Combat feat source preparation covers47 full pending source-category identities with47 explicit questions,6 unapproved counterpart records,2 literal class cards and25 current-guide excerpts. Eleven preservation checks pass across70 inputs. Five percentage effects,action/cadence/condition/weapon boundaries andambiguous prerequisites need joint decisions. Prepared packet remains unsent;no new rule or approval. First31 Magic feats source-prepared with31 questions,11 pending counterparts,eight exact spell lookups,two provisional class cards and25 guide excerpts;13 controls,20 unchanged inputs. Actual spell/class/feat dependency gaps remain explicit. Prepared only,not sent,no approval or cosmology review. Remaining58 Magic sources prepared with58 full-clause questions,14 counterparts,five Mirrorsage cards/engine,three exact spell lookups and39 current-guide excerpts. Fourteen controls pass,22 inputs unchanged;21 prestige-lineage labels grant no class access. Eight description conflicts and missing Eldritch Blast require joint decisions. Unsent;no approval,Time Loop activation or cosmology review. |
+| [26. Armor/shields/defenses](#area-26) | selected-interfaces-closed-remainder-integrating | Complete the source audit and individual acceptance criteria. Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains. |
+| [27. Inventory/carrying/encumbrance](#area-27) | selected-interfaces-closed-remainder-integrating | Complete the source audit and individual acceptance criteria. Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. |
+| [28. Tools, consumables & item use](#area-28) | selected-interfaces-closed-remainder-integrating | Complete the source audit and individual acceptance criteria. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Fishing scoped card review is complete; broader availability,harvesting/economy/Supply/body interfaces,runtime and human balance remain for whole-game integration. The complete24 Core consumable source set is prepared, unsent:12 brews/12 substances,164 exact book paragraphs/four tables/24 exact shared-field row bindings.22 pre-push source questions;Ghostwine andSovereign Reserve remain whole-record post-push receipts. Existing condition recovery and687 recipe approvals do not certify these individual items. Preserve Quickglass expedition-Strain binding; supply exact dose/effect/crash/overdose interfaces and all deferred-meaning boundaries before candidate approval. |
+| [29. Crafting system](#area-29) | selected-interfaces-closed-remainder-integrating | Complete the source audit and individual acceptance criteria. Harvest/crafting source crosslinks remain unresolved:34 of178 printed material occurrences and2 of40 recipe links match the current catalog literally. Animated Core is a nonunique legacy label;one infernal marrow tier differs. Creature/global rate/value and body-level time/DC contexts need explicit GPT interpretation. Ten bounded controls pass;278 inputs unchanged. Focused source conference prepared, not sent;no rule or recipe promotion. Resolve24 pending feat interfaces with crafting/research/languages,including half-time creation,Masterwork wording,temporary imprints,percentage durability/damage,repair budgets,trap deployment andordinary market prices. Preserve every clause and exact original; source packet prepared,not sent; no new feat or recipe approval. All25 remaining source-category Skill feats now have complete sources and25 full-clause questions,13 counterpart records,actual20-skill/Soldier data and27 exact guide excerpts. Twelve controls pass across74 protected inputs;11 numeric-skill prerequisite occurrences require decisions. Spell Scribe,Wilderness Chef,Anatomy Lore andBeast Lore interfaces remain pending;source packet unsent,no new rule/approval. All 29 low-rank Transmutation identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. All 30 low-rank Necromancy identities now have finite source-authoring directions in completed LR-SOURCE-2026-10-11. Complete candidates with actual access, costs, clocks and boundaries are authored and submitted in the full 136-card exact-review packet; await the final exact verdict and fulfill its bounded corrections. Preserve source variants and deferred cosmology; no operational spell promotion. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Fishing scoped card review is complete; broader availability,harvesting/economy/Supply/body interfaces,runtime and human balance remain for whole-game integration. All687 recipe cards/public433 have completed authored-operational review. Complete unresolved bestiary/material crosslinks, pending feat/spell interfaces and expedition/economy integration before final whole-game flow; human balance/runtime remain separate. Bounded Director tablecraft source inspection prepared (unsent): DR-11. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. A complete first-crafting teaching draft follows Mira through actual recipe-200 eligibility, ingredient/vial reservation, two active hours, batch quality, consumed/recovered stock, trade XP and dose administration. Source/arithmetic checks pass against 14 governing files; joint presentation review and human use remain pending. No new rule or recipe promotion. Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate. |
+| [30. Economy](#area-30) | selected-interfaces-closed-remainder-integrating | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Fishing scoped card review is complete; broader availability,harvesting/economy/Supply/body interfaces,runtime and human balance remain for whole-game integration. |
+| [31. Magic items & special equipment](#area-31) | selected-interfaces-closed-remainder-integrating | Complete the source audit and individual acceptance criteria. |
+| [32. Mounts, vehicles, siege, chases](#area-32) | discussed | Complete the source audit and individual acceptance criteria. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. |
+| [33. Creature stat interface](#area-33) | discussed | Complete the source audit and individual acceptance criteria. Cooking source audit found generated bestiary combat records conflicting with the canonical MM V2 source pack (e.g. Cave Bear size and Goring Horn versus Mauling Claws). Reconcile authoritative creature profiles before using generated trusted labels for feast traits, encounters or companion combat. Broader affected scope remains unverified. Bestiary source/runtime audit now inventories85 pack files:67 Known Descent dossiers and5 sealed dossiers. It finds184 selected-field differences across59 of62 exact Known Descent runtime matches;17 action-name lists differ and3 source tactics references lack listed actions. Two additional dossiers lack filter routes;all5 sealed names occur in the707-record client-imported dataset. Ten bounded source controls pass;178 inputs unchanged. Focused GPT conference prepared, not sent;no source/runtime correction, full creature approval, deletion or cosmology review. Bestiary history audit binds707 runtime records to preserved workbook rows and locates an existing65-dossier V6 source projection with explicit Fracture-Kin aliases. Its64 stat-bearing records match eight selected source fields, but structured combat/defenses/Save DC and loot-schema integration remain. Main and ReviewBible build inputs differ; a names-only simulation gives727 versus707 because main retains20 newer-name overrides beside older workbook names. No rebuild executed. All53 inventoried sources/scripts unchanged;436 workbook review notes preserved. Supplement prepared, not sent;no runtime promotion. Source-based bestiary candidate prepared, not sent or installed:67 Known Descent dossiers/66 stat blocks/162 source actions/178 harvest rows;26 existing public routes separated. Exact original text and printed Save DC/defenses retained. Fourteen bounded checks pass with231 inputs unchanged. Three undefined actions, four disease-immunity mappings, two missing harvest procedures, two missing routes and two alias/source overlaps remain; source-text structuring is not operational approval. Harvest/crafting source crosslinks remain unresolved:34 of178 printed material occurrences and2 of40 recipe links match the current catalog literally. Animated Core is a nonunique legacy label;one infernal marrow tier differs. Creature/global rate/value and body-level time/DC contexts need explicit GPT interpretation. Ten bounded controls pass;278 inputs unchanged. Focused source conference prepared, not sent;no rule or recipe promotion. Named spell outcomes require source-profile reconciliation: Create Undead,Command Undeath,Soul Wraith,Finger of Death,Homunculus,Bone Colossus and Simulacrum. Complete candidate/runtime originals and bounded missing-profile searches are preserved in the linked dependency index; no monster/spell profile is promoted. Boss-interface source conference prepared, unsent:12 questions,41 exact Core Chapter10 paragraphs/one complete table,11 full class cards/six engine references/18 operational spell records. Reconcile explicit creature predicates, Gate Actions, phase reactions, repeated-tactic+2, Loop Tenacity and hard-denial history. The66 Known Descent stat blocks have no literal match for documented boss-interface terms; this is not an all-source absence proof. Existing FL-16/bestiary/Director conferences remain required; Tier6 meanings and sealed records untouched. No new creature power or approval. |
+| [34. Boss/legendary interface](#area-34) | bounded-source-preparation-broader-gate-open | Complete the source audit and individual acceptance criteria. Boss-interface source conference prepared, unsent:12 questions,41 exact Core Chapter10 paragraphs/one complete table,11 full class cards/six engine references/18 operational spell records. Reconcile explicit creature predicates, Gate Actions, phase reactions, repeated-tactic+2, Loop Tenacity and hard-denial history. The66 Known Descent stat blocks have no literal match for documented boss-interface terms; this is not an all-source absence proof. Existing FL-16/bestiary/Director conferences remain required; Tier6 meanings and sealed records untouched. No new creature power or approval. |
+| [35. Summons/companions/pets](#area-35) | selected-interfaces-closed-remainder-integrating | Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references. The175+5 form/tempHP interface is reviewed; finish remaining full-option clauses and Time Loop world conservation. No whole-card/catalog completion implied. Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. Human/encounter validation of the new Minor Planar Ally intended CR-1 profile and comparative Air Pet power remain outstanding; authored approval is not runtime or bestiary-wide closure. The 18 TD class/device source questions have bounded authoring decisions; all 43 Tinkering recipes completed the advanced-recipe exact review. Use TD-01–18 with the fulfilled LAX TI-04 correction for identity, ownership, commands, repair, fabrication and debris resources. Retain the individual class-card review scopes; game-wide class/device integration, runtime and human use remain open. All25 remaining source-category Skill feats now have complete sources and25 full-clause questions,13 counterpart records,actual20-skill/Soldier data and27 exact guide excerpts. Twelve controls pass across74 protected inputs;11 numeric-skill prerequisite occurrences require decisions. Spell Scribe,Wilderness Chef,Anatomy Lore andBeast Lore interfaces remain pending;source packet unsent,no new rule/approval. Named spell outcomes require source-profile reconciliation: Create Undead,Command Undeath,Soul Wraith,Finger of Death,Homunculus,Bone Colossus and Simulacrum. Complete candidate/runtime originals and bounded missing-profile searches are preserved in the linked dependency index; no monster/spell profile is promoted. Bounded Director tablecraft source inspection prepared (unsent): DR-10. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. A companion teaching draft follows an actual Tinker1 Anacite and two recipe-596 bodies through lawful binding, four command rounds, Field Repair, servicing and noncombat/combat power transition. Existing reference checks validate shared command/offense and roll arithmetic; the remaining scene interfaces are source-checked fixtures, not a new runtime. Joint presentation review and human use remain pending. Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate. |
+| [36. Encounter construction](#area-36) | bounded-source-preparation-broader-gate-open | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Cooking source audit found generated bestiary combat records conflicting with the canonical MM V2 source pack (e.g. Cave Bear size and Goring Horn versus Mauling Claws). Reconcile authoritative creature profiles before using generated trusted labels for feast traits, encounters or companion combat. Broader affected scope remains unverified. Bestiary source/runtime audit now inventories85 pack files:67 Known Descent dossiers and5 sealed dossiers. It finds184 selected-field differences across59 of62 exact Known Descent runtime matches;17 action-name lists differ and3 source tactics references lack listed actions. Two additional dossiers lack filter routes;all5 sealed names occur in the707-record client-imported dataset. Ten bounded source controls pass;178 inputs unchanged. Focused GPT conference prepared, not sent;no source/runtime correction, full creature approval, deletion or cosmology review. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Bounded Director tablecraft source inspection prepared (unsent): DR-07, DR-08. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. Boss-interface source conference prepared, unsent:12 questions,41 exact Core Chapter10 paragraphs/one complete table,11 full class cards/six engine references/18 operational spell records. Reconcile explicit creature predicates, Gate Actions, phase reactions, repeated-tactic+2, Loop Tenacity and hard-denial history. The66 Known Descent stat blocks have no literal match for documented boss-interface terms; this is not an all-source absence proof. Existing FL-16/bestiary/Director conferences remain required; Tier6 meanings and sealed records untouched. No new creature power or approval. |
+| [37. Encounter procedures](#area-37) | bounded-source-preparation-broader-gate-open | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Bounded Director tablecraft source inspection prepared (unsent): DR-10. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [38. Loot/reward system](#area-38) | selected-interfaces-closed-remainder-integrating | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Fishing scoped card review is complete; broader availability,harvesting/economy/Supply/body interfaces,runtime and human balance remain for whole-game integration. Bounded Director tablecraft source inspection prepared (unsent): DR-09, DR-10. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [39. Exploration/travel](#area-39) | selected-interfaces-closed-remainder-integrating | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Integrate these authored travel spells into the wider travel/extraction procedures and human adventure playtests; runtime and general mounted combat remain open. FI-D06 resolves current recipes172/173/177 as Tackle and preserves three historical boat concepts in FISHING_HISTORICAL_TRANSPORT_BACKLOG.json. Separate transport statistics remain unauthored; these are not three new recipes. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Fishing scoped card review is complete; broader availability,harvesting/economy/Supply/body interfaces,runtime and human balance remain for whole-game integration. |
+| [40. Expedition resources](#area-40) | selected-interfaces-closed-remainder-integrating | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Fishing scoped card review is complete; broader availability,harvesting/economy/Supply/body interfaces,runtime and human balance remain for whole-game integration. The complete24 Core consumable source set is prepared, unsent:12 brews/12 substances,164 exact book paragraphs/four tables/24 exact shared-field row bindings.22 pre-push source questions;Ghostwine andSovereign Reserve remain whole-record post-push receipts. Existing condition recovery and687 recipe approvals do not certify these individual items. Preserve Quickglass expedition-Strain binding; supply exact dose/effect/crash/overdose interfaces and all deferred-meaning boundaries before candidate approval. |
+| [41. Rest/recovery](#area-41) | selected-interfaces-closed-remainder-integrating | Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references. Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are reviewed and provisionally promoted; broader catalog work remains. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. |
+| [42. Extraction/retreat/failure](#area-42) | discussed | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Integrate these authored travel spells into the wider travel/extraction procedures and human adventure playtests; runtime and general mounted combat remain open. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. |
+| [43. Haven/settlement loop](#area-43) | selected-interfaces-closed-remainder-integrating | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. |
+| [44. Downtime](#area-44) | selected-interfaces-closed-remainder-integrating | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. Bounded Director tablecraft source inspection prepared (unsent): DR-11. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [45. Social rules](#area-45) | discussed | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. |
+| [46. Languages/literacy/communication](#area-46) | reviewed-authored-language-layer-integration-open | LAX-01–03 exact language corrections are fulfilled. The complete ordinary language chapter, grant/record contracts,49 language-only class interfaces,23 spell comparisons,8 pending feat comparisons and32 authored sequences are reviewed under the version-bound receipt. All152 original payloads remain unchanged; source460/candidate496/focused44 checks and standalone496 pass. These are static/reference checks, not runtime/human certification. Character-record integration, remaining spell/feat procedures and this broader acceptance gate remain open. Keep pending spell/feat effects in their dedicated queues and retain LA-16 as a literal post-push cosmology receipt. Bounded Director tablecraft source inspection prepared (unsent): DR-11. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. A paper language worksheet now maps all eight reviewed record definitions. Its presentation and five proposed stale character-entrypoint labels await bounded joint review; no new mechanics, source-card promotion, save migration or live character-builder parity is claimed. The complete24 Core consumable source set is prepared, unsent:12 brews/12 substances,164 exact book paragraphs/four tables/24 exact shared-field row bindings.22 pre-push source questions;Ghostwine andSovereign Reserve remain whole-record post-push receipts. Existing condition recovery and687 recipe approvals do not certify these individual items. Preserve Quickglass expedition-Strain binding; supply exact dose/effect/crash/overdose interfaces and all deferred-meaning boundaries before candidate approval. |
+| [47. World history & chronology](#area-47) | discussed | Complete the source audit and individual acceptance criteria. |
+| [48. Geography & travel map](#area-48) | bounded-source-preparation-broader-gate-open | Complete the source audit and individual acceptance criteria. Bounded Director tablecraft source inspection prepared (unsent): DR-06. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [49. Factions & politics](#area-49) | discussed | Complete the source audit and individual acceptance criteria. Twenty-six expedition-to-Haven source/interface cases prepared,unsent.21 existing Loop sections,126 actual Player expedition paragraphs,260 Core economy paragraphs,22 exact governing excerpts;11 checks/84 protected files. Reuse reviewed Core/equipment/food rules andconfer onSupply,Pressure,Integrity,reputation,transport,extraction andsettlement. No final flow approval orcosmology review. |
+| [50. Religion/cosmology](#area-50) | discussed | OWNER-DEFERRED: begin the careful cosmology review only after the authorized GitHub push succeeds and the remote commit is verified. Preserve existing sources/visibility; do not revise cosmology or claim its approval during the pre-push phase. Complete the source audit and individual acceptance criteria. |
+| [51. Decennial cycle](#area-51) | discussed | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. |
+| [52. Late-game/endings](#area-52) | discussed | Complete the source audit and individual acceptance criteria. |
+| [53. Director authority & adjudication](#area-53) | bounded-source-preparation-broader-gate-open | Complete the source audit and individual acceptance criteria. Bounded Director tablecraft source inspection prepared (unsent): DR-01, DR-02, DR-03, DR-04, DR-08, DR-14. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [54. Director secrets/data separation](#area-54) | selected-interfaces-closed-remainder-integrating | Complete the source audit and individual acceptance criteria. Bestiary source/runtime audit now inventories85 pack files:67 Known Descent dossiers and5 sealed dossiers. It finds184 selected-field differences across59 of62 exact Known Descent runtime matches;17 action-name lists differ and3 source tactics references lack listed actions. Two additional dossiers lack filter routes;all5 sealed names occur in the707-record client-imported dataset. Ten bounded source controls pass;178 inputs unchanged. Focused GPT conference prepared, not sent;no source/runtime correction, full creature approval, deletion or cosmology review. Bounded Director tablecraft source inspection prepared (unsent): DR-14. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [55. Adventure design procedure](#area-55) | bounded-source-preparation-broader-gate-open | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Bounded Director tablecraft source inspection prepared (unsent): DR-04, DR-05, DR-06, DR-09, DR-14. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [56. Campaign design procedure](#area-56) | bounded-source-preparation-broader-gate-open | An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent. Bounded Director tablecraft source inspection prepared (unsent): DR-03, DR-05, DR-11, DR-13, DR-14. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [57. Random tables/procedural content](#area-57) | bounded-source-preparation-broader-gate-open | Complete the source audit and individual acceptance criteria. Bounded Director tablecraft source inspection prepared (unsent): DR-06. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [58. Session zero & table contract](#area-58) | teaching-scope-reviewed-broader-gate-open | The six-step session-zero procedure and twelve-row table agreement passed exact authored teaching review. Carry it through final whole-game flow as remaining expedition/content procedures settle. Actual new-group use and human usability are separate, unperformed checks; no numerical or canon rule is added by the table agreement. Bounded Director tablecraft source inspection prepared (unsent): DR-12. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [59. Accessibility](#area-59) | bounded-source-preparation-broader-gate-open | Complete the source audit and individual acceptance criteria. Bounded Director tablecraft source inspection prepared (unsent): DR-04, DR-12. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [60. Onboarding/quickstart](#area-60) | teaching-scope-reviewed-broader-gate-open | The current first-character/first-turn/casting/rest/advancement entry path is reviewed in its stated teaching scope. Complete expedition/content dependencies and the starter-session flow required by the acceptance gate. An actual new group has not yet demonstrated a starter session without owner intervention; historical quickstart/session-app material remains preserved separately. Bounded Director tablecraft source inspection prepared (unsent): DR-12. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. A paper language worksheet now maps all eight reviewed record definitions. Its presentation and five proposed stale character-entrypoint labels await bounded joint review; no new mechanics, source-card promotion, save migration or live character-builder parity is claimed. A complete first-crafting teaching draft follows Mira through actual recipe-200 eligibility, ingredient/vial reservation, two active hours, batch quality, consumed/recovered stock, trade XP and dose administration. Source/arithmetic checks pass against 14 governing files; joint presentation review and human use remain pending. No new rule or recipe promotion. The new injury/aid teaching draft follows Mira through two damage packets, linked Wounds, a death save, kit stabilization, timed Stable recovery and eight-hour treatment on one clock. Nine reference states and five independent boundaries match the reviewed Core helper; joint presentation review and human use remain pending. It adds no death rule and does not reopen the closed Core state-machine scope. A companion teaching draft follows an actual Tinker1 Anacite and two recipe-596 bodies through lawful binding, four command rounds, Field Repair, servicing and noncombat/combat power transition. Existing reference checks validate shared command/offense and roll arithmetic; the remaining scene interfaces are source-checked fixtures, not a new runtime. Joint presentation review and human use remain pending. Six complete teaching/navigation drafts are staged for a bounded GPT presentation review: language worksheet,48-term glossary, first craft, injury/aid, companion command and full character-foundation navigation copy.23 explicit review questions and91 complete source files are inventoried; no archive frozen or request submitted. The separate chapter changes only five stale progress notes plus its draft banner; reversing them exactly restores the unchanged original. Recheck current source/status context at dispatch after the active spell exact review. No new rule, human-usability evidence or approval. The injury draft now explicitly uses its already-reviewed expedition Strain binding; TE-23 separately carries the verified, unapplied Recycling conflict. |
+| [61. Reference sheets/indexes](#area-61) | teaching-scope-reviewed-broader-gate-open | Current newcomer guides and Resonance reference passed their scoped review and link checks. Complete travel, Director and remaining class-resource references, then measure the two-lookup acceptance criterion across the full frequently-used mechanic set. Bounded Director tablecraft source inspection prepared (unsent): DR-14. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. A48-term editorial glossary now links every definition to existing class/roll/time/resource/health/crafting/language procedures.54 local references resolve and16 referenced files are fingerprinted. Joint presentation review remains pending; no new rule, card approval or claim of full two-lookup/human usability closure. Its52 term-reference links now target actual source headings; definitions remain unchanged. Rendered link behavior and human two-lookup usability are not yet tested. Six complete teaching/navigation drafts are staged for a bounded GPT presentation review: language worksheet,48-term glossary, first craft, injury/aid, companion command and full character-foundation navigation copy.23 explicit review questions and91 complete source files are inventoried; no archive frozen or request submitted. The separate chapter changes only five stale progress notes plus its draft banner; reversing them exactly restores the unchanged original. Recheck current source/status context at dispatch after the active spell exact review. No new rule, human-usability evidence or approval. The injury draft now explicitly uses its already-reviewed expedition Strain binding; TE-23 separately carries the verified, unapplied Recycling conflict. |
+| [62. Examples & worked turns](#area-62) | teaching-scope-reviewed-broader-gate-open | Mira’s creation, turns, casting, recovery and advancement examples passed the finite source/arithmetic and NWX boundary review. Complete and check the remaining companion, travel, crafting and death examples against the eventual full candidate; these checks are not gameplay-runtime or human balance evidence. Bounded Director tablecraft source inspection prepared (unsent): DR-14. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. A complete first-crafting teaching draft follows Mira through actual recipe-200 eligibility, ingredient/vial reservation, two active hours, batch quality, consumed/recovered stock, trade XP and dose administration. Source/arithmetic checks pass against 14 governing files; joint presentation review and human use remain pending. No new rule or recipe promotion. The new injury/aid teaching draft follows Mira through two damage packets, linked Wounds, a death save, kit stabilization, timed Stable recovery and eight-hour treatment on one clock. Nine reference states and five independent boundaries match the reviewed Core helper; joint presentation review and human use remain pending. It adds no death rule and does not reopen the closed Core state-machine scope. A companion teaching draft follows an actual Tinker1 Anacite and two recipe-596 bodies through lawful binding, four command rounds, Field Repair, servicing and noncombat/combat power transition. Existing reference checks validate shared command/offense and roll arithmetic; the remaining scene interfaces are source-checked fixtures, not a new runtime. Joint presentation review and human use remain pending. Six complete teaching/navigation drafts are staged for a bounded GPT presentation review: language worksheet,48-term glossary, first craft, injury/aid, companion command and full character-foundation navigation copy.23 explicit review questions and91 complete source files are inventoried; no archive frozen or request submitted. The separate chapter changes only five stale progress notes plus its draft banner; reversing them exactly restores the unchanged original. Recheck current source/status context at dispatch after the active spell exact review. No new rule, human-usability evidence or approval. The injury draft now explicitly uses its already-reviewed expedition Strain binding; TE-23 separately carries the verified, unapplied Recycling conflict. |
+| [63. Companion persistence/state parity](#area-63) | selected-interfaces-closed-remainder-integrating | Complete the source audit and individual acceptance criteria. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. Cooking source audit found generated bestiary combat records conflicting with the canonical MM V2 source pack (e.g. Cave Bear size and Goring Horn versus Mauling Claws). Reconcile authoritative creature profiles before using generated trusted labels for feast traits, encounters or companion combat. Broader affected scope remains unverified. Bestiary source/runtime audit now inventories85 pack files:67 Known Descent dossiers and5 sealed dossiers. It finds184 selected-field differences across59 of62 exact Known Descent runtime matches;17 action-name lists differ and3 source tactics references lack listed actions. Two additional dossiers lack filter routes;all5 sealed names occur in the707-record client-imported dataset. Ten bounded source controls pass;178 inputs unchanged. Focused GPT conference prepared, not sent;no source/runtime correction, full creature approval, deletion or cosmology review. Bestiary history audit binds707 runtime records to preserved workbook rows and locates an existing65-dossier V6 source projection with explicit Fracture-Kin aliases. Its64 stat-bearing records match eight selected source fields, but structured combat/defenses/Save DC and loot-schema integration remain. Main and ReviewBible build inputs differ; a names-only simulation gives727 versus707 because main retains20 newer-name overrides beside older workbook names. No rebuild executed. All53 inventoried sources/scripts unchanged;436 workbook review notes preserved. Supplement prepared, not sent;no runtime promotion. Source-based bestiary candidate prepared, not sent or installed:67 Known Descent dossiers/66 stat blocks/162 source actions/178 harvest rows;26 existing public routes separated. Exact original text and printed Save DC/defenses retained. Fourteen bounded checks pass with231 inputs unchanged. Three undefined actions, four disease-immunity mappings, two missing harvest procedures, two missing routes and two alias/source overlaps remain; source-text structuring is not operational approval. Harvest/crafting source crosslinks remain unresolved:34 of178 printed material occurrences and2 of40 recipe links match the current catalog literally. Animated Core is a nonunique legacy label;one infernal marrow tier differs. Creature/global rate/value and body-level time/DC contexts need explicit GPT interpretation. Ten bounded controls pass;278 inputs unchanged. Focused source conference prepared, not sent;no rule or recipe promotion. The 18 TD class/device source questions have bounded authoring decisions; all 43 Tinkering recipes completed the advanced-recipe exact review. Use TD-01–18 with the fulfilled LAX TI-04 correction for identity, ownership, commands, repair, fabrication and debris resources. Retain the individual class-card review scopes; game-wide class/device integration, runtime and human use remain open. A companion teaching draft follows an actual Tinker1 Anacite and two recipe-596 bodies through lawful binding, four command rounds, Field Repair, servicing and noncombat/combat power transition. Existing reference checks validate shared command/offense and roll arithmetic; the remaining scene interfaces are source-checked fixtures, not a new runtime. Joint presentation review and human use remain pending. Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate. |
+| [64. Data schemas/IDs/migrations](#area-64) | discussed | Complete the source audit and individual acceptance criteria. Time Loop: bounded foundation, payment/output and live control/pulse checkpoints jointly reviewed (76+22+50 checks). Ten parent policies and Action/cadence clarification discussed;85 fields/26 Druid profiles inventoried. Parent operation-history journal jointly reviewed with59 checks;all six evidence findings resolved. Exact-reference transaction transport also reviewed with15 new checks and207 regressions; source legality remains the complete planner responsibility. Complete parent restoration, native temporal wrappers, source clocks/output application and all seven larger integrations remain open. Full playable activation stays disabled; no whole-domain closure. |
+| [65. Public/Director build packaging](#area-65) | discussed | Complete the source audit and individual acceptance criteria. Bestiary source/runtime audit now inventories85 pack files:67 Known Descent dossiers and5 sealed dossiers. It finds184 selected-field differences across59 of62 exact Known Descent runtime matches;17 action-name lists differ and3 source tactics references lack listed actions. Two additional dossiers lack filter routes;all5 sealed names occur in the707-record client-imported dataset. Ten bounded source controls pass;178 inputs unchanged. Focused GPT conference prepared, not sent;no source/runtime correction, full creature approval, deletion or cosmology review. Bestiary history audit binds707 runtime records to preserved workbook rows and locates an existing65-dossier V6 source projection with explicit Fracture-Kin aliases. Its64 stat-bearing records match eight selected source fields, but structured combat/defenses/Save DC and loot-schema integration remain. Main and ReviewBible build inputs differ; a names-only simulation gives727 versus707 because main retains20 newer-name overrides beside older workbook names. No rebuild executed. All53 inventoried sources/scripts unchanged;436 workbook review notes preserved. Supplement prepared, not sent;no runtime promotion. Source-based bestiary candidate prepared, not sent or installed:67 Known Descent dossiers/66 stat blocks/162 source actions/178 harvest rows;26 existing public routes separated. Exact original text and printed Save DC/defenses retained. Fourteen bounded checks pass with231 inputs unchanged. Three undefined actions, four disease-immunity mappings, two missing harvest procedures, two missing routes and two alias/source overlaps remain; source-text structuring is not operational approval. The delivery inventory identifies nine browser proof images for separate local preservation and release screening. Public/Director audience labels remain required; static inventory does not certify application filtering. |
+| [66. Editing consistency](#area-66) | teaching-scope-reviewed-broader-gate-open | The six teaching/editorial manuscripts have completed exact terminology, timing and reference corrections. Finish the full-candidate terminology dictionary, lint and mechanical ambiguity review after remaining content decisions; current teaching acceptance does not close game-wide editing. Bounded Director tablecraft source inspection prepared (unsent): DR-01, DR-02. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. A paper language worksheet now maps all eight reviewed record definitions. Its presentation and five proposed stale character-entrypoint labels await bounded joint review; no new mechanics, source-card promotion, save migration or live character-builder parity is claimed. A48-term editorial glossary now links every definition to existing class/roll/time/resource/health/crafting/language procedures.54 local references resolve and16 referenced files are fingerprinted. Joint presentation review remains pending; no new rule, card approval or claim of full two-lookup/human usability closure. Its52 term-reference links now target actual source headings; definitions remain unchanged. Rendered link behavior and human two-lookup usability are not yet tested. A complete first-crafting teaching draft follows Mira through actual recipe-200 eligibility, ingredient/vial reservation, two active hours, batch quality, consumed/recovered stock, trade XP and dose administration. Source/arithmetic checks pass against 14 governing files; joint presentation review and human use remain pending. No new rule or recipe promotion. The new injury/aid teaching draft follows Mira through two damage packets, linked Wounds, a death save, kit stabilization, timed Stable recovery and eight-hour treatment on one clock. Nine reference states and five independent boundaries match the reviewed Core helper; joint presentation review and human use remain pending. It adds no death rule and does not reopen the closed Core state-machine scope. Six complete teaching/navigation drafts are staged for a bounded GPT presentation review: language worksheet,48-term glossary, first craft, injury/aid, companion command and full character-foundation navigation copy.23 explicit review questions and91 complete source files are inventoried; no archive frozen or request submitted. The separate chapter changes only five stale progress notes plus its draft banner; reversing them exactly restores the unchanged original. Recheck current source/status context at dispatch after the active spell exact review. No new rule, human-usability evidence or approval. The injury draft now explicitly uses its already-reviewed expedition Strain binding; TE-23 separately carries the verified, unapplied Recycling conflict. Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate. |
+| [67. Layout/publication structure](#area-67) | discussed | Complete the source audit and individual acceptance criteria. |
+| [68. Legal/IP/credits/licensing](#area-68) | discussed | Complete the source audit and individual acceptance criteria. The separate imported-asset workbench is untracked in current remote history and is already excluded from the stated game product path. Its files remain locally preserved; source attribution, artwork provenance and final rights/credits criteria remain open. No license is chosen or rights conclusion inferred from byte comparisons. |
+| [69. Machine verification](#area-69) | partially-validated | Existing class and spell tests have limited stated scopes. Extend meaningful cross-system scenarios as implementations are completed. Bounded Director tablecraft source inspection prepared (unsent): DR-07. The full14-case register preserves227 paragraphs and19 tables, including rule-precedence, DPR, actor-roster, chase and resource/research conflicts. Confer, author and validate the relevant usable procedures; this source extraction grants no approval and does not replace the other named work. |
+| [70. Generated scenario testing](#area-70) | partially-validated | Existing class and spell tests have limited stated scopes. Extend meaningful cross-system scenarios as implementations are completed. |
+| [71. Human rules playtest](#area-71) | discussed | Complete the source audit and individual acceptance criteria. |
+| [72. Human numerical/balance playtest](#area-72) | discussed | Complete the source audit and individual acceptance criteria. |
+| [73. Campaign-duration playtest](#area-73) | discussed | Complete the source audit and individual acceptance criteria. |
+| [74. Release candidate/errata process](#area-74) | discussed | Complete the source audit and individual acceptance criteria. Owner-authorized final gate: after the other agreed authored work, obtain actual Codex/GPT delivery-flow agreement with cosmology explicitly deferred by the owner, then push consolidated game to BordelonDevOps/DecenniumDescent. Push remains conditional/pending; remote history clone prepared without authoring changes or upload. After successful GitHub delivery and remote-commit verification, begin the owner-directed careful cosmology review. The push preserves existing cosmology without certifying it. The 11 October read-only delivery inventory fingerprints 14,509 non-asset files and verifies remote main 57bb6d86e0e06d5e4f1e24a6e39a6a7ddb26a2cc. Preserve 109 tracked files and one ancestor repository pointer; reconcile 25 changed working-root paths. Final selection manifest, authored candidate and joint flow remain pending; no authoring files copied, commit or push. |
+
+## Acceptance criteria
+
+<a id="area-0"></a>
+### 0 Authority, provenance, versioning
+
+Canon hierarchy, V6 authority, V7.x evidence status, IDs, source references, superseded rules, provisional labels, change log, no destructive source edits.
+
+**Acceptance:** Every operational rule points to source/provisional origin; conflicting originals retained; one entrypoint identifies active playtest configuration; zero accidental canon promotion.
+
+<a id="area-1"></a>
+### 1 Game identity & player promise
+
+Genre, tone, core fantasy, intended campaign structure, tactical vs narrative emphasis, lethality, complexity, progression promise, what Decennium means to play.
+
+**Acceptance:** One concise design charter; every major subsystem can be tested against it; contradictions logged rather than papered over.
+
+<a id="area-2"></a>
+### 2 Core resolution language
+
+Dice/check syntax, PB, ability mods, S/M/L, advantage/disadvantage, rounding, natural 1/20, DCs, opposed checks, distances, tiles, size, line of effect, target legality, timing vocabulary.
+
+**Acceptance:** One source-linked glossary; every card/spell/monster can execute without inventing basic math/timing.
+
+<a id="area-3"></a>
+### 3 Time & action economy
+
+Regular turns, Actions, Bonus Actions, Reactions, free triggers, extra Actions, initiative, rounds, encounter start/end, recharge, delayed effects, simultaneous events, falling markers.
+
+**Acceptance:** Deterministic timing order; no recursive Action grants; initiative edge cases reproducible; falling bridge incorporated as explicitly provisional.
+
+<a id="area-4"></a>
+### 4 Character creation
+
+Ancestry, background, stats, stat generation, HP, saves, proficiencies, skills, languages, starting gear, starting money/resources, spell choices, class entry.
+
+**Acceptance:** Blank sheet → legal level-1 character for every supported ancestry/background/class combination without Director invention.
+
+<a id="area-5"></a>
+### 5 Character sheet/data model
+
+Identity, stats, defenses, skills, resources, RP/RC/BG/etc., spells, conditions, concentration, companion state, equipment, wounds, cooldowns, path choices.
+
+**Acceptance:** Every active game state has one explicit field and ownership rule; paper and digital forms encode same state.
+
+<a id="area-6"></a>
+### 6 Advancement
+
+XP/milestone method, class levels, Base/Arch/Hero transition, ASI/feat gates, automatic vs selected features, retraining, dead/retired replacement PCs.
+
+**Acceptance:** Level 1→20 advancement script produces no duplicate grants, illegal prerequisites or stage leakage.
+
+<a id="area-7"></a>
+### 7 Multiclassing
+
+Whether supported, entry requirements, PB, HP, proficiencies, class-level gates, shared resources, spell access, ASIs, subclasses/paths, capstones.
+
+**Acceptance:** Either explicitly unsupported, or fully operational with generated legal builds and no gate/resource exploits.
+
+<a id="area-8"></a>
+### 8 Respec/retraining/transformation
+
+Feature replacement, spell replacement, path change, Oath fall/restoration, permanent transformations, retraining cost/timing.
+
+**Acceptance:** Every allowed change states what persists, what resets, cost, timing and legality; no resource refill exploit.
+
+<a id="area-9"></a>
+### 9 17 class families
+
+Base features, Arch, Hero, path identities, resources, advancement, examples, source mapping.
+
+**Acceptance:** All 17 map source→operational rules; no stage leakage; validator PASS; representative table use.
+
+<a id="area-10"></a>
+### 10 Class specializations
+
+Oaths, Mysteries/Curses, Circles, Hero paths, mutation trees, summons, class-specific spell systems.
+
+**Acceptance:** Each specialization is complete, mutually legal, source-traceable and has an executable level progression.
+
+<a id="area-11"></a>
+### 11 Ordinary spell identity/access
+
+848 IDs, 936 Core placements, school/rank per class, aliases, blocked conflicts, spellbook/preparation/known lists.
+
+**Acceptance:** All 848 accounted; every placement mapped; aliases adjudicated or blocked; no spell access by affordability alone.
+
+<a id="area-12"></a>
+### 12 Ordinary spell mechanics
+
+Activation, range, components, targets, duration, concentration, attack/save, success result, effect, scaling, limitations.
+
+**Acceptance:** Every active spell has complete operational fields; unfinished entries remain unusable, not half-runnable.
+
+<a id="area-13"></a>
+### 13 RP / Dissonance / Refrain / rituals
+
+Rank prices, class-specific ranks, Retune, strain states, Refrain, class cadence exceptions, long/short-rest recovery, ritual cost/time/components.
+
+**Acceptance:** One active test configuration; no simultaneous historical Burn/fizzle system; every class-specific exception explicit.
+
+<a id="area-14"></a>
+### 14 Feats
+
+All 335: prerequisites, level gates, ASI replacement, class/path requirements, stacking, actions, resources, spell assumptions.
+
+**Acceptance:** 335-source ledger; each feat operational or blocked; no obsolete engine references; acquisition validator.
+
+<a id="area-15"></a>
+### 15 Skills & noncombat checks
+
+Skill list, proficiency/expertise, passive checks, group checks, assistance, tool checks, investigation/social/exploration usage.
+
+**Acceptance:** Every common declared task has a known resolution method or explicit Director adjudication boundary.
+
+<a id="area-16"></a>
+### 16 Conditions
+
+Core conditions plus Bleed/Burn/Shaken/etc.; application, stacking, ending, immunities, repeats.
+
+**Acceptance:** Every referenced condition resolves to one active definition; historical variants preserved but not co-executable.
+
+<a id="area-17"></a>
+### 17 Combat core
+
+Initiative, attack actions, Extra Attack, melee/ranged, crits, opportunity attacks, movement, disengage, reactions, saves, area attacks.
+
+**Acceptance:** Complete legal turn examples for martial, caster, summon, boss, downed creature; no undefined basic combat operation.
+
+<a id="area-18"></a>
+### 18 Control & action denial
+
+Grapple, Restrained, root, Stunned, Charmed, Frightened, silence, reaction denial, hard-denial ceiling.
+
+**Acceptance:** All control has save/escape/end timing; hard-denial ledger applies consistently across classes/spells/companions.
+
+<a id="area-19"></a>
+### 19 Stealth, perception & vision
+
+Hide, concealment, invisibility, darkness, light, darkvision, blindsight if present, sound, detection, passive perception.
+
+**Acceptance:** Hidden/invisible state transitions and targeting consequences are deterministic; no “invisible = untargetable” ambiguity.
+
+<a id="area-20"></a>
+### 20 Cover & line rules
+
+Half/three-quarter/full cover, line of sight/effect, firing through creatures, walls, spell areas, terrain obstruction.
+
+**Acceptance:** One geometry procedure applies to attacks, spells, areas and detection.
+
+<a id="area-21"></a>
+### 21 Movement & positioning
+
+Speed, Dash, difficult terrain, crawling, climbing, swimming, jumping, forced movement, teleporting, flight, falling.
+
+**Acceptance:** Every mode has exact timing/cost; provisional Falling bridge logged; flight-loss interactions tested.
+
+<a id="area-22"></a>
+### 22 Hazards/environment
+
+Fire, cold, heat, drowning, suffocation, weather, poison, disease, traps, unstable terrain, darkness, falls, environmental damage.
+
+**Acceptance:** Environment chapter supports expedition and combat without improvised core math.
+
+<a id="area-23"></a>
+### 23 HP, Downed, death & Wounds
+
+0 HP, death saves/checks, stabilization, massive damage if any, Wounds, death state, corpses, recovery.
+
+**Acceptance:** Exact state machine from healthy→Downed→stable/dead→recovery.
+
+<a id="area-24"></a>
+### 24 Healing & resurrection
+
+Real HP, temp HP, healing dice, pool healing, resurrection eligibility/window/cost, body/soul requirements, Wounds.
+
+**Acceptance:** No unlimited healing; resurrection deterministic; death cannot be erased by ambiguous card wording.
+
+<a id="area-25"></a>
+### 25 Weapons
+
+Damage, type, properties, hands, reach, range, ammunition, reload, finesse, light, polearms, improvised weapons.
+
+**Acceptance:** All class weapon references resolve to exact weapon records/properties.
+
+<a id="area-26"></a>
+### 26 Armor/shields/defenses
+
+AC formula, armor categories, shield bonuses, penalties, DR, resistance, immunity, stacking.
+
+**Acceptance:** One defense calculation; no class/spell/item stacking contradiction.
+
+<a id="area-27"></a>
+### 27 Inventory/carrying/encumbrance
+
+Slots/weight if any, containers, hands, worn/readied gear, consumables, ammunition, loot burden.
+
+**Acceptance:** Expedition gear choices have enforceable capacity/carry rules.
+
+<a id="area-28"></a>
+### 28 Tools, consumables & item use
+
+Healing items, kits, flasks, traps, scrolls/wands if any, activation, charges, crafting interfaces.
+
+**Acceptance:** Every item action/cost/recovery is executable and cannot bypass class resource limits.
+
+<a id="area-29"></a>
+### 29 Crafting system
+
+687 total recipes / 433 public, recipe discovery, materials, tools, checks, time, failures, output, repair, salvage.
+
+**Acceptance:** Every public recipe resolves all inputs/outputs; Director recipes remain segregated; zero duplication/economy loops.
+
+<a id="area-30"></a>
+### 30 Economy
+
+Currency, prices, wages, services, loot sale, rarity, markets, repair, travel costs, crafting profitability.
+
+**Acceptance:** No infinite-money path; prices and campaign-resource costs are internally usable.
+
+<a id="area-31"></a>
+### 31 Magic items & special equipment
+
+Attunement/bonding if present, charges, identification, crafting, rarity, ownership, destruction.
+
+**Acceptance:** Every public item has complete mechanical lifecycle.
+
+<a id="area-32"></a>
+### 32 Mounts, vehicles, siege, chases
+
+If present in sources: movement, riders, passengers, vehicle HP/AC, collisions, chase timing.
+
+**Acceptance:** Either explicitly unsupported or complete enough for sourced content.
+
+<a id="area-33"></a>
+### 33 Creature stat interface
+
+AC, HP, attacks, saves, skills, movement, traits, conditions, recharge, senses, size, tags.
+
+**Acceptance:** Every public/Director creature can execute under the same combat rules.
+
+<a id="area-34"></a>
+### 34 Boss/legendary interface
+
+Boss flag, immunities, defenses, action economy, denial interaction, phases, legendary/reaction mechanics.
+
+**Acceptance:** Class/spell guards reference actual monster fields, not Director guesswork.
+
+<a id="area-35"></a>
+### 35 Summons/companions/pets
+
+Stat overrides, commands, shared damaging-action cap, persistence, healing, death, replacement.
+
+**Acceptance:** All summons obey one command/persistence contract unless explicit exception.
+
+<a id="area-36"></a>
+### 36 Encounter construction
+
+Difficulty methodology, party size/level assumptions, waves, terrain, objectives, bosses, retreats.
+
+**Acceptance:** Director can build Base/Arch/Hero encounters from explicit procedure.
+
+<a id="area-37"></a>
+### 37 Encounter procedures
+
+Start, surprise, initiative, reinforcements, morale, flee/surrender, encounter end, resource reset.
+
+**Acceptance:** “Encounter” cannot be player-farmed; start/end transitions deterministic.
+
+<a id="area-38"></a>
+### 38 Loot/reward system
+
+Currency, items, recipes, XP/milestone, materials, treasure tables, boss rewards.
+
+**Acceptance:** Rewards feed advancement/economy without invalidating campaign pacing.
+
+<a id="area-39"></a>
+### 39 Exploration/travel
+
+Distance, pace, navigation, scouting, weather, random encounters, mapping, visibility.
+
+**Acceptance:** One travel loop executes hour/day/expedition without missing checks/resources.
+
+<a id="area-40"></a>
+### 40 Expedition resources
+
+Supply, food/water, ammo, light, camp, fatigue/rest debt, pressure, encumbrance.
+
+**Acceptance:** Spells/items cannot silently erase resource gameplay; all depletion/recovery exact.
+
+<a id="area-41"></a>
+### 41 Rest/recovery
+
+Short rest, long rest, interruption, safe locations, RP/class resources, Wounds, limits.
+
+**Acceptance:** One active recovery model with class exceptions; no rest chaining.
+
+<a id="area-42"></a>
+### 42 Extraction/retreat/failure
+
+Leaving dungeon/expedition, failed objectives, pursuit, lost characters, abandoned loot, safe return.
+
+**Acceptance:** Campaign can survive failure without Director inventing consequences.
+
+<a id="area-43"></a>
+### 43 Haven/settlement loop
+
+Recovery, markets, crafting, training, contacts, faction actions, upgrades.
+
+**Acceptance:** Expedition→Haven→next expedition loop fully executable.
+
+<a id="area-44"></a>
+### 44 Downtime
+
+Crafting, training, research, healing, faction work, employment, travel, respec if allowed.
+
+**Acceptance:** Every supported downtime action has time, cost, check, output.
+
+<a id="area-45"></a>
+### 45 Social rules
+
+NPC attitude, persuasion, intimidation, deception, bargaining, reputation, social conflict.
+
+**Acceptance:** Social outcomes preserve agency and give Directors usable resolution bounds.
+
+<a id="area-46"></a>
+### 46 Languages/literacy/communication
+
+Starting languages, learning, scripts, translation, magical communication.
+
+**Acceptance:** Character creation and spell interactions share one language model.
+
+<a id="area-47"></a>
+### 47 World history & chronology
+
+Historical eras, current date, Decennium origin/cycle, key wars/events.
+
+**Acceptance:** One contradiction-audited chronology.
+
+<a id="area-48"></a>
+### 48 Geography & travel map
+
+Regions, settlements, distances, routes, hazards, borders.
+
+**Acceptance:** Locations referenced by adventures/campaign procedures exist consistently.
+
+<a id="area-49"></a>
+### 49 Factions & politics
+
+Goals, resources, relationships, ranks, reputation, conflict clocks.
+
+**Acceptance:** Director and public knowledge separated; faction behavior supports campaign play.
+
+<a id="area-50"></a>
+### 50 Religion/cosmology
+
+Gods/powers, faiths, afterlife, divine magic implications, public vs secret truth.
+
+**Acceptance:** Cleric/Paladin/Oracle lore and resurrection rules do not contradict setting truth.
+
+<a id="area-51"></a>
+### 51 Decennial cycle
+
+Exact cycle mechanics, world changes, timing, escalation, resets/non-resets.
+
+**Acceptance:** Cycle has explicit campaign procedure and interfaces with advancement/world state.
+
+<a id="area-52"></a>
+### 52 Late-game/endings
+
+Level-20 play, endgame threats, Decennium resolution, success/failure endings, postgame.
+
+**Acceptance:** Campaign has intentional terminal states rather than endless extrapolation.
+
+<a id="area-53"></a>
+### 53 Director authority & adjudication
+
+What Director decides, what rules decide, uncertainty, hidden DCs, exceptions, fiat boundaries.
+
+**Acceptance:** Players know predictable rule surface; Director knows permitted discretion.
+
+<a id="area-54"></a>
+### 54 Director secrets/data separation
+
+Secret creatures, plot truths, hidden items, encounter notes, public leakage.
+
+**Acceptance:** Automated build finds zero Director-only leakage into public package.
+
+<a id="area-55"></a>
+### 55 Adventure design procedure
+
+Hooks, objectives, encounter mix, clues, pacing, rests, rewards, failure paths, bosses.
+
+**Acceptance:** Director can author an adventure from a repeatable checklist.
+
+<a id="area-56"></a>
+### 56 Campaign design procedure
+
+Arcs, clocks, faction movement, Decennial advancement, milestones, world-state changes.
+
+**Acceptance:** Multi-session campaign can evolve mechanically without ad hoc tracking.
+
+<a id="area-57"></a>
+### 57 Random tables/procedural content
+
+Encounter tables, loot, weather, rumors, travel events if sources use them.
+
+**Acceptance:** Every public table has ranges/results and no unresolved references.
+
+<a id="area-58"></a>
+### 58 Session zero & table contract
+
+Expectations, tone, character fit, PvP, attendance, lethality, content boundaries.
+
+**Acceptance:** One concise procedure usable before play.
+
+<a id="area-59"></a>
+### 59 Accessibility
+
+Color independence, readable typography, table complexity, cognitive load, physical/digital accessibility.
+
+**Acceptance:** Core references usable without color-only cues; critical rules available in compact form.
+
+<a id="area-60"></a>
+### 60 Onboarding/quickstart
+
+First character, first turn, first encounter, spellcasting, rests, advancement.
+
+**Acceptance:** New group can complete a starter session without owner intervention.
+
+<a id="area-61"></a>
+### 61 Reference sheets/indexes
+
+Conditions, Actions, spellcasting, travel, Director procedures, class resource summaries.
+
+**Acceptance:** Every frequently queried mechanic reachable in ≤2 lookups.
+
+<a id="area-62"></a>
+### 62 Examples & worked turns
+
+Creation, combat, casting, companions, travel, crafting, death, advancement.
+
+**Acceptance:** Examples all legal under final playtest rules and validator fixtures.
+
+<a id="area-63"></a>
+### 63 Companion persistence/state parity
+
+Paper ↔ digital, HP/resources/cooldowns, summons, campaign state, save/load/migrations.
+
+**Acceptance:** Reloading/reopening cannot alter mechanical state; schema migration tested.
+
+<a id="area-64"></a>
+### 64 Data schemas/IDs/migrations
+
+Stable IDs, aliases, deprecation, source references, version migration.
+
+**Acceptance:** No duplicate canonical IDs; old saves/data can map or explicitly fail safely.
+
+<a id="area-65"></a>
+### 65 Public/Director build packaging
+
+Separate datasets, references, exports, manifests, player-only docs.
+
+**Acceptance:** Zero secret leakage; zero broken public references.
+
+<a id="area-66"></a>
+### 66 Editing consistency
+
+Terminology, capitalization, units, timing phrases, condition names, cross references.
+
+**Acceptance:** Lint pass and terminology dictionary produce zero unresolved style/mechanical ambiguities.
+
+<a id="area-67"></a>
+### 67 Layout/publication structure
+
+Book order, navigation, page references, tables, callouts, glossary, appendices.
+
+**Acceptance:** Complete playtest books generate without missing sections/references.
+
+<a id="area-68"></a>
+### 68 Legal/IP/credits/licensing
+
+Third-party assets, fonts, art, names, licenses, contributor credits.
+
+**Acceptance:** Rights/credits ledger complete; no unlicensed publication dependency.
+
+<a id="area-69"></a>
+### 69 Machine verification
+
+Source counts, acquisition, prerequisites, ranks, resources, action limits, concentration, copies, summons, public leaks.
+
+**Acceptance:** Full deterministic suite passes with reproducible failures.
+
+<a id="area-70"></a>
+### 70 Generated scenario testing
+
+Legal build generation, random turns, cross-system combinations, resource invariants.
+
+**Acceptance:** Large sampled suite finds no negative resources, illegal gates, loops, double concentration, etc..
+
+<a id="area-71"></a>
+### 71 Human rules playtest
+
+Base, Arch, Hero, mixed parties, new players, experienced players, Directors.
+
+**Acceptance:** Recorded sessions at all stages; friction and ambiguity issues dispositioned.
+
+<a id="area-72"></a>
+### 72 Human numerical/balance playtest
+
+DPR, survivability, healing, control, resource pacing, encounter difficulty, build diversity.
+
+**Acceptance:** Sufficient table evidence to make balance claims; separate from structural correctness.
+
+<a id="area-73"></a>
+### 73 Campaign-duration playtest
+
+Multi-session advancement, rests, economy, crafting, Decennial cycle, long-term state.
+
+**Acceptance:** At least one sustained campaign validates the loop rather than isolated combats.
+
+<a id="area-74"></a>
+### 74 Release candidate/errata process
+
+Version freeze, known issues, errata, migration, feedback intake.
+
+**Acceptance:** Playtest candidate versioned, reproducible, with known-issues ledger.
+

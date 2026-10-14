@@ -1,0 +1,15 @@
+# Final flow review and GitHub delivery
+
+The owner explicitly instructed on October9,2026: after the game-development work, confer with GPT to make sure everything flows correctly; after both Codex and GPT confirm that it does, push everything to https://github.com/BordelonDevOps/DecenniumDescent. The owner then instructed us to continue.
+
+This authorization persists. Do not request the same push permission again. The push is conditional on completing the authored campaign-playtest candidate and the final joint flow review. Individual bounded package approvals do not satisfy this final condition. Human playtesting, numerical balance and publication claims retain their separate evidence requirements.
+
+**Owner sequencing amendment, 9 October 2026:** cosmology review must occur **after the GitHub push** and must be handled with extreme care. The joint delivery review must explicitly carry cosmology as an owner-deferred area rather than claiming it approved or requiring its review before this push. Preserve its existing sources and visibility boundaries; record any encountered dependency for later review without revising cosmology during the current phase. All other delivery requirements remain. After a successful push and remote-commit verification, follow the [post-GitHub cosmology review](POST_GITHUB_COSMOLOGY_REVIEW.md).
+
+Before delivery, review the complete player and Director paths, character creation through Base/Arch/Hero advancement, class/feat/spell/equipment interactions, encounters and rewards, expedition/Haven progression, campaign timeline/endings, examples/onboarding and indexes. Preserve the actual final GPT discussion, any corrections and the final verified agreement. Verify the intended GitHub remote and its current history; integrate safely without force-pushing or overwriting unrelated remote work.
+
+All source information must remain preserved. Do not treat this delivery instruction as approval to delete historical material or publish credentials/private unrelated files. Include the consolidated game and its source/review provenance in the intended repository scope. Resolve actual repository/package constraints before the final push, without treating a prepared local copy as already uploaded.
+
+Status: final whole-game review and push remain pending. Current subpackage closures are recorded in the coverage ledger. No push has been performed by this checkpoint.
+
+The [11 October content-boundary audit](GITHUB_DELIVERY_CONTENT_BOUNDARIES.md) accounts for 14,509 non-asset files, existing Git history, the separate asset lab and browser proof images. It is a read-only preservation checkpoint, not the final selection manifest. Retain the 109 tracked file blobs and existing repository pointer until explicit reconciliation; preserve locally excluded material and its identities. Final assembly must reconcile the 25 working-root differences, record all included/deferred paths and refresh the manifest after remaining authoring work. Rights/credits and application audience filtering retain their own open criteria.

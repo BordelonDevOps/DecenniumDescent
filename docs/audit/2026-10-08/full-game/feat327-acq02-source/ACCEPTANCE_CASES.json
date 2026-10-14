@@ -1,0 +1,46 @@
+{
+  "addendumId": "FEAT327-ACQ-02",
+  "executionStatus": "AUTHORED_EXPECTATIONS_NOT_RUNTIME_TESTS",
+  "cases": [
+    {
+      "id": "ACQ02-T01",
+      "premise": "Warrior13; three unlocked slots; completed lawful rest-equipping; Ossified Core Advanced Vital, Echo Knuckles and Warpgrip Talons Advanced Combat; all other prerequisites met.",
+      "expected": "Legal equipment: Vital Advanced1 and Combat Advanced2. Dormancy does not change these counts. With actual Mutation Efficiency, ordinary active maximum2; without it,1. A genuine applicable temporary activation exception can exceed concurrency, not equip limits."
+    },
+    {
+      "id": "ACQ02-T02",
+      "premise": "Warrior16; Mythic Carapace and Butcherform Chassis proposed together, even dormant and in different trees.",
+      "expected": "Reject equipment: Apex total2 exceeds global1. Spare slots, dormancy and temporary activation do not legalize this loadout."
+    },
+    {
+      "id": "ACQ02-T03",
+      "premise": "Warrior20; four slots; three distinct Advanced Combat mutations proposed; Apex Form available.",
+      "expected": "Reject equipment: Combat Advanced3 exceeds per-tree2. Apex Form neither raises that cap nor equips the third mutation; slot IV unlock occurs once."
+    },
+    {
+      "id": "ACQ02-T04",
+      "premise": "Warrior16; three distinct legal Basic Vital mutations equipped; Living Fortress lawfully acquired; Mutation Efficiency operative; no overlapping temporary activation exception at pulse end.",
+      "expected": "At two active, Living Fortress provides no benefit. An actual first eligible Transcendent trigger activates all three until start of the next regular turn; its precise flanking-advantage protection applies only while all three are actually active. At pulse end, the normal2 limit and original remaining durations apply and the three-active predicate ceases. A supplied active/Transcendent boolean or feature name is not the event history."
+    },
+    {
+      "id": "ACQ02-T05",
+      "premise": "Warrior20; four distinct otherwise-eligible mutations: two Advanced Combat, one Advanced Vital and one Apex. Separate control: two Advanced Combat and two Advanced Vital, no Apex.",
+      "expected": "Both meet these equipment caps. There is no global two-Advanced ceiling, compulsory Basic slot or compulsory Apex selection. Ordinary concurrency remains separately governed."
+    },
+    {
+      "id": "ACQ02-T06",
+      "premise": "Total character level16 but Warrior8 and only two unlocked Warrior mutation slots; three Basic Vital mutations proposed for Living Fortress acquisition.",
+      "expected": "Reject the proposed three-equipped snapshot. Other class levels and Living Fortress minimum Warrior8 do not unlock slot III. Neither a free feat nor retrospective acquisition eligibility is granted."
+    },
+    {
+      "id": "ACQ02-T07",
+      "premise": "Proposed repeated same-named mutation in different slots, or relabeling one actual tree to bypass the two-Advanced ceiling.",
+      "expected": "Reject duplicate/reclassification as unsupported. Actual source-defined tree, tier, class level, prerequisites and slot history govern."
+    },
+    {
+      "id": "ACQ02-T08",
+      "premise": "Warrior16, maximumHP80, genuine encounter with progress0/BT0, storedBT cap3; four actual independently legal qualifying personal hostile-damage events of20 in separate regular rounds, no other relevant changes.",
+      "expected": "Progress20/40/60/80 crosses25/50/75/100 percent. The fourth event can trigger the first Transcendent pulse despite BT remaining3. No fourth stored BT or second pulse is granted. This is a conditional arithmetic/event expectation, not proof of actual attacks or campaign facts."
+    }
+  ]
+}

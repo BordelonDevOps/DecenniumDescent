@@ -1,0 +1,519 @@
+{
+  "class": "Soldier",
+  "engine": [
+    "A martial class with d10 Hit Die, all armor and shields, repeating crossbows, sidearms and siege tools. Dexterity governs ranged attacks; Constitution governs class DC/M and defensive techniques. No RP, ordinary spellcasting, Refrain or Dissonance engine. Names such as Divine Lockdown describe disciplined suppression; they do not grant divine magic.",
+    "Overwatch is an automatic Base engine at1. Bonus Action designate a visible15ft square within weapon range until start next regular turn. Once during that interval, spend your Reaction when a perceived enemy enters, moves inside, attacks an ally from, or reveals itself inside the zone. Make one legal ranged attack with ammunition and line of fire, normally1d8+DEX piercing. On hit choose Snare (Speed-10ft until end next turn), Bleed (1d4 at start next turn), or Push5ft (STR save negates push). Concealment still applies. Only one Overwatch zone; no extra Reaction. The optional Overwatch card upgrades this engine. At17 you may move5ft without opportunity attacks after its shot, once/round.",
+    "At5 automatically gain Palisade Deployment. Spend one carried barricade kit and an Action to erect a2-by1-tile wall in contiguous unoccupied ground within5ft. Height5ft, AC12, HP5+CON modifier minimum1, immunity psychic/poison; blocks movement and line of sight across its full height but can be climbed using10ft movement. One kit/use per encounter, two at13; a long rest with carpentry tools replenishes2 kits (carried maximum2, reusable parts have no resale value). Material is required; no conjuring. At most one intact wall, two at13. Old wall must be dismantled in1 minute before replacement beyond cap. Once per encounter an Action repairs a wall for M HP using spare parts; destruction does not refresh uses.",
+    "Palisade TierII at13 doubles wall HP and grants resistance to damage from area effects. Hold Position: while adjacent to your intact wall gain+1AC and+1saves. Brace Line: an ally immediately behind you relative to a ranged attacker, with your wall adjacent to both of you, has2 flat DR against that attacker. These bonuses do not stack with another Soldier wall; strongest flat DR applies. Full cover prevents attacks rather than granting an additional AC bonus.",
+    "Base1–2, Commander Arch3–9, then Champion/Artillerist/Tyrant Hero10–20. Palisade5 is automatic; Intercepting Shot has minimum6 and Fortify Zone9. Other cards require selection. There is no source automatic Arch capstone. At20 gain the new Final Command below, clearly a playtest addition. No spell or sustained technique may be used to obtain infinite ammunition, structures, actions or permanent healing."
+  ],
+  "workedExample": [
+    "Soldier6, DEX16, CON16, PB3, S2, M3. Carry2 barricade kits and begin with one encounter deployment available.",
+    "Turn1 Action deploy a10-by5ft wall: kits2→1, encounter uses1→0, wallHP8. Bonus Action designate Overwatch. Standing adjacent grants+1AC/+1saves.",
+    "Enemy moves inside zone; Reaction attack hits for1d8+3. Choose Snare: Speed-10ft through end of its next turn. You cannot also use Intercepting Shot before your Reaction refreshes.",
+    "Turn2 use Covering Fire: one ranged attack with its printed rider. You cannot add an ordinary Attack Action. Renew Overwatch with Bonus Action; its next shot still needs your Reaction.",
+    "If the wall is destroyed, encounter deployment stays0. An intact wall could receive its once/encounter repair for3HP. After combat a new encounter still requires a carried kit; long rest restores at most2 kits."
+  ],
+  "balanceQuestions": [
+    "Does Overwatch meaningfully influence enemy movement without deciding every turn?",
+    "Are finite barricade kits practical to track?",
+    "Do support actions compete fairly with attacking?"
+  ],
+  "cards": [
+    [
+      4191,
+      1,
+      "Passive",
+      "0",
+      "Your Overwatch zone",
+      "While known",
+      "Once/round",
+      "Increase zone to20ft square. After a qualifying enemy triggers it you may decline the shot and keep waiting until zone expires. Still only one Reaction shot and normal sight requirements."
+    ],
+    [
+      4192,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "While stationary",
+      "Continuous",
+      "Wield a repeating crossbow with a strapped shield; reloading still needs an available hand or the repeating mechanism. If you have moved0ft since start last turn gain1 flat DR. Forced movement ends the benefit."
+    ],
+    [
+      4193,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "During combat",
+      "Continuous",
+      "Gain+2 Perception and initiative. Does not reveal unseen creatures automatically or allow attacks without line of fire."
+    ],
+    [
+      4194,
+      1,
+      "Passive",
+      "0",
+      "Self adjacent to solid terrain or your cover",
+      "While positioned",
+      "Continuous",
+      "Gain+1AC. Does not stack with Hold Position or another copy of this feature; full cover follows ordinary rules."
+    ],
+    [
+      4195,
+      1,
+      "Passive",
+      "0",
+      "Your ranged attacks",
+      "While known",
+      "Continuous",
+      "Ignore the AC bonus from half cover. Three-quarter and full cover still apply; this is not permission to shoot through allies or walls."
+    ],
+    [
+      4198,
+      1,
+      "Action",
+      "One ammunition",
+      "One enemy within weapon range",
+      "Until start next turn",
+      "Recharge2",
+      "Make one ranged weapon attack. On hit normal damage and target has-2 on its next attack against an ally other than you. Further Covering Fire replaces rather than stacks this penalty."
+    ],
+    [
+      4199,
+      1,
+      "Action",
+      "1 encounter use",
+      "One5ft square within5ft",
+      "3 rounds or destroyed",
+      "1/encounter",
+      "Place low cover from carried field supplies: AC12, HP5, grants half cover and is difficult terrain. It is not a full palisade and does not grant its bonuses. One at a time; no transferable saleable material."
+    ],
+    [
+      4200,
+      1,
+      "Action",
+      "One ammunition",
+      "One visible enemy within60ft",
+      "Until end next target turn",
+      "Recharge2",
+      "Make a ranged attack; on hit deal weapon die only and impose disadvantage on its next attack. Does not force it to attack or expend an action."
+    ],
+    [
+      4201,
+      1,
+      "Bonus Action",
+      "0",
+      "Self",
+      "Immediate movement",
+      "Recharge2",
+      "Move up to half Speed without opportunity attacks. Requires an open route; no teleporting, escaping restraints or attacks."
+    ],
+    [
+      4202,
+      1,
+      "Bonus Action",
+      "1 short-rest use",
+      "Up to3 allies within15ft who hear you",
+      "Until start next turn",
+      "1/short rest",
+      "Each gains M temporary HP and+1 on the next saving throw before duration ends. Temporary HP follows strongest-only rule and is lost at encounter end."
+    ],
+    [
+      4208,
+      3,
+      "Triggered",
+      "0",
+      "One willing ally adjacent",
+      "Immediate movement",
+      "Once/round on your turn",
+      "After you take an Action, ally may move5ft without opportunity attacks. No extra action, attack, teleport or movement through blocked spaces."
+    ],
+    [
+      4209,
+      3,
+      "Passive",
+      "0",
+      "Self and adjacent allies",
+      "While conscious and adjacent",
+      "Continuous",
+      "Enemies gain no flanking bonus from surrounding protected creatures. Other sources of advantage and cover remain; allies need not spend reactions."
+    ],
+    [
+      4210,
+      3,
+      "Passive",
+      "0",
+      "Up to3 allies within15ft who hear you",
+      "While conscious",
+      "Continuous",
+      "Gain+1AC and+1saves against Frightened. This AC bonus does not stack with other Soldier formation/aura AC bonuses; use highest."
+    ],
+    [
+      4211,
+      5,
+      "Action",
+      "One kit; one encounter deployment",
+      "Adjacent10-by5ft ground",
+      "Until destroyed/dismantled",
+      "1/encounter;2 at13",
+      "Automatic engine, not a selected skill. Build the palisade with the exact statistics, kit and repair rules in the class engine. Source minimum5 retained."
+    ],
+    [
+      4212,
+      6,
+      "Reaction",
+      "One ammunition",
+      "Attacker within25ft that you perceive",
+      "One attack",
+      "Once/round",
+      "When it hits an ally within25ft, attack it before damage. On your hit reduce triggering damage by S+M, minimum0. Your shot deals weapon die only. Does not undo a hit or block an area effect against everyone."
+    ],
+    [
+      4213,
+      9,
+      "Action",
+      "1 short-rest use",
+      "Visible15ft square within30ft",
+      "3 rounds",
+      "1/short rest",
+      "Designate fortified firing lanes. Ranged attacks against up to3 allies inside take-2 to hit while you remain conscious within30ft. Does not affect saves, melee attacks or attacks from inside zone."
+    ],
+    [
+      4216,
+      3,
+      "Bonus Action",
+      "0",
+      "One visible enemy within60ft",
+      "Until end next turn",
+      "Recharge3",
+      "Learn its current armor category and whether it has cover. Choose one ally: their next attack against it gains+1 to hit. No hidden statistics, mind-reading or vulnerability invention."
+    ],
+    [
+      4217,
+      3,
+      "Action",
+      "1 short-rest use",
+      "One willing ally within30ft who hears you",
+      "Immediate",
+      "1/short rest",
+      "Ally spends Reaction to move up to half Speed and make one weapon attack. This is one granted attack, not a full Attack Action; no Extra Attack. For cap purposes this granted move plus one weapon attack counts as the ally’s one additional full Action for the round; it still permits only one weapon attack and never Extra Attack."
+    ],
+    [
+      4218,
+      3,
+      "Action",
+      "Three ammunition",
+      "15ft square within weapon range",
+      "Until start next turn",
+      "Recharge3",
+      "Up to3 perceived enemies in zone make DEX save. Failure: S d6 piercing and Speed-10ft through end next turn; success half damage, no slow. Cannot shoot through full cover. No attack rolls or on-hit procs."
+    ],
+    [
+      4219,
+      3,
+      "Bonus Action",
+      "1 encounter use",
+      "Up to3 willing allies within15ft",
+      "Until start next turn",
+      "1/encounter",
+      "Each may shift5ft without opportunity attacks and gains1 flat DR while adjacent to another affected ally. Uses strongest DR, not an additive stack."
+    ],
+    [
+      4220,
+      3,
+      "Reaction",
+      "1 short-rest use",
+      "One enemy entering your melee reach",
+      "Until end its turn",
+      "1/short rest",
+      "Make one melee weapon attack. On hit normal damage and STR save or Speed0. This is soft movement control; teleportation and forced movement remain possible."
+    ],
+    [
+      4229,
+      10,
+      "Passive",
+      "0",
+      "Allies within10ft",
+      "While conscious",
+      "Continuous",
+      "Advantage on saves against Frightened or Charmed. Does not end existing effects automatically or grant immunity to all mental effects."
+    ],
+    [
+      4230,
+      10,
+      "Reaction",
+      "0",
+      "One adjacent ally taking direct weapon damage",
+      "One hit",
+      "Once/round",
+      "Redirect up to S+M of that damage to yourself. Redirected damage cannot be reduced, redirected again or trigger retaliation. The ally takes the rest after its own mitigation."
+    ],
+    [
+      4231,
+      10,
+      "Passive",
+      "0",
+      "Allies within15ft who hear you",
+      "While conscious",
+      "Continuous",
+      "Gain+2 on saves against fear and checks to rally a routed formation. No generic bonus to all saves or attacks; does not stack with Iron Orders fear bonus."
+    ],
+    [
+      4232,
+      10,
+      "Passive",
+      "0",
+      "Self using a shield",
+      "While conscious",
+      "Continuous",
+      "Gain2 flat DR against weapon damage. Use strongest DR; does not stack with Shield Trained, wall protection or Wall of Aegis."
+    ],
+    [
+      4235,
+      10,
+      "Reaction",
+      "1 short-rest use",
+      "One ally within15ft hit by attack",
+      "Immediate",
+      "1/short rest",
+      "Move up to15ft along open ground to adjacent ally without opportunity attacks; reduce that hit's damage by2S+M. Cannot act while restrained or incapacitated. Does not transfer target or negate unrelated riders."
+    ],
+    [
+      4236,
+      12,
+      "Action",
+      "1 encounter use",
+      "Up to3 enemies within15ft",
+      "Until end next target turn",
+      "1/encounter",
+      "STR save each; failure Speed0 and cannot take Reactions. Success Speed-10ft only. This is physical suppression; teleport remains possible. No damage or additional free attacks."
+    ],
+    [
+      4237,
+      14,
+      "Bonus Action",
+      "1 short-rest use",
+      "Self and up to3 adjacent allies",
+      "Until start of your second next turn",
+      "1/short rest",
+      "Gain2 flat DR against all damage except psychic. Use strongest reduction once per damage packet; does not stack with other flat DR."
+    ],
+    [
+      4238,
+      10,
+      "Bonus Action",
+      "1 long-rest use",
+      "Up to3 allies within30ft who hear you",
+      "Instant; tempHP to encounter end",
+      "1/long rest",
+      "End Frightened on each and grant S+M temporary HP. Cannot revive, heal real HP or repeatedly refresh from imitation/copies."
+    ],
+    [
+      4239,
+      16,
+      "Reaction",
+      "1 long-rest use",
+      "One adjacent ally that would reach0HP from damage",
+      "One hit",
+      "1/long rest",
+      "Reduce damage by up to your current HP minus1, taking that amount as unmitigable damage yourself. Ally takes remainder. Cannot make either creature's HP negative, erase massive-damage rules or transfer the cost again."
+    ],
+    [
+      4245,
+      10,
+      "Passive",
+      "0",
+      "Your Overwatch zone",
+      "While known",
+      "Continuous",
+      "A hidden enemy that attacks or moves inside must roll Stealth against your passive Perception; failure reveals its space until turn end. Invisibility still imposes its normal attack penalty. Total cover blocks detection and firing."
+    ],
+    [
+      4246,
+      10,
+      "Triggered",
+      "0",
+      "One wielded crossbow",
+      "Own turn",
+      "Once/turn",
+      "Reload its ordinary magazine without an action, consuming carried ammunition. No infinite ammunition or additional shots; incompatible with ammunition you cannot physically load."
+    ],
+    [
+      4247,
+      10,
+      "Passive",
+      "0",
+      "Your ranged weapon attack while adjacent to palisade",
+      "One hit",
+      "Once/own turn",
+      "Add S damage. Does not apply to every shot, area save or turret hit, and requires an intact wall you deployed."
+    ],
+    [
+      4248,
+      10,
+      "Passive",
+      "0",
+      "Your constructed barriers and turrets",
+      "While present",
+      "Continuous",
+      "Increase maximum and initial HP by M. Does not heal existing damaged structures when learned or moved; repairing remains finite."
+    ],
+    [
+      4251,
+      10,
+      "Action",
+      "One net cartridge;1 encounter use",
+      "One enemy within30ft",
+      "Until escaped; at most3 rounds",
+      "1/encounter",
+      "Ranged weapon attack; on hit S d4 bludgeoning and Restrained. Target or adjacent ally may use Action STR/Athletics against your DC to end, or destroy net AC10 HP5. Huge or larger targets instead lose10ft Speed. No automatic unsaveable imprisonment."
+    ],
+    [
+      4252,
+      10,
+      "Action",
+      "Three ammunition",
+      "15ft cone",
+      "Until end next target turn",
+      "Recharge3",
+      "Up to3 enemies DEX save, S d6 piercing on failure, half success. Failure also-1attack rolls for duration. This save technique has no critical hits or weapon-hit riders."
+    ],
+    [
+      4253,
+      12,
+      "Reaction",
+      "One ammunition; one charge",
+      "Enemy within30ft moving toward you",
+      "Immediate",
+      "2/short rest",
+      "Ranged attack; on hit weapon die damage and STR save or pushed10ft away. No pushing through walls or into occupied squares; it can continue remaining movement afterward."
+    ],
+    [
+      4254,
+      14,
+      "Action",
+      "1 short-rest use",
+      "Up to2 empty squares within10ft",
+      "3 rounds",
+      "1/short rest",
+      "Deploy2 turrets, each AC12+PB and HP2L, immobile, range60ft. On your Bonus Action command ONE turret to attack using PB+DEX for1d6+M piercing. Both share that single command/attack budget with other companions; no autonomous shots. Reclaimed after use, no resale."
+    ],
+    [
+      4255,
+      16,
+      "Action",
+      "1 long-rest use",
+      "15ft square centered within15ft",
+      "Until start of your second next turn",
+      "1/long rest",
+      "Deploy dense layered cover. Up to3 allies inside gain+2AC against spell attacks and advantage on DEX saves against spells from outside. Once total, Reaction reduce spell damage to one protected ally by2S+M. Does not negate a spell, block internal casting or protect each ally independently."
+    ],
+    [
+      4261,
+      10,
+      "Passive",
+      "0",
+      "Enemies within10ft that perceive you",
+      "While conscious",
+      "Continuous",
+      "They take-1 on saves against your Frightened effects. Never alters immunity or stacks multiple Tyrant penalties."
+    ],
+    [
+      4262,
+      10,
+      "Triggered",
+      "0",
+      "One enemy you hit with a weapon on successive regular turns",
+      "One hit",
+      "Once/own turn",
+      "Second and later consecutive-turn hits against same enemy add S damage. Missing all attacks or changing target ends chain. Bonus never grows beyond S and excludes Overwatch/turrets/copies."
+    ],
+    [
+      4263,
+      10,
+      "Bonus Action",
+      "0",
+      "One visible enemy within60ft",
+      "Until start next turn",
+      "Recharge2",
+      "Mark foe. It takes-1saves against your class effects and deals1 less damage on its first hit against an ally other than you. One mark; penalty does not stack with Intimidating Presence."
+    ],
+    [
+      4264,
+      10,
+      "Passive",
+      "0",
+      "Your weapon attacks",
+      "Own turn",
+      "Once/turn",
+      "Gain advantage on one attack against a flanked enemy or enemy in difficult terrain. Terrain must actually impede it; creating harmless decoration does not qualify."
+    ],
+    [
+      4267,
+      10,
+      "Action",
+      "1 encounter use",
+      "Up to3 enemies within30ft that hear you",
+      "Until end next target turn",
+      "1/encounter",
+      "WIS save; failure has disadvantage on attacks against allies other than you while it can perceive you. It may move, cast nonattack spells or decline attacks; no compelled suicide or removed Action."
+    ],
+    [
+      4268,
+      10,
+      "Action",
+      "Two ammunition",
+      "20ft line, up to2 enemies",
+      "Until end next target turn",
+      "Recharge3",
+      "Make one ranged attack against each, normal weapon damage. If both hit, both lose Reactions for duration. If only one target exists, no double attack against it and no reaction rider."
+    ],
+    [
+      4269,
+      14,
+      "Action",
+      "1 short-rest use",
+      "15ft square within60ft",
+      "3 rounds",
+      "1/short rest",
+      "Designate zone. First time each round one enemy tries to leave, Reaction weapon attack; on hit normal damage and STR save or movement ends at boundary for current turn. Teleport/forced movement works. One shot across all targets, no impassable magical wall."
+    ],
+    [
+      4270,
+      12,
+      "Action",
+      "One ammunition;1 encounter use",
+      "Visible enemy within range; up to2 allies of it within10ft",
+      "Until end next target turn",
+      "1/encounter",
+      "Weapon attack normal damage. On hit secondary enemies WIS save or disadvantage on next attack. Director need not designate a privileged leader; source leadership fiction represented by visible example."
+    ],
+    [
+      4271,
+      16,
+      "Action",
+      "One ammunition;1 short-rest use",
+      "One enemy below halfHP in weapon range",
+      "Until end next target turn",
+      "1/short rest",
+      "Weapon attack; on hit add2S d6 damage. Up to2 enemies within10ft of victim WIS save or Frightened of you for duration. No automatic death threshold or fear through immunity."
+    ]
+  ],
+  "extraCards": [
+    {
+      "name": "Final Command",
+      "level": 20,
+      "activation": "Bonus Action",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "Self and up to3 willing allies within30ft who hear you",
+      "duration": "Until start next turn",
+      "frequency": "1/long rest",
+      "effect": "New Hero capstone. Allies may each move10ft without opportunity attacks and gain S+M temporary HP. You refresh one expended short-rest Soldier card, excluding Final Command and long-rest features. A refreshed card still costs its activation and ammunition; no extra turn or recursive resets.",
+      "acquisition": "automatic",
+      "band": "Hero"
+    }
+  ],
+  "reviewStatus": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

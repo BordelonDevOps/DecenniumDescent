@@ -1,0 +1,26 @@
+[
+  {
+    "command": "python tools/validate_magic_system.py",
+    "returncode": 0,
+    "stdout": "PASS spells=848 placements=936 varied_acquisition=619 classes=17\n",
+    "stderr": ""
+  },
+  {
+    "command": "node --no-warnings tools/validate_class_abilities.mjs",
+    "returncode": 0,
+    "stdout": "PASS classes=17 core=17 feats=335 oaths=10 mysteries=10 curses=10\n",
+    "stderr": ""
+  },
+  {
+    "command": "python tools/validate_public_canon.py",
+    "returncode": 1,
+    "stdout": "FAIL public-canon-boundary\nfloor-encounters.json invalid: 'charmap' codec can't decode byte 0x9d in position 1373: character maps to <undefined>\nbestiary_data_full.json invalid: 'charmap' codec can't decode byte 0x9d in position 170921: character maps to <undefined>\n",
+    "stderr": ""
+  },
+  {
+    "command": "python tools/validate_gameplay_loop.py",
+    "returncode": 0,
+    "stdout": "Gameplay loop validation: PASS \u00e2\u20ac\u201d complete preparation \u00e2\u2020\u2019 descent \u00e2\u2020\u2019 extraction \u00e2\u2020\u2019 Haven \u00e2\u2020\u2019 seasonal loop\n",
+    "stderr": ""
+  }
+]

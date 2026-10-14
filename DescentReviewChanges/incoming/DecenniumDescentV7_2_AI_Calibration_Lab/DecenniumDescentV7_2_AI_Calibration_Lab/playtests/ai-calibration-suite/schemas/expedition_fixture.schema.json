@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Expedition State Fixture",
+  "type": "object",
+  "required": [
+    "id",
+    "party",
+    "route",
+    "supply",
+    "pressure",
+    "strain",
+    "cargo",
+    "abortConditions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "party": {
+      "type": "array"
+    },
+    "route": {
+      "type": "object"
+    },
+    "supply": {
+      "type": "number"
+    },
+    "pressure": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "strain": {
+      "type": "object"
+    },
+    "cargo": {
+      "type": "array"
+    },
+    "abortConditions": {
+      "type": "array"
+    },
+    "sponsor": {
+      "type": "string"
+    },
+    "reputation": {
+      "type": "object"
+    }
+  }
+}

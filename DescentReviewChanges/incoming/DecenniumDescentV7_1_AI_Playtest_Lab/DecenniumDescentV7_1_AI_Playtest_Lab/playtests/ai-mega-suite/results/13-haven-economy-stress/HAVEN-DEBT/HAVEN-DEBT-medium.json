@@ -1,0 +1,31 @@
+{
+  "pack": "13-haven-economy-stress",
+  "scenarioId": "HAVEN-DEBT",
+  "runId": "HAVEN-DEBT-medium",
+  "seed": 83100,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 5000,
+    "term": "medium",
+    "defaultRate": 0.107,
+    "meanInterestFrac": 0.2566,
+    "interestCapPerOpening": 0.1
+  },
+  "rulesHalts": [
+    {
+      "code": "DEBT-INTEREST-OVER-CAP",
+      "note": "Requested rate 0.15 exceeds debtInterestCapPerOpening 0.1; clamped."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "info",
+      "claim": "medium debt mean interest fraction 0.257; default rate 0.107",
+      "evidence": "A"
+    }
+  ],
+  "rawEvidencePath": "results/HAVEN-DEBT/HAVEN-DEBT-medium.json"
+}

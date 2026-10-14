@@ -1,0 +1,126 @@
+{
+  "pack": "07-statistical-combat-calibration",
+  "scenarioId": "MC-L1",
+  "runId": "MC-L1-70700",
+  "seed": 70700,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": "8dcd93518ef99724bc4697d1b60a94d5f41b37af2fe209ba6d57b2bafbe2160e",
+  "evidenceLevel": "A",
+  "outcome": "WARN",
+  "metrics": {
+    "cells": [
+      {
+        "level": 1,
+        "partySize": 4,
+        "difficulty": "routine",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.875,
+        "meanDowned": 0.314,
+        "meanRounds": 3.064,
+        "meanHitRate": 0.6845,
+        "meanHealing": 8.01,
+        "meanDamageDealt": 59.79,
+        "meanRpSpent": 1.22,
+        "wipeRate": 0.0,
+        "budget": 50.0
+      },
+      {
+        "level": 1,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 0.419,
+        "winRateCI95": [
+          0.3884,
+          0.4496
+        ],
+        "meanHpPct": 0.2107,
+        "meanDowned": 3.08,
+        "meanRounds": 3.448,
+        "meanHitRate": 0.6311,
+        "meanHealing": 2.42,
+        "meanDamageDealt": 44.28,
+        "meanRpSpent": 0.55,
+        "wipeRate": 0.581,
+        "budget": 90.0
+      },
+      {
+        "level": 1,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 1000,
+        "winRate": 0.074,
+        "winRateCI95": [
+          0.0578,
+          0.0902
+        ],
+        "meanHpPct": 0.0318,
+        "meanDowned": 3.834,
+        "meanRounds": 3.549,
+        "meanHitRate": 0.6224,
+        "meanHealing": 5.0,
+        "meanDamageDealt": 46.42,
+        "meanRpSpent": 0.85,
+        "wipeRate": 0.926,
+        "budget": 130.0
+      },
+      {
+        "level": 1,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 1000,
+        "winRate": 0.0,
+        "winRateCI95": [
+          0.0,
+          0.0
+        ],
+        "meanHpPct": 0.0,
+        "meanDowned": 4.0,
+        "meanRounds": 2.593,
+        "meanHitRate": 0.5868,
+        "meanHealing": 3.65,
+        "meanDamageDealt": 27.96,
+        "meanRpSpent": 0.62,
+        "wipeRate": 1.0,
+        "budget": 180.0
+      }
+    ],
+    "cellCount": 4,
+    "runsPerCell": 1000,
+    "objective": "baseline accuracy, damage, healing, and knockout rates"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "suspected",
+      "type": "standard_off_band",
+      "cell": {
+        "level": 1,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 0.419,
+        "winRateCI95": [
+          0.3884,
+          0.4496
+        ],
+        "meanHpPct": 0.2107,
+        "meanDowned": 3.08,
+        "meanRounds": 3.448,
+        "meanHitRate": 0.6311,
+        "meanHealing": 2.42,
+        "meanDamageDealt": 44.28,
+        "meanRpSpent": 0.55,
+        "wipeRate": 0.581,
+        "budget": 90.0
+      },
+      "detail": "Standard win rate outside 55\u201392% chassis expectation window."
+    }
+  ],
+  "rawEvidencePath": "results/07-statistical-combat-calibration/MC-L1/"
+}

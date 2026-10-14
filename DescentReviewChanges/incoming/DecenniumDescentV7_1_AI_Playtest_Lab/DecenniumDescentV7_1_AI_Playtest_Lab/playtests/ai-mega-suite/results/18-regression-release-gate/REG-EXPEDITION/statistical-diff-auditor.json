@@ -1,0 +1,44 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-EXPEDITION",
+  "runId": "2026-08-06T122200Z-REG-EXPEDITION",
+  "seed": 56802,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": "5ee88c27179342e018af57bb8d9436410204583d02daa52dce25c9f4e1d466a0",
+  "evidenceLevel": "A",
+  "outcome": "BASELINE_LOCKED",
+  "metrics": {
+    "baselineFile": "playtests\\ai-mega-suite\\results\\00-baseline-simulations\\expedition_baseline.csv",
+    "rows": 60,
+    "summary": {
+      "runsPerCombatFixture": 500,
+      "combatRows": 72,
+      "expeditionRows": 60,
+      "economyRows": 5,
+      "warning": "These are chassis proxies, not full class-balance evidence."
+    },
+    "dependencyPackJsonCounts": {
+      "01": 0,
+      "07": 7,
+      "11": 0,
+      "13": 0
+    },
+    "note": "No approved patch branch present; gate compares untouched V7.1 chassis baselines on disk.",
+    "expeditionRows": 60
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "REG-EXPEDITION: chassis baseline rows=60 (summary expeditionRows=60). Full pack agent results mostly absent on disk; regression uses 00-baseline + pack 16 fuzz + packs 05/17 from this run.",
+      "citation": "playtests/ai-mega-suite/results/00-baseline-simulations/expedition_baseline.csv"
+    },
+    {
+      "severity": "null",
+      "summary": "No proposed-patches/ deltas to diff; release gate is baseline integrity + validator status + usability packs completed this run.",
+      "citation": "playtests/ai-mega-suite/proposed-patches/"
+    }
+  ],
+  "rawEvidencePath": "results/00-baseline-simulations/expedition_baseline.csv",
+  "agentId": "statistical-diff-auditor"
+}

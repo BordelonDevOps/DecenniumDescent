@@ -1,0 +1,34 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-COMBAT",
+  "runId": "2026-08-06T122200Z-REG-FUZZ-DEP",
+  "seed": 56900,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "runs": 100000,
+    "seed": 71600,
+    "failureCount": 5769,
+    "failures": [],
+    "note": "Pack 16 scenario matrix executed; see per-scenario summary.json. Encoded invariants only.",
+    "scenarios": [
+      "FUZZ-ACTIONS",
+      "FUZZ-RESOURCES",
+      "FUZZ-EXPEDITION",
+      "FUZZ-HAVEN",
+      "FUZZ-SEASONAL"
+    ]
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "Pack 16 property fuzz on disk: runs=100000, failures=5769.",
+      "citation": "results/16-rules-fuzz-property-tests/property_fuzz_summary.json"
+    }
+  ],
+  "rawEvidencePath": "results/16-rules-fuzz-property-tests/property_fuzz_summary.json",
+  "agentId": "result-integrity-auditor"
+}

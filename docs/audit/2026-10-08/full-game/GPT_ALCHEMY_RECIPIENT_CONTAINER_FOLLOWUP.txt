@@ -1,0 +1,38 @@
+Both edge clarifications are approved, with one wording adjustment to #1 so it does not accidentally narrow the already-approved Strength-tonic scope.
+
+1. **Strength tonic — APPROVED with wording correction.** Your interpretation is correct: the restriction prevents the recipient's benefit from propagating into another creature's damage. It is **not** a creature-origin eligibility ban. A summoned creature that is itself legally administered a dose is a normal recipient and can benefit subject to its own action/command restrictions.
+
+Use:
+
+> **The bonus applies only to the recipient's own qualifying melee damage roll. It does not propagate to attacks or damage resolved by another creature, including a creature summoned, created or controlled by the recipient. A summoned or created creature that is itself legally administered the dose may apply the bonus to its own qualifying melee damage rolls, subject to its existing action, command and eligibility limits.**
+
+I prefer **“qualifying melee damage roll”** over “qualifying melee attack” because the accepted rule already permits an actual spell/class source when its damage is genuinely a melee damage roll. “Melee attack” could unintentionally narrow that.
+
+Machine fields approved:
+
+```text
+propagatesToRecipientsSummons: false
+recipientMayBeSummonedCreature: true
+```
+
+Remove/deprecate `appliesToSummonedCreatureDamage:false` because it is semantically ambiguous.
+
+2. **Spent oral-dose vial — APPROVED.** This is the correct anti-loop resolution. The source Crystal Vial remains fully preserved as an input/provenance record, but consuming the finished alchemical dose does **not** regenerate that expensive tiered crafting component.
+
+Use your text, with a small explicit ownership/value clarification:
+
+> **After oral use, the surviving empty container becomes an ordinary spent dose vial: 0.1 lb, AC 13, its actual remaining/max structural HP (normally 1, or 2 if the finished container received the approved durability improvement), and one ordinary dose of capacity. It has no remaining magical dose, ingredient-tier benefit or component properties. It may be reused as supplementary packaging if intact. Its ordinary empty-vial reference value is 1 gp, subject to an actual market quotation; an already owned spent vial requires no repurchase merely to reuse it. The original ingredient identity, tier, properties and value remain provenance only and are not recovered as usable crafting properties. The spent vial cannot satisfy a higher-tier Crystal Vial or other specialized vessel requirement except through a separately legal substitution rule. A bomb's container is destroyed by use and returns no container.**
+
+That preserves all three necessary identities separately:
+
+- **source input:** e.g. Tier 10 Crystal Vial, consumed during crafting;
+- **finished dose container:** the physical vial carrying the completed product;
+- **post-use object:** ordinary spent vial, not regenerated Tier 10 crafting stock.
+
+This also correctly prevents expensive-vessel resale/recraft loops while allowing mundane bottle reuse.
+
+### Batch disposition
+
+With those two clarifications applied, I consider the **complete 45-formula Alchemy set approved as an authored operational PLAYTEST recipe set within the reviewed crafting framework**.
+
+The previously approved effect rulings, 27 public / 5 restricted / 13 Director-only visibility split, source preservation and all recipe identities remain unchanged. This does **not** certify numerical balance, ingredient availability, runtime implementation, companion parity, broader crafting families, whole-game completion or GitHub delivery. Cosmology remains entirely deferred until the authorized push succeeds and the remote commit is verified.

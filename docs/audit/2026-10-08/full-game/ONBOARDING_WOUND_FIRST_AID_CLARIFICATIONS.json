@@ -1,0 +1,36 @@
+{
+  "status": "Source-confirmed teaching clarification; exact verdict pending",
+  "appliedAtUtc": "2026-10-11T05:31:47.464168+00:00",
+  "exactReviewTurnId": "89ebb4cd-5076-4984-af86-53549cf5f9c2",
+  "priorClarifications": "ONBOARDING_STANCE_REFRAIN_CLARIFICATIONS.json",
+  "preservedPreviousHashes": {
+    "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md": "01c8e3a4254cc220bf11610200891fddc79215b83456f83abd41c39ff23fcf0c",
+    "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md": "f1380c6ecb766836c7955ebbc32b5350283e3ec091cb60291e9b6b8d376f3c3d"
+  },
+  "backup": "docs/audit/2026-10-08/full-game/onboarding-before-wound-first-aid-clarification",
+  "currentManuscriptHashes": {
+    "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md": "23c59abf0e88469e441814076bf21275c91c7899132219f6194ef14307c16767",
+    "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md": "59902749cb615b09f42566add6942d185bf50c56247f906d2aa166a2374f653d"
+  },
+  "unchangedGoverningSources": {
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050"
+  },
+  "changes": [
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_PLAYER_GUIDE.md",
+      "before": "Use an Action and a DC 10 Wisdom (Medicine) check to stabilize a living dying creature, or an Action and one healer's-kit use for automatic stabilization. A Stable creature remains at zero HP and unconscious, without death saves.",
+      "after": "To stabilize a living dying creature, use an Action and a DC 10 Wisdom (Medicine) check. Alternatively, use an Action, one available hand and one charge from an actual accessible healer's kit to automatically stabilize an adjacent living dying creature, as described in [equipment procedures](../mechanics/EQUIPMENT_ITEM_PROCEDURES.md). Stabilization clears both death-save counters. A Stable creature remains at zero HP and unconscious, without death saves."
+    },
+    {
+      "file": "DescentReviewChanges/ReviewBible/docs/playtest/NEWCOMER_DIRECTOR_GUIDE.md",
+      "before": "When Instant Death does not apply, the actual positive-to-zero, half-maximum-damage or Maiming triggers require one Wound save for that damage event. Use the existing save, Injury and Critical procedures; a new Wound does not penalize its own creating save. The next failed Wound save after already having three Wounds is fatal.",
+      "after": "When Instant Death does not apply, make one Wound save for the damage event if the creature dropped from positive HP to zero, if twice the uncapped post-temporary-HP damage is at least effective maximum HP, or if the effect actually inflicts Maiming. Overlapping triggers still require only one save. Roll Constitution against **DC max(10, floor(post-temporary-HP damage / 2))**, applying the -1 penalty for each pre-event Wound. Maiming can require this save even when temporary HP absorbs all ordinary damage; zero post-temporary-HP damage uses DC 10. A new Wound cannot penalize its own creating save. Success adds no Wound; failure starting with fewer than three adds one, with a linked Injury on failure by 5 or more. Failure when already at three Wounds is fatal instead. Apply actual prevention and survival exceptions in the complete damage order.\n\nEach Wound also reduces the normal maximum Hit Dice recovered per beneficial long rest by one, to a minimum of zero; it does not reduce the HP rolled on each Hit Die. At three Wounds, Critical reduces Speed by 10 feet, minimum zero, and ordinary healing cannot raise HP above **max(1, effective maximum HP - 1)**. This ceiling neither reduces maximum HP nor removes existing HP. Wound treatment and linked Injuries use the [Core injury procedure](../mechanics/CORE_RESOLUTION_PLAYTEST.md#wounds-and-critical-state); ordinary HP healing does not remove them."
+    }
+  ],
+  "ruleChanges": 0,
+  "newApprovals": 0,
+  "sourceInformationDeleted": 0,
+  "nextAction": "Reconcile all local clarifications with the completed exact verdict before manuscript acceptance."
+}

@@ -1,0 +1,2822 @@
+{
+  "oracle-mysteries": {
+    "ORACLE_BASE_SKILLS": [
+      "Channel Revelation — activate a Mystery Revelation (costs Revelation Charges)",
+      "Prophetic Insight — brief glimpse of possible futures; advantage on next action",
+      "Curse Manifestation — intensify Curse for benefits at increased limitations",
+      "Divine Sense — detect divine, undead, or extraplanar entities",
+      "Oracular Trance — prophetic visions related to a question or situation"
+    ],
+    "ORACLE_HERO_PROGRESSION": {
+      "tagline": "Curse Boons III–V, Mystic Insight, Final Revelation",
+      "milestones": [
+        {
+          "level": 10,
+          "feature": "Curse Boon III"
+        },
+        {
+          "level": 12,
+          "feature": "Mystic Insight — minor Revelation or passive from your Mystery"
+        },
+        {
+          "level": 15,
+          "feature": "Revelation Mastery + Curse Boon IV"
+        },
+        {
+          "level": 18,
+          "feature": "Prophetic Surge (1/day free or extended Revelation)"
+        },
+        {
+          "level": 20,
+          "feature": "Final Revelation + Curse Boon V"
+        }
+      ]
+    },
+    "ORACLE_MYSTERIES": [
+      {
+        "id": "ancestor",
+        "name": "Ancestor",
+        "theme": "Connection to ancestral spirits and legacy",
+        "patron": "Echo Court (an ancestral spirit chorus that binds lineage across time)",
+        "prophecyTrigger": "When you aid an ally who lands a critical hit, regain 1 Revelation Charge",
+        "combatRole": "Excel at supporting allies through spiritual guidance and protection, calling upon ancestral spirits to enhance the party's capabilities while providing tactical advantages.",
+        "reputation": "Often welcomed in civilized areas, their connections to positive divine forces making them valued advisors and healers.",
+        "rulebookRef": "Example Mystery: Ancestor — rulebook extract lines 75–125",
+        "level1": {
+          "name": "Ancestral Guardian",
+          "kind": "active",
+          "description": "Passive: spectral guardian grants +1 AC vs first attack each round and +5% resistance to mind-affecting effects. Once per long rest, intercept a single-target attack against an ally within 3 tiles (guardian takes the hit and vanishes until long rest)."
+        },
+        "tierI": [
+          {
+            "name": "Echo Voice",
+            "charges": 1,
+            "kind": "active",
+            "description": "Passive: telepathy with allies within 5 tiles. Active: spend 1 charge to let an ally repeat their last failed roll (attack, save, or skill) with +2."
+          },
+          {
+            "name": "Ancestral Strike",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge to channel a warrior ancestor. Next weapon or touch attack deals +50% bonus weapon damage and stuns on crit."
+          },
+          {
+            "name": "Bloodline Sight",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge to reveal all undead, invisible, or ethereal creatures within 6 tiles for 2 rounds; they cannot benefit from concealment or stealth."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Spirit Walk",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: leave your body for 1 turn — intangible, move through walls/creatures, cannot be targeted, may cast a Revelation through your spirit at full range."
+          },
+          {
+            "name": "Echo Armor",
+            "kind": "passive",
+            "description": "+10% resistance to non-magical damage. Once per short rest, when reduced to 0 HP, an ancestral echo absorbs the blow and leaves you at 1 HP."
+          },
+          {
+            "name": "Ghost Chant",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges to inflict Dread on enemies within 3 tiles (−10% hit chance and saves for 2 turns)."
+          }
+        ],
+        "tierIII": {
+          "name": "Bloodline Convergence",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, +2 actions per turn (Revelation or movement only); allies within 5 tiles gain +10% crit, +5% DR, immunity to Fear; cast 1 Revelation per round at no cost. After: Exhausted (−1 action, −10% resist for 1 round)."
+        },
+        "mysticInsight": {
+          "name": "Ancestral Whispers",
+          "kind": "passive",
+          "description": "Advantage on History checks and immunity to surprise. Once per day, consult ancestors for cryptic but useful guidance."
+        },
+        "revelationMastery": [
+          "Enhanced Echo Voice: affects all allies within range simultaneously",
+          "Enhanced Spirit Walk: duration increased to 2 turns",
+          "Enhanced Bloodline Convergence: no longer causes Exhaustion"
+        ],
+        "propheticSurge": {
+          "name": "Ancestral Confluence",
+          "kind": "active",
+          "description": "Once per day, call all ancestors to cast any Revelation at no charge cost. For 1 turn after, all Revelations cost 1 fewer charge (minimum 0)."
+        },
+        "finalRevelation": {
+          "name": "Echo Crowned",
+          "kind": "active",
+          "description": "Maintain 3 passive ancestral spirits (offense, defense, utility). Once per day, cast any Revelation twice in one turn using different Echoes. Sacrifice an Echo to prevent a party member's death or restore all Revelation Charges."
+        },
+        "source": "rulebook — Example Mystery: Ancestor (only full tier tree in player rulebook)"
+      },
+      {
+        "id": "battle",
+        "name": "Battle",
+        "theme": "The hard counsel of the battle line: courage held for others, command under fire, and fury made answerable to the living",
+        "combatRole": "Hold the line where it is breaking, turn a companion's opening into a shared advantage, and spend divine fury to keep the company moving rather than to chase glory.",
+        "reputation": "Earn respect among those who have stood beside them and caution among those who have seen a battle-oath carried too far; their conduct is judged by whom they bring home.",
+        "rulebookRef": "Mysteries list line 23; Combat Strategy line 152",
+        "patron": "War Chorus (fallen champions of the Tenfold Cycles who speak through banner, blood, and battle-oaths)",
+        "prophecyTrigger": "When you or an ally drops an enemy to 0 HP, regain 1 Revelation Charge",
+        "level1": {
+          "name": "Omen of the Host",
+          "kind": "active",
+          "description": "Passive: you gain +1 to hit on your first attack each round, +5% resistance to fear, and cannot be surprised while conscious. Once per short rest, whisper a battle-oath to an ally within 3 tiles — they gain +2 initiative, advantage on their next attack, and +5% DR until the start of your next turn."
+        },
+        "tierI": [
+          {
+            "name": "Vanguard's Step",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: you and one ally within 3 tiles may immediately move up to 2 tiles without provoking attacks; the ally gains +5% DR until start of your next turn and you both have advantage on opportunity attacks made before end of turn."
+          },
+          {
+            "name": "Host's Cry",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: allies within 4 tiles gain +10% weapon damage and +5% DR for 2 rounds as the War Chorus roars through you; the first ally to drop an enemy while the cry persists regains 1d6 HP and you regain 1 Revelation Charge (once per cry)."
+          },
+          {
+            "name": "Mark of the Doomed",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: mark one enemy you can see for 2 rounds — you and allies within 5 tiles gain +2 to hit and +10% crit chance against them; the first attack that crits the mark deals +1d6 bonus damage and the marked target cannot benefit from concealment until the mark fades."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Divine Fury",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: for 2 rounds, your weapon and touch attacks deal +50% bonus weapon damage and ignore 5% DR; the War Chorus roars through each strike — on a critical hit, the target must save or suffer Fear (−10% hit) until end of next turn, and your second attack during the fury may be made as a bonus action if the first hit."
+          },
+          {
+            "name": "Field Command",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: one ally within 5 tiles may immediately take a reaction to attack, move, or activate a class feature; the War Chorus marks them with command — they gain +10% damage on that action, +5% DR until start of your next turn, and you may grant a second ally within 5 tiles a free 1-tile reposition without provoking before the command resolves."
+          },
+          {
+            "name": "Relentless Strike",
+            "kind": "passive",
+            "description": "Passive: when you miss with an attack, the War Chorus steels your next strike — gain +5% hit chance (stacks once) and +10% weapon damage if that attack hits. On a critical hit, regain 1 Revelation Charge (once per round) and the target must save or suffer Fear (−10% hit) until end of next turn."
+          }
+        ],
+        "tierIII": {
+          "name": "Fury of the Host",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, allies within 5 tiles gain +1 action per turn (attack or move only), +10% crit chance, and +5% DR as the War Chorus banners them — you gain +2 AC and immunity to Fear; once per round you may cast one Tier I Battle Revelation at no cost, and the first ally to drop an enemy each round regains 1d6 HP. After: Exhausted (−1 action, −10% resist for 1 round)."
+        },
+        "mysticInsight": {
+          "name": "Battle-Seer's Eye",
+          "kind": "passive",
+          "description": "Advantage on Perception and Initiative. Once per day, foretell an enemy's opening strike — you and one ally gain +2 AC against that enemy's next attack."
+        },
+        "revelationMastery": [
+          "Enhanced Host's Cry: bonus damage and DR extend to all allies within 6 tiles",
+          "Enhanced Divine Fury: affects a third attack",
+          "Enhanced Fury of the Host: no longer causes Exhaustion"
+        ],
+        "propheticSurge": {
+          "name": "War Prophecy",
+          "kind": "active",
+          "description": "Once per day, the War Chorus speaks through you — cast any Battle Revelation at no charge cost. For 1 round after, allies within 5 tiles gain +5% DR and +10% weapon damage as the host's banners flare; your next Tier I Revelation this encounter costs 0 charges."
+        },
+        "finalRevelation": {
+          "name": "Avatar of the War Chorus",
+          "kind": "active",
+          "description": "Once per day, manifest three War Chorus banners (offense, defense, rally) around you for 3 rounds: +2 AC, +2 attacks per turn, and all Tier I Revelations cost 0 charges. Allies within 5 tiles gain +5% DR and +10% weapon damage as the host answers; sacrifice a banner to prevent a party member's death or restore all Revelation Charges. When the banners fall, restore 2 Revelation Charges."
+        },
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "bones",
+        "name": "Bones",
+        "theme": "The unfinished account of death: decay faced without ornament, the rest owed to the fallen, and power borrowed only from what cannot speak for itself",
+        "combatRole": "Read the cost written in bone and breath, deny the enemy easy return, and use the dead's lingering force to shelter the living without mistaking command for ownership.",
+        "reputation": "Met with unease, especially near graves and battlefields; those who travel with them learn to watch whether their care for the dead matches the power they wield.",
+        "rulebookRef": "Mysteries list line 24; Combat Strategy line 153",
+        "patron": "Pale Ledger (a chorus of unfinished deaths bound since the Binding of the Old God)",
+        "prophecyTrigger": "When an undead creature or a dying foe within 5 tiles perishes, regain 1 Revelation Charge",
+        "level1": {
+          "name": "Grave Attendant",
+          "kind": "active",
+          "description": "Passive: undead within 3 tiles treat you as neutral unless attacked, and you gain +5% resistance to necrotic damage. Once per long rest, animate one corpse within 2 tiles as a skeletal servant (1 HP, 1 attack) for 3 rounds — it intercepts the next single-target hit meant for you before crumbling."
+        },
+        "tierI": [
+          {
+            "name": "Bone Whisper",
+            "charges": 1,
+            "kind": "active",
+            "description": "Passive: speak with corpses and recent dead as if under Speak with Dead. Active: spend 1 charge to learn one hidden truth a corpse witnessed before death; undead within 2 tiles must save or become unable to act until end of your next turn as the Pale Ledger speaks through the bones."
+          },
+          {
+            "name": "Marrow Drain",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: touch attack deals 2d6 necrotic damage and you heal for half damage dealt; undead targets take +50% damage and cannot regain HP until end of your next turn as the Pale Ledger tallies their debt."
+          },
+          {
+            "name": "Ashen Shroud",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: cloak yourself in grave-dust for 2 rounds — +10% DR vs non-magical damage, +5% necrotic resistance, and enemies within 2 tiles suffer −10% hit chance and −10% saves vs fear; when the shroud ends, corpses within 2 tiles cannot be raised as undead for 1 hour."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Ledger's Command",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: command up to 2 undead within 4 tiles for 2 rounds — each may attack once per round using your Revelation with +10% damage; commanded undead gain +5% DR and one may intercept the next single-target hit meant for you before crumbling (once per command)."
+          },
+          {
+            "name": "Rotting Touch",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: touch attack inflicts Decay — target takes +25% damage from all sources and −10% saves for 3 rounds; the Pale Ledger tallies their rot — on a failed save they also cannot regain HP and corpses within 2 tiles of them cannot be raised as undead until Decay ends; if the target is undead, they take 2d6 necrotic immediately and you heal half."
+          },
+          {
+            "name": "Death's Threshold",
+            "kind": "passive",
+            "description": "When reduced below 25% HP, gain +10% necrotic resistance, +5% DR vs non-magical damage, and +1 to Revelation saves until healed above half HP (once per short rest) — the Pale Ledger marks you as owed, not finished; undead within 3 tiles hesitate to target you (−10% hit on their first attack each round while below threshold)."
+          }
+        ],
+        "tierIII": {
+          "name": "Unfinished Chorus",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, all enemies within 4 tiles suffer Dread (−10% hit/saves) as the Pale Ledger sings their unfinished deaths — once per round drain 1d6 HP from one target (heal half or redirect half to an ally within 3 tiles); undead you control gain +10% damage and +5% DR, and corpses within 4 tiles cannot be raised as undead until the chorus ends. After: Exhausted (−1 action, −10% necrotic resist for 1 round)."
+        },
+        "mysticInsight": {
+          "name": "Ledger's Memory",
+          "kind": "passive",
+          "description": "Advantage on checks to identify undead, poison, and disease. Once per day, consult the Pale Ledger for the name and cause of death of any corpse you touch."
+        },
+        "revelationMastery": [
+          "Enhanced Marrow Drain: also slows target movement by 1 tile",
+          "Enhanced Ledger's Command: affects 3 undead",
+          "Enhanced Unfinished Chorus: you may redirect drained HP to an ally within 3 tiles"
+        ],
+        "propheticSurge": {
+          "name": "Death's Prophecy",
+          "kind": "active",
+          "description": "Once per day, cast any Bones Revelation at no cost. For 1 round, you and allies within 3 tiles gain +10% DR vs necrotic."
+        },
+        "finalRevelation": {
+          "name": "Ledger Unbound",
+          "kind": "active",
+          "description": "Once per day, open the Pale Ledger across the battlefield — all enemies within 5 tiles must save or suffer 25% max HP necrotic damage as unfinished deaths are tallied; you may raise up to 3 fallen corpses as loyal bone servants for 3 rounds (each may attack once per round and intercept one hit meant for you). Undead you control during the effect gain +10% damage and +5% DR."
+        },
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "cataclysm",
+        "name": "Cataclysm",
+        "theme": "Destruction, upheaval, and the perilous mercy of breaking what cannot endure",
+        "combatRole": "Turn the battlefield's fractures into an advantage, bringing down positions that cannot hold while opening a hard-won path for allies through earthquake, storm, and fire.",
+        "reputation": "Frequently met with fear or guarded respect: a Cataclysm oracle is remembered for the wall they broke, and for what stood behind it.",
+        "rulebookRef": "Mysteries list line 25; Combat Strategy line 154",
+        "patron": "Shattered Seal (the wound left when the Old God was bound in the Descent's deepest tier)",
+        "prophecyTrigger": "When you deal area damage to 2 or more enemies with a Revelation, regain 1 Revelation Charge",
+        "level1": {
+          "name": "Tremor Sense",
+          "kind": "active",
+          "description": "Passive: detect structural instability and hidden passages within 3 tiles, and +5% resistance to bludgeoning damage. Once per short rest, cause a minor tremor — enemies within 2 tiles must save or fall prone; on success they still suffer −1 movement until your next turn."
+        },
+        "tierI": [
+          {
+            "name": "Shardburst",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: erupt stone shards in a 2-tile burst centered on a point within 4 tiles — enemies take 1d6 bludgeoning and suffer −1 movement for 1 round; on a failed save they also fall prone if adjacent to a wall or rubble."
+          },
+          {
+            "name": "Gale of Unmaking",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: unleash a 4-tile line of forceful wind — enemies in the path take 1d6 bludgeoning, are pushed 1 tile, and suffer −1 movement until your next turn; mundane flames are extinguished and loose debris becomes difficult terrain for 1 round."
+          },
+          {
+            "name": "Fault Line",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: erupt a 3-tile line of cracked earth for 3 rounds — difficult terrain; enemies entering or starting turn there take 1d4 bludgeoning and must save or fall prone if adjacent to a wall; structures along the line may develop cracks (DM discretion)."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Upheaval",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: erupt a 3-tile burst earthquake — enemies save or fall prone and take 2d6 bludgeoning damage; structures may crack (DM discretion); allies in the burst are immune to prone and gain +5% DR until start of your next turn as the Shattered Seal's tremor passes through them."
+          },
+          {
+            "name": "Storm Crown",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: crown yourself in the Shattered Seal's storm for 2 rounds — at start of each of your turns, enemies within 3 tiles take 2d6 lightning or thunder damage (your choice) and must save or suffer −10% hit until end of turn; allies in the storm gain +5% DR vs ranged attacks and cannot be knocked prone by weather."
+          },
+          {
+            "name": "Instability",
+            "kind": "passive",
+            "description": "Passive: when you take damage from an enemy, you may spend 1 charge as a reaction to fracture the Shattered Seal's wound — deal half that damage back as force in a 1-tile burst (once per round); enemies in the burst must save or fall prone, and allies in the burst gain +5% DR until start of your next turn as the tremor passes through them."
+          }
+        ],
+        "tierIII": {
+          "name": "Seal's Fracture",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, once per turn create a 4-tile cataclysm zone (earthquake, storm, or fire — choose when cast) as the Shattered Seal weeps — enemies inside take 2d6 damage each round and suffer −10% saves; allies inside gain +5% DR and cannot be knocked prone by the zone; difficult terrain spreads 1 tile outward each round and structures inside may crack (DM discretion). After: Exhausted (−1 action, −10% resist for 1 round)."
+        },
+        "mysticInsight": {
+          "name": "Wound of Creation",
+          "kind": "passive",
+          "description": "Advantage on checks involving geology, storms, or the Descent's unstable floors. Once per day, sense the nearest structural weak point within 10 tiles."
+        },
+        "revelationMastery": [
+          "Enhanced Shardburst: radius +1 tile",
+          "Enhanced Upheaval: allies in burst are immune to prone",
+          "Enhanced Seal's Fracture: duration increased to 3 turns"
+        ],
+        "propheticSurge": {
+          "name": "Cataclysm Prophecy",
+          "kind": "active",
+          "description": "Once per day, the Shattered Seal weeps through you — cast any Cataclysm Revelation at no charge cost. For 1 round after, the next area effect you create this encounter deals +25% damage and enemies inside must save or fall prone; structures in the zone may crack (DM discretion)."
+        },
+        "finalRevelation": {
+          "name": "The Unbound Wound",
+          "kind": "active",
+          "description": "Once per day, tear open a fragment of the Shattered Seal and let its buried violence answer — create a 5-tile cataclysm for 3 rounds, dealing heavy mixed damage each round. You gain immunity to force and bludgeoning for the duration. After: Exhausted for 1 round."
+        },
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "dream",
+        "name": "Dream",
+        "theme": "Illusion, waking unreality, and the shaping of perception",
+        "combatRole": "Bend a contested moment toward doubt and misdirection, sheltering allies behind false certainty while foes struggle to trust what they see.",
+        "reputation": "Met with equal fascination and reserve; a Dream oracle's counsel is valued, though few welcome a vision that unsettles an easy answer.",
+        "rulebookRef": "Mysteries list line 26; Combat Strategy line 155",
+        "patron": "Veiled Threshold (dreamers who walk between waking prophecy and the Hush beneath the First Song)",
+        "prophecyTrigger": "When you impose a condition or illusion on an enemy, regain 1 Revelation Charge (once per round)",
+        "level1": {
+          "name": "Dreamer's Veil",
+          "kind": "active",
+          "description": "Passive: +5% resistance to charm and illusion, and advantage on saves vs sleep. Once per long rest, wrap an ally within 3 tiles in a waking dream — they become invisible until they attack or 2 rounds pass; their first attack from concealment this encounter deals +25% psychic damage."
+        },
+        "tierI": [
+          {
+            "name": "Mirage",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: create an illusory duplicate within 3 tiles for 2 rounds — enemies must save to distinguish real from false when targeting you; on a failed save they strike the mirage instead, and the duplicate may move 1 tile each round without provoking as a free action."
+          },
+          {
+            "name": "Slumber Glimpse",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: one enemy within 4 tiles must save or lose their next action as they stagger through a waking dream; on a failed save they also suffer −10% initiative and cannot take reactions until the dream passes, and the next attack against them gains +2 to hit."
+          },
+          {
+            "name": "False Memory",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: one creature within 3 tiles believes a brief false event occurred (e.g. ally fled, trap sprung, you already cast) for 1 round or until disproven; on a failed save they also suffer −10% initiative and cannot take reactions until the memory is shattered, and the next attack against them gains +2 to hit."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Shared Dream",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: you and up to 2 allies within 4 tiles enter a lucid dream-state for 1 round — each may reposition up to 2 tiles without provoking and gains concealment until they act; when the dream ends, the first enemy each dreamer strikes deals +25% psychic damage as the Veiled Threshold bleeds waking into nightmare."
+          },
+          {
+            "name": "Nightmare Lash",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: lash one enemy within 5 tiles with waking nightmare — 2d8 + Charisma modifier psychic damage; on failed save, target suffers Dread (−10% hit/saves) for 2 turns and cannot take reactions for 1 round; the Veiled Threshold shows you their dread — if they were already suffering Dread or fear, the lash deals +50% damage and you regain 1 Revelation Charge (once per round)."
+          },
+          {
+            "name": "Unreality",
+            "kind": "passive",
+            "description": "Passive: when an enemy misses you with an attack, 25% chance they strike an illusory echo instead (once per round). Once per short rest, when you would take damage from an attack, you may instead vanish into unreality — the attack misses, you reappear 1 tile away, and the attacker must save or suffer Dread (−10% hit/saves) for 1 turn."
+          }
+        ],
+        "tierIII": {
+          "name": "Threshold Collapse",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, enemies within 4 tiles suffer −10% hit chance and cannot benefit from flanking — allies within the zone gain +10% saves vs charm and fear; reality frays at the edges: once per round an enemy inside must save or believe an ally is absent (attacks vs that ally have disadvantage until disproven), and your illusions inside the zone require a second save to disbelieve."
+        },
+        "mysticInsight": {
+          "name": "Lucid Oracle",
+          "kind": "passive",
+          "description": "Advantage on saves vs sleep and illusion. Once per day, ask the Veiled Threshold one question — receive a symbolic but truthful vision."
+        },
+        "revelationMastery": [
+          "Enhanced Mirage: creates 2 duplicates",
+          "Enhanced Shared Dream: affects 3 allies",
+          "Enhanced Threshold Collapse: enemies cannot use reactions inside the zone"
+        ],
+        "propheticSurge": {
+          "name": "Dream Prophecy",
+          "kind": "active",
+          "description": "Once per day, the Veiled Threshold parts — cast any Dream Revelation at no charge cost. For 1 round after, all illusions you create require a second save to disbelieve, and enemies who fail their first save against your illusions suffer −10% hit until end of next turn."
+        },
+        "finalRevelation": {
+          "name": "The Waking Lie",
+          "kind": "active",
+          "description": "Once per day, rewrite one battlefield truth for 3 rounds: designate up to 4 tiles as 'dream' — enemies treat allies there as absent; allies gain concealment. Reality reasserts painfully when it ends (enemies save or take psychic damage)."
+        },
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "flame",
+        "name": "Flame",
+        "theme": "Fire, conviction, and the costly mercy of a flame that can burn or restore",
+        "combatRole": "Carry decisive fire into a contested moment, striking the foe while preserving allies through hard-won, wrathful renewal.",
+        "reputation": "Often met with caution or fear: a Flame oracle may be sought in a crisis, but few mistake their gift for a gentle one.",
+        "rulebookRef": "Mysteries list line 27; Combat Strategy line 156",
+        "patron": "Crown of First Flame (the shard-fire that crowned Tyrnathar's founder at the First Cycle)",
+        "prophecyTrigger": "When you heal an ally or burn an enemy with a Revelation, regain 1 Revelation Charge (once per round)",
+        "level1": {
+          "name": "Ember Mantle",
+          "kind": "active",
+          "description": "Passive: resistance to fire damage and +5% healing received. Once per long rest, ignite your ember mantle for 2 rounds — melee attackers take 1d4 fire damage on hit, you emit warm light in a 2-tile radius, and allies there gain +5% saves vs fear."
+        },
+        "tierI": [
+          {
+            "name": "Wrathful Brand",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: mark one enemy with burning judgment for 1 round — your next attack against them deals +50% fire damage; if an ally attacks the marked target before the brand fades, they heal 1d6 and the target must save or suffer −10% hit until end of next round as cursed embers cling."
+          },
+          {
+            "name": "Purging Flame",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: touch one ally within 1 tile to end one disease or poison and heal 1d8 + your Charisma modifier; undead touched instead take equal fire damage and must save or suffer −10% hit for 1 round as cursed ash clings."
+          },
+          {
+            "name": "Passion's Rush",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: blaze up to 3 tiles in a line of harmless fire — enemies passed take 1d6 fire damage and must save or suffer −1 movement until your next turn; if you end adjacent to an ally, they gain +10% weapon damage and +5% DR for 1 round as embers cling to their weapons."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Crown's Burn",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: unleash a 3-tile burst of shard-fire — enemies take 2d6 fire damage and must save or suffer −10% hit until end of next turn; allies in the burst heal half the total damage dealt to enemies (minimum 1d6), and the Crown's embers cling — allies healed this way gain +5% DR vs fire until start of your next turn."
+          },
+          {
+            "name": "Zealot's Renewal",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: one ally within 3 tiles regains HP equal to your Charisma modifier × level tier (minimum 1d8) but takes 1d4 fire backlash — wrathful healing; the Crown's embers cling — they end one minor poison or disease, gain +5% DR vs fire until start of your next turn, and adjacent enemies take 1d4 fire as cursed ash scatters from the renewal."
+          },
+          {
+            "name": "Undying Ember",
+            "kind": "passive",
+            "description": "Passive: when reduced to 0 HP, erupt in shard-fire — adjacent enemies take 2d6 fire damage and must save or suffer −10% hit for 1 round; you stabilize at 1 HP (once per long rest). Allies within 2 tiles heal 1d6 as embers scatter from the Crown's mercy."
+          }
+        ],
+        "tierIII": {
+          "name": "First Flame Convergence",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, your fire Revelations deal +25% damage and allies within 4 tiles heal 1d6 when you burn an enemy — you emit warm light and allies are immune to fear; the Crown's memory kindles: once per turn when you heal via wrathful fire, one ally within 4 tiles gains +5% DR until start of your next turn, and Zealot's Renewal backlash is suppressed during the convergence."
+        },
+        "mysticInsight": {
+          "name": "Founder's Memory",
+          "kind": "passive",
+          "description": "Advantage on History checks involving Tyrnathar and the Tenfold Cycles. Once per day, invoke the Crown's memory to reroll a failed save vs fire or fear."
+        },
+        "revelationMastery": [
+          "Enhanced Wrathful Brand: mark lasts 2 rounds",
+          "Enhanced Crown's Burn: allies need not be in burst to receive healing",
+          "Enhanced First Flame Convergence: no backlash on Zealot's Renewal during effect"
+        ],
+        "propheticSurge": {
+          "name": "Flame Prophecy",
+          "kind": "active",
+          "description": "Once per day, the Crown of First Flame kindles through you — cast any Flame Revelation at no charge cost. For 1 round after, your next wrathful heal this encounter deals no backlash and allies within 4 tiles gain +5% DR vs fire; burning enemies you hit take +10% fire damage until end of next turn."
+        },
+        "finalRevelation": {
+          "name": "Crown Restored",
+          "kind": "active",
+          "description": "Once per day, manifest the Crown of First Flame for 3 rounds: +2 fire damage on all attacks, allies within 5 tiles regenerate 1d6 per round, and you may cast Tier I fire Revelations at 0 cost once per round."
+        },
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "life",
+        "name": "Life",
+        "theme": "Restoration carried past the first wound: overflow healing, protective blooms, and the stubborn work of keeping life present",
+        "combatRole": "Keep allies standing through the hard center of a fight, turning restored strength into shelter and making a contested position briefly safe enough to endure.",
+        "reputation": "Commonly welcomed where healing is needed, though their gifts are valued most by those who understand that preservation asks as much courage as violence.",
+        "rulebookRef": "Mysteries list line 28; Combat Strategy line 157",
+        "patron": "Verdant Resonance (living blooms that answer the First Song's call to mend what the Descent breaks)",
+        "prophecyTrigger": "When you restore HP to an ally (any source), regain 1 Revelation Charge (once per round)",
+        "level1": {
+          "name": "Bloom Ward",
+          "kind": "active",
+          "description": "Passive: allies within 2 tiles gain +5% healing received, and you gain +5% resistance to necrotic and poison damage. Once per long rest, sprout a protective bloom on an ally within 3 tiles — absorb next 10 + level damage, then wilt and scatter petals granting +5% saves vs fear for 1 round."
+        },
+        "tierI": [
+          {
+            "name": "Overflowing Light",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: heal one ally within 4 tiles for 2d6 + your Charisma modifier; excess healing above max HP becomes temporary HP (max 10) for 2 rounds, and if any temp HP remains when it fades the ally ends one minor condition."
+          },
+          {
+            "name": "Resonant Seed",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: plant a resonant seed in a 2-tile zone within 4 tiles for 3 rounds — allies starting turn there heal 1d4 and end one minor condition; undead entering or starting turn in the zone take 1d4 radiant and must save or suffer −1 movement until end of turn."
+          },
+          {
+            "name": "Thorned Shelter",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: thorned vines erupt around one ally within 3 tiles — +2 AC, +10% DR, and +5% healing received for 2 rounds; the first melee attacker each round takes 1d4 piercing and cannot move away from the sheltered ally until end of turn."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Garden of Restoration",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: bloom a 4-tile garden of restoration for 3 rounds — allies inside regenerate 1d6 at start of turn and gain +5% healing received; undead inside take 1d6 radiant at start of turn and must save or suffer −10% hit; entering the garden ends one minor poison or disease on that ally (once each per garden)."
+          },
+          {
+            "name": "Life Linked",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: link yourself to one ally within 5 tiles for 2 rounds through the Verdant Resonance — you may transfer up to half damage they take to yourself (after DR); while linked, they gain +5% healing received and +10% DR vs necrotic, and when you heal them through the link they heal an additional 1d4 as blooms echo between you."
+          },
+          {
+            "name": "Verdant Pulse",
+            "kind": "passive",
+            "description": "Passive: when you heal an ally below 50% HP, they gain +10% resistances and +5% healing received until end of next turn (once per ally per short rest). Once per combat, when an ally within 4 tiles would drop to 0 HP, a verdant pulse blooms — they stabilize at 1 HP and end one minor condition."
+          }
+        ],
+        "tierIII": {
+          "name": "Song of Mending",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, all allies within 5 tiles regenerate 2d6 at start of turn and cannot be reduced below 1 HP by a single hit (once each) — the Verdant Resonance sings through them; when an ally is stabilized by this song, they end one minor condition and gain +10% healing received until the song ends."
+        },
+        "mysticInsight": {
+          "name": "Bloom Oracle",
+          "kind": "passive",
+          "description": "Advantage on Medicine and Nature. Once per day, diagnose any affliction by touch and learn one countermeasure the Verdant Resonance suggests."
+        },
+        "revelationMastery": [
+          "Enhanced Overflowing Light: temp HP max 20",
+          "Enhanced Garden of Restoration: also removes poison/disease on entry",
+          "Enhanced Song of Mending: duration 3 turns"
+        ],
+        "propheticSurge": {
+          "name": "Life Prophecy",
+          "kind": "active",
+          "description": "Once per day, the Verdant Resonance sings through you — cast any Life Revelation at no charge cost. For 1 round after, all healing you do is maximized and allies you heal gain +10% healing received until end of next turn; undead within 3 tiles of a healed ally take 1d4 radiant."
+        },
+        "finalRevelation": {
+          "name": "Eternal Bloom",
+          "kind": "active",
+          "description": "Once per day, raise a sanctuary bloom for 3 rounds in a 5-tile zone — allies inside are stabilized at 1 HP instead of dying, heal fully over the duration, and gain immunity to necrotic. Ends with petals scattering (brief obscurement)."
+        },
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "shadow",
+        "name": "Shadow",
+        "theme": "Silence, concealment, and the disciplined use of fear against those who mistake darkness for safety",
+        "combatRole": "Claim a quiet angle in the fight, isolate a dangerous foe in dread, and strike from concealment before the enemy can answer.",
+        "reputation": "Regarded with caution: useful where discretion is necessary, but unsettling to those who fear what silence lets a person notice.",
+        "rulebookRef": "Mysteries list line 29; Combat Strategy line 158",
+        "patron": "Hush Beneath the Song (silence that gathers where even the Choir's echo fades — see the Marquis of Silence)",
+        "prophecyTrigger": "When you strike an enemy who cannot see you or is suffering fear, regain 1 Revelation Charge",
+        "level1": {
+          "name": "Umbral Cloak",
+          "kind": "active",
+          "description": "Passive: +2 to Stealth in dim light or darkness and +5% resistance to psychic damage. Once per short rest, shroud yourself in the Hush — become invisible until you attack or 2 rounds pass; your first attack from concealment this encounter deals +25% psychic damage."
+        },
+        "tierI": [
+          {
+            "name": "Psychic Lash",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: ranged psychic strike within 5 tiles dealing 1d8 + Charisma modifier psychic damage; if the target cannot see you, deal +50% damage, inflict Dread for 1 turn (−10% hit/saves), and they cannot take reactions until end of next turn."
+          },
+          {
+            "name": "Fear's Whisper",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: one enemy within 4 tiles must save or suffer Fear for 2 turns (−10% hit, cannot approach you willingly); on a failed save they also cannot take reactions for 1 round and allies gain +10% crit chance against them while feared."
+          },
+          {
+            "name": "Shadow Step",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: teleport up to 3 tiles to a space in dim light or darkness you can see; you leave no sound and gain +25% damage on your next attack from concealment before end of turn."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Night's Embrace",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: 3-tile zone of deeper shadow for 3 rounds — allies inside gain concealment and +5% DR; enemies inside suffer −10% hit and −10% saves vs fear; the Hush deepens each round — the first attack you make from inside the zone each round deals +25% psychic damage, and enemies who enter must save or lose reactions until end of turn."
+          },
+          {
+            "name": "Mind Spike",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: drive a psychic spike into one enemy within 5 tiles — 2d8 + Charisma modifier psychic damage; on failed save, target cannot take reactions for 2 turns and suffers Dread (−10% hit/saves); if they were already feared, the spike deals +50% damage and you regain 1 Revelation Charge (once per round)."
+          },
+          {
+            "name": "Silent Hunter",
+            "kind": "passive",
+            "description": "Passive: first attack each combat from concealment deals +25% psychic damage and inflicts Dread (−10% hit/saves) for 1 turn on hit. Once per round after casting a Revelation while concealed, slip through the Hush — move 1 tile without provoking and gain +10% crit chance on your next attack before end of turn."
+          }
+        ],
+        "tierIII": {
+          "name": "Hush Descends",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, suppress sound in 5 tiles — enemies cannot cast verbal components and suffer Dread; you and allies gain +10% crit from concealment — the Marquis's silence deepens: enemies who start their turn inside must save or lose their action to nameless dread (once per enemy), and your first psychic Revelation each turn from inside the zone costs 1 fewer charge (minimum 0)."
+        },
+        "mysticInsight": {
+          "name": "Shadow Oracle",
+          "kind": "passive",
+          "description": "Advantage on Stealth and Insight. Once per day, read the hidden fear in one creature's heart — learn their greatest dread (DM provides truthful answer)."
+        },
+        "revelationMastery": [
+          "Enhanced Psychic Lash: range +2 tiles",
+          "Enhanced Night's Embrace: allies gain +1 AC inside",
+          "Enhanced Hush Descends: duration 3 turns"
+        ],
+        "propheticSurge": {
+          "name": "Shadow Prophecy",
+          "kind": "active",
+          "description": "Once per day, the Hush Beneath the Song gathers — cast any Shadow Revelation at no charge cost. For 1 round after, you become invisible until you attack or end of next turn; your first attack from concealment during the effect deals +25% psychic damage and inflicts Dread (−10% hit/saves) on hit."
+        },
+        "finalRevelation": {
+          "name": "Marquis's Glimpse",
+          "kind": "active",
+          "description": "Once per day, invoke the Hush for 3 rounds: you exist partially in silence — untargetable by ranged attacks, all psychic Revelations deal double damage, and enemies within 4 tiles must save each round or lose an action to nameless dread."
+        },
+        "draft": false,
+        "source": "Canon — Director-approved Mystery of Shadow (2026-07-30)"
+      },
+      {
+        "id": "stars",
+        "name": "Stars",
+        "theme": "Radiant clarity, foresight, and the difficult reading of a path before it closes",
+        "combatRole": "Read a brief advantage in the dark and make it usable: mark the opening, guide an ally's hand, and bring precise radiance where a fight is about to turn.",
+        "reputation": "Sought as advisers and navigators, but met with reserve by those who would rather not hear which choices the sky makes difficult to ignore.",
+        "rulebookRef": "Mysteries list line 30; Combat Strategy line 159",
+        "patron": "Celestial Concord (star-choirs that map fate's threads across the Tenfold sky)",
+        "prophecyTrigger": "When you grant advantage or reroll to an ally through a Revelation, regain 1 Revelation Charge",
+        "level1": {
+          "name": "Starlight Mantle",
+          "kind": "active",
+          "description": "Passive: +1 to ranged attack rolls and Revelation saves at night or under open sky, and +5% resistance to radiant damage. Once per long rest, illuminate 4 tiles with starlight for 2 rounds — reveal invisible and ethereal creatures; allies in the light gain +2 to hit on their next attack."
+        },
+        "tierI": [
+          {
+            "name": "Guiding Bolt",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: hurl a radiant bolt within 6 tiles — deals 2d6 radiant damage; the target glows with star-mark for 2 rounds and the next ally to attack them gains +2 to hit and +10% crit chance."
+          },
+          {
+            "name": "Fate's Glimpse",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: touch the thread of one ally within 5 tiles — they may reroll their next failed attack, save, or skill check with +2; if the reroll succeeds, you glimpse a second possible outcome and gain advantage on your next Revelation save before end of next turn."
+          },
+          {
+            "name": "Clarity",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: end charm, illusion, or fear on one ally within 4 tiles; grant +10% saves for 2 rounds and reveal the true form of any shapeshifted or invisible creature within 2 tiles of them for 1 round."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Constellation Mark",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: mark up to 2 enemies within 6 tiles for 3 rounds — allies gain +10% crit and +2 to hit against marked targets; the first crit each round against a mark deals +1d6 radiant and reveals the target through concealment until the mark fades."
+          },
+          {
+            "name": "Radiant Path",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: trace a line of star-fire up to 5 tiles — each enemy in the path takes 2d6 radiant damage and is marked with star-ash for 1 round; allies in the path heal half the total damage dealt (minimum 1d6); the Celestial Concord maps the route — you and one ally may shift 1 tile along the path without provoking before the radiance fades."
+          },
+          {
+            "name": "Omen Reader",
+            "kind": "passive",
+            "description": "Passive: at initiative, the Celestial Concord reveals which enemy has the highest attack bonus — you and one ally within 5 tiles gain +2 AC vs that enemy's first attack each round. Once per combat, impose −2 on that enemy's first attack and mark them with star-ash — allies gain +10% crit against them until the mark fades."
+          }
+        ],
+        "tierIII": {
+          "name": "Concord Alignment",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, allies within 5 tiles gain +10% hit, +10% crit, and advantage on saves vs charm and fear as stars align — the Celestial Concord reveals each ally's thread; once per turn you may grant one ally within range a reroll on a failed attack or save, and your Guiding Bolt and Constellation Mark effects extend +1 tile while alignment persists."
+        },
+        "mysticInsight": {
+          "name": "Stellar Oracle",
+          "kind": "passive",
+          "description": "Advantage on Astrology and Navigation. Once per day, read the sky (or a divination focus) for cryptic guidance on a party decision."
+        },
+        "revelationMastery": [
+          "Enhanced Guiding Bolt: also slows target 1 tile on hit",
+          "Enhanced Constellation Mark: affects 3 enemies",
+          "Enhanced Concord Alignment: duration 3 turns"
+        ],
+        "propheticSurge": {
+          "name": "Star Prophecy",
+          "kind": "active",
+          "description": "Once per day, the Celestial Concord aligns — cast any Stars Revelation at no charge cost. For 2 rounds after, allies within 5 tiles gain +2 initiative and +10% crit chance as star-threads map their paths; you may grant one ally within range advantage on their next attack before the alignment fades."
+        },
+        "finalRevelation": {
+          "name": "Concord Unveiled",
+          "kind": "active",
+          "description": "Once per day, call the Celestial Concord for 3 rounds: you see all enemies' intents (no surprise, +2 AC vs their attacks), all Stars Revelations cost 1 fewer charge, and once per round an ally within 6 tiles auto-succeeds one save."
+        },
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "time",
+        "name": "Time",
+        "theme": "Measured delay, costly reversal, and the care required when one moment is allowed to answer another",
+        "combatRole": "Turn a narrow instant into room for the party to act: steal tempo from an enemy, restore an ally's chance, and make one hard choice matter twice.",
+        "reputation": "Met with respect and reserve; their gifts are welcomed in a crisis, but few are comfortable owing a future moment to the Turning Spiral.",
+        "rulebookRef": "Mysteries list line 31; Combat Strategy line 160",
+        "patron": "Turning Spiral (keepers of causality at the edge where the First Song's echo bends back on itself)",
+        "prophecyTrigger": "When initiative is reordered or an ally rerolls a failed roll through your Revelation, regain 1 Revelation Charge",
+        "level1": {
+          "name": "Spiral Echo",
+          "kind": "active",
+          "description": "Passive: you gain +2 initiative and cannot have your place in initiative order reduced below your current slot. Once per short rest, delay one spell, attack, or condition effect targeting you by 1 round — it resolves at the start of your next turn instead, and you may move 1 tile without provoking when it lands."
+        },
+        "tierI": [
+          {
+            "name": "Moment's Pause",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: one enemy within 4 tiles must save or lose their next action as time snags around them; on a failed save they also suffer −10% initiative until end of next round and cannot take reactions until the pause resolves."
+          },
+          {
+            "name": "Echo Strike",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: after you hit with a weapon or touch attack, an echo of the strike repeats at half damage on the same target (no extra charge); if the echo reduces the target below half HP, you regain 1 Revelation Charge (once per round)."
+          },
+          {
+            "name": "Borrowed Beat",
+            "charges": 1,
+            "kind": "active",
+            "description": "Spend 1 charge: one ally within 3 tiles may immediately move up to 2 tiles or cast one Tier I Revelation before the next enemy acts; if they move, they do not provoke until they stop, and you both gain +2 initiative until end of next round (once per combat)."
+          }
+        ],
+        "tierII": [
+          {
+            "name": "Rewind Wound",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: touch ally within 1 tile — the Turning Spiral folds causality; undo the last instance of damage they took in the past round (restore HP, remove one condition inflicted by that hit if any); they gain +5% DR and +2 initiative until start of your next turn, and if the undone damage would have dropped them below half HP, you regain 1 Revelation Charge (once per round)."
+          },
+          {
+            "name": "Temporal Rift",
+            "charges": 2,
+            "kind": "active",
+            "description": "Spend 2 charges: open a 3-tile temporal rift for 2 rounds — enemies inside act last in initiative and suffer −10% hit on their first attack each round; allies inside gain +2 initiative and +10% DR vs effects that would reduce their actions; once per rift, when an ally inside fails a save, you may spend 1 charge to let them reroll with +2."
+          },
+          {
+            "name": "Paradox Skin",
+            "kind": "passive",
+            "description": "Passive: when hit, 10% chance the attack lands on a temporal echo instead (miss). Resistance to time, aging, and slow effects. Once per short rest, when an ally within 3 tiles fails a save vs a time or aging effect, you may absorb the effect — they reroll with +2 as causality snags around you."
+          }
+        ],
+        "tierIII": {
+          "name": "Spiral Convergence",
+          "charges": 3,
+          "kind": "active",
+          "description": "Spend 3 charges: for 2 turns, once per round rewind one failed ally roll within 5 tiles (attack, save, or skill) as if it never happened — the Turning Spiral folds causality; you gain +1 action per turn (Revelation or move only) and +2 initiative, allies rewound this way gain +10% DR until start of your next turn, and enemies who benefited from the undone roll must save or lose their reaction. After: Exhausted (−1 action, −10% resist for 1 round)."
+        },
+        "mysticInsight": {
+          "name": "Spiral Oracle",
+          "kind": "passive",
+          "description": "Advantage on checks involving history, prophecy, or the Tenfold Cycles. Once per day, ask the Turning Spiral whether a specific action will provoke disaster (yes/no with cryptic hint)."
+        },
+        "revelationMastery": [
+          "Enhanced Echo Strike: echo deals full damage",
+          "Enhanced Rewind Wound: can target self",
+          "Enhanced Spiral Convergence: no action restriction on bonus actions"
+        ],
+        "propheticSurge": {
+          "name": "Time Prophecy",
+          "kind": "active",
+          "description": "Once per day, the Turning Spiral folds causality — cast any Time Revelation at no charge cost. Initiative resets with you acting first this round; for 1 round after, allies within 5 tiles gain +2 initiative and may reroll one failed save each as the spiral echoes backward."
+        },
+        "finalRevelation": {
+          "name": "The Spiral Opens",
+          "kind": "active",
+          "description": "Once per day, open a causality spiral for 3 rounds: at start of each round, choose one — repeat last round's beneficial Revelation at no cost, or force one enemy to repeat their last turn's worst action against their allies. Allies remember all timelines."
+        },
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      }
+    ],
+    "ORACLE_RULEBOOK_STATUS": {
+      "sourceFiles": [
+        "rulebook_output.txt (UTF-16, Oracle chapter ~lines 2180–2353)",
+        "decennium descent player rulebook.docx (verified identical Oracle content)",
+        "tools/oracle_rulebook_extract.txt (re-extracted 2026-07-29)"
+      ],
+      "mysteriesNamed": 10,
+      "mysteriesWithFullTierTree": 10,
+      "fullTierTree": [
+        "Ancestor",
+        "Shadow"
+      ],
+      "draftTierTree": [
+        "Battle",
+        "Bones",
+        "Cataclysm",
+        "Dream",
+        "Flame",
+        "Life",
+        "Stars",
+        "Time"
+      ],
+      "namedOnly": [],
+      "exampleBlocks": [
+        "Example Mystery: Ancestor",
+        "Example Curse: Spiral-Touched"
+      ],
+      "docxScan": {
+        "exampleMysteryCount": 1,
+        "patronCount": 1,
+        "namedFinalRevelationCount": 1
+      }
+    },
+    "ORACLE_SHARED_PROGRESSION": [
+      {
+        "level": 3,
+        "feature": "Tier I Revelation (choose 1, 1 charge) + Curse Boon I"
+      },
+      {
+        "level": 5,
+        "feature": "Curse Boon II"
+      },
+      {
+        "level": 6,
+        "feature": "Tier II Revelation (choose 1, 2 charges)"
+      },
+      {
+        "level": 9,
+        "feature": "Tier III Revelation (Mystery capstone, 3 charges)"
+      },
+      {
+        "level": 10,
+        "feature": "Curse Boon III"
+      },
+      {
+        "level": 12,
+        "feature": "Mystic Insight — minor Revelation or passive from your Mystery"
+      },
+      {
+        "level": 15,
+        "feature": "Revelation Mastery + Curse Boon IV"
+      },
+      {
+        "level": 18,
+        "feature": "Prophetic Surge (1/day free or extended Revelation)"
+      },
+      {
+        "level": 20,
+        "feature": "Final Revelation + Curse Boon V"
+      }
+    ]
+  },
+  "oracle-curses": {
+    "ORACLE_CURSES": [
+      {
+        "id": "spiral-touched",
+        "name": "Spiral-Touched",
+        "blurb": "Manipulates initiative, gains time-based echoes",
+        "limitations": [
+          "You sometimes respond to events before they happen, causing confusion in social situations",
+          "You occasionally experience time differently than others, potentially missing turns in combat (5% chance)",
+          "You cannot maintain concentration on mundane tasks for extended periods"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "See 1 round into the future during initiative (+3 initiative). Once per day, reroll a failed save as you briefly step outside the timestream."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "Spend 1 Revelation Charge to act out of turn once per combat. You gain resistance to time-based magic and aging effects."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "When you would be reduced to 0 HP, you may instead phase out of time for 1 round, becoming untargetable and regaining 25% of your maximum HP. Once per long rest."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "You exist in multiple timestreams simultaneously, allowing you to make two different actions in a single turn once per combat. Enemies attacking you have a 10% chance to hit your echo instead, causing the attack to miss."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "You gain the ability to create a time loop, resetting an entire combat encounter to its beginning state once per day. All allies retain knowledge of the original timeline, allowing them to make different choices."
+          }
+        ],
+        "source": "rulebook — Example Curse: Spiral-Touched (only full curse tree in player rulebook)"
+      },
+      {
+        "id": "wound-eater",
+        "name": "Wound Eater",
+        "blurb": "Lives by wounds taken from the living, never by an easy cure",
+        "limitations": [
+          "Natural healing and healing granted by another restore only half their usual amount to you",
+          "Before each long rest ends, you must drain life from a living foe or gain Exhaustion",
+          "Your flesh carries a hollow, withered look that makes many mortals recoil at first meeting"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "When you hit a living foe with a weapon or touch attack, drain 1d6 HP; you heal for half the amount drained. Undead and constructs are immune."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "When you reduce a living foe to 0 HP, regain 1 Revelation Charge. Resistance to necrotic damage from non-Revelation sources."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "Once per short rest, siphon a dying enemy's remaining HP as a burst heal (up to 25% of your max HP). The Pale Ledger records their final breath."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Drain aura: at the start of your turn, living enemies within 2 tiles take necrotic damage; you heal for the total drained. You may suppress this aura in civilized areas."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, become a conduit of the unfinished hunger — all living enemies within 4 tiles lose 25% max HP; you heal for half the total. Allies are unaffected."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "soul-cracked",
+        "name": "Soul-Cracked",
+        "blurb": "A fractured spirit refuses easy command and answers magic unevenly",
+        "limitations": [
+          "Divination reads your aura and alignment inconsistently; even allies struggle to scry your intent",
+          "Once each encounter, the resonance type of your Revelations may shift without warning",
+          "Binding oaths and geas magic cause you physical pain until they are resolved"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "Immune to charm and compulsion. Once per day, reroll a failed save against mind-affecting effects as your soul fractures around the blow."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "After rolling initiative, choose once per combat to shift the damage type of your next Revelation (fire, cold, lightning, necrotic, psychic, or radiant). Until that Revelation resolves, your aura reads as blank to divination — scrying your intent fails for the round."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "When you would be charmed or dominated, reflect the effect onto the source (once per long rest). The source must save or suffer the effect instead."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Fractured soul: gain resistance to psychic damage and +2 to saves vs control. Divination targeting you has 50% chance to return contradictory results."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, shatter a binding curse, geas, or possession on yourself or an ally within 3 tiles. The broken magic lashes the originator for psychic damage."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "haunted",
+        "name": "Haunted",
+        "blurb": "Restless dead attend your steps, offering aid at a social cost",
+        "limitations": [
+          "Restless spirits draw attention: you suffer −2 to Stealth in haunted places or crowded civilized areas",
+          "Spirits sometimes speak through you at inopportune moments; social checks may require a Wisdom save",
+          "You sometimes address people who are not yet present, unsettling those who witness it"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "Spectral attendants grant +1 AC against the first attack each round. Once per day, a spirit whispers a warning — you cannot be surprised."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "Once per combat, a bound spirit intercepts a single-target attack against you, absorbing up to 5 + level damage before dissipating. The spirit wails as it fades — the attacker must save or suffer −2 to their next attack as dread clings to them."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "Spirits murmur of danger — you and allies within 3 tiles cannot be surprised while you are conscious. Echoes of the dead grant +2 to Insight checks nearby."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Summon a wailing chorus: enemies within 3 tiles suffer Dread (−10% hit chance and saves) for 2 turns. Once per long rest."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, bind a hostile or friendly spirit to scout, speak with the dead at a distance, or deliver a prophetic message along a path you have walked. The spirit persists for 10 minutes or until it completes one task; when it returns, it whispers what it saw and one name you did not send it to find."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "tongues",
+        "name": "Tongues",
+        "blurb": "Many voices share your speech, making truth harder to hear cleanly",
+        "limitations": [
+          "Unless you suppress the curse, social checks with mortals who do not share your mystery tongue suffer −2",
+          "Even accurate prophetic speech is often misheard; listeners may hear what they fear",
+          "You cannot fully silence the chorus; concentrating on mundane tasks longer than 1 hour requires a Wisdom save"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "Understand all spoken languages and read divine script fragments. Allies within 5 tiles gain +2 to Lore and Insight checks when you interpret for them."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "Confounding babble: one enemy within 3 tiles must save or lose their next action, overwhelmed by overlapping voices. Once per combat."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "Prophetic utterance — force one creature within 3 tiles to truthfully answer a yes/no question drawn from the Choir's echo. Once per day."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Polyglot surge: communicate with beasts, plants, and spirits for 1 hour as the First Song's vocabulary flows through you. Once per long rest."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, speak a single Word in the tongue of creation — all who hear must save or obey one short command. Those who resist take psychic damage."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "burning-blood",
+        "name": "Burning Blood",
+        "blurb": "Air kindles your spilled blood into a fire that harms friend and foe alike",
+        "limitations": [
+          "When slashing or piercing damage wounds you, you and adjacent foes take 1d4 fire damage as your blood sparks",
+          "You cannot benefit from cold-based healing or resistances; your curse rejects the chill",
+          "Open wounds glow faintly, imposing −2 to Stealth until treated or until you rest"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "Resistance to fire. Melee attackers take 1d4 fire damage when they hit you with a weapon attack. Your wounds smolder briefly — enemies within 1 tile take 1 fire damage when your blood first ignites each round."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "Spend 1 Revelation Charge to ignite your blood — your next Revelation deals +50% fire damage and cannot be extinguished by mundane means. While ignited, slashing and piercing damage against you no longer sparks fire on adjacent allies; the Crown's flame answers only to your will."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "When your blood ignites from damage, allies within 2 tiles gain +10% weapon damage for 1 round as shard-fire answers your pain. You may extend the flare to 3 tiles by spending 1 Revelation Charge — enemies in the burst take 1d4 fire damage as embers leap from your wounds."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Blood flare: when reduced below 50% HP, erupt fire in a 3-tile burst (once per short rest). Enemies take fire damage; you are not harmed by your own flare."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, become a living pyre for 3 rounds — fire aura in 3 tiles; enemies take fire damage at start of turn; you heal 1d6 when an enemy takes fire damage from you. Allies in the aura gain fire resistance and treat your ignited blood as bright light that reveals hidden foes within 2 tiles."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "false-life",
+        "name": "False Life",
+        "blurb": "Magic mistakes your living breath for death and answers accordingly",
+        "limitations": [
+          "Healing spells cast on you without a successful Insight check have a 50% chance to fail; magic reads you as corpse-cold",
+          "Unless you suppress the curse, divination treats you as undead",
+          "Clerics of life-deities may hesitate to aid you without proof that you still breathe"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "Advantage on saves vs death effects and negative energy. Once per long rest, when you would die, stabilize at 1 HP as your body feigns death perfectly."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "Feign death perfectly for 1 minute — undead ignore you unless attacked; you remain conscious but motionless. Once per combat."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "When reduced to 0 HP, remain conscious for 1 round before falling — you may move, speak, or cast one Revelation. Once per long rest."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Necrotic resilience: +10% DR vs necrotic and negative energy. Undead attackers have 10% chance to miss you entirely, sensing kinship."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, return from death's threshold — after 1 round of appearing dead at 0 HP, rise at 25% max HP with immunity to necrotic for 2 rounds. Undead within 3 tiles treat you as kin until you act, and divination cast during your feigned death returns false results of your choosing."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "shattered-mind",
+        "name": "Shattered Mind",
+        "blurb": "Your thoughts divide into competing fragments that act before they agree",
+        "limitations": [
+          "Concentration checks are at −2 as competing thoughts contend for control",
+          "In tense social scenes, make a Wisdom save or speak a prophetic fragment aloud on an impulse not wholly your own",
+          "After a long rest, make a Wisdom save or wake with fragmented memories of others' dreams"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "Once per combat, take a bonus move or activate one Tier I Revelation as a bonus action (not both a full action and bonus action in the same turn). The fragment acting is not wholly yours — observers may hear you answer questions you were never asked."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "Fragmented focus: +2 initiative; immune to being stunned. Your initiative roll may be made twice — take the higher result."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "Split thought: maintain two Revelation effects simultaneously for 1 round without paying double charges. Once per combat."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Mind echo: reroll one failed Intelligence or Wisdom check per short rest. Prophetic fragments grant +2 to Insight when reading motives."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, act twice in a single round — second action may be a Revelation or move only. Each action uses a different fragment of your mind."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "consumed",
+        "name": "Consumed",
+        "blurb": "Your Mystery remakes your body until its element shows through",
+        "limitations": [
+          "As you gain levels, your appearance shifts toward your Mystery's theme: flame hair, starlit eyes, bone protrusions, and the like",
+          "Some civilized NPCs react with fear or awe; concealing the change in formal courts requires ongoing effort",
+          "As your body changes, armor and gear must be refitted periodically (roleplay / downtime cost)"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "Gain +5% resistance aligned with your Mystery's element or theme (fire, necrotic, force, psychic, etc.). Once per day, suppress visible transformation for 1 hour in civilized areas — the Mystery still leaks through divination."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "Elemental skin: +1 AC while wearing light or no armor as your flesh hardens into mystery-matter. Unarmed strikes and natural weapons you wield count as magical and deal +1d4 thematic damage."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "Mystery infusion: weapon and touch attacks deal +1d4 thematic damage matching your Mystery. Revelation potency visibly bleeds into your strikes."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Partial transformation: ignore difficult terrain tied to your Mystery (fire walks, shadow steps, temporal stutter, etc.). Allies who follow within 1 tile during the same round may treat that terrain as normal ground until your next turn."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, fully embody your Mystery's element for 3 rounds — immunity to that damage type, +2 effective Revelation potency, and visible manifestation (aura, wings of flame, star corona, etc.). Allies within 2 tiles gain +1 AC as your transformation steadies the battlefield; suppression is impossible while the embodiment lasts."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      },
+      {
+        "id": "fate-bound",
+        "name": "Fate-Bound",
+        "blurb": "Foreknowledge marks your path, but each omen narrows the road ahead",
+        "limitations": [
+          "You cannot voluntarily break a sworn oath or prophecy without losing 1 Revelation Charge and suffering psychic backlash",
+          "Major life choices may feel predetermined once you have seen the threads that lead to them",
+          "Trying to flee a foreseen disaster without confronting it imposes −2 to saves until you face the omen"
+        ],
+        "boons": [
+          {
+            "level": 3,
+            "name": "Curse Boon I",
+            "description": "Once per day, glimpse one likely outcome before a party decision — the ally acting gains +2 to the related check or save. You must speak the omen aloud; allies who heard it retain the bonus even if the party chooses a different path."
+          },
+          {
+            "level": 5,
+            "name": "Curse Boon II",
+            "description": "Fated dodge: once per combat, force an attack against you to reroll as fate rewinds the strike. You must declare after the roll but before damage."
+          },
+          {
+            "level": 10,
+            "name": "Curse Boon III",
+            "description": "When an ally within 5 tiles would critically fail a save, you may accept the failure on yourself instead (once per long rest). The thread binds to you."
+          },
+          {
+            "level": 15,
+            "name": "Curse Boon IV",
+            "description": "Thread of destiny: +2 to saves vs death, fate-altering magic, and effects that would remove you from a prophesied path. Once per long rest, reroll a failed death save as the Concord refuses to cut your thread early."
+          },
+          {
+            "level": 20,
+            "name": "Curse Boon V",
+            "description": "Once per day, declare a prophetic outcome — one ally within 6 tiles auto-succeeds their next save or attack as the Concord enforces the written thread. You must describe the outcome aloud before the roll; if the prophecy fails to come true by end of combat, you lose 1 Revelation Charge as the thread frays."
+          }
+        ],
+        "draft": true,
+        "source": "Draft — Aethel lore, pending author review"
+      }
+    ],
+    "ORACLE_CURSE_BOON_LEVELS": [
+      3,
+      5,
+      10,
+      15,
+      20
+    ],
+    "ORACLE_CURSE_RULEBOOK_STATUS": {
+      "cursesNamed": 10,
+      "cursesWithFullTree": 1,
+      "fullTree": [
+        "Spiral-Touched"
+      ],
+      "draftTree": [
+        "Wound Eater",
+        "Soul-Cracked",
+        "Haunted",
+        "Tongues",
+        "Burning Blood",
+        "False Life",
+        "Shattered Mind",
+        "Consumed",
+        "Fate-Bound"
+      ]
+    },
+    "ORACLE_REVELATION_CHARGES": {
+      "initial": 3,
+      "maximum": 7,
+      "note": "Revelation Charges power Mystery Revelations (initially 3, maximum 7). Each Mystery has a Prophecy Trigger to recover charges."
+    }
+  },
+  "paladin-oaths": {
+    "PALADIN_AURA_SCALING": [
+      {
+        "level": 3,
+        "radius": "10 ft",
+        "note": "Base aura active while conscious"
+      },
+      {
+        "level": 6,
+        "radius": "15 ft",
+        "note": "Secondary benefit (DR, saves)"
+      },
+      {
+        "level": 7,
+        "radius": "15 ft",
+        "note": "Reactive Smite or spell trigger"
+      },
+      {
+        "level": 10,
+        "radius": "20 ft",
+        "note": "Persists 1 round if incapacitated"
+      },
+      {
+        "level": 15,
+        "radius": "30 ft",
+        "note": "Debuff enemies or buff allies"
+      },
+      {
+        "level": 17,
+        "radius": "30 ft",
+        "note": "Aura Surge (1/rest)"
+      },
+      {
+        "level": 20,
+        "radius": "30+ ft",
+        "note": "Divine Manifestation — auto on initiative"
+      }
+    ],
+    "SACRED_OATHS": [
+      {
+        "id": "mercy",
+        "name": "Oath of Mercy",
+        "theme": "Mercy is a shelter kept open in the worst hour: protection, healing, and the preservation of life before vengeance can make another wound.",
+        "smiteType": "Radiant — bonus radiant damage; heals nearby allies for a portion dealt",
+        "auraEffect": "Aura of Mercy — allies gain increased healing received and resistance to necrotic damage",
+        "signaturePower": "Miracle Veil — protective barrier; ally cannot drop below 1 HP for the duration (1/rest)",
+        "conductClause": [
+          "Never refuse a genuine plea for healing or protection when the oath can answer it",
+          "Set the saving of life before the taking of it, even when anger makes the latter easier",
+          "Offer defeated foes the mercy their surrender can bear, without abandoning those still in danger",
+          "Do not raise lethal force against the innocent or defenseless; strength was given to stand between them and harm"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Blessing of the Meek — heal + AC if HP < 50%"
+          },
+          {
+            "level": 5,
+            "spell": "Ward of Shelter — allies +2 DR, resist fear"
+          },
+          {
+            "level": 9,
+            "spell": "Channel Life — transfer HP from self to ally"
+          },
+          {
+            "level": 13,
+            "spell": "Sanctify Ground — zone removes conditions each round"
+          },
+          {
+            "level": 17,
+            "spell": "Grace Reversal — revive fallen ally if you fall to 0 HP"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Cruelty",
+          "deathTouch": "Life Drain AoE — steal life from all creatures around you",
+          "aura": "Healing Suppression — all healing within aura reduced by 50%",
+          "blasphemousWord": "Exsanguinate — drain life in large radius, heal self for damage dealt"
+        },
+        "finalOathGift": "Grace Eternal — once per day, Miracle Veil extends to all allies within your aura for 1 round; any ally reduced to 0 HP in that round rises to 1 HP instead, heals 2d8, and gains resistance to necrotic until end of next turn; you may Lay on Hands once as a free action during the veil.",
+        "finalOathGiftDraft": true,
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; bounded rulebook-tone pass only, with mechanics and revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      },
+      {
+        "id": "vengeance",
+        "name": "Oath of Vengeance",
+        "theme": "Vengeance is judgment carried through the long road: fury disciplined into pursuit, execution held to a sworn account, and no refuge promised to the unrepentant.",
+        "smiteType": "Necrotic or radiant — bonus damage vs marked foes; applies Vengeance Mark",
+        "auraEffect": "Aura of Judgment — marked enemies within aura suffer −1 saves and cannot hide from you",
+        "signaturePower": "Judgment Brand — doom mark on target; bonus crit damage and pursuit (1/rest)",
+        "conductClause": [
+          "Pursue sworn enemies until justice is served or they surrender; let no convenience excuse a broken charge",
+          "Do not abandon allies to feed a private vendetta, for judgment that leaves the faithful behind is only rage",
+          "Accept the surrender of those who genuinely repent, and hold them to the peace they have asked for"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Mark of Retribution — mark one foe within 30 ft on failed Wis save; +1d8 smite damage vs marked and advantage on opportunity attacks against them until end of next turn"
+          },
+          {
+            "level": 5,
+            "spell": "Relentless Pursuit — ignore difficult terrain vs marked target"
+          },
+          {
+            "level": 9,
+            "spell": "Sentence of Doom — smite deals max dice vs marked"
+          },
+          {
+            "level": 13,
+            "spell": "No Escape — marked foes within 60 ft cannot teleport, become invisible, or use extradimensional travel; if they leave your aura, opportunity attacks against them have advantage until end of next turn"
+          },
+          {
+            "level": 17,
+            "spell": "Final Verdict — marked foe at or below half HP within 30 ft saves or drops to 0 HP; on success, your next smite deals max dice and they cannot regain HP until end of next turn"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Malice",
+          "deathTouch": "Execute chance on wounded targets",
+          "aura": "Fearbrand — allies near you suffer morale penalties",
+          "blasphemousWord": "Fearbrand — increased damage to wounded; spread fear"
+        },
+        "finalOathGift": "Verdict Absolute — once per day, your Judgment Brand cannot be resisted: marked foes suffer max-dice smites, cannot teleport or become invisible, and if reduced to 0 HP you restore your full Lay on Hands pool; unmarked foes who witness the execution must save or become frightened until end of next turn.",
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      },
+      {
+        "id": "dominion",
+        "name": "Oath of Dominion",
+        "theme": "Authority held as a public burden: law spoken plainly, judgment bound to truth, and rulership measured by the safety it keeps",
+        "smiteType": "Radiant or psychic — bonus damage; compels truth on failed save; liars in aura suffer −1 saves until end of next turn",
+        "auraEffect": "Aura of Authority — allies +1 to Intimidation; enemies must save to lie within aura",
+        "signaturePower": "Heaven's Decree — command obey or suffer psychic damage (1/rest)",
+        "conductClause": [
+          "Uphold legitimate law and order, but do not call convenience or cruelty a lawful charge",
+          "Speak truth when acting as arbiter, and hear the whole matter before you command another",
+          "Do not use authority for personal gain; a decree that serves only its speaker has already failed the oath"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Compelled Truth — 10-ft zone where deception fails; oath-breakers take psychic damage on failed Charisma save"
+          },
+          {
+            "level": 5,
+            "spell": "Binding Word — restrain on failed Charisma save"
+          },
+          {
+            "level": 9,
+            "spell": "Law's Weight — 20-ft zone for 3 rounds; lawbreakers (those who lied in your aura this combat) save or half speed, −2 AC, and cannot benefit from haste or dash until zone ends"
+          },
+          {
+            "level": 13,
+            "spell": "Decree of Submission — 30-ft command; target save or charmed (obey one command) or frightened (cannot approach you) for 1 minute; oath-breakers have disadvantage"
+          },
+          {
+            "level": 17,
+            "spell": "Sovereign Mandate — allies in aura gain advantage on saves vs charm, fear, and compulsion for 1 minute; enemies who fail a Wis save when entering aura cannot lie in your presence until end of next turn"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Tyranny",
+          "deathTouch": "Will control on touch",
+          "aura": "Obey — psychic damage for disobedience within aura",
+          "blasphemousWord": "Obey — mass command with psychic backlash"
+        },
+        "finalOathGift": "Sovereign's Ascendance — once per day, Heaven's Decree affects all enemies in aura without save; allies gain advantage on Charisma saves and +2 to Intimidation for 3 rounds, and enemies who fail cannot lie or disobey a direct command until end of next turn.",
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; bounded rulebook-tone pass only, with mechanics and revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      },
+      {
+        "id": "flame",
+        "name": "Oath of Flame",
+        "theme": "A fire kept for cleansing rather than hunger: zeal tempered by restraint, corruption confronted, and renewal guarded after the ash",
+        "smiteType": "Fire and radiant — bonus damage; purges one condition from undead/fiend on hit",
+        "auraEffect": "Aura of Purification — allies resist disease; undead in aura take radiant damage at start of turn",
+        "signaturePower": "Holy Inferno — AoE smite purge; fire and radiant damage (1/rest)",
+        "conductClause": [
+          "Purify corruption and undeath where found, but name the thing being purged before you raise the flame",
+          "Do not burn the innocent in zeal; fire that cannot distinguish harm from shelter has forsaken this oath",
+          "Accept that fire renews as well as destroys, and remain to protect what must grow after the burning"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Cleansing Brand — fire damage + remove curse on crit"
+          },
+          {
+            "level": 5,
+            "spell": "Zealot's Flame — weapon ignites for 1 minute; attacks deal +1d6 fire and purge one disease from you on hit; undead in aura take 1d6 radiant at start of their turns"
+          },
+          {
+            "level": 9,
+            "spell": "Purge the Tainted — zone damages undead each round"
+          },
+          {
+            "level": 13,
+            "spell": "Sanctified Immolation — next smite or Holy Inferno ignores fire resistance and deals +1d6 radiant to undead; if target is cursed or diseased, purge one condition on hit"
+          },
+          {
+            "level": 17,
+            "spell": "Phoenix Rebirth — when ally in aura drops to 0 HP, revive to half max HP with fire shield (resist fire, 2d6 fire to melee attackers) once per combat per ally"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Inferno",
+          "deathTouch": "Burn healed enemies",
+          "aura": "Scorch the Sanctified — remove buffs; block regeneration",
+          "blasphemousWord": "Scorch the Sanctified — AoE purge that harms allies"
+        },
+        "finalOathGift": "Purifying Crown — once per day, manifest sanctified fire for 3 rounds: undead and fiends in your aura take radiant+fire damage each turn, allies gain immunity to disease and poison, and Holy Inferno immediately recharges once.",
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; bounded rulebook-tone pass only, with mechanics and revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      },
+      {
+        "id": "ancients",
+        "name": "Oath of the Ancients",
+        "theme": "The living memory of the old places: nature guarded as a covenant, ancient power answered with humility, and renewal left possible for those who follow",
+        "smiteType": "Force or radiant — bonus damage; roots target until end of next turn on crit; fey and elementals have disadvantage on saves vs your smites",
+        "auraEffect": "Aura of Remembrance — allies resist charm; fey/elementals hesitate to attack you",
+        "signaturePower": "Thorn Crown — reflect status effects back at attacker (1/rest)",
+        "conductClause": [
+          "Protect ancient places and living memory, especially where no living voice remains to speak for them",
+          "Do not destroy what cannot be restored; power does not excuse a wound made for haste",
+          "Honor pacts with fey and primal spirits, and do not mistake an old promise for permission to command"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Roots of Memory — 10-ft burst on smite hit; on failed Str save target restrained and you learn one fact about its origin (fey, elemental, or ancient place)"
+          },
+          {
+            "level": 5,
+            "spell": "Primal Ward — allies in aura gain resistance to cold, fire, lightning, or thunder (choose at cast); fey and elementals have disadvantage on saves vs. your smites while ward persists"
+          },
+          {
+            "level": 9,
+            "spell": "Echo of Ages — you and allies in aura gain advantage on saves vs charm and frightened for 1 minute; fey and elementals that fail a Wis save when entering aura hesitate and cannot attack until end of next turn"
+          },
+          {
+            "level": 13,
+            "spell": "Standing Stone — 20-ft zone of difficult terrain for enemies for 3 rounds; fey and elementals save or are slowed; allies treat zone as normal terrain"
+          },
+          {
+            "level": 17,
+            "spell": "Primordial Surge — allies in aura gain temp HP equal to 2× CHA mod from land; fey/elementals in aura save or are rooted until end of next turn"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Withering Grove",
+          "deathTouch": "Blight terrain on touch",
+          "aura": "Lifeleech Bloom — remove regeneration and resistance",
+          "blasphemousWord": "Lifeleech Bloom — drain vitality from plants and allies"
+        },
+        "finalOathGift": "Primordial Crown — once per day, Thorn Crown persists for 3 rounds without cost; roots on crit spread to adjacent foes, fey and elementals within aura cannot attack allies, and allies gain advantage on saves vs charm while the crown persists.",
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; bounded rulebook-tone pass only, with mechanics and revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      },
+      {
+        "id": "silence",
+        "name": "Oath of Silence",
+        "theme": "Humility, watchful restraint, and strength held in quiet",
+        "smiteType": "Psychic or radiant — bonus damage when you have not spoken since last turn",
+        "auraEffect": "Aura of Stillness — allies gain +1 to concentration; loud noises suppressed in aura",
+        "signaturePower": "Vow Unbroken — bonus smite if you stay silent this combat (1/rest)",
+        "conductClause": [
+          "Speak when words serve the oath; let silence bear the rest",
+          "Do not claim glory for the work entrusted to you",
+          "Hear the whole matter before you judge it"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Hush — silence one creature on failed save; if you have not spoken since combat start, target also suffers disadvantage on its next attack"
+          },
+          {
+            "level": 5,
+            "spell": "Quiet Step — move silently; advantage on Stealth"
+          },
+          {
+            "level": 9,
+            "spell": "Wordless Ward — shield ally without verbal components"
+          },
+          {
+            "level": 13,
+            "spell": "Still Mind — immunity to charm and frightened while you remain silent this combat; if you break silence, allies in aura gain +2 concentration saves for 1 round"
+          },
+          {
+            "level": 17,
+            "spell": "Silent Judgment — smite without alerting nearby foes; on hit target cannot speak or cast verbal components until end of next turn and you gain advantage on Stealth until you speak"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Silent Heretic",
+          "deathTouch": "Silence + psychic damage on touch",
+          "aura": "Null Command — prevent verbal casting in aura",
+          "blasphemousWord": "Null Command — mass silence with psychic damage"
+        },
+        "finalOathGift": "Vow Absolute — once per day, Vow Unbroken lasts the entire combat if you remain silent; all smites deal +50% psychic damage, enemies within aura cannot cast verbal components, and the first smite each round does not break your vow of silence.",
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; bounded rulebook-tone pass only, with mechanics and revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      },
+      {
+        "id": "chain",
+        "name": "Oath of the Chain",
+        "theme": "A vigil of iron: martyrdom, warding, and the burden freely borne for another",
+        "smiteType": "Radiant — bonus damage; when a bonded ally within aura takes damage, redirect up to CHA mod (min 3) to yourself once/round",
+        "auraEffect": "Aura of Bonds — allies within aura share 10% damage reduction",
+        "signaturePower": "Warden's Lock — lock enemies in zone; cannot leave without save (1/rest)",
+        "conductClause": [
+          "Stand between the helpless and harm, even when the cost is yours to bear",
+          "Keep every ward entrusted to you; do not abandon the bound when danger closes",
+          "Take suffering freely to spare another, but never make a chain of their sacrifice"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Linked Ward — mark ally within aura; as reaction when they take damage, redirect up to 2× CHA mod radiant to yourself; if you fall to 0 HP this round, ally gains temp HP equal to damage redirected"
+          },
+          {
+            "level": 5,
+            "spell": "Chain of Duty — mark ally; teleport to them when they fall"
+          },
+          {
+            "level": 9,
+            "spell": "Martyr's Share — take half ally's damage as reaction"
+          },
+          {
+            "level": 13,
+            "spell": "Unbreakable Bond — chosen ally in aura cannot be charmed, frightened, or magically compelled; when they fail a save vs charm, you may take the effect instead once per round"
+          },
+          {
+            "level": 17,
+            "spell": "Final Stand — for 1 round, absorb all damage dealt to one chosen ally in aura; if you fall to 0 HP from redirected damage, ally gains temp HP equal to your level and resistance to all damage until end of next turn"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Shackled Lord",
+          "deathTouch": "Steal reactions on touch",
+          "aura": "Iron Leash — slow and control debuffs",
+          "blasphemousWord": "Iron Leash — bind enemies; steal their actions"
+        },
+        "finalOathGift": "Unbroken Covenant — once per day, Warden's Lock expands to your full aura radius for 3 rounds; bonded allies share your AC, cannot be moved against their will, and when you redirect damage to yourself they gain temp HP equal to half damage absorbed until the lock ends.",
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; bounded rulebook-tone pass only, with mechanics and revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      },
+      {
+        "id": "grief",
+        "name": "Oath of Grief",
+        "theme": "Sorrow, remembrance, and the duty of passage",
+        "smiteType": "Necrotic and radiant — bonus damage; against a creature that killed an ally this combat, the smite deals +1d8 and applies Grief Mark (−1 attacks until end of next turn)",
+        "auraEffect": "Aura of Mourning — allies gain a bonus on saves against fear; undead suffer disadvantage within the aura",
+        "signaturePower": "Final Vigil — call upon a fallen ally's memory for one round (1/rest)",
+        "conductClause": [
+          "Keep faith with the dead and with those they leave behind",
+          "Do not make sport of grief or profane a place of remembrance",
+          "Guide the departed toward rest; do not claim them for undeath"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Dirge — 30-ft cone or single target; on failed Wis save target −2 attacks and cannot benefit from morale buffs for 1 minute; undead also take 2d6 radiant"
+          },
+          {
+            "level": 5,
+            "spell": "Last Rites — touch or 30 ft on dying creature; stabilize and grant +2 death saves and resistance to necrotic for 1 hour; undead within 10 ft must save or be turned until end of next turn"
+          },
+          {
+            "level": 9,
+            "spell": "Memorial Flame — conjure 30-ft memorial light for 1 minute; reveals hidden undead, grants allies +2 to death saves, and undead in light have disadvantage on attacks"
+          },
+          {
+            "level": 13,
+            "spell": "Sorrow's Weight — 20-ft zone for 3 rounds; creatures save or half speed and 2d6 necrotic each round; undead fail save automatically"
+          },
+          {
+            "level": 17,
+            "spell": "Echo of the Fallen — summon spirit of fallen ally within aura for 1 round; it makes one attack or grants chosen ally +2 AC as reaction"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Gravetongue",
+          "deathTouch": "Necrotic + grief effects",
+          "aura": "Dirge of Ruin — block resurrection and healing",
+          "blasphemousWord": "Dirge of Ruin — necrotic wave that prevents healing"
+        },
+        "finalOathGift": "Dirge of Passage — once per day, Final Vigil can channel two fallen allies simultaneously for 2 rounds; undead in aura suffer vulnerability to radiant and cannot benefit from healing, and survivors gain +2 death saves while either spirit is active.",
+        "draft": false,
+        "source": "Canon — Director-approved Oath of Grief (2026-07-30)"
+      },
+      {
+        "id": "chains-broken",
+        "name": "Oath of Chains Broken",
+        "theme": "Liberty, the breaking of unjust bonds, and freedom guarded against a new tyranny",
+        "smiteType": "Force or radiant — bonus damage vs oppressors and bound foes; on hit, target loses grapple or restraint until end of next turn",
+        "auraEffect": "Aura of Liberation — allies resist restraint; escape grapple as bonus action once/turn in aura",
+        "signaturePower": "Righteous Quake — break bindings; AoE push and damage (1/rest)",
+        "conductClause": [
+          "Break the bonds of the unjustly imprisoned, and do not turn liberation into license to abandon them",
+          "Resist every tyrant, including the one who would rule in freedom's name",
+          "Guard the newly freed from exploitation, for an open door is not yet a safe road"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Break Bonds — touch or 30-ft ally; end one restraint or grapple; if ally was magically bound, +10 ft movement and advantage on next escape attempt until end of next turn"
+          },
+          {
+            "level": 5,
+            "spell": "Liberty's Step — ignore opportunity attacks when moving to ally"
+          },
+          {
+            "level": 9,
+            "spell": "Shatter Shackles — dispel magical restraint in area"
+          },
+          {
+            "level": 13,
+            "spell": "Revolution's Cry — allies in aura gain +10 ft movement and advantage on saves vs restraint for 3 rounds; oppressors in aura save or lose reaction until end of next turn"
+          },
+          {
+            "level": 17,
+            "spell": "Unbound Host — party in aura cannot be restrained or magically bound for 1 minute; when an ally breaks free, they gain +10 ft movement until end of next turn"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Unbound Flame",
+          "deathTouch": "Burn and charm effects",
+          "aura": "Reign of Ashes — prevent buffs and escape",
+          "blasphemousWord": "Reign of Ashes — chaotic fire that traps foes"
+        },
+        "finalOathGift": "Liberty Unbound — once per day, Righteous Quake breaks all magical restraint on allies in aura, grants +10 ft movement and immunity to grapple for 3 rounds, and oppressors in the burst save or are pushed 10 ft and lose reactions until end of next turn.",
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; bounded rulebook-tone pass only, with mechanics and revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      },
+      {
+        "id": "martyr-king",
+        "name": "Oath of the Martyr King",
+        "theme": "Stewardship, the burden of the crown, and sacrifice freely borne for those in your care",
+        "smiteType": "Radiant — bonus damage; allies in aura gain temp HP when you smite; you may redirect 5 damage from one ally per round",
+        "auraEffect": "Aura of the Crown — allies +1 saves; you may redirect damage from one ally per round",
+        "signaturePower": "Crown of Embers — team-wide DR + damage redirection (1/rest)",
+        "conductClause": [
+          "Bear the responsibility of command without treating those in your care as a means to your glory",
+          "Set the realm's need above personal gain, and spend your own strength before you spend another's",
+          "Never demand a burden you would not freely take upon yourself"
+        ],
+        "revelationSpells": [
+          {
+            "level": 3,
+            "spell": "Noble Bearing — allies within aura +1 to morale saves; when you smite, one chosen ally gains temp HP equal to half radiant dealt"
+          },
+          {
+            "level": 5,
+            "spell": "Royal Decree — command one creature within 30 ft; on failed Wis save it kneels prone or moves up to its speed toward you; allies in aura gain +1 to morale saves until end of next turn"
+          },
+          {
+            "level": 9,
+            "spell": "Burden Shared — distribute damage among willing allies"
+          },
+          {
+            "level": 13,
+            "spell": "Throne's Grace — Lay on Hands and healing you grant reach full aura radius for 3 rounds; allies in aura heal +1 HP per die and gain +1 death saves while the grace persists"
+          },
+          {
+            "level": 17,
+            "spell": "Last King's Gift — when ally in aura would drop to 0 HP, they drop to 1 HP instead and gain temp HP equal to your level once per combat per ally"
+          }
+        ],
+        "oathbreaker": {
+          "name": "Usurper's Crown",
+          "deathTouch": "Steal passive powers on touch",
+          "aura": "Crownshatter Decree — damage required for healing",
+          "blasphemousWord": "Crownshatter Decree — steal boons from allies"
+        },
+        "finalOathGift": "Crown Undying — once per day, Crown of Embers lasts 3 rounds without concentration; damage you redirect heals the ally for half absorbed, allies in aura gain +1 saves while the crown persists, and you may redirect from two allies per round.",
+        "draft": true,
+        "source": "Draft — Aethel Sacred Oath; revelation spells pending author review (see CONTINUITY_GLOSSARY: Sacred Oath / Revelation spells)"
+      }
+    ]
+  },
+  "druid-shapeshifting": {
+    "ARCH_ATTUNEMENT_MAX": 2,
+    "ARCH_DRUID_FORMS": [
+      {
+        "id": "dire-wolf",
+        "name": "Dire Wolf",
+        "role": "Pack Striker",
+        "levelRange": "11–20",
+        "traits": [
+          "Pack Tactics: advantage if ally within 5 ft. — arch dire-wolf flanks read pack-leader signals across Aethel wild tiers",
+          "Alpha Bite: 2d6 piercing — arch dire-wolf fangs tear through tier-beast hide and pack-leader prey",
+          "Howl (action): 30 ft. Wis save or frightened 1 minute — arch dire-wolf cry echoes pack-leader dread across Aethel wild tiers"
+        ]
+      },
+      {
+        "id": "earth-warden",
+        "name": "Earth Warden (Dire Bear)",
+        "role": "Tank",
+        "levelRange": "11–20",
+        "traits": [
+          "Stoneheart Buffer: 30 temp HP in form — earth-warden bulk drinks tier-stone impacts like riverbed gravel under siege",
+          "Earth Slam (action): 10-ft. radius Dex save or 2d6 bludgeoning + prone",
+          "Stone Resistance: resist nonmagical B/P/S — earth-warden hide drinks tier-stone impacts like riverbed gravel"
+        ]
+      },
+      {
+        "id": "sky-serpent",
+        "name": "Sky Serpent",
+        "role": "Skirmisher",
+        "levelRange": "11–20",
+        "traits": [
+          "Sky Coil Flight 80 ft. — ride Weave updrafts between descent tiers; hover without losing reactions",
+          "Lightning Bite: 2d8 lightning — sky-serpent fangs crack Weave storm-blood; wet targets spark once per transformation",
+          "Glide Reflexes: +2 Dex saves — sky-serpent coils read Weave updrafts and dodge tier-lightning across Aethel descent air"
+        ]
+      },
+      {
+        "id": "ironhorn-ram",
+        "name": "Ironhorn Ram",
+        "role": "Bruiser",
+        "levelRange": "11–20",
+        "traits": [
+          "Hornplate Hide: AC 17 (unless higher) — ironhorn ram-form hide rings like tier-forged bronze against wild impacts",
+          "Charge: 20 ft. → +3d6 bludgeoning + DC 14 Str or push 10 ft.",
+          "Ironhorn Stance: cannot be knocked prone — ram-form legs brace like tier-forged bronze against wild impacts and siege pushes"
+        ]
+      },
+      {
+        "id": "shadow-lynx",
+        "name": "Shadow Lynx",
+        "role": "Assassin",
+        "levelRange": "11–20",
+        "traits": [
+          "Shadow Blink (reaction): teleport 30 ft. when hit — arch lynx dissolves into tier-shadow; reappears with muffled footfalls",
+          "Shadow-Touched Strikes: attacks count as magical — arch lynx claws cut through tier-shadow wards and mundane wild defenses",
+          "Shadow Pounce: advantage on first attack after Blink; +2 Stealth while motionless"
+        ]
+      }
+    ],
+    "BASE_DRUID_FORMS": [
+      {
+        "id": "wolf",
+        "name": "Wolf Form",
+        "role": "Striker",
+        "levelRange": "1–10",
+        "traits": [
+          "Pack Pace: +10 ft. movement — wolf-form stride cuts Aethel wild undergrowth and lower-tier trails",
+          "Keen Senses: advantage on Perception (hearing/smell) — wolf-form ears and nose read Aethel wild trails and tier-shadow ambush",
+          "Bite: 1d8 piercing + DC 11 Str save or prone — wolf-form jaws snap pack discipline onto lower-tier prey and wild trails"
+        ]
+      },
+      {
+        "id": "bear",
+        "name": "Bear Form",
+        "role": "Tank",
+        "levelRange": "1–10",
+        "traits": [
+          "Thick Hide Buffer: +20 temp HP — bear-form bulk absorbs blows like tier-rooted oak against wild impacts",
+          "Rootbark Hide: AC 14 (unless normal AC is higher) — bear-form plate drinks tier-root impacts like storm-worn oak bark",
+          "Claw: 2d6 slashing; +1 damage per attack (rage-like) — bear-form talons rake tier-rooted oak and wild bramble like storm fury"
+        ]
+      },
+      {
+        "id": "hawk",
+        "name": "Hawk Form",
+        "role": "Scout",
+        "levelRange": "1–10",
+        "traits": [
+          "Hawkwing Flight 60 ft. — base hawk form rides Weave updrafts between Aethel descent ledges",
+          "Keen Sight: advantage on Perception (sight) — hawk-form eyes track tier-thermals and distant prey across Aethel descent ledges",
+          "Dive Attack: 1d4 slashing + advantage from above — hawk-form stoop strikes from Weave updrafts between Aethel descent tiers"
+        ]
+      },
+      {
+        "id": "boar",
+        "name": "Boar Form",
+        "role": "Brawler",
+        "levelRange": "1–10",
+        "traits": [
+          "Gristle Hide: resistance to slashing — boar-form bristle and gristle turn blade edges along Aethel wild trails",
+          "Charge: +10 ft. move toward target → +1d6 damage and push 5 ft."
+        ]
+      },
+      {
+        "id": "panther",
+        "name": "Panther Form",
+        "role": "Stealth",
+        "levelRange": "1–10",
+        "traits": [
+          "Shadow Pelt: +4 Stealth — panther-form fur drinks light along tier-shadow and moonlit stone",
+          "Night Eyes: 60 ft. darkvision — panther-form sight pierces undercroft gloom without torchlight",
+          "Pounce: 20 ft. move + claw 2d4 → DC 12 Str or grappled — panther-form spring pins prey in tier-shadow and moonlit stone"
+        ]
+      }
+    ],
+    "DRUID_CIRCLES": [
+      {
+        "id": "land",
+        "label": "Circle of the Land"
+      },
+      {
+        "id": "moon",
+        "label": "Circle of the Moon"
+      },
+      {
+        "id": "storm",
+        "label": "Circle of the Storm"
+      },
+      {
+        "id": "thorns",
+        "label": "Circle of Thorns"
+      },
+      {
+        "id": "winterfang",
+        "label": "Circle of Winterfang"
+      },
+      {
+        "id": "rotshaper",
+        "label": "Circle of the Rotshaper"
+      },
+      {
+        "id": "ashen",
+        "label": "Circle of the Ashen Grove"
+      }
+    ],
+    "DRUID_CIRCLE_ARCH_PATH_NAMES": {
+      "land": "Circle of the Land",
+      "moon": "Circle of the Moon",
+      "storm": "Circle of the Storm",
+      "thorns": "Circle of Thorns",
+      "winterfang": "Circle of Winterfang",
+      "rotshaper": "Circle of the Rotshaper",
+      "ashen": "Circle of the Ashen Grove"
+    },
+    "HERO_FORMS_BY_CIRCLE": {
+      "land": {
+        "circle": "Circle of the Land",
+        "unlockLevel": 10,
+        "forms": [
+          {
+            "id": "blight-elk",
+            "name": "Blight Elk",
+            "traits": [
+              "Aura of Decay: 5 ft. — 1d4 poison at start of enemy turn — Land-circle rot breath seeps from tier blight and poisoned undergrowth",
+              "Blight Antlers: 2d8 piercing — Land-circle decay rides the charge; poisoned targets save at disadvantage vs Aura of Decay",
+              "Toxic Presence: wither plants and taint water — Land-circle rot spreads in your wake; poisoned drinking water imposes disadvantage on next Con save"
+            ]
+          },
+          {
+            "id": "tanglemaw",
+            "name": "Tanglemaw",
+            "traits": [
+              "Rootmaw Bite: 2d6 piercing + DC 14 Str or restrained — Land-circle thorn-vines hold prey; restrained foes take Thorny Body damage each turn",
+              "Thorny Body: 1d4 piercing to melee attackers — barbed bark sheds on contact; attackers save or bleed 1d4 at start of their next turn",
+              "Root Network: sense creatures on ground within 30 ft. — Land-circle root-sense pulses through tier soil and tangled undergrowth"
+            ]
+          }
+        ]
+      },
+      "moon": {
+        "circle": "Circle of the Moon",
+        "unlockLevel": 10,
+        "forms": [
+          {
+            "id": "beastlord",
+            "name": "Beastlord (Alpha Hybrid)",
+            "traits": [
+              "Chimera Cub: attacks +1d4 fire/cold/lightning each — Moon-beastlord cub fangs crackle with primal tri-element bite",
+              "Alpha Dire Wolf: action — Wis save or frightened 15 ft. — Moon-beastlord howl echoes across Aethel wild tiers",
+              "Pack Leader: beast allies within 30 ft. gain advantage on attacks — Moon-circle scent and command keep the pack pressing the same marked quarry through Aethel's wild tiers"
+            ]
+          },
+          {
+            "id": "mooncursed",
+            "name": "Mooncursed",
+            "traits": [
+              "Lycanthropic Resilience: resist all damage except silver — Moon-circle curse-flesh shrugs off steel and spell across Aethel tiers",
+              "Lunar Rage: +1d8 damage under a full moon — Moon-circle blood answers the high moon; silvered foes still resist as normal",
+              "Howl of the Wild: grant temporary HP to allies or frighten enemies within 30 ft. — choose the call's sheltering or hunting note when it breaks across the tier"
+            ]
+          }
+        ]
+      },
+      "storm": {
+        "circle": "Circle of the Storm",
+        "unlockLevel": 10,
+        "forms": [
+          {
+            "id": "tempest-raptor",
+            "name": "Tempest Raptor",
+            "traits": [
+              "Stormtalon Claw: 2d6 lightning — Circle storm-blood arcs on strike; wet targets take +1d4 lightning once per transformation",
+              "Stormwing Flight 60 ft. — Circle storm-blood lifts you; advantage on saves vs wind and lightning while airborne",
+              "Storm Shroud: 1d6 lightning to melee attackers — storm-blood fur crackles on contact; metal weapons touching you save or drop for 1 round"
+            ]
+          },
+          {
+            "id": "thunderhorn-stag",
+            "name": "Thunderhorn Stag",
+            "traits": [
+              "Thunder Charge: 2d8 thunder + Con save or deafened — storm-circle horns crack the air; deafened foes can't hear ally calls",
+              "Thunder Step (1/transformation): teleport 30 ft.; the departure or arrival erupts in a 2d8 thunder AoE, carrying the stag between storm-split footholds",
+              "Weather Sense: sense storms 24 hours ahead — Storm-circle horns tingle as Voltyros pressure and Weave charge shift across the descent tiers"
+            ]
+          }
+        ]
+      },
+      "thorns": {
+        "circle": "Circle of Thorns",
+        "unlockLevel": 10,
+        "forms": [
+          {
+            "id": "blight-elk-thorns",
+            "name": "Blight Elk",
+            "traits": [
+              "Aura of Decay: 5 ft. — 1d4 poison at start of enemy turn — Thorns-circle thorn-rot seeps from blighted undergrowth",
+              "Antlers: 2d8 piercing; poisoned targets take +1d4 poison on horn hits — thorn-rot follows the horn wound until the victim shakes it free",
+              "Thorned Presence: create difficult terrain in 10 ft.; allies ignore its thorns — the circle's briars bend aside for companions but clutch at pursuers"
+            ]
+          },
+          {
+            "id": "tanglemaw-thorns",
+            "name": "Tanglemaw",
+            "traits": [
+              "Thornmaw Bite: 2d6 piercing + DC 14 Str or restrained — Thorns-circle briars snag on impact; restrained foes take extra Thorny Body damage each turn",
+              "Thorny Body: 1d4 piercing to melee attackers; restrained foes take 1d4/turn — briars bloom on contact across thorn-circle undergrowth",
+              "Root Network: sense creatures on the ground within 30 ft.; gain advantage against being knocked prone as thorn-roots anchor through the tier soil"
+            ]
+          }
+        ]
+      },
+      "winterfang": {
+        "circle": "Circle of Winterfang",
+        "unlockLevel": 10,
+        "forms": [
+          {
+            "id": "snow-leopard",
+            "name": "Snow Leopard",
+            "traits": [
+              "Glacier Claw: 2d6 cold — Winterfang ice shards cling to strikes; slowed targets take +1d4 cold",
+              "Snowveil Stealth: +10 Stealth on ice or snow — Winterfang white fur blurs into rime drifts; gain advantage on hide checks after moving through snow",
+              "Frost Walk: ignore ice and snow penalties — Winterfang pads grip glacier stone and leave no clumsy slide across rime or slush"
+            ]
+          },
+          {
+            "id": "frost-wyrmling",
+            "name": "Frost Wyrmling",
+            "traits": [
+              "Breath Weapon: 30-ft. cone 4d6 cold (1/rest in form) — Winterfang rime breath freezes tier-mist into shard hail",
+              "Rime Scales: +2 AC — frost plating hardens on ice or snow; resist nonmagical B/P/S while in cold terrain",
+              "Rimeheart Immunity: immune to cold; breath and claw frost ignore resistance once per target each transformation as the wyrmling's rime finds a seam in warding"
+            ]
+          }
+        ]
+      },
+      "rotshaper": {
+        "circle": "Circle of the Rotshaper",
+        "unlockLevel": 10,
+        "forms": [
+          {
+            "id": "carrion-rat-king",
+            "name": "Carrion Rat King",
+            "traits": [
+              "Poison Bite: 1d8 + 2d6 poison; DC 13 Con or poisoned — Rotshaper plague-fangs drip undercroft venom across lower tiers",
+              "Summon Swarm (action): conjure a rat swarm for 1 minute — the Rotshaper carrion-king calls plague-rats from Aethel's undercroft cracks to screen, harry, and occupy prey",
+              "Rotshaper Immunity: immune to disease and poison — carrion crown tolerates Aethel blight and venom without the poisoned condition"
+            ]
+          },
+          {
+            "id": "insect-broodmother",
+            "name": "Insect Broodmother",
+            "traits": [
+              "Brood Burst: spawn 1d4 insect swarms on transforming — hatchlings pour from decay-tier burrows at your feet, spreading outward before the larger form advances",
+              "Brood Chitin: +3 AC — layered carapace sheds once per transformation to negate one crit",
+              "Brood Wall Crawl: climb walls and ceilings without checks — Rotshaper brood-limbs grip decay-softened stone across lower tiers"
+            ]
+          }
+        ]
+      },
+      "ashen": {
+        "circle": "Circle of the Ashen Grove",
+        "unlockLevel": 10,
+        "forms": [
+          {
+            "id": "charbear",
+            "name": "Charbear",
+            "draft": true,
+            "traits": [
+              "Flame Aura: 5 ft. — 1d6 fire at start of enemy turn — Ashen Grove char-hide smolders; foes in aura save or catch embers as the form advances through ash-choked tier wind",
+              "Ember Claw: 2d8 fire — Ashen Grove ash ignites on hit; ignited foes shed 1d4 fire at start of their turn while cinders cling to their retreat",
+              "Smoke Cloud (action): 20-ft. heavily obscured sphere — Ashen Grove ash-choked breath blinds foes in smoldering tier smoke and gives allies a moment to reposition"
+            ]
+          },
+          {
+            "id": "blazewood-stag",
+            "name": "Blazewood Stag",
+            "draft": true,
+            "traits": [
+              "Flaming Trail: 1d8 fire on entering trail tile — Ashen Grove embers cling to ash-scorched stone across descent tiers, sketching a dangerous route behind the charge",
+              "Burning Charge: +2d6 fire on horn charge — Ashen Grove embers trail the antlers through smoke and ash, carrying the stag's momentum into the first impact",
+              "Conflagration (1/long rest): 10 ft. 6d6 fire Dex save — Ashen Grove antler-burst ignites ash-choked undergrowth before the blaze gutters back to drifting cinders"
+            ]
+          }
+        ]
+      }
+    },
+    "SHAPESHIFT_RULES": {
+      "activation": "Bonus action to assume beast form",
+      "duration": "10 minutes per use; revert early as bonus action",
+      "usesByLevel": [
+        {
+          "level": 1,
+          "uses": 2
+        },
+        {
+          "level": 4,
+          "uses": 3
+        },
+        {
+          "level": 8,
+          "uses": 4
+        },
+        {
+          "level": 12,
+          "uses": 5
+        },
+        {
+          "level": 16,
+          "uses": 6
+        },
+        {
+          "level": 20,
+          "uses": "Unlimited (Archdruid)"
+        }
+      ],
+      "limitations": [
+        "Cannot cast spells unless Hero Class or Beast Spells (18+) allows",
+        "Speech limited (preserved in arch/hero forms)",
+        "Retain mental scores (Int, Wis, Cha)",
+        "Gain physical traits of chosen form"
+      ],
+      "unlocks": [
+        {
+          "level": 1,
+          "forms": "Base Druid Forms"
+        },
+        {
+          "level": 10,
+          "forms": "Hero Druid Forms (circle-specific)"
+        },
+        {
+          "level": 11,
+          "forms": "Arch Druid Forms"
+        }
+      ]
+    }
+  },
+  "class-spell-progression": {
+    "CLASS_SPELL_PROGRESSION": {
+      "Bard": {
+        "mode": "hybrid",
+        "maxRank": 7,
+        "learnLevels": {
+          "0": 1,
+          "1": 1,
+          "2": 4,
+          "3": 7,
+          "4": 10,
+          "5": 13,
+          "6": 16,
+          "7": 19
+        }
+      },
+      "Cleric": {
+        "mode": "full",
+        "maxRank": 9,
+        "learnLevels": {
+          "0": 1,
+          "1": 1,
+          "2": 3,
+          "3": 5,
+          "4": 7,
+          "5": 9,
+          "6": 11,
+          "7": 13,
+          "8": 15,
+          "9": 17
+        }
+      },
+      "Crimson Agent": {
+        "mode": "hybrid",
+        "maxRank": 6,
+        "learnLevels": {
+          "0": 1,
+          "1": 2,
+          "2": 5,
+          "3": 8,
+          "4": 11,
+          "5": 15,
+          "6": 19
+        }
+      },
+      "Dragoon": {
+        "mode": "minor",
+        "maxRank": 4,
+        "learnLevels": {
+          "0": 3,
+          "1": 3,
+          "2": 8,
+          "3": 13,
+          "4": 18
+        }
+      },
+      "Druid": {
+        "mode": "full",
+        "maxRank": 9,
+        "learnLevels": {
+          "0": 1,
+          "1": 1,
+          "2": 3,
+          "3": 5,
+          "4": 7,
+          "5": 9,
+          "6": 11,
+          "7": 13,
+          "8": 15,
+          "9": 17
+        }
+      },
+      "Mage": {
+        "mode": "full",
+        "maxRank": 9,
+        "learnLevels": {
+          "0": 1,
+          "1": 1,
+          "2": 3,
+          "3": 5,
+          "4": 7,
+          "5": 9,
+          "6": 11,
+          "7": 13,
+          "8": 15,
+          "9": 17
+        }
+      },
+      "Monk": {
+        "mode": "minor",
+        "maxRank": 4,
+        "learnLevels": {
+          "0": 1,
+          "1": 3,
+          "2": 8,
+          "3": 13,
+          "4": 18
+        }
+      },
+      "Mirrorsage": {
+        "mode": "hybrid",
+        "maxRank": 7,
+        "learnLevels": {
+          "0": 1,
+          "1": 1,
+          "2": 4,
+          "3": 7,
+          "4": 10,
+          "5": 13,
+          "6": 16,
+          "7": 19
+        }
+      },
+      "Oracle": {
+        "mode": "revelation",
+        "maxRank": 0,
+        "learnLevels": {}
+      },
+      "Ranger": {
+        "mode": "half",
+        "maxRank": 5,
+        "learnLevels": {
+          "0": 1,
+          "1": 2,
+          "2": 5,
+          "3": 9,
+          "4": 13,
+          "5": 17
+        }
+      },
+      "Shaman": {
+        "mode": "hybrid",
+        "maxRank": 7,
+        "learnLevels": {
+          "0": 1,
+          "1": 1,
+          "2": 4,
+          "3": 7,
+          "4": 10,
+          "5": 13,
+          "6": 16,
+          "7": 19
+        }
+      },
+      "Soldier": {
+        "mode": "none",
+        "maxRank": 0,
+        "learnLevels": {}
+      },
+      "Thief": {
+        "mode": "minor",
+        "maxRank": 4,
+        "learnLevels": {
+          "0": 1,
+          "1": 3,
+          "2": 8,
+          "3": 13,
+          "4": 18
+        }
+      },
+      "Tinker": {
+        "mode": "minor",
+        "maxRank": 5,
+        "learnLevels": {
+          "0": 1,
+          "1": 2,
+          "2": 6,
+          "3": 10,
+          "4": 14,
+          "5": 18
+        }
+      },
+      "Warrior": {
+        "mode": "none",
+        "maxRank": 0,
+        "learnLevels": {}
+      },
+      "Wizard": {
+        "mode": "full",
+        "maxRank": 9,
+        "learnLevels": {
+          "0": 1,
+          "1": 1,
+          "2": 3,
+          "3": 5,
+          "4": 7,
+          "5": 9,
+          "6": 11,
+          "7": 13,
+          "8": 15,
+          "9": 17
+        }
+      },
+      "Paladin": {
+        "mode": "half",
+        "maxRank": 5,
+        "learnLevels": {
+          "0": 2,
+          "1": 2,
+          "2": 5,
+          "3": 9,
+          "4": 13,
+          "5": 17
+        }
+      }
+    }
+  },
+  "class-core-mechanics": {
+    "CLASS_CORE_MECHANICS": {
+      "Bard": {
+        "primary": "Crescendo",
+        "resource": "Crescendo stacks (0–5)",
+        "weaveMode": "hybrid",
+        "resonanceInterface": "Completing and consuming a 5-stack Crescendo vents 2 Dissonance; repeating the same spell does not count as rhythmic variety.",
+        "mechanics": [
+          "Crescendo — Bard abilities played in rhythm build stacks; at 5, the next qualifying ability consumes the stack for an enhanced effect."
+        ]
+      },
+      "Cleric": {
+        "primary": "Divine Favor / Conviction",
+        "resource": "Conviction",
+        "weaveMode": "full",
+        "resonanceInterface": "Once per turn, spending 2 or more Conviction on a Rite or Invocation vents 1 Dissonance; prayer changes cadence instead of bypassing Resonance.",
+        "mechanics": [
+          "Divine Favor — prayer, rites, and service to the chosen power generate Conviction, which empowers divine abilities."
+        ]
+      },
+      "Crimson Agent": {
+        "primary": "Blood Mark",
+        "resource": "Blood Gauge (3 → 6)",
+        "weaveMode": "hybrid",
+        "resonanceInterface": "Once per turn, spend 1 Blood Gauge while casting to prevent 1 Dissonance; the Agent routes Weave strain through blood rather than gaining free casts.",
+        "mechanics": [
+          "Blood Mark — successful attacks and hemomantic techniques build Blood Gauge, spent to place/detonate Blood Marks or fuel Veinweaves."
+        ]
+      },
+      "Dragoon": {
+        "primary": "Momentum Gauge",
+        "resource": "Momentum (5 → 7)",
+        "weaveMode": "minor",
+        "resonanceInterface": "If the Dragoon moved at least 20 feet before a Weave cast, reduce that cast's Dissonance gain by 1 (minimum 0); Momentum carries the note through motion.",
+        "mechanics": [
+          "Momentum Gauge — movement and successful attacks build Momentum for leaps, burst attacks, and defensive maneuvers."
+        ]
+      },
+      "Druid": {
+        "primary": "Shapeshifting",
+        "resource": "Shapeshifting uses + Resonance Points",
+        "weaveMode": "full",
+        "resonanceInterface": "Entering Shapeshift clears the Refrain counter because the Druid changes the body sounding the Weave; beast-form casting remains limited by class features.",
+        "mechanics": [
+          "Shapeshifting — assume specialized beast forms with role-specific movement, defenses, and attacks; Circles unlock Hero and Arch forms."
+        ]
+      },
+      "Mage": {
+        "primary": "Elemental Focus / Nuke Chains",
+        "resource": "Resonance Points + Resonance Surge",
+        "weaveMode": "full",
+        "resonanceInterface": "A Nuke Chain requires different named spells of the chosen element; completing a three-spell chain vents 2 Dissonance. Repeating one nuke builds Refrain normally.",
+        "mechanics": [
+          "Elemental Focus — specialize in Fire, Cold, or Lightning.",
+          "Nuke Chains — three consecutive spells of the chosen element enable an enhanced finisher.",
+          "Resonance Surge — trade casting sustainability for burst-damage rotations."
+        ]
+      },
+      "Monk": {
+        "primary": "Ki Flow",
+        "resource": "Ki Chain (0–5)",
+        "weaveMode": "minor",
+        "resonanceInterface": "Spend 1 Ki when using a minor Weave technique to prevent 1 Dissonance from that technique; Ki and Resonance remain separate pools.",
+        "mechanics": [
+          "Ki Flow — movement/attack chains, critical strikes, and defensive reactions build Ki for advanced techniques.",
+          "Stance System — switch combat stances once per round to change tactical function.",
+          "Unarmored Flow — mobility, initiative, and stance benefits reward fighting without armor."
+        ]
+      },
+      "Mirrorsage": {
+        "primary": "Echo Slots / Mirrorbind",
+        "resource": "Echo Slots (3 → 5; ceiling rules may expand storage)",
+        "weaveMode": "hybrid",
+        "resonanceInterface": "The first replay of a newly Mirrorbound Echo ignores Refrain Dissonance; repeating the same stored Echo builds Refrain normally.",
+        "mechanics": [
+          "Echo Slots — captured monster abilities occupy finite Echo Slots until released.",
+          "Mirrorbind — copy a witnessed eligible ability from the current battle into an empty Echo Slot.",
+          "Charm Bind — temporarily turn a low-intellect creature into a Reflective Companion."
+        ]
+      },
+      "Oracle": {
+        "primary": "Mystery, Curse & Revelations",
+        "resource": "Revelation Charges (3 → 7)",
+        "weaveMode": "revelation",
+        "resonanceInterface": "Oracle does not track Weave Dissonance. Revelation Charges, the permanent Curse, and Prophecy Triggers are the Oracle's anti-spam architecture.",
+        "mechanics": [
+          "Mystery — determines the Revelation tree, passive identity, and Prophecy Trigger.",
+          "Curse — a permanent affliction that also unlocks escalating boons.",
+          "Revelation Charges — Oracles do not use Resonance Points; Revelations consume and recover RC through Mystery-specific triggers."
+        ]
+      },
+      "Ranger": {
+        "primary": "Track Target",
+        "resource": "Tracked quarry + attack chain",
+        "weaveMode": "half",
+        "resonanceInterface": "A successful weapon hit between spell casts clears Refrain and reduces the next spell's Dissonance gain by 1 (minimum 0), rewarding the Ranger's martial/primal cadence.",
+        "mechanics": [
+          "Track Target — mark one quarry for increased pressure and unlock quarry-dependent techniques.",
+          "Weapon Synergy — alternating melee and ranged attacks grants follow-up bonuses.",
+          "Elemental Imbue — Fire, Cold, or Poison modifies weapon effects.",
+          "Druidic Arrow Combo — successful weapon chains unlock an enhanced primal arrow technique."
+        ]
+      },
+      "Shaman": {
+        "primary": "Totem System",
+        "resource": "Totems + elemental attunement",
+        "weaveMode": "hybrid",
+        "resonanceInterface": "Once per round, the first spell cast inside the Shaman's own active Totem aura generates 1 less Dissonance (minimum 0).",
+        "mechanics": [
+          "Totem System — persistent battlefield structures project allied boons or hostile penalties.",
+          "Elemental Affinity — Fire, Ice, Air, or Earth attunement modifies Shaman techniques.",
+          "Flask Bomb System — Theurgist/Soothsayer paths convert elemental power into thrown tactical effects."
+        ]
+      },
+      "Soldier": {
+        "primary": "Palisade / Overwatch",
+        "resource": "Positioning, reactions, and deployables",
+        "weaveMode": "none",
+        "resonanceInterface": "No general Weave casting; class power is entirely positional and martial.",
+        "mechanics": [
+          "Palisade System — deploy barriers that create cover, chokepoints, and controlled firing lanes.",
+          "Overwatch System — monitor a declared zone and react when enemies cross or threaten it.",
+          "Intercept & Brace — defensive positioning protects allies and stabilizes the line."
+        ]
+      },
+      "Thief": {
+        "primary": "Sneak Attack / Poison",
+        "resource": "Positioning + prepared toxins",
+        "weaveMode": "minor",
+        "resonanceInterface": "Once per round, a Weave trick cast while hidden ignores its first point of Refrain Dissonance; stealth changes delivery, not RP cost.",
+        "mechanics": [
+          "Sneak Attack — exploit stealth, flanking, Bleed, Poison, or Disable states for bonus damage.",
+          "Poison System — apply tactical toxins as a bonus action, with stronger critical effects.",
+          "Utility Skills — lockpicking, trap disarming, stealth, and infiltration remain core combat-adjacent power."
+        ]
+      },
+      "Tinker": {
+        "primary": "Anacite Drone / Deployables",
+        "resource": "Drone + bombs + devices",
+        "weaveMode": "minor",
+        "resonanceInterface": "Once per short rest, route up to 2 Dissonance into an active device; that device becomes disabled until repaired or the next short rest.",
+        "mechanics": [
+          "Mechanical Pet — command and customize an Anacite Drone companion.",
+          "Explosive Toolkit — prepare elemental and tactical bombs.",
+          "Deployable Devices — turrets, traps, and gadgets reshape battlefield space."
+        ]
+      },
+      "Warrior": {
+        "primary": "Mutation Slots",
+        "resource": "Mutation Slots + Serum Engine + Brutality Threshold",
+        "weaveMode": "none",
+        "resonanceInterface": "No general Weave casting; mutations and serums are the Warrior's power engine.",
+        "mechanics": [
+          "Mutation Slots — equip and swap adaptive mutations during rests.",
+          "Serum Engine — specialized serums trigger or fuel mutations.",
+          "Brutality Threshold — dealing and taking damage pushes the Warrior into enhanced mutation states."
+        ]
+      },
+      "Wizard": {
+        "primary": "Spell Matrix System",
+        "resource": "Prepared Spell Matrix + Resonance Points",
+        "weaveMode": "full",
+        "resonanceInterface": "The first cast of each different prepared Spell Matrix in an encounter generates 0 base Dissonance; repeating a matrix builds Refrain normally.",
+        "mechanics": [
+          "Spell Matrix System — prepare and study modifiable arcane matrices, trading spontaneity for the broadest controlled spell access."
+        ]
+      },
+      "Paladin": {
+        "primary": "The Oath",
+        "resource": "Oath + Smite + Aura + Lay on Hands",
+        "weaveMode": "half",
+        "resonanceInterface": "Smite, Aura, and Lay on Hands are Oath mechanics and do not generate Weave Dissonance. After a successful melee hit, the next Oath spell before the end of the next turn generates 1 less Dissonance.",
+        "mechanics": [
+          "The Oath — chosen at Level 3; defines Smite type, Aura, signature power, Revelation spell list, and Conduct Clause.",
+          "Smite System — Oath-shaped empowered melee strikes.",
+          "Aura System — scaling passive zones tied to the Oath.",
+          "Lay on Hands — healing/cleansing pool equal to 5 × Paladin level."
+        ]
+      }
+    },
+    "DARK_RESONANCE_PATHS": {
+      "Lich": {
+        "baseClass": "Mage",
+        "mechanic": "Soul Furnace",
+        "principle": "Force the Weave through accumulated Dissonance, accepting direct magical trauma rather than losing access to ranked casting."
+      },
+      "Necromancer": {
+        "baseClass": "Wizard",
+        "mechanic": "Grave Conductor",
+        "principle": "Use death, corpses, and bound undead as resonators while forcing spells through Dissonance that would stop an ordinary caster."
+      }
+    }
+  },
+  "class-ceiling-caps": {
+    "CEILING_CAP_CLASS_NAMES": [
+      "Mirrorsage",
+      "Oracle",
+      "Paladin",
+      "Warrior",
+      "Dragoon",
+      "Tinker"
+    ],
+    "CLASS_CEILING_CAPS": {
+      "Mirrorsage": {
+        "summary": "Adaptive copier — bound echo slots, copy releases per round, RP discount floor, and boss-unique exclusions.",
+        "caps": [
+          {
+            "category": "Actions / round",
+            "cap": "1 witnessed copy release",
+            "note": "Action or bonus action, not both"
+          },
+          {
+            "category": "Echo slots",
+            "cap": "6 concurrent (L11+); 1 permanent Infinite Reflection (L20)"
+          },
+          {
+            "category": "Copy eligibility",
+            "cap": "No legendary, 1/day, 1/encounter, or boss-unique effects",
+            "note": "Copied tier cannot exceed source owner's level gate"
+          },
+          {
+            "category": "RP discount",
+            "cap": "Half-cost min 1 RP; max 2 RP discount / round"
+          },
+          {
+            "category": "Mirror Beast",
+            "cap": "2 shifts / encounter (L16+); no extra copy release on shift"
+          }
+        ],
+        "playtestLedger": [
+          "Echo slot contents",
+          "Copy releases / round",
+          "RP spent on echoes"
+        ]
+      },
+      "Oracle": {
+        "summary": "Revelation support/control — strict RC pool, 1 RC recovery per round, and turn-denial per-target caps.",
+        "caps": [
+          {
+            "category": "RC pool",
+            "cap": "3–7 max; no short-rest recovery"
+          },
+          {
+            "category": "RC recovery / round",
+            "cap": "1 from all Prophecy Triggers combined"
+          },
+          {
+            "category": "Actions / round",
+            "cap": "1 Revelation activation",
+            "note": "Tier III (3 RC) = one activation"
+          },
+          {
+            "category": "Turn denial",
+            "cap": "1 hard deny / target / encounter",
+            "note": "Stun, skip turn, auto-fail"
+          },
+          {
+            "category": "Prophetic Surge",
+            "cap": "1 / day",
+            "note": "Does not bypass 1 RC / round recovery cap"
+          }
+        ],
+        "playtestLedger": [
+          "RC start/end per round",
+          "Trigger source",
+          "Revelations activated"
+        ]
+      },
+      "Paladin": {
+        "summary": "Armored striker + aura support — compress smite/spell riders, aura stacking, and Lay on Hands spend.",
+        "caps": [
+          {
+            "category": "Actions / round",
+            "cap": "Extra Attack + 1 Smite or 1 leveled spell",
+            "note": "L7 reactive trigger counts as that rider"
+          },
+          {
+            "category": "Aura stacking",
+            "cap": "One aura radius; 1 reactive aura trigger / round"
+          },
+          {
+            "category": "Lay on Hands",
+            "cap": "Pool 5 × level; max 50% pool spent / round"
+          },
+          {
+            "category": "Aura Surge",
+            "cap": "1 / rest (L17 draft)"
+          },
+          {
+            "category": "Oath revelation smite",
+            "cap": "1 / long rest rider without slot (L16 draft)"
+          }
+        ],
+        "playtestLedger": [
+          "Smite uses",
+          "LoH spent",
+          "Aura triggers",
+          "Oath spell riders"
+        ]
+      },
+      "Warrior": {
+        "summary": "Mutation bruiser — slot count, one activation per round, Brutality Threshold gate, toxicity strain limits.",
+        "caps": [
+          {
+            "category": "Mutation slots",
+            "cap": "3 prepared; 4 for Apex Form 1 / encounter (L20)"
+          },
+          {
+            "category": "Mutations / round",
+            "cap": "1 activation; Reflexive Mutation 1 / round (L17)"
+          },
+          {
+            "category": "Serum Overclock",
+            "cap": "2 serums at once = 1 activation (L9)"
+          },
+          {
+            "category": "Actions / round",
+            "cap": "Action Surge + 1 mutation activation max"
+          },
+          {
+            "category": "Brutality Threshold",
+            "cap": "100% max HP dealt → Transcendent 3 rounds; 1 / short rest"
+          }
+        ],
+        "playtestLedger": [
+          "Active mutations",
+          "Activations / round",
+          "Strain applied",
+          "Threshold triggers"
+        ]
+      },
+      "Dragoon": {
+        "summary": "Mobile reach striker — Momentum cap/overflow, leap action economy, refund and overflow damage ceilings.",
+        "caps": [
+          {
+            "category": "Momentum cap",
+            "cap": "5 (L1–12); 6 (L13+)"
+          },
+          {
+            "category": "Overflow",
+            "cap": "Temp HP = tier floor × overflow stacks (L17)",
+            "note": "Overflow does not raise cap"
+          },
+          {
+            "category": "Overflow damage",
+            "cap": "+1d6 / stack above cap, max +2d6 / turn (L12+)"
+          },
+          {
+            "category": "Actions / round",
+            "cap": "Extra Attack + 1 Wyvern's Flow or Apex Assault"
+          },
+          {
+            "category": "Momentum refund",
+            "cap": "1 / turn from Wyvern's Flow on hit (L13+)"
+          },
+          {
+            "category": "Sky Sovereign",
+            "cap": "1 / day (L20); no extra attacks from OAs immunity"
+          }
+        ],
+        "playtestLedger": [
+          "Momentum start/end",
+          "Overflow stacks",
+          "Leaps / round",
+          "Refund sources"
+        ]
+      },
+      "Tinker": {
+        "summary": "Deployable control — concurrent gadget count, HP/damage/duration ceilings, shared deploy action economy.",
+        "caps": [
+          {
+            "category": "Deployables",
+            "cap": "3 concurrent gadgets; 2 drones share HP pool (L11+)"
+          },
+          {
+            "category": "Flask / bomb",
+            "cap": "4 concurrent; remote detonation 60 ft (L13+)"
+          },
+          {
+            "category": "Deployable HP",
+            "cap": "Draft +2 milestones; max 2 × level HP per device"
+          },
+          {
+            "category": "Damage",
+            "cap": "Overcharge double 1 / short rest; +5 ft first remote detonation / encounter"
+          },
+          {
+            "category": "Duration",
+            "cap": "Encounter; Mech Overdrive 1 permanent / battle (L20)"
+          },
+          {
+            "category": "Actions / round",
+            "cap": "1 deploy + 1 detonation; 2 deployables = 1 bonus action (L16)"
+          }
+        ],
+        "playtestLedger": [
+          "Deployable count",
+          "HP remaining",
+          "Detonations / round",
+          "Overcharge uses"
+        ]
+      }
+    }
+  }
+}

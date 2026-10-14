@@ -1,0 +1,3392 @@
+[
+  {
+    "owner": "cleric",
+    "card": {
+      "id": "cleric.base.judging-light",
+      "name": "Judging Light",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Passive",
+      "frequency": "Always",
+      "effect": "Judging Light. Tags: smite, passive. When your Divine Smite damages a creature currently affected by a Cursed or Weakened condition, add S d4 radiant damage to that Smite. Roll these dice once as part of the Smite; they do not create a second hit or trigger.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1969,
+        "originalText": "Judging Light: Smite deals +20% bonus damage to enemies afflicted by Cursed or Weakened effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "cleric",
+    "card": {
+      "id": "cleric.base.judgment.judgment",
+      "name": "Judgment",
+      "className": "Cleric",
+      "band": "Base",
+      "path": "Judgment",
+      "sourceKind": "supplement",
+      "minimumClassLevel": 2,
+      "acquisition": "automatic",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Permanent",
+      "frequency": "Automatic only if Judgment was selected",
+      "effect": "Invocation Path — Judgment. Tags: invocation, judgment, smite. When your Divine Smite deals damage to a creature, mark it Judged for 2 rounds. A Judged creature has -1 AC. Further applications refresh the duration but do not increase the AC penalty.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1975,
+        "originalText": "Judgment: Smites mark enemies with Judged for 2 rounds, reducing their AC by 1."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "cleric",
+    "card": {
+      "id": "cleric.hero.priest.balanced-scales",
+      "name": "Balanced Scales",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Priest",
+      "sourceKind": "passive",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Living creatures healed by your Cleric features",
+      "duration": "Until start of your next regular turn",
+      "frequency": "At most once per marked ally per round",
+      "effect": "Balanced Scales. Tags: priest, healing, retaliation. After you restore HP to a living ally, mark it until the start of your next regular turn. The first enemy to damage that ally during the mark takes S + M radiant damage. The retaliation is not an attack, cannot critically hit and cannot recursively trigger another Balanced Scales event.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2033,
+        "originalText": "Balanced Scales: Enemies take divine damage if they attack healed targets."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "cleric",
+    "card": {
+      "id": "cleric.hero.priest.word-of-binding",
+      "name": "Word of Binding",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Priest",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "5 Conviction + 8 RP",
+      "rangeAndTarget": "Up to six enemies within 30 feet",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "1/long rest",
+      "effect": "Final Miracle — Word of Binding. Tags: priest, finale, control, rite. Each target makes a Wisdom save. On failure it is Silenced and its Speed becomes 0. At the end of each of its turns it repeats the save, ending both effects on success. While a target remains bound, the first instance of divine or radiant damage it takes each round gains S d6 additional radiant damage. The Conviction expenditure can vent Dissonance once.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2035,
+        "originalText": "Final Miracle: Word of Binding: Enemies in a large AoE are silenced, snared, and take +25% divine damage for 3 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "cleric",
+    "card": {
+      "id": "cleric.hero.priest.divine-judgment",
+      "name": "Divine Judgment",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Priest",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One enemy within 60 feet",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "Recharge 3 rounds",
+      "effect": "Divine Judgment. Tags: priest, judgment. The target makes a Wisdom save; success ends the attempt. On failure it is marked. The first time on each of its turns that it deals damage to another creature, it takes radiant damage equal to half that actual damage rounded down, minimum 1, maximum your Cleric level. It repeats the Wisdom save at the end of each turn, ending the mark on success.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2039,
+        "originalText": "Divine Judgment: Mark an enemy for judgment, causing them to take damage proportional to the harm they inflict."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "cleric",
+    "card": {
+      "id": "cleric.hero.cultist.ritual-of-undeath",
+      "name": "Ritual of Undeath",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Cultist",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 Conviction + 6 RP",
+      "rangeAndTarget": "One eligible corpse within 30 feet or one living ally within 30 feet",
+      "duration": "Mode-dependent",
+      "frequency": "1/long rest",
+      "effect": "Ritual of Undeath. Tags: cultist, undead, rite. Choose one mode. Corpse Servant: one humanoid corpse dead no more than 1 minute rises for 3 rounds as a temporary thrall with AC 13, 10 HP, Speed 30 feet and one attack only when you spend your shared companion Bonus Action command using your Cleric technique attack bonus; on hit it deals S d6 necrotic. The thrall disappears at 0 HP or when duration ends and grants no XP, loot, new corpse, Conviction or resurrection target. Death Ward: one living ally is marked for 1 minute; the first time it would die during that duration, it instead remains at 1 HP and counts as both humanoid and undead until the end of its next turn. Neither mode removes Wounds. The Conviction expenditure can vent Dissonance once.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2059,
+        "originalText": "Ritual of Undeath: Perform a forbidden ritual that can temporarily raise fallen enemies as servants or prevent allies from dying by transforming them into undead-like entities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "crimson-agent",
+    "engineIndex": 3,
+    "text": "One Blood Mark at a time on a living target with your Bleed, except Phantom Strike, which explicitly may apply the mark without Bleed. It does not add a free Bleed. Marks last 5 of your regular turns, expire on encounter end or if the target dies, and never create damage by themselves. Rupture requires the target still within 60 ft and line of effect; it spends the mark. A mark does not defeat cover, planar boundaries or bloodlessness. Bloodtrail has its own tracking limits."
+  },
+  {
+    "owner": "crimson-agent",
+    "engineIndex": 6,
+    "text": "At level 1 learn the core Blood Gauge/Bleed rules automatically. Blood Mark and Veinweaver's Core remain selections; Quickblood can be selected and used without a second unlock tax. Veinweaver's Core improves that foundation as printed. Standard scheduled acquisition applies. Bloodbound Edge is automatic 9. At 10 choose Bloodweaver, Shadow Operative or Thirstborn; its Final Cut is automatic 20. Duplicate Hemostasis names are separate Arch and Bloodweaver IDs."
+  },
+  {
+    "owner": "crimson-agent",
+    "card": {
+      "id": "crimson-agent.base.blood-mark",
+      "name": "Blood Mark",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 BG",
+      "rangeAndTarget": "One living target with your Bleed within 60 ft",
+      "duration": "5 of your turns",
+      "frequency": "At will, one mark",
+      "effect": "Apply your Blood Mark. Replaces your previous mark without detonating it. The mark enables Rupture and printed mark interactions; it deals no automatic damage and does not grant vision.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2135,
+        "originalText": "Blood Mark: Apply a magical mark to a bleeding target that lasts for 5 turns. The mark can be detonated for additional effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "crimson-agent",
+    "card": {
+      "id": "crimson-agent.arch.rupture-trigger",
+      "name": "Rupture Trigger",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 2 other enemies within 5 ft of ruptured mark",
+      "duration": "Bleed 3 turns",
+      "frequency": "Once/round",
+      "effect": "After Rupture damages its marked target, choose up to 2 other living enemies nearby. Each makes CON save; on failure apply one Bleed. These applications do not trigger Rupture again or grant BG.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2146,
+        "originalText": "Rupture Trigger: Detonating a Blood Mark causes AoE Bleed in a small radius."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "crimson-agent",
+    "card": {
+      "id": "crimson-agent.arch.rupture",
+      "name": "Rupture",
+      "className": "Crimson Agent",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 BG; consume your mark",
+      "rangeAndTarget": "Your marked enemy within 60 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "Target makes CON save: (S+1)d8 necrotic on failure, half on success. The mark ends either way; existing Bleed remains. Damage from this technique is not a weapon hit and grants no BG.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2153,
+        "originalText": "Rupture: Detonate a Blood Mark on a target, dealing significant damage and consuming the mark."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "crimson-agent",
+    "card": {
+      "id": "crimson-agent.hero.shadow-operative.veinjammer",
+      "name": "Veinjammer",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One creature damaged by your Bleed",
+      "duration": "Until end target's next turn",
+      "frequency": "Once/round",
+      "effect": "After a Bleed tick, choose that victim: Speed reduced 5 ft, minimum 0, and its next concentration save takes-1. Nonstacking; does not remove an Action or prohibit spellcasting.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2185,
+        "originalText": "Veinjammer: Bleeds reduce enemy casting and action speed by 10%."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "crimson-agent",
+    "card": {
+      "id": "crimson-agent.hero.shadow-operative.phantom-strike",
+      "name": "Phantom Strike",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 BG",
+      "rangeAndTarget": "One enemy in weapon reach; must be hidden from it",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Make one weapon attack with advantage. On hit add S d6 damage and apply a mark without its usual BG cost, even if not already bleeding. The mark replaces your old mark; no free Rupture occurs. Normal hit BG gain still capped.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2189,
+        "originalText": "Phantom Strike: Attack from stealth with increased critical chance and apply a Blood Mark automatically."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "crimson-agent",
+    "card": {
+      "id": "crimson-agent.hero.thirstborn.carrion-conductor",
+      "name": "Carrion Conductor",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Thirstborn",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One fresh hostile living-combatant corpse within 30 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "Mark the corpse once; on activation or before expiry use Reaction to burst it. Up to 3 enemies within 5 ft make DEX saves: S d6 necrotic, half on success. Corpse cannot be reused, raised by this effect or provide BG/kill triggers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2202,
+        "originalText": "Carrion Conductor: Corpses leave behind blood pools that explode for AoE damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "dragoon",
+    "card": {
+      "id": "dragoon.hero.drake-rider.drake-mark",
+      "name": "Drake Mark",
+      "className": "Dragoon",
+      "band": "Hero",
+      "path": "Drake Rider",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One creature hit by your leap",
+      "duration": "Until end next turn",
+      "frequency": "Once/own turn",
+      "effect": "Mark that creature; your first subsequent direct polearm hit adds S damage. A new mark replaces old. No extra damage to the triggering leap, Do Ts or copies; it is not a spell mark.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2333,
+        "originalText": "Drake Mark: Each leap attack marks enemies. Marked enemies take +10% damage from you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "druid",
+    "card": {
+      "id": "druid.arch.winterfang.winter-s-embrace",
+      "name": "Winter's Embrace",
+      "className": "Druid",
+      "band": "Arch",
+      "path": "Winterfang",
+      "sourceKind": "feature",
+      "minimumClassLevel": 6,
+      "acquisition": "automatic",
+      "activation": "Bonus Action",
+      "cost": "One short-rest use",
+      "rangeAndTarget": "Winterfang Circle; 10 ft radius",
+      "duration": "Concentration, 3 rounds",
+      "frequency": "1/short rest",
+      "effect": "Up to 3 enemies starting turn inside CON save or 1d6 cold and Speed-10 ft through end turn. Once/enemy/round; success no effect. Does not stack multiple slows or affect flying targets outside sphere.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2760,
+        "originalText": "Winter's Embrace\nBeginning at 6th level, you can surround yourself with an aura of biting cold. As a bonus action, you can activate this aura, causing each creature of your choice that starts its turn within 10 feet of you to make a Constitution saving throw against your spell save DC. On a failed save, the creature takes 1d6 cold damage and its speed is reduced by 10 feet until the start of its next turn.\nThis aura lasts for 1 minute or until you dismiss it as a bonus action. Once you use this feature, you can't use it again until you finish a short or long rest."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "druid",
+    "card": {
+      "id": "druid.hero.winterfang.snow-leopard",
+      "name": "Snow Leopard",
+      "className": "Druid",
+      "band": "Hero",
+      "path": "Winterfang",
+      "sourceKind": "form",
+      "minimumClassLevel": 10,
+      "acquisition": "automatic",
+      "activation": "Action claw; passive traits",
+      "cost": "One shift",
+      "rangeAndTarget": "Winterfang Hero; claw 5 ft",
+      "duration": "While in Snow Leopard",
+      "frequency": "One claw/Action",
+      "effect": "Claw 2d6+WIS cold, +1d4 once/turn against slowed foe. +5 Stealth on ice/snow and advantage on legal Hide there; source+10 reduced provisionally. Ignore ordinary ice/snow movement penalties, not magical restraining ice.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2765,
+        "originalText": "Snow Leopard\nClaw: Your claw attacks deal 2d6 cold damage\nStealth: You gain a +10 bonus to Dexterity (Stealth) checks made in snowy or icy terrain\nFrost Walk: You can move across icy surfaces without making ability checks and through snow without penalty"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "mage",
+    "engineIndex": 16,
+    "text": "Before the irreversible Lich roll, the Director must explicitly tell the player the historical failure stakes: permanent loss of spellcasting, transformation into a cursed melee undead NPC, hostile faction consequences, cursed-gear restriction and no further XP as that retired PC. The player must explicitly opt into that retirement risk before rolling. If the player declines, the ritual stops before the roll and the character must choose another Hero path for this playtest; no irreversible consequence is applied."
+  },
+  {
+    "owner": "mage",
+    "card": {
+      "id": "mage.base.elemental-bolt",
+      "name": "Elemental Bolt",
+      "className": "Mage",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 2,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One creature within 60 feet",
+      "duration": "Instantaneous",
+      "frequency": "At will while RP remains",
+      "effect": "Elemental Bolt. Tags: mage-spell, elemental, focus, damage. Make a Mage spell attack. On a hit deal S d8 + M damage of your current Focus. Fire: target takes 1d4 fire at the start of its next turn. Cold: Speed -10 feet until the end of its next turn. Lightning: one different enemy within 10 feet takes S lightning damage. Secondary damage creates no new spell cast or chain credit.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2898,
+        "originalText": "Elemental Bolt: Cast a bolt of your chosen element (once selected) that deals additional effects based on the element."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 1
+    }
+  },
+  {
+    "owner": "mage",
+    "card": {
+      "id": "mage.base.cold.cold",
+      "name": "Cold",
+      "className": "Mage",
+      "band": "Base",
+      "path": "Cold",
+      "sourceKind": "supplement",
+      "minimumClassLevel": 2,
+      "acquisition": "automatic",
+      "activation": "Passive",
+      "cost": "0; Glacier Spike costs 2 RP when primed",
+      "rangeAndTarget": "Self; finisher uses a 15-foot cone",
+      "duration": "Permanent Focus; finisher instantaneous plus slow",
+      "frequency": "Choose at Mage 2; finisher recharge 3 rounds",
+      "effect": "Elemental Focus — Cold. Tags: focus, cold. Once on each of your turns, a natural 19 that hits with a Cold Mage spell is a critical hit. When a Cold Mage spell damages a creature, its Speed is reduced by 10 feet until the end of its next turn, minimum 0. FINISHER — Glacier Spike: after a completed Cold Nuke Chain, Bonus Action, 2 RP. Creatures in a 15-foot cone make Constitution saves, taking (S+1)d8 cold on failure or half on success; failed creatures have their Speed halved until the end of their next turn.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2908,
+        "originalText": "Cold: +5% crit chance, slows targets. Finisher: Glacier Spike – Cone AoE, 50% slow"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 1
+    }
+  },
+  {
+    "owner": "mage",
+    "card": {
+      "id": "mage.arch.elemental-mastery",
+      "name": "Elemental Mastery",
+      "className": "Mage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your current Elemental Focus spells",
+      "duration": "Permanent",
+      "frequency": "Always",
+      "effect": "Elemental Mastery. Tags: arcanist, focus. Improve the secondary effect of your current Focus. Fire Burns from your Focus cards last one additional turn but never stack. Cold Focus Speed reductions increase by another 5 feet, minimum 0. Lightning Focus's once-per-turn secondary arc increases from S flat lightning damage to S d4 lightning damage. Pivoted Focus uses the corresponding upgraded rider.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2916,
+        "originalText": "Elemental Mastery: Increase the effectiveness of your chosen element's secondary effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "mage",
+    "card": {
+      "id": "mage.arch.elemental-surge",
+      "name": "Elemental Surge",
+      "className": "Mage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One creature within 60 feet",
+      "duration": "Instantaneous",
+      "frequency": "Recharge 2 rounds",
+      "effect": "Elemental Surge. Tags: mage-spell, arcanist, elemental, focus, damage. Make a Mage spell attack. On a hit deal (S+1)d8 + M damage of your current Focus. Fire also applies the Focus Burn; Cold applies the Focus Speed reduction; Lightning applies the Focus secondary arc. This is Focus-eligible and can occupy one slot in a Nuke Chain.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2920,
+        "originalText": "Elemental Surge: Channel a concentrated burst of your chosen element, dealing high damage to a single target."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 2
+    }
+  },
+  {
+    "owner": "mage",
+    "card": {
+      "id": "mage.hero.elementalist.cascade-storm",
+      "name": "Cascade Storm",
+      "className": "Mage",
+      "band": "Hero",
+      "path": "Elementalist",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "6 RP",
+      "rangeAndTarget": "Up to three different creatures within 60 feet",
+      "duration": "Instantaneous",
+      "frequency": "Recharge 3 rounds",
+      "effect": "Cascade Storm. Tags: mage-spell, elementalist, fire, cold, lightning, damage. Choose up to three creatures. Resolve one separate Mage spell attack against each: first hit deals S d6 fire and 1d4 fire next turn; second hit deals S d6 cold and Speed -10 feet until end next turn; third hit deals S d6 lightning and removes Reaction until start next turn. If fewer than three targets are chosen, unused elements are lost. For Nuke Chain purposes choose one of the three elements before casting; Cascade Storm counts only as that element.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2956,
+        "originalText": "Cascade Storm: Trigger a sequence of elemental effects that build upon each other."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 6
+    }
+  },
+  {
+    "owner": "mirrorsage",
+    "engineIndex": 2,
+    "text": "Record source creature/name, witnessed ability, category, damage type, allowed rank, capture encounter and whether first release has occurred. For this pilot, capture copies the observed role into ONE bounded profile: Strike=one target 60 ft class spell attack S d8 observed damage type; Burst=up to 3 enemies in 10 ft radius within 30 ft DEX save S d6, half on success; Mend=one living ally 30 ft S d6+M HP; Ward=one ally 30 ft S d6+M temporary HP for 1 minute; Hindrance=one enemy 30 ft WIS save or Speed-10 ft and no Reactions until end its next turn. Choose only a profile actually expressed by the observed source; physical attack cannot become healing. Rank is max(1, ceil(source challenge rating/2)); if source lacks a rating the Director assigns a rank before the encounter, not after seeing a desirable ability. Rank cannot exceed your Mirrorsage learnable rank; no copying character levels from a creature. Damage/targets/control are capped by these profiles, not source boss dice."
+  },
+  {
+    "owner": "mirrorsage",
+    "card": {
+      "id": "mirrorsage.hero.mirror-mage.reflected-repertoire",
+      "name": "Reflected Repertoire",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Mirror Mage",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Bonus Action",
+      "cost": "8 RP; 1 long-rest use",
+      "rangeAndTarget": "Up to 3 records currently in your archive",
+      "duration": "Next 3 releases within 1 minute",
+      "frequency": "1/long rest",
+      "effect": "Mark up to 3 distinct existing records. Each one's next release keeps its record instead of consuming it; still pay release RP and obey one release/round. No restoration of already empty slots, no invented records, no reuse-preservation after its marked use.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3124,
+        "originalText": "Final – Reflected Repertoire: Reset all Echo slots. Next 3 Echoes cast without consuming slots."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "monk",
+    "engineIndex": 8,
+    "text": "STUN GUARD. A creature can be Stunned by your Monk features at most once per encounter. Mark it after the first Monk-caused Stunned condition successfully applies. If another of your Monk features would Stun that marked creature later in the same encounter, the creature still makes the required save; on failure it instead loses its Reaction until the end of its next turn. This guard is tracked separately for each Monk."
+  },
+  {
+    "owner": "monk",
+    "engineIndex": 18,
+    "text": "Each technique tagged weave creates 1 D in this pilot, unless it explicitly says otherwise. Ki can prevent up to 1 D before resolution only if remaining Ki pays that additional cost. Full-Ki capstones may legally accept D. The Stun Guard shares the suite-wide once/character/target hard-denial mark; its later failed-save fallback of reaction loss is an explicit Monk exception, not a second Stun."
+  },
+  {
+    "owner": "monk",
+    "card": {
+      "id": "monk.base.stunning-strike",
+      "name": "Stunning Strike",
+      "className": "Monk",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 2,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 Ki",
+      "rangeAndTarget": "One creature within unarmed reach",
+      "duration": "Until end of target's next turn",
+      "frequency": "Once per target per encounter for Stunned",
+      "effect": "Stunning Strike. Tags: base, active, attack, control. Make one unarmed strike. On a hit the target makes a Constitution save. On failure it is Stunned until the end of its next turn, subject to the common Monk Stun Guard. On success it suffers only the strike's normal damage. A creature already marked by your Stun Guard instead loses its Reaction on a failed save.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3244,
+        "originalText": "Stunning Strike: Channel ki into a precise strike that can temporarily paralyze an opponent if they fail to resist."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "monk",
+    "card": {
+      "id": "monk.hero.way-of-shadow.nerve-strike",
+      "name": "Nerve Strike",
+      "className": "Monk",
+      "band": "Hero",
+      "path": "Way of Shadow",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 Ki",
+      "rangeAndTarget": "One creature within unarmed reach",
+      "duration": "Until end of target's next turn",
+      "frequency": "Recharge 2 rounds",
+      "effect": "Nerve Strike. Tags: hero, shadow, attack, control. Make one unarmed strike. On a hit the target makes a Constitution save. On failure choose one: its Speed becomes 0 until the end of its next turn, or it loses its Reaction and cannot take Bonus Actions during that period. This causes no permanent nerve injury.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3317,
+        "originalText": "Nerve Strike: Target critical pressure points to temporarily disable an opponent's abilities or movement."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.spiral-touched.spiral-touched-boon-ii",
+      "name": "Spiral-Touched — Boon II",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Spiral-Touched",
+      "sourceKind": "curseBoon",
+      "minimumClassLevel": 5,
+      "acquisition": "automatic for selected Curse",
+      "activation": "Passive; triggered additional Action",
+      "cost": "1 RC for Action",
+      "rangeAndTarget": "Self, after another creature’s turn",
+      "duration": "One additional Action",
+      "frequency": "1/encounter; global action cap",
+      "effect": "resistance to explicitly time/aging damage and advantage on saves against aging/slow effects; once per encounter spend 1 RC after another creature finishes its turn to take one additional full Action immediately, subject to the global action cap.",
+      "prerequisite": "Oracle 5; selected Curse:Spiral-Touched",
+      "source": {
+        "line": null,
+        "reference": "CURSES.ORACLE_CURSES[0]; book lines 3527-3554",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "CURSES.ORACLE_CURSES[0]",
+            "value": {
+              "id": "spiral-touched",
+              "name": "Spiral-Touched",
+              "blurb": "Manipulates initiative, gains time-based echoes",
+              "limitations": [
+                "You sometimes respond to events before they happen, causing confusion in social situations",
+                "You occasionally experience time differently than others, potentially missing turns in combat (5% chance)",
+                "You cannot maintain concentration on mundane tasks for extended periods"
+              ],
+              "boons": [
+                {
+                  "level": 3,
+                  "name": "Curse Boon I",
+                  "description": "See 1 round into the future during initiative (+3 initiative). Once per day, reroll a failed save as you briefly step outside the timestream."
+                },
+                {
+                  "level": 5,
+                  "name": "Curse Boon II",
+                  "description": "Spend 1 Revelation Charge to act out of turn once per combat. You gain resistance to time-based magic and aging effects."
+                },
+                {
+                  "level": 10,
+                  "name": "Curse Boon III",
+                  "description": "When you would be reduced to 0 HP, you may instead phase out of time for 1 round, becoming untargetable and regaining 25% of your maximum HP. Once per long rest."
+                },
+                {
+                  "level": 15,
+                  "name": "Curse Boon IV",
+                  "description": "You exist in multiple timestreams simultaneously, allowing you to make two different actions in a single turn once per combat. Enemies attacking you have a 10% chance to hit your echo instead, causing the attack to miss."
+                },
+                {
+                  "level": 20,
+                  "name": "Curse Boon V",
+                  "description": "You gain the ability to create a time loop, resetting an entire combat encounter to its beginning state once per day. All allies retain knowledge of the original timeline, allowing them to make different choices."
+                }
+              ],
+              "source": "rulebook — Example Curse: Spiral-Touched (only full curse tree in player rulebook)"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.ancestor.bloodline-convergence",
+      "name": "Bloodline Convergence",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Ancestor",
+      "sourceKind": "tier-iii-revelation",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Action",
+      "cost": "3 RC",
+      "rangeAndTarget": "Self and allies within 5 tiles",
+      "duration": "2 rounds; Revelation backlash 1 round",
+      "frequency": "At will while RC remains",
+      "effect": "For 2 rounds, once on each of your regular turns you gain one additional full Action usable only to activate a Revelation or Dash/Move, subject to the universal extra-Action cap. Allies within 5 tiles gain +1 on attack rolls, reduce the first damage they take each round by S and are immune to Frightened. Once per round you may activate one known Tier I Ancestor Revelation for 0 RC; it still uses its normal action type. When Convergence ends you are suffering Revelation backlash until the end of your next turn: -1 on attack rolls and saving throws and Speed -5 feet. Concentration is required. At most three chosen allies gain its aura. The free Tier I activation uses its ordinary action type and shares the two-Revelation ceiling.",
+      "prerequisite": "Oracle 9; Mystery: Ancestor",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[0].tierIII",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[0].tierIII",
+            "value": {
+              "name": "Bloodline Convergence",
+              "charges": 3,
+              "kind": "active",
+              "description": "Spend 3 charges: for 2 turns, +2 actions per turn (Revelation or movement only); allies within 5 tiles gain +10% crit, +5% DR, immunity to Fear; cast 1 Revelation per round at no cost. After: Exhausted (−1 action, −10% resist for 1 round)."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.battle.mark-of-the-doomed",
+      "name": "Mark of the Doomed",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Battle",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Bonus Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "One enemy you can see within 5 tiles",
+      "duration": "2 rounds",
+      "frequency": "At will while RC remains; one active mark at a time",
+      "effect": "Mark the target. You and allies within 5 tiles gain +2 on attack rolls against it. The first critical hit against the marked creature during the mark deals +1d6 damage of the triggering attack's type. The marked creature cannot benefit from mundane concealment against you. Applying another Mark of the Doomed ends the previous mark.",
+      "prerequisite": "Oracle 3; Mystery: Battle; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[1].tierI[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[1].tierI[2]",
+            "value": {
+              "name": "Mark of the Doomed",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge: mark one enemy you can see for 2 rounds — you and allies within 5 tiles gain +2 to hit and +10% crit chance against them; the first attack that crits the mark deals +1d6 bonus damage and the marked target cannot benefit from concealment until the mark fades."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.battle.fury-of-the-host",
+      "name": "Fury of the Host",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Battle",
+      "sourceKind": "tier-iii-revelation",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Action",
+      "cost": "3 RC",
+      "rangeAndTarget": "Self and allies within 5 tiles",
+      "duration": "2 rounds; Revelation backlash 1 round",
+      "frequency": "At will while RC remains",
+      "effect": "For 2 rounds, each ally in range may once on its regular turn gain one additional full Action usable only for one ordinary weapon attack or Dash/Move, subject to the universal extra-Action cap. Allies also gain +1 on attack rolls and reduce the first damage they take each round by 1. You gain +2 AC and immunity to Frightened. Once per round you may activate one known Tier I Battle Revelation for 0 RC using its normal action type. The first qualifying ally each round to reduce a meaningful enemy to 0 HP regains 1d6 HP. When the effect ends, you are suffering Revelation backlash until the end of your next turn: -1 on attacks and saves and Speed -5 feet. Concentration is required; choose at most three allies for its benefits. Each granted Action may make only one ordinary weapon attack or Dash, and cannot grant another action.",
+      "prerequisite": "Oracle 9; Mystery: Battle",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[1].tierIII",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[1].tierIII",
+            "value": {
+              "name": "Fury of the Host",
+              "charges": 3,
+              "kind": "active",
+              "description": "Spend 3 charges: for 2 turns, allies within 5 tiles gain +1 action per turn (attack or move only), +10% crit chance, and +5% DR as the War Chorus banners them — you gain +2 AC and immunity to Fear; once per round you may cast one Tier I Battle Revelation at no cost, and the first ally to drop an enemy each round regains 1d6 HP. After: Exhausted (−1 action, −10% resist for 1 round)."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.bones.bone-whisper",
+      "name": "Bone Whisper",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Bones",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Action",
+      "cost": "1 RC for active suppression; corpse speech costs 0 RC",
+      "rangeAndTarget": "One corpse touched; undead within 2 tiles for active effect",
+      "duration": "Corpse conversation maximum 1 minute; suppression until end of your next turn",
+      "frequency": "Corpse speech 1/corpse; active at will while RC remains",
+      "effect": "You may ask a corpse up to three brief questions about events it personally perceived while alive; it answers from its own knowledge and cannot speculate. Separately, spend 1 RC as an Action; undead enemies within 2 tiles make Wisdom saves. On failure they would be Incapacitated until the end of your next turn, subject to the Oracle hard-control guard. On a later qualifying failure after the guard has been used, they instead lose Reactions and their Speed becomes 0 for that duration.",
+      "prerequisite": "Oracle 3; Mystery: Bones; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierI[0]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierI[0]",
+            "value": {
+              "name": "Bone Whisper",
+              "charges": 1,
+              "kind": "active",
+              "description": "Passive: speak with corpses and recent dead as if under Speak with Dead. Active: spend 1 charge to learn one hidden truth a corpse witnessed before death; undead within 2 tiles must save or become unable to act until end of your next turn as the Pale Ledger speaks through the bones."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.bones.unfinished-chorus",
+      "name": "Unfinished Chorus",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Bones",
+      "sourceKind": "tier-iii-revelation",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Action",
+      "cost": "3 RC",
+      "rangeAndTarget": "Enemies, controlled undead and corpses within 4 tiles",
+      "duration": "2 rounds; Revelation backlash 1 round",
+      "frequency": "At will while RC remains",
+      "effect": "For 2 rounds, enemies within 4 tiles suffer Dread: -1 on attack rolls and saving throws. Once on each of your turns choose one living enemy in range; it takes 1d6 necrotic damage and you either regain half the actual damage dealt, rounded down, or one living ally within 3 tiles of you regains that amount, maximum S+M HP. Undead you control add S damage to one attack each turn and reduce first damage each round by 1. Corpses in the area cannot be raised while the Chorus lasts. Afterward you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet. Choose up to three enemies and three allies. Enemies make Wisdom saves on entry and at the end of each turn, ending their debuff on success. The drain allows a Constitution save for half damage; healing is capped at S+M total per pulse. Concentration and pulse upkeep apply.",
+      "prerequisite": "Oracle 9; Mystery: Bones",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierIII",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierIII",
+            "value": {
+              "name": "Unfinished Chorus",
+              "charges": 3,
+              "kind": "active",
+              "description": "Spend 3 charges: for 2 turns, all enemies within 4 tiles suffer Dread (−10% hit/saves) as the Pale Ledger sings their unfinished deaths — once per round drain 1d6 HP from one target (heal half or redirect half to an ally within 3 tiles); undead you control gain +10% damage and +5% DR, and corpses within 4 tiles cannot be raised as undead until the chorus ends. After: Exhausted (−1 action, −10% necrotic resist for 1 round)."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.bones.bones-revelation-mastery",
+      "name": "Bones Revelation Mastery",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Bones",
+      "sourceKind": "revelation-mastery",
+      "minimumClassLevel": 15,
+      "acquisition": "choose one eligible enhancement at Oracle 15",
+      "activation": "Passive",
+      "cost": "0 RC",
+      "rangeAndTarget": "One eligible known Bones Revelation",
+      "duration": "Permanent",
+      "frequency": "Choose one upgrade at Oracle 15",
+      "effect": "Choose one mastery for a Revelation you know. Enhanced Marrow Drain: a living target hit also has Speed reduced by 1 tile until the end of its next turn. Enhanced Ledger's Command: may target up to 3 undead, but all controlled undead still share one Bonus Action command per round. Enhanced Unfinished Chorus: when its drain resolves, you may always redirect the healing to one ally within 3 tiles of you rather than yourself; its healing cap remains S+M.",
+      "prerequisite": "Oracle 15; Mystery: Bones; Revelation Mastery",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[2].revelationMastery",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[2].revelationMastery",
+            "value": [
+              "Enhanced Marrow Drain: also slows target movement by 1 tile",
+              "Enhanced Ledger's Command: affects 3 undead",
+              "Enhanced Unfinished Chorus: you may redirect drained HP to an ally within 3 tiles"
+            ]
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.cataclysm.tremor-sense",
+      "name": "Tremor Sense",
+      "className": "Oracle",
+      "band": "Base",
+      "path": "Cataclysm",
+      "sourceKind": "mystery-feature",
+      "minimumClassLevel": 1,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Passive and Action",
+      "cost": "0 RC",
+      "rangeAndTarget": "Self; enemies within 2 tiles for tremor",
+      "duration": "Permanent; tremor penalties until end of your next turn",
+      "frequency": "Passive always; tremor 1/short rest",
+      "effect": "While touching the ground or a structure, you can identify obvious structural instability, hollow spaces and hidden passages within 3 tiles that transmit vibration, subject to ordinary concealment and construction. Reduce the first bludgeoning damage you take each round by 1. Once per short rest as an Action, enemies within 2 tiles make Strength saves; on failure they fall Prone, and on success their Speed is reduced by 1 tile until the end of your next turn.",
+      "prerequisite": "Oracle 1; Mystery: Cataclysm",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[3].level1",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[3].level1",
+            "value": {
+              "name": "Tremor Sense",
+              "kind": "active",
+              "description": "Passive: detect structural instability and hidden passages within 3 tiles, and +5% resistance to bludgeoning damage. Once per short rest, cause a minor tremor — enemies within 2 tiles must save or fall prone; on success they still suffer −1 movement until your next turn."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.cataclysm.shardburst",
+      "name": "Shardburst",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Cataclysm",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "2-tile-radius burst centered within 4 tiles",
+      "duration": "Damage instantaneous; Speed reduction until end of target's next turn",
+      "frequency": "At will while RC remains",
+      "effect": "Enemies in the burst make Dexterity saves, taking 1d6+M bludgeoning damage on failure or half on success. A creature that fails also has Speed reduced by 1 tile until the end of its next turn. If a failing creature is adjacent to a wall, rubble or substantial stone terrain, it also makes a Strength save; failure knocks it Prone.",
+      "prerequisite": "Oracle 3; Mystery: Cataclysm; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[3].tierI[0]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[3].tierI[0]",
+            "value": {
+              "name": "Shardburst",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge: erupt stone shards in a 2-tile burst centered on a point within 4 tiles — enemies take 1d6 bludgeoning and suffer −1 movement for 1 round; on a failed save they also fall prone if adjacent to a wall or rubble."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.cataclysm.gale-of-unmaking",
+      "name": "Gale of Unmaking",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Cataclysm",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "4-tile line originating from you",
+      "duration": "Damage/movement instantaneous; difficult terrain until start of your next turn",
+      "frequency": "At will while RC remains",
+      "effect": "Enemies in the line make Strength saves, taking 1d6+M bludgeoning damage and being pushed 1 tile on failure, or half damage with no push on success. Failed targets also have Speed reduced by 1 tile until the end of their next turn. Mundane exposed flames in the line are extinguished. Loose natural debris in the line becomes difficult terrain until the start of your next turn.",
+      "prerequisite": "Oracle 3; Mystery: Cataclysm; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[3].tierI[1]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[3].tierI[1]",
+            "value": {
+              "name": "Gale of Unmaking",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge: unleash a 4-tile line of forceful wind — enemies in the path take 1d6 bludgeoning, are pushed 1 tile, and suffer −1 movement until your next turn; mundane flames are extinguished and loose debris becomes difficult terrain for 1 round."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.cataclysm.seal-s-fracture",
+      "name": "Seal's Fracture",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Cataclysm",
+      "sourceKind": "tier-iii-revelation",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Action",
+      "cost": "3 RC",
+      "rangeAndTarget": "4-tile-radius fixed zone centered within 5 tiles",
+      "duration": "2 rounds; Revelation backlash 1 round",
+      "frequency": "At will while RC remains",
+      "effect": "Choose Earthquake, Storm or Fire. The zone becomes difficult terrain. At activation and at the start of your next regular turn, enemies in the zone make Dexterity saves, taking 2d6 damage on failure or half on success: bludgeoning for Earthquake, lightning for Storm, fire for Fire. Until the zone ends, enemies inside take -1 on saving throws against your Cataclysm Revelations; allies inside reduce first damage each round by 1 and cannot be knocked Prone by this zone. Difficult terrain expands 1 tile outward after the second pulse but deals no extra damage there. Structures may crack at Director discretion. When the effect ends you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet.",
+      "prerequisite": "Oracle 9; Mystery: Cataclysm",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[3].tierIII",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[3].tierIII",
+            "value": {
+              "name": "Seal's Fracture",
+              "charges": 3,
+              "kind": "active",
+              "description": "Spend 3 charges: for 2 turns, once per turn create a 4-tile cataclysm zone (earthquake, storm, or fire — choose when cast) as the Shattered Seal weeps — enemies inside take 2d6 damage each round and suffer −10% saves; allies inside gain +5% DR and cannot be knocked prone by the zone; difficult terrain spreads 1 tile outward each round and structures inside may crack (DM discretion). After: Exhausted (−1 action, −10% resist for 1 round)."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.flame.wrathful-brand",
+      "name": "Wrathful Brand",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Flame",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Bonus Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "One enemy within 4 tiles",
+      "duration": "Until end of your next regular turn",
+      "frequency": "At will while RC remains; one Brand at a time",
+      "effect": "Mark one enemy. The next damaging attack you hit it with before the Brand ends adds fire damage equal to half that attack's unmodified rolled base damage dice total, rounded down, minimum 1. If an ally damages the marked target before the Brand ends, that ally regains 1d6 HP once per Brand and the target makes a Wisdom save; on failure it has -1 on attack rolls until the end of its next turn.",
+      "prerequisite": "Oracle 3; Mystery: Flame; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[5].tierI[0]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[5].tierI[0]",
+            "value": {
+              "name": "Wrathful Brand",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge: mark one enemy with burning judgment for 1 round — your next attack against them deals +50% fire damage; if an ally attacks the marked target before the brand fades, they heal 1d6 and the target must save or suffer −10% hit until end of next round as cursed embers cling."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.flame.passion-s-rush",
+      "name": "Passion's Rush",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Flame",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "Self; move up to 3 tiles in a straight or bending legal path",
+      "duration": "Movement instantaneous; ally buff until start of your next turn",
+      "frequency": "At will while RC remains",
+      "effect": "Move up to 3 tiles without provoking opportunity attacks. Each meaningful hostile creature whose space you pass adjacent to can be affected once and makes a Dexterity save, taking 1d6 fire damage on failure or half on success; a failed target also has Speed reduced by 1 tile until the end of its next turn. If you finish adjacent to an ally, that ally adds S damage to its next weapon hit and reduces the first damage it takes before your next turn by 1.",
+      "prerequisite": "Oracle 3; Mystery: Flame; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[5].tierI[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[5].tierI[2]",
+            "value": {
+              "name": "Passion's Rush",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge: blaze up to 3 tiles in a line of harmless fire — enemies passed take 1d6 fire damage and must save or suffer −1 movement until your next turn; if you end adjacent to an ally, they gain +10% weapon damage and +5% DR for 1 round as embers cling to their weapons."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.life.resonant-seed",
+      "name": "Resonant Seed",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Life",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "2-tile-radius fixed zone centered within 4 tiles",
+      "duration": "3 rounds",
+      "frequency": "At will while RC remains; one Seed zone at a time",
+      "effect": "When a living ally starts its turn in the zone, it regains 1d4 HP, at most once per round and for at most three pulses from this use, and may end Frightened or Poisoned on the first pulse it receives. Undead entering or starting their turn in the zone take 1d4 radiant damage once per round and make a Strength save; on failure their Speed is reduced by 1 tile until the end of that turn. Healing requires the paid 1 RC activation and ends after 3 rounds.",
+      "prerequisite": "Oracle 3; Mystery: Life; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[6].tierI[1]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[6].tierI[1]",
+            "value": {
+              "name": "Resonant Seed",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge: plant a resonant seed in a 2-tile zone within 4 tiles for 3 rounds — allies starting turn there heal 1d4 and end one minor condition; undead entering or starting turn in the zone take 1d4 radiant and must save or suffer −1 movement until end of turn."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.life.thorned-shelter",
+      "name": "Thorned Shelter",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Life",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "One living ally within 3 tiles",
+      "duration": "2 rounds",
+      "frequency": "At will while RC remains",
+      "effect": "The target gains +2 AC and reduces the first damage it takes each round by S. Once per round when it receives HP healing from another finite effect, add 1 HP. The first melee attacker to damage it each round takes 1d4 piercing damage and must make a Strength save; on failure its Speed becomes 0 until the end of that current turn. This movement restriction is not a full-turn denial.",
+      "prerequisite": "Oracle 3; Mystery: Life; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[6].tierI[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[6].tierI[2]",
+            "value": {
+              "name": "Thorned Shelter",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge: thorned vines erupt around one ally within 3 tiles — +2 AC, +10% DR, and +5% healing received for 2 rounds; the first melee attacker each round takes 1d4 piercing and cannot move away from the sheltered ally until end of turn."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.shadow.marquis-s-glimpse",
+      "name": "Marquis's Glimpse",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Shadow",
+      "sourceKind": "final-revelation",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Bonus Action",
+      "cost": "0 RC",
+      "rangeAndTarget": "Self; enemies within 4 tiles",
+      "duration": "3 rounds",
+      "frequency": "1/long rest",
+      "effect": "For 3 rounds, ranged attack rolls against you automatically miss unless the attacker is adjacent to you or has an effect explicitly ignoring supernatural concealment. Once on each of your turns when a psychic Revelation deals damage, add a second copy of its unmodified rolled damage dice to one target; this copied damage cannot trigger RC recovery, conditions or proc effects. At the start of each enemy's turn within 4 tiles it makes a Wisdom save; on failure it would lose its Action to nameless dread, subject to the Oracle hard-control guard. A creature already hard-denied by you this encounter instead loses its Reaction and has Speed 0 until end of that turn.",
+      "prerequisite": "Oracle 20; Mystery: Shadow",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[7].finalRevelation",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[7].finalRevelation",
+            "value": {
+              "name": "Marquis's Glimpse",
+              "kind": "active",
+              "description": "Once per day, invoke the Hush for 3 rounds: you exist partially in silence — untargetable by ranged attacks, all psychic Revelations deal double damage, and enemies within 4 tiles must save each round or lose an action to nameless dread."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.stars.guiding-bolt",
+      "name": "Guiding Bolt",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Stars",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "One enemy within 6 tiles",
+      "duration": "Damage instantaneous; star-mark 2 rounds or until consumed",
+      "frequency": "At will while RC remains",
+      "effect": "Make a Revelation attack. On hit deal 2d6+M radiant damage and apply a star-mark for up to 2 rounds. The next ally other than you to make an attack against the marked target gains +2 on that attack roll. If it hits, add S radiant damage and consume the mark. A creature can carry only one of your star-marks at a time.",
+      "prerequisite": "Oracle 3; Mystery: Stars; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierI[0]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierI[0]",
+            "value": {
+              "name": "Guiding Bolt",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge: hurl a radiant bolt within 6 tiles — deals 2d6 radiant damage; the target glows with star-mark for 2 rounds and the next ally to attack them gains +2 to hit and +10% crit chance."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.stars.constellation-mark",
+      "name": "Constellation Mark",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Stars",
+      "sourceKind": "tier-ii-revelation",
+      "minimumClassLevel": 6,
+      "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+      "activation": "Action",
+      "cost": "2 RC",
+      "rangeAndTarget": "Up to 2 enemies within 6 tiles",
+      "duration": "3 rounds",
+      "frequency": "At will while RC remains",
+      "effect": "Mark up to two enemies. Allies gain +2 on attack rolls against marked targets. The first critical hit each round against any one of your marked targets deals +1d6 radiant damage. A marked creature cannot benefit from mundane concealment against creatures that can perceive your starlight mark. Recasting ends your previous Constellation Marks.",
+      "prerequisite": "Oracle 6; Mystery: Stars; selected Tier II Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierII[0]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierII[0]",
+            "value": {
+              "name": "Constellation Mark",
+              "charges": 2,
+              "kind": "active",
+              "description": "Spend 2 charges: mark up to 2 enemies within 6 tiles for 3 rounds — allies gain +10% crit and +2 to hit against marked targets; the first crit each round against a mark deals +1d6 radiant and reveals the target through concealment until the mark fades."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.stars.omen-reader",
+      "name": "Omen Reader",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Stars",
+      "sourceKind": "tier-ii-revelation",
+      "minimumClassLevel": 6,
+      "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+      "activation": "Passive",
+      "cost": "0 RC",
+      "rangeAndTarget": "Self; one ally within 5 tiles; one enemy identified at initiative",
+      "duration": "Encounter",
+      "frequency": "Passive each encounter; imposed penalty 1/encounter",
+      "effect": "When initiative is rolled, the Director identifies the visible hostile creature with the highest current attack bonus among creatures you can perceive. You and one ally within 5 tiles gain +2 AC against that creature's first attack each round. Once per encounter before that enemy rolls its first attack of a turn, impose -2 on the roll and mark it with star-ash until the end of its next turn; allies gain +1 on attacks against it while marked.",
+      "prerequisite": "Oracle 6; Mystery: Stars; selected Tier II Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierII[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierII[2]",
+            "value": {
+              "name": "Omen Reader",
+              "kind": "passive",
+              "description": "Passive: at initiative, the Celestial Concord reveals which enemy has the highest attack bonus — you and one ally within 5 tiles gain +2 AC vs that enemy's first attack each round. Once per combat, impose −2 on that enemy's first attack and mark them with star-ash — allies gain +10% crit against them until the mark fades."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.stars.concord-alignment",
+      "name": "Concord Alignment",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Stars",
+      "sourceKind": "tier-iii-revelation",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Action",
+      "cost": "3 RC",
+      "rangeAndTarget": "Allies within 5 tiles",
+      "duration": "2 rounds",
+      "frequency": "At will while RC remains",
+      "effect": "For 2 rounds allies within 5 tiles gain +1 on attack rolls and advantage on saves against Charm and Fear. Once per turn when an ally within range fails an attack roll or saving throw, use your Reaction to let that ally reroll it and use the new result; only one reroll can be granted per round. During Alignment, Guiding Bolt and Constellation Mark ranges increase by 1 tile. No roll can be rerolled more than once by Oracle features.",
+      "prerequisite": "Oracle 9; Mystery: Stars",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierIII",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierIII",
+            "value": {
+              "name": "Concord Alignment",
+              "charges": 3,
+              "kind": "active",
+              "description": "Spend 3 charges: for 2 turns, allies within 5 tiles gain +10% hit, +10% crit, and advantage on saves vs charm and fear as stars align — the Celestial Concord reveals each ally's thread; once per turn you may grant one ally within range a reroll on a failed attack or save, and your Guiding Bolt and Constellation Mark effects extend +1 tile while alignment persists."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.stars.stars-revelation-mastery",
+      "name": "Stars Revelation Mastery",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Stars",
+      "sourceKind": "revelation-mastery",
+      "minimumClassLevel": 15,
+      "acquisition": "choose one eligible enhancement at Oracle 15",
+      "activation": "Passive",
+      "cost": "0 RC",
+      "rangeAndTarget": "One eligible known Stars Revelation",
+      "duration": "Permanent",
+      "frequency": "Choose one upgrade at Oracle 15",
+      "effect": "Choose one mastery for a Revelation you know. Enhanced Guiding Bolt: a creature hit also has Speed reduced by 1 tile until the end of its next turn. Enhanced Constellation Mark: may mark up to 3 enemies. Enhanced Concord Alignment: duration becomes 3 rounds and its reroll cadence remains once per round.",
+      "prerequisite": "Oracle 15; Mystery: Stars; Revelation Mastery",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[8].revelationMastery",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[8].revelationMastery",
+            "value": [
+              "Enhanced Guiding Bolt: also slows target 1 tile on hit",
+              "Enhanced Constellation Mark: affects 3 enemies",
+              "Enhanced Concord Alignment: duration 3 turns"
+            ]
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.time.paradox-skin",
+      "name": "Paradox Skin",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Time",
+      "sourceKind": "tier-ii-revelation",
+      "minimumClassLevel": 6,
+      "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+      "activation": "Passive and Reaction",
+      "cost": "0 RC",
+      "rangeAndTarget": "Self; one ally within 3 tiles for time-effect interception",
+      "duration": "Permanent",
+      "frequency": "Echo avoidance once per round; ally reroll 1/short rest",
+      "effect": "Once per round when an attack would hit you, roll d10; on 1 the attack instead hits a temporal echo and misses. You have advantage on saves against magical aging, Slow and explicitly time-based control. Once per short rest when an ally within 3 tiles fails a save against an aging, Slow or explicitly time-based effect, use your Reaction to let it reroll with +2 and use the new result.",
+      "prerequisite": "Oracle 6; Mystery: Time; selected Tier II Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[9].tierII[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[9].tierII[2]",
+            "value": {
+              "name": "Paradox Skin",
+              "kind": "passive",
+              "description": "Passive: when hit, 10% chance the attack lands on a temporal echo instead (miss). Resistance to time, aging, and slow effects. Once per short rest, when an ally within 3 tiles fails a save vs a time or aging effect, you may absorb the effect — they reroll with +2 as causality snags around you."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.time.spiral-convergence",
+      "name": "Spiral Convergence",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Time",
+      "sourceKind": "tier-iii-revelation",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Action",
+      "cost": "3 RC",
+      "rangeAndTarget": "Self and allies within 5 tiles",
+      "duration": "2 rounds; Revelation backlash 1 round",
+      "frequency": "At will while RC remains",
+      "effect": "For 2 rounds, once per round when an ally within 5 tiles fails an attack roll, saving throw or ability check, use your Reaction to let that ally reroll and use the new result; this changes only the roll and does not refund resources, Actions, damage or proc triggers from events already resolved. Once on each of your regular turns you gain one additional full Action usable only to activate a Revelation or Dash/Move, subject to the universal extra-Action cap. An ally whose roll you rewind reduces the first damage it takes before your next turn by 1. If an enemy directly benefited from the original failed roll, it makes a Wisdom save; on failure it loses its Reaction until the end of its next turn. After Convergence ends you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet.",
+      "prerequisite": "Oracle 9; Mystery: Time",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[9].tierIII",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[9].tierIII",
+            "value": {
+              "name": "Spiral Convergence",
+              "charges": 3,
+              "kind": "active",
+              "description": "Spend 3 charges: for 2 turns, once per round rewind one failed ally roll within 5 tiles (attack, save, or skill) as if it never happened — the Turning Spiral folds causality; you gain +1 action per turn (Revelation or move only) and +2 initiative, allies rewound this way gain +10% DR until start of your next turn, and enemies who benefited from the undone roll must save or lose their reaction. After: Exhausted (−1 action, −10% resist for 1 round)."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "oracle",
+    "card": {
+      "id": "oracle.supplement.time.the-spiral-opens",
+      "name": "The Spiral Opens",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Time",
+      "sourceKind": "final-revelation",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Action",
+      "cost": "0 RC",
+      "rangeAndTarget": "Self; one known beneficial Time Revelation or one enemy within 5 tiles",
+      "duration": "3 rounds",
+      "frequency": "1/long rest",
+      "effect": "For 3 rounds, at the start of each of your regular turns choose ONE temporal option, each usable at most once during this Final. ECHO REVELATION: repeat only the immediate numeric damage, healing, movement or buff component of one beneficial Time Revelation you personally resolved during the previous round, paying 0 RC; this copy is not a new Revelation cast, copies no resource restoration, action grant, hard control, condition trigger, Prophecy Trigger or proc. FORCED ECHO: choose one non-player enemy within 5 tiles and one ordinary weapon attack or non-resource movement action it took during its previous turn. The enemy makes a Wisdom save. On failure, during its next turn it must repeat that action pattern if legally possible, but it chooses all legal targets and paths; it spends no limited resources and cannot be forced to harm itself. A player-controlled creature instead, on a failed save, loses its Reaction and must choose either repeat one ordinary non-resource action type from its prior turn or have Speed reduced to 0 until turn end. Allies retain memory of all temporal echoes. This Final never creates more than one additional full Action for any creature in a round. There are only two options in this Final; after using both once, remaining rounds provide only the printed temporal presence, without another echo. An echoed healing amount also pays 1 RC or consumes an unused per-rest healing use; a temporal copy cannot create an uncosted healing reserve.",
+      "prerequisite": "Oracle 20; Mystery: Time",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[9].finalRevelation",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[9].finalRevelation",
+            "value": {
+              "name": "The Spiral Opens",
+              "kind": "active",
+              "description": "Once per day, open a causality spiral for 3 rounds: at start of each round, choose one — repeat last round's beneficial Revelation at no cost, or force one enemy to repeat their last turn's worst action against their allies. Allies remember all timelines."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oathbreaker-shared.black-manifestation",
+      "name": "Black Manifestation",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oathbreaker shared",
+      "sourceKind": "new capstone",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic for selected Oathbreaker",
+      "activation": "Bonus Action",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "Self and up to 3 enemies in aura",
+      "duration": "Until start next turn",
+      "frequency": "1/long rest",
+      "effect": "New Oathbreaker Final: gain 2 S+M temporary HP; chosen enemies WIS save or lose Reactions and Speed-10 ft for duration. Refresh one expended Signature use, then pay its normal Action and other costs when used. No Death Touch pool, RP, extra Action or Final reset.",
+      "prerequisite": "Paladin 20; selected Oathbreaker inversion",
+      "source": {
+        "line": null,
+        "reference": null,
+        "originalText": "",
+        "status": "explicit-new-playtest-completion"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.vengeful-smite",
+      "name": "Vengeful Smite",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Vengeance",
+      "sourceKind": "oathSmite",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Triggered",
+      "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+      "rangeAndTarget": "Creature hit by your melee weapon attack",
+      "duration": "Vengeance Mark until end of your next regular turn",
+      "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+      "effect": "Choose radiant or necrotic when you Smite; the entire Smite packet uses that type. After damage, apply Vengeance Mark until the end of your next regular turn. If the creature was already marked by you when this Smite began, add S flat damage to the Smite once. Applying a new mark refreshes but never stacks it.",
+      "prerequisite": "Paladin 3; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].smiteType",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].smiteType",
+            "value": "Necrotic or radiant — bonus damage vs marked foes; applies Vengeance Mark"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "conductClauses": [
+        "Pursue sworn enemies until justice is served or they surrender; let no convenience excuse a broken charge",
+        "Do not abandon allies to feed a private vendetta, for judgment that leaves the faithful behind is only rage",
+        "Accept the surrender of those who genuinely repent, and hold them to the peace they have asked for"
+      ],
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.aura-of-judgment",
+      "name": "Aura of Judgment",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Vengeance",
+      "sourceKind": "oathAura",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 3 enemies in your Oath aura currently marked by you",
+      "duration": "While conscious, marked and in aura",
+      "frequency": "Choose targets at start of each turn",
+      "effect": "Selected marked enemies take -1 on saving throws and cannot Hide from you or benefit from mundane concealment against you. This does not reveal a creature behind total cover or defeat supernatural invisibility unless another feature does so.",
+      "prerequisite": "Paladin 3; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].auraEffect",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].auraEffect",
+            "value": "Aura of Judgment — marked enemies within aura suffer −1 saves and cannot hide from you"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.judgment-brand",
+      "name": "Judgment Brand",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Vengeance",
+      "sourceKind": "signaturePower",
+      "minimumClassLevel": 11,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One creature you can see within 60 feet",
+      "duration": "3 rounds",
+      "frequency": "1/short rest",
+      "effect": "Brand the target for 3 rounds. It counts as Vengeance-marked. Your melee attacks against it score critical hits on natural 19-20, but this does not widen further with another 19-20 feature. When you move directly toward the branded target, ignore nonmagical difficult terrain. Once per round when the branded target willingly moves away from you, you may move up to 10 feet toward it as a Reaction without provoking opportunity attacks.",
+      "prerequisite": "Paladin 11; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].signaturePower",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].signaturePower",
+            "value": "Judgment Brand — doom mark on target; bonus crit damage and pursuit (1/rest)"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.mark-of-retribution",
+      "name": "Mark of Retribution",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Vengeance",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One foe within 30 feet",
+      "duration": "Until end of your next regular turn",
+      "frequency": "At will while RP remains",
+      "effect": "The target makes a Wisdom save. On failure it becomes Vengeance-marked. Your next Smite against it before the mark ends adds 1d8 damage of the Smite's chosen type. You have advantage on opportunity attacks against it while the mark persists.",
+      "prerequisite": "Paladin 3; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].revelationSpells[0]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].revelationSpells[0]",
+            "value": {
+              "level": 3,
+              "spell": "Mark of Retribution — mark one foe within 30 ft on failed Wis save; +1d8 smite damage vs marked and advantage on opportunity attacks against them until end of next turn"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 1,
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.relentless-pursuit",
+      "name": "Relentless Pursuit",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Vengeance",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 5,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Self; one creature currently marked by you",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "For up to 3 rounds, movement you take that directly reduces distance to the marked target ignores nonmagical difficult terrain and does not cost extra movement for climbing minor obstacles no higher than 5 feet. This does not grant teleportation, flight or movement through creatures or solid objects.",
+      "prerequisite": "Paladin 5; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].revelationSpells[1]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].revelationSpells[1]",
+            "value": {
+              "level": 5,
+              "spell": "Relentless Pursuit — ignore difficult terrain vs marked target"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 2,
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.sentence-of-doom",
+      "name": "Sentence of Doom",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Vengeance",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "5 RP",
+      "rangeAndTarget": "One creature currently marked by you within 30 feet",
+      "duration": "Until end of your next regular turn or until consumed",
+      "frequency": "At will while RP remains",
+      "effect": "The next Smite you apply to the marked target before this spell ends treats every Smite damage die as its maximum value instead of rolling. Critical-hit doubling adds another maximized set of the same dice under ordinary critical rules. Sentence of Doom affects only one Smite and does not duplicate its damage packet.",
+      "prerequisite": "Paladin 9; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].revelationSpells[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].revelationSpells[2]",
+            "value": {
+              "level": 9,
+              "spell": "Sentence of Doom — smite deals max dice vs marked"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 3,
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.no-escape",
+      "name": "No Escape",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Vengeance",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 13,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "7 RP",
+      "rangeAndTarget": "Up to 3 creatures marked by you within 60 feet",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "While affected, a marked creature cannot voluntarily teleport, become invisible or enter extradimensional travel. If it willingly moves out of your Oath aura, opportunity attacks against it have advantage until the end of its next turn. This spell does not prevent ordinary movement, forced movement or planar effects explicitly stronger than the ward.",
+      "prerequisite": "Paladin 13; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].revelationSpells[3]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].revelationSpells[3]",
+            "value": {
+              "level": 13,
+              "spell": "No Escape — marked foes within 60 ft cannot teleport, become invisible, or use extradimensional travel; if they leave your aura, opportunity attacks against them have advantage until end of next turn"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 4,
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.final-verdict",
+      "name": "Final Verdict",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Vengeance",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 17,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "10 RP",
+      "rangeAndTarget": "One creature marked by you within 30 feet and at or below half maximum HP",
+      "duration": "Instantaneous or empowerment until end of your next regular turn",
+      "frequency": "At will while RP remains",
+      "effect": "The marked target makes a Constitution save, taking 4 S d8 radiant damage on failure or half on success. On failure it also cannot regain HP until the end of its next turn. If that damage reduces it to 0 HP, use ordinary Downed/death rules; there is no percentage-HP execution. On success your next Smite against it before the end of your next turn uses maximum damage dice. This bounded damage replaces the source draft’s automatic reduction to 0 HP.",
+      "prerequisite": "Paladin 17; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].revelationSpells[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].revelationSpells[4]",
+            "value": {
+              "level": 17,
+              "spell": "Final Verdict — marked foe at or below half HP within 30 ft saves or drops to 0 HP; on success, your next smite deals max dice and they cannot regain HP until end of next turn"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 5,
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-dominion.law-s-weight",
+      "name": "Law's Weight",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Dominion",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "5 RP",
+      "rangeAndTarget": "20-foot-radius fixed zone centered within 30 feet",
+      "duration": "Concentration, 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "A hostile creature is considered a source-qualified law breaker only if it knowingly lied while inside your Aura of Authority earlier this encounter. When such a creature enters or starts its turn in the zone, it makes a Charisma save. On failure its Speed is halved, AC is reduced by 2 and it cannot benefit from Dash or Haste-like extra movement until the start of its next turn. It saves again each turn while affected.",
+      "prerequisite": "Paladin 9; Oath of Dominion",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[2].revelationSpells[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[2].revelationSpells[2]",
+            "value": {
+              "level": 9,
+              "spell": "Law's Weight — 20-ft zone for 3 rounds; lawbreakers (those who lied in your aura this combat) save or half speed, −2 AC, and cannot benefit from haste or dash until zone ends"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 3,
+      "oathId": "dominion",
+      "oathName": "Oath of Dominion",
+      "oathbreakerName": "Tyranny",
+      "displayPath": "Oath of Dominion"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-flame.holy-inferno",
+      "name": "Holy Inferno",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Flame",
+      "sourceKind": "signaturePower",
+      "minimumClassLevel": 11,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Up to 3 creatures in your Oath aura",
+      "duration": "Instantaneous",
+      "frequency": "1/short rest",
+      "effect": "Choose each target as hostile or allied. A hostile target makes a Dexterity save, taking S d8 fire plus S d8 radiant damage on failure or half on success. An allied target takes no damage and may end one of Poisoned, Diseased if magically curable, or a finite curse that ordinary cleansing could remove. Holy Inferno is an Oath technique rather than an ordinary spell.",
+      "prerequisite": "Paladin 11; Oath of Flame",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[3].signaturePower",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[3].signaturePower",
+            "value": "Holy Inferno — AoE smite purge; fire and radiant damage (1/rest)"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "flame",
+      "oathName": "Oath of Flame",
+      "oathbreakerName": "Inferno",
+      "displayPath": "Oath of Flame"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-the-ancients.ancient-smite",
+      "name": "Ancient Smite",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of the Ancients",
+      "sourceKind": "oathSmite",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Triggered",
+      "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+      "rangeAndTarget": "Creature hit by your melee weapon attack",
+      "duration": "Root rider until end of target's next turn",
+      "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+      "effect": "Choose force or radiant; the entire Smite packet uses that type. If the triggering weapon attack is a critical hit, the target makes a Strength save; fey and elementals have disadvantage. On failure its Speed becomes 0 until the end of its next turn. This rooting does not remove its Action or Reaction and therefore is not a full-turn denial.",
+      "prerequisite": "Paladin 3; Oath of the Ancients",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[4].smiteType",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[4].smiteType",
+            "value": "Force or radiant — bonus damage; roots target until end of next turn on crit; fey and elementals have disadvantage on saves vs your smites"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "conductClauses": [
+        "Protect ancient places and living memory, especially where no living voice remains to speak for them",
+        "Do not destroy what cannot be restored; power does not excuse a wound made for haste",
+        "Honor pacts with fey and primal spirits, and do not mistake an old promise for permission to command"
+      ],
+      "oathId": "ancients",
+      "oathName": "Oath of the Ancients",
+      "oathbreakerName": "Withering Grove",
+      "displayPath": "Oath of the Ancients"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-the-ancients.standing-stone",
+      "name": "Standing Stone",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of the Ancients",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 13,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "7 RP",
+      "rangeAndTarget": "20-foot-radius fixed zone centered within 30 feet",
+      "duration": "Concentration, 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "The zone is difficult terrain for enemies and normal terrain for allies you choose when casting. At the start of each hostile fey or elemental's turn in the zone, it makes a Strength save. On failure its Speed is halved until the start of its next turn. It saves again each turn; no creature loses Actions or Reactions solely from Standing Stone.",
+      "prerequisite": "Paladin 13; Oath of the Ancients",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[4].revelationSpells[3]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[4].revelationSpells[3]",
+            "value": {
+              "level": 13,
+              "spell": "Standing Stone — 20-ft zone of difficult terrain for enemies for 3 rounds; fey and elementals save or are slowed; allies treat zone as normal terrain"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 4,
+      "oathId": "ancients",
+      "oathName": "Oath of the Ancients",
+      "oathbreakerName": "Withering Grove",
+      "displayPath": "Oath of the Ancients"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-the-ancients.primordial-surge",
+      "name": "Primordial Surge",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of the Ancients",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 17,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "10 RP",
+      "rangeAndTarget": "Up to 3 chosen creatures in your Oath aura",
+      "duration": "Temporary HP until lost; root until end of target's next turn",
+      "frequency": "At will while RP remains",
+      "effect": "A selected ally gains temporary HP equal to 2 times your actual Charisma modifier, minimum 2. A selected hostile fey or elemental makes a Strength save; on failure roots bind it and its Speed becomes 0 until the end of its next turn. This root does not remove Actions or Reactions. You may mix allied and hostile targets but can select no more than 3 total creatures.",
+      "prerequisite": "Paladin 17; Oath of the Ancients",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[4].revelationSpells[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[4].revelationSpells[4]",
+            "value": {
+              "level": 17,
+              "spell": "Primordial Surge — allies in aura gain temp HP equal to 2× CHA mod from land; fey/elementals in aura save or are rooted until end of next turn"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 5,
+      "oathId": "ancients",
+      "oathName": "Oath of the Ancients",
+      "oathbreakerName": "Withering Grove",
+      "displayPath": "Oath of the Ancients"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-the-ancients.primordial-crown",
+      "name": "Primordial Crown",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of the Ancients",
+      "sourceKind": "finalOathGift",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "0 RP",
+      "rangeAndTarget": "Self and up to 3 chosen creatures in your Oath aura",
+      "duration": "3 rounds",
+      "frequency": "1/long rest",
+      "effect": "For 3 rounds Thorn Crown can trigger once per round without consuming its short-rest use or paying RP. When your Ancients Smite critical-hit root successfully affects a creature, choose one adjacent hostile creature; it makes the same Strength save and becomes rooted on failure, at most one spread target per critical. A selected allied target has advantage on saves against Charmed. A selected hostile fey or elemental makes a Wisdom save at the start of each turn; on failure it cannot attack allies other than you until the start of its next turn, though it may take other actions. The same creature remains subject to the universal denial cap.",
+      "prerequisite": "Paladin 20; Oath of the Ancients",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[4].finalOathGift",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[4].finalOathGift",
+            "value": "Primordial Crown — once per day, Thorn Crown persists for 3 rounds without cost; roots on crit spread to adjacent foes, fey and elementals within aura cannot attack allies, and allies gain advantage on saves vs charm while the crown persists."
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "ancients",
+      "oathName": "Oath of the Ancients",
+      "oathbreakerName": "Withering Grove",
+      "displayPath": "Oath of the Ancients"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-the-chain.linked-ward",
+      "name": "Linked Ward",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of the Chain",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One willing ally in your Oath aura",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "Mark one willing ally. Once per round when it takes damage, use your Reaction to redirect up to 2 times your actual Charisma modifier, minimum 2, of that damage to yourself. Redirected damage keeps its type and cannot be redirected again. If this redirected damage reduces you to 0 HP, the ally gains temporary HP equal to the amount you actually absorbed, maximum Paladin level+M.",
+      "prerequisite": "Paladin 3; Oath of the Chain",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[6].revelationSpells[0]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[6].revelationSpells[0]",
+            "value": {
+              "level": 3,
+              "spell": "Linked Ward — mark ally within aura; as reaction when they take damage, redirect up to 2× CHA mod radiant to yourself; if you fall to 0 HP this round, ally gains temp HP equal to damage redirected"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 1,
+      "oathId": "chain",
+      "oathName": "Oath of the Chain",
+      "oathbreakerName": "Shackled Lord",
+      "displayPath": "Oath of the Chain"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-the-chain.chain-of-duty",
+      "name": "Chain of Duty",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of the Chain",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 5,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One willing ally within 30 feet",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "Mark the ally. If it is reduced to 0 HP while within 60 feet and on the same plane, you may use your Reaction to teleport to an unoccupied space adjacent to it. This teleport prevents no damage and does not heal either creature. The spell then ends.",
+      "prerequisite": "Paladin 5; Oath of the Chain",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[6].revelationSpells[1]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[6].revelationSpells[1]",
+            "value": {
+              "level": 5,
+              "spell": "Chain of Duty — mark ally; teleport to them when they fall"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 2,
+      "oathId": "chain",
+      "oathName": "Oath of the Chain",
+      "oathbreakerName": "Shackled Lord",
+      "displayPath": "Oath of the Chain"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oathbreaker-oath-of-the-chain.iron-leash-aura",
+      "name": "Iron Leash Aura",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oathbreaker — Oath of the Chain",
+      "sourceKind": "oathbreakerAura",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for corresponding Oathbreaker",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 3 chosen enemies in your Oath aura",
+      "duration": "While conscious and target remains in aura",
+      "frequency": "Choose targets at start of each turn",
+      "effect": "A selected enemy has Speed reduced by 10 feet, minimum 5 feet. The first time each round it willingly moves farther from you, it makes a Strength save; on failure its movement ends after 5 feet of that movement. This does not remove Actions or prevent forced movement.",
+      "prerequisite": "Paladin 3; Oathbreaker — Oath of the Chain",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[6].oathbreaker.aura",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[6].oathbreaker.aura",
+            "value": "Iron Leash — slow and control debuffs"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "chain",
+      "oathName": "Oath of the Chain",
+      "oathbreakerName": "Shackled Lord",
+      "displayPath": "Shackled Lord — Oath of the Chain Oathbreaker"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oathbreaker-oath-of-the-chain.iron-leash",
+      "name": "Iron Leash",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oathbreaker — Oath of the Chain",
+      "sourceKind": "blasphemousWord",
+      "minimumClassLevel": 11,
+      "acquisition": "automatic for corresponding Oathbreaker",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Up to 3 enemies in your Oath aura",
+      "duration": "Until end of each target's next turn",
+      "frequency": "1/short rest; replaces Signature Power use",
+      "effect": "Each target makes a Strength save. On failure its Speed becomes 0 and it loses its Reaction until the end of its next turn. If a target has not previously suffered a full-turn denial from you this encounter, you may choose one failing target to also lose its Action, invoking the shared hard-denial limit. You gain no stolen Action yourself.",
+      "prerequisite": "Paladin 11; Oathbreaker — Oath of the Chain",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[6].oathbreaker.blasphemousWord",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[6].oathbreaker.blasphemousWord",
+            "value": "Iron Leash — bind enemies; steal their actions"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "chain",
+      "oathName": "Oath of the Chain",
+      "oathbreakerName": "Shackled Lord",
+      "displayPath": "Shackled Lord — Oath of the Chain Oathbreaker"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-grief.mourning-smite",
+      "name": "Mourning Smite",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Grief",
+      "sourceKind": "oathSmite",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Triggered",
+      "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+      "rangeAndTarget": "Creature hit by your melee weapon attack",
+      "duration": "Grief Mark until end of target's next turn",
+      "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+      "effect": "Choose radiant or necrotic; the entire Smite packet uses that type. If the target personally reduced one of your allies to 0 HP earlier this encounter, add 1d8 damage of the chosen Smite type. Such a target also gains Grief Mark until the end of its next turn, taking -1 on attack rolls. The mark refreshes but does not stack.",
+      "prerequisite": "Paladin 3; Oath of Grief",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[7].smiteType",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[7].smiteType",
+            "value": "Necrotic and radiant — bonus damage; against a creature that killed an ally this combat, the smite deals +1d8 and applies Grief Mark (−1 attacks until end of next turn)"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "conductClauses": [
+        "Keep faith with the dead and with those they leave behind",
+        "Do not make sport of grief or profane a place of remembrance",
+        "Guide the departed toward rest; do not claim them for undeath"
+      ],
+      "oathId": "grief",
+      "oathName": "Oath of Grief",
+      "oathbreakerName": "Gravetongue",
+      "displayPath": "Oath of Grief"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oath-of-grief.sorrow-s-weight",
+      "name": "Sorrow's Weight",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Grief",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 13,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "7 RP to start; 1 RP maintenance after first pulse",
+      "rangeAndTarget": "20-foot-radius fixed zone centered within 30 feet; up to 3 enemies per pulse",
+      "duration": "Concentration, maximum 3 pulses",
+      "frequency": "At will while RP remains",
+      "effect": "Resolve one pulse on activation, then up to two later pulses by paying 1 RP and a Bonus Action on successive turns. At each pulse choose up to 3 enemies in the zone. Living targets make Constitution saves, taking 2d6 necrotic damage and having Speed halved until the start of your next regular turn or spell end, whichever occurs first on failure, or half damage with no slow on success. Undead automatically count as failing the initial save but still make a save on later pulses, preventing passive denial locks.",
+      "prerequisite": "Paladin 13; Oath of Grief",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[7].revelationSpells[3]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[7].revelationSpells[3]",
+            "value": {
+              "level": 13,
+              "spell": "Sorrow's Weight — 20-ft zone for 3 rounds; creatures save or half speed and 2d6 necrotic each round; undead fail save automatically"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 4,
+      "oathId": "grief",
+      "oathName": "Oath of Grief",
+      "oathbreakerName": "Gravetongue",
+      "displayPath": "Oath of Grief"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oathbreaker-oath-of-chains-broken.reign-of-ashes-aura",
+      "name": "Reign of Ashes Aura",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oathbreaker — Oath of Chains Broken",
+      "sourceKind": "oathbreakerAura",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for corresponding Oathbreaker",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 3 chosen enemies in your Oath aura",
+      "duration": "While conscious and target remains in aura",
+      "frequency": "Choose targets at start of each turn",
+      "effect": "Selected enemies cannot benefit from newly applied temporary buffs that grant movement increases, advantage on escape checks or immunity to Grappled/Restrained while in the aura. Their Speed is also reduced by 5 feet. Existing unrelated buffs are unaffected and immunity from innate traits is never suppressed.",
+      "prerequisite": "Paladin 3; Oathbreaker — Oath of Chains Broken",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[8].oathbreaker.aura",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[8].oathbreaker.aura",
+            "value": "Reign of Ashes — prevent buffs and escape"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "chains-broken",
+      "oathName": "Oath of Chains Broken",
+      "oathbreakerName": "Unbound Flame",
+      "displayPath": "Unbound Flame — Oath of Chains Broken Oathbreaker"
+    }
+  },
+  {
+    "owner": "paladin",
+    "card": {
+      "id": "paladin.supplement.oathbreaker-oath-of-chains-broken.reign-of-ashes",
+      "name": "Reign of Ashes",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oathbreaker — Oath of Chains Broken",
+      "sourceKind": "blasphemousWord",
+      "minimumClassLevel": 11,
+      "acquisition": "automatic for corresponding Oathbreaker",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Up to 3 enemies in your Oath aura",
+      "duration": "Damage instantaneous; ash bonds until end of next turn",
+      "frequency": "1/short rest; replaces Signature Power use",
+      "effect": "Each target makes a Dexterity save, taking 2 S d6 fire damage on failure or half on success. A failing target becomes ash-bound until the end of its next turn: Speed is halved and it cannot benefit from Dash or teleportation. It retains its Action and Reaction unless another feature removes them.",
+      "prerequisite": "Paladin 11; Oathbreaker — Oath of Chains Broken",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[8].oathbreaker.blasphemousWord",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[8].oathbreaker.blasphemousWord",
+            "value": "Reign of Ashes — chaotic fire that traps foes"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "chains-broken",
+      "oathName": "Oath of Chains Broken",
+      "oathbreakerName": "Unbound Flame",
+      "displayPath": "Unbound Flame — Oath of Chains Broken Oathbreaker"
+    }
+  },
+  {
+    "owner": "ranger",
+    "engineIndex": 0,
+    "text": "Dexterity governs weapons; Wisdom governs primal technique DC/M. This draft uses the detailed book's d8 Hit Die; older runtime d10 remains preserved as a conflicting alternative. At 1 gain Track Target engine: Bonus Action mark one perceived enemy within 90 ft for 1 minute, no RP, one quarry at a time; new mark replaces old. Once/own turn a weapon hit against quarry adds S damage. Mark does not reveal creatures through total cover. Track Target selection is an upgrade, not a second unlock tax."
+  },
+  {
+    "owner": "ranger",
+    "engineIndex": 2,
+    "text": "Elemental Attunement is defensive; Elemental Imbue is the separate Pathfinder feature gated 6. Imbue Bonus Action 2 RP, one element for 3 of your turns; once/turn a weapon hit adds 1d4 of chosen element plus fire:Burn 1d4 next target turn, cold:Speed-10 ft until end next turn, poison:CON save or-1 attack rolls until end next turn. Nonstacking; Do Ts never build Hit Chain. Switching element pays again."
+  },
+  {
+    "owner": "ranger",
+    "engineIndex": 4,
+    "text": "All Rangers learn five bounded Arrows at 11. Emberroot requires the previous 3 successful weapon hits carried fire imbue: ranged attack, weapon+S d6 fire on hit; up to 2 others within 5 ft take S fire, and primary target Burns 1d4 next turn. Glacial Thorn requires 2 ranged+1 melee among those 3 hits: ranged attack weapon+S d6 cold; on hit STR save or Speed 0 until end next turn. Venomlash requires poisoned/blighted terrain at you or target: ranged attack weapon+S d6 poison; on hit CON save or-1 damage on its next attack. Spirit Fang requires quarry: ranged attack at advantage, weapon+S d6 force; ignores resistance but not immunity on the added force only. Cleansing Grove requires natural terrain at you or target: up to 3 living allies within 10 ft of a point within 60 ft each end Frightened or Poisoned; no attack or damage."
+  },
+  {
+    "owner": "ranger",
+    "card": {
+      "id": "ranger.base.track-target",
+      "name": "Track Target",
+      "className": "Ranger",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your quarry",
+      "duration": "While marked",
+      "frequency": "Continuous",
+      "effect": "You have advantage on Survival checks to follow its physical tracks for 1 hour after the mark ends. While it is marked, once/turn your first hit also ignores 2 points of nonmagical flat damage reduction. Does not pierce immunity or reveal through cover.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3842,
+        "originalText": "Track Target: Mark an enemy to deal +10% damage and enable special abilities against them."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "ranger",
+    "card": {
+      "id": "ranger.arch.pathfinder-s-mark",
+      "name": "Pathfinder's Mark",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One fixed visible point within 30 ft",
+      "duration": "24 hours",
+      "frequency": "One location mark",
+      "effect": "Know direction and rough distance to the point within 10 miles on same plane. A new mark replaces old. It does not create teleportation, observe occupants or reveal a path through barriers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3866,
+        "originalText": "Pathfinder's Mark: Place a magical mark on a location that you can sense the direction and distance to for 24 hours."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "ranger",
+    "card": {
+      "id": "ranger.arch.predator-s-mark",
+      "name": "Predator's Mark",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 9,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Your quarry within 90 ft",
+      "duration": "1 minute",
+      "frequency": "Recharge 3",
+      "effect": "Upgrade current mark: first direct weapon hit per turn adds 1d6 rather than the engine's flat S; choose the higher, not both. Know quarry direction while within 90 ft unless blocked by total cover. Requires concentration; ordinary mark remains if this upgrade ends.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3870,
+        "originalText": "Predator's Mark: Mark a tracked target for bonus damage and enhanced awareness of their movements (level 9)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "ranger",
+    "card": {
+      "id": "ranger.hero.warder.rootcall-quake",
+      "name": "Rootcall Quake",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Warder",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Up to 3 enemies in 10 ft-radius ground area within 60 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "STR save or Speed 0. Each affected target repeats save at end of each turn and may use Action to attempt escape using STR(Athletics) against class DC. Flying creatures not touching ground are unaffected.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3885,
+        "originalText": "Rootcall Quake: Create an area effect that roots enemies in place."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "shaman",
+    "engineIndex": 1,
+    "text": "Totem Casting is Action 2 RP, duration 3 of your turns, 15 ft aura. Choose Flame, Stone, Frost, Spirit or Renewal. Benefits require an ally/target in the aura, maximum 3 creatures benefiting per pulse/round chosen by you. Flame adds 1 fire to an ally's first direct weapon hit per round; on critical that target Burns 1d4 next turn. Stone reduces damage by 1 and gives enemies-1 to STR checks to shove. Frost: enemy first entering/starting each round makes CON save or Speed-10 ft until end its turn. Spirit: first necrotic/hex damage per target per round adds 1. Renewal: on start and each of next 2 turns with Bonus Action+1 RP maintenance, up to 3 allies regain 2 HP. Thus Renewal total cost 4 RP for 3 pulses; no free healing on entry. All totems share one concentration burden; losing it ends all. Other concentration effects replace them. Non-Renewal auras need no Bonus Action upkeep. Multiple same-name/stat auras do not stack."
+  },
+  {
+    "owner": "shaman",
+    "engineIndex": 4,
+    "text": "Flask tier uses S. Mundane Base modes: Burn=one enemy 30 ft DEX save S d6 fire half, failure 1d4 fire next turn; Root=one ground enemy 30 ft STR save Speed 0 until end its next turn; Weaken=one enemy 30 ft CON save or-1 attack damage until end its next turn. Advanced Hero modes additionally: Stun=one enemy 30 ft CON save or no Reactions, failure by 10 Stunned until end its next turn; Heal=one living ally 30 ft S d6+M HP; Restore=end Frightened or Poisoned on one ally 30 ft. Every thrown flask consumes one prepared unit and 2 RP for advanced magic (Base mundane flasks cost 0 RP). Changing payload requires no separate crafting action when throwing. No flask leaves harvestable poison or another flask."
+  },
+  {
+    "owner": "shaman",
+    "card": {
+      "id": "shaman.base.flask-use",
+      "name": "Flask Use",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 prepared mundane flask",
+      "rangeAndTarget": "One target within 30 ft",
+      "duration": "Payload-specific",
+      "frequency": "Prepared 2/3/4 at 1/5/11 per long rest",
+      "effect": "Throw a Burn, Root or Weaken flask using the exact engine profile. At Hero 10 Theurgist/Soothsayer may instead throw an advanced mode as Bonus Action for 2 RP and a prepared flask. Bloodcaller does not gain that upgrade.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4018,
+        "originalText": "Flask Use: Create and throw elemental bombs (2 per encounter) that cause various effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "shaman",
+    "card": {
+      "id": "shaman.arch.enhanced-elemental-attunement",
+      "name": "Enhanced Elemental Attunement",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your affinity techniques",
+      "duration": "While known",
+      "frequency": "Once/turn",
+      "effect": "Fire adds 1 to first fire damage roll; Ice's slow increases to 10 ft; Air also gives+1 initiative; Earth adds+1 to CON concentration saves. These replace corresponding basic affinity quantities rather than duplicating them.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4028,
+        "originalText": "Enhanced Elemental Attunement: Your chosen element grants additional benefits to your abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "shaman",
+    "card": {
+      "id": "shaman.hero.theurgist.summon-ice-wisp",
+      "name": "Summon Ice Wisp",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "One spirit in empty space within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Summon standard Ice Wisp with fly 30 ft. Commanded attack deals cold; on hit target STR save or Speed 0 until end its next turn. No whole-turn freezing, bonus independent spells or multiple companion attacks.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4054,
+        "originalText": "Summon Ice Wisp: Call forth a spirit of frost that can snare and freeze enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "shaman",
+    "card": {
+      "id": "shaman.hero.theurgist.elemental-chorus",
+      "name": "Elemental Chorus",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "8 RP; 1 long-rest use",
+      "rangeAndTarget": "Four spirits in 10 ft-radius zone within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Summon a single Chorus package: four visible spirits share HP 4 L, AC 12+PB, immobile. Bonus Action command pulses up to 3 enemies: DEX save S d6 chosen affinity damage half; one failed target Speed-10 ft until end next turn. Four spirits do not make four separate attacks.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4058,
+        "originalText": "Elemental Chorus: Ultimate ability that summons all four elemental types around a zone for massive combined effect."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "shaman",
+    "card": {
+      "id": "shaman.hero.soothsayer.balanced-elements",
+      "name": "Balanced Elements",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your own elemental slowing/burning effect",
+      "duration": "As modified",
+      "frequency": "Once/turn",
+      "effect": "Choose one application: add 1 damage to its next Burn tick OR extend a Speed reduction until end target's following turn. Never extends Stunned, silence, concentration duration or whole-Action denial.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4067,
+        "originalText": "Balanced Elements: Your elemental effects last longer and have secondary effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "soldier",
+    "engineIndex": 1,
+    "text": "Overwatch is an automatic Base engine at 1. Bonus Action designate a visible 15 ft square within weapon range until start next regular turn. Once during that interval, spend your Reaction when a perceived enemy enters, moves inside, attacks an ally from, or reveals itself inside the zone. Make one legal ranged attack with ammunition and line of fire, normally 1d8+DEX piercing. On hit choose Snare (Speed-10 ft until end next turn), Bleed (1d4 at start next turn), or Push 5 ft (STR save negates push). Concealment still applies. Only one Overwatch zone; no extra Reaction. The optional Overwatch card upgrades this engine. At 17 you may move 5 ft without opportunity attacks after its shot, once/round."
+  },
+  {
+    "owner": "soldier",
+    "card": {
+      "id": "soldier.arch.suppression-fire",
+      "name": "Suppression Fire",
+      "className": "Soldier",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "Three ammunition",
+      "rangeAndTarget": "15 ft square within weapon range",
+      "duration": "Until start next turn",
+      "frequency": "Recharge 3",
+      "effect": "Up to 3 perceived enemies in zone make DEX save. Failure: S d6 piercing and Speed-10 ft through end next turn; success half damage, no slow. Cannot shoot through full cover. No attack rolls or on-hit procs.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4218,
+        "originalText": "Suppression Fire: Create a zone that enemies must save against or take damage when entering."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "soldier",
+    "card": {
+      "id": "soldier.arch.hold-the-line",
+      "name": "Hold the Line",
+      "className": "Soldier",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 short-rest use",
+      "rangeAndTarget": "One enemy entering your melee reach",
+      "duration": "Until end its turn",
+      "frequency": "1/short rest",
+      "effect": "Make one melee weapon attack. On hit normal damage and STR save or Speed 0. This is soft movement control; teleportation and forced movement remain possible.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4220,
+        "originalText": "Hold the Line: Establish a defensive position that grants bonuses to allies behind you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "soldier",
+    "card": {
+      "id": "soldier.hero.champion.divine-lockdown",
+      "name": "Divine Lockdown",
+      "className": "Soldier",
+      "band": "Hero",
+      "path": "Champion",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 encounter use",
+      "rangeAndTarget": "Up to 3 enemies within 15 ft",
+      "duration": "Until end next target turn",
+      "frequency": "1/encounter",
+      "effect": "STR save each; failure Speed 0 and cannot take Reactions. Success Speed-10 ft only. This is physical suppression; teleport remains possible. No damage or additional free attacks.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4236,
+        "originalText": "Divine Lockdown: Prevent enemy movement in a small area (once per encounter)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "soldier",
+    "card": {
+      "id": "soldier.hero.tyrant.marked-for-death",
+      "name": "Marked for Death",
+      "className": "Soldier",
+      "band": "Hero",
+      "path": "Tyrant",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "0",
+      "rangeAndTarget": "One visible enemy within 60 ft",
+      "duration": "Until start next turn",
+      "frequency": "Recharge 2",
+      "effect": "Mark foe. It takes-1 saves against your class effects and deals 1 less damage on its first hit against an ally other than you. One mark; penalty does not stack with Intimidating Presence.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4263,
+        "originalText": "Marked for Death: Enemies you designate take –1 to saves and deal –1 damage vs allies other than you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "thief",
+    "card": {
+      "id": "thief.arch.crippling-strike",
+      "name": "Crippling Strike",
+      "className": "Thief",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 15,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "One enemy hit by your Sneak Attack",
+      "duration": "Until end next target turn",
+      "frequency": "Once/own turn",
+      "effect": "Target CON save; failure Speed halved. Does not stack multiple slow fractions or deny teleport. Explicit Arch minimum 15 retained.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4399,
+        "originalText": "Crippling Strike: Your Sneak Attack applies Slow effect to the target (level 15)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "thief",
+    "card": {
+      "id": "thief.hero.shadowblade.vein-cutter",
+      "name": "Vein Cutter",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Shadowblade",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "One dose",
+      "rangeAndTarget": "Enemy critically hit by your weapon",
+      "duration": "Until end next target turn",
+      "frequency": "Once/round",
+      "effect": "Consume prepared poison without its normal recipe effect; target CON save or Bleed 1d4 next 2 turns, Speed-10 ft and-1 next attack damage. Reapplication refreshes; source stack 3 replaced by one bounded package.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4432,
+        "originalText": "Vein Cutter: On critical hit, apply Bleed, Slow, and Weakened effects that can stack up to 3 times."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "thief",
+    "card": {
+      "id": "thief.hero.blackguard.crippling-lash",
+      "name": "Crippling Lash",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Blackguard",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0",
+      "rangeAndTarget": "One enemy in melee reach",
+      "duration": "Until end next target turn",
+      "frequency": "Recharge 2",
+      "effect": "Make one weapon attack. If it qualifies for Sneak, CON save or Speed-10 ft and-1 damage on next weapon hit for duration. No extra Sneak packet.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4446,
+        "originalText": "Crippling Lash: Your Sneak Attack slows the target and reduces their damage by -1 for 2 rounds."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "tinker",
+    "engineIndex": 3,
+    "text": "At 5 automatically gain one module slot; change module during long rest. Offensive: Burn Injector first bolt hit/turn causes 1d4 fire next 2 target turns; Poison Vents d4=4 on hit CON save or-1 attack rolls until end next turn; Concussive Bolt d4=4 on hit CON save or Stunned until end next turn, once/target/encounter shared denial guard and 1/short-rest successful Stun. Defensive: Target Taunter command action once/encounter WIS save one foe 30 ft or disadvantage attacking others until end next turn; Energy Shield command gives adjacent ally+2 AC until start next turn; Smoke Cloud command once/encounter creates 5 ft radius opaque smoke centered drone until start next turn. Support: Ammo Dispenser adjacent allies first ranged hit/turn+1 damage; Target Scanner command mark 1 visible foe 60 ft first ally attack before start next turn+1 hit; Tether Grappler command once/encounter pulls 1 willing ally 15 ft within 30 ft without opportunity attacks along open route."
+  },
+  {
+    "owner": "tinker",
+    "engineIndex": 4,
+    "text": "Bomb stock refills during long rest with tools to 3 at 1, 4 at 5, 5 at 11; cap equals refill, class bombs have no resale or stockpiling. Encounter throw cap 1 at 1, 2 at 5, 3 at 11. Each throw uses one stock and one encounter allowance. Basic fire/cold known 1; advanced profiles known 6; Overload Core known 9. Base throw is Action, range 30 ft, 10 ft radius up to 3 creatures, DEX save S d6 element, half success. Fire failure adds 1d4 Burn next turn; cold failure Speed-10 ft until end next turn. Explosive Handling makes throw Bonus Action; still only one bomb/regular turn. At 15 Danger Close automatically allows excluding yourself/allies. Safe Detonation grants this early. Bombs cannot critically hit or inherit weapon riders."
+  },
+  {
+    "owner": "tinker",
+    "engineIndex": 5,
+    "text": "Advanced bomb profiles replace basic rider: Thermobaric fire pushes 5 ft on failed STR save after damage; Cryo cold on failed DEX also Speed 0 until end next turn and d2=2 ignores 1 flat DR against this bomb; Shock lightning CON instead DEX, failure prevents verbal spellcasting until end next turn (construct instead loses Reactions), shared hard-denial guard; Glue no damage, 15 ft square difficult terrain 3 rounds and entering/starting DEX save or Speed-15 ft until end turn, once per creature/round. Overload Core destroys one commanded drone within 30 ft as part Action bomb, DEX save 2d6 lightning and no Reactions until end next turn on failure, half damage on success. Consumes stock/allowance; no further destruction proc."
+  },
+  {
+    "owner": "tinker",
+    "card": {
+      "id": "tinker.arch.bomb-specialization",
+      "name": "Bomb Specialization",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your bomb damage",
+      "duration": "One target per throw",
+      "frequency": "Once/turn",
+      "effect": "Add M damage to one target that failed its initial save. No multiplying by area targets or damage ticks; Glue instead increases its slow by 5 ft maximum 20.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4594,
+        "originalText": "Bomb Specialization: Your explosive devices deal additional damage or have enhanced effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "tinker",
+    "card": {
+      "id": "tinker.arch.deploy-net-trap",
+      "name": "Deploy Net Trap",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 6,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP; one slot",
+      "rangeAndTarget": "One 5 ft square within 15 ft",
+      "duration": "3 rounds or trigger",
+      "frequency": "Recharge 2",
+      "effect": "Deploy visible Net Trap. First enemy entry STR save or Restrained, repeat end turn or Action escape against DC. Target Huge+instead speed-10 ft. No damage or continued rearming; ends after one creature escapes.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4601,
+        "originalText": "Deploy Net Trap: Set a trap that roots enemies who trigger it (level 6)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "tinker",
+    "card": {
+      "id": "tinker.hero.warmachine.overpressure-bombs",
+      "name": "Overpressure Bombs",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "One bomb throw",
+      "duration": "Instant",
+      "frequency": "Once/turn",
+      "effect": "Add on failed initial save STR save or choose push 10 ftor Prone. Also add S damage to one failed-save target. No additional blast or compounded slow; do not stack with Thermobaric push.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4652,
+        "originalText": "Overpressure Bombs: Your bombs gain knockback or prone effects with enhanced elemental damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "warrior",
+    "engineIndex": 6,
+    "text": "STRAIN. Begin after a long rest at 0 Strain; maximum Strain is 3. A normal serum injection or Mutagen Injection adds 1 Strain, Mutation Surge adds 1, and Serum Cocktail or Mutation Overload adds 2 unless modified. At Strain 2 your Speed is reduced by 5 feet. At Strain 3 you also take -1 AC and -1 on saving throws and cannot voluntarily activate another serum, Cocktail, Overclock or Surge until Strain is reduced. A completed short rest reduces Strain by 1; a long rest resets it to 0. Strain cannot exceed 3."
+  },
+  {
+    "owner": "warrior",
+    "card": {
+      "id": "warrior.base.brutality-sense",
+      "name": "Brutality Sense",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Hostile creatures you can perceive within 60 feet",
+      "duration": "While condition remains true",
+      "frequency": "Always",
+      "effect": "Brutality Sense. You know when a visible hostile creature is at or below one-quarter of its maximum HP; it is Vulnerable for your Warrior features that specifically reference a marked vulnerable target. This does not reveal its exact HP or hidden resistances.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4805,
+        "originalText": "Brutality Sense: You can sense when an opponent is below 25% health, marking them as vulnerable."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "warrior",
+    "card": {
+      "id": "warrior.arch.brutality-momentum",
+      "name": "Brutality Momentum",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 9,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "Your Brutal Strike",
+      "duration": "Instantaneous",
+      "frequency": "At most once per round",
+      "effect": "Brutality Momentum. When you personally reduce a creature marked Vulnerable by Brutality Sense to 0 HP with a melee attack, set Brutal Strike's positive round-recharge counter to 0 if it has not already been reset or shortened this round. This restores no Action and cannot refresh a per-rest use. Trivial, summoned or friendly creatures cannot trigger it.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4824,
+        "originalText": "Brutality Momentum: Killing a marked vulnerable target instantly readies your next Brutal Strike."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "warrior",
+    "card": {
+      "id": "warrior.hero.wardborn.stabilizing-injection",
+      "name": "Stabilizing Injection",
+      "className": "Warrior",
+      "band": "Hero",
+      "path": "Wardborn",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "Consume 1 prepared serum dose",
+      "rangeAndTarget": "One living creature you touch",
+      "duration": "Instantaneous",
+      "frequency": "At most once per target per long rest",
+      "effect": "Stabilizing Injection. The target regains 2d8 + M HP and may end one of Poisoned, Frightened or Staggered. If Diseased, it may immediately repeat one saving throw the disease normally permits. This removes no Wounds, cannot restore the dead and does not activate a mutation or apply the consumed serum's normal profile.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4861,
+        "originalText": "Stabilizing Injection: Use your serum knowledge to create a stabilizing agent that can heal and remove negative status effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "warrior",
+    "card": {
+      "id": "warrior.hero.ironskin.cellular-reconstruction",
+      "name": "Cellular Reconstruction",
+      "className": "Warrior",
+      "band": "Hero",
+      "path": "Ironskin",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Until start of your next regular turn, then instantaneous recovery",
+      "frequency": "1/long rest",
+      "effect": "Cellular Reconstruction. Enter stasis until the start of your next regular turn: your Speed becomes 0, you cannot take Actions, Bonus Actions or Reactions, and attacks against you have advantage. At the start of your next turn regain 3d8 + M HP and end Poisoned plus one mundane or magical disease that does not explicitly require a special cure. This removes no Wounds and cannot function while dead.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4888,
+        "originalText": "Cellular Reconstruction: Enter a brief stasis where your body rapidly heals and purges toxins or diseases."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "warrior",
+    "card": {
+      "id": "warrior.supplement.stonecore",
+      "name": "Stonecore",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "serumProfile",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Via Serum Injection",
+      "cost": "Dose consumption and normal Strain",
+      "rangeAndTarget": "Injected creature",
+      "duration": "3 rounds",
+      "frequency": "Per prepared dose",
+      "effect": "Gain +2 AC and immunity to forced movement or knockback from creatures no more than one size larger. Side effect: Speed -10 feet. Serum Tolerance suppresses the Speed penalty.",
+      "prerequisite": "Prepared serum dose",
+      "source": {
+        "line": 5054,
+        "reference": null,
+        "originalText": "| Stonecore | +2 AC | Immunity to knockback | 3 rounds | -15% Speed |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "wizard",
+    "engineIndex": 15,
+    "text": "MATRIX MASTERY MODIFICATIONS. After acquiring Matrix Mastery, each prepared ordinary spell matrix may carry at most one modification chosen during preparation. QUICK SUBSTITUTION: once per short rest, replace one matrix marked Quick Substitution with another spellbook spell of exactly the same rank using a 1-minute ritual instead of the normal 10-minute midday swap; the replacement loses the modification until the next long rest. COMPONENT ENHANCEMENT: when casting a damaging or healing matrix, spend 1 additional RP to add one extra die of the spell's primary damage or healing die to one roll; if the spell has no such die this modification has no effect. MATRIX LINKING: pair two different prepared matrix families during preparation; after legally casting one, the other costs 1 less RP, minimum 1, if cast before the end of your next regular turn, at most once per pair per round. STABILITY REINFORCEMENT: gain +2 on concentration saves caused by damage while maintaining that matrix. A matrix modification never creates another spell cast or proc event."
+  },
+  {
+    "owner": "wizard",
+    "card": {
+      "id": "wizard.base.analyze-magic",
+      "name": "Analyze Magic",
+      "className": "Wizard",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One magical creature, object or effect within 30 feet",
+      "duration": "Instantaneous",
+      "frequency": "Recharge 1 round",
+      "effect": "Analyze Magic. Tags: base, active, wizard-spell, divination, knowledge. Make an Intelligence (Arcana) check against DC 10 + the effect's spell rank, treating a non-spell effect's Director-assigned tier as rank. On success learn its school or magical category, one active mechanical property and whether it is currently sustained, cursed or bound to another effect. Failure reveals only that magic is present.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5206,
+        "originalText": "Analyze Magic: Study a magical effect or item to gain insight into its properties and function."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 1
+    }
+  },
+  {
+    "owner": "wizard",
+    "card": {
+      "id": "wizard.arch.arcane-sight",
+      "name": "Arcane Sight",
+      "className": "Wizard",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Self; 60-foot sight",
+      "duration": "Concentration, maximum 10 minutes",
+      "frequency": "Recharge 2 rounds",
+      "effect": "Arcane Sight. Tags: arch, active, wizard-spell, divination, concentration. While active you perceive magical auras within 60 feet and automatically know each visible aura's school or broad magical category. As an Action on a later turn, examine one aura to learn whether it is concentrated, summoned, cursed, warded or linked to another visible magical effect. Total cover blocks sight.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5226,
+        "originalText": "Arcane Sight: See magical auras and effects for a short duration."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 2
+    }
+  },
+  {
+    "owner": "wizard",
+    "card": {
+      "id": "wizard.hero.necromancer.will-domination",
+      "name": "Will Domination",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "One creature that fails a save against your Wizard spell by 5 or more",
+      "duration": "Until end of target's next turn",
+      "frequency": "Once per target per encounter",
+      "effect": "Will Domination. Tags: hero, necromancer, passive, control. When a creature's total on a saving throw against your Wizard spell is at least 5 below the DC, it is Stunned until the end of its next turn. After this successfully Stuns that creature once in the encounter, later qualifying failures instead remove its Reaction until the end of its next turn. This uses the shared source-character/target hard-denial mark across all your features, not a separate allowance per spell.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5300,
+        "originalText": "Will Domination: Creatures that fail saves against your spells by 5+ are stunned for 1 round."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "wizard",
+    "card": {
+      "id": "wizard.hero.necromancer.binding-sigil",
+      "name": "Binding Sigil",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "One creature directly affected by your Wizard spell",
+      "duration": "Until end of your next regular turn",
+      "frequency": "At most one marked creature at a time",
+      "effect": "Binding Sigil. Tags: hero, necromancer, passive, mark. After one creature takes damage from or fails a save against your Wizard spell, you may mark it. Until the end of your next regular turn you have advantage on Wizard spell attacks against that creature. Marking another creature ends the previous mark. Echoes, companions and environmental damage cannot apply it.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5302,
+        "originalText": "Binding Sigil: Mark a creature, giving you advantage on spell attacks against it."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "wizard",
+    "card": {
+      "id": "wizard.hero.necromancer.infernal-pact-quest-based-unlock",
+      "name": "Infernal Pact (Quest-based unlock)",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One creature within 60 feet",
+      "duration": "Maximum 3 rounds",
+      "frequency": "1/long rest; quest-gated",
+      "effect": "Infernal Pact — Gravebrand. Tags: hero, necromancer, infernal, necrotic, dark-content. This card can be selected only after completing the campaign's Infernal Pact quest and its dark-trauma check-in. Mark one creature. At the start of each of its turns it makes a Constitution save; on failure it takes 1d6 necrotic damage and you regain HP equal to the actual damage dealt, maximum S+M; success ends Gravebrand. Gravebrand ignores necrotic resistance but not immunity. While you possess this Pact, Corpse Harvest and Auto-Raise may also treat Fiend corpses as eligible; other creature types remain ineligible.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5307,
+        "originalText": "Infernal Pact (Quest-based unlock): Grants Gravebrand: 1d6 necrotic per round, heals caster, overrides corpse resistance"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  {
+    "owner": "wizard",
+    "card": {
+      "id": "wizard.hero.necromancer.mental-binding",
+      "name": "Mental Binding",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "One creature within 60 feet",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "Recharge 3 rounds",
+      "effect": "Mental Binding. Tags: hero, necromancer, wizard-spell, enchantment, control, concentration. Target WIS save; failure becomes Charmed for at most 3 rounds, repeat save at end each turn and on damage. On its first affected turn only, choose Approach, Retreat, Drop, Kneel or Strike; target uses up to half Speed, one object interaction or one ordinary weapon attack as appropriate, consuming its normal Action only if an attack is made. This command replaces at most one normal Action/turn and uses the shared hard-denial mark. Later turns retain normal actions, but while Charmed it cannot willingly attack you. No self-harm, compelled beliefs, resource expenditure or permanent allegiance. The player chooses the safest legal interpretation for a PC.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5308,
+        "originalText": "Mental Binding: Force a creature to obey a simple command for a short duration."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 7
+    }
+  },
+  {
+    "owner": "wizard",
+    "card": {
+      "id": "wizard.hero.necromancer.arcane-domination",
+      "name": "Arcane Domination",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "7 RP",
+      "rangeAndTarget": "One creature within 60 feet",
+      "duration": "Concentration, up to 1 minute",
+      "frequency": "1/long rest",
+      "effect": "Arcane Domination. Tags: hero, necromancer, wizard-spell, enchantment, control, concentration. Target WIS save; failure Charmed for 1 minute, repeat at end each turn and on damage. Once during this effect, spend Bonus Action to command its NEXT normal turn: Move up to Speed and either Dodge, Disengage or make one ordinary weapon attack, replacing its normal Action and using the shared hard-denial mark. It gains no extra turn or attack; later turns retain normal actions while Charmed, with no Reactions until effect ends. A PC chooses its legal attack target and reasonable route. No self-harm, forced spell/resource expenditure, belief change or permanent control.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5309,
+        "originalText": "Arcane Domination: Take control of a creature's actions for 1 minute."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 8
+    }
+  },
+  {
+    "owner": "wizard",
+    "card": {
+      "id": "wizard.hero.necromancer.mind-prison",
+      "name": "Mind Prison",
+      "className": "Wizard",
+      "band": "Hero",
+      "path": "Necromancer",
+      "sourceKind": "supplement",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "10 RP",
+      "rangeAndTarget": "One creature within 60 feet",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "1/week; automatic Necromancer Final Theorem",
+      "effect": "Mind Prison. Tags: hero, necromancer, final-theorem, enchantment, illusion, control, concentration. Target WIS save; failure Incapacitated until end of its NEXT normal turn, using the shared hard-denial mark. During that one turn you may spend a Bonus Action on your turn to specify one replacement behavior: target moves up to half Speed and either Dodges or makes one ordinary weapon attack instead of its lost Action; a PC chooses its own attack target and route. After that first affected turn, no further Action denial or compelled attack occurs: while concentration continues, target Speed is halved and it cannot take Reactions. It repeats WIS save at end each turn and on damage, ending on success. Maximum 3 rounds. No forced self-harm, spell expenditure, transfer of equipment, confession, belief change or permanent allegiance.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5316,
+        "originalText": "Mind Prison: Trap a creature's mind in an illusory reality while controlling its body (1/week)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  }
+]

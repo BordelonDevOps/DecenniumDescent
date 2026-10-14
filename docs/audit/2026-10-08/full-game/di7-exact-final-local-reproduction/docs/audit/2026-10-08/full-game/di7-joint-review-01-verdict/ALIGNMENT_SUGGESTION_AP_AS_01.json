@@ -1,0 +1,25 @@
+{
+  "id": "AP-AS-01",
+  "classification": "NEW explicit integration exception, not recovered source wording",
+  "scope": "Only interaction with an actually adopted/operative DI7 Alignment Purge; no broader class/feat/alignment change",
+  "keepOriginals": true,
+  "operationsOnNewDerivedCopies": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "sourceFileSha256": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+      "pointer": "/spells/329/operational/resolution",
+      "idGuard": "alignment-suggestion",
+      "old": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target, retaining all independent actual alignment effects/records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+      "replacement": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "sourceFileSha256": "256bb99fce3855a78b381577d7c4c1ec448c41d7cde79a6b238b01ca47ff35a3",
+      "type": "replace_exact_paragraph",
+      "expectedOccurrences": 1,
+      "old": "**Alignment Suggestion:** calculate each new one-step shift with all prior same-spell overlays ignored, retaining independent actual alignment changes. Only changed defined axes receive fixed overlay values. A no-change result creates no replacement; the caster's already-required concentration transition still occurs and never resurrects an old application. A valid changed-axis application replaces the previous same-spell application; replaced concentration maintains no remaining effect. Ending exposes the then-current underlying alignment, not a historical snapshot. No conduct, belief or oathbreaking is compelled.",
+      "replacement": "**Alignment Suggestion:** calculate each new one-step shift with all prior same-spell overlays ignored, retaining independent actual alignment changes. Only changed defined axes receive fixed overlay values. A no-change result creates no replacement; the caster's already-required concentration transition still occurs and never resurrects an old application. A valid changed-axis application replaces the previous same-spell application; replaced concentration maintains no remaining effect. Ending exposes the then-current underlying alignment, not a historical snapshot. No conduct, belief or oathbreaking is compelled. NEW DI7 AP-AS-01 adds one named exception only: when computing a new Alignment Suggestion target baseline, exclude all Alignment Purge overlays as well as previous Suggestion overlays, retaining all other independent actual changes. Purge supplies Neutral/Neutral after live Suggestion values for effective-alignment reads, without deleting or pausing them. The caster orientation remains its actual effective snapshot, including any operative Purge on the caster. Preserve the original paragraph and reviewed card as historical evidence; no other spell or alignment effect inherits this exception."
+    }
+  ],
+  "implementationAlternative": "A version-bound controlling exception beside the preserved full source may implement the same wording instead of altering its archived object. Every active derived reading/evaluator of this pair must actually consult the exception; no merely undocumented side note. Do not normalize other status, access, source, description or operative fields."
+}

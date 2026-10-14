@@ -1,0 +1,125 @@
+{
+  "scenarioId": "DICE-L10-BOSS",
+  "level": 10,
+  "budget": "Severe",
+  "objective": "boss phases and Tenacity",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "soldier",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "paladin",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "cleric",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "druid",
+        "x": 0,
+        "y": 15
+      },
+      {
+        "id": "ranger",
+        "x": 0,
+        "y": 20
+      },
+      {
+        "id": "bard",
+        "x": 0,
+        "y": 25
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Ashthirst the Hollow",
+        "x": 30,
+        "y": 0
+      }
+    ]
+  },
+  "cargo": null,
+  "partyBuildHashes": [
+    "a73834abd3713676abee4629cab269775bd4790c0f708db6ef18a08e9fd8ce36",
+    "e4ecf6c3f297f8a0f09b125cea98b23f21b47239f492a29b2ec77f795969d2de",
+    "4cbc63a2244ad77de69112a744bfc2b6e9a219a4f9b7e588962506e1691574bc",
+    "48b3e7b70b3c83a727518ea3b6c9814579a9a66ed08eed7b5426254690f1df4b",
+    "13e3bc4a5b893883c89c503c7640166a0d2e5931513a5caf53b33fc3121336a1",
+    "ba8b816b28b2c2563dd49cdc223f7cd1ff5828d3d7cdbacb957ded6f85f99bed"
+  ],
+  "enemies": [
+    {
+      "name": "Ashthirst the Hollow",
+      "hitPoints": 464,
+      "armorClass": 16,
+      "challengeRating": "14",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Ash Claw",
+          "text": "Attack: +9 to hit, one target. Hit: 3d8+7 necrotic damage (average 20)."
+        },
+        {
+          "name": "Cinder Lash",
+          "text": "Attack: +9 to hit, one target. Hit: 2d10+5 fire damage (average 16)."
+        },
+        {
+          "name": "Hollow Wail (Recharge 5-6)",
+          "text": "Creatures in the affected area make a DC 18 Wisdom save, taking 6d8 psychic damage (average 27) on a failure and half on a success. The Director should describe the charge-up before resolving it."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Gate-Bound",
+          "text": "The Guardian cannot be permanently displaced from its arena while the Seal remains active."
+        },
+        {
+          "name": "Aerial Hunter",
+          "text": "It ignores ground difficult terrain and seeks angles that bypass front-line cover."
+        },
+        {
+          "name": "Escalation Pulse",
+          "text": "Hollow Wail recharges on 5-6; visible signs appear one round before the first use."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Ash Claw",
+          "bonus": 9,
+          "n": 3,
+          "sides": 8,
+          "mod": 7,
+          "text": "Attack: +9 to hit, one target. Hit: 3d8+7 necrotic damage (average 20).",
+          "dc": null
+        },
+        {
+          "name": "Cinder Lash",
+          "bonus": 9,
+          "n": 2,
+          "sides": 10,
+          "mod": 5,
+          "text": "Attack: +9 to hit, one target. Hit: 2d10+5 fire damage (average 16).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": true,
+      "tenacityPerRound": 1,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "34e5c60cb45a69c8ded3100828d8c8073da68cd2370ea23af3fa80340bda30bb"
+}

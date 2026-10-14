@@ -1,0 +1,62 @@
+[
+  {
+    "case": "guard-consumed",
+    "outcome": "AttributeError: 'list' object has no attribute 'add'",
+    "stateChanged": true,
+    "before": {
+      "rp": 10,
+      "rc": 5,
+      "holder": "{'instance_id': 'pulse', 'profile_name': 'transcendent-meditation', 'activation': ClockMarker(seconds=Fraction(0, 1), phase=0), 'future_starts': (ClockMarker(seconds=Fraction(6, 1), phase=0), ClockMarker(seconds=Fraction(12, 1), phase=0), ClockMarker(seconds=Fraction(18, 1), phase=0)), 'ledger': TemporalRecipientLedger(claimed=set()), 'roster': ('b',), 'maintenance_ends': (), 'expires': ClockMarker(seconds=Fraction(18, 1), phase=0), 'declarations': {0: ()}, 'applications': set(), 'profile': PulseProfile(mode='sequence', count=3, initial=True, later_cost=0, currency='RP', fixed=True, target_cap=4, round_domain='', maintenance_bonus_action=True), 'opens': (ClockMarker(seconds=Fraction(0, 1), phase=0), ClockMarker(seconds=Fraction(6, 1), phase=0), ClockMarker(seconds=Fraction(12, 1), phase=0)), 'states': ['committed', 'pending', 'pending']}"
+    },
+    "after": {
+      "rp": 10,
+      "rc": 5,
+      "holder": "{'instance_id': 'pulse', 'profile_name': 'transcendent-meditation', 'activation': ClockMarker(seconds=Fraction(0, 1), phase=0), 'future_starts': (ClockMarker(seconds=Fraction(6, 1), phase=0), ClockMarker(seconds=Fraction(12, 1), phase=0), ClockMarker(seconds=Fraction(18, 1), phase=0)), 'ledger': TemporalRecipientLedger(claimed=set()), 'roster': ('b',), 'maintenance_ends': (), 'expires': ClockMarker(seconds=Fraction(18, 1), phase=0), 'declarations': {0: (), 1: ('b',)}, 'applications': set(), 'profile': PulseProfile(mode='sequence', count=3, initial=True, later_cost=0, currency='RP', fixed=True, target_cap=4, round_domain='', maintenance_bonus_action=True), 'opens': (ClockMarker(seconds=Fraction(0, 1), phase=0), ClockMarker(seconds=Fraction(6, 1), phase=0), ClockMarker(seconds=Fraction(12, 1), phase=0)), 'states': ['committed', 'committed', 'pending']}"
+    }
+  },
+  {
+    "case": "recipient-history",
+    "outcome": "AttributeError: 'list' object has no attribute 'update'",
+    "stateChanged": true,
+    "before": {
+      "rp": 10,
+      "rc": 5,
+      "holder": "{'instance_id': 'pulse', 'profile_name': 'song-of-mending', 'activation': ClockMarker(seconds=Fraction(0, 1), phase=0), 'future_starts': (ClockMarker(seconds=Fraction(6, 1), phase=0), ClockMarker(seconds=Fraction(12, 1), phase=0)), 'ledger': TemporalRecipientLedger(claimed=set()), 'roster': ('b',), 'maintenance_ends': (), 'expires': ClockMarker(seconds=Fraction(12, 1), phase=0), 'declarations': {0: ()}, 'applications': set(), 'profile': PulseProfile(mode='sequence', count=2, initial=True, later_cost=1, currency='RC', fixed=True, target_cap=3, round_domain='instance', maintenance_bonus_action=True), 'opens': (ClockMarker(seconds=Fraction(0, 1), phase=0), ClockMarker(seconds=Fraction(6, 1), phase=0)), 'states': ['committed', 'pending']}"
+    },
+    "after": {
+      "rp": 10,
+      "rc": 4,
+      "holder": "{'instance_id': 'pulse', 'profile_name': 'song-of-mending', 'activation': ClockMarker(seconds=Fraction(0, 1), phase=0), 'future_starts': (ClockMarker(seconds=Fraction(6, 1), phase=0), ClockMarker(seconds=Fraction(12, 1), phase=0)), 'ledger': TemporalRecipientLedger(claimed={('pulse:pulse', 'b', 1)}), 'roster': ('b',), 'maintenance_ends': (), 'expires': ClockMarker(seconds=Fraction(12, 1), phase=0), 'declarations': {0: ()}, 'applications': set(), 'profile': PulseProfile(mode='sequence', count=2, initial=True, later_cost=1, currency='RC', fixed=True, target_cap=3, round_domain='instance', maintenance_bonus_action=True), 'opens': (ClockMarker(seconds=Fraction(0, 1), phase=0), ClockMarker(seconds=Fraction(6, 1), phase=0)), 'states': ['committed', 'pending']}"
+    }
+  },
+  {
+    "case": "pulse-declarations",
+    "outcome": "IndexError: list assignment index out of range",
+    "stateChanged": true,
+    "before": {
+      "rp": 10,
+      "rc": 5,
+      "holder": "{'instance_id': 'pulse', 'profile_name': 'song-of-mending', 'activation': ClockMarker(seconds=Fraction(0, 1), phase=0), 'future_starts': (ClockMarker(seconds=Fraction(6, 1), phase=0), ClockMarker(seconds=Fraction(12, 1), phase=0)), 'ledger': TemporalRecipientLedger(claimed=set()), 'roster': ('b',), 'maintenance_ends': (), 'expires': ClockMarker(seconds=Fraction(12, 1), phase=0), 'declarations': [], 'applications': set(), 'profile': PulseProfile(mode='sequence', count=2, initial=True, later_cost=1, currency='RC', fixed=True, target_cap=3, round_domain='instance', maintenance_bonus_action=True), 'opens': (ClockMarker(seconds=Fraction(0, 1), phase=0), ClockMarker(seconds=Fraction(6, 1), phase=0)), 'states': ['committed', 'pending']}"
+    },
+    "after": {
+      "rp": 10,
+      "rc": 4,
+      "holder": "{'instance_id': 'pulse', 'profile_name': 'song-of-mending', 'activation': ClockMarker(seconds=Fraction(0, 1), phase=0), 'future_starts': (ClockMarker(seconds=Fraction(6, 1), phase=0), ClockMarker(seconds=Fraction(12, 1), phase=0)), 'ledger': TemporalRecipientLedger(claimed={('pulse:pulse', 'b', 1)}), 'roster': ('b',), 'maintenance_ends': (), 'expires': ClockMarker(seconds=Fraction(12, 1), phase=0), 'declarations': [], 'applications': set(), 'profile': PulseProfile(mode='sequence', count=2, initial=True, later_cost=1, currency='RC', fixed=True, target_cap=3, round_domain='instance', maintenance_bonus_action=True), 'opens': (ClockMarker(seconds=Fraction(0, 1), phase=0), ClockMarker(seconds=Fraction(6, 1), phase=0)), 'states': ['committed', 'committed']}"
+    }
+  },
+  {
+    "case": "native-consumed",
+    "outcome": "AttributeError: 'list' object has no attribute 'add'",
+    "stateChanged": true,
+    "before": {
+      "rp": 10,
+      "rc": 5,
+      "holder": "{'consumed': []}"
+    },
+    "after": {
+      "rp": 9,
+      "rc": 5,
+      "holder": "{'consumed': []}"
+    }
+  }
+]

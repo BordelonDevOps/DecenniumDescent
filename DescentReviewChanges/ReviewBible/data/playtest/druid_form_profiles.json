@@ -1,0 +1,1461 @@
+{
+  "status": "REVIEWED / reference-VALIDATED:26 source-qualified profiles within selected form/buffer interface",
+  "profiles": {
+    "druid.base.wolf-form-striker": {
+      "sourceId": "druid.base.wolf-form-striker",
+      "sourceSha256": "7f886ec4aad2d5dc08b8eb79ac0ab2b2b83064449c2dd44a7a1ca73453864576",
+      "sourceProcedure": {
+        "id": "druid.base.wolf-form-striker",
+        "name": "Wolf Form (Striker)",
+        "className": "Druid",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Action attack; passive form traits",
+        "cost": "One shift to enter",
+        "rangeAndTarget": "Self; bite 5 ft",
+        "duration": "While in Wolf",
+        "frequency": "One bite/Action",
+        "effect": "Speed 40 ft; advantage on hearing/smell Perception. Bite 1d8 piercing+WIS; target STR save against Druid DC or Prone, once/target/round. All damage remains your own HP.",
+        "spellRank": null
+      },
+      "minimumLevel": 1,
+      "circle": null,
+      "archAttunement": false,
+      "canSpeak": false,
+      "size": "Medium",
+      "mayLarge": false,
+      "movement": {
+        "walk": 40
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d8+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.base.bear-form-tank": {
+      "sourceId": "druid.base.bear-form-tank",
+      "sourceSha256": "d62efe277f4dfe0f210af41e3bb70eca6646d24f7501fa709a0269b5c4d349b7",
+      "sourceProcedure": {
+        "id": "druid.base.bear-form-tank",
+        "name": "Bear Form (Tank)",
+        "className": "Druid",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Action attack; passive form traits",
+        "cost": "One shift; buffer drawn from reserve",
+        "rangeAndTarget": "Self; claw 5 ft",
+        "duration": "While in Bear",
+        "frequency": "One claw/Action",
+        "effect": "Gain up to 20 temporary HP from reserve; AC max(normal, 14). Claw 2d6 slashing+WIS+1. Buffer disappears on reversion and cannot be refilled through free shifting.",
+        "spellRank": null
+      },
+      "minimumLevel": 1,
+      "circle": null,
+      "archAttunement": false,
+      "canSpeak": false,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 14
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d6+WIS+1",
+        "damageType": "slashing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 20,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.base.hawk-form-scout": {
+      "sourceId": "druid.base.hawk-form-scout",
+      "sourceSha256": "4534b24051e4e8540c7c4138f95d729e014a25be5cc554e72e25d10c0c9653b8",
+      "sourceProcedure": {
+        "id": "druid.base.hawk-form-scout",
+        "name": "Hawk Form (Scout)",
+        "className": "Druid",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Action attack; passive form traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Self; talon 5 ft",
+        "duration": "While in Hawk",
+        "frequency": "One talon/Action",
+        "effect": "Tiny, flight 60 ft, walking 10 ft, advantage on sight Perception. Talon 1d4 slashing+WIS; advantage if you descended at least 10 ft immediately before attack. No carrying Medium allies or casting spells before 18.",
+        "spellRank": null
+      },
+      "minimumLevel": 1,
+      "circle": null,
+      "archAttunement": false,
+      "canSpeak": false,
+      "size": "Tiny",
+      "mayLarge": false,
+      "movement": {
+        "walk": 10,
+        "fly": 60
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d4+WIS",
+        "damageType": "slashing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.base.boar-form-brawler": {
+      "sourceId": "druid.base.boar-form-brawler",
+      "sourceSha256": "d1288f0ae961f47cdaf529e43a8f37b48873aa800032377dc8506c26c58710ec",
+      "sourceProcedure": {
+        "id": "druid.base.boar-form-brawler",
+        "name": "Boar Form (Brawler)",
+        "className": "Druid",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Action attack; passive form traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Self; tusk 5 ft",
+        "duration": "While in Boar",
+        "frequency": "One tusk/Action",
+        "effect": "Resistance to slashing. Tusk 1d6 piercing+WIS. After moving 10 ft directly toward target, first hit/turn adds 1d6 and STR save or push 5 ft; no repeated charges from forced movement.",
+        "spellRank": null
+      },
+      "minimumLevel": 1,
+      "circle": null,
+      "archAttunement": false,
+      "canSpeak": false,
+      "size": "Medium",
+      "mayLarge": false,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d6+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.base.panther-form-stealth": {
+      "sourceId": "druid.base.panther-form-stealth",
+      "sourceSha256": "8daa235b54a30f029be0ab4ec9285f0787742efb78cd905b848ebcb572158396",
+      "sourceProcedure": {
+        "id": "druid.base.panther-form-stealth",
+        "name": "Panther Form (Stealth)",
+        "className": "Druid",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Action attack; passive form traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Self; claw 5 ft",
+        "duration": "While in Panther",
+        "frequency": "One claw/Action",
+        "effect": "Speed 40 ft, darkvision 60 ft, +4 Stealth. Claw 2d4 slashing+WIS; after 20 ft straight approach hit, STR save or Grappled. Escape Action against Druid DC; ends on separation/reversion. Only one held target, no free Restrained.",
+        "spellRank": null
+      },
+      "minimumLevel": 1,
+      "circle": null,
+      "archAttunement": false,
+      "canSpeak": false,
+      "size": "Medium",
+      "mayLarge": false,
+      "movement": {
+        "walk": 40
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d4+WIS",
+        "damageType": "slashing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.arch.dire-wolf": {
+      "sourceId": "druid.arch.dire-wolf",
+      "sourceSha256": "b384946f0b86e1ad7b0b45561e0b50f3468f65d7bc8c4e90ff363194486b7987",
+      "sourceProcedure": {
+        "id": "druid.arch.dire-wolf",
+        "name": "Dire Wolf",
+        "className": "Druid",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic",
+        "activation": "Action attack or Howl",
+        "cost": "One shift; Howl 1 Form Surge",
+        "rangeAndTarget": "Self; bite 5 ft; Howl 30 ft",
+        "duration": "Form 10 minutes; fear up to 3 rounds",
+        "frequency": "Howl 1/shift and finite reserve",
+        "effect": "Arch attunement required. Speed 40 ft, bite 2d6 piercing+WIS; advantage when active ally threatens target 5 ft. Howl Action up to 3 enemies WIS save or Frightened, repeat end each turn, maximum 3 rounds. No free bite with Howl.",
+        "spellRank": null
+      },
+      "minimumLevel": 11,
+      "circle": null,
+      "archAttunement": true,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": false,
+      "movement": {
+        "walk": 40
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d6+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "howl": {
+          "action": "action",
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.arch.earth-warden-dire-bear": {
+      "sourceId": "druid.arch.earth-warden-dire-bear",
+      "sourceSha256": "8ceb2cb1ea880743953a06d50a1c0e098eba154298b3755a7efa689556e18af6",
+      "sourceProcedure": {
+        "id": "druid.arch.earth-warden-dire-bear",
+        "name": "Earth Warden (Dire Bear)",
+        "className": "Druid",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic",
+        "activation": "Action Slam",
+        "cost": "One shift; buffer reserve",
+        "rangeAndTarget": "Self; 10 ft radius up to 3 creatures",
+        "duration": "While in Earth Warden",
+        "frequency": "Slam recharge 2",
+        "effect": "Arch attunement required. Gain up to 30 temp HP from reserve, nonmagical physical resistance. Slam DEX save 2d6 bludgeoning+WIS and Prone on failure, half damage no Prone success. Ordinary claw 1d8+WIS when Slam unavailable.",
+        "spellRank": null
+      },
+      "minimumLevel": 11,
+      "circle": null,
+      "archAttunement": true,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d8+WIS",
+        "damageType": "slashing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 30,
+      "specials": {
+        "slam": {
+          "action": "action",
+          "payment": "recharge2"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.arch.sky-serpent": {
+      "sourceId": "druid.arch.sky-serpent",
+      "sourceSha256": "fb02c57b9530f327172b8a1c001f8528f4a4086e4659d954e713c7946468c708",
+      "sourceProcedure": {
+        "id": "druid.arch.sky-serpent",
+        "name": "Sky Serpent",
+        "className": "Druid",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic",
+        "activation": "Action bite; passive traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Self; bite 5 ft",
+        "duration": "While in Sky Serpent",
+        "frequency": "One bite/Action",
+        "effect": "Arch attunement required. Flight 80 ft with hover, +2 DEX saves. Bite 2d8 lightning+WIS. Once/shift may spend 1 Form Surge to add 1d4 against wet target; no repeated electrical propagation.",
+        "spellRank": null
+      },
+      "minimumLevel": 11,
+      "circle": null,
+      "archAttunement": true,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": false,
+      "movement": {
+        "walk": 30,
+        "fly": 80
+      },
+      "hover": true,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d8+WIS",
+        "damageType": "lightning",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "wet": {
+          "action": null,
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.arch.ironhorn-ram": {
+      "sourceId": "druid.arch.ironhorn-ram",
+      "sourceSha256": "08721f755db519afdb198be9a11f8df1b8e2062022c4b2ed7428f552af5d2b9d",
+      "sourceProcedure": {
+        "id": "druid.arch.ironhorn-ram",
+        "name": "Ironhorn Ram",
+        "className": "Druid",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic",
+        "activation": "Action ram; passive traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Self; ram 5 ft",
+        "duration": "While in Ironhorn Ram",
+        "frequency": "One ram/Action",
+        "effect": "Arch attunement required. AC max(normal, 17), immune Prone. Ram 1d8+WIS bludgeoning; after 20 ft straight approach first hit/turn adds 3d6, STR against Druid DC or push 10 ft. No bonus against same target more than once/round.",
+        "spellRank": null
+      },
+      "minimumLevel": 11,
+      "circle": null,
+      "archAttunement": true,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": false,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 17
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d8+WIS",
+        "damageType": "bludgeoning",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.arch.shadow-lynx": {
+      "sourceId": "druid.arch.shadow-lynx",
+      "sourceSha256": "a0a1750c467c1afc4289e067406f9488b165c86971105261790ad671c238de64",
+      "sourceProcedure": {
+        "id": "druid.arch.shadow-lynx",
+        "name": "Shadow Lynx",
+        "className": "Druid",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic",
+        "activation": "Reaction Blink; Action claw",
+        "cost": "One shift; Blink 1 Form Surge",
+        "rangeAndTarget": "Self; claw 5 ft",
+        "duration": "Blink instant; form 10 minutes",
+        "frequency": "Blink 1/shift and finite reserve",
+        "effect": "Arch attunement required. Claw 2d4+WIS magical slashing; +2 Stealth while motionless. When attack would hit, Reaction teleport 30 ft to visible empty space, causing triggering attack to miss if you leave its reach/range. Next claw before end next turn advantage. No blanket immunity to magical damage.",
+        "spellRank": null
+      },
+      "minimumLevel": 11,
+      "circle": null,
+      "archAttunement": true,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": false,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d4+WIS",
+        "damageType": "slashing",
+        "intrinsicallyMagical": true
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "blink": {
+          "action": "reaction",
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.land.blight-elk": {
+      "sourceId": "druid.hero.land.blight-elk",
+      "sourceSha256": "359c36eac3bfd49ee16f5a309642ef6aec0c3f0486f37991c610895c861231fe",
+      "sourceProcedure": {
+        "id": "druid.hero.land.blight-elk",
+        "name": "Blight Elk",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Land",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action antlers; passive aura",
+        "cost": "One shift",
+        "rangeAndTarget": "Land Hero; 5 ft aura",
+        "duration": "While in Blight Elk",
+        "frequency": "Aura once/enemy/round, max 3 enemies",
+        "effect": "Antlers 2d8+WIS piercing. Enemy starting within 5 ft CON save or 1d4 poison. Wither unattended mundane vegetation within 5 ft cosmetically; tainted water is visibly foul and harmless after 10 minutes. No mass contamination or permanent resource fabrication.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Land",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d8+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.land.tanglemaw": {
+      "sourceId": "druid.hero.land.tanglemaw",
+      "sourceSha256": "b916c4ba9ccc394e5cf2eb6cbc02344c0e211daec1698938f6d2403aaab415ab",
+      "sourceProcedure": {
+        "id": "druid.hero.land.tanglemaw",
+        "name": "Tanglemaw",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Land",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action bite; passive traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Land Hero; bite 5 ft; sense 30 ft",
+        "duration": "While in Tanglemaw",
+        "frequency": "Retaliation once/round",
+        "effect": "Bite 2d6+WIS piercing, STR save or Restrained until end next turn, escape Action against DC. Thorny Body deals 1d4 piercing to one melee attacker after hit; no reflections. Sense ground-contact locations 30 ft on same connected surface, not identities through stone walls.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Land",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d6+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.moon.beastlord-alpha-animal-hybrid": {
+      "sourceId": "druid.hero.moon.beastlord-alpha-animal-hybrid",
+      "sourceSha256": "0c08e78f8f2d4d467d2ef31331896514dc61775ed3397fa5357eba633d87fb5a",
+      "sourceProcedure": {
+        "id": "druid.hero.moon.beastlord-alpha-animal-hybrid",
+        "name": "Beastlord (Alpha Animal Hybrid)",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Moon",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action bite or Howl",
+        "cost": "One shift; Howl 1 Form Surge",
+        "rangeAndTarget": "Moon Hero; bite 5 ft/Howl 15 ft",
+        "duration": "While in Beastlord; fear 1 turn",
+        "frequency": "Howl 1/shift and finite reserve",
+        "effect": "Bite 2d6+WIS piercing; first hit/turn adds 1d4 of one chosen fire/cold/lightning, not all three. Up to 2 beast allies 30 ft gain+1 first attack/turn. Howl Action up to 3 enemies WIS save or Frightened until end next turn.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Moon",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d6+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "howl": {
+          "action": "action",
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.moon.mooncursed": {
+      "sourceId": "druid.hero.moon.mooncursed",
+      "sourceSha256": "ce968a8db6c8ebac99dc9d8d7ef4f99c949e173df8eed26e5dd75a8175bd3054",
+      "sourceProcedure": {
+        "id": "druid.hero.moon.mooncursed",
+        "name": "Mooncursed",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Moon",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action bite or Howl",
+        "cost": "One shift; Howl 1 Form Surge",
+        "rangeAndTarget": "Moon Hero; bite 5 ft/Howl 30 ft",
+        "duration": "While in Mooncursed",
+        "frequency": "Howl 1/shift and finite reserve",
+        "effect": "Resistance to nonmagical physical damage except silver; other types unchanged. Bite 2d6+WIS piercing, +1d8 once/turn under real full moon. Howl Action choose up to 3 allies gain 2d8 temp HP total roll, or 3 enemies WIS save or Frightened through end next turn. Temp HP draws from Buffer Reserve per recipient.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Moon",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d6+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "howl": {
+          "action": "action",
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.moon.elemental-shapeshifting": {
+      "sourceId": "druid.hero.moon.elemental-shapeshifting",
+      "sourceSha256": "1d9ad7f20980737543dc037fc1318a7462e3995e17afec48de94312ac3f5c0b7",
+      "sourceProcedure": {
+        "id": "druid.hero.moon.elemental-shapeshifting",
+        "name": "Elemental Shapeshifting",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Moon",
+        "sourceKind": "form",
+        "minimumClassLevel": 14,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "One shift and one elemental use",
+        "rangeAndTarget": "Moon Circle self",
+        "duration": "10 minutes",
+        "frequency": "2/long rest",
+        "effect": "Choose bounded elemental form: AC 16, natural attack 2d8+WIS chosen element, one/Action. Air flight 60 lightning resistance; Earth burrow 20 through loose soil physical DR 2; Fire fire resistance and melee attacker 1d4 fire once/round; Water swim 60 water breathing cold resistance. Retain own HP/abilities, no external stat blocks.",
+        "spellRank": null
+      },
+      "minimumLevel": 14,
+      "circle": "Moon",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "fixed",
+        "amount": 16
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d8+WIS",
+        "damageType": "chosen-element",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.storm.tempest-raptor": {
+      "sourceId": "druid.hero.storm.tempest-raptor",
+      "sourceSha256": "0f6b5667a0e9f772174a0e56e8b9f4ef174fd16d47d2bb7a6fe6ff148f8683ad",
+      "sourceProcedure": {
+        "id": "druid.hero.storm.tempest-raptor",
+        "name": "Tempest Raptor",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Storm",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action claw; passive traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Storm Hero; claw 5 ft",
+        "duration": "While in Tempest Raptor",
+        "frequency": "One claw/Action; retaliation once/round",
+        "effect": "Flight 60 ft, advantage on saves against wind/lightning while airborne. Claw 2d6+WIS lightning; wet target adds 1d4 once/shift for 1 Form Surge. After melee hit on you, attacker takes 1d6 lightning once/round; no repeated disarm chains.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Storm",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30,
+        "fly": 60
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d6+WIS",
+        "damageType": "lightning",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "wet": {
+          "action": null,
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.storm.thunderhorn-stag": {
+      "sourceId": "druid.hero.storm.thunderhorn-stag",
+      "sourceSha256": "80904406e241853bf23018ba3194ea3b49941321ceaf05b417ce9cca3be8526a",
+      "sourceProcedure": {
+        "id": "druid.hero.storm.thunderhorn-stag",
+        "name": "Thunderhorn Stag",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Storm",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action antlers or Thunder Step",
+        "cost": "One shift; Step 1 Form Surge",
+        "rangeAndTarget": "Storm Hero; antlers 5 ft; teleport 30 ft",
+        "duration": "While in Thunderhorn Stag",
+        "frequency": "Step 1/shift and finite reserve",
+        "effect": "Antlers 1d8+WIS piercing; after 20 ft approach first hit/turn also 2d8 thunder and CON save or Deafened through end next turn. Step Action teleport 30 ft, departure 10 ft radius up to 3 creatures CON save 2d8 thunder, half success. Sense natural storm approach 24 hours, no exact prediction of magical weather.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Storm",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d8+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "step": {
+          "action": "action",
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.thorns.blight-elk": {
+      "sourceId": "druid.hero.thorns.blight-elk",
+      "sourceSha256": "f9db8ef944e9bfe024c3fb740c2efb6f4240b0938b1db4e098f4ce540e2e22dc",
+      "sourceProcedure": {
+        "id": "druid.hero.thorns.blight-elk",
+        "name": "Blight Elk",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Thorns",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action antlers; passive aura",
+        "cost": "One shift",
+        "rangeAndTarget": "Thorns Hero; 5 ft aura",
+        "duration": "While in Blight Elk",
+        "frequency": "Aura once/enemy/round, max 3 enemies",
+        "effect": "Antlers 2d8+WIS piercing, +1d4 poison once/turn against Poisoned. Enemies starting 5 ft CON save or 1d4 poison. Ground 10 ft around you is difficult terrain for enemies, no lasting thorns after movement/reversion.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Thorns",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d8+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.thorns.tanglemaw": {
+      "sourceId": "druid.hero.thorns.tanglemaw",
+      "sourceSha256": "daff5c2781baba250c2131a002539a6f80d7a7a2884ebaaed94b81d541d90e08",
+      "sourceProcedure": {
+        "id": "druid.hero.thorns.tanglemaw",
+        "name": "Tanglemaw",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Thorns",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action bite; passive traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Thorns Hero; bite 5 ft; sense 30 ft",
+        "duration": "While in Tanglemaw",
+        "frequency": "Retaliation once/round",
+        "effect": "Bite 2d6+WIS piercing, STR save or Restrained through end next turn, Action escape DC. One melee attacker/round takes 1d4 piercing; one creature restrained by your bite takes 1d4 at start turn. Ground sense 30 ft same surface and advantage against Prone; no wall-penetrating identification.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Thorns",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d6+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.winterfang.snow-leopard": {
+      "sourceId": "druid.hero.winterfang.snow-leopard",
+      "sourceSha256": "45a815d53f107787811abec352814026ffae437e83a0891e5bf3a8f21f262755",
+      "sourceProcedure": {
+        "id": "druid.hero.winterfang.snow-leopard",
+        "name": "Snow Leopard",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Winterfang",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action claw; passive traits",
+        "cost": "One shift",
+        "rangeAndTarget": "Winterfang Hero; claw 5 ft",
+        "duration": "While in Snow Leopard",
+        "frequency": "One claw/Action",
+        "effect": "Claw 2d6+WIS cold, +1d4 once/turn against slowed foe. +5 Stealth on ice/snow and advantage on legal Hide there; source+10 reduced provisionally. Ignore ordinary ice/snow movement penalties, not magical restraining ice.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Winterfang",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d6+WIS",
+        "damageType": "cold",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.winterfang.frost-wyrmling": {
+      "sourceId": "druid.hero.winterfang.frost-wyrmling",
+      "sourceSha256": "be5a32836802126e195e59a8de64ea3c1e7ec3d8926ca051284bf326d39f526f",
+      "sourceProcedure": {
+        "id": "druid.hero.winterfang.frost-wyrmling",
+        "name": "Frost Wyrmling",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Winterfang",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action breath or claw",
+        "cost": "One shift; breath one short-rest use",
+        "rangeAndTarget": "Winterfang Hero; 30 ft cone up to 3 creatures",
+        "duration": "While in Frost Wyrmling",
+        "frequency": "Breath 1/short rest, shared across shifts",
+        "effect": "AC normal+2, cold immunity. Claw 1d8+WIS cold. Breath 4d6 cold DEX half. One breath target may have cold resistance ignored once/shift for 1 Form Surge; immunity remains. No general physical resistance from cold terrain in this draft.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Winterfang",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "add",
+        "amount": 2
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d8+WIS",
+        "damageType": "cold",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "breath": {
+          "action": "action",
+          "payment": "short-rest"
+        },
+        "ignore-cold-resistance": {
+          "action": null,
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.rotshaper.carrion-rat-king": {
+      "sourceId": "druid.hero.rotshaper.carrion-rat-king",
+      "sourceSha256": "66cae86b4ff384703f2aef8cc07dfd610085034b0922e02a461f86e74f20cc66",
+      "sourceProcedure": {
+        "id": "druid.hero.rotshaper.carrion-rat-king",
+        "name": "Carrion Rat King",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Rotshaper",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action bite or summon",
+        "cost": "One shift; summon 1 Form Surge",
+        "rangeAndTarget": "Rotshaper Hero; bite 5 ft/swarm 30 ft",
+        "duration": "While in Carrion Rat King",
+        "frequency": "Summon 1/shift and finite reserve",
+        "effect": "Bite 1d8+WIS piercing+2d6 poison; CON save or Poisoned through end next turn. Immune disease/Poisoned, not poison damage. Summon Action creates one bounded engine swarm 1 minute, same command budget; replaces previous form swarm.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Rotshaper",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d8+WIS piercing + 2d6 poison",
+        "damageType": "mixed",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "summon": {
+          "action": "action",
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.rotshaper.insect-broodmother": {
+      "sourceId": "druid.hero.rotshaper.insect-broodmother",
+      "sourceSha256": "52edbedf9bfbdf8057259f3758ebfd144820c93a27c2170fd34e4d6f70297d82",
+      "sourceProcedure": {
+        "id": "druid.hero.rotshaper.insect-broodmother",
+        "name": "Insect Broodmother",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Rotshaper",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action bite; passive traits",
+        "cost": "One shift; spawning 1 Form Surge",
+        "rangeAndTarget": "Rotshaper Hero; up to 2 swarms adjacent",
+        "duration": "While in Insect Broodmother",
+        "frequency": "Spawn once/shift and finite reserve",
+        "effect": "AC normal+3, climb 30 walls/ceilings, bite 1d8+WIS piercing. On entry optional spend surge spawn 2 bounded shared profile swarms, both end with form, combined one commanded attack/turn. Once/shift for another Form Surge turn one crit against you into normal hit; no infinite insects.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Rotshaper",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30,
+        "climb": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "add",
+        "amount": 3
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d8+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "spawn": {
+          "action": null,
+          "payment": "surge"
+        },
+        "negate-critical": {
+          "action": null,
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.rotshaper.master-of-vermin": {
+      "sourceId": "druid.hero.rotshaper.master-of-vermin",
+      "sourceSha256": "762dc5ac770d66998e89219fad3ca15abc6f5bb3755316d4bb388d76682283b5",
+      "sourceProcedure": {
+        "id": "druid.hero.rotshaper.master-of-vermin",
+        "name": "Master of Vermin",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Rotshaper",
+        "sourceKind": "form",
+        "minimumClassLevel": 14,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "One shift",
+        "rangeAndTarget": "Rotshaper Circle self",
+        "duration": "10 minutes",
+        "frequency": "Normal shift limit",
+        "effect": "Swarm form: own HP/AC, physical resistance, Speed 30, fit Tinygaps, natural attack S d6+WIS piercing. No flight unless choosing bats (flight 30), which forfeits physical resistance. Replacing a summoning spell's beast with swarm uses same single companion budget and paid spell, never multiplied dice/creatures.",
+        "spellRank": null
+      },
+      "minimumLevel": 14,
+      "circle": "Rotshaper",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "S d6+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {},
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.ashen-grove.charbear": {
+      "sourceId": "druid.hero.ashen-grove.charbear",
+      "sourceSha256": "aea389ba9868189c5ee1db218d3623978ad55bab07d432188912cba18493e50d",
+      "sourceProcedure": {
+        "id": "druid.hero.ashen-grove.charbear",
+        "name": "Charbear",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Ashen Grove",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action claw or Smoke",
+        "cost": "One shift; Smoke 1 Form Surge",
+        "rangeAndTarget": "Ashen Hero; claw 5 ft/aura 5 ft/smoke 10 ft",
+        "duration": "While in Charbear; smoke 3 rounds",
+        "frequency": "Smoke 1/shift; aura/retaliation caps",
+        "effect": "Claw 2d8+WIS fire; first hit/turn Burn 1d4 next turn. Up to 3 enemies starting 5 ft CON save or 1d6 fire. Smoke Action opaque 10 ft radius sphere centered fixed point you occupy, concentration 3 rounds; all vision blocked, no poison in this draft. Wind 20 mph disperses.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Ashen Grove",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "2d8+WIS",
+        "damageType": "fire",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "smoke": {
+          "action": "action",
+          "payment": "surge"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    },
+    "druid.hero.ashen-grove.blazewood-stag": {
+      "sourceId": "druid.hero.ashen-grove.blazewood-stag",
+      "sourceSha256": "17a078d0e7095877419b9b0626f73d0c24c578be8a18c568ce2b1f89695ed07f",
+      "sourceProcedure": {
+        "id": "druid.hero.ashen-grove.blazewood-stag",
+        "name": "Blazewood Stag",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Ashen Grove",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action antlers or Conflagration",
+        "cost": "One shift; blast one long-rest use",
+        "rangeAndTarget": "Ashen Hero; antlers 5 ft/blast 10 ft",
+        "duration": "While in Blazewood Stag",
+        "frequency": "Blast 1/long rest across shifts",
+        "effect": "Antlers 1d8+WIS piercing; 20 ft charge adds 2d6 fire once/turn. Leave up to 3 fire tiles/turn, last until start next turn, DEX save or 1d8 fire once/creature/round. Blast Action 6d6 fire DEX half up to 3 creatures 10 ft, not free on reversion.",
+        "spellRank": null
+      },
+      "minimumLevel": 10,
+      "circle": "Ashen Grove",
+      "archAttunement": false,
+      "canSpeak": true,
+      "size": "Medium",
+      "mayLarge": true,
+      "movement": {
+        "walk": 30
+      },
+      "hover": false,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "identity": [
+          "formAttack",
+          "naturalAttack"
+        ],
+        "countPerAction": 1,
+        "rangeFeet": 5,
+        "attack": "PB+WIS",
+        "damage": "1d8+WIS",
+        "damageType": "piercing",
+        "intrinsicallyMagical": false
+      },
+      "entryBuffer": 0,
+      "specials": {
+        "blast": {
+          "action": "action",
+          "payment": "long-rest"
+        }
+      },
+      "normalSensesRetained": true,
+      "handBasedEquipmentUse": false,
+      "integrationStatus": "REVIEWED: bounded form profile; full individual rider execution remains with canonical systems",
+      "riderResolution": "Apply exact sourceProcedure through canonical condition/combat engines; not an unrestricted proc list."
+    }
+  },
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_FORM_TEMP_HP_FINAL_CLOSURE.md"
+}

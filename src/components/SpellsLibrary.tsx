@@ -7,24 +7,30 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, BookOpen, Star, Plus, Check } from "lucide-react";
+import { Search, BookOpen, Star, Plus, Check, Send } from "lucide-react";
 import { SPELLS, SPELL_SCHOOLS, SPELL_LEVELS } from "@/data/spells";
-
-// Class-spell school mapping data
-const CLASS_SPELL_SCHOOL_MAPPING: { [key: string]: string[] } = {
-  'Bard': ['Enchantment', 'Illusion', 'Universal'],
-  'Cleric': ['Abjuration', 'Divination', 'Necromancy', 'Universal'],
-  'Druid': ['Abjuration', 'Conjuration', 'Necromancy', 'Transmutation'],
-  'mage': ['Abjuration', 'Conjuration', 'Evocation', 'Transmutation', 'Universal'],
-  'Paladin': ['Abjuration', 'Divination', 'Enchantment', 'Universal'],
-  'Ranger': ['Conjuration', 'Divination', 'Transmutation'],
-  'Wizard': ['Abjuration', 'Conjuration', 'Divination', 'Enchantment', 'Evocation', 'Illusion', 'Necromancy', 'Transmutation', 'Universal']
-};
+import { pushSpellHandoff } from "@/lib/session-handoff";
+import {
+  CLASS_SPELL_ALIASES,
+  filterSpellsForClass,
+  getSpellKey,
+  getSpellLevelForClass,
+  getSpellLearnLevelForClass,
+  getSpellSchoolForClass,
+  isRevelationCaster,
+  isSpellAvailableToClass,
+} from "@/data/spell-utils";
 
 interface Spell {
   name: string;
   level: number;
   school: string;
+  schools?: string[];
+  placements?: { school: string; level: number; summary: string }[];
+  classLevels?: Record<string, number>;
+  classRanks?: Record<string, number>;
+  classLearnLevels?: Record<string, number>;
+  classSchools?: Record<string, string>;
   castingTime: string;
   range: string;
   components: string;
@@ -33,7 +39,7 @@ interface Spell {
   classes: string[];
 }
 
-export default function SpellsLibrary() {
+export default function SpellsLibrary({ onLoadSession }: { onLoadSession?: () => void }) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedSchool, setSelectedSchool] = useState<string>("All");
   const [selectedLevel, setSelectedLevel] = useState<string>("All");
@@ -42,85 +48,110 @@ export default function SpellsLibrary() {
   const [favoriteSpells, setFavoriteSpells] = useState<string[]>([]);
   const [activeView, setActiveView] = useState<string>("all");
 
-  // Get all unique classes from spells
-  const allClasses = useMemo(() => {
-    const classes = new Set<string>();
-    Object.values(SPELLS).forEach((spell: Spell) => {
-      spell.classes.forEach(cls => classes.add(cls));
-    });
-    return Array.from(classes).sort();
-  }, []);
-
   // Filter spells based on current filters
   const filteredSpells = useMemo(() => {
     let spells = Object.values(SPELLS) as Spell[];
 
-    // Apply search filter
     if (searchQuery) {
-      spells = spells.filter(spell => 
-        spell.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        spell.description.toLowerCase().includes(searchQuery.toLowerCase())
+      const q = searchQuery.toLowerCase();
+      spells = spells.filter(
+        (spell) =>
+          spell.name.toLowerCase().includes(q) ||
+          spell.description.toLowerCase().includes(q)
       );
     }
 
-    // Apply school filter
-    if (selectedSchool !== "All") {
-      spells = spells.filter(spell => spell.school === selectedSchool);
-    }
-
-    // Apply level filter
-    if (selectedLevel !== "All") {
-      spells = spells.filter(spell => spell.level === parseInt(selectedLevel));
-    }
-
-    // Apply class filter with school mapping
     if (selectedClass !== "All") {
-      const accessibleSchools = CLASS_SPELL_SCHOOL_MAPPING[selectedClass] || [];
-      spells = spells.filter(spell => {
-        // Check if spell is available to the class AND if the class can access the spell's school
-        return spell.classes.includes(selectedClass) && accessibleSchools.includes(spell.school);
+      spells = filterSpellsForClass(spells, selectedClass, {
+        schoolFilter: selectedSchool,
+        levelFilter: selectedLevel,
       });
+    } else {
+      if (selectedSchool !== "All") {
+        spells = spells.filter((spell) =>
+          (spell.placements || []).some((placement) => placement.school === selectedSchool)
+        );
+      }
+      if (selectedLevel !== "All") {
+        const level = parseInt(selectedLevel, 10);
+        spells = spells.filter((spell) =>
+          (spell.placements || []).some((placement) => placement.level === level)
+        );
+      }
+      spells = spells.sort((a, b) =>
+        a.level !== b.level ? a.level - b.level : a.name.localeCompare(b.name)
+      );
     }
 
-    // Apply view filter
     if (activeView === "learned") {
-      spells = spells.filter(spell => learnedSpells.includes(spell.name));
+      spells = spells.filter((spell) => learnedSpells.includes(getSpellKey(spell)));
     } else if (activeView === "favorites") {
-      spells = spells.filter(spell => favoriteSpells.includes(spell.name));
+      spells = spells.filter((spell) => favoriteSpells.includes(getSpellKey(spell)));
     }
 
-    return spells.sort((a, b) => {
-      if (a.level !== b.level) return a.level - b.level;
-      return a.name.localeCompare(b.name);
-    });
+    return spells;
   }, [searchQuery, selectedSchool, selectedLevel, selectedClass, activeView, learnedSpells, favoriteSpells]);
 
   // Group spells by school
   const spellsBySchool = useMemo(() => {
     const grouped: { [key: string]: Spell[] } = {};
     filteredSpells.forEach(spell => {
-      if (!grouped[spell.school]) {
-        grouped[spell.school] = [];
+      const school = selectedClass !== "All"
+        ? (getSpellSchoolForClass(spell, selectedClass) || spell.school)
+        : spell.school;
+      if (!grouped[school]) {
+        grouped[school] = [];
       }
-      grouped[spell.school].push(spell);
+      grouped[school].push(spell);
     });
     return grouped;
-  }, [filteredSpells]);
+  }, [filteredSpells, selectedClass]);
 
-  const toggleLearnedSpell = (spellName: string) => {
-    setLearnedSpells(prev => 
-      prev.includes(spellName) 
-        ? prev.filter(name => name !== spellName)
-        : [...prev, spellName]
+  const hasActiveFilters =
+    searchQuery.trim() !== "" ||
+    selectedSchool !== "All" ||
+    selectedLevel !== "All" ||
+    selectedClass !== "All";
+  const canClearResults = hasActiveFilters || activeView !== "all";
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedSchool("All");
+    setSelectedLevel("All");
+    setSelectedClass("All");
+  };
+
+  const clearResultView = () => {
+    clearFilters();
+    setActiveView("all");
+  };
+
+  const toggleLearnedSpell = (spell: Spell) => {
+    const key = getSpellKey(spell);
+    setLearnedSpells((prev) =>
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
     );
   };
 
-  const toggleFavoriteSpell = (spellName: string) => {
-    setFavoriteSpells(prev => 
-      prev.includes(spellName) 
-        ? prev.filter(name => name !== spellName)
-        : [...prev, spellName]
+  const toggleFavoriteSpell = (spell: Spell) => {
+    const key = getSpellKey(spell);
+    setFavoriteSpells((prev) =>
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
     );
+  };
+
+  const previewSpellInSession = (spell: Spell) => {
+    const level = selectedClass !== "All" ? (getSpellLevelForClass(spell, selectedClass) ?? spell.level) : spell.level;
+    const school = selectedClass !== "All" ? (getSpellSchoolForClass(spell, selectedClass) ?? spell.school) : spell.school;
+    pushSpellHandoff({
+      name: spell.name,
+      level,
+      school,
+      castingTime: spell.castingTime,
+      range: spell.range,
+      duration: spell.duration,
+    });
+    onLoadSession?.();
   };
 
   const getSchoolColor = (school: string) => {
@@ -140,10 +171,7 @@ export default function SpellsLibrary() {
 
   const getLevelSuffix = (level: number) => {
     if (level === 0) return "Cantrip";
-    if (level === 1) return "1st Level";
-    if (level === 2) return "2nd Level";
-    if (level === 3) return "3rd Level";
-    return `${level}th Level`;
+    return `Rank ${level}`;
   };
 
   return (
@@ -152,7 +180,7 @@ export default function SpellsLibrary() {
       {/* Header */}
       <div className="text-center space-y-2">
         <h1 className="text-4xl font-bold text-white">Spell Library</h1>
-        <p className="text-gray-400">Discover and learn spells from the Decennium Descent magical compendium</p>
+        <p className="text-gray-400">Browse the Weave by Resonance Rank, school, and class-specific acquisition level</p>
       </div>
 
       {/* Search and Filters */}
@@ -187,13 +215,13 @@ export default function SpellsLibrary() {
             {/* Level Filter */}
             <Select value={selectedLevel} onValueChange={setSelectedLevel}>
               <SelectTrigger className="bg-black/30 border-gray-600 text-white">
-                <SelectValue placeholder="Level" />
+                <SelectValue placeholder="Resonance Rank" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="All">All Levels</SelectItem>
+                <SelectItem value="All">All Resonance Ranks</SelectItem>
                 {SPELL_LEVELS.map(level => (
                   <SelectItem key={level} value={level.toString()}>
-                    {level === 0 ? "Cantrips" : `Level ${level}`}
+                    {level === 0 ? "Cantrips" : `Rank ${level}`}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -206,8 +234,10 @@ export default function SpellsLibrary() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="All">All Classes</SelectItem>
-                {Object.keys(CLASS_SPELL_SCHOOL_MAPPING).map(className => (
-                  <SelectItem key={className} value={className}>{className}</SelectItem>
+                {Object.keys(CLASS_SPELL_ALIASES).map((className) => (
+                  <SelectItem key={className} value={className}>
+                    {className === "Oracle" ? "Oracle (Revelations)" : className}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -222,10 +252,33 @@ export default function SpellsLibrary() {
             </Tabs>
           </div>
 
+          {isRevelationCaster(selectedClass) && (
+            <div className="mt-4 rounded-md border border-violet-600/40 bg-violet-950/30 px-4 py-3 text-sm text-violet-200">
+              <strong className="text-violet-100">Revelation Caster — not Weave.</strong>{" "}
+              Oracles channel Mystery Revelations via Revelation Charges (see Character Builder → Paths).
+              They do not receive a general Weave spellbook, so the class filter intentionally returns no spells.
+            </div>
+          )}
+
           {/* Stats */}
-          <div className="flex justify-between items-center mt-4 text-sm text-gray-400">
-            <span>{filteredSpells.length} spells found</span>
-            <div className="flex gap-4">
+          <div className="flex flex-wrap justify-between items-center gap-2 mt-4 text-sm text-gray-400">
+            <span>
+              {filteredSpells.length} spell{filteredSpells.length !== 1 ? "s" : ""} found
+              {hasActiveFilters ? " (filtered)" : ""}
+              {isRevelationCaster(selectedClass) ? " (reference)" : ""}
+            </span>
+            <div className="flex items-center gap-3">
+              {canClearResults && (
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearResultView}
+                  className="h-7 text-xs text-gray-300"
+                >
+                  Clear all filters
+                </Button>
+              )}
               <span>{learnedSpells.length} learned</span>
               <span>{favoriteSpells.length} favorites</span>
             </div>
@@ -241,6 +294,17 @@ export default function SpellsLibrary() {
               <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">No Spells Found</h3>
               <p className="text-gray-400">Try adjusting your search criteria or filters.</p>
+              {canClearResults && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={clearResultView}
+                  className="mt-4"
+                >
+                  Clear all filters
+                </Button>
+              )}
             </CardContent>
           </Card>
         ) : (
@@ -257,30 +321,44 @@ export default function SpellsLibrary() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {spells.map((spell) => (
-                    <Card key={spell.name} className="bg-black/20 border-gray-700 hover:border-gray-500 transition-colors">
+                  {spells.map((spell) => {
+                    const spellKey = getSpellKey(spell);
+                    const isLearned = learnedSpells.includes(spellKey);
+                    const isFavorite = favoriteSpells.includes(spellKey);
+                    const classOk = selectedClass === "All" || isSpellAvailableToClass(spell, selectedClass);
+                    const displayLevel = selectedClass !== "All" && classOk
+                      ? (getSpellLevelForClass(spell, selectedClass) ?? spell.level)
+                      : spell.level;
+                    const displaySchool = selectedClass !== "All" && classOk
+                      ? (getSpellSchoolForClass(spell, selectedClass) ?? spell.school)
+                      : spell.school;
+                    const learnLevel = selectedClass !== "All" && classOk
+                      ? getSpellLearnLevelForClass(spell, selectedClass)
+                      : null;
+                    return (
+                    <Card key={spellKey} className={`bg-black/20 border-gray-700 hover:border-gray-500 transition-colors ${!classOk ? "opacity-60" : ""}`}>
                       <CardHeader className="pb-3">
                         <div className="flex items-start justify-between">
                           <div>
                             <CardTitle className="text-lg text-white">{spell.name}</CardTitle>
-                            <p className="text-sm text-gray-400">{getLevelSuffix(spell.level)} {spell.school}</p>
+                            <p className="text-sm text-gray-400">{getLevelSuffix(displayLevel)} · {displaySchool}{Number.isInteger(learnLevel) ? ` · Learn L${learnLevel}` : ""}</p>
                           </div>
                           <div className="flex gap-1">
                             <Button
                               size="sm"
                               variant="ghost"
-                              onClick={() => toggleFavoriteSpell(spell.name)}
-                              className={`p-1 h-8 w-8 ${favoriteSpells.includes(spell.name) ? 'text-yellow-400' : 'text-gray-400'}`}
+                              onClick={() => toggleFavoriteSpell(spell)}
+                              className={`p-1 h-8 w-8 ${isFavorite ? 'text-yellow-400' : 'text-gray-400'}`}
                             >
-                              <Star className="w-4 h-4" fill={favoriteSpells.includes(spell.name) ? 'currentColor' : 'none'} />
+                              <Star className="w-4 h-4" fill={isFavorite ? 'currentColor' : 'none'} />
                             </Button>
                             <Button
                               size="sm"
                               variant="ghost"
-                              onClick={() => toggleLearnedSpell(spell.name)}
-                              className={`p-1 h-8 w-8 ${learnedSpells.includes(spell.name) ? 'text-green-400' : 'text-gray-400'}`}
+                              onClick={() => toggleLearnedSpell(spell)}
+                              className={`p-1 h-8 w-8 ${isLearned ? 'text-green-400' : 'text-gray-400'}`}
                             >
-                              {learnedSpells.includes(spell.name) ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                              {isLearned ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                             </Button>
                           </div>
                         </div>
@@ -306,10 +384,25 @@ export default function SpellsLibrary() {
                               </Badge>
                             ))}
                           </div>
+                          <div className="pt-1">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 border-indigo-600/50 text-indigo-200 hover:bg-indigo-900/40"
+                              onClick={() => previewSpellInSession(spell)}
+                            >
+                              <Send className="w-3 h-3 mr-1" />
+                              Preview in Session
+                            </Button>
+                            <p className="mt-1 text-[10px] leading-snug text-gray-400">
+                              Sends spell reference to Session only; choose a caster and spend RP there if appropriate.
+                            </p>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
-                  ))}
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>

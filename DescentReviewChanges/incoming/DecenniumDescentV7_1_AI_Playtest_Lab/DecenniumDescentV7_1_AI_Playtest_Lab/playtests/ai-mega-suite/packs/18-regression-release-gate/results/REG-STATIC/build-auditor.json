@@ -1,0 +1,41 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-STATIC",
+  "runId": "2026-08-06T122200Z-REG-STATIC",
+  "seed": 56700,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "validatorsRun": 5,
+    "failures": 2,
+    "priorFailures": 1,
+    "proposedPatchesPresent": false
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "defect",
+      "summary": "Validator rerun: 3 PASS, 2 FAIL. Known public-canon encoding failure remains a release-gate blocker if still present.",
+      "citation": "tools/validate_public_canon.py / results/00-static-validators/results.json"
+    },
+    {
+      "severity": "defect",
+      "summary": "FAIL: C:\\Python\\python.exe tools/validate_public_canon.py :: FAIL public-canon-boundary\nfloor-encounters.json invalid: 'charmap' codec can't decode byte 0x9d in position 1373: character maps to <undefined>\nbestiary_data_full.json invalid: 'charmap' codec can't decode byte 0x9d in position 170921: character maps to <undefined>\n",
+      "citation": "C:\\Python\\python.exe tools/validate_public_canon.py"
+    },
+    {
+      "severity": "defect",
+      "summary": "FAIL: C:\\Python\\python.exe tools/validate_gameplay_loop.py :: Traceback (most recent call last):\n  File \"C:\\Github\\Descent assets\\DecenniumDescent-main\\DescentReviewChanges\\incoming\\DecenniumDescentV7_1_AI_Playtest_Lab\\DecenniumDescentV7_1_AI_Playtest_Lab\\tools\\validate_gameplay_loop.py\", line 76, in <module>\n    print(\"Gameplay loop validation: PASS � complet",
+      "citation": "C:\\Python\\python.exe tools/validate_gameplay_loop.py"
+    },
+    {
+      "severity": "observed",
+      "summary": "Prior static failures on disk: 1; current failures: 2.",
+      "citation": "results/00-static-validators/results.json"
+    }
+  ],
+  "rawEvidencePath": "results/18-regression-release-gate/validator_rerun.json",
+  "agentId": "build-auditor"
+}

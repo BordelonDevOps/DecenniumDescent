@@ -1,0 +1,51 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L5-SUPPORT",
+  "agentId": "director",
+  "seed": "agg-15-seeds",
+  "observations": [
+    "Ran two-wave opposition at listed difficulty Hard for objective: Measure tempo, healing, and extra-action pressure.",
+    "Budget model (4PC base adjusted): ~130 Threat Points before objective/hazard steps.",
+    "Observed win_rate=1.0, objective_rate=1.0, avg_rounds=15.6, KO/seed=0.0.",
+    "Did not alter enemy HP/damage mid-run to force outcomes; Tenacity and summon caps applied as rulings when triggered.",
+    "Difficulty vs result: diverged \u2014 budget may need recalibration."
+  ],
+  "metrics": {
+    "iterations": 15,
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 15.6,
+    "avg_party_damage": 463.09,
+    "avg_enemy_damage": 162.37,
+    "avg_healing": 139.6,
+    "avg_prevented": 77.88,
+    "avg_control_applied": 22.93,
+    "avg_full_turns_denied": 2.0,
+    "max_summons_peak": 0,
+    "summons_illegal_rate": 0.0,
+    "extra_action_stack_rate": 1.0,
+    "avg_tenacity_triggers": 0.0,
+    "avg_knockouts": 0.0,
+    "avg_wounds": 0.0,
+    "avg_rp_spent": 76.04,
+    "avg_decision_steps": 1.5,
+    "avg_lookups": 1.85,
+    "deadlock_seeds": 0,
+    "retreat_success_rate": null,
+    "party_size": 4,
+    "stated_difficulty": "Hard",
+    "modeled_budget_tp": 130.0
+  },
+  "rulesQuestions": [
+    "Oracle attempted second full-turn denial from same control source without new save/escalation (Loop \u00a7Encounter)."
+  ],
+  "exploits": [
+    "Action-economy stack attempt on Soldier: class Action Surge/extra + Bard/support grant; Loop limit = choose one additional Action.",
+    "Full-turn denial chain by Oracle without escalation cost \u2014 blocked by Loop rule in adjudication."
+  ],
+  "recommendations": [
+    "Record budget outcomes in BALANCE ledger; revise Threat Point table only with multi-scenario evidence.",
+    "Publish Director ruling sheet for summon-cap vs undead/deployables/reflections."
+  ],
+  "confidence": "high"
+}

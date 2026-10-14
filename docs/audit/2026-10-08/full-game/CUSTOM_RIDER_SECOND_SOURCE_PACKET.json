@@ -1,0 +1,285 @@
+[
+  {
+    "owner": "Cleric",
+    "record": "cleric.base.judgment.judgment",
+    "name": "Judgment",
+    "duration": "Permanent",
+    "frequency": "Automatic only if Judgment was selected",
+    "cost": "0",
+    "activation": "Passive",
+    "rangeAndTarget": "Self",
+    "effect": "Invocation Path — Judgment. Tags: invocation, judgment, smite. When your Divine Smite deals damage to a creature, mark it Judged for 2 rounds. A Judged creature has -1 AC. Further applications refresh the duration but do not increase the AC penalty."
+  },
+  {
+    "owner": "Cleric",
+    "record": "cleric.arch.divine-invocation",
+    "name": "Divine Invocation",
+    "duration": "Instantaneous unless mode states otherwise",
+    "frequency": "Recharge 3 rounds",
+    "cost": "2 Conviction + 3 RP",
+    "activation": "Action",
+    "rangeAndTarget": "Mode-dependent; maximum 60 feet",
+    "effect": "Divine Invocation. Tags: invocation, bishop. Use only your selected Invocation Path. Radiance: up to 3 allies within 30 feet each regain S d8+M HP; one may end Frightened or Poisoned. Judgment: one enemy within 60 feet makes a Wisdom save, taking (S+1)d8 radiant on failure or half on success; failure also applies Judged for 2 rounds. Renewal: up to 2 allies within 30 feet each regain S d8+M HP and 5 Stamina. Flame: creatures in a 15-foot cone make Dexterity saves, taking (S+1)d8 fire on failure or half on success; failed targets also take 1d6 fire at the start of their next turn. Veil: up to 3 allies within 30 feet can see invisible/ethereal creatures within 30 feet and gain advantage on saves against illusions for 3 rounds. Echoes: choose one eligible Smite or Rite you resolved this turn or previous regular turn and one original target within 30 feet; repeat 50% of its immediate unmodified rolled damage or healing dice, rounded down once, minimum 1 for a positive source, with no copied conditions, resources or triggers."
+  },
+  {
+    "owner": "Crimson Agent",
+    "record": "engine",
+    "field": 3,
+    "text": "One Blood Mark at a time on a living target with your Bleed, except Phantom Strike, which explicitly may apply the mark without Bleed. It does not add a free Bleed. Marks last 5 of your regular turns, expire on encounter end or if the target dies, and never create damage by themselves. Rupture requires the target still within 60 ft and line of effect; it spends the mark. A mark does not defeat cover, planar boundaries or bloodlessness. Bloodtrail has its own tracking limits."
+  },
+  {
+    "owner": "Crimson Agent",
+    "record": "engine",
+    "field": 6,
+    "text": "At level 1 learn the core Blood Gauge/Bleed rules automatically. Blood Mark and Veinweaver's Core remain selections; Quickblood can be selected and used without a second unlock tax. Veinweaver's Core improves that foundation as printed. Standard scheduled acquisition applies. Bloodbound Edge is automatic 9. At 10 choose Bloodweaver, Shadow Operative or Thirstborn; its Final Cut is automatic 20. Duplicate Hemostasis names are separate Arch and Bloodweaver IDs."
+  },
+  {
+    "owner": "Crimson Agent",
+    "record": "crimson-agent.base.blood-mark",
+    "name": "Blood Mark",
+    "duration": "5 of your turns",
+    "frequency": "At will, one mark",
+    "cost": "1 BG",
+    "activation": "Bonus Action",
+    "rangeAndTarget": "One living target with your Bleed within 60 ft",
+    "effect": "Apply your Blood Mark. Replaces your previous mark without detonating it. The mark enables Rupture and printed mark interactions; it deals no automatic damage and does not grant vision."
+  },
+  {
+    "owner": "Crimson Agent",
+    "record": "crimson-agent.hero.bloodweaver.bloodbond",
+    "name": "Bloodbond",
+    "duration": "Concentration, 3 of your turns",
+    "frequency": "Recharge 3",
+    "cost": "2 RP",
+    "activation": "Bonus Action",
+    "rangeAndTarget": "One willing ally within 30 ft",
+    "effect": "Create Bloodbond while both remain within 30 ft. When ally takes damage, you may use Reaction to redirect floor(one-quarter of pre-mitigation damage) to yourself; each recipient applies its own defenses once. Once/round when a paid technique heals you, ally gains M temporary HP. No recursive transfers."
+  },
+  {
+    "owner": "Crimson Agent",
+    "record": "crimson-agent.hero.bloodweaver.veinlock-tether",
+    "name": "Veinlock Tether",
+    "duration": "This damage only",
+    "frequency": "Once/round",
+    "cost": "1 BG",
+    "activation": "Reaction",
+    "rangeAndTarget": "Willing linked ally within 30 ft being damaged",
+    "effect": "While your Bloodbond or Vitality Link is active, redirect up to S+M damage to yourself before mitigation. This is an alternative to Bloodbond's quarter-sharing reaction, not an additional redirection. Redirected damage cannot be redirected again."
+  },
+  {
+    "owner": "Druid",
+    "record": "engine",
+    "field": 6,
+    "text": "Circle summary: Land preserves lore and recovery; Moon improves shifting; Storm controls lightning and wind; Thorns works poison and roots; Winterfang works cold; Rotshaper uses bounded swarms; Ashen Grove works fire and regrowth. Land/Thorns duplicate Blight Elk and Tanglemaw names are kept as separate source identities. Source auto-failed hostile saves in Master of Decay/Ash become once/turn-2 on one save, not unavoidable control. Stronger supplemental flavor riders are represented explicitly below or retained as unadopted alternatives in source provenance."
+  },
+  {
+    "owner": "Mage",
+    "record": "mage.hero.elementalist.elemental-supremacy",
+    "name": "Elemental Supremacy",
+    "duration": "Permanent",
+    "frequency": "Always; reset at most once per round",
+    "cost": "0",
+    "activation": "Passive",
+    "rangeAndTarget": "Self and current Focus finisher",
+    "effect": "Elemental Supremacy. Tags: elementalist, focus, vulnerability. Once on each of your turns when a Mage spell deals a damage type to which its target is vulnerable, add S damage of that type after vulnerability is applied. Additionally, when a hostile non-summoned creature that meaningfully threatened the party dies from one of your Focus-eligible spells, you may reset your current Focus finisher's positive recharge counter to 0, subject to the universal reset limit."
+  },
+  {
+    "owner": "Mirrorsage",
+    "record": "engine",
+    "field": 1,
+    "text": "Mirrorbind is an Action, once per encounter, against a creature within 60 ft whose eligible ability you saw resolve since the start of your previous turn. Target must have INT 6 or lower, not be a boss or possess unique/legendary status unless an encounter script explicitly permits copying. It makes WIS save versus class DC; failure captures one witnessed ability into an empty slot. No copying from allies, your companions, another copy, a corpse, a recharge-limited legendary power or an at-will source that itself restores resources. You can voluntarily erase a slot without an action on your turn, permanently losing its record."
+  },
+  {
+    "owner": "Mirrorsage",
+    "record": "engine",
+    "field": 6,
+    "text": "Standard acquisition applies; baseline Mirrorbind, Echo Release and summon procedure become usable by selecting their cards. Echo Channeling and Mirrorcall are upgrades, not duplicate mandatory unlocks. The contradiction between source initial 3 slots and Expansion I 2→3 is reconciled as an archive-safety upgrade below. Perfect Reflection automatic 9, Hero choice 10, corresponding Final 20. The finale does not override copy eligibility or the shared release cap."
+  },
+  {
+    "owner": "Mirrorsage",
+    "record": "mirrorsage.arch.reflective-analysis",
+    "name": "Reflective Analysis",
+    "duration": "Until end next turn",
+    "frequency": "Recharge 2",
+    "cost": "0",
+    "activation": "Action",
+    "rangeAndTarget": "One observed creature within 60 ft",
+    "effect": "Learn whether it is capture-eligible and one visible ability's bounded profile/rank before attempting. The next Mirrorbind save it makes against you has-1. Nonstacking; does not reveal private thoughts or permit boss copying."
+  },
+  {
+    "owner": "Mirrorsage",
+    "record": "mirrorsage.arch.mirror-dimension",
+    "name": "Mirror Dimension",
+    "duration": "Concentration, 3 of your turns",
+    "frequency": "Recharge 4",
+    "cost": "4 RP",
+    "activation": "Action",
+    "rangeAndTarget": "Fixed 10 ft-radius zone within 30 ft; up to 3 enemies",
+    "effect": "On entry activation and each of next 2 turns with Bonus Action maintenance, selected enemies make WIS save; failure gives disadvantage on next attack before your next turn. Inside, your Mirrorbind range extends 30 ft. No additional capture attempts/releases or pocket escape route."
+  },
+  {
+    "owner": "Monk",
+    "record": "monk.hero.way-of-shadow.nerve-fade-technique",
+    "name": "Nerve Fade Technique",
+    "duration": "Maximum 2 rounds",
+    "frequency": "At most once per target per turn",
+    "cost": "1 Ki",
+    "activation": "Triggered",
+    "rangeAndTarget": "One creature damaged by your unarmed strike",
+    "effect": "Nerve Fade Technique. Tags: hero, shadow, shadow-rot. After an unarmed strike damages a creature, spend 1 Ki to apply one Shadow Rot stack, maximum 2. At the start of the target's turn each stack deals 1d4 psychic damage. At one stack it has -1 on its first saving throw that turn; at two stacks it has -1 on all saving throws that turn. At the end of each turn it makes a Wisdom save, removing all stacks on success."
+  },
+  {
+    "owner": "Oracle",
+    "record": "oracle.supplement.bones.rotting-touch",
+    "name": "Rotting Touch",
+    "duration": "Maximum 3 rounds",
+    "frequency": "At will while RC remains",
+    "cost": "2 RC",
+    "activation": "Action",
+    "rangeAndTarget": "One creature you can touch",
+    "effect": "Make a Revelation attack. On hit the target makes a Constitution save. On failure it gains Decay for up to 3 rounds: attacks against it add S damage once per attacker per turn, it takes -1 on saving throws and cannot regain HP. At the end of each turn it repeats the save, ending Decay on success. Corpses within 2 tiles of a Decayed creature cannot be raised while Decay persists. If the target is undead, it also takes 2d6 necrotic damage on the initial hit and you regain half the actual damage dealt, capped at S+M HP. At most three allied hits per round receive the vulnerability rider; it is additional flat damage, not multiplication of an entire attack."
+  },
+  {
+    "owner": "Paladin",
+    "record": "paladin.supplement.oath-of-vengeance.vengeful-smite",
+    "name": "Vengeful Smite",
+    "duration": "Vengeance Mark until end of your next regular turn",
+    "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+    "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+    "activation": "Triggered",
+    "rangeAndTarget": "Creature hit by your melee weapon attack",
+    "effect": "Choose radiant or necrotic when you Smite; the entire Smite packet uses that type. After damage, apply Vengeance Mark until the end of your next regular turn. If the creature was already marked by you when this Smite began, add S flat damage to the Smite once. Applying a new mark refreshes but never stacks it."
+  },
+  {
+    "owner": "Paladin",
+    "record": "paladin.supplement.oath-of-vengeance.judgment-brand",
+    "name": "Judgment Brand",
+    "duration": "3 rounds",
+    "frequency": "1/short rest",
+    "cost": "2 RP",
+    "activation": "Bonus Action",
+    "rangeAndTarget": "One creature you can see within 60 feet",
+    "effect": "Brand the target for 3 rounds. It counts as Vengeance-marked. Your melee attacks against it score critical hits on natural 19-20, but this does not widen further with another 19-20 feature. When you move directly toward the branded target, ignore nonmagical difficult terrain. Once per round when the branded target willingly moves away from you, you may move up to 10 feet toward it as a Reaction without provoking opportunity attacks."
+  },
+  {
+    "owner": "Paladin",
+    "record": "paladin.supplement.oath-of-vengeance.mark-of-retribution",
+    "name": "Mark of Retribution",
+    "duration": "Until end of your next regular turn",
+    "frequency": "At will while RP remains",
+    "cost": "2 RP",
+    "activation": "Action",
+    "rangeAndTarget": "One foe within 30 feet",
+    "effect": "The target makes a Wisdom save. On failure it becomes Vengeance-marked. Your next Smite against it before the mark ends adds 1d8 damage of the Smite's chosen type. You have advantage on opportunity attacks against it while the mark persists."
+  },
+  {
+    "owner": "Paladin",
+    "record": "paladin.supplement.oath-of-grief.last-rites",
+    "name": "Last Rites",
+    "duration": "Protection 1 hour; turning until end of undead target's next turn",
+    "frequency": "At will while RP remains",
+    "cost": "3 RP",
+    "activation": "Action",
+    "rangeAndTarget": "One dying living creature within 30 feet; hostile undead within 10 feet of it",
+    "effect": "Stabilize the living target if at 0 HP. For 1 hour it gains +2 on death saves and necrotic resistance. Each hostile undead within 10 feet makes a Wisdom save; on failure it is Turned until the end of its next turn, meaning it must use its movement to move away by the safest route and cannot willingly move closer. This does not destroy or permanently repel undead."
+  },
+  {
+    "owner": "Shaman",
+    "record": "engine",
+    "field": 0,
+    "text": "Wisdom is the class ability. Choose Elemental Affinity automatically at 1: Fire, Ice, Air or Earth. Spellcasting/RP remain separate from Totem objects and flasks. Totem capacity 1, rises 2 at 13; any third replaces one of your existing totems. A totem is a visible Tiny magical object: AC 12+PB, HP 2 L, immobile, immune to poison/psychic/conditions, vulnerable to ordinary weapon and other damage. At 0 HP its aura ends. A new totem appears within 30 ft; cannot occupy a creature's space, serve as a bridge, trap a creature without a save or move through walls."
+  },
+  {
+    "owner": "Warrior",
+    "record": "warrior.base.brutality-sense",
+    "name": "Brutality Sense",
+    "duration": "While condition remains true",
+    "frequency": "Always",
+    "cost": "0",
+    "activation": "Passive",
+    "rangeAndTarget": "Hostile creatures you can perceive within 60 feet",
+    "effect": "Brutality Sense. You know when a visible hostile creature is at or below one-quarter of its maximum HP; it is Vulnerable for your Warrior features that specifically reference a marked vulnerable target. This does not reveal its exact HP or hidden resistances."
+  },
+  {
+    "owner": "Warrior",
+    "record": "warrior.arch.brutality-momentum",
+    "name": "Brutality Momentum",
+    "duration": "Instantaneous",
+    "frequency": "At most once per round",
+    "cost": "0",
+    "activation": "Triggered",
+    "rangeAndTarget": "Your Brutal Strike",
+    "effect": "Brutality Momentum. When you personally reduce a creature marked Vulnerable by Brutality Sense to 0 HP with a melee attack, set Brutal Strike's positive round-recharge counter to 0 if it has not already been reset or shortened this round. This restores no Action and cannot refresh a per-rest use. Trivial, summoned or friendly creatures cannot trigger it."
+  },
+  {
+    "id": "mage.base.fire.fire",
+    "name": "Fire",
+    "className": "Mage",
+    "band": "Base",
+    "path": "Fire",
+    "sourceKind": "supplement",
+    "minimumClassLevel": 2,
+    "acquisition": "automatic",
+    "activation": "Passive",
+    "cost": "0; Inferno Lance costs 2 RP when primed",
+    "rangeAndTarget": "Self; finisher uses a 20-foot-long, 5-foot-wide line originating from you",
+    "duration": "Permanent Focus; finisher instantaneous plus Burn",
+    "frequency": "Choose at Mage 2; finisher recharge 3 rounds",
+    "effect": "Elemental Focus — Fire. Tags: focus, fire. Once on each of your turns when a Fire Mage spell deals damage, add S fire damage to one damaged target. That target also takes 1d4 fire at the start of its next turn; repeated Burns refresh rather than stack. FINISHER — Inferno Lance: after a completed Fire Nuke Chain, Bonus Action, 2 RP. Creatures in the 20-foot line make Dexterity saves, taking (S+1)d8 fire on failure or half on success. Failed targets also take 1d6 fire at the start of each of their next 2 turns.",
+    "source": {
+      "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "line": 2907,
+      "originalText": "Fire: +10% damage, adds Burn DoT effect. Finisher: Inferno Lance – 4-tile line, DoT over time"
+    },
+    "designStatus": "provisional-playtest",
+    "spellRank": 1
+  },
+  {
+    "id": "thief.arch.crippling-strike",
+    "name": "Crippling Strike",
+    "className": "Thief",
+    "band": "Arch",
+    "path": null,
+    "sourceKind": "active",
+    "minimumClassLevel": 15,
+    "acquisition": "selection",
+    "activation": "Triggered",
+    "cost": "0",
+    "rangeAndTarget": "One enemy hit by your Sneak Attack",
+    "duration": "Until end next target turn",
+    "frequency": "Once/own turn",
+    "effect": "Target CON save; failure Speed halved. Does not stack multiple slow fractions or deny teleport. Explicit Arch minimum 15 retained.",
+    "source": {
+      "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "line": 4399,
+      "originalText": "Crippling Strike: Your Sneak Attack applies Slow effect to the target (level 15)."
+    },
+    "designStatus": "provisional-playtest",
+    "spellRank": null
+  },
+  {
+    "id": "warrior.supplement.wailing-eye-cluster",
+    "name": "Wailing Eye Cluster",
+    "className": "Warrior",
+    "band": "Arch",
+    "path": null,
+    "sourceKind": "mutation",
+    "minimumClassLevel": 6,
+    "acquisition": "supplement",
+    "activation": "Bonus Action while active",
+    "cost": "One mutation slot; serum activation",
+    "rangeAndTarget": "Enemies within 15 feet",
+    "duration": "Until end of target's next turn",
+    "frequency": "1/short rest",
+    "effect": "Enemies make Wisdom saves. On failure they become Disoriented: at the start of their next turn they cannot take Reactions and their first 5 feet of movement must be in a random legal horizontal direction determined by the Director. They otherwise keep their normal Action and movement.",
+    "prerequisite": "Warrior 6; Advanced Aberrant",
+    "source": {
+      "line": 5032,
+      "reference": null,
+      "originalText": "| Wailing Eye Cluster | As a bonus action 1/rest, emit a psychic scream: enemies within 3 tiles must save or become Disoriented (random movement) |",
+      "status": "source-derived"
+    },
+    "designStatus": "provisional-playtest",
+    "spellRank": null
+  }
+]

@@ -1,0 +1,237 @@
+{
+  "scope": "Finite correction checks, not executed semantic runtime passes. Retain existing full coverage and all37 authored cases.",
+  "caseCount": 33,
+  "cases": [
+    {
+      "id": "AEX-01-R01",
+      "correctionId": "AEX-01",
+      "premises": "recipe-480:5 consumed source units,2 eligible units remain,precision0.01,unit mass0.1lb.",
+      "expected": "Recover1.25source units,0.125lb; do not return0.50units.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-01-R02",
+      "correctionId": "AEX-01",
+      "premises": "Same input quantity/precision;0.60units remain.",
+      "expected": "Recover0.60units,0.06lb; no amount above the actual surviving cap.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-01-R03",
+      "correctionId": "AEX-01",
+      "premises": "Three indivisible consumed non-catalyst units all remain.",
+      "expected": "Recover zero whole units; no fractional item or alternative payment.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-01-R04",
+      "correctionId": "AEX-01",
+      "premises": "Five eligible original input units; no eligible material remains.",
+      "expected": "Recover zero; input bill alone cannot produce physical stock.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-01-R05",
+      "correctionId": "AEX-01",
+      "premises": "Two matching source occurrences with real distinct quantities are one exact identity in one batch; an unrelated batch has the same name.",
+      "expected": "Apply the existing within-batch identity aggregation once; preserve occurrence membership and do not aggregate the unrelated batch or catalysts.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R01",
+      "correctionId": "AEX-02",
+      "premises": "An armed ground Rune is fully covered, then uncovered before an entry.",
+      "expected": "No automatic rearm/discharge; require the actual arming Action and delay on a cleared eligible square.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R02",
+      "correctionId": "AEX-02",
+      "premises": "An armed ground Rune is suppressed and then unsuppressed before entry.",
+      "expected": "No automatic rearm; no catch-up entry trigger.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R03",
+      "correctionId": "AEX-02",
+      "premises": "An invalidated Broken ground plate is actually restored.",
+      "expected": "Restoration exposes surviving budget but does not rearm or restore charges.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R04",
+      "correctionId": "AEX-02",
+      "premises": "recipe-396 has restrained its target; original plate is covered then uncovered.",
+      "expected": "End that restraint at coverage; never resume the ended restraint.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R05",
+      "correctionId": "AEX-02",
+      "premises": "Same Binding result; plate is Broken then repaired.",
+      "expected": "End restraint at Breaking; repair does not recreate it.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R06",
+      "correctionId": "AEX-02",
+      "premises": "A ward already active under RC-08 is temporarily suppressed but becomes eligible again before its original endpoint.",
+      "expected": "Only its unexpired ward duration may resume; do not import Binding termination or ground rearm behavior.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R07",
+      "correctionId": "AEX-02",
+      "premises": "A Rune examiner has only an unrelated tool proficiency and claims that proficiency in the Rune inspection branch.",
+      "expected": "Reject the substituted proficiency; use the actual INT/Arcana or INT/Runecarver-tools procedure.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R08",
+      "correctionId": "AEX-02",
+      "premises": "Authorized setter versus unknown Rune; known own trap versus unfamiliar trap.",
+      "expected": "Known accessible setter control costs one Action. Unknown Rune uses trained Runecarver tools/one minute/sourceDC; unfamiliar trap uses its trained thieves/Tinker tools method/one minute/printed saveDC.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-02-R09",
+      "correctionId": "AEX-02",
+      "premises": "A Healing plate is used through the specific helper direct-touch exception.",
+      "expected": "Keep separate setup and healing Actions, eligible ally and item-round guard; no moving-area healing or imposed ground-entry requirement on the explicit touch exception.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-03-R01",
+      "correctionId": "AEX-03",
+      "premises": "recipe-684 stays stored and unoperated throughout a genuine encounter.",
+      "expected": "No service debit and no free powered behavior.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-03-R02",
+      "correctionId": "AEX-03",
+      "premises": "An unoperated recipe-684 begins actual operation after the encounter began.",
+      "expected": "Debit one service unit at first actual operation and anchor the paid block there.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-03-R03",
+      "correctionId": "AEX-03",
+      "premises": "A paid block remains live while the automaton is shut down/suppressed, then reactivated.",
+      "expected": "Original elapsed deadline persists; no pause/refund/new initial entitlement.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-03-R04",
+      "correctionId": "AEX-03",
+      "premises": "Unspent service balance reaches zero inside an already paid block.",
+      "expected": "Allow that paid block only; no new unpaid block after expiry.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-03-R05",
+      "correctionId": "AEX-03",
+      "premises": "An operating noncombat block enters a genuine encounter, or a genuine encounter runs beyond the paid ten-minute block.",
+      "expected": "Apply unchanged TI-05 transition/continuation debit; no manufactured encounter or rest reset; recipe-686 is not processed by this service rule.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-04-R01",
+      "correctionId": "AEX-04",
+      "premises": "TD-08 routes current Dissonance into one own qualifying armed charged trap.",
+      "expected": "Disable its trigger/active use, not only attack-roll actions; no queued later discharge or charge refund.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-04-R02",
+      "correctionId": "AEX-04",
+      "premises": "TD-08 routes into a utility genuinely participating in a live eligible check.",
+      "expected": "It supplies no active charged benefit while disabled; already valid committed costs are not refunded.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-04-R03",
+      "correctionId": "AEX-04",
+      "premises": "A disabled device is cleared through actual Field Repair or the existing paid ten-minute procedure.",
+      "expected": "Restore only the allowed function; no charge/service/RP/Refrain reset and no clock extension.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-04-R04",
+      "correctionId": "AEX-04",
+      "premises": "Device is sold and the buyer rests; origin Tinker has not completed the required short rest.",
+      "expected": "No origin-disable clearing from buyer rest; preserve two current Dissonance/one own active device/30ft and original resource history.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-05-R01",
+      "correctionId": "AEX-05",
+      "premises": "TI-device receives a half-pound workpiece too large for its jaw envelope.",
+      "expected": "Reject physical admission despite acceptable weight.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-05-R02",
+      "correctionId": "AEX-05",
+      "premises": "TI-device receives a three-pound workpiece that fits the jaw envelope.",
+      "expected": "Reject physical admission despite acceptable geometry.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-05-R03",
+      "correctionId": "AEX-05",
+      "premises": "TI-device receives a physically compatible fitting workpiece of exactly2lb.",
+      "expected": "Admit only when both limits and all other handling conditions hold; unchanged body mass/value/primaries.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-06-R01",
+      "correctionId": "AEX-06",
+      "premises": "A complete worn attuned ward with an available Reaction/use faces an area effect requiring its bearer’s DEX save.",
+      "expected": "Allow declaration and expenditure before the save; no individual attack-target requirement.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-06-R02",
+      "correctionId": "AEX-06",
+      "premises": "An attack legally targets that bearer.",
+      "expected": "Existing pre-attack-roll Reaction trigger remains valid.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-06-R03",
+      "correctionId": "AEX-06",
+      "premises": "Bearer attempts to invoke the ward after seeing the initiating roll.",
+      "expected": "Reject the late declaration; no retroactive bonus.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-06-R04",
+      "correctionId": "AEX-06",
+      "premises": "Effect includes bearer but requires neither an attack roll against bearer nor a bearer saving throw.",
+      "expected": "No new RC-07 activation trigger solely from inclusion/targeting language.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-07-R01",
+      "correctionId": "AEX-07",
+      "premises": "Enumerate all22scripts,5references,19wards and21ground Rune effect paragraphs.",
+      "expected": "Verify exact corrected section references and unchanged numerical mechanics for every membership, not samples.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-07-R02",
+      "correctionId": "AEX-07",
+      "premises": "Resolve all operative section locators in100 public cards using only their player guide/body catalogue.",
+      "expected": "Each applicable ordinary rule resolves publicly; no link/export of private recipes, custom dossiers, donor tables or hidden annotations.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    },
+    {
+      "id": "AEX-07-R03",
+      "correctionId": "AEX-07",
+      "premises": "Actual relevant information research versus authoring/copying/encoding/repair/manufacture from the same reference.",
+      "expected": "Apply SC-05’s real consultation/information scope and self-production exclusion; genuine formula research remains eligible without automatic success.",
+      "status": "finite post-correction regression specification; not an executed advanced-runtime test"
+    }
+  ]
+}

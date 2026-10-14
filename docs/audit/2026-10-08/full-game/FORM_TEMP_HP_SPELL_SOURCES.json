@@ -1,0 +1,1361 @@
+{
+  "status": "UNREVIEWED_SOURCE_CANDIDATES",
+  "scope": "Explicit tempHP occurrences in848 original spell objects/current operational overlays. Exact originals and current status preserved; not full spell approval or exhaustive shield/form semantics.",
+  "spellRecords": [
+    {
+      "kind": "ordinary-spell",
+      "sourcePath": "src/data/spells.js",
+      "sourceId": "resonance-shield",
+      "sourceObject": {
+        "name": "Resonance Shield",
+        "level": 0,
+        "resonanceRank": 0,
+        "school": "Abjuration",
+        "schools": [
+          "Abjuration"
+        ],
+        "placements": [
+          {
+            "name": "Resonance Shield",
+            "school": "Abjuration",
+            "level": 0,
+            "summary": "Convert 1 Resonance Point into temporary 1d4 HP."
+          },
+          {
+            "name": "Resonance Shield",
+            "school": "Abjuration",
+            "level": 2,
+            "summary": "Spend RP to gain temporary HP: 5 temporary HP per RP spent."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 0,
+          "Druid": 0,
+          "Mage": 0,
+          "Monk": 0,
+          "Tinker": 0,
+          "Wizard": 0,
+          "Paladin": 0
+        },
+        "classRanks": {
+          "Cleric": 0,
+          "Druid": 0,
+          "Mage": 0,
+          "Monk": 0,
+          "Tinker": 0,
+          "Wizard": 0,
+          "Paladin": 0
+        },
+        "classLearnLevels": {
+          "Cleric": 1,
+          "Druid": 1,
+          "Mage": 1,
+          "Monk": 1,
+          "Tinker": 1,
+          "Wizard": 1,
+          "Paladin": 2
+        },
+        "classSchools": {
+          "Cleric": "Abjuration",
+          "Druid": "Abjuration",
+          "Mage": "Abjuration",
+          "Monk": "Abjuration",
+          "Tinker": "Abjuration",
+          "Wizard": "Abjuration",
+          "Paladin": "Abjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Convert 1 Resonance Point into temporary 1d4 HP.",
+        "alternateSummaries": [
+          "Spend RP to gain temporary HP: 5 temporary HP per RP spent."
+        ],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Mage",
+          "Monk",
+          "Tinker",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "sourceObjectSha256": "b07722ee92f034ecb05b1cd8dbba7da7f50bcdb98c75aeea32e5d1a90a2758de",
+      "overlayPath": "data/public/spell_playtests/catalog.json",
+      "overlayObject": {
+        "id": "resonance-shield",
+        "name": "Resonance Shield",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Druid": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Mage": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Monk": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Tinker": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Wizard": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Paladin": {
+            "rank": 0,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          }
+        },
+        "operational": {
+          "id": "resonance-shield",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One willing creature you can perceive within 30 feet",
+          "duration": "Until the temporary HP are lost or you complete a long rest",
+          "concentration": false,
+          "components": [
+            "V",
+            "S"
+          ],
+          "resolution": "None.",
+          "effect": "In addition to the class-specific rank cost and any Dissonance surcharge, spend 1 RP. Roll 1d4; the chosen creature gains that many temporary HP. It keeps the higher of these or its existing temporary HP; they never add together.",
+          "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+          "limitations": "The additional 1 RP conversion cost is mandatory. Temporary HP never restore real HP and cannot generate resources when gained or lost. Recasting requires a new paid cast and roll; keep the higher remaining amount. Rank is class-specific, so this spell is not necessarily a cantrip for every class. If the Core source placement matching the class-specific school and rank includes F, an existing class casting focus is additionally required.",
+          "designNotes": "Conference decision: use the rank-0 1d4 effect plus mandatory1RP as the provisional single-ID rule. Retain all variants: rank0 catalog/Core1d4; rank2 catalog5tempHP perRP; rank2 Core2tempHP perRP. Rank2 alternatives are preserved as evidence, not cumulative effects or optional upgrades. Use Core30ft range and placement-specific focus requirement. Temporary HP end on next long rest; no fixed5 buff.",
+          "previousDraftDesignNotes": "NEW provisional reconciliation of conflicting source placements. The source contains both 'convert 1 RP into 1d4 temporary HP' and '5 temporary HP per RP spent.' This unified playtest record uses the explicit +1 RP interface requested for the tranche and the fixed 5-HP value from the stronger detailed summary; the 1d4 variant remains preserved in the source ledger.",
+          "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+        },
+        "additionalRpCost": 1,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "resonance-shield",
+          "original": {
+            "name": "Resonance Shield",
+            "level": 0,
+            "resonanceRank": 0,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Resonance Shield",
+                "school": "Abjuration",
+                "level": 0,
+                "summary": "Convert 1 Resonance Point into temporary 1d4 HP."
+              },
+              {
+                "name": "Resonance Shield",
+                "school": "Abjuration",
+                "level": 2,
+                "summary": "Spend RP to gain temporary HP: 5 temporary HP per RP spent."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 0,
+              "Druid": 0,
+              "Mage": 0,
+              "Monk": 0,
+              "Tinker": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classRanks": {
+              "Cleric": 0,
+              "Druid": 0,
+              "Mage": 0,
+              "Monk": 0,
+              "Tinker": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Convert 1 Resonance Point into temporary 1d4 HP.",
+            "alternateSummaries": [
+              "Spend RP to gain temporary HP: 5 temporary HP per RP spent."
+            ],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 10,
+              "original": {
+                "school": "Abjuration",
+                "level": 0,
+                "name": "Resonance Shield",
+                "effect": "Convert 1 Resonance Point into temporary 1d4 HP.",
+                "source_paragraph": 8993,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage",
+                  "Ward",
+                  "Resonance"
+                ],
+                "rp_cost": 0
+              }
+            },
+            {
+              "index": 38,
+              "original": {
+                "school": "Abjuration",
+                "level": 2,
+                "name": "Resonance Shield",
+                "effect": "Spend any number of RP to gain 2 temporary HP per RP spent.",
+                "source_paragraph": 9025,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Resonance"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "overlayObjectSha256": "b3c0e69adafb9b3bc153882e5a05eb64a86db08b5bfbd337ff6fd3f3a3652565"
+    },
+    {
+      "kind": "ordinary-spell",
+      "sourcePath": "src/data/spells.js",
+      "sourceId": "heroism",
+      "sourceObject": {
+        "name": "Heroism",
+        "level": 1,
+        "resonanceRank": 1,
+        "school": "Enchantment",
+        "schools": [
+          "Enchantment"
+        ],
+        "placements": [
+          {
+            "name": "Heroism",
+            "school": "Enchantment",
+            "level": 1,
+            "summary": "Target gains temporary HP and immunity to fear."
+          }
+        ],
+        "classLevels": {
+          "Bard": 1,
+          "Crimson Agent": 1,
+          "Mirrorsage": 1,
+          "Thief": 1,
+          "Wizard": 1,
+          "Paladin": 1
+        },
+        "classRanks": {
+          "Bard": 1,
+          "Crimson Agent": 1,
+          "Mirrorsage": 1,
+          "Thief": 1,
+          "Wizard": 1,
+          "Paladin": 1
+        },
+        "classLearnLevels": {
+          "Bard": 1,
+          "Crimson Agent": 2,
+          "Mirrorsage": 1,
+          "Thief": 3,
+          "Wizard": 1,
+          "Paladin": 2
+        },
+        "classSchools": {
+          "Bard": "Enchantment",
+          "Crimson Agent": "Enchantment",
+          "Mirrorsage": "Enchantment",
+          "Thief": "Enchantment",
+          "Wizard": "Enchantment",
+          "Paladin": "Enchantment"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Target gains temporary HP and immunity to fear.",
+        "alternateSummaries": [],
+        "classes": [
+          "Bard",
+          "Crimson Agent",
+          "Mirrorsage",
+          "Thief",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "sourceObjectSha256": "7b35afc947cedb0046a8cdf8a39eb2825b324bc00030d9374f1d56db9102bf97",
+      "overlayPath": "data/public/spell_playtests/catalog.json",
+      "overlayObject": {
+        "id": "heroism",
+        "name": "Heroism",
+        "schools": [
+          "Enchantment"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Crimson Agent": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Mirrorsage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Thief": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "heroism",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One willing living creature you can perceive within range",
+          "duration": "Concentration, up to 1 minute",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "None; a willing target receives the effect automatically.",
+          "effect": "The target gains S+M temporary HP when the spell is cast and is immune to Frightened while the spell lasts. Temporary HP remaining from this spell disappear when the spell ends. S is 1/2/3/4 at the casting class levels 1/5/11/17; M=max(1, that class casting ability modifier).",
+          "scaling": "Temporary HP equals S+M, using the caster's class-level S and casting-ability M.",
+          "limitations": "Temporary HP are granted once on cast, not every round, and never stack with other temporary HP. Recasting Heroism replaces the existing Heroism temporary HP only if the new value is higher. The spell does not remove non-fear conditions, heal real HP, or restore resources. Ranked casting causes normal Dissonance and Refrain.",
+          "designNotes": "Core V2 Action, 30-foot range, V/S/F components, and source fear immunity are retained. Core lists Instantaneous duration and source gives no temporary-HP amount; concentration up to 1 minute and S+M temporary HP are NEW provisional mechanics chosen to make the effect finite and playable.",
+          "authoringFile": "data/playtest/spell_drafts/batch_2.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "heroism",
+          "original": {
+            "name": "Heroism",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Enchantment",
+            "schools": [
+              "Enchantment"
+            ],
+            "placements": [
+              {
+                "name": "Heroism",
+                "school": "Enchantment",
+                "level": 1,
+                "summary": "Target gains temporary HP and immunity to fear."
+              }
+            ],
+            "classLevels": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Bard": 1,
+              "Crimson Agent": 2,
+              "Mirrorsage": 1,
+              "Thief": 3,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Bard": "Enchantment",
+              "Crimson Agent": "Enchantment",
+              "Mirrorsage": "Enchantment",
+              "Thief": "Enchantment",
+              "Wizard": "Enchantment",
+              "Paladin": "Enchantment"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target gains temporary HP and immunity to fear.",
+            "alternateSummaries": [],
+            "classes": [
+              "Bard",
+              "Crimson Agent",
+              "Mirrorsage",
+              "Thief",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 338,
+              "original": {
+                "school": "Enchantment",
+                "level": 1,
+                "name": "Heroism",
+                "effect": "Target gains temporary HP and immunity to fear.",
+                "source_paragraph": 9398,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Fear"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "overlayObjectSha256": "793e866b782a6c4976cb329b82567b1c79412926e73326eee4580fbe7b175f41"
+    },
+    {
+      "kind": "ordinary-spell",
+      "sourcePath": "src/data/spells.js",
+      "sourceId": "spare-the-dying",
+      "sourceObject": {
+        "name": "Spare the Dying",
+        "level": 0,
+        "resonanceRank": 0,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy",
+          "Universal"
+        ],
+        "placements": [
+          {
+            "name": "Spare the Dying",
+            "school": "Necromancy",
+            "level": 0,
+            "summary": "Stabilize a dying creature."
+          },
+          {
+            "name": "Spare the Dying",
+            "school": "Universal",
+            "level": 0,
+            "summary": "Stabilize a dying creature."
+          }
+        ],
+        "classLevels": {
+          "Bard": 0,
+          "Cleric": 0,
+          "Crimson Agent": 0,
+          "Druid": 0,
+          "Mage": 0,
+          "Mirrorsage": 0,
+          "Shaman": 0,
+          "Thief": 0,
+          "Tinker": 0,
+          "Wizard": 0,
+          "Paladin": 0
+        },
+        "classRanks": {
+          "Bard": 0,
+          "Cleric": 0,
+          "Crimson Agent": 0,
+          "Druid": 0,
+          "Mage": 0,
+          "Mirrorsage": 0,
+          "Shaman": 0,
+          "Thief": 0,
+          "Tinker": 0,
+          "Wizard": 0,
+          "Paladin": 0
+        },
+        "classLearnLevels": {
+          "Bard": 1,
+          "Cleric": 1,
+          "Crimson Agent": 1,
+          "Druid": 1,
+          "Mage": 1,
+          "Mirrorsage": 1,
+          "Shaman": 1,
+          "Thief": 1,
+          "Tinker": 1,
+          "Wizard": 1,
+          "Paladin": 2
+        },
+        "classSchools": {
+          "Bard": "Universal",
+          "Cleric": "Necromancy",
+          "Crimson Agent": "Necromancy",
+          "Druid": "Necromancy",
+          "Mage": "Universal",
+          "Mirrorsage": "Universal",
+          "Shaman": "Necromancy",
+          "Thief": "Necromancy",
+          "Tinker": "Universal",
+          "Wizard": "Necromancy",
+          "Paladin": "Universal"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Stabilize a dying creature.",
+        "alternateSummaries": [],
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Crimson Agent",
+          "Druid",
+          "Mage",
+          "Mirrorsage",
+          "Shaman",
+          "Thief",
+          "Tinker",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "sourceObjectSha256": "7772bf07dc1c7b8d5de66e0ca650f09671f6224cb3f3a01d7878a7456cf62ca1",
+      "overlayPath": "data/public/spell_playtests/catalog.json",
+      "overlayObject": {
+        "id": "spare-the-dying",
+        "name": "Spare the Dying",
+        "schools": [
+          "Necromancy",
+          "Universal"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Cleric": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 0
+          },
+          "Crimson Agent": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 0
+          },
+          "Druid": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 0
+          },
+          "Mage": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Mirrorsage": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Shaman": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 0
+          },
+          "Thief": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 0
+          },
+          "Tinker": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Wizard": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 0
+          },
+          "Paladin": {
+            "rank": 0,
+            "minimumClassLevel": 2,
+            "school": "Universal",
+            "baseRpCost": 0
+          }
+        },
+        "operational": {
+          "id": "spare-the-dying",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One living dying creature at 0 HP that you can perceive within range",
+          "duration": "Instantaneous",
+          "concentration": false,
+          "components": [
+            "V",
+            "S"
+          ],
+          "resolution": "None; an eligible target is stabilized automatically.",
+          "effect": "Stabilize the target at 0 HP so it is no longer dying under the normal Downed/death procedure.",
+          "scaling": "None.",
+          "limitations": "Restores no HP, temporary HP, Wounds, resources, consciousness, missing body parts, or life to a dead creature. A stabilized creature remains at 0 HP. Cannot target a corpse. Cantrip repeats use Refrain.",
+          "designNotes": "Both source placements and Core V2 agree on Action, 30-foot range, V/S components, Instantaneous duration, and stabilization. No additional healing was added.",
+          "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "spare-the-dying",
+          "original": {
+            "name": "Spare the Dying",
+            "level": 0,
+            "resonanceRank": 0,
+            "school": "Necromancy",
+            "schools": [
+              "Necromancy",
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Spare the Dying",
+                "school": "Necromancy",
+                "level": 0,
+                "summary": "Stabilize a dying creature."
+              },
+              {
+                "name": "Spare the Dying",
+                "school": "Universal",
+                "level": 0,
+                "summary": "Stabilize a dying creature."
+              }
+            ],
+            "classLevels": {
+              "Bard": 0,
+              "Cleric": 0,
+              "Crimson Agent": 0,
+              "Druid": 0,
+              "Mage": 0,
+              "Mirrorsage": 0,
+              "Shaman": 0,
+              "Thief": 0,
+              "Tinker": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classRanks": {
+              "Bard": 0,
+              "Cleric": 0,
+              "Crimson Agent": 0,
+              "Druid": 0,
+              "Mage": 0,
+              "Mirrorsage": 0,
+              "Shaman": 0,
+              "Thief": 0,
+              "Tinker": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classLearnLevels": {
+              "Bard": 1,
+              "Cleric": 1,
+              "Crimson Agent": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Mirrorsage": 1,
+              "Shaman": 1,
+              "Thief": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Bard": "Universal",
+              "Cleric": "Necromancy",
+              "Crimson Agent": "Necromancy",
+              "Druid": "Necromancy",
+              "Mage": "Universal",
+              "Mirrorsage": "Universal",
+              "Shaman": "Necromancy",
+              "Thief": "Necromancy",
+              "Tinker": "Universal",
+              "Wizard": "Necromancy",
+              "Paladin": "Universal"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Stabilize a dying creature.",
+            "alternateSummaries": [],
+            "classes": [
+              "Bard",
+              "Cleric",
+              "Crimson Agent",
+              "Druid",
+              "Mage",
+              "Mirrorsage",
+              "Shaman",
+              "Thief",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 634,
+              "original": {
+                "school": "Necromancy",
+                "level": 0,
+                "name": "Spare the Dying",
+                "effect": "Stabilize a dying creature.",
+                "source_paragraph": 9767,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Healing",
+                  "Restoration"
+                ],
+                "rp_cost": 0
+              }
+            },
+            {
+              "index": 845,
+              "original": {
+                "school": "Universal",
+                "level": 0,
+                "name": "Spare the Dying",
+                "effect": "Stabilize a dying creature.",
+                "source_paragraph": 10028,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Healing",
+                  "Restoration"
+                ],
+                "rp_cost": 0
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "overlayObjectSha256": "44fa3a830894ec6a407813db3a2f4be5fd69f37b129291191457a859249c4890"
+    },
+    {
+      "kind": "ordinary-spell",
+      "sourcePath": "src/data/spells.js",
+      "sourceId": "false-life",
+      "sourceObject": {
+        "name": "False Life",
+        "level": 1,
+        "resonanceRank": 1,
+        "school": "Necromancy",
+        "schools": [
+          "Necromancy"
+        ],
+        "placements": [
+          {
+            "name": "False Life",
+            "school": "Necromancy",
+            "level": 1,
+            "summary": "Gain 1d4+4 temporary hit points."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 1,
+          "Crimson Agent": 1,
+          "Druid": 1,
+          "Shaman": 1,
+          "Thief": 1,
+          "Wizard": 1
+        },
+        "classRanks": {
+          "Cleric": 1,
+          "Crimson Agent": 1,
+          "Druid": 1,
+          "Shaman": 1,
+          "Thief": 1,
+          "Wizard": 1
+        },
+        "classLearnLevels": {
+          "Cleric": 1,
+          "Crimson Agent": 2,
+          "Druid": 1,
+          "Shaman": 1,
+          "Thief": 3,
+          "Wizard": 1
+        },
+        "classSchools": {
+          "Cleric": "Necromancy",
+          "Crimson Agent": "Necromancy",
+          "Druid": "Necromancy",
+          "Shaman": "Necromancy",
+          "Thief": "Necromancy",
+          "Wizard": "Necromancy"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Gain 1d4+4 temporary hit points.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Crimson Agent",
+          "Druid",
+          "Shaman",
+          "Thief",
+          "Wizard"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "sourceObjectSha256": "6ad91312b92c689b042761935e2f114f17471e5240d6326a7209829a94ba3858",
+      "overlayPath": "data/public/spell_playtests/catalog.json",
+      "overlayObject": {
+        "id": "false-life",
+        "name": "False Life",
+        "schools": [
+          "Necromancy"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 2
+          },
+          "Crimson Agent": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Necromancy",
+            "baseRpCost": 2
+          },
+          "Druid": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 2
+          },
+          "Shaman": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 2
+          },
+          "Thief": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Necromancy",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Necromancy",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "false-life",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One willing living creature you can perceive within 30 feet",
+          "duration": "Until the temporary HP are lost or you complete a long rest",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "None.",
+          "effect": "The chosen creature gains 1d4+4 temporary HP.",
+          "scaling": "None; remains 1d4+4 temporary HP.",
+          "limitations": "Temporary HP do not stack; keep the higher remaining amount. They are not healing, cannot exceed this spell's rolled amount from one cast, and cannot generate damage, healing, resource, or death-prevention triggers when lost. Ranked casting causes normal Dissonance and Refrain.",
+          "designNotes": "Core V2 Action, 30-foot range, V/S/F components, and source 1d4+4 temporary HP are preserved. The continuing temporary-HP lifetime is specified because Core lists only Instantaneous casting duration. Conference decision: one willing living target is the explicit provisional recipient.",
+          "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "false-life",
+          "original": {
+            "name": "False Life",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Necromancy",
+            "schools": [
+              "Necromancy"
+            ],
+            "placements": [
+              {
+                "name": "False Life",
+                "school": "Necromancy",
+                "level": 1,
+                "summary": "Gain 1d4+4 temporary hit points."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 1,
+              "Crimson Agent": 1,
+              "Druid": 1,
+              "Shaman": 1,
+              "Thief": 1,
+              "Wizard": 1
+            },
+            "classRanks": {
+              "Cleric": 1,
+              "Crimson Agent": 1,
+              "Druid": 1,
+              "Shaman": 1,
+              "Thief": 1,
+              "Wizard": 1
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Crimson Agent": 2,
+              "Druid": 1,
+              "Shaman": 1,
+              "Thief": 3,
+              "Wizard": 1
+            },
+            "classSchools": {
+              "Cleric": "Necromancy",
+              "Crimson Agent": "Necromancy",
+              "Druid": "Necromancy",
+              "Shaman": "Necromancy",
+              "Thief": "Necromancy",
+              "Wizard": "Necromancy"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Gain 1d4+4 temporary hit points.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Crimson Agent",
+              "Druid",
+              "Shaman",
+              "Thief",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 649,
+              "original": {
+                "school": "Necromancy",
+                "level": 1,
+                "name": "False Life",
+                "effect": "Gain 1d4+4 temporary hit points.",
+                "source_paragraph": 9784,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      },
+      "overlayObjectSha256": "600de79917abf11e5771d32d2f7e5054d2f63e7fc4fb51f4135dfdfb6a08ca51"
+    },
+    {
+      "kind": "ordinary-spell",
+      "sourcePath": "src/data/spells.js",
+      "sourceId": "harmonic-bulwark",
+      "sourceObject": {
+        "name": "Harmonic Bulwark",
+        "level": 3,
+        "resonanceRank": 3,
+        "school": "Universal",
+        "schools": [
+          "Universal"
+        ],
+        "placements": [
+          {
+            "name": "Harmonic Bulwark",
+            "school": "Universal",
+            "level": 3,
+            "summary": "Spend RP to gain temporary HP: 5 temporary HP per RP spent."
+          }
+        ],
+        "classLevels": {
+          "Bard": 3,
+          "Cleric": 3,
+          "Mage": 3,
+          "Mirrorsage": 3,
+          "Tinker": 3,
+          "Wizard": 3,
+          "Paladin": 3
+        },
+        "classRanks": {
+          "Bard": 3,
+          "Cleric": 3,
+          "Mage": 3,
+          "Mirrorsage": 3,
+          "Tinker": 3,
+          "Wizard": 3,
+          "Paladin": 3
+        },
+        "classLearnLevels": {
+          "Bard": 7,
+          "Cleric": 5,
+          "Mage": 5,
+          "Mirrorsage": 7,
+          "Tinker": 10,
+          "Wizard": 5,
+          "Paladin": 9
+        },
+        "classSchools": {
+          "Bard": "Universal",
+          "Cleric": "Universal",
+          "Mage": "Universal",
+          "Mirrorsage": "Universal",
+          "Tinker": "Universal",
+          "Wizard": "Universal",
+          "Paladin": "Universal"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Spend RP to gain temporary HP: 5 temporary HP per RP spent.",
+        "alternateSummaries": [],
+        "classes": [
+          "Bard",
+          "Cleric",
+          "Mage",
+          "Mirrorsage",
+          "Tinker",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "sourceObjectSha256": "b5006ed19e28157eeb1283a7a639bec5a454bfb19a47828410a52e4751965305",
+      "overlayPath": "data/public/spell_playtests/catalog.json",
+      "overlayObject": {
+        "id": "harmonic-bulwark",
+        "name": "Harmonic Bulwark",
+        "schools": [
+          "Universal"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Cleric": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Mirrorsage": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Universal",
+            "baseRpCost": 5
+          },
+          "Paladin": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Universal",
+            "baseRpCost": 5
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "harmonic-bulwark",
+          "original": {
+            "name": "Harmonic Bulwark",
+            "level": 3,
+            "resonanceRank": 3,
+            "school": "Universal",
+            "schools": [
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Harmonic Bulwark",
+                "school": "Universal",
+                "level": 3,
+                "summary": "Spend RP to gain temporary HP: 5 temporary HP per RP spent."
+              }
+            ],
+            "classLevels": {
+              "Bard": 3,
+              "Cleric": 3,
+              "Mage": 3,
+              "Mirrorsage": 3,
+              "Tinker": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classRanks": {
+              "Bard": 3,
+              "Cleric": 3,
+              "Mage": 3,
+              "Mirrorsage": 3,
+              "Tinker": 3,
+              "Wizard": 3,
+              "Paladin": 3
+            },
+            "classLearnLevels": {
+              "Bard": 7,
+              "Cleric": 5,
+              "Mage": 5,
+              "Mirrorsage": 7,
+              "Tinker": 10,
+              "Wizard": 5,
+              "Paladin": 9
+            },
+            "classSchools": {
+              "Bard": "Universal",
+              "Cleric": "Universal",
+              "Mage": "Universal",
+              "Mirrorsage": "Universal",
+              "Tinker": "Universal",
+              "Wizard": "Universal",
+              "Paladin": "Universal"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Spend RP to gain temporary HP: 5 temporary HP per RP spent.",
+            "alternateSummaries": [],
+            "classes": [
+              "Bard",
+              "Cleric",
+              "Mage",
+              "Mirrorsage",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [],
+          "possibleHistoricalAliases": [
+            {
+              "index": 875,
+              "original": {
+                "school": "Universal",
+                "level": 3,
+                "name": "Mana Shield",
+                "effect": "Spend any number of RP to gain 2 temporary HP per RP spent.",
+                "source_paragraph": 10064,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Resonance"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ]
+        },
+        "reviewFlags": [
+          "Core V2 name differs; possible alias retained for comparison, not an automatic rules merge",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "overlayObjectSha256": "02ebd4186901f49ae58c98dd290d2b1122f405e78dcee77b07c941e5050f1583"
+    }
+  ]
+}

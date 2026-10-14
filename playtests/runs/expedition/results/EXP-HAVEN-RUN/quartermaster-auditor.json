@@ -1,0 +1,51 @@
+{
+  "pack": "02-expedition-extraction",
+  "scenarioId": "EXP-HAVEN-RUN",
+  "agentId": "quartermaster-auditor",
+  "seed": "10521-11394",
+  "observations": [
+    "Independent recalc: avg abandoned cargo 2230.0 gp / 16.2 Load; avg net after sponsor 1296.8 gp.",
+    "Daily Supply 12 for 12 Medium PCs matches bible \u00a79; Watch consumption used 1/3 daily (bible worked example Watch One).",
+    "Prep free-Load bookkeeping mismatches noted in 0 run annotations (scenario cargo overrides).",
+    "Living cargo Load 6 + two Downed (12) on Capacity-constrained routes reliably forced Progress-1 and Pressure+1 (bible \u00a76 Load>Capacity).",
+    "Sponsor shares applied per bible table defaults (guild 20% / merchant 30% / noble 35% / sovereign 45%) by scenario."
+  ],
+  "metrics": {
+    "iterations": 10,
+    "outcomes": {
+      "haven": 10
+    },
+    "objective_met_pct": 0.0,
+    "haven_arrival_pct": 100.0,
+    "sealed_pct": 0.0,
+    "avg_profit_gp": 342.8,
+    "avg_net_after_sponsor_gp": 1296.8,
+    "avg_elapsed_hours": 147.2,
+    "avg_pressure_peak": 5.7,
+    "avg_supply_end": 151.6,
+    "avg_abandoned_cargo_gp": 2230.0,
+    "avg_abandoned_load": 16.2,
+    "avg_downed_or_dead": 0.3,
+    "avg_extraction_test_fails": 0.3,
+    "avg_complications": 8.2,
+    "combat_team_size": 3,
+    "combat_optimal_band": "4-6",
+    "source_note": "GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt (pending promotion); SOURCE_MANIFEST companions partially missing",
+    "mismatch_notes": [],
+    "avg_supply_shortfalls": 0.0
+  },
+  "rulesQuestions": [
+    "Are wages paid from net-after-sponsor or before sponsor share? Bible says net is after taxes before wages \u2014 wage timing vs profitability tests is ambiguous for 'profitable' definition.",
+    "Does convoy Capacity equal route Capacity or a separate transport rating? Prep example uses convoy 100 vs route Capacity 80."
+  ],
+  "exploits": [
+    "Forage can outpace Supply consumption on Tier I Mapped routes, making Supply tension weak unless complications tax Supply.",
+    "Priority-1 bulk salvage is a 'dump valve' that makes Extraction Failures feel costless when high-priority lots are safe."
+  ],
+  "recommendations": [
+    "Add a profitability definition to the expedition charter: profit after sponsor+wages+repairs vs gross extraction value.",
+    "Cap Forage output by biome and require exposed risk, or Supply will rarely threaten Mapped Tier I runs.",
+    "Require at least one mid-priority lot so Extraction Failures create real choice rather than discarding junk."
+  ],
+  "confidence": "high"
+}

@@ -1,0 +1,33 @@
+{
+  "pack": "17-gm-readiness-usability",
+  "scenarioId": "GM-RULE-LOOKUP",
+  "runId": "2026-08-06T122200Z-LOOKUP-033",
+  "seed": 54733,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": null,
+  "evidenceLevel": "B",
+  "outcome": "RULES_HALT_OR_MISSING",
+  "metrics": {
+    "promptIndex": 33,
+    "prompt": "Where is public-player one-page Quickstart sheet?",
+    "located": false,
+    "secondsProxy": 120
+  },
+  "rulesHalts": [
+    {
+      "id": "RH-17-LOOKUP-033",
+      "prompt": "Where is public-player one-page Quickstart sheet?",
+      "status": "RULES_HALT",
+      "note": "Not found as standalone public sheet in required sources"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "defect",
+      "summary": "Lookup 'Where is public-player one-page Quickstart sheet?': ambiguous/missing → Not found as standalone public sheet in required sources",
+      "citation": "Not found as standalone public sheet in required sources"
+    }
+  ],
+  "rawEvidencePath": "results/GM-RULE-LOOKUP/033-novice-director.json",
+  "agentId": "novice-director"
+}

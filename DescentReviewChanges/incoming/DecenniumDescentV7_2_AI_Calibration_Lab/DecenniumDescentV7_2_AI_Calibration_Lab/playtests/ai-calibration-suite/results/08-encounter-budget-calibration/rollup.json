@@ -1,0 +1,1267 @@
+{
+  "pack": "08-encounter-budget-calibration",
+  "scenarioId": "PACK08-ROLLUP",
+  "runId": "PACK08-80800",
+  "seed": 80800,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "scenarioCount": 6,
+    "summaryRows": 186,
+    "findingCount": 68
+  },
+  "rulesHalts": [
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels catastrophic for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 1,
+      "partySize": 3,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.015,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 1,
+      "partySize": 3,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 1,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 1,
+      "partySize": 5,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 1,
+      "partySize": 5,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 1,
+      "partySize": 6,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.025,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 1,
+      "partySize": 6,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 3,
+      "partySize": 3,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 3,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 3,
+      "partySize": 5,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 3,
+      "partySize": 6,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        0.97
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 3,
+      "partySize": 6,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.005,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 5,
+      "partySize": 3,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        0.99
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 5,
+      "partySize": 4,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 5,
+      "partySize": 5,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 5,
+      "partySize": 6,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 5,
+      "partySize": 6,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        1.0,
+        0.99
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 10,
+      "partySize": 3,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 10,
+      "partySize": 4,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 10,
+      "partySize": 5,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 10,
+      "partySize": 6,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 10,
+      "partySize": 6,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 15,
+      "partySize": 3,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        0.96
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 15,
+      "partySize": 4,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 15,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.005,
+        0.005
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 15,
+      "partySize": 5,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 15,
+      "partySize": 6,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 15,
+      "partySize": 6,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        1.0,
+        0.99
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 20,
+      "partySize": 3,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.005,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 20,
+      "partySize": 4,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 20,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 20,
+      "partySize": 5,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 20,
+      "partySize": 5,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        0.045,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-CROSS",
+      "level": 20,
+      "partySize": 6,
+      "pair": [
+        "routine",
+        "standard"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-CROSS",
+      "level": 3,
+      "difficulty": "standard",
+      "byParty": [
+        [
+          3,
+          0.71,
+          72.0
+        ],
+        [
+          4,
+          0.885,
+          90.0
+        ],
+        [
+          5,
+          0.95,
+          108.0
+        ],
+        [
+          6,
+          0.97,
+          125.99999999999999
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-CROSS",
+      "level": 5,
+      "difficulty": "severe",
+      "byParty": [
+        [
+          3,
+          0.165,
+          144.0
+        ],
+        [
+          4,
+          0.06,
+          180.0
+        ],
+        [
+          5,
+          0.595,
+          216.0
+        ],
+        [
+          6,
+          0.72,
+          251.99999999999997
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-CROSS",
+      "level": 10,
+      "difficulty": "severe",
+      "byParty": [
+        [
+          3,
+          0.26,
+          144.0
+        ],
+        [
+          4,
+          0.075,
+          180.0
+        ],
+        [
+          5,
+          0.66,
+          216.0
+        ],
+        [
+          6,
+          0.795,
+          251.99999999999997
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-CROSS",
+      "level": 15,
+      "difficulty": "hard",
+      "byParty": [
+        [
+          3,
+          0.48,
+          104.0
+        ],
+        [
+          4,
+          0.845,
+          130.0
+        ],
+        [
+          5,
+          0.725,
+          156.0
+        ],
+        [
+          6,
+          0.99,
+          182.0
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-CROSS",
+      "level": 15,
+      "difficulty": "severe",
+      "byParty": [
+        [
+          3,
+          0.05,
+          144.0
+        ],
+        [
+          4,
+          0.005,
+          180.0
+        ],
+        [
+          5,
+          0.615,
+          216.0
+        ],
+        [
+          6,
+          0.72,
+          251.99999999999997
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-CROSS",
+      "level": 20,
+      "difficulty": "hard",
+      "byParty": [
+        [
+          3,
+          0.13,
+          104.0
+        ],
+        [
+          4,
+          0.415,
+          130.0
+        ],
+        [
+          5,
+          0.32,
+          156.0
+        ],
+        [
+          6,
+          0.885,
+          182.0
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-CARGO",
+      "level": 10,
+      "difficulty": "standard",
+      "byParty": [
+        [
+          4,
+          0.825,
+          90.0
+        ],
+        [
+          6,
+          0.55,
+          125.99999999999999
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-ESCORT",
+      "level": 5,
+      "partySize": 6,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        1.0,
+        0.99
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-ESCORT",
+      "level": 10,
+      "partySize": 6,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        1.0,
+        0.995
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-ESCORT",
+      "level": 10,
+      "partySize": 6,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.995,
+        0.965
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "confirmed",
+      "type": "budget_collapse_across_band",
+      "scenario": "BUDGET-ESCORT",
+      "level": 10,
+      "partySize": 6,
+      "successRates": [
+        1.0,
+        0.995,
+        0.965
+      ],
+      "detail": "All difficulty bands within 12pp \u2014 budgets do not produce predictable distinct bands."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-ESCORT",
+      "level": 15,
+      "partySize": 6,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        1.0,
+        0.995
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-ESCORT",
+      "level": 15,
+      "partySize": 6,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.995,
+        0.975
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "confirmed",
+      "type": "budget_collapse_across_band",
+      "scenario": "BUDGET-ESCORT",
+      "level": 15,
+      "partySize": 6,
+      "successRates": [
+        1.0,
+        0.995,
+        0.975
+      ],
+      "detail": "All difficulty bands within 12pp \u2014 budgets do not produce predictable distinct bands."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-ESCORT",
+      "level": 5,
+      "difficulty": "hard",
+      "byParty": [
+        [
+          4,
+          0.67,
+          130.0
+        ],
+        [
+          6,
+          0.99,
+          182.0
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-ESCORT",
+      "level": 5,
+      "difficulty": "severe",
+      "byParty": [
+        [
+          4,
+          0.285,
+          180.0
+        ],
+        [
+          6,
+          0.815,
+          251.99999999999997
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-ESCORT",
+      "level": 10,
+      "difficulty": "severe",
+      "byParty": [
+        [
+          4,
+          0.405,
+          180.0
+        ],
+        [
+          6,
+          0.965,
+          251.99999999999997
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "party_size_scaling_unstable",
+      "scenario": "BUDGET-ESCORT",
+      "level": 15,
+      "difficulty": "severe",
+      "byParty": [
+        [
+          4,
+          0.61,
+          180.0
+        ],
+        [
+          6,
+          0.975,
+          251.99999999999997
+        ]
+      ],
+      "detail": "\u00b120% per PC budget scaling left >25pp success swing across party sizes."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-HAZARD",
+      "level": 15,
+      "partySize": 4,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 3,
+      "partySize": 4,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 3,
+      "partySize": 4,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "confirmed",
+      "type": "budget_collapse_across_band",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 3,
+      "partySize": 4,
+      "successRates": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": "All difficulty bands within 12pp \u2014 budgets do not produce predictable distinct bands."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 5,
+      "partySize": 4,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 5,
+      "partySize": 4,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "confirmed",
+      "type": "budget_collapse_across_band",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 5,
+      "partySize": 4,
+      "successRates": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": "All difficulty bands within 12pp \u2014 budgets do not produce predictable distinct bands."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 10,
+      "partySize": 4,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 10,
+      "partySize": 4,
+      "pair": [
+        "hard",
+        "severe"
+      ],
+      "successRates": [
+        0.0,
+        0.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "confirmed",
+      "type": "budget_collapse_across_band",
+      "scenario": "BUDGET-AMBUSH",
+      "level": 10,
+      "partySize": 4,
+      "successRates": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": "All difficulty bands within 12pp \u2014 budgets do not produce predictable distinct bands."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 5,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 5,
+      "partySize": 6,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 10,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 10,
+      "partySize": 6,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 15,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 15,
+      "partySize": 6,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    }
+  ],
+  "rawEvidencePath": "results/08-encounter-budget-calibration/"
+}

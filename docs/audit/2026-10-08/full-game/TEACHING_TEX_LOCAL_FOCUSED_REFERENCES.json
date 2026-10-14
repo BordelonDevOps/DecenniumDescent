@@ -1,0 +1,649 @@
+{
+  "scope": "Core helper execution, simple source-bound arithmetic and isolated unchanged device source nodes. Not whole validator, scheduler, acquisition/authentication, range/channels, feature ownership, real rest calendars or deployed runtime.",
+  "checks": 67,
+  "failed": [],
+  "sourceHashes": {
+    "device_lifecycle_playtest_rules.py": "f474ef83e12066aab4325a275e2ae6113f7dee0d446f0c79e25141130f71c451",
+    "core_playtest_rules.py": "a162117cf2c0c96a77ef5e594ce7247593930c57e6223fc7291ab12fc45c8d7d",
+    "redirection_playtest_rules.py": "f2a2049a34b0bdbf31638f67fa610ff5d212a904b4c4e28809bea8b912f94d09"
+  },
+  "isolatedNodes": [
+    "Wallet",
+    "CommandLedger",
+    "Destruction",
+    "profile_stats",
+    "identity",
+    "Lifecycle.material",
+    "Lifecycle.consume_material",
+    "Lifecycle.recycling"
+  ],
+  "results": [
+    {
+      "id": "TF-01",
+      "name": "First hit HP/Wounds/Injury/save",
+      "passed": true,
+      "actual": [
+        4,
+        1,
+        [],
+        8
+      ],
+      "expected": [
+        4,
+        1,
+        [],
+        8
+      ]
+    },
+    {
+      "id": "TF-02",
+      "name": "Second hit preexisting-Wound penalty and no dying-hit double charge",
+      "passed": true,
+      "actual": [
+        0,
+        [
+          null,
+          3
+        ],
+        0,
+        4
+      ],
+      "expected": [
+        0,
+        [
+          null,
+          3
+        ],
+        0,
+        4
+      ]
+    },
+    {
+      "id": "TF-03",
+      "name": "Death save8 unmodified",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "id": "TF-04",
+      "name": "Stable clears counters, stays0 and has14:00 deadline",
+      "passed": true,
+      "actual": [
+        0,
+        true,
+        0,
+        50400
+      ],
+      "expected": [
+        0,
+        true,
+        0,
+        50400
+      ]
+    },
+    {
+      "id": "TF-05",
+      "name": "Before stable deadline remains0",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "id": "TF-06",
+      "name": "At stable deadline1HP/Wounds unchanged",
+      "passed": true,
+      "actual": [
+        1,
+        [
+          null,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        [
+          null,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "TF-07",
+      "name": "Treatment tierI successful",
+      "passed": true,
+      "actual": "success",
+      "expected": "success"
+    },
+    {
+      "id": "TF-08",
+      "name": "Remove W2 removes its linked Injury only",
+      "passed": true,
+      "actual": [
+        1,
+        [
+          null
+        ],
+        []
+      ],
+      "expected": [
+        1,
+        [
+          null
+        ],
+        []
+      ]
+    },
+    {
+      "id": "TF-09",
+      "name": "Treatment elapsed overlap",
+      "passed": true,
+      "actual": 510,
+      "expected": 510
+    },
+    {
+      "id": "TF-10",
+      "name": "Temporary HP prevents large-normal-HP Wound trigger",
+      "passed": true,
+      "actual": [
+        7,
+        0
+      ],
+      "expected": [
+        7,
+        0
+      ]
+    },
+    {
+      "id": "TF-11",
+      "name": "Already-dying critical adds2 reachingDead",
+      "passed": true,
+      "actual": [
+        true,
+        3
+      ],
+      "expected": [
+        true,
+        3
+      ]
+    },
+    {
+      "id": "TF-12",
+      "name": "Instant death before Wounds",
+      "passed": true,
+      "actual": [
+        true,
+        true,
+        0
+      ],
+      "expected": [
+        true,
+        true,
+        0
+      ]
+    },
+    {
+      "id": "TF-13",
+      "name": "Natural20 death save does not remove Wounds",
+      "passed": true,
+      "actual": [
+        1,
+        [
+          null,
+          3
+        ]
+      ],
+      "expected": [
+        1,
+        [
+          null,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "TF-14",
+      "name": "Critical Wound healing ceiling",
+      "passed": true,
+      "actual": 9,
+      "expected": 9
+    },
+    {
+      "id": "TF-15",
+      "name": "Fourth failed Wound save fatal rather than fourth Wound",
+      "passed": true,
+      "actual": [
+        true,
+        3
+      ],
+      "expected": [
+        true,
+        3
+      ]
+    },
+    {
+      "id": "TF-16",
+      "name": "Core task natural1 shift differs from basic dismantling",
+      "passed": true,
+      "actual": [
+        false,
+        true
+      ],
+      "expected": [
+        false,
+        true
+      ]
+    },
+    {
+      "id": "TF-17",
+      "name": "Natural20 attack critical not task margin",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "TF-18",
+      "name": "Ordinary save natural1 can meetDC",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "TF-19",
+      "name": "Recipe200 six-band natural 10",
+      "passed": true,
+      "actual": "Standard",
+      "expected": "Standard"
+    },
+    {
+      "id": "TF-20",
+      "name": "Recipe200 six-band natural 5",
+      "passed": true,
+      "actual": "Flawed",
+      "expected": "Flawed"
+    },
+    {
+      "id": "TF-21",
+      "name": "Recipe200 six-band natural 13",
+      "passed": true,
+      "actual": "Exceptional",
+      "expected": "Exceptional"
+    },
+    {
+      "id": "TF-22",
+      "name": "Recipe200 six-band natural 20",
+      "passed": true,
+      "actual": "Masterwork",
+      "expected": "Masterwork"
+    },
+    {
+      "id": "TF-23",
+      "name": "Recipe200 six-band natural 3",
+      "passed": true,
+      "actual": "Failed",
+      "expected": "Failed"
+    },
+    {
+      "id": "TF-24",
+      "name": "Recipe200 six-band natural 1",
+      "passed": true,
+      "actual": "Mishap",
+      "expected": "Mishap"
+    },
+    {
+      "id": "TF-25",
+      "name": "Recipe200 maximum ordered vials",
+      "passed": true,
+      "actual": 7,
+      "expected": 7
+    },
+    {
+      "id": "TF-26",
+      "name": "Recipe200 actual consumed mass",
+      "passed": true,
+      "actual": "59/25",
+      "expected": "59/25"
+    },
+    {
+      "id": "TF-27",
+      "name": "Recipe200 consumed reference GP",
+      "passed": true,
+      "actual": 42,
+      "expected": 42
+    },
+    {
+      "id": "TF-28",
+      "name": "Vials7 plus42source GP reference",
+      "passed": true,
+      "actual": 49,
+      "expected": 49
+    },
+    {
+      "id": "TF-29",
+      "name": "Standard mass includes5filled +2empty",
+      "passed": true,
+      "actual": "6/5",
+      "expected": "6/5"
+    },
+    {
+      "id": "TF-30",
+      "name": "After use dose inventory and retained vial",
+      "passed": true,
+      "actual": "11/10",
+      "expected": "11/10"
+    },
+    {
+      "id": "TF-31",
+      "name": "Failed recovery divisible water, indivisiblepetal",
+      "passed": true,
+      "actual": [
+        1,
+        0
+      ],
+      "expected": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "TF-32",
+      "name": "Included first phase minutes",
+      "passed": true,
+      "actual": 105,
+      "expected": 105
+    },
+    {
+      "id": "TF-33",
+      "name": "BG cap (8, False)",
+      "passed": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "id": "TF-34",
+      "name": "BG cap (8, True)",
+      "passed": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "id": "TF-35",
+      "name": "BG cap (9, False)",
+      "passed": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "id": "TF-36",
+      "name": "BG cap (9, True)",
+      "passed": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "id": "TF-37",
+      "name": "BG cap (20, True)",
+      "passed": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "id": "TF-38",
+      "name": "Capacity change alone retains currentBG",
+      "passed": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "id": "TF-39",
+      "name": "Shaman1/12/13cap",
+      "passed": true,
+      "actual": [
+        1,
+        1,
+        2
+      ],
+      "expected": [
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "TF-40",
+      "name": "TC friendly accidental source can refund1",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "id": "TF-41",
+      "name": "TC consumes usable debris once",
+      "passed": true,
+      "actual": [
+        1,
+        false,
+        "recycling"
+      ],
+      "expected": [
+        1,
+        false,
+        "recycling"
+      ]
+    },
+    {
+      "id": "TF-42",
+      "name": "TC second material claim",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-43",
+      "name": "TC excludes deliberate_sacrifice",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-44",
+      "name": "TC rejection preserves debris deliberate_sacrifice",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "TF-45",
+      "name": "TC excludes copied_object",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-46",
+      "name": "TC rejection preserves debris copied_object",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "TF-47",
+      "name": "TC excludes no_own_destruction_chain",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-48",
+      "name": "TC rejection preserves debris no_own_destruction_chain",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "TF-49",
+      "name": "TC excludes flags",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-50",
+      "name": "TC rejection preserves debris flags",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "TF-51",
+      "name": "TC enemy involvement does not waive sacrifice",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-52",
+      "name": "TC actual0RP deployment produces0 refund",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "id": "TF-53",
+      "name": "TC no mintedRP from GP",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "id": "TF-54",
+      "name": "TC copied incoming damage is not copied device",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "id": "TF-55",
+      "name": "TC same real rest-use key alreadyspent",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-56",
+      "name": "TC spent-use rejection preserves debris",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "id": "TF-57",
+      "name": "Nonenemy does not qualify hostile-only consumers",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "id": "TF-58",
+      "name": "Enemy cause without hit remains distinct",
+      "passed": true,
+      "actual": [
+        true,
+        false
+      ],
+      "expected": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "TF-59",
+      "name": "Attack command spends sharedcommand andoffense",
+      "passed": true,
+      "actual": [
+        true,
+        true
+      ],
+      "expected": [
+        true,
+        true
+      ]
+    },
+    {
+      "id": "TF-60",
+      "name": "Another subject sameowner round cannotcommand",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-61",
+      "name": "Extra turn cannot refresh Tinkercommand",
+      "passed": true,
+      "actual": "rejected",
+      "expected": "rejected"
+    },
+    {
+      "id": "TF-62",
+      "name": "Support spendscommand notoffense",
+      "passed": true,
+      "actual": [
+        true,
+        false
+      ],
+      "expected": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "TF-63",
+      "name": "Tinker1 actual Anacite stats",
+      "passed": true,
+      "actual": {
+        "hp": 8,
+        "ac": 15,
+        "attack": 4
+      },
+      "expected": {
+        "hp": 8,
+        "ac": 15,
+        "attack": 4
+      }
+    },
+    {
+      "id": "TF-64",
+      "name": "Companion four-round attack numeric trace enemyHP",
+      "passed": true,
+      "actual": 21,
+      "expected": 21
+    },
+    {
+      "id": "TF-65",
+      "name": "Field Repair6offer5missing",
+      "passed": true,
+      "actual": 12,
+      "expected": 12
+    },
+    {
+      "id": "TF-66",
+      "name": "Tinymaintenancepack GP/lb",
+      "passed": true,
+      "actual": [
+        "5/2",
+        "2/25"
+      ],
+      "expected": [
+        "5/2",
+        "2/25"
+      ]
+    },
+    {
+      "id": "TF-67",
+      "name": "Service INTtool check succeeds",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    }
+  ]
+}

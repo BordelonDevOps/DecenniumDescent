@@ -1,0 +1,36 @@
+{
+  "pack": "12-cargo-extraction-risk",
+  "scenarioId": "CARGO-CASUALTY",
+  "runId": "CARGO-CASUALTY-cau-L10-P4-E2",
+  "seed": 9090036,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2500,
+    "level": 10,
+    "party": 4,
+    "extractionClass": 2,
+    "policy": "cautious",
+    "mapping": "Mapped",
+    "havenRate": 1.0,
+    "meanRetainedLoadFrac": 0.7348,
+    "medianRetainedLoadFrac": 1.0,
+    "cargoLossRate": 0.2652,
+    "meanExtractionFailCount": 0.397,
+    "meanCasualties": 1.036,
+    "meanTrueProfit": 82.64,
+    "medianTrueProfit": 141.6,
+    "profitP10": -74.0,
+    "profitP90": 141.6
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/CARGO-CASUALTY/cau-L10-P4-E2.json"
+}

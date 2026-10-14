@@ -1,0 +1,4175 @@
+{
+  "recordedAtUtc": "2026-10-12T02:02:47.786296+00:00",
+  "status": "authored-source-qualified-fixtures-awaiting-validation",
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "bytes": 158412,
+      "sha256": "9a7de82d75e74ae22135266cd4b0c0951ba6bd280e72584212f441d4fa91fc17"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "bytes": 31024,
+      "sha256": "23a3b37796c4adb8191dd0156fde8059c39c0983d494e64ec5e9445cdfad9e2f"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/ancestry_background_candidate.json",
+      "bytes": 173692,
+      "sha256": "d8e728a1c5b9d28b7e42a035aedf99c295f7d90aa69ddae5a46f2f76959aadfb"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "bytes": 1179063,
+      "sha256": "60797d899ffb93e6b0199bb0e03cff1f14b289c493873e559e7b1dda14ae8c62"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "bytes": 20258,
+      "sha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/shared_rules.json",
+      "bytes": 38057,
+      "sha256": "a67556e6d7c0f660e6f1ea0ecc1d1e3da8272807028bf2a7d7cb51021fa79ca6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/build_feat_exact_01_warrior_acquisition_fixtures.py",
+      "bytes": 8363,
+      "sha256": "965093c4e8adea5170084c1b1ce24bf0208471095116e6f561aa853eb7aafa8f"
+    }
+  ],
+  "ordinaryMutationProfiles": {
+    "warrior.supplement.ironhide-graft": {
+      "id": "warrior.supplement.ironhide-graft",
+      "name": "Ironhide Graft",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active",
+      "frequency": "Mutation",
+      "effect": "Gain +2 AC against melee attack rolls and reduce the first physical weapon damage you take each round by 1.",
+      "prerequisite": "Warrior 1; Basic Vital",
+      "source": {
+        "line": 4937,
+        "reference": null,
+        "originalText": "| Ironhide Graft | +2 AC vs melee, +1 DR |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Vital"
+    },
+    "warrior.supplement.bloodthick-node": {
+      "id": "warrior.supplement.bloodthick-node",
+      "name": "Bloodthick Node",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active during a real encounter",
+      "frequency": "Once at start of each regular turn",
+      "effect": "Regain HP equal to current BT, maximum 3 HP per turn or 4 with Stack Overflow. No healing occurs outside a real encounter and it removes no Wounds. Each HP actually restored spends 1 Mutation Recovery Reserve; heal no more than remaining reserve.",
+      "prerequisite": "Warrior 1; Basic Vital",
+      "source": {
+        "line": 4938,
+        "reference": null,
+        "originalText": "| Bloodthick Node | Heal 1 HP per BT stack each round |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Vital"
+    },
+    "warrior.supplement.spinal-buffer": {
+      "id": "warrior.supplement.spinal-buffer",
+      "name": "Spinal Buffer",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active",
+      "frequency": "Mutation",
+      "effect": "Gain +1 on saving throws against being knocked Prone, Stunned or forcibly moved. If an effect uses an ability check rather than a save, add +1 to that check instead.",
+      "prerequisite": "Warrior 1; Basic Vital",
+      "source": {
+        "line": 4939,
+        "reference": null,
+        "originalText": "| Spinal Buffer | +1 Save vs knockback, stuns, and forced movement |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Vital"
+    },
+    "warrior.supplement.flesh-warden": {
+      "id": "warrior.supplement.flesh-warden",
+      "name": "Flesh Warden",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Passive while equipped",
+      "cost": "One mutation slot",
+      "rangeAndTarget": "Self",
+      "duration": "While equipped",
+      "frequency": "Mutation",
+      "effect": "Increase maximum HP by 2 per Warrior level while equipped. Equipping raises maximum only, never current HP. Unequipping clamps current HP to the reduced maximum if necessary; it does not subtract another amount from current HP. Repeated swaps cannot heal.",
+      "prerequisite": "Warrior 1; Basic Vital",
+      "source": {
+        "line": 4940,
+        "reference": null,
+        "originalText": "| Flesh Warden | +2 HP per level |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Vital"
+    },
+    "warrior.supplement.plated-shoulder": {
+      "id": "warrior.supplement.plated-shoulder",
+      "name": "Plated Shoulder",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active",
+      "frequency": "Mutation",
+      "effect": "While adjacent to substantial terrain, a wall or a willing ally of your size or larger, you gain half cover against ranged attacks.",
+      "prerequisite": "Warrior 1; Basic Vital",
+      "source": {
+        "line": 4941,
+        "reference": null,
+        "originalText": "| Plated Shoulder | Gain half cover while standing adjacent to terrain or ally |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Vital"
+    },
+    "warrior.supplement.redundant-organs": {
+      "id": "warrior.supplement.redundant-organs",
+      "name": "Redundant Organs",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "Instantaneous",
+      "frequency": "1/long rest",
+      "effect": "When damage would reduce you to 0 HP without killing you outright, remain at 1 HP instead.",
+      "prerequisite": "Warrior 6; Advanced Vital",
+      "source": {
+        "line": 4946,
+        "reference": null,
+        "originalText": "| Redundant Organs | First time you'd fall to 0 HP, stay at 1 (1/long rest) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Vital"
+    },
+    "warrior.supplement.rapid-coagulation": {
+      "id": "warrior.supplement.rapid-coagulation",
+      "name": "Rapid Coagulation",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active during a real encounter",
+      "frequency": "Start of turn",
+      "effect": "If you did not move during your previous turn, regain 2 HP at the start of your current turn. This does not function outside a real encounter. Each HP actually restored spends 1 Mutation Recovery Reserve; heal no more than remaining reserve.",
+      "prerequisite": "Warrior 6; Advanced Vital",
+      "source": {
+        "line": 4947,
+        "reference": null,
+        "originalText": "| Rapid Coagulation | Gain Regeneration 2 if you haven't moved this round |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Vital"
+    },
+    "warrior.supplement.ossified-core": {
+      "id": "warrior.supplement.ossified-core",
+      "name": "Ossified Core",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active",
+      "frequency": "Mutation",
+      "effect": "Critical hits against you do not add extra critical damage dice. Additionally reduce piercing damage you take by 2 after resistance.",
+      "prerequisite": "Warrior 6; Advanced Vital",
+      "source": {
+        "line": 4948,
+        "reference": null,
+        "originalText": "| Ossified Core | Immune to crit damage; take 2 less damage from piercing attacks |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Vital"
+    },
+    "warrior.supplement.adrenal-floodgate": {
+      "id": "warrior.supplement.adrenal-floodgate",
+      "name": "Adrenal Floodgate",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "Instantaneous",
+      "frequency": "1/encounter",
+      "effect": "When you first fall to one-quarter maximum HP or less, regain 2d8 HP and end either Frightened, Poisoned or Staggered on yourself.",
+      "prerequisite": "Warrior 6; Advanced Vital",
+      "source": {
+        "line": 4949,
+        "reference": null,
+        "originalText": "| Adrenal Floodgate | Once per encounter, heal 2d8 HP and remove 1 condition when you drop below 25% HP |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Vital"
+    },
+    "warrior.supplement.thickened-bone-weave": {
+      "id": "warrior.supplement.thickened-bone-weave",
+      "name": "Thickened Bone Weave",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "Until end of your next regular turn",
+      "frequency": "At most once per round",
+      "effect": "When you activate a serum or gain at least 1 BT, gain DR 2 against physical weapon damage until the end of your next regular turn. Reapplication refreshes but does not stack.",
+      "prerequisite": "Warrior 6; Advanced Vital",
+      "source": {
+        "line": 4950,
+        "reference": null,
+        "originalText": "| Thickened Bone Weave | +2 DR for 2 rounds after using a serum or gaining a BT stack |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Vital"
+    },
+    "warrior.supplement.mythic-carapace": {
+      "id": "warrior.supplement.mythic-carapace",
+      "name": "Mythic Carapace",
+      "className": "Warrior",
+      "band": "Hero",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 15,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "Until encounter ends, mutation ends or you fall below one-quarter maximum HP",
+      "frequency": "Apex mutation",
+      "effect": "Gain DR 3 against all damage and immunity to Bleed, Poisoned and Burn-style ongoing fire effects. Once per encounter when one hit deals more than 20 actual damage after mitigation, gain 1 BT and refresh the remaining duration of your other active mutations to 3 rounds. It grants no serum-profile refresh.",
+      "prerequisite": "Warrior 15; Apex Vital; maximum one Apex equipped",
+      "source": {
+        "line": 4955,
+        "reference": null,
+        "originalText": "| Mythic Carapace | While this is active:<br>- +3 DR flat<br>- Immune to Bleed, Poison, and Burn<br>- Once per combat, when you're struck for more than 20 damage: immediately gain +1 BT and refresh all active mutations<br>- Lasts until the end of combat or you fall below 25% HP |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Apex",
+      "tree": "Vital"
+    },
+    "warrior.supplement.brute-knuckles": {
+      "id": "warrior.supplement.brute-knuckles",
+      "name": "Brute Knuckles",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active",
+      "frequency": "Mutation",
+      "effect": "Your unarmed strike damage die becomes 1d10. On an unarmed critical hit, the target makes a Strength save; on failure it drops one non-attuned held item of its choice.",
+      "prerequisite": "Warrior 1; Basic Combat",
+      "source": {
+        "line": 4978,
+        "reference": null,
+        "originalText": "| Brute Knuckles | Unarmed strikes deal 1d10 and apply Disarm on crit |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Combat"
+    },
+    "warrior.supplement.splinter-bone-fangs": {
+      "id": "warrior.supplement.splinter-bone-fangs",
+      "name": "Splinter Bone Fangs",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Creature critically hit by your melee attack",
+      "duration": "2 rounds",
+      "frequency": "At most once per target per turn",
+      "effect": "A melee critical applies Bleed. The target takes 1d4 physical damage at the start of each of its next 2 turns. Reapplication refreshes rather than stacks.",
+      "prerequisite": "Warrior 1; Basic Combat",
+      "source": {
+        "line": 4979,
+        "reference": null,
+        "originalText": "| Splinter Bone Fangs | Melee crits cause 1d4 bleed for 2 rounds |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Combat"
+    },
+    "warrior.supplement.lashing-ligaments": {
+      "id": "warrior.supplement.lashing-ligaments",
+      "name": "Lashing Ligaments",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active",
+      "frequency": "Once per turn",
+      "effect": "For one melee attack on your turn, increase your reach by 5 feet. Using the extended reach does not itself provoke opportunity attacks.",
+      "prerequisite": "Warrior 1; Basic Combat",
+      "source": {
+        "line": 4980,
+        "reference": null,
+        "originalText": "| Lashing Ligaments | Gain +5 ft melee reach once per turn (doesn't provoke AoO) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Combat"
+    },
+    "warrior.supplement.jaw-clench-node": {
+      "id": "warrior.supplement.jaw-clench-node",
+      "name": "Jaw Clench Node",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "Until end of your next regular turn",
+      "frequency": "At most once per turn",
+      "effect": "After you score a critical hit, gain +1 on attack rolls and +2 on Intimidation checks until the end of your next regular turn.",
+      "prerequisite": "Warrior 1; Basic Combat",
+      "source": {
+        "line": 4981,
+        "reference": null,
+        "originalText": "| Jaw Clench Node | Gain +1 to hit and +2 to Intimidation for 1 round after crit |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Combat"
+    },
+    "warrior.supplement.shoulder-spike-cluster": {
+      "id": "warrior.supplement.shoulder-spike-cluster",
+      "name": "Shoulder Spike Cluster",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Creature grappling you or grappled by you",
+      "duration": "Instantaneous",
+      "frequency": "Once per creature per round",
+      "effect": "When a grapple is established or maintained against you, or you successfully establish a grapple, the other creature takes 1d6 piercing damage.",
+      "prerequisite": "Warrior 1; Basic Combat",
+      "source": {
+        "line": 4982,
+        "reference": null,
+        "originalText": "| Shoulder Spike Cluster | When grappling or being grappled, attacker takes 1d6 damage |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Combat"
+    },
+    "warrior.supplement.shock-muscle-weave": {
+      "id": "warrior.supplement.shock-muscle-weave",
+      "name": "Shock Muscle Weave",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "While active",
+      "frequency": "Once on your regular turn",
+      "effect": "When you take the ordinary Attack action, make one additional melee weapon attack. This additional attack is not a new Action and cannot itself grant another attack. It does not apply to card techniques unless they explicitly use the ordinary Attack action.",
+      "prerequisite": "Warrior 6; Advanced Combat",
+      "source": {
+        "line": 4987,
+        "reference": null,
+        "originalText": "| Shock Muscle Weave | Gain +1 attack per turn (stacks with extra attacks, but only melee) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Combat"
+    },
+    "warrior.supplement.razorbone-growths": {
+      "id": "warrior.supplement.razorbone-growths",
+      "name": "Razorbone Growths",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Your melee attacks",
+      "duration": "While active",
+      "frequency": "Mutation",
+      "effect": "Your melee attacks ignore 1 point of flat DR. Resistance and immunity are unaffected.",
+      "prerequisite": "Warrior 6; Advanced Combat",
+      "source": {
+        "line": 4988,
+        "reference": null,
+        "originalText": "| Razorbone Growths | All melee attacks ignore 1 point of DR |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Combat"
+    },
+    "warrior.supplement.echo-knuckles": {
+      "id": "warrior.supplement.echo-knuckles",
+      "name": "Echo Knuckles",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "One creature within unarmed reach",
+      "duration": "Instantaneous",
+      "frequency": "Once per round",
+      "effect": "After you hit with a melee attack, make one offhand slam against the same target using your Warrior technique attack. On hit deal 1d8+M bludgeoning damage. This is a free attack, cannot trigger Echo Knuckles again and cannot grant another free attack.",
+      "prerequisite": "Warrior 6; Advanced Combat",
+      "source": {
+        "line": 4989,
+        "reference": null,
+        "originalText": "| Echo Knuckles | Once per round, after hitting, make a free offhand slam (1d8) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Combat"
+    },
+    "warrior.supplement.adrenal-backlash-core": {
+      "id": "warrior.supplement.adrenal-backlash-core",
+      "name": "Adrenal Backlash Core",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self then next melee target",
+      "duration": "Until end of your next regular turn",
+      "frequency": "At most once per round",
+      "effect": "After you take damage, empower your next melee hit before the end of your next regular turn to deal +2d6 damage of the weapon's normal type. A new trigger refreshes but does not stack.",
+      "prerequisite": "Warrior 6; Advanced Combat",
+      "source": {
+        "line": 4990,
+        "reference": null,
+        "originalText": "| Adrenal Backlash Core | When you take damage, your next melee hit deals +2d6 |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Combat"
+    },
+    "warrior.supplement.warpgrip-talons": {
+      "id": "warrior.supplement.warpgrip-talons",
+      "name": "Warpgrip Talons",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Creature critically hit by your melee attack",
+      "duration": "2 rounds",
+      "frequency": "At most once per target per turn",
+      "effect": "A melee critical applies Weakened for 2 rounds. While Weakened, the target deals 1 less damage with each weapon or natural-weapon hit, minimum 0. Reapplication refreshes rather than stacks.",
+      "prerequisite": "Warrior 6; Advanced Combat",
+      "source": {
+        "line": 4991,
+        "reference": null,
+        "originalText": "| Warpgrip Talons | Melee attacks apply Weakened on crit (–1 damage from target for 2 rounds) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Combat"
+    },
+    "warrior.supplement.butcherform-chassis": {
+      "id": "warrior.supplement.butcherform-chassis",
+      "name": "Butcherform Chassis",
+      "className": "Warrior",
+      "band": "Hero",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 15,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self",
+      "duration": "3 rounds or until below one-quarter maximum HP",
+      "frequency": "Apex mutation",
+      "effect": "When you take the ordinary Attack action, make one additional melee attack beyond other Extra Attack effects, respecting the one-additional-full-Action guard because this is part of the same Action. Your melee criticals add one extra weapon damage die beyond normal critical dice, not triple total damage. Once per round when you personally kill a meaningful hostile with a melee attack, restore one consumed prepared serum dose, never above reserve capacity.",
+      "prerequisite": "Warrior 15; Apex Combat; maximum one Apex equipped",
+      "source": {
+        "line": 4996,
+        "reference": null,
+        "originalText": "| Butcherform Chassis | While active:<br>- Gain +2 attacks per round<br>- Crits deal triple damage<br>- Melee kills instantly refresh 1 serum or 1 mutation use<br>- Lasts for 3 rounds or until you're below 25% HP |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Apex",
+      "tree": "Combat"
+    },
+    "warrior.supplement.ink-slick-glands": {
+      "id": "warrior.supplement.ink-slick-glands",
+      "name": "Ink-Slick Glands",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Action while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "10-foot-radius cloud centered within 10 feet",
+      "duration": "2 rounds",
+      "frequency": "1/short rest",
+      "effect": "Create opaque black mist. Creatures outside the cloud cannot see through it; ranged attacks passing through the cloud have disadvantage. Wind or an equivalent dispersal effect may end it early.",
+      "prerequisite": "Warrior 1; Basic Aberrant",
+      "source": {
+        "line": 5019,
+        "reference": null,
+        "originalText": "| Ink-Slick Glands | Once per rest, exude a cloud of black mist (3x3, blocks LoS, causes Disadvantage on ranged attacks) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.pulsing-vein-spiral": {
+      "id": "warrior.supplement.pulsing-vein-spiral",
+      "name": "Pulsing Vein Spiral",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self and enemies within 5 feet",
+      "duration": "While active",
+      "frequency": "Mutation",
+      "effect": "Gain +2 on Intimidation checks. Enemies within 5 feet take -1 on morale checks or the campaign's equivalent morale roll; this does not alter attack rolls or saving throws.",
+      "prerequisite": "Warrior 1; Basic Aberrant",
+      "source": {
+        "line": 5020,
+        "reference": null,
+        "originalText": "| Pulsing Vein Spiral | Gain +2 to Intimidation and cause –1 morale on adjacent enemies |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.tremor-claws": {
+      "id": "warrior.supplement.tremor-claws",
+      "name": "Tremor Claws",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Creature critically hit by your melee attack",
+      "duration": "Instantaneous",
+      "frequency": "At most once per target per turn",
+      "effect": "After a melee critical, the target makes a Strength save. On failure it falls Prone.",
+      "prerequisite": "Warrior 1; Basic Aberrant",
+      "source": {
+        "line": 5021,
+        "reference": null,
+        "originalText": "| Tremor Claws | Your melee crits force target to make STR save or fall prone |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.rib-lash-tendrils": {
+      "id": "warrior.supplement.rib-lash-tendrils",
+      "name": "Rib Lash Tendrils",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Melee attacker within 10 feet",
+      "duration": "Instantaneous",
+      "frequency": "Once per round",
+      "effect": "When a creature damages you with a melee attack, it takes 1d4 psychic damage. This retaliation cannot trigger itself or other retaliation loops.",
+      "prerequisite": "Warrior 1; Basic Aberrant",
+      "source": {
+        "line": 5022,
+        "reference": null,
+        "originalText": "| Rib Lash Tendrils | When you are hit in melee, deal 1d4 retaliatory psychic damage |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.bone-lure-growth": {
+      "id": "warrior.supplement.bone-lure-growth",
+      "name": "Bone Lure Growth",
+      "className": "Warrior",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 1,
+      "acquisition": "supplement",
+      "activation": "Bonus Action while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "One enemy within 20 feet",
+      "duration": "Instantaneous",
+      "frequency": "1/encounter",
+      "effect": "The target makes a Wisdom save. On failure it must use up to 15 feet of its available movement to move toward you by the safest path. This movement cannot force it into obviously lethal terrain and never consumes its Action.",
+      "prerequisite": "Warrior 1; Basic Aberrant",
+      "source": {
+        "line": 5023,
+        "reference": null,
+        "originalText": "| Bone Lure Growth | Once per encounter, force 1 enemy within 4 tiles to move toward you (WIS save negates) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Basic",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.throat-split-maw": {
+      "id": "warrior.supplement.throat-split-maw",
+      "name": "Throat Split Maw",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "One creature within 5 feet",
+      "duration": "Until end of target's next turn",
+      "frequency": "Once per target per round",
+      "effect": "You gain a bite attack dealing 1d8+M piercing damage. When the bite hits a creature capable of casting spells, it makes a Constitution save; on failure it is Silenced until the end of its next turn.",
+      "prerequisite": "Warrior 6; Advanced Aberrant",
+      "source": {
+        "line": 5028,
+        "reference": null,
+        "originalText": "| Throat Split Maw | Your bite attack silences casters for 1 round on hit |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.viral-core-sacs": {
+      "id": "warrior.supplement.viral-core-sacs",
+      "name": "Viral Core Sacs",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Enemies within 10 feet",
+      "duration": "Until start of your next regular turn",
+      "frequency": "Once per serum activation",
+      "effect": "When you activate a serum, enemies within 10 feet make Constitution saves. On failure they have disadvantage on their next saving throw before the start of your next regular turn.",
+      "prerequisite": "Warrior 6; Advanced Aberrant",
+      "source": {
+        "line": 5029,
+        "reference": null,
+        "originalText": "| Viral Core Sacs | When using a serum, release a 2x2 AoE that causes Disadvantage on saves for 1 round |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.scythebone-spikes": {
+      "id": "warrior.supplement.scythebone-spikes",
+      "name": "Scythebone Spikes",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Your unarmed strike target and one different adjacent creature",
+      "duration": "Instantaneous",
+      "frequency": "Once per turn",
+      "effect": "When an unarmed strike hits, choose one different enemy within 5 feet of the original target. If the same attack roll would hit that enemy's AC, it takes damage equal to the unarmed strike's base damage die without modifiers. This cleave is not another attack and triggers no on-hit effects.",
+      "prerequisite": "Warrior 6; Advanced Aberrant",
+      "source": {
+        "line": 5030,
+        "reference": null,
+        "originalText": "| Scythebone Spikes | Your unarmed strikes gain cleave (hit 2 adjacent targets) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.carrion-signal-gland": {
+      "id": "warrior.supplement.carrion-signal-gland",
+      "name": "Carrion Signal Gland",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Triggered while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Creature that hits you in melee",
+      "duration": "Until end of target's next turn",
+      "frequency": "Once per attacker per round",
+      "effect": "The attacker makes a Wisdom save. On failure it becomes Shaken, taking -1 on attack rolls until the end of its next turn.",
+      "prerequisite": "Warrior 6; Advanced Aberrant",
+      "source": {
+        "line": 5031,
+        "reference": null,
+        "originalText": "| Carrion Signal Gland | Enemies who hit you in melee must make WIS save or become Shaken |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.wailing-eye-cluster": {
+      "id": "warrior.supplement.wailing-eye-cluster",
+      "name": "Wailing Eye Cluster",
+      "className": "Warrior",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 6,
+      "acquisition": "supplement",
+      "activation": "Bonus Action while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Enemies within 15 feet",
+      "duration": "Until end of target's next turn",
+      "frequency": "1/short rest",
+      "effect": "Enemies make Wisdom saves. On failure they become Disoriented: at the start of their next turn they cannot take Reactions and their first 5 feet of movement must be in a random legal horizontal direction determined by the Director. They otherwise keep their normal Action and movement.",
+      "prerequisite": "Warrior 6; Advanced Aberrant",
+      "source": {
+        "line": 5032,
+        "reference": null,
+        "originalText": "| Wailing Eye Cluster | As a bonus action 1/rest, emit a psychic scream: enemies within 3 tiles must save or become Disoriented (random movement) |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Advanced",
+      "tree": "Aberrant"
+    },
+    "warrior.supplement.voidbirth-shell": {
+      "id": "warrior.supplement.voidbirth-shell",
+      "name": "Voidbirth Shell",
+      "className": "Warrior",
+      "band": "Hero",
+      "path": null,
+      "sourceKind": "mutation",
+      "minimumClassLevel": 15,
+      "acquisition": "supplement",
+      "activation": "Passive while active",
+      "cost": "One mutation slot; serum activation",
+      "rangeAndTarget": "Self and enemies within 15 feet",
+      "duration": "3 rounds",
+      "frequency": "Apex mutation",
+      "effect": "You may move through enemy spaces and nonmagical difficult terrain without extra cost but cannot end inside a creature or solid object. Enemies within 15 feet take -1 on attack rolls and morale. At the end of each of your turns create one 1-HP clone in an adjacent legal space, maximum 2 clones. A clone cannot attack or block movement; when destroyed it explodes, creatures within 5 feet make Dexterity saves taking 2d6 psychic on failure or half on success. Clones grant no resources, corpses, XP or BT.",
+      "prerequisite": "Warrior 15; Apex Aberrant; maximum one Apex equipped",
+      "source": {
+        "line": 5037,
+        "reference": null,
+        "originalText": "| Voidbirth Shell | While active:<br>- Gain Ethereal Movement (ignore terrain, move through enemies)<br>- Enemies within 3 tiles have –2 morale and suffer Weakened<br>- Each turn, summon 1 temporary clone (1 HP, explodes on death for 2d6 psychic)<br>- Lasts 3 rounds or until all clones are expended |",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "tier": "Apex",
+      "tree": "Aberrant"
+    }
+  },
+  "completeClassSelectionHistoryThrough20": [
+    {
+      "class": "Warrior",
+      "classLevel": 1,
+      "totalLevel": 1,
+      "selectedCards": [
+        "warrior.base.serum-injection",
+        "warrior.base.brutal-strike",
+        "warrior.base.survival-instinct",
+        "warrior.base.combat-instinct"
+      ],
+      "automaticCards": [
+        "warrior.supplement.mutation-slot-i",
+        "warrior.supplement.brutality-threshold-tracker"
+      ],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 2,
+      "totalLevel": 2,
+      "selectedCards": [
+        "warrior.base.physical-conditioning",
+        "warrior.base.brutality-sense"
+      ],
+      "automaticCards": [
+        "warrior.supplement.mutagen-injection"
+      ],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 3,
+      "totalLevel": 3,
+      "selectedCards": [
+        "warrior.arch.mutation-efficiency",
+        "warrior.arch.mutation-overload"
+      ],
+      "automaticCards": [],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 4,
+      "totalLevel": 4,
+      "selectedCards": [
+        "warrior.arch.brutal-fortitude"
+      ],
+      "automaticCards": [],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": true
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 5,
+      "totalLevel": 5,
+      "selectedCards": [
+        "warrior.arch.overpressure-response"
+      ],
+      "automaticCards": [
+        "warrior.supplement.mutation-slot-ii"
+      ],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 6,
+      "totalLevel": 6,
+      "selectedCards": [
+        "warrior.arch.crushing-advance"
+      ],
+      "automaticCards": [
+        "warrior.supplement.bone-hardened"
+      ],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 7,
+      "totalLevel": 7,
+      "selectedCards": [
+        "warrior.arch.pain-conversion"
+      ],
+      "automaticCards": [],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 8,
+      "totalLevel": 8,
+      "selectedCards": [
+        "warrior.arch.adaptive-tissue"
+      ],
+      "automaticCards": [],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": true
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 9,
+      "totalLevel": 9,
+      "selectedCards": [
+        "warrior.arch.brutality-momentum"
+      ],
+      "automaticCards": [
+        "warrior.supplement.serum-overclock"
+      ],
+      "heroPath": null,
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 10,
+      "totalLevel": 10,
+      "selectedCards": [
+        "warrior.hero.wardborn.guardian-tissue",
+        "warrior.hero.wardborn.bulwark-mutation-tree"
+      ],
+      "automaticCards": [],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 11,
+      "totalLevel": 11,
+      "selectedCards": [
+        "warrior.base.intimidating-presence"
+      ],
+      "automaticCards": [],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 12,
+      "totalLevel": 12,
+      "selectedCards": [
+        "warrior.hero.wardborn.mutated-guard"
+      ],
+      "automaticCards": [],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": true
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 13,
+      "totalLevel": 13,
+      "selectedCards": [
+        "warrior.base.mutation-surge"
+      ],
+      "automaticCards": [
+        "warrior.supplement.mutation-slot-iii"
+      ],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 14,
+      "totalLevel": 14,
+      "selectedCards": [
+        "warrior.hero.wardborn.guardian-pulse"
+      ],
+      "automaticCards": [],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 15,
+      "totalLevel": 15,
+      "selectedCards": [
+        "warrior.arch.serum-cocktail"
+      ],
+      "automaticCards": [
+        "warrior.supplement.brutal-adaptation"
+      ],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 16,
+      "totalLevel": 16,
+      "selectedCards": [
+        "warrior.hero.wardborn.warding-mutation"
+      ],
+      "automaticCards": [],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": true
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 17,
+      "totalLevel": 17,
+      "selectedCards": [
+        "warrior.arch.brutality-unleashed"
+      ],
+      "automaticCards": [
+        "warrior.supplement.reflexive-mutation"
+      ],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 18,
+      "totalLevel": 18,
+      "selectedCards": [
+        "warrior.hero.wardborn.stabilizing-injection"
+      ],
+      "automaticCards": [],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": false
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 19,
+      "totalLevel": 19,
+      "selectedCards": [
+        "warrior.arch.survival-adaptation"
+      ],
+      "automaticCards": [],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": true
+    },
+    {
+      "class": "Warrior",
+      "classLevel": 20,
+      "totalLevel": 20,
+      "selectedCards": [],
+      "automaticCards": [
+        "warrior.hero.wardborn.aegis-incarnate",
+        "warrior.supplement.apex-form"
+      ],
+      "heroPath": "Wardborn",
+      "ordinaryFeatOpportunity": false
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "WACQ-backlashEngine",
+      "synthetic": true,
+      "featId": "backlashEngine",
+      "classCardAlias": "warrior.supplement.backlash-engine",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 8
+          },
+          {
+            "kind": "equippedMutation",
+            "name": "Adrenal Backlash Core",
+            "requiresActualUnlockedSlot": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW select the actual Warrior8 counterpart over unlimited each-hit generation: require Adrenal Backlash Core equipped and active. The first qualifying actual-damage event in a numbered round may grant1BT, no Action, subject to current BT cap3 or actual Stack Overflow4. Use positive numeric actualDamageDealt to you, so real temporaryHP absorption counts; a zero-damage hit, floor-prevented loss with no temp absorption or direct HP sacrifice does not. Recheck survival and active mutation after the full damage/death sequence; no gain after actual death or ended mutation. Current hostile-threat anti-farming restrictions apply; environmental damage without a meaningful hostile cause grants noBT under this NEW feat completion. This explicit card gain bypasses the normal combined2BT-generation ceiling but not its own once-round cap or stored maximum. It adds no Brutality Progress and remains the same gain whether selected from the feat registry or Warrior supplement. Ordinary qualifying damage-taken BT may also resolve once under its own threshold/cap; neither effect duplicates the other.",
+      "completeOriginalObject": {
+        "id": "backlashEngine",
+        "name": "Backlash Engine",
+        "description": "Taking damage while mutated builds up energy.",
+        "prerequisite": "Adrenal Backlash Core mutation",
+        "effect": "Each time you're hit while mutated, gain +1 BT",
+        "type": "Combat_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.backlash-engine",
+        "name": "Backlash Engine",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 8,
+        "acquisition": "supplement",
+        "activation": "Triggered",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "At most once per round",
+        "effect": "While Adrenal Backlash Core is active, the first time each round you take actual damage, gain 1 BT, never above the current cap.",
+        "prerequisite": "Warrior 8; Adrenal Backlash Core equipped; eligible feat grant",
+        "source": {
+          "line": 5002,
+          "reference": null,
+          "originalText": "| Backlash Engine | Adrenal Backlash Core | Each time you're hit while mutated, gain +1 BT |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 8
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 6,
+        "equippedAfter": [
+          "warrior.supplement.adrenal-backlash-core"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:8",
+        "class": "Warrior",
+        "classLevel": 8,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "backlashEngine",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-bioStabilizer",
+      "synthetic": true,
+      "featId": "bioStabilizer",
+      "classCardAlias": "warrior.supplement.bio-stabilizer",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 4
+          },
+          {
+            "kind": "equippedMutation",
+            "name": "Bloodthick Node",
+            "requiresActualUnlockedSlot": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW adopt Warrior4 and actual equipped Bloodthick Node. At each valid original Bloodthick regular-start pulse, if Bloodthick and at least one other mutation are actually active, add1 to that same pulse base before ordinary healing modifiers/caps. Bloodthick base remains currentBT capped3, or4 with actual Stack Overflow; the extra1 can make base4 or5. NEW a lawful Bloodthick pulse atBT0 may have base1 from this modifier, but there is no independent pulse and no healing outside a real encounter. Every HP actually restored spends1 from the same Mutation Recovery Reserve (3×Warrior level+M after LR); no reserve refill from SR, encounter, form or bonus. Apply broad/passive-regeneration prohibitions, source eligibility, current maximum and Critical3-Wound healing ceiling max(1,maxHP−1). It does not remove Wounds, cure death or manufacture zeroHP action permission. NEW an already active Bloodthick pulse may heal a living0HP owner after that start's prior death-save processing if the owner survives and no actual source prohibition blocks it; incapacitation alone does not retroactively cancel this non-concentration passive mutation. A dead owner receives nothing. No excess-healing conversion from this unpaid regeneration, even at fullHP.",
+      "completeOriginalObject": {
+        "id": "bioStabilizer",
+        "name": "Bio-Stabilizer",
+        "description": "Your mutations have stabilized, providing enhanced regeneration.",
+        "prerequisite": "Bloodthick Node mutation",
+        "effect": "+1 regeneration while under the effect of 2+ mutations",
+        "type": "Vital_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.bio-stabilizer",
+        "name": "Bio-Stabilizer",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 4,
+        "acquisition": "supplement",
+        "activation": "Passive",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Always",
+        "effect": "While at least two mutations are active, Bloodthick Node heals 1 additional HP on each of its valid encounter-only regeneration pulses.",
+        "prerequisite": "Warrior 4; Bloodthick Node equipped; eligible feat grant",
+        "source": {
+          "line": 4960,
+          "reference": null,
+          "originalText": "| Bio-Stabilizer | Bloodthick Node | +1 regen while under the effect of 2+ mutations |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 4
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 1,
+        "equippedAfter": [
+          "warrior.supplement.bloodthick-node"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:4",
+        "class": "Warrior",
+        "classLevel": 4,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "bioStabilizer",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-bornToHorrify",
+      "synthetic": true,
+      "featId": "bornToHorrify",
+      "classCardAlias": "warrior.supplement.born-to-horrify",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 16
+          },
+          {
+            "kind": "distinctEquippedMutations",
+            "category": "Apex",
+            "minimum": 1,
+            "requiresActualUnlockedSlots": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW use the Warrior16 counterpart with any actual Apex mutation equipped and active: once on your own original regular turn, after your saving throw has failed but before consequences, optionally reroll the whole save and use the new result. Preserve its actual advantage/disadvantage configuration, rolling the appropriate new d20 set, not choosing freely among old and new dice. No Action/Reaction is required. The new result may be worse; a failed reroll cannot invoke this feat again on the same event. It can affect ordinary or death saves actually rolled on that turn if Apex remains active and source-specific zeroHP restrictions permit the passive reroll; it cannot replace an automatic failure without a roll. Off-turn saves and extra turns grant no entitlement, even if the standalone source says per turn. No banking. Applicable other reroll features retain their real limits; choose a legal order, never revisit a consumed stage.",
+      "completeOriginalObject": {
+        "id": "bornToHorrify",
+        "name": "Born to Horrify",
+        "description": "Your apex mutations grant enhanced resilience.",
+        "prerequisite": "Any Apex Mutation",
+        "effect": "While your Apex mutation is active, you may reroll 1 save per turn",
+        "type": "Aberrant_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.born-to-horrify",
+        "name": "Born to Horrify",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 16,
+        "acquisition": "supplement",
+        "activation": "Triggered",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "Once per regular turn while an Apex mutation is active",
+        "effect": "When you fail a saving throw while an Apex mutation is active, reroll it and use the new result. This can occur at most once on each of your regular turns, not once per enemy turn.",
+        "prerequisite": "Warrior 16; any Apex mutation equipped; eligible feat grant",
+        "source": {
+          "line": 5044,
+          "reference": null,
+          "originalText": "| Born to Horrify | Any Apex Mutation | While your Apex mutation is active, you may reroll 1 save per turn |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 16
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 9,
+          "totalLevel": 9,
+          "selectedCards": [
+            "warrior.arch.brutality-momentum"
+          ],
+          "automaticCards": [
+            "warrior.supplement.serum-overclock"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 10,
+          "totalLevel": 10,
+          "selectedCards": [
+            "warrior.hero.wardborn.guardian-tissue",
+            "warrior.hero.wardborn.bulwark-mutation-tree"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 11,
+          "totalLevel": 11,
+          "selectedCards": [
+            "warrior.base.intimidating-presence"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 12,
+          "totalLevel": 12,
+          "selectedCards": [
+            "warrior.hero.wardborn.mutated-guard"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 13,
+          "totalLevel": 13,
+          "selectedCards": [
+            "warrior.base.mutation-surge"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-iii"
+          ],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 14,
+          "totalLevel": 14,
+          "selectedCards": [
+            "warrior.hero.wardborn.guardian-pulse"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 15,
+          "totalLevel": 15,
+          "selectedCards": [
+            "warrior.arch.serum-cocktail"
+          ],
+          "automaticCards": [
+            "warrior.supplement.brutal-adaptation"
+          ],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 16,
+          "totalLevel": 16,
+          "selectedCards": [
+            "warrior.hero.wardborn.warding-mutation"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        },
+        {
+          "classLevel": 8,
+          "featId": "alertness"
+        },
+        {
+          "classLevel": 12,
+          "featId": "lucky"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 15,
+        "equippedAfter": [
+          "warrior.supplement.mythic-carapace"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:16",
+        "class": "Warrior",
+        "classLevel": 16,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "bornToHorrify",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-distortedDominance",
+      "synthetic": true,
+      "featId": "distortedDominance",
+      "classCardAlias": "warrior.supplement.distorted-dominance",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 4
+          },
+          {
+            "kind": "distinctEquippedMutations",
+            "category": "Aberrant",
+            "minimum": 1,
+            "requiresActualUnlockedSlots": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW select the Warrior4 counterpart's Reaction denial, explicitly replacing the standalone oneAction loss for this proposal. Require an Aberrant mutation equipped and at least the actual generating Aberrant mutation active. When an actual hostile fails a save against your directly applied Aberrant mutation effect, it loses its Reaction through the end of its next future regular turn. This is triggered, costs no extra action, and is once per actual target per encounter across both catalog representations. Range/target legality comes from that mutation, not an additional universal aura. Source immunity/prevention blocks the applicable rider; do not add Charmed, Stunned, silence, Speed0 or new hard denial. Reaction denial affects ordinary and extra Reaction tokens but does not spend or create them; expiry reveals any other still-operative restriction. A failed save against an unrelated spell, ally effect, periodic damage without a save or equipped-but-dormant mutation does not qualify. No loss of normalAction or guarantee of surrender. Retain the broader original whole-Action-denial wording as the explicitly rejected historical alternative. Adopt this bounded Reaction-denial procedure for the feat candidate; no class record is promoted or overwritten.",
+      "completeOriginalObject": {
+        "id": "distortedDominance",
+        "name": "Distorted Dominance",
+        "description": "Your aberrant nature overwhelms enemy actions.",
+        "prerequisite": "Any Aberrant Mutation",
+        "effect": "Enemies who fail saves vs your effects also lose 1 action",
+        "type": "Aberrant_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.distorted-dominance",
+        "name": "Distorted Dominance",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 4,
+        "acquisition": "supplement",
+        "activation": "Triggered",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Creature failing a save against your Aberrant mutation",
+        "duration": "Until end of target's next turn",
+        "frequency": "Once per target per encounter",
+        "effect": "When a creature fails a save against your Aberrant mutation, it loses its Reaction until the end of its next turn. This provisional normalization replaces the source's undefined loss of an action and does not fully deny the target's turn.",
+        "prerequisite": "Warrior 4; any Aberrant mutation equipped; eligible feat grant",
+        "source": {
+          "line": 5042,
+          "reference": null,
+          "originalText": "| Distorted Dominance | Any Aberrant Mutation | Enemies who fail saves vs your effects also lose 1 action |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 4
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 1,
+        "equippedAfter": [
+          "warrior.supplement.bone-lure-growth"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:4",
+        "class": "Warrior",
+        "classLevel": 4,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "distortedDominance",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-evisceratorProtocol",
+      "synthetic": true,
+      "featId": "evisceratorProtocol",
+      "classCardAlias": "warrior.supplement.eviscerator-protocol",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 8
+          },
+          {
+            "kind": "all",
+            "requirements": [
+              {
+                "kind": "equippedMutation",
+                "name": "Echo Knuckles",
+                "requiresActualUnlockedSlot": true
+              },
+              {
+                "kind": "equippedMutation",
+                "name": "Warpgrip Talons",
+                "requiresActualUnlockedSlot": true
+              }
+            ]
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW require Warrior8, exact Echo Knuckles and Warpgrip Talons equipped and both active when the real Echo Knuckles offhand slam hits. Talons in the standalone source binds only to that actual named card, not every claw. Once per numbered round, immediately on that hit choose one reviewed rider: Mutation Bleed1d4physical at starts of the next two regular target turns, or warrior.weakened−1total damage per weapon/natural-weapon hit, minimum0, until the end of its second future regular turn. NEW use slashing for the otherwise unspecified Bleed physical type; snapshot Warrior techniqueDC for its Medicine cure. Bleed joins current unified family arbitration; losing or suppressed due ticks are consumed normally. Same owner/profile refreshes without extra dice; ordinary positive-potential magical healing ends all eligible automatic-cure Bleeds, and ActionWISMedicine by self/adjacent helper ends one chosen record on success. Weakened does not stack its magnitude with Warpgrip or another warrior.weakened application; independent deadlines remain. No new saving throw or additional free hit. Actual immunity/source restrictions apply. Echo remains once-round, same target/reach and no recursive free attacks; this feat cannot turn the derived hit into another attack grant. Later mutation expiry does not erase an already applied rider unless its own source says so.",
+      "completeOriginalObject": {
+        "id": "evisceratorProtocol",
+        "name": "Eviscerator Protocol",
+        "description": "Your enhanced attacks apply debilitating effects.",
+        "prerequisite": "Echo Knuckles + Talons mutations",
+        "effect": "Free offhand hits now apply Bleed or Weakened (player choice)",
+        "type": "Combat_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.eviscerator-protocol",
+        "name": "Eviscerator Protocol",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 8,
+        "acquisition": "supplement",
+        "activation": "Passive",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Echo Knuckles target",
+        "duration": "As chosen condition",
+        "frequency": "When Echo Knuckles hits, once per round",
+        "effect": "Choose Bleed or Weakened. Bleed deals 1d4 damage at the start of the target's next 2 turns. Weakened causes -1 damage on weapon and natural-weapon hits for 2 rounds. Reapplication refreshes rather than stacks.",
+        "prerequisite": "Warrior 8; Echo Knuckles and Warpgrip Talons equipped; eligible feat grant",
+        "source": {
+          "line": 5003,
+          "reference": null,
+          "originalText": "| Eviscerator Protocol | Echo Knuckles + Talons | Free offhand hits now apply Bleed or Weakened (player choice) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 8
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 6,
+        "equippedAfter": [
+          "warrior.supplement.echo-knuckles",
+          "warrior.supplement.warpgrip-talons"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:8",
+        "class": "Warrior",
+        "classLevel": 8,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "evisceratorProtocol",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-evolutionUnderFire",
+      "synthetic": true,
+      "featId": "evolutionUnderFire",
+      "classCardAlias": "warrior.supplement.evolution-under-fire",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 16
+          },
+          {
+            "kind": "distinctEquippedMutations",
+            "category": "Apex",
+            "minimum": 1,
+            "requiresActualUnlockedSlots": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW adopt Warrior16, an actual Apex equipped and active, and the counterpart one damage-event definition in place of single-hit-only wording. After one hostile-caused event deals numeric actualDamageDealt greater than15 to you and you survive with the Apex still active, you may shorten one positive Warrior round-recharge counter by1, minimum0, at most once per numbered round. TempHP actually absorbed counts; uncapped resolved/post-temp amounts and overkill do not. Sixteen qualifies, fifteen does not. Mixed types from one event add once; separate hits never combine. Choose an actual acquired Warrior ability with a positive counter that has not already received its one reset/shortening this round; this consumes that ability's shared shortening allowance. A zero counter, RP, serum dose, Mutation Reserve, BT, SR/LR use or another class's counter is ineligible. Recheck after fatal/threshold consequences; Butcherform ending belowquarter prevents its use as the required activeApex. Friendly/staged/self damage and HP sacrifice cannot farm recharge. Outside a real encounter there is no hostile round-shortening loop.",
+      "completeOriginalObject": {
+        "id": "evolutionUnderFire",
+        "name": "Evolution Under Fire",
+        "description": "Severe damage triggers rapid adaptation.",
+        "prerequisite": "Any Apex Mutation",
+        "effect": "When you take >15 damage from a single hit, reduce cooldowns by 1 round",
+        "type": "Vital_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.evolution-under-fire",
+        "name": "Evolution Under Fire",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 16,
+        "acquisition": "supplement",
+        "activation": "Triggered",
+        "cost": "Feat choice",
+        "rangeAndTarget": "One Warrior ability with positive recharge",
+        "duration": "Instantaneous",
+        "frequency": "At most once per round",
+        "effect": "When one damage event deals more than 15 actual damage to you, reduce one positive Warrior round-recharge counter by 1, minimum 0, subject to the universal reset/shortening cap.",
+        "prerequisite": "Warrior 16; any Apex mutation equipped; eligible feat grant",
+        "source": {
+          "line": 4963,
+          "reference": null,
+          "originalText": "| Evolution Under Fire | Any Apex Mutation | Whenever you take >15 damage from a single hit, reduce cooldowns by 1 round |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 16
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 9,
+          "totalLevel": 9,
+          "selectedCards": [
+            "warrior.arch.brutality-momentum"
+          ],
+          "automaticCards": [
+            "warrior.supplement.serum-overclock"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 10,
+          "totalLevel": 10,
+          "selectedCards": [
+            "warrior.hero.wardborn.guardian-tissue",
+            "warrior.hero.wardborn.bulwark-mutation-tree"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 11,
+          "totalLevel": 11,
+          "selectedCards": [
+            "warrior.base.intimidating-presence"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 12,
+          "totalLevel": 12,
+          "selectedCards": [
+            "warrior.hero.wardborn.mutated-guard"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 13,
+          "totalLevel": 13,
+          "selectedCards": [
+            "warrior.base.mutation-surge"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-iii"
+          ],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 14,
+          "totalLevel": 14,
+          "selectedCards": [
+            "warrior.hero.wardborn.guardian-pulse"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 15,
+          "totalLevel": 15,
+          "selectedCards": [
+            "warrior.arch.serum-cocktail"
+          ],
+          "automaticCards": [
+            "warrior.supplement.brutal-adaptation"
+          ],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 16,
+          "totalLevel": 16,
+          "selectedCards": [
+            "warrior.hero.wardborn.warding-mutation"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        },
+        {
+          "classLevel": 8,
+          "featId": "alertness"
+        },
+        {
+          "classLevel": 12,
+          "featId": "lucky"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 15,
+        "equippedAfter": [
+          "warrior.supplement.mythic-carapace"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:16",
+        "class": "Warrior",
+        "classLevel": 16,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "evolutionUnderFire",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-hypermutationSpike",
+      "synthetic": true,
+      "featId": "hypermutationSpike",
+      "classCardAlias": "warrior.supplement.hypermutation-spike",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 16
+          },
+          {
+            "kind": "equippedMutation",
+            "name": "Butcherform Chassis",
+            "requiresActualUnlockedSlot": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW use Warrior16, actual equipped Butcherform Chassis and its legal activation. At that activation, optionally spend this feat's1/LR use to set that activation's maximum duration to five rounds instead of three, retaining its original owner regular-start expiry clock and all shorter ending conditions. It is one enhanced activation, not five additional rounds, a later free extension or a refreshed serum dose. CurrentHP strictly below one-quarter effective maximum ends Butcherform and this enhancement immediately; exact quarter remains legal. Increasing maximum can end it. During that same active unsuppressed activation, immune to Stunned and apply the already reviewed Hypermutation per-mode Speed floor: snapshot ordinary permanent/qualifying-persistent sheet modes at activation, excluding temporary buffs, stances, Strain, cargo, Exhaustion and the feat; floor for each is floor(snapshot/2). Apply after numeric changes/multipliers, but never defeat explicit Speed0, Root, Grappled/Restrained, Exhaustion5, absent modes, terrain costs or separate voluntary-movement prohibition. The standalone broad slow immunity is explicitly normalized to this reviewed narrower floor. Temporary suppression disables both new benefits while clocks continue; unsuppression before true expiry returns the same snapshot/use, never a fresh five rounds. Actual ended mutation cannot return without new paid activation. Stunned records follow current immunity/suppression rules; the feat does not erase unrelated conditions.",
+      "completeOriginalObject": {
+        "id": "hypermutationSpike",
+        "name": "Hypermutation Spike",
+        "description": "Extend your apex transformation beyond normal limits.",
+        "prerequisite": "Butcherform Chassis (Apex) mutation",
+        "effect": "Once per long rest, extend Butcherform to 5 rounds and become immune to stun/slow during duration",
+        "type": "Combat_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.hypermutation-spike",
+        "name": "Hypermutation Spike",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 16,
+        "acquisition": "supplement",
+        "activation": "Triggered",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "For one Butcherform activation",
+        "frequency": "1/long rest",
+        "effect": "When Butcherform Chassis activates, extend its maximum duration from 3 rounds to 5. During that activation you are immune to Stunned and your Speed cannot be reduced below half its normal value.",
+        "prerequisite": "Warrior 16; Butcherform Chassis equipped; eligible feat grant",
+        "source": {
+          "line": 5004,
+          "reference": null,
+          "originalText": "| Hypermutation Spike | Butcherform Chassis (Apex) | Once per long rest, extend Butcherform to 5 rounds and become immune to stun/slow during duration |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 16
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 9,
+          "totalLevel": 9,
+          "selectedCards": [
+            "warrior.arch.brutality-momentum"
+          ],
+          "automaticCards": [
+            "warrior.supplement.serum-overclock"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 10,
+          "totalLevel": 10,
+          "selectedCards": [
+            "warrior.hero.wardborn.guardian-tissue",
+            "warrior.hero.wardborn.bulwark-mutation-tree"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 11,
+          "totalLevel": 11,
+          "selectedCards": [
+            "warrior.base.intimidating-presence"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 12,
+          "totalLevel": 12,
+          "selectedCards": [
+            "warrior.hero.wardborn.mutated-guard"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 13,
+          "totalLevel": 13,
+          "selectedCards": [
+            "warrior.base.mutation-surge"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-iii"
+          ],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 14,
+          "totalLevel": 14,
+          "selectedCards": [
+            "warrior.hero.wardborn.guardian-pulse"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 15,
+          "totalLevel": 15,
+          "selectedCards": [
+            "warrior.arch.serum-cocktail"
+          ],
+          "automaticCards": [
+            "warrior.supplement.brutal-adaptation"
+          ],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 16,
+          "totalLevel": 16,
+          "selectedCards": [
+            "warrior.hero.wardborn.warding-mutation"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        },
+        {
+          "classLevel": 8,
+          "featId": "alertness"
+        },
+        {
+          "classLevel": 12,
+          "featId": "lucky"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 15,
+        "equippedAfter": [
+          "warrior.supplement.butcherform-chassis"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:16",
+        "class": "Warrior",
+        "classLevel": 16,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "hypermutationSpike",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {
+        "longRest": 1
+      },
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-juggernautCore",
+      "synthetic": true,
+      "featId": "juggernautCore",
+      "classCardAlias": "warrior.supplement.juggernaut-s-core",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 8
+          },
+          {
+            "kind": "equippedMutation",
+            "name": "Ossified Core",
+            "requiresActualUnlockedSlot": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW require Warrior8 and equipped/active Ossified Core. Its existing extra-critical-dice prevention is the qualifying critical-protection state; the feat does not declare every critical hit a normal hit or prevent critical-triggered riders. Adopt the counterpart scope: halve only bonus damage explicitly identified by an actual source as Sneak Attack or equivalent precision damage. A critical, poison, elemental infusion, spell rider or ordinary ability modifier is not automatically precision. NEW this halving is a source-specific precision resistance layer: halve each typed precision component once, rounding down; an existing same-type damage resistance also covering that component does not halve it again. Other nonprecision damage remains subject to its own ordinary defenses; vulnerability/immunity and fixed reduction use current damage ordering. If mixed precision types have already been separated, apply their own immunity/resistance once each; do not halve the entire weapon packet because one part is precision. Ossified's separate post-resistance piercing−2 applies once by its own event contract. Benefits stop when Ossified is not active. No new resistance to every critical or all physical damage.",
+      "completeOriginalObject": {
+        "id": "juggernautCore",
+        "name": "Juggernaut's Core",
+        "description": "Your ossified core provides protection against precision attacks.",
+        "prerequisite": "Ossified Core mutation",
+        "effect": "If you are immune to critical hits, gain resistance to sneak attack damage",
+        "type": "Vital_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.juggernaut-s-core",
+        "name": "Juggernaut's Core",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 8,
+        "acquisition": "supplement",
+        "activation": "Passive",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "While Ossified Core is active",
+        "effect": "While Ossified Core is active, reduce extra damage explicitly granted by Sneak Attack or equivalent precision-damage features by half, rounded down. Ordinary weapon damage is unaffected.",
+        "prerequisite": "Warrior 8; Ossified Core equipped; eligible feat grant",
+        "source": {
+          "line": 4961,
+          "reference": null,
+          "originalText": "| Juggernaut's Core | Ossified Core | If you are immune to crits, gain resistance to sneak attack damage |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 8
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 6,
+        "equippedAfter": [
+          "warrior.supplement.ossified-core"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:8",
+        "class": "Warrior",
+        "classLevel": 8,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "juggernautCore",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-killChainAdaptation",
+      "synthetic": true,
+      "featId": "killChainAdaptation",
+      "classCardAlias": "warrior.supplement.kill-chain-adaptation",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 4
+          },
+          {
+            "kind": "distinctEquippedMutations",
+            "category": "Combat",
+            "minimum": 2,
+            "requiresActualUnlockedSlots": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW require Warrior4 and two actual Combat mutations equipped and active at the trigger. Once per numbered round, after your personal direct melee attack reduces an independent meaningful hostile from positiveHP to0, gain+10ft to each existing usable Speed mode and one+1 entitlement on your next melee attack roll, both ending at the end of your next future original regular turn. This intentionally selects the counterpart zeroHP trigger rather than requiring actual death; resolve floors/knockout/death replacements first. The trigger grants no attack or fullAction. Copies, owned companion damage, ongoing ticks, captives, harmless targets and recycled bodies do not qualify. Modes derived from another Speed include this bonus once, not twice; previously spent movement remains spent. The attack entitlement consumes on the next legal melee attack roll, hit or miss; a save-only melee effect does not consume it. Same-family new trigger may refresh an unexpired record under the once-round cap but never gives+20ft or queued+1s. It ends if required equipped or active mutation eligibility is lost, even before its deadline. Encounter transitions do not extend or refresh either benefit.",
+      "completeOriginalObject": {
+        "id": "killChainAdaptation",
+        "name": "Kill-Chain Adaptation",
+        "description": "Successful kills enhance your combat capabilities.",
+        "prerequisite": "2 Combat Mutations",
+        "effect": "After a melee kill, gain +10 ft movement and +1 to hit",
+        "type": "Combat_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.kill-chain-adaptation",
+        "name": "Kill-Chain Adaptation",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 4,
+        "acquisition": "supplement",
+        "activation": "Triggered",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "Until end of next regular turn",
+        "frequency": "Once per round",
+        "effect": "After you personally reduce a meaningful hostile creature to 0 HP with a melee attack, gain +10 feet Speed and +1 on your next melee attack roll before the end of your next regular turn.",
+        "prerequisite": "Warrior 4; two Combat mutations equipped; eligible feat grant",
+        "source": {
+          "line": 5001,
+          "reference": null,
+          "originalText": "| Kill-Chain Adaptation | 2 Combat Mutations | After a melee kill, gain +10 ft movement and +1 to hit |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 8
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 5,
+        "equippedAfter": [
+          "warrior.supplement.brute-knuckles",
+          "warrior.supplement.splinter-bone-fangs"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:8",
+        "class": "Warrior",
+        "classLevel": 8,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "killChainAdaptation",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-livingFortress",
+      "synthetic": true,
+      "featId": "livingFortress",
+      "classCardAlias": "warrior.supplement.living-fortress",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 8
+          },
+          {
+            "kind": "distinctEquippedMutations",
+            "category": "Vital",
+            "minimum": 3,
+            "requiresActualUnlockedSlots": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW require Warrior8 and three actual Vital mutations equipped for acquisition; the benefit operates only while at least three distinct Vital mutations are actually active. No feat adds slots or active limits: the Warrior must have actual unlocked slots and an expressly acquired temporary active-count exception where needed. A Warrior8 normally cannot equip three mutations, so the printed level is a minimum rather than proof of present eligibility. Selected doctrine is the counterpart precise protection: opponents receive no advantage solely from a source explicitly granting advantage for flanking you. Reviewed ordinary combat has no global flanking advantage; this feat does not invent one. Independent unseen/Restrained/other advantage survives. It does not erase nearby bodies, ally assistance, legal target geometry, Tactical Flanker's separately proposed damage die, attacks or cover. When any required active state ends/suppresses, protection immediately stops; restoration within existing durations can restore protection without new actions or resources. No numericalAC/DR or immunity to all positioning effects.",
+      "completeOriginalObject": {
+        "id": "livingFortress",
+        "name": "Living Fortress",
+        "description": "Multiple vital mutations make you nearly impregnable.",
+        "prerequisite": "3 Vital Mutations active",
+        "effect": "Gain immunity to flanking",
+        "type": "Vital_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.living-fortress",
+        "name": "Living Fortress",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 8,
+        "acquisition": "supplement",
+        "activation": "Passive",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "While at least three Vital mutations are active",
+        "effect": "You cannot grant advantage to an enemy solely because it is flanking you. Other sources of advantage still apply.",
+        "prerequisite": "Warrior 8; three Vital mutations equipped; eligible feat grant",
+        "source": {
+          "line": 4962,
+          "reference": null,
+          "originalText": "| Living Fortress | 3 Vital Mutations active | Gain immunity to flanking |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 16
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 9,
+          "totalLevel": 9,
+          "selectedCards": [
+            "warrior.arch.brutality-momentum"
+          ],
+          "automaticCards": [
+            "warrior.supplement.serum-overclock"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 10,
+          "totalLevel": 10,
+          "selectedCards": [
+            "warrior.hero.wardborn.guardian-tissue",
+            "warrior.hero.wardborn.bulwark-mutation-tree"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 11,
+          "totalLevel": 11,
+          "selectedCards": [
+            "warrior.base.intimidating-presence"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 12,
+          "totalLevel": 12,
+          "selectedCards": [
+            "warrior.hero.wardborn.mutated-guard"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 13,
+          "totalLevel": 13,
+          "selectedCards": [
+            "warrior.base.mutation-surge"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-iii"
+          ],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 14,
+          "totalLevel": 14,
+          "selectedCards": [
+            "warrior.hero.wardborn.guardian-pulse"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 15,
+          "totalLevel": 15,
+          "selectedCards": [
+            "warrior.arch.serum-cocktail"
+          ],
+          "automaticCards": [
+            "warrior.supplement.brutal-adaptation"
+          ],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 16,
+          "totalLevel": 16,
+          "selectedCards": [
+            "warrior.hero.wardborn.warding-mutation"
+          ],
+          "automaticCards": [],
+          "heroPath": "Wardborn",
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        },
+        {
+          "classLevel": 8,
+          "featId": "alertness"
+        },
+        {
+          "classLevel": 12,
+          "featId": "lucky"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 13,
+        "equippedAfter": [
+          "warrior.supplement.ironhide-graft",
+          "warrior.supplement.bloodthick-node",
+          "warrior.supplement.spinal-buffer"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:16",
+        "class": "Warrior",
+        "classLevel": 16,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "livingFortress",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-synapticRot",
+      "synthetic": true,
+      "featId": "synapticRot",
+      "classCardAlias": "warrior.supplement.synaptic-rot",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 8
+          },
+          {
+            "kind": "any",
+            "requirements": [
+              {
+                "kind": "equippedMutation",
+                "name": "Wailing Eye Cluster",
+                "requiresActualUnlockedSlot": true
+              },
+              {
+                "kind": "equippedMutation",
+                "name": "Viral Core Sacs",
+                "requiresActualUnlockedSlot": true
+              }
+            ]
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW select the Warrior8 counterpart over nearby-any-save/all-spell-shutdown wording. Require Wailing Eye Cluster or Viral Core Sacs equipped and at least one of those exact mutations active. When an actual hostile within15ft and line of effect fails anINT orWIS save against your own direct Warrior feature, apply actualSilenced until the end of its next future regular turn, once per target per numbered round. The generating Warrior feature need not be the equipped prerequisite itself, but must be actually acquired/active/legal; an ally spell or unrelated ordinary spell does not qualify. Source names Wailing Eye and Viral Core bind only to the named actual cards. ActualSilenced prevents verbal components, command words, Chants and audible coordination; nonverbal spells and nonspell abilities remain possible if otherwise legal. No new universal spell ban or action loss. Same-profile reapplication may preserve later expiry without stacking, but the round ledger and source immunity apply. Gaining a nonverbal casting permission is not retroactively denied. No automatic target identification, sound-detection channel or ongoing15ft tether after application; later range loss does not erase the legal record.",
+      "completeOriginalObject": {
+        "id": "synapticRot",
+        "name": "Synaptic Rot",
+        "description": "Mental attacks disrupt enemy spellcasting.",
+        "prerequisite": "Wailing Eye or Viral Core mutation",
+        "effect": "If an enemy fails a WIS or INT save near you, they cannot cast spells next round",
+        "type": "Aberrant_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.synaptic-rot",
+        "name": "Synaptic Rot",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 8,
+        "acquisition": "supplement",
+        "activation": "Triggered",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Enemy within 15 feet failing a Wisdom or Intelligence save against your Warrior feature",
+        "duration": "Until end of target's next turn",
+        "frequency": "Once per target per round",
+        "effect": "When the target fails the qualifying save, it is Silenced until the end of its next turn. This does not prevent non-spell abilities.",
+        "prerequisite": "Warrior 8; Wailing Eye Cluster or Viral Core Sacs equipped; eligible feat grant",
+        "source": {
+          "line": 5045,
+          "reference": null,
+          "originalText": "| Synaptic Rot | Wailing Eye or Viral Core | If an enemy fails a WIS or INT save near you, they cannot cast spells next round |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 8
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 6,
+        "equippedAfter": [
+          "warrior.supplement.wailing-eye-cluster"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:8",
+        "class": "Warrior",
+        "classLevel": 8,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "synapticRot",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    },
+    {
+      "id": "WACQ-terrorEngine",
+      "synthetic": true,
+      "featId": "terrorEngine",
+      "classCardAlias": "warrior.supplement.terror-engine",
+      "requirements": {
+        "kind": "all",
+        "requirements": [
+          {
+            "kind": "classLevel",
+            "className": "Warrior",
+            "minimum": 8
+          },
+          {
+            "kind": "equippedMutation",
+            "name": "Carrion Signal Gland",
+            "requiresActualUnlockedSlot": true
+          }
+        ]
+      },
+      "completeOperativeProcedure": "NEW select Warrior8 and actual Carrion Signal Gland equipped/active. At each incoming direct damage event, count distinct meaningful hostiles within30ft and line of effect currently carrying an active unsuppressed Shaken, Frightened or activeDisoriented record caused by your own Warrior features. Two or more qualify; pendingDisoriented does not, and multiple records on one creature count as one creature. NEW the first positive resolved event in the numbered round while this predicate holds receives2whole-event damage reduction, minimum0, after passive typed defenses and before temporaryHP. Consume the feat's round entitlement when applied even if the reduction makes damage0; an event already at0 does not consume it. Stable component order allocates the2 once, not2 per type. No mitigation of HP sacrifice, direct death/state assignment or a transfer expressly forbidding recipient mitigation. The precise class wording addsFrightened and confines the original+2DR to one qualifying event; both differences remain explicit. Losing range, source eligibility or an active qualifying state removes readiness for later events but does not undo resolved damage. It grants no armor, universal resistance or new fear application.",
+      "completeOriginalObject": {
+        "id": "terrorEngine",
+        "name": "Terror Engine",
+        "description": "Fear effects provide defensive benefits.",
+        "prerequisite": "Carrion Signal Gland mutation",
+        "effect": "If 2+ enemies are Shaken or Disoriented, gain +2 DR",
+        "type": "Aberrant_mutation",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "completeClassCounterpart": {
+        "id": "warrior.supplement.terror-engine",
+        "name": "Terror Engine",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 8,
+        "acquisition": "supplement",
+        "activation": "Passive",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "While condition is met",
+        "frequency": "Always",
+        "effect": "While at least two hostile creatures within 30 feet are currently Shaken, Frightened or Disoriented by your Warrior features, reduce the first damage you take each round by 2.",
+        "prerequisite": "Warrior 8; Carrion Signal Gland equipped; eligible feat grant",
+        "source": {
+          "line": 5043,
+          "reference": null,
+          "originalText": "| Terror Engine | Carrion Signal Gland | If 2+ enemies are Shaken or Disoriented, gain +2 DR |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "abilityMethod": "standard-array",
+      "baseScores": {
+        "STR": 15,
+        "DEX": 14,
+        "CON": 13,
+        "INT": 12,
+        "WIS": 10,
+        "CHA": 8
+      },
+      "ancestry": "human",
+      "variant": "imperial-human",
+      "appliedAbilityBonuses": {
+        "STR": 1,
+        "DEX": 1,
+        "CON": 1,
+        "INT": 1,
+        "WIS": 1,
+        "CHA": 2
+      },
+      "permanentScores": {
+        "STR": 16,
+        "DEX": 15,
+        "CON": 14,
+        "INT": 13,
+        "WIS": 11,
+        "CHA": 10
+      },
+      "chosenWarriorAbility": "STR",
+      "classLevels": {
+        "Warrior": 8
+      },
+      "classProgression": [
+        {
+          "class": "Warrior",
+          "classLevel": 1,
+          "totalLevel": 1,
+          "selectedCards": [
+            "warrior.base.serum-injection",
+            "warrior.base.brutal-strike",
+            "warrior.base.survival-instinct",
+            "warrior.base.combat-instinct"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-i",
+            "warrior.supplement.brutality-threshold-tracker"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 2,
+          "totalLevel": 2,
+          "selectedCards": [
+            "warrior.base.physical-conditioning",
+            "warrior.base.brutality-sense"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutagen-injection"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 3,
+          "totalLevel": 3,
+          "selectedCards": [
+            "warrior.arch.mutation-efficiency",
+            "warrior.arch.mutation-overload"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 4,
+          "totalLevel": 4,
+          "selectedCards": [
+            "warrior.arch.brutal-fortitude"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 5,
+          "totalLevel": 5,
+          "selectedCards": [
+            "warrior.arch.overpressure-response"
+          ],
+          "automaticCards": [
+            "warrior.supplement.mutation-slot-ii"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 6,
+          "totalLevel": 6,
+          "selectedCards": [
+            "warrior.arch.crushing-advance"
+          ],
+          "automaticCards": [
+            "warrior.supplement.bone-hardened"
+          ],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 7,
+          "totalLevel": 7,
+          "selectedCards": [
+            "warrior.arch.pain-conversion"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": false
+        },
+        {
+          "class": "Warrior",
+          "classLevel": 8,
+          "totalLevel": 8,
+          "selectedCards": [
+            "warrior.arch.adaptive-tissue"
+          ],
+          "automaticCards": [],
+          "heroPath": null,
+          "ordinaryFeatOpportunity": true
+        }
+      ],
+      "earlierFeatChoices": [
+        {
+          "classLevel": 4,
+          "featId": "alert"
+        }
+      ],
+      "equipmentReceipt": {
+        "event": "synthetic completed qualifying long rest",
+        "atWarriorClassLevel": 6,
+        "equippedAfter": [
+          "warrior.supplement.carrion-signal-gland"
+        ],
+        "allDormantAtAcquisition": true,
+        "clockAndSupportAreSuppliedScenarioPremises": true,
+        "note": "The rest is an authored scenario premise, not an authenticated campaign event. Its completion is earlier than the feat milestone; mutation names do not create slots."
+      },
+      "acquisitionOpportunity": {
+        "identity": "Warrior:8",
+        "class": "Warrior",
+        "classLevel": 8,
+        "unspent": true
+      },
+      "expectedPrerequisitesMet": true,
+      "expectedPaidIdentity": "terrorEngine",
+      "expectedNewMutationSlots": 0,
+      "expectedNewClassSelections": 0,
+      "expectedFeatLimitedUseAtFirstAcquisition": {},
+      "scope": "Complete named mutation/class prerequisite and one paid identity for a synthetic acquisition. Full sheet, real campaign advancement/rest receipts and all use-time feat triggers are separate."
+    }
+  ],
+  "pendingNarrowRuling": "FEAT327-ACQ-02: global versus per-tree Advanced tier ceiling; the12 positive fixtures fit both interpretations and use at most one Apex.",
+  "sourceInformationDeleted": false,
+  "selectionEnabled": false,
+  "candidateReadyForSubmission": false
+}

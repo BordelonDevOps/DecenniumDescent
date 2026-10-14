@@ -1,0 +1,193 @@
+{
+  "scenarioId": "DICE-L20-CEILING-B",
+  "level": 20,
+  "budget": "Catastrophic",
+  "objective": "level ceiling martial/tempo party",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "bard",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "crimson-agent",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "dragoon",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "monk",
+        "x": 0,
+        "y": 15
+      },
+      {
+        "id": "tinker",
+        "x": 0,
+        "y": 20
+      },
+      {
+        "id": "warrior",
+        "x": 0,
+        "y": 25
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Choralith, Voice Below",
+        "x": 30,
+        "y": 0
+      },
+      {
+        "id": "Ashthirst the Hollow",
+        "x": 30,
+        "y": 5
+      }
+    ]
+  },
+  "cargo": null,
+  "partyBuildHashes": [
+    "2d7308166f318ea5967f4fe87750bde83b9a07b7dddf8519391a2026c06b3263",
+    "e2914d5f7968abc9b6fad259f2cbe8f3dbcd30f205b20b29a80383bc174f3064",
+    "8bd4962d238db96e67ae1aae7336c9ff242299cdc703e5bb3c2893e4cd2ea0dd",
+    "52662422aaf42eda991102d7a5c98dd0e3c53417713d5e6cdf7d5960788db2d5",
+    "fd2d819ec014811e0a61426955b3058422f61ebb110ecd1f730fbaa24bd887a9",
+    "716e27c64981dd3739963f513ccd4e802443c04bb80a53bd14887b222dc91c5b"
+  ],
+  "enemies": [
+    {
+      "name": "Choralith, Voice Below",
+      "hitPoints": 483,
+      "armorClass": 19,
+      "challengeRating": "20",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Resonant Lash",
+          "text": "Attack: +11 to hit, one target. Hit: 3d12+8 thunder damage (average 28)."
+        },
+        {
+          "name": "Echo Needle",
+          "text": "Attack: +11 to hit, one target. Hit: 2d10+6 psychic damage (average 17)."
+        },
+        {
+          "name": "Subsonic Chord (Recharge 5-6)",
+          "text": "Creatures in the affected area make a DC 20 Constitution save, taking 6d10 thunder damage (average 33) on a failure and half on a success. The Director should describe the charge-up before resolving it."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Gate-Bound",
+          "text": "The Guardian cannot be permanently displaced from its arena while the Seal remains active."
+        },
+        {
+          "name": "Aerial Hunter",
+          "text": "It ignores ground difficult terrain and seeks angles that bypass front-line cover."
+        },
+        {
+          "name": "Escalation Pulse",
+          "text": "Subsonic Chord recharges on 5-6; visible signs appear one round before the first use."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Resonant Lash",
+          "bonus": 11,
+          "n": 3,
+          "sides": 12,
+          "mod": 8,
+          "text": "Attack: +11 to hit, one target. Hit: 3d12+8 thunder damage (average 28).",
+          "dc": null
+        },
+        {
+          "name": "Echo Needle",
+          "bonus": 11,
+          "n": 2,
+          "sides": 10,
+          "mod": 6,
+          "text": "Attack: +11 to hit, one target. Hit: 2d10+6 psychic damage (average 17).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": true,
+      "tenacityPerRound": 1,
+      "source": "src/bestiary_data_full.json"
+    },
+    {
+      "name": "Ashthirst the Hollow",
+      "hitPoints": 464,
+      "armorClass": 16,
+      "challengeRating": "14",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Ash Claw",
+          "text": "Attack: +9 to hit, one target. Hit: 3d8+7 necrotic damage (average 20)."
+        },
+        {
+          "name": "Cinder Lash",
+          "text": "Attack: +9 to hit, one target. Hit: 2d10+5 fire damage (average 16)."
+        },
+        {
+          "name": "Hollow Wail (Recharge 5-6)",
+          "text": "Creatures in the affected area make a DC 18 Wisdom save, taking 6d8 psychic damage (average 27) on a failure and half on a success. The Director should describe the charge-up before resolving it."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Gate-Bound",
+          "text": "The Guardian cannot be permanently displaced from its arena while the Seal remains active."
+        },
+        {
+          "name": "Aerial Hunter",
+          "text": "It ignores ground difficult terrain and seeks angles that bypass front-line cover."
+        },
+        {
+          "name": "Escalation Pulse",
+          "text": "Hollow Wail recharges on 5-6; visible signs appear one round before the first use."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Ash Claw",
+          "bonus": 9,
+          "n": 3,
+          "sides": 8,
+          "mod": 7,
+          "text": "Attack: +9 to hit, one target. Hit: 3d8+7 necrotic damage (average 20).",
+          "dc": null
+        },
+        {
+          "name": "Cinder Lash",
+          "bonus": 9,
+          "n": 2,
+          "sides": 10,
+          "mod": 5,
+          "text": "Attack: +9 to hit, one target. Hit: 2d10+5 fire damage (average 16).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": true,
+      "tenacityPerRound": 1,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "0d2ca08a5366e2fed8c17f18e935d55e0e039dbb885992eea432f0a75b3e3c34"
+}

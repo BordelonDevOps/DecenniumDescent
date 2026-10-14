@@ -1,0 +1,2358 @@
+[
+  {
+    "class": "Bard",
+    "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+    "card": {
+      "id": "bard.base.lingering-notes",
+      "name": "Lingering Notes",
+      "className": "Bard",
+      "band": "Base",
+      "path": null,
+      "kind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "rangeFeet": 0,
+      "target": "Self",
+      "duration": "While known; individual riders last as stated",
+      "resourceCost": {
+        "rp": 0,
+        "maintenanceRp": 0,
+        "crescendo": "none"
+      },
+      "recharge": {
+        "rounds": 0,
+        "longRestUses": null,
+        "shortRestUses": null
+      },
+      "resolution": "None",
+      "effect": "When a sustained Chant ends before its final scheduled pulse, mark one ally affected by its last pulse. At the start of your next turn, if that ally is within 30 feet and can hear you, it gains C temporary HP for 1 round. This residual note restores no HP, uses no concentration, and triggers no other Bard effects. Silence or incapacitation cancels it; only one residual note can wait at a time.",
+      "crescendoRider": "Not a started Performance; no Crescendo rider.",
+      "tags": [],
+      "echoEligible": false,
+      "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1819,
+        "originalText": "Lingering Notes: Chants last 1 extra turn after being interrupted."
+      },
+      "designStatus": "playtest-draft",
+      "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+      "prerequisites": {
+        "bardClassLevel": 1,
+        "heroPath": null,
+        "additional": "Only the activation conditions printed in this card and the common rules."
+      }
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Bard",
+    "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+    "card": {
+      "id": "bard.arch.fluid-tempo",
+      "name": "Fluid Tempo",
+      "className": "Bard",
+      "band": "Arch",
+      "path": null,
+      "kind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "rangeFeet": 0,
+      "target": "Self",
+      "duration": "While known; individual riders last as stated",
+      "resourceCost": {
+        "rp": 0,
+        "maintenanceRp": 0,
+        "crescendo": "none"
+      },
+      "recharge": {
+        "rounds": 0,
+        "longRestUses": null,
+        "shortRestUses": null
+      },
+      "resolution": "None",
+      "effect": "Taking damage alone no longer resets your Crescendo. You still make concentration saves for sustained effects; failing one ends that effect and resets Crescendo. Silence and incapacitation still break rhythm.",
+      "crescendoRider": "Not a started Performance; no Crescendo rider.",
+      "tags": [],
+      "echoEligible": false,
+      "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1835,
+        "originalText": "Fluid Tempo: Crescendo stacks no longer drop when hit."
+      },
+      "designStatus": "playtest-draft",
+      "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+      "prerequisites": {
+        "bardClassLevel": 3,
+        "heroPath": null,
+        "additional": "Only the activation conditions printed in this card and the common rules."
+      }
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Crimson Agent",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+    "card": {
+      "id": "crimson-agent.base.shroudstep",
+      "name": "Shroudstep",
+      "className": "Crimson Agent",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Until start next turn",
+      "frequency": "Once/own turn",
+      "effect": "After taking the Hide Action and moving at least 10 ft while hidden, gain+1 AC. You still need valid concealment and a successful ordinary Stealth check; this feature does not grant invisibility.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2130,
+        "originalText": "Shroudstep: After using stealth movement, gain +10% dodge for 1 turn."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Crimson Agent",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+    "card": {
+      "id": "crimson-agent.hero.shadow-operative.total-silence",
+      "name": "Total Silence",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "5 BG; 1 long-rest use",
+      "rangeAndTarget": "Up to 6 enemies within 30 ft",
+      "duration": "Until end your next turn",
+      "frequency": "1/long rest",
+      "effect": "Each makes CON save. Failure prevents verbal spellcasting and Reactions, and suppresses one passive bonus to AC or attack rolls chosen from an observed effect. It never removes innate anatomy, immunities, legendary rules or class resource pools. Success prevents all effects; no whole-sheet passive disable.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2186,
+        "originalText": "Final Cut – Total Silence: AoE disables all enemy passives and silences for 2 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Crimson Agent",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+    "card": {
+      "id": "crimson-agent.hero.shadow-operative.veinweave-shadow-meld",
+      "name": "Veinweave: Shadow Meld",
+      "className": "Crimson Agent",
+      "band": "Hero",
+      "path": "Shadow Operative",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 BG",
+      "rangeAndTarget": "Self",
+      "duration": "Concentration, 1 minute",
+      "frequency": "Recharge 4",
+      "effect": "Start Shadow Meld Veinweave: advantage on Stealth and invisible while motionless in dim light/darkness. Moving removes invisibility until start next turn; attacking or casting ends the Veinweave. No concealment against blindsight or effects that expressly reveal invisibility.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2190,
+        "originalText": "Veinweave: Shadow Meld: Consume 3 Blood Gauge points to become nearly undetectable for 1 minute, gaining enhanced stealth capabilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Mage",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+    "card": {
+      "id": "mage.arch.arcane-stability",
+      "name": "Arcane Stability",
+      "className": "Mage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Permanent",
+      "frequency": "Always",
+      "effect": "Arcane Stability. Tags: arcanist, passive. When damage causes you to make a concentration save for a Mage spell, add +2 to that save. This bonus does not stack with another feature named Arcane Stability and does not change the concentration DC. It does not prevent Silence, incapacitation or effects that end concentration without a save.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2912,
+        "originalText": "Arcane Stability: Reduce spell fizzle chance by 25%."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Mage",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+    "card": {
+      "id": "mage.hero.archmage.empowered-link",
+      "name": "Empowered Link",
+      "className": "Mage",
+      "band": "Hero",
+      "path": "Archmage",
+      "sourceKind": "passive",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to M allies within 25 feet",
+      "duration": "Matches the shared benefit, maximum until end of your next regular turn",
+      "frequency": "At most once per turn",
+      "effect": "Empowered Link. Tags: archmage, buff. When one of your Mage cards grants you temporary HP, a Speed bonus or a numeric attack/save bonus, choose up to M allies within 25 feet. They gain the same non-resource benefit at half its numeric amount rounded down, minimum 1 where applicable. It never shares Actions, RP, Focus, concentration, invisibility, summons or class resources. Resistance is not a numeric bonus and is not shared by this card.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2935,
+        "originalText": "Empowered Link: Share buffs with allies in a 5-tile radius."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Mirrorsage",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+    "card": {
+      "id": "mirrorsage.hero.light-weaver.luminant-bond",
+      "name": "Luminant Bond",
+      "className": "Mirrorsage",
+      "band": "Hero",
+      "path": "Light Weaver",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Allies/enemies within 10 ft of your Beast/Companion",
+      "duration": "While companion exists",
+      "frequency": "Continuous",
+      "effect": "Allies gain+1 to WIS saves. Invisible enemies in aura shed faint outlines and cannot gain advantage solely from invisibility, but concealment/cover still apply. This grants neither full True Sight nor targeting through walls.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3106,
+        "originalText": "Luminant Bond: Charmed/Beast emits aura that reveals invisible and grants +5% saves."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Monk",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+    "card": {
+      "id": "monk.hero.way-of-shadow.deathless-silence",
+      "name": "Deathless Silence",
+      "className": "Monk",
+      "band": "Hero",
+      "path": "Way of Shadow",
+      "sourceKind": "passive",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Action",
+      "cost": "5 Ki + 5 RP",
+      "rangeAndTarget": "Up to three enemies you can perceive within 60 feet",
+      "duration": "Until start of your next regular turn; max-HP reduction until rest",
+      "frequency": "1/long rest; automatic Hero Final",
+      "effect": "Final — Deathless Silence. Tags: hero, shadow, final, teleportation, max-hp, weave. Until the start of your next regular turn you cannot be targeted by opportunity attacks or Reactions. Teleport adjacent to up to three different chosen enemies in sequence and make one unarmed strike against each. On each hit, the target makes a Constitution save. Failure reduces its maximum HP by 4 S+M under the common non-stacking rule and suppresses one non-core defensive passive it possesses until the end of its next turn; the Director identifies an applicable visible passive before the save. This does not disable core class engines, legendary rules or creature type traits.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3313,
+        "originalText": "Final – Deathless Silence: Untargetable 1 turn → teleport to 3 enemies and apply Void Palm (max HP -25%, passive disable)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.curse.tongues",
+      "name": "Tongues",
+      "className": "Oracle",
+      "band": "Base",
+      "path": "Curse",
+      "sourceKind": "curse",
+      "minimumClassLevel": 1,
+      "acquisition": "choose one Curse at1",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Permanent",
+      "frequency": "Chosen once at Oracle 1",
+      "effect": "LIMITATIONS: unless you suppress the chorus, take -2 on social checks with mortals who do not understand your overlapping speech. You may suppress it as an Action for 10 minutes; while suppressed you cannot use Tongues Boons requiring supernatural speech. Prophetic statements may be misunderstood narratively but the Director should not falsify player intent. After more than 1 uninterrupted hour of mundane concentration, make a DC 10 Wisdom save or lose the final 10 minutes of progress to intrusive voices.",
+      "prerequisite": "Selected Curse: Tongues",
+      "source": {
+        "line": null,
+        "reference": "CURSES.ORACLE_CURSES[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "CURSES.ORACLE_CURSES[4]",
+            "value": {
+              "id": "tongues",
+              "name": "Tongues",
+              "blurb": "Many voices share your speech, making truth harder to hear cleanly",
+              "limitations": [
+                "Unless you suppress the curse, social checks with mortals who do not share your mystery tongue suffer −2",
+                "Even accurate prophetic speech is often misheard; listeners may hear what they fear",
+                "You cannot fully silence the chorus; concentrating on mundane tasks longer than 1 hour requires a Wisdom save"
+              ],
+              "boons": [
+                {
+                  "level": 3,
+                  "name": "Curse Boon I",
+                  "description": "Understand all spoken languages and read divine script fragments. Allies within 5 tiles gain +2 to Lore and Insight checks when you interpret for them."
+                },
+                {
+                  "level": 5,
+                  "name": "Curse Boon II",
+                  "description": "Confounding babble: one enemy within 3 tiles must save or lose their next action, overwhelmed by overlapping voices. Once per combat."
+                },
+                {
+                  "level": 10,
+                  "name": "Curse Boon III",
+                  "description": "Prophetic utterance — force one creature within 3 tiles to truthfully answer a yes/no question drawn from the Choir's echo. Once per day."
+                },
+                {
+                  "level": 15,
+                  "name": "Curse Boon IV",
+                  "description": "Polyglot surge: communicate with beasts, plants, and spirits for 1 hour as the First Song's vocabulary flows through you. Once per long rest."
+                },
+                {
+                  "level": 20,
+                  "name": "Curse Boon V",
+                  "description": "Once per day, speak a single Word in the tongue of creation — all who hear must save or obey one short command. Those who resist take psychic damage."
+                }
+              ],
+              "draft": true,
+              "source": "Draft — Aethel lore, pending author review"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.tongues.tongues-boon-i",
+      "name": "Tongues — Boon I",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Tongues",
+      "sourceKind": "curseBoon",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for selected Curse",
+      "activation": "Passive while chorus unsuppressed",
+      "cost": "0",
+      "rangeAndTarget": "Self and up to three hearing allies within 25 feet",
+      "duration": "While interpreting",
+      "frequency": "Continuous",
+      "effect": "understand all spoken mortal languages and fragmentary divine script; allies within 25 feet who can hear your interpretation gain +2 on Lore and Insight checks directly involving that communication.",
+      "prerequisite": "Oracle 3; selected Curse:Tongues",
+      "source": {
+        "line": null,
+        "reference": "CURSES.ORACLE_CURSES[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "CURSES.ORACLE_CURSES[4]",
+            "value": {
+              "id": "tongues",
+              "name": "Tongues",
+              "blurb": "Many voices share your speech, making truth harder to hear cleanly",
+              "limitations": [
+                "Unless you suppress the curse, social checks with mortals who do not share your mystery tongue suffer −2",
+                "Even accurate prophetic speech is often misheard; listeners may hear what they fear",
+                "You cannot fully silence the chorus; concentrating on mundane tasks longer than 1 hour requires a Wisdom save"
+              ],
+              "boons": [
+                {
+                  "level": 3,
+                  "name": "Curse Boon I",
+                  "description": "Understand all spoken languages and read divine script fragments. Allies within 5 tiles gain +2 to Lore and Insight checks when you interpret for them."
+                },
+                {
+                  "level": 5,
+                  "name": "Curse Boon II",
+                  "description": "Confounding babble: one enemy within 3 tiles must save or lose their next action, overwhelmed by overlapping voices. Once per combat."
+                },
+                {
+                  "level": 10,
+                  "name": "Curse Boon III",
+                  "description": "Prophetic utterance — force one creature within 3 tiles to truthfully answer a yes/no question drawn from the Choir's echo. Once per day."
+                },
+                {
+                  "level": 15,
+                  "name": "Curse Boon IV",
+                  "description": "Polyglot surge: communicate with beasts, plants, and spirits for 1 hour as the First Song's vocabulary flows through you. Once per long rest."
+                },
+                {
+                  "level": 20,
+                  "name": "Curse Boon V",
+                  "description": "Once per day, speak a single Word in the tongue of creation — all who hear must save or obey one short command. Those who resist take psychic damage."
+                }
+              ],
+              "draft": true,
+              "source": "Draft — Aethel lore, pending author review"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.tongues.tongues-boon-ii",
+      "name": "Tongues — Boon II",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Tongues",
+      "sourceKind": "curseBoon",
+      "minimumClassLevel": 5,
+      "acquisition": "automatic for selected Curse",
+      "activation": "Action; speech required",
+      "cost": "0",
+      "rangeAndTarget": "One hearing enemy within 15 feet",
+      "duration": "Until end of its next turn",
+      "frequency": "1/encounter; hard-denial guard",
+      "effect": "once per encounter as an Action, one enemy within 15 feet makes a Wisdom save; on failure it would lose its next Action, subject to the Oracle hard-control guard.",
+      "prerequisite": "Oracle 5; selected Curse:Tongues",
+      "source": {
+        "line": null,
+        "reference": "CURSES.ORACLE_CURSES[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "CURSES.ORACLE_CURSES[4]",
+            "value": {
+              "id": "tongues",
+              "name": "Tongues",
+              "blurb": "Many voices share your speech, making truth harder to hear cleanly",
+              "limitations": [
+                "Unless you suppress the curse, social checks with mortals who do not share your mystery tongue suffer −2",
+                "Even accurate prophetic speech is often misheard; listeners may hear what they fear",
+                "You cannot fully silence the chorus; concentrating on mundane tasks longer than 1 hour requires a Wisdom save"
+              ],
+              "boons": [
+                {
+                  "level": 3,
+                  "name": "Curse Boon I",
+                  "description": "Understand all spoken languages and read divine script fragments. Allies within 5 tiles gain +2 to Lore and Insight checks when you interpret for them."
+                },
+                {
+                  "level": 5,
+                  "name": "Curse Boon II",
+                  "description": "Confounding babble: one enemy within 3 tiles must save or lose their next action, overwhelmed by overlapping voices. Once per combat."
+                },
+                {
+                  "level": 10,
+                  "name": "Curse Boon III",
+                  "description": "Prophetic utterance — force one creature within 3 tiles to truthfully answer a yes/no question drawn from the Choir's echo. Once per day."
+                },
+                {
+                  "level": 15,
+                  "name": "Curse Boon IV",
+                  "description": "Polyglot surge: communicate with beasts, plants, and spirits for 1 hour as the First Song's vocabulary flows through you. Once per long rest."
+                },
+                {
+                  "level": 20,
+                  "name": "Curse Boon V",
+                  "description": "Once per day, speak a single Word in the tongue of creation — all who hear must save or obey one short command. Those who resist take psychic damage."
+                }
+              ],
+              "draft": true,
+              "source": "Draft — Aethel lore, pending author review"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.tongues.tongues-boon-iii",
+      "name": "Tongues — Boon III",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Tongues",
+      "sourceKind": "curseBoon",
+      "minimumClassLevel": 10,
+      "acquisition": "automatic for selected Curse",
+      "activation": "Action; speech required",
+      "cost": "0",
+      "rangeAndTarget": "One creature within 15 feet",
+      "duration": "One question",
+      "frequency": "1/long rest",
+      "effect": "1/long rest as an Action ask one creature within 15 feet a yes/no question. A non-player creature makes a Charisma save; on failure it must answer truthfully with yes, no or 'I don't know.' A player-controlled creature retains agency and may refuse, in which case the Revelation yields 'unclear' rather than compelling speech.",
+      "prerequisite": "Oracle 10; selected Curse:Tongues",
+      "source": {
+        "line": null,
+        "reference": "CURSES.ORACLE_CURSES[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "CURSES.ORACLE_CURSES[4]",
+            "value": {
+              "id": "tongues",
+              "name": "Tongues",
+              "blurb": "Many voices share your speech, making truth harder to hear cleanly",
+              "limitations": [
+                "Unless you suppress the curse, social checks with mortals who do not share your mystery tongue suffer −2",
+                "Even accurate prophetic speech is often misheard; listeners may hear what they fear",
+                "You cannot fully silence the chorus; concentrating on mundane tasks longer than 1 hour requires a Wisdom save"
+              ],
+              "boons": [
+                {
+                  "level": 3,
+                  "name": "Curse Boon I",
+                  "description": "Understand all spoken languages and read divine script fragments. Allies within 5 tiles gain +2 to Lore and Insight checks when you interpret for them."
+                },
+                {
+                  "level": 5,
+                  "name": "Curse Boon II",
+                  "description": "Confounding babble: one enemy within 3 tiles must save or lose their next action, overwhelmed by overlapping voices. Once per combat."
+                },
+                {
+                  "level": 10,
+                  "name": "Curse Boon III",
+                  "description": "Prophetic utterance — force one creature within 3 tiles to truthfully answer a yes/no question drawn from the Choir's echo. Once per day."
+                },
+                {
+                  "level": 15,
+                  "name": "Curse Boon IV",
+                  "description": "Polyglot surge: communicate with beasts, plants, and spirits for 1 hour as the First Song's vocabulary flows through you. Once per long rest."
+                },
+                {
+                  "level": 20,
+                  "name": "Curse Boon V",
+                  "description": "Once per day, speak a single Word in the tongue of creation — all who hear must save or obey one short command. Those who resist take psychic damage."
+                }
+              ],
+              "draft": true,
+              "source": "Draft — Aethel lore, pending author review"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.tongues.tongues-boon-iv",
+      "name": "Tongues — Boon IV",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Tongues",
+      "sourceKind": "curseBoon",
+      "minimumClassLevel": 15,
+      "acquisition": "automatic for selected Curse",
+      "activation": "Action; speech required",
+      "cost": "0",
+      "rangeAndTarget": "Beasts, plants and willing spirits you can address",
+      "duration": "1 hour",
+      "frequency": "1/long rest",
+      "effect": "1/long rest communicate meaningfully with beasts, ordinary plants and willing spirits for 1 hour.",
+      "prerequisite": "Oracle 15; selected Curse:Tongues",
+      "source": {
+        "line": null,
+        "reference": "CURSES.ORACLE_CURSES[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "CURSES.ORACLE_CURSES[4]",
+            "value": {
+              "id": "tongues",
+              "name": "Tongues",
+              "blurb": "Many voices share your speech, making truth harder to hear cleanly",
+              "limitations": [
+                "Unless you suppress the curse, social checks with mortals who do not share your mystery tongue suffer −2",
+                "Even accurate prophetic speech is often misheard; listeners may hear what they fear",
+                "You cannot fully silence the chorus; concentrating on mundane tasks longer than 1 hour requires a Wisdom save"
+              ],
+              "boons": [
+                {
+                  "level": 3,
+                  "name": "Curse Boon I",
+                  "description": "Understand all spoken languages and read divine script fragments. Allies within 5 tiles gain +2 to Lore and Insight checks when you interpret for them."
+                },
+                {
+                  "level": 5,
+                  "name": "Curse Boon II",
+                  "description": "Confounding babble: one enemy within 3 tiles must save or lose their next action, overwhelmed by overlapping voices. Once per combat."
+                },
+                {
+                  "level": 10,
+                  "name": "Curse Boon III",
+                  "description": "Prophetic utterance — force one creature within 3 tiles to truthfully answer a yes/no question drawn from the Choir's echo. Once per day."
+                },
+                {
+                  "level": 15,
+                  "name": "Curse Boon IV",
+                  "description": "Polyglot surge: communicate with beasts, plants, and spirits for 1 hour as the First Song's vocabulary flows through you. Once per long rest."
+                },
+                {
+                  "level": 20,
+                  "name": "Curse Boon V",
+                  "description": "Once per day, speak a single Word in the tongue of creation — all who hear must save or obey one short command. Those who resist take psychic damage."
+                }
+              ],
+              "draft": true,
+              "source": "Draft — Aethel lore, pending author review"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.tongues.tongues-boon-v",
+      "name": "Tongues — Boon V",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Tongues",
+      "sourceKind": "curseBoon",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic for selected Curse",
+      "activation": "Action; speech required",
+      "cost": "0",
+      "rangeAndTarget": "Up to three hearing creatures within 30 feet",
+      "duration": "Until end of their next turns",
+      "frequency": "1/long rest; hard-denial guard",
+      "effect": "1/long rest as an Action speak one short command of no more than five words to creatures of your choice within 30 feet that can hear you. Each makes a Wisdom save. On failure it follows the command until the end of its next turn, subject to the hard-control guard; the command cannot cause direct self-harm, force belief change, permanent allegiance, confession or surrender of essential possessions. A creature that succeeds takes 3 S d6 psychic damage instead.",
+      "prerequisite": "Oracle 20; selected Curse:Tongues",
+      "source": {
+        "line": null,
+        "reference": "CURSES.ORACLE_CURSES[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "CURSES.ORACLE_CURSES[4]",
+            "value": {
+              "id": "tongues",
+              "name": "Tongues",
+              "blurb": "Many voices share your speech, making truth harder to hear cleanly",
+              "limitations": [
+                "Unless you suppress the curse, social checks with mortals who do not share your mystery tongue suffer −2",
+                "Even accurate prophetic speech is often misheard; listeners may hear what they fear",
+                "You cannot fully silence the chorus; concentrating on mundane tasks longer than 1 hour requires a Wisdom save"
+              ],
+              "boons": [
+                {
+                  "level": 3,
+                  "name": "Curse Boon I",
+                  "description": "Understand all spoken languages and read divine script fragments. Allies within 5 tiles gain +2 to Lore and Insight checks when you interpret for them."
+                },
+                {
+                  "level": 5,
+                  "name": "Curse Boon II",
+                  "description": "Confounding babble: one enemy within 3 tiles must save or lose their next action, overwhelmed by overlapping voices. Once per combat."
+                },
+                {
+                  "level": 10,
+                  "name": "Curse Boon III",
+                  "description": "Prophetic utterance — force one creature within 3 tiles to truthfully answer a yes/no question drawn from the Choir's echo. Once per day."
+                },
+                {
+                  "level": 15,
+                  "name": "Curse Boon IV",
+                  "description": "Polyglot surge: communicate with beasts, plants, and spirits for 1 hour as the First Song's vocabulary flows through you. Once per long rest."
+                },
+                {
+                  "level": 20,
+                  "name": "Curse Boon V",
+                  "description": "Once per day, speak a single Word in the tongue of creation — all who hear must save or obey one short command. Those who resist take psychic damage."
+                }
+              ],
+              "draft": true,
+              "source": "Draft — Aethel lore, pending author review"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.ancestor.bloodline-sight",
+      "name": "Bloodline Sight",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Ancestor",
+      "sourceKind": "tier-i-revelation",
+      "minimumClassLevel": 3,
+      "acquisition": "choose one at Oracle 3",
+      "activation": "Action",
+      "cost": "1 RC",
+      "rangeAndTarget": "Self; 6-tile radius",
+      "duration": "2 rounds",
+      "frequency": "At will while RC remains",
+      "effect": "For 2 rounds you perceive undead, invisible and ethereal creatures within 6 tiles that are not behind total cover or an effect explicitly blocking supernatural detection. Those creatures cannot gain concealment or hide from you solely through invisibility, ethereal overlap or mundane Stealth while in range. This does not expose illusions unrelated to those categories.",
+      "prerequisite": "Oracle 3; Mystery: Ancestor; selected Tier I Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[0].tierI[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[0].tierI[2]",
+            "value": {
+              "name": "Bloodline Sight",
+              "charges": 1,
+              "kind": "active",
+              "description": "Spend 1 charge to reveal all undead, invisible, or ethereal creatures within 6 tiles for 2 rounds; they cannot benefit from concealment or stealth."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.dream.dreamer-s-veil",
+      "name": "Dreamer's Veil",
+      "className": "Oracle",
+      "band": "Base",
+      "path": "Dream",
+      "sourceKind": "mystery-feature",
+      "minimumClassLevel": 1,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Passive and Action",
+      "cost": "0 RC",
+      "rangeAndTarget": "Self; one ally within 3 tiles",
+      "duration": "Passive permanent; invisibility maximum 2 rounds",
+      "frequency": "Veil 1/long rest",
+      "effect": "Gain +1 on saves against Charm and Illusion effects and advantage on saves against magical sleep. Once per long rest as an Action, choose one willing ally within 3 tiles; it becomes Invisible until it attacks, deals damage, forces a saving throw or 2 rounds pass. The first damaging attack it lands while still benefiting from concealment adds S d6 psychic damage. The bonus occurs once per use.",
+      "prerequisite": "Oracle 1; Mystery: Dream",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[4].level1",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[4].level1",
+            "value": {
+              "name": "Dreamer's Veil",
+              "kind": "active",
+              "description": "Passive: +5% resistance to charm and illusion, and advantage on saves vs sleep. Once per long rest, wrap an ally within 3 tiles in a waking dream — they become invisible until they attack or 2 rounds pass; their first attack from concealment this encounter deals +25% psychic damage."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.dream.dream-prophecy",
+      "name": "Dream Prophecy",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Dream",
+      "sourceKind": "prophetic-surge",
+      "minimumClassLevel": 18,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Triggered",
+      "cost": "0 RC for chosen Revelation",
+      "rangeAndTarget": "One known Dream Revelation; self",
+      "duration": "Chosen Revelation; invisibility until attack or end of next turn",
+      "frequency": "1/long rest",
+      "effect": "Activate one known Dream Revelation for 0 RC. After it resolves, become Invisible until you attack, deal damage, force a saving throw or the end of your next regular turn. The first damaging attack you land from that concealment adds S d6 psychic damage and causes the target to make a Wisdom save; on failure it suffers Dread (-1 attack and save) until the end of its next turn. During the same interval, when a creature succeeds on its first save to disbelieve one illusion you create, require a second Wisdom save; it must succeed on both to disbelieve.",
+      "prerequisite": "Oracle 18; Mystery: Dream",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[4].propheticSurge",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[4].propheticSurge",
+            "value": {
+              "name": "Dream Prophecy",
+              "kind": "active",
+              "description": "Once per day, the Veiled Threshold parts — cast any Dream Revelation at no charge cost. For 1 round after, all illusions you create require a second save to disbelieve, and enemies who fail their first save against your illusions suffer −10% hit until end of next turn."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.shadow.umbral-cloak",
+      "name": "Umbral Cloak",
+      "className": "Oracle",
+      "band": "Base",
+      "path": "Shadow",
+      "sourceKind": "mystery-feature",
+      "minimumClassLevel": 1,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Passive and Bonus Action",
+      "cost": "0 RC",
+      "rangeAndTarget": "Self",
+      "duration": "Passive permanent; invisibility maximum 2 rounds",
+      "frequency": "Invisibility 1/short rest",
+      "effect": "Gain +2 on Stealth checks in dim light or darkness and reduce the first psychic damage you take each round by 1. Once per short rest become Invisible until you attack, deal damage, force a saving throw or 2 rounds pass. The first damaging attack you land while benefiting from that concealment adds S d6 psychic damage, once per use.",
+      "prerequisite": "Oracle 1; Mystery: Shadow",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[7].level1",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[7].level1",
+            "value": {
+              "name": "Umbral Cloak",
+              "kind": "active",
+              "description": "Passive: +2 to Stealth in dim light or darkness and +5% resistance to psychic damage. Once per short rest, shroud yourself in the Hush — become invisible until you attack or 2 rounds pass; your first attack from concealment this encounter deals +25% psychic damage."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.shadow.hush-descends",
+      "name": "Hush Descends",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Shadow",
+      "sourceKind": "tier-iii-revelation",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Action",
+      "cost": "3 RC",
+      "rangeAndTarget": "5-tile-radius aura centered on you",
+      "duration": "2 rounds",
+      "frequency": "At will while RC remains",
+      "effect": "For 2 rounds sound is suppressed in the aura. Hostile creatures cannot use abilities that explicitly require audible speech or verbal spell components and suffer Dread (-1 on attack rolls and saves). You and allies gain +1 on attack rolls made while concealed. At the start of each enemy's turn in the aura it makes a Wisdom save; on failure it would lose its Action to nameless dread, subject to the Oracle hard-control guard. Once per round, the first psychic Revelation you activate while inside the aura costs 1 less RC, minimum 0; a 0-RC activation cannot independently generate recursive resource refunds.",
+      "prerequisite": "Oracle 9; Mystery: Shadow",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[7].tierIII",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[7].tierIII",
+            "value": {
+              "name": "Hush Descends",
+              "charges": 3,
+              "kind": "active",
+              "description": "Spend 3 charges: for 2 turns, suppress sound in 5 tiles — enemies cannot cast verbal components and suffer Dread; you and allies gain +10% crit from concealment — the Marquis's silence deepens: enemies who start their turn inside must save or lose their action to nameless dread (once per enemy), and your first psychic Revelation each turn from inside the zone costs 1 fewer charge (minimum 0)."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.shadow.shadow-prophecy",
+      "name": "Shadow Prophecy",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Shadow",
+      "sourceKind": "prophetic-surge",
+      "minimumClassLevel": 18,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Triggered",
+      "cost": "0 RC for chosen Revelation",
+      "rangeAndTarget": "One known Shadow Revelation; self",
+      "duration": "Chosen Revelation; invisibility until attack or end of next turn",
+      "frequency": "1/long rest",
+      "effect": "Activate one known Shadow Revelation for 0 RC. After it resolves, become Invisible until you attack, deal damage, force a saving throw or the end of your next regular turn. The first damaging attack you land from that concealment adds S d6 psychic damage and forces a Wisdom save; failure inflicts Dread (-1 attacks and saves) until the end of the target's next turn.",
+      "prerequisite": "Oracle 18; Mystery: Shadow",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[7].propheticSurge",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[7].propheticSurge",
+            "value": {
+              "name": "Shadow Prophecy",
+              "kind": "active",
+              "description": "Once per day, the Hush Beneath the Song gathers — cast any Shadow Revelation at no charge cost. For 1 round after, you become invisible until you attack or end of next turn; your first attack from concealment during the effect deals +25% psychic damage and inflicts Dread (−10% hit/saves) on hit."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "card": {
+      "id": "oracle.supplement.shadow.marquis-s-glimpse",
+      "name": "Marquis's Glimpse",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Shadow",
+      "sourceKind": "final-revelation",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic for chosen Mystery",
+      "activation": "Bonus Action",
+      "cost": "0 RC",
+      "rangeAndTarget": "Self; enemies within 4 tiles",
+      "duration": "3 rounds",
+      "frequency": "1/long rest",
+      "effect": "For 3 rounds, ranged attack rolls against you automatically miss unless the attacker is adjacent to you or has an effect explicitly ignoring supernatural concealment. Once on each of your turns when a psychic Revelation deals damage, add a second copy of its unmodified rolled damage dice to one target; this copied damage cannot trigger RC recovery, conditions or proc effects. At the start of each enemy's turn within 4 tiles it makes a Wisdom save; on failure it would lose its Action to nameless dread, subject to the Oracle hard-control guard. A creature already hard-denied by you this encounter instead loses its Reaction and has Speed 0 until end of that turn.",
+      "prerequisite": "Oracle 20; Mystery: Shadow",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[7].finalRevelation",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[7].finalRevelation",
+            "value": {
+              "name": "Marquis's Glimpse",
+              "kind": "active",
+              "description": "Once per day, invoke the Hush for 3 rounds: you exist partially in silence — untargetable by ranged attacks, all psychic Revelations deal double damage, and enemies within 4 tiles must save each round or lose an action to nameless dread."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Oracle",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "engineIndex": 9,
+    "paragraph": "REVELATIONS are divine class techniques, not ordinary spells. Unless a Revelation explicitly says otherwise, magical silence does not prevent a purely mental Revelation, but a Revelation requiring speech, touch, visible symbolism or another listed component obeys that requirement. Revelations do not generate Dissonance and cannot be modified by spell-slot, RP, spell-rank discount or ordinary spell-proc mechanics.",
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; no automatic spell grant."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-vengeance.aura-of-judgment",
+      "name": "Aura of Judgment",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Vengeance",
+      "sourceKind": "oathAura",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 3 enemies in your Oath aura currently marked by you",
+      "duration": "While conscious, marked and in aura",
+      "frequency": "Choose targets at start of each turn",
+      "effect": "Selected marked enemies take -1 on saving throws and cannot Hide from you or benefit from mundane concealment against you. This does not reveal a creature behind total cover or defeat supernatural invisibility unless another feature does so.",
+      "prerequisite": "Paladin 3; Oath of Vengeance",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[1].auraEffect",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[1].auraEffect",
+            "value": "Aura of Judgment — marked enemies within aura suffer −1 saves and cannot hide from you"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "vengeance",
+      "oathName": "Oath of Vengeance",
+      "oathbreakerName": "Malice",
+      "displayPath": "Oath of Vengeance"
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.silent-smite",
+      "name": "Silent Smite",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Silence",
+      "sourceKind": "oathSmite",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Triggered",
+      "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+      "rangeAndTarget": "Creature hit by your melee weapon attack",
+      "duration": "Instantaneous",
+      "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+      "effect": "Choose psychic or radiant; the entire Smite packet uses that type. If you have not spoken since the end of your previous regular turn, add S flat damage to the Smite. Speaking includes intelligible speech, verbal spell components or deliberate vocal commands; involuntary sounds do not break the condition. This never creates a second Smite packet.",
+      "prerequisite": "Paladin 3; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].smiteType",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].smiteType",
+            "value": "Psychic or radiant — bonus damage when you have not spoken since last turn"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "conductClauses": [
+        "Speak when words serve the oath; let silence bear the rest",
+        "Do not claim glory for the work entrusted to you",
+        "Hear the whole matter before you judge it"
+      ],
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.aura-of-stillness",
+      "name": "Aura of Stillness",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Silence",
+      "sourceKind": "oathAura",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 3 chosen allies in your Oath aura",
+      "duration": "While conscious and target remains in aura",
+      "frequency": "Choose targets at start of each turn",
+      "effect": "Selected allies gain +1 on concentration saves. Ordinary loud noises originating inside the aura are reduced to conversation al volume at its boundary; this does not create magical Silence, prevent speech, stop verbal spell components or suppress sonic damage unless another feature explicitly says so.",
+      "prerequisite": "Paladin 3; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].auraEffect",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].auraEffect",
+            "value": "Aura of Stillness — allies gain +1 to concentration; loud noises suppressed in aura"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.vow-unbroken",
+      "name": "Vow Unbroken",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Silence",
+      "sourceKind": "signaturePower",
+      "minimumClassLevel": 11,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Self",
+      "duration": "Until start of your next regular turn",
+      "frequency": "1/short rest",
+      "effect": "If you have not spoken since the beginning of your previous regular turn, invoke the Vow. Until the start of your next turn, your next Smite adds one extra die matching its normal Smite die. If you speak before that Smite resolves, the bonus is lost. This does not grant a free Smite, extra attack or additional Smite use.",
+      "prerequisite": "Paladin 11; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].signaturePower",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].signaturePower",
+            "value": "Vow Unbroken — bonus smite if you stay silent this combat (1/rest)"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.hush",
+      "name": "Hush",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Silence",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One creature within 30 feet",
+      "duration": "Until end of target's next turn",
+      "frequency": "At will while RP remains",
+      "effect": "The target makes a Wisdom save. On failure it cannot speak or use abilities explicitly requiring verbal components until the end of its next turn. If you have not spoken since combat began, the target also has disadvantage on its next attack roll before the effect ends. This does not prevent purely mental or nonverbal abilities.",
+      "prerequisite": "Paladin 3; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].revelationSpells[0]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].revelationSpells[0]",
+            "value": {
+              "level": 3,
+              "spell": "Hush — silence one creature on failed save; if you have not spoken since combat start, target also suffers disadvantage on its next attack"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 1,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.quiet-step",
+      "name": "Quiet Step",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Silence",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 5,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Self",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "For up to 3 rounds your movement produces no ordinary sound, you gain advantage on Stealth checks based on movement noise, and moving at full Speed does not impose a Stealth penalty solely for speed. Attacking, speaking or causing obvious environmental disturbance can still reveal your position normally.",
+      "prerequisite": "Paladin 5; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].revelationSpells[1]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].revelationSpells[1]",
+            "value": {
+              "level": 5,
+              "spell": "Quiet Step — move silently; advantage on Stealth"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 2,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.wordless-ward",
+      "name": "Wordless Ward",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Silence",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Reaction",
+      "cost": "5 RP",
+      "rangeAndTarget": "One ally within 30 feet targeted by an attack or damaging effect",
+      "duration": "Until start of your next regular turn",
+      "frequency": "At will while RP remains",
+      "effect": "Grant the ally +2 AC against the triggering attack and reduce the first damage it takes before the start of your next turn by S+M, minimum 0. Word less Ward requires no speech or verbal component and therefore functions while Silenced. It remains an ordinary spell for Dissonance and Counterspell interactions.",
+      "prerequisite": "Paladin 9; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].revelationSpells[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].revelationSpells[2]",
+            "value": {
+              "level": 9,
+              "spell": "Wordless Ward — shield ally without verbal components"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 3,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.still-mind",
+      "name": "Still Mind",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Silence",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 13,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "7 RP",
+      "rangeAndTarget": "Self; allies in your Oath aura if silence breaks",
+      "duration": "Concentration, maximum 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "While you remain voluntarily silent, you are immune to Charmed and Frightened. If you voluntarily speak before the spell ends, those immunities end immediately and up to 3 chosen allies in your aura gain +2 on concentration saves until the start of your next regular turn. Involuntary vocalization does not break the spell.",
+      "prerequisite": "Paladin 13; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].revelationSpells[3]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].revelationSpells[3]",
+            "value": {
+              "level": 13,
+              "spell": "Still Mind — immunity to charm and frightened while you remain silent this combat; if you break silence, allies in aura gain +2 concentration saves for 1 round"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 4,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.silent-judgment",
+      "name": "Silent Judgment",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Silence",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 17,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "10 RP",
+      "rangeAndTarget": "Your next Smite before end of current turn",
+      "duration": "Until consumed; rider until end of target's next turn",
+      "frequency": "At will while RP remains",
+      "effect": "Your next Smite this turn makes no audible supernatural report beyond the weapon strike itself and does not automatically alert creatures outside ordinary sensory range. On hit the target makes a Wisdom save; on failure it cannot speak or use verbal components until the end of its next turn. After resolving the Smite, you gain advantage on Stealth checks until you next speak, make another overtly loud attack or the end of your next regular turn.",
+      "prerequisite": "Paladin 17; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].revelationSpells[4]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].revelationSpells[4]",
+            "value": {
+              "level": 17,
+              "spell": "Silent Judgment — smite without alerting nearby foes; on hit target cannot speak or cast verbal components until end of next turn and you gain advantage on Stealth until you speak"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 5,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oath-of-silence.vow-absolute",
+      "name": "Vow Absolute",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oath of Silence",
+      "sourceKind": "finalOathGift",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Bonus Action",
+      "cost": "0 RP",
+      "rangeAndTarget": "Self; enemies in your Oath aura",
+      "duration": "Until encounter ends, you voluntarily speak, or one minute, whichever is first",
+      "frequency": "1/long rest",
+      "effect": "For the duration, each Smite you use while silent adds psychic damage equal to half its base rolled Smite dice total before critical extra dice, rounded down, minimum 1. Up to 3 chosen enemies in your aura cannot use verbal spell components while selected. The first Smite you use each round does not count as breaking your vow despite any involuntary sound. Voluntarily speaking ends the Final immediately. No free Smite or attack is granted. At each selected enemy’s turn start it makes a Charisma save, using verbal components normally on success; the aura does not remove nonverbal abilities.",
+      "prerequisite": "Paladin 20; Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].finalOathGift",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].finalOathGift",
+            "value": "Vow Absolute — once per day, Vow Unbroken lasts the entire combat if you remain silent; all smites deal +50% psychic damage, enemies within aura cannot cast verbal components, and the first smite each round does not break your vow of silence."
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Oath of Silence"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oathbreaker-oath-of-silence.death-touch-silent-heretic",
+      "name": "Death Touch — Silent Heretic",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oathbreaker — Oath of Silence",
+      "sourceKind": "deathTouch",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for corresponding Oathbreaker",
+      "activation": "Action",
+      "cost": "Declare and spend 1 through 2 S+M points from current Lay on Hands pool, even on miss",
+      "rangeAndTarget": "One creature within melee reach",
+      "duration": "Damage instantaneous; silence until end of target's next turn",
+      "frequency": "At will while Lay on Hands points remain; rider once per turn",
+      "effect": "Make a melee divine attack using PB+Charisma. On hit deal necrotic damage equal to the declared points. The target then makes a Wisdom save. On failure it cannot speak or use verbal components until the end of its next turn. This rider does not prevent nonverbal abilities or deny the target's full turn.",
+      "prerequisite": "Paladin 3; Oathbreaker — Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].oathbreaker.deathTouch",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].oathbreaker.deathTouch",
+            "value": "Silence + psychic damage on touch"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Silent Heretic — Oath of Silence Oathbreaker"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oathbreaker-oath-of-silence.null-command-aura",
+      "name": "Null Command Aura",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oathbreaker — Oath of Silence",
+      "sourceKind": "oathbreakerAura",
+      "minimumClassLevel": 3,
+      "acquisition": "automatic for corresponding Oathbreaker",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 3 chosen enemies in your Oath aura",
+      "duration": "While conscious and target remains in aura",
+      "frequency": "Choose targets at start of each turn",
+      "effect": "Selected enemies cannot use verbal spell components while in the aura unless they succeed on a Charisma save at the start of their turn. On success they may use verbal components normally until that turn ends. This aura does not prevent speech, nonverbal powers or ordinary weapon actions.",
+      "prerequisite": "Paladin 3; Oathbreaker — Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].oathbreaker.aura",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].oathbreaker.aura",
+            "value": "Null Command — prevent verbal casting in aura"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Silent Heretic — Oath of Silence Oathbreaker"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "card": {
+      "id": "paladin.supplement.oathbreaker-oath-of-silence.null-command",
+      "name": "Null Command",
+      "className": "Paladin",
+      "band": "Hero",
+      "path": "Oathbreaker — Oath of Silence",
+      "sourceKind": "blasphemousWord",
+      "minimumClassLevel": 11,
+      "acquisition": "automatic for corresponding Oathbreaker",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Up to 3 enemies in your Oath aura",
+      "duration": "Damage instantaneous; silence until end of next turn",
+      "frequency": "1/short rest; replaces Signature Power use",
+      "effect": "Each target makes a Wisdom save, taking 2 S d6 psychic damage on failure or half on success. A failing target also cannot speak or use verbal components until the end of its next turn. The effect does not remove Actions, Reactions or nonverbal class features.",
+      "prerequisite": "Paladin 11; Oathbreaker — Oath of Silence",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[5].oathbreaker.blasphemousWord",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[5].oathbreaker.blasphemousWord",
+            "value": "Null Command — mass silence with psychic damage"
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null,
+      "oathId": "silence",
+      "oathName": "Oath of Silence",
+      "oathbreakerName": "Silent Heretic",
+      "displayPath": "Silent Heretic — Oath of Silence Oathbreaker"
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Paladin",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "engineIndex": 5,
+    "paragraph": "At 17 Aura Surge once/short rest Bonus Action: until start next turn choose up to 3 allies in aura to gain S+M temporary HP and+1 saves. This bounded surge replaces vague doubling of every aura number. At 20 Divine Manifestation makes the aura active upon initiative without an action, radius 30 ft; it ignores ordinary Silence and terrain obstruction between allies but not antimagic explicitly suppressing divine powers, planar barriers or the consciousness rule. Source cannot-be-suppressed language is bounded explicitly. It grants no free Signature, Smite or Revelation spell.",
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; no automatic spell grant."
+  },
+  {
+    "class": "Ranger",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+    "card": {
+      "id": "ranger.arch.natural-camouflage",
+      "name": "Natural Camouflage",
+      "className": "Ranger",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "0",
+      "rangeAndTarget": "Self in natural cover",
+      "duration": "Until you move or attack",
+      "frequency": "Recharge 2",
+      "effect": "Take Hide with advantage if foliage, rock or other natural cover can conceal you. Being stationary in open view does not qualify. Does not grant invisibility or hide your allies.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3867,
+        "originalText": "Natural Camouflage: Blend into natural surroundings, gaining advantage on Stealth checks while stationary."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Ranger",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+    "card": {
+      "id": "ranger.hero.stalker.keen-hunter",
+      "name": "Keen Hunter",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your quarry within normal sight",
+      "duration": "While marked",
+      "frequency": "Continuous",
+      "effect": "If quarry attempts to Hide while visible to you, you know its position until it gains total cover or leaves your sight. Does not negate invisibility, darkness or planar travel without an appropriate sense.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3897,
+        "originalText": "Keen Hunter: Tracked targets cannot hide from you within your line of sight."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Ranger",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+    "card": {
+      "id": "ranger.hero.stalker.vanishing-act",
+      "name": "Vanishing Act",
+      "className": "Ranger",
+      "band": "Hero",
+      "path": "Stalker",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "4 RP; 1 short-rest use",
+      "rangeAndTarget": "Self; visible destination within 30 ft",
+      "duration": "Until start next turn or attack/cast",
+      "frequency": "1/short rest",
+      "effect": "Teleport to unoccupied visible space and become invisible until the stated end. Cannot pass a ward that blocks teleportation, escape a dimensional prison or retain invisibility after attacking.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3905,
+        "originalText": "Vanishing Act: Disappear from sight and reposition to any point within 30 feet."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Shaman",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+    "card": {
+      "id": "shaman.hero.soothsayer.balanced-elements",
+      "name": "Balanced Elements",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your own elemental slowing/burning effect",
+      "duration": "As modified",
+      "frequency": "Once/turn",
+      "effect": "Choose one application: add 1 damage to its next Burn tick OR extend a Speed reduction until end target's following turn. Never extends Stunned, silence, concentration duration or whole-Action denial.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4067,
+        "originalText": "Balanced Elements: Your elemental effects last longer and have secondary effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Soldier",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+    "card": {
+      "id": "soldier.hero.artillerist.enhanced-overwatch",
+      "name": "Enhanced Overwatch",
+      "className": "Soldier",
+      "band": "Hero",
+      "path": "Artillerist",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your Overwatch zone",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "A hidden enemy that attacks or moves inside must roll Stealth against your passive Perception; failure reveals its space until turn end. Invisibility still imposes its normal attack penalty. Total cover blocks detection and firing.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4245,
+        "originalText": "Enhanced Overwatch: Your Overwatch can reveal and fire on stealthed or invisible enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Thief",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+    "card": {
+      "id": "thief.hero.shadowblade.shadow-dive",
+      "name": "Shadow Dive",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Shadowblade",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Self",
+      "duration": "Until end next turn or first attack",
+      "frequency": "Recharge 3",
+      "effect": "Become Invisible. First qualifying Sneak Attack before invisibility ends adds 1d6; attacking ends invisibility after resolution. Does not grant additional Sneak uses. Magical technique 1 D.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4431,
+        "originalText": "Shadow Dive: Become invisible for 1 round, gaining +1d6 Sneak Attack if used on the next turn."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Thief",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+    "card": {
+      "id": "thief.hero.blackguard.unseen-hand",
+      "name": "Unseen Hand",
+      "className": "Thief",
+      "band": "Hero",
+      "path": "Blackguard",
+      "sourceKind": "active",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Triggered",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "Self while Invisible",
+      "duration": "Current turn",
+      "frequency": "1/long rest; automatic Blackguard Final",
+      "effect": "After taking an Action while Invisible gain one extra Action to make one weapon attack or use a nonmagical Thief skill. Attacking ends invisibility normally. No second Sneak Attack, second extra Action, Bonus Action, Reaction or self-reset.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4450,
+        "originalText": "Unseen Hand: Once per round, take an action while invisible (attack or move) (level 20)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "invisibility"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "class": "Wizard",
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+    "card": {
+      "id": "wizard.arch.improved-concentration",
+      "name": "Improved Concentration",
+      "className": "Wizard",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While concentrating",
+      "frequency": "Always",
+      "effect": "Improved Concentration. Tags: arch, passive, concentration. You have advantage on Constitution saving throws made because damage threatens your concentration on a Wizard spell. This does not alter the DC, protect a Tether from rules that explicitly end both effects, or prevent Silence, incapacitation and other non-damage concentration failures.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 5219,
+        "originalText": "Improved Concentration: Advantage on concentration checks when taking damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "spellNameMatches": [
+      "silence"
+    ],
+    "scope": "Textual comparison only; neither an ordinary spell grant nor an identity/effect merge."
+  },
+  {
+    "mention": {
+      "class": "Cleric",
+      "location": "cleric.base.judging-light",
+      "spellId": "light",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "card": {
+      "id": "cleric.base.judging-light",
+      "name": "Judging Light",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Passive",
+      "frequency": "Always",
+      "effect": "Judging Light. Tags: smite, passive. When your Divine Smite damages a creature currently affected by a Cursed or Weakened condition, add S d4 radiant damage to that Smite. Roll these dice once as part of the Smite; they do not create a second hit or trigger.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1969,
+        "originalText": "Judging Light: Smite deals +20% bonus damage to enemies afflicted by Cursed or Weakened effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "engine": [
+      "PROVISIONAL PLAYTEST CONTRACT. Wisdom is the Cleric class ability. S = 1/2/3/4 at Cleric levels 1/5/11/17. M = max(1, Wisdom modifier) unless a feature explicitly substitutes another ability. Cleric technique attack = d20 + normal character proficiency bonus + Wisdom modifier. Cleric technique save DC = 8 + normal character proficiency bonus + Wisdom modifier.",
+      "Conviction is separate from Resonance Points. Base Conviction maximum is 3, automatically becoming 5 at Cleric 9; after a long rest you begin at your current maximum. A completed short rest restores 1 spent Conviction, to the maximum. A completed long rest restores all Conviction. Conviction Pool raises the maximum by 2. Conviction persists between encounters; simply declaring prayer, repeating a Rite, or performing harmless actions outside a real encounter never generates Conviction.",
+      "Only explicit features generate Conviction. Sacred Chant, Sermon of Purpose, Doctrine Shield, Dark Conviction and other printed cards are valid generators. A feature cannot generate more Conviction than its text permits, and Conviction can never exceed the current maximum. Summoned creatures, friendly creatures, trivial creatures, repeated corpse manipulation and staged out-of-combat actions cannot be used to farm Conviction.",
+      "Cleric techniques use only their printed RP and Conviction costs. All RP is paid from the Cleric's Core Systems V 2 Resonance Point pool. A Cleric technique is not automatically an ordinary spell-rank cast and does not receive Overcast, spell-slot, cost-discount or spell-proc benefits unless a feature explicitly says otherwise. Ordinary spells continue to use Core V 2 spellcasting rules.",
+      "Protected Dissonance interaction: once on each of your regular turns, when you spend at least 2 Conviction on a Rite or Invocation, reduce Dissonance by 1, minimum 0. The expenditure must actually occur; waived Conviction costs do not vent Dissonance. A single feature expenditure vents at most once even if it spends more than 2 Conviction. No Cleric card automatically adds Dissonance unless explicitly written.",
+      "One concentration effect may be maintained at a time. Starting another concentration effect immediately ends the previous one. Damage uses the current Core Systems concentration rule; for this pilot, if a division requires rounding, half damage is rounded down. Sustained Cleric effects use their printed maintenance cost and Bonus Action. A control effect that persists for multiple pulses or rounds gives the target a new save at each printed pulse or at the end of each affected turn as stated.",
+      "Round recharge counters are set after resolution and decrease once at the start of the Cleric's regular initiative turn, even if the Cleric cannot act. Extra Actions and extra turns do not create extra recharge ticks. Outside initiative, each uninterrupted 6 seconds counts as one recharge tick. Only a positive counter may be reset or shortened, and a named ability can receive at most one reset or shortening per round.",
+      "Healing cannot exceed maximum HP, does not remove Wounds, and does not restore a dead creature unless a card explicitly says it resurrects. No Cleric feature provides unlimited permanent HP or resource restoration outside encounters. Temporary HP does not stack with itself; use the higher value. Resurrection and corpse-based effects have explicit use limits and cannot generate repeatable corpses, XP, loot or Conviction.",
+      "Invocation Attunement is gained automatically at Cleric level 2. Choose exactly one Invocation Path: Radiance, Judgment, Renewal, Flame, Veil or Echoes. Only the selected path bonus becomes active. Divine Invocation uses the mode belonging to that selected path unless another feature explicitly permits a different mode. Changing Invocation Path requires a future explicit retraining rule; this draft provides none.",
+      "PROPOSED ACQUISITION FOR PLAYTEST. Cleric 1: gain the Divine Favor engine and choose 4 Base cards, at least 2 Active. Cleric 2: automatically gain Invocation Attunement and the selected Invocation Path bonus, then choose 2 additional Base cards. Cleric 3: enter Bishop and choose 2 Arch cards, at least 1 Active. Levels 4-8 each grant one eligible Base/Arch choice, respecting each card's minimum class level. Level 9 grants one eligible Arch choice plus Bishop's Mandate automatically. Level 10 choose Saint, Priest or Cultist and gain 2 Hero choices from that path. Levels 12, 14, 16 and 18 each grant one additional Hero choice; levels 11, 13, 15, 17 and 19 grant one eligible unselected Base/Arch choice. The chosen Hero Finale is automatic at Cleric 20. ASI/feat milestones remain separate and do not consume these choices.",
+      "All acquisition gates use Cleric class level, not total character level. Proficiency bonus still follows normal total-character-level rules. A multiclass character cannot use non-Cleric levels to unlock Bishop, Hero, Invocation or Finale features. Divine commands, visions and social abilities can influence actions only to the extent their exact mechanical text states; no Cleric feature can force a player character to adopt, abandon or profess a belief.",
+      "Capacity clarification: the automatic level 9 Conviction increase is a new draft completion so every Hero can pay its 5-Conviction Finale without buying Conviction Pool. Conviction Pool adds 2 at any level, yielding 5 early or 7 from 9. It never fills gained capacity immediately."
+    ],
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+    "scope": "Complete existing name-comparison card/engine,not an ordinary spell grant or identity merge."
+  },
+  {
+    "mention": {
+      "class": "Cleric",
+      "location": "cleric.hero.saint.unyielding-light",
+      "spellId": "light",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "card": {
+      "id": "cleric.hero.saint.unyielding-light",
+      "name": "Unyielding Light",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Saint",
+      "sourceKind": "passive",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "Up to six living party members within 30 feet, including you",
+      "duration": "Instantaneous",
+      "frequency": "1/long rest",
+      "effect": "Unyielding Light. Tags: saint, emergency, healing. When one damage event would leave every conscious living party member within 30 feet at 0 HP, resolve that damage, then before ordinary death-save progression each qualifying living creature at 0 HP regains floor(maximum HP/3), minimum 1. It cannot revive a creature killed outright and removes no Wounds. This one emergency trigger may resolve even if that event incapacitates you, provided you remain alive; it grants no other actions while incapacitated.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2017,
+        "originalText": "Unyielding Light: Once per day, prevents party wipe and restores 30% HP."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "engine": [
+      "PROVISIONAL PLAYTEST CONTRACT. Wisdom is the Cleric class ability. S = 1/2/3/4 at Cleric levels 1/5/11/17. M = max(1, Wisdom modifier) unless a feature explicitly substitutes another ability. Cleric technique attack = d20 + normal character proficiency bonus + Wisdom modifier. Cleric technique save DC = 8 + normal character proficiency bonus + Wisdom modifier.",
+      "Conviction is separate from Resonance Points. Base Conviction maximum is 3, automatically becoming 5 at Cleric 9; after a long rest you begin at your current maximum. A completed short rest restores 1 spent Conviction, to the maximum. A completed long rest restores all Conviction. Conviction Pool raises the maximum by 2. Conviction persists between encounters; simply declaring prayer, repeating a Rite, or performing harmless actions outside a real encounter never generates Conviction.",
+      "Only explicit features generate Conviction. Sacred Chant, Sermon of Purpose, Doctrine Shield, Dark Conviction and other printed cards are valid generators. A feature cannot generate more Conviction than its text permits, and Conviction can never exceed the current maximum. Summoned creatures, friendly creatures, trivial creatures, repeated corpse manipulation and staged out-of-combat actions cannot be used to farm Conviction.",
+      "Cleric techniques use only their printed RP and Conviction costs. All RP is paid from the Cleric's Core Systems V 2 Resonance Point pool. A Cleric technique is not automatically an ordinary spell-rank cast and does not receive Overcast, spell-slot, cost-discount or spell-proc benefits unless a feature explicitly says otherwise. Ordinary spells continue to use Core V 2 spellcasting rules.",
+      "Protected Dissonance interaction: once on each of your regular turns, when you spend at least 2 Conviction on a Rite or Invocation, reduce Dissonance by 1, minimum 0. The expenditure must actually occur; waived Conviction costs do not vent Dissonance. A single feature expenditure vents at most once even if it spends more than 2 Conviction. No Cleric card automatically adds Dissonance unless explicitly written.",
+      "One concentration effect may be maintained at a time. Starting another concentration effect immediately ends the previous one. Damage uses the current Core Systems concentration rule; for this pilot, if a division requires rounding, half damage is rounded down. Sustained Cleric effects use their printed maintenance cost and Bonus Action. A control effect that persists for multiple pulses or rounds gives the target a new save at each printed pulse or at the end of each affected turn as stated.",
+      "Round recharge counters are set after resolution and decrease once at the start of the Cleric's regular initiative turn, even if the Cleric cannot act. Extra Actions and extra turns do not create extra recharge ticks. Outside initiative, each uninterrupted 6 seconds counts as one recharge tick. Only a positive counter may be reset or shortened, and a named ability can receive at most one reset or shortening per round.",
+      "Healing cannot exceed maximum HP, does not remove Wounds, and does not restore a dead creature unless a card explicitly says it resurrects. No Cleric feature provides unlimited permanent HP or resource restoration outside encounters. Temporary HP does not stack with itself; use the higher value. Resurrection and corpse-based effects have explicit use limits and cannot generate repeatable corpses, XP, loot or Conviction.",
+      "Invocation Attunement is gained automatically at Cleric level 2. Choose exactly one Invocation Path: Radiance, Judgment, Renewal, Flame, Veil or Echoes. Only the selected path bonus becomes active. Divine Invocation uses the mode belonging to that selected path unless another feature explicitly permits a different mode. Changing Invocation Path requires a future explicit retraining rule; this draft provides none.",
+      "PROPOSED ACQUISITION FOR PLAYTEST. Cleric 1: gain the Divine Favor engine and choose 4 Base cards, at least 2 Active. Cleric 2: automatically gain Invocation Attunement and the selected Invocation Path bonus, then choose 2 additional Base cards. Cleric 3: enter Bishop and choose 2 Arch cards, at least 1 Active. Levels 4-8 each grant one eligible Base/Arch choice, respecting each card's minimum class level. Level 9 grants one eligible Arch choice plus Bishop's Mandate automatically. Level 10 choose Saint, Priest or Cultist and gain 2 Hero choices from that path. Levels 12, 14, 16 and 18 each grant one additional Hero choice; levels 11, 13, 15, 17 and 19 grant one eligible unselected Base/Arch choice. The chosen Hero Finale is automatic at Cleric 20. ASI/feat milestones remain separate and do not consume these choices.",
+      "All acquisition gates use Cleric class level, not total character level. Proficiency bonus still follows normal total-character-level rules. A multiclass character cannot use non-Cleric levels to unlock Bishop, Hero, Invocation or Finale features. Divine commands, visions and social abilities can influence actions only to the extent their exact mechanical text states; no Cleric feature can force a player character to adopt, abandon or profess a belief.",
+      "Capacity clarification: the automatic level 9 Conviction increase is a new draft completion so every Hero can pay its 5-Conviction Finale without buying Conviction Pool. Conviction Pool adds 2 at any level, yielding 5 early or 7 from 9. It never fills gained capacity immediately."
+    ],
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+    "scope": "Complete existing name-comparison card/engine,not an ordinary spell grant or identity merge."
+  },
+  {
+    "mention": {
+      "class": "Cleric",
+      "location": "cleric.hero.saint.mass-healing-light",
+      "spellId": "light",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "card": {
+      "id": "cleric.hero.saint.mass-healing-light",
+      "name": "Mass Healing Light",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Saint",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "5 RP",
+      "rangeAndTarget": "Up to six living allies within 30 feet",
+      "duration": "Instantaneous",
+      "frequency": "Recharge 3 rounds",
+      "effect": "Mass Healing Light. Tags: saint, healing. Roll S d8 + M once. Each target regains that amount. A target below half maximum HP when chosen regains an additional 1d8 HP. Roll that bonus once and apply it to all qualifying targets. This cannot revive the dead or remove Wounds.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2021,
+        "originalText": "Mass Healing Light: Channel divine energy to heal all allies within 30 feet, with increased effectiveness on those most wounded."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "engine": [
+      "PROVISIONAL PLAYTEST CONTRACT. Wisdom is the Cleric class ability. S = 1/2/3/4 at Cleric levels 1/5/11/17. M = max(1, Wisdom modifier) unless a feature explicitly substitutes another ability. Cleric technique attack = d20 + normal character proficiency bonus + Wisdom modifier. Cleric technique save DC = 8 + normal character proficiency bonus + Wisdom modifier.",
+      "Conviction is separate from Resonance Points. Base Conviction maximum is 3, automatically becoming 5 at Cleric 9; after a long rest you begin at your current maximum. A completed short rest restores 1 spent Conviction, to the maximum. A completed long rest restores all Conviction. Conviction Pool raises the maximum by 2. Conviction persists between encounters; simply declaring prayer, repeating a Rite, or performing harmless actions outside a real encounter never generates Conviction.",
+      "Only explicit features generate Conviction. Sacred Chant, Sermon of Purpose, Doctrine Shield, Dark Conviction and other printed cards are valid generators. A feature cannot generate more Conviction than its text permits, and Conviction can never exceed the current maximum. Summoned creatures, friendly creatures, trivial creatures, repeated corpse manipulation and staged out-of-combat actions cannot be used to farm Conviction.",
+      "Cleric techniques use only their printed RP and Conviction costs. All RP is paid from the Cleric's Core Systems V 2 Resonance Point pool. A Cleric technique is not automatically an ordinary spell-rank cast and does not receive Overcast, spell-slot, cost-discount or spell-proc benefits unless a feature explicitly says otherwise. Ordinary spells continue to use Core V 2 spellcasting rules.",
+      "Protected Dissonance interaction: once on each of your regular turns, when you spend at least 2 Conviction on a Rite or Invocation, reduce Dissonance by 1, minimum 0. The expenditure must actually occur; waived Conviction costs do not vent Dissonance. A single feature expenditure vents at most once even if it spends more than 2 Conviction. No Cleric card automatically adds Dissonance unless explicitly written.",
+      "One concentration effect may be maintained at a time. Starting another concentration effect immediately ends the previous one. Damage uses the current Core Systems concentration rule; for this pilot, if a division requires rounding, half damage is rounded down. Sustained Cleric effects use their printed maintenance cost and Bonus Action. A control effect that persists for multiple pulses or rounds gives the target a new save at each printed pulse or at the end of each affected turn as stated.",
+      "Round recharge counters are set after resolution and decrease once at the start of the Cleric's regular initiative turn, even if the Cleric cannot act. Extra Actions and extra turns do not create extra recharge ticks. Outside initiative, each uninterrupted 6 seconds counts as one recharge tick. Only a positive counter may be reset or shortened, and a named ability can receive at most one reset or shortening per round.",
+      "Healing cannot exceed maximum HP, does not remove Wounds, and does not restore a dead creature unless a card explicitly says it resurrects. No Cleric feature provides unlimited permanent HP or resource restoration outside encounters. Temporary HP does not stack with itself; use the higher value. Resurrection and corpse-based effects have explicit use limits and cannot generate repeatable corpses, XP, loot or Conviction.",
+      "Invocation Attunement is gained automatically at Cleric level 2. Choose exactly one Invocation Path: Radiance, Judgment, Renewal, Flame, Veil or Echoes. Only the selected path bonus becomes active. Divine Invocation uses the mode belonging to that selected path unless another feature explicitly permits a different mode. Changing Invocation Path requires a future explicit retraining rule; this draft provides none.",
+      "PROPOSED ACQUISITION FOR PLAYTEST. Cleric 1: gain the Divine Favor engine and choose 4 Base cards, at least 2 Active. Cleric 2: automatically gain Invocation Attunement and the selected Invocation Path bonus, then choose 2 additional Base cards. Cleric 3: enter Bishop and choose 2 Arch cards, at least 1 Active. Levels 4-8 each grant one eligible Base/Arch choice, respecting each card's minimum class level. Level 9 grants one eligible Arch choice plus Bishop's Mandate automatically. Level 10 choose Saint, Priest or Cultist and gain 2 Hero choices from that path. Levels 12, 14, 16 and 18 each grant one additional Hero choice; levels 11, 13, 15, 17 and 19 grant one eligible unselected Base/Arch choice. The chosen Hero Finale is automatic at Cleric 20. ASI/feat milestones remain separate and do not consume these choices.",
+      "All acquisition gates use Cleric class level, not total character level. Proficiency bonus still follows normal total-character-level rules. A multiclass character cannot use non-Cleric levels to unlock Bishop, Hero, Invocation or Finale features. Divine commands, visions and social abilities can influence actions only to the extent their exact mechanical text states; no Cleric feature can force a player character to adopt, abandon or profess a belief.",
+      "Capacity clarification: the automatic level 9 Conviction increase is a new draft completion so every Hero can pay its 5-Conviction Finale without buying Conviction Pool. Conviction Pool adds 2 at any level, yielding 5 early or 7 from 9. It never fills gained capacity immediately."
+    ],
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+    "scope": "Complete existing name-comparison card/engine,not an ordinary spell grant or identity merge."
+  },
+  {
+    "mention": {
+      "class": "Mirrorsage",
+      "location": "mirrorsage.arch.echo-fusion",
+      "spellId": "echo-cast",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "card": {
+      "id": "mirrorsage.arch.echo-fusion",
+      "name": "Echo Fusion",
+      "className": "Mirrorsage",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "RP for 2 Echoes; consume both",
+      "rangeAndTarget": "Up to 2 profile targets within 30 ft",
+      "duration": "Instant or 1 turn",
+      "frequency": "Recharge 3",
+      "effect": "Choose two stored profiles. Resolve one at full dice and the other at half dice to one target each. Only one may be healing; at most one Hindrance rider. Counts as one combined release and cannot receive Dual Echo Cast simultaneously.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 3092,
+        "originalText": "Echo Fusion: Temporarily combine two stored Echoes to create a hybrid ability with properties of both."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "engine": [
+      "Intelligence is the class ability; use d8 Hit Die from the detailed book, recording the older runtime d6 as superseded for this draft. You begin with 3 empty Echo Slots. Expansion II raises ordinary capacity 5; Sacred/Floating memory features may add one restricted slot, but total concurrent stored Echoes never exceeds 6. Slots are storage, not spell slots. Releasing normally empties that record. Rest restores RP, not spent Echoes. Starting a new encounter does not duplicate the archive.",
+      "Mirrorbind is an Action, once per encounter, against a creature within 60 ft whose eligible ability you saw resolve since the start of your previous turn. Target must have INT 6 or lower, not be a boss or possess unique/legendary status unless an encounter script explicitly permits copying. It makes WIS save versus class DC; failure captures one witnessed ability into an empty slot. No copying from allies, your companions, another copy, a corpse, a recharge-limited legendary power or an at-will source that itself restores resources. You can voluntarily erase a slot without an action on your turn, permanently losing its record.",
+      "Record source creature/name, witnessed ability, category, damage type, allowed rank, capture encounter and whether first release has occurred. For this pilot, capture copies the observed role into ONE bounded profile: Strike=one target 60 ft class spell attack S d8 observed damage type; Burst=up to 3 enemies in 10 ft radius within 30 ft DEX save S d6, half on success; Mend=one living ally 30 ft S d6+M HP; Ward=one ally 30 ft S d6+M temporary HP for 1 minute; Hindrance=one enemy 30 ft WIS save or Speed-10 ft and no Reactions until end its next turn. Choose only a profile actually expressed by the observed source; physical attack cannot become healing. Rank is max(1, ceil(source challenge rating/2)); if source lacks a rating the Director assigns a rank before the encounter, not after seeing a desirable ability. Rank cannot exceed your Mirrorsage learnable rank; no copying character levels from a creature. Damage/targets/control are capped by these profiles, not source boss dice.",
+      "Echo Release costs the Core V 2 RP cost of the recorded rank, minimum 2, consumes its record and counts as a spell for Dissonance and Refrain. Spell attack/DC use your own stats. First release of a newly captured record ignores Refrain addition only; base strain remains. Any preserved subsequent release uses ordinary repeated-spell strain. All released Echoes, pet replays, fusions and reflections share ONE release action per round; a specifically combined package counts once but pays for every component and has its printed damage cap. Copies cannot create resources or recursive Echoes.",
+      "One Mirror Beast OR Reflective Companion, never both. Mirror Beast uses standard companion stats, initially copies appearance only, and costs a Bonus Action to command. You may command it to make its normal attack OR originate your round's Echo Release from its position, paying RP and consuming the record normally; not both. You still supply an Action for release unless a feature specifically changes that action cost. A shifted appearance grants no extra actions/stats. Destroying/dismissing it grants no capture, corpse, XP or recovery. Charm Bind is 1/long rest, 3 rounds, concentration, INT 6-or-lower target WIS save and repeat at each turn end/when harmed by your side; never a player character or boss without explicit encounter permission. A charmed companion uses its own ordinary attack with damage capped at standard companion S d6; unique spells/powers remain unavailable.",
+      "Focus Point is a separate resource: when Mimicry Focus is known, receive 1 at encounter start, maximum 1, lost at encounter end. It can modify one Echo without generating another release, recapture or resource refund. No stacking damage doublings; use the printed modest die/range boost. Healing/support copies always consume RP and cannot restore RP or duplicate limited-use features.",
+      "Standard acquisition applies; baseline Mirrorbind, Echo Release and summon procedure become usable by selecting their cards. Echo Channeling and Mirrorcall are upgrades, not duplicate mandatory unlocks. The contradiction between source initial 3 slots and Expansion I 2→3 is reconciled as an archive-safety upgrade below. Perfect Reflection automatic 9, Hero choice 10, corresponding Final 20. The finale does not override copy eligibility or the shared release cap."
+    ],
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+    "scope": "Complete existing name-comparison card/engine,not an ordinary spell grant or identity merge."
+  },
+  {
+    "mention": {
+      "class": "Oracle",
+      "location": "oracle.supplement.life.life-revelation-mastery",
+      "spellId": "light",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "card": {
+      "id": "oracle.supplement.life.life-revelation-mastery",
+      "name": "Life Revelation Mastery",
+      "className": "Oracle",
+      "band": "Hero",
+      "path": "Life",
+      "sourceKind": "revelation-mastery",
+      "minimumClassLevel": 15,
+      "acquisition": "choose one eligible enhancement at Oracle 15",
+      "activation": "Passive",
+      "cost": "0 RC",
+      "rangeAndTarget": "One eligible known Life Revelation",
+      "duration": "Permanent",
+      "frequency": "Choose one upgrade at Oracle 15",
+      "effect": "Choose one mastery for a Revelation you know. Enhanced Overflowing Light: maximum temporary HP from excess healing becomes 20. Enhanced Garden of Restoration: the first Garden pulse a creature receives may end both Poisoned and one disease that explicitly allows magical curing, rather than only one of those benefits. Enhanced Song of Mending: duration becomes 3 rounds and gains one additional 2d6 healing pulse at the start of your second later regular turn; each ally still receives only one 1-HP death prevention per use.",
+      "prerequisite": "Oracle 15; Mystery: Life; Revelation Mastery",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[6].revelationMastery",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[6].revelationMastery",
+            "value": [
+              "Enhanced Overflowing Light: temp HP max 20",
+              "Enhanced Garden of Restoration: also removes poison/disease on entry",
+              "Enhanced Song of Mending: duration 3 turns"
+            ]
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "engine": [
+      "PROVISIONAL PLAYTEST CONTRACT. Charisma is the Oracle class ability. S = 1/2/3/4 at Oracle levels 1/5/11/17. M = max(1, Charisma modifier). Revelation attack = d20 + normal character proficiency bonus + Charisma modifier. Revelation save DC = 8 + normal character proficiency bonus + Charisma modifier.",
+      "HIT DIE CONFLICT. The class overview registry lists d8, while the detailed Player Rulebook Oracle entry states 6 + Constitution modifier at level 1 and d6 per Oracle level thereafter. This pilot uses the detailed rulebook d6 chassis: 6 + Constitution modifier at Oracle 1 and 1d6 per later Oracle level. The d8 registry value remains a preserved alternative pending owner adjudication.",
+      "The Oracle is an exceptional progression class rather than a 25-choice Base/Arch/Hero class. Base Oracle is levels 1-2, Revelation Tier development is the Arch-stage progression at levels 3-9, and Revelation Mastery is the Hero-stage progression at levels 10-20. Mystery and Curse are chosen at level 1 but their later Revelations, Boons and Final abilities remain class-level gated.",
+      "Choose exactly ONE Mystery and exactly ONE Curse at Oracle level 1. They are not parallel subclasses that stack. You never gain another Mystery or Curse unless a future explicit retraining or transformation rule says otherwise. Curse limitations are permanent and cannot be removed by ordinary cleansing, curse removal, resurrection or rest.",
+      "REVELATION CHARGES are the Oracle's only class power resource. Oracles do not use Resonance Points, spell slots, Weave Dissonance, Overcast or ordinary spell-rank casting for Revelations. Revelation Charges are abbreviated RC. A Revelation card's printed RC cost is paid once before resolution. An illegal activation spends nothing.",
+      "RC CAP SCHEDULE for this provisional module: maximum 3 at Oracle levels 1-2, 4 at levels 3-5, 5 at levels 6-8, 6 at levels 9-10 and 7 at level 11+. Increasing the maximum does not automatically refill spent charges except where another feature explicitly says so.",
+      "RC RECOVERY. A completed long rest restores RC to maximum. A completed short rest restores 1 spent RC, never above maximum. Each Mystery has exactly one Prophecy Trigger. During a real encounter, your Prophecy Trigger can restore at most 1 RC per round and never above maximum. Trivial enemies, willing staged targets, summoned sacrifices, repeated corpse abuse, copied damage, copied healing and events generated solely to trigger recovery do not qualify.",
+      "A single event can satisfy only one Prophecy Trigger recovery for you even if several descriptions could apply. A Revelation repeated or copied by another feature does not independently trigger Prophecy recovery unless that feature explicitly says it counts as a new Revelation use. Restored charges never recursively trigger another recovery.",
+      "At Oracle level 11, the preserved registry draft additionally sets your starting RC when a real encounter begins to at least max(3, your Charisma modifier), capped by your current RC maximum. If you already have more RC, keep the higher current value. This encounter-start floor occurs once per encounter and cannot be triggered by staged initiative.",
+      "REVELATIONS are divine class techniques, not ordinary spells. Unless a Revelation explicitly says otherwise, magical silence does not prevent a purely mental Revelation, but a Revelation requiring speech, touch, visible symbolism or another listed component obeys that requirement. Revelations do not generate Dissonance and cannot be modified by spell-slot, RP, spell-rank discount or ordinary spell-proc mechanics.",
+      "One concentration effect may be maintained at a time unless a specific Oracle feature explicitly creates a narrow exception. Damage uses the current Core Systems concentration procedure; if half-damage rounding is required in this pilot, round down. Sustained Revelation control effects grant repeat saves at the cadence printed on the Revelation.",
+      "HARD CONTROL GUARD. A creature can suffer at most one Oracle-caused full-turn denial such as Stunned, Paralyzed, Incapacitated by control, or loss of its full Action from your Oracle features per encounter. After that succeeds once, later Oracle effects from you that would fully deny its turn instead remove its Reaction and reduce its Speed to 0 until the end of its next turn after the required save fails.",
+      "ADDITIONAL ACTION GUARD. All sources share a maximum of one additional full Action per creature per round. An additional Action cannot grant another additional Action, Bonus Action or Reaction. Features that say a creature acts out of turn use this same cap. Movement-only grants do not count as additional full Actions.",
+      "Healing from Oracle features cannot exceed maximum HP, resurrect the dead or remove Wounds unless a feature explicitly says so. Temporary HP never stack. Encounter-only regeneration and drain cannot be farmed outside meaningful combat. Corpse effects create no XP, loot, RC or repeatable corpse resources unless expressly stated.",
+      "Copied, echoed, repeated or redirected damage/healing uses only the explicitly copied numeric component. It cannot repeat RC recovery, Prophecy Triggers, action grants, conditions, passive triggers, resource restoration or another copy effect unless the copying feature explicitly says otherwise.",
+      "BASE PROGRESSION. At Oracle 1 choose Mystery and Curse; gain the RC engine, Channel Revelation, Prophetic Insight and Divine Sense. At Oracle 2 gain Curse Manifestation, Oracular Trance and Oracle's Burden. No Base feature-selection currency or Skill Points are used.",
+      "ARCH-STAGE PROGRESSION. Oracle 3: choose one Tier I Revelation from your Mystery and automatically gain Curse Boon I. Oracle 4: separate ASI or eligible feat. Oracle 5: automatically gain Curse Boon II; any Mystery-specific level-5 feature recorded by the registry belongs to the Mystery module below and does not create an additional generic feature here. Oracle 6: choose one Tier II Revelation and gain Mystery Surge. Oracle 8: separate ASI or eligible feat. Oracle 9: gain your Mystery's fixed Tier III Revelation.",
+      "HERO-STAGE PROGRESSION. Oracle 10: gain Curse Boon III and Grand Revelation Foreshadow. Oracle 11: RC cap reaches 7 and the preserved encounter-start RC floor becomes active. Oracle 12: gain the Mystery-specific Mystic Insight. Oracle 13: preserved registry draft grants a second Tier II Revelation; after each completed short rest choose which of your two Tier II Revelations is Attuned for features that specifically refer to an active Tier II option, though both remain known and usable. Oracle 14: separate ASI or eligible feat. Oracle 15: gain Revelation Mastery and Curse Boon IV. Oracle 16: preserved Prophecy Trigger Mastery. Oracle 17: preserved Grand Revelation Foreshadow upgrade. Oracle 18: Prophetic Surge. Oracle 19: separate ASI or eligible feat. Oracle 20: gain the Mystery's Final Revelation and Curse Boon V.",
+      "REVELATION MASTERY at level 15 never grants a Revelation you do not know. Choose one mastery enhancement explicitly listed by your Mystery for a Revelation you know. If a listed mastery names a Revelation you did not select, that mastery option is unavailable. Mastery cannot reduce RC below 0, create additional Actions beyond the shared cap or remove repeat-save requirements unless its exact Mystery text says so.",
+      "PROPHECY AND DIVINATION never force player beliefs, future choices or confessions. Information features can provide truthful clues, likely outcomes, symbolic visions or current facts, but the Director is not required to reveal unknowable future player decisions. Effects that command or compel a player-controlled character preserve the player's choice of targets and prohibit self-harm, permanent allegiance changes and belief alteration.",
+      "CURSE MANIFESTATION provides a common operational intensification rather than ten different hidden sub-engines. When activated, your Curse becomes visibly or metaphysically dominant for 3 rounds: gain +1 on Revelation attacks and +1 to Revelation save DC, but take -1 AC and -1 on your own saving throws for the duration. Any Curse limitation that can normally be voluntarily suppressed cannot be suppressed during Manifestation.",
+      "CURSE BOONS are automatic at Oracle levels 3, 5, 10, 15 and 20 for your ONE selected Curse. You do not choose between Curse Boons and do not gain Boons from unselected Curses. Each Curse card below operationalizes all five Boon gates and its permanent limitations.",
+      "All class gates use Oracle class level, not total character level. Normal proficiency bonus follows the game's ordinary total-character-level rule. Non-Oracle levels do not raise RC maximum, unlock Curse Boons, Revelations, Mystic Insight, Revelation Mastery, Prophetic Surge or Final Revelation.",
+      "INTEGRATION PRECEDENCE. The source ceiling draft conflicts with the registry on short rests and extra Revelation activations. This pilot explicitly chooses 1 RC on a completed short rest and permits a second Revelation only through an expressly granted extra Action or double-cast feature, never more than two Revelation resolutions per round. The preserved ceiling alternative is no short-rest recovery and one activation per round; do not combine both configurations.",
+      "All combat-triggered RC refunds, including Prophecy, damage riders and Curse Boons, share ONE recovered RC per round. Rest recovery, encounter-start floor and explicitly limited Final refills are separate. A free, copied or refunded use cannot recursively trigger another recovery. Apply this global cap even if an individual card says its recovery is separate.",
+      "The shared Prophetic Surge and your Mystery-specific level-18 Prophecy are two descriptions/options of ONE long-rest use, not two charges. Framework cards such as Tier III, Mystic Insight, Mastery and Final Revelation unlock the named Mystery card and never grant duplicate uses. A level-5 registry Mystery label grants no extra unnamed ability.",
+      "Oracle zone default: choose at most three allies and three enemies for each pulse or aura benefit, fixed at activation unless the card names fewer. Persistent damaging/healing zones require concentration and at most three pulses. Pay 1 RC before each pulse after the first, or end the effect; once-per-long-rest Finals include their printed pulses in that limited use. One pulse can affect a creature only once per round. Passive personal resistance and a single-target temporary buff are not zones.",
+      "Revelation backlash is the local one-turn penalty of -1 to attacks and saves and -5 feet Speed, ending at the end of your next turn. It is not a level of the general Exhaustion condition. Wound Eater's missed-feeding Exhaustion remains the general condition.",
+      "Initiative adjustments change order beginning next round. They never produce or erase a regular turn in the current round; a creature still gets at most one regular turn each round. Ties use the original initiative order. Fixed encounter-start bonuses do not retroactively reorder an encounter.",
+      "Extra attacks and echoed damage use base weapon/spell dice before critical-hit extra dice. A redirected damage event cannot be reduced a second time, reflected again or generate RC. Charmed alone does not grant command of a creature's actions.",
+      "Oracle’s exceptional ASI/feat schedule is 4, 8, 14 and 19. It does not gain extra ASIs at 12 or 16 from the generic class schedule. The rejected five-milestone draft remains in superseded Playtest Overrides for traceability."
+    ],
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "scope": "Complete existing name-comparison card/engine,not an ordinary spell grant or identity merge."
+  },
+  {
+    "mention": {
+      "class": "Druid",
+      "location": "engine",
+      "spellId": "decay",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "engine": [
+      "Wisdom governs spells, form attacks and class DC/M. Hit Die d8; book armor, weapons, saves and skills remain. Retain your own ability scores, HP, saves, proficiency and personality in all forms; form traits replace only the stated anatomy, movement and attacks. No additional monster stat block or separate beast HP pool. One natural attack per Attack Action unless a form explicitly states otherwise, attack PB+WIS, printed dice+WIS damage. Missing natural attack is 1d6 bludgeoning; default walking Speed 30 ft, normal AC, Medium size. Hawk is Tiny, Bear/Earth Warden/hero forms may be Large when space permits. Equipment melds and cannot be used while melded; magical numeric bonuses persist only if compatible with form anatomy and never duplicate armor.",
+      "This class follows its explicit book progression instead of the ordinary 25-choice template. Base 1 grants Druidic, spellcasting, all five Base forms and 2 shifts/long rest. Choose one of seven Circles at 2; its level 2 features are a Base-stage exception. Enter the chosen Circle Arch path at 3, gain its 6 feature, then Circle Hero forms at 10 and its 14 feature. Arch Forms unlock 11 despite the historical word Arch; these are forms, not a second promotion. At 11 attune up to 2 Arch forms during long rest. Base forms remain available at higher levels. All features below are automatic at their gate for the chosen Circle; no generic extra class-card choices are added.",
+      "Preparation: two cantrips at 1, three at 4, four at 10, plus explicit Circle bonuses. Prepare class level+WIS modifier ranked Druid spells (minimum 1) each long rest, rank limited by Druid spell-rank access, not merely by enough RP. Use approved operational spell entries and Core V 2 RP table/costs in the shared configuration. Book rank-times-two cost and imported spell-slot terminology are preserved as superseded alternatives for this pilot. Circle always-prepared spells do not count toward preparation and use ordinary RP/Dissonance. Rituals must have ritual tag, be prepared and take printed casting time plus 10 minutes; waive base RP only, never consumed materials or other costs. ASI/feat milestones 4/8/12/16/19 belong to general advancement and must not be granted twice.",
+      "Shifting: Bonus Action, one long-rest shift use, 10 minutes, early reversion Bonus Action. Reaching 0 HP or incapacitation ends form; excess damage stays on your own HP. Shift uses follow detailed book table:2 at 1, 3 at 4, 4 at 7, 5 at 10, 6 at 13, 7 at 16, 8 at 19. Supplemental runtime alternative 2/3/4/5/6 at 1/4/8/12/16 remains preserved. At 20 changing form is unlimited but does not refill finite form benefits. Speech unavailable in Base forms, available in Arch/Hero. No spellcasting in form until Beast Spells 18 except an explicit form permission. Maintaining an existing spell concentration is allowed, still only one concentration. Changing form spends a use and ends old form features/summons; it does not reset once/rest abilities.",
+      "Transformation reserves prevent unlimited replacement HP: at long rest record Buffer Reserve=2 L+M and Form Surge Reserve=PB. A form giving temporary HP draws that many from Buffer Reserve, up to remaining amount, with normal nonstacking; never real healing. A form special described once/transformation also spends 1 Form Surge and cannot be refreshed by resuming the form. Form Surge refills only long rest. Forms cannot grant free casts, RP or shift uses. Auras affect at most 3 enemies and once per enemy per round; retaliation once/round total; ongoing riders refresh, never stack. Entering a legal Shapeshift clears the Refrain counter and remembered repeated-spell name, as the protected source contract requires. It does not reduce accumulated Dissonance. Natural attacks do not clear Refrain.",
+      "Circle of the Land chooses one terrain at 2. Always-prepared spell pairs at 3/5/7/9 are exactly the source table lines 2662–2669, reproduced in source appendix; their source names resolve to existing approved spell entries before use. They do not bypass rank gates. For this pilot Circle spells are permitted exceptions to ordinary list membership, not newly authored variants. Moon Circle Forms CR table is historical external-stat language: use only these bounded forms, not arbitrary CR beasts. Early Moon benefit is +S damage on first form hit each turn. No imported monster multiattack, spellcasting or legendary actions.",
+      "Circle summary: Land preserves lore and recovery; Moon improves shifting; Storm controls lightning and wind; Thorns works poison and roots; Winterfang works cold; Rotshaper uses bounded swarms; Ashen Grove works fire and regrowth. Land/Thorns duplicate Blight Elk and Tanglemaw names are kept as separate source identities. Source auto-failed hostile saves in Master of Decay/Ash become once/turn-2 on one save, not unavoidable control. Stronger supplemental flavor riders are represented explicitly below or retained as unadopted alternatives in source provenance."
+    ],
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+    "scope": "Textual comparison only; no ordinary spell grant or identity merge."
+  },
+  {
+    "mention": {
+      "class": "Druid",
+      "location": "druid.hero.land.blight-elk",
+      "spellId": "wither",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "card": {
+      "id": "druid.hero.land.blight-elk",
+      "name": "Blight Elk",
+      "className": "Druid",
+      "band": "Hero",
+      "path": "Land",
+      "sourceKind": "form",
+      "minimumClassLevel": 10,
+      "acquisition": "automatic",
+      "activation": "Action antlers; passive aura",
+      "cost": "One shift",
+      "rangeAndTarget": "Land Hero; 5 ft aura",
+      "duration": "While in Blight Elk",
+      "frequency": "Aura once/enemy/round, max 3 enemies",
+      "effect": "Antlers 2d8+WIS piercing. Enemy starting within 5 ft CON save or 1d4 poison. Wither unattended mundane vegetation within 5 ft cosmetically; tainted water is visibly foul and harmless after 10 minutes. No mass contamination or permanent resource fabrication.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2677,
+        "originalText": "Blight Elk\nAura of Decay: Enemies that start their turn within 5 ft. of you take 1d4 poison damage\nAntlers: Your antler attack deals 2d8 piercing damage\nToxic Presence: Plants wither in your presence, and water becomes tainted"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+    "scope": "Textual comparison only; no ordinary spell grant or identity merge."
+  },
+  {
+    "mention": {
+      "class": "Oracle",
+      "location": "oracle.supplement.bones.rotting-touch",
+      "spellId": "decay",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "card": {
+      "id": "oracle.supplement.bones.rotting-touch",
+      "name": "Rotting Touch",
+      "className": "Oracle",
+      "band": "Arch",
+      "path": "Bones",
+      "sourceKind": "tier-ii-revelation",
+      "minimumClassLevel": 6,
+      "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+      "activation": "Action",
+      "cost": "2 RC",
+      "rangeAndTarget": "One creature you can touch",
+      "duration": "Maximum 3 rounds",
+      "frequency": "At will while RC remains",
+      "effect": "Make a Revelation attack. On hit the target makes a Constitution save. On failure it gains Decay for up to 3 rounds: attacks against it add S damage once per attacker per turn, it takes -1 on saving throws and cannot regain HP. At the end of each turn it repeats the save, ending Decay on success. Corpses within 2 tiles of a Decayed creature cannot be raised while Decay persists. If the target is undead, it also takes 2d6 necrotic damage on the initial hit and you regain half the actual damage dealt, capped at S+M HP. At most three allied hits per round receive the vulnerability rider; it is additional flat damage, not multiplication of an entire attack.",
+      "prerequisite": "Oracle 6; Mystery: Bones; selected Tier II Revelation",
+      "source": {
+        "line": null,
+        "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierII[1]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierII[1]",
+            "value": {
+              "name": "Rotting Touch",
+              "charges": 2,
+              "kind": "active",
+              "description": "Spend 2 charges: touch attack inflicts Decay — target takes +25% damage from all sources and −10% saves for 3 rounds; the Pale Ledger tallies their rot — on a failed save they also cannot regain HP and corpses within 2 tiles of them cannot be raised as undead until Decay ends; if the target is undead, they take 2d6 necrotic immediately and you heal half."
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+    "scope": "Textual comparison only; no ordinary spell grant or identity merge."
+  },
+  {
+    "mention": {
+      "class": "Paladin",
+      "location": "paladin.supplement.oath-of-dominion.law-s-weight",
+      "spellId": "haste",
+      "spellStatus": "blocked-pending-operational-review",
+      "status": "semantic-review-required",
+      "rule": "Textual mention only, not proof of a spell grant or executable dependency."
+    },
+    "card": {
+      "id": "paladin.supplement.oath-of-dominion.law-s-weight",
+      "name": "Law's Weight",
+      "className": "Paladin",
+      "band": "Arch",
+      "path": "Oath of Dominion",
+      "sourceKind": "oathSpell",
+      "minimumClassLevel": 9,
+      "acquisition": "automatic for chosen Oath",
+      "activation": "Action",
+      "cost": "5 RP",
+      "rangeAndTarget": "20-foot-radius fixed zone centered within 30 feet",
+      "duration": "Concentration, 3 rounds",
+      "frequency": "At will while RP remains",
+      "effect": "A hostile creature is considered a source-qualified law breaker only if it knowingly lied while inside your Aura of Authority earlier this encounter. When such a creature enters or starts its turn in the zone, it makes a Charisma save. On failure its Speed is halved, AC is reduced by 2 and it cannot benefit from Dash or Haste-like extra movement until the start of its next turn. It saves again each turn while affected.",
+      "prerequisite": "Paladin 9; Oath of Dominion",
+      "source": {
+        "line": null,
+        "reference": "SACRED_OATHS[2].revelationSpells[2]",
+        "originalText": "",
+        "status": "source-derived",
+        "originalObjects": [
+          {
+            "reference": "SACRED_OATHS[2].revelationSpells[2]",
+            "value": {
+              "level": 9,
+              "spell": "Law's Weight — 20-ft zone for 3 rounds; lawbreakers (those who lied in your aura this combat) save or half speed, −2 AC, and cannot benefit from haste or dash until zone ends"
+            }
+          }
+        ]
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": 3,
+      "oathId": "dominion",
+      "oathName": "Oath of Dominion",
+      "oathbreakerName": "Tyranny",
+      "displayPath": "Oath of Dominion"
+    },
+    "file": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+    "scope": "Registered textual comparison; no automatic access grant or identity merge."
+  }
+]

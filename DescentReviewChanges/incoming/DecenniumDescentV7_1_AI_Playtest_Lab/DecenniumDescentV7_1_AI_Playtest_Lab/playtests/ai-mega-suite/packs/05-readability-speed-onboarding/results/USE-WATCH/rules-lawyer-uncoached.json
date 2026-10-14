@@ -1,0 +1,62 @@
+{
+  "pack": "05-readability-speed-onboarding",
+  "scenarioId": "USE-WATCH",
+  "agentId": "rules-lawyer-uncoached",
+  "seed": 51748,
+  "runId": "2026-08-06T122200Z-USE-WATCH-rules-lawyer-uncoached",
+  "observations": [
+    "Task: Resolve three Watches including one Pressure complication",
+    "Run: uncoached; facilitator answered only by pointing to rule text.",
+    "Cited: docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches; docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications.",
+    "Persona friction terms: Attention cargo Pressure timing, route transition vs every Watch for Extraction Tests.",
+    "Observed ExpeditionTracker Rest debt /3 label while reading Rest Debt in GAMEPLAY_LOOP_CANON §5."
+  ],
+  "metrics": {
+    "coachedRun": false,
+    "decisionSteps": 16,
+    "ruleLookups": 8,
+    "invalidActionsAttempted": 1,
+    "misreadTerms": [
+      "Attention cargo Pressure timing",
+      "route transition vs every Watch for Extraction Tests"
+    ],
+    "minutesEstimateProxy": 22.4,
+    "canStateFullLoop": null,
+    "conceptUnderstood": {
+      "Pressure": true
+    },
+    "citationsUsed": [
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §8 Team activities",
+      "src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    ],
+    "evidenceLevel": "B",
+    "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014",
+    "rulesHaltCount": 1
+  },
+  "rulesQuestions": [
+    "ExpeditionTracker Rest debt shows /3 while canon Rest Debt is 'within next two Watches' — which governs?",
+    "Does every member need an activity even on Rest Watch?",
+    "Undefined-on-first-read: Attention cargo Pressure timing",
+    "Undefined-on-first-read: route transition vs every Watch for Extraction Tests"
+  ],
+  "exploits": [
+    "Attempted to avoid Attention Pressure by claiming continuous carriage never re-triggers — correct per §7, but used to justify never concealing Attention cargo."
+  ],
+  "recommendations": [
+    "Align ExpeditionTracker Rest-debt UI copy with GAMEPLAY_LOOP_CANON §5 wording.",
+    "Add a Watch sheet: team activity + Pressure d6 + Supply tick."
+  ],
+  "confidence": "medium",
+  "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014",
+  "evidenceLevel": "B",
+  "rulesHalts": [
+    {
+      "id": "RH-05-REST-DEBT-UI",
+      "rule": "Rest Debt timing",
+      "conflict": "Canon: clear Rest Debt within next two Watches / before day boundary. UI: watchesWithoutRest/3.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Rest Debt / Strain vs src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    }
+  ]
+}

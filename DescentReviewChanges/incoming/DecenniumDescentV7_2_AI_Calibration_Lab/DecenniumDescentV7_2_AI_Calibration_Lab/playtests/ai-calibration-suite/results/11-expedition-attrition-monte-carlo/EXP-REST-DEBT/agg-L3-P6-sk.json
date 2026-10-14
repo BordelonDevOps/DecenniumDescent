@@ -1,0 +1,121 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-REST-DEBT",
+  "runId": "EXP-REST-DEBT-agg-L3-P6-sk",
+  "seed": 6538541,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 1.0,
+    "wipeRate": 0.0,
+    "abortRate": 0.0,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0,
+    "meanWatches": 8,
+    "meanHours": 66.42,
+    "meanTrueProfit": 10.95,
+    "medianTrueProfit": 11.32,
+    "profitLossRate": 0.377,
+    "meanCargoRetainedLoad": 12.841,
+    "meanExtractionFailRate": 0.302,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 3,
+    "party": 6,
+    "mapping": "Sketched",
+    "policy": "aggressive",
+    "objective": "interrupted rest and attrition",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-REST-DEBT/agg-L3-P6-sk.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 1,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 6,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 3,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 6.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 5,
+      "hour": 40,
+      "progress": 5,
+      "pressure": 0,
+      "supply": 6.0,
+      "load": 10,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 6,
+      "hour": 48,
+      "progress": 6,
+      "pressure": 0,
+      "supply": 6.0,
+      "load": 14,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 7,
+      "hour": 56,
+      "progress": 7,
+      "pressure": 0,
+      "supply": 0.0,
+      "load": 14,
+      "mapping": "Sketched",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

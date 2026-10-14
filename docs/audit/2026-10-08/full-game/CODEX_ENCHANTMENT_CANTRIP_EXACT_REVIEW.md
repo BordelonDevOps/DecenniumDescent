@@ -1,0 +1,1217 @@
+# Twelve Enchantment cantrips — exact manuscript review
+
+Please review all twelve exact cards against your source conference and shared rules. Approve for manuscript promotion or give exact required repairs. The selected catalog remains 198 reviewed / 650 unfinished until approval. All twelve original source placements/Core blocks and actual class access remain attached. This is not runtime, human balance or whole-game certification. Please keep the response below 17,000 characters.
+
+Points needing explicit review:
+
+1. False Comfort and Enthralling Tune affect actual Perception checks, with no invented passive -5. This follows the current combat guide's explicit prohibition on an unsourced passive ±5. False Comfort is one check; Enthralling Tune persists on checks concerning subjects other than the caster/tone. A broader search involving other subjects qualifies. A single initial tone supplies V; no instrument/continuous performance or ongoing hearing tether is added. Both use the first future target turn END, excluding the entire current target turn.
+
+2. Glimmering Eyes keeps the chosen skill at casting, printed +2 on all its checks during one minute, strongest flat bonus and one caster application. It does not require proficiency or eye contact.
+
+3. Disrupt Memory keeps your WIS save, six seconds immediately before resolution, actual episodic loss and ALL maintained concentration. The appended current class evidence includes Wizard Spell Tether, Wizard Tethered Cast and Crimson Harmony. I expressly include the two linked Spell Tether/Crimson Harmony effects and Tethered Cast's separately sustained spell even though it no longer occupies the ordinary slot. Please explicitly confirm this actual-class interaction. Tethered Cast's separate damage-save handling does not become immunity to an effect ending all maintained concentration. These current reviewed class rules remain unchanged; their preserved historical source is attached for comparison, including Spell Tether's older “without concentration” wording. Memory-only immunity does not itself protect the independent concentration component. Empty remembered windows do not prevent ending concentration. Mechanical choices/action budgets and nonspell Ready records are not retroactively erased, while a held concentration spell ends normally.
+
+4. Mental Tap uses your numeric actualDamageDealt (temp HP absorbed + ordinary HP lost, not overkill). I specify the new save bonus is established AFTER this spell's damage packet and immediately due concentration/damage consequences finish, so a self-targeting caster cannot retroactively boost that packet's completed concentration save. This is an exact timing completion: approve or repair it. The new benefit applies to the next actual save after it exists, including automatic-result saves without changing their automatic result, with no event meaning no consumption. Later zero actual damage does not erase an old benefit.
+
+5. Friends checks actual non-hostility after payment, creates no Charmed and adds no save. A successful eligible recast replaces its prior target; an ineligible/no-benefit cast does not itself erase a valid old one. Actual later hostility ends the benefit permanently. There is no continuing 30-foot tether after legal application, but normal communication/social task permissions remain.
+
+6. Soothe Animal keeps your voluntary-harm prohibition, real classification, WIS save and one-minute no-concentration duration. Hidden classification is checked after payment. It ends at another creature's hostile commitment, even if that attack later misses, or on a positive resolved damage packet before temp HP (the existing “takes damage” convention). A fully prevented zero packet alone does not end it. This is intentionally distinct from Mental Tap's damage-DEALT numeric trigger. The exact card also ends calm if the required actual animal/Beast classification ceases; please approve or repair that added maintained-target interpretation. It neither cancels a previously committed action nor cures Frightened.
+
+7. Faction Sympathy preserves F and concentration. Its +1 Persuasion is faction-related only. Actual caster affiliation is checked initially; I add no later membership tether or automatic faction-switch. Harm ending uses actual target recognition of someone acting for the faction, not hidden membership information, and commits before an attack resolves. Source tags grant no movement/ward. Confirm that membership snapshot scope.
+
+8. Alignment Empathy snapshots the caster's actual orientation at application without disclosing axes or changing either alignment. One +1 Persuasion use can be consumed before the feeling expires; no new bonus follows merely from that feeling. One per caster/target pair.
+
+9. Resonance Whisper has a contradictory last sentence in your source conference: it first says failed WIS save applies -1, then says “A failed Disturb save creates no replacement.” The exact card resolves that as: target FAILURE applies/replaces Disturb; target SUCCESS creates no replacement. Please confirm. Disturb uses its WIS save even for a willing target absent an independent save-waiver rule. Its -1 penalty can coexist arithmetically with a separate permitted +1 Mote, while Guide uses strongest-flat-bonus rules. The single cross-caster Whisper record cannot bank Guide and Disturb.
+
+10. Minor Suggestion checks hidden language compatibility and actual harmlessness after payment. It is a mental idea, so target hearing is not added, although V/S still apply. The first actual Persuasion check encouraging that exact idea consumes the advantage; no forced action results. I add one application per caster/target pair and end the magical salience/unused benefit if actual changed circumstances make the act harmful, retaining ordinary memory of the idea. Those exact additions need approval. Each printed harmlessness exclusion remains; no hidden-hazard diagnosis is granted.
+
+11. Beguiling Gaze preserves actual mutual gaze and prevents voluntary aversion/eye closure used to evade the caster's gaze, including an independently actual gaze power. Involuntary sight loss still breaks contact normally. The target otherwise acts/perceives normally and may move out of range; no forced following/facing engine/gaze attack is added. Voluntary caster release costs no extra Action. A saved new cast does not itself replace the old record, but turning away to establish the new gaze can independently end the old lock. Please confirm the eye-closure wording does not create an unintended intent loophole or prohibit ordinary involuntary blinking.
+
+All additions remain labeled NEW. Disrupt Memory's low-cost all-concentration disruption, social modifier overlaps, pacification and gaze combinations remain explicit human-balance questions rather than silent source nerfs.
+
+## Exact candidate
+
+Candidate byte SHA256: ac685f6391454c3c41054466f451f84be2243a987992910be06b06394ed09c79
+
+```json
+{
+  "status": "LOCAL CANDIDATE — SOURCE-RECONCILED; exact manuscript review pending; NOT SELECTABLE",
+  "scope": "Twelve rank-zero Enchantment identities with all twelve source placements/Core blocks and exact class access preserved. Authored tabletop rules only; runtime, numerical balance and broader-domain closure remain open.",
+  "reviewEvidence": [
+    "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+  ],
+  "spells": [
+    {
+      "id": "false-comfort",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect.",
+      "duration": "Instantaneous sensation; pending distraction until consumed or its one-round endpoint. Ends at the end of the target's first future regular turn, excluding the entire current target turn if one is already in progress. Outside initiative, expires 6 elapsed seconds after application. Preserve the selected virtual marker or absolute deadline through initiative changes and absence; end-phase effects resolve before end-marker cleanup.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "The target makes a Wisdom save against your spell DC. Success: no new sensation or rider. Failure: it experiences a convincing subjective surge of relief or apparent recovery and receives disadvantage on its next actual Perception check before the endpoint. Consume the rider when that check begins, even if another source already imposes disadvantage or advantage cancels it.",
+      "effect": "The sensation can feel like warmth, easing pain or the beginning of healing. It restores no HP or temporary HP, stabilizes nothing, removes no Wound or condition and generates no healing/recovery event or trigger. Apparent comfort does not alter actual injury, damage, HP-dependent rules or knowledge made apparent by physical evidence. The target is never required to behave as though mechanically healed. One pending False Comfort distraction per target across all casters; a later failed save replaces it, while a later successful save leaves an existing rider intact.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "The one-use rider names an actual Perception check; it does not independently lower passive Perception or require a new check. No Action/turn loss, forced movement, belief about a specific medical fact, magical diagnosis, cure, enduring pain suppression or permanent memory change is granted. If no qualifying check occurs before expiry, the rider ends unused. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S and apparent healing with no actual healing effect. NEW: WIS save, fleeting relief and one-Perception-check distraction lasting one target round. The Healing tag supplies no healing trigger; the numeric distraction is an explicit reviewed addition.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "False Comfort",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Target believes they are healing; no effect, distraction only."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 315,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "False Comfort",
+            "effect": "Target believes they are healing; no effect, distraction only.",
+            "source_paragraph": 9373,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Healing"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "glimmering-eyes",
+      "activation": "Action",
+      "rangeFeet": 0,
+      "targets": "Self; choose Persuasion or Deception when casting.",
+      "duration": "1 minute, no concentration. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve that original virtual phase or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "No roll. Choose one of the two skills at cast resolution. For the duration, gain the printed +2 on every actual check using that chosen skill, whether or not you are proficient in it.",
+      "effect": "Apply the normal strongest-applicable-flat-bonus rule to the same statistic; this does not add to a stronger competing flat skill bonus. One active Glimmering Eyes per caster. A successful recast replaces the former application and its skill choice, rather than retaining both choices. The spell grants no new proficiency or permission to attempt an otherwise impossible social task.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "No eye contact or special gaze anatomy is required. The name grants no light source, vision, hidden-target discovery or gaze attack. Normal communication, context, target attitudes, task legality and outcomes remain. No automatic success, compelled assent, truth detection, authority, friendship or reputation change is supplied. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/V,S, +2 Persuasion or Deception for one minute without concentration. CONFLICT RULING: Self beneficiary replaces raw 30-foot metadata. NEW: choose one skill at casting and replace rather than bank applications.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Glimmering Eyes",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Caster gains +2 to Persuasion or Deception for 1 minute."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 316,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Glimmering Eyes",
+            "effect": "Caster gains +2 to Persuasion or Deception for 1 minute.",
+            "source_paragraph": 9374,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 minute",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "disrupt-memory",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect; it need not already be concentrating or known to remember anything.",
+      "duration": "Instantaneous; the affected interval’s firsthand episodic recall is lost rather than temporarily suppressed.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "The target makes a Wisdom save against your spell DC. Success: no effect. Failure: remove its own episodic recollection of the six elapsed seconds immediately preceding this spell’s resolution, and end every actual Concentration application it is personally maintaining through each application’s normal ending procedure. No second concentration save is granted by this spell.",
+      "effect": "This changes recall, not the world or its state. Movement, attacks, damage, healing, deaths, conditions, resources, RP, Dissonance/Refrain, consumed uses, recorded choices, action budgets, physical evidence, other observers’ memories and completed outcomes stay as they occurred. The target can learn facts about that interval afterward from witnesses or evidence, creating new knowledge without restoring its erased firsthand memory. Each legal cast affects only its own resolution-relative six-second interval; overlaps never recursively reach older memories. A memory-only protection prevents only the memory change unless its scope also covers the concentration disruption; an empty remembered interval does not itself prevent ending actual concentration.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "Multiple actual concentration records maintained by this target all end, including the linked pairs permitted by Spell Tether or Crimson Harmony. Tethered Cast’s separately sustained concentration spell is included despite not occupying the normal slot; its separate damage-save rule is not immunity to an effect expressly ending all maintained concentration. Unrelated sustained or permanent non-concentration effects, class features merely named focus, intrinsic traits and other creatures’ concentration do not end. Use actual ending consequences for held readied spells, summons, forms and fields; do not restore displaced effects or refund costs. Remembering the encounter poorly does not itself consume an Action, rewind a turn, clear a mechanically retained nonspell Ready record, create Unconsciousness or reset initiative. The spell supplies no replacement memory, information about what was erased, blanket forgetting of older associations, automatic notification of success, or immunity to later casts. Separate features that actually repair lost memories retain their own permissions. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S/instantaneous, forget the last six seconds and end concentration. NEW: WIS save, permanent resolution-relative episodic loss, all currently maintained Concentration scope and independent defense handling. Exact-class completion includes Spell Tether, Crimson Harmony and Tethered Cast under actual maintained-concentration rules; it does not alter their source cards.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Disrupt Memory",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Target forgets last 6 seconds; ends concentration."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 317,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Disrupt Memory",
+            "effect": "Target forgets last 6 seconds; ends concentration.",
+            "source_paragraph": 9375,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "enthralling-tune",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect that can hear the casting tone.",
+      "duration": "One target round, no concentration. Ends at the end of the target's first future regular turn, excluding the entire current target turn if one is already in progress. Outside initiative, expires 6 elapsed seconds after application. Preserve the selected virtual marker or absolute deadline through initiative changes and absence; end-phase effects resolve before end-marker cleanup.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "The target makes a Wisdom save against your spell DC. Success: no new rider. Failure: its attention is drawn toward your tone/you for the duration, imposing disadvantage on actual Perception checks concerning a subject other than you or the tone.",
+      "effect": "A check devoted solely to perceiving you/the tone has no disadvantage from this spell. A broader search or check that includes other subjects does. The tone is supplied by the audible V component; no instrument or continued performance is required. The initial hearing gate does not create an ongoing sound tether. This rider never ends concentration. One active Enthralling Tune attention record per target across casters; a later failed save replaces its referent and endpoint, while a later successful save does not erase a valid older record.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "This affects actual Perception checks only, with no independent passive-Perception adjustment or automatic check creation. The target retains ordinary movement, attacks, casting, Reactions and choices. It imposes no Dazed, Stunned, compulsion to approach, forced gaze, Action/turn loss or loss of general awareness. It does not reveal an unseen caster beyond ordinary sound/perception rules or suppress other independently permitted senses. Losing hearing after the initial application does not itself erase the already-applied attention rider; an actual defense/removal can do so. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S, an attention-drawing tone and loss of focus. NEW: WIS save, initial hearing gate and finite Perception disadvantage concerning others. “Focus” is not interpreted as the explicit concentration-ending power of Disrupt Memory.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Enthralling Tune",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Play a tone that draws attention; 1 target loses focus."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 318,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Enthralling Tune",
+            "effect": "Play a tone that draws attention; 1 target loses focus.",
+            "source_paragraph": 9376,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "mental-tap",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect; no enemy-only, non-boss or biological restriction is added.",
+      "duration": "Instantaneous damage; qualifying next-save benefit up to 1 minute, no concentration. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve that original virtual phase or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "The target makes an Intelligence save against your spell DC. Failure: 1d4 psychic damage. Success: no damage. After defenses and actual HP handling, calculate actualDamageDealt as temporary HP actually absorbed plus ordinary HP actually lost, excluding overkill and later state assignments. Only a value greater than zero grants you +1 to your next actual saving-throw event before the benefit expires.",
+      "effect": "Finish this spell’s damage packet and its immediately due damage/concentration consequences before establishing the new benefit. It cannot change the target’s already-resolved initial INT save or a save already resolved as part of that damage sequence, even if you targeted yourself. At your next actual saving-throw event after the benefit exists, apply +1 under the strongest-applicable-flat-bonus rule and consume it before resolving the save. Consumption still occurs if a stronger bonus supersedes it or a source assigns an automatic save result with no die to modify; if no saving throw event occurs, no consumption occurs. Actual concentration/death saves qualify when their own rules classify them as saving throws. One pending Mental Tap benefit per caster; a later qualifying actual-damage event replaces it with a fresh endpoint. A later zero-damage or successful-save cast does not erase an existing benefit.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "A positive attempted or post-defense packet that causes neither temp-HP absorption nor ordinary HP loss, including a complete HP-floor prevention, grants no benefit. Psychic immunity or other prevention retains its actual scope. The spell grants no RP, extra Action, rest refresh, copied damage, extra saving throw or automatic success. No banking several +1 uses, save DC change, alteration of completed consequences or modifier to checks/attacks is granted. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S, 1d4 psychic and caster +1 next save only if damage is dealt. NEW: INT save with no damage on success, numeric actualDamageDealt trigger and one-minute entitlement. Exact completion orders the new grant after this damage sequence, including immediate concentration consequences, rather than retroactively modifying the same packet.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Mental Tap",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "1d4 psychic; caster gains +1 to next save if damage dealt."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 319,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Mental Tap",
+            "effect": "1d4 psychic; caster gains +1 to next save if damage dealt.",
+            "source_paragraph": 9377,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "friends",
+      "activation": "Action",
+      "rangeFeet": 0,
+      "targets": "Self, keyed to one creature you perceive within 30 feet and line of effect; actual hostility is resolved only after casting costs commit.",
+      "duration": "Up to 1 minute, no concentration. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve that original virtual phase or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "No save is added. After costs commit, determine whether the chosen creature is actually non-hostile toward you. If not, create no benefit and give no separate hostility diagnostic. If eligible, you gain advantage on actual Charisma checks directly interacting with that creature for the duration.",
+      "effect": "The benefit includes whatever actual Charisma skill/task is legitimately used in that interaction, not only Persuasion or Deception. It does not grant an otherwise unavailable check or determine its outcome. If the creature becomes actually hostile toward you while the application lasts, this application ends and does not resume merely because its attitude later improves. Hidden but established hostility is still actual; a faction, species, alignment, reputation score, appearance or suspicion alone does not establish it. One active Friends target per caster; a successful eligible new application replaces the old one. A cast that creates no eligible benefit does not itself replace an existing valid application.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "This is a caster-side social benefit, not Charmed, an unwilling-to-harm restriction or control of choices/beliefs. No advantage on attacks, saves, ordinary spellcasting or unrelated checks. Written broader mental/Enchantment defenses retain their actual scope. No automatic post-expiry hostility, notification, friendship, loyalty, confession or reputation change is added. Ordinary observers can notice casting and infer things from actual interactions; the spell does not erase those observations. After initial legal application there is no continuing 30-foot tether, but any actual interaction still needs its normal communication and task permissions. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/V,S and advantage on Charisma checks against one non-hostile creature. CONFLICT RULING: Self keyed to a creature selected within the raw 30 feet; NEW one-minute duration replaces Instantaneous metadata. NEW: post-payment hostility test, actual hostility ending and one eligible target/application per caster.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Friends",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Gain advantage on Charisma checks against one non-hostile creature."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 320,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Friends",
+            "effect": "Gain advantage on Charisma checks against one non-hostile creature.",
+            "source_paragraph": 9378,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "soothe-animal",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect, addressed as a Beast or animal; its actual qualifying classification is checked at effect resolution.",
+      "duration": "Up to 1 minute, no concentration. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve that original virtual phase or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "After costs commit, determine whether the target has an actual Beast classification or an explicit current source-authorized animal record/tag. Appearance, a profile name or a transformation that leaves relevant creature classification unchanged is not sufficient. An actual transformation that changes the relevant record can qualify. An ineligible target receives no effect without a separate classification diagnostic. An eligible target makes a Wisdom save against your spell DC. Success: no new effect. Failure: the target becomes genuinely calm for the duration.",
+      "effect": "While calm it does not voluntarily initiate attacks or knowingly harmful actions. It may move, flee, defend itself with nonharmful choices, interact, perceive and otherwise act normally. It receives no commands and is not made loyal or friendly. End this calm immediately when another creature commits an attack or knowingly harmful effect against it, before that hostile effect resolves; a miss or later prevention does not undo this ending. It also ends on any positive resolved damage packet to the target after defenses and before temp-HP absorption, including environmental damage. A fully prevented zero packet does not count by itself. This “takes damage” ending is distinct from Mental Tap’s numeric damage-dealt benefit. Ended calm never resumes after the danger passes.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "The spell does not remove Frightened or another named condition; retain their actual restrictions even while ordinary agitation is calmed. No taming, ownership, domination, forced movement, standing/reputation change, blanket whole-Action denial or permanent attitude change. A previously committed action is not retroactively undone merely by this new restriction. One active Soothe Animal calm record per target across casters; a later failed save replaces its deadline, while a later successful save leaves an existing valid record intact. Losing the qualifying Beast/animal classification ends the calm; the record does not follow a later return to that classification. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S and one minute calming a beast or animal, without concentration. NEW: actual classification predicate, WIS save, voluntary-harm restriction and harm-ending rule. Exact completions place hidden classification after payment, distinguish positive damage packets from zero prevention, and end the effect on actual loss of the required classification.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Soothe Animal",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Calm one beast or animal for 1 minute."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 322,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Soothe Animal",
+            "effect": "Calm one beast or animal for 1 minute.",
+            "source_paragraph": 9380,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 minute",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "faction-sympathy",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect; choose one exact canonical faction with which you have actual current affiliation/membership.",
+      "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve that original virtual phase or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Choose the faction at casting and confirm your actual current affiliation at resolution. Established campaign fiction can supply that record; positive reputation, a logo, costume, claimed role or possession of an emblem alone cannot. The target makes a Wisdom save against your spell DC. Success: no new effect. Failure: it feels temporary genuine warmth and favorable disposition toward that faction as an institution.",
+      "effect": "While the effect lasts, gain +1 to your Persuasion checks directed to that target about the chosen faction, its interests or cooperation with it, under normal task legality and strongest-applicable-flat-bonus rules. The feeling does not compel assent, protection, loyalty, belief or action. End this effect if you, or a creature the target actually recognizes as acting for that faction, commits an attack or knowingly harmful effect against the target. This ending occurs on the harmful commitment even if it later misses or is prevented. Actual recognition uses established perception/knowledge, not a secret membership scan; another creature’s unknown affiliation alone does not trigger it.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "Concentration transitions and expiry control the application normally; a new concentration cast can end the previous one before its save, and a failed new spell never restores it. Affiliation selects the faction at application; a later change in your membership does not silently switch the faction or grant an additional automatic ending absent an actual rule. The spell creates no Charmed condition, numeric reputation, target membership, credentials, institutional standing, legal authority, command right, permanent attitude or faction resources. Its Movement/Ward tags grant no movement, aura or protection. No daily immunity or automatic notification is added. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet, concentration up to one minute and Core V/S/M/F mapped to V/S/F. NEW: actual caster-affiliation predicate, WIS save, faction-related +1 Persuasion and recognized-harm ending. Exact completion treats affiliation as initial selection rather than an unprinted ongoing membership tether.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Faction Sympathy",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Target briefly feels positive toward your faction."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 323,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Faction Sympathy",
+            "effect": "Target briefly feels positive toward your faction.",
+            "source_paragraph": 9381,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Movement",
+              "Ward",
+              "Faction"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "alignment-empathy",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect.",
+      "duration": "Up to 1 minute, no concentration; its one-check bonus may be consumed earlier. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve that original virtual phase or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "The target makes a Wisdom save against your spell DC. Success: no new effect. Failure: if you have an actual current alignment record at resolution, the target experiences a genuine sense of personal resonance or kinship with that actual orientation and you gain +1 to your next Persuasion check directed to it before expiry. If no actual alignment record exists, create no rider and report no separate diagnostic of that absence.",
+      "effect": "The orientation is the actual one at application, not a chosen false axis or a new reading of the target. Its own alignment need not match yours. The target feels connection without learning your canonical axes. Consume the +1 entitlement on your first qualifying Persuasion check even if a stronger flat bonus supersedes it. The subjective connection can persist until the original endpoint after that one bonus is spent, without creating another modifier. One pending Alignment Empathy application per caster/target pair; a later failed-save application with a valid alignment record replaces the previous record and endpoint. Other casters’ applications retain their own independent records and beneficiaries.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "Normal task permissions and outcomes still apply. No canonical alignment change, secret alignment report, qualification for alignment-gated items/wards/discounts, permanent attitude rewrite, behavior compulsion, oathbreaking, PvP permission or movement is granted. A later change in your alignment does not update this already-applied snapshot or disclose new axes. A failed/blocked cast creating no new application does not remove an existing valid one. Neither the connection nor the bonus invents a Persuasion check against a subject incapable of that actual interaction. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S and a brief feeling of connection to the caster’s alignment. NEW: WIS save, one-minute application, actual alignment-at-resolution input and one Persuasion-check +1. Exact completion preserves the finite subjective feeling after consuming its sole mechanical bonus.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Alignment Empathy",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Target briefly feels connection to your alignment."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 324,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Alignment Empathy",
+            "effect": "Target briefly feels connection to your alignment.",
+            "source_paragraph": 9382,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Movement",
+              "Alignment"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "resonance-whisper",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect; choose Guide or Disturb before resolution. Guide requires a willing target.",
+      "duration": "Up to 1 minute or until the next qualifying check; no concentration. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve that original virtual phase or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Guide applies automatically to a willing target and grants +1 to its next qualifying Resonance/Weave task check. Disturb makes the target roll a Wisdom save against your spell DC; on failure apply -1 to its next qualifying check, and on success create no new record. Willingness alone does not waive the Disturb save without a separate actual permission.",
+      "effect": "A qualifying event is a real source-authorized task/ability/tool check explicitly concerned with manipulating, diagnosing, stabilizing, calibrating or directly interacting with Resonance/the Weave, or expressly called a Resonance check by its source. Use that task’s actual ability/tool, DC and Core degree procedure. Consume this record on its next qualifying check regardless of result or another applicable same-stat modifier superseding it. Guide’s +1 follows the strongest-applicable-flat-bonus rule. Disturb’s single -1 is a penalty and can coexist with a separately permitted bonus, such as Resonance Mote’s +1, under ordinary arithmetic. One pending Resonance Whisper per target across all casters; a successful Guide application or failed target Disturb save replaces its old mode and endpoint. A successful target Disturb save creates no replacement and leaves an existing valid rider intact.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "The spell creates no check, DC, authority, hidden information, casting-failure rule or subsystem. It modifies neither spell attacks, saves, concentration saves, Counterspell, ordinary casting, RP costs, Dissonance/Refrain nor legacy Burn/fizzle procedures. If no qualifying task happens before expiry it ends unused. No bonus/penalty bank, stacking several Whisper modes, extra task attempt, resource recovery or automatic concealment/hidden identity is granted. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S and influence on the target’s next Resonance check. NEW: Guide/Disturb +1/-1 modes, willingness/WIS interface, Resonance Mote task bridge and one-minute pending window. Exact completion resolves the conference’s contradictory final save sentence: failed target save applies Disturb; successful target save creates no replacement.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Resonance Whisper",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Subtly influence target's next Resonance check."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 325,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Resonance Whisper",
+            "effect": "Subtly influence target's next Resonance check.",
+            "source_paragraph": 9383,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Resonance"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "minor-suggestion",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you perceive within 30 feet and line of effect; declare one simple single-purpose idea and a language in which you can formulate it.",
+      "duration": "Up to 1 minute of mental salience, no concentration; one Persuasion-check benefit may be consumed earlier. In initiative, expires at the caster's tenth future regular-start marker after application; outside initiative, expires 60 elapsed seconds after application. Preserve that original virtual phase or absolute deadline through initiative changes, absence, death and planar travel. An already-passed start never counts.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "After costs commit, resolve whether the target actually understands the chosen language and the declared idea is harmless in the actual circumstances. A hidden incompatibility or hazard creates no planted idea and gives no diagnostic of its reason. Otherwise the target makes a Wisdom save against your spell DC. Success: no new effect. Failure: the idea appears in its conscious mind as a plausible, salient option for the duration; it can freely reject that option. It need not hear the verbal component to receive the mental idea, but V/S casting requirements still apply.",
+      "effect": "For the duration, you have advantage on your first actual Persuasion check directed to the target specifically to encourage that exact idea; consume that benefit when the check begins even if advantage was already present or disadvantage cancels it. The idea’s temporary salience can remain until expiry after the benefit is consumed. One active Minor Suggestion per caster/target pair; a later successful implant replaces the old idea/benefit/endpoint without accumulating several suggestions from that caster. Other casters retain separate records without stacking advantage on one roll. The spell does not make its subject believe the idea is true or necessarily its own invention, erase awareness of observed casting, or force any decision.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "Harmlessness is judged from actual circumstances, not caster phrasing. Reject ideas that directly require self-harm, harming another creature, entering an actual meaningful hazard, surrendering/discarding materially valuable property, revealing a protected/private secret, a hostile act, or knowingly violating a binding oath/duty. If changed circumstances make the proposed act non-harmless before expiry, end its magical salience and unused bonus without revealing the hidden reason. Ordinary memory that the idea was presented remains. No compelled Action, movement, obedience, Charmed, confession, dispossession, eight-hour command, permanent belief/memory replacement or truth verification occurs. Actual social-task legality still governs whether a Persuasion check exists and what success means. A later saved/invalid cast does not erase an existing valid application merely by being attempted. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S and a simple harmless idea planted in the mind. NEW: language compatibility, WIS save, one-minute salience and one Persuasion-check advantage. Exact completions defer hidden compatibility/harmlessness to post-payment resolution, add one application per caster/target, and end magic if the actual proposal becomes harmful.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Minor Suggestion",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Plant a simple, harmless idea in target's mind."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 326,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Minor Suggestion",
+            "effect": "Plant a simple, harmless idea in target's mind.",
+            "source_paragraph": 9384,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "beguiling-gaze",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature with which you can establish mutual visual gaze or an actual analogous directed visual sense, within 30 feet and line of effect.",
+      "duration": "One target round, no concentration, or until maintained contact ends. Ends at the end of the target's first future regular turn, excluding the entire current target turn if one is already in progress. Outside initiative, expires 6 elapsed seconds after application. Preserve the selected virtual marker or absolute deadline through initiative changes and absence; end-phase effects resolve before end-marker cleanup.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "The target makes a Wisdom save against your spell DC. Success: no new lock. Failure: the gaze locks. While locked, it cannot voluntarily avert its primary gaze from you or voluntarily close/cover its visual organs to break or evade that gaze. In particular, it cannot evade an independently actual gaze rule by claiming that voluntary eye closure has a different intended benefit. Ordinary involuntary blinking or another actual involuntary loss of sight is not a compelled harmful action.",
+      "effect": "While the lock remains, treat the target as looking at/meeting your gaze for a separate rule that expressly asks that question. This spell supplies no gaze attack of its own and creates no universal facing or field-of-view system. The target can move, attack, cast, interact, choose other legal targets and perceive through ordinary peripheral or other senses normally. It gains no generic attack/Perception disadvantage and loses no Action, Reaction or movement. It is not compelled to follow you to preserve range or sight.",
+      "scaling": "None. No automatic increase in damage, range, duration, targets, uses or information.",
+      "limitations": "End the lock immediately if you and the target exceed 30 feet, actual line of effect or mutual visual contact breaks, either becomes unable to maintain the relevant sight, or you voluntarily end the gaze; voluntary release requires no extra Action. This includes actual Blindness or an outside intervention that blocks the required view. A creature with no eyes can qualify only if its actual sense/anatomy supplies a genuine directed-gaze analogue; a creature name or theme cannot invent one. One active Beguiling Gaze per caster; a later failed target save replaces that caster’s prior lock. A successful target save does not itself replace the old lock, but actually breaking prior contact to establish a new gaze can end the old lock independently. An ended lock never resumes merely because distance or sight later returns. Other exact gaze powers retain their own costs, saves, targeting, effects and defenses; the lock bypasses none except the expressly prevented voluntary aversion. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V,S, mutual eye lock and inability to look away for one round. NEW: WIS save, real gaze analogue, maintained contact/range, voluntary-aversion rule and exact first-future-target-turn endpoint. No generic facing engine, compelled approach or hard whole-Action denial is imported.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourcePlacements": [
+        {
+          "name": "Beguiling Gaze",
+          "school": "Enchantment",
+          "level": 0,
+          "summary": "Lock eyes with target; they can't look away for 1 round."
+        }
+      ],
+      "sourceCoreEntries": [
+        {
+          "index": 327,
+          "original": {
+            "school": "Enchantment",
+            "level": 0,
+            "name": "Beguiling Gaze",
+            "effect": "Lock eyes with target; they can't look away for 1 round.",
+            "source_paragraph": 9385,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 round",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "classAccessEvidence": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Crimson Agent": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Thief": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Enchantment",
+          "baseRpCost": 0
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    }
+  ]
+}
+```
+
+## Exact current class concentration evidence
+
+```json
+{
+  "status": "current reviewed class-source evidence for Disrupt Memory scope; not a new spell ruling",
+  "records": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "fileSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "card": {
+        "id": "wizard.arch.spell-tether",
+        "name": "Spell Tether",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 5,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "3 RP",
+        "rangeAndTarget": "Self",
+        "duration": "Maximum 3 rounds",
+        "frequency": "1/long rest",
+        "effect": "Spell Tether. Tags: arch, passive-upgrade, concentration, tether. When you begin a second concentration spell that targets only yourself while already concentrating on a self-only spell, spend 3 additional RP. For up to 3 rounds you may maintain both. Whenever damage requires a concentration save, make one save; failure ends BOTH spells. Starting a third concentration effect ends both tethered spells before the new one begins. Spell Tether and Tethered Cast cannot be combined; maximum two sustained concentration effects total. Only one Spell Tether can exist at a time.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5215,
+          "originalText": "Spell Tether: Maintain 2 self-buff spells without concentration (1/rest)"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "fileSha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+      "card": {
+        "id": "wizard.supplement.tethered-cast",
+        "name": "Tethered Cast",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 17,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One concentration Wizard spell you cast this turn that targets only yourself or one willing ally",
+        "duration": "Maximum 3 rounds",
+        "frequency": "At most once per round; only one Tethered Cast active at a time",
+        "effect": "Source progression line 5192. After casting the qualifying spell, tether it. The tethered spell no longer occupies your one normal concentration slot for up to 3 rounds. When damage would require a concentration save for the tethered spell, make the save normally; failure ends only the tether. Starting another Tethered Cast ends the existing tether first. A Tethered Cast cannot itself tether Spell Tether's second spell or permit more than two simultaneously sustained Wizard effects.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": 5192,
+          "reference": null,
+          "originalText": "| 17 | Tethered Cast (bonus action spell link 1/round) |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+      "fileSha256": "bfcd0ff392035e48bdef27da630b911b96ce85ba036de5de622cdc2427a47a33",
+      "card": {
+        "id": "crimson-agent.arch.crimson-harmony",
+        "name": "Crimson Harmony",
+        "className": "Crimson Agent",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 7,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self or legal linked ally",
+        "duration": "While known",
+        "frequency": "Continuous",
+        "effect": "You may sustain two Veinweaves as one concentration group. Both pay full costs and use normal activations; failing concentration ends both. Identical Veinweaves never stack, and no ordinary concentration spell can join this group.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2148,
+          "originalText": "Crimson Harmony: Maintain 2 Veinweaves simultaneously."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    }
+  ]
+}
+```
+
+## Passive Perception reference
+
+Source: docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+Byte SHA256: f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6
+
+172: NEW **Hide**: permitted only against observers unable to see you clearly or where a feature permits. Roll DEX Stealth once, record natural die and total. Against each observer's passive DC `10 + WIS Perception modifier including applicable proficiency`, use the Core four-degree task system. Meet DC succeeds before natural1/20 degree adjustment; Success/Critical Success establishes Hidden for that observer. No unsourced passive ±5 adjustment for advantage/disadvantage. Actual Search rolls use their normal modifiers.

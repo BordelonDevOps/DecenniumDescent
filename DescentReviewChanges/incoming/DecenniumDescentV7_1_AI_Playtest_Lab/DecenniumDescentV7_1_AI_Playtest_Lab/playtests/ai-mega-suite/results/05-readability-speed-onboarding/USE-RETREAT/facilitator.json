@@ -1,0 +1,34 @@
+{
+  "pack": "05-readability-speed-onboarding",
+  "scenarioId": "USE-RETREAT",
+  "agentId": "facilitator",
+  "seed": 52684,
+  "observations": [
+    "Ran USE-RETREAT exactly; first pass pointed to rule paths only; second pass used one-page summary.",
+    "Separated writing/clarity failures from balance claims; no numerical tuning recommended from this pack alone."
+  ],
+  "metrics": {
+    "personasCompleted": 8,
+    "coachingStates": 2,
+    "sourceManifestGap": false,
+    "evidenceLevel": "B",
+    "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014"
+  },
+  "rulesQuestions": [
+    "Does winning the combat round auto-grant Escape success in addition to the lead check?",
+    "Can sacrificing cargo grant Escape without a check?"
+  ],
+  "exploits": [],
+  "recommendations": [
+    "Elevate Retreat to a quick-reference box; it is clear but buried after universal actions."
+  ],
+  "confidence": "high",
+  "rulesHalts": [
+    {
+      "id": "RH-05-RETREAT-DOUBLE-COUNT",
+      "rule": "Retreat Escape successes",
+      "conflict": "Text allows lead check AND 'Winning a combat round can grant one Escape success' without stating if both can occur same round.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §12 Retreat (three Escape before three Pursuit)"
+    }
+  ]
+}

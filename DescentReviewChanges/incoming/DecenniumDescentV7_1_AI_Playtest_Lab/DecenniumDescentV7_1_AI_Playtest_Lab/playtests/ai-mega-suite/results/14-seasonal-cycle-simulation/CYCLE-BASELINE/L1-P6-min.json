@@ -1,0 +1,52 @@
+{
+  "pack": "14-seasonal-cycle-simulation",
+  "scenarioId": "CYCLE-BASELINE",
+  "runId": "CYCLE-BASELINE-L1-P6-min",
+  "seed": 5415662,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 500,
+    "level": 1,
+    "party": 6,
+    "severity": "minor",
+    "cycles": 3,
+    "openingsPerCycle": 3,
+    "meanWealth": 1768.04,
+    "meanHeirsActivated": 0.274,
+    "meanMapFidelity": 0.832,
+    "nontrivialExplorationRate": 1.0,
+    "districtStressRate": 0.0,
+    "boundaryViolations": 0,
+    "persistentFields": [
+      "knowledge",
+      "extracted artifacts",
+      "Haven civic core",
+      "faction relationships",
+      "property and titles",
+      "route principles",
+      "major consequences"
+    ],
+    "replenishedFields": [
+      "creature populations",
+      "resource nodes",
+      "ordinary treasure",
+      "unsecured routes",
+      "local hazards",
+      "market demand",
+      "leadership",
+      "exact dungeon tests"
+    ]
+  },
+  "rulesHalts": [
+    {
+      "code": "OPENINGS-PER-CYCLE-COUNT",
+      "note": "Seasonal JSON lists cycleRecordFields but does not hard-code Openings-per-Cycle count; sim uses 3 Openings \u00d7 3 Cycles per pack README."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/CYCLE-BASELINE/L1-P6-min.json",
+  "sealedNote": "Director sealed consequences stored only in sealedLog during sim; omitted from public metrics."
+}

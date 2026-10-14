@@ -1,0 +1,28 @@
+{
+  "pack": "19-sensitivity-edge-cases",
+  "scenarioId": "EDGE-ADVERSE-REP",
+  "runId": "2026-08-06T151746Z-EDGE-ADVERSE-REP-edge-case-auditor",
+  "seed": 78041,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "99b20b032a252209da5b4b73b6992615f500280aa38e18b6698cdfa72cd53c37",
+  "evidenceLevel": "C",
+  "outcome": "STRESS",
+  "metrics": {
+    "fixture": {
+      "reputation": "hostile",
+      "note": "Adverse Haven reputation settlement"
+    },
+    "agentRole": "edge-case-auditor",
+    "seed": 78041
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "hypothesis",
+      "summary": "Hostile reputation affects Haven settlement friction; exact sale multipliers need pack 13 raw evidence before numerical claims.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §17/§18"
+    }
+  ],
+  "rawEvidencePath": "results/raw/EDGE-ADVERSE-REP/edge-case-auditor.json",
+  "agentId": "edge-case-auditor"
+}

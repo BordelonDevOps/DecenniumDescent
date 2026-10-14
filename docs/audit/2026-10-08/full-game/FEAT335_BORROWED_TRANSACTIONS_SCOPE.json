@@ -1,0 +1,26 @@
+{
+  "report": {
+    "path": "docs/audit/2026-10-08/full-game/FEAT335_BORROWED_TRANSACTIONS_CHECK.json",
+    "bytes": 763928,
+    "sha256": "7559dec1b643a9febc3291b29e50f7ff3e581932a3287ceb8ac84300a4940035"
+  },
+  "earlierReport": {
+    "path": "docs/audit/2026-10-08/full-game/FEAT335_BORROWED_STUNTS_USE_CHECK.json",
+    "bytes": 508129,
+    "sha256": "8e5515e6247f536dce92f4bd9005ae5ab57541344c904ee4682709d65d9f7638"
+  },
+  "resolvedEarlierLimits": [
+    "Five attack cards and two task cards now expose separate declaration and resolution methods. Declaration rejects dice/outcome keys, commits own feat/action/ammunition and shared recharge histories, and records pending state. No roll is evaluated by declaration.",
+    "Invalid resolution input leaves the existing commitment unchanged. A conditional actual authorized interruption ends the pending activation with no refund. Pending activations cannot be banked across a turn/rest.",
+    "Feint and Covering Fire next-attack claims consume on the applicable actual attack before its outcome; replay is rejected and applicable Covering Fire penalties do not add.",
+    "Shadow Step Hide now requires the immediate same-turn, same-position, no-intervening-event window; later turns cannot retain it."
+  ],
+  "remainingLimits": [
+    "The borrowed class skill alternative still uses its original atomic helper; it does not yet expose a distinct declaration/hidden-roll interface.",
+    "Nature Whisper full minor-Weave, components, Dissonance and interrupted casting are outside this witness; its positive RP/evidence checks retain explicit independent source-clearance premises.",
+    "Actual interruption authority, event legality, party/alliance/physical facts and canonical clock identities come from conditional fixtures. No general scheduler/campaign authenticator, full class engines or downstream damage/defense/Wound resolution is certified.",
+    "No whole FXC04/07/08/09 closure, full feat approval, human playtest or cosmology approval follows."
+  ],
+  "newRules": 0,
+  "fullFeatExactApproved": false
+}

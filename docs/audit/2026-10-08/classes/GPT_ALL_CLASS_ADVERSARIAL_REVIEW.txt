@@ -1,0 +1,44 @@
+
+
+I found 15 concrete semantic defects worth patching. Structural/acquisition PASSes can coexist with all of these because most are cross-rule timing/interface contradictions rather than missing records. I did not find an illegal arithmetic sequence in the supplied worked examples. 
+Pasted text
+
+Crimson Agent — Phantom Strike violates Blood Mark's engine prerequisite. Engine requires a marked creature to have your Bleed; Phantom Strike explicitly marks a non-Bleeding target. Correction: change the engine to: One Blood Mark at a time on a living target with your Bleed, except Phantom Strike, which explicitly may apply a Blood Mark without Bleed. Do not silently add a free Bleed.
+
+Crimson Agent — Sensory Theft has undefined/massive repeat-save cadence. "repeats save at each turn end" can mean every creature's turn, and "whenever it takes damage" can produce several saves in one round. Correction: The target repeats the save at the end of each of its turns and the first time each round it takes damage.
+
+Crimson Agent Blood Boil / Shaman Summon Airling use narrower Stun guards than the shared rule. Both say effectively once-per-card/target, while the suite guard is once per character across all hard-denial features. Correction on both: The Stun rider is subject to the shared hard-denial guard. If this character has already hard-denied that target this encounter, only the non-hard-denial rider resolves. Companion Stun counts as the Shaman's denial.
+
+Druid — Blighted Touch and Blazing Rebirth contradict both themselves and the shared M definition. Their frequency says M/long rest, but their cost says One long-rest use; shared rules reserve M for effect amounts. Correction: set both frequencies to 1/long rest. If M uses are actually desired, that needs an explicit engine exception and matching use pool.
+
+Mirrorsage — Echo Slot Expansion I can violate the absolute six-record ceiling. At six usable records, the inert backup can become a seventh stored record. Correction: An inert backup counts toward the absolute six-record archive ceiling. You cannot create a backup if usable records plus inert backups would exceed 6.
+
+Mirrorsage — Mirror Double has impossible temporal accounting. It may reference an Echo from the previous turn, yet says it counts inside that Echo's originating-round release package and consumes no later release allowance. Correction: change target to One damage Echo you released this turn and add Mirror Double must be declared before that turn ends; its pending copy remains part of that release package. If previous-turn sourcing is retained, it must consume the current round's release allowance.
+
+Ranger — an unused primed Arrow can permanently jam Hit Chain. Chain reaches the threshold and primes until end next turn, but only using the Arrow resets the chain. If the prime expires, chain can remain capped with no new completion event. Correction: add: If a primed Arrow expires unused, the prime ends and Hit Chain resets to 0. Apply equally to Efficient Killer's threshold 2.
+
+Ranger — Efficient Killer is selectable one level before its resource exists. It is Hero level 10 but explicitly targets "Hit Chain after class 11 unlock". Correction: make Efficient Killer minimum level 11. Do not move Hit Chain to 10 unless intentionally changing Ranger progression.
+
+Soldier — Coordinated Maneuver references a nonexistent shared rule. It says "shared extra-action/attack grant cap", while the shared contract only defines an extra full Action cap. Correction: replace that sentence with: For cap purposes, this granted move plus one weapon attack counts as the ally's one additional full Action for the round; it still permits only one weapon attack and never Extra Attack.
+
+Tinker — Field Repair does not implement the protected interface. The Tinker engine says a device disabled by Dissonance routing can be repaired with Field Repair, but the card only restores HP. Correction: append: If the target is disabled by the Tinker's protected Dissonance-routing feature, Field Repair also clears that disabled state. It does not reset duration, recharge, ammunition or per-rest uses.
+
+Thief — Master of the Unseen can leak into Blackguard structurally. The card has path:null, while its effect says Arcane Trickster/Shadowblade only; Blackguard already receives Unseen Hand. If path-null supplements are auto-granted, Blackguard gets both finales. Correction: remove the generic card and create two automatic level-20 records, one path:"Arcane Trickster" and one path:"Shadowblade", with identical mechanics.
+
+Paladin / Martyr King — Aura of the Crown contradicts the Paladin transfer rule. Aura says transferred damage "may be mitigated once by your defenses"; the Paladin engine says original-target defenses apply once and redirected damage cannot be reduced again. Correction: replace with: After the original target applies its defenses once, redirect up to M of the remaining damage. The transferred amount cannot be reduced, reflected, redirected again or generate resources. King's Smite redirection should use identical transfer language.
+
+Paladin — multiple redirection features can still stack on the same damage event. King's Smite, Aura of the Crown, Crown of Embers and Burden Shared all independently expose redirection. "share one event per round" does not explicitly say only one feature may modify that event. Correction to engine: For any one damage event, choose exactly one Paladin redirection feature. Using it consumes the Paladin's shared redirection allowance for that round. Crown Undying expressly permits two different ally-damage events per round, but still only one redirection feature may modify each event.
+
+Paladin — King's Smite metadata understates its duration and its frequency disagrees with the global Smite cap. Its redirection is a persistent Oath rider but duration only mentions the Smite/temp HP; frequency says shared once-per-own-turn, while engine says one paid Smite per round, including the level-7 Reaction. Correction: duration:"Smite instantaneous; temporary HP until lost; redirection passive while this Oath is active" and frequency:"One paid Smite total per round, shared with all normal and reactive Smite uses; redirection uses the shared Paladin redirection allowance."
+
+Oracle — ASI schedule has drifted from the exceptional source progression. The current engine removes the registry's level-14 ASI and adds ASIs at 12 and 16, producing 4/8/12/16/19 rather than the Oracle-specific 4/8/14/19 schedule previously preserved. That is a progression change, not merely reconciliation. Correction: restore Oracle ASI/feat milestones to 4, 8, 14, 19 and remove the extra ASI grants at 12/16. If five ASIs are desired, label that as a new owner-approved playtest override rather than recovered Oracle progression.
+
+The highest-priority blockers are #1, #5-7, #10-14. Those can change whether an activation is legal, permit an unintended extra stored/released resource, strand a class engine, or make the same damage resolve differently depending on which paragraph the table reads. 
+
+ChatGPT can make mistakes. Check important info.
+Latest response
+
+
+
+
+5.6 High

@@ -1,0 +1,107 @@
+{
+  "scenarioId": "DICE-L10-DARK",
+  "level": 10,
+  "budget": "Severe",
+  "objective": "Traumatic Casting and actor limits",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "mage",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "wizard",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "mirrorsage",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "tinker",
+        "x": 0,
+        "y": 15
+      },
+      {
+        "id": "shaman",
+        "x": 0,
+        "y": 20
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Angry Grief-Bound",
+        "x": 30,
+        "y": 0
+      }
+    ]
+  },
+  "cargo": null,
+  "partyBuildHashes": [
+    "8be11f56ae3d7c14dde1074ad783d09023373ea402d29fb42682941c4b11c833",
+    "fc6776f66b0a36b830177ba534c9740d66f151b99fdea3c8dc409b5c4ef55711",
+    "42ff8f2b51fce3aa41508251b5070a9ebfa3aee7b75f9bbcc46c3895d048d750",
+    "aa10804e9473934c5efdea53e806b199e8b05a2d3dca1781bd50018477409c09",
+    "6309cd0351e52256a48d6cf93e17cb5404e0a08e9a181d345f14cb5956ca9e53"
+  ],
+  "enemies": [
+    {
+      "name": "Angry Grief-Bound",
+      "hitPoints": 494,
+      "armorClass": 18,
+      "challengeRating": "15",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 3 attacks using the actions below."
+        },
+        {
+          "name": "Rage Rend",
+          "text": "Attack: +9 to hit, one target. Hit: 3d10+10 necrotic damage (average 26)."
+        },
+        {
+          "name": "Life Drain",
+          "text": "Attack: +9 to hit, one target. Hit: 3d10+9 necrotic damage (average 26)."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Emotional Feeding",
+          "text": "When a nearby creature performs the behavior that defines this Grief-Bound, it gains temporary hit points equal to its tier."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Rage Rend",
+          "bonus": 9,
+          "n": 3,
+          "sides": 10,
+          "mod": 10,
+          "text": "Attack: +9 to hit, one target. Hit: 3d10+10 necrotic damage (average 26).",
+          "dc": null
+        },
+        {
+          "name": "Life Drain",
+          "bonus": 9,
+          "n": 3,
+          "sides": 10,
+          "mod": 9,
+          "text": "Attack: +9 to hit, one target. Hit: 3d10+9 necrotic damage (average 26).",
+          "dc": null
+        }
+      ],
+      "multiattack": 3,
+      "isBoss": true,
+      "tenacityPerRound": 1,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "583356643dbf11edf3b187223beec4c379904be99016ab394b9e8df731d59aaf"
+}

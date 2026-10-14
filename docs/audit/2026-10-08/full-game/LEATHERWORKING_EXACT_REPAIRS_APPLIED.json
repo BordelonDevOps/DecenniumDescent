@@ -1,0 +1,80 @@
+{
+  "status": "PASS — exact-review conditions fulfilled",
+  "threadId": "6aca4e7e-fd2c-83ea-bf0f-971997ed1a9b",
+  "turnId": "2a3db078-0ab3-411a-a9d2-aeb19da8765e",
+  "replyId": "1f8a8f86-3d64-4665-8d7f-cd315727a240",
+  "preservedSubmittedRevision": "docs/audit/2026-10-08/full-game/leatherworking-before-part2-repairs",
+  "repairs": {
+    "LW-ER01": "Documented already-eligible suit-grade input; unselected suit uses None and retains cold resistance under an explicit independently legal alternative-formula premise. Separate selected Crude, zero-recipe and positive-recipe assertions pass.",
+    "LW-ER02": "Explicit Tiny transformed body retains140lb and uses existing1.5 casualty Load; melded equipment15lb/1.5Load, no other equipment and inactive relief produce155lb/3Load. Actual handling/anatomy limits remain necessary."
+  },
+  "correctedBehaviorCases": [
+    {
+      "name": "LW-01 selected Crude suit alone retains negative grade",
+      "passed": true,
+      "result": {
+        "enhancement": -1,
+        "resistances": []
+      }
+    },
+    {
+      "name": "LW-01 zero recipe modifier cannot cancel selected Crude",
+      "passed": true,
+      "result": {
+        "enhancement": -1,
+        "resistances": []
+      }
+    },
+    {
+      "name": "LW-01 eligible positive enhancement wins over selected Crude",
+      "passed": true,
+      "result": {
+        "enhancement": 1,
+        "resistances": []
+      }
+    },
+    {
+      "name": "LW-ER01 unselected suit retains resistance but no grade or recipe AC candidate",
+      "passed": true,
+      "result": {
+        "enhancement": null,
+        "resistances": [
+          "cold"
+        ],
+        "premise": "Alternative AC formula is independently legal while this suit is worn; no other eligible suit modifier."
+      }
+    },
+    {
+      "name": "LW-12 / LW-ER02 Tiny casualty plus full melded cargo, no inherited relief",
+      "passed": true,
+      "result": {
+        "expressedBodySize": "Tiny",
+        "effectiveBodyPounds": 140,
+        "casualtyLoad": "3/2",
+        "meldedEquipmentPounds": "15",
+        "meldedEquipmentCanonicalLoad": "3/2",
+        "otherEquipment": [],
+        "containerReliefActive": false,
+        "totalPounds": "155",
+        "totalLoad": "3",
+        "handlingPremise": "Totals must also pass the rescuer actual handling limits and anatomy requirements; bookkeeping grants no hands, harness or permission to carry the creature."
+      }
+    }
+  ],
+  "statusOnlyArtifactChanges": {
+    "data/director/leatherworking_recipe_candidate_internal.json": "Only operational review status, approval flag and exact-review provenance; originals, models and operational rules byte-equivalent as JSON values.",
+    "data/playtest/leatherworking_recipe_candidate.json": "Only operational review status, approval flag and exact-review provenance; originals, models and operational rules byte-equivalent as JSON values.",
+    "docs/director-only/LEATHERWORKING_INTERNAL_RECIPE_CARDS.md": "Review status labels and guide provenance paragraph only; all rule and card-effect paragraphs unchanged.",
+    "docs/mechanics/LEATHERWORKING_PUBLIC_RECIPE_CARDS.md": "Review status labels and guide provenance paragraph only; all rule and card-effect paragraphs unchanged.",
+    "docs/director-only/LEATHERWORKING_INTERNAL_GUIDE.md": "Review status labels and guide provenance paragraph only; all rule and card-effect paragraphs unchanged.",
+    "docs/mechanics/LEATHERWORKING_RECIPE_PLAYTEST.md": "Review status labels and guide provenance paragraph only; all rule and card-effect paragraphs unchanged."
+  },
+  "checks": 91,
+  "behaviorCases": 52,
+  "protectedFilesUnchanged": 42,
+  "paragraphProjectionSha256": "1e2deb64f097b43439ad0231c3b91c702ec29830f20c4e78db30ce38b334b69e",
+  "referenceSha256": "7efd864e4f2a9254024bd01bb1e72b3f231b4de53501cbe750a0b155ca81c599",
+  "validatorSha256": "6f127aebecbeefe92c7394fa7c4b9fb49b12577392e53082c3e613b7a205512b",
+  "verdictSha256": "1f0d94155d833b69a2422e4ebecc8d8ce2475e2717e8a3143542518584d6e65d",
+  "sourceInformationDeleted": 0
+}

@@ -1,0 +1,513 @@
+{
+  "class": "Tinker",
+  "engine": [
+    "Intelligence governs class DC/M, device attacks use PB+INT; Dexterity governs personal ranged weapons. Hit Die d8, light armor, shortbows/crossbows/simple weapons, tinkers tools and alchemist supplies. Technology is fictional equipment. Ordinary Tinker spells use RP/Dissonance; mundane bombs/devices with printed RP fuel costs are class techniques and do not separately count as spell casts.",
+    "At1 automatically own one Anacite Drone: AC13+INT modifier, HP5+INT modifier+class level (minimum1), flight30ft, ranged bolt60ft attack PB+INT for1d6piercing. Bonus Action commands one move and one attack or named module action; otherwise it Dodges and may follow you. On bolt hit roll d4; on4 target CON save or cannot take Reactions through end next turn (Shock, no automatic Stun). All drones/turrets/scraplings share ONE damaging action per Bonus Action command per regular turn unless a card explicitly supplies a priced extra attack. No autonomous barrage. Drone is a construct, not immune to all conditions; poison/psychic immunity, no charm. Carry/retract it in1 minute; no pocket extra world or passenger flight.",
+    "A destroyed drone remains0HP until repaired for1RP and10 minutes with tools to halfHP, once/short rest, or rebuilt during long rest to full. Ordinary repairing does not recharge devices, grant organic healing or trigger destruction bonuses. At13 Dual Drone Protocols automatically chooses on each long rest either2 basic drones each with one module, or one drone with2 distinct modules. Still one command budget. Never more than2 drones.",
+    "At5 automatically gain one module slot; change module during long rest. Offensive: Burn Injector first bolt hit/turn causes1d4fire next2 target turns; Poison Vents d4=4 on hit CON save or-1attack rolls until end next turn; Concussive Bolt d4=4 on hit CON save or Stunned until end next turn, once/target/encounter shared denial guard and1/short-rest successful Stun. Defensive: Target Taunter command action once/encounter WIS save onefoe30ft or disadvantage attacking others until end nextturn; Energy Shield command gives adjacentally+2AC until startnextturn; Smoke Cloud command once/encounter creates5ftradius opaque smoke centereddrone untilstartnextturn. Support: Ammo Dispenser adjacentallies first rangedhit/turn+1damage; Target Scanner command mark1visiblefoe60ft firstallyattack beforestartnextturn+1hit; Tether Grappler command once/encounter pulls1willingally15ft within30ft without opportunity attacks alongopenroute.",
+    "Bomb stock refills during long rest with tools to3 at1,4 at5,5 at11; cap equals refill, class bombs have no resale or stockpiling. Encounter throw cap1 at1,2 at5,3 at11. Each throw uses one stock and one encounter allowance. Basic fire/cold known1; advanced profiles known6; Overload Core known9. Base throw is Action, range30ft,10ftradius up to3creatures, DEX save S d6 element, half success. Fire failure adds1d4Burn nextturn; cold failure Speed-10ft untilendnextturn. Explosive Handling makes throw Bonus Action; still only one bomb/regular turn. At15 Danger Close automatically allows excluding yourself/allies. Safe Detonation grants this early. Bombs cannot critically hit or inherit weapon riders.",
+    "Advanced bomb profiles replace basic rider: Thermobaric fire pushes5ft on failed STR save after damage; Cryo cold on failed DEX also Speed0 untilendnextturn and d2=2 ignores1flatDR against this bomb; Shock lightning CON insteadDEX, failure prevents verbalspellcasting untilendnextturn (construct instead losesReactions), shared hard-denial guard; Glue no damage,15ftsquare difficult terrain3rounds and entering/starting DEXsave or Speed-15ft untilendturn, oncepercreature/round. Overload Core destroysonecommandeddronewithin30ft aspartAction bomb, DEXsave2d6lightning and noReactions untilendnextturn onfailure, halfdamageonsuccess. Consumesstock/allowance; no furtherdestructionproc.",
+    "Deployable slots start1at6,2at13,3at17, separate from drone cap. Deploy Action2RP within15ft, fixed ground, AC12+PB HP2L, duration3rounds, concentration not required; destroyeddonotrefundfuel. All sharecommandbudget. Sentry and Net require their cards. Additional engine profiles unlocked6: RocketTower commandedattack60ft targetDEXsaveS d6fire/halfsuccess to up to2creatureswithin5ft, maximum3shots; DecoyDummy onefoe30ftWISsave when deployed ordisadvnextattackagainstothers, destructionSfiretooneadjacentenemy nochain; BlastWall10-by5ftblocksLOSandmovement,climbcost10ft. NetTrap oneenemyentrySTRsaveorRestrained,endturnrepeat/ActionescapeDC,3roundmax thenends. Oneonlyfireswhencommandedexceptnonattacktrap/decoytrigger; commandbudgetlimitsdamagingtriggers too.",
+    "Base1–2, Mechanist Arch3–9, then Artificer/Techsmith/Warmachine Hero10–20. Upgrade Slot5 is automatic; Sentry and Net minimum6, Remote Detonation9. There is no source automatic Arch capstone. Mech Overdrive20 is automatic: once/long rest when deploying chooseone device whose duration becomes encounter end (maximum1minute), still command dependent, slot limited and destructible. No infinite pulses: healing effects keep original pulse cap and all per-use costs remain. Protected magic interface: once per short rest, as a Bonus Action route up to2 current Dissonance into one of your active devices within30ft. Reduce Dissonance by that amount; the device is disabled and cannot move, attack, emit an aura or trigger effects until repaired or your next completed short rest. Its duration keeps ticking. Repair with an Action and1RP using Field Repair, or with10minutes and1RP using tinkers tools. No RP is created and no Refrain counter resets."
+  ],
+  "workedExample": [
+    "Tinker6 INT18 PB3 S2 M4 RP8; droneAC17 HP15. Bombstock4, encounterallowance2, one deployable slot. Module Burn Injector.",
+    "Turn1 Action deploy Sentry for2RP: RP8→6. Bonus Action commanddrone; bolt hits1d6, Burn1d4 at next2targetturns. Sentry does not fire independently.",
+    "Turn2 with Explosive Handling throwfirebomb as Bonus Action: stock4→3, allowance2→1. DEXsave2d6fire, halfsuccess. Action personalcrossbowattack. Neither drone nor turret fires because Bonus Action alreadyspent.",
+    "Turn3 Bonus Action commandSentry for1d6; droneDodges. Action FieldRepair1RP healsdrone2d8+4 upto15, RP6→5. NoorganicHP repaired.",
+    "Turn4 Sentry expires after3turns. You cannot salvage itsRPautomatically. One bomb allowance and3stockremain untilencounterends; newencounter restores allowance2, notstock4."
+  ],
+  "balanceQuestions": [
+    "Does the shared command budget keep multiple devices useful but manageable?",
+    "Are bomb stock and encounter allowances too much bookkeeping?",
+    "Can Artificer support compete with damage without infinite healing?"
+  ],
+  "cards": [
+    [
+      4576,
+      1,
+      "Passive",
+      "0",
+      "Mechanical devices you examine",
+      "While using tools",
+      "Continuous",
+      "Advantage on checks to understand, repair or disable mechanisms. Requires appropriate access and tools; no automatic control of enemy constructs."
+    ],
+    [
+      4577,
+      1,
+      "Passive",
+      "One bomb and encounter allowance",
+      "Your bomb throw",
+      "Instant",
+      "Once/own turn",
+      "Throw a known prepared bomb as Bonus Action instead of Action. Removes ordinary accidental misfire, not Warmachine risk or enemy defenses. Cannot command a device with the same Bonus Action."
+    ],
+    [
+      4578,
+      1,
+      "Bonus Action",
+      "0",
+      "One noncombat mechanism touched",
+      "One manipulation",
+      "Once/turn",
+      "Open unlocked latch, operate simple switch or retrieve a carried gadget. Does not activate damaging/healing devices, disarm a trap, reload every weapon or add another Bonus Action."
+    ],
+    [
+      4579,
+      1,
+      "Action",
+      "0",
+      "One visible nonartifact mechanical/alchemical item",
+      "Instant information",
+      "Recharge2",
+      "INT+PB DC15 identifies its ordinary purpose and operating control. Success reveals one safe use, not secret passwords or magical properties. Failure does not destroy item."
+    ],
+    [
+      4580,
+      1,
+      "Downtime",
+      "Tools and scrap;10minutes",
+      "One simple handheld tool",
+      "1hour",
+      "1/short rest",
+      "Produce lockpick, wedge, pulley, clamp or equivalent ordinary implement. No weapons, explosives, currency, rare materials or autonomous effects; collapses afterward without sale value."
+    ],
+    [
+      4583,
+      1,
+      "Action",
+      "0 if functional; repairs as engine",
+      "Your carried drone within5ft",
+      "Until retracted/destroyed",
+      "One deployment per drone",
+      "Drone is automatic class engine. Selecting this card instead upgrades deployment to Bonus Action and permits5ft free initial placement. No free attacks, repair or extra drone."
+    ],
+    [
+      4584,
+      1,
+      "Action or Bonus Action with Handling",
+      "One bomb; encounter allowance",
+      "10ft radius within30ft, up to3creatures",
+      "Instant/rider as profile",
+      "Once/turn",
+      "Bomb recipes are automatic engine. Selecting card increases throw range to45ft. Use exact bomb profile, saves, stock and friendly-fire rules; no free bomb creation during combat."
+    ],
+    [
+      4585,
+      1,
+      "Action",
+      "1RP",
+      "One construct/device touched",
+      "Instant",
+      "Recharge2",
+      "Restore S d8+M HP, up to maximum, to functional damaged machine. Cannot revive destroyed objects, heal organic allies, reset duration or recharge limited uses. If the target is disabled by the Tinker’s protected Dissonance-routing feature, Field Repair also clears that disabled state. It does not reset duration, recharge, ammunition or per-rest uses."
+    ],
+    [
+      4586,
+      1,
+      "Bonus Action",
+      "0",
+      "Visible target within60ft",
+      "Until end next turn",
+      "Recharge3",
+      "Identify one visibly demonstrated damage resistance. Your next bomb/device damage against it ignores2flatDR, not resistance/immunity. No invented weakness or automatic secret knowledge."
+    ],
+    [
+      4587,
+      1,
+      "Action",
+      "1RP",
+      "One willing ally weapon/device touched",
+      "3rounds",
+      "Recharge3",
+      "Choose+1firstattackroll/turn or+5ftdevice movement. One modification peritem, no stack. Does not change weaponcategory, spellfunction, summonlimit or commandbudget."
+    ],
+    [
+      4593,
+      3,
+      "Passive",
+      "0",
+      "Your drones",
+      "While active",
+      "Continuous",
+      "Gain+1attackroll and can follow simple move/dodge commands while within120ft. Attacks still require your Bonus Action and lineofeffect; no independent turn."
+    ],
+    [
+      4594,
+      3,
+      "Passive",
+      "0",
+      "Your bomb damage",
+      "One target perthrow",
+      "Once/turn",
+      "Add M damage to one target that failed its initial save. No multiplying by area targets or damage ticks; Glue instead increases its slow by5ft maximum20."
+    ],
+    [
+      4595,
+      5,
+      "Long rest choice",
+      "0",
+      "One drone module slot",
+      "Until next reconfiguration",
+      "Automatic engine at5",
+      "Choose one of9 bounded modules in engine. This automatic unlock is not a selected skill. At13 use Dual Drone Protocols, still sharedcommand budget."
+    ],
+    [
+      4596,
+      3,
+      "Passive",
+      "0",
+      "Your deployables",
+      "While deployed",
+      "Continuous",
+      "Gain M maximum/initialHP and+1AC. Does not heal existing damage when moved or grant additional slots. Drones excluded unless another card saysotherwise."
+    ],
+    [
+      4597,
+      9,
+      "Bonus Action",
+      "1RP; sacrifice one device",
+      "Device within60ft,10ftradius up to3creatures",
+      "Instant",
+      "Recharge3",
+      "Destroy your device; DEXsave2S d6force, halfsuccess. Failedsavealso noReactions untilendnextturn. Cannot trigger Volatile Components/ScrapReaper or another destruction/copy chain; no resource refund."
+    ],
+    [
+      4600,
+      6,
+      "Action",
+      "2RP;one slot",
+      "Emptygroundwithin15ft",
+      "3rounds",
+      "Recharge2",
+      "Deploy Sentry engineprofile: commandedattackrange25ft PB+INT for1d6piercing. Noautofire, extraBonusAction or sharedbudgetexception. Durability AC12+PB HP2L before upgrades."
+    ],
+    [
+      4601,
+      6,
+      "Action",
+      "2RP;one slot",
+      "One5ftsquarewithin15ft",
+      "3rounds ortrigger",
+      "Recharge2",
+      "Deploy visible NetTrap. FirstenemyentrySTRsaveorRestrained, repeatendturn orActionescapeagainstDC. TargetHuge+insteadspeed-10ft. No damage or continuedrearming; endsafteronecreatureescapes."
+    ],
+    [
+      4602,
+      3,
+      "Bonus Action",
+      "1RP",
+      "One devicewithin30ft",
+      "Until endnextturn",
+      "Recharge3",
+      "NextdamagingactivationaddsS d6 toone target. Onependingovercharge, no stacking, doesnotcommanddeviceorgrantattack. If deviceexpiresfirstcostlost."
+    ],
+    [
+      4603,
+      3,
+      "Bonus Action",
+      "0",
+      "One drone;onevisibleenemy60ft",
+      "Until endnextturn",
+      "Recharge2",
+      "Drone'snextattackagainstchosenenemyhasadvantage. Stillneedsseparatecommand; noautomaticshot, enemytypewidepermanentbufforcritconversion."
+    ],
+    [
+      4604,
+      3,
+      "Reaction",
+      "1encounteruse",
+      "Dronewithin10ftwhenattackhitsyou",
+      "Onehit",
+      "1/encounter",
+      "Droneintercepts: reducedamagetoyoubyS+M andtakessameamountunmitigated. Itmustbeactive/conscious. Doesnotredirectagainortriggerretaliationloops."
+    ],
+    [
+      4613,
+      10,
+      "Passive",
+      "0",
+      "Up to3allieswithin15ft",
+      "While conscious",
+      "Continuous",
+      "Eachgains+1tofirstattackrollperturn. DoesnotstackwithTargetScanner oranotherCalibratedPrecision; no savesbonus."
+    ],
+    [
+      4614,
+      10,
+      "Passive",
+      "0",
+      "Yourbombarea",
+      "Eachthrow",
+      "Continuous",
+      "Excludeanyalliesandyourself. GrantsDangerCloseearly; at15alsoignorehalfcoverforbombsavecalculations. Doesnotmakedestructivesacrificesautomaticallysafe."
+    ],
+    [
+      4615,
+      10,
+      "Reaction",
+      "1RP",
+      "Droneadjacenttoallyhitbyattack",
+      "Onehit",
+      "Once/round",
+      "DronegrantsallyS+MtemporaryHPbeforehitresolves. Nohealorreversalofhit; maxoneprotectedally, normaltempHPnonstacking."
+    ],
+    [
+      4616,
+      10,
+      "Passive",
+      "0",
+      "Yournonhealingdeployables",
+      "Deployment",
+      "Continuous",
+      "A3rounddevice lasts4rounds (50%roundeddown). Healingpulsecountunchanged, noextraammunitionorfreecommands. Doesnotextendspellconcentration."
+    ],
+    [
+      4619,
+      10,
+      "Action",
+      "2RP",
+      "Yourdronewithin15ft",
+      "3rounds",
+      "Recharge4",
+      "Replaceboltswithsupportmode. EachBonusActioncommandpay1RPchooseoneally30fttohealS d6+M orgrant2S+MtempHP. Maximum3pulses; organichealingexplicitexception, noattackduringmode."
+    ],
+    [
+      4620,
+      10,
+      "Action",
+      "3RP",
+      "Upto3friendlydeviceswithin30ft",
+      "Instant;ACuntilstartnextturn",
+      "1/short rest",
+      "RestoreeachhalfitsmaximumHProundeddownand+1AC. Functionaldevicesonly; noconstructresurrection, organicHP, resourceoruse resets."
+    ],
+    [
+      4621,
+      12,
+      "Action",
+      "3RP;one slot",
+      "10-by5ftwallwithin15ft",
+      "3rounds",
+      "Recharge4",
+      "AC12+PB HP2L, blocksLOS/movement. Reactionwhenrangedweaponhitallywithin5ftofwallreduceitsdamagebyS+M andwalltakesreductionamount. Requireslinebetweenattackandwall; noautomaticall-shotabsorption."
+    ],
+    [
+      4622,
+      14,
+      "Action",
+      "3RPstart;1RPmaintenance;one slot",
+      "10ftradiuswithin30ft",
+      "Maximum3pulses",
+      "Recharge4",
+      "Concentration. InitialandpaidBonusActionpulsehealsupto3livingallies/devicesS d6HP. Devicesmustnotbedestroyed. Samecreatureonce/round, noextraautonomoushealingorlongerEfficientCells."
+    ],
+    [
+      4623,
+      16,
+      "Action",
+      "3RP",
+      "Oneenemyconstruct/devicewithin30ft",
+      "Untilendnexttargetturn",
+      "1/short rest",
+      "CONsaveorfailsitsnextReactionandhasdisadvantageonattacks. Onfailureby5alsoStunned, sharedhard-denialguard. Noautomaticpermanentdeactivation,hackingallegianceorignoringbossimmunity."
+    ],
+    [
+      4629,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "Whileknown",
+      "Continuous",
+      "Bombstockcap/refill+1;encounterallowanceunchanged. Reducedeployablecardrechargeby1minimum1, onsettingcounteronly. Neverrefreshrestusesortriggerrepeatedcounterreductions."
+    ],
+    [
+      4630,
+      10,
+      "Passive",
+      "0",
+      "Yourturretattacks",
+      "Whileactive",
+      "Continuous",
+      "Gain+1tohit. DoesnotstackwithEnhancedDroneControlifprofileevercountsboth, anddoesnotimposesavepenalties."
+    ],
+    [
+      4631,
+      10,
+      "Triggered",
+      "One destroyeddeviceremains",
+      "Your destroyeddevicewithinreach",
+      "Aftercombat1minute",
+      "1/short rest",
+      "Recover1RPspentondeployingit, nevermorethanitsactualpaidcost. Deliberatesacrificeorcopydoesnotqualify. Consumeusabledebris; no repeatedsalvagefromsameobject."
+    ],
+    [
+      4632,
+      10,
+      "Triggered",
+      "1RP",
+      "Yourdamagingdeviceactivation",
+      "One target",
+      "Once/own turn",
+      "Afterdamage rolld10;on10youmaypay1RPtoaddhalfitsunmodifieddamagedicetotalroundeddown toonetarget. No secondactivation, commands, procs, resourcesorhealingduplication."
+    ],
+    [
+      4635,
+      10,
+      "Action",
+      "4RP;two slots",
+      "Twoemptygroundspaceswithin15ft",
+      "3rounds",
+      "Recharge4",
+      "Requires2availableslots (normally13); ifonlyone,deployonefor2RP. Snipercommandattack90ftS d6piercing;BurstcommandDEXsaveS d4piercingto2targetswithin5ftat30ft. OnecommandedturretperBonusAction, notbothautomatically."
+    ],
+    [
+      4636,
+      12,
+      "Triggered",
+      "1RP",
+      "One turretwithin60ftafteryourbombthrow",
+      "Oneattack",
+      "Once/own turn",
+      "Turretmakesoneordinaryshotatsurvivingbombtarget. Replacesitsnormalcommandeddamagingactionforthatturn; cannotcombinewithanotherdeviceattackfromBonusAction. Nochainsoradditionalbombs."
+    ],
+    [
+      4637,
+      14,
+      "Bonus Action",
+      "2RP;1encounteruse",
+      "One destroyeddevice/dronewithin15ft",
+      "Remainingoriginalduration",
+      "1/encounter",
+      "RestorehalfitsmaximumHP. Usesoriginalslotandoriginalexpiry; expireddevicesineligible. Doesnotresetlimiteduses, modules, Overdrive, destructiontriggersorbombstock."
+    ],
+    [
+      4638,
+      10,
+      "Action",
+      "1RP",
+      "One deployeddevicewithin15ft",
+      "Remainingduration",
+      "Recharge3",
+      "Changebetweenknownnonhealingprofilesusing sameHPfraction, slot,expiryandspentuses. Cannot turna1slotdeviceintotwo, refillammo, resettrap, createfreshdeathtriggerormorphdroneintofreebomb."
+    ],
+    [
+      4639,
+      16,
+      "Action",
+      "2RP",
+      "Oneordinarytoolwithinreach",
+      "1hour",
+      "1/short rest",
+      "Createportableladder10ft,handtoolset,pulley,braceorlockablebox. Noautonomousdamage, explosive,rarematerial,magicitem, permanentstructureorcashvalue. Toolmustfitone5ftsquarefolded."
+    ],
+    [
+      4645,
+      10,
+      "Passive",
+      "0",
+      "Enemywithin5ftofyourdevice",
+      "Whiledeviceactive",
+      "Once/round total",
+      "Firstspellattackbyoneenemyhasdisadvantage. Multipledevicesdonotmultiplyeffect; area/spell-savesunchanged. Doesnotcreateantimagiczone."
+    ],
+    [
+      4646,
+      10,
+      "Triggered",
+      "0",
+      "One device destroyedbyenemy;oneenemywithin5ft",
+      "Instant",
+      "Once/round",
+      "DealSfiretothatenemy. Deliberatesacrifices, copiedobjects, friendlydamageandsecondaryexplosionscannottrigger. Nootherprocs/resourcesfromdamage."
+    ],
+    [
+      4647,
+      10,
+      "Triggered",
+      "0",
+      "Onebombyou throw",
+      "Instant",
+      "Once/turn",
+      "Beforethrowoptforunstablemix;d4=4addsS d6toonefailed-save targetbutbombcannotexcludeallies, includingDangerClose. Otherrollordinarybomb. Neverdoubleentiredamageorsecondaryriders."
+    ],
+    [
+      4648,
+      10,
+      "Action",
+      "1RP;enemy-destroyeddevice debris",
+      "Emptyspacewithin5ftofdebris",
+      "3rounds",
+      "1/encounter",
+      "CreateoneScraplingAC12HP LSpeed20ft, commandedmeleeattackPB+INTfor1d6bludgeoning. Countsasdeployableslot/sharedcommand. Consumeddebriscannotbesalvagedagain; cannotspawnitsownreplacement."
+    ],
+    [
+      4651,
+      10,
+      "Bonus Action",
+      "2RP",
+      "One dronewithin30ft",
+      "3rounds",
+      "Recharge4",
+      "Commandedboltsadd1d6fire andonhitSTRsaveorpush5ft. Stillonecommandandnormalattackbudget; nofreeactivationattackorunlimitedstacking."
+    ],
+    [
+      4652,
+      12,
+      "Triggered",
+      "1RP",
+      "Onebombthrow",
+      "Instant",
+      "Once/turn",
+      "AddonfailedinitialsaveSTRsaveorchoosepush10ftorProne. AlsoaddSdamagetoonefailed-save target. Noadditionalblastorcompoundedslow; do not stackwithThermobaricpush."
+    ],
+    [
+      4653,
+      14,
+      "Reaction",
+      "2RP;one destroyedenemy-hitdevice",
+      "Debriswithin30ft",
+      "Untilendnextturn",
+      "1/short rest",
+      "CreateoneScraplingSpeed30,AC12HP L;nextBonusActioncommandmovesanddetonateswithin5ftoneenemyfor2S d6fireDEXhalf. Usesonecommandbudgetandends. Nochainfromdeliberatesacrificeoritsowndeath."
+    ],
+    [
+      4654,
+      10,
+      "Bonus Action",
+      "1RP;devicelosesMHP",
+      "Onefunctionaldevicewithin30ft",
+      "Untilendnextturn",
+      "Recharge3",
+      "MusthavestrictlymoreHPthancost. ItsnextdamagingactivationaddsS d6toonetarget; cannotcombinewithOvercharge,damagecannotberefundedbysameactivation. Noresourcesgainedfromselfdamage."
+    ],
+    [
+      4655,
+      16,
+      "Action",
+      "4RP;sacrificeonedevice",
+      "10ftradiusaboutdevicewithin60ft",
+      "Instant",
+      "1/long rest",
+      "AllcreaturesincludingalliesDEXsave,3S d6fireplus3S d6forceonfailure,halfsuccess. Nocriticalhit,additionaldestructionproc, salvage,automaticstunorcopieddamage. Deviceendsbeforeblast; noSafetyexclusion."
+    ]
+  ],
+  "extraCards": [
+    {
+      "name": "Mech Overdrive",
+      "level": 20,
+      "activation": "Triggered on deploying a device",
+      "cost": "1 long-rest use plus original deployment cost",
+      "rangeAndTarget": "One of your newly deployed devices",
+      "duration": "Until encounter end, maximum1minute",
+      "frequency": "1/long rest; automatic Hero capstone",
+      "effect": "Source-derived level20 feature: extend device duration only. It still occupies its slot, requires normal commands and payments, and is destructible. Healing devices keep maximum3 pulses; bombs, spent uses and expended charges never refill. Does not create permanent equipment.",
+      "sourceLine": 4715,
+      "acquisition": "automatic"
+    }
+  ],
+  "protectedInterfaceReview": "Compared against preserved mainRegistry.core.resonanceInterface; corrected drift on2026-10-08",
+  "reviewStatus": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

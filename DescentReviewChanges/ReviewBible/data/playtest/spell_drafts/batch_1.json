@@ -1,0 +1,449 @@
+{
+  "spells": [
+    {
+      "id": "arcane-ward",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can see within 30 feet, including yourself",
+      "duration": "Until the start of your next regular turn",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None. The chosen target gains the AC bonus after this Action resolves.",
+      "effect": "The target gains +1 AC until the start of your next regular turn.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Repeated Arcane Ward effects on one creature do not stack; keep the later expiry. It cannot retroactively change a resolved attack. Same-stat flat bonuses use the strongest under the integration rules. Refrain still applies.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional timing and self-only targeting; source specified only a temporary +1 AC barrier lasting 1 round."
+    },
+    {
+      "id": "dispel-minor",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One ongoing magical effect created by a rank-0 spell, or one harmless cosmetic magical effect, that you can perceive within range",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None. If the target is eligible, the selected ongoing effect ends immediately.",
+      "effect": "End one ongoing rank-0 spell effect or harmless cosmetic magical effect. This can end a cantrip-created light, minor illusion, temporary magical mark, minor ward, or equivalent ongoing rank-0 effect.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Cannot dispel ranked spells, permanent enchantments, magic items, curses, class engines, creature traits, instantaneous damage already resolved, or effects explicitly protected from dispelling. Cannot erase historical consequences of an ended effect. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional eligibility boundary. Source said to end one harmless magical effect or cantrip but supplied no timing, range, or interaction with permanent magic."
+    },
+    {
+      "id": "seal-minor-wound",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One living creature you can perceive within 30 feet",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Choose one: stabilize a living creature at 0 HP without restoring HP, or end one ordinary Bleed/minor ongoing bleeding effect on the target.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Restores no HP, removes no Wound, disease, poison, curse, death consequence, internal injury, or non-bleeding damage-over-time effect. A stabilized creature remains at 0 HP. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional definition of 'minor bleeding'; healing was intentionally not added because the source specified stabilization or stopping minor bleeding only."
+    },
+    {
+      "id": "resonance-shield",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within 30 feet",
+      "duration": "Until the temporary HP are lost or you complete a long rest",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "In addition to the class-specific rank cost and any Dissonance surcharge, spend 1 RP. Roll 1d4; the chosen creature gains that many temporary HP. It keeps the higher of these or its existing temporary HP; they never add together.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "The additional 1 RP conversion cost is mandatory. Temporary HP never restore real HP and cannot generate resources when gained or lost. Recasting requires a new paid cast and roll; keep the higher remaining amount. Rank is class-specific, so this spell is not necessarily a cantrip for every class. If the Core source placement matching the class-specific school and rank includes F, an existing class casting focus is additionally required.",
+      "designNotes": "Conference decision: use the rank-0 1d4 effect plus mandatory1RP as the provisional single-ID rule. Retain all variants: rank0 catalog/Core1d4; rank2 catalog5tempHP perRP; rank2 Core2tempHP perRP. Rank2 alternatives are preserved as evidence, not cumulative effects or optional upgrades. Use Core30ft range and placement-specific focus requirement. Temporary HP end on next long rest; no fixed5 buff.",
+      "previousDraftDesignNotes": "NEW provisional reconciliation of conflicting source placements. The source contains both 'convert 1 RP into 1d4 temporary HP' and '5 temporary HP per RP spent.' This unified playtest record uses the explicit +1 RP interface requested for the tranche and the fixed 5-HP value from the stronger detailed summary; the 1d4 variant remains preserved in the source ledger."
+    },
+    {
+      "id": "shield",
+      "activation": "Reaction — when the chosen creature is targeted by an attack roll or Magic Missile, before the attack or damage resolves",
+      "rangeFeet": 30,
+      "targets": "Self or one willing creature you can perceive within 30 feet",
+      "duration": "Until the start of your next regular turn",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None. Re-evaluate the triggering attack against the chosen creature's increased AC; negate Magic Missile damage to that creature while the spell lasts.",
+      "effect": "The chosen creature gains +5 AC until the start of your next regular turn. During the same duration, Magic Missile cannot deal damage to that creature.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Does not protect against saving-throw effects, attacks that already resolved, or other automatically hitting effects unless explicitly named Magic Missile. Multiple Shield casts do not stack. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions.  GPT conference correction: retain Core30ft range; self-only narrowing rejected. One willing recipient is a provisional target specification.",
+      "previousDraftDesignNotes": "NEW provisional Reaction trigger and exact timing; numerical effects are preserved from both source placements."
+    },
+    {
+      "id": "alarm-ward",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One fixed 10-foot-radius ground area centered on a point you can perceive within range; choose up to 3 creatures when cast that will not trigger it",
+      "duration": "Concentration, up to 1 minute",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "Ward the chosen area. The first time each round a Tiny-or-larger creature not excluded when cast enters the area, the ward emits a magical chime audible to you and creatures within 60 feet of the ward. The chime identifies that the ward triggered but not the intruder's identity or exact statistics.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Only one Alarm Ward from you may exist at a time; recasting ends the previous ward. Total cover does not prevent a creature physically entering the ward from triggering it, but teleportation that never occupies the ward does not trigger it. The ward cannot distinguish intent, alignment, disguise, or hidden identity and cannot reveal protected or secret facts beyond physical entry. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core Action and one-minute concentration restored; the first draft eight-hour duration was rejected. Alarm is a separate catalog spell.",
+      "previousDraftDesignNotes": "NEW provisional area, exclusions, alert method, one-ward cap, and 8-hour duration; source only specified an alert when creatures enter a warded area."
+    },
+    {
+      "id": "elemental-resistance",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range",
+      "duration": "Concentration, up to 10 minutes",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "Choose acid, cold, fire, lightning, or thunder when cast. The target gains resistance to the chosen damage type for the duration.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "One damage type per cast. Resistance does not stack with another resistance to the same type and never becomes immunity. Ending concentration ends the resistance immediately. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional range, concentration requirement, and bounded energy-type list. The source-prescribed 10-minute duration and resistance to one energy type are preserved."
+    },
+    {
+      "id": "sanctuary",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing living creature you can perceive within range",
+      "duration": "Concentration, up to 1 minute",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "The first time on each attacker's turn that it attempts a direct attack against the warded creature, the attacker makes a Wisdom save against your spell save DC. On success it may attack normally and does not save again against this Sanctuary during that turn. On failure that specific attack cannot target the warded creature; the attacker may choose another legal target for the same attack.",
+      "effect": "Ward one creature against direct attacks. Attackers that fail the required Wisdom save must redirect that attack to another legal target or forgo that specific attack.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Does not block area effects, environmental hazards, effects that do not target the warded creature directly, or attacks from creatures immune to this ward. Sanctuary ends immediately if the warded creature intentionally deals damage or forces a hostile creature to make a saving throw. It never compels belief or allegiance and does not remove an attacker's entire Action unless no legal alternative exists. Ranked casting causes normal Dissonance and Refrain. This is defensive target restriction, not permission to impose another whole-Action denial: on a failed save the attacker may choose a legal different target or a different Action if its Action has not otherwise resolved.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional activation, range, concentration, retarget procedure, and offensive-break clause. Source only specified that enemies must make a Wisdom save to attack the warded creature."
+    },
+    {
+      "id": "flare-spark",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you can perceive within range",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Make a spell attack using PB + your actual casting ability modifier. On hit, deal 1d6 fire damage. On miss, no damage.",
+      "effect": "Launch a small conjured flare that deals 1d6 fire damage on a successful spell attack.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Cannot ignite a creature or object unless ordinary fire damage would do so under existing environment rules. Creates no persistent flame, fuel, crafting material, or resource trigger. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional attack roll, range, and non-scaling declaration; source numerical damage 1d6 fire is unchanged."
+    },
+    {
+      "id": "crackle-jolt",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One primary creature within range and, on a primary hit, one different secondary creature within 10 feet of the primary that you can perceive",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Make one spell attack against the primary target. On hit, the primary takes 1d4 lightning damage and the chosen secondary target takes 1 lightning damage automatically. On miss, neither target takes damage.",
+      "effect": "A lightning jolt strikes one creature and arcs to one nearby second creature for 1 damage.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "The arc never jumps beyond the single secondary target, cannot target the primary twice, and cannot trigger another Crackle Jolt, damage-copy, resource, or proc chain. No secondary target means only the primary damage resolves. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional attack roll, range, and anti-chain rule; source 1d4 primary lightning plus 1 damage to a second target is preserved."
+    },
+    {
+      "id": "conjure-water",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One open container or unoccupied surface you can see within 30 feet; up to 1 gallon",
+      "duration": "Up to 1 hour; ends earlier if consumed, dispersed, or you cast Conjure Water again",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Create up to 1 gallon of clean, drinkable water in the chosen legal location. A creature may satisfy its ordinary water need from Conjure Water once per 24 elapsed in-world hours. This replaces no food, equipment, camp supplies or abstract expedition Supply units.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "You can maintain only one batch of water from this spell at a time; casting it again causes any unconsumed prior conjured water to vanish. Cannot create water inside a creature, sealed object, occupied body space, machinery, or a location where creation itself would deal damage. Conjured water cannot be sold, stockpiled beyond the one active batch, fermented into permanent commodities, or count as a permanent crafting/industrial ingredient. It provides ordinary hydration while it exists. Repeated cantrip casts use shared Refrain rules. Consuming or replacing batches never bypasses the once-per-recipient-per-24-hours hydration limit. Conjured water in a creature does not disappear harmfully. The limit is an explicit provisional expedition-economy guard.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core instantaneous creation is given a one-hour conjured-object lifetime and one active batch, plus once-per-recipient hydration, as explicit new test limits. Conference decision: hydration resets on elapsed24hours, independent of ability to complete a long rest.",
+      "previousDraftDesignNotes": "NEW provisional one-batch/1-hour anti-stockpile rule and legal-placement boundary. Source amount of up to 1 gallon of clean water is preserved."
+    },
+    {
+      "id": "summon-tool",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One simple handheld tool appearing in an unoccupied space you can see within 30 feet",
+      "duration": "1 minute",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Conjure one simple nonmagical handheld tool weighing no more than 5 pounds, such as a hammer, screwdriver, wrench, shovel head, pry bar, saw, needle, cooking utensil, chalk-like marker, or similar ordinary tool. The tool functions as a mundane example of its type.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Only one summoned tool from you may exist at a time. It grants no proficiency or numerical tool bonus, cannot be a weapon designed primarily for combat, thieves' tools, alchemical reagents, ammunition, a key, currency, rare material, consumable supply, powered device, or precision masterwork instrument. It cannot be sold, dismantled for materials, or remain as a crafting ingredient after expiration. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional definition of 'simple tool,' weight cap, and anti-economy/crafting limits. Source 1-minute duration is preserved."
+    },
+    {
+      "id": "summon-fire-pet",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One unoccupied space you can perceive within range; summons one Small fire elemental companion",
+      "duration": "Concentration, up to 1 minute",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "No initial save or attack. The summoned pet uses your spell attack bonus for its commanded melee attack.",
+      "effect": "Summon a Small fire elemental with AC 13, 10 HP, Speed 30 feet, and a melee fire attack with 5-foot reach using your spell attack bonus. On hit it deals 1d8 fire damage. It acts immediately after you. On your Bonus Action command it may move and either make its one melee attack or take another basic non-damaging action; without a command it may move and Dodge. Its saving throw bonus is your PB; ability checks use +0 unless its profile explicitly supplies another bonus. It has no innate resistances or immunities beyond this printed profile.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "You may have only one Summon Fire Pet from this spell at a time. It shares the owner's global companion command budget and one damaging companion action per round across all companions. It has no independent resource generation, class features, loot, corpse, death trigger, free healing, or autonomous attack. At 0 HP or when concentration ends it disappears. Recasting replaces the prior pet. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional speed, attack bonus, command economy, concentration, and companion restrictions. Source-specific AC 13, HP 10, Small size, and 1d8 fire melee override generic companion statistics."
+    },
+    {
+      "id": "earthen-grip",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One Large-or-smaller creature touching solid ground that you can perceive within 30 feet",
+      "duration": "Concentration, until the end of the target's next turn",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Target makes a Strength save. On failure it is Restrained until the end of its next turn. On success there is no effect.",
+      "effect": "Conjured earth grips the target in place, inflicting the CoreV2 Restrained condition until the end of its next turn on a failed Strength save; ending concentration ends the restraint sooner.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Does not affect creatures not touching a solid surface, creatures larger than Large, or targets whose anatomy or explicit immunity prevents restraint. The effect ends automatically at the stated time and does not require repeated escape checks. It is not a whole-Action denial. Ranked casting causes normal Dissonance and Refrain. An affected target may use an Action for STR(Athletics) or DEX(Acrobatics) against your spell DC to escape early.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Catalog one-round restraint limits Core one-minute metadata; retain Core concentration. The target can use an Action for STR(Athletics) or DEX(Acrobatics) against your spell DC to end restraint early.",
+      "previousDraftDesignNotes": "NEW provisional 60-foot range, size/ground eligibility, and CoreV2 Restrained mapping. Source specified a Strength save and one-round immobilization/restraint."
+    },
+    {
+      "id": "mist-step",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Self; one visible unoccupied destination within 30 feet",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "Teleport to the chosen visible unoccupied space within 30 feet.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Destination must be a space you can perceive and legally occupy. Cannot teleport through a ward explicitly blocking teleportation, across planar boundaries, into solid matter, or into an unknown/unseen room. Grants no extra movement, Action, attack, invisibility, or opportunity-attack trigger. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core Action and V/S/F restored; the first draft Bonus Action/nonverbal casting was rejected.",
+      "previousDraftDesignNotes": "NEW provisional Bonus Action timing and teleport restrictions; source distance of up to 30 feet to a visible location is preserved."
+    },
+    {
+      "id": "elemental-bolt",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you can perceive within range",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Make a spell attack. On hit deal 2d8 damage of the element chosen when cast; on miss deal no damage.",
+      "effect": "Choose acid, cold, fire, or lightning when casting. Launch an elemental bolt dealing 2d8 damage of the chosen type on a successful spell attack.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Choice affects damage type only and grants no automatic Burn, slow, chain, corrosion, terrain, or status rider. The damage cannot be split among multiple targets. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional 90-foot range and spell-attack resolution. Source 2d8 damage and four listed element choices are preserved."
+    },
+    {
+      "id": "guiding-spark",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Self; nearest eligible magical presence within 30 feet for detection mode",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Choose one mode. True North: immediately know the direction of true north from your current position. Magical Presence: if an active magical effect, magical creature aura, or magical object exists within 30 feet on the same plane and is not protected from divination, learn the direction of the nearest such presence, but not its identity, school, strength, distance, owner, or exact nature.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Magical Presence does not penetrate effects explicitly blocking divination and does not reveal protected/secret facts, hidden identities, intentions, traps, exact locations, or paths through barriers. If multiple presences are equally near, learn that there is a tie but not their count unless directly perceptible. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional 60-foot detection radius and information ceiling. Source's two functions—true north or nearest magical presence—are preserved."
+    },
+    {
+      "id": "detect-emotion",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One living creature you can perceive within range",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "An unwilling target makes a Wisdom save. On failure, or if willing, you sense its strongest current basic surface emotion. On success, you learn nothing.",
+      "effect": "Sense one broad current emotion such as happiness, fear, anger, sadness, disgust, surprise, calm, or emotional numbness.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Does not detect thoughts, memories, motives, alignment, truthfulness, exact intent, hidden beliefs, future actions, or the cause of the emotion. Creatures without emotions or protected from mental/divination effects may be immune. A successful save does not reveal that the target lied or concealed anything. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional Wisdom save, 30-foot range, and strict information boundary. Source only specified sensing a basic emotion."
+    },
+    {
+      "id": "aura-glimpse",
+      "activation": "Action",
+      "rangeFeet": 10,
+      "targets": "Self; magical auras on creatures, objects, and active effects within a 10-foot radius that you can directly perceive",
+      "duration": "Until the end of your current turn",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Until the end of your turn, perceive the presence and outline of active magical auras within 10 feet. You can distinguish separate aura sources but learn no automatic school, rank, owner, command word, curse, or detailed property.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Total cover and effects explicitly blocking magical detection prevent perception. Does not reveal dormant magic, protected/secret properties, invisible nonmagical creatures, thoughts, traps without magical auras, or exact mechanics. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+      "previousDraftDesignNotes": "NEW provisional one-turn duration and information ceiling. Source 10-foot magical-aura glimpse is preserved."
+    },
+    {
+      "id": "predict-movement",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within 30 feet",
+      "duration": "Until the end of your next regular turn or until consumed",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "None.",
+      "effect": "Choose attack or Dexterity save when cast. Before the duration ends, the target adds +1 to its next attack roll or next Dexterity save of the chosen kind; that roll consumes the benefit. The target must commit to applying it before the roll.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Choice cannot be changed after casting. Multiple Predict Movement effects do not stack; a new cast replaces the prior one. Cannot be applied after seeing the result of the roll. Grants no extra Action, movement, reroll, AC, or foreknowledge beyond the +1. Repeated cantrip casts use shared Refrain rules.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. The beneficial source effect does not call for a hostile Dexterity save despite Core resolution metadata. Retain Core30ft range; consuming the bonus before end of next turn operationalizes an otherwise instantaneous future-roll benefit. GPT conference: target is one willing creature, not self-only.",
+      "previousDraftDesignNotes": "NEW provisional Bonus Action timing, choice-at-cast requirement, and expiration; source +1 to next Dexterity save or attack roll is preserved."
+    },
+    {
+      "id": "identify",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One magical object or ongoing magical effect you can see within 30 feet",
+      "duration": "Instantaneous information",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "Learn the target's publicly knowable magical function: its broad school or magical category if any, ordinary activation method, numerical bonuses or penalties exposed by the effect, whether it requires attunement or equivalent bonding, and the remaining count of explicitly tracked finite charges if that information is not protected by the item's rules.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Does not automatically reveal curses, hidden sentience, passwords, historical provenance, secret Director-only functions, artifact plot conditions, concealed transformations, future consequences, protected command words, or information an effect explicitly blocks from divination. An explicit ward may register as obscured if its rules say so; hidden properties alone do not reveal their own existence. Cannot identify mundane craftsmanship beyond ordinary observation. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core Action and30ft restored; no automatic secret or curse disclosure. An expressly hidden property remains hidden, without automatically revealing that a hidden property exists.",
+      "previousDraftDesignNotes": "NEW provisional 1-minute examination procedure and public/secret information boundary. Source requirement to reveal/determine magical properties is preserved without assuming imported spell-block behavior."
+    },
+    {
+      "id": "detect-magic",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Self; magical auras on creatures, objects, and active effects within 30 feet that you can perceive",
+      "duration": "Concentration, up to 10 minutes",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "For the duration, perceive the presence and visible outline of active magical auras within 30 feet. As an Action on a later turn, you may focus on one perceived aura to learn its broad magical school/category if that information is not protected.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Total cover and explicit anti-divination effects block detection. Does not reveal exact spell names, ranks, statistics, owners, motives, hidden curses, dormant magic, secret Director information, or mundane invisible creatures. Detecting an aura does not grant line of effect or permission to target through barriers. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core instantaneous metadata cannot sustain the described perception; this pilot uses explicit concentration for up to10minutes. The30ft range limits perception of spell-granted information.",
+      "previousDraftDesignNotes": "NEW provisional 10-minute concentration duration and two-step information model. Source 30-foot magical detection is preserved."
+    },
+    {
+      "id": "comprehend-languages",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Self; spoken language you can hear and written language you can clearly see or touch",
+      "duration": "Concentration, up to 10 minutes",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "For the duration, understand the literal semantic meaning of ordinary spoken and written languages you perceive within 30 feet. You do not gain the ability to speak or write those languages unless you already could.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Does not decipher codes, ciphers, secret cant, intentionally obfuscated wording, magical glyph functions, command words, proper names lacking translation, cultural subtext, metaphor beyond literal meaning, or information hidden by an explicit magical protection. It cannot translate speech you cannot hear or text you cannot perceive. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core instantaneous metadata cannot sustain the described perception; this pilot uses explicit concentration for up to10minutes. The30ft range limits perception of spell-granted information.",
+      "previousDraftDesignNotes": "NEW provisional 10-minute concentration duration and literal-meaning boundary. Source's understanding of all written and spoken languages is preserved without granting fluency or automatic codebreaking."
+    },
+    {
+      "id": "locate-object",
+      "activation": "Action",
+      "rangeFeet": 0,
+      "targets": "Self; one specific object personally familiar to you through at least 1 minute of prior direct observation or handling",
+      "duration": "Concentration, up to 10 minutes",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "None.",
+      "effect": "If the specified familiar object is within 1,000 feet on the same plane and is not protected from divination, sense the direction from you to its current location. The directional sense updates while the spell lasts.",
+      "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+      "limitations": "Provides direction only, not exact distance, route, floor, container, bearer identity, object condition, surrounding creatures, or a path around barriers. Fails if the object is outside 1,000 feet, on another plane, transformed beyond recognition into a different object, or protected by an effect explicitly blocking divination. Repeated casts cannot reveal protected/secret facts beyond the object's direction. Ranked casting causes normal Dissonance and Refrain.",
+      "designNotes": "Conference decision: casting range0/self is separate from the source effect's1000ft detection radius. Preserve conflicting Universal30ft metadata as evidence. Ten-minute concentration and familiarity threshold are provisional specifications; no exact location, distance or hidden properties are revealed.",
+      "previousDraftDesignNotes": "NEW provisional familiarity requirement, 10-minute concentration duration, and divination limits. Source 1,000-foot directional location of a familiar object is preserved despite conflicting source placement levels."
+    }
+  ]
+}

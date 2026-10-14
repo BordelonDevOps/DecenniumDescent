@@ -1,0 +1,38 @@
+---
+description: Daily activity log in-main; dual-write game changes only to DescentReviewChanges
+alwaysApply: true
+---
+
+# Activity log + DescentReviewChanges dual-write
+
+## 1. Daily activity log (DecenniumDescent-main only)
+
+- Append to `docs/activity/YYYY-MM-DD.md` (create the file for today if missing).
+- Log meaningful work briefly so progress survives crashes (what changed, why, open questions).
+- **Never** copy activity logs into `DescentReviewChanges`.
+
+## 2. Dual-write game changes to DescentReviewChanges
+
+When editing **actual game / product** files:
+
+1. Edit the real path in DecenniumDescent-main as usual.
+2. Also copy the same file under `DescentReviewChanges/`, preserving relative path  
+   (e.g. `docs/foo.md` → `DescentReviewChanges/docs/foo.md`).
+
+### INCLUDE (copy to DescentReviewChanges)
+
+- Player Rulebook, Director manuals, bestiary, cosmology, published game books
+- Companion game data (JSON, spells, monsters, items, characters, floors, encounters, generators)
+- Product UI/code that implements game features players/GMs use
+- Anything the owner would periodically review as game content
+
+### EXCLUDE (do not copy)
+
+- Agent thinking logs, transcripts, scratchpads
+- Daily activity logs / operational “what we did today” files
+- Meta change-over notes, agent changelogs, process notes about the edit itself
+- Cursor rules, agent instructions, continuity protocol docs (unless published as game books)
+- Internal agent-ops tooling scripts (unless shipping product)
+- Temporary notes / process-only TODOs
+
+If ambiguous: **exclude** from DescentReviewChanges and note the choice in today’s activity log.

@@ -1,0 +1,45 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L15-ATTRITION",
+  "agentId": "combat-metrics",
+  "seed": "agg-10-seeds",
+  "observations": [
+    "Recorded rounds, damage, healing, prevention, control, summons peak, retreat progress, KOs, Wounds, RP proxy spend.",
+    "DPR is model-estimated from class identity + level breakpoints (Extra Attack / Dual Cast / Nuke), not table dice transcripts."
+  ],
+  "metrics": {
+    "iterations": 10,
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 10.1,
+    "avg_party_damage": 815.92,
+    "avg_enemy_damage": 166.09,
+    "avg_healing": 106.78,
+    "avg_prevented": 53.22,
+    "avg_control_applied": 7.4,
+    "avg_full_turns_denied": 0.0,
+    "max_summons_peak": 0,
+    "summons_illegal_rate": 0.0,
+    "extra_action_stack_rate": 0.0,
+    "avg_tenacity_triggers": 0.0,
+    "avg_knockouts": 0.0,
+    "avg_wounds": 0.0,
+    "avg_rp_spent": 37.1,
+    "avg_decision_steps": 3.0,
+    "avg_lookups": 3.08,
+    "deadlock_seeds": 0,
+    "retreat_success_rate": null,
+    "dpr_party_estimate": 80.78,
+    "effective_prevention_per_round": 5.27,
+    "heal_to_damage_taken_ratio": 0.643,
+    "cargo_intact_rounds_avg": 0.0,
+    "objectives_held_max_avg": 0.0
+  },
+  "rulesQuestions": [],
+  "exploits": [],
+  "recommendations": [
+    "Keep outliers: report min/max rounds alongside averages in future tooling.",
+    "Instrument live companion combat log to replace model DPR in later packs."
+  ],
+  "confidence": "medium"
+}

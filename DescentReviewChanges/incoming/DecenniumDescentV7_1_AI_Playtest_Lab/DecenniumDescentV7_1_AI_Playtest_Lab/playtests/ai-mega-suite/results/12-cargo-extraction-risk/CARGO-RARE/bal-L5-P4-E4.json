@@ -1,0 +1,36 @@
+{
+  "pack": "12-cargo-extraction-risk",
+  "scenarioId": "CARGO-RARE",
+  "runId": "CARGO-RARE-bal-L5-P4-E4",
+  "seed": 526672,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 5000,
+    "level": 5,
+    "party": 4,
+    "extractionClass": 4,
+    "policy": "balanced",
+    "mapping": "Mapped",
+    "havenRate": 1.0,
+    "meanRetainedLoadFrac": 0.6242,
+    "medianRetainedLoadFrac": 1.0,
+    "cargoLossRate": 0.3758,
+    "meanExtractionFailCount": 0.459,
+    "meanCasualties": 0.148,
+    "meanTrueProfit": 61.48,
+    "medianTrueProfit": 117.6,
+    "profitP10": -12.0,
+    "profitP90": 117.6
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/CARGO-RARE/bal-L5-P4-E4.json"
+}

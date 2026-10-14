@@ -1,0 +1,92 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-ABORT",
+  "runId": "EXP-ABORT-bal-L10-P6-unk",
+  "seed": 8466685,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.408,
+    "wipeRate": 0.0,
+    "abortRate": 0.408,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 2.406,
+    "meanWatches": 7.056,
+    "meanHours": 59.86,
+    "meanTrueProfit": 582.65,
+    "medianTrueProfit": 533.88,
+    "profitLossRate": 0.161,
+    "meanCargoRetainedLoad": 12.43,
+    "meanExtractionFailRate": 0.426,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 10,
+    "party": 6,
+    "mapping": "Unknown",
+    "policy": "balanced",
+    "objective": "abort conditions and retreat timing",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    },
+    {
+      "code": "UNKNOWN-PROGRESS-ZERO",
+      "note": "progressPerWatch.Unknown=0; without Map Route success, expedition cannot meet Progress targets \u2014 intentional deadlock risk."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-ABORT/bal-L10-P6-unk.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 11,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 11,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 6,
+      "pressure": 0,
+      "supply": 18.0,
+      "load": 11,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 8,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 11,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

@@ -1,0 +1,590 @@
+"""Create concrete synthetic records for the 28 EX58 cross-domain boundaries.
+
+All expectations remain authored. Only source equality and the named finite
+reference calculations are executed; this is not the campaign/save runtime.
+"""
+from pathlib import Path
+from fractions import Fraction as F
+from datetime import datetime, timezone
+import base64
+import copy
+import hashlib
+import json
+
+G=Path(__file__).resolve().parents[3]
+R=G/'DescentReviewChanges/ReviewBible'
+A=G/'docs/audit/2026-10-08/full-game'
+OUT=[R/'data/public/expedition_candidate/boundary_records.json',
+     R/'data/director/expedition_candidate/boundary_records.json',
+     R/'docs/mechanics/expedition/EXPEDITION_BOUNDARY_WALKTHROUGHS.md',
+     R/'docs/mechanics/expedition/EXPEDITION_BOUNDARY_RECORDS.md',
+     A/'EX58_BOUNDARY_CANDIDATE_CHECK.json']
+CHECKS=[]
+
+
+def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
+def digest(p):
+    b=p.read_bytes()
+    return {'path':p.relative_to(G).as_posix(),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+def serial(x):
+    if isinstance(x,F):return {'numerator':x.numerator,'denominator':x.denominator}
+    if isinstance(x,dict):return {k:serial(v) for k,v in x.items()}
+    if isinstance(x,(list,tuple)):return [serial(v) for v in x]
+    return x
+def check(name,passed,actual=None):
+    CHECKS.append({'name':name,'passed':bool(passed),'actual':serial(actual)})
+    if not passed:raise AssertionError(name+': '+repr(actual))
+def task(natural,modifier,dc):
+    margin=natural+modifier-dc
+    degree=3 if margin>=10 else 2 if margin>=0 else 0 if margin<=-10 else 1
+    degree=max(0,min(3,degree+(1 if natural==20 else -1 if natural==1 else 0)))
+    return ['Critical Failure','Failure','Success','Critical Success'][degree]
+def iv(start,end,actors,activity):
+    return {'startSeconds':start,'endSeconds':end,'actors':actors,'activity':activity,
+            'activeSeconds':end-start,'clock':'case-local canonical clock, seconds; half-open'}
+def roll(actor,natural,modifier,dc,route='Core fixed-DC task'):
+    return {'actor':actor,'nativeRoute':route,'natural':natural,'modifier':modifier,'DC':dc,
+            'total':natural+modifier,'result':task(natural,modifier,dc) if route=='Core fixed-DC task' else ('success' if natural+modifier>=dc else 'failure')}
+
+
+def main():
+    for p in OUT:assert not p.exists(),f'Preserve existing boundary version before replacement: {p}'
+    original_path=A/'ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json'
+    originals=read(original_path)['additionalBoundaries']
+    inputs=[original_path,R/'data/director/expedition_candidate/source_contracts_corrected.json',
+            R/'data/public/expedition_candidate/transport_profiles.json',
+            R/'data/crafting/advanced_craft_recipe_candidate_public.json',
+            R/'docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md',
+            R/'data/public/spell_playtests/candidate_low_rank_136.json',
+            R/'docs/mechanics/SPELL_INTEGRATION_RULES.md',
+            R/'data/public/class_playtests/dragoon.json',R/'data/public/class_playtests/tinker.json',
+            R/'data/public/expedition_candidate/integrated_flow.json']
+    inputs += [R/f'data/public/expedition_candidate/part{n:02d}.json' for n in range(1,7)]
+    inputs += [R/f'data/director/expedition_candidate/part{n:02d}.json' for n in range(1,7)]
+    input_receipts=[digest(p) for p in inputs]
+    profiles=read(inputs[2]);craft=read(inputs[3]);spells=read(inputs[5]);flow=read(inputs[9])
+    armor=next(x for x in craft['cards'] if x['recipeId']=='recipe-122')
+    insight=next(x for x in craft['cards'] if x['recipeId']=='recipe-500')
+    feather=next(x for x in spells['spells'] if x['id']=='featherstep')
+    swift=next(x for x in spells['spells'] if x['id']=='swiftness')
+    profile_by_name={x['name']:x for x in profiles['profiles']}
+    cases=[]
+    def add(number,title,premises,records,outcomes,explanation,contracts):
+        original=next(x for x in originals if x['id']==f'EX-W{number:02d}')
+        cases.append({'id':original['id'],'schemaVersion':'EX58-boundary-record-v1',
+                      'status':'authored synthetic expectation; exact review pending',
+                      'audience':'public synthetic example','title':title,
+                      'questionIds':original['questionIds'],'contractIds':contracts,
+                      'sourceBinding':{**digest(original_path),'pointer':f'/additionalBoundaries/{number-1}'},
+                      'actualSyntheticPremises':premises,'records':records,
+                      'expectedOutcomes':outcomes,'readerExplanation':explanation,
+                      'evidenceClass':'authored expectation; named source and arithmetic checks separately executed',
+                      'worldAuthentication':'All named people, sites and permissions are synthetic premises, not new canonical facts.'})
+
+    # 01: Use the actual reviewed recipe instead of a invented generic eight-hour craft.
+    work=armor['operational']['work']
+    completion=4*3600+18+work['remainingActiveMinutes']*60
+    craft_records={'roster':['A','B','C','D','E','F','G','H'],'campWorkers':['A','B'],
+      'travellingCharacters':['C','D','E','F','G','H'],
+      'workerA':{'EnchantingLevel':4,'INTModifier':3,'toolPB':2,'ForgeDwarf':False,'assistants':[]},
+      'workOrder':{'id':'W01-order','recipeId':'recipe-122','station':'actual permitted fixed Resonance Circle at Fortified site',
+                   'tools':list(armor['sourceRecipe']['workRequirements']['requiredTools']),
+                   'formulaAccess':'owned authentic established formula; no acquisition inferred from item name',
+                   'bodyReserve':[{'id':'W01-chain-shirt','model':'EN-armor','size':'Medium','grade':'Standard',
+                                   'HP':15,'maxHP':15,'massLb':20,'everMagicallyAltered':False,'complete':True}],
+                   'componentLots':[{'id':'W01-matrix','name':'Stabilizing matrix','quantity':3},
+                                    {'id':'W01-crystal','name':'Luminous Crystal','quantity':4},
+                                    {'id':'W01-goo','name':'caustic goo','quantity':1}],
+                   'materialHistory':'Finite qualifying original inputs reserved once. Completed incorporated first-phase inputs stabilize; remaining real stock stays in its adequate declared containment. No new ingredients arise from interruption.'},
+      'intervals':[iv(0,900,['A'],'complete stable first phase'),iv(900,14400,['A'],'unfinished second phase'),
+                   iv(14400,14418,['A','B'],'actual three-round disturbance'),
+                   iv(14418,completion,['A'],'repeat the interrupted 465-minute second phase'),
+                   iv(0,28800,['B'],'guard except actual disturbance; no craft credit'),
+                   iv(0,28800,['C','D','E','F','G','H'],'actual separate travel')],
+      'phaseLedger':{'firstPhaseRetainedSeconds':900,'unfinishedPhaseLostSeconds':13500,
+                     'secondPhaseRequiredSeconds':27900,'progressAtFirstWatchEndSeconds':15282,
+                     'completionSeconds':completion,'totalActualCraftSeconds':42300},
+      'completionRoll':{'natural':10,'INT':3,'PB':2,'DC':12,'total':15,'margin':3,'native':'six manufacturing bands, no Core natural shifts','outcome':'Standard','outputCount':1},
+      'resultBody':{'sameIdentity':'W01-chain-shirt','activeBeforeCompletion':False,'newBodiesCreated':0,
+                    'initialChargesAtActualCompletion':1,'enhancement':1,'damageType':'acid','quality':'Standard'},
+      'communication':{'reportAt28800ReceivedInCamp':False,'methodNotProvided':'no telepathic or notebook communication assumed'}}
+    add(1,'Interrupted crafting and a travelling team',
+        'Eight members share one clock. A has the real recipe, materials, permitted station and own tools; B guards. The other six are actually elsewhere.',
+        craft_records,{'completeAt8h':False,'completedFirstPhaseSurvives':True,'finishesAtSeconds':42318,'offscreenCombatantsAdded':0},
+        'The disturbance erases 3 hours 45 minutes of the unfinished phase, while the first 15 minutes survive. The legal completion is 11:45:18, not the first Watch boundary. The guard and travelling team supply no remote crafting help. The result uses the actual manufacturing bands.', ['EC-01','EC-02','EC-03','EC-14'])
+    check('W01 actual reviewed source time and phase',work['activeMinutes']==480 and work['includedFirstPhaseMinutes']==15 and work['remainingActiveMinutes']==465)
+    check('W01 interruption and completion arithmetic',completion==42318 and 900+(28800-14418)==15282)
+    check('W01 source permits no assistants and no field craft',work['sourceRequirements']['maximumAssistants']==0 and not work['sourceRequirements']['fieldCraftable'])
+
+    # 02: Independent alternatives share an opening snapshot, not cumulative history.
+    add(2,'Rest debt without another refill','A prospective Rest slot is 16–24h. Actual safe support is available. A prior beneficial Rest completed at hour 20; the owed scheduled slot was nonetheless missed.',
+        {'actor':'Iria','openingState':{'HP':8,'maxHP':20,'RP':2,'lastBeneficialEnd':72000},
+         'scheduledSlot':iv(57600,86400,['Iria'],'scheduled but unfulfilled slot'),
+         'debt':{'id':'W02-debt','openedAt':86400,'deadline':144000,'assessedDeadlineIds':[]},
+         'paidBranch':{'actualRest':iv(86400,115200,['Iria'],'safe supported rest'),'debtAfter':False,'HPAfter':8,'RPAfter':2,'lastBeneficialEndAfter':72000},
+         'unpaidBranch':{'visits':[144000,144001,172799],'strainEvents':[{'id':'W02-deadline','time':144000,'delta':1}], 'debtAfter':True,'newMissedScheduledSlotAt172800':'outside this branch; would be a separate event'}},
+        {'debtClearsAtHour':32,'benefitIntervalHours':12,'secondRefill':False,'deadlineAssessmentsBeforeNewCause':1},
+        'Eight real safe hours clear the debt. Only 12 hours have elapsed since the prior beneficial completion, so HP and RP do not refill. Re-reading the same unpaid deadline adds no further Strain.', ['EC-02','EC-03'])
+    check('W02 canonical debt/reward times',86400+2*28800==144000 and (115200-72000)//3600==12)
+
+    add(3,'Provision quantities, daylight and different recipients',
+        'Mira is Medium and Bor is Large. A real low-tier seller has three baskets. Four clean skins are already owned and two new skins are bought. Bright daylight and safe shelter require no flame.',
+        {'invoice':{'foodCp':150,'waterCp':3,'oilCp':30,'sundriesCp':6,'newSkinsCp':40,'totalCp':229},
+         'singleBasket':{'costCp':63,'massLb':F(45,4),'newSkins':2,'withNewSkinsCostCp':103,'withSkinMassLb':F(53,4)},
+         'lots':{'foodLb':6,'waterPints':24,'oilPints':3,'oilFlaskInclusiveLb':3,'sundriesLb':F(3,4),'skinTareLb':6},
+         'allocation':[{'id':'Mira-day','foodLb':2,'waterPints':8},{'id':'Bor-day','foodLb':4,'waterPints':16}],
+         'dayEnd':{'MiraStrainAdded':0,'BorStrainAdded':0,'oilPintsStillOwned':3,'noAutomaticSundryDestruction':True},
+         'independentShortageBranch':{'openingOnlyOneBasket':True,'MiraReceivesFoodLb':2,'MiraReceivesWaterPints':8,'BorFoodLb':0,'BorWaterPints':0,'BorStrainAdded':1},
+         'separateMuleFeedOffer':{'profileId':profile_by_name['Donkey or mule']['id'],'feedPriceCp':5,'feedMassLb':10,'waterIncluded':False,'humanNutritionCredit':0}},
+        {'ordinaryBasketCp':63,'firstPortableBasketCp':103,'LargeDailyFoodLb':4,'LargeDailyWaterPints':16},
+        'A basket costs 63 cp; two new skins make 103 cp and 13.25 lb. Feeding both named recipients takes three real baskets. In the separate shortage branch, Bor’s missing food and water cause one daily Strain total. Unneeded daylight oil survives.', ['EC-03','EC-08','EC-10'])
+    check('W03 price and mass conservation',50+1+10+2==63 and 63+40==103 and F(45,4)+2==F(53,4) and 3*63+40==229)
+
+    add(4,'One finite forage site', 'A measured food-and-water site has three baseline nutrition units and a disjoint two-unit reserve. It has no oil or sundries. Eda and Fen have actual gathering tools and ten fitting clean four-pint skins.',
+        {'site':{'id':'W04-site','baseline':{'foodLb':6,'waterPints':24},'reserve':{'foodLb':4,'waterPints':16},'Sustenance':3,'generationEvents':[]},
+         'work':iv(0,28800,['Eda','Fen'],'actual forage, separate workers and tools'),
+         'check':{**roll('Eda',17,6,13),'modifierSources':{'WISAndOnePB':5,'oneTrainedHelper':1}},
+         'receivers':{'skins':10,'capacityPintsEach':4,'foodSacksCapacityLb':10,'finalTotalMassWithSkinTaresLb':60},
+         'transfer':{'id':'W04-harvest','foodLb':10,'waterPints':40,'completeProcurementBaskets':0},
+         'after':{'siteFoodLb':0,'siteWaterPints':0,'oilPints':0,'sundryLb':0},
+         'parallelAttempt':{'party':'second team','sameParentSite':'W04-site','requestedUnits':3,'receivedUnits':0},
+         'nextWatch':{'siteIdChanged':'W04-site-alias','underlyingOrigin':'W04-site','newStock':0}},
+        {'maximumNutritionEquivalents':5,'secondSiteReward':0,'newRecipesOrFishingClaims':0},
+        'The critical result permits at most the original five nutrition units. Ten pounds of food and 40 pints of water move to real receivers; nothing creates oil or a second site allocation.', ['EC-03','EC-04'])
+    check('W04 finite critical result',task(17,6,13)=='Critical Success' and 3+(3+1)//2==5 and 6+4==10 and 24+16==40)
+
+    build_intervals=[]
+    for n in range(8):
+        start=(n//2)*86400+(n%2)*28800
+        build_intervals.append({**iv(start,start+28800,['Builder'],'Support' if n not in (3,4) else 'Research'),
+                                'mark':n+1,'roll':roll('Builder',9,3,12)})
+    add(5,'Camp marks, installed stock and replacement storage', 'The Builder has an authorized stable 20×20-foot site, actual shelters, tools, a Research-qualified method and mundane stock. Safe off-duty beds are separately available; construction does not prove them.',
+        {'work':build_intervals,'stock':[{'id':'temporary-pack','lb':20,'cp':200}, {'id':'fortified-stock','lb':300,'cp':6000},
+                                        {'id':'research-desk','lb':50,'cp':2500},{'id':'forward-depot','lb':500,'cp':10000}],
+         'upgrades':[{'totalMarks':1,'Support':1,'Research':0,'storageLoad':20,'pounds':200,'ft3':20},
+                     {'totalMarks':3,'Support':3,'Research':0,'storageLoad':60,'pounds':600,'ft3':60},
+                     {'totalMarks':5,'Support':3,'Research':2,'storageLoad':60,'pounds':600,'ft3':60},
+                     {'totalMarks':8,'Support':6,'Research':2,'storageLoad':150,'pounds':1500,'ft3':150}],
+         'ForwardPermission':{'id':'local-depot-permit','authority':'actual local landholder in this synthetic case','acceptedBeforeFinalUpgrade':True},
+         'supplyLine':{'id':'line-1','provider':'Nell and Oren','carrier':'one actual compatible owned wagon with two real trained pullers',
+                       'offeredLoad':20,'currentShipmentLoad':10,'routeSeconds':28800,'quoteCp':1000,'feePaidCp':1000,
+                       'nextDepartureSeconds':345600,'nextArrivalSeconds':374400,'suppliesAppearBeforeActualArrival':False},
+         'warningCheck':{'time':345600,'perimeterIntact':True,'guard':'real assigned Fen','approachThroughWatchedPerimeter':True,'surpriseAutomaticallyRemovedEverywhere':False},
+         'separateDamage':{'fixture':'rack','structuralHPBefore':3,'structuralMaxHP':5,'HPAfterTierUpgrade':3}},
+        {'marks':8,'installedMassLb':870,'stockPriceGp':187,'finalStorageLoad':150,'completionSeconds':316800},
+        'Eight ordinary successful tasks supply eight marks over four days of two work Watches. The 870 lb of installed stock costs 187 gp. Forward storage replaces earlier limits; it does not sum them, mend a damaged rack or teleport a promised delivery.', ['EC-02','EC-03','EC-04','EC-08'])
+    check('W05 marks stock and actual work time',len(build_intervals)==8 and sum(x['activeSeconds'] for x in build_intervals)==64*3600 and build_intervals[-1]['endSeconds']==88*3600 and 20+300+50+500==870 and 2+60+25+100==187)
+
+    die_cases=[{'id':'plain','Pressure':3,'natural':3,'modifier':0,'rerolled':False,'expected':'Standard'},
+               {'id':'legal-minus-one','Pressure':3,'natural':4,'modifier':-1,'rerolled':False,'expected':'Minor'},
+               {'id':'natural-one','Pressure':3,'natural':1,'modifier':0,'rerolled':False,'expected':'Severe'},
+               {'id':'raised-above','Pressure':3,'natural':1,'modifier':3,'rerolled':False,'expected':'none'},
+               {'id':'zero','Pressure':0,'natural':None,'modifier':0,'rerolled':False,'expected':'none'},
+               {'id':'six','Pressure':6,'natural':None,'modifier':0,'rerolled':False,'expected':'Severe'},
+               {'id':'legal-reroll-equality','Pressure':3,'natural':3,'priorNatural':5,'modifier':0,'rerolled':True,'expected':'Minor'},
+               {'id':'unclamped-low','Pressure':3,'natural':2,'modifier':-4,'rerolled':False,'expected':'Standard'}]
+    add(6,'Pressure equality, natural results and unchanged exposure','A Risk-1 cohort already has Pressure 3, including one previously counted Attention reveal. Modifier and reroll classifier probes explicitly assume a lawful supplied effect; they grant no character that effect.',
+        {'cohort':'W06-cohort','reveal':{'id':'lot-A-revealed','alreadyApplied':True,'replayedAtNextWatch':True,'newDelta':0},
+         'rollRecords':die_cases,'modifierAdmission':{'noActualPermissionBranch':'Reject the requested modifier/reroll and use the unmodified natural result',
+                 'conditionalClassifierProbes':'These synthetic input probes are not claims that a listed class feature modifies complication d6s.'},
+         'stakes':{'Minor':'15-minute authorized inspection at the real checkpoint','Standard':'60-minute actual obstruction','Severe':'predeclared genuinely closed route requiring an actual response'},
+         'rootIds':['one-reveal','one-due-complication'],'recursivePressureSixRolls':0},
+        {'triggerBeforeNaturalOneRule':True,'modifiedDieClamped':False,'duplicateRevealIncrease':0},
+        'An untouched 3 at Pressure 3 is Standard. A lawfully modified 4→3, or a lawfully rerolled final 3, is Minor. A natural 1 raised above Pressure does not trigger. No modifier, reroll or enemy is granted by this classifier example.', ['EC-06','EC-15'])
+    def severity(p,n,m,rerolled):
+        if p==0:return 'none'
+        if p==6:return 'Severe'
+        total=n+m
+        if total>p:return 'none'
+        if n==1:return 'Severe'
+        if total==p and (m!=0 or rerolled):return 'Minor'
+        return 'Standard'
+    for x in die_cases:check('W06 '+x['id'],severity(x['Pressure'],x['natural'],x['modifier'],x['rerolled'])==x['expected'])
+
+    add(7,'Finite extraction checkpoints and a Severe root', 'The actual Mapped route has Length 6 and physical positions 3 and 6. A genuine loose-bridge incident endangers one 20-lb crate at the midpoint; ropes, workers and reachable receiving ground exist.',
+        {'route':{'id':'W07-route','length':6,'Mapping':'Mapped','routineCheckpointPositions':[3,6]},
+         'queueEvents':[{'id':'midpoint-routine','position':3,'interval':iv(43200,43260,['Lead'],'verification'),'roll':roll('Lead',1,5,17),'root':'bridge-incident'},
+                       {'id':'real-cargo-response','position':3,'interval':iv(43260,46860,['Lead','Helper'],'recover the reachable crate using existing rigging'),'roll':roll('Lead',12,5,17),'crateRecovered':True},
+                       {'id':'midpoint-secondary','position':3,'interval':iv(46860,46920,['Lead'],'one post-Severe verification'),'roll':roll('Lead',1,5,17),'root':'bridge-incident','secondaryNumber':1},
+                       {'id':'secondary-consequence','position':3,'interval':iv(46920,46980,['Lead','Helper'],'withdraw crate from a failed original strap onto secure ground'),'lostStock':['one actual failed strap'],'newExtractionTestRequested':False},
+                       {'id':'actual-onward-traverse','positionFrom':3,'positionTo':6,'interval':iv(46980,90180,['whole cohort'],'12 actual moving hours, no free positional advance')},
+                       {'id':'exit-routine','position':6,'interval':iv(90180,90240,['Lead'],'exit verification'),'roll':roll('Lead',12,5,17)}],
+         'replayRequest':{'id':'midpoint-routine','result':'already processed; no second roll'},
+         'bonusProgressAdmission':{'fromPosition':5,'claimedToPosition':6,'actualReachabilityRequired':True,'absentTraverseResult':'reject teleport-like award; no queued exit yet'},
+         'laterWatchHazards':'Separate actual due Watch events retain their own roots; none is generated merely by iterating this queue.'},
+        {'routineTests':2,'secondaryTestsForBridgeRoot':1,'tertiaryTests':0,'crateStillSameObject':True},
+        'The midpoint and exit each resolve once. The bridge root can request one secondary test. Its further Severe result still has a real finite consequence, but does not recurse into a third test. The exit waits for actual onward travel.', ['EC-02','EC-05','EC-06'])
+    check('W07 bounded queue time and count',90180-46980==43200 and len({3,6})==2)
+
+    add(8,'A route’s time multiplier is applied once', 'A feasible Mapped route is physically Contested. The ordinary convoy moves at 3 mph. A separate branch has a genuinely permitted essential traveller whose Strain-5 exception reduces lawful pace to 1.5 mph; that traveller does not lead the active check.',
+        {'nominalMinutes':480,'qualityFactor':F(5,4),'normalPaceMph':3,
+         'normalIntervals':[iv(0,18000,['convoy'],'moving'),iv(18000,21600,['convoy'],'actual obstruction'),iv(21600,39600,['convoy'],'moving')],
+         'normalMovingMinutes':600,'normalElapsedMinutes':660,'baseProgress':2,'extraMileageReward':0,
+         'strainBranch':{'paceMph':F(3,2),'movingMinutes':1200,'lead':'separate capable Routekeeper','affectedActorLeads':False},
+         'forcedMarchBranch':{'sameRouteTimeNormalization':True,'extraOrdinaryTravelReward':0,'separateSevereCheckAndSupportRequired':True}},
+        {'normalMovingMinutes':600,'normalWithPauseMinutes':660,'strainMovingMinutes':1200},
+        'The same traverse costs ten moving hours and eleven elapsed hours with its one-hour obstruction. Mapped Progress is its outcome, not another journey. The lawful half-pace branch takes twenty moving hours, with rest and daily needs continuing.', ['EC-02','EC-05'])
+    check('W08 single time normalization',F(480)*F(5,4)*3/3==600 and F(480)*F(5,4)*3/F(3,2)==1200 and 600+60==660)
+
+    add(9,'Forced-march stock and extraction high-water marks','Three Medium characters and one Large character attempt a feasible Unknown route with actual extra stock, carriers and lamps. Alternatives fork from the same opening manifest.',
+        {'actors':[{'id':'A','size':'Medium'},{'id':'B','size':'Medium'},{'id':'C','size':'Medium'},{'id':'D','size':'Large'}],
+         'reservedAdditionalLots':{'basketUnits':5,'foodLb':10,'waterPints':40,'oilPints':5,'fullFlaskBodiesLb':F(5,4),'sundriesLb':F(5,4),'waterContainers':10},
+         'success':{'work':[iv(0,21600,['A','B','C','D'],'feasible forced march'),iv(21660,28860,['A','B','C','D'],'remaining forced march')],'roll':roll('A',14,5,19),
+                    'Progress':1,'PressureDelta':2,'supportChargedOnce':5,
+                    'physicalSpend':'Same reserved origins support this operation; actual consumption events are retained, no second abstract Supply asset. Carried light consists of three eight-hour lamp burns and one six-hour burn, totaling the five pints.',
+                    'lamps':{'A_B_C':{'firstBurn':[0,21600],'refill':[21600,21660],'secondBurn':[21660,28860]},
+                             'D':{'backupBurn':[60,21660]},'refillWorkers':['A','B','C'],
+                             'fifthPintSplitBetweenABC':F(1,3),'DProvidesLightDuringRefill':True,
+                             'pauseSeconds':60,'activeTravelSeconds':28800,'elapsedSeconds':28860},
+                    'foodWaterAndSundries':'10 lb food, 40 pints water and 1.25 lb sundries are allocated to the named three Medium and one Large recipients and actually used for this successful support operation; the same nutrition counts once.'},
+         'failureAlternative':{'roll':roll('A',10,5,19),'Progress':0,'complication':'Standard, one declared obstruction',
+                    'alreadyConsumed':{'foodLb':2,'waterPints':8,'oilPints':5,'sundriesLb':F(1,4)},
+                    'actuallyReturnedUnspent':{'foodLb':8,'waterPints':32,'oilPints':0,'sundriesLb':1},
+                    'nutritionCreditRecipients':'the named recipients of the consumed amounts, once; unspent stock does not credit needs'},
+         'highwaterEvents':[{'id':'start-class2','highestClass':2,'surcharge':1,'newDelta':1},
+                            {'id':'acquire-class6','highestClass':6,'surcharge':3,'newDelta':2,'dedicatedHandling':'actual sealed cradle, rated carrier, consent/authority and prechecked route; no generic carrying exception'},
+                            {'id':'drop-class6','highestClass':2,'surchargeHighwater':3,'refund':0},
+                            {'id':'same-class6-return','highestClass':6,'surchargeHighwater':3,'newDelta':0}]},
+        {'extraUnits':5,'successProgress':1,'successPressure':2,'class2To6AddedPressure':2,'dropRefund':0},
+        'Five extra units are required before commitment. Success pays support once. Failure returns only actual surviving stock, while used food, water and fuel stay used. Raising Class 2 to Class 6 adds only two more surcharge points; dropping and reclaiming that cargo does not refresh the charge.', ['EC-03','EC-05','EC-06'])
+    check('W09 reservation and class high-water math',3+2==5 and min(3,6//2)-min(3,2//2)==2)
+    check('W09 actual lamp hours fit five pints',F(3*8+6,6)==5)
+
+    add(10,'Extraction modifiers and a real choice after failure','A Tier-II lead sees the actual Class-4 cargo, one exposed Attention lot, four unsecured dangerous lots, a Burdened convoy, actual pursuit and a genuinely Secured route. Each tag names a real handling problem.',
+        {'modifierRecord':{'baseTierDC':13,'highestClass':4,'exposedAttentionLots':1,'AttentionTagMentions':2,'AttentionModifier':1,'Burden':1,
+                           'unsecuredDangerousLotIds':['a','b','c','d'],'hazardCap':3,'rawCappedPart':9,'cappedPart':7,'pursuit':2,'Secured':-2,'finalDC':20},
+         'test':{'interval':iv(0,60,['Lead'],'actual checkpoint inspection'),**roll('Lead',10,5,20)},
+         'delayBranch':{'interval':iv(60,28860,['Lead','Guard'],'handle actual gate obstruction and guard stalled convoy'),
+                        'Progress':0,'StandardComplication':'actual separate predeclared 60-minute inspection begins at28860; cannot be hidden inside an incompatible worker interval',
+                        'inspection':iv(28860,32460,['Lead'],'additional actual Standard complication'),
+                        'otherPeopleRest':'only a separately supplied genuine safe location and uninterrupted assignment can qualify'},
+         'riskBranch':{'lot':'lowest-priority reachable 20-lb crate','priority':1,'titleUnchanged':True,
+                       'response':iv(60,3660,['Lead','Helper'],'real recovery with rope, anchor and receiving ground'),
+                       'recoveryDC':17,'roll':roll('Lead',12,5,17),'outcome':'same crate secured; no new value, HP or Progress'},
+         'branchChoice':'Select one; never impose both delay and risk automatically.'},
+        {'finalDC':20,'delaySeconds':28800,'responseSeconds':3600,'automaticCargoDestruction':False},
+        'The handling subtotal caps at +7 before pursuit and Secured adjustments, producing DC 20. A failed test offers one declared branch. The eight-hour delay is real time; its Standard complication is a separate actual consequence whose time cannot be erased. A cargo-risk branch allows a real hour of recovery.', ['EC-02','EC-06','EC-09'])
+    check('W10 cap and separate modifiers',13+min(7,4+1+1+min(3,4))+2-2==20)
+
+    add(11,'Actual encounter contributors and retreat comparison','Four level-3 characters are present, including a Tinker with its actual class Anacite Drone. The fixture uses the unchanged provisional class engine, without promoting a card or treating an absent roster member as present.',
+        {'characters':[{'id':'Tinker','level':3,'INTModifier':3,'PB':2},{'id':'A','level':3},{'id':'B','level':3},{'id':'C','level':3}],
+         'drone':{'id':'W11-Anacite','source':'tinker engine automatic level1 body','currentHP':11,'maximumHP':11,'AC':16,'flightFt':30,'attackBonus':5,
+                   'command':{'controller':'Tinker','BonusActionSpent':True,'RPSpent':0,'wholeAttachedPhaseAfterControllerTurn':True},
+                   'bolt':{'rangeFt':60,'targetDistanceFt':30,'lineOfEffect':True,'natural':10,'total':15,'targetAC':13,'damageD6':3,'damageType':'piercing','shockD4':2,'extraCondition':False},
+                   'damagingActionsInSharedBudget':1},
+         'calibration':{'N_eff':F(9,2),'multiplier':F(11,10),'standardBaseBudget':90,'standardBudget':99,'passiveCargoOrMountWeight':0,'measuredBalance':False},
+         'retreat':{'existingSpentBonusActionRetained':True,'actualLead':'A','DC':16,
+                    'rounds':[{'lead':roll('A',11,5,16),'Escape':1,'Pursuit':0,'oneThreat':'actual attack misses'},
+                              {'lead':roll('A',20,5,16),'EscapeAdded':2,'PursuitAdded':0,'oneThreat':'actual attack misses'}],
+                    'successState':{'Escape':3,'Pursuit':0},
+                    'independentSimultaneousBranch':{'Escape':3,'Pursuit':3,'outcome':'failure; actual next hostile advantage, not automatic death'}},
+         'bossTenacity':{'grantedByBudget':False,'actualSourceRequired':True}},
+        {'N_eff':F(9,2),'standardBudget':99,'3Versus3Retreat':'failure'},
+        'The actual commanded offensive phase contributes one half, for N_eff 4.5 and a provisional budget of 99. Its spent command remains spent during retreat. Escape 3 wins only while Pursuit is below 3; simultaneous 3/3 fails.', ['EC-01','EC-07','EC-08'])
+    check('W11 calibration and drone source arithmetic',F(90)*F(11,10)==99 and 5+3+3==11 and 13+3==16 and 2+3==5)
+
+    add(12,'Whole mounted turns and prospective transfer','A willing trained Riding horse has a real riding saddle and a legal Medium rider: 150-lb body, 20-lb gear, 18-lb saddle and 2-lb reins. Their route, seat and control channel are physically usable.',
+        {'horseProfileId':profile_by_name['Horse, riding']['id'],'payload':{'bodyLb':150,'gearLb':20,'saddleLb':18,'reinsLb':2,'totalLb':190,'Load':10},
+         'round1':{'riderInitiative':18,'walkingSpeedFt':30,'mountCostFt':15,'movementRemainingFt':15,
+                   'riderWholeTurn':{'Action':'Ready one legal spear attack after the horse reaches a target; this is not an immediate extra attack','BonusAction':'unused','Reaction':'reserved'},
+                   'horseWholeTurn':{'slot':'immediately after entire rider turn','SpeedFt':60,'moveFt':40,'Action':'Dodge','attackActions':0},
+                   'trigger':{'targetActuallyInSpearReach':True,'riderReactionSpent':True,'ReadiedAttackCount':1}},
+         'independentTransferBranch':{'horseTurnAlreadySpent':True,'newController':'Mira','newControllerActionCreatesTurn':False,
+                                      'currentRoundHorseTurns':1,'nextRoundSlot':'after Mira’s entire regular turn'},
+         'opportunityBranch':{'oneEnemyReaction':True,'mountAndRiderBothActuallyInReach':True,'chooseTargets':1,
+                               'bothAttackedBySameReaction':False,'horseDisengageProtectsItsActualMove':True},
+         'pendingFeats':['Cavalry','Mounted Combatant'],'CavalrySpeedAdded':0},
+        {'mountCostFt':15,'horseTurnsPerRound':1,'freeInterleavedRiderAttacks':0},
+        'The rider pays 15 feet to mount, completes the whole turn and can prepare a real Ready/Reaction attack. The horse then acts once. A controller change affects a future slot, not another current-round move. A single opportunity attack chooses one legal target.', ['EC-02','EC-07','EC-08'])
+    check('W12 real mounted weight and source Speed',150+20+18+2==190 and profile_by_name['Horse, riding']['operational']['walkingSpeedFt']==60 and 30//2==15)
+
+    add(13,'Carried movement is not Dragoon self-motion','A level-8 Dragoon has genuinely acquired Featherstep. A level-3 Mage ally already cast and maintains actual Swiftness, legally raising the Dragoon’s walking Speed from 30 to 40 for its minute. No pending feat is used.',
+        {'ongoingEffect':{'spellId':'swiftness','sourceCardIndex':71,'caster':'Mage ally','classLevel':3,'castAtSeconds':0,'expiresAtSeconds':60,
+                          'ActionSpent':True,'RPBefore':10,'RPAfter':7,'DissonanceBefore':0,'DissonanceAfter':1,
+                          'components':'actual voice, manipulating hand and held legal focus','willingTarget':'Dragoon','initialDistanceFt':10,'concentrationHeld':True},
+         'carriedEvent':{'atSeconds':6,'carrier':'horse','distanceFt':20,'selfPoweredFt':0,'MomentumAdded':0,'DissonanceDiscount':0},
+         'seatEventAlternative':{'id':'one-forced-prone-root','labels':['forced displacement','mount Prone'],'DEXSave':roll('Dragoon',8,2,10,'binary save'),'checks':1,
+                                 'actualSupportAfterSuccess':'real fitting saddle and ground; success does not hold rider in empty air'},
+         'ownTurn':{'atSeconds':12,'walkingSpeedFt':40,'dismountCostFt':20,'actualSelfPoweredPathFt':20,'remainingMovementFt':0,
+                    'MomentumBefore':0,'MomentumFromMovement':1,'MomentumAfter':1,'weaponHit':False,
+                    'Action':'Featherstep on willing self','spellRank':1,'classLevel':8,'requiredMinimumClassLevel':3,
+                    'STRModifier':4,'PB':3,'DissonanceLimit':9,'RPBefore':10,'RPPrice':2,'RPAfter':8,
+                    'previousSpellName':'a different identity; Refrain0','DissonanceBefore':2,'baseGain':1,'movementReduction':1,'finalGain':0,'DissonanceAfter':2,
+                    'components':'usable voice, legal held focus, free manipulating hand after dismount; no weapon attack also claimed',
+                    'newConcentration':'Dragoon holds Featherstep; ally independently retains Swiftness',
+                    'targetMassWithGearLb':170,'actualEffect':'only the full Featherstep card; no empty-gap flight or added Speed'},
+         'teleportComparison':{'actualPositionChangedFt':20,'selfPoweredPathFt':0,'MomentumFromDistance':0,'newMovementDiscount':0}},
+        {'carried20Momentum':0,'carried20Discount':0,'own20Momentum':1,'own20DissonanceReduction':1,'RPDiscount':0},
+        'The horse’s 20 feet change position only. Later, real Swiftness leaves exactly 20 feet after the Dragoon pays a 20-foot dismount cost. Walking those 20 feet meets the Momentum threshold and the new narrow Dissonance bridge before a legal Featherstep Action. Its normal 2 RP is still paid.', ['EC-02','EC-07','EC-08','EC-14'])
+    check('W13 actual acquired spell access and price',feather['classAccess']['Dragoon']['minimumClassLevel']<=8 and feather['classAccess']['Dragoon']['baseRpCost']==2 and swift['classAccess']['Mage']['minimumClassLevel']<=3)
+    check('W13 no extra movement or RP discount',40//2+20==40 and 10-2==8 and max(0,1-1)==0)
+
+    add(14,'Separate draw, back-load and vehicle limits','A trained Draft horse, actual compatible harness, walking driver and complete Cart are on a firm fitting road. A separate real Medium chain-shirt armor body is used for a barding quote.',
+        {'horseProfileId':profile_by_name['Horse, draft']['id'],'cartProfileId':profile_by_name['Cart']['id'],
+         'admission':{'cartEmptyLb':200,'cargoLb':300,'cargoLoad':30,'cartPayloadCapLb':300,'grossDrawLb':500,'horseDrawCapLb':1200,
+                      'horseBackCarryCapLb':540,'harnessOnHorseLb':8,'backCargoLb':0,'drawBurdened':False},
+         'bardingQuote':{'armorSource':'EN-armor ordinary Standard Medium chain shirt actual default','baseGp':50,'baseMassLb':20,
+                         'bardingPriceFactor':4,'LargeMassFactor':4,'priceGp':200,'massLb':80,'secondLargePriceFactorApplied':False,
+                         'actualFittingTrainingBeforeUseRequired':True},
+         'sleds':[{'id':'Core Dungeon sled','priceGp':25,'normalLoad':12,'emergencyLoad':20,'twoActualOperators':True},
+                  {'id':'Player Sled','priceGp':20,'ordinaryPayloadLb':400,'ordinaryPayloadLoad':40,'requiredPullerAndDriver':True}],
+         'unfundedMissingPurchaseItems':['horse','harness','driver'],'Cart15GpAutomaticallyIncludesThem':False},
+        {'grossDrawLb':500,'drawLimitLb':1200,'backCarryLimitLb':540,'LargeBardingPriceGp':200,'LargeBardingMassLb':80},
+        'The 500-lb drawn load fits the actual 1,200-lb draw rating, independently of the horse’s back capacity. Barding costs four times the real armor price once. The two sleds remain distinct records with different operators and capacities.', ['EC-03','EC-08','EC-10'])
+    check('W14 draw and barding calculations',200+300==500<1200//2 and 50*4==200 and 20*4==80)
+
+    add(15,'A rowboat carries its people too','A real Rowboat, qualified operator, three actual occupants and fitting cargo wait at an accessible dock. Water is one foot deep with zero current and adequate clearance.',
+        {'profileId':profile_by_name['Rowboat']['id'],'manifest':[{'id':'rower','bodyLb':150,'gearLb':20,'bodyLoad':6,'gearLoad':2},
+                                                               {'id':'passengerA','bodyLb':150,'gearLb':20,'bodyLoad':6,'gearLoad':2},
+                                                               {'id':'passengerB','bodyLb':150,'gearLb':20,'bodyLoad':6,'gearLoad':2},
+                                                               {'id':'crate','massLb':30,'Load':3}],
+         'totals':{'payloadLb':540,'payloadLoad':27,'emptyHullLb':120,'supportedGrossLb':660,'occupants':3,'occupantCap':4,'cargoOnlyLb':30,'cargoSublimitLb':400},
+         'drive':{'round':1,'operator':'rower','Action':'combined helm/oars','hands':2,'moveFt':20,'secondActionAdditionalMoveFt':0,'nativeBoatTurn':False},
+         'overloadRequest':{'extraCrateLb':100,'newPayloadLb':640,'admitted':False,'neededAction':'real redistribution before departure'},
+         'dock':iv(0,60,['rower'],'actual docking with line and fitting bank; loading is separate')},
+        {'ordinaryPayloadLb':540,'withExtraCrateLb':640,'hardPayloadCapLb':600,'requiredDepthFt':1},
+        'The occupants and their gear bring the payload to 540 lb even though the cargo crate weighs only 30 lb. Another 100-lb crate is prohibited. One operator Action produces one 20-foot drive event, not another boat turn.', ['EC-02','EC-03','EC-08'])
+    check('W15 both body and cargo count',150+20+300+40+30==540 and 540+100>600 and 3*8+3==27)
+
+    add(16,'Shoring a sinking hull does not repair it','A real Keelboat has 0/90 HP at rupture time 0. Its required original hull members survive. Qualified workers Jo and Kai, actual patch stock and a feasible route to a dry cradle exist.',
+        {'profileId':profile_by_name['Keelboat']['id'],'initialFloodDeadlineSeconds':600,
+         'shore':{'id':'W16-shore','interval':iv(180,480,['Jo','Kai'],'uninterrupted structural shoring'),'patchCostGp':30,
+                   'stock':'one finite compatible 30-gp patch bill committed once','roll':roll('Jo',11,4,15),'newDeadlineSeconds':4080,
+                   'HPAfter':0,'propulsionRestored':False,'sameRuptureSecondShoreAllowed':False},
+         'towToCradle':{'interval':iv(480,3600,['real tug crew'],'actual supported recovery before the deadline'),'newHullCreated':False},
+         'repairBranch':{'materialsGp':750,'qualifiedWorker':'Jo','interval':iv(86400,118800,['Jo'],'nine actual hours at a real supported dry site'),
+                         'tools':'compatible carpenter/shipwright tools','roll':roll('Jo',8,4,10),'HPAfter':90,'reopensOldSalvageClaim':False},
+         'alternativeServiceBranch':{'actualProvider':'Dry-yard crew','completeQuotedServiceGp':300,'materialsIncluded':True,'alsoCharge750Gp':False,
+                                     'realLaborStillRequired':True},
+         'missingPrimaryBranch':{'originalHullIrretrievable':True,'moneyCreatesReplacementOriginal':False}},
+        {'shoreCostGp':30,'shoreEndsMinute':8,'afloatUntilMinute':68,'repairMaterialsGp':750,'repairHours':9,'alternativeServiceGp':300},
+        'Successful shoring at minute 8 keeps the disabled hull afloat until minute 68. A real recovery reaches the cradle before then. Ordinary repair needs 750 gp of materials and nine active hours. A genuine complete 300-gp service offer is an alternative contract, not another fee added on top.', ['EC-02','EC-03','EC-08','EC-10'])
+    check('W16 finite flood and repair',480+3600==4080 and F(3000,100)==30 and F(3000,4)==750 and max(1,F(90,10))==9)
+
+    add(17,'Paid transport services have real limits','Porter Fen has STR14, a two-Load customer contract and actual 24-lb personal gear. A distinct owned Core hauler has an adjacent qualified operator, real fuel, a service pack and firm route.',
+        {'porter':{'id':'Fen','contractAllowanceLoad':2,'proposedCustomerLoad':3,'physicallyPossible':True,'contractAdmission':False,
+                   'alternative':'actual agreed amended contract or redistribute; no assumed free emergency allowance'},
+         'hauler':{'identity':'Core transport-only hauler','purchaseGp':500,'normalLoad':20,'emergencyLoad':30,'actualCargoLb':100,'actualCargoLoad':10,
+                   'operator':'Mira','continuousAdjacentWork':True,'hands':2,'movingIntervals':[iv(i*86400,i*86400+28800,['Mira'],'one actual daily moving Watch') for i in range(5)],
+                   'fuel':{'originalPints':5,'costCp':50,'fluidMassLb':F(15,4),'flaskTareLb':F(5,4),'movingHoursPaid':40,'fuelRemainingPints':0},
+                   'service':{'interval':iv(374400,378000,['Mira'],'actual service with Tinker tools'),'priceCp':100,'packLb':F(1,2),'serviceCounterBeforeHours':40,'serviceCounterAfterHours':0,'HPBefore':45,'HPAfter':45,'fuelAfterPints':0}},
+         'teleportOffer':{'Tier':1,'acceptedBillLoad':F(1201,100),'roundedBillLoad':13,'priceGp':1300,'status':'quoted, unpaid',
+                          'actualOperativeEffect':{'presence':'absent'},'actualDestinationPermission':{'presence':'absent'},'dispatched':False}},
+        {'fuelCpPer8MovingHours':10,'serviceHours':1,'teleportBillLoad':13,'teleportQuoteGp':1300,'priceIsPermission':False},
+        'A porter’s physical strength does not enlarge the purchased allowance. Forty actual hauler hours consume five pints, and servicing changes only the service counter. The 1,300-gp teleport quote cannot dispatch anything without the real effect and endpoint.', ['EC-02','EC-03','EC-08','EC-10'])
+    check('W17 real fuel and service clock',5*8==40 and 5*10==50 and 378000-374400==3600 and -(-1201//100)==13)
+
+    add(18,'Casualty pounds and Load are simultaneous constraints','A stable living Medium casualty has a 150-lb body, 20-lb gear and unchanged injury history. Two consenting able carriers, each with STR20, 200-lb/20-Load capacity and no other carried gear, have a real fitting stretcher.',
+        {'casualty':{'id':'patient','bodyLb':150,'gearLb':20,'bodyLoad':6,'gearLoad':2,'HP':1,'stable':True,'dyingSaveClockActive':False,'injuriesUnchanged':True},
+         'stretcher':{'id':'stretcher-1','emptyLb':10,'Load':1,'patientPayloadLimitLb':300,'bodyLoadLimit':6,'geometryFt':[7,F(5,2),F(1,2)]},
+         'carriers':[{'id':'A','assignedLb':90,'assignedLoad':F(9,2),'capacityLb':200,'capacityLoad':20,'hands':2,'SpeedFt':30},
+                     {'id':'B','assignedLb':90,'assignedLoad':F(9,2),'capacityLb':200,'capacityLoad':20,'hands':2,'SpeedFt':25}],
+         'movement':{'coordinatedSpeedFt':25,'oneCarrierDashPaysOther':False},
+         'petrifiedAlternative':{'bodyLb':1500,'gearLb':20,'stretcherPayloadLb':1520,'admitted':False,'bodyLoadStill':6},
+         'history':{'ownershipTransferResetsHarvest':False,'healingCreatesFreshSalvage':False}},
+        {'totalPhysicalLb':180,'eachLb':90,'totalLoad':9,'eachLoad':F(9,2),'petrifiedBodyLb':1500},
+        'Each carrier supports 90 lb and 4.5 Load with both hands. The coordinated movement is limited by the slower carrier. Petrification multiplies only the body’s pounds; a 1,520-lb payload does not fit this stretcher even though the casualty Load remains six.', ['EC-03','EC-08'])
+    check('W18 simultaneous limits and petrification',150+20+10==180 and F(6+2+1,2)==F(9,2) and 150*10+20>300)
+
+    legacy_bytes=b'{"cartA":{"integrity":2},"cartB":{"hp":5,"maxHp":30,"integrity":2}}'
+    add(19,'Preserve old Integrity and credible current HP','Two original carts have the same historical Integrity value. Only cart B also has reliable current HP. This is an explicit synthetic interpretation, not a real-save migration.',
+        {'raw':{'base64':base64.b64encode(legacy_bytes).decode(),'sha256':hashlib.sha256(legacy_bytes).hexdigest(),'producer':'declared legacy fixture'},
+         'cartA':{'maxHP':30,'credibleCurrentHPPresence':'absent','legacyIntegrity':2,'chosenInterpretation':'floor(H × I / 3) once','derivedHP':20},
+         'cartB':{'maxHP':30,'credibleCurrentHP':5,'legacyIntegrity':2,'derivedHP':5},
+         'repair':{'actor':'actual trained carpenter','materialsCp':375,'interval':iv(0,10800,['carpenter'],'actual Cart repair using surviving primaries and tools'),
+                   'roll':roll('carpenter',8,3,10),'resultHP':30,'newCharges':0,'creationXP':0},
+         'terminalCartC':{'alreadyDismantled':True,'oldResidueClaim':'closed','ordinaryRepairAdmission':False}},
+        {'A_HP':20,'B_HP':5,'repairGp':F(15,4),'repairHours':3,'realSavesChanged':0},
+        'The explicitly interpreted old cart becomes 20/30 HP. The other stays at its credible 5/30; historical Integrity cannot heal it. A real three-hour repair uses 3.75 gp of materials. Terminal dismantling is a different state and does not reopen an old claim.', ['EC-08','EC-12'])
+    check('W19 legacy and repair arithmetic',30*2//3==20 and F(15,4)==F(375,100) and max(1,F(30,10))==3)
+
+    add(20,'One final copper rounding in the chosen valuation domain','A finite buyer accepts one homogeneous ordinary sale at 7/3 cp. A separate actual purchase has the same exact quote. Both parties have authority and enough currency; each quote expires at hour 1.',
+        {'sale':{'id':'W20-sale','quantity':1,'domain':'ordinary finite quote','exactCp':F(7,3),'settledCp':2,'timeSeconds':600,'status':'paid'},
+         'purchase':{'id':'W20-buy','quantity':1,'domain':'ordinary finite quote','exactCp':F(7,3),'settledCp':3,'timeSeconds':900,'status':'paid'},
+         'recipeReference':{'recipeId':'recipe-122','originalBatchGp':102,'originalQ':1,'actualBodyGp':50,'finishedReferenceGp':152,'MasterworkOutcomeAddsArtifactFactor':False},
+         'artifactEstimate':{'knownGrossGp':15,'realEstimatedCostsGp':20,'netEstimateGp':-5,'transactionAccepted':False,'automaticDebtGp':0},
+         'missingArtifactInputs':{'BaseFunctionValue':{'presence':'absent'},'GateTierMultiplier':{'presence':'absent'},'universalDefaultInvented':False}},
+        {'saleCp':2,'purchaseCp':3,'negativeEstimateGp':-5,'automaticDebtGp':0},
+        'The sale yields 2 cp and the purchase costs 3 cp, each rounded once. The real recipe reference uses its original batch and quantity plus the actual body. A negative artifact estimate is not a forced transaction or debt.', ['EC-09','EC-10'])
+    check('W20 final rounding and domain arithmetic',7//3==2 and -(-7//3)==3 and 102//1+50==152 and 15-20==-5)
+
+    add(21,'Net share, prior payments and the next reserve','The actual integrated expedition sold its licensed crate for 120 gp under one 5% levy and a signed 20% net-share contract. Its 2-gp mandatory inspection was already paid.',
+        {'sourceFlowId':flow['id'],'transactions':copy.deepcopy(flow['money']['transactions']),
+         'settlement':copy.deepcopy(flow['money']['settlement']),
+         'priorMandatoryReceipt':'mandatory-inspection','newMandatoryPaymentRequested':False,
+         'alternativeGrossShareContract':{'selected':False,'automaticallyStacked':False},
+         'levy':{'selectedHighestRate':F(1,20),'additionalLower3PercentCharged':False},
+         'paidVersusOwed':{'allListedCostsPaid':True,'newUnfundedLiabilityCreated':False}},
+        {'grossCp':12000,'taxCp':600,'mandatoryCp':200,'sponsorBaseCp':11200,'sponsorCp':2240,'netCp':8960,
+         'otherCostsCp':2020,'trueProfitCp':6940,'reserveCp':2000,'distributionCp':4940},
+        'The sponsor receives 20% of 112 gp, or 22.40 gp. Net proceeds are 89.60 gp; after 20.20 gp of unique other costs, true profit is 69.40 gp. The agreed reserve leaves 49.40 gp to divide. The paid inspection is not paid again.', ['EC-09','EC-10'])
+    check('W21 actual source-flow settlement matches arithmetic',flow['money']['settlement']['netCp']==12000-600-200-2240==8960 and 8960-2020-2000==4940)
+
+    add(22,'Cumulative insurance claims', 'A documented ordinary cargo policy insures 100 gp. Its 5-gp ordinary-cargo premium is paid before loss; documented provenance independently selects the 90% payout rate. There is one 20-gp episode deductible.',
+        {'policy':{'id':'W22-policy','insuredCp':10000,'premiumCp':500,'premiumPaidAtSeconds':0,'firstLossAtSeconds':3600,'provenanceRate':F(9,10),'deductibleCp':2000},
+         'claims':[{'id':'loss-A','lossAtSeconds':3600,'actualLossCp':4000,'cumulativeLossCp':4000,'authenticatedNoticeSeconds':7200,
+                    'exam':iv(7200,14400,['adjuster'],'actual qualified examination of records and remaining cargo'),'entitlementCp':1600,'previousPaidCp':0,'newPayoutCp':1600},
+                   {'id':'loss-B','lossAtSeconds':18000,'actualLossCp':6000,'cumulativeLossCp':10000,'authenticatedNoticeSeconds':21600,
+                    'exam':iv(21600,28800,['adjuster'],'actual qualified second examination'),'entitlementCp':7000,'previousPaidCp':1600,'newPayoutCp':5400},
+                   {'id':'loss-A-replayed-notice','sameCause':'loss-A','newLossCp':0,'newPayoutCp':0}],
+         'recoveries':{'actualRecoveredPropertyCp':0,'futureRecoveryMustUseActualSubrogationTerms':True},
+         'notCoveredByPrice':['unproved loss','later retroactive insurance','revival','new material']},
+        {'firstPayoutCp':1600,'totalEntitlementCp':7000,'additionalCp':5400,'replayCp':0},
+        'The first 40-gp loss earns 16 gp after the one deductible. When total loss reaches 100 gp, total entitlement is 70 gp, so only another 54 gp is due. A repeated notice pays nothing.', ['EC-09','EC-10'])
+    check('W22 cumulative entitlement and paid credit',max(0,F(9,10)*4000-2000)==1600 and max(0,F(9,10)*10000-2000)==7000 and 7000-1600==5400)
+
+    raw=b'{"religious-orders":2,"unknown-local":5,"explicit-null":null,"zero":0,"false":false,"numeric-string":"1","duplicate":1,"duplicate":2}'
+    add(23,'Correct an initial background contribution without deleting history','The original producer and erroneous Cult Escapee initialization event are evidenced. The receiving religious authority genuinely suspected the escaped cult. One later earned +1 event has its own real cause.',
+        {'rawSource':{'base64':base64.b64encode(raw).decode(),'sha256':hashlib.sha256(raw).hexdigest(),'orderedMembers':json.loads(raw,object_pairs_hook=list),
+                      'duplicateKeysRemainAmbiguous':True,'realSave':False},
+         'binding':{'subject':'Cult Escapee A','institution':'actual local suspecting authority','sourceCategory':'religious-orders','policy':'standing-v1'},
+         'initialContribution':{'id':'bg-init-1','originalErroneousValue':1,'originalSourceRetained':True,'replacementValue':-1,'why':'full qualitative Disliked clause'},
+         'earnedEvents':[{'id':'earned-1','cause':'witnessed actual helpful deed','delta':1}],
+         'derived':{'oldCurrent':2,'correctedInitial':-1,'replayedEarned':1,'correctedCurrent':0,'band':'Neutral'},
+         'unknownFields':{'unknown-local':{'raw':5,'interpretation':'unresolved'},'explicit-null':{'presence':'null'},'zero':{'presence':'value','raw':0},
+                          'false':{'presence':'value','rawType':'boolean','raw':False},'numeric-string':{'presence':'value','rawType':'string','raw':'1'}},
+         'missingHistoryBranch':{'reportedCurrent':2,'actualInitializationUnavailable':True,'replaceWithMinus1':False,'status':'unresolved; preserve source'}},
+        {'correctedInitialization':-1,'earnedDelta':1,'correctedCurrent':0,'unknownSourceKeysDeleted':0},
+        'Replace only the proven bad initialization, then replay the genuine earned event: −1 + 1 = 0. Preserve original bytes, duplicate occurrences and all unknown, null, zero, boolean and string values. Without that history, the current value is not silently replaced.', ['EC-12','EC-15'])
+    check('W23 bytes and earned history',base64.b64decode(base64.b64encode(raw))==raw and -1+1==0 and len([k for k,v in json.loads(raw,object_pairs_hook=list) if k=='duplicate'])==2)
+
+    add(24,'Recompute a scene from its opening standing','A known standing-v1 relationship opens at +2. Two distinct real events in the same institutional scene propose +2 and −2; both are known to the institution.',
+        {'sceneId':'W24-scene','openingVersion':10,'openingScore':2,
+         'events':[{'id':'major-help','cause':'delivered promised aid','proposed':2,'signedSum':2,'cappedSceneDelta':2,'current':3,'rangeOverflow':1},
+                   {'id':'major-harm','cause':'separate witnessed broken agreement','proposed':-2,'signedSum':0,'cappedSceneDelta':0,'current':2,'rangeOverflow':0}],
+         'duplicate':{'id':'major-help','additionalDelta':0},
+         'display':{'validPlus3Label':'Honored','roundTripToPlus2':False,'oldQualitativeHonoredWithoutHistory':'qualitative label only; numeric 2 or3 unresolved'},
+         'incorrectSequentialCalculation':{'fromClamped3Minus2':1,'accepted':False}},
+        {'afterFirst':3,'afterBoth':2,'incorrectSequentialResult':1,'overflowBanked':False},
+        'The first event hits the range cap at +3. After both events, the signed scene sum is zero, so recomputing from the original +2 returns +2. Subtracting from the already clamped intermediate value would be wrong.', ['EC-11','EC-12'])
+    check('W24 signed scene-opening arithmetic',min(3,2+2)==3 and 2+max(-2,min(2,2-2))==2 and 3-2==1)
+
+    add(25,'Honor the stated social DC and a separate costly offer','Warden Ione can authorize one supervised visit. She understands Common. The declared negotiation lasts ten minutes, DC 12, with success granting that visit and failure optionally offering it for a real 5-gp escort fee.',
+        {'frame':{'Want':'one supervised visit','Leverage':'actual appointment letter','Limit':'warden cannot transfer ownership or waive another authority','ClockSeconds':600,'Witness':'desk clerk'},
+         'successBranch':{'interval':iv(0,600,['A','Ione'],'actual negotiation'),'roll':roll('A',8,4,12),'visitGranted':True,'newFee':0},
+         'failureBranch':{'interval':iv(0,600,['A','Ione'],'alternative same opening negotiation'),'roll':roll('A',7,4,12),'outcomeStill':'Failure',
+                          'optionalOffer':{'id':'escort-offer','amountCp':500,'payerCashCp':700,'expiresAtSeconds':1200,'actualEscort':'Fen'},
+                          'acceptanceAlternative':{'playerChooses':True,'paymentCp':500,'cashAfterCp':200,'supervisedVisitGranted':True},
+                          'declineAlternative':{'paymentCp':0,'cashAfterCp':700,'visitGranted':False}},
+         'helpAlternative':{'helper':'Mira','work':iv(0,600,['Mira'],'present useful appointment evidence throughout approach'),'advantageDice':[3,8],
+                            'selectedNatural':8,'modifierStill':4,'stackedHelperPB':0},
+         'retry':{'rotatedSpeakerSameFacts':'no roll','newAuthenticatedLetterAt1800':'new feasible ten-minute approach, separately recorded'}},
+        {'successTotal':12,'failureTotal':11,'DC':12,'optionalCostCp':500,'ordinaryDurationSeconds':600},
+        'Meeting DC 12 grants the stated terms. Missing it by one remains Failure even if the player separately accepts the predeclared paid escort offer. Useful full-interval Help gives one advantage, and a new speaker alone does not reset the scene.', ['EC-02','EC-10','EC-11'])
+    check('W25 native tasks and optional payment',task(8,4,12)=='Success' and task(7,4,12)=='Failure' and 700-500==200)
+
+    add(26,'Standing, conditions and actual institutional knowledge','A character has standing +2 with one real local institution. Separate branches supply an already lawfully applied Charmed or Frightened condition with actual source and deadline; the example does not cast a missing spell.',
+        {'standing':{'institution':'local desk','score':2,'band':'Honored','automaticD20Bonus':0,'actualOfferedAccess':'predeclared appointment priority'},
+         'charmedBranch':{'target':'clerk','charmer':'A','originalConditionEvent':'existing-lawful-condition-1','endsAtSeconds':600,
+                           'legalRequest':'one of two actual available appointment slots the clerk can assign',
+                           'requestInterval':iv(0,60,['A','clerk'],'one actual minute of request and response'),'declaredDC':13,
+                           'actualSocialPredicateApplies':True,'advantageDice':[5,14],'otherModifier':3,'selectedTotal':17,
+                           'harmAgainstCharmerAllowed':False,'obedienceGranted':False,
+                           'separateImpossibleRequest':{'request':'transfer third-party title','resolution':'impossible now','rollMade':False}},
+         'frightenedBranch':{'source':'visible actual threat','conditionEndsAtSeconds':60,'attackAndCheckDisadvantageWhileVisible':True,
+                              'voluntaryApproachAllowed':False,'hidingSourceRemovesOnlyVisibilityDependentPenalty':True,'intimidationRollCreatesCondition':False},
+         'alignment':{'rawDescriptorRetained':'unknown interpretation','automaticModifier':0,'deepInterpretationMade':False},
+         'knowledge':[{'id':'private-help','knownBy':['recipient'],'institutionReceipt':False,'globalStandingChanges':0},
+                      {'id':'later-genuine-report','recipient':'local desk','receivedAtSeconds':7200,'actualAttribution':True,'onlyRelevantInstitutionMayRespond':True}]},
+        {'standingIsD20Bonus':False,'CharmedIsObedience':False,'secretActUpdates44Factions':False},
+        'Honored standing can affect an actual offered term without becoming +2 on the die. Charmed supplies only its real condition predicates and does not confer the clerk’s missing authority. Private acts need a genuine information path before an institution can react.', ['EC-11','EC-12','EC-13'])
+
+    add(27,'Faction checkpoints report work rather than create it','A real two-hour interview runs from hour 10 to 12. The expedition actually returns at 11, recrosses the same threshold at 11:05, and makes another genuine return exactly at the canonical hour-24 checkpoint.',
+        {'watchedInstitutions':['local guild','local court','local archive'],'interview':{'id':'interview-1','interval':iv(36000,43200,['interviewer','witness'],'actual predeclared hearing'),'sourceDurationSeconds':7200,'tools':'actual transcript, language access and recording implements'},
+         'checkpoints':[{'id':'return-11','timeSeconds':39600,'actionId':'interview-1','progressSeconds':3600,'complete':False},
+                        {'id':'threshold-recross','timeSeconds':39900,'sameReturnEpisode':True,'newActionGranted':False},
+                        {'id':'day24-return','timeSeconds':86400,'reasons':['canonical day','genuine second return'],'processedCount':1,'freeWorkSeconds':0}],
+         'receipt':{'id':'witness-receipt','cause':'interview-1','actualMessenger':'Fen','interval':iv(43200,46800,['Fen'],'carry original transcript'),'receivedAtSeconds':46800},
+         'claimClock':{'length':4,'opening':2,'event':'witness-receipt','delta':1,'ending':3,'duplicateNotices':5,'duplicateDelta':0},
+         'depthClock':{'length':6,'current':6,'actualRouteBeyond':'blocked by uncleared physical collapse','status':'threshold reached, consequence blocked','teleportRaidGranted':False},
+         'publicRivalFrame':{'publicIdentity':'synthetic rival expedition','privateFieldsPublished':False}},
+        {'watchedMaximum':3,'claimAfterWitness':3,'claimAfterDuplicates':3,'coincidentCheckpointCount':1},
+        'The first return reports an unfinished interview. A later messenger brings its real result. At hour 24, the coincident return and daily checkpoint coalesce; neither supplies more labor. A full Depth clock cannot cross an actual blocked route.', ['EC-02','EC-12','EC-13'])
+    check('W27 actual interview and coalescing arithmetic',43200-36000==7200 and 39600-36000==3600 and 2+1==3)
+
+    add(28,'Instruction, bounded Insight, assay and advancement','Named qualified providers, readable source material, real tools and purchased supplies exist. The selected campaign reward mode is fixed before the scene. None of these procedures promotes pending class, spell or feat choices.',
+        {'toolCourse':{'id':'course-1','teacher':'Mira','learner':'A','totalHours':80,'totalCostCp':1000,'depositPaidCp':1000,
+                       'completedWork':iv(0,28800,['Mira','A'],'eight active hours of actual instruction'),'hoursRemaining':72,'proficiencyGranted':False,'adventuringXP':0},
+         'otherProjects':[{'id':'language-course','requiredHours':320,'completedHours':8,'fluencyGranted':False},
+                          {'id':'long-recipe','requiredHours':960,'completedHours':8,'recipeCompleted':False}],
+         'SC08':{'itemRecipeId':'recipe-500','actualItem':'owned intact reference-1','sourceLanguagesValue':1,
+                  'evidenceId':'parallel-passage-1','understoodBridgeLanguage':'Common','targetLanguage':'case-specific unknown written tongue',
+                  'bookAccess':'open supported real book, within5ft and readable; actual hands/access maintained',
+                  'priorUnspentInsight':2,'earning':iv(86400,90000,['A'],'authentic useful parallel text study'),
+                  'earnedInsight':1,'afterEarning':3,'sameEvidenceCopyReward':0,
+                  'passageStudy':iv(90000,118800,['A'],'spend3 Insight plus8 active hours on one preregistered supported250-word passage'),
+                  'afterSpending':0,'otherResearchOrTrainingCreditForSameHours':0,'fluencyGranted':False},
+         'coinAssay':{'actualProvider':'licensed examiner','actualBatchFaceGp':200,'method':'known single ordinary source assay','methodDC':13,
+                       'work':iv(0,1800,['examiner'],'one actual100-coin/10-lb-compatible batch inspection'),'roll':roll('examiner',10,3,13),
+                       'feeGp':2,'minimumGp':1,'genericSecondRoll':False,'suspicionIsProofOfCrime':False,'counterfeitFineAssessed':False},
+         'XPBranch':{'mode':'XP','sceneId':'scene-28','openingNextLevelGap':1200,'predeclaredEvents':[{'id':'hard-objective','percent':15},{'id':'profitable-extraction','percent':10}],
+                     'awardXP':300,'duplicateReceiptAwardXP':0,'sameSceneFrozenGap':True},
+         'independentCapBranch':{'openingGap':1200,'predeclaredPercentSum':75,'cappedPercent':60,'roundedAwardXP':720},
+         'milestoneAlternative':{'sameSceneAlsoAwardsXP':False},'onLevelGain':{'HPRefill':0,'RPRefill':0,'pendingOptionsPromoted':0}},
+        {'toolCourseProgressHours':8,'toolCourseHours':80,'languageHours':320,'recipeHours':960,'awardXP':300,'sceneCapXP':720},
+        'Eight instruction hours are progress, not a completed 80-hour course. The actual reference grants one Insight from fresh evidence; spending three and eight further hours interprets only the supported passage. A 200-gp batch owes one 2-gp assay fee. The XP branch uses the frozen gap: 25% gives 300 XP; the separate capped scene gives 720.', ['EC-02','EC-10','EC-14'])
+    check('W28 source Insight and course quantities',insight['operational']['useBinding']['languages']==1 and 80-8==72 and 2+1-3==0)
+    check('W28 assay and fixed-gap awards',max(1,F(200,100))==2 and F(1200)*F(25,100)==300 and F(1200)*F(60,100)==720)
+
+    # Validate source-backed fixture bindings and complete authored record coverage.
+    check('all 28 unique original boundary IDs instantiated',[x['id'] for x in cases]==[x['id'] for x in originals] and len(cases)==28)
+    for c in cases:
+        check(c['id']+' has actual records, outcome and reading text',bool(c['records']) and bool(c['expectedOutcomes']) and bool(c['readerExplanation']))
+        check(c['id']+' full source questions retained',c['questionIds']==next(x for x in originals if x['id']==c['id'])['questionIds'])
+    check('all source inputs unchanged after authoring',all(digest(G/x['path'])==x for x in input_receipts))
+    # Explicitly retain original source and compare whole named records, not just effect strings.
+    selected={'recipes':[armor,insight],'spells':[feather,swift],'spellSharedRules':spells['sharedRules'],
+              'classEnvelopes':{'dragoon':read(inputs[7]),'tinker':read(inputs[8])},
+              'transportCatalogue':profiles}
+    public={'schemaVersion':'EX58-boundaries-v1','status':'28 complete synthetic boundary record drafts; exact review pending',
+            'selectionEnabled':False,'completeExpeditionCandidate':False,
+            'evidenceScope':'Authored synthetic people, items, permissions and outcomes; finite arithmetic and source equality only are executed. No runtime/save migration, actual-world validation or human balance evidence.',
+            'cases':cases,'sourceBindings':input_receipts,
+            'sourceSpecificDependencies':{'recipeIds':['recipe-122','recipe-500'],'spellIds':['featherstep','swiftness'],
+                                           'actualClassEnvelopes':['dragoon','tinker'],'sourceStatusesUnchanged':True},
+            'remainingAssembly':'All24 original social-scenario instances and the complete public/Director package still need assembly and exact GPT review.'}
+    internal={'schemaVersion':'EX58-boundaries-director-v1','publicEnvelope':copy.deepcopy(public),
+              'completeOriginalBoundaries':originals,'completeSelectedSourceEnvelopes':selected,
+              'completeSourceContracts':read(inputs[1]),
+              'privateSyntheticRivalFrameForW27':{'publicIdentity':'synthetic rival expedition','backer':'local patron, synthetic and private',
+                 'currentDepth':'threshold6, route blocked','primaryObjective':'reach a licensed archive','preferredMethod':'negotiated access',
+                 'professedLimit':'no attacks on civilian workers','needFromParty':'actual collapse clearance report',
+                 'fearedDisclosure':'private unpaid supply bill','currentRelationship':'neutral until actual contact'},
+              'sourceInformationDeleted':0,'newPromotions':0,'runtimeImplemented':False,'realSavesReadOrWritten':0,
+              'independentWholePublicReconstruction':'Not claimed by this local equality check; still required when assembling the full candidate.'}
+    check('whole original boundary objects retained',internal['completeOriginalBoundaries']==read(original_path)['additionalBoundaries'])
+    check('full selected recipe and spell cards retained',len(selected['recipes'])==2 and len(selected['spells'])==2 and selected['recipes'][0]==armor and selected['spells'][0]==feather)
+    for p,obj in zip(OUT[:2],[public,internal]):
+        p.parent.mkdir(parents=True,exist_ok=True)
+        p.write_text(json.dumps(serial(obj),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    player=['# Expedition boundary walkthroughs','',
+            'These 28 synthetic cases accompany the six expedition chapters and the complete expedition walkthrough. They are draft examples awaiting GPT exact review. Original source scenarios are retained in the Director records. People, physical stock, providers and permissions are stated premises, not new canonical setting facts.','',
+            'Each case keeps time, custody, native checks and actual costs together. Alternative branches start from the stated opening snapshot; they do not duplicate the same resources in one campaign.','']
+    director=['# Expedition boundary records','',
+              'Full concrete fixture records for EX-W01–28. The accompanying public walkthrough explains each result. Original source versions and full selected recipe, spell, class and transport dependencies are preserved in the internal JSON. These are authored expectations with finite reference calculations; they do not certify a runtime or human balance.','']
+    for c in cases:
+        player += [f"## {c['id']} — {c['title']}",'',c['actualSyntheticPremises'],'',c['readerExplanation'],'',
+                   'Expected state: '+json.dumps(serial(c['expectedOutcomes']),ensure_ascii=False), '']
+        director += [f"## {c['id']} — {c['title']}",'',c['readerExplanation'],'','```json',
+                     json.dumps(serial(c),ensure_ascii=False,indent=2),'```','']
+    player += ['The [complete record chapter](EXPEDITION_BOUNDARY_RECORDS.md) names the actual intervals, actors, physical lots, native rolls and balances. The full candidate still needs the 24 original social-scenario instances and its final assembled reading path.']
+    OUT[2].write_text('\n'.join(player)+'\n',encoding='utf-8')
+    OUT[3].write_text('\n'.join(director)+'\n',encoding='utf-8')
+    check('saved public is complete intended envelope',read(OUT[0])==serial(public))
+    check('saved internal/public whole projection equality',read(OUT[1])['publicEnvelope']==read(OUT[0]))
+    check('all 28 explanations rendered',all(c['readerExplanation'] in OUT[2].read_text(encoding='utf-8') for c in cases))
+    check('private rival values omitted from public',all(v not in OUT[0].read_text(encoding='utf-8') for k,v in internal['privateSyntheticRivalFrameForW27'].items() if k in ('backer','fearedDisclosure')))
+    receipt={'generatedAtUtc':datetime.now(timezone.utc).isoformat(),'id':'EX58-BOUNDARIES-28',
+             'status':'All28 original boundary examples preserved and instantiated.24 social instances and complete assembly/exact review remain.',
+             'sourceBoundariesPreserved':28,'candidateBoundaryInstances':28,
+             'fullSelectedRecipeCards':2,'fullSelectedSpellCards':2,'fullClassEnvelopes':2,
+             'checks':len(CHECKS),'failures':[x for x in CHECKS if not x['passed']],
+             'scope':'Source equality, actual named fixture/reference arithmetic and rendering/projection equality; qualitative outcomes remain authored. No production runtime or human/campaign authentication.',
+             'outputs':{p.relative_to(G).as_posix():{k:v for k,v in digest(p).items() if k!='path'} for p in OUT[:4]},
+             'builder':digest(Path(__file__)),'inputs':input_receipts,'details':CHECKS,
+             'newPromotions':0,'runtimeTestsExecuted':0,'realSavesReadOrWritten':0,'sourceInformationDeleted':0}
+    OUT[4].write_text(json.dumps(serial(receipt),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    print(json.dumps({k:v for k,v in receipt.items() if k not in ('details','inputs')},indent=2))
+
+
+if __name__=='__main__':main()

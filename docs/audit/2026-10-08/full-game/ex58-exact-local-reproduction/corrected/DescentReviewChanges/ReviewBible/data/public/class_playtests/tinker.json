@@ -1,0 +1,1384 @@
+{
+  "schemaVersion": "1.0",
+  "version": "0.1-playtest",
+  "class": "Tinker",
+  "status": "provisional-card-draft-not-balance-approved",
+  "sourceExtractSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "protectedInterfaceOriginal": "Once per short rest, route up to 2 Dissonance into an active device; that device becomes disabled until repaired or the next short rest.",
+  "rpByClassLevel": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36
+  ],
+  "rpAuthority": "Direct Core Systems V2 table",
+  "maxSpellRankByClassLevel": [
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5
+  ],
+  "asiClassLevels": [
+    4,
+    8,
+    12,
+    16,
+    19
+  ],
+  "engine": [
+    "Intelligence governs class DC/M, device attacks use PB+INT; Dexterity governs personal ranged weapons. Hit Die d8, light armor, shortbows/crossbows/simple weapons, tinkers tools and alchemist supplies. Technology is fictional equipment. Ordinary Tinker spells use RP/Dissonance; mundane bombs/devices with printed RP fuel costs are class techniques and do not separately count as spell casts.",
+    "At 1 automatically own one Anacite Drone: AC 13+INT modifier, HP 5+INT modifier+class level (minimum 1), flight 30 ft, ranged bolt 60 ft attack PB+INT for 1d6 piercing. Bonus Action commands one move and one attack or named module action; otherwise it Dodges and may follow you. On bolt hit roll d4; on 4 target CON save or cannot take Reactions through end next turn (Shock, no automatic Stun). All drones/turrets/scraplings share ONE damaging action per Bonus Action command per regular turn unless a card explicitly supplies a priced extra attack. No autonomous barrage. Drone is a construct, not immune to all conditions; poison/psychic immunity, no charm. Carry/retract it in 1 minute; no pocket extra world or passenger flight.",
+    "A destroyed drone remains 0 HP until repaired for 1 RP and 10 minutes with tools to half HP, once/short rest, or rebuilt during long rest to full. Ordinary repairing does not recharge devices, grant organic healing or trigger destruction bonuses. At 13 Dual Drone Protocols automatically chooses on each long rest either 2 basic drones each with one module, or one drone with 2 distinct modules. Still one command budget. Never more than 2 drones.",
+    "At 5 automatically gain one module slot; change module during long rest. Offensive: Burn Injector first bolt hit/turn causes 1d4 fire next 2 target turns; Poison Vents d4=4 on hit CON save or-1 attack rolls until end next turn; Concussive Bolt d4=4 on hit CON save or Stunned until end next turn, once/target/encounter shared denial guard and 1/short-rest successful Stun. Defensive: Target Taunter command action once/encounter WIS save one foe 30 ft or disadvantage attacking others until end next turn; Energy Shield command gives adjacent ally+2 AC until start next turn; Smoke Cloud command once/encounter creates 5 ft radius opaque smoke centered drone until start next turn. Support: Ammo Dispenser adjacent allies first ranged hit/turn+1 damage; Target Scanner command mark 1 visible foe 60 ft first ally attack before start next turn+1 hit; Tether Grappler command once/encounter pulls 1 willing ally 15 ft within 30 ft without opportunity attacks along open route.",
+    "Bomb stock refills during long rest with tools to 3 at 1, 4 at 5, 5 at 11; cap equals refill, class bombs have no resale or stockpiling. Encounter throw cap 1 at 1, 2 at 5, 3 at 11. Each throw uses one stock and one encounter allowance. Basic fire/cold known 1; advanced profiles known 6; Overload Core known 9. Base throw is Action, range 30 ft, 10 ft radius up to 3 creatures, DEX save S d6 element, half success. Fire failure adds 1d4 Burn next turn; cold failure Speed-10 ft until end next turn. Explosive Handling makes throw Bonus Action; still only one bomb/regular turn. At 15 Danger Close automatically allows excluding yourself/allies. Safe Detonation grants this early. Bombs cannot critically hit or inherit weapon riders.",
+    "Advanced bomb profiles replace basic rider: Thermobaric fire pushes 5 ft on failed STR save after damage; Cryo cold on failed DEX also Speed 0 until end next turn and d2=2 ignores 1 flat DR against this bomb; Shock lightning CON instead DEX, failure prevents verbal spellcasting until end next turn (construct instead loses Reactions), shared hard-denial guard; Glue no damage, 15 ft square difficult terrain 3 rounds and entering/starting DEX save or Speed-15 ft until end turn, once per creature/round. Overload Core destroys one commanded drone within 30 ft as part Action bomb, DEX save 2d6 lightning and no Reactions until end next turn on failure, half damage on success. Consumes stock/allowance; no further destruction proc.",
+    "Deployable slots start 1 at 6, 2 at 13, 3 at 17, separate from drone cap. Deploy Action 2 RP within 15 ft, fixed ground, AC 12+PB HP 2 L, duration 3 rounds, concentration not required; destroyed do not refund fuel. All share command budget. Sentry and Net require their cards. Additional engine profiles unlocked 6: Rocket Tower commanded attack 60 ft target DEX save S d6 fire/half success to up to 2 creatures within 5 ft, maximum 3 shots; Decoy Dummy one foe 30 ft WIS save when deployed or disadvantage on next attack against others, destruction S fire to one adjacent enemy no chain; Blast Wall 10-by 5 ft blocks LOS and movement, climb cost 10 ft. Net Trap one enemy entry STR save or Restrained, end turn repeat/Action escape DC, 3 round max then ends. One only fires when commanded except nonattack trap/decoy trigger; command budget limits damaging triggers too.",
+    "Base 1–2, Mechanist Arch 3–9, then Artificer/Techsmith/Warmachine Hero 10–20. Upgrade Slot 5 is automatic; Sentry and Net minimum 6, Remote Detonation 9. There is no source automatic Arch capstone. Mech Overdrive 20 is automatic: once/long rest when deploying choose one device whose duration becomes encounter end (maximum 1 minute), still command dependent, slot limited and destructible. No infinite pulses: healing effects keep original pulse cap and all per-use costs remain. Protected magic interface: once per short rest, as a Bonus Action route up to 2 current Dissonance into one of your active devices within 30 ft. Reduce Dissonance by that amount; the device is disabled and cannot move, attack, emit an aura or trigger effects until repaired or your next completed short rest. Its duration keeps ticking. Repair with an Action and 1 RP using Field Repair, or with 10 minutes and 1 RP using tinkers tools. No RP is created and no Refrain counter resets."
+  ],
+  "workedExample": [
+    "Tinker 6 INT 18 PB 3 S 2 M 4 RP 8; drone AC 17 HP 15. Bomb stock 4, encounter allowance 2, one deployable slot. Module Burn Injector.",
+    "Turn 1 Action deploy Sentry for 2 RP: RP 8→6. Bonus Action command drone; bolt hits 1d6, Burn 1d4 at next 2 target turns. Sentry does not fire independently.",
+    "Turn 2 with Explosive Handling throw fire bomb as Bonus Action: stock 4→3, allowance 2→1. DEX save 2d6 fire, half success. Action personal crossbow attack. Neither drone nor turret fires because Bonus Action already spent.",
+    "Turn 3 Bonus Action command Sentry for 1d6; drone Dodges. Action Field Repair 1 RP heals drone 2d8+4 up to 15, RP 6→5. No organic HP repaired.",
+    "Turn 4 Sentry expires after 3 turns. You cannot salvage its RP automatically. One bomb allowance and 3 stock remain until encounter ends; new encounter restores allowance 2, not stock 4."
+  ],
+  "balanceQuestions": [
+    "Does the shared command budget keep multiple devices useful but manageable?",
+    "Are bomb stock and encounter allowances too much bookkeeping?",
+    "Can Artificer support compete with damage without infinite healing?"
+  ],
+  "cards": [
+    {
+      "id": "tinker.base.mechanical-aptitude",
+      "name": "Mechanical Aptitude",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Mechanical devices you examine",
+      "duration": "While using tools",
+      "frequency": "Continuous",
+      "effect": "Advantage on checks to understand, repair or disable mechanisms. Requires appropriate access and tools; no automatic control of enemy constructs.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4576,
+        "originalText": "Mechanical Aptitude: Gain advantage on checks to understand, repair, or disable mechanical devices."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.explosive-handling",
+      "name": "Explosive Handling",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "One bomb and encounter allowance",
+      "rangeAndTarget": "Your bomb throw",
+      "duration": "Instant",
+      "frequency": "Once/own turn",
+      "effect": "Throw a known prepared bomb as Bonus Action instead of Action. Removes ordinary accidental misfire, not Warmachine risk or enemy defenses. Cannot command a device with the same Bonus Action.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4577,
+        "originalText": "Explosive Handling: Throw bombs as a bonus action without risk of misfire."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.quick-fingers",
+      "name": "Quick Fingers",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "0",
+      "rangeAndTarget": "One noncombat mechanism touched",
+      "duration": "One manipulation",
+      "frequency": "Once/turn",
+      "effect": "Open unlocked latch, operate simple switch or retrieve a carried gadget. Does not activate damaging/healing devices, disarm a trap, reload every weapon or add another Bonus Action.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4578,
+        "originalText": "Quick Fingers: Perform device activation and manipulation actions with increased speed."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.technical-knowledge",
+      "name": "Technical Knowledge",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0",
+      "rangeAndTarget": "One visible nonartifact mechanical/alchemical item",
+      "duration": "Instant information",
+      "frequency": "Recharge 2",
+      "effect": "INT+PB DC 15 identifies its ordinary purpose and operating control. Success reveals one safe use, not secret passwords or magical properties. Failure does not destroy item.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4579,
+        "originalText": "Technical Knowledge: Identify the properties and functions of mechanical or alchemical items on sight."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.improvised-engineering",
+      "name": "Improvised Engineering",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Downtime",
+      "cost": "Tools and scrap; 10 minutes",
+      "rangeAndTarget": "One simple handheld tool",
+      "duration": "1 hour",
+      "frequency": "1/short rest",
+      "effect": "Produce lockpick, wedge, pulley, clamp or equivalent ordinary implement. No weapons, explosives, currency, rare materials or autonomous effects; collapses afterward without sale value.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4580,
+        "originalText": "Improvised Engineering: Create temporary tools or simple devices from available materials."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.deploy-anacite-drone",
+      "name": "Deploy Anacite Drone",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "0 if functional; repairs as engine",
+      "rangeAndTarget": "Your carried drone within 5 ft",
+      "duration": "Until retracted/destroyed",
+      "frequency": "One deployment per drone",
+      "effect": "Drone is automatic class engine. Selecting this card instead upgrades deployment to Bonus Action and permits 5 ft free initial placement. No free attacks, repair or extra drone.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4583,
+        "originalText": "Deploy Anacite Drone: Summon a mechanical companion that attacks with ranged bolts (1d6 damage + 25% chance to shock)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.tinker-bomb-i",
+      "name": "Tinker Bomb I",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action or Bonus Action with Handling",
+      "cost": "One bomb; encounter allowance",
+      "rangeAndTarget": "10 ft radius within 30 ft, up to 3 creatures",
+      "duration": "Instant/rider as profile",
+      "frequency": "Once/turn",
+      "effect": "Bomb recipes are automatic engine. Selecting card increases throw range to 45 ft. Use exact bomb profile, saves, stock and friendly-fire rules; no free bomb creation during combat.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4584,
+        "originalText": "Tinker Bomb I: Create and throw Fire or Cold bombs that deal area effect damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.field-repair",
+      "name": "Field Repair",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One construct/device touched",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "Restore S d8+M HP, up to maximum, to functional damaged machine. Cannot revive destroyed objects, heal organic allies, reset duration or recharge limited uses. If the target is disabled by the Tinker’s protected Dissonance-routing feature, Field Repair also clears that disabled state. It does not reset duration, recharge, ammunition or per-rest uses.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4585,
+        "originalText": "Field Repair: Quickly fix a damaged mechanical device or construct."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.analyze-weakness",
+      "name": "Analyze Weakness",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "0",
+      "rangeAndTarget": "Visible target within 60 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "Identify one visibly demonstrated damage resistance. Your next bomb/device damage against it ignores 2 flat DR, not resistance/immunity. No invented weakness or automatic secret knowledge.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4586,
+        "originalText": "Analyze Weakness: Study a target to identify vulnerabilities to specific damage types."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.base.jury-rig",
+      "name": "Jury-rig",
+      "className": "Tinker",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One willing ally weapon/device touched",
+      "duration": "3 rounds",
+      "frequency": "Recharge 3",
+      "effect": "Choose+1 first attack roll/turn or+5 ft device movement. One modification per item, no stack. Does not change weapon category, spell function, summon limit or command budget.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4587,
+        "originalText": "Jury-rig: Temporarily modify a device or weapon to perform a different function."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.enhanced-drone-control",
+      "name": "Enhanced Drone Control",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your drones",
+      "duration": "While active",
+      "frequency": "Continuous",
+      "effect": "Gain+1 attack roll and can follow simple move/dodge commands while within 120 ft. Attacks still require your Bonus Action and line of effect; no independent turn.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4593,
+        "originalText": "Enhanced Drone Control: Your Anacite Drone gains improved targeting and responsiveness."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.bomb-specialization",
+      "name": "Bomb Specialization",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your bomb damage",
+      "duration": "One target per throw",
+      "frequency": "Once/turn",
+      "effect": "Add M damage to one target that failed its initial save. No multiplying by area targets or damage ticks; Glue instead increases its slow by 5 ft maximum 20.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4594,
+        "originalText": "Bomb Specialization: Your explosive devices deal additional damage or have enhanced effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.pet-upgrade-slot",
+      "name": "Pet Upgrade Slot",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 5,
+      "acquisition": "automatic",
+      "activation": "Long rest choice",
+      "cost": "0",
+      "rangeAndTarget": "One drone module slot",
+      "duration": "Until next reconfiguration",
+      "frequency": "Automatic engine at 5",
+      "effect": "Choose one of 9 bounded modules in engine. This automatic unlock is not a selected skill. At 13 use Dual Drone Protocols, still shared command budget.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4595,
+        "originalText": "Pet Upgrade Slot: Modify your drone with an Offensive, Defensive, or Support module (level 5)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.deployable-expertise",
+      "name": "Deployable Expertise",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your deployables",
+      "duration": "While deployed",
+      "frequency": "Continuous",
+      "effect": "Gain M maximum/initial HP and+1 AC. Does not heal existing damage when moved or grant additional slots. Drones excluded unless another card says otherwise.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4596,
+        "originalText": "Deployable Expertise: Your deployed devices have increased durability and effectiveness."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.remote-detonation",
+      "name": "Remote Detonation",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 9,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 RP; sacrifice one device",
+      "rangeAndTarget": "Device within 60 ft, 10 ft radius up to 3 creatures",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Destroy your device; DEX save 2 S d6 force, half success. Failed save also no Reactions until end next turn. Cannot trigger Volatile Components/Scrap Reaper or another destruction/copy chain; no resource refund.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4597,
+        "originalText": "Remote Detonation: Detonate your devices remotely for area effect damage or stunning (level 9)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.deploy-sentry-turret",
+      "name": "Deploy Sentry Turret",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 6,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP; one slot",
+      "rangeAndTarget": "Empty ground within 15 ft",
+      "duration": "3 rounds",
+      "frequency": "Recharge 2",
+      "effect": "Deploy Sentry engine profile: commanded attack range 25 ft PB+INT for 1d6 piercing. No auto fire, extra Bonus Action or shared budget exception. Durability AC 12+PB HP 2 L before upgrades.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4600,
+        "originalText": "Deploy Sentry Turret: Place an automated turret that fires at enemies (level 6)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.deploy-net-trap",
+      "name": "Deploy Net Trap",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 6,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP; one slot",
+      "rangeAndTarget": "One 5 ft square within 15 ft",
+      "duration": "3 rounds or trigger",
+      "frequency": "Recharge 2",
+      "effect": "Deploy visible Net Trap. First enemy entry STR save or Restrained, repeat end turn or Action escape against DC. Target Huge+instead speed-10 ft. No damage or continued rearming; ends after one creature escapes.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4601,
+        "originalText": "Deploy Net Trap: Set a trap that roots enemies who trigger it (level 6)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.overcharge",
+      "name": "Overcharge",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One device within 30 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "Next damaging activation adds S d6 to one target. One pending overcharge, no stacking, does not command device or grant attack. If device expires first cost lost.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4602,
+        "originalText": "Overcharge: Temporarily boost the effectiveness of one of your devices."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.recalibrate",
+      "name": "Recalibrate",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "0",
+      "rangeAndTarget": "One drone; one visible enemy 60 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 2",
+      "effect": "Drone's next attack against chosen enemy has advantage. Still needs separate command; no automatic shot, enemy type wide permanent buff or crit conversion.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4603,
+        "originalText": "Recalibrate: Adjust your drone's targeting parameters to focus on a specific enemy type."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.arch.emergency-protocols",
+      "name": "Emergency Protocols",
+      "className": "Tinker",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 encounter use",
+      "rangeAndTarget": "Drone within 10 ft when attack hits you",
+      "duration": "One hit",
+      "frequency": "1/encounter",
+      "effect": "Drone intercepts: reduce damage to you by S+M and takes same amount unmitigated. It must be active/conscious. Does not redirect again or trigger retaliation loops.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4604,
+        "originalText": "Emergency Protocols: Your drone automatically intercepts an attack meant for you once per encounter."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.calibrated-precision",
+      "name": "Calibrated Precision",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Up to 3 allies within 15 ft",
+      "duration": "While conscious",
+      "frequency": "Continuous",
+      "effect": "Each gains+1 to first attack roll per turn. Does not stack with Target Scanner or another Calibrated Precision; no saves bonus.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4613,
+        "originalText": "Calibrated Precision: Allies within 3 tiles gain +1 to hit."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.safe-detonation",
+      "name": "Safe Detonation",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your bomb area",
+      "duration": "Each throw",
+      "frequency": "Continuous",
+      "effect": "Exclude any allies and yourself. Grants Danger Close early; at 15 also ignore half cover for bomb save calculations. Does not make destructive sacrifices automatically safe.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4614,
+        "originalText": "Safe Detonation: Your bombs deal no damage to allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.protective-programming",
+      "name": "Protective Programming",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 RP",
+      "rangeAndTarget": "Drone adjacent to ally hit by attack",
+      "duration": "One hit",
+      "frequency": "Once/round",
+      "effect": "Drone grants ally S+M temporary HP before hit resolves. No heal or reversal of hit; max one protected ally, normal temporary HP nonstacking.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4615,
+        "originalText": "Protective Programming: Your drone prioritizes defending vulnerable allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.efficient-power-cells",
+      "name": "Efficient Power Cells",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your nonhealing deployables",
+      "duration": "Deployment",
+      "frequency": "Continuous",
+      "effect": "A 3 round device lasts 4 rounds (50%rounded down). Healing pulse count unchanged, no extra ammunition or free commands. Does not extend spell concentration.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4616,
+        "originalText": "Efficient Power Cells: Your devices last 50% longer before needing recharging."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.nano-aegis-drone",
+      "name": "Nano-Aegis Drone",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Your drone within 15 ft",
+      "duration": "3 rounds",
+      "frequency": "Recharge 4",
+      "effect": "Replace bolts with support mode. Each Bonus Action command pay 1 RP choose one ally 30 ft to heal S d6+M or grant 2 S+Mtemp HP. Maximum 3 pulses; organic healing explicit exception, no attack during mode.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4619,
+        "originalText": "Nano-Aegis Drone: Replace your combat drone with a healing/shield drone that protects allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.repair-pulse",
+      "name": "Repair Pulse",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Upto 3 friendly devices within 30 ft",
+      "duration": "Instant; AC until start next turn",
+      "frequency": "1/short rest",
+      "effect": "Restore each half its maximum HP rounded down and+1 AC. Functional devices only; no construct resurrection, organic HP, resource or use resets.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4620,
+        "originalText": "Repair Pulse: Heal all drones, turrets, and party deployables for 50% HP and grant +1 AC to nearby allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.magnetic-wall",
+      "name": "Magnetic Wall",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP; one slot",
+      "rangeAndTarget": "10-by 5 ft wall within 15 ft",
+      "duration": "3 rounds",
+      "frequency": "Recharge 4",
+      "effect": "AC 12+PB HP 2 L, blocks LOS/movement. Reaction when ranged weapon hit ally within 5 ft of wall reduce its damage by S+M and wall takes reduction amount. Requires line between attack and wall; no automatic all-shot absorption.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4621,
+        "originalText": "Magnetic Wall: Deploy a barrier that pulls ranged attacks into it and provides cover."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.restoration-field",
+      "name": "Restoration Field",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP start; 1 RP maintenance; one slot",
+      "rangeAndTarget": "10 ft radius within 30 ft",
+      "duration": "Maximum 3 pulses",
+      "frequency": "Recharge 4",
+      "effect": "Concentration. Initial and paid Bonus Action pulse heals up to 3 living allies/devices S d6 HP. Devices must not be destroyed. Same creature once/round, no extra autonomous healing or longer Efficient Cells.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4622,
+        "originalText": "Restoration Field: Create an area that gradually repairs mechanical devices and heals organic allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.artificer.overload-suppression",
+      "name": "Overload Suppression",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Artificer",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One enemy construct/device within 30 ft",
+      "duration": "Until end next target turn",
+      "frequency": "1/short rest",
+      "effect": "CON save or fails its next Reaction and has disadvantage on attacks. On failure by 5 also Stunned, shared hard-denial guard. No automatic permanent deactivation, hacking allegiance or ignoring boss immunity.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4623,
+        "originalText": "Overload Suppression: Temporarily disable enemy mechanical devices or constructs."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.automated-field-kit",
+      "name": "Automated Field Kit",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Bomb stock cap/refill+1; encounter allowance unchanged. Reduce deployable card recharge by 1 minimum 1, on setting counter only. Never refresh rest uses or trigger repeated counter reductions.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4629,
+        "originalText": "Automated Field Kit: Carry an extra bomb and reduce deployable cooldowns by 1 round."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.enhanced-targeting",
+      "name": "Enhanced Targeting",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your turret attacks",
+      "duration": "While active",
+      "frequency": "Continuous",
+      "effect": "Gain+1 to hit. Does not stack with Enhanced Drone Control if profile ever counts both, and does not impose save penalties.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4630,
+        "originalText": "Enhanced Targeting: Your turrets gain +1 to hit."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.efficient-recycling",
+      "name": "Efficient Recycling",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "One destroyed device remains",
+      "rangeAndTarget": "Your destroyed device within reach",
+      "duration": "After combat 1 minute",
+      "frequency": "1/short rest",
+      "effect": "Recover 1 RP spent on deploying it, never more than its actual paid cost. Deliberate sacrifice or copy does not qualify. Consume usable debris; no repeated salvage from same object.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4631,
+        "originalText": "Efficient Recycling: Recover components from destroyed devices to create new ones."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.technical-mastery",
+      "name": "Technical Mastery",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "Your damaging device activation",
+      "duration": "One target",
+      "frequency": "Once/own turn",
+      "effect": "After damage rolld 10; on 10 you may pay 1 RP to add half its unmodified damage dice total rounded down to one target. No second activation, commands, procs, resources or healing duplication.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4632,
+        "originalText": "Technical Mastery: Your devices have a 10% chance to function twice when activated."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.advanced-turret-bay",
+      "name": "Advanced Turret Bay",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP; two slots",
+      "rangeAndTarget": "Two empty ground spaces within 15 ft",
+      "duration": "3 rounds",
+      "frequency": "Recharge 4",
+      "effect": "Requires 2 available slots (normally 13); if only one, deploy one for 2 RP. Sniper command attack 90 ft S d6 piercing; Burst command DEX save S d4 piercing to 2 targets within 5 ftat 30 ft. One commanded turret per Bonus Action, not both automatically.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4635,
+        "originalText": "Advanced Turret Bay: Deploy two turrets simultaneously in either Sniper or Burst mode."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.gadget-sync-protocol",
+      "name": "Gadget Sync Protocol",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "One turret within 60 ft after your bomb throw",
+      "duration": "One attack",
+      "frequency": "Once/own turn",
+      "effect": "Turret makes one ordinary shot at surviving bomb target. Replaces its normal commanded damaging action for that turn; cannot combine with another device attack from Bonus Action. No chains or additional bombs.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4636,
+        "originalText": "Gadget Sync Protocol: When you throw a bomb, one turret may fire instantly at the same target."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.snap-rebuild",
+      "name": "Snap Rebuild",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP; 1 encounter use",
+      "rangeAndTarget": "One destroyed device/drone within 15 ft",
+      "duration": "Remaining original duration",
+      "frequency": "1/encounter",
+      "effect": "Restore half its maximum HP. Uses original slot and original expiry; expired devices ineligible. Does not reset limited uses, modules, Overdrive, destruction triggers or bomb stock.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4637,
+        "originalText": "Snap Rebuild: Once per encounter, instantly redeploy any destroyed turret or pet with 50% HP."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.reconfiguration",
+      "name": "Reconfiguration",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "One deployed device within 15 ft",
+      "duration": "Remaining duration",
+      "frequency": "Recharge 3",
+      "effect": "Change between known nonhealing profiles using same HP fraction, slot, expiry and spent uses. Cannot turn a 1 slot device into two, refill ammo, reset trap, create fresh death trigger or morph drone into free bomb.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4638,
+        "originalText": "Reconfiguration: Transform one deployed device into another type."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.techsmith.field-fabrication",
+      "name": "Field Fabrication",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Techsmith",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One ordinary tool within reach",
+      "duration": "1 hour",
+      "frequency": "1/short rest",
+      "effect": "Create portable ladder 10 ft, hand tool set, pulley, brace or lockable box. No autonomous damage, explosive, rare material, magic item, permanent structure or cash value. Tool must fit one 5 ft square folded.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4639,
+        "originalText": "Field Fabrication: Create a temporary gadget or tool to address a specific situation."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.malfunction-field",
+      "name": "Malfunction Field",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Enemy within 5 ft of your device",
+      "duration": "While device active",
+      "frequency": "Once/round total",
+      "effect": "First spell attack by one enemy has disadvantage. Multiple devices do not multiply effect; area/spell-saves unchanged. Does not create antimagic zone.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4645,
+        "originalText": "Malfunction Field: Enemies near your devices must roll twice on spell attacks and take the lower result."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.volatile-components",
+      "name": "Volatile Components",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "One device destroyed by enemy; one enemy within 5 ft",
+      "duration": "Instant",
+      "frequency": "Once/round",
+      "effect": "Deal S fire to that enemy. Deliberate sacrifices, copied objects, friendly damage and secondary explosions cannot trigger. No other procs/resources from damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4646,
+        "originalText": "Volatile Components: Your devices explode when destroyed, damaging nearby enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.unstable-enhancements",
+      "name": "Unstable Enhancements",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "One bomb you throw",
+      "duration": "Instant",
+      "frequency": "Once/turn",
+      "effect": "Before throw opt for unstable mix; d4=4 adds S d6 to one failed-save target but bomb cannot exclude allies, including Danger Close. Other roll ordinary bomb. Never double entire damage or secondary riders.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4647,
+        "originalText": "Unstable Enhancements: Your bombs have a 25% chance to deal double damage but may affect allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.scrap-salvage",
+      "name": "Scrap Salvage",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP; enemy-destroyed device debris",
+      "rangeAndTarget": "Empty space within 5 ft of debris",
+      "duration": "3 rounds",
+      "frequency": "1/encounter",
+      "effect": "Create one Scrapling AC 12 HP L Speed 20 ft, commanded melee attack PB+INT for 1d6 bludgeoning. Counts as deployable slot/shared command. Consumed debris cannot be salvaged again; cannot spawn its own replacement.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4648,
+        "originalText": "Scrap Salvage: Create temporary minions from destroyed devices."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.boomcore-drone",
+      "name": "Boomcore Drone",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One drone within 30 ft",
+      "duration": "3 rounds",
+      "frequency": "Recharge 4",
+      "effect": "Commanded bolts add 1d6 fire and on hit STR save or push 5 ft. Still one command and normal attack budget; no free activation attack or unlimited stacking.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4651,
+        "originalText": "Boomcore Drone: Upgrade your drone to use blast bolts that deal damage and knockback."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.overpressure-bombs",
+      "name": "Overpressure Bombs",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "One bomb throw",
+      "duration": "Instant",
+      "frequency": "Once/turn",
+      "effect": "Add on failed initial save STR save or choose push 10 ftor Prone. Also add S damage to one failed-save target. No additional blast or compounded slow; do not stack with Thermobaric push.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4652,
+        "originalText": "Overpressure Bombs: Your bombs gain knockback or prone effects with enhanced elemental damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.scrap-reaper",
+      "name": "Scrap Reaper",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "2 RP; one destroyed enemy-hit device",
+      "rangeAndTarget": "Debris within 30 ft",
+      "duration": "Until end next turn",
+      "frequency": "1/short rest",
+      "effect": "Create one Scrapling Speed 30, AC 12 HP L; next Bonus Action command moves and detonates within 5 ft one enemy for 2 S d6 fire DEX half. Uses one command budget and ends. No chain from deliberate sacrifice or its own death.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4653,
+        "originalText": "Scrap Reaper: When a turret or drone dies, summon a Scrapling that chases and explodes on enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.volatile-injection",
+      "name": "Volatile Injection",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 RP; device loses MHP",
+      "rangeAndTarget": "One functional device within 30 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "Must have strictly more HP than cost. Its next damaging activation adds S d6 to one target; cannot combine with Overcharge, damage cannot be refunded by same activation. No resources gained from self damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4654,
+        "originalText": "Volatile Injection: Temporarily boost a device's power at the cost of stability."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.hero.warmachine.catastrophic-overload",
+      "name": "Catastrophic Overload",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": "Warmachine",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP; sacrifice one device",
+      "rangeAndTarget": "10 ft radius about device within 60 ft",
+      "duration": "Instant",
+      "frequency": "1/long rest",
+      "effect": "All creatures including allies DEX save, 3 S d6 fire plus 3 S d6 force on failure, half success. No critical hit, additional destruction proc, salvage, automatic stun or copied damage. Device ends before blast; no Safety exclusion.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4655,
+        "originalText": "Catastrophic Overload: Sacrifice a device for a massive explosion that damages all nearby creatures."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "tinker.supplement.mech-overdrive",
+      "name": "Mech Overdrive",
+      "className": "Tinker",
+      "band": "Hero",
+      "path": null,
+      "sourceKind": "supplement",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Triggered on deploying a device",
+      "cost": "1 long-rest use plus original deployment cost",
+      "rangeAndTarget": "One of your newly deployed devices",
+      "duration": "Until encounter end, maximum 1 minute",
+      "frequency": "1/long rest; automatic Hero capstone",
+      "effect": "Source-derived level 20 feature: extend device duration only. It still occupies its slot, requires normal commands and payments, and is destructible. Healing devices keep maximum 3 pulses; bombs, spent uses and expended charges never refill. Does not create permanent equipment.",
+      "prerequisite": "See class engine and progression.",
+      "source": {
+        "line": 4715,
+        "reference": null,
+        "originalText": "You begin with one deployable slot and gain additional slots as you level up. At level 20, you gain Mech Overdrive, allowing one device to become permanent for the duration of a battle.",
+        "status": "source-derived"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ],
+  "schedule": [
+    {
+      "classLevel": 1,
+      "choose": 4,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 2,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 2,
+      "choose": 2,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 3,
+      "choose": 2,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 4,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 5,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 6,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 7,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 8,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 9,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 10,
+      "choose": 2,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 11,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 12,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 13,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 14,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 15,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 16,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 17,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 18,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 19,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 20,
+      "choose": 0,
+      "bands": [],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    }
+  ],
+  "exceptionSchedule": {},
+  "sourceFiles": [
+    "../../../data/playtest/class_sources/tinker.json",
+    "../../../data/playtest/class_sources/supplements.json"
+  ],
+  "authoringNotes": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

@@ -1,0 +1,359 @@
+{
+  "inspectionScope": "Targeted read-only inspection of current supplied Warrior engine, relevant cards, historical tree excerpts and final shared/HM decisions; not repeat review of the full feat archive.",
+  "sourceArchive": {
+    "filename": "DD_Feats_327_Complete_Proposals_EX58_v3.zip",
+    "sha256": "0e68cb0c9aab2ac6142bf6e5b7ca6b833a3ce3504969e83c0d2d27956e4c2ac8"
+  },
+  "sourceMembers": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "bytes": 158412,
+      "sha256": "9a7de82d75e74ae22135266cd4b0c0951ba6bd280e72584212f441d4fa91fc17"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/warrior.md",
+      "bytes": 113562,
+      "sha256": "6f75e424a1816292ea8d9e9b011c5583c54b78e8de839b7b6df4ee0095db66bc"
+    },
+    {
+      "path": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "bytes": 776711,
+      "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/heritage_mutation_feat_operating_proposal_internal.json",
+      "bytes": 828166,
+      "sha256": "cd7e83ebcf0cbbbcf71b9c60a6ca2bdb3204769d3afafd2d86a4b15e85bd5147"
+    }
+  ],
+  "engineExcerpts": {
+    "2": "MUTATION SLOTS. At Warrior 1 you have one mutation slot; slot II unlocks at Warrior 5, slot III at Warrior 13 and slot IV at Warrior 20. During a completed short or long rest, equip one eligible mutation in each slot. Equipped mutations are dormant until activated unless their text explicitly says otherwise. You cannot equip the same named mutation twice.",
+    "3": "ACTIVE MUTATIONS. Before Juggernaut Mutation Efficiency, only one equipped mutation can be active at a time. Mutation Efficiency raises the ordinary simultaneous-active limit to two. Transcendent, Apex Form and other explicit features can temporarily exceed that limit. Activating a mutation beyond the current limit ends one active mutation of your choice unless an explicit exception permits otherwise.",
+    "8": "BRUTALITY PROGRESS. Begin each real encounter with Brutality Progress 0 and BT 0. Add actual damage you personally deal to meaningful hostile creatures to Brutality Progress, but a single damage event contributes no more than one-quarter of your maximum HP. Crossing cumulative thresholds equal to 25%, 50% and 75% of your maximum HP grants 1 BT each, subject to the BT cap. Crossing 100% triggers Transcendent as described below but does not create a fourth stored BT unless Stack Overflow or another feature raises the cap.",
+    "11": "BRUTALITY STATES. At BT 1 you are Awakened; at BT 2 Primed; at BT 3 Unleashed. At Warrior 12+, reaching BT 4 or crossing 100% Brutality Progress may trigger the same once-per-encounter Transcendent pulse, even if your stored cap remains 3; it is never an indefinitely active state. State benefits are defined as operational extra Cards and vanish immediately if spending BT drops you below their thresholds.",
+    "17": "MUTATION TIERS. Basic mutations require Warrior 1. Advanced mutations require Warrior 6. Apex mutations require Warrior 15. You may equip any mutation whose level gate and other prerequisite you meet. Each tree permits any number of Basic mutations up to slot limits, at most two equipped Advanced mutations at once, and at most one equipped Apex mutation at once.",
+    "18": "MUTATION FEATS. Mutation feats are not free mutation selections. They become eligible choices at an ASI/feat opportunity or other campaign feat grant once their listed level and mutation prerequisite are met. They do not consume mutation slots unless their own text says otherwise.",
+    "19": "HERO MUTATION TREES. Bulwark Mutation Tree, Gore Mutation Tree and Aberrant Mutation Tree are Hero cards that unlock their associated Hero-specific mutation extra Cards. Those mutations still occupy normal mutation slots and obey active-mutation, serum and Strain rules.",
+    "22": "SOURCE PROGRESSION RECONCILIATION. Book progression grants Mutation Slot II at 5, Bone Hardened at 6, Serum Overclock at 9, Mutation Slot III at 13, Brutal Adaptation at 15, Reflexive Mutation at 17 and Apex Form at 20 automatically. Registry-only Fighting Style, Second Wind, Action Surge, Extra Attack and draft level features are preserved in excluded Registry Alternatives and original source evidence. They are not acquired or stacked onto this playtest schedule.",
+    "23": "All class gates use Warrior class level, not total character level. Proficiency bonus follows the game's ordinary total-character-level rule. No other class level unlocks Warrior mutation tiers, serum capacity, Juggernaut, Hero paths, Apex mutations or Final Forms."
+  },
+  "cards": [
+    {
+      "pointer": "/cards/10",
+      "record": {
+        "id": "warrior.arch.mutation-efficiency",
+        "name": "Mutation Efficiency",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Always",
+        "effect": "Mutation Efficiency. You may maintain up to two equipped mutations active simultaneously instead of one. Activating a third mutation while two are already active requires choosing one active mutation to become dormant unless another explicit feature temporarily raises this limit. Mutation slots, serum costs, Strain and mutation durations remain unchanged.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4818,
+          "originalText": "Mutation Efficiency: May have 2 active mutations at once (Lv 3)"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "pointer": "/cards/61",
+      "record": {
+        "id": "warrior.supplement.apex-form",
+        "name": "Apex Form",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "progression",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "3 rounds",
+        "frequency": "1/encounter",
+        "effect": "Gain mutation slot IV permanently. When Apex Form activates, all equipped mutations become active for 3 rounds without consuming serum doses and ignore the normal active-mutation concurrency limit. Serum-profile effects are not granted. When the form ends, choose active mutations up to your normal limit; all others become dormant.",
+        "prerequisite": "Warrior 20",
+        "source": {
+          "line": 4798,
+          "reference": null,
+          "originalText": "| 20 | Apex Form – Gain a permanent 4th mutation & unleash once/encounter ultimate form |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "pointer": "/cards/65",
+      "record": {
+        "id": "warrior.supplement.transcendent",
+        "name": "Transcendent",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "brutalityState",
+        "minimumClassLevel": 12,
+        "acquisition": "supplement",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Until start of your next regular turn",
+        "frequency": "1/encounter total, regardless of trigger",
+        "effect": "At Warrior 12+, the first time this encounter you cross 100% Brutality Progress or reach stored BT 4, activate all equipped mutations until start of your next regular turn. No serum profile or immediate healing trigger is granted. This is one total pulse, never a permanent BT 4 concurrency increase. At end choose active mutations up to normal limit, with their original remaining durations; others become dormant.",
+        "prerequisite": "Warrior 12; 100% Brutality Progress or BT 4 with raised cap; new explicit level gate",
+        "source": {
+          "line": 5069,
+          "reference": null,
+          "originalText": "| Transcendent | Deal 100% of max HP as damage | All mutations active simultaneously for 1 round |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "pointer": "/cards/82",
+      "record": {
+        "id": "warrior.supplement.mythic-carapace",
+        "name": "Mythic Carapace",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "mutation",
+        "minimumClassLevel": 15,
+        "acquisition": "supplement",
+        "activation": "Passive while active",
+        "cost": "One mutation slot; serum activation",
+        "rangeAndTarget": "Self",
+        "duration": "Until encounter ends, mutation ends or you fall below one-quarter maximum HP",
+        "frequency": "Apex mutation",
+        "effect": "Gain DR 3 against all damage and immunity to Bleed, Poisoned and Burn-style ongoing fire effects. Once per encounter when one hit deals more than 20 actual damage after mitigation, gain 1 BT and refresh the remaining duration of your other active mutations to 3 rounds. It grants no serum-profile refresh.",
+        "prerequisite": "Warrior 15; Apex Vital; maximum one Apex equipped",
+        "source": {
+          "line": 4955,
+          "reference": null,
+          "originalText": "| Mythic Carapace | While this is active:<br>- +3 DR flat<br>- Immune to Bleed, Poison, and Burn<br>- Once per combat, when you're struck for more than 20 damage: immediately gain +1 BT and refresh all active mutations<br>- Lasts until the end of combat or you fall below 25% HP |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "pointer": "/cards/93",
+      "record": {
+        "id": "warrior.supplement.butcherform-chassis",
+        "name": "Butcherform Chassis",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "mutation",
+        "minimumClassLevel": 15,
+        "acquisition": "supplement",
+        "activation": "Passive while active",
+        "cost": "One mutation slot; serum activation",
+        "rangeAndTarget": "Self",
+        "duration": "3 rounds or until below one-quarter maximum HP",
+        "frequency": "Apex mutation",
+        "effect": "When you take the ordinary Attack action, make one additional melee attack beyond other Extra Attack effects, respecting the one-additional-full-Action guard because this is part of the same Action. Your melee criticals add one extra weapon damage die beyond normal critical dice, not triple total damage. Once per round when you personally kill a meaningful hostile with a melee attack, restore one consumed prepared serum dose, never above reserve capacity.",
+        "prerequisite": "Warrior 15; Apex Combat; maximum one Apex equipped",
+        "source": {
+          "line": 4996,
+          "reference": null,
+          "originalText": "| Butcherform Chassis | While active:<br>- Gain +2 attacks per round<br>- Crits deal triple damage<br>- Melee kills instantly refresh 1 serum or 1 mutation use<br>- Lasts for 3 rounds or until you're below 25% HP |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "pointer": "/cards/104",
+      "record": {
+        "id": "warrior.supplement.voidbirth-shell",
+        "name": "Voidbirth Shell",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "mutation",
+        "minimumClassLevel": 15,
+        "acquisition": "supplement",
+        "activation": "Passive while active",
+        "cost": "One mutation slot; serum activation",
+        "rangeAndTarget": "Self and enemies within 15 feet",
+        "duration": "3 rounds",
+        "frequency": "Apex mutation",
+        "effect": "You may move through enemy spaces and nonmagical difficult terrain without extra cost but cannot end inside a creature or solid object. Enemies within 15 feet take -1 on attack rolls and morale. At the end of each of your turns create one 1-HP clone in an adjacent legal space, maximum 2 clones. A clone cannot attack or block movement; when destroyed it explodes, creatures within 5 feet make Dexterity saves taking 2d6 psychic on failure or half on success. Clones grant no resources, corpses, XP or BT.",
+        "prerequisite": "Warrior 15; Apex Aberrant; maximum one Apex equipped",
+        "source": {
+          "line": 5037,
+          "reference": null,
+          "originalText": "| Voidbirth Shell | While active:<br>- Gain Ethereal Movement (ignore terrain, move through enemies)<br>- Enemies within 3 tiles have –2 morale and suffer Weakened<br>- Each turn, summon 1 temporary clone (1 HP, explodes on death for 2d6 psychic)<br>- Lasts 3 rounds or until all clones are expended |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "pointer": "/cards/116",
+      "record": {
+        "id": "warrior.supplement.living-fortress",
+        "name": "Living Fortress",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "mutationFeat",
+        "minimumClassLevel": 8,
+        "acquisition": "supplement",
+        "activation": "Passive",
+        "cost": "Feat choice",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "While at least three Vital mutations are active",
+        "effect": "You cannot grant advantage to an enemy solely because it is flanking you. Other sources of advantage still apply.",
+        "prerequisite": "Warrior 8; three Vital mutations equipped; eligible feat grant",
+        "source": {
+          "line": 4962,
+          "reference": null,
+          "originalText": "| Living Fortress | 3 Vital Mutations active | Gain immunity to flanking |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    }
+  ],
+  "bookExcerpts": {
+    "4924-4932": "Vital Mutation Tree\n\"Survival isn't instinct. It's adaptation.\"\n\nStructure\n| Tier | Access Level | Max Equipped |\n|------|--------------|--------------|\n| Basic Tier | Lv 1 | Unlimited (up to slot limit) |\n| Advanced Tier | Lv 6+ | Max 2 active |\n| Apex Tier | Lv 15+ | Max 1 active |",
+    "4965-4973": "Combat Mutation Tree\n\"I don't fight better, I become something that wins.\"\n\nStructure\n| Tier | Access Level | Max Equipped |\n|------|--------------|--------------|\n| Basic Tier | Lv 1 | Unlimited (up to slot limit) |\n| Advanced Tier | Lv 6+ | Max 2 active |\n| Apex Tier | Lv 15+ | Max 1 active |",
+    "5005-5014": "\nAberrant Mutation Tree\n\"The first step to winning is making them think you shouldn't exist.\"\n\nStructure\n| Tier | Access Level | Max Equipped |\n|------|--------------|--------------|\n| Basic Tier | Lv 1 | Unlimited (up to slot limit) |\n| Advanced Tier | Lv 6+ | Max 2 active |\n| Apex Tier | Lv 15+ | Max 1 active |"
+  },
+  "unchangedFeatProcedureBindings": [
+    {
+      "featId": "backlashEngine",
+      "questionId": "HM-02",
+      "completeAuthoringProcedure": "NEW select the actual Warrior8 counterpart over unlimited each-hit generation: require Adrenal Backlash Core equipped and active. The first qualifying actual-damage event in a numbered round may grant1BT, no Action, subject to current BT cap3 or actual Stack Overflow4. Use positive numeric actualDamageDealt to you, so real temporaryHP absorption counts; a zero-damage hit, floor-prevented loss with no temp absorption or direct HP sacrifice does not. Recheck survival and active mutation after the full damage/death sequence; no gain after actual death or ended mutation. Current hostile-threat anti-farming restrictions apply; environmental damage without a meaningful hostile cause grants noBT under this NEW feat completion. This explicit card gain bypasses the normal combined2BT-generation ceiling but not its own once-round cap or stored maximum. It adds no Brutality Progress and remains the same gain whether selected from the feat registry or Warrior supplement. Ordinary qualifying damage-taken BT may also resolve once under its own threshold/cap; neither effect duplicates the other.",
+      "workedCases": [
+        "A hostile hit removes2tempHP: Backlash may add1BT despite no normalHP loss, if its round allowance and current cap permit.",
+        "AtBT3 without Stack Overflow the grant adds0. Another hit that round cannot create a second Backlash gain."
+      ]
+    },
+    {
+      "featId": "bioStabilizer",
+      "questionId": "HM-03",
+      "completeAuthoringProcedure": "NEW adopt Warrior4 and actual equipped Bloodthick Node. At each valid original Bloodthick regular-start pulse, if Bloodthick and at least one other mutation are actually active, add1 to that same pulse base before ordinary healing modifiers/caps. Bloodthick base remains currentBT capped3, or4 with actual Stack Overflow; the extra1 can make base4 or5. NEW a lawful Bloodthick pulse atBT0 may have base1 from this modifier, but there is no independent pulse and no healing outside a real encounter. Every HP actually restored spends1 from the same Mutation Recovery Reserve (3×Warrior level+M after LR); no reserve refill from SR, encounter, form or bonus. Apply broad/passive-regeneration prohibitions, source eligibility, current maximum and Critical3-Wound healing ceiling max(1,maxHP−1). It does not remove Wounds, cure death or manufacture zeroHP action permission. NEW an already active Bloodthick pulse may heal a living0HP owner after that start's prior death-save processing if the owner survives and no actual source prohibition blocks it; incapacitation alone does not retroactively cancel this non-concentration passive mutation. A dead owner receives nothing. No excess-healing conversion from this unpaid regeneration, even at fullHP.",
+      "workedCases": [
+        "BT2 plus this modifier gives base3; with only1Reserve remaining and sufficient missingHP, restore1 and spend1.",
+        "At fullHP the pulse spends0Reserve and cannot convert its mathematical excess to another resource."
+      ]
+    },
+    {
+      "featId": "bornToHorrify",
+      "questionId": "HM-04",
+      "completeAuthoringProcedure": "NEW use the Warrior16 counterpart with any actual Apex mutation equipped and active: once on your own original regular turn, after your saving throw has failed but before consequences, optionally reroll the whole save and use the new result. Preserve its actual advantage/disadvantage configuration, rolling the appropriate new d20 set, not choosing freely among old and new dice. No Action/Reaction is required. The new result may be worse; a failed reroll cannot invoke this feat again on the same event. It can affect ordinary or death saves actually rolled on that turn if Apex remains active and source-specific zeroHP restrictions permit the passive reroll; it cannot replace an automatic failure without a roll. Off-turn saves and extra turns grant no entitlement, even if the standalone source says per turn. No banking. Applicable other reroll features retain their real limits; choose a legal order, never revisit a consumed stage.",
+      "workedCases": [
+        "On your own turn a failedCONsave with advantage rerolls two newd20s and keeps their higher result, discarding both old dice.",
+        "A failedWISsave during an enemy turn cannot use this feat, despite an active Apex mutation."
+      ]
+    },
+    {
+      "featId": "distortedDominance",
+      "questionId": "HM-08",
+      "completeAuthoringProcedure": "NEW select the Warrior4 counterpart's Reaction denial, explicitly replacing the standalone oneAction loss for this proposal. Require an Aberrant mutation equipped and at least the actual generating Aberrant mutation active. When an actual hostile fails a save against your directly applied Aberrant mutation effect, it loses its Reaction through the end of its next future regular turn. This is triggered, costs no extra action, and is once per actual target per encounter across both catalog representations. Range/target legality comes from that mutation, not an additional universal aura. Source immunity/prevention blocks the applicable rider; do not add Charmed, Stunned, silence, Speed0 or new hard denial. Reaction denial affects ordinary and extra Reaction tokens but does not spend or create them; expiry reveals any other still-operative restriction. A failed save against an unrelated spell, ally effect, periodic damage without a save or equipped-but-dormant mutation does not qualify. No loss of normalAction or guarantee of surrender. Retain the broader original whole-Action-denial wording as the explicitly rejected historical alternative. Adopt this bounded Reaction-denial procedure for the feat candidate; no class record is promoted or overwritten.",
+      "workedCases": [
+        "A legal active Aberrant effect causes a failedsave; the hostile loses Reactions but still acts/moves on its turn.",
+        "A failed save against the Warrior's unrelated ordinary spell does not trigger Distorted Dominance."
+      ]
+    },
+    {
+      "featId": "evisceratorProtocol",
+      "questionId": "HM-10",
+      "completeAuthoringProcedure": "NEW require Warrior8, exact Echo Knuckles and Warpgrip Talons equipped and both active when the real Echo Knuckles offhand slam hits. Talons in the standalone source binds only to that actual named card, not every claw. Once per numbered round, immediately on that hit choose one reviewed rider: Mutation Bleed1d4physical at starts of the next two regular target turns, or warrior.weakened−1total damage per weapon/natural-weapon hit, minimum0, until the end of its second future regular turn. NEW use slashing for the otherwise unspecified Bleed physical type; snapshot Warrior techniqueDC for its Medicine cure. Bleed joins current unified family arbitration; losing or suppressed due ticks are consumed normally. Same owner/profile refreshes without extra dice; ordinary positive-potential magical healing ends all eligible automatic-cure Bleeds, and ActionWISMedicine by self/adjacent helper ends one chosen record on success. Weakened does not stack its magnitude with Warpgrip or another warrior.weakened application; independent deadlines remain. No new saving throw or additional free hit. Actual immunity/source restrictions apply. Echo remains once-round, same target/reach and no recursive free attacks; this feat cannot turn the derived hit into another attack grant. Later mutation expiry does not erase an already applied rider unless its own source says so.",
+      "workedCases": [
+        "One qualifying offhand hit may apply1d4Bleed for two due starts; it never supplies a second Echo attack.",
+        "Applying Weakened to an already−1 warrior.weakened target preserves legal deadlines but never makes−2 from this same profile."
+      ]
+    },
+    {
+      "featId": "evolutionUnderFire",
+      "questionId": "HM-11",
+      "completeAuthoringProcedure": "NEW adopt Warrior16, an actual Apex equipped and active, and the counterpart one damage-event definition in place of single-hit-only wording. After one hostile-caused event deals numeric actualDamageDealt greater than15 to you and you survive with the Apex still active, you may shorten one positive Warrior round-recharge counter by1, minimum0, at most once per numbered round. TempHP actually absorbed counts; uncapped resolved/post-temp amounts and overkill do not. Sixteen qualifies, fifteen does not. Mixed types from one event add once; separate hits never combine. Choose an actual acquired Warrior ability with a positive counter that has not already received its one reset/shortening this round; this consumes that ability's shared shortening allowance. A zero counter, RP, serum dose, Mutation Reserve, BT, SR/LR use or another class's counter is ineligible. Recheck after fatal/threshold consequences; Butcherform ending belowquarter prevents its use as the required activeApex. Friendly/staged/self damage and HP sacrifice cannot farm recharge. Outside a real encounter there is no hostile round-shortening loop.",
+      "workedCases": [
+        "An enemy event absorbs10tempHP and removes6normalHP:16actual permits shorteningRecharge2 to1.",
+        "AtHP3 with no tempHP a20damage hit has at most3actualHPdamage before other replacement limits; it does not meet16, even though raw damage was20."
+      ]
+    },
+    {
+      "featId": "hypermutationSpike",
+      "questionId": "HM-13",
+      "completeAuthoringProcedure": "NEW use Warrior16, actual equipped Butcherform Chassis and its legal activation. At that activation, optionally spend this feat's1/LR use to set that activation's maximum duration to five rounds instead of three, retaining its original owner regular-start expiry clock and all shorter ending conditions. It is one enhanced activation, not five additional rounds, a later free extension or a refreshed serum dose. CurrentHP strictly below one-quarter effective maximum ends Butcherform and this enhancement immediately; exact quarter remains legal. Increasing maximum can end it. During that same active unsuppressed activation, immune to Stunned and apply the already reviewed Hypermutation per-mode Speed floor: snapshot ordinary permanent/qualifying-persistent sheet modes at activation, excluding temporary buffs, stances, Strain, cargo, Exhaustion and the feat; floor for each is floor(snapshot/2). Apply after numeric changes/multipliers, but never defeat explicit Speed0, Root, Grappled/Restrained, Exhaustion5, absent modes, terrain costs or separate voluntary-movement prohibition. The standalone broad slow immunity is explicitly normalized to this reviewed narrower floor. Temporary suppression disables both new benefits while clocks continue; unsuppression before true expiry returns the same snapshot/use, never a fresh five rounds. Actual ended mutation cannot return without new paid activation. Stunned records follow current immunity/suppression rules; the feat does not erase unrelated conditions.",
+      "workedCases": [
+        "An ordinary capturedwalk30 has floor15, but a realGrappled record still makes movement unavailable.",
+        "HP10/max40 remains exactlyquarter; max rising to41 ends Butcherform without damage and loses the enhancement."
+      ]
+    },
+    {
+      "featId": "juggernautCore",
+      "questionId": "HM-14",
+      "completeAuthoringProcedure": "NEW require Warrior8 and equipped/active Ossified Core. Its existing extra-critical-dice prevention is the qualifying critical-protection state; the feat does not declare every critical hit a normal hit or prevent critical-triggered riders. Adopt the counterpart scope: halve only bonus damage explicitly identified by an actual source as Sneak Attack or equivalent precision damage. A critical, poison, elemental infusion, spell rider or ordinary ability modifier is not automatically precision. NEW this halving is a source-specific precision resistance layer: halve each typed precision component once, rounding down; an existing same-type damage resistance also covering that component does not halve it again. Other nonprecision damage remains subject to its own ordinary defenses; vulnerability/immunity and fixed reduction use current damage ordering. If mixed precision types have already been separated, apply their own immunity/resistance once each; do not halve the entire weapon packet because one part is precision. Ossified's separate post-resistance piercing−2 applies once by its own event contract. Benefits stop when Ossified is not active. No new resistance to every critical or all physical damage.",
+      "workedCases": [
+        "A piercing hit has8ordinary plus7Sneak Attack: the feat makes precision3, producing11 before other applicable fixed defenses.",
+        "If piercing resistance already halves both parts, the7precision becomes3 once; Juggernaut's Core does not quarter it to1."
+      ]
+    },
+    {
+      "featId": "killChainAdaptation",
+      "questionId": "HM-15",
+      "completeAuthoringProcedure": "NEW require Warrior4 and two actual Combat mutations equipped and active at the trigger. Once per numbered round, after your personal direct melee attack reduces an independent meaningful hostile from positiveHP to0, gain+10ft to each existing usable Speed mode and one+1 entitlement on your next melee attack roll, both ending at the end of your next future original regular turn. This intentionally selects the counterpart zeroHP trigger rather than requiring actual death; resolve floors/knockout/death replacements first. The trigger grants no attack or fullAction. Copies, owned companion damage, ongoing ticks, captives, harmless targets and recycled bodies do not qualify. Modes derived from another Speed include this bonus once, not twice; previously spent movement remains spent. The attack entitlement consumes on the next legal melee attack roll, hit or miss; a save-only melee effect does not consume it. Same-family new trigger may refresh an unexpired record under the once-round cap but never gives+20ft or queued+1s. It ends if required equipped or active mutation eligibility is lost, even before its deadline. Encounter transitions do not extend or refresh either benefit.",
+      "workedCases": [
+        "A qualifying melee down adds10 towalk30, but moving30 earlier still leaves only10 ordinary movement after the newSpeed40.",
+        "A second down in the same round adds nothing. The next legal melee attack consumes+1 even if it misses."
+      ]
+    },
+    {
+      "featId": "livingFortress",
+      "questionId": "HM-16",
+      "completeAuthoringProcedure": "NEW require Warrior8 and three actual Vital mutations equipped for acquisition; the benefit operates only while at least three distinct Vital mutations are actually active. No feat adds slots or active limits: the Warrior must have actual unlocked slots and an expressly acquired temporary active-count exception where needed. A Warrior8 normally cannot equip three mutations, so the printed level is a minimum rather than proof of present eligibility. Selected doctrine is the counterpart precise protection: opponents receive no advantage solely from a source explicitly granting advantage for flanking you. Reviewed ordinary combat has no global flanking advantage; this feat does not invent one. Independent unseen/Restrained/other advantage survives. It does not erase nearby bodies, ally assistance, legal target geometry, Tactical Flanker's separately proposed damage die, attacks or cover. When any required active state ends/suppresses, protection immediately stops; restoration within existing durations can restore protection without new actions or resources. No numericalAC/DR or immunity to all positioning effects.",
+      "workedCases": [
+        "Three Vital mutations active through a real temporary exception protect against an actual flanking-advantage feature.",
+        "With only two active mutations, having the third equipped dormant grants no benefit; unrelated attack advantage is never removed."
+      ]
+    },
+    {
+      "featId": "synapticRot",
+      "questionId": "HM-20",
+      "completeAuthoringProcedure": "NEW select the Warrior8 counterpart over nearby-any-save/all-spell-shutdown wording. Require Wailing Eye Cluster or Viral Core Sacs equipped and at least one of those exact mutations active. When an actual hostile within15ft and line of effect fails anINT orWIS save against your own direct Warrior feature, apply actualSilenced until the end of its next future regular turn, once per target per numbered round. The generating Warrior feature need not be the equipped prerequisite itself, but must be actually acquired/active/legal; an ally spell or unrelated ordinary spell does not qualify. Source names Wailing Eye and Viral Core bind only to the named actual cards. ActualSilenced prevents verbal components, command words, Chants and audible coordination; nonverbal spells and nonspell abilities remain possible if otherwise legal. No new universal spell ban or action loss. Same-profile reapplication may preserve later expiry without stacking, but the round ledger and source immunity apply. Gaining a nonverbal casting permission is not retroactively denied. No automatic target identification, sound-detection channel or ongoing15ft tether after application; later range loss does not erase the legal record.",
+      "workedCases": [
+        "A nearby hostile failsWIS against an acquired Warrior feature while Wailing Eye is active: its verbal spell is blocked through the deadline.",
+        "A legally nonverbal spell remains usable; the original all-spells wording is preserved as the explicit alternative for review."
+      ]
+    },
+    {
+      "featId": "terrorEngine",
+      "questionId": "HM-21",
+      "completeAuthoringProcedure": "NEW select Warrior8 and actual Carrion Signal Gland equipped/active. At each incoming direct damage event, count distinct meaningful hostiles within30ft and line of effect currently carrying an active unsuppressed Shaken, Frightened or activeDisoriented record caused by your own Warrior features. Two or more qualify; pendingDisoriented does not, and multiple records on one creature count as one creature. NEW the first positive resolved event in the numbered round while this predicate holds receives2whole-event damage reduction, minimum0, after passive typed defenses and before temporaryHP. Consume the feat's round entitlement when applied even if the reduction makes damage0; an event already at0 does not consume it. Stable component order allocates the2 once, not2 per type. No mitigation of HP sacrifice, direct death/state assignment or a transfer expressly forbidding recipient mitigation. The precise class wording addsFrightened and confines the original+2DR to one qualifying event; both differences remain explicit. Losing range, source eligibility or an active qualifying state removes readiness for later events but does not undo resolved damage. It grants no armor, universal resistance or new fear application.",
+      "workedCases": [
+        "One Shaken hostile and one activeDisoriented hostile in range qualify; a6damage event becomes4 beforetempHP.",
+        "TwoShaken records on the same creature count as one hostile. A future scheduledDisoriented state counts as none until active."
+      ]
+    }
+  ],
+  "checksActuallyExecuted": [
+    "Warrior archive-member byte length and SHA256 match the user binding",
+    "Historical Player source SHA256 matches the user binding",
+    "Old /engine/17 string occurs exactly once in the archived current Warrior manuscript",
+    "All twelve counterpart feat IDs exist in the final authoring register"
+  ],
+  "caseExecutionStatus": "All eight acceptance cases are authored source-based expectations, not executed class/feat runtime tests.",
+  "originalsModified": false
+}

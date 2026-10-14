@@ -1,0 +1,404 @@
+{
+  "reviewId": "LRX-EXACT-2026-10-11",
+  "scope": "Five finite exact-candidate amendments; no source rewrite or direct repository promotion.",
+  "corrections": [
+    {
+      "id": "LRX-01",
+      "title": "Standalone immutable-manifest reproduction",
+      "affectedSpells": [],
+      "affectedFiles": [
+        "DescentReviewChanges/ReviewBible/tools/build_low_rank_136_candidates.py",
+        "DescentReviewChanges/ReviewBible/tools/validate_low_rank_136_candidates.py",
+        "DescentReviewChanges/ReviewBible/tools/prepare_low_rank_136_exact_review.py"
+      ],
+      "defect": "All three main functions read an unshipped LOW_RANK_SPELL_FILE_HANDOFF_V3_PREPARATION.json. The root ORIGINAL_SOURCE_V3_FILE_MANIFEST.json and nested unchanged v3 archive provide the complete authentic 342-entry map.",
+      "requiredCode": "Replace that currentFileHashes read with the exact sha256 map from the included ORIGINAL_SOURCE_V3_FILE_MANIFEST.json. For repository operation where the root sidecar is absent, the unchanged nested v3 ZIP FILE_MANIFEST.json is the permitted fallback. Require exactly 342 unique paths, check actual size and SHA256 for all 342 before writing, and require both maps to agree when both are present. Missing, malformed or mismatched evidence is an error, never a skipped check. Use the implementation in manifest_loader.py. Do not fabricate the missing preparation file.",
+      "preservation": "Keep frozen scripts and their original reports in the submission. Update working versions only. Candidate validation must compare the frozen LR source plus these named exact amendments; do not edit source originals or loosen the baseline assertions."
+    },
+    {
+      "id": "LRX-02",
+      "title": "Interception is separate from legal return",
+      "affectedSpells": [
+        "spell-mirror",
+        "soul-mirror"
+      ],
+      "priorDirections": [
+        "LR-G14",
+        "LR-UN-19",
+        "LR-R3-09"
+      ],
+      "defect": "The earlier Touch/healing/willing-recipient qualification sentence contradicts the already explicit spent-ward failure branch. Resolve in favor of that final source direction and LR-B05; illegal return is not a reason to preserve the ward.",
+      "unchanged": "Soul Mirror’s existing per-card return wording and LR-B05 already agree; no additional Soul Mirror card rewrite is required beyond its shared-rule dependency."
+    },
+    {
+      "id": "LRX-03",
+      "title": "Complete the already allowed Bone Archer fallback",
+      "affectedSpells": [
+        "summon-bone-archer"
+      ],
+      "priorDirections": [
+        "LR-NE-23",
+        "LR-G11"
+      ],
+      "defect": "The card permits an unarmed melee fallback but supplies only a ranged resolution and no complete unarmed modifier/reach. The explicit fixed-profile exception completes that existing option, not a new extra attack."
+    },
+    {
+      "id": "LRX-04",
+      "title": "Exact duration, identity and question references in boundary material",
+      "affectedSpells": [
+        "enhance-ability",
+        "featherstep",
+        "spatial-fold"
+      ],
+      "affectedCases": [
+        "LR-C-TR-28",
+        "LR-B17",
+        "LR-B14"
+      ],
+      "priorDirections": [
+        "LR-TR-28",
+        "LR-B17",
+        "LR-B14"
+      ],
+      "defect": "Clarify minute window as ten minutes; Featherstep is TR-10, not TR-09 (Thaumaturgy); the actual R3-20 identity is Spatial Fold, not Fold Space. No spell identity, duration or original question is changed."
+    },
+    {
+      "id": "LRX-05",
+      "title": "Separate manifestation checkpoints from a next-numbered-round replay window",
+      "affectedSpells": [
+        "false-footsteps",
+        "echo-cast"
+      ],
+      "priorDirections": [
+        "LR-IL-15",
+        "LR-UN-21",
+        "COMBAT_ACTION_PLAYTEST.md#Ready"
+      ],
+      "defect": "False Footsteps simultaneously says once per numbered round and first manifestation plus next two regular starts, which disagree for a legal release before the caster’s regular turn. Echo Cast conflates next regular turn with next numbered round, which disagree for an extra-turn arming before the regular slot. Keep the finite three checkpoint pattern in the first and literal next numbered round in the second; generic Ready still casts at preparation.",
+      "unchanged": "All original source ranges, costs, three-pass count, source three-round effect, rank≤2 payload eligibility, base-only waiver, actual Actions, owner histories, and no recursive replay remain. Quick Cast retains its distinct next-regular-turn rule."
+    }
+  ],
+  "jsonFieldReplacements": [
+    {
+      "correctionId": "LRX-02",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "sharedRules",
+        "id": "LR-G14"
+      },
+      "fieldPath": [
+        "wording"
+      ],
+      "oldValue": "Spell Mirror and Soul Mirror intercept only the first actually resolving ordinary spell effect that has exactly their warded creature as its sole direct creature recipient, beneficial or hostile. Area, multitarget, self-only, anchor/object, summoning, channel/ongoing tick and already redirected effects are ineligible. A Touch-delivered spell, healing spell or willing-recipient spell can qualify only when its actual original caster is otherwise an eligible returned recipient, including any real consent/type requirement. Touch eligibility uses this explicit magical return, not a new physical touch or Action. No rank cap is added; actual protective exceptions can still forbid redirection. After counterspell resolution but before that spell's attack/save/effect, spend the ward once and substitute the original actual caster as recipient only when it is presently a legal recipient under the payload's own type/other eligibility. The original caster remains owner and supplies DC/attack roll and costs; this creates no new casting, resources or second packet. An ineligible original caster causes the spent redirection to fail and the original spell continues against its original warded target, not automatic cancellation. An eligible redirected attack can miss normally; spend is not refunded. The original targeting distance has already been established; the explicit return uses that same causal cast, with return line blocked by an actual barrier defeating the return path, not arbitrary remote range extension. A blocked return likewise leaves the original target. A causal root can be redirected at most once by these two spells; another mirror on the new target neither redirects it again nor consumes its ward. Duplicate wards on the original target arbitrate earliest creation then stable ID; only the selected ward spends. These are NEW finite interpretations of “first/single-target spell,” not permissions for Wizard/Oracle or other reflected-damage features to use this protocol.",
+      "replacementValue": "Spell Mirror and Soul Mirror intercept only the first actually resolving ordinary spell effect that has exactly their warded creature as its sole direct creature recipient, beneficial or hostile. Area, multitarget, self-only, anchor/object, summoning, channel/ongoing tick and already redirected effects are ineligible. NEW interception/return distinction: a Touch-delivered, healing or willing-recipient spell is eligible for interception when it satisfies the foregoing sole-recipient and scope requirements. The original caster's eligibility to receive the return, including actual consent and creature-type requirements, is tested only after that eligible ward has been spent. An ineligible original caster therefore causes a spent, unsuccessful return and leaves the original recipient, exactly as below. A legal Touch return uses this explicit magical return, not a new physical touch or Action. No rank cap is added; actual protective exceptions can still forbid redirection. After counterspell resolution but before that spell's attack/save/effect, spend the ward once and substitute the original actual caster as recipient only when it is presently a legal recipient under the payload's own type/other eligibility. The original caster remains owner and supplies DC/attack roll and costs; this creates no new casting, resources or second packet. An ineligible original caster causes the spent redirection to fail and the original spell continues against its original warded target, not automatic cancellation. An eligible redirected attack can miss normally; spend is not refunded. The original targeting distance has already been established; the explicit return uses that same causal cast, with return line blocked by an actual barrier defeating the return path, not arbitrary remote range extension. A blocked return likewise leaves the original target. A causal root can be redirected at most once by these two spells; another mirror on the new target neither redirects it again nor consumes its ward. Duplicate wards on the original target arbitrate earliest creation then stable ID; only the selected ward spends. These are NEW finite interpretations of “first/single-target spell,” not permissions for Wizard/Oracle or other reflected-damage features to use this protocol."
+    },
+    {
+      "correctionId": "LRX-02",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "spell-mirror"
+      },
+      "fieldPath": [
+        "operationalCandidate",
+        "limitations"
+      ],
+      "oldValue": "No new spell cast, second damage packet, rank/RC resource transfer, area splitting or reflection loop. Touch attacks can be eligible when the original caster is otherwise a legal recipient; the return is the explicit magical effect, not a new physical touch Action. Invalid/blocked return spends the mirror and leaves the original recipient; it does not cancel the spell for free.",
+      "replacementValue": "No new spell cast, second damage packet, rank/RC resource transfer, area splitting or reflection loop. NEW Touch-delivered spells use LR-G14's interception/return distinction: eligible sole-recipient interception spends the ward before return consent/type eligibility is tested; an illegal or blocked return leaves the original recipient. Invalid/blocked return spends the mirror and leaves the original recipient; it does not cancel the spell for free."
+    },
+    {
+      "correctionId": "LRX-03",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "summon-bone-archer"
+      },
+      "fieldPath": [
+        "operationalCandidate",
+        "resolution"
+      ],
+      "oldValue": "Creation automatic; each separately commanded attack is a ranged attack using original caster’s current spell attack modifier.",
+      "replacementValue": "Creation is automatic. A separately commanded bow attack is a ranged attack using the original caster’s current spell attack modifier. NEW complete existing unarmed fallback: instead of that bow attack, one permitted commanded offensive Action may make one unarmed melee attack at +0 versus AC, reach 5 ft, dealing a flat 1 bludgeoning on a hit. This fixed +0 is the explicit exception to LR-G11’s owner-spell-attack default for this fallback only; add no proficiency, ability modifier or additional damage die. Natural 1 misses; natural 20 hits, but the flat 1 is not doubled. Either attack spends the same shared commanded offensive allowance; this creates no extra attack, autonomous offense or additional Reaction permission."
+    },
+    {
+      "correctionId": "LRX-03",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "summon-bone-archer"
+      },
+      "fieldPath": [
+        "operationalCandidate",
+        "effect"
+      ],
+      "oldValue": "KEEP HP 20 and2d6 piercing. NEW Medium bodyAC13, walk30 ft, ordinary vision/hearing only, saves original ownerPB, other checks0, carry20 lb incidental nonprofessional load, one bow attack per permitted commanded offensive Action, range60/120 ft(long range disadvantage), no melee fallback beyond ordinary unarmed1 bludgeoning without proficiency. Its bow/ammunition are finite visual/functional apparatus for its one permitted attack event, not separate loot or quiver stock.",
+      "replacementValue": "KEEP HP 20 and2d6 piercing. NEW Medium bodyAC13, walk30 ft, ordinary vision/hearing only, saves original ownerPB, other checks0, carry20 lb incidental nonprofessional load, one bow attack per permitted commanded offensive Action, range60/120 ft(long range disadvantage), its only melee fallback is the separately specified +0, reach-5-ft, flat-1-bludgeoning unarmed attack, using the same commanded offensive allowance. Its bow/ammunition are finite visual/functional apparatus for its one permitted attack event, not separate loot or quiver stock."
+    },
+    {
+      "correctionId": "LRX-03",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "summon-bone-archer"
+      },
+      "fieldPath": [
+        "operationalCandidate",
+        "numericParameters"
+      ],
+      "oldValue": {
+        "rangeFeet": 30,
+        "size": "Medium",
+        "hp": 20,
+        "ac": 13,
+        "speedFeet": 30,
+        "carryLb": 20,
+        "attackRangeFeet": [
+          60,
+          120
+        ],
+        "attackDice": "2d6",
+        "seconds": 60
+      },
+      "replacementValue": {
+        "rangeFeet": 30,
+        "size": "Medium",
+        "hp": 20,
+        "ac": 13,
+        "speedFeet": 30,
+        "carryLb": 20,
+        "attackRangeFeet": [
+          60,
+          120
+        ],
+        "attackDice": "2d6",
+        "seconds": 60,
+        "unarmedAttackModifier": 0,
+        "unarmedReachFeet": 5,
+        "unarmedFlatDamage": 1
+      }
+    },
+    {
+      "correctionId": "LRX-04",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "enhance-ability"
+      },
+      "fieldPath": [
+        "authoredBoundary",
+        "wording"
+      ],
+      "oldValue": "Choosing INT can assist a genuine eligible INT tool check during the minute window only if the work is actually complete. It cannot turn that tool check into a saving throw bonus or replace eight hours of work.",
+      "replacementValue": "Choosing INT can assist a genuine eligible INT ability, skill or tool check during the ten-minute concentration window, only if the required work is actually complete and the benefit is still active at that check. At or after the ten-minute deadline, or after concentration ends, it supplies no advantage. It does not improve a saving throw or replace eight hours of work."
+    },
+    {
+      "correctionId": "LRX-04",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/low_rank_137_authored_boundaries.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/low_rank_137_authored_boundaries.json"
+      ],
+      "selector": {
+        "collection": "cases",
+        "id": "LR-C-TR-28"
+      },
+      "fieldPath": [
+        "authoredExpectation",
+        "wording"
+      ],
+      "oldValue": "Choosing INT can assist a genuine eligible INT tool check during the minute window only if the work is actually complete. It cannot turn that tool check into a saving throw bonus or replace eight hours of work.",
+      "replacementValue": "Choosing INT can assist a genuine eligible INT ability, skill or tool check during the ten-minute concentration window, only if the required work is actually complete and the benefit is still active at that check. At or after the ten-minute deadline, or after concentration ends, it supplies no advantage. It does not improve a saving throw or replace eight hours of work."
+    },
+    {
+      "correctionId": "LRX-04",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/low_rank_137_authored_boundaries.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/low_rank_137_authored_boundaries.json"
+      ],
+      "selector": {
+        "collection": "cases",
+        "id": "LR-B17"
+      },
+      "fieldPath": [
+        "questionIds"
+      ],
+      "oldValue": [
+        "EV3-01",
+        "TR-09",
+        "R3-18"
+      ],
+      "replacementValue": [
+        "EV3-01",
+        "TR-10",
+        "R3-18"
+      ]
+    },
+    {
+      "correctionId": "LRX-04",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/low_rank_137_authored_boundaries.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/low_rank_137_authored_boundaries.json"
+      ],
+      "selector": {
+        "collection": "cases",
+        "id": "LR-B17"
+      },
+      "fieldPath": [
+        "authoredExpectation",
+        "questionIds"
+      ],
+      "oldValue": [
+        "EV3-01",
+        "TR-09",
+        "R3-18"
+      ],
+      "replacementValue": [
+        "EV3-01",
+        "TR-10",
+        "R3-18"
+      ]
+    },
+    {
+      "correctionId": "LRX-04",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/low_rank_137_authored_boundaries.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/low_rank_137_authored_boundaries.json"
+      ],
+      "selector": {
+        "collection": "cases",
+        "id": "LR-B14"
+      },
+      "fieldPath": [
+        "authoredExpectation",
+        "premises"
+      ],
+      "oldValue": "A creature uses Gaseous Form to cross a real one-inch gap, then tries to reappear inside occupied masonry; another proposes Fold Space with a passenger.",
+      "replacementValue": "A creature uses Gaseous Form to cross a real one-inch gap, then tries to reappear inside occupied masonry; another proposes Spatial Fold with a passenger."
+    },
+    {
+      "correctionId": "LRX-04",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/low_rank_137_authored_boundaries.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/low_rank_137_authored_boundaries.json"
+      ],
+      "selector": {
+        "collection": "cases",
+        "id": "LR-B14"
+      },
+      "fieldPath": [
+        "authoredExpectation",
+        "expected"
+      ],
+      "oldValue": "Use existing pending reversion/placement for actual fit, not forced overlapping body or a favorable teleport. Fold permits the actual self and nonliving handled gear only, not a new creature passenger or an unexplained plane.",
+      "replacementValue": "Use existing pending reversion/placement for actual fit, not forced overlapping body or a favorable teleport. Spatial Fold permits the actual self and nonliving handled gear only, not a new creature passenger or an unexplained plane."
+    },
+    {
+      "correctionId": "LRX-05",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "false-footsteps"
+      },
+      "fieldPath": [
+        "operationalCandidate",
+        "effect"
+      ],
+      "oldValue": "NEW path consists of up to three straight linked segments totaling at most 30 ft over actual known walking surfaces. Select direction and familiar cadence when casting. The three-round effect repeats one up-to-six-second pass each numbered round, at the casting checkpoint and the next two caster regular starts; no extra-turn replay. It stops audible passage at solid acoustic obstructions. The path cannot be remotely redirected.",
+      "replacementValue": "NEW path consists of up to three straight linked segments totaling at most 30 ft over actual known walking surfaces. Select direction and familiar cadence when casting. Resolve exactly three scheduled passes, each up to six seconds: the first when the effect manifests, then one at each of the caster’s next two future regular-turn starts. Its existing expiry is the third future regular-turn start measured from manifestation. These are three instance-specific checkpoints, not a separate once-per-numbered-round allowance; two checkpoints can fall in one numbered round when manifestation occurred before the caster’s regular turn. An extra turn creates no pass or expiry checkpoint. For a normally cast spell, manifestation is its resolved effect; for a legal generic Ready hold, manifestation is release, not paid preparation. No sound is emitted merely by preparing the hold. Actual acoustic obstruction and suppression still apply at each checkpoint; a suppressed scheduled pass is spent, not queued. The path cannot be remotely redirected."
+    },
+    {
+      "correctionId": "LRX-05",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "false-footsteps"
+      },
+      "fieldPath": [
+        "authoredBoundary",
+        "wording"
+      ],
+      "oldValue": "On a three-round instance the first pass occurs at resolution and two later passes at regular starts. Gaining an extra turn supplies no fourth pass.",
+      "replacementValue": "The first pass occurs at effect manifestation; the next two occur at the next two future caster regular-turn starts, and the instance expires at the third. A legal readied release before that caster’s regular turn can place the first and second passes in the same numbered round. Extra turns add no checkpoint or fourth pass; suppression spends the scheduled pass without a catch-up."
+    },
+    {
+      "correctionId": "LRX-05",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/low_rank_137_authored_boundaries.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/low_rank_137_authored_boundaries.json"
+      ],
+      "selector": {
+        "collection": "cases",
+        "id": "LR-C-IL-15"
+      },
+      "fieldPath": [
+        "authoredExpectation",
+        "wording"
+      ],
+      "oldValue": "On a three-round instance the first pass occurs at resolution and two later passes at regular starts. Gaining an extra turn supplies no fourth pass.",
+      "replacementValue": "The first pass occurs at effect manifestation; the next two occur at the next two future caster regular-turn starts, and the instance expires at the third. A legal readied release before that caster’s regular turn can place the first and second passes in the same numbered round. Extra turns add no checkpoint or fourth pass; suppression spends the scheduled pass without a catch-up."
+    },
+    {
+      "correctionId": "LRX-05",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "echo-cast"
+      },
+      "fieldPath": [
+        "operationalCandidate",
+        "duration"
+      ],
+      "oldValue": "One replay on the caster’s next regular turn/next numbered round; arm expires at its end. No concentration for the arm.",
+      "replacementValue": "NEW exact next-round window: record the numbered round in which the Echo Cast arming spell is committed, including paid generic Ready preparation. The replay is available only during the caster’s regular turn in the immediately following numbered round and expires at that turn’s end. A still-upcoming regular turn in the commitment round and every extra turn are ineligible. Outside initiative, or through a transition, retain that scheduled next-round regular-turn window under the existing virtual-clock mapping; do not start a fresh window at release or on entering initiative. No concentration is required for a manifested arm; an actual generic Ready hold retains its own concentration and earlier expiry."
+    },
+    {
+      "correctionId": "LRX-05",
+      "files": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_low_rank_136.json",
+        "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json"
+      ],
+      "selector": {
+        "collection": "spells",
+        "id": "echo-cast"
+      },
+      "fieldPath": [
+        "operationalCandidate",
+        "effect"
+      ],
+      "oldValue": "NEW Echo Cast is its own paid Action casting. Select the actual original source record at that commitment. On the next regular turn the caster may use their actual Action to repeat that one same ordinary spell through the same class access, with fresh legal targets/selections, actual components and current statistics. Waive only the payload’s base RP, choosing Core’s precise “base” wording over the catalog shorthand; retain real additional/strain/material costs and ordinary cadence/concentration. The payload’s native range remains, with a non-Self selected endpoint capped at 30 ft for this wrapper.",
+      "replacementValue": "NEW Echo Cast is its own paid Action casting. Select the actual original source record at that commitment. During the one regular-turn replay window specified in Duration, after the arming effect has actually manifested, the caster may use their actual Action to repeat that same ordinary spell through the same class access, with fresh legal targets/selections, actual components and current statistics. An unmanifested, expired or lost arm grants no replay, and losing the scheduled opportunity never rolls it forward. Waive only the payload’s base RP, choosing Core’s precise “base” wording over the catalog shorthand; retain real additional/strain/material costs and ordinary cadence/concentration. The payload’s native range remains, with a non-Self selected endpoint capped at 30 ft for this wrapper."
+    }
+  ],
+  "regeneration": [
+    "Apply only to working candidate/public objects; keep internalSourceAuthoringRecord and every sourceReceipt unchanged.",
+    "Regenerate both complete card manuscripts from corrected public envelope, and both complete casebooks from corrected 187-case envelope.",
+    "Keep all original questions and their existing spell-ID pointers; update derived boundary index references where those cases are listed.",
+    "Version-bind this amendment record and the changed artifacts in the fulfillment receipt. Preserve the frozen submission and all original reports."
+  ]
+}

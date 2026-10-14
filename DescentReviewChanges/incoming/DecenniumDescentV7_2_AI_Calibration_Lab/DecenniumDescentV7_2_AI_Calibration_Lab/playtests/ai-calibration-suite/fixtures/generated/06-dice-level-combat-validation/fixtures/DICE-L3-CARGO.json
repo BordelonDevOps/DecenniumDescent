@@ -1,0 +1,127 @@
+{
+  "scenarioId": "DICE-L3-CARGO",
+  "level": 3,
+  "budget": "Hard",
+  "objective": "prevent cargo seizure for 4 rounds",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "warrior",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "ranger",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "paladin",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "tinker",
+        "x": 0,
+        "y": 15
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Deep Dwarf",
+        "x": 30,
+        "y": 0
+      },
+      {
+        "id": "Cave Bear",
+        "x": 30,
+        "y": 5
+      }
+    ]
+  },
+  "cargo": "supply cart",
+  "partyBuildHashes": [
+    "aaaa3efa17fb52a72883d27c83ead8f2ab18407f704461d554ee50996c349e54",
+    "73aebc694385c8ed527359caba4707a244e0e5299c9f606b1059d78baeb1230c",
+    "496158ac9ba87233aeb422692b5e409bdbe8bb4399c5e70d1ae1f434a8bdebd9",
+    "dbd75c3ab43cb6fcceb1e1e2b0259e2b63fd6975d6990f57c540494625d9e206"
+  ],
+  "enemies": [
+    {
+      "name": "Deep Dwarf",
+      "hitPoints": 68,
+      "armorClass": 13,
+      "challengeRating": "2",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Heavy Blow",
+          "text": "Attack: +5 to hit, one target. Hit: 1d10+2 bludgeoning damage (average 8)."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Prepared Ground",
+          "text": "It gains advantage on the first attack or check made from a fortified position in its lair."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Heavy Blow",
+          "bonus": 5,
+          "n": 1,
+          "sides": 10,
+          "mod": 2,
+          "text": "Attack: +5 to hit, one target. Hit: 1d10+2 bludgeoning damage (average 8).",
+          "dc": null
+        }
+      ],
+      "multiattack": 1,
+      "isBoss": false,
+      "tenacityPerRound": 0,
+      "source": "src/bestiary_data_full.json"
+    },
+    {
+      "name": "Cave Bear",
+      "hitPoints": 68,
+      "armorClass": 13,
+      "challengeRating": "2",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Mauling Claws",
+          "text": "Attack: +5 to hit, one target. Hit: 1d10+2 slashing damage (average 8)."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Territorial Morale",
+          "text": "It may retreat or break off if food, young, or escape access is secured."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Mauling Claws",
+          "bonus": 5,
+          "n": 1,
+          "sides": 10,
+          "mod": 2,
+          "text": "Attack: +5 to hit, one target. Hit: 1d10+2 slashing damage (average 8).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": false,
+      "tenacityPerRound": 0,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "571cc31c11d32550c16ffd9446e585a73676d4d99c2c6ac6ff63d68bc782a415"
+}

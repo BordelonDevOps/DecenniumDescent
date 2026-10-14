@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "2.0",
+  "title": "Decennium Descent Canon Manifest",
+  "updated": "2026-08-06",
+  "releaseLine": "V7.2 AI Evidence Clarified",
+  "description": "V7 gameplay loop with high-confidence AI-lab procedural findings promoted, explicit mathematical calibration targets, and numerical encounter budgets held provisional for holdout testing.",
+  "knowledgeBoundary": {
+    "publicLimit": "The most famous recognized expedition reached the Sixth Gate Guardian and failed.",
+    "haven": "The Tier 2.5 Haven is the economic and professional center of dungeon exploration; reaching it profitably is career-defining.",
+    "tierFour": "Tier IV introduces unexplained contradictions and gradual Old One symptoms without confirmed cosmological explanation.",
+    "unknown": "Tiers VII-X, their Guardians, the Marquis origin, claimant succession, the Old God crystal path, and global failure consequences are Director-only."
+  },
+  "domains": {
+    "application": {
+      "status": "canonical",
+      "visibility": "public",
+      "source": "src/",
+      "validation": [
+        "npm run validate:rules",
+        "npm run validate:public-canon",
+        "npm run validate:gameplay"
+      ]
+    },
+    "playerRulebook": {
+      "status": "canonical-publication",
+      "visibility": "public",
+      "source": "books/player/Decennium_Descent_Player_Rulebook_v6.docx"
+    },
+    "combatSpellcastingEconomy": {
+      "status": "canonical",
+      "public": [
+        "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json"
+      ],
+      "director": [
+        "books/director/Decennium_Descent_Core_Systems_Bible_v1_Full_Director.docx",
+        "data/director/Decennium_Descent_Core_Systems_Data_v1_Full_Director.json"
+      ],
+      "supersedes": "Conflicting spellcasting, combat, documented Gate scaling, and economy rules in earlier publications."
+    },
+    "crafting": {
+      "status": "canonical",
+      "mechanicalSource": "data/crafting/Decennium_Descent_Crafting_Bible_v4.json",
+      "publicRuntime": "src/data/crafting-recipes.json",
+      "publicPublication": "books/player/Decennium_Descent_Crafting_Bible_v5_Known_Descent.docx",
+      "internalPublication": "books/director/Decennium_Descent_Crafting_Bible_v4_Full_Internal.docx",
+      "counts": {
+        "total": 687,
+        "public": 433,
+        "restrictedTierVI": 39,
+        "directorOnly": 215
+      },
+      "legacyArchive": "archive/legacy/crafting-recipes-v1-623.json"
+    },
+    "feats": {
+      "status": "canonical",
+      "mechanicalSource": "src/data/feats.js",
+      "publication": "books/player/Decennium_Descent_Feat_Compendium_v1.docx",
+      "statusReport": "docs/feats/FEAT_REGISTRY_STATUS.md",
+      "counts": {
+        "total": 335,
+        "approvedComplete": 170,
+        "provisionalComplete": 165,
+        "draft": 0
+      }
+    },
+    "monsterManualPublic": {
+      "status": "canonical",
+      "visibility": "public",
+      "source": "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/",
+      "runtime": "src/bestiary_data_full.json",
+      "dossiers": 65
+    },
+    "monsterManualDirector": {
+      "status": "canonical",
+      "visibility": "director-only",
+      "source": "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Directors_Sealed_Bestiary_Source/"
+    },
+    "classIdentityAndPaths": {
+      "status": "canonical",
+      "sources": [
+        "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "src/data/canon-classes.js",
+        "src/data/class-details.js",
+        "src/data/class-paths.js"
+      ],
+      "notes": "Seventeen base classes. Expedition roles are functions, not a separate ability corpus. Lich and Necromancer are intentional evil/transgressive dark paths using Traumatic Casting and Resonance Points."
+    },
+    "racial": {
+      "status": "canonical",
+      "sources": [
+        "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "src/data/races.js",
+        "src/data/racial-variants.json"
+      ],
+      "notes": "Drakari registry includes Flame, Frost, Storm, Stone, Gale, and Wave variants."
+    },
+    "directorContinuity": {
+      "status": "canonical",
+      "visibility": "director-only",
+      "sources": [
+        "docs/director-only/",
+        "data/director/",
+        "books/director/"
+      ],
+      "notes": "Contains unknown tiers, full Sixth Gate mechanics, claimant succession, Marquis truth, crystal path, and hidden cosmology."
+    },
+    "gameplayLoop": {
+      "status": "canonical procedures; encounter budget numbers provisional pending V7.2 holdout calibration",
+      "visibility": "public",
+      "mechanicalSource": "data/public/Decennium_Descent_Gameplay_Loop_v1_2.json",
+      "runtime": "src/data/gameplay-loop.json",
+      "procedure": "docs/mechanics/GAMEPLAY_LOOP_CANON.md",
+      "publication": "books/player/Decennium_Descent_Gameplay_Loop_Bible_v1_2.docx",
+      "application": "src/components/ExpeditionTracker.tsx",
+      "scope": [
+        "core resolution",
+        "actions and timing",
+        "Expedition Watches",
+        "team activities",
+        "Pressure",
+        "Supply and Strain",
+        "Load and Extraction Class",
+        "camps",
+        "retreat",
+        "Wounds and death",
+        "encounter budgets",
+        "extraction",
+        "Haven resolution",
+        "advancement",
+        "seasonal persistence"
+      ],
+      "validation": "npm run validate:gameplay",
+      "version": "1.2",
+      "playtestEvidence": "docs/playtests/V7_2_AI_LAB_EVIDENCE_REVIEW.md",
+      "quickstart": "books/player/Decennium_Descent_Quickstart_Reference_v1.docx"
+    }
+  },
+  "promotionRules": [
+    "No parallel live application or duplicate domain Source of Truth.",
+    "New packs enter staging and are compared against this manifest before promotion.",
+    "Player builds must pass tools/validate_public_canon.py.",
+    "Compatibility aliases remain internal and are not published as Decennium Descent creature names.",
+    "Stable IDs must be preserved through migrations."
+  ],
+  "designDoctrine": "Decennium Descent should have 5e's readability and speed, Pathfinder 2e's tactical clarity and balance discipline, and its own expedition, extraction, Haven, and seasonal systems."
+}

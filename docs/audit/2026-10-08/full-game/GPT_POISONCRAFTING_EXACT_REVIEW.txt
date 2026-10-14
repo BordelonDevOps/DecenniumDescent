@@ -1,0 +1,160 @@
+## Verdict: REPAIR, then APPROVE
+
+The 41-card Poisoncrafting family is mechanically coherent and source-faithful enough for promotion after **finite edits only**. I do **not** see a need for another generic Poisoncrafting conference.
+
+The public/hidden split is correct at **25 public / 3 restricted / 13 Director-only**. The supplied public effects match their V5 bindings, operative tags correctly follow `mechanics.tag`, and I found no accidental Armor Eater corrosion, Miasma persistence, ingestion route, donor-trait borrowing, extra recipe tags, Thief prepared-dose conversion, or other title-derived mechanics.
+
+I have **four submitted clarifications to settle, plus one independent wording repair**.
+
+### 1. Frightened refresh: APPROVE retaining the original locus
+
+Keep the existing record's locus.
+
+**NEW exact integration:**
+
+> A legal same-recipe/same-owner/same-target refresh of an existing Frightened record extends only that record's legal expiry. It retains the record's original fixed `fearLocus`; the later exposure does not move it. If the prior record has ended, a later failed exposure that actually establishes a new Frightened record records the new exposure point as its new `fearLocus`.
+
+This is preferable to moving the source on every dose. It preserves the established refresh model and prevents repeated poison doses from repositioning a fear source as an additional tactical effect.
+
+A successful later save, condition immunity, or another result that fails to establish/refresh Frightened does not alter the locus.
+
+Add to the machine profile, equivalently:
+
+```json
+"fearLocus":"actual exposure point when the record is first established",
+"sameIdentityRefreshRetainsOriginalLocus":true,
+"newRecordUsesNewExposureLocus":true
+```
+
+### 2. Contact cleaning: APPROVE, with one precision repair
+
+The proposed **10 regular-turn Actions + 60 elapsed seconds, no 11th Action** procedure is good. The only problem is that "`small object`" currently has no operational boundary.
+
+Use:
+
+> **Contact-poison cleaning — NEW.** A small object for this procedure is one handheld object whose entire coated region the cleaner can directly access while remaining in one space. Cleaning that object takes one Action. Any other eligible coated object, and a full five-foot-square coated surface patch, requires one uninterrupted active minute. In initiative, one designated cleaner must spend an Action on each of ten consecutive regular turns and at least 60 elapsed seconds must pass. If the tenth Action occurs before 60 seconds, maintain the required access until the 60-second point; no eleventh Action is required. Interruption before completion does not end the charge: the remaining single coating record and its original expiry continue. Cleaning produces only inert waste and never recoverable poison. Ordinary contact/barrier rules still apply to the cleaner during the procedure.
+
+That makes the process finite without inventing partial-dose bookkeeping.
+
+Add machine fields along these lines:
+
+```json
+"singleActionCleaningEligibility":"handheld object whose entire coated region is directly accessible while cleaner remains in one space",
+"largeObjectOrPatchCleaningRegularTurnActions":10,
+"largeObjectOrPatchCleaningMinimumElapsedSeconds":60,
+"largeObjectOrPatchCleaningRequiresConsecutiveRegularTurns":true,
+"largeObjectOrPatchCleaningRequiresContinuousAccess":true,
+"eleventhActionRequired":false,
+"interruptionLeavesChargePresent":true
+```
+
+### 3. Venom Master: automatic failure DOES count
+
+A physically rolled d20 is **not** required.
+
+The reviewed Core rule already establishes that a required save which automatically fails resolves as an ordinary Failure without a roll. Therefore:
+
+> **Venom Master — automatic failure.** If a legitimate crafted injury-poison exposure requires its initial CON save and an applicable rule causes that save to automatically fail, that is a failed initial poison save for Venom Master. No physical d20 roll is required. This does not apply when explicit whole-poison-effect/toxin immunity prevents the application itself, because in that case no legitimate initial poison save is required. An unnecessary die rolled despite such immunity cannot trigger Venom Master.
+
+This remains after the qualifying critical hit and therefore cannot retroactively penalize the triggering poison save.
+
+Add:
+
+```json
+"automaticRequiredInitialSaveFailureCountsAsFailure":true,
+"physicalDieRollRequired":false,
+"wholeApplicationImmunityMeansNoQualifyingSave":true
+```
+
+### 4. Poisoncraft Slowed: distinct lawful halvings can multiply
+
+I find **no reviewed universal rule limiting all independent speed halvings to one**. The existing no-quarter clause should therefore remain specific to duplicate `poisoncraft.slowed` records.
+
+Use this exact integration:
+
+> **Slowed composition — NEW.** All active `poisoncraft.slowed` records together contribute at most one ×1/2 multiplier to each applicable movement speed. A distinct independently lawful effect that expressly halves the same movement speed contributes its own multiplier unless that effect says otherwise; two such independent ×1/2 sources therefore produce ×1/4. Speed 0 remains 0. A rule that increases movement cost rather than actually halving Speed remains a movement-cost rule and is not converted into another ×1/2 multiplier. Each individual modifier source is applied at most once to a final movement mode; a movement mode dynamically derived from another already-modified mode inherits that result and does not receive the same source's multiplier a second time merely because the modifier nominally covers both modes.
+
+That last sentence matters for things such as a swimming speed defined from **current effective walking speed**: Poisoncraft Slowed must not halve walking and then accidentally apply itself again to the swim speed derived from that already-halved walking value.
+
+So, for example, Poisoncraft Slowed plus a genuinely independent "Speed is halved" effect can quarter the relevant speed. If dragging is implemented elsewhere as **extra movement cost** rather than a literal speed-halving rule, it remains extra cost instead.
+
+Recommended machine additions:
+
+```json
+"identicalProfileMultipliersStack":false,
+"distinctIndependentSpeedHalvingsCompose":true,
+"distinctHalvingComposition":"multiplicative",
+"sameModifierSourceAppliedAtMostOncePerFinalMovementMode":true,
+"derivedModeDoesNotReapplyInheritedModifierSource":true,
+"movementCostRulesRemainSeparate":true,
+"hardZeroRemainsZero":true
+```
+
+### 5. Independent required repair: remove the `living` eligibility implication
+
+This sentence conflicts with the already-reviewed rule that creature type alone creates no invented poison immunity/ineligibility:
+
+> "A living/active creature must be a legal target..."
+
+That can be read as excluding an otherwise legal Undead, Construct, or similar active creature.
+
+Replace that paragraph portion with:
+
+> Every actual source-specific anatomical restriction still applies. Creature type alone supplies no invented immunity or ineligibility. A creature must be a legal target of the actual delivery and effect. A Dead body receives no active creature-condition record. Inhaled delivery separately requires actual ambient-gas breathing; injury and contact use their own physical eligibility rules.
+
+That removes the only substantive source-integration conflict I found.
+
+## Other exact checks
+
+The important boundaries are otherwise sound.
+
+**Injury delivery** is approved as written: stable owner is the coating actor, not wielder; one dose can create three finite ammunition entitlements; misses do not spend them; hits do; zero post-defense damage, weapon-damage immunity, prevention, or temporary-HP absorption do not negate a legal hit-gated poison exposure. Criticals create only one poison exposure and do not double its save-based damage.
+
+**Contact delivery** is approved with the cleaning clarification above. It is a single finite charge; impermeable barriers prevent bodily exposure; an intervening held object neither exposes its holder nor transfers/spends the charge; actual exposed anatomy spends it even against an immune target. No generic touch attack exists.
+
+**Inhaled delivery** is approved: Action, 30/60-foot visible point, 5-foot instantaneous burst, no attack roll, long-range advantage only on the initial poison save, real breathing requirement, pre-existing breath-holding respected, total cover respected, no generic reaction to begin holding breath, no liquid-point release, no lingering Miasma.
+
+**Burning** is correct:
+
+`due fire arbitration/tick → DEX only if another future fire marker exists → poison CON if record remains → expiry`.
+
+Thus the final marker gets its final fire opportunity and source-required CON save, but **no DEX save**.
+
+**Timing** is correct: an already-in-progress regular target turn is excluded; standard records use ten future regular-turn ends and singleton Flawed records five; extra turns do not accelerate them; virtual markers survive initiative changes.
+
+**Stunned** is correct: allowance is claimed only on an application that would actually establish Stunned, one successful established record may persist through its own save/cure/expiry, and subsequent doses by that owner can still resolve lawful initial damage but cannot establish or refresh Stunned after the allowance has been spent.
+
+**Immunity/cure separation** is correct. Poison-damage immunity, Poisoned immunity, named-condition immunity, and whole poison-effect immunity remain distinct. Poison-save advantage applies to initial/repeat poison CON saves, not Burning's DEX save. Poisoned-only removal does not erase Confused, Burning, Frightened, Slowed, Weakened, Blinded, or Stunned. A true one-poison-effect remover can remove the selected remaining application/symptoms according to its scope.
+
+**Thief separation** is correct. Prepared-dose abilities stay inside the Thief class engine; crafted doses do not inherit its DC, rest refill, two-projectile/two-attempt procedure, Double Poison, or two-recipe occupancy cap. Venom Master is the narrowly approved bridge.
+
+**Physical accounting checks out.** The maximum-yield progression used here is correct: Q1→1, Q2→3, Q3→4, Q4→6, Q5→7. The source-vessel reservations shown are consistent with those maxima. The two stated carrier deficits also independently reconcile:
+
+- recipe-368: `0.95 - 0.45 = 0.50 lb` usable source mass versus `0.70 lb` for seven doses → **0.20 lb** carrier.
+- recipe-370: `0.38 - 0.38 = 0 lb` after worst catalyst return versus `0.40 lb` for four doses → **0.40 lb** carrier.
+
+Recipe-661's consumed 1-lb Applicator correctly supplies **zero** compound mass and is not returned.
+
+The **singleton Flawed** rule is coherent: full initial DC/damage/delivery, five-marker condition only, no deployment-clock shortening. Multi-dose Flawed quantities correctly use `floor(Q/2)`.
+
+Recipe-395 also correctly preserves the source's **1 year / null active-work-hours** fields while keeping the **1,920 active-hour** value expressly labeled as an operational overlay rather than source data.
+
+## Promotion disposition
+
+After applying the five items above:
+
+- replace the `living/active` sentence;
+- lock the fear-locus refresh rule;
+- lock and machine-encode large-object cleaning;
+- resolve and machine-encode Venom Master's automatic-save failure;
+- resolve and machine-encode Slowed composition;
+- clear the corresponding `pendingBindings`;
+- rerun the existing source/projection validation;
+
+the complete family is eligible for:
+
+**REVIEWED authored operational PLAYTEST Poisoncrafting scope — all 41 cards.**
+
+That promotion would raise recipe progress from **134/687 to 175/687**, leaving **512** recipe effects remaining. Public reviewed formulas would rise from **86/433 to 111/433**.
+
+This still does **not** approve human/numerical balance, component availability, runtime or companion parity, wider unfinished class/spell interactions, whole-game flow, GitHub delivery, or cosmology. Cosmology remains deferred until the authorized push succeeds and the remote commit is verified.

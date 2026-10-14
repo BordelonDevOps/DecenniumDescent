@@ -1,0 +1,2142 @@
+# Rank-six Transmutation and Universal operating proposals
+
+**UNADOPTED AND UNSENT. Thirteen complete mechanical proposals and twenty-six authored examples require actual GPT discussion and exact review. NEW marks proposed completions rather than recovered source or adopted rules.**
+
+[Complete structured proposal and source context](../../../data/director/spell_proposals/transmutation_universal_rank6.json) · [Preservation/source checks](../../../../../docs/audit/2026-10-08/full-game/TRANSMUTATION_UNIVERSAL_RANK6_OPERATING_PROPOSAL_CHECK.json)
+
+## Shared procedures
+
+### casting
+
+All thirteen retain Action,V/S/F,actual rank6/base13RP. Range60feet except Displace Structure30feet. Transmutation access remains Druid/Mage/Wizard11 and Shaman16; Universal remains Cleric/Mage/Wizard11 and Bard/Mirrorsage16. Use actual acquired class/repertoire, ordinary ability, exact costs/modifiers, Dissonance/Refrain, concentration transition and Counterspell windows. Commit legal costs before hidden resolution; failure/counter gives no refund or restoration. DC8+PB+actual ability; attack PB+actual ability. No generic upcast, source access or external-game mechanics are imported.
+
+### bodyAndGeometry
+
+Actual perception/range/line of effect is required except explicitly stated remote object recall. Use real3D whole-body geometry, current custody and mass, not name-based quantities. One creature retains actualHP/maxHP,Wounds,conditions,origin,resources and physical lineage. Shape/equipment changes use the reviewed root body, continuous meld-chain ceilings, current external gear and mandatory placement procedures. No form has a secondHP pool or restores lost matter. All proposed exceptions to ordinary adjacent-only placement are stated. Structures, soil and real cargo retain actual mass and condition; unknown material/stat data is not a free invented favorable value.
+
+### timeAndDefense
+
+Elapsed clocks start at resolution and expire at the original deadline. Explicit regular markers exclude extra turns and persist through initiative changes/absence; outside round durations use6seconds per round. Suppression does not reset source clocks, restore spent uses or bank skipped events. Actual damage/defense, source-qualified resistance, temporaryHP, life/Wound/death and concentration rules apply. Non-stacking adverse Speed uses actual strongest-control arbitration. Shared source-character/target/encounter hard-control admission applies where expressly stated. A title supplies no portal, soul, creature-type or condition rule.
+
+### assetsAndEconomy
+
+Real commanded companions/devices share their owner's one Bonus Action command and one offensive companion Action per numbered round, attached after the complete owner turn. Creation supplies no free command/attack/Reaction. Uncommanded capable creature companions move defensively/Dodge; noncreature images do only their stated behavior. Actual source stats and qualifiedHP bonuses follow their real creator/controller rules. Preserve actual EX58 work/rest/travel/supply clocks, twelve expedition-roster places, training, recipe inputs/output and settled ownership. Magic supplies no unprinted market value, harvest entitlement, credential or resource-producing corpse.
+
+### examples
+
+Baseline eligible Wizard11:INT+4,PB+4,DC16,spell attack+8,RP40/40,Dissonance0,limit10. Fresh rank6 spends13,leaving27; ordinary cadence still applies. Mage11 maximum32 differs. Examples are authored adjudications, not full executable spell/runtime or human-balance tests.
+
+### comparisonStatus
+
+The current authored review index controls comparison status. All21 counterparts are retained in full:11 reviewed procedures and10 pending identities with complete earlier unadopted proposals. Gaseous Form and Glyph of Warding already have reviewed descendants in candidate_low_rank_136.json; their old source-catalog/preparation records remain preserved as historical inputs,not evidence of incompleteness. Wind Walk follows the reviewed mist body without adding physical resistance and explicitly proposes its own recipient/speed/duration changes. Contingency proposes paid stored casting,which reviewed Glyph does not provide. No counterpart is promoted or amended by this cohort. No cosmology review or GitHub push occurs.
+
+## Explicit questions for the joint conference
+
+- **TU6-X01** — Elemental Rebind selects the five-type Lance set rather than Drain's six-result table;CON success halves damage without suppression,and failure suppresses immunity/resistance before5d10.
+
+- **TU6-X02** — Earthstep uses existing walking movement,real senses/air/cargo and a proposed mandatory retreat along its actual finite entry route;review that explicit exception to adjacent-only normalization.
+
+- **TU6-X03** — Metaburst is+4score up to24with one-minute concentration,independent related-check/save advantage and per-level temporaryCON capacity recalculation without healing.
+
+- **TU6-X04** — The resource-capacity excess partition in Metaburst depends on the expressly unadopted Eye of Judgement proposal;approve or replace both consistently.
+
+- **TU6-X05** — Displace Structure targets an actual40x40x30-foot building up to250000lb,with30-foot point-path movement,90degree ceiling,occupant escape and a conserved foundation/soil exchange.
+
+- **TU6-X06** — Flesh to Stone immediately applies native Petrified after CON under shared hard-control admission,with no concentration,repeat save or expiry. Decide permanent control balance without silently deleting the source promise.
+
+- **TU6-X07** — Review Petrified gear/matter/death return and metabolic completion,including ordinary dying clocks and whole-day versus partial-day EX58 intake obligations.
+
+- **TU6-X08** — Move Earth proposes8000cubic feet of conserved loose substrate in40-foot cube,with genuine support changes,DEX escape/Prone and no automatic burial/crushing or material purification.
+
+- **TU6-X09** — Wind Walk uses reviewed Gaseous Form as its body comparison,including no new physical resistance,while proposing eleven recipients,any otherwise-legal root size,Fly60/Hover and one hour without concentration. Review those extensions,mental-feature permissions,one-inch clearance and individual meld/suppression endings.
+
+- **TU6-X10** — Rift Spiral uses a20-foot all-creature DEX-half area and one predeclared cast-wide rider:native Prone or finite half-Speed,without importing either full Slow mode.
+
+- **TU6-X11** — Arcane Clone has one independent audiovisual image and one combined uniform visual-decoy selection with Mirror Image;review BA movement,observer recognition and rank-six usefulness.
+
+- **TU6-X12** — Spell Sculptor is a one-minute preparation for one separately paid rank0-6area cast,with selected allied direct-payload exclusions and a separate60-second modifier;physical creations remain real.
+
+- **TU6-X13** — Contingency separately pays wrapper and rank0-5Action payload,uses24-hour source/60-second load deadlines and finite observable triggers,then releases the same stored spell at the bound body.
+
+- **TU6-X14** — Contingency concentration transitions,loading-only Counterspell window,post-event release,incapacitated/dead sources and finite automatic-event queues need explicit shared-interface review. Reviewed Glyph has only its three finite built-in payloads;its completed procedure is not authority for stored casting,permanence or surface-target loading into this creature/area-only frame.
+
+- **TU6-X15** — Create Homunculus has a complete new Tiny Construct servant profile,permanent one-body cap,shared commands and2RP/2d6maintenance;no free skilled workforce,material stock or source-qualified Conjuration bonus is assumed.
+
+- **TU6-X16** — Instant Summons retains the printed concentration minute but proposes one-mile remote recall of an owned/consented50lb coherent object,one spent attempt and no custody theft or hidden-location diagnostic.
+
+- **TU6-X17** — All13 complete sources and access rows remain intact. Retain reviewed Gaseous Form/Glyph of Warding descendants alongside their stale historical preparation/catalog records and correct comparison status through the current authored index. Source/rendering/arithmetic verification is not GPT approval,runtime integration,human balance,whole-game closure,push or cosmology review.
+
+## TU6-01 — Elemental Rebind
+
+**Original question:** Preserve a target LOSING IMMUNITY/RESISTANCE TO ONE ELEMENT and taking5d10 OF THAT TYPE,Core Action/60ft/Instantaneous. Define exact native elemental type choices,legal target,save/attack,damage on success and the duration/concentration of defense loss. State whether removal precedes this spell's damage and whether both resistance and immunity are removed when separately present. Distinguish temporary suppression of actual source defenses from permanent deletion,lower-tier conversion,changing creature type or vulnerability. Retain actual defense provenance on ending,suppression and recast; reappearance must not duplicate or erase independently changed sources. Compare Elemental Drain and ordinary resistance without importing a permanent elemental rewrite or damage amplification absent from the source.
+
+KEEP one target losing immunity/resistance to one element and taking5d10of that type. NEW choose one perceived creature within60feet/line of effect and acid,cold,fire,lightning or thunder at commitment, using the actual five-type elemental set already specified by Conjure Elemental Lance. Elemental Drain's separately proposed six-result table also includes poison; it is not a universal definition overriding this choice. CON save against spellDC. Success: half the one5d10packet,rounded down,and no defense suppression. Failure: first establish the selected-type suppression below, then resolve the full5d10packet through remaining real defenses. No spell attack, vulnerability, RP drain or damage-type conversion is added.
+
+NEW failed-save suppression lasts until the target's first future regular END,excluding an in-progress target turn,or6elapsed seconds outside initiative. No concentration; the initial damage remains instantaneous while this separate rider is ongoing. During its operative interval, suppress all actual resistance and immunity to the chosen damage type on that recipient, including simultaneously present sources and later gained sources. Suppress neither unrelated types nor flat reduction,temporaryHP,survival replacement,absolute invulnerability against an independently defined category,or a source's other benefits. An actual explicit immunity to defense stripping/transmutation retains its scope. Do not convert immunity into resistance or remove only the first of several defenses. This spell's own failed-save packet therefore ignores the covered resistance/immunity when suppression legitimately establishes; if a separate protection prevents the rider,the packet uses whatever defenses actually remain.
+
+Keep the original defense records,owners,eligibility and deadlines. This is an overlay,not permanent deletion or a change in creature type. If Rebind is suppressed,covered defenses can operate during that gap; if the still-live rider resumes,they become suppressed again without a new save,damage packet or fresh endpoint. An immunity that independently expires or is removed during the interval does not reappear when Rebind ends. Concurrent same-type Rebind riders do not multiply damage or create additional vulnerability; any still-operative one supplies the same suppression,each retaining its own clock. Different selected types have separate actual coverage.
+
+The initial packet still uses ordinary damage ownership,transfer,concentration,Wounds and death resolution once. A transfer into another creature meets that recipient's actual defenses; Rebind follows the original recipient,not the packet into every other body. On expiry or actual eligible removal,only still-existing eligible defenses return. Dispel cannot undo the earlier damage. No repeated damage tick,hard-control claim,automatic critical,permanent elemental rewrite or free healing appears.
+
+**New decisions:** NEW five-type selection,CON half/no-rider success,full immunity-and-resistance overlay before damage,and target-next-END nonconcentration rider.
+
+### Authored examples
+
+TU6-01-A: A creature has separate fire resistance and fire immunity and fails CON. The new fire rider suppresses both before5d10=28fire resolves; another actual flat reduction of3still leaves25before any remaining defenses. The spell did not merely downgrade immunity to resistance, and it created no vulnerability or RP loss.
+
+TU6-01-B: On CON success,5d10=29becomes14before actual fire resistance halves it again to7; no rider establishes. On a different failed-save application,the original immunity expires while suppressed. Ending Rebind later does not restore that expired immunity or replay damage; an independent transferred recipient retains its own defenses.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "elemental-rebind",
+  "name": "Elemental Rebind",
+  "schools": [
+    "Transmutation"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Druid": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Shaman": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "elemental-rebind",
+    "original": {
+      "name": "Elemental Rebind",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Transmutation",
+      "schools": [
+        "Transmutation"
+      ],
+      "placements": [
+        {
+          "name": "Elemental Rebind",
+          "school": "Transmutation",
+          "level": 6,
+          "summary": "Target loses immunity/resistance to 1 element and takes 5d10 of that type."
+        }
+      ],
+      "classLevels": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Druid": 11,
+        "Mage": 11,
+        "Shaman": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Druid": "Transmutation",
+        "Mage": "Transmutation",
+        "Shaman": "Transmutation",
+        "Wizard": "Transmutation"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Target loses immunity/resistance to 1 element and takes 5d10 of that type.",
+      "alternateSummaries": [],
+      "classes": [
+        "Druid",
+        "Mage",
+        "Shaman",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 792,
+        "original": {
+          "school": "Transmutation",
+          "level": 6,
+          "name": "Elemental Rebind",
+          "effect": "Target loses immunity/resistance to 1 element and takes 5d10 of that type.",
+          "source_paragraph": 9962,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Damage",
+            "Ward"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-02 — Earthstep
+
+**Original question:** Preserve moving THROUGH STONE OR EARTH AS IF AIR for1MINUTE,Core Action/60ft/1minute. Resolve recipient/casting range versus movement distance,eligible material definitions,actual movement mode/speed and whether concentration is added as NEW. Define support,senses,air/breathing,carried gear,occupied space,known route and interactions with worked stone,metal,incompatible minerals,magical barriers and living bodies. Passage does not inherently excavate,create a tunnel,carry a whole room or reveal hidden chambers. Specify safe and finite ending/suppression behavior when inside solid material without free teleportation,duplicate movement or automatic death. Preserve physical identity and no extra cargo/harvest from occupying stone.
+
+KEEP moving through stone or earth as though air for one minute. NEW Action gives one willing perceived creature within60feet/line of effect,including self,the following movement permission for60elapsed seconds with caster concentration. The casting range is not travel distance. Use the recipient's actual current walking Speed and ordinary movement allowance through eligible solid terrain; this supplies neither extra Speed nor a new Action. Moving upward/downward within connected substrate uses that same measured3Dpath and allowance; once outside it,no flight or hover is granted. Subject can choose to remain normally supported on an eligible surface instead of sinking automatically.
+
+Eligible substrate is nonliving ordinary earth,sand,clay,gravel or stone,including worked masonry. It excludes metal,glass,ice,wood,living bodies,magical force barriers,explicitly warded impassable boundaries and separately existing objects embedded in the substrate. Ordinary mineral inclusions that are part of the stone remain part of it; no selective ore/gem extraction follows. An actual special material's rule controls its magical passage. The recipient and its legally worn/carried inanimate equipment pass as one conserved body/custody set within actual capacity; no passenger,other creature,cart,detached item or newly captured room contents travel by association. The stone remains present and continues its ordinary support; no tunnel,air channel,harvestable displaced volume or path for followers is created.
+
+This permission supplies no tremorsense,darkvision,wall sight,remote map,sound transmission or line of effect through the stone. Ordinary solid cover still blocks perception/attacks/casting. A traveler may use an actually known route or probe with real movement,stopping at an incompatible boundary instead of learning the hidden room behind it. It gains no air supply: retain actual breathing and suffocation rules and elapsed time. It cannot attack a body through stone merely because it shares a solid volume with it,and cannot end a declared voluntary step overlapping another body or excluded object. Real gear retains weight,condition,contents and access only where the recipient has actual anatomy and physical clearance to use it; being carried does not let a weapon strike outside the wall.
+
+Record the actual continuous route since the most recent legal open whole-body space. Expiry,concentration loss,eligible removal or suppression while wholly outside eligible solid simply ends the passage permission normally. NEW finite safety procedure inside substrate: expel the same body and current carried gear backward along that recorded route to the most recent still-legal open whole-body placement. This is a narrow physical retreat through the same eligible substrate,not a teleport to the surface or a search for a closer unexplored chamber; it can never move farther forward along the route. Use no tactical choice,attack aperture,charge/OA benefit or newly added movement allowance. The forced retreat does not itself deal invented crushing damage. The maximum path is the actual finite path already traveled during this cast.
+
+If changed incompatible matter or occupied open space now blocks the recorded retreat,stop at the first conflict and retain only the body's minimum local clearance and recorded escape path as pending placement. The spell has ended or is suppressed; that residual placement record grants no new stone travel,sight,attack through walls,storage expansion or rest/supply benefit. Genuine movement/handling may retrace the remaining recorded exit path once legally available; each vacated clearance closes immediately. No body,item or material is deleted or duplicated. Actual breathing clocks and other dangers continue; this is not indefinite invulnerability. A source expressly transporting the trapped creature can resolve the conflict within its own real permission.
+
+If suppression ends before the original deadline,passage can resume only for the still-live original application and legal current body; no return to the old embedded position or refreshed minute. Replacing Earthstep retains actual body history and any unresolved prior clearance,without using two casts to multiply cargo or movement. The mandatory retreat is an explicit proposed exception to the reviewed adjacent-only body normalization and needs joint approval.
+
+**New decisions:** NEW willing recipient,current walking movement through ordinary stone/earth,actual senses/air/cargo limits,and finite recorded-path retreat with explicit pending-placement exception.
+
+### Authored examples
+
+TU6-02-A: A walking-Speed30recipient spends20feet moving into known worked stone and10feet moving laterally,using its whole30-foot allowance. No tunnel or view of the next room appears. Its real pack travels with it; a passenger does not. It must still satisfy actual breathing needs and cannot cast a sight-required spell at a hidden creature through the stone.
+
+TU6-02-B: Concentration ends while the traveler is15feet inside its recorded entry route. The proposed safety rule retreats that real body along the same15feet to its last legal open position,not to an unknown exit on the far side. If new incompatible matter blocks that route,a placement conflict remains with real breathing/time pressure; the procedure creates neither free forward relocation nor automatic crushing damage.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "earthstep",
+  "name": "Earthstep",
+  "schools": [
+    "Transmutation"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Druid": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Shaman": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "earthstep",
+    "original": {
+      "name": "Earthstep",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Transmutation",
+      "schools": [
+        "Transmutation"
+      ],
+      "placements": [
+        {
+          "name": "Earthstep",
+          "school": "Transmutation",
+          "level": 6,
+          "summary": "Move through stone or earth as if it were air for 1 minute."
+        }
+      ],
+      "classLevels": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Druid": 11,
+        "Mage": 11,
+        "Shaman": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Druid": "Transmutation",
+        "Mage": "Transmutation",
+        "Shaman": "Transmutation",
+        "Wizard": "Transmutation"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Move through stone or earth as if it were air for 1 minute.",
+      "alternateSummaries": [],
+      "classes": [
+        "Druid",
+        "Mage",
+        "Shaman",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 793,
+        "original": {
+          "school": "Transmutation",
+          "level": 6,
+          "name": "Earthstep",
+          "effect": "Move through stone or earth as if it were air for 1 minute.",
+          "source_paragraph": 9963,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "1 minute",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-03 — Metaburst
+
+**Original question:** Preserve choosing STR,DEX OR CON for an ALLY,granting+4 AND ADVANTAGE ON RELATED CHECKS/SAVES,Core Action/60ft/Instantaneous. Resolve whether+4 is to the score or modifier and define finite duration/concentration,recipient eligibility and actual ability cap. Preserve the advantage clause independently. State derived effects on attack/damage,initiative,AC,carrying,HP maxima and currentHP if the chosen value changes them,with exact timing and no free-healing loop when CON enters/exits. Bind replacement/stacking and other ability modifiers to real sources; no silent extension to all three abilities or unrelated checks. Suppression/ending preserves spent actions/resources and actual damage history; a new cast does not erase previous damage.
+
+KEEP one ally receiving+4to one of STR,DEX or CON and advantage on related checks/saves. NEW choose one willing perceived ally within60feet/line of effect,including self,and one named score at commitment. The+4is an ability SCORE increase,not+4to its modifier. Duration concentration up to60elapsed seconds,explicitly replacing Instantaneous operationally for the ongoing benefit. No save. NEW Metaburst can raise the otherwise-applicable selected score up to24: add min(4,max(0,24 minus that score before this Metaburst contribution)). It never lowers an already higher score. This temporary ceiling does not authorize permanent advancement above the actual ASI cap or waive another source's own limit.
+
+Recompute the actual modifier by floor((score-10)/2). It modifies only genuinely derived statistics using that current score/modifier: qualifying attack/damage or source saveDC,DEX-based AC under the chosen actual armor/formula,STR-based carrying/Load,and corresponding checks/saves. It grants no proficiency,new attacks,new movement mode or retroactive initiative reordering. Advantage applies independently to real checks and saving throws whose actual governing ability is the selected one,including a genuine new DEX initiative check but not an already determined slot. No advantage on attack rolls is granted. Ordinary advantage/disadvantage cancellation remains. A score already at24can still receive the printed related-check/save advantage.
+
+NEW temporary CON integration: recompute the base maximumHP from the character's actual stored attained-level contributions using the new CON modifier and each contribution's minimum1,then apply the real separate maximumHP bonuses/reductions/systemic factors. Do not use a naive level times modifier-difference shortcut where per-level floors matter. If a noncharacter creature lacks level contributions,use only an actually supplied CON-dependent maximum formula; do not invent Hit Dice/levels or extraHP from the score. A higher maximum supplies capacity only,not currentHP or temporaryHP. A later fall of maximum clamps currentHP if needed without damage,healing,Wounds,concentration saves or first-fall triggers. Dead/dying/Stable states remain their real states.
+
+Current attack/save/resource features whose actual rules use the changed modifier may recalculate their own future amount or capacity; fixed acquisition/creation snapshots do not. Newly larger capacity alone never refills RP,class gauges,uses or prepared selections. Downward resource-capacity changes use their actual reviewed holder rules; NEW where this temporary spell alone creates an over-cap finite balance,preserve the same inaccessible-excess partition proposed in Eye of Judgement:only the accessible portion may be spent,gains count reserved units against capacity,and return transfers surviving reserve rather than creating a refill. This expressly remains a shared pending design issue,not an assumed reviewed engine.
+
+One Metaburst application per recipient across casters. A successfully established new cast replaces the old entire choice;failed/countered attempts do not. Thus STR and CON cannot both be kept by stacking Metaburst casts. Other actual score-source interactions follow their real rules; no new universal stacking rule for unrelated spells/items is implied. During suppression benefits are absent and derived values recompute;the original60-second clock,spent resources and damage history continue. Returning or ending the same source never grants healing or a fresh resource use. A loss of carrying capacity is handled through real body/inventory overload and legal drops,not deleting items or preserving a secretly higher meld-chain budget established at another time.
+
+**New decisions:** NEW +4score with temporary24ceiling,one-minute concentration,derived-stat and per-level CON capacity handling,one recipient-wide choice,and non-refilling resource conservation.
+
+### Authored examples
+
+TU6-03-A: STR18becomes22,so its modifier changes+4to+6. The recipient gains advantage on actual STR checks/saves but not on attack rolls; a real STR attack uses the new+6modifier normally. STR23instead becomes24,while a score already26is not lowered. No earned feat,proficiency or additional Attack Action appears.
+
+TU6-03-B: A character has recorded HP bases6and1and CON6(-2),giving max(1,6-2)+max(1,1-2)=5baseHP. Metaburst raises CON to10(0),giving6+1=7capacity; currentHP3stays3. If genuine healing later reaches7,ending the spell restores capacity5and clampsHP to5without a damage event. Recasting cannot heal those lost2HP.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "metaburst",
+  "name": "Metaburst",
+  "schools": [
+    "Transmutation"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Druid": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Shaman": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "metaburst",
+    "original": {
+      "name": "Metaburst",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Transmutation",
+      "schools": [
+        "Transmutation"
+      ],
+      "placements": [
+        {
+          "name": "Metaburst",
+          "school": "Transmutation",
+          "level": 6,
+          "summary": "Choose STR, DEX, or CON; ally gains +4 and advantage on related checks/saves."
+        }
+      ],
+      "classLevels": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Druid": 11,
+        "Mage": 11,
+        "Shaman": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Druid": "Transmutation",
+        "Mage": "Transmutation",
+        "Shaman": "Transmutation",
+        "Wizard": "Transmutation"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Choose STR, DEX, or CON; ally gains +4 and advantage on related checks/saves.",
+      "alternateSummaries": [],
+      "classes": [
+        "Druid",
+        "Mage",
+        "Shaman",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 794,
+        "original": {
+          "school": "Transmutation",
+          "level": 6,
+          "name": "Metaburst",
+          "effect": "Choose STR, DEX, or CON; ally gains +4 and advantage on related checks/saves.",
+          "source_paragraph": 9964,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-04 — Displace Structure
+
+**Original question:** Preserve MOVING OR ROTATING A BUILDING OR STRUCTURE UP TO30FT,Core Action/range30ft/Instantaneous. Define finite size/mass/connectedness limits,origin and destination geometry,rotation limit and exact target structure including foundations,contents and occupants. Do not replace the building-scale promise with moving one loose object. Determine required support,legal placement,collision,occupied destinations,line of effect and whether consent/save or structural resistance applies. Resolve actual occupants,carried attached objects,falling/debris/damage and utility connections using one conserved physical transition with finite consequences. No duplicated building,free repair,automatic crushing,unbounded subterranean excavation or new salvage stock. Unsupported exceptional structures need explicit source limits rather than an invented universal construction profile.
+
+KEEP moving or rotating an actual building/structure up to30feet with Action,range30feet and instantaneous duration. NEW choose one coherent physically connected nonliving structure whose visible qualifying exterior point is within30feet/line of effect. The whole target must fit a40-by40-by30-foot bounding box and have documented/actually established total moved mass no greater than250000lb,including its carried contents and occupants. It may be a complete small building,tower section already structurally independent,bridge span or comparable constructed whole; it is not limited to one loose object. Do not select an inseparable room out of a larger building,slice living roots/bodies or pretend an undefined exceptional fortress has a favorable mass/support profile.
+
+Before casting declare exactly one rigid transformation: horizontal translation of at most30feet,or rotation about one fixed vertical axis through the structure by at most90degrees. Every moved point's actual path length,including rotation arcs,must also be at most30feet. There is no scaling,tilting,inversion,vertical launch or combined translation-plus-rotation in one cast. Full footprint and height must fit the clear swept volume and final legal placement. The caster must perceive the exterior destination/swept envelope well enough to choose it; hidden internal obstruction or ward eligibility resolves after payment,not by a free diagnostic search. It cannot pass through occupied external bodies,other structures,incompatible terrain or a magic boundary that actually prevents this displacement. A merely cosmetic outline is not enough to certify physical placement.
+
+NEW include integral walls,floors,roof,doors and the actual foundation to at most5feet below its current ground contact,all within the overall size/mass bounds. Ordinary gravity anchoring and nonmagical embedded foundation contact do not alone prevent this expressly building-scale move. Actual special magical anchoring does. A part that extends beyond those limits or is structurally inseparable from a larger foundation makes the selected whole ineligible; the spell does not cut it free. Independently connected pipes,cables,chains or structural links must already permit the declared motion through slack/joints or be actually disconnected by a separate lawful procedure. The spell neither severs them for free nor teleports attached off-target networks.
+
+Carry all real contents and creatures actually supported/enclosed by the moving structure in the same rigid transition,including real carried inventories;do not reset their position relative to its floor,HP,conditions or custody. They count toward mass but do not become components of a new creature or sharedHP pool. NEW an unwilling conscious action-capable occupant makes DEX against spellDC before movement. On success it may stay behind only by choosing a genuinely reachable safe open position within5feet of its present place on the structure's exterior edge; this is one explicit forced-transport escape,not an Action/Reaction or teleport through a wall. With no legal such place,success leaves it transported without penalty. Failure/willingness transports it normally,with no automatic damage or Prone. A separate actual immovable-creature/anchor rule that cannot lawfully move prevents that physically conflicting whole transition,not dismemberment.
+
+NEW the spell temporarily supports the moving structure during the instantaneous transition and carries a geometrically matching foundation recess to the destination by displacing only the ordinary loose ground required for that foundation into the vacated original recess. This exchange conserves that actual soil and requires sufficient compatible loose receiving terrain; no excavation of bedrock,valuable ore,buried objects or occupied tunnels is supplied. A structure with no embedded foundation needs no such exchange. Final ordinary support must be real and adequate under its actual structure record or established construction; no lasting magical support remains. Thus the spell cannot finish a house over empty air or unsupported occupants merely to invent a crush/fall attack.
+
+After arrival,ordinary independent damage,hazards,load and changed door/road access apply once at their real causal events. The movement itself deals no building collision damage,creates no automatic collapse and repairs nothing. An actually damaged beam remains damaged;later real failure uses that structure's genuine support/hazard rules. The old site and exchanged ground retain the conserved resulting geometry;no duplicate building,foundation,room contents or new salvage stock exists. No save by the inanimate structure is added,though actual special protection applies. A countered/failed legal cast refunds nothing. After successful completion there is no ongoing displacement magic for dispel to move it back;another move requires another legal paid cast.
+
+**New decisions:** NEW complete40x40x30-foot/250000lb structure target,rigid30-foot point-path movement,finite occupant escape,foundation/soil exchange and supported permanent placement.
+
+### Authored examples
+
+TU6-04-A: A complete30-by20-by20-foot timber building and its actual occupants/contents weigh80000lb. Its disconnected fittings,clear swept space and compatible supported destination permit a20-foot horizontal move. The same furniture,people and damaged roof arrive once;neither new loot nor repaired timbers appear. An occupant at a reachable exterior edge may use the proposed successful-DEX5-foot escape.
+
+TU6-04-B: A corner20feet from the chosen rotation axis would travel about31.416feet in a90-degree rotation,exceeding the30-foot point-path limit even though90degrees is the nominal angular maximum. That declared move is ineligible;choose a smaller legal rotation before casting. A destination over an unsupported pit is likewise not a legal way to use the spell for automatic building-scale crushing damage.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "displace-structure",
+  "name": "Displace Structure",
+  "schools": [
+    "Transmutation"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Druid": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Shaman": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "displace-structure",
+    "original": {
+      "name": "Displace Structure",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Transmutation",
+      "schools": [
+        "Transmutation"
+      ],
+      "placements": [
+        {
+          "name": "Displace Structure",
+          "school": "Transmutation",
+          "level": 6,
+          "summary": "Move or rotate a building or structure up to 30 ft."
+        }
+      ],
+      "classLevels": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Druid": 11,
+        "Mage": 11,
+        "Shaman": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Druid": "Transmutation",
+        "Mage": "Transmutation",
+        "Shaman": "Transmutation",
+        "Wizard": "Transmutation"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Move or rotate a building or structure up to 30 ft.",
+      "alternateSummaries": [],
+      "classes": [
+        "Druid",
+        "Mage",
+        "Shaman",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 795,
+        "original": {
+          "school": "Transmutation",
+          "level": 6,
+          "name": "Displace Structure",
+          "effect": "Move or rotate a building or structure up to 30 ft.",
+          "source_paragraph": 9965,
+          "casting_time": "1 action",
+          "range": "30 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-05 — Flesh to Stone
+
+**Original question:** Preserve turning a CREATURE TO STONE PERMANENTLY with Core Action/60ft/UNTIL DISPELLED. Define initial resistance/save,transformation timing and whether one cast fully establishes it; do not import a particular multi-save sequence or omit permanence without explicit adjudication. Supply exact creature-versus-object identity,consciousness,actions,ongoing effects,HP/defenses,mass/equipment and damage retention under the existing form/body/life rules. Decide how dispel,suppression,breakage and partial remains affect return without free healing,duplicate corpses,harvestable free stone or soul assumptions. Petrified is not automatically supplied by a familiar external condition name; bind or author the actual native state. Retain actual target history and no reset from recasting.
+
+KEEP permanently turning one creature to stone and the explicit Until Dispelled duration. NEW one perceived creature within60feet/line of effect makes CON against spellDC;success negates. Failure attempts to apply the actual native Petrified condition immediately in full from this one cast. There is no imported three-success/three-failure sequence,stabilization minute or concentration. Actual petrification/transmutation immunity and the shared source-character/target/encounter hard-denial allowance govern admission,including a willing recipient;the source supplies no save waiver. Spend that allowance only when the whole-action-denying condition actually establishes. A blocked attempt has no partial stone,slow or delayed claim and refunds no legal committed cost.
+
+The ongoing rank-six Petrified application has no ordinary expiry or repeat save. Its actual effect is the reviewed native condition:stone-like substance,Incapacitated,no movement/speech,unaware,automatic failed STR/DEX saves,attacks against it have advantage,ceases aging,body weight times10once,resistance to damage except Corruption,and poison/disease immunity with existing poison/disease effects suspended rather than cured. No extra AC,indestructibility,automatic adjacent critical,objectHP pool or new living/dead state is added. Ending a Druid/temporary spell anatomy follows the real Incapacitated rule;the condition persists on the resulting root body. A permanent anatomy that genuinely survives Incapacitated keeps its actual underlying body identity and the same condition overlay.
+
+Use the same normalHP,maximumHP,Wounds,temporaryHP,death records and actual source defenses. Incoming attacks resolve against that creature's actual defenses and native Petrified resistance;do not apply a separately invented statue damage threshold or Sunder instant-kill rule. Healing can affect it only through an independently eligible real healing source,without ending petrification or replacing missing anatomy. Actual0HP,dying or death does not itself dispel this permanent conversion. NEW dying death-save/Stable/death timing retains its genuine life procedure;the condition does not silently supply temporal stasis. If it dies while stone,ending the conversion returns actual dead remains,not a living creature.
+
+The body alone receives the tenfold condition multiplier;worn/held/carried equipment stays real external equipment with its own unchanged weight,damage,contents and custody. Nothing automatically melds or becomes saleable stone gear. Physical access by others follows the actual grip,fastenings,anatomy and handling rules;the spell neither grants an extra disarm nor welds every possession into the body. The native condition supplies no magical material yield. Body matter broken or removed by genuine resolved injury remains the same separated matter and location. An actual spell ending restores surviving stone-like body matter to its real underlying substance,including actual separated parts,but cannot reattach,regrow,duplicate or rebuild it. Apply actual structural harm/injury rules;cosmetic chipping is not automatic deletion of arbitrary organs.
+
+NEW metabolic completion for this source:while fully operative Petrified,the body needs no air,food or water intake and gains no work or beneficial rest credit. A complete actual daily supply interval spent wholly in this state creates no new intake shortage;an interval containing ordinary embodied activity retains its normal EX58 daily requirements,without a fractional-ration exploit. Existing shortage/RestDebt/Strain and disease records are not cured. Preserve actual world clocks and each poison/disease source's real suspension/progression rules;this is not permission to reset a disease or resurrect a previously dead body. This finite accounting choice for indefinite stone requires explicit joint review.
+
+Actual eligible dispel,an effect expressly removing Petrified,or another genuine named cure can end the application. The caster has no free dismissal merely because the spell is permanent. Suppression temporarily suspends this particular condition source and returns only real present anatomy/function;other Petrified sources may still keep the condition operative. Weight changes once with actual operative condition status,not once per record. During a suppression gap,real damage,movement,healing,spent resources and matter changes persist. If suppression ends,the same remaining source reapplies its stone expression to surviving matter without a new save,hard-control claim,initial damage or restoration. Simultaneous Petrified sources do not multiply weight or resistance;removal obeys the actual remover's scope. None of this creates a soul-transfer,resurrection or harvest permission.
+
+**New decisions:** NEW immediate CON-gated native permanent Petrified under hard-control admission,single body/gear/condition lineage,explicit metabolic accounting and no-healing suppression/dispel return.
+
+### Authored examples
+
+TU6-05-A: An180lbcreature fails CON and the caster has an available hard-control allowance. It becomes Petrified immediately and remains until a genuine removal,with body weight1800lbplus unchanged actual gear. A14-point ordinary slashing packet becomes7under Petrified resistance before other legitimate effects. There is no second statueHP ledger or one-minute permanence checkpoint.
+
+TU6-05-B: The stone creature later suffers actual lethal injury and loses a limb. Dispel ends the rank-six condition but returns the same dead damaged body and separated limb in their real places;it heals and reattaches nothing. If suppression instead allowed the living subject to move before resuming,petrification resumes at its current position without replaying a save or resetting source/encounter history.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "flesh-to-stone",
+  "name": "Flesh to Stone",
+  "schools": [
+    "Transmutation"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Druid": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Shaman": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "flesh-to-stone",
+    "original": {
+      "name": "Flesh to Stone",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Transmutation",
+      "schools": [
+        "Transmutation"
+      ],
+      "placements": [
+        {
+          "name": "Flesh to Stone",
+          "school": "Transmutation",
+          "level": 6,
+          "summary": "Turn creature to stone permanently."
+        }
+      ],
+      "classLevels": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Druid": 11,
+        "Mage": 11,
+        "Shaman": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Druid": "Transmutation",
+        "Mage": "Transmutation",
+        "Shaman": "Transmutation",
+        "Wizard": "Transmutation"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Turn creature to stone permanently.",
+      "alternateSummaries": [],
+      "classes": [
+        "Druid",
+        "Mage",
+        "Shaman",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 796,
+        "original": {
+          "school": "Transmutation",
+          "level": 6,
+          "name": "Flesh to Stone",
+          "effect": "Turn creature to stone permanently.",
+          "source_paragraph": 9966,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Until dispelled",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-06 — Move Earth
+
+**Original question:** Preserve dramatically RESHAPING TERRAIN,Core Action/60ft/Instantaneous. Supply a concrete finite terrain volume,material eligibility,placement/work speed and final geometry that makes the printed effect usable. Distinguish loose earth,stone,constructed surfaces,roots,liquids and occupied underground spaces using actual sources. Resolve movement of terrain versus its occupants,load/support,slope,collapse/falls,barriers and legal displacement with finite timing and saves where NEW. Preserve actual soil/stone quantity and attached matter; no material creation,purification,mineral extraction,automatic Supply or saleable ingredient identity. Do not import external-game dimensions or hours of concentration. Changed terrain can persist only under an explicit effect decision and ordinary physical stability,with actual source evidence for exceptional construction.
+
+KEEP dramatically reshaping terrain with Action,60feet and instantaneous duration. NEW select one perceived40-foot cube centered within60feet/line of effect and declare one connected terrain change involving at most8000cubic feet of actual eligible substrate inside it. Every moved parcel remains within that cube and travels at most30feet along a physically possible path. The caster declares the final slopes,berms,ramps,trenches or flattened area before resolution;no changing the plan after seeing hidden occupants. This amount can make a substantial20-by20-by20-foot excavation/berm or equivalent conserved geometry rather than merely moving one shovel of dirt.
+
+Eligible material is ordinary loose soil,sand,clay and gravel,including naturally mixed stones no larger than1foot in any dimension. Bedrock,worked masonry,constructed floors,metal,ice,living roots/bodies,valuable separated seams and magical barriers do not become earth by assertion. Embedded roots and independent objects remain actual obstacles/contents:the spell can move surrounding eligible soil but cannot sever,copy,purify,sort or transmute them. Mixed qualifying dirt retains its composition and mass;no ready ore,gem,trade ingredient,food Supply or monetary value is granted merely by moving it. Water is not selected substrate;ordinary flow into the changed terrain remains a separate actual consequence.
+
+Resolve one coherent instantaneous rearrangement,with no sustained invisible excavator or concentration. It may raise/lower land and genuinely change support or access. Preserve actual volume:excavated material must fit a legal destination in the same declared volume,and a raised berm needs the corresponding removed material. Do not compress soil into a denser saleable block,create a vacuum chamber beneath unsupported material or silently destroy surplus. Loose material must have plausible ordinary stable slopes/support under the actual known substrate;it cannot form an unsupported floating slab or permanent vertical sand wall. Existing structure/support records determine genuine later collapse,not a universal invented building damage roll.
+
+Creatures on or in the selected ground are not automatically buried,crushed or incorporated into the moved mass. NEW each unwilling actually displaced ground occupant makes DEX against spellDC once before its affected movement. On success it may choose a genuinely reachable safe open/supporting place within5feet of its current position;no wall passage or tactical remote relocation. If no such place exists,it follows the actual terrain transition without the failure rider. On failure it follows the real supported ground displacement and becomes Prone if that condition can actually apply. Willing occupants may accept that displacement without the Prone rider. Every resulting whole-body placement must avoid overlap;reserve spaces in fixed neutral identity order,not after choosing favored outcomes. The spell grants no additional voluntary movement or attack opportunity.
+
+Where the chosen terrain removes support without carrying the occupant,real falling begins from the actual height under the existing Fall Marker,after the save/escape result. Prone does not itself add damage or force a flying/hovering creature onto the ground;actual unsupported modes follow their own rules. The spell cannot fill an occupied body volume with soil to manufacture suffocation:retain the minimum actual body clearance and include its volume in the conserved geometry. If the declared whole transition cannot preserve all bodies/independent objects and substrate without illegal overlap,that conflicting rearrangement fails as a whole after any hidden eligibility resolution;do not partially generate a favorable berm while deleting the difficult matter. A known impossible plan is rejected before commitment,but unknown buried obstruction is no free map report.
+
+Real disturbed ground can be difficult terrain where its actual final surface qualifies,and a real pit/berm supplies actual cover/height/access. The spell imposes no separate magical slow or enduring damage field. After completion terrain persists as ordinary rearranged matter and obeys rain,load,settling and actual repairs. Dispel does not restore the old hill;another cast must pay again and conserve what exists now. Actual excavation time is replaced only for this selected magical movement,not for surveying,engineering credentials,safe foundation design,harvest identification,refining,crafting or finishing a work order. No extra work Watch,rest credit or free skilled crew follows.
+
+**New decisions:** NEW bounded8000-cubic-foot conserved terrain reshaping in40-foot cube,material/support rules,DEX escape/Prone and real falling without automatic burial or phantom material.
+
+### Authored examples
+
+TU6-06-A: The caster moves an actual10-by10-by10-foot block-equivalent of loose earth,1000cubic feet,into a legal nearby berm inside the40-foot cube. The excavation and berm contain the same material. A200-cubic-foot existing cavity cannot receive all1000without another legal receiving volume;the extra800cannot vanish or become compressed commodity stone.
+
+TU6-06-B: An occupant on affected ground fails DEX,rides the actual legal ground displacement and becomes Prone. If the plan instead removes support,it faces real falling from its actual height,not a separate invented6d6spell attack. A concealed immovable object preventing the declared conserved transition can cause paid failure without disclosing a secret tunnel map or deleting that object.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "move-earth",
+  "name": "Move Earth",
+  "schools": [
+    "Transmutation"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Druid": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Shaman": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "move-earth",
+    "original": {
+      "name": "Move Earth",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Transmutation",
+      "schools": [
+        "Transmutation"
+      ],
+      "placements": [
+        {
+          "name": "Move Earth",
+          "school": "Transmutation",
+          "level": 6,
+          "summary": "Reshape terrain dramatically."
+        }
+      ],
+      "classLevels": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Druid": 11,
+        "Mage": 11,
+        "Shaman": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Druid": "Transmutation",
+        "Mage": "Transmutation",
+        "Shaman": "Transmutation",
+        "Wizard": "Transmutation"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Reshape terrain dramatically.",
+      "alternateSummaries": [],
+      "classes": [
+        "Druid",
+        "Mage",
+        "Shaman",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 797,
+        "original": {
+          "school": "Transmutation",
+          "level": 6,
+          "name": "Move Earth",
+          "effect": "Reshape terrain dramatically.",
+          "source_paragraph": 9967,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-07 — Wind Walk
+
+**Original question:** Preserve YOU PLUS UP TO10 CREATURES transforming into GASEOUS FORM,Core Action/60ft/Instantaneous. The ordinary Gaseous Form spell is still pending; preserve its complete source rather than borrowing an unreviewed implementation or another game's speed. Define willing recipients,initial snapshot,finite duration/concentration,size,speeds,passage restrictions,senses,action/attack/casting ability,defenses and return timing for each. Bind worn/held/carried items,melded containers,cargo overflow and actual support/solid-space ending to existing body/form rules. Preserve eleven potential recipients and individual identities without creating an anonymous vehicle or sharedHP pool. Suppression,recasts,death and separation cannot restore lost material,reset resource costs or create free rapid travel outside the defined modes.
+
+KEEP the caster plus up to10other creatures becoming gaseous. NEW all recipients must be willing,perceived within60feet/line of effect at casting,and legally able to enter this proposed rank-six form under actual transformation precedence. The caster is a required recipient,not an optional twelfth slot. Declare the complete roster before commitment;each retains its own identity,HP,gear and eventual ending. No substitute recipient can be added later. NEW duration1elapsed hour,no concentration,explicitly replacing Instantaneous metadata for this temporary anatomy. A higher-rank/permanent incompatible transformation is not bypassed;ordinary known invalid roster/gear/space is rejected before payment,and hidden prevention leaves only actually legal successful links without new replacements.
+
+NEW form profile:the recipient is a visible cohesive mist in its actual root size category,using its own ability scores,normalHP,maxHP,conditions,saves,PB and actual compatible AC formula excluding inaccessible melded armor/shield. Fly60feet with Hover is its only locomotion;it gains no new walking,burrowing,swimming or teleport mode. It has ordinary sight/hearing and no darkvision,tremorsense or wall sight unless independently compatible actual senses already exist. It may pass through a continuous unsealed opening at least1inch wide,but not solid substance,sealed barriers,liquids or another body's enclosed interior. This clearance exception does not change its size or allow it to finish voluntary movement where its whole coherent body cannot fit without overlap. It cannot split into scouts,mix identities or be bottled as a new inventory commodity.
+
+As in reviewed Gaseous Form,the mist needs no ordinary breathing during this form and gains no physical/elemental resistance or damage/condition immunity. Existing independently compatible defenses retain only their real source permissions;becoming mist does not erase accrued suffocation harm or history. The subject is conscious and retains agency. It cannot make weapon/natural attacks,manipulate objects,speak or supply verbal/somatic/material components. A spell or class feature requiring any of those unavailable functions cannot be used. A genuinely purely mental feature explicitly compatible with this anatomy retains its own actual permission,action and cost;this form supplies no new component exemption or spell access. It can use ordinary movement-related Actions such as Dash,Disengage,Dodge,Hide or Search where its actual form permits them,and can end its own link as below. Existing independent spells/concentration and compatible passive features persist under real source requirements;upkeep needing actual speech/manipulation is unavailable. No new offensive command channel or remote sensory feed appears.
+
+Apply actual continuous meld-chain rules to worn/held/carried inanimate equipment. Preflight both recorded Load and pound ceilings and required drops. Melded gear remains inaccessible,current and individually conserved;it is not weightless when another creature supports the subject. No passengers,cargo acquired mid-flight,objects outside actual initial custody or supplies from a wagon join the form. The body preserves its actual base weight;the spell's flight supports its own permitted transformed body/inventory but grants no external lifting capacity or hands. Ordinary wind and hazards apply through their real rules;being mist does not automatically scatter the body or make it immune to storms.
+
+Each recipient can use its actual Action to end only its own link,including while suppressed if able to act. It cannot reenter on the same paid cast. Actual0HP,death or external Incapacitated after true same-packet prevention ends that recipient's temporary link;its ending does not end the other ten. Caster death likewise ends the caster's own form but supplies no extra group ending beyond each link's actual rule. There is no ongoing range tether. Actual dispel/removal may target an individual eligible link;its real scope determines whether more than one ends. New form replacement closes the appropriate old link and preserves the real single body/meld chain,not a second flying body or cargo capture opportunity.
+
+Suppression expresses root anatomy under the reviewed rule while original melded gear stays inaccessible and the hour continues. Loss of unsupported flight begins real falling;no automatic ground teleport occurs. Ending/reversion follows actual same-anchor,squeeze,nearest-legal-adjacent placement and pending conflict rules,with no passage through a wall and no invented crushing damage. An already separated/destroyed item or body part is never restored. Ending all links ends the cast record;elapsed expiry ends remaining links. Reviewed Gaseous Form remains a separate one-recipient,Small/Medium/Large,Fly10/Hover,one-minute concentration procedure. This Wind Walk proposal explicitly changes recipient count,permits each otherwise-legal actual root size because its source states no size cap,raises flight to60 and proposes one hour without concentration;its individual exit/lifecycle choices require review. It does not amend Gaseous Form or infer additional defenses from the word gaseous. Actual elapsed travel and recipient capacity use EX58;an hour of magical travel is not a free Watch,rest,food or guaranteed route.
+
+**New decisions:** NEW eleven-recipient one-hour nonconcentration mist profile,Fly60/Hover,explicit clearance/defenses/actions,individual ending and full conserved body/meld/travel interface.
+
+### Authored examples
+
+TU6-07-A: The caster and10willing companions form an eleven-member roster. Each gains the proposed Fly60/Hover body and its own real meld record,not a shared vehicle orHP pool. One recipient ends their link with an Action while the other ten continue. A twelfth creature or a pack left in a wagon cannot be added later without another actual eligible cast.
+
+TU6-07-B: A flying recipient at40feet height is affected by suppression. Root anatomy returns with the old melded armor still inaccessible,and real falling begins if no independent support exists. The original hour continues;resumption does not return spent items,heal damage or move the recipient back to its former height. A1-inch opening is passable only as actual continuous clearance,not through a sealed stone wall. Even before suppression,the mist supplies no resistance to an otherwise legal slashing packet;actual independent defenses still apply.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "wind-walk",
+  "name": "Wind Walk",
+  "schools": [
+    "Transmutation"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Druid": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Shaman": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Transmutation",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "wind-walk",
+    "original": {
+      "name": "Wind Walk",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Transmutation",
+      "schools": [
+        "Transmutation"
+      ],
+      "placements": [
+        {
+          "name": "Wind Walk",
+          "school": "Transmutation",
+          "level": 6,
+          "summary": "You and up to 10 creatures transform into gaseous form."
+        }
+      ],
+      "classLevels": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Druid": 6,
+        "Mage": 6,
+        "Shaman": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Druid": 11,
+        "Mage": 11,
+        "Shaman": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Druid": "Transmutation",
+        "Mage": "Transmutation",
+        "Shaman": "Transmutation",
+        "Wizard": "Transmutation"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "You and up to 10 creatures transform into gaseous form.",
+      "alternateSummaries": [],
+      "classes": [
+        "Druid",
+        "Mage",
+        "Shaman",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 799,
+        "original": {
+          "school": "Transmutation",
+          "level": 6,
+          "name": "Wind Walk",
+          "effect": "You and up to 10 creatures transform into gaseous form.",
+          "source_paragraph": 9969,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-08 — Rift Spiral
+
+**Original question:** Preserve an AREA that DISTORTS SPACE for6d6 FORCE plus SLOW OR KNOCK PRONE,Core Action/60ft/Instantaneous. Define area/range,recipient eligibility,damage save/attack and success outcome,who chooses the rider and its precise duration. Slow needs an explicit native movement/action effect rather than automatic import of the full ordinary Slow spell; Prone follows its own existing state. Resolve initial damage and rider order,immunity,hard-control admission where applicable,forced motion and multiple casts. No actual portal,new plane,teleportation,pulling force or recurring damage follows merely from spatial flavor. Any NEW geometry/control rule must be explicit and preserve the printed rider alternatives.
+
+KEEP6d6force and the choice of slow OR Prone in an area. NEW select one perceived point within60feet/line of effect and a20-foot-radius sphere centered there. All actual creatures in the sphere with origin-to-body line of effect are recipients,including allies/caster;no selective enemy filter or arbitrary object durability damage is added. Before commitment choose one rider for the entire cast:Slow or Prone. Each creature makes DEX against spellDC. Roll6d6once for the shared packet;success takes half,rounded down,and no rider. Failure takes full damage and independently receives the chosen rider if still a legal active creature and not protected against that component. Damage immunity alone does not cancel an otherwise admitted rider.
+
+Slow means half of each actually available locomotion Speed through the target's first future regular END,excluding any in-progress target turn,or6elapsed seconds outside initiative. It is one ordinary adverse-Speed record using actual strongest-control comparison before real later systemic multipliers. It grants no AC penalty,attack limit,Action denial,Reaction restriction,spell delay or teleport anchoring. Do not import either full ordinary Slow school mode merely from the word slow. The rider is nonconcentration and cannot acquire a fresh endpoint through suppression or extra turns. Recasting does not combine multiple halves into one-quarter Speed;real independent records retain their own clocks.
+
+Prone applies the actual native condition immediately and remains until the creature genuinely stands or another real rule ends it. It has no fabricated one-round automatic cure or extra duration. A swimming/flying/hovering subject follows the real condition and locomotion rules;the spatial appearance alone does not drag it toward the ground or create an extra fall beyond actual loss of support. A creature already Prone receives no additional Prone penalty. No compulsory standing Action is invented;normal movement/ability restrictions govern standing.
+
+Neither rider spends whole-Action hard-control admission. Actual immunities/protection can prevent the covered component without preventing the independently eligible force packet. Ordinary attack/save timing,damage transfer,temporaryHP,Wounds,InstantDeath and concentration checks resolve once with actual ownership. A transfer of part of the damage does not transfer the original target's Slow/Prone rider absent a real source saying so. A creature that dies from the packet receives no new living movement condition;an actual survival replacement is respected before deciding that eligibility.
+
+This spell creates no portal,rift entity,other plane,teleport,pull/push,terrain alteration,ongoing force field or repeated damage. The area is a single snapshot at resolution and never expands as another effect ends. After damage,only any actual Slow rider or Prone condition remains under its own rules;Prone is not an ongoing magical hold that ordinary dispel removes merely because a spell caused it. Eligible removal of the Slow application can end that rider but cannot reverse the packet. All original source metadata remains preserved.
+
+**New decisions:** NEW20-foot-radius all-creature DEX-half area,one predeclared cast-wide rider,native Prone or finite half-Speed with actual non-stacking and independent damage.
+
+### Authored examples
+
+TU6-08-A: The caster chooses Slow for the cast. Shared6d6rolls23force:one creature succeeding on DEX takes11and no rider;another failing takes23before defenses and gets half-Speed until its first future regular end. An already active stronger Speed restriction remains controlling. There is no new Reaction denial or full ordinary Slow package.
+
+TU6-08-B: The caster instead chooses Prone. A creature immune to force damage can still fail DEX and become Prone unless it has actual protection from that condition. The choice cannot be switched to Slow for a different target after seeing saves. No spatial-looking portal or forced thirty-foot movement appears,and transferred damage alone does not knock the receiving ally Prone.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "rift-spiral",
+  "name": "Rift Spiral",
+  "schools": [
+    "Universal"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Bard": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Cleric": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mirrorsage": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "rift-spiral",
+    "original": {
+      "name": "Rift Spiral",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Universal",
+      "schools": [
+        "Universal"
+      ],
+      "placements": [
+        {
+          "name": "Rift Spiral",
+          "school": "Universal",
+          "level": 6,
+          "summary": "Area effect that distorts space: 6d6 force + slow or knock prone."
+        }
+      ],
+      "classLevels": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Bard": 16,
+        "Cleric": 11,
+        "Mage": 11,
+        "Mirrorsage": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Bard": "Universal",
+        "Cleric": "Universal",
+        "Mage": "Universal",
+        "Mirrorsage": "Universal",
+        "Wizard": "Universal"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Area effect that distorts space: 6d6 force + slow or knock prone.",
+      "alternateSummaries": [],
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Mage",
+        "Mirrorsage",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 897,
+        "original": {
+          "school": "Universal",
+          "level": 6,
+          "name": "Rift Spiral",
+          "effect": "Area effect that distorts space: 6d6 force + slow or knock prone.",
+          "source_paragraph": 10092,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Damage"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-09 — Arcane Clone
+
+**Original question:** Preserve ONE ILLUSIONARY COPY OF THE CASTER for3ROUNDS,Core Action/60ft/3rounds. Define initial placement,appearance,sensory channels,movement/control cost and a finite gameplay function,including whether it decoys attacks or merely provides an image. Compare reviewed Mirror Image and Silent Image without silently equating them. State targetability,disbelief,True Seeing,physical interaction and exact loss/end conditions; a perceived caster copy is not another character with RP,Actions,spells,body,loot or memories. Fix round deadlines across initiative changes,suppression and creator transformation. No actual biological clone,death replacement or soul transfer is printed.
+
+KEEP exactly one illusionary copy of the caster lasting3rounds. NEW place one visual/audible image matching the caster's actual visible body/equipment at a perceived legal open position within60feet/line of effect. It is a nonphysical image in the caster's current size/appearance snapshot,not a creature/object withHP. The copied appearance does not update when the caster later transforms or changes clothes;creating a replacement pays a new cast. It produces ordinary conversational speech/simple body sounds in the caster's known voice/languages,not light,heat,smell,force,real music powers or a new sensory feed. NEW no concentration;ends at the caster's third future regular START or18elapsed seconds outside initiative,preserving the original marker/deadline through extra turns and absence.
+
+Once on each actual ordinary caster turn,an available Bonus Action can move the image up to30feet through a declared continuous path within60feet/caster line of effect and direct one brief mundane performance or sentence. It cannot pass through walls,closed doors or another solid barrier;it may visually imitate an actual apparent locomotion the snapshot body has,but that creates no cargo/support/anatomy permission. It can overlap real creatures because it lacks substance,without blocking them. The Bonus Action uses the real action wallet;the image gets no independent turn or attack. With no command it holds its last position/pose and continues only a previously declared simple idle appearance,not independent plans,choices or secret observations. Losing command range leaves it stationary until expiry,not invisibly following the caster.
+
+NEW decoy function:while this image is within5feet of its actual caster and both are legal visible candidate positions for an incoming direct attack roll,a sight-dependent attacker who has not identified this image as false cannot visually distinguish them during the spell's brief identical-image shimmer. Select uniformly among the caster and this live indistinguishable image before rolling. If actual Mirror Image duplicates also legally qualify,use one combined uniform selection among the caster and all eligible live visual duplicates,not serial independent miss chances. No image outside the attack's real reach/range/line of effect joins that selection. A source explicitly ignoring visual illusions,actual True Seeing,or that attacker's genuine recognition removes the corresponding false candidate.
+
+If the true caster is selected,resolve that one attack normally. If Arcane Clone is selected,roll against the caster's current realAC;hit ends this clone,miss leaves it. No numericHP damage,critical body injury,on-hit resource,corpse or actual creature-target rider is generated. The attack's ordinary ammunition/action costs stay spent. At a separate position outside the decoy pairing,the image can be deliberately mistaken for an apparent creature and attacked using this same image-hit procedure,but it never automatically intercepts an attack on the caster. Caster/allies cannot intentionally farm hits/procs from their known false image. Area/save effects ignore it;it grants no cover,flanking or reaction interception. Choosing among overlapping valid visual duplicates occurs only once for the original attack lineage.
+
+An observer may spend an Action on INT(Investigation)against the original spellDC to recognize the image;real direct physical passage/touch showing no substance establishes recognition without a roll for that observer. Identification leaves its appearance for others but removes its own mechanical deception against that observer. True Seeing uses its actual source scope. A known false image cannot block that observer's sight,though unrelated actual terrain still can. An imitated casting gesture is no real spell commitment and creates no Counterspell trigger,RP payment,spell copy or new attack. A genuine readied response to an actually observed movement/sound can still use its real trigger rules;the image does not force anyone to respond.
+
+One Arcane Clone per caster;successful new creation replaces the old,without returning resources or resetting an attack already begun. Suppression hides the image and removes its decoy candidacy while the original deadline continues;missed commands do not queue,and return supplies no new duplicate or forgotten-disbelief reset. Actual dispel,expiry,a qualifying hit or caster death ends it. This is neither a biological clone,extra class sheet,stored consciousness,death replacement nor soul transfer.
+
+**New decisions:** NEW independent audiovisual three-round decoy,BA movement,combined single visual-duplicate selection and observer-specific disbelief without body/resources/remote senses.
+
+### Authored examples
+
+TU6-09-A: The caster has three valid Mirror Image duplicates and one adjacent Arcane Clone. For a sight-dependent attacker with valid geometry,the proposed combined selection has five equal candidates:the caster and four images,not a50%test followed by another independent test. Selecting Arcane Clone and hitting the caster's currentAC ends only that image and produces no creature-hit resource.
+
+TU6-09-B: The clone is30feet away and repeats a declared sentence. It supplies no view of who listens,and does not automatically intercept an attack on the caster. An observer walks through it and knows it is false without Investigation. Suppression followed by resumption cannot erase that knowledge,refresh its eighteen-second outside deadline or create real spellcasting from its gestures.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "arcane-clone",
+  "name": "Arcane Clone",
+  "schools": [
+    "Universal"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Bard": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Cleric": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mirrorsage": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "arcane-clone",
+    "original": {
+      "name": "Arcane Clone",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Universal",
+      "schools": [
+        "Universal"
+      ],
+      "placements": [
+        {
+          "name": "Arcane Clone",
+          "school": "Universal",
+          "level": 6,
+          "summary": "Create 1 illusionary copy of caster for 3 rounds."
+        }
+      ],
+      "classLevels": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Bard": 16,
+        "Cleric": 11,
+        "Mage": 11,
+        "Mirrorsage": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Bard": "Universal",
+        "Cleric": "Universal",
+        "Mage": "Universal",
+        "Mirrorsage": "Universal",
+        "Wizard": "Universal"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Create 1 illusionary copy of caster for 3 rounds.",
+      "alternateSummaries": [],
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Mage",
+        "Mirrorsage",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 898,
+        "original": {
+          "school": "Universal",
+          "level": 6,
+          "name": "Arcane Clone",
+          "effect": "Create 1 illusionary copy of caster for 3 rounds.",
+          "source_paragraph": 10093,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "3 rounds",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-10 — Spell Sculptor
+
+**Original question:** Preserve RESHAPING AREA SPELLS TO EXCLUDE ALLIES,Core Action/60ft/Instantaneous. Define whether it modifies one pending cast,an extant spell area or a finite maintained set; specify action timing,legal spell ownership/rank/access and any extra RP beyond13. Give exact allied-recipient selection,range/line and interaction with a moving area,entry/reentry and allies changing allegiance. Clarify whether excluded recipients avoid damage,conditions,targeting or all effects without silently adding immunity to unrelated sources. Reshaping must retain the underlying source geometry or an explicit bounded alteration; no unlimited area expansion,new cover,free extra casts or retrospective undo of resolved damage. Preserve parent/child effect identity,concentration and ending.
+
+KEEP reshaping area spells to exclude allies. NEW Action gives one willing perceived caster within60feet/line of effect,including self,one Sculptor preparation for60elapsed seconds without concentration. This expressly replaces Instantaneous metadata with a finite preparation followed by one parent-bound exclusion. There is one unspent preparation per recipient across casters;successful replacement ends the old unspent one. The recipient must initiate their next genuinely acquired eligible area spell before this deadline and pay that spell's own actual costs/components/action/cadence. Sculptor pays only its own13RP and supplies no cast,extra Action,spell access or new damage.
+
+Eligible parent:one actual personally initiated rank0through6spell with an area that directly applies damage,healing,conditions or other creature effects to occupants. The real generating rank,not a wrapper's cheaper cost,controls. A source that only creates bodies,objects,solid walls,permanent matter or changed terrain is not an eligible creature-area payload merely because it has dimensions. A genuine area spell with mixed direct and physical clauses can be selected,but exclusion changes only the direct creature-facing clauses below. Copy/echo events that are not actual new casts cannot spend this preparation as another cast. A fully acquired actual Matrix/item source counts only when it genuinely performs an eligible spell cast under its own complete rules.
+
+At that parent's commitment,before counters or hidden outcomes,the recipient designates any number of distinct actually perceived allied creatures within60feet of the recipient and its line of effect,including self. They need not yet be in the parent's area. Fix this exclusion roster before paying/resolving the parent. At least one valid designated ally is required to spend the preparation;an otherwise legal spell with no such roster leaves Sculptor pending. On legal parent commitment,consume the preparation immediately;countering or failure later gives no refund or free second parent. The Sculptor caster does not choose the recipient's spell/roster or become its damage owner.
+
+For the parent's initial resolution and up to60elapsed seconds thereafter while that same parent remains,omit all its direct creature-facing applications to each still-living designated creature that is still an actual ally of the parent caster at that event. No save,damage,healing,condition,buff,debuff or direct source trigger applies to that excluded recipient from that parent occurrence. The exclusion is not merely success on its save and does not generate an avoided-damage/save-success/resource event. It also prevents the parent's directly coupled worn/carried-item payload where that payload is part of affecting the excluded creature;it does not protect separately targeted objects or remote possessions. Already resolved damage/conditions from an earlier spell cannot be undone by later Sculptor.
+
+Keep the parent's actual center,shape,area,range,concentration,targets,damage dice,ownership and source lifetime. No area expansion,extra creature count,hard cover or general magical immunity is created. For an ongoing zone,moving/entering/leaving and its actual event caps continue;selected allies are omitted at their actual covered application events. Leaving and reentering does not add a new60seconds. A selected creature that genuinely ceases to be an ally loses exclusion while that is true;returning actual alliance can restore only the same remaining original exclusion. Newly allied or previously undesignated creatures do not join. These private predicates supply no automatic faction/alignment report.
+
+An actual physical wall,stone,ice,water,fire fuel,collapse or other world consequence created by a mixed spell remains real for everyone. Sculptor supplies no passage through solid matter,air to breathe,visibility through environmental fog or exemption from an independently caused fall. A direct magical Speed penalty/condition from the selected parent is excluded;ordinary terrain/obscurity as a physical world fact is not silently removed. This is the explicit proposed meaning of reshaping around allied recipients rather than geometrically creating reusable holes in every effect. Mixed-source cases require the parent's real clauses to distinguish direct payload from independent physical consequences.
+
+The consumed preparation's exclusion persists as one rank-six modifier application attached to that exact parent,ending when the parent ends,its own60seconds expire or the modifier is actually removed. Its caster's concentration is not required;the parent's real concentration remains entirely its original caster's. Eligible suppression of Sculptor disables only this exclusion for the actual gap and preserves both clocks;resumption does not erase effects legitimately suffered during the gap. Dispelling the modifier does not dispel the parent unless a real dependency says so,and ending the parent cannot restore the consumed preparation. A later Sculptor preparation can fund a different later actual cast,but two preparations never create stacked exclusion on the same parent or extend its original clock.
+
+**New decisions:** NEW one-minute preparation for one paid rank0-6area cast,fixed allied roster,whole direct payload exclusion and separately timed parent modifier without physical-world immunity.
+
+### Authored examples
+
+TU6-10-A: A Wizard pays13RP for Sculptor,then later pays5for an eligible rank-three area spell,leaving22from40before other costs. At that spell's commitment they fix three actual allied recipients. Those allies receive none of that parent's direct damage or conditions;the spell still affects other real occupants normally. Countering the parent loses both the committed parent cost and the consumed preparation.
+
+TU6-10-B: A designated ally leaves and reenters a continuing zone while its original exclusion is live,and is still omitted from direct payload events. Suppressing Sculptor allows the parent's actual next event to affect them without retroactive protection on return. A real wall or slippery ordinary ice created by the parent does not become a reusable ally-only passage or disappear under their feet.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "spell-sculptor",
+  "name": "Spell Sculptor",
+  "schools": [
+    "Universal"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Bard": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Cleric": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mirrorsage": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "spell-sculptor",
+    "original": {
+      "name": "Spell Sculptor",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Universal",
+      "schools": [
+        "Universal"
+      ],
+      "placements": [
+        {
+          "name": "Spell Sculptor",
+          "school": "Universal",
+          "level": 6,
+          "summary": "Reshape AoE spells to exclude allies."
+        }
+      ],
+      "classLevels": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Bard": 16,
+        "Cleric": 11,
+        "Mage": 11,
+        "Mirrorsage": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Bard": "Universal",
+        "Cleric": "Universal",
+        "Mage": "Universal",
+        "Mirrorsage": "Universal",
+        "Wizard": "Universal"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Reshape AoE spells to exclude allies.",
+      "alternateSummaries": [],
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Mage",
+        "Mirrorsage",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 899,
+        "original": {
+          "school": "Universal",
+          "level": 6,
+          "name": "Spell Sculptor",
+          "effect": "Reshape AoE spells to exclude allies.",
+          "source_paragraph": 10094,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-11 — Contingency
+
+**Original question:** Preserve setting a TRIGGER FOR ANOTHER SPELL TO ACTIVATE AUTOMATICALLY,Core Action/60ft/Instantaneous. Supply finite trigger duration,legal spell rank and ownership/repertoire,actual payment/components and when the stored spell is cast versus held pending. Define trigger predicates and lawful observable information,one-shot versus repeat charges,recipient/range checks at release,event ordering,counter windows,concentration transition and what happens on invalid target/interruption. Automation cannot grant hidden-fact sensing,unpaid casts,unbounded chain reactions or duplicate uses of a stored source. Decide whether normal Action costs are replaced by the printed automatic activation and how that interacts with per-round/class cadence. Preserve spent RP and work across suppression,dispel,expiration and changing caster state; no external-game spell/rank/component restrictions imported silently.
+
+KEEP setting a trigger for another spell to activate automatically. NEW create one empty Contingency frame attached to a willing perceived creature within60feet/line of effect,including self. The wrapper costs its actual13RP/Action/components and has its own ordinary counter window. On successful formation it lasts24elapsed hours without concentration;the caster must load it within60elapsed seconds or it expires empty. One frame per originating caster,including empty/loaded frames;successful new formation replaces the old frame and any stored payload without a refund. The bound creature cannot be changed later. This is an explicitly new operational duration in place of Instantaneous metadata.
+
+LOAD:while within60feet/line of effect to the bound creature,the original caster actually casts one separately acquired,fully specified rank0through5ordinary spell with casting time one Action. Pay that spell's actual action,components,consumed materials,RP/cadence and cast-start hooks once. Its actual current costs are not included in the wrapper's13RP. It must lawfully be able to target the bound creature alone or place its entire declared area center/origin on that creature's position;Self-only payloads require the bound creature to be the original caster. At loading,satisfy real source range/touch/target restrictions. Declare all modes,selections and permitted target policy then. No additional selected creature/object outside the eventual area may be named later. A spell that requires unresolved player choices or missing source mechanics cannot be made complete through storage.
+
+NEW storage exception:after the real paid payload cast survives its normal Counterspell window,hold its unresolved main effect in this frame rather than resolving it now. This is one original spell,not a copied free cast. Preparation commits any normal concentration transition and ends the caster's previous concentration when required,even though no ongoing payload concentration is maintained during storage. All costs remain spent. A loading attempt consumes the frame's one loading opportunity;countering or otherwise negating that payload ends the frame rather than leaving an endlessly refillable empty slot. Payload duration starts only on actual release;original generating rank/source/modes and legitimate snapshots remain recorded. Current-at-resolution quantities still use their real source rules when release occurs.
+
+TRIGGER:at wrapper creation specify one future observable event,or at most three simple predicates with fixed AND/OR logic. The frame has only ordinary visual/hearing observation within30feet of its bound creature,using real cover and environmental visibility,and the explicitly NEW ability to read that bound body's own actual HP0/positive-damage/Unconscious transitions. It can also use one fixed elapsed deadline inside its24hours. It cannot inspect intent,alignment,secret membership,unseen inventory,another creature's private resources,spell rank or unchosen future behavior. A spoken passphrase,visible creature entering a declared local radius,or actual bound-body transition can qualify;the sensor is a trigger evaluator,not an intelligence or information feed to the caster. Hidden ineligible trigger facts do not become true by naming them.
+
+Arm only after successful loading. A prior event is not replayed,and an already-true state predicate must genuinely become false then true after arming unless the trigger is a future explicit deadline. A genuine crossing can be caused by the bound creature moving,under ordinary actual geometry. On the first qualifying event,mark the frame and payload spent before queuing release. Finish the current indivisible damage/healing/cast/command event,including its ordinary survival/death consequences;then release in fixed application/identity order. It cannot interrupt that event retroactively or prevent InstantDeath after it already occurred. NEW at most one automatic Contingency release per originating caster per numbered round;outside initiative,no second release until6elapsed seconds after that caster's actual previous release. Preserve that actual history through initiative transitions rather than resetting it. A qualifying trigger while the applicable limit is spent consumes this one-shot frame without a later banked release.
+
+RELEASE:the real unresolved spell originates at the bound creature's current position,an explicit NEW stored-origin permission. Its named target is that same creature,or its predeclared area center/origin is that position;use actual current area geometry and line of effect from there. No remote new target choice or borrowed senses occurs. Apply the spell's real current target eligibility,defenses,save/attack and actual outcome rules. A dead/removed/otherwise illegal target gives a spent failed release,not retargeting or refund. Self-only mechanics still belong only to their legal original caster. The automatic release replaces the payload's ordinary Action commitment because that Action was already paid at loading;it supplies no additional ordinary Action/Bonus Action/Reaction or repeated cast-start/Dissonance event. Bound-creature unconsciousness does not itself prevent an otherwise valid nonconcentration payload.
+
+If the payload requires concentration,the original caster must at release be conscious,able to concentrate,and within60feet/line of effect of the bound creature. Begin that concentration and end any then-current incompatible concentration immediately before resolution;failure of this requirement consumes the release without effect. A stored nonconcentration payload can release while its living original caster is elsewhere/unconscious,subject to all real frame/target protections. Original caster death ends the frame;it cannot create a posthumous second source/controller. The bound creature's death alone is a genuine event,not permission for an ineligible healing spell to resurrect it. A successful outcome triggers only the real original spell's eligible resolution hooks once.
+
+Release is not a new spell cast and opens no second ordinary Counterspell window;countering at loading,dispelling/suppressing the frame before release,and actual defenses remain meaningful. A prophecy can report the real pending release without reopening an old counter window. Remove an actual still-loaded rank-six frame and its unresolved stored payload ends;no resource is recovered. Suppression blocks sensing and release while the original deadlines continue. The bound body and original caster must remain on the same actually established plane for the frame to sense/release;an unknown or different relation makes it inactive without a diagnostic. This creates no cross-plane communication or new cosmological topology. Missed transient events are lost;an already-true state on return is not a fresh crossing. A fixed deadline missed during suppression/inactivity expires the frame's chance rather than firing late. A genuine later qualifying event can trigger a still-armed unspent frame within the original lifetime.
+
+No payload may create/load another Contingency or another deferred automatic-cast store,or copy/replay an already stored spell. For multiple preexisting frames whose releases cause later genuine events,process each actual frame at most once;the dispatch set is the finite set armed before the originating external event,so a newly created frame cannot join that same chain. Every frame retains its real owner/round cap. This finite queue rule is expressly proposed,not proof of a completed scheduler. No item gem,unpriced component,free daily refill,new repertoire or hidden-fact oracle is imported from another game.
+
+Reviewed Glyph of Warding already has a complete,distinct procedure:one writable noncreature surface,one-minute concentration,one subsequent bodily touch or actually visible entry trigger,and one finite alarm/repulsion/ward payload included in its ordinary casting cost. It explicitly does not store another spell or create a permanent trap. Its retained moving-anchor history,ordinary observation,consume-before-payload and missed-suppression-event rules inform this comparison;they do not authorize Contingency's new24-hour storage,body-state sensing,remote stored origin or separately paid loading exception. If a legal Glyph is selected as the payload under the current target policy,it still needs its actual surface target;this creature/area-only Contingency policy does not supply one,so that particular loading is ineligible. Neither card gains the other card's access or components.
+
+**New decisions:** NEW one-shot24-hour frame,60-second loading window,separately paid rank0-5Action payload,bounded local/body triggers,stored-origin automatic release and finite source-preserving event queue.
+
+### Authored examples
+
+TU6-11-A: A Wizard starts with40RP,pays13for the frame and later5for a legal rank-three Action payload,leaving22before other costs. The payload has its real counter window while loading. When the declared bound-body event later occurs,the one held effect resolves automatically after that whole event,with no second Action,RP charge or cast-start hook. The original13+5are never refunded if the frame expires unused.
+
+TU6-11-B: A stored legal healing payload is triggered when the bound creature reaches0HP. It waits until the damage packet and any InstantDeath decision finish;it cannot rewrite a completed death as prevention. Suppressing the frame during a transient trigger loses that event,not stores it for later. A concentration payload also fails spent if its original caster cannot satisfy the actual release concentration/range requirements.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "contingency",
+  "name": "Contingency",
+  "schools": [
+    "Universal"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Bard": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Cleric": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mirrorsage": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "contingency",
+    "original": {
+      "name": "Contingency",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Universal",
+      "schools": [
+        "Universal"
+      ],
+      "placements": [
+        {
+          "name": "Contingency",
+          "school": "Universal",
+          "level": 6,
+          "summary": "Set trigger for another spell to activate automatically."
+        }
+      ],
+      "classLevels": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Bard": 16,
+        "Cleric": 11,
+        "Mage": 11,
+        "Mirrorsage": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Bard": "Universal",
+        "Cleric": "Universal",
+        "Mage": "Universal",
+        "Mirrorsage": "Universal",
+        "Wizard": "Universal"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Set trigger for another spell to activate automatically.",
+      "alternateSummaries": [],
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Mage",
+        "Mirrorsage",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 900,
+        "original": {
+          "school": "Universal",
+          "level": 6,
+          "name": "Contingency",
+          "effect": "Set trigger for another spell to activate automatically.",
+          "source_paragraph": 10095,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-12 — Create Homunculus
+
+**Original question:** Preserve creating a SERVANT TO CARRY OUT COMMANDS,Core Action/60ft/Instantaneous. Define complete finite physical profile,size,HP/AC,speeds,senses,abilities,capacity,actions and any material/creation prerequisites as explicit source bindings or NEW additions. Decide permanence,control count,creation-round timing,command costs,repair/reconstruction and ending/suppression. Compare reviewed Unseen Servant and creature/device lifecycle rules without silently choosing whichever offers more benefits. No innate spellcasting,unlimited skilled labor,independent combat turns,copy of the caster's mind or sellable free creature parts follows. Preserve actual body/material ownership and no-resource lineage where justified; the name alone supplies no soul or cosmological origin.
+
+KEEP creating a servant that carries out commands with Action,60feet,V/S/F. NEW create one physical Tiny Construct in a perceived unoccupied whole-body space within60feet/line of effect. No blood,soul,gem,recipe ingredient or unprinted monetary component is required. Instantaneous is the creation event;the proposed magical body/control persists without concentration until an actual ending below. It is not a permanent supply of ordinary craft matter. One active homunculus per originating caster;successful creation of a replacement ends the old body/control after dropping its real external belongings safely. Countered/failed creation does not replace the old body or refund costs.
+
+NEW complete profile:baseHP20,AC14,body mass8lb,STR6,DEX14,CON12,INT6,WIS10,CHA6;walk20feet,Fly30feet with Hover,ordinary sight/hearing and Darkvision30feet. All six saves use original creating source-owner currentPB as the total modifier;ordinary untrained checks use the listed ability modifier. It has no skill/tool proficiency,spellcasting,class levels,resource pool,attack,Multiattack,Reaction or autonomous offensive Action. Poison-damage and Poisoned immunity follow this expressly proposed profile;no other resistance/condition immunity is implied by Construct. It is a physical body with real Tiny2.5-foot space and actual compatible condition/geometry rules,not Unseen Servant's nonphysical force. Its small hands can manipulate objects actually sized and positioned for them.
+
+Tiny physical carrying capacity is STR6times7.5=45lb and Inventory Load capacity3;both limits apply. Its own8lbbody mass is not its own cargo,but is counted by another real carrier. Simple worn harnesses/containers require actual fit and remain real separate items. It can fetch/carry unattended accessible objects,open an unlocked ordinary door it can physically operate,hold a light,sort known mundane items or perform comparable unskilled safe chores. It cannot carry another creature,read hidden minds,make independent skilled judgments,activate weapons/traps/bombs/poisons/healing or spell items,administer combat consumables,operate a dangerous machinery attack,grant Help/flanking,provide a missing artisan credential or create automatic valuable output/wages. Ordinary physical carrying remains useful;it does not waive loading,ownership,tools,travel hazards or real elapsed time.
+
+The homunculus understands its creator's simple actual spoken commands while able to hear within60feet and with owner perception/line of effect. It supplies no telepathy,sense-sharing,remote report of unknown events or copied personal memories. In combat,a real available Bonus Action directs at most one simple object-task Action plus movement during the attached phase after the whole owner turn,sharing the ordinary companion command ledger. It may receive such a genuine available command in its creation round;creation itself grants none. No command gives an independent Reaction or converts a chore into an attack. Uncommanded capable bodies use their real defensive Move/Dodge behavior and protect their own existence rather than inventing skilled/offensive plans.
+
+Outside combat,the creator may issue one clear unskilled standing chore through the same actual command channel. It performs that chore using its actual movement and at most one mundane task interaction per six elapsed seconds while remaining within the60-foot supervised command relation;changing the chore needs a new actual instruction. This saves the creator's physical manipulation,not the actual time,capacity or qualification of a craft/settlement work order. It is not a trained assistant,an expedition office-holder,a replacement for required active crew attendance or a new independent NPC roster member. When the creator cannot supervise/command,it waits or acts defensively;it cannot run a shop or earn a work Watch on an absent owner's behalf.
+
+Use a single current/maxHP ledger with actual source-qualified bonuses. Its Universal spell origin does not satisfy a Conjuration-only specialization merely because the narrative creates a body. It is an explicitly no-resource-created companion:at0HP it ends,leaving no corpse,experience/harvest reward,free construct parts or copied equipment;actual external carried items drop at their real location under ordinary placement. It has no dying/death-save/Wound/rest-recovery chassis unless an actual future source explicitly supplies one. Ordinary organic healing does not repair this proposed Construct. NEW maintenance option:its original caster may spend an Action,touch and2actualRP to restore2d6HP to a still-existing damaged homunculus,up to its actual maximum. This is a paid maintenance operation,not another spell cast/counter window or free RP/Dissonance reset,and does not reconstruct a destroyed body. Other actual repair effects require their own explicit eligible target interface.
+
+The creator may dismiss it with an Action while perceiving it within60feet/line of effect. Actual eligible rank-six dispel or full sustaining-source suppression ends the body,an explicit NEW lifecycle choice;narrow suppression of one rider follows that narrower scope. No appearance/repair/return resets its held items,HP,spent tasks or control accounting. Caster death/incapacitation alone does not invent a new body ending,but without an actual legal owner phase/channel it receives no new orders. A genuine later control effect uses its own actual authority and budgets without recreating the body or releasing the original one-body reservation. Permanence supplies no soul-origin,resurrection or biological-clone claim.
+
+**New decisions:** NEW permanent one-body Tiny Construct servant,complete physical/task profile,shared commands,finite paid repair and no-resource ending without invented materials or soul lore.
+
+### Authored examples
+
+TU6-12-A: The Tiny STR6servant has45lbphysical carrying capacity and3Load. A20lb,2Loadpackage can fit both limits in a real compatible carrying arrangement;another2Loadpackage cannot be hidden by calling the two one bundle. In combat the owner's actual Bonus Action directs one fetch interaction,not a second companion attack or an independent skilled Help Action.
+
+TU6-12-B: A homunculus at7/20HPreceives its creator's paid2RPtouch maintenance and2d6=8repair,reaching15/20. Destroying it later at0ends the magical body and drops its actual carried lantern;the lantern's fuel and damage are unchanged. A new13RPcreation can make a new body,but neither repair nor replacement creates free construct salvage or restores the old body's cargo.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "create-homunculus",
+  "name": "Create Homunculus",
+  "schools": [
+    "Universal"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Bard": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Cleric": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mirrorsage": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "create-homunculus",
+    "original": {
+      "name": "Create Homunculus",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Universal",
+      "schools": [
+        "Universal"
+      ],
+      "placements": [
+        {
+          "name": "Create Homunculus",
+          "school": "Universal",
+          "level": 6,
+          "summary": "Create a servant to carry out your commands."
+        }
+      ],
+      "classLevels": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Bard": 16,
+        "Cleric": 11,
+        "Mage": 11,
+        "Mirrorsage": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Bard": "Universal",
+        "Cleric": "Universal",
+        "Mage": "Universal",
+        "Mirrorsage": "Universal",
+        "Wizard": "Universal"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Create a servant to carry out your commands.",
+      "alternateSummaries": [],
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Mage",
+        "Mirrorsage",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 901,
+        "original": {
+          "school": "Universal",
+          "level": 6,
+          "name": "Create Homunculus",
+          "effect": "Create a servant to carry out your commands.",
+          "source_paragraph": 10096,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Instantaneous",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Utility"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## TU6-13 — Instant Summons
+
+**Original question:** Preserve PREPARING AN OBJECT TO BE SUMMONED TO YOUR HAND,Core Action/60ft/CONCENTRATION UP TO1MINUTE. Define initial object eligibility,size/mass,custody/ownership,touch versus range,attunement if NEW and actual hand/carrying capacity. Specify later recall activation,cost,range/line,one-shot use and interaction with held/worn/anchored,transformed,melded,broken or inaccessible objects. Retain the real one-minute concentration limit rather than importing permanent preparation or a costly gem. A recall moves one existing object and its explicitly allowed contents,not a duplicate; disposal,spent contents,damage and time history remain. No theft permission,restoration,remote hidden-location oracle or cross-plane capability is inferred. If a cosmology-dependent branch is later proposed,preserve it for post-push review.
+
+KEEP preparing one object to be summoned to the caster's hand,Action,initial60feet,V/S/F,and CONCENTRATION UP TO ONE MINUTE. NEW select one individually perceived coherent nonliving object within60feet/line of effect that the caster owns or has its actual owner's consent to retrieve. It must be unattended or in the caster's own physical custody,not held/worn/guarded in another creature's custody at preparation. A hidden ownership/permission issue resolves after legal costs without a diagnostic report;the spell grants no legal authority or theft permission. No gem,extra consumed component,attunement or permanent marking is imported.
+
+The complete initial payload must fit a5-foot cube,weigh at most50lb,and be capable of being held safely by the caster's actual available hand/anatomy without exceeding current physical carrying and Load limits at recall. A real container includes its current enclosed inanimate contents and attached parts,all counted once toward mass/size. Creatures,magically object-shaped creature-origin bodies,occupied containers,implanted items,locked restraints and objects secured to an external anchor do not become eligible merely by being called objects. Ordinary magic-item identity is not itself a ban,but actual anti-removal or transport restrictions apply. A selected lid,gem or blade cannot detach from a larger assembly for free.
+
+On preparation,the actual object gains one source-bound recall relation and the caster maintains the real concentration slot for at most60elapsed seconds. No object moves yet. NEW during that original window,the caster may spend one actual Bonus Action while able to act to attempt recall into a declared legal empty hand/holding posture. This is one activation of the existing spell,not a second cast or extraRP payment. No standing command,extra action,renewal or automated pickup occurs. A known occupied/incompatible hand or lack of capacity prevents a legal attempt until corrected;there is no invented free stow/drop operation.
+
+NEW recall can reach that same actual object within one mile5280feet on the same existing plane,without current sight or intervening line of effect. This is the explicit remote object-retrieval exception;it does not establish cross-plane travel,find a new object or override an actual transport barrier. At resolution the object must still be the same coherent eligible payload,unanchored,unattended or in the caster's own custody,and genuinely movable to the whole legal destination. Another creature's present real custody blocks it even if that creature lacks ownership;there is no opposing save to steal it through their grip. They may genuinely release it before recall. An unknown blocker,excess distance,changed mass,concealed living contents or loss of object identity causes a spent failed attempt with no cause/location report.
+
+The single legal recall attempt consumes the relation and ends its concentration whether it succeeds or fails. Suppression at the object or caster blocks that attempted transfer within its actual scope but grants no free hidden-state probe or queued later arrival. A successful attempt moves one real object/payload at rest into the declared hand,not a damaging projectile,and does not trigger a weapon attack or automatic item activation. Its actual charges,contents,damage,locks,ownership and elapsed history persist. Consumed contents do not reappear. A spilled separate item does not travel with its old container;current actual contents do. A broken object whose original coherent whole no longer exists cannot be rebuilt by recalling all its fragments. A still-coherent damaged object can return in that actual condition.
+
+Melded objects remain inaccessible and ineligible during the actual meld;claiming ownership does not remove them from another continuing body/inventory record. If they genuinely return to eligible external custody before the original deadline,that same live relation may still support its one recall. Actual destruction,source removal,expiry or concentration ending closes the relation without movement. Suppression alone advances the original minute;it does not extend preparation,and a relation not yet spent may function again only before that same deadline. Recasting pays full costs and obeys the real one-concentration transition,with no second duplicate object or restored spent-use history. The initial60-foot range and later one-mile limit remain explicit separate proposed fields for joint review.
+
+**New decisions:** NEW owned/consented50lb object preparation,one paid-BA recall within1mile/same-plane,actual hands/custody/contents and one-shot nondiagnostic failure inside the printed minute.
+
+### Authored examples
+
+TU6-13-A: The caster prepares their own30lbcase within60feet,then the same case is carried away and genuinely left unattended600feet distant. With concentration still inside the original minute and a legal free hand/capacity,the caster spends a Bonus Action and recalls that actual case at rest. Only its real remaining contents return;there is no new casting cost or restored consumed potion.
+
+TU6-13-B: Another creature still holds the prepared object when the caster attempts recall. The legal attempt spends the Bonus Action,consumes the one relation and fails without announcing the holder or coordinates. If the object instead was broken into separate fragments or its current contents exceeded50lb,the same nondiagnostic failure applies;it cannot reconstruct the object or silently discard excess contents.
+
+### Complete preserved source and access
+
+```json
+{
+  "id": "instant-summons",
+  "name": "Instant Summons",
+  "schools": [
+    "Universal"
+  ],
+  "status": "blocked-pending-operational-review",
+  "visibility": "public-source-review",
+  "classAccess": {
+    "Bard": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Cleric": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mage": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Mirrorsage": {
+      "rank": 6,
+      "minimumClassLevel": 16,
+      "school": "Universal",
+      "baseRpCost": 13
+    },
+    "Wizard": {
+      "rank": 6,
+      "minimumClassLevel": 11,
+      "school": "Universal",
+      "baseRpCost": 13
+    }
+  },
+  "operational": null,
+  "additionalRpCost": 0,
+  "source": {
+    "catalogPath": "src/data/spells.js",
+    "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "catalogKey": "instant-summons",
+    "original": {
+      "name": "Instant Summons",
+      "level": 6,
+      "resonanceRank": 6,
+      "school": "Universal",
+      "schools": [
+        "Universal"
+      ],
+      "placements": [
+        {
+          "name": "Instant Summons",
+          "school": "Universal",
+          "level": 6,
+          "summary": "Prepare object to be summoned to your hand."
+        }
+      ],
+      "classLevels": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classRanks": {
+        "Bard": 6,
+        "Cleric": 6,
+        "Mage": 6,
+        "Mirrorsage": 6,
+        "Wizard": 6
+      },
+      "classLearnLevels": {
+        "Bard": 16,
+        "Cleric": 11,
+        "Mage": 11,
+        "Mirrorsage": 16,
+        "Wizard": 11
+      },
+      "classSchools": {
+        "Bard": "Universal",
+        "Cleric": "Universal",
+        "Mage": "Universal",
+        "Mirrorsage": "Universal",
+        "Wizard": "Universal"
+      },
+      "castingTime": "Not specified in current rulebook",
+      "range": "Not specified in current rulebook",
+      "components": "Not specified in current rulebook",
+      "duration": "Not specified in current rulebook",
+      "description": "Prepare object to be summoned to your hand.",
+      "alternateSummaries": [],
+      "classes": [
+        "Bard",
+        "Cleric",
+        "Mage",
+        "Mirrorsage",
+        "Wizard"
+      ],
+      "status": "canon",
+      "source": "Player Rulebook — Spell Lists"
+    },
+    "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+    "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+    "coreEntries": [
+      {
+        "index": 903,
+        "original": {
+          "school": "Universal",
+          "level": 6,
+          "name": "Instant Summons",
+          "effect": "Prepare object to be summoned to your hand.",
+          "source_paragraph": 10098,
+          "casting_time": "1 action",
+          "range": "60 feet",
+          "duration": "Concentration, up to 1 minute",
+          "components": "V, S, F",
+          "resolution": "Automatic or opposed as described",
+          "tags": [
+            "Summoning"
+          ],
+          "rp_cost": 13
+        }
+      }
+    ],
+    "possibleHistoricalAliases": []
+  },
+  "reviewFlags": [
+    "Core resolution requires an explicit operational interpretation",
+    "Not selectable in this spell playtest packet until individual operational review"
+  ]
+}
+```
+
+## Literal post-push receipts

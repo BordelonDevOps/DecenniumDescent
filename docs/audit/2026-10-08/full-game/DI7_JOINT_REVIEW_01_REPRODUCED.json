@@ -1,0 +1,49 @@
+{
+  "recordedAtUtc": "2026-10-14T00:34:22.712224+00:00",
+  "reviewId": "DI7-JOINT-REVIEW-01",
+  "status": "pass",
+  "checks": 634,
+  "comparisons": [
+    {
+      "local": {
+        "path": "docs/audit/2026-10-08/full-game/DI7_JOINT_REVIEW_01_LOCAL_REFERENCE_RESULTS.json",
+        "bytes": 84425,
+        "sha256": "b69611583888397c3fb647078746ed3984e1008a88de037e38bf8a564303e7ae"
+      },
+      "reviewer": {
+        "path": "docs/audit/2026-10-08/full-game/di7-joint-review-01-verdict/reviewer_check_results.json",
+        "bytes": 81507,
+        "sha256": "0c17aad49037632ee9215387fd1f6a24f446cbdcf26550f670010d65bc1dc952"
+      },
+      "checks": 484,
+      "JSONEqual": true,
+      "rawBytesEqual": false,
+      "equalAfterOnlyCRLFToLF": true
+    },
+    {
+      "local": {
+        "path": "docs/audit/2026-10-08/full-game/DI7_JOINT_REVIEW_01_LOCAL_DELIVERABLE_RESULTS.json",
+        "bytes": 15669,
+        "sha256": "968da2be4f05414b9825c45d99652c33eb341ace70245b3e47d3280ee4512d14"
+      },
+      "reviewer": {
+        "path": "docs/audit/2026-10-08/full-game/di7-joint-review-01-verdict/deliverable_check_results.json",
+        "bytes": 15061,
+        "sha256": "1661e6b4dce4ebc8836a3568ee584176ffd555f189a41197eec45b83d7fdbe7a"
+      },
+      "checks": 150,
+      "JSONEqual": true,
+      "rawBytesEqual": false,
+      "equalAfterOnlyCRLFToLF": true
+    }
+  ],
+  "categories": {
+    "executed bounded reference arithmetic/state projection": 75,
+    "executed bounded rejection": 5,
+    "source/static": 404
+  },
+  "scope": "484 source/static and bounded reference/rejection checks plus150 excerpt/descendant/manuscript/anchor checks reproduce exactly as JSON; raw Windows CRLF differs from frozen LF only. No full spell runtime or exact-card approval.",
+  "scriptsInspectedBeforeExecution": true,
+  "submittedSourceChanged": false,
+  "reviewerDiagnosticPreserved": true
+}

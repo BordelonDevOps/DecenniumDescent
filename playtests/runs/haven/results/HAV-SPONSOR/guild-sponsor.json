@@ -1,0 +1,41 @@
+{
+  "pack": "03-haven-economy-social",
+  "scenarioId": "HAV-SPONSOR",
+  "agentId": "guild-sponsor",
+  "seed": "aggregate-20seeds+5narr",
+  "observations": [
+    "Gp-only best counts: {'self_funded': 19, 'noble_temple': 1} (dominant=False); multifactor counts: {'sovereign': 2, 'self_funded': 17, 'noble_temple': 1} (dominant=False).",
+    "Observed: naive treasury math makes self-funded dominant; RAW up-front support lacks priced benefits.",
+    "Gp-only scoring often crowns self-funded because share % dominates weak loan friction.",
+    "When seizure risk + appraisal access + political cover are valued, multifactor picks diversify."
+  ],
+  "metrics": {
+    "seeds_run": 20,
+    "narratives_run": 5,
+    "source_gameplay_loop": "pending-review GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt (docs/mechanics/GAMEPLAY_LOOP_CANON.md missing)",
+    "source_haven": "src/data/haven.json",
+    "best_sponsor_counts_gp_only": {
+      "self_funded": 19,
+      "noble_temple": 1
+    },
+    "best_sponsor_multifactor_counts": {
+      "sovereign": 2,
+      "self_funded": 17,
+      "noble_temple": 1
+    },
+    "dominant_always_gp_only": false,
+    "dominant_always_multifactor": false
+  },
+  "rulesQuestions": [
+    "GAMEPLAY_LOOP_CANON.md and DESIGN_DOCTRINE.md listed in pack README are missing on main; playtest used pending-review bible extract.",
+    "Mandatory Haven tax rate is not published; only worked-example residual 3094->2900 (~6.27%) exists - Director assumption.",
+    "reputation.js tier bands (Hated...Honored) disagree with Gameplay Loop standing scale -5..+5; which applies in Haven?"
+  ],
+  "exploits": [
+    "Gp-only players can treat self-funded as always correct unless capital gates are harsh."
+  ],
+  "recommendations": [
+    "Price appraisal access, seizure cover, and capital in gp-equivalent or standing so sponsor choice stays meaningful."
+  ],
+  "confidence": "high"
+}

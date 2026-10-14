@@ -1,0 +1,77 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-CASUALTY",
+  "runId": "EXP-CASUALTY-bal-L10-P6-map",
+  "seed": 347634,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.99,
+    "wipeRate": 0.0,
+    "abortRate": 0.01,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0.244,
+    "meanWatches": 4,
+    "meanHours": 35.33,
+    "meanTrueProfit": 364.64,
+    "medianTrueProfit": 530.0,
+    "profitLossRate": 0.266,
+    "meanCargoRetainedLoad": 4.404,
+    "meanExtractionFailRate": 0.416,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 10,
+    "party": 6,
+    "mapping": "Mapped",
+    "policy": "balanced",
+    "objective": "carry one casualty and cargo",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-CASUALTY/bal-L10-P6-map.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 12.5,
+      "load": 18,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 14.5,
+      "load": 18,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 6,
+      "pressure": 0,
+      "supply": 17.5,
+      "load": 18,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

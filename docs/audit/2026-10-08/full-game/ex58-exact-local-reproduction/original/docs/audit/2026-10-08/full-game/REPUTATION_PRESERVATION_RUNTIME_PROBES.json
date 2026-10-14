@@ -1,0 +1,600 @@
+{
+  "status": "observed-existing-behavior-not-rule-approval",
+  "scope": "12 calls to actual reputation helpers using synthetic in-memory records. No localStorage, browser character data, saved character or source mutation. No social/faction/cosmology rule is chosen.",
+  "extendsQuestion": "FL-23",
+  "probeCount": 12,
+  "probes": [
+    {
+      "id": "RP-P01",
+      "description": "Normalization omits an unrecognized campaign faction key",
+      "input": {
+        "war-veterans": 2,
+        "campaign-local-guild": 5
+      },
+      "actual": {
+        "war-veterans": 2
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 2
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P02",
+      "description": "Normalization clamps source Loop endpoint scores to the runtime range",
+      "input": {
+        "war-veterans": 5,
+        "opposing-forces": -5
+      },
+      "actual": {
+        "war-veterans": 3,
+        "opposing-forces": -3
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 3,
+        "opposing-forces": -3
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P03",
+      "description": "Normalization rounds a numeric string",
+      "input": {
+        "war-veterans": "1.7"
+      },
+      "actual": {
+        "war-veterans": 2
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 2
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P04",
+      "description": "Normalization replaces a malformed score with neutral",
+      "input": {
+        "war-veterans": "unresolved"
+      },
+      "actual": {
+        "war-veterans": 0
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 0
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P05",
+      "description": "Background reapplication overwrites later standing and drops unknown keys",
+      "input": {
+        "war-veterans": 3,
+        "opposing-forces": -2,
+        "campaign-local-guild": 2
+      },
+      "actual": {
+        "war-veterans": 1,
+        "opposing-forces": 0
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 1,
+        "opposing-forces": 0
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P06",
+      "description": "Setter admits unknown key for one return value",
+      "input": {},
+      "actual": {
+        "campaign-local-guild": 2
+      },
+      "expectedCurrentImplementation": {
+        "campaign-local-guild": 2
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P07",
+      "description": "The same setter result loses that key on later normalization",
+      "input": {},
+      "actual": {},
+      "expectedCurrentImplementation": {},
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P08",
+      "description": "Adjuster also admits an unknown key which later normalization drops",
+      "input": {},
+      "actual": {},
+      "expectedCurrentImplementation": {},
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P09",
+      "description": "Absent and explicit zero retain different normalized map shapes",
+      "input": {},
+      "actual": {
+        "absent": {},
+        "zero": {
+          "war-veterans": 0
+        }
+      },
+      "expectedCurrentImplementation": {
+        "absent": {},
+        "zero": {
+          "war-veterans": 0
+        }
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P10",
+      "description": "Compact entries omit an explicit neutral score",
+      "input": {
+        "war-veterans": 0
+      },
+      "actual": [],
+      "expectedCurrentImplementation": [],
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P11",
+      "description": "Qualitative label roundtrip loses the distinct value +3",
+      "input": {
+        "score": 3
+      },
+      "actual": 2,
+      "expectedCurrentImplementation": 2,
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P12",
+      "description": "Unknown background keeps known normalized standing but drops unknown faction keys",
+      "input": {
+        "war-veterans": 2,
+        "campaign-local-guild": 1
+      },
+      "actual": {
+        "war-veterans": 2
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 2
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    }
+  ],
+  "sourceFiles": {
+    "DescentReviewChanges/ReviewBible/src/data/reputation.js": {
+      "bytes": 15296,
+      "sha256": "8938ef1305072dcd8ebac9e72a73a8bcb593065dfc5dcc75d344ecb4d82e10da"
+    },
+    "DescentReviewChanges/ReviewBible/src/lib/character-storage.js": {
+      "bytes": 3514,
+      "sha256": "1ce4f5060d77cc1a6271e7cd7cf666aef31243aea354293573511e79b84b1206"
+    },
+    "DescentReviewChanges/ReviewBible/src/components/ReputationPanel.tsx": {
+      "bytes": 8386,
+      "sha256": "d833cd97a24f183f5eb7cac22eb0bb6991ac36bc2f79b1e8b943daf0ae8f2903"
+    },
+    "DescentReviewChanges/ReviewBible/src/components/CharacterBuilder.tsx": {
+      "bytes": 129144,
+      "sha256": "307467ab54ed623d910685abb1a22bc517f246f736b6c83d3bdf5031979027f7"
+    },
+    "DescentReviewChanges/ReviewBible/docs/mechanics/REPUTATION.md": {
+      "bytes": 2067,
+      "sha256": "4b66ff2c6d66e77366b52be7c74c64d6cf48524e377794d5d26afa6ac82ed8cc"
+    },
+    "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md": {
+      "bytes": 43475,
+      "sha256": "ba5ebcbdb77a27cb8fde88ba13fd05216d6808b10f7b58b64e6cba54eed62066"
+    },
+    "DescentReviewChanges/ReviewBible/data/playtest/ancestry_background_candidate.json": {
+      "bytes": 173692,
+      "sha256": "d8e728a1c5b9d28b7e42a035aedf99c295f7d90aa69ddae5a46f2f76959aadfb"
+    }
+  },
+  "factionDefinitionCount": 44,
+  "backgroundMappingCount": 20,
+  "fullOriginalFactionRecords": [
+    {
+      "id": "academic-factions",
+      "name": "Academic Factions",
+      "category": "Resonance track",
+      "resonanceTrack": true,
+      "description": "Scholars, archivists, and plane-touched academies that gate rare lore."
+    },
+    {
+      "id": "religious-orders",
+      "name": "Religious Orders",
+      "category": "Resonance track",
+      "resonanceTrack": true,
+      "description": "Temples and choir-backed orders whose favor steadies divine Weave work."
+    },
+    {
+      "id": "arcane-guilds",
+      "name": "Arcane Guilds",
+      "category": "Resonance track",
+      "resonanceTrack": true,
+      "description": "Registered mage houses and guild halls that regulate arcane commerce."
+    },
+    {
+      "id": "nature-circles",
+      "name": "Nature Circles",
+      "category": "Resonance track",
+      "resonanceTrack": true,
+      "description": "Druidic circles and wildling pacts tied to primal Weave regeneration."
+    },
+    {
+      "id": "aethel-authorities",
+      "name": "Aethel Authorities",
+      "category": "Civic",
+      "description": "City Guard, magistrates, and crown agents along the Shardspire routes."
+    },
+    {
+      "id": "common-folk",
+      "name": "Common Folk",
+      "category": "Civic",
+      "description": "Market workers, refugees, and neighborhood folk who remember who helped them."
+    },
+    {
+      "id": "arcane-institutions",
+      "name": "Formal Arcane Institutions",
+      "category": "Arcane",
+      "description": "Academies and licensed colleges that credential spellwrights."
+    },
+    {
+      "id": "independent-mages",
+      "name": "Independent Mages",
+      "category": "Arcane",
+      "description": "Unregistered casters, hedge mages, and free scholars outside guild rolls."
+    },
+    {
+      "id": "war-veterans",
+      "name": "War Veterans",
+      "category": "Military",
+      "description": "Survivors of Aethel's border wars and expeditionary companies."
+    },
+    {
+      "id": "opposing-forces",
+      "name": "Opposing Forces",
+      "category": "Military",
+      "description": "Enemy banners and mercenary bands from conflicts you once fought."
+    },
+    {
+      "id": "cleansing-orders",
+      "name": "Cleansing Orders",
+      "category": "Faith",
+      "description": "Orders that hunt corruption, rift bleed, and spiral-touched blight."
+    },
+    {
+      "id": "corruption-scholars",
+      "name": "Corruption Scholars",
+      "category": "Arcane",
+      "description": "Researchers who study taint for power — tolerated only in whispers.",
+      "draft": true
+    },
+    {
+      "id": "dark-cults",
+      "name": "Dark Cults",
+      "category": "Underworld",
+      "description": "Secretive cult cells, former patrons, and spiral cult remnants."
+    },
+    {
+      "id": "anti-cult-groups",
+      "name": "Anti-Cult Alliances",
+      "category": "Faith",
+      "description": "Inquisitors, vigilantes, and lay networks that break cult chains."
+    },
+    {
+      "id": "planar-scholars",
+      "name": "Planar Scholars",
+      "category": "Planar",
+      "description": "Multiverse archivists and rift cartographers who trade in crossing-lore."
+    },
+    {
+      "id": "mundane-authorities",
+      "name": "Mundane Authorities",
+      "category": "Civic",
+      "description": "Skeptical officials who distrust rift-scarred or planar-touched folk."
+    },
+    {
+      "id": "established-nobility",
+      "name": "Established Nobility",
+      "category": "Civic",
+      "description": "Old houses, courtiers, and scandal-watchers along the ascent routes."
+    },
+    {
+      "id": "underworld",
+      "name": "Underworld",
+      "category": "Underworld",
+      "description": "Smugglers, syndicates, and revolutionary cells beneath Aethel's streets."
+    },
+    {
+      "id": "druidic-circles",
+      "name": "Druidic Circles",
+      "category": "Wild",
+      "description": "Circle groves and oath-bound wardens of the wild margins."
+    },
+    {
+      "id": "wildling-communities",
+      "name": "Wildling Communities",
+      "category": "Wild",
+      "description": "Isolated camps and fringe villages that trust the land over crowns."
+    },
+    {
+      "id": "alchemists-guilds",
+      "name": "Alchemists Guilds",
+      "category": "Trade",
+      "description": "Guild distilleries and apothecary chains that guard recipe monopolies."
+    },
+    {
+      "id": "artisan-guilds",
+      "name": "Artisan Guilds",
+      "category": "Trade",
+      "description": "Craft houses you trained under — or fled from."
+    },
+    {
+      "id": "rival-guilds",
+      "name": "Rival Guilds & Independents",
+      "category": "Trade",
+      "description": "Competing craft leagues and unguilded masters."
+    },
+    {
+      "id": "mainstream-faith",
+      "name": "Mainstream Religious Orders",
+      "category": "Faith",
+      "description": "Dominant temple hierarchies wary of fringe history and old pantheon talk."
+    },
+    {
+      "id": "fringe-historians",
+      "name": "Fringe Historians",
+      "category": "Lore",
+      "description": "Hidden archivists, old-tradition keepers, and lost-pantheon seekers."
+    },
+    {
+      "id": "underground-resistance",
+      "name": "Underground Resistance",
+      "category": "Underworld",
+      "description": "Cells that shelter fugitives and stolen relics from tyrannical powers."
+    },
+    {
+      "id": "marked-pursuers",
+      "name": "Marked Pursuers",
+      "category": "Underworld",
+      "description": "The faction or order hunting what you stole — name varies by story.",
+      "draft": true
+    },
+    {
+      "id": "merchant-guilds",
+      "name": "Merchant Guilds",
+      "category": "Trade",
+      "description": "Caravan masters and trade-company factors who fund expeditions."
+    },
+    {
+      "id": "explorers-societies",
+      "name": "Explorers Societies",
+      "category": "Lore",
+      "description": "Societies that publish maps, fund delves, and argue over first claims."
+    },
+    {
+      "id": "indigenous-tribes",
+      "name": "Indigenous Tribes",
+      "category": "Wild",
+      "description": "Peoples whose lands are mapped, mined, or crossed without invitation."
+    },
+    {
+      "id": "planar-trading-guilds",
+      "name": "Planar Trading Guilds",
+      "category": "Planar",
+      "description": "Cross-plane merchants who broker relics and passage contracts."
+    },
+    {
+      "id": "planar-customs",
+      "name": "Planar Customs Authorities",
+      "category": "Planar",
+      "description": "Inspectors who suspect smuggling through rift gates and echo ports."
+    },
+    {
+      "id": "museums-collectors",
+      "name": "Museums & Collectors",
+      "category": "Lore",
+      "description": "Curators and private buyers hungry for relic provenance."
+    },
+    {
+      "id": "indigenous-peoples",
+      "name": "Indigenous Peoples",
+      "category": "Wild",
+      "description": "Communities whose sacred sites are looted by relic hunters.",
+      "draft": true
+    },
+    {
+      "id": "frontier-communities",
+      "name": "Frontier Communities",
+      "category": "Wild",
+      "description": "Settlements on the edge of mapped Aethel that trade grit for protection."
+    },
+    {
+      "id": "urban-elites",
+      "name": "Urban Elites",
+      "category": "Civic",
+      "description": "Capital patrons who fund expeditions but disdain frontier hardship.",
+      "draft": true
+    },
+    {
+      "id": "law-enforcement",
+      "name": "Law Enforcement",
+      "category": "Civic",
+      "description": "Watch captains and bounty boards with long memories."
+    },
+    {
+      "id": "reformed-criminals",
+      "name": "Reformed Criminals",
+      "category": "Underworld",
+      "description": "Former syndicate members trying to walk a straighter path.",
+      "draft": true
+    },
+    {
+      "id": "elemental-cultists",
+      "name": "Elemental Cultists",
+      "category": "Planar",
+      "description": "Cults that venerate a single elemental thread of the Weave.",
+      "draft": true
+    },
+    {
+      "id": "opposing-elemental",
+      "name": "Opposing Elemental Factions",
+      "category": "Planar",
+      "description": "Rival element cults and primordial zealots.",
+      "draft": true
+    },
+    {
+      "id": "good-temples",
+      "name": "Good-Aligned Temples",
+      "category": "Faith",
+      "description": "Temples and choir-backed charities that recognize celestial emissaries."
+    },
+    {
+      "id": "fiendish-cults",
+      "name": "Fiendish Cults",
+      "category": "Underworld",
+      "description": "Infernal and abyssal cells that hunt celestial agents."
+    },
+    {
+      "id": "prophecy-believers",
+      "name": "Believers in Prophecy",
+      "category": "Lore",
+      "description": "Communities that see your fate written in the Tenfold cycles.",
+      "draft": true
+    },
+    {
+      "id": "prophecy-fearful",
+      "name": "Prophecy-Fearful",
+      "category": "Lore",
+      "description": "Authorities and cults that dread what your foretold path may unleash.",
+      "draft": true
+    }
+  ],
+  "fullOriginalBackgroundMappings": {
+    "Aethel City Guard Veteran": {
+      "aethel-authorities": 0,
+      "common-folk": 1
+    },
+    "Arcane Academy Dropout": {
+      "arcane-institutions": -1,
+      "independent-mages": 0,
+      "academic-factions": -1
+    },
+    "Battlefield Medic": {
+      "war-veterans": 1,
+      "opposing-forces": 0
+    },
+    "Corruption Survivor": {
+      "cleansing-orders": 1,
+      "corruption-scholars": -1
+    },
+    "Cult Escapee": {
+      "dark-cults": -2,
+      "anti-cult-groups": 1,
+      "religious-orders": 1
+    },
+    "Dimensional Refugee": {
+      "common-folk": 0,
+      "planar-scholars": 1,
+      "academic-factions": 0
+    },
+    "Disgraced Noble Scion": {
+      "established-nobility": -1,
+      "underworld": 0
+    },
+    "Expedition Cartographer": {
+      "merchant-guilds": 1,
+      "explorers-societies": 1,
+      "indigenous-tribes": 0
+    },
+    "Frontier Settler": {
+      "frontier-communities": 1,
+      "urban-elites": 0,
+      "nature-circles": 0
+    },
+    "Guild Artisan Dropout": {
+      "artisan-guilds": -1,
+      "rival-guilds": 0
+    },
+    "Marked Fugitive": {
+      "underground-resistance": 1,
+      "marked-pursuers": -2
+    },
+    "Planar Merchant": {
+      "planar-trading-guilds": 1,
+      "planar-customs": -1
+    },
+    "Relic Hunter": {
+      "museums-collectors": 1,
+      "indigenous-peoples": -1
+    },
+    "Rift Scarred Survivor": {
+      "planar-scholars": 0,
+      "mundane-authorities": -1
+    },
+    "Seeker of the Lost Pantheon": {
+      "mainstream-faith": 0,
+      "fringe-historians": 1,
+      "religious-orders": 0
+    },
+    "Wildling Herbalist": {
+      "druidic-circles": 1,
+      "wildling-communities": 1,
+      "alchemists-guilds": -1,
+      "nature-circles": 1
+    },
+    "Prophecy Bearer": {
+      "prophecy-believers": 1,
+      "prophecy-fearful": -1
+    },
+    "Underworld Escapee": {
+      "law-enforcement": -1,
+      "underworld": -2,
+      "reformed-criminals": 0
+    },
+    "Elemental Touched": {
+      "elemental-cultists": 1,
+      "opposing-elemental": -1
+    },
+    "Celestial Emissary": {
+      "good-temples": 1,
+      "fiendish-cults": -2,
+      "religious-orders": 1
+    }
+  },
+  "meaningReview": "All original literal labels/descriptions retained as source data only. Faith, planar, prophecy and resonance-track meaning/powers remain deferred to the user-directed post-push cosmology review.",
+  "requiresJointDecision": true,
+  "submitted": false,
+  "savedCharactersRead": 0,
+  "savedCharactersWritten": 0,
+  "sourceFilesModified": 0
+}

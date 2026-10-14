@@ -1,0 +1,60 @@
+{
+  "status": "code-inspection-only; runtime not executed or changed",
+  "file": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\src\\components\\CraftingBuilder.tsx",
+  "sha256": "a7876f99696ff14c2ad7f2f06af145d62a8f1f37850384bd6fa6c987e38b8168",
+  "findings": [
+    {
+      "lines": [
+        43,
+        54,
+        145,
+        162
+      ],
+      "issue": "Recipe view model/loader omits skillLevel, batch quantity, visibility/review state, activeWorkHours, consumed flags in its declared component interface, formula access and candidate operational fields. Current output cannot certify reviewed framework parity."
+    },
+    {
+      "lines": [
+        62,
+        67,
+        68
+      ],
+      "issue": "Material extraction deduplicates by drop name alone; reviewed material identity requires source occurrence/tier/properties/role/form and unit mass/value."
+    },
+    {
+      "lines": [
+        118,
+        119,
+        120,
+        129,
+        181
+      ],
+      "issue": "Library rarity and weight are randomly generated from bestiary tier slots on mount instead of using authoritative material records; identity/mass can change between sessions."
+    },
+    {
+      "lines": [
+        291,
+        320,
+        321
+      ],
+      "issue": "Custom experiment invents DC/time randomly and output from average tier/value/properties without formula/training/time/inventory rules; treat as legacy ideation, not execution of new reviewed crafting."
+    },
+    {
+      "lines": [
+        610,
+        732
+      ],
+      "issue": "Displayed resultItem.value has no explicit batch-vs-unit interpretation; source quantity is absent from view model."
+    }
+  ],
+  "remainingIntegration": [
+    "Source-authoritative recipe/material records with stable identity",
+    "Explicit authored-review status and isolated-test boundary",
+    "Batch quantity and unit-reference display",
+    "Real component consumption/returns, physical packaging and lot age",
+    "Trade/formula/station/assistant/time eligibility",
+    "No inferred powers from generic experiment",
+    "Public-only export and restricted-data protection",
+    "Meaningful state/transaction and UI tests after implementation"
+  ],
+  "scope": "This evidence adds concrete companion work to the open goal. No application readiness or operational implementation is claimed."
+}

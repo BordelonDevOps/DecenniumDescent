@@ -1,0 +1,159 @@
+These eight bindings close the remaining implementation gaps without reopening the Blacksmithing family decisions.
+
+1. **Magical-output structural profiles — APPROVED with actual-base binding.** **PRESERVED:** the selected mundane base keeps its reviewed structural body after the Blacksmithing recipe makes it magical. Magic does not replace the base HP/material profile. Use weapon HP 5; Buckler/Shield HP 10; Tower shield HP 15; Medium armor HP 15; Heavy armor HP 20; Helm HP 5; Gauntlet pair HP 5. Large sizing doubles the applicable maximum HP before later durability modifiers.
+
+**NEW:** record `dominantLoadBearingMaterial` on every reserved base before work. Preserve that material through the craft. Iron/steel-dominant bodies use AC 19; wood/leather-dominant bodies use AC 15; another already-reviewed mundane material AC remains what that actual base already had. Mixed items use the material genuinely carrying most of the item's structural load, declared before work and never chosen after an attack is known. Ingredient names/tags do not alter structural AC or HP. A red-dragon ingredient does not make a steel sword harder to Sunder; a wooden haft does not lower a metal-dominant sword unless the complete base was actually recorded that way.
+
+For the fixed armor mappings, Alien-Chitin Lamellar inherits Scale mail's Medium-armor HP 15; Ancient Red-Scale Cuirass inherits Breastplate's Medium-armor HP 15. Both use the actual base's recorded dominant material AC.
+
+2. **Reserved-base ordering — APPROVED.** **NEW exact procedure:** before any active work, record all `maximumYield` bases in a stable ordered list. Every entry must already have its model, size, grade, dominant material, maximum/current HP and any persistent durability modifiers recorded.
+
+At completion, transform the first `N` entries where `N` is the resolved finished quantity. Returned entries keep their exact prior condition.
+
+No reordering, substitution, acquisition or "pick the best ones" occurs after seeing the crafting roll.
+
+If a reserved base becomes missing, committed elsewhere or Broken before the completion check, the order pauses. It must be repaired or replaced with another fully legal base before the roll. A replacement occupies that exact list position; it does not move to the end or reorder the batch. Record its own actual condition when inserted.
+
+A damaged but non-Broken reserved base remains legal. This makes damage preservation deterministic.
+
+For the durability-improvement option rather than bonus yield, transform the first Standard `Q` entries and return the remaining reserved entries unchanged. Failed/Mishap transforms none.
+
+3. **Preexisting durability modifiers — admitted, with one noncompounding calculation.** A mundane, nonmagical, non-Broken base may already possess a reviewed crafting-quality durability increase or persistent Flawed maximum. Such a base is legal. A base already bearing another magical Blacksmith imprint remains ineligible absent a future explicit rework rule.
+
+Use these layers:
+
+`B = ordinary maximum HP after model + size + any actual equipment-grade HP rule`
+
+Then determine the strongest positive crafting durability modifier ever legally attached to that base:
+
+- none = `P 0`
+- Exceptional structural improvement = `P 25%`
+- Masterwork structural improvement = `P 50%`
+
+A later Blacksmith durability improvement **replaces P only if stronger**. Percentages never multiply each other and never calculate from an already-improved maximum.
+
+Calculate:
+
+`ImprovedMax = B + floor(B × P)`
+
+When `P > 0`, preserve the framework's minimum +1 increase if the percentage would otherwise add zero.
+
+Then apply the persistent crafting flaw **last**:
+
+`FinalMax = max(1, floor(ImprovedMax / 2))` if the item has a singleton-Flawed durability state.
+
+Otherwise `FinalMax = ImprovedMax`.
+
+There is only one persistent singleton-Flawed layer. A new Flawed result on an already Flawed base does **not** halve it again. Conversely, a later Masterwork durability option does not erase the flaw; it increases the underlying durability calculation and the flaw continues to halve the resulting maximum.
+
+Preserve damage deficit:
+
+`DamageDeficit = OldMax - OldCurrent`
+
+`NewCurrent = max(0, FinalMax - DamageDeficit)`, capped at `FinalMax`.
+
+Example: ordinary B=20, existing Flawed state, existing Exceptional durability. `ImprovedMax=25`; Flawed final max=`12`. A later Masterwork replaces +25% with +50%: `ImprovedMax=30`; Flawed final max=`15`. The flaw remains.
+
+Suppression and ordinary repair never remove either persistent modifier.
+
+4. **Multiple donned shields and resistance — APPROVED.** One shield supplies the creature's ordinary shield AC contribution under the existing equipment rule. Only that selected AC-contributing shield may offer its Blacksmith `armorBonus` to `equipment.defense-enhancement`.
+
+However, **each separately lawfully donned, intact and unsuppressed Blacksmith shield still supplies its printed resistance while worn**, even if that shield is not the one currently supplying ordinary shield AC.
+
+Therefore a creature legally using two shields could, for example, receive fire resistance from one and lightning resistance from the other while only one shield contributes its ordinary AC and enhancement calculation.
+
+Same-type resistance still does not stack or become immunity.
+
+A shield merely carried, slung on the back, stored, dropped or otherwise not actually donned grants neither its resistance nor recipe AC enhancement.
+
+Normal hand/forearm occupation, STR minimum, Stealth, proficiency and other drawbacks remain for every actually donned shield.
+
+For grade: newly supplied ordinary shield bases default to **Standard**. Blacksmithing creates no shield grade. If an actual preexisting shield already has a legitimately reviewed equipment grade, preserve that recorded grade and any properties explicitly established for that shield. Do **not** import the worn-suit grade AC bonuses onto shields. Likewise, do not infer a shield weight/HP effect from a suit-only grade clause unless an already-reviewed rule expressly gave it one. A legitimately established grade value may still remain part of its valuation where the prior grade rule actually applies.
+
+5. **Repair/reconstruction access — Smith's proficiency required; formula access not required.** Both HP-positive repair and HP-0 magical reconstruction require actual **Smith's-tools proficiency**. Owning Smith's tools, having a Blacksmithing trade level, or possessing the damaged item does not substitute for proficiency.
+
+HP-positive Blacksmith repair retains:
+
+- Smith's tools
+- Forge and Anvil
+- Tongs
+- STR or INT
+- PB once from Smith's-tools proficiency
+- DC 10
+- existing repair time/material calculation
+
+HP-0 reconstruction retains the previously approved:
+
+- same physical facilities/tools
+- STR or INT
+- Smith's-tools PB once
+- original recipe DC
+- `max(8 hours, maximum structural HP / 10 hours)`
+- 25% of undamaged finished Blacksmith reference value
+- binary success/failure
+
+**NEW clarification:** neither formula ownership nor the original recipe's trade-level eligibility is required to repair/reconstruct the surviving imprinted object. The object itself carries the existing imprint being restored; reconstruction does not teach, copy or grant that formula.
+
+A smith can therefore repair a restricted item without becoming entitled to manufacture another one. Formula secrecy/access remains unchanged.
+
+Forge Dwarf's creation-time reduction applies to **neither** HP-positive repair nor HP-0 reconstruction. Both are repair tasks, not item creation. A future explicit repair feature could override this, but the ancestry's current creation permission does not.
+
+6. **Suppression versus structural workmanship — CONFIRMED.** Crafting-quality structural HP increases and singleton-Flawed maximum reductions are **physical workmanship records**, not suppressible magical effects.
+
+Suppression therefore changes neither:
+
+- maximum structural HP,
+- current structural HP,
+- damage deficit,
+- persistent Flawed status,
+- Exceptional/Masterwork structural durability record,
+- size,
+- dominant material AC,
+- mundane equipment grade.
+
+Suppression disables only the magical functions already enumerated: recipe attack/damage enhancement, elemental rider, recipe defensive enhancement, resistance, and recipe-supplied magical weapon classification.
+
+When suppression ends, those magical benefits resume if the item remains otherwise functional. No HP disappears/reappears, no damage heals, no budget refresh occurs and no flaw is removed.
+
+Repair likewise cannot erase the Flawed maximum.
+
+7. **Outside-initiative elemental-rider timing — use absolute six-second windows with transition protection.** Do not manufacture abstract turns outside initiative.
+
+**NEW rule:** when a lawful weapon attack is being resolved outside initiative and the scene genuinely remains outside initiative, the item uses one rider budget per **absolute six-second combat-action window**.
+
+The first relevant combat-scale attack establishes that item's current six-second window. Additional lawful attacks that somehow occur within that same elapsed window do not create additional rider budgets. After six full seconds, a new window can begin. This rule grants no Action, attack, Reaction or acceleration by itself.
+
+For transitions:
+
+- If the attempted attack itself begins an encounter, establish initiative and resolve that attack under the encounter's actual legal turn/entry procedure. It does **not** first claim an outside-initiative rider budget.
+- Merely toggling into initiative never refreshes an item.
+- If an item actually triggered outside initiative and initiative begins before six elapsed seconds have passed, treat that item's rider as **already spent for its first actual turn** occurring before that six-second deadline. After that transition guard is satisfied, normal actual-turn budgets control.
+- Once initiative governs, each genuine regular or genuine extra turn is its own item budget as previously approved.
+- When initiative ends, an item that triggered on an initiative turn cannot trigger again outside initiative until six elapsed seconds have passed since that last trigger. Thereafter use normal absolute six-second windows.
+
+Thus a character cannot strike an object, switch into initiative, and immediately claim another elemental rider merely because the bookkeeping mode changed.
+
+Track `lastElementalRiderTriggerTime` across the transition in addition to the normal in-initiative `actualTurnId`.
+
+8. **Crude grade composition — CONFIRMED, with no implicit +0.** For functional weapons, V6 weapon-grade attack modifier and Blacksmith recipe attack enhancement remain one item-derived accuracy family.
+
+Evaluate only modifiers that actually exist.
+
+Therefore:
+
+- Crude weapon `−1` + active recipe `+1` → use `+1`.
+- Crude weapon `−1` + active recipe `+2` → use `+2`.
+- Crude weapon while recipe magic is suppressed → use `−1`.
+- There is no imaginary Standard `+0` entry that cancels the Crude penalty.
+
+The same logic applies to a worn suit's defensive-enhancement family:
+
+- Crude suit `−1 AC` + active Blacksmith `+1` → family contribution `+1`.
+- Suppress the recipe → the remaining family contribution is `−1`.
+- Fine/Superior/Exceptional suit bonuses compete normally with the active recipe enhancement under the already-agreed strongest-single-value rule.
+
+Shield AC remains outside the suit-grade clause as settled above.
+
+At **Broken**, do not continue evaluating attack/AC enhancement arithmetic for a function the item no longer supplies. A Broken weapon is no longer usable as its normal weapon profile, and a Broken armor/shield supplies no normal positive AC function. It still retains the already-reviewed physical drawbacks, occupation, weight, don/doff, STR/Stealth/nonproficiency consequences where applicable. An improvised use of a Broken weapon, if separately legal, does not recover its Blacksmith or normal weapon-profile bonuses.
+
+These bindings are sufficient for the upcoming 43-card manuscript. They do not require another generic Blacksmithing source conference unless the authored cards introduce a genuinely new mechanical behavior beyond the agreed source family and these eight clarifications.

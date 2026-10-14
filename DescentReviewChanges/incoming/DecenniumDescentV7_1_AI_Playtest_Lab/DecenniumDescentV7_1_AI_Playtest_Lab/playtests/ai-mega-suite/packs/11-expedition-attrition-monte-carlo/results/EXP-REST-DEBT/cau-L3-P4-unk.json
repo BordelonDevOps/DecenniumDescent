@@ -1,0 +1,63 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-REST-DEBT",
+  "runId": "EXP-REST-DEBT-cau-L3-P4-unk",
+  "seed": 5145891,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.759,
+    "wipeRate": 0.0,
+    "abortRate": 0.241,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 1.035,
+    "meanWatches": 6.212,
+    "meanHours": 52.15,
+    "meanTrueProfit": -3.54,
+    "medianTrueProfit": -5.54,
+    "profitLossRate": 0.589,
+    "meanCargoRetainedLoad": 3.807,
+    "meanExtractionFailRate": 0.307,
+    "meanRestDebtEvents": 0.084,
+    "meanDeaths": 0,
+    "level": 3,
+    "party": 4,
+    "mapping": "Unknown",
+    "policy": "cautious",
+    "objective": "interrupted rest and attrition",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "UNKNOWN-PROGRESS-ZERO",
+      "note": "progressPerWatch.Unknown=0; without Map Route success, expedition cannot meet Progress targets \u2014 intentional deadlock risk."
+    },
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    },
+    {
+      "code": "REST-DEBT-INTERRUPT-TIMING",
+      "note": "Rest Debt deadline 'next two Watches and before next day boundary' \u2014 applied as day-boundary failure; interrupt mid-rest timing vs Evening camp workers remains underspecified in JSON."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-REST-DEBT/cau-L3-P4-unk.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 0,
+      "pressure": 2,
+      "supply": 8.0,
+      "load": 4,
+      "mapping": "Unknown",
+      "alive": 4,
+      "extracting": false
+    }
+  ]
+}

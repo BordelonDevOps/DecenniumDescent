@@ -1,0 +1,2182 @@
+{
+  "schemaVersion": "EX58-social-scenarios-v1",
+  "status": "24 authored scenario instances; exact review pending",
+  "selectionEnabled": false,
+  "completeExpeditionCandidate": false,
+  "cases": [
+    {
+      "id": "SO-P-01",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-01",
+      "title": "An agreed request needs no check",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-01",
+        "sourceQuestion": "SO-01",
+        "originalScenario": {
+          "id": "SO-P-01",
+          "question": "SO-01",
+          "premise": "An authorized clerk already agrees to show an available ledger.",
+          "expectedUnderUnadoptedProposal": "No check is required; record any actual viewing time and conditions. A roll does not create an extra benefit.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "No check is required; record any actual viewing time and conditions. A roll does not create an extra benefit.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP01-ledger",
+        "participants": [
+          "Mira",
+          "clerk Ione"
+        ],
+        "frame": {
+          "Want": "view ledger-1",
+          "Leverage": "existing signed appointment",
+          "Limit": "view only; no copying or title transfer",
+          "ClockSeconds": 600,
+          "Witness": [
+            "Ione"
+          ]
+        },
+        "authority": {
+          "IoneOwnsDeskPermission": true,
+          "ledgerAvailable": true,
+          "ledgerReadable": true
+        },
+        "agreement": {
+          "atSeconds": 0,
+          "alreadyAccepted": true,
+          "conditions": [
+            "supervised viewing",
+            "return ledger to same desk"
+          ]
+        },
+        "viewing": {
+          "startSeconds": 0,
+          "endSeconds": 600,
+          "actualSeconds": 600,
+          "actors": [
+            "Mira",
+            "Ione"
+          ],
+          "activity": "actual supervised reading",
+          "halfOpen": true
+        },
+        "roll": {
+          "performed": false,
+          "reason": "no unresolved uncertainty"
+        },
+        "cargoAfter": {
+          "ledger-1": "original desk"
+        }
+      },
+      "expectedFinalState": {
+        "elapsedSeconds": 600,
+        "viewingCompleted": true,
+        "extraBenefitFromRoll": false
+      },
+      "readerExplanation": "The clerk already agrees and has the authority. Ten real minutes of supervised viewing occur without a roll, a free copy or any transfer of the ledger.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/0"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-02",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-01",
+      "title": "A proposed natural 20 cannot create authority",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-02",
+        "sourceQuestion": "SO-01",
+        "originalScenario": {
+          "id": "SO-P-02",
+          "question": "SO-01",
+          "premise": "A natural 20 is proposed for asking a clerk to transfer property they cannot authorize.",
+          "expectedUnderUnadoptedProposal": "Identify the missing authority before rolling; no total grants the transfer. A changed request can be considered separately.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Identify the missing authority before rolling; no total grants the transfer. A changed request can be considered separately.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP02-title",
+        "participants": [
+          "Mira",
+          "clerk Ione"
+        ],
+        "owner": "absent owner Hale",
+        "frame": {
+          "Want": "transfer Hale’s storehouse",
+          "Leverage": "an appeal to convenience",
+          "Limit": "Ione can schedule appointments only",
+          "ClockSeconds": 60,
+          "Witness": [
+            "Ione"
+          ]
+        },
+        "offeredDie": {
+          "natural": 20,
+          "acceptedAsResolution": false
+        },
+        "missingPrerequisite": "actual owner authority or lawful representative instrument",
+        "state": {
+          "ownerBefore": "Hale",
+          "ownerAfter": "Hale"
+        },
+        "changedRequest": {
+          "request": "schedule a meeting with Hale",
+          "authorityAvailable": true,
+          "separateRecord": "SP02-meeting",
+          "elapsedSeconds": 60
+        }
+      },
+      "expectedFinalState": {
+        "ownershipChanged": false,
+        "transferRollMade": false,
+        "separateFeasibleRequestAvailable": true
+      },
+      "readerExplanation": "No roll is made for the unauthorized transfer. Asking for a meeting is a new feasible request with its own actual time and agreement.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/1"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-03",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-02",
+      "title": "Meeting the announced DC earns the promised result",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-03",
+        "sourceQuestion": "SO-02",
+        "originalScenario": {
+          "id": "SO-P-03",
+          "question": "SO-02",
+          "premise": "Fixed DC12, modifier+4, natural8; no additional critical benefits declared.",
+          "expectedUnderUnadoptedProposal": "Total12 is Success and obtains exactly the promised success on stated terms. The Director cannot add an unannounced price by reserving success for22.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Total12 is Success and obtains exactly the promised success on stated terms. The Director cannot add an unannounced price by reserving success for22.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP03-access",
+        "participants": [
+          "Mira",
+          "warden Oren"
+        ],
+        "frame": {
+          "Want": "one supervised archive visit",
+          "Leverage": "actual appointment and stated research purpose",
+          "Limit": "one room, one hour, real escort",
+          "ClockSeconds": 600,
+          "Witness": [
+            "desk clerk"
+          ]
+        },
+        "stakesBeforeRoll": {
+          "DC": 12,
+          "Success": "grant the stated supervised visit without fee",
+          "CriticalSuccess": "same result; no additional benefit declared",
+          "Failure": "refuse this approach",
+          "CriticalFailure": "refusal, no invented fine"
+        },
+        "approach": {
+          "startSeconds": 0,
+          "endSeconds": 600,
+          "actualSeconds": 600,
+          "actors": [
+            "Mira",
+            "Oren"
+          ],
+          "activity": "actual negotiation",
+          "halfOpen": true
+        },
+        "roll": {
+          "actor": "Mira",
+          "nativeProcedure": "Core fixed-DC task",
+          "natural": 8,
+          "modifier": 4,
+          "DC": 12,
+          "total": 12,
+          "degree": "Success"
+        },
+        "result": {
+          "visitGranted": true,
+          "escort": "actual available Fen",
+          "newFeeCp": 0,
+          "hiddenDC22Applied": false
+        }
+      },
+      "expectedFinalState": {
+        "total": 12,
+        "degree": "Success",
+        "promisedTermsHonored": true,
+        "undisclosedCostCp": 0
+      },
+      "readerExplanation": "A total of 12 meets DC 12 and grants exactly the promised visit. The Director does not reserve ordinary success for 22 or invent a fee after the roll.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/2"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-04",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-02",
+      "title": "A costly agreement and an opposed tie are distinct",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-04",
+        "sourceQuestion": "SO-02",
+        "originalScenario": {
+          "id": "SO-P-04",
+          "question": "SO-02",
+          "premise": "Fixed DC12, modifier+4, natural7, declared alternative costs5gp; compare opposed14 versus14.",
+          "expectedUnderUnadoptedProposal": "The fixed task fails at11. The player may accept the recorded5gp alternative or keep the money and refusal. The distinct opposed tie leaves the existing state unchanged; do not convert natural task shifts into tie modifiers.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "The fixed task fails at11. The player may accept the recorded5gp alternative or keep the money and refusal. The distinct opposed tie leaves the existing state unchanged; do not convert natural task shifts into tie modifiers.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP04-access",
+        "participants": [
+          "Mira",
+          "warden Oren"
+        ],
+        "approach": {
+          "startSeconds": 0,
+          "endSeconds": 600,
+          "actualSeconds": 600,
+          "actors": [
+            "Mira",
+            "Oren"
+          ],
+          "activity": "fixed-DC negotiation",
+          "halfOpen": true
+        },
+        "roll": {
+          "actor": "Mira",
+          "nativeProcedure": "Core fixed-DC task",
+          "natural": 7,
+          "modifier": 4,
+          "DC": 12,
+          "total": 11,
+          "degree": "Failure"
+        },
+        "predeclaredFailureOffer": {
+          "id": "SP04-escort",
+          "amountCp": 500,
+          "realEscort": "Fen",
+          "expiresAtSeconds": 1200
+        },
+        "openingCashCp": 700,
+        "acceptAlternative": {
+          "consent": true,
+          "paymentId": "SP04-paid",
+          "paidCp": 500,
+          "cashAfterCp": 200,
+          "supervisedVisitGranted": true,
+          "dieDegreeStill": "Failure"
+        },
+        "declineAlternative": {
+          "consent": false,
+          "paidCp": 0,
+          "cashAfterCp": 700,
+          "visitGranted": false
+        },
+        "separateOpposedCase": {
+          "id": "SP04-contest",
+          "nativeProcedure": "opposed totals",
+          "A": {
+            "natural": 10,
+            "modifier": 4,
+            "total": 14
+          },
+          "B": {
+            "natural": 12,
+            "modifier": 2,
+            "total": 14
+          },
+          "priorCustody": "B",
+          "afterCustody": "B",
+          "taskDegreesOrNaturalShiftsUsed": false
+        }
+      },
+      "expectedFinalState": {
+        "fixedTotal": 11,
+        "fixedDegree": "Failure",
+        "paymentOptional": true,
+        "opposedTieKeepsPriorState": true
+      },
+      "readerExplanation": "The fixed task fails. Mira may separately pay the predeclared 5-gp escort fee or keep the money and refusal. In the independent 14-versus-14 contest, the prior state remains; Core task-degree shifts do not break the tie.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/3"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-05",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-03",
+      "title": "Insight is bounded by available evidence",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-05",
+        "sourceQuestion": "SO-03",
+        "originalScenario": {
+          "id": "SO-P-05",
+          "question": "SO-03",
+          "premise": "An Insight approach has observable hesitation but no access to the hidden document being discussed.",
+          "expectedUnderUnadoptedProposal": "Resolve only the declared obtainable inference. Success does not read the document or reveal cosmic alignment; failure does not force belief in a fabricated fact.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Resolve only the declared obtainable inference. Success does not read the document or reveal cosmic alignment; failure does not force belief in a fabricated fact.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP05-hesitation",
+        "participants": [
+          "Mira",
+          "messenger Fen"
+        ],
+        "frame": {
+          "Want": "understand visible hesitation about timing",
+          "Leverage": "observable delay and glance at the dispatch seal",
+          "Limit": "sealed document unavailable",
+          "ClockSeconds": 60,
+          "Witness": [
+            "Mira"
+          ]
+        },
+        "stakes": {
+          "Success": "notice that the messenger is unsure about the delivery deadline",
+          "Failure": "no reliable inference",
+          "cosmicOrHiddenContent": "outside obtainable information"
+        },
+        "approach": {
+          "startSeconds": 0,
+          "endSeconds": 60,
+          "actualSeconds": 60,
+          "actors": [
+            "Mira",
+            "Fen"
+          ],
+          "activity": "one actual question and observed response",
+          "halfOpen": true
+        },
+        "roll": {
+          "actor": "Mira",
+          "nativeProcedure": "Core fixed-DC task",
+          "natural": 10,
+          "modifier": 3,
+          "DC": 13,
+          "total": 13,
+          "degree": "Success"
+        },
+        "knownAfter": [
+          "observable uncertainty about deadline"
+        ],
+        "unknownAfter": [
+          "sealed document text",
+          "unspoken motive",
+          "alignment meaning"
+        ],
+        "failureAlternative": {
+          "natural": 5,
+          "modifier": 3,
+          "DC": 13,
+          "forcedBelief": "none; uncertainty remains"
+        }
+      },
+      "expectedFinalState": {
+        "boundedInferenceObtained": true,
+        "documentRead": false,
+        "alignmentDetermined": false,
+        "failureForcesFalseBelief": false
+      },
+      "readerExplanation": "Success identifies the declared observable uncertainty. It does not read the sealed document, establish an unspoken motive or interpret alignment. Failure leaves uncertainty rather than forcing belief in invented information.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/4"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-06",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-03",
+      "title": "Performance earns the stated audience response",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-06",
+        "sourceQuestion": "SO-03",
+        "originalScenario": {
+          "id": "SO-P-06",
+          "question": "SO-03",
+          "premise": "A character succeeds at entertaining a crowd with Performance and asks for an automatic license and a second free Persuasion roll.",
+          "expectedUnderUnadoptedProposal": "Honor the declared audience response. The other requested outcomes need actual authority and distinct unresolved approaches; Performance does not grant them.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Honor the declared audience response. The other requested outcomes need actual authority and distinct unresolved approaches; Performance does not grant them.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP06-performance",
+        "performer": "Mira",
+        "audience": [
+          "five actual consenting listeners"
+        ],
+        "licensingOfficerPresent": false,
+        "frame": {
+          "Want": "hold the audience for one song",
+          "Leverage": "actual song and suitable audible venue",
+          "Limit": "audience cannot issue a civic license",
+          "ClockSeconds": 600,
+          "Witness": [
+            "listeners"
+          ]
+        },
+        "performance": {
+          "startSeconds": 0,
+          "endSeconds": 600,
+          "actualSeconds": 600,
+          "actors": [
+            "Mira",
+            "listeners"
+          ],
+          "activity": "one actual performance",
+          "halfOpen": true
+        },
+        "roll": {
+          "actor": "Mira",
+          "nativeProcedure": "Core fixed-DC task",
+          "natural": 9,
+          "modifier": 4,
+          "DC": 13,
+          "total": 13,
+          "degree": "Success"
+        },
+        "promisedSuccess": "listeners remain to hear the complete song and applaud",
+        "actualResult": "promised audience response",
+        "additionalRequests": [
+          {
+            "request": "automatic performance license",
+            "result": "missing issuing authority"
+          },
+          {
+            "request": "another free Persuasion roll",
+            "result": "no new unresolved approach defined"
+          }
+        ]
+      },
+      "expectedFinalState": {
+        "audienceResponseHonored": true,
+        "licenseCreated": false,
+        "freeExtraRoll": false
+      },
+      "readerExplanation": "The successful Performance receives its promised audience response. A license needs the actual issuing authority, and another roll needs a genuinely separate unresolved request.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/5"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-07",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-04",
+      "title": "The same raw number can have different source meanings",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-07",
+        "sourceQuestion": "SO-04",
+        "originalScenario": {
+          "id": "SO-P-07",
+          "question": "SO-04",
+          "premise": "A known companion-schema score+2 and a legacy Loop-schema score+2 appear on separate imported characters.",
+          "expectedUnderUnadoptedProposal": "Preserve both originals and their formats. Only the known companion integer carries forward automatically; the Loop number needs a recorded interpretation because its meaning differs.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP preservation; specify the adopted interpretation",
+        "finalExpected": "Preserve both exact raw+2 values and source versions. Evidenced companion-score-v1+2 means active+2/Honored. Loop eleven-band+2 is not auto-imported; a recorded use of RP-A01 Loop mapping yields active+1/Liked while retaining the old eleven-band meaning and any genuinely earned rights. Unknown versions remain unresolved.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "companion": {
+          "raw": {
+            "utf8": "{\"local-desk\":2}",
+            "base64": "eyJsb2NhbC1kZXNrIjoyfQ==",
+            "sha256": "df62cdd33508c5a6c7a5544dadcfb3833a93127890ac7d308b204b01d122d953",
+            "producerVersion": "companion-score-v1-evidenced",
+            "orderedMembers": [
+              [
+                "local-desk",
+                2
+              ]
+            ],
+            "immutable": true,
+            "realSave": false
+          },
+          "binding": {
+            "subject": "A",
+            "institution": "actual local desk"
+          },
+          "policy": "companion-score-v1-evidenced",
+          "activeScore": 2,
+          "band": "Honored"
+        },
+        "loopBeforeDecision": {
+          "raw": {
+            "utf8": "{\"local-desk\":2}",
+            "base64": "eyJsb2NhbC1kZXNrIjoyfQ==",
+            "sha256": "df62cdd33508c5a6c7a5544dadcfb3833a93127890ac7d308b204b01d122d953",
+            "producerVersion": "loop-eleven-band-v1-evidenced",
+            "orderedMembers": [
+              [
+                "local-desk",
+                2
+              ]
+            ],
+            "immutable": true,
+            "realSave": false
+          },
+          "binding": {
+            "subject": "B",
+            "institution": "actual local desk"
+          },
+          "activeInterpretation": "unapplied until a named policy decision"
+        },
+        "explicitLoopDecision": {
+          "id": "SP07-map",
+          "policy": "optional RP-A01 Loop mapping",
+          "rawValue": 2,
+          "activeScore": 1,
+          "band": "Liked",
+          "oldElevenBandLabelAndEarnedRightsPreserved": true,
+          "sourceBytesRewritten": false
+        },
+        "unknownProducerBranch": {
+          "rawValue": 2,
+          "producer": "unknown",
+          "activeScoreStatus": "unresolved",
+          "guessFromMagnitude": false
+        }
+      },
+      "expectedFinalState": {
+        "companionRaw2Active": 2,
+        "explicitlyMappedLoopRaw2Active": 1,
+        "bothRawValuesStill2": true
+      },
+      "readerExplanation": "The evidenced companion +2 remains +2/Honored. The older Loop +2 is not automatically imported; an explicit use of the named mapping gives +1/Liked while retaining the old raw meaning and earned rights. Unknown versions stay unresolved.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/6"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-08",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-04",
+      "title": "Reapplying a background does not reset earned standing",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-08",
+        "sourceQuestion": "SO-04",
+        "originalScenario": {
+          "id": "SO-P-08",
+          "question": "SO-04",
+          "premise": "A new Medic background has been applied once; earned standing, an unknown faction key, explicit zero and a malformed source value now exist.",
+          "expectedUnderUnadoptedProposal": "Reapplying the background cannot reset earned scores. Keep unknown keys, explicit zero and the unresolved malformed value. Do not normalize them away or claim absence equals recorded zero.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Reapplying the background cannot reset earned scores. Keep unknown keys, explicit zero and the unresolved malformed value. Do not normalize them away or claim absence equals recorded zero.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "subject": "Battlefield Medic A",
+        "raw": {
+          "utf8": "{\"war-veterans\":2,\"opposing-forces\":0,\"unknown-local\":5,\"explicit-zero\":0,\"malformed\":\"uncertain\"}",
+          "base64": "eyJ3YXItdmV0ZXJhbnMiOjIsIm9wcG9zaW5nLWZvcmNlcyI6MCwidW5rbm93bi1sb2NhbCI6NSwiZXhwbGljaXQtemVybyI6MCwibWFsZm9ybWVkIjoidW5jZXJ0YWluIn0=",
+          "sha256": "aa9ae7cb1f2fbf00bd00b178d2fcda60e2952400476f6a8a1982a1c5c5c02878",
+          "producerVersion": "standing-v1 with retained extension fields",
+          "orderedMembers": [
+            [
+              "war-veterans",
+              2
+            ],
+            [
+              "opposing-forces",
+              0
+            ],
+            [
+              "unknown-local",
+              5
+            ],
+            [
+              "explicit-zero",
+              0
+            ],
+            [
+              "malformed",
+              "uncertain"
+            ]
+          ],
+          "immutable": true,
+          "realSave": false
+        },
+        "originalInitialization": {
+          "id": "SP08-bg-once",
+          "backgroundId": "battlefield-medic",
+          "sourceVersion": "current full feature",
+          "actualServedVeterans": "local veterans",
+          "initialVeteranScore": 1,
+          "actualOpposingSide": "local opposing veterans",
+          "initialOpposingScore": 0
+        },
+        "earnedHistory": [
+          {
+            "id": "SP08-earned",
+            "institution": "local veterans",
+            "cause": "actual subsequent aid",
+            "delta": 1
+          }
+        ],
+        "duplicateApplication": {
+          "sameInitializationId": "SP08-bg-once",
+          "operation": "idempotent no-op",
+          "earnedScoreAfter": 2,
+          "opposingScoreAfter": 0
+        },
+        "preservation": {
+          "unknown-local": 5,
+          "explicit-zero": 0,
+          "malformed": "uncertain",
+          "absent-key": {
+            "presence": "absent"
+          }
+        },
+        "malformedInterpretation": "unresolved, not Neutral zero"
+      },
+      "expectedFinalState": {
+        "earnedVeteranScore": 2,
+        "unknownKeysDeleted": 0,
+        "zeroEqualsAbsence": false,
+        "backgroundBonusReapplied": false
+      },
+      "readerExplanation": "The once-applied Medic contribution stays in history, followed by the actual earned event. Applying the same background again changes nothing. Unknown keys, recorded zero, absence and the unresolved string remain distinct.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/7"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-09",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-05",
+      "title": "Keep the older alignment passage as a source receipt",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-09",
+        "sourceQuestion": "SO-05",
+        "originalScenario": {
+          "id": "SO-P-09",
+          "question": "SO-05",
+          "premise": "The preserved Player alignment paragraph is encountered during the ordinary social conference.",
+          "expectedUnderUnadoptedProposal": "Retain the whole original as a deferred receipt. The proposal recommends no automatic alignment modifier pending review, but grants no authority to adopt that boundary or interpret cosmology before GPT's explicit disposition.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "ADOPT NEW ordinary boundary; original proposal remains unadopted historical text",
+        "finalExpected": "SO-05 now explicitly adopts no automatic alignment modifier in this ordinary procedure. Preserve the full old paragraph as a receipt. No alignment meaning, cosmology or pending feature is approved.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "sourceReceipt": {
+          "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "paragraphIndices": [
+            7820,
+            7821,
+            7822,
+            7823,
+            7824,
+            7825,
+            7826,
+            7827,
+            7828,
+            7829
+          ],
+          "fullOriginalPreservedInDirectorEnvelope": true,
+          "sourceBytesChanged": false
+        },
+        "ordinaryProcedureDecision": {
+          "authority": "EX58 SO-05 source direction",
+          "automaticAlignmentModifier": 0,
+          "automaticAlignmentAdvantage": false
+        },
+        "sampleCheck": {
+          "actualCHAAndOnePB": 4,
+          "natural": 8,
+          "DC": 12,
+          "otherActualModifiers": [],
+          "total": 12
+        },
+        "deferred": {
+          "alignmentMeaningInterpreted": false,
+          "cosmologyReviewed": false,
+          "pendingClassPredicateApproved": false
+        }
+      },
+      "expectedFinalState": {
+        "ordinaryAutomaticAlignmentModifier": 0,
+        "legacyTextDeleted": false,
+        "deepInterpretationMade": false
+      },
+      "readerExplanation": "SO-05 supplies the new ordinary procedure: no automatic alignment modifier. The complete older passage remains a source receipt. This does not interpret alignment, review cosmology or approve a pending feature.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/8"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-10",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-05",
+      "title": "A communicated purpose can be ordinary leverage",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-10",
+        "sourceQuestion": "SO-05",
+        "originalScenario": {
+          "id": "SO-P-10",
+          "question": "SO-05",
+          "premise": "Two characters openly share a stated civic objective but their cosmic alignment is unknown.",
+          "expectedUnderUnadoptedProposal": "Their communicated objective can supply ordinary scene leverage; it does not establish identical cosmic alignment or grant the legacy automatic advantage.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Their communicated objective can supply ordinary scene leverage; it does not establish identical cosmic alignment or grant the legacy automatic advantage.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP10-civic-plan",
+        "participants": [
+          "Mira",
+          "organizer Hale"
+        ],
+        "statements": [
+          {
+            "speaker": "Mira",
+            "heardBy": "Hale",
+            "content": "repair the public bridge"
+          },
+          {
+            "speaker": "Hale",
+            "heardBy": "Mira",
+            "content": "repair the public bridge"
+          }
+        ],
+        "frame": {
+          "Want": "agree on a real work appointment",
+          "Leverage": "the explicitly shared civic objective",
+          "Limit": "no claim about hidden convictions or alignment",
+          "ClockSeconds": 600,
+          "Witness": [
+            "both speakers"
+          ]
+        },
+        "alignmentState": {
+          "Mira": "unknown",
+          "Hale": "unknown"
+        },
+        "procedure": {
+          "automaticAlignmentAdvantage": false,
+          "actualSharedPurposeRecorded": true
+        },
+        "agreement": {
+          "actualVoluntaryAssent": true,
+          "workersOrMaterialsCreated": false,
+          "timeSeconds": 600
+        }
+      },
+      "expectedFinalState": {
+        "sharedObjectiveKnown": true,
+        "identicalAlignmentEstablished": false,
+        "legacyAutomaticAdvantageGranted": false
+      },
+      "readerExplanation": "Their heard statements provide ordinary leverage for a real agreement. The shared goal does not identify their alignment or grant the old automatic advantage.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/9"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-11",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-06",
+      "title": "An interpreter uses real serial speaking time",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-11",
+        "sourceQuestion": "SO-06",
+        "originalScenario": {
+          "id": "SO-P-11",
+          "question": "SO-06",
+          "premise": "Three participants and an interpreter complete a declared ten-minute exchange concurrently.",
+          "expectedUnderUnadoptedProposal": "Advance the shared clock by ten minutes, plus only actual separately required time. Do not charge forty minutes or count translation as an unrelated spell component.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "The exchange advances10 actual minutes only if the full actual serial interpretation and contributions fit those10 minutes. Otherwise add the actual necessary interval. Concurrent participants do not multiply the clock, and an interpreter cannot supply another caster's components.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "participants": [
+          "A",
+          "B",
+          "C",
+          "interpreter Ione"
+        ],
+        "communication": {
+          "IoneActuallyKnowsBothLanguages": true,
+          "allHearAtActualDistance": true
+        },
+        "exchange": {
+          "startSeconds": 0,
+          "endSeconds": 600,
+          "actualSeconds": 600,
+          "actors": [
+            "A",
+            "B",
+            "C",
+            "Ione"
+          ],
+          "activity": "ten-minute exchange including serial interpretation",
+          "halfOpen": true
+        },
+        "speakingSegments": [
+          {
+            "speaker": "A",
+            "startSeconds": 0,
+            "endSeconds": 30,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 30,
+            "endSeconds": 60,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "B",
+            "startSeconds": 60,
+            "endSeconds": 90,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 90,
+            "endSeconds": 120,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "C",
+            "startSeconds": 120,
+            "endSeconds": 150,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 150,
+            "endSeconds": 180,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "A",
+            "startSeconds": 180,
+            "endSeconds": 210,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 210,
+            "endSeconds": 240,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "B",
+            "startSeconds": 240,
+            "endSeconds": 270,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 270,
+            "endSeconds": 300,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "C",
+            "startSeconds": 300,
+            "endSeconds": 330,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 330,
+            "endSeconds": 360,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "A",
+            "startSeconds": 360,
+            "endSeconds": 390,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 390,
+            "endSeconds": 420,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "B",
+            "startSeconds": 420,
+            "endSeconds": 450,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 450,
+            "endSeconds": 480,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "C",
+            "startSeconds": 480,
+            "endSeconds": 510,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 510,
+            "endSeconds": 540,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          },
+          {
+            "speaker": "A",
+            "startSeconds": 540,
+            "endSeconds": 570,
+            "language": "speaker’s known tongue"
+          },
+          {
+            "speaker": "interpreter Ione",
+            "startSeconds": 570,
+            "endSeconds": 600,
+            "language": "audience’s known tongue",
+            "interpretsPreviousSegment": true
+          }
+        ],
+        "actorMinutesAreNotElapsedMinutes": true,
+        "overflowBranch": {
+          "additionalActualOriginalSpeechSeconds": 60,
+          "additionalInterpretationSeconds": 60,
+          "newEndSeconds": 720
+        },
+        "spellComponents": {
+          "IoneVoiceSubstitutesForAnotherCasterV": false,
+          "translationCreatesSpellKnowledge": false
+        }
+      },
+      "expectedFinalState": {
+        "baseElapsedSeconds": 600,
+        "baseParticipantMinutes": 40,
+        "overflowElapsedSeconds": 720,
+        "elapsedMultipliedByParticipants": false
+      },
+      "readerExplanation": "Ten paired thirty-second contributions and translations fit exactly into ten minutes. Four participants do not turn that into forty elapsed minutes. Another minute of original speech plus its translation adds two real minutes, and the interpreter cannot supply another caster’s verbal component.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/10"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-12",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-06",
+      "title": "A combat round cannot contain a blocked minute-long bargain",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-12",
+        "sourceQuestion": "SO-06",
+        "originalScenario": {
+          "id": "SO-P-12",
+          "question": "SO-06",
+          "premise": "A character tries to finish a minute-long bargain during one six-second combat round with a blocked communication channel.",
+          "expectedUnderUnadoptedProposal": "The bargain does not complete for free and the channel must actually work. Preserve initiative costs, effect deadlines and threats; a social skill cannot erase the missing channel.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "The bargain does not complete for free and the channel must actually work. Preserve initiative costs, effect deadlines and threats; a social skill cannot erase the missing channel.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP12-combat",
+        "round": 1,
+        "roundInterval": {
+          "startSeconds": 0,
+          "endSeconds": 6,
+          "actualSeconds": 6,
+          "actors": [
+            "Mira",
+            "warden"
+          ],
+          "activity": "actual initiative round",
+          "halfOpen": true
+        },
+        "declaredBargainSeconds": 60,
+        "channel": {
+          "voiceBlockedByActualBarrier": true,
+          "alternateSharedChannelAvailable": false
+        },
+        "attempt": {
+          "freeSpeechBudgetSeconds": 6,
+          "ActionSpentForAdditionalSpeech": false,
+          "effectiveUnderstoodSpeechSeconds": 0,
+          "rollMade": false
+        },
+        "stateCarry": {
+          "roundsElapsed": 1,
+          "effectExpiryAtSeconds": 18,
+          "expiryExtendedByNegotiationLabel": false,
+          "opposingThreatStillApplies": true
+        },
+        "laterRepair": {
+          "requiresActualChannelAndTime": true,
+          "backdatedAgreement": false
+        }
+      },
+      "expectedFinalState": {
+        "bargainCompleted": false,
+        "understoodSpeechSeconds": 0,
+        "freeExtraTime": false
+      },
+      "readerExplanation": "The real round advances six seconds. With no usable channel, the intended bargain contributes no understood exchange. Its minute of work, ordinary action costs, opposing threats and existing deadlines do not disappear.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/11"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-13",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-07",
+      "title": "Help expires at the actual regular-turn boundary",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-13",
+        "sourceQuestion": "SO-07",
+        "originalScenario": {
+          "id": "SO-P-13",
+          "question": "SO-07",
+          "premise": "A helper in initiative spends Help; the ally waits until after the helper's next regular start to check.",
+          "expectedUnderUnadoptedProposal": "The existing Help benefit has expired. Social rules do not extend its reviewed deadline.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "The existing Help benefit has expired. Social rules do not extend its reviewed deadline.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "helper": "Fen",
+        "beneficiary": "Mira",
+        "round1": {
+          "helperSlot": 12,
+          "beneficiarySlot": 10,
+          "helperAction": {
+            "id": "SP13-help",
+            "kind": "Help",
+            "qualifyingAssistance": "present and explain the relevant original permit",
+            "ActionSpent": true
+          }
+        },
+        "deadline": {
+          "event": "Fen next regular turn start",
+          "round": 2,
+          "slot": 12
+        },
+        "beneficiaryCheck": {
+          "round": 2,
+          "slot": 10,
+          "afterDeadline": true,
+          "oldHelpAdvantage": false,
+          "natural": 8,
+          "modifier": 4,
+          "DC": 12,
+          "total": 12
+        },
+        "extraTurnOrSocialLabelChangesExpiry": false
+      },
+      "expectedFinalState": {
+        "oldHelpExpired": true,
+        "ordinaryCheckStillPossible": true,
+        "advantageFromExpiredHelp": false
+      },
+      "readerExplanation": "Mira waits until after Fen’s next regular start. The Help benefit has expired, even though the conversation continues. The check uses its remaining legal modifiers only.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/12"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-14",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-07",
+      "title": "A new speaker is not new evidence",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-14",
+        "sourceQuestion": "SO-07",
+        "originalScenario": {
+          "id": "SO-P-14",
+          "question": "SO-07",
+          "premise": "After refusal, four allies repeat the same approach; later one supplies a genuine authorization letter.",
+          "expectedUnderUnadoptedProposal": "Speaker rotation alone grants no new resolutions. The new letter may establish a new approach with fresh disclosed stakes and time; earlier costs and refusal remain recorded.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Speaker rotation alone grants no new resolutions. The new letter may establish a new approach with fresh disclosed stakes and time; earlier costs and refusal remain recorded.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP14-access",
+        "initialApproach": {
+          "interval": {
+            "startSeconds": 0,
+            "endSeconds": 600,
+            "actualSeconds": 600,
+            "actors": [
+              "A",
+              "warden"
+            ],
+            "activity": "actual negotiation",
+            "halfOpen": true
+          },
+          "roll": {
+            "actor": "A",
+            "nativeProcedure": "Core fixed-DC task",
+            "natural": 7,
+            "modifier": 4,
+            "DC": 12,
+            "total": 11,
+            "degree": "Failure"
+          },
+          "result": "refusal"
+        },
+        "sameFactsRequests": [
+          {
+            "speaker": "B",
+            "newResolution": false,
+            "preservedSceneId": "SP14-access"
+          },
+          {
+            "speaker": "C",
+            "newResolution": false,
+            "preservedSceneId": "SP14-access"
+          },
+          {
+            "speaker": "D",
+            "newResolution": false,
+            "preservedSceneId": "SP14-access"
+          },
+          {
+            "speaker": "E",
+            "newResolution": false,
+            "preservedSceneId": "SP14-access"
+          }
+        ],
+        "newEvidence": {
+          "id": "SP14-letter",
+          "arrivesAtSeconds": 3600,
+          "issuer": "actual authorized owner",
+          "authenticityKnownFromActualSealAndRegister": true
+        },
+        "newApproach": {
+          "id": "SP14-letter-request",
+          "interval": {
+            "startSeconds": 3600,
+            "endSeconds": 4200,
+            "actualSeconds": 600,
+            "actors": [
+              "A",
+              "warden"
+            ],
+            "activity": "consider the genuinely new authorization",
+            "halfOpen": true
+          },
+          "newDisclosedTerms": "one authorized supervised inspection",
+          "earlierRefusalDeleted": false,
+          "oldExpensesRefunded": false
+        }
+      },
+      "expectedFinalState": {
+        "speakerRotationExtraRolls": 0,
+        "laterMaterialChangePermitsNewApproach": true,
+        "historyRetained": true
+      },
+      "readerExplanation": "Four repeats with unchanged facts create no new resolutions. The real authorization letter later changes the approach; its consideration takes fresh time while the original refusal and costs remain in history.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/13"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-15",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-08",
+      "title": "Charmed does not make an unauthorized concession possible",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-15",
+        "sourceQuestion": "SO-08",
+        "originalScenario": {
+          "id": "SO-P-15",
+          "question": "SO-08",
+          "premise": "A target is Charmed by the speaker, who requests a concession outside the target's authority.",
+          "expectedUnderUnadoptedProposal": "Preserve the charmer's social advantage where a legal check exists. Charmed supplies neither authority nor obedience, so it cannot make this concession possible.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Preserve the charmer's social advantage where a legal check exists. Charmed supplies neither authority nor obedience, so it cannot make this concession possible.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "speaker": "Mira",
+        "target": "clerk Ione",
+        "condition": {
+          "name": "Charmed",
+          "charmer": "Mira",
+          "sourceEvent": "existing-lawful-effect",
+          "expirySeconds": 600
+        },
+        "request": {
+          "concession": "transfer absent Hale’s property",
+          "IoneCanAuthorize": false,
+          "resolutionRoute": "impossible now",
+          "rollMade": false
+        },
+        "legalAlternative": {
+          "request": "arrange a meeting Ione can schedule",
+          "actualUncertainty": true,
+          "interval": {
+            "startSeconds": 0,
+            "endSeconds": 60,
+            "actualSeconds": 60,
+            "actors": [
+              "Mira",
+              "Ione"
+            ],
+            "activity": "actual request",
+            "halfOpen": true
+          },
+          "eligibleAdvantageDice": [
+            4,
+            10
+          ],
+          "modifier": 4,
+          "DC": 12,
+          "selectedTotal": 14,
+          "outcome": "Success"
+        },
+        "conditionBoundaries": {
+          "IoneMayAttackOrHarmCharmer": false,
+          "obeysAllRequests": false,
+          "propertyAuthorityCreated": false
+        }
+      },
+      "expectedFinalState": {
+        "unauthorizedTransfer": false,
+        "socialAdvantageOnLegalCheckRetained": true,
+        "obedienceGranted": false
+      },
+      "readerExplanation": "There is no roll for the impossible transfer. If Mira makes a different, legally possible request with real uncertainty, the existing Charmed advantage applies normally. The condition creates neither authority nor obedience.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/14"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-16",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-08",
+      "title": "Intimidation and Frightened remain separate procedures",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-16",
+        "sourceQuestion": "SO-08",
+        "originalScenario": {
+          "id": "SO-P-16",
+          "question": "SO-08",
+          "premise": "Ordinary Intimidation succeeds; a separate actual Frightened source is no longer visible.",
+          "expectedUnderUnadoptedProposal": "Intimidation does not itself apply Frightened. Under the actual condition, loss of source visibility ends only its visibility-dependent disadvantage; the willing-approach restriction follows the source's existing duration.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Intimidation does not itself apply Frightened. Under the actual condition, loss of source visibility ends only its visibility-dependent disadvantage; the willing-approach restriction follows the source's existing duration.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "intimidation": {
+          "scene": "SP16-warning",
+          "frame": {
+            "Want": "make an intruder leave a privately controlled doorway",
+            "Leverage": "credible actual warning",
+            "Limit": "no threat to player boundaries or forced magical state",
+            "ClockSeconds": 60,
+            "Witness": [
+              "guard"
+            ]
+          },
+          "interval": {
+            "startSeconds": 0,
+            "endSeconds": 60,
+            "actualSeconds": 60,
+            "actors": [
+              "Mira",
+              "intruder"
+            ],
+            "activity": "ordinary social warning",
+            "halfOpen": true
+          },
+          "roll": {
+            "actor": "Mira",
+            "nativeProcedure": "Core fixed-DC task",
+            "natural": 10,
+            "modifier": 3,
+            "DC": 13,
+            "total": 13,
+            "degree": "Success"
+          },
+          "declaredSuccess": "intruder voluntarily leaves the doorway",
+          "FrightenedApplied": false
+        },
+        "independentConditionCase": {
+          "actor": "Fen",
+          "FrightenedSource": "actual existing hostile source",
+          "expiresAtSeconds": 60,
+          "visibleUntilSeconds": 12,
+          "after12AttackCheckVisibilityPenalty": false,
+          "after12VoluntaryApproachProhibited": true,
+          "conditionEndsAt12": false,
+          "unrelatedAttackTargetsGrantAutoSuccess": false
+        }
+      },
+      "expectedFinalState": {
+        "ordinaryIntimidationCreatesFrightened": false,
+        "visibilityDependentPenaltyEndsWhenHidden": true,
+        "approachRestrictionPersists": true
+      },
+      "readerExplanation": "The social success earns the declared voluntary withdrawal without applying Frightened. In the separate condition case, losing sight of the source removes only the visibility-dependent disadvantage; its approach restriction continues to the actual endpoint.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/15"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-17",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-09",
+      "title": "An NPC can agree only within its stated authority",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-17",
+        "sourceQuestion": "SO-09",
+        "originalScenario": {
+          "id": "SO-P-17",
+          "question": "SO-09",
+          "premise": "An NPC accepts a bargain about property belonging to an absent owner they do not represent.",
+          "expectedUnderUnadoptedProposal": "Their agreement cannot transfer the absent owner's property. The speaker's success remains limited to the authority stated before the roll.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Their agreement cannot transfer the absent owner's property. The speaker's success remains limited to the authority stated before the roll.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "scene": "SP17-bargain",
+        "speaker": "Mira",
+        "NPC": "tenant Fen",
+        "owner": "absent Hale",
+        "authorityBeforeRoll": {
+          "FenCan": "personally carry an offer to Hale",
+          "FenCannot": "sell or pledge Hale’s workshop"
+        },
+        "declaredTask": "persuade Fen to carry the written offer",
+        "roll": {
+          "actor": "Mira",
+          "nativeProcedure": "Core fixed-DC task",
+          "natural": 10,
+          "modifier": 3,
+          "DC": 13,
+          "total": 13,
+          "degree": "Success"
+        },
+        "acceptedAgreement": {
+          "obligation": "Fen carries the offer",
+          "considerationCp": 0,
+          "assent": true
+        },
+        "property": {
+          "id": "Hale-workshop",
+          "ownerBefore": "Hale",
+          "ownerAfter": "Hale"
+        },
+        "NPCUnsupportedPromise": {
+          "words": "I agree you should have it",
+          "transfersOwnership": false
+        }
+      },
+      "expectedFinalState": {
+        "promisedWithinAuthorityTaskHonored": true,
+        "absentOwnerPropertyTransferred": false
+      },
+      "readerExplanation": "The check can secure Fen’s own promised act of carrying the offer. Fen’s separate expression of agreement does not transfer Hale’s property or enlarge the stated scope of success.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/16"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-18",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-09",
+      "title": "A character feature does not replace table agreement",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-18",
+        "sourceQuestion": "SO-09",
+        "originalScenario": {
+          "id": "SO-P-18",
+          "question": "SO-09",
+          "premise": "A player invokes a character's social feature to override another player's Session Zero boundary.",
+          "expectedUnderUnadoptedProposal": "The feature does not provide table agreement. Pause or revise under the existing table contract; do not impose a character penalty for using that procedure.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "The feature does not provide table agreement. Pause or revise under the existing table contract; do not impose a character penalty for using that procedure.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "tableContract": {
+          "id": "session-zero-1",
+          "participants": [
+            "Player A",
+            "Player B",
+            "Director"
+          ],
+          "boundary": "no player-versus-player social control without both players’ agreement"
+        },
+        "request": {
+          "Player A": "invoke a social feature to compel Player B’s character",
+          "Player BConsents": false
+        },
+        "tableResponse": {
+          "pauseRequested": true,
+          "fictionTimeAdvancedByPause": 0,
+          "mechanicalRoll": false,
+          "resourcePenalty": 0,
+          "standingPenalty": 0
+        },
+        "revisedScene": {
+          "offered": "voluntary discussion with each player retaining decisions",
+          "requiresActualAssent": true,
+          "assentAssumedFromSilence": false
+        }
+      },
+      "expectedFinalState": {
+        "boundaryOverridden": false,
+        "penaltyForUsingTableProcedure": 0,
+        "continuationRequiresActualAgreement": true
+      },
+      "readerExplanation": "The table pauses or revises under its existing agreement. A feature supplies no missing player consent, and using the agreed safety procedure causes no character penalty.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/17"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-19",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-10",
+      "title": "Keep capped standing and its nonbankable overflow",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-19",
+        "sourceQuestion": "SO-10",
+        "originalScenario": {
+          "id": "SO-P-19",
+          "question": "SO-10",
+          "premise": "A confirmed major scene event proposes+2 standing from+2 under the recommended−3..+3 policy.",
+          "expectedUnderUnadoptedProposal": "Record original+2, attempted+2, applied+1, resulting+3 and overflow+1. Replaying the same institution/scene event adds nothing; the overflow is history, not banked future credit.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Record original+2, attempted+2, applied+1, resulting+3 and overflow+1. Replaying the same institution/scene event adds nothing; the overflow is history, not banked future credit.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "institution": "local desk",
+        "subject": "Mira",
+        "policy": "standing-v1",
+        "scene": "SP19-scene",
+        "openingVersion": 5,
+        "openingScore": 2,
+        "event": {
+          "id": "SP19-major-aid",
+          "cause": "actual completed witnessed relief",
+          "proposedDelta": 2,
+          "sceneCappedDelta": 2,
+          "appliedDelta": 1,
+          "endingScore": 3,
+          "rangeOverflow": 1,
+          "knowledgeReceipt": "actual desk witness"
+        },
+        "replay": {
+          "id": "SP19-major-aid",
+          "newDelta": 0,
+          "currentStill": 3
+        },
+        "futureScene": {
+          "startingScore": 3,
+          "oldOverflowApplied": 0
+        }
+      },
+      "expectedFinalState": {
+        "opening": 2,
+        "attemptedDelta": 2,
+        "appliedDelta": 1,
+        "endingScore": 3,
+        "overflow": 1,
+        "overflowBanked": false
+      },
+      "readerExplanation": "The +2 event from +2 applies only +1 before the range cap. Both attempted change and overflow survive as history, but replaying the event or entering another scene does not spend the overflow as credit.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/18"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-20",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-10",
+      "title": "A report is a real information event",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-20",
+        "sourceQuestion": "SO-10",
+        "originalScenario": {
+          "id": "SO-P-20",
+          "question": "SO-10",
+          "premise": "A private rescue changes one NPC's relationship; another institution learns of it through a later report.",
+          "expectedUnderUnadoptedProposal": "Do not grant omniscient global standing. Record the actual information event and the receiving institution's own attributable reaction, keeping report versus established fact distinct.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Do not grant omniscient global standing. Record the actual information event and the receiving institution's own attributable reaction, keeping report versus established fact distinct.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "rescue": {
+          "id": "SP20-rescue",
+          "timeSeconds": 0,
+          "rescuer": "Mira",
+          "recipient": "Fen",
+          "knownBy": [
+            "Mira",
+            "Fen"
+          ],
+          "private": true
+        },
+        "personalRelationship": {
+          "subject": "Fen",
+          "actualReaction": "gratitude",
+          "changedAtSeconds": 60
+        },
+        "institutionBeforeReport": {
+          "id": "local guild",
+          "knowsRescue": false,
+          "standingChange": 0
+        },
+        "report": {
+          "id": "SP20-report",
+          "author": "Fen",
+          "travel": {
+            "startSeconds": 3600,
+            "endSeconds": 7200,
+            "actualSeconds": 3600,
+            "actors": [
+              "Fen"
+            ],
+            "activity": "actual trip to the local desk",
+            "halfOpen": true
+          },
+          "receivedBy": "Ione",
+          "receivedAtSeconds": 7200,
+          "status": "first-person report, not omniscient certification"
+        },
+        "verification": {
+          "interval": {
+            "startSeconds": 7200,
+            "endSeconds": 10800,
+            "actualSeconds": 3600,
+            "actors": [
+              "Ione"
+            ],
+            "activity": "check original infirmary record with available staff",
+            "halfOpen": true
+          },
+          "corroborated": true
+        },
+        "institutionResponse": {
+          "cause": "SP20-rescue",
+          "knownAtSeconds": 10800,
+          "predeclaredOrdinaryDelta": 1,
+          "opening": 0,
+          "ending": 1
+        },
+        "unrelatedInstitutions": {
+          "newKnowledge": false,
+          "standingChanges": 0
+        }
+      },
+      "expectedFinalState": {
+        "immediateGlobalStanding": false,
+        "actualInformationPathPreserved": true,
+        "oneReceivingInstitutionResponds": true
+      },
+      "readerExplanation": "Fen can react personally to the rescue. The guild does not know until a real report arrives, and its own record distinguishes the report from later corroboration. The same private act does not update every institution.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/19"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-21",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-11",
+      "title": "Returning halfway through a faction task does not finish it",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-21",
+        "sourceQuestion": "SO-11",
+        "originalScenario": {
+          "id": "SO-P-21",
+          "question": "SO-11",
+          "premise": "A faction's interview runs10:00–12:00; a return occurs11:00 and the same expedition crosses the threshold again11:05.",
+          "expectedUnderUnadoptedProposal": "The interview remains incomplete at11:00; the repeat crossing is not another return checkpoint and grants no work, tick or substitute completion.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "The interview remains incomplete at11:00; the repeat crossing is not another return checkpoint and grants no work, tick or substitute completion.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "institution": "local guild",
+        "actionId": "SP21-interview",
+        "interview": {
+          "startSeconds": 36000,
+          "endSeconds": 43200,
+          "actualSeconds": 7200,
+          "actors": [
+            "interviewer",
+            "witness"
+          ],
+          "activity": "actual two-hour interview",
+          "halfOpen": true
+        },
+        "return": {
+          "id": "SP21-return",
+          "timeSeconds": 39600,
+          "observedProgressSeconds": 3600,
+          "complete": false,
+          "newWorkGranted": 0
+        },
+        "thresholdRecross": {
+          "timeSeconds": 39900,
+          "sameReturnId": "SP21-return",
+          "newCheckpoint": false,
+          "clockDelta": 0
+        },
+        "completion": {
+          "atSeconds": 43200,
+          "performedWorkSeconds": 7200,
+          "receiptId": "SP21-completed",
+          "remoteKnowledgeAutomatic": false
+        }
+      },
+      "expectedFinalState": {
+        "interviewCompleteAt11h": false,
+        "completeAt12h": true,
+        "secondThresholdCrossingFreeAction": false
+      },
+      "readerExplanation": "At 11:00 only one of the interview’s two hours is complete. Crossing the threshold again at 11:05 supplies no new checkpoint, work or clock segment. The actual interview completes at 12:00.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/20"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-22",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-11",
+      "title": "Use one worldwide checkpoint and reject overlapping jobs",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-22",
+        "sourceQuestion": "SO-11",
+        "originalScenario": {
+          "id": "SO-P-22",
+          "question": "SO-11",
+          "premise": "A return and a proposed completed24-hour Haven checkpoint coincide while one actor has two incompatible assignments.",
+          "expectedUnderUnadoptedProposal": "The proposal processes one checkpoint, never duplicated hours or actions. The actor cannot complete both assignments with the same interval. The24-hour cadence still requires FL-03/FL-24 joint review.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "ADOPT NEW cadence; clarify worldwide clock",
+        "finalExpected": "Use SO-11's canonical24-hour campaign checkpoint, including offscreen activity, not24new Haven hours perarrival. Coalesce a genuine return at that same checkpoint. One actor's incompatible assignments remain incomplete; neither checkpoint creates hours, a second action or a substituted completion.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "campaignClock": {
+          "epoch": "SP22-epoch",
+          "canonicalCheckpointSeconds": 86400,
+          "arrivalSeconds": 86400,
+          "resetAtArrival": false
+        },
+        "checkpoint": {
+          "id": "SP22-day1",
+          "reasons": [
+            "canonical24h",
+            "genuine return"
+          ],
+          "processedCount": 1,
+          "watchedInstitutions": [
+            "guild",
+            "archive"
+          ]
+        },
+        "actor": "Fen",
+        "requestedAssignments": [
+          {
+            "startSeconds": 57600,
+            "endSeconds": 86400,
+            "actualSeconds": 28800,
+            "actors": [
+              "Fen"
+            ],
+            "activity": "guard a physically separate depot",
+            "halfOpen": true
+          },
+          {
+            "startSeconds": 57600,
+            "endSeconds": 86400,
+            "actualSeconds": 28800,
+            "actors": [
+              "Fen"
+            ],
+            "activity": "perform eight-hour archive research",
+            "halfOpen": true
+          }
+        ],
+        "actualHistory": {
+          "performed": "guard the depot",
+          "guardSeconds": 28800,
+          "researchSeconds": 0,
+          "researchCompleted": false
+        },
+        "researchRepair": "schedule actual future qualified research time; the checkpoint supplies no substitute hours",
+        "offscreenInstitution": {
+          "keepsSameClock": true,
+          "freeExtraActionAtPartyArrival": false
+        }
+      },
+      "expectedFinalState": {
+        "coincidentCheckpointCount": 1,
+        "actualGuardHours": 8,
+        "actualResearchHours": 0,
+        "twentyFourNewHavenHoursRequired": false
+      },
+      "readerExplanation": "The return and canonical 24-hour event form one checkpoint. Fen actually guarded the depot, so the incompatible research has zero hours. Arriving in Haven neither restarts the worldwide cadence nor creates another worker.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/21"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-23",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-12",
+      "title": "One witness event supplies one clock segment",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-23",
+        "sourceQuestion": "SO-12",
+        "originalScenario": {
+          "id": "SO-P-23",
+          "question": "SO-12",
+          "premise": "A Claim clock at2/4 receives one new witness event, then two reports of that same event.",
+          "expectedUnderUnadoptedProposal": "Advance once to3/4. Preserve the report records without creating more segments. A distinct later qualifying document can advance the clock again.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Advance once to3/4. Preserve the report records without creating more segments. A distinct later qualifying document can advance the clock again.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "clock": {
+          "id": "SP23-Claim",
+          "length": 4,
+          "opening": 2,
+          "thresholdConsequence": "schedule actual authorized title hearing"
+        },
+        "events": [
+          {
+            "id": "witness-event",
+            "causeId": "actual-original-testimony",
+            "receivedAtSeconds": 600,
+            "qualifying": true,
+            "delta": 1,
+            "after": 3
+          },
+          {
+            "id": "report-copy-A",
+            "causeId": "actual-original-testimony",
+            "receivedAtSeconds": 900,
+            "delta": 0,
+            "after": 3
+          },
+          {
+            "id": "report-copy-B",
+            "causeId": "actual-original-testimony",
+            "receivedAtSeconds": 1200,
+            "delta": 0,
+            "after": 3
+          },
+          {
+            "id": "distinct-document",
+            "causeId": "actual-new-signed-title",
+            "receivedAtSeconds": 3600,
+            "qualifying": true,
+            "delta": 1,
+            "after": 4
+          }
+        ],
+        "threshold": {
+          "reachedAtSeconds": 3600,
+          "resolvedOnce": true,
+          "actualHearingScheduledForSeconds": 86400,
+          "immediatePropertyTransfer": false
+        }
+      },
+      "expectedFinalState": {
+        "afterWitness": 3,
+        "afterTwoCopies": 3,
+        "afterDistinctDocument": 4,
+        "thresholdConsequencesScheduled": 1
+      },
+      "readerExplanation": "The new witness raises Claim from 2 to 3. Two reports of that testimony are preserved without more segments. A distinct qualifying document can supply the fourth segment, scheduling the stated real procedure once.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/22"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    },
+    {
+      "id": "SO-P-24",
+      "schemaVersion": "EX58-social-instance-v1",
+      "status": "draft exact-candidate example",
+      "evidenceClass": "authored expectation; no executed gameplay",
+      "sourceQuestion": "SO-12",
+      "title": "A full clock still needs a real route and action",
+      "originalScenarioAndDisposition": {
+        "id": "SO-P-24",
+        "sourceQuestion": "SO-12",
+        "originalScenario": {
+          "id": "SO-P-24",
+          "question": "SO-12",
+          "premise": "A Depth clock reaches its threshold before the real route can be traversed; a Grudge clock fills during conversation.",
+          "expectedUnderUnadoptedProposal": "Record the Depth project's missing prerequisite instead of teleporting the rival. Grudge schedules its stated response through a real action, without a free immediate attack. Each objective's consequence resolves at most once.",
+          "executionStatus": "authored-review-scenario-not-a-runtime-test"
+        },
+        "disposition": "KEEP expected boundary as adopted source direction",
+        "finalExpected": "Record the Depth project's missing prerequisite instead of teleporting the rival. Grudge schedules its stated response through a real action, without a free immediate attack. Each objective's consequence resolves at most once.",
+        "evidenceClass": "authored expectation; not executed gameplay"
+      },
+      "timeModel": "Each independent synthetic scenario has its own one shared clock; alternatives fork, not combine.",
+      "actualSyntheticRecords": {
+        "Depth": {
+          "id": "SP24-Depth",
+          "length": 6,
+          "current": 6,
+          "thresholdEventId": "SP24-depth-threshold",
+          "desiredConsequence": "reach the licensed archive",
+          "actualRoute": "blocked physical collapse at the known crossing",
+          "status": "threshold reached; consequence blocked",
+          "rivalTeleported": false,
+          "retryingSameThresholdAddsAnotherConsequence": false
+        },
+        "Grudge": {
+          "id": "SP24-Grudge",
+          "length": 4,
+          "opening": 3,
+          "actualConversationCause": "one witnessed hostile declaration",
+          "delta": 1,
+          "current": 4,
+          "thresholdEventId": "SP24-grudge-threshold",
+          "statedResponse": "send a formal challenge through a real messenger",
+          "responseOrder": {
+            "id": "SP24-response",
+            "actor": "messenger Oren",
+            "authorizedAtSeconds": 600,
+            "work": {
+              "startSeconds": 600,
+              "endSeconds": 4200,
+              "actualSeconds": 3600,
+              "actors": [
+                "Oren"
+              ],
+              "activity": "actual preparation and travel",
+              "halfOpen": true
+            },
+            "receivedAtSeconds": 4200,
+            "freeImmediateAttack": false,
+            "deliveredCount": 1
+          }
+        },
+        "separateActualAttack": "would require a real actor, access, initiative and its own normal action; no attack has been created here"
+      },
+      "expectedFinalState": {
+        "DepthConsequenceBlocked": true,
+        "GrudgeCreatesFreeAttack": false,
+        "responseHasRealTimeAndActor": true,
+        "duplicateConsequences": 0
+      },
+      "readerExplanation": "Depth records its missing physical prerequisite instead of moving the rival through a collapse. Grudge commissions the stated response through Oren’s real hour of work and travel. Neither filled clock supplies a free immediate attack or repeated consequence.",
+      "sourceBinding": {
+        "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+        "bytes": 73808,
+        "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+        "pointer": "/originalProposalScenarios/23"
+      },
+      "newCanonicalWorldFact": false,
+      "newPromotion": false
+    }
+  ],
+  "sourceBindings": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+      "bytes": 73808,
+      "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part04.json",
+      "bytes": 3041589,
+      "sha256": "772708c2813edc1877ada19894293ef2258efc9e8db1346b1fa9544364d10908"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part06.json",
+      "bytes": 220343,
+      "sha256": "6caeb1ab1740c6148148c0cf49220dd6e640256c4c23c410c181f901f9b5218c"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/part04.json",
+      "bytes": 23675,
+      "sha256": "b188a338731af0fc75cab6d95173bbcfdcb0ec831b15674908127e2645688585"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/part06.json",
+      "bytes": 21941,
+      "sha256": "5bbdf8aa48e0f69fc6e84e598f18f85818d83fed8ce353ad388c8e1ff09422a2"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/source_contracts_corrected.json",
+      "bytes": 32008,
+      "sha256": "ff2213df5867e7ec47c22f8cce2ea1a1dfc95a959b7ee11ee6da822eb991a43c"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "bytes": 15877,
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "bytes": 30409,
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "bytes": 62017,
+      "sha256": "6f6278430d48d0c74dc8e3b928b01dea3cc97d5e45226b128a405ab37b1e7148"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+      "bytes": 35072,
+      "sha256": "0fcc8fefe5eb7f90b2997fb2fbb6f4cf2b70d32d16952544fc0d0f2ff9eea023"
+    }
+  ],
+  "evidenceScope": "Synthetic record/provenance and finite reference arithmetic only. No NPC/player agency is overridden, no real saves are accessed, and no cosmology is interpreted.",
+  "remainingWork": "Assemble the complete player/Director expedition candidate, independently reconstruct its public envelope, and submit the exact package to GPT."
+}

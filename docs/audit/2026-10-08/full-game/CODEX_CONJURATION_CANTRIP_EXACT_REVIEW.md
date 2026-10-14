@@ -1,0 +1,1188 @@
+# Twelve Conjuration cantrips — exact manuscript review
+
+Here are the exact twelve authored cards following your source conference. Please review all card text against your conference and the current shared casting/sight/object/recovery rules. Approve or provide exact required textual repairs. Review manuscript playability and source reconciliation, not unimplemented runtime behavior or balance certification. Please keep the response under 15,000 characters.
+
+Counts remain 120 reviewed / 728 unfinished until approval and promotion. All twelve retain only their actual seven class-access rows, rank 0, Dragoon minimum class 3 and the other six class 1. Twelve source placements, eleven exact-name Core blocks and the comparative Mana Kindle block are unchanged. The latter remains separate from exact-name sourceCoreEntries; no source deletion/rename. Full original evidence is in your preceding packet.
+
+Explicit authored clarifications to check:
+- Successful new application, not a countered attempt, replaces nonconcentration one-per-caster or one-per-target effects. Concentration still commits at begin-cast and ends incompatible old concentration before any counter.
+- Kindle resets only after a BENEFICIAL completed long rest (one per 24 hours under current shared recovery), is illegal with no unused use, and consumes its use at legal cast start; full pool remains legal and may restore 0.
+- Flicker cosmetic motion does not move the illumination origin; overlapping dim sources do not upgrade brightness merely through copies. Mote ends its light when consumed. Emblem is visible but not a light source.
+- Pebble uses the approved one-adjacent-square 5-foot cone, plus the bounded 5-foot-long/5-foot-far-width off-grid description; total cover blocks targets and allies cannot be excluded.
+- Touch's rangeFeet=5 is only the ordinary-humanoid header; actual normal touch reach controls. Native objects accept typed damage only through their actual damage rule/track, never an invented Integrity conversion. The harmless visible mark still appears when damage is prevented.
+- Mist's chosen cube origin must be perceived/in-range/in-line-of-effect; no mist through total cover, creature occupancy allowed. Current heavy-obscurement/known-location/Hide/extraordinary-sense rules remain intact.
+- Phantom Key works repeatedly during its finite duration using ordinary interactions, can be transferred, and vanishing does not re-lock/unlock the mechanism. Only a separable mundane lock mechanism can be operated beneath a remaining magical ward. Balance with Thief remains explicitly open.
+- All one-round/one-minute effects use agreed fixed source-start/out-of-initiative clocks; independent Slivers and replacements own their individual endpoints.
+
+Please explicitly confirm whether these twelve are suitable for promotion to the authored operational-playtest catalog after any exact repairs. Full game, runtime, balance and final GitHub delivery remain open.
+
+## Exact candidate
+
+Candidate byte SHA256: `730898ddffc7771f1f3e58259d38a0ea681553f08e6348a7480441f5ce3d7497`
+
+```json
+{
+  "status": "LOCAL CANDIDATE — SOURCE-RECONCILED; exact manuscript review pending; NOT SELECTABLE",
+  "scope": "Twelve remaining Conjuration cantrip identities; twelve placements, eleven exact-name Core blocks and one separately preserved comparative Mana Kindle block. No runtime/balance/whole-game approval.",
+  "reviewEvidence": [
+    "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+  ],
+  "spells": [
+    {
+      "id": "dust-gust",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "Choose one mode: one discrete unattended, unsecured object you perceive, no larger than Small and no heavier than 10 pounds; or up to 10 pounds of existing loose nonmagical sand or dust contained within one 5-foot square. The selected object/material must be within range and line of effect.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Automatic for an eligible object or selected loose material; no attack or save.",
+      "effect": "Object mode pushes the object up to 5 feet directly away from you. Dust/sand mode scatters the selected loose material up to 5 feet away from you. Stop movement before solid terrain or illegal occupancy; ordinary loose material may settle on an accessible supporting surface.",
+      "scaling": "None.",
+      "limitations": "Worn, held, attached, restrained, locked, packed, structural or otherwise secured material is ineligible. Ordinary floor, table or shelf support alone is not security. The spell creates no material and grants no excavation, blindness, damage, disarm, collision damage or generated resource. Ordinary physical consequences, such as exposing a surface or removing support and beginning Falling, still follow. Moving some dust does not automatically erase tracks, remove a hazard or neutralize its independent effect. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action, 5-foot range, V/S, instantaneous, object push or 5-foot sand/dust scatter. NEW: Small/10-pound ceiling, exact two modes, existing loose material, 5-foot displacement and custody/obstruction limits.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 105,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Dust Gust",
+            "effect": "Push small object or scatter 5 ft of sand/dust.",
+            "source_paragraph": 9113,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Dust Gust",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "Push small object or scatter 5 ft of sand/dust."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "lodestone-pull",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "One discrete unattended, unsecured object you perceive within range, no larger than Small and no heavier than 10 pounds, whose primary physical material is metal.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic for an eligible object; no attack or save.",
+      "effect": "Pull the object up to 5 feet directly toward you, stopping before your occupied space, solid terrain or illegal occupancy.",
+      "scaling": "None.",
+      "limitations": "Worn, held, attached, locked, anchored or otherwise secured objects are ineligible. Ordinary support alone is not security. A metal fitting on a primarily nonmetal object does not qualify the entire object. This gives one pull, no disarm, remote inventory access, sustained tether, repeated movement, collision damage or levitation; unsupported objects obey ordinary Falling. Taking the object into a hand requires ordinary legal object interaction. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action, 5-foot range and single 5-foot metal-object pull; M/F uses the existing class focus. CONFLICT RULING: the singular movement controls; Core's concentration-up-to-1-minute metadata and Ward tag do not grant an ongoing or repeatable effect. NEW: instantaneous/no concentration, Small/10-pound ceiling, primary-metal and custody/stopping limits. Original metadata is preserved.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 107,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Lodestone Pull",
+            "effect": "Draws metal object 5 ft toward caster.",
+            "source_paragraph": 9115,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Ward"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Lodestone Pull",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "Draws metal object 5 ft toward caster."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "minor-elemental-ward",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range, including yourself.",
+      "duration": "If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual source-start phase through initiative changes, departure or death. If applied outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier when consumed or concentration ends.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic application after legal casting. The benefit modifies the target's next qualifying save; it creates no new save.",
+      "effect": "The target gains +1 to its next saving throw against an effect whose resolution can deal acid, cold, fire, lightning or thunder damage. Consume the benefit after that qualifying save regardless of success/failure, damage prevented by another defense, or a stronger flat saving-throw bonus superseding this +1.",
+      "scaling": "None.",
+      "limitations": "Only the five listed damage types qualify; force, necrotic, radiant, poison, psychic, physical and Corruption damage do not qualify by themselves. Mixed effects qualify if their resolution can deal a listed type. A source with an elemental name but no such damage does not qualify. No immunity or resistance to damage/status is granted. One pending Minor Elemental Ward per target across all casters; a new application replaces the older one and releases only that older casting's concentration dependency. Each casting owns only its own concentration dependency. A successful new application owns its own endpoint; stale expiration or consumption of an older application cannot remove its replacement. A countered new cast creates no replacement. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action, 30 feet, concentration up to 1 minute, +1 to next elemental-damage save, M/F as class focus. NEW: willing recipient, exact five-type eligibility, consumption, all-caster replacement and exact endpoint; deliberately distinct from the eight-type Protection from Energy list.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 108,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Minor Elemental Ward",
+            "effect": "+1 to next saving throw vs elemental damage.",
+            "source_paragraph": 9116,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, M/F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Ward"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Minor Elemental Ward",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "+1 to next saving throw vs elemental damage."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "flicker-flame",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One fixed, unoccupied point you can perceive within range and line of effect.",
+      "duration": "10 minutes (600 seconds) after application, preserving that absolute deadline through initiative changes.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Automatic after legal casting; no attack or save.",
+      "effect": "Create a harmless, nonphysical floating flame shedding dim light in a 10-foot radius about the fixed point. It can dance cosmetically within about 1 foot of that point; this does not move its illumination origin or provide controlled tactical movement.",
+      "scaling": "None.",
+      "limitations": "One Flicker Flame per caster; a successful new application ends that caster's older Flicker Flame. It does not attach to or follow a creature/object and produces no heat, damage, ignition, fuel, physical object, sunlight trait or tracking signal. Overlap follows ordinary illumination without adding radii or upgrading dim light to bright merely by stacking this spell. Opaque barriers block its ordinary light. It does not automatically dispel magical darkness, reveal Invisible creatures or end Hidden independently of normal sight rules. A successful new application owns its own endpoint; stale expiration or consumption of an older application cannot remove its replacement. A countered new cast creates no replacement. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action, 30 feet, V/S, dim dancing light for 10 minutes. NEW: no concentration, fixed point, 10-foot dim radius, one-light cap, cosmetic motion and ordinary illumination boundaries.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 109,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Flicker Flame",
+            "effect": "Create dim dancing light source for 10 minutes.",
+            "source_paragraph": 9117,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "10 minutes",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Flicker Flame",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "Create dim dancing light source for 10 minutes."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "stone-skin-sliver",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range, including yourself.",
+      "duration": "If applied in initiative, expires at the caster's first future regular-start marker after application; preserve that virtual marker through initiative changes, departure or death. If applied outside initiative, expires 6 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier if concentration ends.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Automatic after legal casting; no attack or save.",
+      "effect": "The target gains +1 AC for the duration. Apply the strongest applicable same-stat flat bonus; this spell's bonus does not add to another flat AC bonus.",
+      "scaling": "None.",
+      "limitations": "This is a magical AC bonus, not stone anatomy, armor, equipment, weight, damage resistance, hardness or a body transformation. Separate casters may maintain independent nonstacking Slivers with their own endpoints and concentration. Ending one does not end another. No all-caster replacement rule is imposed. A caster still cannot maintain multiple ordinary concentration spells; starting this spell ends their incompatible earlier concentration even if the new cast is countered. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action, 30 feet, V/S, +1 AC for 1 round; concentration is explicit in both effect summaries and remains required despite its omission from the Core duration field. NEW: willing target, exact source-start clock and independent nonstacking applications.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 110,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Stone Skin Sliver",
+            "effect": "+1 AC for 1 round (concentration).",
+            "source_paragraph": 9118,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "1 round",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Stone Skin Sliver",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "+1 AC for 1 round (concentration)."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "resonance-kindle",
+      "activation": "Action",
+      "rangeFeet": 0,
+      "targets": "Self only; the casting character's own RP pool.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Automatic recovery only if this legal spell survives interruption and reaches resolution. Having no unused Kindle use makes the cast illegal before activation/payment.",
+      "effect": "At the beginning of the legal cast, spend your one Kindle use before the Counterspell window. At resolution, restore 1 RP to yourself, capped by your actual RP maximum. One use per character across all class repertoires, copied access and historical aliases refreshes only upon an actual completed beneficial long rest under the shared recovery rules.",
+      "scaling": "None.",
+      "limitations": "A countered cast leaves the use spent and recovers 0 RP. A cast at maximum RP is legal, spends the use and restores 0 if still full at resolution. Repeated nonbeneficial rest attempts do not refresh it. It neither clears Dissonance/Refrain nor restores other resources, heals, grants a check, or targets an ally. Only casting this spell produces this recovery; casting another cantrip does not trigger it. Copied effects, duplicate access, form changes and proxies grant no extra uses or repeated resource recovery. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: current catalog and V6 explicitly recover 1 RP after casting THIS cantrip, once per long rest. ALIAS RECONCILIATION: comparative Core Mana Kindle supports Action/V/S/instantaneous; its broader after-a-cantrip wording is not a repeatable trigger. Its historical 30-foot range remains evidence, while the operational range is Self. No exact-name Core block exists, and the comparative alias remains separately identified and preserved. NEW: character-wide use, begin-cast expenditure, beneficial-rest reset, cap and interruption handling.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [],
+      "sourcePlacements": [
+        {
+          "name": "Resonance Kindle",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "After you cast this cantrip, recover 1 RP (once per long rest)."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [
+        {
+          "index": 111,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Mana Kindle",
+            "effect": "Recover 1 RP after casting a cantrip (once per long rest).",
+            "source_paragraph": 9119,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Resonance"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "pebble-swarm",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "Every creature, including allies, in a 5-foot cone originating from your space in a chosen direction, with line of effect from that origin. On a standard 5-foot grid this bounded template is one adjacent 5-foot square you choose; it never includes your origin square or extends to a second square.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Each affected creature makes a Dexterity save against your spell DC. Failure takes damage; success takes 0.",
+      "effect": "Roll one shared 1d4 bludgeoning damage for the cast and apply that result to every creature that fails, using each creature's own applicable defenses. The conjured pebbles vanish after resolution.",
+      "scaling": "None.",
+      "limitations": "Total cover blocks an affected creature's line of effect. You cannot exclude an eligible ally in the cone. No spell attack, critical hit, ability modifier to damage, automatic object damage, persistent pebbles, ammunition or saleable/crafting material is supplied. Outside a square grid, use the same 5-foot-long cone with a maximum 5-foot-wide far end; agree its placement before saves rather than gaining a larger template by changing measurement systems. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action, V/S, 1d4 bludgeoning and 5-foot cone. NEW: Dexterity-negates save, one shared damage roll, explicit creature/ally coverage, bounded one-square grid template and nonpersistent stones. Broader area-template rules remain a separate integration task.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 113,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Pebble Swarm",
+            "effect": "1d4 bludgeoning damage in 5-ft cone.",
+            "source_paragraph": 9121,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Pebble Swarm",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "1d4 bludgeoning damage in 5-ft cone."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "elemental-touch",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "One creature, or one unattended or willingly presented discrete object, within your body's actual normal touch reach. The 5-foot header is a normal-humanoid reference, not a grant of reach, a ranged touch or an override of actual anatomy.",
+      "duration": "Damage is instantaneous. On a successful touch, the cosmetic mark lasts for the following one-minute clock: If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual source-start phase through initiative changes, departure or death. If applied outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Against an unwilling creature, make a melee spell attack using the casting class's spellcasting ability + PB. A willing creature or eligible unattended/willingly presented object requires no attack roll. A missed attack produces neither damage nor mark.",
+      "effect": "Choose acid, cold, fire, lightning or thunder when cast. A successful touch deals 1 flat damage of that type and leaves a harmless, visibly elemental mark on the touched target for 1 minute. A critical hit adds no damage dice and does not double the flat 1. Apply ordinary defenses; the mark appears even when the damage becomes 0.",
+      "scaling": "None.",
+      "limitations": "No ability modifier or automatic level scaling increases damage. Object damage requires an existing native track/rule that actually accepts this typed damage: reduce actual HP normally, or use an explicit native conversion if provided; never treat 1 damage as 1 Integrity stage or invent a conversion. The cosmetic mark is not the Marked condition, a tracker, beacon, extra damage, ignition, corrosion engine, parasite detector or another condition. It provides no magical information or extraordinary visibility through concealment; observers may see it normally. One mark from this caster on this target replaces that caster's prior Elemental Touch mark; marks from other casters remain separate. A successful new application owns its own endpoint; stale expiration or consumption of an older application cannot remove its replacement. A countered new cast creates no replacement. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action, Touch, V/S, chosen-element 1 damage and a mark. NEW: melee spell attack against unwilling creatures, exact five types, object/native-track interface, 1-minute harmless mark, no concentration and per-caster/target replacement. rangeFeet=5 is a reference header; actual touch reach controls.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 115,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Elemental Touch",
+            "effect": "Touch deals 1 damage of chosen element and leaves mark.",
+            "source_paragraph": 9123,
+            "casting_time": "1 action",
+            "range": "Touch",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Elemental Touch",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "Touch deals 1 damage of chosen element and leaves mark."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "mist-veil",
+      "activation": "Action",
+      "rangeFeet": 5,
+      "targets": "One fixed 5-foot cube of legal space, placed with its origin point you perceive within 5 feet and line of effect. Mist occupies only space the originating effect can reach; it does not extend through total cover.",
+      "duration": "If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual source-start phase through initiative changes, departure or death. If applied outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier if concentration ends or an effect explicitly disperses this magical mist.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Automatic creation after legal casting; no attack or save. Occupancy by a creature does not itself make the cube illegal.",
+      "effect": "The cube is heavily obscured for ordinary vision. Sight through its obscuring mist follows COMBAT_ACTION_PLAYTEST.md. The mist blocks no line of effect, creature or object movement and grants no physical support.",
+      "scaling": "None.",
+      "limitations": "It neither erases known locations nor makes a creature automatically Hidden. Hide still requires its ordinary action, eligibility and resolution. A known location does not satisfy a separate creature-you-can-see requirement. Apply existing unseen-attacker/target and perception rules only when their actual conditions hold, with ordinary advantage/disadvantage combination; the mist adds no new modifier or duplicated Invisible benefit. Extraordinary senses apply only as their own rules permit. One Mist Veil per caster; a successful new application replaces the prior one, and starting its concentration already ends incompatible old concentration. Ordinary wind or heat does not automatically end this magical mist; an effect expressly capable of dispersing magical mist may do so. No recoverable water or material is created. A successful new application owns its own endpoint; stale expiration or consumption of an older application cannot remove its replacement. A countered new cast creates no replacement. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action, 5-foot range, V/S and 5-foot cube of obscuring mist. CONFLICT RULING: concentration up to 1 minute supplies an ongoing procedure instead of the unusable Instantaneous cloud metadata. NEW: fixed cube/origin, heavy obscurement, one-caster cap, magical dispersal and explicit sight/Hide interface.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 116,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Mist Veil",
+            "effect": "Create 5-ft cube of obscuring mist.",
+            "source_paragraph": 9124,
+            "casting_time": "1 action",
+            "range": "5 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Mist Veil",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "Create 5-ft cube of obscuring mist."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "phantom-key",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One perceived nonmagical, key-operated mechanical lock within range and line of effect; conjure its key into your free hand. A free hand able to receive/use an ordinary key is required at creation.",
+      "duration": "If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual source-start phase through initiative changes, departure or death. If applied outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. The temporary key vanishes at the endpoint, wherever it then is.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Automatic creation for an eligible lock. Actual insertion and operation require ordinary legal physical object interaction; spellcasting does not include remote opening or an extra interaction.",
+      "effect": "The temporary key works as the correct mundane key for that exact lock, requiring no lockpicking check. It can be handed to another creature and used normally for the duration, including locking or unlocking repeatedly if the actual mechanism and available interactions allow. It cannot operate another lock. Its vanishing does not retroactively undo the physical lock's resulting state.",
+      "scaling": "None.",
+      "limitations": "One Phantom Key per caster; a successful new application ends that caster's prior key. Ordinary hand, custody, carrying, access and object-interaction rules apply; a second interaction or a mechanism requiring an Action still costs that Action. It does not disable, detect or bypass traps, jams, barricades, combination/keyless locks or magical protections. A separable mundane physical mechanism on a magically warded lock can accept the key; the ward, including Arcane Lock, remains in force and requires its own permission or removal. A purely magical lock is ineligible. The key supplies no permanent key, harvestable/saleable material or automatic durable blueprint. Ordinary observations and deductions still work; no memory or inference is erased. A successful new application owns its own endpoint; stale expiration or consumption of an older application cannot remove its replacement. A countered new cast creates no replacement. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: temporary key that WORKS on one nonmagical lock; Action/30 feet/V/S. NEW: key-operated mechanism, free-hand creation, finite 1-minute lifetime/no concentration, transferable custody, ordinary repeatable key use during that lifetime, one-key cap and trap/ward boundaries. The historical Instantaneous metadata is reconciled as creation followed by a finite temporary object. Thief Lockpick Mastery remains a separate +5 tool/check feature; the strong mundane-lock bypass is an explicit unresolved balance question, not silently rewritten into proficiency or advantage.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 117,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Phantom Key",
+            "effect": "Create temporary key that works on one non-magical lock.",
+            "source_paragraph": 9125,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Utility"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Phantom Key",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "Create temporary key that works on one non-magical lock."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "resonance-mote",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range, including yourself.",
+      "duration": "If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual source-start phase through initiative changes, departure or death. If applied outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier when the next qualifying check consumes the Mote; its light ends with it.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Automatic application. The target's next actual qualifying task check uses its existing source's ability/tool, DC and Core task-degree procedure, with this flat bonus subject to the strongest-bonus rule.",
+      "effect": "A small, nonphysical mote follows within the recipient's space and sheds dim light in a 5-foot radius under ordinary illumination rules. Grant +1 to the recipient's next source-authorized task/ability/tool check explicitly concerned with manipulating, diagnosing, stabilizing, calibrating or otherwise directly interacting with Resonance/the Weave, or explicitly named a Resonance check by its source. Consume the Mote after that roll regardless of success/failure or a stronger flat bonus superseding its +1.",
+      "scaling": "None.",
+      "limitations": "This bridge does not create a check, permission, DC, hidden information or subsystem. A merely magical topic or spending RP does not qualify without the stated actual task. It does not modify spell attacks, saves, concentration checks, Counterspell, ordinary casting, RP costs, Dissonance or Refrain; old Burn/fizzle mechanics remain inactive. If no qualifying task occurs, the Mote simply expires. One pending Mote per target across all casters; a successful new application replaces the old benefit and light. It grants no physical object, heat, extra perception, tracking, sunlight or automatic revelation of Invisible/Hidden creatures; ordinary light/cover and observer deductions still apply. A successful new application owns its own endpoint; stale expiration or consumption of an older application cannot remove its replacement. A countered new cast creates no replacement. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S, floating light and +1 next Resonance check. NEW BRIDGE: exact source-authorized task interface without resurrecting legacy casting failures; 1-minute/consumption clock replaces unusable Instantaneous metadata, no concentration, willing recipient, 5-foot dim radius and all-caster replacement. No generic Resonance-check procedure was found in the bounded active-source search; task sources still own their actual permission/ability/DC/outcomes.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 118,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Resonance Mote",
+            "effect": "Create floating light that grants +1 to next Resonance check.",
+            "source_paragraph": 9126,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Resonance"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Resonance Mote",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "Create floating light that grants +1 to next Resonance check."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    },
+    {
+      "id": "faction-emblem",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Choose one exact canonical factionId for which your current actual reputation is +1, +2 or +3. Choose a perceived nonliving surface, or a fixed point, within range and line of effect for its visible emblem.",
+      "duration": "10 minutes (600 seconds) after application, preserving that absolute deadline through initiative changes.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S"
+      ],
+      "resolution": "Verify the exact positive reputation gate before activation/payment. Missing, 0 or negative reputation is ineligible. Automatic display after a legal surviving cast; no attack or save.",
+      "effect": "Create the faction's recognizable visible emblem, no larger than 1 foot across, as a nonphysical display at the selected point or on the selected surface. A surface-mounted emblem moves with that object; a free-standing emblem remains fixed. The display does not emit light unless a separate actual light source illuminates it; it is seen under ordinary vision rules. If no visual emblem is yet described for that faction, the Director may describe its ordinary recognized symbol without granting institutional authority.",
+      "scaling": "None.",
+      "limitations": "One Faction Emblem per caster; a successful new application ends that caster's prior emblem. Positive reputation is the source-authorized gate; Faction Seal's separate invocation-permission requirement is not imported. Later reputation changes do not retroactively end this valid application. The emblem grants no membership, rank, credentials, legal authority, persuasion bonus, protection, RP discount or mutable official-seal power. It is not harvestable/saleable matter or a permanent crafting symbol. Observers can draw ordinary social deductions from it; it neither guarantees belief nor erases memory or inference. A successful new application owns its own endpoint; stale expiration or consumption of an older application cannot remove its replacement. A countered new cast creates no replacement. Known/prepared access, class level, components, line of effect, cast costs, concentration transitions, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and the originating spell's line of effect. No automatic level scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S and a symbol of a faction with positive reputation. NEW: exact canonical +1..+3 gate, 1-foot recognizable nonphysical symbol, fixed/surface placement and movement, 10-minute duration/no concentration, one-caster cap, later-standing and authority boundaries. Instantaneous metadata is reconciled as creation of a finite display.",
+      "implementationStatus": "LOCAL CANDIDATE — source-reconciled; exact manuscript review pending; not selectable",
+      "sourceCoreEntries": [
+        {
+          "index": 119,
+          "original": {
+            "school": "Conjuration",
+            "level": 0,
+            "name": "Faction Emblem",
+            "effect": "Conjure the symbol of a faction you have positive reputation with.",
+            "source_paragraph": 9127,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning",
+              "Faction"
+            ],
+            "rp_cost": 0
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Faction Emblem",
+          "school": "Conjuration",
+          "level": 0,
+          "summary": "Conjure the symbol of a faction you have positive reputation with."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 0,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Druid": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Ranger": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Shaman": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 0
+        }
+      },
+      "comparativeHistoricalCoreEntries": [],
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_SOURCE_CONFERENCE.md"
+      ],
+      "reviewEvidence": []
+    }
+  ]
+}
+```

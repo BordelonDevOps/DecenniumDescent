@@ -1,0 +1,40 @@
+{
+  "pack": "12-cargo-extraction-risk",
+  "scenarioId": "CARGO-UNKNOWN",
+  "runId": "CARGO-UNKNOWN-agg-L10-P6-E3",
+  "seed": 4377191,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2500,
+    "level": 10,
+    "party": 6,
+    "extractionClass": 3,
+    "policy": "aggressive",
+    "mapping": "Unknown",
+    "havenRate": 0.006,
+    "meanRetainedLoadFrac": 0.9972,
+    "medianRetainedLoadFrac": 1.0,
+    "cargoLossRate": 0.0028,
+    "meanExtractionFailCount": 0.004,
+    "meanCasualties": 0,
+    "meanTrueProfit": 175.53,
+    "medianTrueProfit": 176.5,
+    "profitP10": 176.5,
+    "profitP90": 176.5
+  },
+  "rulesHalts": [
+    {
+      "code": "UNKNOWN-PROGRESS-ZERO",
+      "note": "progressPerWatch.Unknown=0; without Map Route success, expedition cannot meet Progress targets \u2014 intentional deadlock risk."
+    },
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/CARGO-UNKNOWN/agg-L10-P6-E3.json"
+}

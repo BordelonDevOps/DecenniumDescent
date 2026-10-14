@@ -1,0 +1,423 @@
+{
+  "reviewId": "LAX-EXACT-2026-10-11",
+  "submittedArchiveSha256": "788e1210d28120b5e94a6ddc4d1dcc69e48a2aeb7cfd60f434c9680b30fa2ec1",
+  "status": "Finite exact corrections; conditional authored-language acceptance only",
+  "corrections": [
+    {
+      "id": "LAX-01",
+      "title": "Self-contained player navigation and reproducible receipt",
+      "kind": "Exact editorial/envelope correction; no mechanical source change",
+      "affected": [
+        {
+          "file": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "section": "Class features and Paladin oaths",
+          "originalLine": 171,
+          "old": "Use the full [class library](CLASS_PLAYTEST_INDEX.md) and [Paladin paths](PALADIN_OATHS_AND_OATHBREAKERS.md) for acquisition and actual cards. The language data gives an explicit interface for every selected card while retaining each card's status. These language completions never grant the card itself.",
+          "replacement": "Use each acquired feature's complete source card for acquisition and operation. The [selected language interfaces](../../data/playtest/language_communication_candidate_public.json) identify the applicable card IDs without granting them; the included [Paladin cards](../../data/public/class_playtests/paladin.json) supply the oath procedures. The other selected full class collections remain under `data/public/class_playtests/`, with Bard in `data/public/Decennium_Descent_Bard_Playtest_v0_1.json`. These language completions retain every card's existing status."
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "section": "Scribing, runes and devices",
+          "originalLine": 193,
+          "old": "The reviewed [advanced operating guide](ADVANCED_CRAFT_CANDIDATE_GUIDE.md), [Scribing cards](SCRIBING_CANDIDATE_RECIPE_CARDS.md) and [Tinkering cards](TINKERING_CANDIDATE_RECIPE_CARDS.md) retain their authority. Reading words does not establish a functional magical payload, caster eligibility or device control.",
+          "replacement": "The reviewed [advanced operating guide](ADVANCED_CRAFT_CANDIDATE_GUIDE.md), [Scribing cards](../../data/crafting/advanced_craft_recipe_candidate_public.json) and [Tinkering cards](../../data/crafting/advanced_craft_recipe_candidate_public.json) retain their authority. The two card links open the supplied complete public advanced-crafting collection; use the actual recipe ID within it. Reading words does not establish a functional magical payload, caster eligibility or device control."
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/playtest/language_communication_candidate_public.json",
+          "pointer": "/guideText",
+          "replacementRule": "Exact full corrected player manuscript, not a separate edited summary."
+        }
+      ],
+      "sourceKept": "All complete class/card collections already in this archive. No new source acquisition or unpublished index required.",
+      "regressions": [
+        "All four originally missing destinations now resolve using existing supplied public files.",
+        "Resolve every active local link from the three authored manuscripts in a standalone extracted candidate tree.",
+        "Reproduce validation in a working copy; retain the submitted all-pass report as historical and record the new actual result and hashes."
+      ]
+    },
+    {
+      "id": "LAX-02",
+      "title": "Conditional sourceSpelling preserves absent/null/value",
+      "kind": "Exact correction to LA-15 record-contract application; source direction unchanged",
+      "affected": [
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/playtest/language_communication_candidate_public.json",
+          "pointer": "/recordSchema/definitions/provenance",
+          "replacement": {
+            "required": [
+              "sourcePath",
+              "sourceSha256",
+              "recordId",
+              "fieldPresence",
+              "authority"
+            ],
+            "fields": {
+              "sourcePath": "string; original path",
+              "sourceSha256": "64 lowercase hex characters",
+              "recordId": "string; exact original ID",
+              "fieldPresence": "absent|null|value. value means a present non-null source value, including an empty string, array or object; do not normalize empty to absent or null.",
+              "sourceSpelling": "Conditional original JSON value: omit the key for absent; require literal null for null; require the exact original non-null value for value. Never substitute the canonical language ID or spelling.",
+              "authority": "exact grant/decision that permits the derived effect"
+            },
+            "constraints": [
+              "If fieldPresence is absent, sourceSpelling MUST be absent.",
+              "If fieldPresence is null, sourceSpelling MUST be present with JSON null.",
+              "If fieldPresence is value, sourceSpelling MUST be present with the exact original non-null JSON value, including any empty value.",
+              "The sourcePath, sourceSha256, recordId and authority must identify the actual preserved source; a syntactically valid record alone does not authenticate that source.",
+              "Canonicalization belongs in derived identity fields and never rewrites this source value."
+            ]
+          }
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/director/language_communication_candidate_internal.json",
+          "pointer": "/recordSchema/definitions/provenance",
+          "replacement": {
+            "required": [
+              "sourcePath",
+              "sourceSha256",
+              "recordId",
+              "fieldPresence",
+              "authority"
+            ],
+            "fields": {
+              "sourcePath": "string; original path",
+              "sourceSha256": "64 lowercase hex characters",
+              "recordId": "string; exact original ID",
+              "fieldPresence": "absent|null|value. value means a present non-null source value, including an empty string, array or object; do not normalize empty to absent or null.",
+              "sourceSpelling": "Conditional original JSON value: omit the key for absent; require literal null for null; require the exact original non-null value for value. Never substitute the canonical language ID or spelling.",
+              "authority": "exact grant/decision that permits the derived effect"
+            },
+            "constraints": [
+              "If fieldPresence is absent, sourceSpelling MUST be absent.",
+              "If fieldPresence is null, sourceSpelling MUST be present with JSON null.",
+              "If fieldPresence is value, sourceSpelling MUST be present with the exact original non-null JSON value, including any empty value.",
+              "The sourcePath, sourceSha256, recordId and authority must identify the actual preserved source; a syntactically valid record alone does not authenticate that source.",
+              "Canonicalization belongs in derived identity fields and never rewrites this source value."
+            ]
+          }
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/docs/director-only/LANGUAGE_COMMUNICATION_INTERNAL_CANDIDATE.md",
+          "section": "Immediately after the LA-15 application and before LA-16",
+          "insert": "**LAX-02 exact contract correction:** `recordSchema.definitions.provenance.sourceSpelling` is conditional, not universally required. Omit it when `fieldPresence` is `absent`; require literal JSON null for `null`; require the exact original non-null JSON value, including an empty value, for `value`. Canonical IDs remain derived. The preserved LA-15 source wording and all original source records are unchanged."
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/director/language_communication_candidate_internal.json",
+          "pointer": "/decisionApplicationRegister[id=LA-15]/exactReviewClarifications",
+          "replacement": [
+            {
+              "id": "LAX-02",
+              "text": "**LAX-02 exact contract correction:** `recordSchema.definitions.provenance.sourceSpelling` is conditional, not universally required. Omit it when `fieldPresence` is `absent`; require literal JSON null for `null`; require the exact original non-null JSON value, including an empty value, for `value`. Canonical IDs remain derived. The preserved LA-15 source wording and all original source records are unchanged."
+            }
+          ]
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/tools/validate_language_candidate.py",
+          "section": "record-contract loop",
+          "old": "    for name,definition in public['recordSchema']['definitions'].items():\n        check('record-contract',name,set(definition['required'])==set(definition['fields']))",
+          "replacement": "    for name,definition in public['recordSchema']['definitions'].items():\n        required=set(definition['required']); fields=set(definition['fields'])\n        if name=='provenance':\n            ok=(required=={'sourcePath','sourceSha256','recordId','fieldPresence','authority'}\n                and fields==required|{'sourceSpelling'}\n                and len(definition.get('constraints',[]))>=3)\n        else:\n            ok=required==fields\n        check('record-contract',name,ok)"
+        }
+      ],
+      "sourceKept": "LA-15 original absence/null/value and derived-only identity rule; all five absent background Languages fields and every original source remain unchanged.",
+      "regressions": [
+        "Exercise all three presence states against actual exact source values, including empty string/list/object and canonical-spelling rejection.",
+        "An absent source key cannot require a fabricated sourceSpelling:null.",
+        "Do not relax the unchanged other seven record definitions; include the focused conditional-value checks, not just a subset-of-fields assertion."
+      ]
+    },
+    {
+      "id": "LAX-03",
+      "title": "TI-04 automaton scope and noncombat task-start Action",
+      "kind": "Exact correction to LA-14 application, not a change to completed recipes or class cards",
+      "affected": [
+        {
+          "file": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "section": "Scribing, runes and devices",
+          "originalLine": 205,
+          "old": "A crafted device requires an actual authorized capable controller with INT 6+, consent and ten active minutes using actual Tinker's tools and its legitimate accessible interface. No tool proficiency is granted or required merely to use a known functioning interface. An already bound machine requires actual release by its controller or a separately completed lawful control procedure; ownership does not hack unknown, locked or hostile equipment. Commands require the configured visible/audible channel within 60 ft, a Bonus Action on the controller's regular turn, and the shared one-command/one-offensive-output allowance per owner per numbered round across class and crafted systems. Execution follows the controller's whole turn in its attached phase. Failed execution still spends committed allowances; rebinding does not refund them. Fluency, overhearing, an interpreter or a telepathic ally does not supply control authority or undocumented hardware/protocol. Service, repair and controller transfer keep their real histories and costs. A language lesson does not reset them. Class device membership remains separate; TD-08 retains at most two CURRENT Dissonance into ONE own active qualifying device within 30 ft under its actual timing/frequency.",
+          "replacement": "**TI-04 controlled automata, not all crafted devices.** A TI-04 automaton requires an actual capable consenting controller with INT 6+ and ten active minutes using actual Tinker's tools at its legitimate accessible interface to register that controller and one compatible simple task. No proficiency is granted or required merely to use a known functioning interface. A previously bound chassis requires actual release by its controller or a separately completed lawful control procedure; ownership does not hack unknown, locked or hostile equipment. A controller may have three active ordinary crafted automata; separately defined special profiles and class devices keep only their own actual limits and exceptions. Traps, manually operated utilities and operator-driven machinery do not acquire this binding or attached-phase protocol merely because they are crafted devices. Use their own arming, direct-operation, activation and servicing procedures.\n\n**In initiative**, an eligible automaton command requires a Bonus Action on the controller's regular turn, the configured visible/audible channel within 60 feet, and the actual shared one-command/one-offensive-companion-or-device allowance per owner per numbered round. Execution follows that controller's whole turn in the attached phase. Failed execution spends committed allowances; transfer, rebinding and extra turns do not refund them. Other item families retain every shared budget that their own controlling procedures expressly apply; this scope correction waives none.\n\n**Outside initiative**, programming or reprogramming one such automaton's actual finite, physically possible noncombat task takes ten active minutes. Do not charge a second programming period for the unchanged task validly registered during initial binding. Starting one already programmed, wholly noncombat task uses an Action, not the combat Bonus Action command. Actual appendages, access, capacity and paid power/service intervals remain necessary. No professional work, autonomous attack, indefinite production or service reset follows from a program or language lesson. Fluency, an interpreter or a telepathic ally supplies neither control authority nor undocumented hardware. Service, repair and controller transfer remain separate and preserve their real histories, costs, HP, charges and custody.\n\n**TD-08 is a separate class-device permission, not limited by this automaton-command scope.** It retains once per short rest, a Bonus Action, and up to two current Dissonance into one own active qualifying device within 30 feet. The completed source's actually armed charged trap, powered automaton, utility in a live eligible task, or aligned operator-driven device can qualify on its own terms. Merely carrying an idle item does not. Keep the original routing disable, clearance, service and resource histories; no class feature is granted here."
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/playtest/language_communication_candidate_public.json",
+          "pointer": "/rules/deviceControl",
+          "replacement": {
+            "authority": "KEEP actual TI-04",
+            "minimumControllerINT": 6,
+            "consentRequired": true,
+            "bindingActiveMinutes": 10,
+            "actualTinkersToolsRequired": true,
+            "commandDistanceFeet": 60,
+            "commandAction": "In initiative: Bonus Action on the controller's regular turn. Outside initiative: one Action starts one already programmed wholly noncombat finite task.",
+            "configuredChannel": [
+              "visible",
+              "audible"
+            ],
+            "telepathyIsHardwareAdapter": false,
+            "sharedBudget": "one command and one offensive output per owner per numbered round; actual source exclusions remain",
+            "serviceAndRepairHistoryPreserved": true,
+            "executionPhase": "In initiative: after the controller's whole turn in the attached phase. Outside initiative: actual finite programmed work and its power/service clock, not invented independent turns.",
+            "committedAllowanceRefundOnFailure": false,
+            "bindingRequires": "Actual accessible nonhostile unbound chassis OR actual existing-controller release/separately completed lawful procedure; no tool proficiency granted or needed merely for a known functioning interface",
+            "scope": "TI-04 controlled crafted automata, plus a special profile only where its own completed source explicitly invokes TI-04. Not a universal binding, command or attached-phase rule for traps, manual utilities or operator-driven machinery.",
+            "activeOrdinaryAutomataLimit": 3,
+            "specialProfileAndClassLimits": "Keep only their own actual completed limits and exceptions; this ordinary public rule publishes no private membership.",
+            "programmingActiveMinutes": 10,
+            "initialCompatibleTaskIncludedInBinding": true,
+            "noncombatTask": "One already programmed deterministic, physically possible finite sequence using actual appendages, access, capacity and paid power/service. No autonomous attack, professional work, indefinite resource production or service reset.",
+            "otherDeviceFamilies": "Use their own actual arming, direct-operation, activation, maintenance and control procedures; retain any shared budget those procedures expressly apply.",
+            "td08ScopeUnchanged": "Separate acquired class permission: once per short rest, Bonus Action, up to two current Dissonance into one own actual active qualifying device within 30 feet. Preserve the completed trap, automaton, utility and operator-driven-device eligibility, disable, clearance and resource histories."
+          }
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/director/language_communication_candidate_internal.json",
+          "pointer": "/rules/deviceControl",
+          "replacement": {
+            "authority": "KEEP actual TI-04",
+            "minimumControllerINT": 6,
+            "consentRequired": true,
+            "bindingActiveMinutes": 10,
+            "actualTinkersToolsRequired": true,
+            "commandDistanceFeet": 60,
+            "commandAction": "In initiative: Bonus Action on the controller's regular turn. Outside initiative: one Action starts one already programmed wholly noncombat finite task.",
+            "configuredChannel": [
+              "visible",
+              "audible"
+            ],
+            "telepathyIsHardwareAdapter": false,
+            "sharedBudget": "one command and one offensive output per owner per numbered round; actual source exclusions remain",
+            "serviceAndRepairHistoryPreserved": true,
+            "executionPhase": "In initiative: after the controller's whole turn in the attached phase. Outside initiative: actual finite programmed work and its power/service clock, not invented independent turns.",
+            "committedAllowanceRefundOnFailure": false,
+            "bindingRequires": "Actual accessible nonhostile unbound chassis OR actual existing-controller release/separately completed lawful procedure; no tool proficiency granted or needed merely for a known functioning interface",
+            "scope": "TI-04 controlled crafted automata, plus a special profile only where its own completed source explicitly invokes TI-04. Not a universal binding, command or attached-phase rule for traps, manual utilities or operator-driven machinery.",
+            "activeOrdinaryAutomataLimit": 3,
+            "specialProfileAndClassLimits": "Keep only their own actual completed limits and exceptions; this ordinary public rule publishes no private membership.",
+            "programmingActiveMinutes": 10,
+            "initialCompatibleTaskIncludedInBinding": true,
+            "noncombatTask": "One already programmed deterministic, physically possible finite sequence using actual appendages, access, capacity and paid power/service. No autonomous attack, professional work, indefinite resource production or service reset.",
+            "otherDeviceFamilies": "Use their own actual arming, direct-operation, activation, maintenance and control procedures; retain any shared budget those procedures expressly apply.",
+            "td08ScopeUnchanged": "Separate acquired class permission: once per short rest, Bonus Action, up to two current Dissonance into one own actual active qualifying device within 30 feet. Preserve the completed trap, automaton, utility and operator-driven-device eligibility, disable, clearance and resource histories."
+          }
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/playtest/language_communication_candidate_public.json",
+          "pointer": "/guideText",
+          "replacementRule": "Exact full corrected player manuscript."
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/docs/director-only/LANGUAGE_COMMUNICATION_INTERNAL_CANDIDATE.md",
+          "section": "Immediately after the LA-14 application and before LA-15",
+          "insert": "**LAX-03 exact scope correction:** the ordinary TI-04 binding, command and attached-phase fields apply to its controlled automata, and to a special profile only through that profile's explicit invocation. They are not default procedures for every crafted device. Combat commands use the actual regular-turn Bonus Action and shared allowances. An already programmed wholly noncombat task outside initiative starts with an Action; programming/reprogramming is ten active minutes without a service reset. Other device families retain their own complete procedures and any expressly applicable shared budgets. TD-08's separately admitted active trap/automaton/utility/operator-driven-device scope remains unchanged. Preserve the original LA-14 authoring direction and completed TI/TD source sections."
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/director/language_communication_candidate_internal.json",
+          "pointer": "/decisionApplicationRegister[id=LA-14]/exactReviewClarifications",
+          "replacement": [
+            {
+              "id": "LAX-03",
+              "text": "**LAX-03 exact scope correction:** the ordinary TI-04 binding, command and attached-phase fields apply to its controlled automata, and to a special profile only through that profile's explicit invocation. They are not default procedures for every crafted device. Combat commands use the actual regular-turn Bonus Action and shared allowances. An already programmed wholly noncombat task outside initiative starts with an Action; programming/reprogramming is ten active minutes without a service reset. Other device families retain their own complete procedures and any expressly applicable shared budgets. TD-08's separately admitted active trap/automaton/utility/operator-driven-device scope remains unchanged. Preserve the original LA-14 authoring direction and completed TI/TD source sections."
+            }
+          ]
+        },
+        {
+          "file": "docs/audit/2026-10-08/full-game/LANGUAGE_CANDIDATE_WORKED_ADJUDICATIONS.json",
+          "pointer": "/cases[id=LA-T30]",
+          "replacement": {
+            "id": "LA-T30",
+            "case": "LA-14",
+            "title": "Device channel and service",
+            "expected": "Authorized actual controller/channel required; no telepathic hardware substitute; command/action budget, service and repair histories persist; TD08 remains2 current Dissonance into1 own active device30ft.",
+            "executionStatus": "Authored semantic adjudication; not an executed game/runtime sequence or human trial",
+            "setup": "At 09:00 an INT 6 capable consenting user with actual tools and lawful access begins binding an accessible unbound recipe-684 automaton. In round 20 that same controller has a regular-turn Bonus Action, a working configured visible channel within 60 feet, and an unused shared command/offensive allowance. Actual power and any separately mentioned acquired class permission are fixture prerequisites, not granted by binding.",
+            "chronology": [
+              {
+                "step": 1,
+                "event": "At 09:10 complete ten active binding minutes and record the actual controller and task. Keep the same physical body, HP, charge/service and custody histories."
+              },
+              {
+                "step": 2,
+                "event": "In round 20 commit the regular-turn Bonus Action and applicable shared command/offensive allowance. Resolve the instructed automaton action after the controller's whole turn; a blocked execution does not refund committed allowances."
+              },
+              {
+                "step": 3,
+                "event": "Reject a second class/crafted command for that owner in round 20, an extra-turn refresh, or a telepathic intermediary offered as an undocumented hardware receiver."
+              },
+              {
+                "step": 4,
+                "event": "After initiative has genuinely ended, and only while the automaton is otherwise operative, spend ten actual minutes to program a new lawful finite noncombat sequence. Start that programmed task with an Action. Do not reset, refund or extend its actual paid power/service interval."
+              },
+              {
+                "step": 5,
+                "event": "Contrast the actual recipe-591 manual utility and recipe-585 trap: use their own direct-work or arming/trigger procedures. Neither acquires the automaton binding, remote command or attached-phase behavior from the word device."
+              },
+              {
+                "step": 6,
+                "event": "Separately retain an acquired TD-08's once-per-short-rest Bonus Action: up to two current Dissonance into one own active qualifying device within 30 feet. Its completed eligible device families are not narrowed to automata, and its disable/clearance history is unchanged."
+              }
+            ],
+            "adjudicatedOutcome": "The recipe-684 automaton follows actual TI-04 control and power rules, with combat Bonus Action and noncombat Action-start contexts kept distinct. Other device families retain their own operating procedures and expressly applicable shared budgets. No hardware, control permission, class grant, service/HP/charge/custody reset or command refund is created.",
+            "candidateEvidence": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md#scribing-runes-and-devices",
+            "satisfiesAuthoredExpectation": true,
+            "runtimePassed": false
+          }
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/playtest/language_communication_candidate_public.json",
+          "pointer": "/workedAdjudications[id=LA-T30]",
+          "replacement": {
+            "id": "LA-T30",
+            "case": "LA-14",
+            "title": "Device channel and service",
+            "expected": "Authorized actual controller/channel required; no telepathic hardware substitute; command/action budget, service and repair histories persist; TD08 remains2 current Dissonance into1 own active device30ft.",
+            "executionStatus": "Authored semantic adjudication; not an executed game/runtime sequence or human trial",
+            "setup": "At 09:00 an INT 6 capable consenting user with actual tools and lawful access begins binding an accessible unbound recipe-684 automaton. In round 20 that same controller has a regular-turn Bonus Action, a working configured visible channel within 60 feet, and an unused shared command/offensive allowance. Actual power and any separately mentioned acquired class permission are fixture prerequisites, not granted by binding.",
+            "chronology": [
+              {
+                "step": 1,
+                "event": "At 09:10 complete ten active binding minutes and record the actual controller and task. Keep the same physical body, HP, charge/service and custody histories."
+              },
+              {
+                "step": 2,
+                "event": "In round 20 commit the regular-turn Bonus Action and applicable shared command/offensive allowance. Resolve the instructed automaton action after the controller's whole turn; a blocked execution does not refund committed allowances."
+              },
+              {
+                "step": 3,
+                "event": "Reject a second class/crafted command for that owner in round 20, an extra-turn refresh, or a telepathic intermediary offered as an undocumented hardware receiver."
+              },
+              {
+                "step": 4,
+                "event": "After initiative has genuinely ended, and only while the automaton is otherwise operative, spend ten actual minutes to program a new lawful finite noncombat sequence. Start that programmed task with an Action. Do not reset, refund or extend its actual paid power/service interval."
+              },
+              {
+                "step": 5,
+                "event": "Contrast the actual recipe-591 manual utility and recipe-585 trap: use their own direct-work or arming/trigger procedures. Neither acquires the automaton binding, remote command or attached-phase behavior from the word device."
+              },
+              {
+                "step": 6,
+                "event": "Separately retain an acquired TD-08's once-per-short-rest Bonus Action: up to two current Dissonance into one own active qualifying device within 30 feet. Its completed eligible device families are not narrowed to automata, and its disable/clearance history is unchanged."
+              }
+            ],
+            "adjudicatedOutcome": "The recipe-684 automaton follows actual TI-04 control and power rules, with combat Bonus Action and noncombat Action-start contexts kept distinct. Other device families retain their own operating procedures and expressly applicable shared budgets. No hardware, control permission, class grant, service/HP/charge/custody reset or command refund is created.",
+            "candidateEvidence": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md#scribing-runes-and-devices",
+            "satisfiesAuthoredExpectation": true,
+            "runtimePassed": false
+          }
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/data/director/language_communication_candidate_internal.json",
+          "pointer": "/workedAdjudications[id=LA-T30]",
+          "replacement": {
+            "id": "LA-T30",
+            "case": "LA-14",
+            "title": "Device channel and service",
+            "expected": "Authorized actual controller/channel required; no telepathic hardware substitute; command/action budget, service and repair histories persist; TD08 remains2 current Dissonance into1 own active device30ft.",
+            "executionStatus": "Authored semantic adjudication; not an executed game/runtime sequence or human trial",
+            "setup": "At 09:00 an INT 6 capable consenting user with actual tools and lawful access begins binding an accessible unbound recipe-684 automaton. In round 20 that same controller has a regular-turn Bonus Action, a working configured visible channel within 60 feet, and an unused shared command/offensive allowance. Actual power and any separately mentioned acquired class permission are fixture prerequisites, not granted by binding.",
+            "chronology": [
+              {
+                "step": 1,
+                "event": "At 09:10 complete ten active binding minutes and record the actual controller and task. Keep the same physical body, HP, charge/service and custody histories."
+              },
+              {
+                "step": 2,
+                "event": "In round 20 commit the regular-turn Bonus Action and applicable shared command/offensive allowance. Resolve the instructed automaton action after the controller's whole turn; a blocked execution does not refund committed allowances."
+              },
+              {
+                "step": 3,
+                "event": "Reject a second class/crafted command for that owner in round 20, an extra-turn refresh, or a telepathic intermediary offered as an undocumented hardware receiver."
+              },
+              {
+                "step": 4,
+                "event": "After initiative has genuinely ended, and only while the automaton is otherwise operative, spend ten actual minutes to program a new lawful finite noncombat sequence. Start that programmed task with an Action. Do not reset, refund or extend its actual paid power/service interval."
+              },
+              {
+                "step": 5,
+                "event": "Contrast the actual recipe-591 manual utility and recipe-585 trap: use their own direct-work or arming/trigger procedures. Neither acquires the automaton binding, remote command or attached-phase behavior from the word device."
+              },
+              {
+                "step": 6,
+                "event": "Separately retain an acquired TD-08's once-per-short-rest Bonus Action: up to two current Dissonance into one own active qualifying device within 30 feet. Its completed eligible device families are not narrowed to automata, and its disable/clearance history is unchanged."
+              }
+            ],
+            "adjudicatedOutcome": "The recipe-684 automaton follows actual TI-04 control and power rules, with combat Bonus Action and noncombat Action-start contexts kept distinct. Other device families retain their own operating procedures and expressly applicable shared budgets. No hardware, control permission, class grant, service/HP/charge/custody reset or command refund is created.",
+            "candidateEvidence": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md#scribing-runes-and-devices",
+            "satisfiesAuthoredExpectation": true,
+            "runtimePassed": false
+          }
+        },
+        {
+          "file": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_WORKED_SEQUENCES.md",
+          "section": "LA-T30 — Device channel and service",
+          "replacementRule": "Render the corrected case setup, ordered chronology and adjudicatedOutcome exactly; preserve its original checklist expected text and runtimePassed:false."
+        }
+      ],
+      "sourceKept": [
+        "Completed TI-04, TI-05, TI-08, TD-01 and TD-08 unchanged.",
+        "Other direct-operation, arming, service and class-acquisition procedures unchanged."
+      ],
+      "internalAffectedRecipeGroups": {
+        "ordinaryTI04Automata": [
+          "recipe-586",
+          "recipe-587",
+          "recipe-589",
+          "recipe-590",
+          "recipe-593",
+          "recipe-594",
+          "recipe-596",
+          "recipe-600",
+          "recipe-607",
+          "recipe-608",
+          "recipe-611",
+          "recipe-612",
+          "recipe-615",
+          "recipe-616",
+          "recipe-618",
+          "recipe-620",
+          "recipe-622",
+          "recipe-684"
+        ],
+        "specialTI04Invocation": [
+          "recipe-686"
+        ],
+        "trapsDoNotInheritTI04": [
+          "recipe-585",
+          "recipe-588",
+          "recipe-592",
+          "recipe-598",
+          "recipe-599",
+          "recipe-601",
+          "recipe-605",
+          "recipe-609",
+          "recipe-610",
+          "recipe-613",
+          "recipe-619"
+        ],
+        "utilitiesDoNotInheritTI04": [
+          "recipe-591",
+          "recipe-595",
+          "recipe-597",
+          "recipe-602",
+          "recipe-603",
+          "recipe-604",
+          "recipe-606",
+          "recipe-614",
+          "recipe-617",
+          "recipe-621",
+          "recipe-623",
+          "recipe-685"
+        ],
+        "directOperatorProfileDoNotInheritTI04": [
+          "recipe-687"
+        ]
+      },
+      "regressions": [
+        "Bind and command an actually eligible ordinary TI-04 automaton, retaining all current power and owner-budget requirements.",
+        "Outside initiative, one already programmed lawful noncombat task starts with an Action, not the combat Bonus Action; ten-minute programming is not service.",
+        "Manual utility, armed trap and direct-operator ram keep their own source actions; no universal controller/attached-phase rule.",
+        "Do not narrow TD-08 active-device eligibility or silently waive existing explicitly shared budgets.",
+        "Keep private recipe membership and dossiers out of public correction prose/data."
+      ]
+    }
+  ],
+  "preserveOriginals": true
+}

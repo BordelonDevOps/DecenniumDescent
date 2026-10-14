@@ -1,0 +1,51 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-EXPEDITION",
+  "runId": "2026-08-06T151746Z-REG-EXPEDITION",
+  "seed": 77102,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "6369c09a7f2c7294d5da594c1f0fc7158d500e4cc03f08a8730594fbe41a8e6a",
+  "evidenceLevel": "A",
+  "outcome": "BASELINE_LOCKED",
+  "metrics": {
+    "presentFiles": [
+      "results\\11-coupled-expedition\\summary.json",
+      "results\\11-coupled-expedition\\coupled_expedition.csv",
+      "results\\14-one-opening-cycle\\summary.json",
+      "results\\14-one-opening-cycle\\cycle_results.csv"
+    ],
+    "missingFiles": [],
+    "csvRows": 10048,
+    "summaries": {
+      "summary.json": {
+        "cycles": 10000,
+        "openings": 10000,
+        "violations": 0,
+        "rule": "Exactly one Opening per ten-year Cycle; many expeditions may occur inside that Opening."
+      }
+    },
+    "dependencyPackJsonCounts": {
+      "01-combat-class-balance": 160,
+      "07-statistical-combat-calibration": 8,
+      "11-expedition-attrition-monte-carlo": 198,
+      "13-haven-economy-stress": 43,
+      "16-rules-fuzz-property-tests": 6
+    },
+    "note": "No proposed-patches/ deltas; gate uses V7.2 executable math outputs + packs 05/17/19/20 from this run."
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "REG-EXPEDITION: present=4 missing=0 csvRows=10048.",
+      "citation": "playtests/ai-calibration-suite/results/"
+    },
+    {
+      "severity": "null",
+      "summary": "Release gate is validator status + executable math integrity + usability/edge/integrity packs from this final wave.",
+      "citation": "playtests/ai-calibration-suite/proposed-patches/"
+    }
+  ],
+  "rawEvidencePath": "results\\11-coupled-expedition\\summary.json",
+  "agentId": "statistical-diff-auditor"
+}

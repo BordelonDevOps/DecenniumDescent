@@ -1,0 +1,48 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L5-SUPPORT",
+  "agentId": "combat-metrics",
+  "seed": "agg-15-seeds",
+  "observations": [
+    "Recorded rounds, damage, healing, prevention, control, summons peak, retreat progress, KOs, Wounds, RP proxy spend.",
+    "DPR is model-estimated from class identity + level breakpoints (Extra Attack / Dual Cast / Nuke), not table dice transcripts."
+  ],
+  "metrics": {
+    "iterations": 15,
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 15.6,
+    "avg_party_damage": 463.09,
+    "avg_enemy_damage": 162.37,
+    "avg_healing": 139.6,
+    "avg_prevented": 77.88,
+    "avg_control_applied": 22.93,
+    "avg_full_turns_denied": 2.0,
+    "max_summons_peak": 0,
+    "summons_illegal_rate": 0.0,
+    "extra_action_stack_rate": 1.0,
+    "avg_tenacity_triggers": 0.0,
+    "avg_knockouts": 0.0,
+    "avg_wounds": 0.0,
+    "avg_rp_spent": 76.04,
+    "avg_decision_steps": 1.5,
+    "avg_lookups": 1.85,
+    "deadlock_seeds": 0,
+    "retreat_success_rate": null,
+    "dpr_party_estimate": 29.69,
+    "effective_prevention_per_round": 4.99,
+    "heal_to_damage_taken_ratio": 0.86,
+    "cargo_intact_rounds_avg": 0.0,
+    "objectives_held_max_avg": 0.0
+  },
+  "rulesQuestions": [],
+  "exploits": [
+    "Action-economy stack attempt on Soldier: class Action Surge/extra + Bard/support grant; Loop limit = choose one additional Action.",
+    "Full-turn denial chain by Oracle without escalation cost \u2014 blocked by Loop rule in adjudication."
+  ],
+  "recommendations": [
+    "Keep outliers: report min/max rounds alongside averages in future tooling.",
+    "Instrument live companion combat log to replace model DPR in later packs."
+  ],
+  "confidence": "medium"
+}

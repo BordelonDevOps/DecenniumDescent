@@ -1,0 +1,29 @@
+{
+  "pack": "03-haven-economy-social",
+  "scenarioId": "HAV-TRAFFICKING",
+  "agentId": "market-auditor",
+  "seed": "aggregate-20seeds+5narr",
+  "observations": [
+    "Trafficking claims: prosecution 15%; consequence-free illegal commerce 30% when evidence fails.",
+    "Played as victims/resistance/law/reputation - not a decorative price list (orchestrator rule).",
+    "Inspection always precedes claims per Haven resolution order - trafficking cannot skip quarantine.",
+    "Illegal sale with failed evidence sometimes yields gp - identified exploit: evidence gap."
+  ],
+  "metrics": {
+    "seeds_run": 20,
+    "narratives_run": 5,
+    "source_gameplay_loop": "pending-review GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt (docs/mechanics/GAMEPLAY_LOOP_CANON.md missing)",
+    "source_haven": "src/data/haven.json",
+    "prosecution_rate": 0.15,
+    "consequence_free_rate": 0.3,
+    "auditor_recompute_note": "Recomputed all seed settlements in harness; see sim export"
+  },
+  "rulesQuestions": [
+    "GAMEPLAY_LOOP_CANON.md and DESIGN_DOCTRINE.md listed in pack README are missing on main; playtest used pending-review bible extract.",
+    "Mandatory Haven tax rate is not published; only worked-example residual 3094->2900 (~6.27%) exists - Director assumption.",
+    "reputation.js tier bands (Hated...Honored) disagree with Gameplay Loop standing scale -5..+5; which applies in Haven?"
+  ],
+  "exploits": [],
+  "recommendations": [],
+  "confidence": "medium"
+}

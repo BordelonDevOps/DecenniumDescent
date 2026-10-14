@@ -1,0 +1,30 @@
+{
+  "pack": "03-haven-economy-social",
+  "scenarioId": "HAV-LABOR",
+  "agentId": "labor-organizer",
+  "seed": "aggregate-20seeds+5narr",
+  "observations": [
+    "Porter debt: emancipation 15%, rescue 20%, law 20% under assumed wage/interest.",
+    "Debt bondage frequently traps porters when interest is high - resistance/rescue/law paths are necessary, not optional color.",
+    "Porter debt advance + interest exceeds earned wages in most seeds - emancipation rare without rescue.",
+    "Strike triggers merchant standing loss and occasional law intervention."
+  ],
+  "metrics": {
+    "seeds_run": 20,
+    "narratives_run": 5,
+    "source_gameplay_loop": "pending-review GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt (docs/mechanics/GAMEPLAY_LOOP_CANON.md missing)",
+    "source_haven": "src/data/haven.json",
+    "emancipation_rate": 0.15,
+    "rescue_rate": 0.2,
+    "law_rate": 0.2
+  },
+  "rulesQuestions": [
+    "GAMEPLAY_LOOP_CANON.md and DESIGN_DOCTRINE.md listed in pack README are missing on main; playtest used pending-review bible extract.",
+    "Mandatory Haven tax rate is not published; only worked-example residual 3094->2900 (~6.27%) exists - Director assumption.",
+    "reputation.js tier bands (Hated...Honored) disagree with Gameplay Loop standing scale -5..+5; which applies in Haven?",
+    "Publish fair wage, max advance interest, strike resolution, and emancipation buyout formula."
+  ],
+  "exploits": [],
+  "recommendations": [],
+  "confidence": "low"
+}

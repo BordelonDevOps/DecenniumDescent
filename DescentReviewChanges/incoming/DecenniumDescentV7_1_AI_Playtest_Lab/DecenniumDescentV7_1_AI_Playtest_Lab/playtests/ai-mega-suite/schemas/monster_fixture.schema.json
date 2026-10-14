@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen Monster Fixture",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "sourceHash",
+    "armorClass",
+    "maxHp",
+    "speed",
+    "actions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "sourceHash": {
+      "type": "string"
+    },
+    "armorClass": {
+      "type": "integer"
+    },
+    "maxHp": {
+      "type": "integer"
+    },
+    "speed": {
+      "type": "integer"
+    },
+    "traits": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "reactions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "phaseRules": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "tenacity": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "pack": "16-rules-fuzz-property-tests",
+  "scenarioId": "FUZZ-SEASONAL",
+  "runId": "FUZZ-SEASONAL-71600",
+  "seed": 71600,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "runs": 10000,
+    "failureCount": 279,
+    "failureTypes": {
+      "public_depth_leak": 279
+    },
+    "objective": "Cycle records, inheritance, map state"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "confirmed",
+      "type": "public_depth_leak",
+      "count": 279,
+      "detail": "public_depth_leak observed 279/10000 transitions",
+      "sample": [
+        [
+          "public_depth_leak",
+          39,
+          {
+            "claimed": 9,
+            "publicMax": 6
+          }
+        ],
+        [
+          "public_depth_leak",
+          53,
+          {
+            "claimed": 11,
+            "publicMax": 6
+          }
+        ],
+        [
+          "public_depth_leak",
+          77,
+          {
+            "claimed": 9,
+            "publicMax": 6
+          }
+        ],
+        [
+          "public_depth_leak",
+          107,
+          {
+            "claimed": 10,
+            "publicMax": 6
+          }
+        ],
+        [
+          "public_depth_leak",
+          121,
+          {
+            "claimed": 9,
+            "publicMax": 6
+          }
+        ]
+      ]
+    },
+    {
+      "severity": "confirmed",
+      "type": "public_depth_boundary_leak",
+      "detail": "Public seasonal state claimed depth beyond Sixth Gate.",
+      "count": 279
+    }
+  ],
+  "rawEvidencePath": "results/16-rules-fuzz-property-tests/FUZZ-SEASONAL/"
+}

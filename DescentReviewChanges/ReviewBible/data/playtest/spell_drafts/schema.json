@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Decennium Descent operational spell authoring batch v0.1",
+  "type": "object",
+  "required": [
+    "spells"
+  ],
+  "properties": {
+    "spells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "activation",
+          "targets",
+          "duration",
+          "resolution",
+          "effect",
+          "scaling",
+          "limitations",
+          "designNotes",
+          "rangeFeet",
+          "concentration",
+          "components"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "activation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "targets": {
+            "type": "string",
+            "minLength": 1
+          },
+          "duration": {
+            "type": "string",
+            "minLength": 1
+          },
+          "resolution": {
+            "type": "string",
+            "minLength": 1
+          },
+          "effect": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scaling": {
+            "type": "string",
+            "minLength": 1
+          },
+          "limitations": {
+            "type": "string",
+            "minLength": 1
+          },
+          "designNotes": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rangeFeet": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "concentration": {
+            "type": "boolean"
+          },
+          "components": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "V",
+                "S",
+                "F",
+                "M"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

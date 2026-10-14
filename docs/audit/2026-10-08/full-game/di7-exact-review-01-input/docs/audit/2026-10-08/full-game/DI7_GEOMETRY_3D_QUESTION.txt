@@ -1,0 +1,123 @@
+DI7-GEOMETRY-3D-01: bounded source clarification before implementing the remaining information-area payloads. The previous ACQ19 and SHIELD-LATE questions are settled and applied. No seven-card approval is requested here.
+
+The reviewed COMBAT_ACTION_PLAYTEST.md currently says: "NEW grid metric: each orthogonal or diagonal neighboring tile is 5 ft; use the same metric for ordinary ranges/areas. No diagonal cut through a corner when both adjacent orthogonal sides are completely blocked. Exact templates, 3D geometry, mounts, chases, jumping, climbing/swimming procedures and currents need further source review."
+
+Supreme Sight now says "one fixed 20-foot-radius sphere ... with the reviewed grid metric for membership." Its range120 and current center-to-portion line of effect remain. Mass has your explicit special 3D cone: axial60 and circular cross-section diameter=forward distance, occupied cell centers only, origin cell excluded, source may choose forward boundary origin.
+
+Before silently choosing a 3D interpretation, please settle these actual source seams, classify KEEP versus NEW, and supply only necessary exact operative insert/replacement text:
+
+1. Supreme sphere membership on the existing5-foot grid: is a same-level cell-center offset(20,20,0) inside because horizontal diagonal steps cost5, or outside under a Euclidean radius20? For vertical offsets, what metric applies to(20,20,20),(0,0,20),(20,0,5)? The general guide expressly defers3D geometry, so I will not claim that it already establishes a3D rule. Also define how the spell's120-foot caster-to-chosen-center range uses that metric. Please scope any NEW completion to these DI7 queries rather than silently replacing all combat geometry.
+
+2. Mass cone may have a genuine non-axis-aligned facing vector. Is geometric membership the explicitly supplied Euclidean axial/circular cone formula even though ordinary ranges use5-foot diagonal steps? Its named axial60/circular diameter source seems to settle that; please confirm no extra Euclidean radial60 cap that would incorrectly exclude the source's accepted forward60/lateral30 boundary. Preserve genuine occupied-cell/vertical/line-of-effect clipping, and don't invent bounding-box occupancy.
+
+3. For Supreme, the selected center is fixed at commitment; if actual caster position changes in a legal interruption before resolution, is its legal perceived center/range/line revalidated at effect resolution or only at cast commitment? Please choose the current casting rule's intended result rather than granting free retargeting/refunds. Mass already fixes direction at commitment; clarify whether its origin is the recorded pre-cast point or follows the caster at resolution if the caster was legally displaced. No generic interrupt or displacement permission is granted by these questions.
+
+Please return a terminal concise source ruling with exact finite coordinate/interrupt examples and exact textual amendments if needed. Do not claim any local checks rerun, full49+4 fulfillment, exact seven-card acceptance, human balance, whole-game flow, push or cosmology. Final actual joint whole-game flow still precedes authorized push, verified remote and only then careful cosmology.
+
+Complete current operative cards follow:
+[
+  {
+    "id": "mass-revelation",
+    "operationalCandidate": {
+      "activation": "Action",
+      "school": "Divination",
+      "rank": 7,
+      "baseRpCost": 17,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "rangeFeet": 60,
+      "targetingSummary": "One fixed 60-foot cone; source-origin line of effect; caster-only instantaneous snapshot.",
+      "durationSummary": "Instantaneous",
+      "concentrationRequiredByOuterEffect": false,
+      "concentrationQualification": "Use the full spell-specific lifecycle and shared casting rules.",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Divination",
+          "baseRpCost": 17
+        },
+        "Mirrorsage": {
+          "rank": 7,
+          "minimumClassLevel": 19,
+          "school": "Divination",
+          "baseRpCost": 17
+        },
+        "Shaman": {
+          "rank": 7,
+          "minimumClassLevel": 19,
+          "school": "Divination",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Divination",
+          "baseRpCost": 17
+        }
+      },
+      "completeProcedure": "KEEP Action/V/S/F, base 17 RP, one instantaneous 60-foot cone from the caster, and all four categories: hidden traps, enemies, magic and lies. NEW choose and record the cone direction at commitment; the caster alone receives the resolution-time snapshot, with no creature-count cap. The cone is an informational area, not a sight-required individual targeting attempt. Hidden or Invisible unprotected contents can qualify. Source-origin line of effect clips each readable portion; a wall cannot be bypassed merely because another sense sees through it.\n\nNEW exact fallback template, because the supplied combat guide leaves exact templates open: use a cone with 60-foot forward axial length and circular cross-section of diameter equal to distance along its axis (diameter 60 feet at its far end). Record an actual origin and facing vector before the cast. On the existing 5-foot grid, use cell centers in that volume; a body/feature qualifies through a genuinely occupied included cell and only its readable local footprint is disclosed. Do not include a creature merely because an empty corner of its rectangular bounding box touches the volume. The origin cell itself is excluded; a source may choose a forward origin on its own actual space boundary. This is a NEW DI7 template choice, not recovered ordinary cone text. Existing range metric, total-cover, actual vertical placement and no-corner-cutting constraints still apply; this template gives no generic new geometry to other spells.\n\nHidden traps: reveal the current physical site, occupied footprint, armed/dormant state and immediate trigger category of every actual readable trap. A concealed plate qualifies; an ordinary dangerous creature is not automatically a trap. No disarm solution, code, future die or automatic Search/disarm Action is granted. Enemies: reveal the current occupied footprint and readable creature count of actual beings presently intending or executing a meaningful hostile act against the caster or a member of the caster's current party. This NEW predicate is not alignment, species, reputation, mere disagreement or a caller's enemy flag. It reads no plan, memory, full identity or stat block. Intent, location and existence protections retain their independent actual scopes; never count protected existences.\n\nMagic: reveal each current actual magical effect's local footprint, spell/nonspell category, generating school/rank when its source supplies them, and active/suppressed state. A dormant enchanted object's still-existing enchantment may be distinguished from an active spell when readable; this does not invent charges, attunement, powers or an absent school/rank. Overlapping effects stay separate. Lies: NEW examine assertions made during the inclusive six elapsed seconds ending at resolution by a creature presently in the readable cone, only where the caster actually perceived and understood that assertion. Report deliberate deception when the speaker knowingly asserted what they then believed false; a sincere error is not a lie. Irony, uncertainty, misunderstood content, mere recorded sounds or a speaker now outside the area create no invented belief or objective replacement truth. Current relevant belief/existence protections still apply. A valid decoded sign can be an assertion; the spell supplies no language or general translation.\n\nNo generic save is added. An actual defense's own check/threshold applies only within its source scope. Apply the shared information rule without a free preflight search for hidden facts. The spell disarms, dispels, damages and compels nothing. CORRECTION to the proposal's blanket retained-concealment language: learning a location ends Hidden for this caster and removes Invisible's own attack modifiers against this informed observer, as already reviewed; it does not make an Invisible creature visible or satisfy a sight-required spell. Independent concealment still applies. The record is a snapshot, not a tracking feed. No ally receives the knowledge or observer-state change without actually obtaining that information through a legal channel.",
+      "workedCases": [
+        "DI7-01-A: Conditional Wizard13 has a legitimate prepared Mass Revelation, usable components, no price additions and RP48. Pay17 to31. The fixed readable cone contains an actual unprotected pressure plate, Invisible hostile scout and active ward. Disclose their specified fields. The scout stays Invisible, but this caster now knows its location: Hidden and Invisible-only attack modifiers end for this observer; independent darkness still applies, and a sight-required target remains unavailable. The plate stays armed and the ward stays active. Allies need actual communication.",
+        "DI7-01-B: At resolution100, assertions at94 and99 are within the inclusive six-second window, provided their actual speakers remain in the cone and content was perceived/understood. The knowing false denial is identified; the sincere incorrect date is not. An assertion at93.999 is outside. Supply no key location or corrected date; an existence-protected mind adds no diagnostic record/count."
+      ],
+      "examplesEvidenceKind": "Authored conditional examples; no claim of full-procedure execution.",
+      "summaryFieldsDoNotReplaceFullProcedure": true
+    }
+  },
+  {
+    "id": "resonance-sight-supreme",
+    "operationalCandidate": {
+      "activation": "Action",
+      "school": "Divination",
+      "rank": 7,
+      "baseRpCost": 17,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "rangeFeet": 120,
+      "targetingSummary": "One perceived point within range and line of effect; fixed 20-foot-radius sphere with current center-to-portion line of effect.",
+      "durationSummary": "Instantaneous",
+      "concentrationRequiredByOuterEffect": false,
+      "concentrationQualification": "Use the full spell-specific lifecycle and shared casting rules.",
+      "classAccess": {
+        "Cleric": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Divination",
+          "baseRpCost": 17
+        },
+        "Mirrorsage": {
+          "rank": 7,
+          "minimumClassLevel": 19,
+          "school": "Divination",
+          "baseRpCost": 17
+        },
+        "Shaman": {
+          "rank": 7,
+          "minimumClassLevel": 19,
+          "school": "Divination",
+          "baseRpCost": 17
+        },
+        "Wizard": {
+          "rank": 7,
+          "minimumClassLevel": 13,
+          "school": "Divination",
+          "baseRpCost": 17
+        }
+      },
+      "completeProcedure": "KEEP Action/V/S/F/base 17 RP, range 120 feet, instantaneous reading, and all past and present magical effects in an area. NEW choose a perceived point within 120 feet and line of effect; at resolution use one fixed 20-foot-radius sphere and current center-to-portion line of effect, with the reviewed grid metric for membership. Solid total cover clips the readable portion. This is a spatial-history query of those actual readable places, not a remote view through today's walls; a presently open portion can still reveal its established earlier local history even if the ancient layout differed.\n\nPrivately receive every actual established magical-effect occurrence whose historical footprint intersected those readable spatial portions while the event existed, plus current readable magic there. There is no arbitrary lookback age, rank or record-count ceiling. An ended/destroyed effect remains eligible as history, including one that ended long ago; destruction does not recreate a present object or resource. The Director's actual established history is sufficient without a previously implemented event log, but absence of historical evidence is not proof of no ancient magic. NEW interval representation: one continuing unchanged effect is one interval with its genuinely known transitions, not a generated casting every second. A moving effect has its real local visits/intervals, not a new spell per tile; overlaps retain separate original effect identities.\n\nFor each readable occurrence give its actual spell/effect identity, or its established bounded category when no named identity is supplied; generating school/rank only when its source actually defines those fields; readable local footprint; time/relative ordering at its real established precision; and starts, persistence, changes, suppression and endings there. Actual magical nonspell class/item effects and existing dormant enchantments can qualify through their real magic/history, without inventing rank 0 or a school. A record that was never magical is not made magical by nearby events. An effect currently elsewhere has only its local historical footprint here, not a disclosed current remote destination.\n\nThis does not automatically reveal a caster's personal identity, private memory, current pool, attunement, full blueprint, upstream origin or unrelated history. Those require their own actual readable manifestation/source permission. Apply each genuine present/historical information defense to the facts and time intervals it really covers: a current-only ward does not retroactively erase unrelated old history; an express historical-trace protection still applies. Do not disclose protected existence through count, placeholders, missing sequence numbers or conspicuous gaps. Undefined precision stays uncertain rather than being rounded into an invented date. Supply all independently useful readable information, not only public facts or a single trace.\n\nThe snapshot can be remembered/recorded through ordinary time and tools. It grants no ongoing sensory feed, targeting sight, time travel, replay, dispel, reconstruction, spell acquisition or Fate Echo observation receipt. Learning a cast's past existence now is not directly witnessing that original cast in its original time window. Equivalent unchanged paid inquiries return consistent overlapping records; genuine new events/protection/evidence can change them. No spent material, soul, class permission or cosmological origin is recovered or interpreted.",
+      "workedCases": [
+        "DI7-08-A: Pay17 to read a legal fixed20-foot sphere containing an active ward and an established three-day-old magical blast. Both readable occurrences appear with actual local footprints and chronology; the ended blast is not omitted. Unknown caster identity/current location remains unknown. Reading that history is not an observed-original event for Fate Echo.",
+        "DI7-08-B: An enchantment actually persisted for a century; represent one interval and its established transitions, not billions of generated casts. An unestablished/protected period supplies neither fabricated history nor proof of no magic. An existence-protected event adds no placeholder/count. Equivalent unchanged queries repeat the same readable record; a real newly established fact may change a later paid answer."
+      ],
+      "examplesEvidenceKind": "Authored conditional examples; no claim of full-procedure execution.",
+      "summaryFieldsDoNotReplaceFullProcedure": true
+    }
+  }
+]

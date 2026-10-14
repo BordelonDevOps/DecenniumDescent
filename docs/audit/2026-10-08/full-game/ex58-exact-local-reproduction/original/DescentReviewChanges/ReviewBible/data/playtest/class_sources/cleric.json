@@ -1,0 +1,1399 @@
+{
+  "class": "Cleric",
+  "sourcePath": "docs/reference/Player_Rulebook_v6_source_text.txt",
+  "sourceSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "bookLines": [
+    {
+      "line": 1937,
+      "text": "Cleric"
+    },
+    {
+      "line": 1938,
+      "text": ""
+    },
+    {
+      "line": 1939,
+      "text": "\"The dwarven cleric raised her holy symbol, and a wave of golden light emanated from it, washing over her wounded companions. As the light touched them, their wounds began to close, and the weariness faded from their eyes. 'The divine favors those who act in its name,' she proclaimed, turning to face the approaching darkness with renewed determination.\""
+    },
+    {
+      "line": 1940,
+      "text": ""
+    },
+    {
+      "line": 1941,
+      "text": "Clerics are divine conduits who channel the power of their deity to heal allies, smite enemies, and perform sacred rites. In the world of Aethel, clerics serve as intermediaries between mortals and the divine, interpreting the will of their gods and manifesting divine power through faith and devotion. Their connection to higher powers grants them abilities that can turn the tide of battle, restore life to the fallen, and banish unholy threats."
+    },
+    {
+      "line": 1942,
+      "text": ""
+    },
+    {
+      "line": 1943,
+      "text": "Class Overview"
+    },
+    {
+      "line": 1944,
+      "text": ""
+    },
+    {
+      "line": 1945,
+      "text": "As a cleric, you draw power directly from your deity through prayer, ritual, and unwavering faith. Your divine connection allows you to heal wounds, protect allies, smite enemies, and perform sacred ceremonies that invoke your deity's power. Beyond your magical abilities, you serve as a spiritual guide, offering counsel and representing your faith's tenets in your actions."
+    },
+    {
+      "line": 1946,
+      "text": ""
+    },
+    {
+      "line": 1947,
+      "text": "In Aethel, clerics can be found in temples, on battlefields, in remote shrines, or wandering the land in service to their deity. They might be devoted healers tending to the sick, zealous warriors fighting against heretics, or scholarly priests preserving ancient religious knowledge."
+    },
+    {
+      "line": 1948,
+      "text": ""
+    },
+    {
+      "line": 1949,
+      "text": "Core Mechanics"
+    },
+    {
+      "line": 1950,
+      "text": ""
+    },
+    {
+      "line": 1951,
+      "text": "Divine Favor – Clerics accumulate Conviction points through prayer, ritual actions, and fulfilling their deity's will. These points can be spent to empower divine abilities, with more powerful effects requiring more Conviction. Managing this resource effectively is key to maximizing a cleric's potential."
+    },
+    {
+      "line": 1952,
+      "text": ""
+    },
+    {
+      "line": 1953,
+      "text": "Primary Attributes"
+    },
+    {
+      "line": 1954,
+      "text": "Main Attribute: Wisdom"
+    },
+    {
+      "line": 1955,
+      "text": "Secondary Attributes: Intelligence, Constitution"
+    },
+    {
+      "line": 1956,
+      "text": "Hit Points: Medium (8 + Constitution modifier at 1st level, 1d8 per level thereafter)"
+    },
+    {
+      "line": 1957,
+      "text": "Armor Proficiency: Light and medium armor, shields"
+    },
+    {
+      "line": 1958,
+      "text": "Weapon Proficiency: Simple weapons, deity-favored weapons"
+    },
+    {
+      "line": 1959,
+      "text": "Tool Proficiency: Religious implements"
+    },
+    {
+      "line": 1960,
+      "text": ""
+    },
+    {
+      "line": 1961,
+      "text": "Progression Path"
+    },
+    {
+      "line": 1962,
+      "text": ""
+    },
+    {
+      "line": 1963,
+      "text": "Level 1-2 (Base Cleric Skills)"
+    },
+    {
+      "line": 1964,
+      "text": "Foundational skills before Arch class selection."
+    },
+    {
+      "line": 1965,
+      "text": ""
+    },
+    {
+      "line": 1966,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 1967,
+      "text": "Conviction Pool: +2 max Conviction cap."
+    },
+    {
+      "line": 1968,
+      "text": "Consecrated Ground: Healing allies on terrain you sanctify (via Rite) heals for +10%."
+    },
+    {
+      "line": 1969,
+      "text": "Judging Light: Smite deals +20% bonus damage to enemies afflicted by Cursed or Weakened effects."
+    },
+    {
+      "line": 1970,
+      "text": "Fervent Ritualist: +10% faster channel speed on all Rites."
+    },
+    {
+      "line": 1971,
+      "text": "Invocation Attunement: Choose one Invocation Path (see below); gain a permanent passive tied to it."
+    },
+    {
+      "line": 1972,
+      "text": ""
+    },
+    {
+      "line": 1973,
+      "text": "Invocation Path Bonuses (Apply at Level 2)"
+    },
+    {
+      "line": 1974,
+      "text": "Radiance: +10% healing power and heals cleanse minor conditions."
+    },
+    {
+      "line": 1975,
+      "text": "Judgment: Smites mark enemies with Judged for 2 rounds, reducing their AC by 1."
+    },
+    {
+      "line": 1976,
+      "text": "Renewal: Healing Rites restore 5 stamina to the target."
+    },
+    {
+      "line": 1977,
+      "text": "Flame: Conviction can be consumed to ignite targets for 2 turns (fire DoT)."
+    },
+    {
+      "line": 1978,
+      "text": "Veil: Gain passive True Sight vs invisible or ethereal creatures."
+    },
+    {
+      "line": 1979,
+      "text": "Echoes: 10% of healing or damage is repeated 1 turn later (Echo Effect)."
+    },
+    {
+      "line": 1980,
+      "text": ""
+    },
+    {
+      "line": 1981,
+      "text": "Active Skills"
+    },
+    {
+      "line": 1982,
+      "text": "Divine Smite: Channel divine energy into a powerful strike against a single enemy, dealing damage based on your Wisdom and consuming 1 Conviction."
+    },
+    {
+      "line": 1983,
+      "text": "Healing Rite: A channeled ability that restores health to an ally, with increased effectiveness on consecrated ground."
+    },
+    {
+      "line": 1984,
+      "text": "Sacred Chant: A sustained prayer that generates 1 Conviction every 3 turns while maintained."
+    },
+    {
+      "line": 1985,
+      "text": "Consecrate: Sanctify the ground in a 15-foot radius, creating consecrated terrain that enhances your healing abilities and weakens undead enemies."
+    },
+    {
+      "line": 1986,
+      "text": "Divine Insight: Commune briefly with your deity to gain insight about a religious matter, sacred location, or divine presence."
+    },
+    {
+      "line": 1987,
+      "text": ""
+    },
+    {
+      "line": 1988,
+      "text": "Level 3-9 (Arch Class: Bishop)"
+    },
+    {
+      "line": 1989,
+      "text": "At level 3, clerics specialize into the Bishop arch class, refining their connection to the divine and developing more powerful prayers and rites."
+    },
+    {
+      "line": 1990,
+      "text": ""
+    },
+    {
+      "line": 1991,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 1992,
+      "text": "Aura of Faith: Allies in range gain +5% healing received and +1 to saves."
+    },
+    {
+      "line": 1993,
+      "text": "Sermon of Purpose: Chants now generate 1 Conviction every 2 turns."
+    },
+    {
+      "line": 1994,
+      "text": "Liturgical Flow: Chaining 2 Rites reduces cooldown of your next Invocation by 1 turn."
+    },
+    {
+      "line": 1995,
+      "text": "Anointed Guardian: First time an ally drops below 20% HP per combat, grant them a 30% damage reduction shield for 2 rounds."
+    },
+    {
+      "line": 1996,
+      "text": "Sanctified Reprisal: Whenever you heal, next Smite deals 20% more damage and stuns Undead."
+    },
+    {
+      "line": 1997,
+      "text": "Miraculous Channel: Sacrificing 3 Conviction causes your next Rite to affect the full party."
+    },
+    {
+      "line": 1998,
+      "text": "Capstone: Bishop's Mandate: Activating a Sacrament automatically casts a free Invocation without cost or cooldown."
+    },
+    {
+      "line": 1999,
+      "text": ""
+    },
+    {
+      "line": 2000,
+      "text": "Active Skills"
+    },
+    {
+      "line": 2001,
+      "text": "Divine Invocation: Channel a powerful prayer based on your chosen Invocation Path, with effects ranging from mass healing to divine fire or protective barriers."
+    },
+    {
+      "line": 2002,
+      "text": "Sacrament: Perform a sacred ceremony that consumes Conviction to create a powerful, sustained effect in an area."
+    },
+    {
+      "line": 2003,
+      "text": "Banish Unholy: Channel divine energy to damage and potentially banish undead, demons, or other unholy entities."
+    },
+    {
+      "line": 2004,
+      "text": "Blessing of Protection:  Bestow a divine blessing on an ally, granting them resistance to a specific damage type or condition."
+    },
+    {
+      "line": 2005,
+      "text": "Commune:  Enter a deep meditative state to receive guidance directly from your deity, gaining insight on important matters or divine intervention."
+    },
+    {
+      "line": 2006,
+      "text": ""
+    },
+    {
+      "line": 2007,
+      "text": "Level 10+ (Hero Path Selection)"
+    },
+    {
+      "line": 2008,
+      "text": "At level 10, clerics choose a Hero Path that reflects their philosophy and methods, further specializing their divine abilities."
+    },
+    {
+      "line": 2009,
+      "text": ""
+    },
+    {
+      "line": 2010,
+      "text": "Saint (Hero Path)"
+    },
+    {
+      "line": 2011,
+      "text": "Master of mass healing and divine immunity."
+    },
+    {
+      "line": 2012,
+      "text": ""
+    },
+    {
+      "line": 2013,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 2014,
+      "text": "Aura of Grace: Allies in range resist critical hits and gain minor HP regen."
+    },
+    {
+      "line": 2015,
+      "text": "Divine Rebirth: On revive, ally returns with 50% HP and a temporary resistance shield."
+    },
+    {
+      "line": 2016,
+      "text": "Merciful Sacrament: Sacraments cost no Conviction if used on an ally under 25% HP."
+    },
+    {
+      "line": 2017,
+      "text": "Unyielding Light: Once per day, prevents party wipe and restores 30% HP."
+    },
+    {
+      "line": 2018,
+      "text": "Final Miracle: Celestial Resurgence: Revive all allies who died within the last 3 turns."
+    },
+    {
+      "line": 2019,
+      "text": ""
+    },
+    {
+      "line": 2020,
+      "text": "Active Skills"
+    },
+    {
+      "line": 2021,
+      "text": "Mass Healing Light: Channel divine energy to heal all allies within 30 feet, with increased effectiveness on those most wounded."
+    },
+    {
+      "line": 2022,
+      "text": "Divine Intervention: Call upon your deity to intervene directly, potentially averting disaster or creating a miraculous effect."
+    },
+    {
+      "line": 2023,
+      "text": "Sanctify Being: Bestow temporary divine protection on an ally, granting them immunity to specific conditions or damage types."
+    },
+    {
+      "line": 2024,
+      "text": "Radiant Burst: Release a powerful wave of divine energy that heals allies and damages unholy creatures."
+    },
+    {
+      "line": 2025,
+      "text": "Resurrection: Return a fallen ally to life with renewed vigor and temporary divine blessing."
+    },
+    {
+      "line": 2026,
+      "text": ""
+    },
+    {
+      "line": 2027,
+      "text": "Priest (Hero Path)"
+    },
+    {
+      "line": 2028,
+      "text": "Pragmatic defender of faith and balance."
+    },
+    {
+      "line": 2029,
+      "text": ""
+    },
+    {
+      "line": 2030,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 2031,
+      "text": "Scriptural Echo: Casting a Rite repeats the Invocation used previously for 50% effect."
+    },
+    {
+      "line": 2032,
+      "text": "Words of Equilibrium: Heal and Damage dealt scale off the higher of INT or WIS."
+    },
+    {
+      "line": 2033,
+      "text": "Balanced Scales: Enemies take divine damage if they attack healed targets."
+    },
+    {
+      "line": 2034,
+      "text": "Doctrine Shield: Gain 1 Conviction anytime a condition is removed."
+    },
+    {
+      "line": 2035,
+      "text": "Final Miracle: Word of Binding: Enemies in a large AoE are silenced, snared, and take +25% divine damage for 3 turns."
+    },
+    {
+      "line": 2036,
+      "text": ""
+    },
+    {
+      "line": 2037,
+      "text": "Active Skills"
+    },
+    {
+      "line": 2038,
+      "text": "Balance Restoration: Channel divine energy that both heals allies and damages enemies in an area, maintaining cosmic balance."
+    },
+    {
+      "line": 2039,
+      "text": "Divine Judgment: Mark an enemy for judgment, causing them to take damage proportional to the harm they inflict."
+    },
+    {
+      "line": 2040,
+      "text": "Ritual of Cleansing: Perform a ritual that removes multiple negative conditions from allies while potentially imposing them on enemies."
+    },
+    {
+      "line": 2041,
+      "text": "Word of Power: Speak a divine word that has different effects based on the target's nature and actions."
+    },
+    {
+      "line": 2042,
+      "text": "Cosmic Equilibrium: Create a zone where healing and harm are balanced, converting excess damage to healing and vice versa."
+    },
+    {
+      "line": 2043,
+      "text": ""
+    },
+    {
+      "line": 2044,
+      "text": "Cultist (Hero Path)"
+    },
+    {
+      "line": 2045,
+      "text": "Twisted zealot using death, sacrifice, and dark rites."
+    },
+    {
+      "line": 2046,
+      "text": ""
+    },
+    {
+      "line": 2047,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 2048,
+      "text": "Sanguine Rite:  Rites damage enemies and heal allies for a portion of the same amount."
+    },
+    {
+      "line": 2049,
+      "text": "Blasphemous Tongue: Sacraments inflict Doomed, reducing healing received and buff duration."
+    },
+    {
+      "line": 2050,
+      "text": "Dark Conviction: Killing an enemy grants 1 Conviction instantly."
+    },
+    {
+      "line": 2051,
+      "text": "Zealot's Touch: Healing over time effects become life drain if cast on enemies."
+    },
+    {
+      "line": 2052,
+      "text": "Final Miracle: Rite of the Crimson Choir: Summon 4 fanatics for 3 turns. Each heals you for 10% of their damage dealt and explodes in death."
+    },
+    {
+      "line": 2053,
+      "text": ""
+    },
+    {
+      "line": 2054,
+      "text": "Active Skills"
+    },
+    {
+      "line": 2055,
+      "text": "Blood Sacrifice: Sacrifice a portion of your health or an ally's to generate Conviction and empower your next divine ability."
+    },
+    {
+      "line": 2056,
+      "text": "Dark Sacrament: Perform a twisted ritual that drains life from enemies to heal allies or create other beneficial effects."
+    },
+    {
+      "line": 2057,
+      "text": "Corrupt Divinity: Channel corrupted divine energy to weaken enemies and potentially convert them to your cause."
+    },
+    {
+      "line": 2058,
+      "text": "Zealot's Fervor: Enter a state of religious frenzy, increasing your damage output and healing power at the cost of defense."
+    },
+    {
+      "line": 2059,
+      "text": "Ritual of Undeath: Perform a forbidden ritual that can temporarily raise fallen enemies as servants or prevent allies from dying by transforming them into undead-like entities."
+    },
+    {
+      "line": 2060,
+      "text": ""
+    },
+    {
+      "line": 2061,
+      "text": "Playing a Cleric"
+    },
+    {
+      "line": 2062,
+      "text": ""
+    },
+    {
+      "line": 2063,
+      "text": "As a cleric in Decennium Descent, your effectiveness depends on Conviction management, positioning, and strategic use of your divine abilities. Unlike other classes that might focus on raw damage or defense, you excel at supporting allies, controlling the battlefield through divine effects, and adapting to the needs of your party."
+    },
+    {
+      "line": 2064,
+      "text": ""
+    },
+    {
+      "line": 2065,
+      "text": "Combat Strategy"
+    },
+    {
+      "line": 2066,
+      "text": "Your approach to combat will vary based on your chosen Hero path:"
+    },
+    {
+      "line": 2067,
+      "text": ""
+    },
+    {
+      "line": 2068,
+      "text": "Saint Clerics should position themselves to maximize the number of allies affected by their healing and protective abilities, using Conviction strategically for powerful group healing effects when the party is most threatened."
+    },
+    {
+      "line": 2069,
+      "text": ""
+    },
+    {
+      "line": 2070,
+      "text": "Priest Clerics balance offensive and supportive abilities, adapting to the flow of battle and maintaining equilibrium between healing allies and smiting enemies. They excel at removing conditions and turning enemies' actions against them."
+    },
+    {
+      "line": 2071,
+      "text": ""
+    },
+    {
+      "line": 2072,
+      "text": "Cultist Clerics use more aggressive tactics, often sacrificing health or weaker enemies to fuel powerful abilities. They should focus on creating situations where their life-draining effects can be maximized."
+    },
+    {
+      "line": 2073,
+      "text": ""
+    },
+    {
+      "line": 2074,
+      "text": "All clerics should remember that Conviction management is crucial, spending it too quickly can leave you without resources when most needed, while being too conservative might prevent you from turning the tide of battle at critical moments."
+    },
+    {
+      "line": 2075,
+      "text": ""
+    },
+    {
+      "line": 2076,
+      "text": "Reputation and Social Consequences"
+    },
+    {
+      "line": 2077,
+      "text": "Your choice of Hero path affects how you're perceived in the world of Aethel:"
+    },
+    {
+      "line": 2078,
+      "text": ""
+    },
+    {
+      "line": 2079,
+      "text": "Saint Clerics are generally welcomed in civilized settlements and may receive special treatment from those who share their faith or benefit from their healing abilities."
+    },
+    {
+      "line": 2080,
+      "text": ""
+    },
+    {
+      "line": 2081,
+      "text": "Priest Clerics are respected for their balanced approach to divine matters but may face scrutiny from zealots of both good and evil alignments. They typically have neutral reputation modifiers in most regions."
+    },
+    {
+      "line": 2082,
+      "text": ""
+    },
+    {
+      "line": 2083,
+      "text": "Cultist Clerics often face prejudice and persecution, particularly in lawful good communities. They may need to disguise their true nature or find alternative paths to achieve their goals in certain regions."
+    },
+    {
+      "line": 2084,
+      "text": ""
+    },
+    {
+      "line": 2085,
+      "text": "Notable Cleric NPCs in Aethel"
+    },
+    {
+      "line": 2086,
+      "text": ""
+    },
+    {
+      "line": 2087,
+      "text": "High Priestess Elara"
+    },
+    {
+      "line": 2088,
+      "text": "A human Saint cleric who leads the Cathedral of Dawn in the Imperial Capital. Her miraculous healing abilities have saved countless lives, including the Emperor himself during an assassination attempt. She is known for her mercy even toward enemies of the faith."
+    },
+    {
+      "line": 2089,
+      "text": ""
+    },
+    {
+      "line": 2090,
+      "text": "Brother Thorne"
+    },
+    {
+      "line": 2091,
+      "text": "A dwarf Priest cleric who maintains a shrine at a crossroads between three warring nations. He offers healing and guidance to travelers of all backgrounds, maintaining strict neutrality in political matters while ensuring the cosmic balance is preserved."
+    },
+    {
+      "line": 2092,
+      "text": ""
+    },
+    {
+      "line": 2093,
+      "text": "Cultist Morrigan"
+    },
+    {
+      "line": 2094,
+      "text": "A feykin Cultist cleric who leads a hidden sect in the shadow of Mount Dread. Her blood rituals are feared throughout the region, but desperate people still seek her out when conventional healing fails, willing to pay her dark price for miraculous cures."
+    },
+    {
+      "line": 2095,
+      "text": ""
+    }
+  ],
+  "mainRegistry": {
+    "class": "Cleric",
+    "hitDie": 8,
+    "core": {
+      "primary": "Divine Favor / Conviction",
+      "resource": "Conviction",
+      "weaveMode": "full",
+      "resonanceInterface": "Once per turn, spending 2 or more Conviction on a Rite or Invocation vents 1 Dissonance; prayer changes cadence instead of bypassing Resonance.",
+      "mechanics": [
+        "Divine Favor — prayer, rites, and service to the chosen power generate Conviction, which empowers divine abilities."
+      ]
+    },
+    "levels": [
+      {
+        "level": 1,
+        "features": [
+          {
+            "text": "Spellcasting",
+            "draft": false
+          },
+          {
+            "text": "Divine Domain",
+            "draft": false
+          },
+          {
+            "text": "Domain spells",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          {
+            "text": "Channel Divinity (1/rest)",
+            "draft": false
+          },
+          {
+            "text": "Domain feature",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          {
+            "text": "Domain spells (2nd circle)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          {
+            "text": "Destroy Undead (CR 1/2)",
+            "draft": false
+          },
+          {
+            "text": "Domain feature",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          {
+            "text": "Channel Divinity (2/rest)",
+            "draft": false
+          },
+          {
+            "text": "Domain tier II",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "features": []
+      },
+      {
+        "level": 8,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": false
+          },
+          {
+            "text": "Divine Strike or Potent Spellcasting",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 9,
+        "features": []
+      },
+      {
+        "level": 10,
+        "features": [
+          {
+            "text": "Hero Path selection (Saint / Priest / Cultist)",
+            "draft": false
+          },
+          {
+            "text": "Gravetouched / Soulrender eligible",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          {
+            "text": "Destroy Undead (CR 2) — Turn Undead destroys undead CR 2 or lower on failed save; sanctified ash lingers 1 round as holy focus for allies",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          {
+            "text": "Channel Divinity (3/rest) — third use per short rest; first Channel each encounter gains +10 ft radius on your domain option",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          {
+            "text": "4th-level slots — gain one 4th-tier divine slot; Turn Undead radius +10 ft when you Channel Divinity (once/encounter)",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          {
+            "text": "Destroy Undead (CR 3) — Turn Undead destroys undead CR 3 or lower on failed save; first Channel each long rest restores 1 HP per ally within 30 ft",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          {
+            "text": "Domain capstone — once/long rest, Channel Divinity duplicates your domain's 6th-level spell without expending a slot; allies within 30 ft gain your domain's resistance for 1 minute",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          {
+            "text": "Blessed Strikes — Divine Strike or Potent Spellcasting damage die upgrades to d10; when you Channel, allies within 10 ft gain advantage on saves vs your domain's opposed damage type until start of your next turn",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          {
+            "text": "Divine Intervention improvement — once/week prayer succeeds on a natural 1; on success, restore one Channel Divinity use",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          {
+            "text": "Avatar of Faith — Channel Divinity restores on short rest once/day; when you Channel, allies within 30 ft gain temp HP equal to your tier floor and advantage on saves vs. your domain's opposed damage type until start of your next turn",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      }
+    ],
+    "emptyLevels": [
+      7,
+      9
+    ],
+    "draftFeatures": [
+      {
+        "level": 11,
+        "text": "Destroy Undead (CR 2) — Turn Undead destroys undead CR 2 or lower on failed save; sanctified ash lingers 1 round as holy focus for allies",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 12,
+        "text": "Channel Divinity (3/rest) — third use per short rest; first Channel each encounter gains +10 ft radius on your domain option",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 13,
+        "text": "4th-level slots — gain one 4th-tier divine slot; Turn Undead radius +10 ft when you Channel Divinity (once/encounter)",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 14,
+        "text": "Ability Score Improvement",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 15,
+        "text": "Destroy Undead (CR 3) — Turn Undead destroys undead CR 3 or lower on failed save; first Channel each long rest restores 1 HP per ally within 30 ft",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 16,
+        "text": "Domain capstone — once/long rest, Channel Divinity duplicates your domain's 6th-level spell without expending a slot; allies within 30 ft gain your domain's resistance for 1 minute",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 17,
+        "text": "Blessed Strikes — Divine Strike or Potent Spellcasting damage die upgrades to d10; when you Channel, allies within 10 ft gain advantage on saves vs your domain's opposed damage type until start of your next turn",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 18,
+        "text": "Divine Intervention improvement — once/week prayer succeeds on a natural 1; on success, restore one Channel Divinity use",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 19,
+        "text": "Ability Score Improvement",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 20,
+        "text": "Avatar of Faith — Channel Divinity restores on short rest once/day; when you Channel, allies within 30 ft gain temp HP equal to your tier floor and advantage on saves vs. your domain's opposed damage type until start of your next turn",
+        "draft": true,
+        "source": "Draft — pending author review"
+      }
+    ],
+    "asiLevels": [
+      4,
+      8,
+      14,
+      19
+    ],
+    "paths": {
+      "archPaths": [
+        {
+          "name": "Bishop",
+          "levels": "3–9",
+          "passives": [
+            "Aura of Faith: Allies in range gain +5% healing received and +1 to saves.",
+            "Sermon of Purpose: Chants now generate 1 Conviction every 2 turns.",
+            "Liturgical Flow: Chaining 2 Rites reduces cooldown of your next Invocation by 1 turn.",
+            "Anointed Guardian: First time an ally drops below 20% HP per combat, grant 30% damage reduction shield for 2 rounds.",
+            "Sanctified Reprisal: Whenever you heal, next Smite deals 20% more damage and stuns Undead.",
+            "Miraculous Channel: Sacrificing 3 Conviction causes your next Rite to affect the full party.",
+            "Capstone: Bishop's Mandate: Activating a Sacrament automatically casts a free Invocation without cost or cooldown."
+          ],
+          "actives": [
+            "Divine Invocation",
+            "Sacrament",
+            "Banish Unholy",
+            "Blessing of Protection",
+            "Commune"
+          ]
+        }
+      ],
+      "heroPaths": [
+        {
+          "name": "Saint",
+          "alignment": "Good",
+          "tagline": "Master of mass healing and divine immunity.",
+          "passives": [
+            "Aura of Grace: Allies in range resist critical hits and gain minor HP regen.",
+            "Divine Rebirth: On revive, ally returns with 50% HP and a temporary resistance shield.",
+            "Merciful Sacrament: Sacraments cost no Conviction if used on an ally under 25% HP.",
+            "Unyielding Light: Once per day, prevents party wipe and restores 30% HP.",
+            "Final Miracle: Celestial Resurgence: Revive all allies who died within the last 3 turns."
+          ],
+          "actives": [
+            "Mass Healing Light",
+            "Divine Intervention",
+            "Sanctify Being",
+            "Radiant Burst",
+            "Resurrection"
+          ]
+        },
+        {
+          "name": "Priest",
+          "alignment": "Neutral",
+          "tagline": "Pragmatic defender of faith and balance.",
+          "passives": [
+            "Scriptural Echo: Casting a Rite repeats the Invocation used previously for 50% effect.",
+            "Words of Equilibrium: Heal and Damage dealt scale off the higher of INT or WIS.",
+            "Balanced Scales: Enemies take divine damage if they attack healed targets.",
+            "Doctrine Shield: Gain 1 Conviction anytime a condition is removed.",
+            "Final Miracle: Word of Binding: Enemies in a large AoE are silenced, snared, and take +25% divine damage for 3 turns."
+          ],
+          "actives": [
+            "Balance Restoration",
+            "Divine Judgment",
+            "Ritual of Cleansing",
+            "Word of Power",
+            "Cosmic Equilibrium"
+          ]
+        },
+        {
+          "name": "Cultist",
+          "alignment": "Evil",
+          "tagline": "Twisted zealot using death, sacrifice, and dark rites.",
+          "passives": [
+            "Sanguine Rite: Rites damage enemies and heal allies for a portion of the same amount.",
+            "Blasphemous Tongue: Sacraments inflict Doomed, reducing healing received and buff duration.",
+            "Dark Conviction: Killing an enemy grants 1 Conviction instantly.",
+            "Zealot's Touch: Healing over time effects become life drain if cast on enemies.",
+            "Final Miracle: Rite of the Crimson Choir: Summon 4 fanatics for 3 turns. Each heals you for 10% of their damage dealt and explodes in death."
+          ],
+          "actives": [
+            "Blood Sacrifice",
+            "Dark Sacrament",
+            "Corrupt Divinity",
+            "Zealot's Fervor",
+            "Ritual of Undeath"
+          ]
+        }
+      ]
+    }
+  },
+  "v72Registry": {
+    "class": "Cleric",
+    "hitDie": 8,
+    "core": {
+      "primary": "Divine Favor / Conviction",
+      "resource": "Conviction",
+      "weaveMode": "full",
+      "resonanceInterface": "Once per turn, spending 2 or more Conviction on a Rite or Invocation vents 1 Dissonance; prayer changes cadence instead of bypassing Resonance.",
+      "mechanics": [
+        "Divine Favor — prayer, rites, and service to the chosen power generate Conviction, which empowers divine abilities."
+      ]
+    },
+    "levels": [
+      {
+        "level": 1,
+        "features": [
+          {
+            "text": "Spellcasting",
+            "draft": false
+          },
+          {
+            "text": "Divine Domain",
+            "draft": false
+          },
+          {
+            "text": "Domain spells",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          {
+            "text": "Channel Divinity (1/rest)",
+            "draft": false
+          },
+          {
+            "text": "Domain feature",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          {
+            "text": "Domain spells (2nd circle)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          {
+            "text": "Destroy Undead (CR 1/2)",
+            "draft": false
+          },
+          {
+            "text": "Domain feature",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          {
+            "text": "Channel Divinity (2/rest)",
+            "draft": false
+          },
+          {
+            "text": "Domain tier II",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "features": []
+      },
+      {
+        "level": 8,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": false
+          },
+          {
+            "text": "Divine Strike or Potent Spellcasting",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 9,
+        "features": []
+      },
+      {
+        "level": 10,
+        "features": [
+          {
+            "text": "Hero Path selection (Saint / Priest / Cultist)",
+            "draft": false
+          },
+          {
+            "text": "Gravetouched / Soulrender eligible",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          {
+            "text": "Destroy Undead (CR 2) — Turn Undead destroys undead CR 2 or lower on failed save; sanctified ash lingers 1 round as holy focus for allies",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          {
+            "text": "Channel Divinity (3/rest) — third use per short rest; first Channel each encounter gains +10 ft radius on your domain option",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          {
+            "text": "4th-level slots — gain one 4th-tier divine slot; Turn Undead radius +10 ft when you Channel Divinity (once/encounter)",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          {
+            "text": "Destroy Undead (CR 3) — Turn Undead destroys undead CR 3 or lower on failed save; first Channel each long rest restores 1 HP per ally within 30 ft",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          {
+            "text": "Domain capstone — once/long rest, Channel Divinity duplicates your domain's 6th-level spell without expending a slot; allies within 30 ft gain your domain's resistance for 1 minute",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          {
+            "text": "Blessed Strikes — Divine Strike or Potent Spellcasting damage die upgrades to d10; when you Channel, allies within 10 ft gain advantage on saves vs your domain's opposed damage type until start of your next turn",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          {
+            "text": "Divine Intervention improvement — once/week prayer succeeds on a natural 1; on success, restore one Channel Divinity use",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          {
+            "text": "Avatar of Faith — Channel Divinity restores on short rest once/day; when you Channel, allies within 30 ft gain temp HP equal to your tier floor and advantage on saves vs. your domain's opposed damage type until start of your next turn",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      }
+    ],
+    "emptyLevels": [
+      7,
+      9
+    ],
+    "draftFeatures": [
+      {
+        "level": 11,
+        "text": "Destroy Undead (CR 2) — Turn Undead destroys undead CR 2 or lower on failed save; sanctified ash lingers 1 round as holy focus for allies",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 12,
+        "text": "Channel Divinity (3/rest) — third use per short rest; first Channel each encounter gains +10 ft radius on your domain option",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 13,
+        "text": "4th-level slots — gain one 4th-tier divine slot; Turn Undead radius +10 ft when you Channel Divinity (once/encounter)",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 14,
+        "text": "Ability Score Improvement",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 15,
+        "text": "Destroy Undead (CR 3) — Turn Undead destroys undead CR 3 or lower on failed save; first Channel each long rest restores 1 HP per ally within 30 ft",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 16,
+        "text": "Domain capstone — once/long rest, Channel Divinity duplicates your domain's 6th-level spell without expending a slot; allies within 30 ft gain your domain's resistance for 1 minute",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 17,
+        "text": "Blessed Strikes — Divine Strike or Potent Spellcasting damage die upgrades to d10; when you Channel, allies within 10 ft gain advantage on saves vs your domain's opposed damage type until start of your next turn",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 18,
+        "text": "Divine Intervention improvement — once/week prayer succeeds on a natural 1; on success, restore one Channel Divinity use",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 19,
+        "text": "Ability Score Improvement",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 20,
+        "text": "Avatar of Faith — Channel Divinity restores on short rest once/day; when you Channel, allies within 30 ft gain temp HP equal to your tier floor and advantage on saves vs. your domain's opposed damage type until start of your next turn",
+        "draft": true,
+        "source": "Draft — pending author review"
+      }
+    ],
+    "asiLevels": [
+      4,
+      8,
+      14,
+      19
+    ],
+    "paths": {
+      "archPaths": [
+        {
+          "name": "Bishop",
+          "levels": "3–9",
+          "passives": [
+            "Aura of Faith: Allies in range gain +5% healing received and +1 to saves.",
+            "Sermon of Purpose: Chants now generate 1 Conviction every 2 turns.",
+            "Liturgical Flow: Chaining 2 Rites reduces cooldown of your next Invocation by 1 turn.",
+            "Anointed Guardian: First time an ally drops below 20% HP per combat, grant 30% damage reduction shield for 2 rounds.",
+            "Sanctified Reprisal: Whenever you heal, next Smite deals 20% more damage and stuns Undead.",
+            "Miraculous Channel: Sacrificing 3 Conviction causes your next Rite to affect the full party.",
+            "Capstone: Bishop's Mandate: Activating a Sacrament automatically casts a free Invocation without cost or cooldown."
+          ],
+          "actives": [
+            "Divine Invocation",
+            "Sacrament",
+            "Banish Unholy",
+            "Blessing of Protection",
+            "Commune"
+          ]
+        }
+      ],
+      "heroPaths": [
+        {
+          "name": "Saint",
+          "alignment": "Good",
+          "tagline": "Master of mass healing and divine immunity.",
+          "passives": [
+            "Aura of Grace: Allies in range resist critical hits and gain minor HP regen.",
+            "Divine Rebirth: On revive, ally returns with 50% HP and a temporary resistance shield.",
+            "Merciful Sacrament: Sacraments cost no Conviction if used on an ally under 25% HP.",
+            "Unyielding Light: Once per day, prevents party wipe and restores 30% HP.",
+            "Final Miracle: Celestial Resurgence: Revive all allies who died within the last 3 turns."
+          ],
+          "actives": [
+            "Mass Healing Light",
+            "Divine Intervention",
+            "Sanctify Being",
+            "Radiant Burst",
+            "Resurrection"
+          ]
+        },
+        {
+          "name": "Priest",
+          "alignment": "Neutral",
+          "tagline": "Pragmatic defender of faith and balance.",
+          "passives": [
+            "Scriptural Echo: Casting a Rite repeats the Invocation used previously for 50% effect.",
+            "Words of Equilibrium: Heal and Damage dealt scale off the higher of INT or WIS.",
+            "Balanced Scales: Enemies take divine damage if they attack healed targets.",
+            "Doctrine Shield: Gain 1 Conviction anytime a condition is removed.",
+            "Final Miracle: Word of Binding: Enemies in a large AoE are silenced, snared, and take +25% divine damage for 3 turns."
+          ],
+          "actives": [
+            "Balance Restoration",
+            "Divine Judgment",
+            "Ritual of Cleansing",
+            "Word of Power",
+            "Cosmic Equilibrium"
+          ]
+        },
+        {
+          "name": "Cultist",
+          "alignment": "Evil",
+          "tagline": "Twisted zealot using death, sacrifice, and dark rites.",
+          "passives": [
+            "Sanguine Rite: Rites damage enemies and heal allies for a portion of the same amount.",
+            "Blasphemous Tongue: Sacraments inflict Doomed, reducing healing received and buff duration.",
+            "Dark Conviction: Killing an enemy grants 1 Conviction instantly.",
+            "Zealot's Touch: Healing over time effects become life drain if cast on enemies.",
+            "Final Miracle: Rite of the Crimson Choir: Summon 4 fanatics for 3 turns. Each heals you for 10% of their damage dealt and explodes in death."
+          ],
+          "actives": [
+            "Blood Sacrifice",
+            "Dark Sacrament",
+            "Corrupt Divinity",
+            "Zealot's Fervor",
+            "Ritual of Undeath"
+          ]
+        }
+      ]
+    }
+  }
+}

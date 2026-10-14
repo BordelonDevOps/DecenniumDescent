@@ -1,0 +1,31 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-STATIC",
+  "runId": "2026-08-06T151746Z-REG-STATIC",
+  "seed": 77000,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "PASS",
+  "metrics": {
+    "validatorsRun": 7,
+    "failures": 0,
+    "priorFailures": 0,
+    "proposedPatchesPresent": true
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "null",
+      "summary": "Validator rerun: 7 PASS, 0 FAIL. Known public-canon encoding failure remains a release-gate blocker if still present.",
+      "citation": "tools/validate_public_canon.py / results/00-static-validators/results.json"
+    },
+    {
+      "severity": "observed",
+      "summary": "Prior static failures on disk: 0; current failures: 0.",
+      "citation": "results/00-static-validators/results.json"
+    }
+  ],
+  "rawEvidencePath": "results/18-regression-release-gate/validator_rerun.json",
+  "agentId": "build-auditor"
+}

@@ -1,0 +1,1543 @@
+{
+  "class": "Thief",
+  "sourcePath": "docs/reference/Player_Rulebook_v6_source_text.txt",
+  "sourceSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "bookLines": [
+    {
+      "line": 4337,
+      "text": "Thief"
+    },
+    {
+      "line": 4338,
+      "text": ""
+    },
+    {
+      "line": 4339,
+      "text": "\"The halfling thief moved like a shadow through the noble's mansion, her nimble fingers making quick work of the lock on the study door. Inside, she spotted the jeweled dagger displayed on the wall, her target. As she approached, her trained eye spotted the nearly invisible tripwire connected to an alarm bell. With practiced precision, she disabled the trap, applied a drop of silencer's sting to her dagger, and waited in the shadows for the guard to make his rounds. One silent strike later, the guard slumped unconscious against the wall as she vanished into the night with her prize.\""
+    },
+    {
+      "line": 4340,
+      "text": ""
+    },
+    {
+      "line": 4341,
+      "text": "Thieves are masters of ambush, poisons, and disabling strikes. In the world of Aethel, these precision-focused strikers and stealth disruptors leverage critical hits and poisoncraft to eliminate key threats, bypass defenses, and dismantle enemy cohesion."
+    },
+    {
+      "line": 4342,
+      "text": ""
+    },
+    {
+      "line": 4343,
+      "text": "Class Overview"
+    },
+    {
+      "line": 4344,
+      "text": ""
+    },
+    {
+      "line": 4345,
+      "text": "As a thief, you excel at striking from the shadows, using poisons and precise attacks to disable opponents before they can react. Your specialty lies in critical damage, crowd control, and non-magical utility, making you invaluable in trap-heavy environments, high-mobility fights, and caster-heavy encounters."
+    },
+    {
+      "line": 4346,
+      "text": ""
+    },
+    {
+      "line": 4347,
+      "text": "In Aethel, thieves might serve as guild assassins, noble spies, treasure hunters, or specialized scouts for mercenary companies. Their combination of stealth, precision, and technical skill makes them sought after for both legitimate and illicit operations that require finesse rather than brute force."
+    },
+    {
+      "line": 4348,
+      "text": ""
+    },
+    {
+      "line": 4349,
+      "text": "Core Mechanics"
+    },
+    {
+      "line": 4350,
+      "text": ""
+    },
+    {
+      "line": 4351,
+      "text": "Sneak Attack – Deal additional damage (starting at 1d6) when attacking targets that are flanked, when you're hidden, or when targets are suffering from Bleed, Poison, or Disable effects."
+    },
+    {
+      "line": 4352,
+      "text": ""
+    },
+    {
+      "line": 4353,
+      "text": "Poison System – Apply various poisons to your weapons as a bonus action, causing effects from damage to debuffs, with enhanced effects on critical hits."
+    },
+    {
+      "line": 4354,
+      "text": ""
+    },
+    {
+      "line": 4355,
+      "text": "Utility Skills – Excel at lockpicking, trap disarming, and stealth, making you the premier infiltration specialist."
+    },
+    {
+      "line": 4356,
+      "text": ""
+    },
+    {
+      "line": 4357,
+      "text": "Primary Attributes"
+    },
+    {
+      "line": 4358,
+      "text": "Main Attribute: Dexterity"
+    },
+    {
+      "line": 4359,
+      "text": "Secondary Attribute: Intelligence or Wisdom (player choice for traps/senses)"
+    },
+    {
+      "line": 4360,
+      "text": "Hit Points: Medium (8 + Constitution modifier at 1st level, 1d8 per level thereafter)"
+    },
+    {
+      "line": 4361,
+      "text": "Armor Proficiency: Light armor"
+    },
+    {
+      "line": 4362,
+      "text": "Weapon Proficiency: Daggers, short swords, thrown weapons, hand crossbows"
+    },
+    {
+      "line": 4363,
+      "text": "Tool Proficiency: Thieves' tools, poisoner's kit"
+    },
+    {
+      "line": 4364,
+      "text": ""
+    },
+    {
+      "line": 4365,
+      "text": "Progression Path"
+    },
+    {
+      "line": 4366,
+      "text": ""
+    },
+    {
+      "line": 4367,
+      "text": "Level 1-2 (Base Thief Skills)"
+    },
+    {
+      "line": 4368,
+      "text": "Foundational skills before Arch class selection."
+    },
+    {
+      "line": 4369,
+      "text": ""
+    },
+    {
+      "line": 4370,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 4371,
+      "text": "Sneak Attack: Deal 1d6 extra damage when attacking from stealth, against flanked targets, or targets suffering from Bleed, Poison, or Disable."
+    },
+    {
+      "line": 4372,
+      "text": "Lockpick Mastery: Gain +5 to open non-magical locks."
+    },
+    {
+      "line": 4373,
+      "text": "Stealth Chain: Gain +2 to your next stealth check after landing a Sneak Attack."
+    },
+    {
+      "line": 4374,
+      "text": "Toxin Sense: Identify resistances, immunities, or ideal poisons against enemies."
+    },
+    {
+      "line": 4375,
+      "text": "Trap Intuition: Gain advantage on checks to spot hidden traps and mechanisms."
+    },
+    {
+      "line": 4376,
+      "text": ""
+    },
+    {
+      "line": 4377,
+      "text": "Active Skills"
+    },
+    {
+      "line": 4378,
+      "text": "Apply Poison: Use a bonus action to apply poison to your weapon, lasting for 2 attacks."
+    },
+    {
+      "line": 4379,
+      "text": "Cunning Movement: Move through hostile-occupied tiles without provoking opportunity attacks."
+    },
+    {
+      "line": 4380,
+      "text": "Disable Device: Disarm non-magical traps, pressure plates, or poison glyphs."
+    },
+    {
+      "line": 4381,
+      "text": "Feint: Distract an opponent, giving you advantage on your next attack against them."
+    },
+    {
+      "line": 4382,
+      "text": "Shadow Step: Move half your speed without making sound or leaving tracks."
+    },
+    {
+      "line": 4383,
+      "text": ""
+    },
+    {
+      "line": 4384,
+      "text": "Level 3-9 (Arch Class: Rake)"
+    },
+    {
+      "line": 4385,
+      "text": "At level 3, thieves specialize into the Rake arch class, enhancing their precision and ambush capabilities."
+    },
+    {
+      "line": 4386,
+      "text": ""
+    },
+    {
+      "line": 4387,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 4388,
+      "text": "Combat Opener: Gain +5 to initiative rolls."
+    },
+    {
+      "line": 4389,
+      "text": "Ambush Focus: Deal +2 damage against unaware or distracted targets."
+    },
+    {
+      "line": 4390,
+      "text": "Evasion: Take half damage on successful saves against area effects (level 5)."
+    },
+    {
+      "line": 4391,
+      "text": "Trap Sense: Gain passive trap detection and disarm bonuses (level 6)."
+    },
+    {
+      "line": 4392,
+      "text": "Shadow Stab: On critical hit, teleport through target and apply Bleed (level 9)."
+    },
+    {
+      "line": 4393,
+      "text": ""
+    },
+    {
+      "line": 4394,
+      "text": "Active Skills"
+    },
+    {
+      "line": 4395,
+      "text": "Precision Feint: Once per encounter, feint an enemy to impose -2 AC and remove their reactions until next round."
+    },
+    {
+      "line": 4396,
+      "text": "Vanish: Become hidden even when observed, lasting until you attack or end your next turn."
+    },
+    {
+      "line": 4397,
+      "text": "Analyze Weakness: Study a target to identify vulnerabilities and gain advantage on your next attack."
+    },
+    {
+      "line": 4398,
+      "text": "Distraction Tactics: Create a diversion that allows you to disengage freely once per turn (level 13)."
+    },
+    {
+      "line": 4399,
+      "text": "Crippling Strike: Your Sneak Attack applies Slow effect to the target (level 15)."
+    },
+    {
+      "line": 4400,
+      "text": ""
+    },
+    {
+      "line": 4401,
+      "text": "Level 10+ (Hero Path Selection)"
+    },
+    {
+      "line": 4402,
+      "text": "At level 10, thieves choose a Hero Path that reflects their philosophy and methods, further specializing their abilities."
+    },
+    {
+      "line": 4403,
+      "text": ""
+    },
+    {
+      "line": 4404,
+      "text": "Arcane Trickster (Hero Path)"
+    },
+    {
+      "line": 4405,
+      "text": "\"Magic is just another angle of attack.\""
+    },
+    {
+      "line": 4406,
+      "text": ""
+    },
+    {
+      "line": 4407,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 4408,
+      "text": "Mage Sense: Detect all magical effects and passives within 5 tiles."
+    },
+    {
+      "line": 4409,
+      "text": "Arcane Resistance: Gain +2 to saves against magic."
+    },
+    {
+      "line": 4410,
+      "text": "Illusory Stealth: Casting illusion or utility spells does not break stealth."
+    },
+    {
+      "line": 4411,
+      "text": "Spell Disruptor: Your poisons also suppress passive magical abilities for 1 round on critical hits."
+    },
+    {
+      "line": 4412,
+      "text": ""
+    },
+    {
+      "line": 4413,
+      "text": "Active Skills"
+    },
+    {
+      "line": 4414,
+      "text": "Magebane Blade: Your Sneak Attack removes 1 magical buff or deals 1d6 psychic damage if no buff is present."
+    },
+    {
+      "line": 4415,
+      "text": "Pocket Illusion: Create a clone that absorbs 1 hit, then explodes in a blinding flash."
+    },
+    {
+      "line": 4416,
+      "text": "Flash Shift: Blink 3 tiles, avoid opportunity attacks, and gain +2 AC/Saves for 1 round."
+    },
+    {
+      "line": 4417,
+      "text": "Arcane Theft: Steal a beneficial spell effect from a target and apply it to yourself."
+    },
+    {
+      "line": 4418,
+      "text": "Spell Snare: Set a trap that triggers when a spell is cast within range, countering the spell."
+    },
+    {
+      "line": 4419,
+      "text": ""
+    },
+    {
+      "line": 4420,
+      "text": "Shadowblade (Hero Path)"
+    },
+    {
+      "line": 4421,
+      "text": "\"From behind or below, it makes no difference, you'll never see it coming.\""
+    },
+    {
+      "line": 4422,
+      "text": ""
+    },
+    {
+      "line": 4423,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 4424,
+      "text": "Ambusher's Grace: After killing a target or critically hitting one affected by Bleed or Poison, become untargetable until your next turn."
+    },
+    {
+      "line": 4425,
+      "text": "Double Poison: Apply two poisons instead of one on critical hits."
+    },
+    {
+      "line": 4426,
+      "text": "Persistent Bleed: Bleeds you cause refresh on hit instead of expiring."
+    },
+    {
+      "line": 4427,
+      "text": "Shadow Affinity: Gain advantage on Stealth checks in dim light or darkness."
+    },
+    {
+      "line": 4428,
+      "text": ""
+    },
+    {
+      "line": 4429,
+      "text": "Active Skills"
+    },
+    {
+      "line": 4430,
+      "text": "Dark Step: Teleport behind any enemy within 5 tiles and gain advantage on your next attack."
+    },
+    {
+      "line": 4431,
+      "text": "Shadow Dive: Become invisible for 1 round, gaining +1d6 Sneak Attack if used on the next turn."
+    },
+    {
+      "line": 4432,
+      "text": "Vein Cutter: On critical hit, apply Bleed, Slow, and Weakened effects that can stack up to 3 times."
+    },
+    {
+      "line": 4433,
+      "text": "Smoke Bomb: Create a cloud of smoke that obscures vision and grants you advantage on Stealth checks."
+    },
+    {
+      "line": 4434,
+      "text": "Death Blossom: Strike all adjacent enemies, applying Sneak Attack damage to one of them (level 17)."
+    },
+    {
+      "line": 4435,
+      "text": ""
+    },
+    {
+      "line": 4436,
+      "text": "Blackguard (Hero Path)"
+    },
+    {
+      "line": 4437,
+      "text": "\"The kill doesn't thrill me. The suffering does.\""
+    },
+    {
+      "line": 4438,
+      "text": ""
+    },
+    {
+      "line": 4439,
+      "text": "Passive Skills"
+    },
+    {
+      "line": 4440,
+      "text": "Exsanguinate: Gain 1 HP per round for each bleeding target within 3 tiles."
+    },
+    {
+      "line": 4441,
+      "text": "Prolonged Suffering: Bleeds you cause last twice as long."
+    },
+    {
+      "line": 4442,
+      "text": "Venom Master: On critical hits, your poisons also apply -1 to all saves."
+    },
+    {
+      "line": 4443,
+      "text": "Exotic Toxins: You can use monster-only venoms if harvested from bestiary bosses."
+    },
+    {
+      "line": 4444,
+      "text": ""
+    },
+    {
+      "line": 4445,
+      "text": "Active Skills"
+    },
+    {
+      "line": 4446,
+      "text": "Crippling Lash: Your Sneak Attack slows the target and reduces their damage by -1 for 2 rounds."
+    },
+    {
+      "line": 4447,
+      "text": "Toxic Shiv: As a bonus action, apply any poison from your inventory with no check or delay."
+    },
+    {
+      "line": 4448,
+      "text": "Vile Tactics: Deal +1d6 damage against Bleeding, Poisoned, or Frightened enemies."
+    },
+    {
+      "line": 4449,
+      "text": "Terror Strike: Cause nearby enemies to become frightened, imposing disadvantage on their attacks."
+    },
+    {
+      "line": 4450,
+      "text": "Unseen Hand: Once per round, take an action while invisible (attack or move) (level 20)."
+    },
+    {
+      "line": 4451,
+      "text": ""
+    },
+    {
+      "line": 4452,
+      "text": "Poison & Disabling System"
+    },
+    {
+      "line": 4453,
+      "text": ""
+    },
+    {
+      "line": 4454,
+      "text": "Poisons are a key component of the thief's arsenal, allowing for various debilitating effects beyond simple damage."
+    },
+    {
+      "line": 4455,
+      "text": ""
+    },
+    {
+      "line": 4456,
+      "text": "Poison Mechanics"
+    },
+    {
+      "line": 4457,
+      "text": "Poisons are applied manually to weapons or traps"
+    },
+    {
+      "line": 4458,
+      "text": "All poisons are single-use per application"
+    },
+    {
+      "line": 4459,
+      "text": "You may prepare up to 3 poisons at once (increases at levels 10, 15, and 20)"
+    },
+    {
+      "line": 4460,
+      "text": "Critical hits automatically trigger enhanced poison effects, often bypassing saves"
+    },
+    {
+      "line": 4461,
+      "text": ""
+    },
+    {
+      "line": 4462,
+      "text": "Poison Tiers"
+    },
+    {
+      "line": 4463,
+      "text": ""
+    },
+    {
+      "line": 4464,
+      "text": "Tier I – Basic Poisons (Levels 1–6)"
+    },
+    {
+      "line": 4465,
+      "text": "| Name | Effect on Hit | On Critical Hit |"
+    },
+    {
+      "line": 4466,
+      "text": "|------|--------------|----------------|"
+    },
+    {
+      "line": 4467,
+      "text": "| Bloodleech | Target takes 1d4 bleed (2 rounds) | You heal for 1d4 HP |"
+    },
+    {
+      "line": 4468,
+      "text": "| Crippler's Draught | Target has –1 to attack rolls next turn | Target is slowed by 50% |"
+    },
+    {
+      "line": 4469,
+      "text": "| Mindburn Sap | DC 12 WIS save or –1 to spellcasting | Target is confused for 1 round |"
+    },
+    {
+      "line": 4470,
+      "text": "| Venombite Oil | DC 12 CON save or Poisoned (–1 to rolls) | Target has disadvantage on next save |"
+    },
+    {
+      "line": 4471,
+      "text": ""
+    },
+    {
+      "line": 4472,
+      "text": "Tier II – Advanced Poisons (Levels 7–13)"
+    },
+    {
+      "line": 4473,
+      "text": "| Name | Effect on Hit | On Critical Hit |"
+    },
+    {
+      "line": 4474,
+      "text": "|------|--------------|----------------|"
+    },
+    {
+      "line": 4475,
+      "text": "| Ashblood Toxin | 2d6 poison + 1 fire damage/round (2 rounds) | Target cannot benefit from healing |"
+    },
+    {
+      "line": 4476,
+      "text": "| Silencer's Sting | Target cannot speak or cast verbal spells (1 round) | Target is disarmed and silenced (1 round) |"
+    },
+    {
+      "line": 4477,
+      "text": "| Shiver Oil | Target becomes Shaken (–2 morale) | Target loses one reaction until next turn |"
+    },
+    {
+      "line": 4478,
+      "text": "| Hexroot Resin | All saves –1 for 2 rounds | Target's spell resistance is halved (1 round) |"
+    },
+    {
+      "line": 4479,
+      "text": ""
+    },
+    {
+      "line": 4480,
+      "text": "Tier III – Expert Poisons (Levels 14–20)"
+    },
+    {
+      "line": 4481,
+      "text": "| Name | Effect on Hit | On Critical Hit |"
+    },
+    {
+      "line": 4482,
+      "text": "|------|--------------|----------------|"
+    },
+    {
+      "line": 4483,
+      "text": "| Voidspine Extract | Target takes 1d6 necrotic/round (3 rounds) | Target suffers –2 CON for 2 rounds (no save) |"
+    },
+    {
+      "line": 4484,
+      "text": "| Gravepetal Paste | 50% chance to fall unconscious (1 round) | Target falls prone and takes 3d6 poison damage |"
+    },
+    {
+      "line": 4485,
+      "text": "| Neuroshock Salve | DEX and WIS saves at disadvantage (1 round) | Target can't use reactions or opportunity attacks this turn |"
+    },
+    {
+      "line": 4486,
+      "text": "| Wraithbane Venom | Turns off passive abilities for 1 round | Target becomes Ethereal (and useless) for 1 round |"
+    },
+    {
+      "line": 4487,
+      "text": ""
+    },
+    {
+      "line": 4488,
+      "text": "Disable Effect Tags"
+    },
+    {
+      "line": 4489,
+      "text": "Poison effects are grouped into disable types:"
+    },
+    {
+      "line": 4490,
+      "text": ""
+    },
+    {
+      "line": 4491,
+      "text": "| Tag | Description |"
+    },
+    {
+      "line": 4492,
+      "text": "|-----|-------------|"
+    },
+    {
+      "line": 4493,
+      "text": "| Bleed | 1d4 damage/round. Stops healing and regeneration. |"
+    },
+    {
+      "line": 4494,
+      "text": "| Poisoned | –1 to all rolls, stackable per level |"
+    },
+    {
+      "line": 4495,
+      "text": "| Shaken | –2 morale, fear-based synergy |"
+    },
+    {
+      "line": 4496,
+      "text": "| Silenced | Cannot cast spells or speak |"
+    },
+    {
+      "line": 4497,
+      "text": "| Disoriented | Confused or action-locked for 1 round |"
+    },
+    {
+      "line": 4498,
+      "text": "| Crippled | Movement halved, Dodge reduced |"
+    },
+    {
+      "line": 4499,
+      "text": "| Suppressed | Cannot use reactions or class abilities |"
+    },
+    {
+      "line": 4500,
+      "text": ""
+    },
+    {
+      "line": 4501,
+      "text": "Crafting & Inventory"
+    },
+    {
+      "line": 4502,
+      "text": "Poison Kit: Required for preparing toxins"
+    },
+    {
+      "line": 4503,
+      "text": "Crafting uses herbs, monster glands, or extracts from bestiary drops"
+    },
+    {
+      "line": 4504,
+      "text": "10 common recipes can be learned via quests, guilds, or faction stores"
+    },
+    {
+      "line": 4505,
+      "text": "Exotic poisons can be extracted from rare monsters (with Survival + Poisoncraft)"
+    },
+    {
+      "line": 4506,
+      "text": ""
+    },
+    {
+      "line": 4507,
+      "text": "Playing a Thief"
+    },
+    {
+      "line": 4508,
+      "text": ""
+    },
+    {
+      "line": 4509,
+      "text": "As a thief in Decennium Descent, your effectiveness depends on positioning, preparation, and precision. Unlike pure damage dealers or tanks, you excel at controlling key targets through debilitating effects and eliminating high-value threats before they can act."
+    },
+    {
+      "line": 4510,
+      "text": ""
+    },
+    {
+      "line": 4511,
+      "text": "Combat Strategy"
+    },
+    {
+      "line": 4512,
+      "text": "Your approach to combat will vary based on your chosen Hero path:"
+    },
+    {
+      "line": 4513,
+      "text": ""
+    },
+    {
+      "line": 4514,
+      "text": "Arcane Trickster Thieves should focus on disrupting enemy spellcasters, removing magical buffs, and using illusions to control the battlefield while maintaining stealth."
+    },
+    {
+      "line": 4515,
+      "text": ""
+    },
+    {
+      "line": 4516,
+      "text": "Shadowblade Thieves excel at pure assassination, using their superior mobility and critical hit potential to eliminate high-value targets before vanishing back into the shadows."
+    },
+    {
+      "line": 4517,
+      "text": ""
+    },
+    {
+      "line": 4518,
+      "text": "Blackguard Thieves dominate through pain and fear, applying multiple debilitating effects to control enemies while sustaining themselves through the suffering they inflict."
+    },
+    {
+      "line": 4519,
+      "text": ""
+    },
+    {
+      "line": 4520,
+      "text": "All thieves should remember that preparation is key, having the right poisons ready for specific encounters can make the difference between success and failure."
+    },
+    {
+      "line": 4521,
+      "text": ""
+    },
+    {
+      "line": 4522,
+      "text": "Reputation and Social Consequences"
+    },
+    {
+      "line": 4523,
+      "text": "Your choice of Hero path significantly affects how you're perceived in the world of Aethel:"
+    },
+    {
+      "line": 4524,
+      "text": ""
+    },
+    {
+      "line": 4525,
+      "text": "Arcane Trickster Thieves often find work as specialized agents for magical academies or as counter-intelligence operatives against hostile spellcasters. Their focus on disrupting harmful magic rather than killing makes them more acceptable in civilized society."
+    },
+    {
+      "line": 4526,
+      "text": ""
+    },
+    {
+      "line": 4527,
+      "text": "Shadowblade Thieves typically operate as neutral mercenaries, treasure hunters, or guild assassins. Their reputation depends largely on their choice of targets and employers rather than their methods."
+    },
+    {
+      "line": 4528,
+      "text": ""
+    },
+    {
+      "line": 4529,
+      "text": "Blackguard Thieves are feared for their cruelty and the suffering they inflict. They often serve as torturers, interrogators, or enforcers for tyrannical regimes or criminal organizations, and are rarely welcome in lawful or good-aligned communities."
+    },
+    {
+      "line": 4530,
+      "text": ""
+    },
+    {
+      "line": 4531,
+      "text": "Notable Thief NPCs in Aethel"
+    },
+    {
+      "line": 4532,
+      "text": ""
+    },
+    {
+      "line": 4533,
+      "text": "Lyssa Nightwhisper"
+    },
+    {
+      "line": 4534,
+      "text": "A halfling Arcane Trickster who specializes in countering magical threats. She works as a consultant for the Imperial Mage Guild, helping to secure magical artifacts and neutralize rogue spellcasters. Her signature pocket illusions have saved countless lives by drawing fire away from her allies."
+    },
+    {
+      "line": 4535,
+      "text": ""
+    },
+    {
+      "line": 4536,
+      "text": "Vex Shadowstep"
+    },
+    {
+      "line": 4537,
+      "text": "A human Shadowblade who leads the elite infiltration team of the Silver Coin mercenary company. His ability to appear and disappear seemingly at will has earned him the nickname \"The Ghost.\" He's known for completing impossible extractions and retrievals, though he refuses contracts that target children or innocents."
+    },
+    {
+      "line": 4538,
+      "text": ""
+    },
+    {
+      "line": 4539,
+      "text": "The Smiling Knife"
+    },
+    {
+      "line": 4540,
+      "text": "A Umbrin Blackguard whose real name has been forgotten. Operating in the criminal underworld of Port Nexus, he specializes in information extraction through carefully administered poisons and psychological terror. His victims are said to survive for days under his ministrations, revealing everything they know before finally succumbing to his exotic toxins."
+    },
+    {
+      "line": 4541,
+      "text": ""
+    }
+  ],
+  "mainRegistry": {
+    "class": "Thief",
+    "hitDie": 8,
+    "core": {
+      "primary": "Sneak Attack / Poison",
+      "resource": "Positioning + prepared toxins",
+      "weaveMode": "minor",
+      "resonanceInterface": "Once per round, a Weave trick cast while hidden ignores its first point of Refrain Dissonance; stealth changes delivery, not RP cost.",
+      "mechanics": [
+        "Sneak Attack — exploit stealth, flanking, Bleed, Poison, or Disable states for bonus damage.",
+        "Poison System — apply tactical toxins as a bonus action, with stronger critical effects.",
+        "Utility Skills — lockpicking, trap disarming, stealth, and infiltration remain core combat-adjacent power."
+      ]
+    },
+    "levels": [
+      {
+        "level": 1,
+        "features": [
+          {
+            "text": "Expertise",
+            "draft": false
+          },
+          {
+            "text": "Sneak Attack (1d6)",
+            "draft": false
+          },
+          {
+            "text": "Thieves' Cant",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          {
+            "text": "Cunning Action",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          {
+            "text": "Thievish Archetype",
+            "draft": false
+          },
+          {
+            "text": "Sneak Attack (2d6)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          {
+            "text": "Uncanny Dodge",
+            "draft": false
+          },
+          {
+            "text": "Sneak Attack (3d6)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          {
+            "text": "Trap Sense (Rake)",
+            "draft": false
+          },
+          {
+            "text": "Sapper prestige eligible",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "features": []
+      },
+      {
+        "level": 8,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          {
+            "text": "Shadow Stab — crit teleports through target, applies Bleed (Rake)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          {
+            "text": "Hero Path selection (Arcane Trickster / Shadowblade / Blackguard)",
+            "draft": false
+          },
+          {
+            "text": "Blademaster / Hexblade eligible",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          {
+            "text": "Sneak Attack (6d6) — extra precision damage once/turn when you have advantage or an ally is within 5 ft; poisoned targets take +1d6 and refresh one toxin prep on hit (once/target per short rest)",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          {
+            "text": "Skill tree tier III — Shadowblade or Poisoner capstone; Sneak Attack on a poisoned target refreshes one toxin prep without consuming bonus action (once/target per short rest)",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          {
+            "text": "Distraction Tactics — free disengage once per turn (Rake)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          {
+            "text": "Crippling Strike — Sneak Attack applies Slow (Rake)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          {
+            "text": "Poison prep capacity +1 — maintain three prepared toxins; applying poison via Sneak Attack no longer consumes your bonus action",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          {
+            "text": "Death Blossom (Shadowblade) — once/short rest, Sneak Attack on poisoned target detonates toxin stacks in 10 ft radius (half damage to adjacent foes)",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          {
+            "text": "Uncanny Dodge improvement — when you fail a Dex save against an effect you can see, halve the damage instead (once/encounter); on a successful Dodge, regain one toxin prep without consuming your bonus action",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          {
+            "text": "Master of Shadows — Sneak Attack upgrades to 8d6; critical hits with poisoned weapons bypass poison immunity once per target per long rest and refresh one toxin prep without consuming bonus action",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      }
+    ],
+    "emptyLevels": [
+      7
+    ],
+    "draftFeatures": [
+      {
+        "level": 11,
+        "text": "Sneak Attack (6d6) — extra precision damage once/turn when you have advantage or an ally is within 5 ft; poisoned targets take +1d6 and refresh one toxin prep on hit (once/target per short rest)",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 12,
+        "text": "Skill tree tier III — Shadowblade or Poisoner capstone; Sneak Attack on a poisoned target refreshes one toxin prep without consuming bonus action (once/target per short rest)",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 14,
+        "text": "Ability Score Improvement",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 16,
+        "text": "Poison prep capacity +1 — maintain three prepared toxins; applying poison via Sneak Attack no longer consumes your bonus action",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 17,
+        "text": "Death Blossom (Shadowblade) — once/short rest, Sneak Attack on poisoned target detonates toxin stacks in 10 ft radius (half damage to adjacent foes)",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 18,
+        "text": "Uncanny Dodge improvement — when you fail a Dex save against an effect you can see, halve the damage instead (once/encounter); on a successful Dodge, regain one toxin prep without consuming your bonus action",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 19,
+        "text": "Ability Score Improvement",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 20,
+        "text": "Master of Shadows — Sneak Attack upgrades to 8d6; critical hits with poisoned weapons bypass poison immunity once per target per long rest and refresh one toxin prep without consuming bonus action",
+        "draft": true,
+        "source": "Draft — pending author review"
+      }
+    ],
+    "asiLevels": [
+      4,
+      8,
+      14,
+      19
+    ],
+    "paths": {
+      "archPaths": [
+        {
+          "name": "Rake",
+          "levels": "3–9",
+          "passives": [
+            "Combat Opener: Gain +5 to initiative rolls.",
+            "Ambush Focus: Deal +2 damage against unaware or distracted targets.",
+            "Evasion: Take half damage on successful saves against area effects (level 5).",
+            "Trap Sense: Gain passive trap detection and disarm bonuses (level 6).",
+            "Shadow Stab: On critical hit, teleport through target and apply Bleed (level 9)."
+          ],
+          "actives": [
+            "Precision Feint",
+            "Vanish",
+            "Analyze Weakness",
+            "Distraction Tactics (level 13)",
+            "Crippling Strike (level 15)"
+          ]
+        }
+      ],
+      "heroPaths": [
+        {
+          "name": "Arcane Trickster",
+          "alignment": "Good",
+          "passives": [
+            "Mage Sense: Detect all magical effects and passives within 5 tiles.",
+            "Arcane Resistance: Gain +2 to saves against magic.",
+            "Illusory Stealth: Casting illusion or utility spells does not break stealth.",
+            "Spell Disruptor: Poisons suppress passive magical abilities for 1 round on critical hits."
+          ],
+          "actives": [
+            "Magebane Blade",
+            "Pocket Illusion",
+            "Flash Shift",
+            "Arcane Theft",
+            "Spell Snare"
+          ]
+        },
+        {
+          "name": "Shadowblade",
+          "alignment": "Neutral",
+          "passives": [
+            "Ambusher's Grace: After kill or crit on Bleed/Poison target, become untargetable until next turn.",
+            "Double Poison: Apply two poisons instead of one on critical hits.",
+            "Persistent Bleed: Bleeds you cause refresh on hit instead of expiring.",
+            "Shadow Affinity: Advantage on Stealth checks in dim light or darkness."
+          ],
+          "actives": [
+            "Dark Step",
+            "Shadow Dive",
+            "Vein Cutter",
+            "Smoke Bomb",
+            "Death Blossom (level 17)"
+          ]
+        },
+        {
+          "name": "Blackguard",
+          "alignment": "Evil",
+          "passives": [
+            "Exsanguinate: Gain 1 HP per round for each bleeding target within 3 tiles.",
+            "Prolonged Suffering: Bleeds you cause last twice as long.",
+            "Venom Master: On critical hits, poisons also apply -1 to all saves.",
+            "Exotic Toxins: Use monster-only venoms if harvested from bestiary bosses."
+          ],
+          "actives": [
+            "Crippling Lash",
+            "Toxic Shiv",
+            "Vile Tactics",
+            "Terror Strike",
+            "Unseen Hand (level 20)"
+          ]
+        }
+      ]
+    }
+  },
+  "v72Registry": {
+    "class": "Thief",
+    "hitDie": 8,
+    "core": {
+      "primary": "Sneak Attack / Poison",
+      "resource": "Positioning + prepared toxins",
+      "weaveMode": "minor",
+      "resonanceInterface": "Once per round, a Weave trick cast while hidden ignores its first point of Refrain Dissonance; stealth changes delivery, not RP cost.",
+      "mechanics": [
+        "Sneak Attack — exploit stealth, flanking, Bleed, Poison, or Disable states for bonus damage.",
+        "Poison System — apply tactical toxins as a bonus action, with stronger critical effects.",
+        "Utility Skills — lockpicking, trap disarming, stealth, and infiltration remain core combat-adjacent power."
+      ]
+    },
+    "levels": [
+      {
+        "level": 1,
+        "features": [
+          {
+            "text": "Expertise",
+            "draft": false
+          },
+          {
+            "text": "Sneak Attack (1d6)",
+            "draft": false
+          },
+          {
+            "text": "Thieves' Cant",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          {
+            "text": "Cunning Action",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          {
+            "text": "Thievish Archetype",
+            "draft": false
+          },
+          {
+            "text": "Sneak Attack (2d6)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          {
+            "text": "Uncanny Dodge",
+            "draft": false
+          },
+          {
+            "text": "Sneak Attack (3d6)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          {
+            "text": "Trap Sense (Rake)",
+            "draft": false
+          },
+          {
+            "text": "Sapper prestige eligible",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 7,
+        "features": []
+      },
+      {
+        "level": 8,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          {
+            "text": "Shadow Stab — crit teleports through target, applies Bleed (Rake)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          {
+            "text": "Hero Path selection (Arcane Trickster / Shadowblade / Blackguard)",
+            "draft": false
+          },
+          {
+            "text": "Blademaster / Hexblade eligible",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          {
+            "text": "Sneak Attack (6d6) — extra precision damage once/turn when you have advantage or an ally is within 5 ft; poisoned targets take +1d6 and refresh one toxin prep on hit (once/target per short rest)",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          {
+            "text": "Skill tree tier III — Shadowblade or Poisoner capstone; Sneak Attack on a poisoned target refreshes one toxin prep without consuming bonus action (once/target per short rest)",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          {
+            "text": "Distraction Tactics — free disengage once per turn (Rake)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          {
+            "text": "Crippling Strike — Sneak Attack applies Slow (Rake)",
+            "draft": false
+          }
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          {
+            "text": "Poison prep capacity +1 — maintain three prepared toxins; applying poison via Sneak Attack no longer consumes your bonus action",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          {
+            "text": "Death Blossom (Shadowblade) — once/short rest, Sneak Attack on poisoned target detonates toxin stacks in 10 ft radius (half damage to adjacent foes)",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          {
+            "text": "Uncanny Dodge improvement — when you fail a Dex save against an effect you can see, halve the damage instead (once/encounter); on a successful Dodge, regain one toxin prep without consuming your bonus action",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          {
+            "text": "Ability Score Improvement",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          {
+            "text": "Master of Shadows — Sneak Attack upgrades to 8d6; critical hits with poisoned weapons bypass poison immunity once per target per long rest and refresh one toxin prep without consuming bonus action",
+            "draft": true,
+            "source": "Draft — pending author review"
+          }
+        ]
+      }
+    ],
+    "emptyLevels": [
+      7
+    ],
+    "draftFeatures": [
+      {
+        "level": 11,
+        "text": "Sneak Attack (6d6) — extra precision damage once/turn when you have advantage or an ally is within 5 ft; poisoned targets take +1d6 and refresh one toxin prep on hit (once/target per short rest)",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 12,
+        "text": "Skill tree tier III — Shadowblade or Poisoner capstone; Sneak Attack on a poisoned target refreshes one toxin prep without consuming bonus action (once/target per short rest)",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 14,
+        "text": "Ability Score Improvement",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 16,
+        "text": "Poison prep capacity +1 — maintain three prepared toxins; applying poison via Sneak Attack no longer consumes your bonus action",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 17,
+        "text": "Death Blossom (Shadowblade) — once/short rest, Sneak Attack on poisoned target detonates toxin stacks in 10 ft radius (half damage to adjacent foes)",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 18,
+        "text": "Uncanny Dodge improvement — when you fail a Dex save against an effect you can see, halve the damage instead (once/encounter); on a successful Dodge, regain one toxin prep without consuming your bonus action",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 19,
+        "text": "Ability Score Improvement",
+        "draft": true,
+        "source": "Draft — pending author review"
+      },
+      {
+        "level": 20,
+        "text": "Master of Shadows — Sneak Attack upgrades to 8d6; critical hits with poisoned weapons bypass poison immunity once per target per long rest and refresh one toxin prep without consuming bonus action",
+        "draft": true,
+        "source": "Draft — pending author review"
+      }
+    ],
+    "asiLevels": [
+      4,
+      8,
+      14,
+      19
+    ],
+    "paths": {
+      "archPaths": [
+        {
+          "name": "Rake",
+          "levels": "3–9",
+          "passives": [
+            "Combat Opener: Gain +5 to initiative rolls.",
+            "Ambush Focus: Deal +2 damage against unaware or distracted targets.",
+            "Evasion: Take half damage on successful saves against area effects (level 5).",
+            "Trap Sense: Gain passive trap detection and disarm bonuses (level 6).",
+            "Shadow Stab: On critical hit, teleport through target and apply Bleed (level 9)."
+          ],
+          "actives": [
+            "Precision Feint",
+            "Vanish",
+            "Analyze Weakness",
+            "Distraction Tactics (level 13)",
+            "Crippling Strike (level 15)"
+          ]
+        }
+      ],
+      "heroPaths": [
+        {
+          "name": "Arcane Trickster",
+          "alignment": "Good",
+          "passives": [
+            "Mage Sense: Detect all magical effects and passives within 5 tiles.",
+            "Arcane Resistance: Gain +2 to saves against magic.",
+            "Illusory Stealth: Casting illusion or utility spells does not break stealth.",
+            "Spell Disruptor: Poisons suppress passive magical abilities for 1 round on critical hits."
+          ],
+          "actives": [
+            "Magebane Blade",
+            "Pocket Illusion",
+            "Flash Shift",
+            "Arcane Theft",
+            "Spell Snare"
+          ]
+        },
+        {
+          "name": "Shadowblade",
+          "alignment": "Neutral",
+          "passives": [
+            "Ambusher's Grace: After kill or crit on Bleed/Poison target, become untargetable until next turn.",
+            "Double Poison: Apply two poisons instead of one on critical hits.",
+            "Persistent Bleed: Bleeds you cause refresh on hit instead of expiring.",
+            "Shadow Affinity: Advantage on Stealth checks in dim light or darkness."
+          ],
+          "actives": [
+            "Dark Step",
+            "Shadow Dive",
+            "Vein Cutter",
+            "Smoke Bomb",
+            "Death Blossom (level 17)"
+          ]
+        },
+        {
+          "name": "Blackguard",
+          "alignment": "Evil",
+          "passives": [
+            "Exsanguinate: Gain 1 HP per round for each bleeding target within 3 tiles.",
+            "Prolonged Suffering: Bleeds you cause last twice as long.",
+            "Venom Master: On critical hits, poisons also apply -1 to all saves.",
+            "Exotic Toxins: Use monster-only venoms if harvested from bestiary bosses."
+          ],
+          "actives": [
+            "Crippling Lash",
+            "Toxic Shiv",
+            "Vile Tactics",
+            "Terror Strike",
+            "Unseen Hand (level 20)"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "scenarioId": "DICE-L15-CONTROL",
+  "level": 15,
+  "budget": "Severe",
+  "objective": "control, Tenacity, and concentration",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "oracle",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "wizard",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "mirrorsage",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "monk",
+        "x": 0,
+        "y": 15
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Choralith, Voice Below",
+        "x": 30,
+        "y": 0
+      },
+      {
+        "id": "Angry Grief-Bound",
+        "x": 30,
+        "y": 5
+      }
+    ]
+  },
+  "cargo": null,
+  "partyBuildHashes": [
+    "1e16b303e59e3530317dbe154cc1b7ccd3b57283b121ff0b93c4c83ce7196102",
+    "50ede7d0de14f734c282384c298cfe2c2c85b2ba62f363535594e11e4b91d76e",
+    "fdecc62946c49b6a6c4737a02ac826f3e1cfe59f5c2ba843a2134b3450467973",
+    "371f91526299d5489f87c5ccfd109f3d9ea330b309881ffe01e5b61fcc1d19ac"
+  ],
+  "enemies": [
+    {
+      "name": "Choralith, Voice Below",
+      "hitPoints": 483,
+      "armorClass": 19,
+      "challengeRating": "20",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Resonant Lash",
+          "text": "Attack: +11 to hit, one target. Hit: 3d12+8 thunder damage (average 28)."
+        },
+        {
+          "name": "Echo Needle",
+          "text": "Attack: +11 to hit, one target. Hit: 2d10+6 psychic damage (average 17)."
+        },
+        {
+          "name": "Subsonic Chord (Recharge 5-6)",
+          "text": "Creatures in the affected area make a DC 20 Constitution save, taking 6d10 thunder damage (average 33) on a failure and half on a success. The Director should describe the charge-up before resolving it."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Gate-Bound",
+          "text": "The Guardian cannot be permanently displaced from its arena while the Seal remains active."
+        },
+        {
+          "name": "Aerial Hunter",
+          "text": "It ignores ground difficult terrain and seeks angles that bypass front-line cover."
+        },
+        {
+          "name": "Escalation Pulse",
+          "text": "Subsonic Chord recharges on 5-6; visible signs appear one round before the first use."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Resonant Lash",
+          "bonus": 11,
+          "n": 3,
+          "sides": 12,
+          "mod": 8,
+          "text": "Attack: +11 to hit, one target. Hit: 3d12+8 thunder damage (average 28).",
+          "dc": null
+        },
+        {
+          "name": "Echo Needle",
+          "bonus": 11,
+          "n": 2,
+          "sides": 10,
+          "mod": 6,
+          "text": "Attack: +11 to hit, one target. Hit: 2d10+6 psychic damage (average 17).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": true,
+      "tenacityPerRound": 1,
+      "source": "src/bestiary_data_full.json"
+    },
+    {
+      "name": "Angry Grief-Bound",
+      "hitPoints": 494,
+      "armorClass": 18,
+      "challengeRating": "15",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 3 attacks using the actions below."
+        },
+        {
+          "name": "Rage Rend",
+          "text": "Attack: +9 to hit, one target. Hit: 3d10+10 necrotic damage (average 26)."
+        },
+        {
+          "name": "Life Drain",
+          "text": "Attack: +9 to hit, one target. Hit: 3d10+9 necrotic damage (average 26)."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Emotional Feeding",
+          "text": "When a nearby creature performs the behavior that defines this Grief-Bound, it gains temporary hit points equal to its tier."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Rage Rend",
+          "bonus": 9,
+          "n": 3,
+          "sides": 10,
+          "mod": 10,
+          "text": "Attack: +9 to hit, one target. Hit: 3d10+10 necrotic damage (average 26).",
+          "dc": null
+        },
+        {
+          "name": "Life Drain",
+          "bonus": 9,
+          "n": 3,
+          "sides": 10,
+          "mod": 9,
+          "text": "Attack: +9 to hit, one target. Hit: 3d10+9 necrotic damage (average 26).",
+          "dc": null
+        }
+      ],
+      "multiattack": 3,
+      "isBoss": true,
+      "tenacityPerRound": 1,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "5e66ffe4f2b1a1f0e3f111d8d63cbc779ad1ea908c293df567040ee33c88a03d"
+}

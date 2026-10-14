@@ -1,0 +1,972 @@
+{
+  "generatedAtUtc": "2026-10-11T18:43:37.776572+00:00",
+  "id": "EX-FLOW-01-CANDIDATE",
+  "status": "21-event integrated candidate instantiated; 28 boundaries, 24 original social instances and full assembly/exact review remain",
+  "sourceEventsPreserved": 21,
+  "candidateEvents": 21,
+  "contractInstances": 15,
+  "timingCorrectionPendingGPT": {
+    "id": "FLOW-C01",
+    "status": "NEW candidate clarification, pending exact GPT review",
+    "originalSourcePreserved": true,
+    "issue": "The original chronology debits animal meals at hours 0 and 12 without reserving stationary feeding/watering intervals.",
+    "candidateChoice": "Use actual 30-minute supported stops at [0,1800) and [43200,45000). Human meals and animal care have disjoint assigned workers. The second stop includes the existing 60-second lamp refill, so it is not charged twice.",
+    "result": {
+      "addedStopsSeconds": 3600,
+      "overlappedPreviouslySeparatePauseSeconds": 60,
+      "netAdditionalSecondsToHaven": 3540,
+      "sourceHavenEntry": 59052,
+      "candidateHavenEntry": 62592,
+      "sourceRestCompletion": 101052,
+      "candidateRestCompletion": 104592
+    },
+    "scope": "One synthetic itinerary, not a new universal meal duration or a silent amendment to GPT source directions."
+  },
+  "checks": 153,
+  "failures": [],
+  "scope": "Exact source equality, finite reference arithmetic, physical quantity conservation and explicit interval checks; not runtime or actual campaign verification",
+  "outputs": {
+    "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/integrated_flow.json": {
+      "bytes": 576051,
+      "sha256": "0932a54964ea36d7aed62056dada1ecd715b1de2f621e54f07d815e846b8def0"
+    },
+    "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/integrated_flow.json": {
+      "bytes": 666682,
+      "sha256": "3e4075c4fbb3118230759098b8212e6b4faabe51f723793afd9ecfe47b44c948"
+    },
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_INTEGRATED_WALKTHROUGH.md": {
+      "bytes": 8456,
+      "sha256": "d57a1aa6831afe384e623ccfa024479de2fb401c8f5d67d5f1afd4ab6c0b1975"
+    },
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_INTEGRATED_RECORDS.md": {
+      "bytes": 329786,
+      "sha256": "36c1de5cb5757642764c1de54f1eb1e263976bb0f43252d77c5afc376d6e6da3"
+    }
+  },
+  "builder": {
+    "path": "DescentReviewChanges/ReviewBible/tools/build_ex58_integrated_flow_candidate.py",
+    "bytes": 69572,
+    "sha256": "e11e883d257220198cef67c1c6d10a993d3a746a4936ea5e9dffac0832d77f55"
+  },
+  "inputs": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+      "bytes": 73808,
+      "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/source_contracts_corrected.json",
+      "bytes": 32008,
+      "sha256": "ff2213df5867e7ec47c22f8cce2ea1a1dfc95a959b7ee11ee6da822eb991a43c"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/EX58_EDIT_01_FULFILLMENT.json",
+      "bytes": 5367,
+      "sha256": "90db3fc921cb4d5b13cf487e73864c070175bb7b61d0628792e79e70ff72f20a"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/EX58_EDIT_02_FULFILLMENT.json",
+      "bytes": 4097,
+      "sha256": "a51c4cc61550d63537f42954f2ea587339be2175cf9d5340a7ec3d310f0660aa"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/transport_profiles.json",
+      "bytes": 120625,
+      "sha256": "d2e4a86e66b50f8bc299803838917471997b14040a330bb6d5a1979fd5c35171"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/part01.json",
+      "bytes": 16955,
+      "sha256": "637142593446b495987d610c1c6bfe6dbd45de3ccd3afc90db3d91da7d35d032"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part01.json",
+      "bytes": 81911,
+      "sha256": "d017a1f1c8d4852decf20e6d00d7753f3aac925bb69f9ab1d5cf32221e616389"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/part02.json",
+      "bytes": 23163,
+      "sha256": "3f60f72e0a9b9a0e149d717f6faf5b2a49e4796b90247887630b42c66f4457b2"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part02.json",
+      "bytes": 360899,
+      "sha256": "01cb20d9f2c92b051f673f098a1cc87bc92613600d3b6eb4b056c86422647c22"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/part03.json",
+      "bytes": 30125,
+      "sha256": "60ba115c981e16b726c932b5b554c25bf0fc7dc43a7b693e2f62799f963911cd"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part03.json",
+      "bytes": 470385,
+      "sha256": "4b1a8a40f3e0bfe35a772aa883be0cc98f03d8416e04870b420d9039a048c4e6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/part04.json",
+      "bytes": 23675,
+      "sha256": "b188a338731af0fc75cab6d95173bbcfdcb0ec831b15674908127e2645688585"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part04.json",
+      "bytes": 3041589,
+      "sha256": "772708c2813edc1877ada19894293ef2258efc9e8db1346b1fa9544364d10908"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/part05.json",
+      "bytes": 43425,
+      "sha256": "233d67c982726960aa937db351664420cd4dfad8173653494d47dabe3cb28917"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part05.json",
+      "bytes": 1335367,
+      "sha256": "3e67d9f332c6345d3fd3b2fd6a62ea1c9e0168b179b4509fdd5d7d6a1c02e0cc"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/expedition_candidate/part06.json",
+      "bytes": 21941,
+      "sha256": "5bbdf8aa48e0f69fc6e84e598f18f85818d83fed8ce353ad388c8e1ff09422a2"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part06.json",
+      "bytes": 220343,
+      "sha256": "6caeb1ab1740c6148148c0cf49220dd6e640256c4c23c410c181f901f9b5218c"
+    }
+  ],
+  "runtimeTestsExecuted": 0,
+  "realSavesReadOrWritten": 0,
+  "newPromotions": 0,
+  "sourceInformationDeleted": 0,
+  "details": [
+    {
+      "name": "Haven steps occupy exactly 220 minutes",
+      "passed": true,
+      "actual": 75792
+    },
+    {
+      "name": "EC-01 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-02 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-03 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-04 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-05 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-06 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-07 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-08 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-09 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-10 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-11 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-12 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-13 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-14 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "EC-15 instance supplies its named fields",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "21 source events preserved and instantiated",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "event state predecessor chain is ordered",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "event endpoints monotone",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "five offices all bind real members",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "outbound moving duration",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "return moving duration",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "all nontravel intervals account for Haven entry",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "explicit meal timing difference retained",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "one shared second-meal/refuel pause",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Watch 1 remaining return time",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "first Rest exact 8 hours",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "first Rest sleep meets actual six-hour need",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "debt cleared before deadline",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "next Rest inside reward lockout",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "light begins and ends on actual 48h limits",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "light intervals cover exactly with no overlap or gap",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil consumption 8 real pints",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "main oil exact fraction",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "backup uses actual reserved fraction",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil origin 1 consumed exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil origin 2 consumed exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil origin 3 consumed exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil origin 4 consumed exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil origin 5 consumed exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil origin 6 consumed exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil origin 7 consumed exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "oil origin 8 consumed exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "container bodies retained",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "opening manifest sums without double tare",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "opening draw and capacities",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "route cargo upper bound remains under route capacity",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "floor supports all actual bodies and cargo",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "draw remains Burdened throughout actual field travel",
+      "passed": true,
+      "actual": 327
+    },
+    {
+      "name": "Arin day 0 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 2,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Arin day 0 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Arin day 0 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Arin day 1 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 2,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Arin day 1 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Arin day 1 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Bea day 0 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 2,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Bea day 0 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Bea day 0 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Bea day 1 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 2,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Bea day 1 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Bea day 1 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Cora day 0 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 2,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Cora day 0 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Cora day 0 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Cora day 1 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 2,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Cora day 1 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Cora day 1 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Dane day 0 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 2,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Dane day 0 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Dane day 0 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Dane day 1 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 2,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Dane day 1 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 8,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Dane day 1 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Mule-1 day 0 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 10,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Mule-1 day 0 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 24,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Mule-1 day 0 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Mule-1 day 1 food actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 10,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Mule-1 day 1 water actual amount",
+      "passed": true,
+      "actual": {
+        "numerator": 24,
+        "denominator": 1
+      }
+    },
+    {
+      "name": "Mule-1 day 1 consumed within day",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "food-0 finite depletion exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "water-human-0 finite depletion exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "feed-0 finite depletion exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "water-mule-0 finite depletion exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "sundries-0 finite depletion exactly once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "retreat final counters",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "round 1 actual hostile remains in reach",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "round 1 exact cart/puller gap",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "round 1 no chamber width overflow",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "round 1 distinct bodies do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "round 2 actual hostile remains in reach",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "round 2 exact cart/puller gap",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "round 2 no chamber width overflow",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "round 2 distinct bodies do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "every friendly body and frame clears actual gate",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "hostile remains on other side at closure",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Cora reaches actual gate lever",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "retreat attacks both miss natively",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "withdrawal lead natural20 shifts only task",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "extraction DC actual inputs and total",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Pressure final, no reset",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "same-time verification retains pre-entry Pressure",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "same-time room payment follows actual entry",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "unique source causes and processed checkpoints",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "guild scene signed result",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "guild research completed with actual 8h work",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "return checkpoint does not grant unfinished research",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "unique payment IDs",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "payment affordable: buy-human-0",
+      "passed": true,
+      "actual": 2496
+    },
+    {
+      "name": "payment affordable: buy-animal-0",
+      "passed": true,
+      "actual": 2480
+    },
+    {
+      "name": "payment affordable: premium-0",
+      "passed": true,
+      "actual": 1880
+    },
+    {
+      "name": "payment affordable: room-fee",
+      "passed": true,
+      "actual": 1080
+    },
+    {
+      "name": "payment affordable: stable-fee",
+      "passed": true,
+      "actual": 980
+    },
+    {
+      "name": "payment affordable: mandatory-inspection",
+      "passed": true,
+      "actual": 780
+    },
+    {
+      "name": "payment affordable: sale-crate",
+      "passed": true,
+      "actual": 12780
+    },
+    {
+      "name": "payment affordable: levy",
+      "passed": true,
+      "actual": 12180
+    },
+    {
+      "name": "payment affordable: guild-share",
+      "passed": true,
+      "actual": 9940
+    },
+    {
+      "name": "payment affordable: distribution-Arin",
+      "passed": true,
+      "actual": 8705
+    },
+    {
+      "name": "payment affordable: distribution-Bea",
+      "passed": true,
+      "actual": 7470
+    },
+    {
+      "name": "payment affordable: distribution-Cora",
+      "passed": true,
+      "actual": 6235
+    },
+    {
+      "name": "payment affordable: distribution-Dane",
+      "passed": true,
+      "actual": 5000
+    },
+    {
+      "name": "payment affordable: next-stock",
+      "passed": true,
+      "actual": 4480
+    },
+    {
+      "name": "net uses real tax mandatory and sponsor",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "sponsor actual net base",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "unique other costs total",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "true profit and reserve distribution",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "closing cash identity",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "new reserve value conserved",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "next stock not charged twice as old cost",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "all 28 actual skins filled once",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "next packing before scheduled Rest",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "new lamp fuel after old backup emptied",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "next lamp prep outside party Rest workers",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Arin assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Bea assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Cora assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Dane assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Ione assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Iris assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "June assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Leto assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Mara assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Oren assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Pera assigned hands/work intervals do not overlap",
+      "passed": true,
+      "actual": []
+    },
+    {
+      "name": "Arin Rest compatible reservation light meal",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Bea Rest compatible reservation light meal",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Cora Rest compatible reservation light meal",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "Dane Rest compatible reservation light meal",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "public whole envelope matches internal projection",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "original GPT chronology preserved verbatim as structured content",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "all original input bytes unchanged",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "saved public reparse equals complete intended envelope",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "saved internal public envelope equals separately saved public",
+      "passed": true,
+      "actual": null
+    },
+    {
+      "name": "all 21 authored event paragraphs appear in player chapter",
+      "passed": true,
+      "actual": null
+    }
+  ]
+}

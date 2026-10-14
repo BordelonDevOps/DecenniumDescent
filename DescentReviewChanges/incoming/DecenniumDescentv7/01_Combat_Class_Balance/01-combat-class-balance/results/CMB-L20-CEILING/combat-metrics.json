@@ -1,0 +1,49 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L20-CEILING",
+  "agentId": "combat-metrics",
+  "seed": "agg-15-seeds",
+  "observations": [
+    "Recorded rounds, damage, healing, prevention, control, summons peak, retreat progress, KOs, Wounds, RP proxy spend.",
+    "DPR is model-estimated from class identity + level breakpoints (Extra Attack / Dual Cast / Nuke), not table dice transcripts."
+  ],
+  "metrics": {
+    "iterations": 15,
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 2.8,
+    "avg_party_damage": 851.29,
+    "avg_enemy_damage": 131.3,
+    "avg_healing": 35.09,
+    "avg_prevented": 76.15,
+    "avg_control_applied": 6.47,
+    "avg_full_turns_denied": 0.0,
+    "max_summons_peak": 4,
+    "summons_illegal_rate": 0.667,
+    "extra_action_stack_rate": 0.0,
+    "avg_tenacity_triggers": 0.8,
+    "avg_knockouts": 0.0,
+    "avg_wounds": 0.0,
+    "avg_rp_spent": 23.76,
+    "avg_decision_steps": 2.89,
+    "avg_lookups": 3.25,
+    "deadlock_seeds": 0,
+    "retreat_success_rate": null,
+    "dpr_party_estimate": 304.03,
+    "effective_prevention_per_round": 27.2,
+    "heal_to_damage_taken_ratio": 0.267,
+    "cargo_intact_rounds_avg": 0.0,
+    "objectives_held_max_avg": 0.0
+  },
+  "rulesQuestions": [],
+  "exploits": [
+    "Mirrorsage hypothesis: Mirrorbind release + Reflective Companion action approximates a second independent actor beyond 2-summon intent when Echo already active.",
+    "Tinker attempted 3 independent combat units; GAMEPLAY_LOOP_CANON summon cap is 2 (excess should collapse to swarm/unit block).",
+    "Wizard attempted 4 independent combat units; GAMEPLAY_LOOP_CANON summon cap is 2 (excess should collapse to swarm/unit block)."
+  ],
+  "recommendations": [
+    "Keep outliers: report min/max rounds alongside averages in future tooling.",
+    "Instrument live companion combat log to replace model DPR in later packs."
+  ],
+  "confidence": "medium"
+}

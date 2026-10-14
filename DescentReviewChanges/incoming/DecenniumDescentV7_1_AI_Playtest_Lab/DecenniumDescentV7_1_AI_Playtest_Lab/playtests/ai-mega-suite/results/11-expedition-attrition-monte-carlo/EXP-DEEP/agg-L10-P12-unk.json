@@ -1,0 +1,241 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-DEEP",
+  "runId": "EXP-DEEP-agg-L10-P12-unk",
+  "seed": 3860367,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2000,
+    "havenRate": 0.562,
+    "objectiveRate": 0.0,
+    "wipeRate": 0.0,
+    "abortRate": 0.562,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 3.897,
+    "meanWatches": 26.365,
+    "meanHours": 213.62,
+    "meanTrueProfit": 1535.33,
+    "medianTrueProfit": 1492.47,
+    "profitLossRate": 0.04,
+    "meanCargoRetainedLoad": 44.074,
+    "meanExtractionFailRate": 0.337,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0.154,
+    "level": 10,
+    "party": 12,
+    "mapping": "Unknown",
+    "policy": "aggressive",
+    "objective": "Tier IV risk frontier",
+    "requestedRuns": 2000
+  },
+  "rulesHalts": [
+    {
+      "code": "UNKNOWN-PROGRESS-ZERO",
+      "note": "progressPerWatch.Unknown=0; without Map Route success, expedition cannot meet Progress targets \u2014 intentional deadlock risk."
+    },
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "medium",
+      "claim": "EXP-DEEP/Unknown: objectiveRate 0.0 \u2014 progressPerWatch=0 without Map Route success",
+      "evidence": "A"
+    }
+  ],
+  "rawEvidencePath": "results/EXP-DEEP/agg-L10-P12-unk.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 1,
+      "pressure": 0,
+      "supply": 24.0,
+      "load": 12,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 1,
+      "pressure": 0,
+      "supply": 24.0,
+      "load": 12,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 1,
+      "pressure": 0,
+      "supply": 24.0,
+      "load": 12,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 1,
+      "pressure": 1,
+      "supply": 12.0,
+      "load": 19,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 5,
+      "hour": 40,
+      "progress": 1,
+      "pressure": 1,
+      "supply": 12.0,
+      "load": 19,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 6,
+      "hour": 48,
+      "progress": 1,
+      "pressure": 1,
+      "supply": 12.0,
+      "load": 19,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 7,
+      "hour": 56,
+      "progress": 1,
+      "pressure": 1,
+      "supply": 0.0,
+      "load": 19,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 8,
+      "hour": 64,
+      "progress": 1,
+      "pressure": 2,
+      "supply": 0.0,
+      "load": 19,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 9,
+      "hour": 72,
+      "progress": 1,
+      "pressure": 3,
+      "supply": 0.0,
+      "load": 12,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 10,
+      "hour": 80,
+      "progress": 1,
+      "pressure": 3,
+      "supply": 0,
+      "load": 17,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 11,
+      "hour": 88,
+      "progress": 1,
+      "pressure": 3,
+      "supply": 0,
+      "load": 17,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 12,
+      "hour": 96,
+      "progress": 1,
+      "pressure": 3,
+      "supply": 0,
+      "load": 17,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 13,
+      "hour": 104,
+      "progress": 1,
+      "pressure": 4,
+      "supply": 0,
+      "load": 22,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 18,
+      "hour": 144,
+      "progress": 1,
+      "pressure": 2,
+      "supply": 0,
+      "load": 22,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 21,
+      "hour": 168,
+      "progress": 1,
+      "pressure": 2,
+      "supply": 0,
+      "load": 22,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 22,
+      "hour": 176,
+      "progress": 1,
+      "pressure": 3,
+      "supply": 0,
+      "load": 94,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 23,
+      "hour": 184,
+      "progress": 1,
+      "pressure": 4,
+      "supply": 0,
+      "load": 101,
+      "mapping": "Unknown",
+      "alive": 12,
+      "extracting": false
+    }
+  ]
+}

@@ -1,0 +1,359 @@
+## Verdict: CONDITIONALLY APPROVE with 4 finite repairs
+
+I reviewed the shared Alchemy guide, all **45 recipe identities**, the source records, V5 public evidence, Director cards, and the operational effect/flaw projection together.
+
+The authored set is mechanically coherent and source-faithful enough for **provisional operational playtest approval** once the four repairs below are applied. None requires another generic conference; they clarify existing decisions rather than changing the design.
+
+No other recipe-specific blocker remains.
+
+### 1. Packaging and carrier material must be committed before the quality result
+
+The current text says extra packaging is reserved, but it should explicitly prevent a crafter from seeing Masterwork and then acquiring the extra bottles needed to select increased yield.
+
+Replace the supplementary-packaging paragraph with:
+
+> Each finished dose needs an actual container. Recipe components with role `vessel` can supply that many output containers, each retaining its source component identity for accounting; all source consumed quantities remain spent according to the recipe. Before the completion check, reserve any supplementary empty Glass Vials and any declared carrier material needed for every quality option the crafter intends to keep available. Reserved supplementary packaging is consumed only when actually used; unused reserved packaging remains inventory.
+>
+> After the quality result is known, the crafter cannot pause resolution to buy, borrow, manufacture or retrieve additional packaging or carrier material. If the reserved and source-supplied containers cannot package the full Exceptional/Masterwork yield, that yield option is unavailable; use the permitted durability option instead, or retain Standard quantity and the quality label if no legal improvement exists. No partial bonus yield, fractional dose or banked uncontained product is created.
+
+The clean-water carrier rule should additionally say:
+
+> A carrier deficit caused by a declared substitution must be calculated and its carrier reserved before the completion check. Carrier water satisfies physical finished mass only; it never substitutes for a recipe component's required tier, property, role or amount.
+
+This closes the only meaningful post-roll acquisition exploit.
+
+---
+
+### 2. Tighten the Strength-tonic damage predicate
+
+I accept the central ruling for **recipes 11, 12 and 16**:
+
+- source prose/V5 controls;
+- +1 Strength checks;
+- +1 melee damage;
+- **no attack-roll accuracy**;
+- preserved `mechanics.attackBonus` remains inactive comparative source data.
+
+But “actual melee damage roll” should be bound more tightly so a nearby aura, reflected damage, periodic rider, or other nonattack effect cannot acquire the bonus merely because somebody labels it “melee.”
+
+Replace the Strength-family damage paragraph with:
+
+> The flat +1 applies once to the direct damage of each successful **melee attack** whose damage is actually rolled. A melee weapon attack or melee spell attack can qualify. Assemble that attack's direct damage dice/types normally, then add +1 total before defenses. Do not add it once per die, damage type or critical die, and do not double it on a critical hit. It does not apply to attack rolls, Strength saves, ranged attacks, periodic damage, transferred/copied damage, retaliation, reflected damage, summoned-creature damage, independent riders or nonattack damage merely because the source operates at melee range.
+
+That preserves the printed benefit without expanding it.
+
+---
+
+### 3. State exactly what the container-durability quality option improves
+
+For Alchemy the Exceptional and Masterwork generic improvement both produce HP 2 containers because the base is HP 1 and the framework's minimum +1 applies. The remaining ambiguity is whether that affects one dose or the batch.
+
+Add:
+
+> When an Alchemy batch chooses the generic durability improvement instead of bonus yield, produce the recipe's **Standard batch quantity**, and every finished dose produced by that work order has container maximum structural HP 2 and begins at 2 structural HP. The magical contents are unchanged. This improvement does not create extra units and is not cumulative with the quality-yield option. Masterwork catalyst retention remains independently applicable as normal.
+
+This makes the six-outcome framework deterministic for multi-dose recipes.
+
+---
+
+### 4. Bring the machine effect projection fully in line with the controlling prose
+
+The manuscript is clear, but several consequential restrictions exist only in prose while the supplied operational effect records claim to mirror it. Add the following fields.
+
+For **recipe-24, recipe-27, recipe-626**:
+
+```text
+telepathyRequiresPerception: true
+```
+
+The existing willingness, shared-language, one-partner and line-of-effect fields remain.
+
+For **recipe-36, recipe-38, recipe-40**:
+
+```text
+cureTiming: "after-healing-attempt"
+cureIndependentOfPositiveHpRestoration: true
+cureRequiresPresentRemovableEffect: true
+```
+
+This records the approved rule that blocked/zero healing does not suppress the independent one-effect cure.
+
+For **recipe-3, recipe-37, recipe-627**:
+
+```text
+requiresExistingRpPool: true
+cappedAtActualRpMaximum: true
+clearsDissonance: false
+clearsRefrain: false
+```
+
+Keep `convertsOtherResources:false`.
+
+For **recipe-41**:
+
+```text
+followingResistanceTrigger: "normal-immunity-expiry-only"
+earlyImmunityEndingTriggersResistance: false
+```
+
+For bomb IDs **13, 26, 28, 39, 624** add:
+
+```text
+longRangeBandMeasuredToBurstOrigin: true
+chainDetonation: false
+```
+
+Here “burst origin” means the thrown destination point: if that point is beyond 30 feet from the user, every otherwise affected creature receives the long-range save advantage. Do not recalculate the range band separately from the user to each victim.
+
+These are projection-parity fields, not new mechanics.
+
+---
+
+## Consequential rulings accepted
+
+**All 45 source identities and visibility classes are accepted exactly as preserved:** 27 public, 5 restricted, 13 Director-only. No restricted or Director identity becomes public merely through this review.
+
+### Strength recipes
+
+**11, 12, 16:** accepted with repair 2. The source `attackBonus:1` does **not** grant +1 attack accuracy. The full effect text and V5 evidence are stronger and specifically say Strength checks and melee damage rolls.
+
+### Veiled recipes
+
+**23:** accepted as **Stealth only**. Actual rarity is Uncommon; Tier 4 and “Masterwork” in the name do not satisfy “Rare or higher.”
+
+**30 and 35:** accepted with one finite Invisible activation per actually consumed dose:
+
+- Bonus Action;
+- does not grant an extra Bonus Action resource;
+- one activation for that dose;
+- next recipient regular-turn end or parent expiry, whichever occurs first;
+- uses the reviewed Invisible observer/location behavior;
+- another legitimately consumed eligible dose has its own use;
+- no attack-created automatic ending was added.
+
+This is a good resolution of the source's otherwise incomplete rider.
+
+### Recipe 41
+
+The exact effect text wins the abbreviated `consumable_resistance` mechanics record.
+
+**Recipe 41 therefore gives:**
+
+1. cold immunity for 24 elapsed hours;
+2. only on that immunity's **normal expiry**, cold resistance for one additional hour.
+
+Early dispelling, destruction, cancellation or another premature ending does not trigger the resistance tail.
+
+Its Flawed form is correctly:
+
+- 12-hour immunity;
+- then 30-minute resistance after normal expiry.
+
+### Mental recipes
+
+**24, 27, 626:** approved.
+
+The 40/50/70-foot distances are genuine source mechanics even though absent from the abbreviated mechanical objects. The bounded communication completion is sound:
+
+- one willing partner at a time;
+- common language;
+- initial perception;
+- continuing legal range and line of effect;
+- two-way voluntarily transmitted language;
+- no mind reading, sensory sharing, truth detection, location detection or group network.
+
+Recipe 626 correctly lasts until the recipient's next **completed beneficial Long Rest**, rather than inventing an hour value.
+
+Its singleton Flawed result correctly becomes Failed because that endpoint has no meaningful generic half-duration.
+
+### Healing recipes
+
+The six healing recipes retain their actual dice:
+
+- 4: 2d4+2
+- 14: 2d4+2
+- 36: 8d4+8
+- 38: 12d4+12
+- 40: 12d4+12
+- 625: 4d4+4
+
+Only **36, 38 and 40** receive the printed higher-tier poison/disease rider.
+
+The cure is correctly independent of whether HP restoration produces positive healing. It removes one actual present removable poison **or** disease source record, not every symptom or everything narratively described as corrupt/toxic. No Wound, Corruption, Oracle Curse, intrinsic ancestry/class trait or resurrection effect is added.
+
+### Resonance recipes
+
+**3 / 37 / 627 = 1 / 4 / 6 RP** is approved.
+
+I also approve the operational interpretation that the recipient+recipe entitlement is committed at legal administration start even if the recipient:
+
+- is already at maximum RP;
+- has healing/resource recovery blocked;
+- has no RP pool and therefore gains zero.
+
+No RP pool is created, no RC or other resource is converted, and neither Dissonance nor Refrain is cleared.
+
+Each recipe ID retains its own once-per-beneficial-LR entitlement. Thus these three IDs are not silently collapsed into one universal “Alchemy Resonance potion” cooldown. Whether consuming all three between rests is numerically desirable is a later balance question, not a source-reconciliation defect.
+
+### Bomb family
+
+**13, 26, 28, 39 and 624** are approved as save-only thrown consumables.
+
+Preserve their exact source values:
+
+- 13: 5 ft, DC 11, 2d6 necrotic
+- 26: 15 ft, DC 18, 6d6 necrotic
+- 28: 15 ft, DC 18, 6d6 cold
+- 39: 20 ft, DC 25, 10d6 cold
+- 624: 10 ft, DC 13, 4d6 acid
+
+The 30/60 completion is acceptable:
+
+- Action;
+- legal visible destination;
+- no attack roll;
+- point ≤30: normal victim saves;
+- point >30 and ≤60: victim DEX saves have advantage;
+- area cover measured from burst origin;
+- total cover excludes;
+- creatures only;
+- allies are not exempt;
+- one shared damage roll;
+- no ability modifier;
+- no critical;
+- no persistent zone;
+- no object damage;
+- no carried-bomb chain detonation.
+
+This is substantially cleaner than inventing a scatter subsystem.
+
+### Nonbomb delivery
+
+Approved: every nonbomb dose uses the reviewed **drink/feed Action** interface unless a future exact card overrides it.
+
+Thus words such as *Oil*, *Catalyst*, *Essence*, *Extract* or *Solvent* do not manufacture:
+
+- weapon coatings;
+- lamp fuel;
+- contact application;
+- free Bonus Actions;
+- crafting substitutions.
+
+Recipe 40's own source explicitly says Drink, reinforcing this interpretation.
+
+### Physical dose lifecycle
+
+The common profile is accepted:
+
+- 0.1 lb finished compound;
+- actual 0.1 lb vial;
+- 0.2 lb gross;
+- AC 13;
+- HP 1;
+- one vial slot;
+- one magical use.
+
+Source vessel inputs remain source components and are still consumed from their lots. Their quantities are not rewritten because fewer finished units result.
+
+Where source vessels are insufficient, ordinary Glass Vials are real additional production inputs at the already reviewed **1 gp / 0.1 lb** profile. They remain outside immutable source component arithmetic and source recommended batch value.
+
+The fixed 0.1-lb compound quantity is acceptable given the supplied validation that all 45 recipes fund their maximum generic yield even after the largest legal Masterwork catalyst retention.
+
+Process remainder has no automatic sale, salvage or second product identity.
+
+### Manufacturing stabilization
+
+The first 15-active-minute bound-mixture phase is approved.
+
+It solves the otherwise impossible interaction between very short biological/essence clocks and source recipes requiring days or months without pretending that raw ingredients magically survive.
+
+It is properly limited because the material:
+
+- is bound to one actual work order;
+- is no longer available as raw inventory;
+- cannot fund another order;
+- cannot be sold as a finished product;
+- is lost on ordinary abandonment;
+- remains subject to actual vessel integrity.
+
+Masterwork catalyst retention and Failed recovery remain the only generic routes by which consumed ingredients emerge again, and returned lots keep their original accumulated age rather than becoming Fresh.
+
+I do **not** treat this as a ruling about magical essence acquisition, active-core storage, soul ontology, or general-purpose stasis.
+
+### Sealed/opened lifecycle
+
+Approved:
+
+- completed intact dose has no ordinary spoilage deadline;
+- opening starts one 1-hour deadline;
+- resealing/transferring does not reset it;
+- one magical use only;
+- partial consumption produces no partial benefit;
+- broken/spilled dose is lost;
+- breaking a stored bomb does not create its combat explosion.
+
+That prevents both infinite dose division and bag-of-bombs chain reactions.
+
+### Quality and Flawed outcomes
+
+The Alchemy-specific quality boundary is sound.
+
+High crafting result may change:
+
+- **yield**, or
+- physical vial HP under the permitted improvement path,
+
+but not effect potency, duration, DC, damage, healing, RP, rarity, tier, radius or Invisible uses.
+
+Multiunit Flawed batches correctly create `floor(Q/2)` ordinary units.
+
+Singleton fixed-duration recipes correctly halve the parent duration.
+
+Singleton instantaneous healing, RP and bomb recipes correctly become **Failed**, as does recipe 626's until-LR effect.
+
+Recipe 41 correctly halves both sequential phases rather than manufacturing a generic 12.5-hour composite effect.
+
+### Economy
+
+The proposed merchant interface is acceptable as a **finite quote convention**, not a guaranteed price.
+
+The batch recommendation remains the source Standard batch reference. Unit reference remains batch/reference quantity. Non-artifact magical consumables may use the already reviewed qualitative standing percentages only when an actual buyer is willing to make that finite quote.
+
+This does not:
+
+- guarantee a buyer;
+- guarantee infinite demand;
+- turn rarity into a market multiplier;
+- invoke Core artifact Quality;
+- turn every magical potion into an artifact;
+- rebalance the source's extreme component prices.
+
+The enormous price/effect disparities in the upper recipes remain obvious later balance/economy review material, but are not a semantic blocker.
+
+## Per-card disposition
+
+No additional repair is required for the individual operational effect of:
+
+**Resistance:** 1, 2, 5, 6, 7, 8, 9, 10, 17, 18, 19, 20, 21, 22, 25, 29, 31, 32, 33, 34.
+
+**Strength:** 11, 12, 16, subject only to repair 2.
+
+**Veiled:** 23, 30, 35.
+
+**Mental:** 24, 27, 626, subject only to the projection flag in repair 4.
+
+**Healing:** 4, 14, 36, 38, 40, 625, with the cure-projection flags for 36/38/40.
+
+**Resonance:** 3, 37, 627, with the projection flags in repair 4.
+
+**Bombs:** 13, 26, 28, 39, 624, with the origin-range projection flag in repair 4.
+
+**Two-phase immunity:** 41, with the transition projection flag in repair 4.
+
+After those four repairs are applied, the entire 45-card Alchemy packet may be marked:
+
+**REVIEWED — provisional authored operational PLAYTEST recipe set within the reviewed crafting framework.**
+
+That approval covers the authored activation, lifecycle, targeting, durations, stacking, failure/quality behavior, packaging, and source reconciliation for these 45 Alchemy formulas. It does **not** certify numerical balance, ingredient availability, harvesting legitimacy, runtime execution, companion parity, wider economy, the other 642 recipe effects, or whole-game/final GitHub readiness.
+
+No cosmology determination is made here; the preserved soul-fragment/essence records remain mechanical ingredient identities only pending the separately sequenced post-push review.

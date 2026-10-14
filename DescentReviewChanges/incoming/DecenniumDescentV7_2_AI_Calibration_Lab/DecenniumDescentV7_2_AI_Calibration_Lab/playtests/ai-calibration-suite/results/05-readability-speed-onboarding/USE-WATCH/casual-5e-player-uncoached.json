@@ -1,0 +1,53 @@
+{
+  "pack": "05-readability-speed-onboarding",
+  "scenarioId": "USE-WATCH",
+  "agentId": "casual-5e-player-uncoached",
+  "seed": 72040,
+  "runId": "2026-08-06T151746Z-USE-WATCH-casual-5e-player-uncoached",
+  "observations": [
+    "Task: Resolve three Watches including one Pressure complication",
+    "Run: uncoached; facilitator answered only by pointing to rule text.",
+    "Cited: docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches; docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications.",
+    "Persona friction terms: degrees of success (expects binary), Shared Additional Action Slot, Extraction Class vs weight.",
+    "Confirmed ExpeditionTracker restDebtDueIn countdown matches GAMEPLAY_LOOP_CANON §5 two-Watch wording."
+  ],
+  "metrics": {
+    "coachedRun": false,
+    "decisionSteps": 12,
+    "ruleLookups": 7,
+    "invalidActionsAttempted": 1,
+    "misreadTerms": [
+      "degrees of success (expects binary)",
+      "Shared Additional Action Slot"
+    ],
+    "minutesEstimateProxy": 17.9,
+    "canStateFullLoop": null,
+    "conceptUnderstood": {
+      "Pressure": false
+    },
+    "citationsUsed": [
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §8 Team activities",
+      "src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    ],
+    "evidenceLevel": "B",
+    "sourceHash": "f3cc2d40915051e5aa2b66c6bf71cc93dcee7dce634c94486ece4b4dfe37c7e7",
+    "rulesHaltCount": 0
+  },
+  "rulesQuestions": [
+    "Does every member need an activity even on Rest Watch?",
+    "When Rest Debt is already owed and another Rest is missed, is Strain immediate?",
+    "Undefined-on-first-read: degrees of success (expects binary)",
+    "Undefined-on-first-read: Shared Additional Action Slot"
+  ],
+  "exploits": [],
+  "recommendations": [
+    "Add a Watch sheet: team activity + Pressure d6 + Supply tick.",
+    "Keep restDebtDueIn two-Watch countdown language in player Quickstart."
+  ],
+  "confidence": "medium",
+  "sourceHash": "f3cc2d40915051e5aa2b66c6bf71cc93dcee7dce634c94486ece4b4dfe37c7e7",
+  "evidenceLevel": "B",
+  "rulesHalts": []
+}

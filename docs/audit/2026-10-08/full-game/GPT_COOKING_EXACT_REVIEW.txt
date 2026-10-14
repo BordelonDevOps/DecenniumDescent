@@ -1,0 +1,116 @@
+## Verdict: CONDITIONALLY APPROVE — five finite exact repairs
+
+I reviewed the shared Cooking guide, all **44 internal cards**, the factored operational projection, source bindings, worked traces, and the additional implementation choices against the immediately preceding Cooking source conference.
+
+The underlying recipe set is sound. I found **no new generic Cooking-system conflict and no recipe that needs to return to source conference**. The **30 public / 2 restricted / 12 Director-only** split is correct, recipe-633 remains uniquely untagged operationally, and the special handling for 88/103, 120, 632/634/635 and 633 is preserved correctly.
+
+Apply the five repairs below and I approve the complete 44-card set as:
+
+> **REVIEWED COOKING — authored operational PLAYTEST recipe set**
+
+No further general Cooking conference is required unless those edits expose genuinely new source evidence or a consequential contradiction.
+
+### Required exact repairs
+
+1. **Make supplemental-food incorporation occur after the completion result, not merely at reservation.**
+
+The current principle is correct, but the exact moment of "incorporation" needs to be deterministic. Use:
+
+> **Supplementary food is reserved before the completion check but remains separate, ordinary inventory until the crafting outcome and actual catalyst return are known. After the result is resolved, and before any finished serving is created, incorporate only the exact supplementary amount required for that resolved finished quantity and catalyst choice. Reservation alone never consumes or transforms the food. A generic Failed or Mishap result that creates no finished serving therefore leaves all supplementary food unincorporated and in inventory; source inputs still use their actual failure/recovery rules. If a specific recipe expressly creates a failed finished product, incorporate only the food actually required for that product and treat it as part of that product's spent inputs. A later recipe may require earlier incorporation only by explicit rule.**
+
+This satisfies your proposed "consume only actual food needed" rule without allowing the cook to choose, after seeing failure, whether food had conveniently been incorporated.
+
+For current **recipe-633**, no supplemental food is required, so its numbers do not change. Its contaminated serving continues to consume its actual product inputs with zero recovery.
+
+Machine/shared projection should encode the equivalent of:
+
+`reserveBeforeCheck: true`  
+`genericSupplementIncorporation: "after outcome, before finished-serving creation"`  
+`reservationConsumesFood: false`
+
+The conservative nutritive-input classification itself is **approved**. Meat, Milk, Fruit, Vegetables, Flour, Butter, Honey, Sugar, Eggs, food-grade cooking Oil, and the six explicitly named meat inputs may receive credit exactly as projected. Everything else receiving zero credit is a valid conservative completion. Food-grade Oil is an actual ingestion-compatible cooking oil; lamp or industrial oil does not receive that identity merely because a source field says `Oil`.
+
+2. **Replace the borrowed-speed "base/floor" language with an exact composition formula.**
+
+The concept is approved, but "apply modifiers once" is still slightly ambiguous when a creature has existing speed bonuses or penalties.
+
+Use:
+
+> **For a borrowed walking, climbing or swimming speed, determine the recipient's existing base speed for that movement mode before additive, multiplicative or temporary speed modifiers. While the borrowed trait lasts, use the greater of that existing base speed and the donor's printed speed as the recipient's base for that mode. If the recipient lacks a climbing or swimming mode, the donor's printed value creates that base mode. A borrowed walking speed never creates a missing walking mode. After establishing that base, apply the recipient's actual bonuses, penalties, multipliers and hard restrictions once in their normal order. Speed 0 remains 0; a halving effect still halves the resulting speed. Do not add the donor's printed speed as a bonus and do not reapply a modifier already included in the recipient's base.**
+
+That resolves the requested composition issue without changing Cave Bear 40 ft., Sporefolk 40 ft., or any donor eligibility.
+
+The cards' donor prerequisites and Masterwork trigger are otherwise approved exactly: verified donor/ecology and approved profile **before work**, predeclared eligible trait, actual margin **+10 or greater**, no natural-20 shortcut, no Forge-Dwarf bridge trigger, one-hour/parent cap, and no fallback ability.
+
+3. **Specify Meal Crock current HP when quality increases maximum HP.**
+
+Your noncompounding maximum is correct. Add:
+
+> **When an eligible dedicated Meal Crock receives the quality durability option, increase its maximum HP from 2 to 3 and increase its current HP by the same +1, preserving its existing damage deficit. Thus a 2/2 crock becomes 3/3 and a damaged 1/2 crock becomes 2/3. This is not a repair: existing damage remains damage. A crock already at the approved 3 maximum receives no further increase. Restoring missing current HP still requires an actual applicable repair procedure.**
+
+This is the cleanest interpretation of a structural maximum increase and prevents both free full repair and the odd result of a pristine 2/2 vessel becoming damaged 2/3 merely because it was improved.
+
+Add an equivalent machine flag such as:
+
+`qualityDurabilityPreservesDamageDeficit: true`
+
+4. **Express immediate consumption as predeclared output disposition capacity.**
+
+The prose presently says both "reserve capacity for maximum Masterwork servings" and that ready immediate consumers can waive storage. Both can coexist, but the accounting needs one exact statement.
+
+Replace the absolute storage requirement with:
+
+> **Before the completion check, every possible maximum-yield serving must have an actual output disposition: either one reserved unit of compatible food-safe storage capacity or one distinct immediate-consumption slot. An immediate-consumption slot requires an actual compatible recipient, eater/feeder and access arrangement present and ready to begin that serving's ten-minute consumption immediately when the batch resolves. One recipient cannot satisfy multiple simultaneous immediate-consumption slots. A serving assigned to such a slot is committed to that meal immediately at completion and therefore needs no interim storage container. Any serving without a valid immediate-consumption slot requires real reserved storage capacity. If a claimed immediate-consumption arrangement is no longer legal when the result resolves, actual reserved storage must exist or that output cannot be validly completed through the waived-storage exception.**
+
+This keeps your maximum-yield preflight gate intact while making "no crock because we're eating it now" executable instead of retrospective.
+
+The machine/common field should therefore mean **maximum-yield output disposition reserved before check**, not literally containers for every serving.
+
+5. **Correct recipe-120's card header so operational overlay is not labeled source data.**
+
+This is the one actual manuscript/source-presentation error I found.
+
+The source record has:
+
+- `craftingTime: "1 year"`
+- `activeWorkHours: null`
+
+Your machine representation correctly preserves that and separately uses the reviewed **1,920-active-hour overlay**, but the card currently says:
+
+> `Source: ... 1920 active hours ...`
+
+Change that line to something equivalent to:
+
+> **Source:** director-only; Cooking level 20; tier 10; Mythic; DC 28; source crafting time 1 year; source active-work hours unspecified/null; 1 serving. Standard batch reference 439171 gp.  
+> **Operational work overlay:** 1 workyear = 1,920 active hours under the reviewed work-year rule.
+
+Keep the existing Work-year binding paragraph and JSON:
+`sourceActiveWorkHours:null`, `operationalActiveWorkHours:1920`.
+
+That preserves source truth while keeping the operational card executable.
+
+## Explicit approvals
+
+Your **all-or-none feast replacement is approved**. Full consumption may still count for food when magic is declined, but acceptance is atomic: old Cooking feast and its owned riders end, its still-owned temporary HP is removed, the new feast is established, the new temporary-HP offer resolves against whatever independent grant actually exists, and the new riders resolve independently. There is no RP-only acceptance, trait-only acceptance, or shield-only acceptance.
+
+The temporary-HP interaction is also correct. If an unrelated stronger shield is active, rejecting the new temporary-HP offer does **not** reject the accepted feast. Conversely, temporary HP still owned by the *old Cooking feast* disappears when that feast is voluntarily replaced. Worked traces 1 and 2 correctly distinguish those cases.
+
+The **duration model is approved**. Ordinary parent feasts end at the next completed beneficial Long Rest; explicitly shorter one-/four-hour riders use their own deadlines and are parent-capped. Athletics, unrestricted CON-save bonuses, Stealth, Flora protection and recipe-95's first-save rider inherit the parent because their source supplies no shorter duration. Recipe-633's entire successful feast is the fixed eight-hour exception and survives an intervening Long Rest.
+
+Recipes **88 and 103** correctly restore one actual expended RP per separately paid, completed and accepted serving, capped by a real existing RP pool. There is **no supported once-per-rest Cooking limitation**, and none should be invented.
+
+Recipe **633** is approved as the exceptional failed-product recipe: any below-DC result produces one contaminated serving, natural 1 also resolves its normal Mishap, there is no 25% material recovery, no feast replacement, no beneficial magic, complete consumption still gives its ordinary meal nutrition, and the only authored exposure is **DC 13 CON → Poisoned for one hour on failure**. No damage, coating, fractional poison extraction or guaranteed market follows.
+
+Recipes **632, 634 and 635** are approved subject to repair 2's exact speed composition. They correctly require donor provenance and an eligible approved profile before the work starts. Cave Bear walking 40 ft. is valid; invented Keen Smell is not. Sporefolk Adult walking 40 ft. or poison resistance is valid; Poisoned immunity and Living Substrate are not. Recipe-634's broad source lists do not substitute for its actual donor record.
+
+The **24-hour cooked-food shelf clock**, 15-minute included binding phase, successful neutralization of otherwise unprinted incidental ingredient ingestion hazards, 2/3-lb serving convention, food-only nutrition accounting, finite supplier quote treatment and source economics are all approved within this authored playtest scope.
+
+I found **no additional recipe-specific exception among the other 39 cards** requiring repair.
+
+## Final disposition after edits
+
+After those five edits, the entire **44/44 Cooking set may be marked REVIEWED** without another Cooking conference.
+
+That would move recipe coverage from **90 reviewed / 597 remaining** to **134 reviewed / 553 remaining**, once Codex confirms these exact repairs were applied and its validation/promotion checks pass.
+
+That status still means only **authored operational PLAYTEST recipe approval**. Numerical balance, ingredient availability, expedition food/Supply integration, bestiary correction work, runtime/companion parity, human playtesting, final whole-game flow, GitHub delivery, and cosmology remain open exactly as stated.

@@ -1,0 +1,508 @@
+{
+  "class": "Mirrorsage",
+  "engine": [
+    "Intelligence is the class ability; use d8 Hit Die from the detailed book, recording the older runtime d6 as superseded for this draft. You begin with3 empty Echo Slots. Expansion II raises ordinary capacity5; Sacred/Floating memory features may add one restricted slot, but total concurrent stored Echoes never exceeds6. Slots are storage, not spell slots. Releasing normally empties that record. Rest restores RP, not spent Echoes. Starting a new encounter does not duplicate the archive.",
+    "Mirrorbind is an Action, once per encounter, against a creature within60ft whose eligible ability you saw resolve since the start of your previous turn. Target must have INT6 or lower, not be a boss or possess unique/legendary status unless an encounter script explicitly permits copying. It makes WIS save versus class DC; failure captures one witnessed ability into an empty slot. No copying from allies, your companions, another copy, a corpse, a recharge-limited legendary power or an at-will source that itself restores resources. You can voluntarily erase a slot without an action on your turn, permanently losing its record.",
+    "Record source creature/name, witnessed ability, category, damage type, allowed rank, capture encounter and whether first release has occurred. For this pilot, capture copies the observed role into ONE bounded profile: Strike=one target60ft class spell attack S d8 observed damage type; Burst=up to3 enemies in10ft radius within30ft DEX save S d6, half on success; Mend=one living ally30ft S d6+M HP; Ward=one ally30ft S d6+M temporary HP for1 minute; Hindrance=one enemy30ft WIS save or Speed-10ft and no Reactions until end its next turn. Choose only a profile actually expressed by the observed source; physical attack cannot become healing. Rank is max(1,ceil(source challenge rating/2)); if source lacks a rating the Director assigns a rank before the encounter, not after seeing a desirable ability. Rank cannot exceed your Mirrorsage learnable rank; no copying character levels from a creature. Damage/targets/control are capped by these profiles, not source boss dice.",
+    "Echo Release costs the CoreV2 RP cost of the recorded rank, minimum2, consumes its record and counts as a spell for Dissonance and Refrain. Spell attack/DC use your own stats. First release of a newly captured record ignores Refrain addition only; base strain remains. Any preserved subsequent release uses ordinary repeated-spell strain. All released Echoes, pet replays, fusions and reflections share ONE release action per round; a specifically combined package counts once but pays for every component and has its printed damage cap. Copies cannot create resources or recursive Echoes.",
+    "One Mirror Beast OR Reflective Companion, never both. Mirror Beast uses standard companion stats, initially copies appearance only, and costs a Bonus Action to command. You may command it to make its normal attack OR originate your round's Echo Release from its position, paying RP and consuming the record normally; not both. You still supply an Action for release unless a feature specifically changes that action cost. A shifted appearance grants no extra actions/stats. Destroying/dismissing it grants no capture, corpse, XP or recovery. Charm Bind is1/long rest,3 rounds, concentration, INT6-or-lower target WIS save and repeat at each turn end/when harmed by your side; never a player character or boss without explicit encounter permission. A charmed companion uses its own ordinary attack with damage capped at standard companion S d6; unique spells/powers remain unavailable.",
+    "Focus Point is a separate resource: when Mimicry Focus is known, receive1 at encounter start, maximum1, lost at encounter end. It can modify one Echo without generating another release, recapture or resource refund. No stacking damage doublings; use the printed modest die/range boost. Healing/support copies always consume RP and cannot restore RP or duplicate limited-use features.",
+    "Standard acquisition applies; baseline Mirrorbind, Echo Release and summon procedure become usable by selecting their cards. Echo Channeling and Mirrorcall are upgrades, not duplicate mandatory unlocks. The contradiction between source initial3 slots and Expansion I 2→3 is reconciled as an archive-safety upgrade below. Perfect Reflection automatic9, Hero choice10, corresponding Final20. The finale does not override copy eligibility or the shared release cap."
+  ],
+  "workedExample": [
+    "Mirrorsage5, INT16, PB3, S2, M3, RP9, three slots; know Mirrorbind, Echo Release, Mirror Beast Summon, Reflective Shield at1, Beast Instinct and Reflective Pulse at2; Mimicry Focus and Reflective Analysis at3. Begin with Focus1.",
+    "Turn1: witness an eligible serpent's rank1 poison cone, then Mirrorbind on your turn. It fails WIS save; store Burst/poison/rank1. RP stays9; one encounter capture spent.",
+    "Turn2: Echo Release is Action and2RP, RP9→7; empty the stored slot. Up to3 enemies roll DEX against14 for2d6 poison, half on success. First release ignores Refrain but still adds1 base Dissonance.",
+    "Turn3: without another stored Echo you cannot simply release again. Use a weapon or ordinary legal spell. A short rest restores RP but not the consumed record.",
+    "Alternative turn2: summon Mirror Beast for2RP, leaving RP7 and the Echo stored. On turn3 use Action Echo Release plus Bonus Action command to originate it from the Beast, pay2RP, ending5; the Beast cannot also attack that round.",
+    "A failed Mirrorbind capture still expends its encounter attempt. Beast Instinct's limited retry may help if known; a boss excluded by eligibility cannot be made eligible with a high roll."
+  ],
+  "balanceQuestions": [
+    "Is the initial capture dependency enjoyable with an empty archive?",
+    "Are bounded profiles diverse enough without importing boss actions?",
+    "Does the shared release/companion budget keep fusions and clones manageable?"
+  ],
+  "cards": [
+    [
+      3067,
+      1,
+      "Passive",
+      "0",
+      "Your own Echo Release",
+      "Instant",
+      "Once/short rest",
+      "After releasing an Echo, add M to one target's damage or healing. No modifier to resource effects; this upgrade does not grant another release or repeat the source's rider."
+    ],
+    [
+      3068,
+      1,
+      "Passive",
+      "0",
+      "Your Mirror Beast",
+      "While it exists",
+      "Continuous",
+      "Beast gains+M maximum/current HP when summoned and+5ft Speed. Echo Release or Mirror Beast Summon already provides its base procedure; this is an optional enhancement, not a second required unlock."
+    ],
+    [
+      3069,
+      1,
+      "Passive",
+      "0",
+      "One newly bound record",
+      "Until your next long rest",
+      "1/long rest",
+      "If an ordinary slot is full, replace one record while preserving its name/profile in an inert backup. Once before next long rest, after a slot empties, restore that backup without an Action. Total usable records remain at your capacity; backup cannot be cast directly or backed up again. An inert backup counts toward the absolute six-record archive ceiling. A backup cannot be created if usable records plus inert backups would exceed six."
+    ],
+    [
+      3070,
+      1,
+      "Reaction",
+      "0",
+      "Attacker within30ft after its first hit this round damages you",
+      "Instant",
+      "Once/round",
+      "Deal psychic damage equal to min(M, damage actually taken). This cannot critically hit, trigger another reflection, generate resources or prevent the original damage. No effect if you take0."
+    ],
+    [
+      3071,
+      1,
+      "Triggered",
+      "1 short-rest use",
+      "A failed Mirrorbind against eligible INT6-or-lower source",
+      "Immediate retry",
+      "1/short rest",
+      "Force that target to reroll its successful save; use the second result. Eligibility, line of effect and an empty slot still required. Does not create a second captured record or a new encounter attempt."
+    ],
+    [
+      3074,
+      1,
+      "Action",
+      "0; encounter attempt",
+      "One eligible witnessed creature within60ft",
+      "Stored until released/erased",
+      "1/encounter",
+      "Apply the engine's exact capture procedure: WIS save or store a bounded profile for the witnessed ability. State category/rank before save. Success prevents capture but consumes attempt; no target can be mirrored outside eligibility restrictions."
+    ],
+    [
+      3075,
+      1,
+      "Action",
+      "Recorded rank RP cost; consume1 Echo",
+      "Profile target/range",
+      "Profile duration",
+      "One release action/round",
+      "Resolve the stored Strike/Burst/Mend/Ward/Hindrance profile, using current S and INT. Pay before release; empty slot even if resisted. First release ignores only Refrain addition. No original source extra actions/resources/procs."
+    ],
+    [
+      3076,
+      1,
+      "Action",
+      "2RP",
+      "One empty space within15ft",
+      "1 minute",
+      "Recharge3",
+      "Summon one standard Mirror Beast; replaces any prior Beast/Reflective Companion. Choose appearance of a stored source. It attacks only on Bonus Action command or originates your paid release with Action+command, never both. No copied anatomy, regeneration or immortality."
+    ],
+    [
+      3077,
+      1,
+      "Action",
+      "3RP; 1 long-rest use",
+      "One eligible INT6-or-lower creature within30ft",
+      "Concentration, at most3 rounds",
+      "1/long rest",
+      "WIS save or become Reflective Companion under engine restrictions. It repeats save at turn end and when harmed by your side. Replaces Mirror Beast; on end original disposition returns. Requires no suicidal orders; cannot force beliefs or permanently enslave."
+    ],
+    [
+      3078,
+      1,
+      "Reaction",
+      "1RP",
+      "Self when hit by an attack from within60ft",
+      "This attack",
+      "Recharge2",
+      "Gain+2AC against triggering attack, potentially making it miss. If it misses, attacker takes M force damage. This is bounded retaliation, not copying the original attack; cannot trigger another reflection or capture."
+    ],
+    [
+      3084,
+      3,
+      "Passive",
+      "0",
+      "Your Mirror Beast",
+      "While summoned",
+      "Once/encounter",
+      "You may change Beast appearance to another stored source as a Bonus Action without resummoning or restoring HP. It gains either+10ft swim or climb Speed until it ends. No new release, attack or capture."
+    ],
+    [
+      3085,
+      3,
+      "Passive",
+      "0",
+      "Your archive",
+      "While known",
+      "Continuous",
+      "Ordinary Echo storage capacity becomes5, replacing3. Restricted extra slots still obey total6. New slots are empty; the feature creates no Echo records or spell access."
+    ],
+    [
+      3086,
+      5,
+      "Action",
+      "RP for each of2 Echoes; consume both",
+      "One target per eligible profile",
+      "Immediate; riders at most1 turn",
+      "Recharge3",
+      "Release two records captured from different creatures as ONE combined release. Each deals/heals half its profile's rolled amount, round once per component. At most one Hindrance rider; no duplicated resources or additional release this round."
+    ],
+    [
+      3087,
+      3,
+      "Passive",
+      "0",
+      "Self",
+      "Encounter",
+      "Once/encounter",
+      "At genuine encounter start gain1 Focus Point, cap1; any previous point is replaced. Spend on Focus Channel or pay1Focus during a release to add1d6 to one damage/healing target. No point generation from staged combat."
+    ],
+    [
+      3088,
+      7,
+      "Reaction",
+      "3RP; 1 long-rest use",
+      "A hostile spell targeting only you within60ft",
+      "This spell",
+      "1/long rest",
+      "After a successful save against the spell or after its spell attack misses, choose its caster; it makes WIS save or takes S d8 force. Original damage/control follow normal results. No copying arbitrary spell text or redirecting an area spell."
+    ],
+    [
+      3089,
+      9,
+      "Reaction",
+      "4RP; 1 long-rest use",
+      "Creature within60ft whose observed ability targets you",
+      "This ability",
+      "1/long rest",
+      "Reduce triggering damage to you by(S+1)d8+M, minimum0. If any is prevented, source makes WIS save or takes that prevented amount as force, maximum30. This is your release action for the round; no reflected conditions or legendary powers. Cannot recursively reflect."
+    ],
+    [
+      3092,
+      3,
+      "Action",
+      "RP for2 Echoes; consume both",
+      "Up to2 profile targets within30ft",
+      "Instant or1 turn",
+      "Recharge3",
+      "Choose two stored profiles. Resolve one at full dice and the other at half dice to one target each. Only one may be healing; at most one Hindrance rider. Counts as one combined release and cannot receive Dual Echo Cast simultaneously."
+    ],
+    [
+      3093,
+      3,
+      "Bonus Action",
+      "1RP",
+      "Your Mirror Beast within60ft",
+      "Remaining summon duration",
+      "Recharge2",
+      "Switch its appearance to a stored source and choose swim30ft or climb30ft until next shift. Restore no HP or attacks; no flight, incorporeality or copied creature special actions. Does not release or consume the Echo."
+    ],
+    [
+      3094,
+      3,
+      "Bonus Action",
+      "1Focus",
+      "Self; next release this turn",
+      "This turn",
+      "Once/encounter via Focus cap",
+      "Next Echo release adds1d6 to one damage/healing amount OR adds30ft range, chosen now. Cannot multiply duration, bypass concentration, add targets or override release caps. If no release occurs this turn the point remains spent."
+    ],
+    [
+      3095,
+      3,
+      "Action",
+      "0",
+      "One observed creature within60ft",
+      "Until end next turn",
+      "Recharge2",
+      "Learn whether it is capture-eligible and one visible ability's bounded profile/rank before attempting. The next Mirrorbind save it makes against you has-1. Nonstacking; does not reveal private thoughts or permit boss copying."
+    ],
+    [
+      3096,
+      7,
+      "Action",
+      "4RP",
+      "Fixed10ft-radius zone within30ft; up to3 enemies",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "On entry activation and each of next2 turns with Bonus Action maintenance, selected enemies make WIS save; failure gives disadvantage on next attack before your next turn. Inside, your Mirrorbind range extends30ft. No additional capture attempts/releases or pocket escape route."
+    ],
+    [
+      3105,
+      10,
+      "Passive",
+      "1 additional RP",
+      "Second living ally within15ft of original Mend/Ward target",
+      "Same healing/shield duration",
+      "Once/round",
+      "When releasing Mend or Ward, pay1 extra RP to give a second ally half the rolled amount, rounded once. This is within the same release, no new source or healing proc. No duplication of concentration or resources."
+    ],
+    [
+      3106,
+      10,
+      "Passive",
+      "0",
+      "Allies/enemies within10ft of your Beast/Companion",
+      "While companion exists",
+      "Continuous",
+      "Allies gain+1 to WIS saves. Invisible enemies in aura shed faint outlines and cannot gain advantage solely from invisibility, but concealment/cover still apply. This grants neither full True Sight nor targeting through walls."
+    ],
+    [
+      3107,
+      10,
+      "Passive",
+      "0",
+      "One restricted archive slot",
+      "While known",
+      "Continuous",
+      "Add one slot usable only for Mend or Ward, total storage cap6. If already at6, designate one existing slot sacred instead; once/short rest its release costs1 less RP, minimum1. No duplicate slot or free record."
+    ],
+    [
+      3108,
+      20,
+      "Action",
+      "RP for3 support Echoes; consume all3; 1 long-rest use",
+      "Up to3 legal allies within30ft",
+      "Instant/shield1 minute",
+      "1/long rest",
+      "Release three stored Mend/Ward records as ONE package; assign each to one ally. No ally receives more than two components and temporary HP never stack. All costs paid; no extra release or resurrection. Missing records cannot be invented."
+    ],
+    [
+      3111,
+      10,
+      "Reaction",
+      "2RP; 1 long-rest use",
+      "Willing allied caster within30ft just used an eligible healing/protection spell",
+      "Store until spent",
+      "1/long rest",
+      "Capture a Mend or Ward profile of rank at most your learnable rank into empty slot. This explicit exception permits an allied source but excludes resurrection/resource/action generation. No extra captured use for the ally and no copying a copy."
+    ],
+    [
+      3112,
+      10,
+      "Action",
+      "4RP",
+      "Empty space within15ft",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Summon radiant standard Beast. Bonus Action command chooses normal attack or healing S d4 to one living ally within5ft, paying1RP per heal. It may instead originate your paid Echo release under common limits. Cannot perform two options in one round."
+    ],
+    [
+      3113,
+      12,
+      "Action",
+      "Recorded RP cost+1; consume offensive Echo",
+      "One living ally within30ft",
+      "Instant or1 minute shield",
+      "Recharge3",
+      "Convert a stored Strike/Burst record to Mend/Ward for this release, chosen on activation; heal S d6+M or grant same temporary HP. This explicit conversion cannot also deal offensive damage or copy a condition."
+    ],
+    [
+      3114,
+      14,
+      "Action",
+      "4RP",
+      "Up to2 creatures within30ft",
+      "Until end your next turn",
+      "Recharge3",
+      "Choose mode: enemies make STR save or Restrained; they repeat save at turn end. OR up to2 allies gain S d6+M temporary HP. No mixed modes; bonds are magical and not permanent objects."
+    ],
+    [
+      3115,
+      16,
+      "Reaction",
+      "5RP; 1 long-rest use",
+      "Ally within30ft failing save against Charmed/Frightened/Poisoned",
+      "Instant",
+      "1/long rest",
+      "Ally rerolls that save with advantage; use new result. If it succeeds, it regains S d6 HP. No arbitrary curse or death reversal; costs remain if it fails. This is not a captured Echo and creates no record."
+    ],
+    [
+      3121,
+      10,
+      "Bonus Action",
+      "2RP",
+      "One damage Echo you released this turn",
+      "Resolves start next turn",
+      "Recharge3",
+      "Create one illusory double; it repeats half the unmodified immediate damage dice to one original enemy still within30ft, without roll or conditions. Declare Mirror Double before the current turn ends; its pending copy remains part of this turn’s one release package and does not consume a later release allowance. Only one pending copy; cannot copy copies/healing."
+    ],
+    [
+      3122,
+      10,
+      "Passive",
+      "1 long-rest use",
+      "One use of Echo Fusion",
+      "This release",
+      "1/long rest",
+      "Increase Fusion's half-strength component to full dice. Still two sources, full RP, one combined release and normal target limits. This never adds a third component or doubles resources, control duration or already copied damage."
+    ],
+    [
+      3123,
+      10,
+      "Passive",
+      "0",
+      "One temporary archive slot",
+      "Until encounter end",
+      "Continuous during encounter",
+      "Capacity becomes6 if below6; temporary slot is erased at encounter end. If already6, choose one existing slot instead and its release gains+5ft range. Never exceed6 or preserve a seventh via a backup."
+    ],
+    [
+      3124,
+      20,
+      "Bonus Action",
+      "8RP; 1 long-rest use",
+      "Up to3 records currently in your archive",
+      "Next3 releases within1 minute",
+      "1/long rest",
+      "Mark up to3 distinct existing records. Each one's next release keeps its record instead of consuming it; still pay release RP and obey one release/round. No restoration of already empty slots, no invented records, no reuse-preservation after its marked use."
+    ],
+    [
+      3127,
+      10,
+      "Bonus Action",
+      "1RP",
+      "One stored Echo",
+      "Next release before end next turn",
+      "Recharge2",
+      "Choose +30ft range OR change damage to acid/cold/fire/lightning/thunder. No change to category, rank, targets, save ability, copied conditions or eligibility. Nonstacking modifications; record reverts after release/expiry."
+    ],
+    [
+      3128,
+      10,
+      "Action",
+      "3RP",
+      "Self",
+      "Concentration, 3 of your turns",
+      "Recharge3",
+      "Create two decoys. When an attack hits you, use Reaction to erase one and impose disadvantage on that attack's reroll. Decoys do not cast, attack, intercept area damage or create Echo records. At most one decoy erased per round."
+    ],
+    [
+      3129,
+      12,
+      "Action",
+      "Recorded RP cost+2; consume Strike Echo",
+      "Up to3 enemies within30ft",
+      "Instant",
+      "Recharge3",
+      "Replace Strike's attack with separate spell attacks; divide its S d8 dice among targets with at least1 die each. At S2 only2 targets. Total dice do not increase. One combined release; no full-damage copy per target."
+    ],
+    [
+      3130,
+      14,
+      "Triggered",
+      "2RP; 1 short-rest use",
+      "One Echo you are about to release",
+      "This use",
+      "1/short rest",
+      "Preserve that record after release instead of consuming it. Pay normal RP plus2 and obey all limits. Does not stack with Repertoire or preserve more records in Fusion; choose one. Its next release is no longer a first replay."
+    ],
+    [
+      3131,
+      16,
+      "Action",
+      "6RP; 1 long-rest use",
+      "Fixed10ft-radius zone within30ft",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "While you stand inside, once/turn add1d6 to one Echo damage/healing amount or impose-1 on one target's Echo save. Choose before resolving. No free releases, random recasts, resource refunds or extra targets."
+    ],
+    [
+      3137,
+      10,
+      "Passive",
+      "0",
+      "Your Beast on summoning",
+      "Summon duration",
+      "Once/summon",
+      "Roll d2:1 Ember grants its one commanded attack+1d4 fire;2 Barbs grants+1d4 piercing. Extra dice apply once/round only. Mutation grants no aura damage, poison supply, resource gain or separate creature."
+    ],
+    [
+      3138,
+      10,
+      "Passive",
+      "0",
+      "Record captured from undead/demon/aberration",
+      "That release",
+      "Once/round",
+      "You may change its damage type to necrotic or psychic on release. Category/eligibility/rank stay unchanged; high-INT undead and bosses remain excluded unless an encounter explicitly permits them."
+    ],
+    [
+      3139,
+      10,
+      "Triggered",
+      "2RP; 1 short-rest use",
+      "One damage Echo just released",
+      "Start next turn",
+      "1/short rest",
+      "Create one pending half-dice repeat against one original target still within30ft. No conditions, procs, crits, resource changes or additional capture. Replaces any pending Mirror Double/Fractured copy. Deterministic limited use replaces the old random25% trigger."
+    ],
+    [
+      3140,
+      20,
+      "Bonus Action",
+      "8RP; 1 long-rest use",
+      "Self",
+      "2 of your turns",
+      "1/long rest",
+      "Your first damage release on each of these2 turns adds one half-dice component against a DIFFERENT enemy within10ft of an original target. Same package and shared copy cap; excludes healing/control. Never recursively copies a copy or adds a release action."
+    ],
+    [
+      3143,
+      10,
+      "Bonus Action",
+      "2RP",
+      "Your next damage Echo",
+      "Before end current turn",
+      "Recharge3",
+      "Add1d6 necrotic to one target on release OR force one damaged target to make WIS save or lose Reactions until end its next turn. No double rider or additional release. Added die is excluded from later copies."
+    ],
+    [
+      3144,
+      10,
+      "Action",
+      "4RP",
+      "Empty space within15ft",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Summon standard corrupted Beast. On commanded hit add1d6 necrotic once/round; after that hit, each other creature within5ft of Beast, including allies, takes1 psychic damage. This splash has no procs and cannot trigger another splash. Normal companion cap applies."
+    ],
+    [
+      3145,
+      12,
+      "Triggered",
+      "1RP",
+      "Self after direct Echo damages a hostile creature",
+      "Instant",
+      "Once/round",
+      "Pay1RP to regain HP equal to min(M, actual damage dealt to one target). Copies, DoTs and companion attacks do not trigger it. Healing has no secondary healing/resource procs; no damage means no heal."
+    ],
+    [
+      3146,
+      14,
+      "Action",
+      "5RP",
+      "Fixed10ft-radius zone within30ft; up to3 enemies/pulse",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "On start and each later Bonus Action+1RP pulse, WIS save: S d6 psychic, half on success. Failure also loses Reactions until start your next turn. At most3 pulses. Zone is not an Echo source or resource generator."
+    ],
+    [
+      3147,
+      16,
+      "Action",
+      "6RP; consume1 offensive Echo; 1 long-rest use",
+      "One enemy within60ft",
+      "Instant; control until end next turn",
+      "1/long rest",
+      "WIS save: (S+2)d8 psychic, half on success. Failure imposes disadvantage on next attack; failure by10 also Stunned until end its next turn within denial cap. No permanent mental illness or control of the player's beliefs."
+    ]
+  ],
+  "reviewStatus": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

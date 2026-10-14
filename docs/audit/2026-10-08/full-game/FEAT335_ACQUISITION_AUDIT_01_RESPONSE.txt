@@ -1,0 +1,225 @@
+FEAT335-ACQUISITION-AUDIT-01 — completed scoped audit
+
+All 335 exact identities have an individual acquisition/initial-state disposition. I found four bounded issues: two source-to-model defects, one unarmed-profile interpretation requiring an explicit shared-rule addition, and one evidence-snapshot defect.
+
+This is not a finding that 335 complete acquisitions—or the assembled feat candidate—have passed. The register distinguishes established source requirements, evidence that actually covers them, and the remaining initialization checks.
+
+Deliverables
+
+Download the complete verdict, 335-row register and evidence ZIP
+
+Readable verdict
+ · 
+All 335 rows — JSON
+ · 
+All 335 rows — Markdown
+ · 
+Exact guarded corrections
+
+The ZIP contains 21 payload files plus its manifest, all reverified after packaging.
+
+Size: 608,796 bytes.
+SHA-256: 0d66474aef4307de1cc1b152841df7a2f38c0cf87836ac80b72e1c92c722a397
+
+The package also includes complete menu/snapshot mappings, supplementary-proposal dispositions, a report-vintage index, all observed snapshot discrepancies, finite acceptance expectations and two Python-standard-library checkers.
+
+What I inspected and executed
+
+I inspected all 335 original feat objects and their complete operative procedures, including the eight previously reviewed identities and two deferred null wrappers; all sixteen shared rules; all nine supplement groups; twenty complete local reports; and twenty-two acquisition-model modules. I compared the relevant class, ancestry, equipment, spell-route and acquisition counterparts without treating this as another review of every class or spell effect.
+
+All 198 submitted manifest payloads match their bound bytes. The input remained unchanged throughout this review.
+
+Evidence produced here	Actual result	Scope
+Source/reference and focused model checks	4,194/4,194	Includes complete source/procedure joins, 1,838 curriculum-placement comparisons, 284 full spell-dependency comparisons and reproduced model counterexamples
+Deliverable/preservation checks	4,917/4,917	All 335 output rows, source links, fourteen guarded corrections, in-memory preservation/parity and unchanged submission hashes
+Existing report suites independently rerun	No	Their reported results remain submitted evidence, not my execution claims
+Full acquisition/gameplay runtime executed	No	Neither check total establishes this
+
+The report index preserves 350 historical/current source-binding comparisons, including 37 changed-version relationships. An older report is not represented as having executed against a newer source revision.
+
+Each row supplies the requested (a) predicates/repeatability, (b) selections/snapshots, (c) initial state, (d) conditional/deferred branches and (e) evidence/remaining obligations. Feats requiring no new menu or resource are explicitly recorded rather than omitted.
+
+The four findings
+FAA-01 — Conjure Flora’s required permanent DC provider is missing from the local acquisition model
+
+Disposition: KEEP the existing supplement requirement; correct the model and surface that requirement in the current procedure.
+
+The controlling source is:
+
+data/public/feat_candidates/exact_01/supplements.json
+/groups/6/value/floraBody/dc
+
+It expressly requires selecting an actual possessed spellcasting route at acquisition, then using that route for the DC. The local RemainingOwnedChains.acquire_named path instead accepts Conjure Flora without a provider and rejects an explicit choice. I reproduced that mismatch.
+
+Consequently, the affected paid Conjure Flora → Trapcasting histories do not yet demonstrate the parent’s complete acquisition. This does not invalidate Trapcasting’s separate Verdant Bond route.
+
+Exact paragraph to append to Conjure Flora’s current operative procedure
+
+KEEP the already-operative SUP-07 floraBody/dc acquisition requirement: at acquisition permanently select and record one actual possessed spellcasting route as this feat's DC provider. Use DC 8 + current PB + that route's current casting-ability modifier; do not invent Wisdom, Spellcraft or another default. This source choice is separate from the later seedling mode/burst-type choice. Ownership initializes only the finite creation allowance and body capacity, with no plant, pending additional creation, command or active effect. All printed acquisition predicates and the actual earned feat opportunity remain required.
+
+The guarded operations identify the exact current locations: public feat 298, internal record 287, acquisition-contract record 298, the current Magic Extended manuscript and the two affected model branches.
+
+The model must validate and retain fixedCastingRoute before payment, then preserve that field while adding the feat’s initial allowance/capacity state. This is not a new plant, casting route, RP pool or acquisition permission. The full source clause and bindings are reproduced in 
+Bound Sources
+.
+
+FAA-02 — The casting-provider helper incorrectly excludes actual STR/DEX routes
+
+Disposition: KEEP the supplied route menus; correct the helper.
+
+The current source menus include Dragoon STR, Monk DEX and Thief DEX. The helper’s INT/WIS/CHA filter rejects those legitimate personal feat-casting routes. I reproduced all three exclusions using source-bound, paid Magic Initiate histories.
+
+The affected provider interfaces are:
+
+conjure_flora, stormcaller, voltyros_pact, soul_cage.
+
+The exact helper correction recognizes the six canonical ability identifiers only after the actual acquired route and qualifying repertoire have been established. It does not invent a CON route or permit arbitrary ability selection.
+
+In particular, Voltyros Pact’s INT fallback applies when no actual casting source exists, not when the helper erroneously rejects an existing STR/DEX source.
+
+This does not widen fixed mental-ability menus on Arcane Pulse, Touched feats, Telekinetic, Telepathic, Ritual Caster or Hemocraft. Their exact procedures remain controlling. The relevant source menus and complete correction are included in 
+Findings and Replacements
+.
+
+FAA-03 — Specific unarmed Weapon Mastery and Troll Claws
+
+Disposition: a specific proficient ordinary or operative Monk unarmed profile is eligible for Weapon Mastery. Actual Troll Claws plus an existing covering training grant can establish specific-profile proficiency without a second external credential.
+
+The source comparison is:
+
+Actual source	Relevant clause
+equipment_source_catalog.json /records/75	Names Unarmed strike under Simple melee weapons
+EQUIPMENT_ACQUISITION_PLAYTEST.md, line 11	“Unarmed strike is an attack option, not an inventory object.”
+character_foundation.json /classes/7	Monk training includes Simple weapons
+monk.json /engine/17	Supplies the actual operative Monk unarmed progression
+ancestry_background_candidate.json /ancestries/12/traits/6	Troll Claws are natural weapons that can make unarmed strikes
+Actual paid Tavern Brawler procedure	Expressly grants unarmed proficiency as another possible covering grant
+
+These clauses are reproduced with their full bindings in 
+Bound Sources
+.
+
+Being noninventory does not mean being untrained or ineligible for an attack-profile choice. Conversely, merely having claws does not supply proficiency.
+
+Your local weapon pass correctly left unarmed Mastery outside its slice; it did not falsely establish that option as illegal.
+
+Exact NEW shared wording
+
+Append this to the current FS-02 wording in both shared JSON envelopes and the current shared manuscript:
+
+NEW FEAT335-ACQUISITION-AUDIT-01 profile-classification bridge, limited to Weapon Focus and Weapon Mastery: a specific unarmed-strike profile is an eligible choice when it is supplied by an actual current operative source and actual acquired proficiency covers it. The source-listed ordinary Unarmed strike remains a Simple melee training entry even though it is an attack option rather than an inventory object. An actual Simple-weapons proficiency grant covering that entry, or an express unarmed-strike proficiency grant, supplies the required training. An actually acquired Monk unarmed rule changes that same unarmed attack's operative statistics; its die progression alone is not a new paid profile or a free reselection. An acquired Troll Claws trait, explicitly used to make unarmed strikes, is an eligible specific Claws profile when the actor also has that actual unarmed-strike training. Bind both the real trait/body and its covering training grant; Claws alone grants no proficiency. No separate external training credential is necessary when those current-source grants already establish it. Another genuine natural profile remains source-qualified: require its actual profile and covering proficiency, whether an explicit unarmed bridge or another actual grant; neither an umbrella label nor this ruling supplies all-natural-weapon proficiency. No item, anatomy, attack or combined Monk/Claws damage formula is granted. Weapon Focus retains its express ongoing operative-proficiency requirement. Weapon Mastery checks proficiency at acquisition and retains its own matching-profile and total-level-six use predicates, without a new ongoing-proficiency gate. Its nonrepeatability, broadest applicable critical range, natural-19-meets-AC and natural-20-automatic-hit rules are unchanged.
+
+This is explicitly NEW cross-source integration wording, not a quotation claimed to exist in one original.
+
+The resulting boundaries are finite:
+
+Case	Outcome
+Actual ordinary/Monk unarmed profile plus covering proficiency, level 6 and an earned opportunity	Valid Mastery selection
+Same profile without actual covering proficiency	Acquisition fails
+Actual Troll Claws plus actual Simple/unarmed training	Specific Claws may qualify; no extra external training receipt is necessary
+Troll Claws without covering training	Does not qualify through the trait alone
+Another genuine natural profile whose source/training is not supplied	Remains source-qualified, not prohibited and not automatically proficient
+Proficiency later ceases to operate	Focus’s express ongoing gate applies; do not invent the same gate for Mastery
+Monk unarmed damage die increases	No new paid profile or free reselection
+Natural 19 misses AC	Not a hit merely because Mastery expanded the critical range
+Natural 20	Retains its actual automatic-hit rule
+
+Weapon Master’s separate four-proficiency menu is unchanged. This ruling does not add unarmed or natural selections to a menu that expressly excludes them.
+
+FAA-04 — Two report helpers retain mutable snapshots
+
+Disposition: correct evidence capture, not the underlying feat rules.
+
+I found 559 saved PASS rows in which the serialized actual and expected values differ:
+
+One row at /results/761 in FEAT_EXACT_01_ACQUISITION_HISTORY_AFTER_ACQ01_CHECK.json.
+558 rows in FEAT_EXACT_01_NUMERIC_PREREQUISITE_CHECK.json, enumerated individually in the delivered discrepancy register.
+
+The acquisition-history example records CON alone as the expectation, while the retained actual object later includes CON and WIS. The numeric examples retain failed-alias checkpoints whose actual opportunity objects later show spent:true after a subsequent legitimate payment.
+
+The helper code stores mutable references. Isolated execution reproduced the later mutation of an earlier recorded comparison.
+
+This does not establish that a rejected purchase spent its opportunity, or that 559 prerequisite rules failed. It establishes that those saved actual/expected pairs are not immutable evidence of their original checkpoints.
+
+The exact corrections make independent deep copies of both values at comparison time, compare those snapshots, and store those same snapshots. They affect:
+
+tools/validate_feat_exact_01_acquisition_history.py
+tools/validate_feat_exact_01_numeric_prerequisites.py
+
+Preserve the existing reports. Produce truthfully version-bound descendant evidence from re-executed affected checkpoints; do not edit historical actual values into their expected values to manufacture consistency.
+
+Every affected pointer and saved value is in 
+Report Snapshot Mismatches
+.
+
+Initial-state conclusions that remain KEEP
+
+The per-ID register retains the actual differences rather than applying one universal initializer. Important examples include:
+
+Feat/interface	Acquisition or initial-state result
+Animal Companion	Paid ownership and one available attempt; no animal or bond. ACQ-05 remains controlling.
+Life Drinker	Its distinct finite reserve starts full at 2 × level.
+Hemocraft / Lifeleech	Their recovery reserves start empty, not filled merely by ownership.
+Martial Adept → Advanced	The advanced grant adds its one new available die; an already-spent parent die remains spent.
+Lifeleech / Soul Cage	One continuing shared-owner charge pool; acquiring the second source must not recreate or reset it.
+Runic Shield	Acquisition arms the future encounter grant; it does not immediately create 15 ward HP.
+Quick Learner	Lifetime categories start unused; no skill, tool or language is already learned.
+Endurance	Both pending-credit records start at zero; existing Strain, shortages and Rest Debt are not erased.
+Capacity-only or physical-output permissions	Preserve current resources and empty containers; do not create followers, plants, buffs, devices, food, weapons, formula stock or completed rituals.
+Two deferred outlines	astral_projection and planar_binding remain null/unavailable.
+
+The full register also identifies fixed acquisition branches versus later live statistics, exact parent choices, paid menu entries, conditional casting grants and source-specific duplicate-training behavior. These conclusions are tied to each complete operative procedure in the 
+335-row audit
+.
+
+Finite remaining work
+
+The remaining work is four corrections plus four evidence-integration groups, with a ninth group requiring preservation only. Exact member lists are in 
+Finite Remaining Work
+.
+
+1. Fulfill FAA-01–04
+
+Apply the fourteen guarded operations, record their descendant bindings, and run the specified focused cases. Preserve original objects, historical procedures/reports, prerequisite trees and approval/selection flags.
+
+2. Complete shared-owner initialization checks
+
+Reuse the already supplied empty/full-reserve and spent-parent-die cases. The existing evidence also already checks Soul Cage preserving an existing Lifeleech state.
+
+The remaining converse and composition cases include Lifeleech acquired after Soul Cage, and paid Forbidden Pact/Eldritch Echo acquisition in reverse order without duplicating the shared cantrip, repertoire count, RP or Refrain history.
+
+3. Bind delayed, empty and capacity-only states
+
+Check the actual initializer against the per-row state, not the first-use effect. One positive/negative sequence per distinct state pattern, plus exact-ID descriptor parity, is sufficient. This is not a request for hundreds of redundant full-character fixtures.
+
+4. Bind fixed snapshots and training recipients
+
+Retain existing darkvision and paid training evidence. Verify that fixed branches remain fixed through later suppression or independent training, while explicitly live/per-level values remain live. Preserve current HP and actual duplicate-training branches.
+
+5. Bind ordinary finite-allowance descriptors
+
+Connect each listed identity’s real allowance, owner, frequency and reset source to the existing common mechanism. The 177 listed identities are not 177 demands for new bespoke character simulations.
+
+The 111 explicit no-new-state members likewise do not need an invented resource test merely to increase a coverage count.
+
+6. Carry conditional/null branches forward
+
+The accepted ACQ-04 conditional interfaces need no new pre-push positive cosmology or campaign acquisition. Preserve their guards, truthful fixture status and the two null wrappers. This is not another source-conference prerequisite.
+
+The package supplies eighteen finite acceptance groups, clearly separated from checks I executed.
+
+Final disposition
+
+The complete acquisition/initial-state source audit is delivered. No missing controlling source prevents these bounded rulings. One requested equipment-procedure path was absent from this packet; I did not rely on unseen content from it. The included source catalog, equipment guide, foundation and actual Monk/Troll clauses support the weapon ruling.
+
+The named corrections and finite evidence work may be recorded as fulfilled without another generic conference or unchanged full resubmission. The later assembled full-feat exact review remains required; this audit authorizes no feat promotion, selection enablement or review-label normalization.
+
+Completed crafting, language, onboarding, teaching, LRX, EX58 and ACQ01–05 scopes carry forward. The CRPG specification, twelve-character expedition, parallel activities and host permissions are unchanged. Delivery remains actual final joint whole-game flow agreement → already-authorized commit/push → verified remote commit → careful cosmology review and preservation-based cleanup in their agreed phases. 
+
+FEAT335_ACQUISITION_AUDIT_VERDICT.md
+Document
+ACQUISITION_ROWS.json
+Code
+ACQUISITION_ROWS.md
+Document
+5 more

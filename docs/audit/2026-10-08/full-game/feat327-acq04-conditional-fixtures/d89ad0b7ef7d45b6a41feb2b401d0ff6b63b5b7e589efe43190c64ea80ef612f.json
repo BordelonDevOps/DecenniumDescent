@@ -1,0 +1,69 @@
+{
+  "deity": {
+    "recordType": "opaque_referent",
+    "referentKind": "deity",
+    "opaqueId": "test-reference-d1",
+    "evidenceMode": "conditional_fixture"
+  },
+  "plane": {
+    "recordType": "opaque_referent",
+    "referentKind": "elemental_plane",
+    "opaqueId": "test-reference-p1",
+    "evidenceMode": "conditional_fixture"
+  },
+  "lineage": {
+    "recordType": "lineage",
+    "name": "Dragonborn",
+    "damageType": "cold",
+    "evidenceMode": "conditional_fixture"
+  },
+  "otherLineage": {
+    "recordType": "lineage",
+    "name": "Dragonborn",
+    "damageType": "fire",
+    "evidenceMode": "conditional_fixture"
+  },
+  "rageClass": {
+    "recordType": "class",
+    "name": "Conditional External Class",
+    "featureIds": [
+      "conditional-rage-feature"
+    ],
+    "featureSelections": [
+      {
+        "id": "conditional-slot1",
+        "minimumClassLevel": 1,
+        "allowedFeatureIds": [
+          "conditional-rage-feature"
+        ]
+      }
+    ],
+    "evidenceMode": "conditional_fixture"
+  },
+  "rageFeature": {
+    "recordType": "class_feature",
+    "id": "conditional-rage-feature",
+    "className": "Conditional External Class",
+    "minimumClassLevel": 1,
+    "requiredPath": "conditional-path",
+    "grantedState": "rage",
+    "acquisition": "selection",
+    "evidenceMode": "conditional_fixture"
+  },
+  "sorcerer": {
+    "recordType": "class",
+    "name": "Sorcerer",
+    "bloodlineIds": [
+      "conditional-draconic"
+    ],
+    "evidenceMode": "conditional_fixture"
+  },
+  "bloodline": {
+    "recordType": "bloodline",
+    "id": "conditional-draconic",
+    "className": "Sorcerer",
+    "bloodlineKind": "draconic",
+    "damageType": "cold",
+    "evidenceMode": "conditional_fixture"
+  }
+}

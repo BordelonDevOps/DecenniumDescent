@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "status": "Authored record contract; not an implemented companion schema migration",
+  "modeNames": [
+    "spokenComprehension",
+    "speaking",
+    "reading",
+    "writing",
+    "scriptFamiliarity"
+  ],
+  "presenceRule": "Preserve absent/null/empty/value separately in originalSource objects; derived fields explicitly state unresolved values",
+  "definitions": {
+    "provenance": {
+      "required": [
+        "sourcePath",
+        "sourceSha256",
+        "recordId",
+        "fieldPresence",
+        "authority"
+      ],
+      "fields": {
+        "sourcePath": "string; original path",
+        "sourceSha256": "64 lowercase hex characters",
+        "recordId": "string; exact original ID",
+        "fieldPresence": "absent|null|value. value means a present non-null source value, including an empty string, array or object; do not normalize empty to absent or null.",
+        "sourceSpelling": "Conditional original JSON value: omit the key for absent; require literal null for null; require the exact original non-null value for value. Never substitute the canonical language ID or spelling.",
+        "authority": "exact grant/decision that permits the derived effect"
+      },
+      "constraints": [
+        "If fieldPresence is absent, sourceSpelling MUST be absent.",
+        "If fieldPresence is null, sourceSpelling MUST be present with JSON null.",
+        "If fieldPresence is value, sourceSpelling MUST be present with the exact original non-null JSON value, including any empty value.",
+        "The sourcePath, sourceSha256, recordId and authority must identify the actual preserved source; a syntactically valid record alone does not authenticate that source.",
+        "Canonicalization belongs in derived identity fields and never rewrites this source value."
+      ]
+    },
+    "competency": {
+      "required": [
+        "recordId",
+        "characterId",
+        "canonicalLanguageId",
+        "sourceSpellings",
+        "qualifier",
+        "modes",
+        "scripts",
+        "tenure",
+        "provenance"
+      ],
+      "fields": {
+        "recordId": "unique string",
+        "characterId": "actual recipient ID",
+        "canonicalLanguageId": "explicit known ID; no fuzzy aliases",
+        "sourceSpellings": "array of original strings",
+        "qualifier": "actual dialect/register/tradition or explicit null",
+        "modes": "object: each of five defined modes is granted|not-granted|unspecified; unknown is never permission",
+        "scripts": "array of actual script/orthography ID plus provenance",
+        "tenure": "permanent or temporary linked to effect ID",
+        "provenance": "nonempty array of actual provenance records"
+      },
+      "constraints": [
+        "A script-only grant cannot fabricate a speaking mode.",
+        "Physical channel suppression is recorded separately from competence.",
+        "Duplicate fixed grants union only genuinely granted modes and retain all sources."
+      ]
+    },
+    "choice": {
+      "required": [
+        "slotId",
+        "characterId",
+        "grant",
+        "count",
+        "restriction",
+        "alternatives",
+        "priorCompetencyIds",
+        "state",
+        "resolution"
+      ],
+      "fields": {
+        "slotId": "unique source-linked string",
+        "characterId": "actual learner",
+        "grant": "provenance",
+        "count": "positive integer from actual grant",
+        "restriction": "verbatim source restriction and derived eligibility rule",
+        "alternatives": "closed IDs if specified; otherwise null with actual available options recorded at resolution",
+        "priorCompetencyIds": "array of existing actual competencies",
+        "state": "unresolved|resolved|invalid|exhausted",
+        "resolution": "null while unresolved; otherwise selected ID/modes or exhausted result, actual eligibility evidence, time and retained original choice"
+      },
+      "constraints": [
+        "Mycelian requires actual home-region evidence.",
+        "Elemental-Touched uses actual preselected affinity.",
+        "No secret future credit or free historical respec."
+      ]
+    },
+    "temporaryEffect": {
+      "required": [
+        "effectId",
+        "source",
+        "casterId",
+        "recipientIds",
+        "allowedModesOrMeaning",
+        "consentEvidence",
+        "rangeAndChannel",
+        "start",
+        "expiration",
+        "suppression",
+        "costRecordIds"
+      ],
+      "fields": {
+        "effectId": "unique string",
+        "source": "exact card ID/path/hash and lawful access evidence",
+        "casterId": "actual source creature",
+        "recipientIds": "actual recipients",
+        "allowedModesOrMeaning": "bounded source modes/message/passage only",
+        "consentEvidence": "actual evidence when required; null only when source requires none",
+        "rangeAndChannel": "actual predicate and delivery evidence",
+        "start": "actual chronological event marker",
+        "expiration": "original exact marker plus elapsed-time mapping through initiative changes",
+        "suppression": "independent source-linked restriction records",
+        "costRecordIds": "links to actual resource histories"
+      },
+      "constraints": [
+        "Not a second resource ledger.",
+        "Expiration removes capabilities, preserves only actually learned particular information.",
+        "No shared language implied unless this exact interface provides it."
+      ]
+    },
+    "learning": {
+      "required": [
+        "courseId",
+        "learnerId",
+        "languageId",
+        "modes",
+        "modules",
+        "instruction",
+        "access",
+        "intervals",
+        "losses",
+        "fees",
+        "completion"
+      ],
+      "fields": {
+        "courseId": "unique string",
+        "learnerId": "actual learner",
+        "languageId": "one actual competency",
+        "modes": "exact sought modes",
+        "modules": "required minutes, genuine prior same-script evidence, completed credit and remaining credit",
+        "instruction": "actual teacher modes plus usable channel OR identified authentic curriculum",
+        "access": "actual materials, legitimacy and production/correction method",
+        "intervals": "ordered start/end actual active intervals with complete phase credit, interruption reason and work-ledger references",
+        "losses": "actual source/effect, time and credited minutes lost; preserve history",
+        "fees": "actual quote, instruction minutes and invoice-rounded copper/payment record; no fabricated teacher",
+        "completion": "null or actual final practice, time and exact acquired modes"
+      },
+      "constraints": [
+        "No overlapping work without explicit source permission, including tutor.",
+        "A phase boundary is not an actual concentration interruption.",
+        "A shorter final phase only finishes a real adjusted balance."
+      ]
+    },
+    "textEvidence": {
+      "required": [
+        "physicalTextId",
+        "contentVersionId",
+        "underlyingEvidenceId",
+        "languageAndScript",
+        "passage",
+        "representation",
+        "sourceMeaningEvidence",
+        "translationProvenance",
+        "parentCorrespondenceIds",
+        "audience"
+      ],
+      "fields": {
+        "physicalTextId": "unique inventory object",
+        "contentVersionId": "actual content/version identity",
+        "underlyingEvidenceId": "stable correspondence identity shared across copies and recreations",
+        "languageAndScript": "actual known identities, with unknown preserved",
+        "passage": "registered boundaries, words<=250 for bounded projects and explicit gaps",
+        "representation": "actual legibility/access/channel",
+        "sourceMeaningEvidence": "finite supported meaning/key/evidence; unavailable explicitly fails prerequisite",
+        "translationProvenance": "actual method, lead, work, checks if required and output extent",
+        "parentCorrespondenceIds": "source evidence lineage",
+        "audience": "public|director-only|restricted; unknown fails public export"
+      },
+      "constraints": [
+        "A new physical copy does not create new evidence.",
+        "No caller boolean certifies missing meaning.",
+        "Copying characters alone is not translation or magical encoding."
+      ]
+    },
+    "scribingLedger": {
+      "required": [
+        "researcherId",
+        "targetLanguageId",
+        "unspent",
+        "evidenceReceipts",
+        "events"
+      ],
+      "fields": {
+        "researcherId": "one actual researcher",
+        "targetLanguageId": "one actual target language",
+        "unspent": "integer 0..6",
+        "evidenceReceipts": "all underlying correspondence IDs already studied by this reader, including saturated studies",
+        "events": "chronological actual gain/spend events, work references, evidence, amount, before/after, passage and prerequisite adjudication"
+      },
+      "constraints": [
+        "A saturated award is not banked.",
+        "Copies/holders/editions/magical recreations share anti-repeat identity.",
+        "Three points and eight separate hours yield one supported passage, not fluency."
+      ]
+    },
+    "communicationEvent": {
+      "required": [
+        "eventId",
+        "senderId",
+        "intendedRecipientIds",
+        "channel",
+        "contentEvidence",
+        "capacityEvidence",
+        "delivery",
+        "interpretation",
+        "receipts",
+        "roundBudget"
+      ],
+      "fields": {
+        "eventId": "unique string",
+        "senderId": "actual actor",
+        "intendedRecipientIds": "actual addressed recipients",
+        "channel": "spoken|written|rehearsed-cue|actual-feature-channel, with feature ID if needed",
+        "contentEvidence": "specific content/meaning available to sender, recipient language/mode evidence",
+        "capacityEvidence": "actual hand/sense/voice/path/cost/consent state",
+        "delivery": "ordered actual start/end events",
+        "interpretation": "zero or more incoming receipt -> interpretation -> outgoing delivery links",
+        "receipts": "actual recipients and arrival events with supported comprehension; no arbitrary understood flag",
+        "roundBudget": "numbered round plus aggregate free ordinary seconds, Actions/readied permission and no refresh on extra turns"
+      },
+      "constraints": [
+        "No retroactive reception or reaction window.",
+        "Player explanations have no fictional communication event unless the character acts.",
+        "Hearing-only effects require actual hearing, not translated meaning by another channel."
+      ]
+    }
+  }
+}

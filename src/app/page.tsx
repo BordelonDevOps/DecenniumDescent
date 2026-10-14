@@ -7,30 +7,42 @@ import SpellsLibrary from "@/components/SpellsLibrary";
 import MonstersLibrary from "@/components/MonstersLibrary";
 import ItemsLibrary from "@/components/ItemsLibrary";
 import DungeonGuide from "@/components/DungeonGuide";
+import EncountersBrowser from "@/components/EncountersBrowser";
+import GeneratorsPanel from "@/components/GeneratorsPanel";
+import CosmologyViewer from "@/components/CosmologyViewer";
+import SessionTracker from "@/components/SessionTracker";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("characters");
+  const [sessionHandoffTick, setSessionHandoffTick] = useState(0);
+
+  const goToSession = () => {
+    setSessionHandoffTick((n) => n + 1);
+    setActiveTab("session");
+  };
 
   const renderContent = () => {
     switch (activeTab) {
       case "characters":
-        return <CharacterBuilder />;
+        return <CharacterBuilder onOpenLore={() => setActiveTab("my-content")} />;
       case "spells":
-        return <SpellsLibrary />;
+        return <SpellsLibrary onLoadSession={goToSession} />;
       case "monsters":
-        return <MonstersLibrary />;
+        return <MonstersLibrary onLoadSession={goToSession} />;
       case "items":
-        return <ItemsLibrary />;
+        return <ItemsLibrary onLoadSession={goToSession} />;
       case "dungeon-guide":
         return <DungeonGuide />;
       case "encounters":
-        return <div className="p-8 text-white text-center">Encounters content coming soon...</div>;
+        return <EncountersBrowser onLoadSession={goToSession} />;
+      case "session":
+        return <SessionTracker handoffTick={sessionHandoffTick} />;
       case "generators":
-        return <div className="p-8 text-white text-center">Generators content coming soon...</div>;
+        return <GeneratorsPanel onLoadSession={goToSession} />;
       case "my-content":
-        return <div className="p-8 text-white text-center">Explore Cosmology coming soon...</div>;
+        return <CosmologyViewer />;
       default:
-        return <CharacterBuilder />;
+        return <CharacterBuilder onOpenLore={() => setActiveTab("my-content")} />;
     }
   };
 

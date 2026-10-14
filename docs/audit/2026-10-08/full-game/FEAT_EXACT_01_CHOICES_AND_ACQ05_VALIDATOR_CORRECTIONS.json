@@ -1,0 +1,61 @@
+{
+  "recordedAtUtc": "2026-10-13T19:10:36.476976+00:00",
+  "scope": "Local validator/model draft corrections before immutable passing reports; no game source changed to fit a test.",
+  "corrections": [
+    {
+      "id": "reviewed-weapon-menu",
+      "preservedDrafts": [
+        {
+          "path": "docs/audit/2026-10-08/full-game/half-feat-check-before-catalog-correction/feat_exact_01_half_feat_choices.py",
+          "bytes": 6944,
+          "sha256": "67d2d04a79ecc769960c5e5c3eb85824402fecde5f4dcec60becc3f6cc79f9e8"
+        },
+        {
+          "path": "docs/audit/2026-10-08/full-game/half-feat-check-before-catalog-correction/validate_feat_exact_01_half_feat_choices.py",
+          "bytes": 14433,
+          "sha256": "6fed5f1046afee72c295b93aacc2465b74607b1ea643953b985541d91bf13dba"
+        }
+      ],
+      "failure": "Initial assumed38 count used an old source catalog including Unarmed Strike; the first filter also omitted three completed profiles with singular Weapon categories.",
+      "sourceResolution": "The current reviewed equipment candidate has37 other complete weapon profiles plus Kama, Nunchaku and Repeating Heavy Crossbow:40. Unarmed Strike is not a selectable weapon profile here. The corrected model includes the three current profiles and their applicable first-class training.",
+      "finalEvidence": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_HALF_FEAT_CHOICES_CHECK.json",
+        "bytes": 6556883,
+        "sha256": "5dd079806e66067491a20857b1435533a2a985afcd3404ffffb15841b54dc1f2"
+      }
+    },
+    {
+      "id": "monk-resource-growth-expectation",
+      "preservedDraft": {
+        "path": "docs/audit/2026-10-08/full-game/half-feat-check-before-catalog-correction/validate_after_catalog_before_monk_expectation_fix.py",
+        "bytes": 14636,
+        "sha256": "c6ddb8ab655a9a16de35d8649804c527dcd0814be9e18461d3659aaef7116eee"
+      },
+      "failure": "The local expected Monk12 maximum RP was incorrectly9.",
+      "sourceResolution": "The actual source progression gives maximum12 at level12. The corrected expectation retains current RP1 without refill.",
+      "finalEvidence": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_HALF_FEAT_CHOICES_CHECK.json",
+        "bytes": 6556883,
+        "sha256": "5dd079806e66067491a20857b1435533a2a985afcd3404ffffb15841b54dc1f2"
+      }
+    },
+    {
+      "id": "internal-candidate-record-count",
+      "preservedDraft": {
+        "path": "docs/audit/2026-10-08/full-game/ACQ05_DESCENDANT_VALIDATOR_BEFORE_INTERNAL_COUNT_CORRECTION.py",
+        "bytes": 6627,
+        "sha256": "e18a41ff07719b29bcf4f0864dc7fce6a822841451d6d8e35cb912cd03dd15af"
+      },
+      "failure": "The independent preservation validator incorrectly expected335 entries in the internal records array.",
+      "sourceResolution": "The unchanged internal structure has327 candidate records,8 separately retained reviewed feats and335 original-registry entries. Public candidate and contracts each have335 entries. The corrected check verifies these actual structures.",
+      "finalEvidence": {
+        "path": "docs/audit/2026-10-08/full-game/FEAT327_ACQ_05_INDEPENDENT_DESCENDANT_CHECK.json",
+        "bytes": 41524,
+        "sha256": "1e435a286e2785bbb55e71d72140a44470b49850b5256866d438421ff947bef4"
+      }
+    }
+  ],
+  "oldReportsOverwritten": false,
+  "sourceInformationDeleted": false,
+  "newRulesAdoptedByCorrections": false
+}

@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 8 14 15; /* Dark background #080e0f */
+    --foreground: 255 255 255;
+    --card: 43 50 54; /* Dark card background #2b3236 */
+    --card-foreground: 255 255 255;
+    --popover: 43 50 54;
+    --popover-foreground: 255 255 255;
+    --primary: 204 154 106; /* Amber primary color #cc9a6a */
+    --primary-foreground: 8 14 15;
+    --secondary: 82 92 98; /* Gray secondary #525c62 */
+    --secondary-foreground: 255 255 255;
+    --muted: 51 63 80; /* Muted color #333f50 */
+    --muted-foreground: 163 163 163;
+    --accent: 204 154 106; /* Amber accent */
+    --accent-foreground: 8 14 15;
+    --destructive: 150 40 30;
+    --destructive-foreground: 255 255 255;
+    --border: 82 92 98;
+    --input: 43 50 54;
+    --ring: 204 154 106;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+/* Decennium Descent companion theme */
+@media print {
+  .fantasy-header {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  #aethel-character-sheet,
+  #dd-character-sheet {
+    break-inside: avoid;
+    box-shadow: none !important;
+    background: white !important;
+  }
+  .umbrin-lore-card {
+    background: #f8f8f8 !important;
+    border: 1px solid #666 !important;
+    color: #222 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.75rem;
+    padding: 0.65rem 0.75rem !important;
+  }
+  .umbrin-lore-card .umbrin-lore-title {
+    color: #111 !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  .umbrin-lore-card p,
+  .umbrin-lore-card span {
+    color: #333 !important;
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+}
+.fantasy-header {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url('/banner-image.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+.amber-button {
+  @apply bg-amber-600 hover:bg-amber-700 text-amber-50 font-semibold;
+}
+
+.skill-modifier {
+  @apply bg-amber-600 text-amber-50 px-2 py-1 rounded text-sm font-bold min-w-[2rem] text-center;
+}
+
+.ability-score {
+  @apply text-2xl font-bold text-center;
+}
+
+.ability-modifier {
+  @apply text-sm text-center bg-amber-600 text-amber-50 rounded px-2 py-1 font-bold;
+}
+
+.nav-icon {
+  @apply w-8 h-8 mb-1;
+  filter: invert(1);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/80;
+}
+
+/* Glass-like card effect */
+.glass-card {
+  @apply bg-amber-500/20 backdrop-blur-sm border border-amber-600/30;
+}
+
+.character-card {
+  @apply bg-gradient-to-br from-amber-500/30 to-amber-600/20 backdrop-blur-sm border border-amber-600/40;
+}

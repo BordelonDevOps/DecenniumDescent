@@ -1,0 +1,36 @@
+{
+  "pack": "12-cargo-extraction-risk",
+  "scenarioId": "CARGO-ATTENTION",
+  "runId": "CARGO-ATTENTION-cau-L10-P6-E4",
+  "seed": 8479593,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 5000,
+    "level": 10,
+    "party": 6,
+    "extractionClass": 4,
+    "policy": "cautious",
+    "mapping": "Sketched",
+    "havenRate": 1.0,
+    "meanRetainedLoadFrac": 0.5574,
+    "medianRetainedLoadFrac": 1.0,
+    "cargoLossRate": 0.4426,
+    "meanExtractionFailCount": 0.509,
+    "meanCasualties": 0.229,
+    "meanTrueProfit": 92.48,
+    "medianTrueProfit": 194.4,
+    "profitP10": -108.0,
+    "profitP90": 266.4
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/CARGO-ATTENTION/cau-L10-P6-E4.json"
+}

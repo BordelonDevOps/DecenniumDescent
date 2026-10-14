@@ -1,0 +1,261 @@
+{
+  "pack": "07-statistical-combat-calibration",
+  "scenarioId": "MC-L15",
+  "runId": "MC-L15-70700",
+  "seed": 70700,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": "012e2db8295c264ed9e8ceaf68ee9c87e44688f982c1c6befecad5382728f13a",
+  "evidenceLevel": "A",
+  "outcome": "WARN",
+  "metrics": {
+    "cells": [
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6805,
+        "meanDowned": 0.026,
+        "meanRounds": 5.733,
+        "meanHitRate": 0.5678,
+        "meanHealing": 59.09,
+        "meanDamageDealt": 197.0,
+        "meanRpSpent": 3.32,
+        "wipeRate": 0.0,
+        "budget": 90.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 1000,
+        "winRate": 0.915,
+        "winRateCI95": [
+          0.8977,
+          0.9323
+        ],
+        "meanHpPct": 0.3369,
+        "meanDowned": 0.888,
+        "meanRounds": 9.237,
+        "meanHitRate": 0.634,
+        "meanHealing": 152.78,
+        "meanDamageDealt": 337.62,
+        "meanRpSpent": 7.42,
+        "wipeRate": 0.085,
+        "budget": 130.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 1000,
+        "winRate": 0.004,
+        "winRateCI95": [
+          0.0001,
+          0.0079
+        ],
+        "meanHpPct": 0.0005,
+        "meanDowned": 3.992,
+        "meanRounds": 9.16,
+        "meanHitRate": 0.6117,
+        "meanHealing": 144.0,
+        "meanDamageDealt": 266.73,
+        "meanRpSpent": 6.93,
+        "wipeRate": 0.996,
+        "budget": 180.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "catastrophic",
+        "runs": 1000,
+        "winRate": 0.011,
+        "winRateCI95": [
+          0.0045,
+          0.0175
+        ],
+        "meanHpPct": 0.0013,
+        "meanDowned": 3.978,
+        "meanRounds": 9.872,
+        "meanHitRate": 0.552,
+        "meanHealing": 154.73,
+        "meanDamageDealt": 220.6,
+        "meanRpSpent": 7.38,
+        "wipeRate": 0.989,
+        "budget": 240.0
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6333,
+        "meanDowned": 0.076,
+        "meanRounds": 6.477,
+        "meanHitRate": 0.6071,
+        "meanHealing": 85.42,
+        "meanDamageDealt": 459.06,
+        "meanRpSpent": 5.25,
+        "wipeRate": 0.0,
+        "budget": 125.99999999999999
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "hard",
+        "runs": 1000,
+        "winRate": 0.998,
+        "winRateCI95": [
+          0.9952,
+          1.0008
+        ],
+        "meanHpPct": 0.497,
+        "meanDowned": 0.42,
+        "meanRounds": 8.014,
+        "meanHitRate": 0.5608,
+        "meanHealing": 129.47,
+        "meanDamageDealt": 483.88,
+        "meanRpSpent": 7.3,
+        "wipeRate": 0.002,
+        "budget": 182.0
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "severe",
+        "runs": 1000,
+        "winRate": 0.822,
+        "winRateCI95": [
+          0.7983,
+          0.8457
+        ],
+        "meanHpPct": 0.2574,
+        "meanDowned": 2.158,
+        "meanRounds": 10.241,
+        "meanHitRate": 0.5298,
+        "meanHealing": 163.91,
+        "meanDamageDealt": 512.33,
+        "meanRpSpent": 9.14,
+        "wipeRate": 0.178,
+        "budget": 251.99999999999997
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "catastrophic",
+        "runs": 1000,
+        "winRate": 0.033,
+        "winRateCI95": [
+          0.0219,
+          0.0441
+        ],
+        "meanHpPct": 0.004,
+        "meanDowned": 5.895,
+        "meanRounds": 9.441,
+        "meanHitRate": 0.5221,
+        "meanHealing": 146.18,
+        "meanDamageDealt": 344.24,
+        "meanRpSpent": 7.97,
+        "wipeRate": 0.967,
+        "budget": 336.0
+      }
+    ],
+    "cellCount": 8,
+    "runsPerCell": 1000,
+    "objective": "high-level control and durability"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "suspected",
+      "type": "band_collapse",
+      "level": 15,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "winRates": [
+        0.004,
+        0.011
+      ],
+      "detail": "Adjacent difficulty bands have overlapping outcomes (<5pp separation)."
+    },
+    {
+      "severity": "suspected",
+      "type": "standard_off_band",
+      "cell": {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6805,
+        "meanDowned": 0.026,
+        "meanRounds": 5.733,
+        "meanHitRate": 0.5678,
+        "meanHealing": 59.09,
+        "meanDamageDealt": 197.0,
+        "meanRpSpent": 3.32,
+        "wipeRate": 0.0,
+        "budget": 90.0
+      },
+      "detail": "Standard win rate outside 55\u201392% chassis expectation window."
+    },
+    {
+      "severity": "suspected",
+      "type": "band_collapse",
+      "level": 15,
+      "partySize": 6,
+      "pair": [
+        "standard",
+        "hard"
+      ],
+      "winRates": [
+        1.0,
+        0.998
+      ],
+      "detail": "Adjacent difficulty bands have overlapping outcomes (<5pp separation)."
+    },
+    {
+      "severity": "suspected",
+      "type": "standard_off_band",
+      "cell": {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6333,
+        "meanDowned": 0.076,
+        "meanRounds": 6.477,
+        "meanHitRate": 0.6071,
+        "meanHealing": 85.42,
+        "meanDamageDealt": 459.06,
+        "meanRpSpent": 5.25,
+        "wipeRate": 0.0,
+        "budget": 125.99999999999999
+      },
+      "detail": "Standard win rate outside 55\u201392% chassis expectation window."
+    }
+  ],
+  "rawEvidencePath": "results/07-statistical-combat-calibration/MC-L15/"
+}

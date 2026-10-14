@@ -1,0 +1,99 @@
+{
+  "id": "FEAT327-ACQ-04-DERIVED-OPERATIONS",
+  "status": "Authorized finite additions for later exact-candidate assembly; not applied here",
+  "retainSourceSnapshots": true,
+  "operations": [
+    {
+      "op": "append_json_string",
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "pointer": "/rules/1/wording",
+      "identityGuard": {
+        "pointer": "/rules/1/id",
+        "equals": "FS-02"
+      },
+      "expectedOldStringSha256": "1592ec6ce8bc2f19c110b2758afeb1d7c429688ab614e90e1c1f912ca5315d2b",
+      "append": "\n\nExternal-credential evidence — FEAT327-ACQ-04. NEW evidence-contract completion; the four existing feat procedures and their prerequisite alternatives are retained. For frenzied_rage, divine_favor, elemental_body and dragon_blood, evaluate a required external credential under ACQ04-EC1 against the same character, world and ordered acquisition snapshot, using the exact operative prerequisite and source version, linked credential or event evidence, and that world's established authority for recording that fact. A source file establishes wording, not that a particular character acquired a feature, worships a deity, experienced an event or possesses a lineage. A name, nonempty story label, unchecked Boolean, prospective feat benefit or unrelated class/ancestry/item grant supplies no credential. The supporting grant, worship state or exposure event must already qualify before acquisition; same-time events require an authoritative earlier sequence. Worship must be established at that snapshot; exposure is a qualifying prior event, not a requirement to remain exposed. Apply the branch-specific facts and required choices in ACQ04-EC1 without adding doctrine, an exposure threshold, an element-to-plane matching rule or a legacy alias. A conditional, opaque test-world fixture can establish only a CONDITIONAL_ONLY predicate result within that fixture. It supplies no actual campaign history, selectable option, class feature, cosmology approval or entitlement. Missing, unbound, mismatched or insufficient evidence leaves a predicate UNESTABLISHED; affirmative incompatible evidence is CONTRADICTED. Neither result satisfies a required AND node, although a separately satisfied printed OR alternative remains valid. An ESTABLISHED_FOR_SNAPSHOT result requires independently admitted actual-world evidence and is not supplied by this review. Preserve all original source fields, absence/null distinctions, acquisition history and current status/selection flags. All other permanent-ability, level, parent-feat, mandatory-choice and earned-opportunity predicates remain independently required; one paid opportunity cannot fund two acquisitions. Later use still requires the exact feat's ongoing predicates. This evidence policy does not reopen ACQ-03 or change its casting-snapshot rules."
+    },
+    {
+      "op": "add_new_file",
+      "path": "docs/audit/2026-10-08/full-game/FEAT327_ACQ_04_EXTERNAL_CREDENTIAL_POLICY.json",
+      "fromPackageFile": "FEAT327_ACQ_04_EXTERNAL_CREDENTIAL_POLICY.json",
+      "mustNotOverwriteHistoricalRecord": true
+    },
+    {
+      "op": "add_json_field",
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "pointer": "/records/310/externalCredentialPolicyRef",
+      "mustBeAbsent": true,
+      "identityGuard": {
+        "pointer": "/records/310/id",
+        "equals": "frenzied_rage"
+      },
+      "value": "docs/audit/2026-10-08/full-game/FEAT327_ACQ_04_EXTERNAL_CREDENTIAL_POLICY.json#/dispositions/frenzied_rage",
+      "preserveExistingRecordFields": true
+    },
+    {
+      "op": "add_json_field",
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "pointer": "/records/92/externalCredentialPolicyRef",
+      "mustBeAbsent": true,
+      "identityGuard": {
+        "pointer": "/records/92/id",
+        "equals": "divine_favor"
+      },
+      "value": "docs/audit/2026-10-08/full-game/FEAT327_ACQ_04_EXTERNAL_CREDENTIAL_POLICY.json#/dispositions/divine_favor",
+      "preserveExistingRecordFields": true
+    },
+    {
+      "op": "add_json_field",
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "pointer": "/records/104/externalCredentialPolicyRef",
+      "mustBeAbsent": true,
+      "identityGuard": {
+        "pointer": "/records/104/id",
+        "equals": "elemental_body"
+      },
+      "value": "docs/audit/2026-10-08/full-game/FEAT327_ACQ_04_EXTERNAL_CREDENTIAL_POLICY.json#/dispositions/elemental_body",
+      "preserveExistingRecordFields": true
+    },
+    {
+      "op": "add_json_field",
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "pointer": "/records/94/externalCredentialPolicyRef",
+      "mustBeAbsent": true,
+      "identityGuard": {
+        "pointer": "/records/94/id",
+        "equals": "dragon_blood"
+      },
+      "value": "docs/audit/2026-10-08/full-game/FEAT327_ACQ_04_EXTERNAL_CREDENTIAL_POLICY.json#/dispositions/dragon_blood",
+      "preserveExistingRecordFields": true
+    }
+  ],
+  "mirrorInstructions": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/shared_rules.json",
+      "semanticLocation": "FS-02 wording",
+      "action": "Append precisely the same paragraph after verifying existing FS-02 equals the submitted public counterpart. This mirror was named in the included ACQ03 receipt but is not itself in this ZIP; no descendant hash or current equality is claimed here."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/feats/exact-candidate-01/SHARED_RULES.md",
+      "semanticLocation": "FS-02 section",
+      "action": "Render the same complete shared append and contract reference; retain the existing section verbatim. This manuscript was named in the receipt but is not itself supplied in this ZIP."
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.md",
+      "semanticLocation": "Four corresponding derived acquisition rows, if the renderer carries policy references",
+      "action": "Render references to the four new policy entries, not replacement prerequisites or procedures. Do not regenerate unrelated source directions."
+    }
+  ],
+  "doNotModify": [
+    "Any originalObject",
+    "Any printedPrerequisite or requirements AND/OR tree",
+    "Any completeOperativeProcedure",
+    "Any class/ancestry/foundation/supplement payload",
+    "Existing ACQ01/02/03 wording",
+    "Any existing approval, selection, readiness or boundary-validation flag",
+    "Historical manifest, receipt or source hash"
+  ],
+  "fulfillment": "Preserve pre-addendum bytes; resolve by exact IDs and guarded pointers; apply only additions; pass the16 authored expectation groups and preservation/parity checks; append measured current hashes to a new finite fulfillment receipt. Do not overwrite original hashes or claim these expectations were executed by the reviewer."
+}

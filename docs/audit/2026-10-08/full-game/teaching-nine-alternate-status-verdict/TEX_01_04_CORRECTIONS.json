@@ -1,0 +1,320 @@
+{
+  "reviewId": "TEX-EXACT-2026-10-11",
+  "submissionSha256": "df0390f6a17a00428e102d3de2b8195d4334f1ead80493b70ffb6dfa21b03085",
+  "scope": "Exact teaching presentation plus the one requested TC-RECYCLING-01 reconciliation; conditional fulfillment, not implementation or class/recipe promotion.",
+  "corrections": [
+    {
+      "id": "TEX-01",
+      "caseIds": [
+        "TE-01",
+        "TE-23",
+        "TE-25"
+      ],
+      "kind": "consequential-rule-reconciliation",
+      "issueId": "TC-RECYCLING-01",
+      "decision": "KEEP actual class/lifecycle predicate; supersede later enemy-cause narrowing.",
+      "affectedClassCardIds": [
+        "tinker.hero.techsmith.efficient-recycling"
+      ],
+      "affectedRecipeScope": {
+        "ids": [
+          "recipe-585",
+          "recipe-586",
+          "recipe-587",
+          "recipe-588",
+          "recipe-589",
+          "recipe-590",
+          "recipe-591",
+          "recipe-592",
+          "recipe-593",
+          "recipe-594",
+          "recipe-595",
+          "recipe-596",
+          "recipe-597",
+          "recipe-598",
+          "recipe-599",
+          "recipe-600",
+          "recipe-601",
+          "recipe-602",
+          "recipe-603",
+          "recipe-604",
+          "recipe-605",
+          "recipe-606",
+          "recipe-607",
+          "recipe-608",
+          "recipe-609",
+          "recipe-610",
+          "recipe-611",
+          "recipe-612",
+          "recipe-613",
+          "recipe-614",
+          "recipe-615",
+          "recipe-616",
+          "recipe-617",
+          "recipe-618",
+          "recipe-619",
+          "recipe-620",
+          "recipe-621",
+          "recipe-622",
+          "recipe-623",
+          "recipe-684",
+          "recipe-685",
+          "recipe-686",
+          "recipe-687"
+        ],
+        "scope": "Shared deployment-cost/Recycling interface only; all recipe-card objects remain unchanged."
+      },
+      "operations": [
+        {
+          "op": "replace_text",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md",
+          "section": "Tinker interfaces: Efficient Recycling paragraph",
+          "submittedStartLine": 181,
+          "old": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device, after its genuine enemy destruction and the feature's real one-minute/once-per-short-rest salvage procedure. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+          "replacement": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device. Enemy cause is not required. Its actual card and lifecycle rules still exclude deliberate sacrifice, copied devices, spent debris and prohibited resource-generation branches. After combat, use its real one-minute salvage procedure and once-per-short-rest allowance, consuming that device’s qualifying usable debris. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+          "expectedOccurrences": 1
+        },
+        {
+          "op": "replace_text_in_json_string",
+          "path": "DescentReviewChanges/ReviewBible/data/crafting/advanced_craft_recipe_candidate_public.json",
+          "pointer": "/operatingGuideText",
+          "old": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device, after its genuine enemy destruction and the feature's real one-minute/once-per-short-rest salvage procedure. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+          "replacement": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device. Enemy cause is not required. Its actual card and lifecycle rules still exclude deliberate sacrifice, copied devices, spent debris and prohibited resource-generation branches. After combat, use its real one-minute salvage procedure and once-per-short-rest allowance, consuming that device’s qualifying usable debris. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+          "expectedOccurrences": 1
+        },
+        {
+          "op": "replace_text",
+          "path": "DescentReviewChanges/ReviewBible/docs/director-only/ADVANCED_CRAFT_INTERNAL_OPERATIONAL_GUIDE.md",
+          "section": "TD-13 — Recycling refunds actual deployment RP only",
+          "submittedStartLine": 567,
+          "old": "KEEP actual enemy destruction, your own device, one minute after combat, once per short rest, consume its usable debris and return at most1RP actually paid to **deploy that same device**. Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name.",
+          "replacement": "KEEP qualifying destruction of your own device; enemy cause is not required. Keep the actual one-minute procedure after combat, once-per-short-rest allowance, and consumption of that device's qualifying usable debris. Return at most min(1 RP, the RP actually paid to **deploy that same device**). Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects, spent debris, prohibited resource-generation branches and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name.",
+          "expectedOccurrences": 1
+        },
+        {
+          "op": "replace_json_string",
+          "path": "DescentReviewChanges/ReviewBible/data/director/advanced_craft_recipe_candidate_internal.json",
+          "pointer": "/procedureSections/TD-13/text",
+          "old": "KEEP actual enemy destruction, your own device, one minute after combat, once per short rest, consume its usable debris and return at most1RP actually paid to **deploy that same device**. Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name.",
+          "replacement": "KEEP qualifying destruction of your own device; enemy cause is not required. Keep the actual one-minute procedure after combat, once-per-short-rest allowance, and consumption of that device's qualifying usable debris. Return at most min(1 RP, the RP actually paid to **deploy that same device**). Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects, spent debris, prohibited resource-generation branches and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name."
+        },
+        {
+          "op": "replace_text",
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md",
+          "section": "Tinker: final pending-conflict sentence; keep preceding paragraph sentences",
+          "submittedStartLine": 161,
+          "old": "Efficient Recycling's eligibility wording is awaiting a focused reconciliation; do not use this sheet to settle that separate issue.",
+          "replacement": "Efficient Recycling does not require enemy-caused destruction. An acquired eligible use still needs your qualifying destroyed non-copy device, no deliberate sacrifice or prohibited resource-generation branch, reachable unspent debris, one minute after combat and its once-per-short-rest allowance. It consumes that debris and refunds at most min(1 RP, that same device's actual deployment RP); GP construction, repair and servicing are not deployment RP.",
+          "expectedOccurrences": 1
+        },
+        {
+          "op": "create_text_file",
+          "path": "docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md",
+          "packageSource": "TC_RECYCLING_01_TEACHING_RECONCILIATION.md",
+          "replacement": "# TC-RECYCLING-01 — preserved-history reconciliation\n\n**Controlling review:** TEX-EXACT-2026-10-11, TEX-01. **Scope:** the enemy-cause predicate for Efficient Recycling only. This is the expressly requested consequential reconciliation, not a new class-card or recipe promotion.\n\nKeep the actual `tinker.hero.techsmith.efficient-recycling` card and the reviewed `DEVICE_LIFECYCLE_PLAYTEST.md` Destruction row: **enemy cause is not required**. Your qualifying destroyed non-copy device, no deliberate sacrifice, reachable usable unspent debris, one minute after combat, the once-per-short-rest allowance, actual deployment RP, inherited source exclusions and exclusive material consumption remain required. A qualifying refund is at most min(1 RP, RP actually paid to deploy that same instance). The first successful material consumer spends that instance's usable debris; Snap or a second destruction does not create another material opportunity. Administrative ending is not destruction.\n\nThe later instruction “KEEP actual enemy destruction” in TD-13 of the final advanced source verdict `docs/audit/2026-10-08/full-game/GPT_ADVANCED_167_SOURCE_AUTHORING_VERDICT.md` (SHA-256 `48f885becd03e4a99ba8d6243ce286c1e1e88cfefc776af9ff89a9182c79c8e0`), and the derived current crafting-guide phrase “after its genuine enemy destruction”, are superseded **only as restrictions on Efficient Recycling**. That later narrowing is not retained. The remainder of TD-13's deployment-cost distinction and its other restrictions remain. Use the full corrected public/internal paragraphs in `TEX_01_04_CORRECTIONS.json`.\n\nPreserve the original advanced source verdict, its 13-file package, submitted revisions, conflict/proposal record, original class card, lifecycle guide, reference helper, existing regression and prior promotion receipts exactly as historical evidence. Do not rewrite an old “unapplied” preparation to imply the correction was already in force. Attach this erratum and a new version-bound application receipt to the current derived guide/envelope changes. Retain original `sourceVerdictSha256` values as historical provenance and add the explicit controlling reconciliation; do not attribute corrected wording to unchanged source bytes.\n\nThe affected current texts are the public advanced operating guide and `/operatingGuideText`; the internal advanced guide's TD-13 and `/procedureSections/TD-13/text`; and the Tinker pending-conflict sentence in `CLASS_RESOURCE_REFERENCE.md`. Refresh current artifact hashes and the five current TC-RECYCLING-01 coverage notes without closing their broader areas. None of the 167 recipe-card objects, 100 public recipe-card objects, 48 class-interface source cards, body models, host templates or their original sources changes.\n\nFor ordinary crafted Tinkering deployments, recipe-585–623 and recipe-684–687 supply no innate RP deployment cost. Their GP price, later activation RP, Field Repair RP and service inputs do not create refundable deployment RP. A different explicitly authorized paid deployment still requires its actual instance/payment history; this erratum creates no such permission.\n\nScrap Salvage keeps its enemy-destroyed-material predicate. Scrap Reaper keeps its enemy-hit predicate, actual Reaction/cost/range/frequency and no-deployable-slot lifecycle override. Volatile Components keeps its own enemy-cause and exclusion rules. Distinguish a copied device from copied incoming damage and retain the actual inherited branch flags. The Recycling reconciliation does not authorize those other effects from friendly or accidental causes.\n\nFulfilled LAX, NWX, LRX and 687/433 recipe scopes remain fulfilled. This erratum establishes no broader class, feat, spell, runtime, human balance/teaching or whole-game approval. Final joint Codex/GPT whole-game flow agreement precedes the already authorized push; remote commit verification precedes careful cosmology review. No additional owner confirmation is required by this review. No deletion or push is performed here.\n"
+        },
+        {
+          "op": "append_json_array",
+          "path": "DescentReviewChanges/ReviewBible/data/director/advanced_craft_recipe_candidate_internal.json",
+          "pointer": "/controllingCorrections",
+          "value": {
+            "id": "TC-RECYCLING-01",
+            "reviewId": "TEX-EXACT-2026-10-11",
+            "decisionId": "TEX-01",
+            "scope": "Efficient Recycling enemy-cause predicate only; no recipe-card, class-card or body change.",
+            "erratumFile": "docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md",
+            "erratumSha256": "fd1513d10d4bec0aa74f2c1d3f8430295713f3978ecf9ee18f5bade4dce58109",
+            "preservedSourceVerdictSha256": "48f885becd03e4a99ba8d6243ce286c1e1e88cfefc776af9ff89a9182c79c8e0",
+            "supersedes": [
+              "TD-13: enemy-cause restriction for Efficient Recycling only",
+              "Derived public advanced-guide enemy-cause restriction for Efficient Recycling only"
+            ]
+          }
+        },
+        {
+          "op": "replace_json_string",
+          "path": "DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+          "pointer": "/aspects/9/openIssues/4",
+          "old": "Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate.",
+          "replacement": "TC-RECYCLING-01 resolved under TEX-EXACT-2026-10-11/TEX-01: enemy cause is not required for Efficient Recycling. The current advanced guide/envelope narrowing is corrected under the preserved-history erratum; actual deployment RP, source-qualified exclusions, timing, frequency and exclusive debris consumption remain. Other destruction-consumer predicates and broader area gates are unchanged. See docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md and the version-bound teaching fulfillment receipt."
+        },
+        {
+          "op": "replace_json_string",
+          "path": "DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+          "pointer": "/aspects/29/openIssues/11",
+          "old": "Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate.",
+          "replacement": "TC-RECYCLING-01 resolved under TEX-EXACT-2026-10-11/TEX-01: enemy cause is not required for Efficient Recycling. The current advanced guide/envelope narrowing is corrected under the preserved-history erratum; actual deployment RP, source-qualified exclusions, timing, frequency and exclusive debris consumption remain. Other destruction-consumer predicates and broader area gates are unchanged. See docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md and the version-bound teaching fulfillment receipt."
+        },
+        {
+          "op": "replace_json_string",
+          "path": "DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+          "pointer": "/aspects/35/openIssues/10",
+          "old": "Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate.",
+          "replacement": "TC-RECYCLING-01 resolved under TEX-EXACT-2026-10-11/TEX-01: enemy cause is not required for Efficient Recycling. The current advanced guide/envelope narrowing is corrected under the preserved-history erratum; actual deployment RP, source-qualified exclusions, timing, frequency and exclusive debris consumption remain. Other destruction-consumer predicates and broader area gates are unchanged. See docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md and the version-bound teaching fulfillment receipt."
+        },
+        {
+          "op": "replace_json_string",
+          "path": "DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+          "pointer": "/aspects/63/openIssues/9",
+          "old": "Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate.",
+          "replacement": "TC-RECYCLING-01 resolved under TEX-EXACT-2026-10-11/TEX-01: enemy cause is not required for Efficient Recycling. The current advanced guide/envelope narrowing is corrected under the preserved-history erratum; actual deployment RP, source-qualified exclusions, timing, frequency and exclusive debris consumption remain. Other destruction-consumer predicates and broader area gates are unchanged. See docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md and the version-bound teaching fulfillment receipt."
+        },
+        {
+          "op": "replace_json_string",
+          "path": "DescentReviewChanges/ReviewBible/data/playtest/game_development_coverage.json",
+          "pointer": "/aspects/66/openIssues/7",
+          "old": "Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate.",
+          "replacement": "TC-RECYCLING-01 resolved under TEX-EXACT-2026-10-11/TEX-01: enemy cause is not required for Efficient Recycling. The current advanced guide/envelope narrowing is corrected under the preserved-history erratum; actual deployment RP, source-qualified exclusions, timing, frequency and exclusive debris consumption remain. Other destruction-consumer predicates and broader area gates are unchanged. See docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md and the version-bound teaching fulfillment receipt."
+        },
+        {
+          "op": "replace_text",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GAME_DEVELOPMENT_COVERAGE.md",
+          "section": "Current coverage notes for DD-09/DD-29/DD-35/DD-63/DD-66",
+          "submittedStartLine": 37,
+          "old": "Verified Efficient Recycling eligibility conflict TC-RECYCLING-01: current class card/reviewed lifecycle explicitly permit non-enemy accidental destruction, but later advanced source TD-13/current crafting guide require enemy destruction. Complete sources, existing helper/regression predicate and a proposed full paragraph correction are prepared for GPT; no correction applied. Resolve this one predicate while preserving unrelated completed recipe/device scopes and each other debris-consumer predicate.",
+          "replacement": "TC-RECYCLING-01 resolved under TEX-EXACT-2026-10-11/TEX-01: enemy cause is not required for Efficient Recycling. The current advanced guide/envelope narrowing is corrected under the preserved-history erratum; actual deployment RP, source-qualified exclusions, timing, frequency and exclusive debris consumption remain. Other destruction-consumer predicates and broader area gates are unchanged. See docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md and the version-bound teaching fulfillment receipt.",
+          "expectedOccurrences": 5
+        },
+        {
+          "op": "refresh_current_hashes",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_REVIEW_STATUS.json",
+          "pointer": "/artifactHashes",
+          "targetPaths": [
+            "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md",
+            "DescentReviewChanges/ReviewBible/data/crafting/advanced_craft_recipe_candidate_public.json",
+            "DescentReviewChanges/ReviewBible/docs/director-only/ADVANCED_CRAFT_INTERNAL_OPERATIONAL_GUIDE.md",
+            "DescentReviewChanges/ReviewBible/data/director/advanced_craft_recipe_candidate_internal.json"
+          ],
+          "rule": "Hash the actual four corrected current files after changes; preserve prior values in the new fulfillment receipt. Leave original promotion authority/receipt and all other artifact hashes unchanged."
+        },
+        {
+          "op": "set_absent_json_field",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_REVIEW_STATUS.json",
+          "pointer": "/postReviewReconciliations",
+          "value": [
+            {
+              "id": "TC-RECYCLING-01",
+              "reviewId": "TEX-EXACT-2026-10-11",
+              "decisionId": "TEX-01",
+              "scope": "Efficient Recycling enemy-cause predicate only; no recipe-card, class-card or body change.",
+              "erratumFile": "docs/audit/2026-10-08/full-game/TC_RECYCLING_01_TEACHING_RECONCILIATION.md",
+              "erratumSha256": "fd1513d10d4bec0aa74f2c1d3f8430295713f3978ecf9ee18f5bade4dce58109",
+              "preservedSourceVerdictSha256": "48f885becd03e4a99ba8d6243ce286c1e1e88cfefc776af9ff89a9182c79c8e0",
+              "supersedes": [
+                "TD-13: enemy-cause restriction for Efficient Recycling only",
+                "Derived public advanced-guide enemy-cause restriction for Efficient Recycling only"
+              ]
+            }
+          ]
+        }
+      ],
+      "keepUnchanged": [
+        "Actual class card and lifecycle rule/helper/regression",
+        "All 167 internal and 100 public recipe cards",
+        "All body/host models",
+        "All 48 class-interface cards and existing correct deployment-cost disposition",
+        "Original source verdicts, preparation status, packages and historical receipts",
+        "Other destruction-consumer predicates",
+        "Source verdict hashes as historical provenance"
+      ],
+      "currentCoverageNotes": [
+        {
+          "areaId": "DD-09",
+          "pointer": "/aspects/9/openIssues/4"
+        },
+        {
+          "areaId": "DD-29",
+          "pointer": "/aspects/29/openIssues/11"
+        },
+        {
+          "areaId": "DD-35",
+          "pointer": "/aspects/35/openIssues/10"
+        },
+        {
+          "areaId": "DD-63",
+          "pointer": "/aspects/63/openIssues/9"
+        },
+        {
+          "areaId": "DD-66",
+          "pointer": "/aspects/66/openIssues/7"
+        }
+      ]
+    },
+    {
+      "id": "TEX-02",
+      "caseIds": [
+        "TE-01",
+        "TE-24",
+        "TE-25"
+      ],
+      "kind": "presentation-restatement-of-existing-rule",
+      "decision": "Restore automatic Crimson Agent 9 Blood Gauge capacity; do not grant BG.",
+      "affectedClassCardIds": [
+        "crimson-agent.arch.spill-control"
+      ],
+      "operations": [
+        {
+          "op": "replace_text",
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md",
+          "section": "Crimson Agent: first paragraph",
+          "submittedStartLine": 61,
+          "old": "**Blood Gauge maximum: 3; 6 with Spill Control.** Begin and end encounters at 0. Once on your regular turn, a weapon attack damaging a hostile living creature grants 1 BG; Hemorrhage Slash shares that trigger. All gains, including explicit refunds or critical/kill gains, total at most 2 per round. Staged, friendly and sacrificial sources do not qualify.",
+          "replacement": "**Blood Gauge maximum: 3, becoming 6 automatically at Crimson Agent 9; a known Spill Control grants capacity 6 earlier, never more than 6.** Increasing capacity does not grant Blood Gauge. Begin and end encounters at 0. Once on your regular turn, a weapon attack damaging a hostile living creature grants 1 BG; Hemorrhage Slash shares that trigger. All gains, including explicit refunds or critical/kill gains, total at most 2 per round. Staged, friendly and sacrificial sources do not qualify.",
+          "expectedOccurrences": 1
+        }
+      ],
+      "sourceKept": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+        "pointer": "/engine/7"
+      }
+    },
+    {
+      "id": "TEX-03",
+      "caseIds": [
+        "TE-01",
+        "TE-08",
+        "TE-26"
+      ],
+      "kind": "presentation-restatement-of-existing-rule",
+      "decision": "Replace unspecified turn-boundary recharge timing with actual regular-turn-start timing and exact source endpoints.",
+      "operations": [
+        {
+          "op": "replace_text",
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md",
+          "section": "End a turn, end an encounter, finish a rest: first paragraph",
+          "submittedStartLine": 187,
+          "old": "At a regular turn boundary, resolve actual deadlines and tick round-recharge counters under the [timing rules](../mechanics/CLASS_PLAYTEST_RULES.md#action-and-timing-limits). An extra Action or extra turn does not supply another regular-turn recharge tick. A named counter can receive at most one reset/shortening per round, and a reset is neither a resource refill nor an extra activation.",
+          "replacement": "Resolve each deadline at its actual source-defined start, end or elapsed-time endpoint. Tick round-recharge counters once at the start of the owner's regular turn, even when the owner cannot act, under the [timing rules](../mechanics/CLASS_PLAYTEST_RULES.md#action-and-timing-limits). A turn end, extra Action or extra turn does not supply another regular-turn recharge tick. Outside initiative, use the same source's six-second elapsed-time procedure without double counting a boundary. Only a positive counter can be reset or shortened, at most once per named ability per numbered round; a reset is neither a resource refill nor an extra activation.",
+          "expectedOccurrences": 1
+        }
+      ],
+      "sourceKept": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "section": "Action and timing limits",
+        "submittedLine": 17
+      }
+    },
+    {
+      "id": "TEX-04",
+      "caseIds": [
+        "TE-01",
+        "TE-07"
+      ],
+      "kind": "presentation-restatement-of-existing-rule",
+      "decision": "State that Core task degrees are the default, not an override of six-band crafting or no-natural-shift dismantling.",
+      "operations": [
+        {
+          "op": "replace_text",
+          "path": "DescentReviewChanges/ReviewBible/docs/playtest/PLAYTEST_TERMS_GLOSSARY.md",
+          "section": "Rolls and results: Task, skill or tool check row",
+          "submittedStartLine": 27,
+          "old": "| Task, skill or tool check | Uses the task procedure and its four outcome degrees. If the task provides only success/failure effects, use those effects without inventing extra critical consequences. | [Core resolution](../mechanics/CORE_RESOLUTION_PLAYTEST.md#rolls) |",
+          "replacement": "| Task, skill or tool check | Use the specific procedure. The Core default uses four outcome degrees and natural-1/20 shifts; when it supplies only success/failure effects, apply those shifts and then collapse the degrees. A stated exception controls instead: crafting uses its six bands, and basic/tool-assisted dismantling uses its explicit no-natural-shift test. Do not import another procedure's critical benefits. | [Core resolution](../mechanics/CORE_RESOLUTION_PLAYTEST.md#rolls), [crafting outcomes](../mechanics/CRAFTING_HARVEST_PLAYTEST.md#quality-and-finite-output), [basic dismantling](../mechanics/CRAFTING_HARVEST_PLAYTEST.md#salvage-research-and-sale) |",
+          "expectedOccurrences": 1
+        }
+      ]
+    }
+  ],
+  "permittedPostFulfillmentMetadata": "Normalize only teaching/presentation review labels, update current corrected artifact hashes and the finite named coverage notes; preserve frozen submissions, old receipts and source objects. The existing PDF may stay byte-identical with draft footer; use an external reviewed-presentation receipt. No gameplay-status promotion is implied.",
+  "noAdditionalOwnerConfirmation": true
+}

@@ -1,0 +1,2429 @@
+{
+  "scenarioId": "DICE-L15-CONTROL",
+  "seed": 1705,
+  "rounds": 8,
+  "outcome": "defeat",
+  "objectiveCompleted": false,
+  "roundLog": [
+    {
+      "round": 1,
+      "turns": [
+        {
+          "actor": "Monk",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                1
+              ],
+              "modifier": 10,
+              "total": 11,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                14
+              ],
+              "modifier": 10,
+              "total": 24,
+              "purpose": "weapon attack 2 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                2
+              ],
+              "modifier": 5,
+              "total": 7,
+              "purpose": "weapon damage 2"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                18
+              ],
+              "modifier": 10,
+              "total": 28,
+              "purpose": "AAS attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                7
+              ],
+              "modifier": 0,
+              "total": 7,
+              "purpose": "AAS damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                8
+              ],
+              "modifier": 10,
+              "total": 18,
+              "purpose": "AAS attack 2 vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Attack + Additional Action Slot Attack+Control(tenacity_staggered)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": true,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 14,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "tenacity_staggered:Choralith, Voice Below"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Oracle",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                18
+              ],
+              "modifier": 9,
+              "total": 27,
+              "purpose": "spell attack vs Choralith, Voice Below"
+            },
+            {
+              "die": "3d8",
+              "faces": [
+                8,
+                3,
+                3
+              ],
+              "modifier": 3,
+              "total": 17,
+              "purpose": "spell damage to Choralith, Voice Below"
+            }
+          ],
+          "action": "Cantrip:Choralith, Voice Below+Control(controlled)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 17,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "controlled:Choralith, Voice Below",
+            "Stunned:Choralith, Voice Below"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Choralith, Voice Below",
+          "rolls": [],
+          "action": "skip (Stunned)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 0
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 0
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Wizard",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                12
+              ],
+              "modifier": 8,
+              "total": 20,
+              "purpose": "deployed actor attack vs Choralith, Voice Below"
+            },
+            {
+              "die": "d6",
+              "faces": [
+                5
+              ],
+              "modifier": 2,
+              "total": 7,
+              "purpose": "deployed actor damage"
+            }
+          ],
+          "action": "Deploy actor (1/2)+Control(saved)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 1,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 7,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "saved:Choralith, Voice Below"
+          ],
+          "actorsControlled": 1
+        },
+        {
+          "actor": "Mirrorsage",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                11
+              ],
+              "modifier": 8,
+              "total": 19,
+              "purpose": "deployed actor attack vs Choralith, Voice Below"
+            },
+            {
+              "die": "d6",
+              "faces": [
+                1
+              ],
+              "modifier": 2,
+              "total": 3,
+              "purpose": "deployed actor damage"
+            }
+          ],
+          "action": "Deploy actor (1/2)+Control(controlled)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 1,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 3,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "controlled:Choralith, Voice Below",
+            "Stunned:Choralith, Voice Below"
+          ],
+          "actorsControlled": 1
+        },
+        {
+          "actor": "Angry Grief-Bound",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                19
+              ],
+              "modifier": 9,
+              "total": 28,
+              "purpose": "Angry Grief-Bound attack 1 vs Wizard"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                8,
+                4,
+                6
+              ],
+              "modifier": 10,
+              "total": 28,
+              "purpose": "Angry Grief-Bound damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                1
+              ],
+              "modifier": 9,
+              "total": 10,
+              "purpose": "Angry Grief-Bound attack 2 vs Wizard"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                3
+              ],
+              "modifier": 9,
+              "total": 12,
+              "purpose": "Angry Grief-Bound attack 3 vs Wizard"
+            }
+          ],
+          "action": "Multiattack:Rage Rend,Life Drain,Rage Rend",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 28,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "turns": [
+        {
+          "actor": "Monk",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                20
+              ],
+              "modifier": 10,
+              "total": 30,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                4
+              ],
+              "modifier": 5,
+              "total": 9,
+              "purpose": "weapon damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                18
+              ],
+              "modifier": 10,
+              "total": 28,
+              "purpose": "weapon attack 2 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                5
+              ],
+              "modifier": 5,
+              "total": 10,
+              "purpose": "weapon damage 2"
+            }
+          ],
+          "action": "Attack x2+Control(saved)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 28,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "saved:Choralith, Voice Below"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Oracle",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                7
+              ],
+              "modifier": 9,
+              "total": 16,
+              "purpose": "spell attack vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Cantrip:Choralith, Voice Below+Control(blocked_no_new_save)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "blocked_no_new_save:Choralith, Voice Below"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Choralith, Voice Below",
+          "rolls": [],
+          "action": "skip (Stunned)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Wizard",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                16
+              ],
+              "modifier": 8,
+              "total": 24,
+              "purpose": "deployed actor attack vs Choralith, Voice Below"
+            },
+            {
+              "die": "d6",
+              "faces": [
+                1
+              ],
+              "modifier": 2,
+              "total": 3,
+              "purpose": "deployed actor damage"
+            }
+          ],
+          "action": "Deploy actor (2/2)+Control(tenacity_staggered)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 1,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 3,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "tenacity_staggered:Choralith, Voice Below"
+          ],
+          "actorsControlled": 2
+        },
+        {
+          "actor": "Mirrorsage",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                13
+              ],
+              "modifier": 8,
+              "total": 21,
+              "purpose": "deployed actor attack vs Choralith, Voice Below"
+            },
+            {
+              "die": "d6",
+              "faces": [
+                2
+              ],
+              "modifier": 2,
+              "total": 4,
+              "purpose": "deployed actor damage"
+            }
+          ],
+          "action": "Deploy actor (2/2)+Control(saved)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 1,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 4,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "saved:Choralith, Voice Below"
+          ],
+          "actorsControlled": 2
+        },
+        {
+          "actor": "Angry Grief-Bound",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                3
+              ],
+              "modifier": 9,
+              "total": 12,
+              "purpose": "Angry Grief-Bound attack 1 vs Wizard"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                5
+              ],
+              "modifier": 9,
+              "total": 14,
+              "purpose": "Angry Grief-Bound attack 2 vs Wizard"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                3
+              ],
+              "modifier": 9,
+              "total": 12,
+              "purpose": "Angry Grief-Bound attack 3 vs Wizard"
+            }
+          ],
+          "action": "Multiattack:Rage Rend,Life Drain,Rage Rend",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "turns": [
+        {
+          "actor": "Monk",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                19
+              ],
+              "modifier": 10,
+              "total": 29,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                1
+              ],
+              "modifier": 5,
+              "total": 6,
+              "purpose": "weapon damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                4
+              ],
+              "modifier": 10,
+              "total": 14,
+              "purpose": "weapon attack 2 vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Attack x2+Control(tenacity_staggered)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 6,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "tenacity_staggered:Choralith, Voice Below"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Oracle",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                19
+              ],
+              "modifier": 9,
+              "total": 28,
+              "purpose": "spell attack vs Choralith, Voice Below"
+            },
+            {
+              "die": "3d8",
+              "faces": [
+                7,
+                6,
+                8
+              ],
+              "modifier": 3,
+              "total": 24,
+              "purpose": "spell damage to Choralith, Voice Below"
+            }
+          ],
+          "action": "Cantrip:Choralith, Voice Below+Control(controlled)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 24,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "controlled:Choralith, Voice Below",
+            "Stunned:Choralith, Voice Below"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Choralith, Voice Below",
+          "rolls": [],
+          "action": "skip (Stunned)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 0
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 0
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Wizard",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                1
+              ],
+              "modifier": 10,
+              "total": 11,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Attack x1+Control(saved)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "saved:Choralith, Voice Below"
+          ],
+          "actorsControlled": 2
+        },
+        {
+          "actor": "Mirrorsage",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                6
+              ],
+              "modifier": 10,
+              "total": 16,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Attack x1+Control(controlled)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "controlled:Choralith, Voice Below",
+            "Stunned:Choralith, Voice Below"
+          ],
+          "actorsControlled": 2
+        },
+        {
+          "actor": "Angry Grief-Bound",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                7
+              ],
+              "modifier": 9,
+              "total": 16,
+              "purpose": "Angry Grief-Bound attack 1 vs Wizard"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                5,
+                3,
+                2
+              ],
+              "modifier": 10,
+              "total": 20,
+              "purpose": "Angry Grief-Bound damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                14
+              ],
+              "modifier": 9,
+              "total": 23,
+              "purpose": "Angry Grief-Bound attack 2 vs Wizard"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                9,
+                5,
+                10
+              ],
+              "modifier": 9,
+              "total": 33,
+              "purpose": "Angry Grief-Bound damage 2"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                4
+              ],
+              "modifier": 9,
+              "total": 13,
+              "purpose": "Angry Grief-Bound attack 3 vs Wizard"
+            }
+          ],
+          "action": "Multiattack:Rage Rend,Life Drain,Rage Rend",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 53,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "turns": [
+        {
+          "actor": "Monk",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                1
+              ],
+              "modifier": 10,
+              "total": 11,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                6
+              ],
+              "modifier": 10,
+              "total": 16,
+              "purpose": "weapon attack 2 vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Attack x2",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Oracle",
+          "rolls": [
+            {
+              "die": "d8",
+              "faces": [
+                4
+              ],
+              "modifier": 11,
+              "total": 15,
+              "purpose": "heal Wizard"
+            }
+          ],
+          "action": "Heal:Wizard",
+          "bonusAction": "Maintain formation",
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 0,
+          "healing": 15,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Choralith, Voice Below",
+          "rolls": [],
+          "action": "skip (Stunned)",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Wizard",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                1
+              ],
+              "modifier": 10,
+              "total": 11,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Attack x1",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 2
+        },
+        {
+          "actor": "Mirrorsage",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                17
+              ],
+              "modifier": 10,
+              "total": 27,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d6",
+              "faces": [
+                5
+              ],
+              "modifier": 1,
+              "total": 6,
+              "purpose": "weapon damage 1"
+            }
+          ],
+          "action": "Attack x1",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 6,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 2
+        },
+        {
+          "actor": "Angry Grief-Bound",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                20
+              ],
+              "modifier": 9,
+              "total": 29,
+              "purpose": "Angry Grief-Bound attack 1 vs Wizard"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                6,
+                9,
+                4
+              ],
+              "modifier": 10,
+              "total": 29,
+              "purpose": "Angry Grief-Bound damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                19
+              ],
+              "modifier": 9,
+              "total": 28,
+              "purpose": "Angry Grief-Bound attack 2 vs Mirrorsage"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                1,
+                4,
+                8
+              ],
+              "modifier": 9,
+              "total": 22,
+              "purpose": "Angry Grief-Bound damage 2"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                1
+              ],
+              "modifier": 9,
+              "total": 10,
+              "purpose": "Angry Grief-Bound attack 3 vs Mirrorsage"
+            }
+          ],
+          "action": "Multiattack:Rage Rend,Life Drain,Rage Rend",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 48,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "turns": [
+        {
+          "actor": "Monk",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                8
+              ],
+              "modifier": 10,
+              "total": 18,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                16
+              ],
+              "modifier": 10,
+              "total": 26,
+              "purpose": "weapon attack 2 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                6
+              ],
+              "modifier": 5,
+              "total": 11,
+              "purpose": "weapon damage 2"
+            }
+          ],
+          "action": "Attack x2",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 11,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Oracle",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                20
+              ],
+              "modifier": 9,
+              "total": 29,
+              "purpose": "spell attack vs Choralith, Voice Below"
+            },
+            {
+              "die": "3d8",
+              "faces": [
+                1,
+                6,
+                2
+              ],
+              "modifier": 3,
+              "total": 12,
+              "purpose": "spell damage to Choralith, Voice Below"
+            }
+          ],
+          "action": "Cantrip:Choralith, Voice Below",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 24,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Choralith, Voice Below",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                8
+              ],
+              "modifier": 11,
+              "total": 19,
+              "purpose": "Choralith, Voice Below staggered attack vs Mirrorsage"
+            },
+            {
+              "die": "3d12",
+              "faces": [
+                5,
+                12,
+                8
+              ],
+              "modifier": 8,
+              "total": 33,
+              "purpose": "staggered damage"
+            }
+          ],
+          "action": "Staggered:Resonant Lash",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 33,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Wizard",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                2
+              ],
+              "modifier": 0,
+              "total": 2,
+              "purpose": "death save Wizard"
+            }
+          ],
+          "action": "death save",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {},
+          "resourcesAfter": {},
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "death-save"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Mirrorsage",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                14
+              ],
+              "modifier": 10,
+              "total": 24,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d6",
+              "faces": [
+                6
+              ],
+              "modifier": 1,
+              "total": 7,
+              "purpose": "weapon damage 1"
+            }
+          ],
+          "action": "Attack x1",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 2,
+            "actorCap": 2,
+            "canDeployActors": true,
+            "deployBudget": 2
+          },
+          "damageDealt": 7,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 2
+        },
+        {
+          "actor": "Angry Grief-Bound",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                5
+              ],
+              "modifier": 9,
+              "total": 14,
+              "purpose": "Angry Grief-Bound attack 1 vs Mirrorsage"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                6
+              ],
+              "modifier": 9,
+              "total": 15,
+              "purpose": "Angry Grief-Bound attack 2 vs Mirrorsage"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                8,
+                2,
+                6
+              ],
+              "modifier": 9,
+              "total": 25,
+              "purpose": "Angry Grief-Bound damage 2"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                2
+              ],
+              "modifier": 9,
+              "total": 11,
+              "purpose": "Angry Grief-Bound attack 3 vs Mirrorsage"
+            }
+          ],
+          "action": "Multiattack:Rage Rend,Life Drain,Rage Rend",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 25,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "turns": [
+        {
+          "actor": "Monk",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                5
+              ],
+              "modifier": 10,
+              "total": 15,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                15
+              ],
+              "modifier": 10,
+              "total": 25,
+              "purpose": "weapon attack 2 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                6
+              ],
+              "modifier": 5,
+              "total": 11,
+              "purpose": "weapon damage 2"
+            }
+          ],
+          "action": "Attack x2",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 11,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Oracle",
+          "rolls": [
+            {
+              "die": "d8",
+              "faces": [
+                4
+              ],
+              "modifier": 11,
+              "total": 15,
+              "purpose": "heal Mirrorsage"
+            }
+          ],
+          "action": "Heal:Mirrorsage",
+          "bonusAction": "Maintain formation",
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 0,
+          "healing": 15,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Choralith, Voice Below",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                20
+              ],
+              "modifier": 11,
+              "total": 31,
+              "purpose": "Choralith, Voice Below attack 1 vs Mirrorsage"
+            },
+            {
+              "die": "3d12",
+              "faces": [
+                8,
+                8,
+                11
+              ],
+              "modifier": 8,
+              "total": 35,
+              "purpose": "Choralith, Voice Below damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                17
+              ],
+              "modifier": 11,
+              "total": 28,
+              "purpose": "Choralith, Voice Below attack 2 vs Oracle"
+            },
+            {
+              "die": "2d10",
+              "faces": [
+                3,
+                4
+              ],
+              "modifier": 6,
+              "total": 13,
+              "purpose": "Choralith, Voice Below damage 2"
+            }
+          ],
+          "action": "Multiattack:Resonant Lash,Echo Needle",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 40,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Wizard",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                14
+              ],
+              "modifier": 0,
+              "total": 14,
+              "purpose": "death save Wizard"
+            }
+          ],
+          "action": "death save",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {},
+          "resourcesAfter": {},
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "death-save"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Mirrorsage",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                1
+              ],
+              "modifier": 0,
+              "total": 1,
+              "purpose": "death save Mirrorsage"
+            }
+          ],
+          "action": "death save",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {},
+          "resourcesAfter": {},
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "death-save"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Angry Grief-Bound",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                19
+              ],
+              "modifier": 9,
+              "total": 28,
+              "purpose": "Angry Grief-Bound attack 1 vs Oracle"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                10,
+                6,
+                10
+              ],
+              "modifier": 10,
+              "total": 36,
+              "purpose": "Angry Grief-Bound damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                7
+              ],
+              "modifier": 9,
+              "total": 16,
+              "purpose": "Angry Grief-Bound attack 2 vs Oracle"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                2,
+                1,
+                2
+              ],
+              "modifier": 9,
+              "total": 14,
+              "purpose": "Angry Grief-Bound damage 2"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                2
+              ],
+              "modifier": 9,
+              "total": 11,
+              "purpose": "Angry Grief-Bound attack 3 vs Oracle"
+            }
+          ],
+          "action": "Multiattack:Rage Rend,Life Drain,Rage Rend",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 50,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "turns": [
+        {
+          "actor": "Monk",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                13
+              ],
+              "modifier": 10,
+              "total": 23,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                8
+              ],
+              "modifier": 5,
+              "total": 13,
+              "purpose": "weapon damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                8
+              ],
+              "modifier": 10,
+              "total": 18,
+              "purpose": "weapon attack 2 vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Attack x2",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 13,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Oracle",
+          "rolls": [
+            {
+              "die": "d8",
+              "faces": [
+                4
+              ],
+              "modifier": 11,
+              "total": 15,
+              "purpose": "heal Oracle"
+            }
+          ],
+          "action": "Heal:Oracle",
+          "bonusAction": "Maintain formation",
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 10,
+            "spellSlotsApprox": 7,
+            "concentration": null,
+            "additionalActionSlotAvailable": true,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 0,
+          "healing": 15,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Choralith, Voice Below",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                5
+              ],
+              "modifier": 11,
+              "total": 16,
+              "purpose": "Choralith, Voice Below attack 1 vs Oracle"
+            },
+            {
+              "die": "3d12",
+              "faces": [
+                10,
+                6,
+                8
+              ],
+              "modifier": 8,
+              "total": 32,
+              "purpose": "Choralith, Voice Below damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                6
+              ],
+              "modifier": 11,
+              "total": 17,
+              "purpose": "Choralith, Voice Below attack 2 vs Oracle"
+            },
+            {
+              "die": "2d10",
+              "faces": [
+                1,
+                7
+              ],
+              "modifier": 6,
+              "total": 14,
+              "purpose": "Choralith, Voice Below damage 2"
+            }
+          ],
+          "action": "Multiattack:Resonant Lash,Echo Needle",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 46,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Wizard",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                7
+              ],
+              "modifier": 0,
+              "total": 7,
+              "purpose": "death save Wizard"
+            }
+          ],
+          "action": "death save",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {},
+          "resourcesAfter": {},
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "death-save"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Mirrorsage",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                2
+              ],
+              "modifier": 0,
+              "total": 2,
+              "purpose": "death save Mirrorsage"
+            }
+          ],
+          "action": "death save",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {},
+          "resourcesAfter": {},
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "death-save"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Angry Grief-Bound",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                3
+              ],
+              "modifier": 9,
+              "total": 12,
+              "purpose": "Angry Grief-Bound attack 1 vs Oracle"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                7
+              ],
+              "modifier": 9,
+              "total": 16,
+              "purpose": "Angry Grief-Bound attack 2 vs Oracle"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                10,
+                3,
+                5
+              ],
+              "modifier": 9,
+              "total": 27,
+              "purpose": "Angry Grief-Bound damage 2"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                12
+              ],
+              "modifier": 9,
+              "total": 21,
+              "purpose": "Angry Grief-Bound attack 3 vs Monk"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                2,
+                1,
+                2
+              ],
+              "modifier": 10,
+              "total": 15,
+              "purpose": "Angry Grief-Bound damage 3"
+            }
+          ],
+          "action": "Multiattack:Rage Rend,Life Drain,Rage Rend",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 29,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "turns": [
+        {
+          "actor": "Monk",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                14
+              ],
+              "modifier": 10,
+              "total": 24,
+              "purpose": "weapon attack 1 vs Choralith, Voice Below"
+            },
+            {
+              "die": "d8",
+              "faces": [
+                7
+              ],
+              "modifier": 5,
+              "total": 12,
+              "purpose": "weapon damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                7
+              ],
+              "modifier": 10,
+              "total": 17,
+              "purpose": "weapon attack 2 vs Choralith, Voice Below"
+            }
+          ],
+          "action": "Attack x2",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "resourcesAfter": {
+            "classResource": 9,
+            "spellSlotsApprox": 0,
+            "concentration": null,
+            "additionalActionSlotAvailable": false,
+            "actorsControlled": 0,
+            "actorCap": 2
+          },
+          "damageDealt": 12,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Oracle",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                8
+              ],
+              "modifier": 0,
+              "total": 8,
+              "purpose": "death save Oracle"
+            }
+          ],
+          "action": "death save",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {},
+          "resourcesAfter": {},
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "death-save"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Choralith, Voice Below",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                14
+              ],
+              "modifier": 11,
+              "total": 25,
+              "purpose": "Choralith, Voice Below attack 1 vs Monk"
+            },
+            {
+              "die": "3d12",
+              "faces": [
+                3,
+                7,
+                8
+              ],
+              "modifier": 8,
+              "total": 26,
+              "purpose": "Choralith, Voice Below damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                9
+              ],
+              "modifier": 11,
+              "total": 20,
+              "purpose": "Choralith, Voice Below attack 2 vs Monk"
+            },
+            {
+              "die": "2d10",
+              "faces": [
+                9,
+                9
+              ],
+              "modifier": 6,
+              "total": 24,
+              "purpose": "Choralith, Voice Below damage 2"
+            }
+          ],
+          "action": "Multiattack:Resonant Lash,Echo Needle",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 50,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Wizard",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                14
+              ],
+              "modifier": 0,
+              "total": 14,
+              "purpose": "death save Wizard"
+            }
+          ],
+          "action": "death save",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {},
+          "resourcesAfter": {},
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "death-save"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Mirrorsage",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                1
+              ],
+              "modifier": 0,
+              "total": 1,
+              "purpose": "death save Mirrorsage"
+            }
+          ],
+          "action": "death save",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {},
+          "resourcesAfter": {},
+          "damageDealt": 0,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [
+            "death-save"
+          ],
+          "actorsControlled": 0
+        },
+        {
+          "actor": "Angry Grief-Bound",
+          "rolls": [
+            {
+              "die": "d20",
+              "faces": [
+                15
+              ],
+              "modifier": 9,
+              "total": 24,
+              "purpose": "Angry Grief-Bound attack 1 vs Monk"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                4,
+                7,
+                3
+              ],
+              "modifier": 10,
+              "total": 24,
+              "purpose": "Angry Grief-Bound damage 1"
+            },
+            {
+              "die": "d20",
+              "faces": [
+                13
+              ],
+              "modifier": 9,
+              "total": 22,
+              "purpose": "Angry Grief-Bound attack 2 vs Monk"
+            },
+            {
+              "die": "3d10",
+              "faces": [
+                6,
+                8,
+                6
+              ],
+              "modifier": 9,
+              "total": 29,
+              "purpose": "Angry Grief-Bound damage 2"
+            }
+          ],
+          "action": "Multiattack:Rage Rend,Life Drain",
+          "bonusAction": null,
+          "reaction": null,
+          "movementFeet": 0,
+          "additionalActionSlotUsed": false,
+          "resourcesBefore": {
+            "tenacityLeft": 1
+          },
+          "resourcesAfter": {
+            "tenacityLeft": 1
+          },
+          "damageDealt": 43,
+          "healing": 0,
+          "damagePrevented": 0,
+          "conditionsApplied": [],
+          "actorsControlled": 0
+        }
+      ]
+    }
+  ],
+  "rulings": [
+    "RJ-06-01: Shared Additional Action Slot \u2014 at most one extra full Action per round; restack attempts are illegal (GAMEPLAY_LOOP_CANON \u00a7Action-economy limits).",
+    "RJ-06-02: Independent actor cap \u2014 max two independent combat-capable actors under one controller; excess deploy attempts are illegal.",
+    "RJ-06-03: Natural 1 always misses; natural 20 always hits and doubles damage dice totals already rolled.",
+    "RJ-06-13: A creature cannot lose more than one full turn to the same control source without a new save or escalation cost."
+  ],
+  "illegalAttempts": [
+    "control-without-new-save:oracle-control->Choralith, Voice Below"
+  ],
+  "rulesLookups": 9,
+  "sourceHashes": {
+    "CANON_MANIFEST.json": "dcacc5aabdd3aa59fc64dca094ba6c9273a968780cfdefccf41ed27758c5b929",
+    "docs/mechanics/GAMEPLAY_LOOP_CANON.md": "ba5ebcbdb77a27cb8fde88ba13fd05216d6808b10f7b58b64e6cba54eed62066",
+    "src/data/class-details.js": "52d1ef54c301376ca7c102fcafb6c418b9dbd7d51da102121a46a846155e9fc7",
+    "src/data/class-paths.js": "4c519b6328985afe80dc107366345544a4c19564bd449cd8b056451d0839e327",
+    "src/data/class-draft-levels.js": "97949d23bd04e1af33df45f969ec4e140e70f2fad2ff332138d665b13f2e0d3d",
+    "src/data/class-hit-dice.js": "8e2bd690b6ccb097d5fdffcdb9ac0d98924772270447ecb9aa67fc586a73f9a4",
+    "src/data/feats.js": "842d14e868aa93d51fc6f21e39bc9dd3a1b872cdffcf467ffaa99a4cc3f779b6",
+    "src/data/spells.js": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+    "src/data/gameplay-loop.json": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+    "src/bestiary_data_full.json": "daad9075cee8556667a42b1998e581f1ddbeb3b56c25188dcc2efdd7578d044e"
+  },
+  "fixtureHash": "5e66ffe4f2b1a1f0e3f111d8d63cbc779ad1ea908c293df567040ee33c88a03d",
+  "partyBuildHashes": [
+    "1e16b303e59e3530317dbe154cc1b7ccd3b57283b121ff0b93c4c83ce7196102",
+    "50ede7d0de14f734c282384c298cfe2c2c85b2ba62f363535594e11e4b91d76e",
+    "fdecc62946c49b6a6c4737a02ac826f3e1cfe59f5c2ba843a2134b3450467973",
+    "371f91526299d5489f87c5ccfd109f3d9ea330b309881ffe01e5b61fcc1d19ac"
+  ],
+  "diceSequenceLength": 126,
+  "finalPartyHp": [
+    {
+      "name": "Oracle",
+      "hp": 0,
+      "maxHp": 108
+    },
+    {
+      "name": "Wizard",
+      "hp": 0,
+      "maxHp": 92
+    },
+    {
+      "name": "Mirrorsage",
+      "hp": 0,
+      "maxHp": 92
+    },
+    {
+      "name": "Monk",
+      "hp": 0,
+      "maxHp": 108
+    }
+  ],
+  "finalEnemyHp": [
+    {
+      "name": "Choralith, Voice Below",
+      "hp": 293,
+      "maxHp": 483
+    },
+    {
+      "name": "Angry Grief-Bound",
+      "hp": 494,
+      "maxHp": 494
+    }
+  ],
+  "evidenceLevel": "A",
+  "script": "tools/pack06_dice_combat.py"
+}

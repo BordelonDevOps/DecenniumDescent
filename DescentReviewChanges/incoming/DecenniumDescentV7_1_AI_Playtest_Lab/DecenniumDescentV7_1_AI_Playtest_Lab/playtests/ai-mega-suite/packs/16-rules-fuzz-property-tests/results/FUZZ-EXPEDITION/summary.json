@@ -1,0 +1,76 @@
+{
+  "pack": "16-rules-fuzz-property-tests",
+  "scenarioId": "FUZZ-EXPEDITION",
+  "runId": "FUZZ-EXPEDITION-71600",
+  "seed": 71600,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "runs": 25000,
+    "failureCount": 4968,
+    "failureTypes": {
+      "roster_over_max": 4968
+    },
+    "objective": "Pressure, Supply, Strain, route progress, cargo"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "confirmed",
+      "type": "roster_over_max",
+      "count": 4968,
+      "detail": "roster_over_max observed 4968/25000 transitions",
+      "sample": [
+        [
+          "roster_over_max",
+          4,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ],
+        [
+          "roster_over_max",
+          37,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ],
+        [
+          "roster_over_max",
+          42,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ],
+        [
+          "roster_over_max",
+          51,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ],
+        [
+          "roster_over_max",
+          57,
+          {
+            "party": 14,
+            "max": 12
+          }
+        ]
+      ]
+    },
+    {
+      "severity": "confirmed",
+      "type": "roster_cap_enforcement_gap",
+      "detail": "Generator produced party>12; invariant correctly flagged. Ensure companion UI rejects >12.",
+      "count": 4968
+    }
+  ],
+  "rawEvidencePath": "results/16-rules-fuzz-property-tests/FUZZ-EXPEDITION/"
+}

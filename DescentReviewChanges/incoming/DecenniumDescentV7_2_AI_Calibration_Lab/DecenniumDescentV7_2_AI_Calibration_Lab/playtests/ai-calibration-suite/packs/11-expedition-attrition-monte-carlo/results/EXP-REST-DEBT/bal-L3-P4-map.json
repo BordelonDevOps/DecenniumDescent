@@ -1,0 +1,81 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-REST-DEBT",
+  "runId": "EXP-REST-DEBT-bal-L3-P4-map",
+  "seed": 2407949,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.991,
+    "wipeRate": 0.0,
+    "abortRate": 0.009,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0.282,
+    "meanWatches": 3.995,
+    "meanHours": 34.41,
+    "meanTrueProfit": 5.6,
+    "medianTrueProfit": 5.24,
+    "profitLossRate": 0.407,
+    "meanCargoRetainedLoad": 4.633,
+    "meanExtractionFailRate": 0.306,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 3,
+    "party": 4,
+    "mapping": "Mapped",
+    "policy": "balanced",
+    "objective": "interrupted rest and attrition",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    },
+    {
+      "code": "REST-DEBT-INTERRUPT-TIMING",
+      "note": "Rest Debt deadline 'next two Watches and before next day boundary' \u2014 applied as day-boundary failure; interrupt mid-rest timing vs Evening camp workers remains underspecified in JSON."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-REST-DEBT/bal-L3-P4-map.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 1,
+      "supply": 8.0,
+      "load": 7,
+      "mapping": "Mapped",
+      "alive": 4,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 1,
+      "supply": 8.0,
+      "load": 7,
+      "mapping": "Mapped",
+      "alive": 4,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 6,
+      "pressure": 1,
+      "supply": 11.0,
+      "load": 7,
+      "mapping": "Mapped",
+      "alive": 4,
+      "extracting": false
+    }
+  ]
+}

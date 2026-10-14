@@ -5,8 +5,8 @@ import "./globals.css";
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "D&D 5e Character Builder",
-  description: "Dungeons & Dragons 5th Edition character builder and digital character sheet",
+  title: "Decennium Descent — Companion",
+  description: "Character builder, bestiary, spells, crafting, dungeon guide, and cosmology for Decennium Descent",
 };
 
 export default function RootLayout({

@@ -1,0 +1,10 @@
+pack,code,note
+13-haven-economy-stress,COUNTERFEIT-SEIZURE-FRACTION,coinAssay defines DCs and fees but not seizure/forfeiture fraction on detected counterfeit; sim uses 50% value loss proxy.
+13-haven-economy-stress,DEBT-INTEREST-OVER-CAP,Requested rate 0.15 exceeds debtInterestCapPerOpening 0.1; clamped.
+13-haven-economy-stress,FACTION-ACCESS-THRESHOLDS,reputation labels exist (-5..+5) but numeric access gates for desks/licenses are not fully tabulated in Gameplay Loop JSON; sim uses inferred thresholds.
+14-seasonal-cycle-simulation,MATRIX-VS-SEASONAL-OPENINGS,Matrix text may say three Openings; Loop v1.2 seasonal.openingsPerCycle=1 — sim follows JSON.
+12-cargo-extraction-risk,EXTRACTION-HANDLING-MODS,extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON — sim uses 0.
+12-cargo-extraction-risk,UNKNOWN-PROGRESS-ZERO,"progressPerWatch.Unknown=0; without Map Route success, expedition cannot meet Progress targets — intentional deadlock risk."
+11-expedition-attrition-monte-carlo,EXTRACTION-HANDLING-MODS,extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON — sim uses 0.
+11-expedition-attrition-monte-carlo,UNKNOWN-PROGRESS-ZERO,"progressPerWatch.Unknown=0; without Map Route success, expedition cannot meet Progress targets — intentional deadlock risk."
+11-expedition-attrition-monte-carlo,REST-DEBT-INTERRUPT-TIMING,Rest Debt deadline 'next two Watches and before next day boundary' — applied as day-boundary failure; interrupt mid-rest timing vs Evening camp workers remains underspecified in JSON.

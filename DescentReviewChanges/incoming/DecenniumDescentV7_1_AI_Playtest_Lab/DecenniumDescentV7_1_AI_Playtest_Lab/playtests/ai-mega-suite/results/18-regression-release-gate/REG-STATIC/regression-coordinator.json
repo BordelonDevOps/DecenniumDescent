@@ -1,0 +1,38 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-STATIC",
+  "runId": "2026-08-06T122200Z-REG-COORD",
+  "seed": 57100,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": null,
+  "evidenceLevel": "B",
+  "outcome": "GATE_FAIL",
+  "metrics": {
+    "dependenciesUsed": [
+      "results/00-static-validators/results.json",
+      "results/00-baseline-simulations/*",
+      "results/16-rules-fuzz-property-tests/property_fuzz_summary.json",
+      "packs/05-readability-speed-onboarding/results (this run)",
+      "packs/17-gm-readiness-usability/results (this run)"
+    ],
+    "missingPreferredDeps": [
+      "Full agent JSON from packs 01,07,08,11,12,13 (not present on disk — noted, not invented)"
+    ],
+    "proposedPatchDiff": "none"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "defect",
+      "summary": "Release gate cannot claim full suite regression: most numbered pack result trees are empty except 00 baselines, 16 fuzz, and this run's 05/17/18.",
+      "citation": "playtests/ai-mega-suite/results/"
+    },
+    {
+      "severity": "usability",
+      "summary": "From packs 05/17: Rest Debt UI vs canon and Retreat double-count ambiguity are clarity blockers; do not treat as combat DPR defects.",
+      "citation": "packs/05 and 17 findings"
+    }
+  ],
+  "rawEvidencePath": "packs/18-regression-release-gate/results/",
+  "agentId": "regression-coordinator"
+}

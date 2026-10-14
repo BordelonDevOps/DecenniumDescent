@@ -1,0 +1,40 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-STATIC",
+  "runId": "2026-08-06T151746Z-REG-COORD",
+  "seed": 77400,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": null,
+  "evidenceLevel": "B",
+  "outcome": "GATE_PASS_WITH_LIMITATIONS",
+  "metrics": {
+    "dependenciesUsed": [
+      "results/07-budget-autotune/*",
+      "results/08-objective-calibration/*",
+      "results/11-coupled-expedition/*",
+      "results/13-haven-formulas/*",
+      "results/14-one-opening-cycle/*",
+      "results/16-fail-closed-fuzz/*",
+      "packs/05,17,19,20 results (this run)"
+    ],
+    "missingPreferredDeps": [
+      "Full agent JSON from packs 01-04,06-16 may still be incomplete while sibling waves finish — noted, not invented"
+    ],
+    "proposedPatchDiff": "none"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "defect",
+      "summary": "Release gate cannot claim full suite regression until sibling waves finish packs 01-16; this wave completed 05/17/18/19/20 against available executable math.",
+      "citation": "playtests/ai-calibration-suite/results/"
+    },
+    {
+      "severity": "usability",
+      "summary": "From packs 05/17: V7.2 Rest Debt UI and Retreat Escape cap are aligned with canon; remaining blockers are terminology density, Haven ten-step load, and missing one-page Quickstart.",
+      "citation": "packs/05 and 17 findings"
+    }
+  ],
+  "rawEvidencePath": "packs/18-regression-release-gate/results/",
+  "agentId": "regression-coordinator"
+}

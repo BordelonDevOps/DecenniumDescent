@@ -1,0 +1,23 @@
+{
+  "recordedAtUtc": "2026-10-13T21:39:58.796671+00:00",
+  "reason": "Curse Channeling current source and FW06 specify total level10, not the level of a banked feat opportunity. KEEP existing rule; initialize capacity from current attained total. No marks, riders, payments or source text changed.",
+  "changes": [
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat_exact_01_remaining_owned_chains.py",
+        "bytes": 4617,
+        "sha256": "3bc131fd9d030c14f517abdf306720f4f5ad9b2453e3758e9110927416085a6a",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/before-feat335-curse-capacity-followthrough/feat_exact_01_remaining_owned_chains.py"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat_exact_01_remaining_owned_chains.py",
+        "bytes": 4650,
+        "sha256": "6143ae20719fcb52519df627b6c16803c3759e1b14b62c96c52db61f6f622a0d"
+      },
+      "guardedBefore": "additions = {'marks': [], 'markCapacity': 2 if level >= 10 else 1}",
+      "guardedAfter": "additions = {'marks': [], 'markCapacity': 2 if sum(self.pay.current_classes.values()) >= 10 else 1}"
+    }
+  ],
+  "newGameRules": 0,
+  "sourceInformationDeleted": 0
+}

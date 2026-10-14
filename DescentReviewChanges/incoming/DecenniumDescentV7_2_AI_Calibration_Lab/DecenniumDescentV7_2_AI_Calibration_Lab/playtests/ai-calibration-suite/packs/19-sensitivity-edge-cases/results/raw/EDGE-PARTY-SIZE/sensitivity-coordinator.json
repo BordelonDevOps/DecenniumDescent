@@ -1,0 +1,36 @@
+{
+  "pack": "19-sensitivity-edge-cases",
+  "scenarioId": "EDGE-PARTY-SIZE",
+  "runId": "2026-08-06T151746Z-EDGE-PARTY-SIZE-sensitivity-coordinator",
+  "seed": 78004,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "21d4753c90a81bdca69836b48fd79b3834fc13896eee1dd2ddeb8069df62cd6a",
+  "evidenceLevel": "B",
+  "outcome": "BOUNDARY_OK",
+  "metrics": {
+    "fixture": {
+      "levels": [
+        5
+      ],
+      "party": [
+        2,
+        3,
+        6,
+        12
+      ],
+      "note": "Party size extremes; 12 is expedition max"
+    },
+    "agentRole": "sensitivity-coordinator",
+    "seed": 78004
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "Party/expedition size 12 is the documented maximum; larger forces must split Expeditions.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §3"
+    }
+  ],
+  "rawEvidencePath": "results/raw/EDGE-PARTY-SIZE/sensitivity-coordinator.json",
+  "agentId": "sensitivity-coordinator"
+}

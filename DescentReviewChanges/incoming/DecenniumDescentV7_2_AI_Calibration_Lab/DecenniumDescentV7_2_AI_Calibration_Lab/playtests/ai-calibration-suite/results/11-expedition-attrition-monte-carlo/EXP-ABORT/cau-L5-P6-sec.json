@@ -1,0 +1,66 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-ABORT",
+  "runId": "EXP-ABORT-cau-L5-P6-sec",
+  "seed": 8197250,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 1000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.06,
+    "wipeRate": 0.0,
+    "abortRate": 0.06,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0.441,
+    "meanWatches": 4.944,
+    "meanHours": 41.76,
+    "meanTrueProfit": 51.39,
+    "medianTrueProfit": 43.39,
+    "profitLossRate": 0.351,
+    "meanCargoRetainedLoad": 4.072,
+    "meanExtractionFailRate": 0.276,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 5,
+    "party": 6,
+    "mapping": "Secured",
+    "policy": "cautious",
+    "objective": "abort conditions and retreat timing",
+    "requestedRuns": 1000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-ABORT/cau-L5-P6-sec.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 1,
+      "supply": 12.0,
+      "load": 11,
+      "mapping": "Secured",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 2,
+      "supply": 15.0,
+      "load": 11,
+      "mapping": "Secured",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

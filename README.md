@@ -1,3 +1,7 @@
+> **Progress snapshot — 14 October 2026:** The owner requested a backup of the work completed so far. See [SNAPSHOT_STATUS_2026-10-14.md](SNAPSHOT_STATUS_2026-10-14.md) for the current status: **419 spells reviewed, 429 pending**. Development remains paused. Older navigation and review-state statements below are historical and may lag this snapshot. This push does not certify whole-game acceptance.
+
+> **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
+
 # Decennium Descent
 
 A comprehensive tabletop role-playing game (TTRPG) experience set in the world of Aethel. This repository contains the companion website and digital tools to enhance your Decennium Descent gaming sessions.
@@ -24,7 +28,7 @@ The central dungeon features 10 distinct tier zones, each with unique environmen
 4. **Isles of Eternal Radiance** - Floating islands bathed in perpetual light
 5. **Sanctum of Echoing Choirs** - Sacred halls resonating with divine music
 
-**Warning**: A giant horn sounds at 120 hours, marking the point of no return. Adventurers must choose to retreat or risk being trapped for 10 years.
+**Clocks (owner lock):** The Decennial Opening lasts **2400 hours (100 days)**. The Horn / point of no return is **hour 1200 (day 50)**. Soft quit at Floor 50 Canticle is morale pressure, not the Horn.
 
 ## Development
 

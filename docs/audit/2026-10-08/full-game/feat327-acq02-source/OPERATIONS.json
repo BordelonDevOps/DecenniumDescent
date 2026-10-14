@@ -1,0 +1,87 @@
+{
+  "addendumId": "FEAT327-ACQ-02",
+  "disposition": "REVISE_GLOBAL_GLOBAL_PROPOSAL_TO_PER_TREE_ADVANCED_GLOBAL_APEX",
+  "authorityScope": "Narrow operative Warrior class-engine correction and consequent feat-acquisition dependency; not feat-only interpretation or class/feat promotion.",
+  "provenance": "NEW explicit reconciliation of conflicting current scope; retain per-tree Advanced wording and select the three specific Apex cards' global maximum-one requirement. Do not claim that the historical book or old engine unambiguously stated this combined rule.",
+  "operations": [
+    {
+      "id": "ACQ02-O1",
+      "op": "replace_json_string",
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "pointer": "/engine/17",
+      "sourceSha256": "9a7de82d75e74ae22135266cd4b0c0951ba6bd280e72584212f441d4fa91fc17",
+      "old": "MUTATION TIERS. Basic mutations require Warrior 1. Advanced mutations require Warrior 6. Apex mutations require Warrior 15. You may equip any mutation whose level gate and other prerequisite you meet. Each tree permits any number of Basic mutations up to slot limits, at most two equipped Advanced mutations at once, and at most one equipped Apex mutation at once.",
+      "replacement": "MUTATION TIERS. Basic mutations require Warrior 1. Advanced mutations require Warrior 6. Apex mutations require Warrior 15. You may equip only mutations whose actual Warrior class-level gate and other prerequisites you meet. NEW explicit scope reconciliation (FEAT327-ACQ-02): across your single set of unlocked mutation slots, you may equip at most two Advanced mutations from each actual mutation tree and at most one Apex mutation in total across all trees. Basic mutations have no additional tier-count ceiling beyond the remaining unlocked slots. Count every equipped mutation, including a dormant one, toward its relevant equipment ceilings; use its actual source-defined tree and tier. These are equipped-loadout ceilings, not per-tree slot grants, limits on the number of feat identities acquired, or separate active-only tier ceilings. The completed-rest equipping procedure and prohibition on duplicate named mutations remain unchanged. Mutation Efficiency changes only the ordinary global simultaneous-active limit. Transcendent and Apex Form activate only the existing legally equipped loadout and do not waive equipment ceilings, level/prerequisite gates or duplicate restrictions. Apex Form's permanent slot IV is the single Warrior-20 slot unlock, not an additional slot each time the form activates. After a temporary activation exception ends, apply its exact ending procedure and the then-applicable active-mutation limit without refreshing durations or granting an unequipped mutation.",
+      "scope": "current derived operative descendant; preserve original snapshot"
+    },
+    {
+      "id": "ACQ02-O2",
+      "op": "replace_text",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/warrior.md",
+      "section": "Engine — MUTATION TIERS",
+      "submittedStartLine": 54,
+      "sourceSha256": "6f75e424a1816292ea8d9e9b011c5583c54b78e8de839b7b6df4ee0095db66bc",
+      "old": "MUTATION TIERS. Basic mutations require Warrior 1. Advanced mutations require Warrior 6. Apex mutations require Warrior 15. You may equip any mutation whose level gate and other prerequisite you meet. Each tree permits any number of Basic mutations up to slot limits, at most two equipped Advanced mutations at once, and at most one equipped Apex mutation at once.",
+      "replacement": "MUTATION TIERS. Basic mutations require Warrior 1. Advanced mutations require Warrior 6. Apex mutations require Warrior 15. You may equip only mutations whose actual Warrior class-level gate and other prerequisites you meet. NEW explicit scope reconciliation (FEAT327-ACQ-02): across your single set of unlocked mutation slots, you may equip at most two Advanced mutations from each actual mutation tree and at most one Apex mutation in total across all trees. Basic mutations have no additional tier-count ceiling beyond the remaining unlocked slots. Count every equipped mutation, including a dormant one, toward its relevant equipment ceilings; use its actual source-defined tree and tier. These are equipped-loadout ceilings, not per-tree slot grants, limits on the number of feat identities acquired, or separate active-only tier ceilings. The completed-rest equipping procedure and prohibition on duplicate named mutations remain unchanged. Mutation Efficiency changes only the ordinary global simultaneous-active limit. Transcendent and Apex Form activate only the existing legally equipped loadout and do not waive equipment ceilings, level/prerequisite gates or duplicate restrictions. Apex Form's permanent slot IV is the single Warrior-20 slot unlock, not an additional slot each time the form activates. After a temporary activation exception ends, apply its exact ending procedure and the then-applicable active-mutation limit without refreshing durations or granting an unequipped mutation.",
+      "expectedOccurrences": 1,
+      "scope": "current operative manuscript; preserve source snapshot"
+    },
+    {
+      "id": "ACQ02-O3",
+      "op": "append_paragraph",
+      "semanticTarget": "derived current FEAT_SHARED_DIRECTIONS.json rule id FS-01 /wording; matched FS-01 manuscript section before Basis and operative public/internal mirrors",
+      "paragraph": "Warrior mutation-feat acquisition uses the equipped-loadout rules in the Warrior engine as corrected by FEAT327-ACQ-02: at most two equipped Advanced mutations per actual tree and at most one equipped Apex mutation across all trees, within the actual unlocked total slots. Dormant equipped mutations count toward those ceilings. Evaluate each feat's equipped and active prerequisites only at the acquisition or use-time checkpoints that its exact procedure specifies. A temporary all-equipped activation does not supply an equipped prerequisite, slot, mutation, class level or feat opportunity. Preserve each feat's acquisition snapshot and existing ongoing operating conditions.",
+      "expectedInsertionsPerOperativeRepresentation": 1,
+      "scope": "dependency clarification only; preserve existing wording and ACQ-01"
+    }
+  ],
+  "mirrorPolicy": "Update only identified operative mirrors of these rules. Preserve source/comparison fields such as completeWarriorEngine and originalWarriorCounterpartPairs as historical snapshots; apply this separately recorded correction when deriving current eligibility.",
+  "unchangedEnginePointers": [
+    "/engine/2",
+    "/engine/3",
+    "/engine/18",
+    "/engine/23"
+  ],
+  "unchangedClassCards": "All cards remain byte/value-identical in preserved source; no operative card-field replacements authorized by this addendum.",
+  "unchangedFeatProcedures": [
+    "backlashEngine",
+    "bioStabilizer",
+    "bornToHorrify",
+    "distortedDominance",
+    "evisceratorProtocol",
+    "evolutionUnderFire",
+    "hypermutationSpike",
+    "juggernautCore",
+    "killChainAdaptation",
+    "livingFortress",
+    "synapticRot",
+    "terrorEngine"
+  ],
+  "bookSnapshotPreserved": {
+    "path": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+    "lines": [
+      [
+        4924,
+        4932
+      ],
+      [
+        4965,
+        4973
+      ],
+      [
+        5005,
+        5014
+      ]
+    ]
+  },
+  "noNewApprovals": true,
+  "runtimeExecuted": false,
+  "humanBalanceApproved": false,
+  "deliveryOrder": [
+    "actual final joint whole-game flow agreement",
+    "already-authorized GitHub push",
+    "verified remote commit",
+    "careful cosmology review"
+  ]
+}

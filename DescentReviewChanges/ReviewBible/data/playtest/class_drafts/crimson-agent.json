@@ -1,0 +1,549 @@
+{
+  "class": "Crimson Agent",
+  "engine": [
+    "Blood Gauge (BG) starts and ends each encounter at 0, capacity3; Spill Control raises capacity6 while known. Once on your own regular turn, a weapon attack that damages a hostile living creature grants1BG. Hemorrhage Slash uses this same trigger, not an additional one. Explicit critical/kill/refund features can add more, but total BG gained is capped2 per round. Self-inflicted damage, allies, summons, helpless captives and repeated damage to a corpse never generate BG. Blood is an encounter resource, not a currency carried into rest.",
+    "Dexterity governs weapon attacks; Intelligence governs hemomancy save DC and M. S scales from Crimson Agent class level. A weapon technique includes only its printed attacks, with normal weapon die plus Dexterity (or Strength when that weapon requires it). No free attack is implied by attack-speed wording. Class BG and RP are separate. Once per turn when casting an ordinary spell, optionally spend1BG to prevent1 of that cast's Dissonance gain, minimum0; never reduce RP this way.",
+    "Your Bleed is a physical ongoing effect on a living, non-bloodless creature: 1d4 damage at the start of each of its next3 turns, then ends. It is not a new attack and generates no BG or procs. Refresh duration instead of stacking; Blood Echo expressly allows two independent instances, maximum. An Action by the victim or an adjacent creature using a healer's kit ends all your Bleeds on that victim. Apply physical resistance/immunity normally. Track remaining ticks and creator per instance. Allied healing versions from Bloodweaver cost RP and never count as hostile Bleeds for detonation, spreading or generation.",
+    "One Blood Mark at a time on a living target with your Bleed, except Phantom Strike, which explicitly may apply the mark without Bleed. It does not add a free Bleed. Marks last5 of your regular turns, expire on encounter end or if the target dies, and never create damage by themselves. Rupture requires the target still within60ft and line of effect; it spends the mark. A mark does not defeat cover, planar boundaries or bloodlessness. Bloodtrail has its own tracking limits.",
+    "Veinweaves are self buffs unless their card expressly allows an ally. They require concentration and one may be active. Crimson Harmony is an explicit exception permitting two Veinweaves as one linked concentration burden; a failed concentration check ends both. A non-Veinweave concentration effect replaces the whole group. BG is spent on activation; no upkeep unless printed. Damage-sharing is redirection before mitigation, not extra damage: apply each recipient's own defenses once and never redirect the redirected portion again.",
+    "The healing, execution and denial text below deliberately bounds the source's vague percentage/instant-kill claims. HP sacrificed is direct loss, bypasses temporary HP and defenses, cannot be redirected, and cannot reduce the donor below1. Only a willing ally can donate. HP sacrifice is never damage for class triggers. No class feature here restores the dead or removes Wounds.",
+    "At level1 learn the core Blood Gauge/Bleed rules automatically. Blood Mark and Veinweaver's Core remain selections; Quickblood can be selected and used without a second unlock tax. Veinweaver's Core improves that foundation as printed. Standard scheduled acquisition applies. Bloodbound Edge is automatic9. At10 choose Bloodweaver, Shadow Operative or Thirstborn; its Final Cut is automatic20. Duplicate Hemostasis names are separate Arch and Bloodweaver IDs.",
+    "Capacity clarification: Blood Gauge automatically reaches capacity6 at class9. Spill Control allows reaching6 early but never raises the cap above6. This new explicit gate ensures a later5-BG Final Cut can be used without an optional capacity selection. Gain cap2/round and encounter reset0 still apply."
+  ],
+  "workedExample": [
+    "Bard-style example becomes Agent5: DEX16, INT14, S2, M2, BG0/cap3, full class RP. Select Hemorrhage Slash, Quickblood, Blood Mark, Shroud at1; Blood Tithe and Vital Targeting at2; Rupture and Spill Control at3. Capacity is now6.",
+    "Turn1: Hemorrhage Slash hits for ordinary weapon damage+2d6, applies Bleed, and gains1BG (not2). Bonus Action Blood Mark pays1BG: balance0. Target takes its first1d4 Bleed on its next turn.",
+    "Turn2: ordinary weapon attack hits and gains1BG. Keep the mark and save resources; Bleed ticks independently and grants no BG.",
+    "Turn3: a second weapon hit gains1BG: balance2. Bonus Action Quickblood spends1BG: balance1. It gives movement, not another attack.",
+    "Turn4: Rupture is an Action, pays1BG: balance0 and consumes the mark. Target fails CON: takes(S+1)d8=3d8. Rupture is not a weapon hit, so it generates no replacement BG. Any remaining Bleed continues.",
+    "After the encounter BG becomes0. Blood Tithe's used short-rest charge and spent RP do not refresh without an actual rest."
+  ],
+  "balanceQuestions": [
+    "Does early setup take too many turns for one mark?",
+    "Can Bloodweaver protect without sacrifice loops or infinite healing?",
+    "Are denial and execution limits sufficient against bosses and multiclass dips?"
+  ],
+  "cards": [
+    [
+      2126,
+      1,
+      "Passive",
+      "0",
+      "Your critical weapon hit",
+      "Bleed3 turns",
+      "Once/own turn",
+      "A critical weapon hit applies your Bleed. If it already has your Bleed, extend one instance by2 ticks, maximum5 ticks remaining. This damage never generates further BG."
+    ],
+    [
+      2127,
+      1,
+      "Triggered",
+      "1 short-rest use",
+      "Self after a hostile bleeding creature dies within30ft",
+      "Instant",
+      "1/short rest",
+      "Regain HP equal to M+class level after a creature bearing your Bleed dies. It must have been an active hostile combatant; no ally, summon, captive or corpse farming."
+    ],
+    [
+      2128,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "You can dismiss a Veinweave without an action and switch to another known Veinweave using its normal activation. Once/short rest reduce the BG cost of one Veinweave by1, minimum1. The basic one-Veinweave capacity is part of your engine, not locked behind this selection."
+    ],
+    [
+      2129,
+      1,
+      "Passive",
+      "0",
+      "One weapon target",
+      "Instant",
+      "Once/own turn",
+      "Add S damage to a weapon hit against a target that has not perceived you or is within5ft of another conscious hostile-to-it ally. This is flat damage, not a critical die, and requires an actual weapon hit."
+    ],
+    [
+      2130,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "Until start next turn",
+      "Once/own turn",
+      "After taking the Hide Action and moving at least10ft while hidden, gain+1AC. You still need valid concealment and a successful ordinary Stealth check; this feature does not grant invisibility."
+    ],
+    [
+      2133,
+      1,
+      "Action",
+      "0",
+      "One creature in weapon reach",
+      "Instant plus Bleed",
+      "Recharge2",
+      "Make one weapon attack. On hit add S d6 damage of the weapon type and apply Bleed. The usual once/turn hit trigger grants1BG; this card grants no separate BG."
+    ],
+    [
+      2134,
+      1,
+      "Bonus Action",
+      "1BG",
+      "Self",
+      "3 of your turns",
+      "Recharge3",
+      "Start a Veinweave: gain+10ft Speed and ignore nonmagical difficult terrain. Once during its duration you may draw or stow one weapon without using your object interaction. It grants no attacks or Actions."
+    ],
+    [
+      2135,
+      1,
+      "Bonus Action",
+      "1BG",
+      "One living target with your Bleed within60ft",
+      "5 of your turns",
+      "At will, one mark",
+      "Apply your Blood Mark. Replaces your previous mark without detonating it. The mark enables Rupture and printed mark interactions; it deals no automatic damage and does not grant vision."
+    ],
+    [
+      2136,
+      1,
+      "Bonus Action",
+      "2RP",
+      "Self",
+      "Until end next turn or attack/cast/bright light",
+      "2/long rest",
+      "Become invisible while in dim light or darkness. Attacking, casting a spell or entering bright light ends it. You must still Hide to conceal your location. Audible movement can reveal your position."
+    ],
+    [
+      2137,
+      1,
+      "Action",
+      "1RP",
+      "Living creatures within60ft, excluding total cover",
+      "1 minute",
+      "Recharge3",
+      "Sense presence and approximate direction, not identity or thoughts. Once during this minute, gain advantage on one weapon attack against a sensed creature you can otherwise legally target. This does not change critical range."
+    ],
+    [
+      2143,
+      3,
+      "Passive",
+      "0",
+      "Targets of your Bleed",
+      "As Bleed",
+      "Continuous",
+      "Your Bleed can have two independent instances on a creature; a third application refreshes the oldest. Once on each of your turns add1 to one Bleed instance's next tick. Never spread or detonate more instances than actually exist."
+    ],
+    [
+      2144,
+      3,
+      "Passive",
+      "0",
+      "Self",
+      "On activation",
+      "Continuous",
+      "Activating a self-only Veinweave does not itself end your hidden state or Shroud. Its normal visible effects may reveal you; attacks, spells and other hostile effects still break hiding normally."
+    ],
+    [
+      2145,
+      3,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Blood Gauge capacity rises from3 to6. Gain rate is unchanged. This replaces, rather than adds to, the old cap. No BG is granted merely by learning it."
+    ],
+    [
+      2146,
+      5,
+      "Passive",
+      "0",
+      "Up to2 other enemies within5ft of ruptured mark",
+      "Bleed3 turns",
+      "Once/round",
+      "After Rupture damages its marked target, choose up to2 other living enemies nearby. Each makes CON save; on failure apply one Bleed. These applications do not trigger Rupture again or grant BG."
+    ],
+    [
+      2147,
+      3,
+      "Passive",
+      "0",
+      "Self",
+      "Until end next turn",
+      "Once/own turn",
+      "After spending BG, gain+5ft Speed. Your next weapon damage roll before end next turn adds1. Repeated expenditures refresh rather than stack; no attack-speed or additional-Action benefit."
+    ],
+    [
+      2148,
+      7,
+      "Passive",
+      "0",
+      "Self or legal linked ally",
+      "While known",
+      "Continuous",
+      "You may sustain two Veinweaves as one concentration group. Both pay full costs and use normal activations; failing concentration ends both. Identical Veinweaves never stack, and no ordinary concentration spell can join this group."
+    ],
+    [
+      2149,
+      9,
+      "Action",
+      "3BG; 1 short-rest use",
+      "Up to3 enemies with your Bleed within30ft",
+      "Instant",
+      "1/short rest",
+      "End up to2 of your Bleed instances per target. Each takes1d4 per remaining tick, maximum S d4 per creature, ignoring resistance but respecting immunity. This replaces their future ticks and grants no BG, healing or kill-trigger benefit."
+    ],
+    [
+      2152,
+      3,
+      "Bonus Action",
+      "2BG",
+      "Self",
+      "3 of your turns",
+      "Recharge3",
+      "Start Bloodshield Veinweave. Gain temporary HP equal to class level+M. Once while they remain, use Reaction to reduce damage to yourself by S. No self-damage refund or BG is generated."
+    ],
+    [
+      2153,
+      3,
+      "Action",
+      "1BG; consume your mark",
+      "Your marked enemy within60ft",
+      "Instant",
+      "Recharge2",
+      "Target makes CON save: (S+1)d8 necrotic on failure, half on success. The mark ends either way; existing Bleed remains. Damage from this technique is not a weapon hit and grants no BG."
+    ],
+    [
+      2154,
+      5,
+      "Action",
+      "1BG",
+      "One living target with your Bleed within30ft",
+      "1 hour",
+      "Recharge3",
+      "Know the direction to the target while within1 mile on the same plane. Total distance and a trail are not shown. Lead barriers or effects that block divination block this sense; it grants no attack advantage or targeting through cover."
+    ],
+    [
+      2155,
+      7,
+      "Action",
+      "2BG",
+      "One living creature with your Bleed within60ft",
+      "Concentration, 1 minute",
+      "Recharge3",
+      "Target makes WIS save. Failure lets you see and hear through it while it remains within1 mile on the same plane; you are blind/deaf to your own surroundings. It repeats save at the end of each of its turns and the first time each round it takes damage. No control or thought reading."
+    ],
+    [
+      2156,
+      3,
+      "Action",
+      "2RP",
+      "One living creature touched",
+      "Instant",
+      "Recharge2",
+      "End all Bleed on the target and restore S d6+M HP, regardless of number of ticks removed. You cannot create extra healing by inflicting extra Bleed. Works even if no Bleed is present, at the same RP cost."
+    ],
+    [
+      2165,
+      10,
+      "Bonus Action",
+      "2RP",
+      "One willing ally within30ft",
+      "Concentration, 3 of your turns",
+      "Recharge3",
+      "Create Bloodbond while both remain within30ft. When ally takes damage, you may use Reaction to redirect floor(one-quarter of pre-mitigation damage) to yourself; each recipient applies its own defenses once. Once/round when a paid technique heals you, ally gains M temporary HP. No recursive transfers."
+    ],
+    [
+      2166,
+      10,
+      "Passive",
+      "1 additional RP per application",
+      "One willing living ally in range of your Bleed application",
+      "3 target turns",
+      "Once/own turn",
+      "You may replace a new Bleed application on that ally with healing1d4 at start of its next3 turns. Pay extra RP even if original application was free. One such healing effect per target; it cannot spread, detonate, generate BG or trigger healing loops."
+    ],
+    [
+      2167,
+      10,
+      "Passive",
+      "0",
+      "Allies actually affected by your Veinweaves",
+      "While Veinweave lasts",
+      "Continuous",
+      "An affected ally gains+1 to saves and reduces each damage instance by2, minimum0. This benefit does not stack across Veinweaves or Agents. Self-only Veinweaves cannot be extended merely by this passive."
+    ],
+    [
+      2168,
+      10,
+      "Reaction",
+      "1BG",
+      "Willing linked ally within30ft being damaged",
+      "This damage only",
+      "Once/round",
+      "While your Bloodbond or Vitality Link is active, redirect up to S+M damage to yourself before mitigation. This is an alternative to Bloodbond's quarter-sharing reaction, not an additional redirection. Redirected damage cannot be redirected again."
+    ],
+    [
+      2169,
+      20,
+      "Action",
+      "5BG; 1 long-rest use",
+      "Up to3 bleeding enemies and6 living allies within30ft",
+      "Instant; shields1 minute",
+      "1/long rest",
+      "End your Bleeds on chosen enemies; each makes CON save against4d8 necrotic, half on success. Each chosen ally regains4d8+M HP and gains10 temporary HP. Use one shared roll per damage/healing effect; healing does not multiply by enemies or remaining ticks."
+    ],
+    [
+      2172,
+      10,
+      "Action",
+      "2RP; sacrifice up to class level HP",
+      "One willing living ally touched",
+      "Instant",
+      "1/short rest",
+      "Lose K real HP, at least1, without falling below1. Ally regains K+floor(K/2) HP. Loss bypasses defenses and cannot trigger BG, damage-sharing or healing refunds. The RP/use limit remains even if little healing is possible."
+    ],
+    [
+      2173,
+      10,
+      "Bonus Action",
+      "3BG",
+      "One willing ally within30ft",
+      "Concentration, 3 of your turns",
+      "Recharge3",
+      "Start Vitality Link Veinweave. Once/round when you restore real HP with a paid Agent technique, linked ally regains M HP if within30ft. This secondary healing never triggers another link. Gain+1AC while adjacent to that ally; no spell buffs or resources are copied."
+    ],
+    [
+      2174,
+      12,
+      "Action",
+      "3RP",
+      "Fixed10ft radius centered within30ft, up to3 allies",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Choose acid, cold, fire, lightning or necrotic. Selected allies within the zone gain resistance to that damage type. Leaving loses the benefit; reentering restores it. Identical resistance does not stack. This is not a Veinweave."
+    ],
+    [
+      2175,
+      14,
+      "Action",
+      "4RP",
+      "One willing living creature touched",
+      "Instant",
+      "Recharge3",
+      "End Poisoned and one nonmagical disease. Magical disease needs a successful INT ability check against its stated treatment DC, or DC15 if absent; failure spends the cost. No curse, Wound, death or Corruption removal."
+    ],
+    [
+      2176,
+      16,
+      "Action",
+      "4RP; all BG, minimum3",
+      "Up to3 living allies within15ft",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "Spend K BG. At start and on each of your next2 turns, use Bonus Action and pay1RP to pulse healing: each chosen ally still within15ft regains1d8+K HP. Without maintenance it ends at turn end. Total3 pulses; no triggers create more BG."
+    ],
+    [
+      2182,
+      10,
+      "Passive",
+      "0",
+      "One weapon target",
+      "Instant",
+      "Once/own turn",
+      "A weapon hit made from hidden ignores resistance to that weapon's damage type for this hit. Immunity remains. This does not bypass armor or make the attack automatically hit."
+    ],
+    [
+      2183,
+      10,
+      "Reaction",
+      "1BG",
+      "Attacker within30ft that missed you",
+      "Until end attacker's next turn",
+      "Once/round",
+      "Attacker makes CON save; failure Blinded. Requires it can see you. Each creature becomes immune to your Blackout Agent until encounter end after resolving this save, preventing repeated blind-lock."
+    ],
+    [
+      2184,
+      10,
+      "Passive",
+      "0",
+      "Self while sustaining a Veinweave",
+      "While active",
+      "Once/round reset",
+      "Gain+1AC. Once/round after a Veinweave starts, shorten one OTHER positive Agent cooldown by1; this uses that ability's reset allowance. It grants no critical immunity, actions or per-rest uses."
+    ],
+    [
+      2185,
+      10,
+      "Passive",
+      "0",
+      "One creature damaged by your Bleed",
+      "Until end target's next turn",
+      "Once/round",
+      "After a Bleed tick, choose that victim: Speed reduced5ft, minimum0, and its next concentration save takes-1. Nonstacking; does not remove an Action or prohibit spellcasting."
+    ],
+    [
+      2186,
+      20,
+      "Action",
+      "5BG; 1 long-rest use",
+      "Up to6 enemies within30ft",
+      "Until end your next turn",
+      "1/long rest",
+      "Each makes CON save. Failure prevents verbal spellcasting and Reactions, and suppresses one passive bonus to AC or attack rolls chosen from an observed effect. It never removes innate anatomy, immunities, legendary rules or class resource pools. Success prevents all effects; no whole-sheet passive disable."
+    ],
+    [
+      2189,
+      10,
+      "Action",
+      "2BG",
+      "One enemy in weapon reach; must be hidden from it",
+      "Instant",
+      "Recharge3",
+      "Make one weapon attack with advantage. On hit add S d6 damage and apply a mark without its usual BG cost, even if not already bleeding. The mark replaces your old mark; no free Rupture occurs. Normal hit BG gain still capped."
+    ],
+    [
+      2190,
+      10,
+      "Bonus Action",
+      "3BG",
+      "Self",
+      "Concentration, 1 minute",
+      "Recharge4",
+      "Start Shadow Meld Veinweave: advantage on Stealth and invisible while motionless in dim light/darkness. Moving removes invisibility until start next turn; attacking or casting ends the Veinweave. No concealment against blindsight or effects that expressly reveal invisibility."
+    ],
+    [
+      2191,
+      12,
+      "Action",
+      "2BG",
+      "One living enemy within30ft",
+      "Until end target's next turn",
+      "Recharge3",
+      "CON save: failure prevents Reactions and gives disadvantage on its next spell attack. If concentrating, make an additional normal concentration save versus your class DC. This never disables all special abilities or guarantees a failed concentration check."
+    ],
+    [
+      2192,
+      14,
+      "Ritual",
+      "3RP; 10 minutes",
+      "One willing or restrained living target with your Bleed touched",
+      "One question",
+      "1/short rest",
+      "Target makes WIS save unless willing. On failure learn one factual sensory memory from the last24 hours about a stated event; the target chooses a relevant memory if several exist. Success yields no information. No beliefs, absolute truth or unrelated secrets are guaranteed."
+    ],
+    [
+      2193,
+      16,
+      "Action",
+      "5RP; 2BG",
+      "Fixed15ft-radius sphere within60ft",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "Create magical darkness blocking ordinary sight and darkvision. You can see within it up to30ft. Creatures can leave normally; no automatic damage, surprise or advantage when another sense locates you. Enemies still act and make saves normally."
+    ],
+    [
+      2199,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "While hostile Bleeds persist",
+      "Continuous",
+      "Add1 to direct weapon damage per hostile creature bearing your Bleed, maximum3. Applies once per hit, not per Bleed instance. Secondary Bleed, copies and explosions gain no bonus."
+    ],
+    [
+      2200,
+      10,
+      "Triggered",
+      "1BG",
+      "One new living enemy within5ft of a Bleed victim",
+      "Bleed3 turns",
+      "Once every3 of your turns",
+      "After one of your Bleeds ticks, pay1BG; new target makes CON save. Failure applies one Bleed. A spread instance cannot spread again. This grants no BG and does not duplicate marks or immediate damage."
+    ],
+    [
+      2201,
+      10,
+      "Reaction",
+      "1BG",
+      "One enemy within5ft after it damages you",
+      "Instant plus Bleed",
+      "Once/round",
+      "End one active Veinweave. Chosen enemy makes CON save: failure takes S d4 necrotic and Bleed; success takes half immediate damage only. On failure by10 it is Frightened until end next turn. No resource refund."
+    ],
+    [
+      2202,
+      10,
+      "Bonus Action",
+      "2RP",
+      "One fresh hostile living-combatant corpse within30ft",
+      "Until end next turn",
+      "Recharge3",
+      "Mark the corpse once; on activation or before expiry use Reaction to burst it. Up to3 enemies within5ft make DEX saves: S d6 necrotic, half on success. Corpse cannot be reused, raised by this effect or provide BG/kill triggers."
+    ],
+    [
+      2203,
+      20,
+      "Action",
+      "All BG, minimum3; 1 long-rest use",
+      "Up to6 enemies with your Bleed within30ft",
+      "Instant",
+      "1/long rest",
+      "Spend K BG and end your Bleeds on targets. CON save: (S+K)d8 necrotic, half on success. A target failing by10 with remaining HP no greater than your class level falls to0; ordinary death rules follow. No percentage-based automatic boss execution or BG refund."
+    ],
+    [
+      2206,
+      10,
+      "Action",
+      "2BG",
+      "One living creature within30ft",
+      "Instant",
+      "Recharge2",
+      "CON save: (S+1)d8 necrotic, half on success; add1d8 if it has your Bleed. If it fails and actually takes damage, regain1BG within the common gain cap. The refund cannot pay activation costs retroactively."
+    ],
+    [
+      2207,
+      10,
+      "Bonus Action",
+      "3BG",
+      "Self",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Start Blood Frenzy Veinweave: once on your turn add S d6 to one weapon hit; gain+10ft Speed and suffer-2AC. No extra attacks, Actions or critical range. Ending early removes both benefit and penalty."
+    ],
+    [
+      2208,
+      12,
+      "Action",
+      "3BG",
+      "One living enemy within60ft",
+      "Instant; control until end next turn",
+      "Recharge3",
+      "CON save: (S+1)d6 fire, half on success. On failure target loses Reactions; on failure by10 also Stunned until end its next turn. The Stun uses the shared hard-denial guard across all this character’s features. If this character already hard-denied that target this encounter, only damage and the non-hard-denial rider resolve."
+    ],
+    [
+      2209,
+      14,
+      "Action",
+      "2BG; 1 short-rest use",
+      "One enemy in weapon reach at half HP or less",
+      "Instant",
+      "1/short rest",
+      "Make one weapon attack; on hit add S d8 damage. If this reduces it to0, regain S+M HP and1BG within gain cap. No instant kill from a percentage threshold; summoned/allied/helpless creatures yield no recovery."
+    ],
+    [
+      2210,
+      16,
+      "Action",
+      "5RP; 3BG",
+      "Moving10ft aura around self, up to3 enemies per pulse",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "On start and each later paid pulse, targets make CON saves: S d6 necrotic, half on success; failure applies one Bleed. Maintenance costs Bonus Action+1RP. Maximum3 pulses. Once/turn your direct weapon attack against a creature in the storm adds1 damage; storm/bleed damage gives no BG."
+    ]
+  ],
+  "reviewStatus": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

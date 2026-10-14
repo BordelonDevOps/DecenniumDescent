@@ -1,0 +1,19 @@
+# Decennium Descent Repository Instructions
+
+Read `CANON_MANIFEST.json` before changing any rule, book, dataset, or application component.
+
+## Authority
+- One promoted application lives at repository root. Do not create a parallel ReviewBible or second live app.
+- Structured registries own mechanics where the manifest says so. DOCX files are publication artifacts unless explicitly listed otherwise.
+- Preserve stable IDs and write migration reports for data changes.
+
+## Public boundary
+The Haven at Tier 2.5 is the center of ordinary expedition life. The most famous public expedition failed at the Sixth Gate. Player-facing material must not confirm Tiers VII-X, their Guardians, the Marquis origin, claimant succession, the crystal path, or global Silent One failure consequences. Tier IV introduces only gradual, contradictory symptoms.
+
+Run `npm run validate:rules` before accepting any public change.
+
+## Gameplay doctrine
+- Follow `docs/mechanics/DESIGN_DOCTRINE.md`.
+- The canonical playable loop is `docs/mechanics/GAMEPLAY_LOOP_CANON.md` and `data/public/Decennium_Descent_Gameplay_Loop_v1.json`.
+- Use 5e-readable action structure, PF2e-level timing and balance clarity, and preserve the distinct Expedition, extraction, Haven, and seasonal systems.
+- Numerical changes to encounter budgets, class output, economy throughput, or seasonal persistence require recorded playtest evidence from the Cursor packs under `playtests/cursor-packs/`.

@@ -1,0 +1,472 @@
+{
+  "status": "UNREVIEWED_SOURCE_CANDIDATES",
+  "scope": "Supplement to124 class/form candidates:6 Bard cards from its separate structured schema,7 feat objects and2 frozen supporting paragraphs. Preserve all Bard resource/recharge/Crescendo fields. Ordinary spells and semantic supplements still needed; no completeness/approval claim.",
+  "bardRecords": [
+    {
+      "kind": "bard-card",
+      "owner": "bard",
+      "path": "data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "card": {
+        "id": "bard.base.lingering-notes",
+        "name": "Lingering Notes",
+        "className": "Bard",
+        "band": "Base",
+        "path": null,
+        "kind": "passive",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "rangeFeet": 0,
+        "target": "Self",
+        "duration": "While known; individual riders last as stated",
+        "resourceCost": {
+          "rp": 0,
+          "maintenanceRp": 0,
+          "crescendo": "none"
+        },
+        "recharge": {
+          "rounds": 0,
+          "longRestUses": null,
+          "shortRestUses": null
+        },
+        "resolution": "None",
+        "effect": "When a sustained Chant ends before its final scheduled pulse, mark one ally affected by its last pulse. At the start of your next turn, if that ally is within 30 feet and can hear you, it gains C temporary HP for 1 round. This residual note restores no HP, uses no concentration, and triggers no other Bard effects. Silence or incapacitation cancels it; only one residual note can wait at a time.",
+        "crescendoRider": "Not a started Performance; no Crescendo rider.",
+        "tags": [],
+        "echoEligible": false,
+        "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+        "source": {
+          "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 1819,
+          "originalText": "Lingering Notes: Chants last 1 extra turn after being interrupted."
+        },
+        "designStatus": "playtest-draft",
+        "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+        "prerequisites": {
+          "bardClassLevel": 1,
+          "heroPath": null,
+          "additional": "Only the activation conditions printed in this card and the common rules."
+        }
+      },
+      "sourceObjectSha256": "eb6329994113b8629d56ceeffae43e719fb76a177eb7a2e1b1f16495871fb09b"
+    },
+    {
+      "kind": "bard-card",
+      "owner": "bard",
+      "path": "data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "card": {
+        "id": "bard.base.chant-of-renewal",
+        "name": "Chant of Renewal",
+        "className": "Bard",
+        "band": "Base",
+        "path": null,
+        "kind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Action",
+        "rangeFeet": 15,
+        "target": "One living ally per pulse, including yourself",
+        "duration": "Concentration, at most 3 Bard turns",
+        "resourceCost": {
+          "rp": 2,
+          "maintenanceRp": 1,
+          "crescendo": "automatic-at-five"
+        },
+        "recharge": {
+          "rounds": 0,
+          "longRestUses": null,
+          "shortRestUses": null
+        },
+        "resolution": "None",
+        "effect": "On starting and on each paid maintenance pulse, one living ally within 15 feet regains 1d6+C HP. You may choose a different ally each pulse. There are at most 3 pulses, including the initial pulse. A creature can benefit from this named Chant only once per round across all Bards. This never removes Wounds or restores life.",
+        "crescendoRider": "The initial recipient also gains C temporary HP for 1 round; subsequent pulses are unchanged.",
+        "tags": [
+          "chant",
+          "healing",
+          "sustained",
+          "performance"
+        ],
+        "echoEligible": true,
+        "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+        "source": {
+          "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 1826,
+          "originalText": "Chant of Renewal: A sustained melody that heals nearby allies for a small amount each turn while maintained."
+        },
+        "designStatus": "playtest-draft",
+        "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+        "prerequisites": {
+          "bardClassLevel": 1,
+          "heroPath": null,
+          "additional": "Only the activation conditions printed in this card and the common rules."
+        }
+      },
+      "sourceObjectSha256": "3c92972120ef501960823d6dcc4fe4804b3a1064b6aae15a3160180af63fab13"
+    },
+    {
+      "kind": "bard-card",
+      "owner": "bard",
+      "path": "data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "card": {
+        "id": "bard.arch.chorus-shield",
+        "name": "Chorus Shield",
+        "className": "Bard",
+        "band": "Arch",
+        "path": null,
+        "kind": "passive",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "rangeFeet": 0,
+        "target": "Self",
+        "duration": "While known; individual riders last as stated",
+        "resourceCost": {
+          "rp": 0,
+          "maintenanceRp": 0,
+          "crescendo": "none"
+        },
+        "recharge": {
+          "rounds": 0,
+          "longRestUses": null,
+          "shortRestUses": null
+        },
+        "resolution": "None",
+        "effect": "When you START a Chant, you and one other ally within 15 feet each gain C temporary HP until the start of your next turn. Maintenance, residual notes and Echoes cannot trigger it. Temporary HP never stack.",
+        "crescendoRider": "Not a started Performance; no Crescendo rider.",
+        "tags": [],
+        "echoEligible": false,
+        "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+        "source": {
+          "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 1837,
+          "originalText": "Chorus Shield: Using a Chant grants a minor damage shield to self and nearest ally."
+        },
+        "designStatus": "playtest-draft",
+        "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+        "prerequisites": {
+          "bardClassLevel": 3,
+          "heroPath": null,
+          "additional": "Only the activation conditions printed in this card and the common rules."
+        }
+      },
+      "sourceObjectSha256": "bfd1cb2440538632102132fac218934a885b3df735e7e3e7b91738f620c17f09"
+    },
+    {
+      "kind": "bard-card",
+      "owner": "bard",
+      "path": "data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "card": {
+        "id": "bard.harmony.protective-verse",
+        "name": "Protective Verse",
+        "className": "Bard",
+        "band": "Hero",
+        "path": "Harmony",
+        "kind": "active",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "target": "One living ally",
+        "duration": "1 minute or until expended",
+        "resourceCost": {
+          "rp": 3,
+          "maintenanceRp": 0,
+          "crescendo": "automatic-at-five"
+        },
+        "recharge": {
+          "rounds": 2,
+          "longRestUses": null,
+          "shortRestUses": null
+        },
+        "resolution": "None",
+        "effect": "One living ally gains (S+1)d6+C temporary HP for 1 minute and advantage on the next saving throw it makes against Frightened, Charmed or Stunned during that minute. The saving-throw benefit then ends. Temporary HP follow the normal non-stacking rule.",
+        "crescendoRider": "A second living ally within 30 feet gains C temporary HP for 1 minute, but not the saving-throw benefit.",
+        "tags": [
+          "verse",
+          "ward",
+          "performance"
+        ],
+        "echoEligible": false,
+        "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+        "source": {
+          "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 1863,
+          "originalText": "Protective Verse: Creates a barrier around an ally that absorbs damage and grants resistance to the next status effect."
+        },
+        "designStatus": "playtest-draft",
+        "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+        "prerequisites": {
+          "bardClassLevel": 10,
+          "heroPath": "Harmony",
+          "additional": "Only the activation conditions printed in this card and the common rules."
+        }
+      },
+      "sourceObjectSha256": "55bd9fe09792eccae641d7ef1b1b42e241f237c79da2cd69a8c8685cb583125b"
+    },
+    {
+      "kind": "bard-card",
+      "owner": "bard",
+      "path": "data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "card": {
+        "id": "bard.harmony.inspiring-performance",
+        "name": "Inspiring Performance",
+        "className": "Bard",
+        "band": "Hero",
+        "path": "Harmony",
+        "kind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "target": "Up to three allies chosen on start",
+        "duration": "Concentration, at most 3 Bard turns",
+        "resourceCost": {
+          "rp": 4,
+          "maintenanceRp": 1,
+          "crescendo": "automatic-at-five"
+        },
+        "recharge": {
+          "rounds": 4,
+          "longRestUses": null,
+          "shortRestUses": null
+        },
+        "resolution": "None",
+        "effect": "Choose up to three allies within 30 feet. For up to 3 Bard turns while sustained, each gains +1 to attack rolls, AC and saving throws while within 30 feet and able to hear you. Bonuses from multiple Bard performances of the same type do not stack. Pay 1 RP and a Bonus Action on each later turn to maintain it; there is no extra Action grant.",
+        "crescendoRider": "The chosen allies also gain C temporary HP until the start of your next turn.",
+        "tags": [
+          "sustained",
+          "support",
+          "performance"
+        ],
+        "echoEligible": false,
+        "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+        "source": {
+          "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 1865,
+          "originalText": "Inspiring Performance: Boosts allies' morale, granting bonuses to attack, defense, and saving throws."
+        },
+        "designStatus": "playtest-draft",
+        "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+        "prerequisites": {
+          "bardClassLevel": 14,
+          "heroPath": "Harmony",
+          "additional": "Only the activation conditions printed in this card and the common rules."
+        }
+      },
+      "sourceObjectSha256": "e00ab3e2aa4e9dfcbc352680efdd3b661565020b4141689f665f3d77d9685c65"
+    },
+    {
+      "kind": "bard-card",
+      "owner": "bard",
+      "path": "data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "card": {
+        "id": "bard.virtuoso.harmonic-resonance",
+        "name": "Harmonic Resonance",
+        "className": "Bard",
+        "band": "Hero",
+        "path": "Virtuoso",
+        "kind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "target": "10-foot-radius fixed zone, up to three creatures per pulse",
+        "duration": "Concentration, at most 3 Bard turns",
+        "resourceCost": {
+          "rp": 5,
+          "maintenanceRp": 2,
+          "crescendo": "automatic-at-five"
+        },
+        "recharge": {
+          "rounds": 4,
+          "longRestUses": null,
+          "shortRestUses": null
+        },
+        "resolution": "Discordant mode: Wisdom saves",
+        "effect": "Create one fixed 10-foot-radius zone within 30 feet, choosing Ward or Discordant mode on start. At the initial pulse and each paid maintenance pulse, Ward grants up to three allies in the zone C+S temporary HP until the start of your next turn; Discordant makes up to three enemies attempt Wisdom saves, taking S d6 psychic damage on failure or half on success. Mode is fixed for the use. At most 3 pulses; this is not a Chant and is not Echo-eligible.",
+        "crescendoRider": "On the initial pulse only, Ward adds C temporary HP or Discordant adds 1d6 damage to the roll. This rider does not repeat.",
+        "tags": [
+          "sustained",
+          "zone",
+          "performance"
+        ],
+        "echoEligible": false,
+        "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+        "source": {
+          "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 1882,
+          "originalText": "Harmonic Resonance: Creates zones of beneficial or harmful energy based on musical notes played."
+        },
+        "designStatus": "playtest-draft",
+        "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+        "prerequisites": {
+          "bardClassLevel": 14,
+          "heroPath": "Virtuoso",
+          "additional": "Only the activation conditions printed in this card and the common rules."
+        }
+      },
+      "sourceObjectSha256": "f9422980aa932c03812421bd43fec606130b232976e182ea1b6cce168b9e67b7"
+    }
+  ],
+  "featRecords": [
+    {
+      "kind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "chef",
+      "sourceObject": {
+        "id": "chef",
+        "name": "Chef",
+        "description": "You are an accomplished cook.",
+        "prerequisite": "None",
+        "effect": "You can cook special food during a long rest that provides temporary hit points to your party.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "sourceObjectSha256": "1736ef5ae47595d480e26198511b410fb09bef3616f12c9c8aa928421238c9b2"
+    },
+    {
+      "kind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "empowered_summoning",
+      "sourceObject": {
+        "id": "empowered_summoning",
+        "name": "Empowered Summoning",
+        "description": "A charismatic summoner calls allies with increased health and damage.",
+        "prerequisite": "Charisma 14+",
+        "effect": "Creatures you summon gain temporary hit points equal to twice your proficiency bonus and add your proficiency bonus to the first damage roll they make each round.",
+        "type": "Magic",
+        "legacyEffect": "Summoned allies +10% HP and damage",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "bb38e5a57d75d972e555154b0cd58e9b4985bca3823b1ba38795df4e872220df"
+    },
+    {
+      "kind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "field_medic",
+      "sourceObject": {
+        "id": "field_medic",
+        "name": "Field Medic",
+        "description": "Trained medical care stabilizes allies faster during combat.",
+        "prerequisite": "Trained in Medicine",
+        "effect": "You may use a healer’s kit as a bonus action. When you stabilize a creature, it gains temporary hit points equal to your proficiency bonus.",
+        "type": "General",
+        "legacyEffect": "Stabilize allies in combat faster",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "a6513af9f2037686113fe078b9fab9ba3e6c4fbf8bf2ddbac21e0a01890a4a59"
+    },
+    {
+      "kind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "inspiring_leader",
+      "sourceObject": {
+        "id": "inspiring_leader",
+        "name": "Inspiring Leader",
+        "description": "You can inspire others through stirring words.",
+        "prerequisite": "Charisma 13 or higher",
+        "effect": "You can spend 10 minutes inspiring your companions, giving them temporary hit points.",
+        "type": "General",
+        "draft": false,
+        "deprecated": false,
+        "needsReview": false
+      },
+      "sourceObjectSha256": "8faaaf12c75f0dcbf1957b2fa03a096b793cc5cd9ab10191a47a6a93cb93f8c5"
+    },
+    {
+      "kind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "blood_ritual",
+      "sourceObject": {
+        "id": "blood_ritual",
+        "name": "Blood Ritual",
+        "description": "Under the moon's gaze you bind flesh to curse through rites older than the cities of Aethel. Prestige lineage: Mooncursed. completed from the existing development record.)",
+        "prerequisite": "Constitution 13+, level 4+",
+        "effect": "Once per long rest, as part of a 10-minute ritual using your blood, you gain temporary hit points equal to twice your level and advantage on the next saving throw against curse or disease effects. Required for many lycanthropic oaths. Allies who witness the ritual and share a drop of blood gain half your temporary hit points (rounded down) for 1 hour.",
+        "type": "Magic",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "legacyEffect": "Once per long rest, as part of a 10-minute ritual using your blood, you gain temporary hit points equal to twice your level and advantage on the next saving throw against curse or disease effects. Required for many lycanthropic oaths. Allies who witness the ritual and share a drop of blood gain half your temporary hit points (rounded down) for 1 hour.",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "df2ab26272dbab5479291eba7de9b655440a9617eb0e8b4b16bd8baf462bb3db"
+    },
+    {
+      "kind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "necrotic_affinity",
+      "sourceObject": {
+        "id": "necrotic_affinity",
+        "name": "Necrotic Affinity",
+        "description": "Death's chill is an old friend on Aethel's battlefields—you channel grave-cold through fist and focus without flinching, as if the Binding left a door ajar in your marrow. Prestige lineage: Gravetouched. completed from the existing development record.)",
+        "prerequisite": "Proficiency in Religion or level 8+",
+        "effect": "You have resistance to necrotic damage. Once per turn when you hit with a melee attack, you can deal an additional 1d6 necrotic damage. When you take necrotic damage from a spell or supernatural effect, you can use your reaction to absorb half of it (rounded down) and add that amount as temporary hit points until the end of your next turn. Creatures you kill with necrotic damage cannot be raised by effects of 5th level or lower for 24 hours.",
+        "type": "Magic",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "legacyEffect": "You have resistance to necrotic damage. Once per turn when you hit with a melee attack, you can deal an additional 1d6 necrotic damage. When you take necrotic damage from a spell or supernatural effect, you can use your reaction to absorb half of it (rounded down) and add that amount as temporary hit points until the end of your next turn. Creatures you kill with necrotic damage cannot be raised by effects of 5th level or lower for 24 hours.",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "7534b9b761a4c53d5602e928e7fe31d271ddfc4ff853328798076779917e8c07"
+    },
+    {
+      "kind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "soul_cage",
+      "sourceObject": {
+        "id": "soul_cage",
+        "name": "Soul Cage",
+        "description": "You trap the departing in black crystal—voices pressed flat until you need their scream. Prestige lineage: Soulrender. completed from the existing development record.)",
+        "prerequisite": "Lifeleech or spellcasting ability, level 8+",
+        "effect": "When a hostile creature dies within 30 feet, you may bind its soul to a black crystal, storing up to 3 soul charges. Spend 1 charge to shield an ally for 2d8 temporary HP, or spend 2 charges to fire an Agony Lance (3d8 necrotic, save for half, and the target has disadvantage on the next healing it receives).",
+        "type": "Magic",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+        "legacyEffect": "When a hostile creature dies within 30 feet, you may bind its soul to a black crystal, storing up to 3 soul charges. Spend 1 charge to shield an ally for 2d8 temporary HP, or spend 2 charges to fire an Agony Lance (3d8 necrotic, save for half, and the target has disadvantage on the next healing it receives).",
+        "status": "provisional-complete",
+        "balanceReview": true,
+        "draft": false,
+        "deprecated": false,
+        "needsReview": true
+      },
+      "sourceObjectSha256": "8df70c0d021c5eb1fda9753ee8c76edea304144df09c1a753e7727239fe0ea50"
+    }
+  ],
+  "supportingSources": [
+    {
+      "sourcePath": "docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "paragraphPrefix": "Roll once for each shared",
+      "text": "Roll once for each shared area/pulse and apply saves/defenses to each target separately; separate attacks roll separately. Halve once for a successful save and apply resistance/immunity normally. Same-named conditions/bonuses do not stack unless a printed cap allows it; same-stat flat bonuses from these class techniques use the strongest. Different resources remain separate. Damage reduction from these class features uses the strongest flat reduction, then applies resistance; it cannot create negative damage or healing. Temporary HP never stack; choose the larger remaining amount. Immunity is not reduced resistance.",
+      "fullFileSha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+    },
+    {
+      "sourcePath": "docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "paragraphPrefix": "Repeated permanent HP recovery",
+      "text": "Repeated permanent HP recovery must consume finite RP, a per-rest use or another finite resource; a combat-generated gauge alone never enables unlimited healing. Healing cannot exceed maximum HP or erase Wounds, death consequences, debt or Corruption unless explicit. Downed is living at 0 HP; dead is different. Resurrection requires a willing soul and sufficiently intact body, obeys its time window, cannot create a duplicate and never refunds the feature on failure to meet known prerequisites. Sacrificial HP is actual unpreventable loss, cannot be redirected or paid with temporary HP, and is not damage for resource triggers. It cannot reduce the donor below 1 unless a card expressly grants a death-triggered effect.",
+      "fullFileSha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+    }
+  ]
+}

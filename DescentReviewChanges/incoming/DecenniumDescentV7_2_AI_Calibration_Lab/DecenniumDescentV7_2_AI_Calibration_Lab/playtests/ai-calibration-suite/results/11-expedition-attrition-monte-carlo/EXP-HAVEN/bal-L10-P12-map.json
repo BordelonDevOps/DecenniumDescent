@@ -1,0 +1,88 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-HAVEN",
+  "runId": "EXP-HAVEN-bal-L10-P12-map",
+  "seed": 8355902,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.91,
+    "wipeRate": 0.0,
+    "abortRate": 0.09,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 1.157,
+    "meanWatches": 4.947,
+    "meanHours": 42.53,
+    "meanTrueProfit": 352.96,
+    "medianTrueProfit": 306.76,
+    "profitLossRate": 0.2325,
+    "meanCargoRetainedLoad": 8.414,
+    "meanExtractionFailRate": 0.3695,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 10,
+    "party": 12,
+    "mapping": "Mapped",
+    "policy": "balanced",
+    "objective": "reach Haven and settle",
+    "requestedRuns": 2000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-HANDLING-MODS",
+      "note": "extraction.test cites handling modifiers beyond cargoDcModifierByHighestClass/attentionDcModifier; no numeric handling schedule in Loop JSON \u2014 sim uses 0."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-HAVEN/bal-L10-P12-map.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 2,
+      "supply": 24.0,
+      "load": 19,
+      "mapping": "Mapped",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 2,
+      "supply": 27.0,
+      "load": 19,
+      "mapping": "Mapped",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 6,
+      "pressure": 2,
+      "supply": 29.0,
+      "load": 19,
+      "mapping": "Mapped",
+      "alive": 12,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 8,
+      "pressure": 3,
+      "supply": 19.0,
+      "load": 19,
+      "mapping": "Mapped",
+      "alive": 12,
+      "extracting": false
+    }
+  ]
+}

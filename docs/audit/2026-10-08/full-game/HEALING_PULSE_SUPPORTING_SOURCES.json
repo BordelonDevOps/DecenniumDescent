@@ -1,0 +1,66 @@
+[
+  {
+    "sourcePath": "data/public/class_playtests/cleric.json",
+    "key": "engine",
+    "selector": 5,
+    "value": "One concentration effect may be maintained at a time. Starting another concentration effect immediately ends the previous one. Damage uses the current Core Systems concentration rule; for this pilot, if a division requires rounding, half damage is rounded down. Sustained Cleric effects use their printed maintenance cost and Bonus Action. A control effect that persists for multiple pulses or rounds gives the target a new save at each printed pulse or at the end of each affected turn as stated.",
+    "sha256": "051196533b47a8e21383a2eec207a6cc9fe3367f15d24b61b6c7892daff884c9"
+  },
+  {
+    "sourcePath": "data/public/class_playtests/cleric.json",
+    "key": "cards",
+    "selector": "cleric.arch.sacrament",
+    "value": {
+      "id": "cleric.arch.sacrament",
+      "name": "Sacrament",
+      "className": "Cleric",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 Conviction + 4 RP to start; 1 RP maintenance",
+      "rangeAndTarget": "15-foot-radius fixed zone centered within 30 feet",
+      "duration": "Concentration, maximum 3 Cleric turns",
+      "frequency": "Recharge 4 rounds",
+      "effect": "Sacrament. Tags: sacrament, rite, sustained, zone. Pulse on start and on each paid Bonus Action maintenance. At each pulse, up to three allies in the zone gain +1 on saving throws until the start of your next regular turn or effect end, whichever is first. Up to three Undead or Fiends in the zone make Wisdom saves, taking S d6 radiant damage on failure or half on success. Maximum 3 pulses.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2002,
+        "originalText": "Sacrament: Perform a sacred ceremony that consumes Conviction to create a powerful, sustained effect in an area."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    "sha256": "783afedd2de804e8e373f5d59b38ce9f65a6d7de7851406bc77bcf3de1e93a3d"
+  },
+  {
+    "sourcePath": "data/public/class_playtests/shaman.json",
+    "key": "engine",
+    "selector": 0,
+    "value": "Wisdom is the class ability. Choose Elemental Affinity automatically at 1: Fire, Ice, Air or Earth. Spellcasting/RP remain separate from Totem objects and flasks. Totem capacity 1, rises 2 at 13; any third replaces one of your existing totems. A totem is a visible Tiny magical object: AC 12+PB, HP 2 L, immobile, immune to poison/psychic/conditions, vulnerable to ordinary weapon and other damage. At 0 HP its aura ends. A new totem appears within 30 ft; cannot occupy a creature's space, serve as a bridge, trap a creature without a save or move through walls.",
+    "sha256": "5f651d13b4f1a166ae89194492f7ab27602e3d78490d9a5b475ed6f6cd62bb74"
+  },
+  {
+    "sourcePath": "data/public/class_playtests/shaman.json",
+    "key": "workedExample",
+    "selector": 4,
+    "value": "At start turn 4 totem expires. Placing a new Renewal costs full 2 RP and starts another finite 3 pulse effect. Encounter end does not refill flasks or RP.",
+    "sha256": "4cfdf6e2523e326d47d7e391bc705bc334410d60de4b0a9112ca58a41918348d"
+  },
+  {
+    "sourcePath": "data/public/class_playtests/oracle.json",
+    "key": "engine",
+    "selector": 17,
+    "value": "HERO-STAGE PROGRESSION. Oracle 10: gain Curse Boon III and Grand Revelation Foreshadow. Oracle 11: RC cap reaches 7 and the preserved encounter-start RC floor becomes active. Oracle 12: gain the Mystery-specific Mystic Insight. Oracle 13: preserved registry draft grants a second Tier II Revelation; after each completed short rest choose which of your two Tier II Revelations is Attuned for features that specifically refer to an active Tier II option, though both remain known and usable. Oracle 14: separate ASI or eligible feat. Oracle 15: gain Revelation Mastery and Curse Boon IV. Oracle 16: preserved Prophecy Trigger Mastery. Oracle 17: preserved Grand Revelation Foreshadow upgrade. Oracle 18: Prophetic Surge. Oracle 19: separate ASI or eligible feat. Oracle 20: gain the Mystery's Final Revelation and Curse Boon V.",
+    "sha256": "460638f27d26e82d3b1c1ec26390be5071b04ccd58cdbaae2166b35688743ae7"
+  },
+  {
+    "sourcePath": "docs/mechanics/CLASS_PLAYTEST_RULES.md",
+    "key": "exact-paragraph",
+    "selector": "One concentration slot",
+    "value": "One concentration slot for all spells, Chants, Veinweaves, forms or zones that require concentration. Starting another ends the old before the new effect resolves, except for an explicit limited linked-effect rule. Damage prompts CON save against max(10, floor(damage/2)); incapacitation or a failed save ends concentration. The round-down convention is a deliberate pilot interpretation. Concentration does not demand a Bonus Action unless maintenance says so. For a paid 3-pulse effect, start is pulse 1; pay maintenance on each of the next 2 regular turns by turn end for pulses 2/3. Missing payment ends it at that turn's end; otherwise it ends at start of turn 4. No repeated start triggers on maintenance.",
+    "fullFileSha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+  }
+]

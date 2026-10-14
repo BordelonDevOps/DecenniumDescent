@@ -1,0 +1,38 @@
+{
+  "createdUtc": "2026-10-13T21:21:21.980023+00:00",
+  "authority": "FEAT335-ACQUISITION-AUDIT-01 FAA-03; accepted FS-02 exact guarded replacement",
+  "scope": "Admit trained ordinary unarmed for Mastery and explicit authenticated specific unarmed profiles. Acquisition/use predicates unchanged; no Weapon Master menu change.",
+  "changes": [
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat_exact_01_weapon_profile_choices.py",
+        "bytes": 8779,
+        "sha256": "2251b9516ff7c0263b335d76ea3562b805eb45dc7bf523b7f18db4eb4711faff",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/before-feat335-faa03-profile-bridge/feat_exact_01_weapon_profile_choices.py"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat_exact_01_weapon_profile_choices.py",
+        "bytes": 9102,
+        "sha256": "10805cfca551343b24c8b4d4d7eeb1bf822ed4ec70973e91e55c719d7c807f0b"
+      },
+      "guardedEdits": [
+        [
+          "        self.conditional_profiles = {}",
+          "        self.conditional_profiles = {}\n        self.source_unarmed_profiles = {}"
+        ],
+        [
+          "        if profile not in self.weapon_choices and profile not in self.conditional_profiles:\n            if not (sid == 'weaponFocus' and profile == UNARMED and profile in self.equipment):",
+          "        if (profile not in self.weapon_choices and profile not in self.conditional_profiles\n                and profile not in getattr(self, 'source_unarmed_profiles', {})):\n            if not (profile == UNARMED and profile in self.equipment):"
+        ],
+        [
+          "    def profile(self, profile):\n        if profile in self.weapon_choices:",
+          "    def profile(self, profile):\n        if profile in getattr(self, 'source_unarmed_profiles', {}):\n            return self.source_unarmed_profiles[profile]\n        if profile in self.weapon_choices:"
+        ],
+        [
+          "                     conditionalProfiles=deepcopy(getattr(self, 'conditional_profiles', {})))",
+          "                     conditionalProfiles=deepcopy(getattr(self, 'conditional_profiles', {})),\n                     sourceUnarmedProfiles=deepcopy(getattr(self, 'source_unarmed_profiles', {})))"
+        ]
+      ]
+    }
+  ]
+}

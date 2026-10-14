@@ -1,0 +1,9 @@
+# Complete advanced crafting source conference
+
+Current totals:520/687 recipes reviewed;167 pending. Public333/433;100 pending. Gathering GEX-01/GEX-02 are fulfilled and128 cards promoted; the actual final verdict, current guides/cards and completion receipt are supplied. The earlier prepared archive and all five text packets are unchanged historical preparation.
+
+Read CODEX_ADVANCED_CRAFT_JOINT_SOURCE_PROMPT.txt for the conference request. ADVANCED_CRAFT_SOURCE_PREPARATION.json contains all167 exact originals,100 complete V5 public bindings, version differences, occurrence registers and missing-field evidence. ADVANCED_CRAFT_REVIEW_SCENARIOS.md contains50 finite cases. TINKER_DEVICE_INTERFACE_PREPARATION.json and its audit provide48 full class cards, original source extract and18 interactions. CRAFTING_FEAT_INTERFACE_PREPARATION.json and SKILL_FEAT_SOURCE_PREPARATION.json provide unapproved feat comparisons; their presence grants no feat approval.
+
+Every file in FILE_MANIFEST.json is supplied in full at its actual repository-relative path. Current governing files are included for every historical protected-interface path. ADVANCED_CRAFT_JOINT_REBASE_CHECK.json reports historical hash changes explicitly; old embedded excerpts/counts/pending labels remain historical, not current rule authority. No source recipe changed. The authoring conference must decide actual finite mechanics before new exact cards are built. No software installation or network access is needed to inspect this archive.
+
+Audience remains100 public/7 restricted/60 Director-only for these advanced recipes. Literal cosmology restrictions are preserved without interpretation. Cosmology review follows final whole-game flow, authorized GitHub push and verified remote commit. Runtime and human balance remain separately open.

@@ -1,0 +1,66 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-SHORT",
+  "runId": "EXP-SHORT-agg-L5-P6-map",
+  "seed": 1937239,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2000,
+    "havenRate": 1.0,
+    "objectiveRate": 1.0,
+    "wipeRate": 0.0,
+    "abortRate": 0.0,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0,
+    "meanWatches": 3,
+    "meanHours": 26.3,
+    "meanTrueProfit": 73.77,
+    "medianTrueProfit": 68.16,
+    "profitLossRate": 0.245,
+    "meanCargoRetainedLoad": 6.127,
+    "meanExtractionFailRate": 0.2875,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 5,
+    "party": 6,
+    "mapping": "Mapped",
+    "policy": "aggressive",
+    "objective": "two-day profitable descent",
+    "requestedRuns": 2000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-SHORT/agg-L5-P6-map.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 12,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 12.0,
+      "load": 18,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Static export for production (`out/`). Dev uses default `.next` cache.
   output: 'export',
-  distDir: 'out',
   allowedDevOrigins: ["*.preview.same-app.com"],
   images: {
     unoptimized: true,

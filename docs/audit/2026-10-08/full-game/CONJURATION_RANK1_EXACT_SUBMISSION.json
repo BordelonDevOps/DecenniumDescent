@@ -1,0 +1,48 @@
+{
+  "status": "exact manuscript approved after three repairs; promoted; pipeline and bounded preservation verification passed",
+  "ids": [
+    "burning-sands",
+    "shockwave",
+    "summon-mod-rod",
+    "summon-minor-weapon",
+    "flame-armor",
+    "heat-metal-conjured",
+    "conjure-rope",
+    "summon-familiar",
+    "resonance-bridge",
+    "faction-messenger",
+    "alignment-essence",
+    "corruption-sensor"
+  ],
+  "candidatePath": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\data\\playtest\\spell_drafts\\candidate_conjuration_rank1.json",
+  "candidateSha256BeforeReview": "55f40e38ec8696417db881d33279c90680591bd75e052468287968c30b701257",
+  "packetPath": "C:\\Github\\DecenniumDescent\\docs\\audit\\2026-10-08\\full-game\\CODEX_CONJURATION_RANK1_EXACT_REVIEW.md",
+  "packetSha256": "c7af09e45425c525eeb714d12074bd54a2c3f774ae04e6e41f1f987604d1be18",
+  "operationalBefore": 132,
+  "unfinishedBefore": 716,
+  "reviewEvidence": "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md",
+  "requiredRepairsApplied": [
+    "Heat Metal: explicit 6-second next-pulse-not-before deadline after every pulse, retained on physical item across initiative transitions and replacements",
+    "Faction Messenger: uniquely distinguishable ordinary description, otherwise no delivery or magical tie-breaker",
+    "Corruption Sensor: immediate first beep, then one fixed beep per elapsed second while predicate true"
+  ],
+  "repairDetails": {
+    "heat-metal-conjured": {
+      "field": "effect",
+      "text": " Whenever this spell deals a pulse, record a next-pulse-not-before deadline 6 elapsed seconds after that pulse. No later pulse from this spell on this physical item can occur before that deadline, even if initiative begins, ends or is reordered. In initiative, after that deadline, the first otherwise eligible current-user regular-start in a numbered round may pulse, subject to the shared item/round guard. Leaving initiative preserves the same deadline; the first outside-initiative pulse cannot occur before it. Entering or leaving initiative never resets either the deadline or a spent item/round allowance. The physical item retains this deadline across replacement applications/casters just as it retains the shared round allowance. For a newly cast application with no preserved deadline, the first-future-user-start rule controls in initiative; outside initiative the initial deadline is application +6 seconds."
+    },
+    "faction-messenger": {
+      "field": "limitations",
+      "text": " A description must identify one intended creature well enough that an ordinary observer using only the supplied description and currently perceivable facts could distinguish that creature from other creatures at the destination. If multiple creatures fit the description equally and the courier has no ordinary basis to distinguish the intended recipient, it delivers to none; the spell provides no magical tie-breaker or identity revelation."
+    },
+    "corruption-sensor": {
+      "field": "effect",
+      "text": " When the detection predicate changes from false to true, the sensor emits one beep immediately, then one brief beep each elapsed second while the predicate remains true. It stops immediately when the predicate becomes false. The cadence is fixed and conveys no additional information. These are informational sounds, not separate mechanical actions or damage events."
+    }
+  },
+  "candidateSha256AfterRepairs": "6d8cc52882c0a3573472c41e0facf7d536666f8651fd9e2de285c886f37035ad",
+  "batchSha256": "6d8cc52882c0a3573472c41e0facf7d536666f8651fd9e2de285c886f37035ad",
+  "operationalAfter": 144,
+  "unfinishedAfter": 704,
+  "pipelineValidation": "PASS 42 checks / 89040 access boundaries / zero issues"
+}

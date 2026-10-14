@@ -1,0 +1,262 @@
+ChatGPT said:
+
+REPAIR — two small mechanical wording changes. Everything else is approved.
+
+The guide, 17 class tables, and character_foundation.json are otherwise consistent with the foundation conference. I do not find an accidental second grant of full starting proficiencies, a class-schedule leak, ancestry-variant stacking, or a max-HP/current-HP conflict.
+
+1. Duplicate proficiency exhaustion — repair to a definite no-additional grant
+
+I prefer the definite disposition over leaving an unresolved selection. An exhausted proficiency choice should not make character creation, multiclass entry, or advancement incomplete.
+
+In CHARACTER_CREATION_PLAYTEST.md, replace:
+
+If no legal unowned choice exists, record the unresolved selection; it is not permission to substitute a feat, invent a proficiency, or bank a class-card selection.
+
+with:
+
+If a proficiency grant requires a choice and every legal option for that grant is already possessed, that grant provides no additional proficiency. Character creation, multiclass entry or advancement remains legal. Do not substitute a feat, Expertise, another category of proficiency, an unrelated skill/tool, or a banked future selection.
+
+This should apply equally to exhausted skill and tool choice lists.
+
+The existing hierarchy remains correct:
+
+selectable grant → another option from that grant's list;
+fixed ancestry/background skill with no alternate list → another of the 20 basic skills;
+tool duplicate → another legal supported tool within the allowed list/category;
+if that legal replacement universe is also exhausted → no additional proficiency;
+armor/weapon/save duplicates never convert to compensation.
+
+This is cleaner and deterministic.
+
+2. Newly gained Hit Die — explicitly unspent
+
+The book says each gained level grants one additional Hit Die. That is acquisition of a new die, not replenishment of old ones.
+
+Make two exact edits.
+
+Character level 1
+
+Replace:
+
+Record one Hit Die of that size and its spent state.
+
+with:
+
+Record one unspent Hit Die of that size.
+
+Gain a level, step 2
+
+Replace the opening:
+
+Add one Hit Die of the gained class's size.
+
+with:
+
+Add one new unspent Hit Die of the gained class's size. Previously spent Hit Dice remain spent; gaining this die does not refresh any earlier die.
+
+The rest of step 2 stays unchanged.
+
+This also fits step 7 exactly: level-up does not “refill Hit Dice”; it merely grants the new die that the level itself supplies.
+
+For newly acquired class resources, retain the current wording: use their explicit initialization/acquisition rule. Merely raising a maximum does not refill the old resource state.
+
+Explicit approvals
+Starting versus multiclass proficiencies — APPROVED
+
+The artifacts correctly distinguish them.
+
+A first character class gets the foundation table's full first-class chassis once. A later class gets only its separate source multiclass row, even where that row is surprisingly broader than the class's first-class detailed chassis.
+
+Therefore these are intentionally valid:
+
+first-class Dragoon: Light/Medium + its detailed weapon set;
+multiclass Dragoon: Medium + Shields + Martial weapons;
+first-class Warrior: Medium/Heavy + Martial;
+multiclass Warrior: Light/Medium + Shields + Simple/Martial;
+first-class Soldier follows its reviewed active chassis;
+multiclass Soldier gets its explicit broader source row.
+
+Those multiclass rows do not back-propagate into the first-class tables.
+
+Paladin's Martial Proficiency clarification is also correct: a chassis-restatement feature does not recover Heavy Armor when the multiclass row omits it.
+
+No saving-throw proficiency is granted a second time merely by entering another class.
+
+HP/MAXIMUM_HP interface — APPROVED
+
+The sequencing is correct:
+
+reconstruct base maximum HP from attained-level records;
+each contribution = max(1, stored base die/fixed value + current CON modifier);
+then pass that result into MAXIMUM_HP_PLAYTEST.md;
+never feed an already modified maximum back into the base calculation.
+
+Level-up itself:
+
+does not heal;
+does not raise a 0-HP creature;
+does not resurrect;
+does not clear Wounds;
+does not trigger healing/damage callbacks;
+clamps current HP only if a decreased maximum falls below current HP.
+
+The newly gained Hit Die repair above is the only missing advancement-state detail.
+
+RP maximum may decrease — APPROVED
+
+Yes. The tier ordering is authoritative before pool magnitude.
+
+If gaining a new, higher-tier Weave class changes which class is primary, the resulting:
+
+primary full pool + ceil(secondary pool / 4)
+
+can be lower than the character's previous maximum RP.
+
+That is not an error and the player cannot select the previous lower-tier class merely because it would produce a larger pool.
+
+When maximum RP falls:
+
+currentRP = min(currentRP, newMaximumRP)
+
+No damage, spending event, refund, or recovery is created.
+
+When maximum rises, current RP stays unchanged.
+
+Class schedules — APPROVED
+
+The guide does not globally grant four Base selections.
+
+The operative wording is correctly conditional:
+
+“where their schedule says so.”
+
+The actual reviewed class schedule remains controlling. Druid, Oracle, Paladin and any other explicit exception do not receive generic ordinary-class selections on top of their own progression.
+
+No Skill Point or legacy-table double grant is introduced.
+
+Retune rounding — APPROVED
+
+Keep:
+
+round-half-up(maximum RP / 4)
+
+before adding the primary class casting modifier.
+
+For nonnegative maximum RP this is equivalent to:
+
+floor(maximumRP / 4 + 0.5)
+
+Then:
+
+max(0, roundedQuarter + castingModifier)
+
+and cap recovery at merged maximum RP.
+
+This matches the intended positive-number JavaScript Math.round behavior and removes any banker's-rounding ambiguity.
+
+Ability generation / ancestry boundary — APPROVED
+
+The guide correctly preserves:
+
+4d6-drop-lowest ×6;
+standard array;
+provisional 27-point buy;
+exactly one selected generation method;
+ancestry increases applied once afterward;
+one branch of an OR choice;
+no stacking book ancestry with alternate companion/racial variants.
+
+It also correctly says the ancestry mechanics remain unfinished and makes no cosmology/origin adjudication.
+
+Skills — APPROVED subject only to duplicate-exhaustion repair
+
+The 20-skill list is correct, including Engineering and Reputation.
+
+The class lists match the conference, including:
+
+Oracle's bounded starting Spellcraft → Arcana substitution;
+Tinker gaining Engineering as an option, not an extra proficiency;
+the four provisional concrete placeholder replacements;
+actual Druid two-of-eight list.
+
+No Expertise from duplication.
+
+Equipment/proficiency chassis — APPROVED
+
+The complete table matches the conference.
+
+In particular:
+
+Cleric favored weapon = one existing mundane weapon, not a new weapon/deity;
+Ranger blades = dagger/shortsword/scimitar;
+Soldier sidearm remains dependent upon an actual equipment-side classification;
+Warrior mutation-tagged equipment is not a proficiency category;
+Mage/Wizard implements create no statistics;
+Bard instrument language creates no extra attack/profile;
+proficiency never grants ownership.
+
+Equipment records themselves remain open.
+
+Advancement / multiclass — APPROVED
+
+Correct distinctions:
+
+total level controls PB/optional XP;
+class level controls class gates;
+Arch/Hero are stages, not classes;
+total level 10 does not unlock Hero for a class below its own Hero level;
+new class level 1 uses later-level HP, not first-character maximum;
+all held-class + new-class prerequisites are checked only on entry into a new Base class;
+later score loss does not erase classes;
+no new saves/background/wealth/package from multiclassing;
+actual level-1 engines still apply subject to chassis-restatement rule;
+one applicable AC formula;
+largest equivalent Extra Attack count rather than summing;
+distinct operational mechanics remain distinct.
+Multiclass RP ordering — APPROVED
+
+Ordering is deterministic:
+
+tier;
+class level;
+actual class-level pool;
+earliest acquisition.
+
+Tertiary classes add no maximum RP but retain their legal features/repertoires.
+
+Oracle/Soldier/Warrior remain excluded.
+
+Shared Dissonance/Refrain — APPROVED
+
+One character-wide Dissonance state and one spell-name Refrain history is correct.
+
+Per cast:
+
+limit = max(4, 2 + total PB + max(0, actual casting-class modifier))
+
+is retained.
+
+Do not replace this with one permanent primary-class threshold. Per-casting-class threshold is preferable because the weaker secondary casting ability should actually matter when that class casts, while shared Dissonance prevents class-switching from cleansing strain.
+
+One concentration slot across classes remains correct, subject to the already-reviewed explicit exceptions.
+
+Wealth — APPROVED
+
+All 17 formulas are correctly reproduced, including:
+
+Monk 5d4 gp, no ×10;
+Oracle 3d4 × 10 gp.
+
+Package route or wealth route, not both. Multiclassing supplies no new budget.
+
+Data/table disposition
+
+CHARACTER_FOUNDATION_TABLES.md and character_foundation.json require no class-row mechanical repair.
+
+The two repairs are shared procedural rules rather than changes to any of the 17 class chassis records. If the JSON is intended later to become the sole machine authority rather than a class-foundation dataset accompanying the guide, it would eventually benefit from structured fields for duplicate-exhaustion, HP-level records, Hit Die state, and RP merge policy. That is runtime/schema parity work, not required for this authored-manuscript approval.
+
+After the two wording repairs above, approve all three artifacts as:
+
+REVIEWED CHARACTER FOUNDATION — authored operational PLAYTEST candidate
+
+This closes the mechanical class-foundation/advancement connection in the reviewed scope, not full character creation. Ancestries, backgrounds, equipment, remaining feats/spells, runtime parity, balance, final flow/GitHub delivery remain open, and cosmology remains deferred until after the verified push.

@@ -1,0 +1,58 @@
+{
+  "pack": "02-expedition-extraction",
+  "scenarioId": "EXP-T3-LONG",
+  "agentId": "rules-observer",
+  "seed": "10774-11647",
+  "observations": [
+    "All 12 roster agents received Watch assignments every active Watch; evening Rest used 3 workers / 9 resters (bible camp example).",
+    "Team sizes this roster: {'Combat': 3, 'Reconnaissance': 2, 'Research': 2, 'Resource': 2, 'Support': 3}. Undersized vs bible optimal bands: ['Combat'].",
+    "Parallel resolution: 5 team checks per active Watch is manageable; bottleneck is cargo priority + extraction response, not combat initiative.",
+    "SOURCE_MANIFEST gaps: docs/mechanics/GAMEPLAY_LOOP_CANON.md missing; src/data/gameplay-loop.json missing; ExpeditionTracker.tsx missing. Used GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt + haven.json + dungeon-mechanics.json.",
+    "Decision bottlenecks recurring: ['Extraction response: abandoned at-risk cargo to save clock/Pressure', 'Extraction response: spent 8h rather than abandon cargo']"
+  ],
+  "metrics": {
+    "iterations": 10,
+    "outcomes": {
+      "haven": 10
+    },
+    "objective_met_pct": 30.0,
+    "haven_arrival_pct": 100.0,
+    "sealed_pct": 0.0,
+    "avg_profit_gp": -1223.4,
+    "avg_net_after_sponsor_gp": 1080.6,
+    "avg_elapsed_hours": 360.0,
+    "avg_pressure_peak": 6.0,
+    "avg_supply_end": 156.6,
+    "avg_abandoned_cargo_gp": 15900.0,
+    "avg_abandoned_load": 24.0,
+    "avg_downed_or_dead": 0.1,
+    "avg_extraction_test_fails": 0.8,
+    "avg_complications": 19.9,
+    "combat_team_size": 3,
+    "combat_optimal_band": "4-6",
+    "source_note": "GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt (pending promotion); SOURCE_MANIFEST companions partially missing",
+    "team_sizes": {
+      "Combat": 3,
+      "Reconnaissance": 2,
+      "Research": 2,
+      "Resource": 2,
+      "Support": 3
+    },
+    "undersized_teams": [
+      "Combat"
+    ]
+  },
+  "rulesQuestions": [
+    "Player Rulebook expedition periods (morning/afternoon/evening) vs Gameplay Loop Watch (8h, two active + one Rest) \u2014 confirm they are the same layer or dual systems.",
+    "Combat optimal 4\u20136 vs this pack's 3 Combat PCs: is the Brass Lantern worked example intentionally below band?"
+  ],
+  "exploits": [
+    "Unknown routes with 0 Progress until recon succeeds can soft-lock Horn-adjacent starts if recon fails repeatedly (mitigated by assistants + high mods)."
+  ],
+  "recommendations": [
+    "Ship companion ExpeditionTracker matching bible Watch checklist; SOURCE_MANIFEST currently points at a missing component.",
+    "Add explicit crosswalk: Rulebook 'periods' = Loop 'Watches' to prevent dual-system confusion during onboarding.",
+    "Either expand Combat to 4+ in the sample company or revise optimal band examples to include 3-combat professional companies."
+  ],
+  "confidence": "high"
+}

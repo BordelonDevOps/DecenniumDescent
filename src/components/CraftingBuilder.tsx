@@ -1,13 +1,31 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Search, Plus, Minus, Hammer, Sparkles, RotateCcw, Save, Trash2, Beaker } from 'lucide-react';
+import { Search, Plus, Minus, Hammer, Sparkles, RotateCcw, Save, Trash2, Beaker, BookOpen } from 'lucide-react';
 import bestiaryData from '../bestiary_data_full.json';
+import craftingRecipes from '@/data/crafting-recipes.json';
+
+type BestiaryLootTier = {
+  drop?: string | null;
+  rate?: number | string | null;
+  quantity?: string | null;
+  value?: number | string | null;
+};
+
+type BestiaryMonster = {
+  name?: string;
+  zoneFound?: string;
+  loot?: {
+    tier1?: BestiaryLootTier;
+    tier2?: BestiaryLootTier;
+    tier3?: BestiaryLootTier;
+  };
+};
 
 // Types
 interface CraftingComponent {
@@ -43,9 +61,9 @@ const extractCraftingComponents = (): CraftingComponent[] => {
   const components: CraftingComponent[] = [];
   const processedItems = new Set<string>();
   
-  bestiaryData.forEach((monster: any) => {
+  (bestiaryData as BestiaryMonster[]).forEach((monster) => {
     ['tier1', 'tier2', 'tier3'].forEach((tierKey, index) => {
-      const loot = monster.loot[tierKey];
+      const loot = monster.loot?.[tierKey as 'tier1' | 'tier2' | 'tier3'];
       if (loot && loot.drop && loot.drop !== 'nan' && !processedItems.has(loot.drop)) {
         processedItems.add(loot.drop);
         
@@ -107,7 +125,7 @@ const extractCraftingComponents = (): CraftingComponent[] => {
           tier: index + 1,
           rarity,
           category,
-          value: (loot.value && loot.value !== 'nan') ? parseInt(loot.value) || 0 : 0,
+          value: (loot.value && loot.value !== 'nan') ? parseInt(String(loot.value)) || 0 : 0,
           weight: Math.random() * 2,
           quantity: 1,
           properties
@@ -119,119 +137,125 @@ const extractCraftingComponents = (): CraftingComponent[] => {
   return components;
 };
 
-// Generate crafting recipes based on component combinations
-const generateRecipes = (components: CraftingComponent[]): CraftingRecipe[] => {
-  const recipes: CraftingRecipe[] = [];
-  const skills = ['Blacksmithing', 'Leatherworking', 'Alchemy', 'Enchanting', 'Tailoring', 'Jewelcrafting', 'Carpentry', 'Cooking'];
-  
-  // Generate recipes for different item types
-  const recipeTemplates = [
-    {
-      name: 'Weapon',
-      requiredProperties: ['weapon_component', 'sharp'],
-      skill: 'Blacksmithing',
-      baseValue: 100
+// Load official recipes from validated workbook (ingested to JSON)
+const loadWorkbookRecipes = (): CraftingRecipe[] => {
+  return (craftingRecipes as Array<{
+    id: string;
+    name: string;
+    skill: string;
+    difficulty: number;
+    craftingTime: string;
+    effects?: string;
+    components: CraftingComponent[];
+    resultItem: CraftingRecipe["resultItem"];
+  }>).map((r) => ({
+    id: r.id,
+    name: r.name,
+    components: r.components || [],
+    skill: r.skill,
+    difficulty: r.difficulty || 10,
+    craftingTime: r.craftingTime || "1 hour",
+    resultItem: {
+      ...r.resultItem,
+      properties: r.resultItem?.properties?.length
+        ? r.resultItem.properties
+        : r.effects
+          ? [r.effects]
+          : [],
     },
-    {
-      name: 'Armor',
-      requiredProperties: ['armor_component', 'protective'],
-      skill: 'Leatherworking',
-      baseValue: 80
-    },
-    {
-      name: 'Potion',
-      requiredProperties: ['potion_component', 'liquid'],
-      skill: 'Alchemy',
-      baseValue: 50
-    },
-    {
-      name: 'Enchanted Item',
-      requiredProperties: ['enchantment_component', 'magical'],
-      skill: 'Enchanting',
-      baseValue: 150
-    },
-    {
-      name: 'Jewelry',
-      requiredProperties: ['jewelry_component', 'valuable'],
-      skill: 'Jewelcrafting',
-      baseValue: 200
-    }
-  ];
-  
-  recipeTemplates.forEach((template, templateIndex) => {
-    // Find components that match the template requirements
-    const matchingComponents = components.filter(comp => 
-      template.requiredProperties.some(prop => comp.properties.includes(prop))
-    );
-    
-    // Create recipes with 2-4 components
-    for (let recipeCount = 0; recipeCount < 20; recipeCount++) {
-      const numComponents = Math.floor(Math.random() * 3) + 2; // 2-4 components
-      const selectedComponents: CraftingComponent[] = [];
-      
-      for (let i = 0; i < numComponents; i++) {
-        const randomComponent = matchingComponents[Math.floor(Math.random() * matchingComponents.length)];
-        if (randomComponent && !selectedComponents.find(c => c.id === randomComponent.id)) {
-          selectedComponents.push({
-            ...randomComponent,
-            quantity: Math.floor(Math.random() * 3) + 1
-          });
-        }
-      }
-      
-      if (selectedComponents.length >= 2) {
-        const avgTier = selectedComponents.reduce((sum, comp) => sum + comp.tier, 0) / selectedComponents.length;
-        const totalValue = selectedComponents.reduce((sum, comp) => sum + (comp.value * comp.quantity), 0);
-        
-        let resultRarity = 'Common';
-        if (avgTier >= 3) resultRarity = 'Epic';
-        else if (avgTier >= 2.5) resultRarity = 'Very Rare';
-        else if (avgTier >= 2) resultRarity = 'Rare';
-        else if (avgTier >= 1.5) resultRarity = 'Uncommon';
-        
-        recipes.push({
-          id: `recipe_${templateIndex}_${recipeCount}`,
-          name: `${template.name} Recipe ${recipeCount + 1}`,
-          components: selectedComponents,
-          skill: template.skill,
-          difficulty: Math.floor(avgTier * 10) + Math.floor(Math.random() * 20),
-          craftingTime: `${Math.floor(avgTier * 30) + Math.floor(Math.random() * 60)} minutes`,
-          resultItem: {
-            name: `Crafted ${template.name} (T${Math.floor(avgTier)})`,
-            tier: Math.floor(avgTier),
-            rarity: resultRarity,
-            value: Math.floor(totalValue * 1.5),
-            properties: [...new Set(selectedComponents.flatMap(c => c.properties))]
-          }
-        });
-      }
-    }
-  });
-  
-  return recipes;
+  }));
 };
 
 const CraftingBuilder: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [recipeSearch, setRecipeSearch] = useState('');
+  const [recipeSkillFilter, setRecipeSkillFilter] = useState('all');
+  const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
   const [selectedComponents, setSelectedComponents] = useState<CraftingComponent[]>([]);
-  const [craftingSkill, setCraftingSkill] = useState<string>('Blacksmithing');
+  const [craftingSkill, setCraftingSkill] = useState<string>('Alchemy');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [tierFilter, setTierFilter] = useState<string>('all');
   const [testResult, setTestResult] = useState<CraftingRecipe | null>(null);
   
-  // Generate components and recipes
+  // Components from bestiary loot + recipes from crafting workbook
   const availableComponents = useMemo(() => extractCraftingComponents(), []);
-  const allRecipes = useMemo(() => generateRecipes(availableComponents), [availableComponents]);
+  const allRecipes = useMemo(() => loadWorkbookRecipes(), []);
   
   // Get unique filter values
   const categories = [...new Set(availableComponents.map(comp => comp.category))].sort();
   const tiers = [...new Set(availableComponents.map(comp => comp.tier))].sort((a, b) => a - b);
-  const skills = ['Blacksmithing', 'Leatherworking', 'Alchemy', 'Enchanting', 'Tailoring', 'Jewelcrafting', 'Carpentry', 'Cooking'];
+  const skills = [...new Set(allRecipes.map((r) => r.skill))].sort();
+
+  const filteredRecipes = useMemo(() => {
+    const q = recipeSearch.trim().toLowerCase();
+    return allRecipes.filter((r) => {
+      const matchSkill = recipeSkillFilter === 'all' || r.skill === recipeSkillFilter;
+      if (!matchSkill) return false;
+      if (!q) return true;
+      const hay = [
+        r.name,
+        r.skill,
+        r.resultItem?.name,
+        ...(r.components || []).map((c) => c.name),
+        ...(r.resultItem?.properties || []),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      return hay.includes(q);
+    });
+  }, [allRecipes, recipeSearch, recipeSkillFilter]);
+
+  const selectedRecipe = useMemo(() => {
+    if (selectedRecipeId) {
+      const fromAll = allRecipes.find((r) => r.id === selectedRecipeId);
+      if (fromAll) return fromAll;
+    }
+    return filteredRecipes[0] ?? null;
+  }, [allRecipes, selectedRecipeId, filteredRecipes]);
+
+  useEffect(() => {
+    if (selectedRecipeId && !filteredRecipes.some((r) => r.id === selectedRecipeId)) {
+      setSelectedRecipeId(filteredRecipes[0]?.id ?? null);
+    } else if (!selectedRecipeId && filteredRecipes[0]) {
+      setSelectedRecipeId(filteredRecipes[0].id);
+    }
+  }, [filteredRecipes, selectedRecipeId]);
   
+  const hasActiveComponentFilters =
+    searchTerm.trim() !== '' ||
+    categoryFilter !== 'all' ||
+    tierFilter !== 'all';
+
+  const clearComponentFilters = () => {
+    setSearchTerm('');
+    setCategoryFilter('all');
+    setTierFilter('all');
+  };
+
+  const hasActiveRecipeFilters =
+    recipeSearch.trim() !== '' ||
+    recipeSkillFilter !== 'all';
+
+  const clearRecipeFilters = () => {
+    setRecipeSearch('');
+    setRecipeSkillFilter('all');
+  };
+
   // Filter components
   const filteredComponents = useMemo(() => {
+    const q = searchTerm.trim().toLowerCase();
     return availableComponents.filter(comp => {
-      const matchesSearch = comp.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const searchHaystack = [
+        comp.name,
+        comp.category,
+        comp.rarity,
+        ...(comp.properties || []),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      const matchesSearch = !q || searchHaystack.includes(q);
       const matchesCategory = categoryFilter === 'all' || comp.category === categoryFilter;
       const matchesTier = tierFilter === 'all' || comp.tier.toString() === tierFilter;
       
@@ -392,10 +416,30 @@ const CraftingBuilder: React.FC = () => {
                       </SelectContent>
                     </Select>
                   </div>
+                  <div className="flex items-center justify-between text-sm text-gray-400">
+                    <span>
+                      {filteredComponents.length} component{filteredComponents.length === 1 ? '' : 's'}
+                      {hasActiveComponentFilters ? ' (filtered)' : ''}
+                    </span>
+                    {hasActiveComponentFilters && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={clearComponentFilters}
+                        className="h-7 text-xs text-gray-300"
+                      >
+                        Clear filters
+                      </Button>
+                    )}
+                  </div>
                 </div>
                 
                 {/* Components Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-96 overflow-y-auto pr-2">
+                  {filteredComponents.length === 0 && (
+                    <p className="text-sm text-gray-500 text-center py-8 col-span-full">No components match.</p>
+                  )}
                   {filteredComponents.map((component) => (
                     <Card
                       key={component.id}
@@ -595,6 +639,124 @@ const CraftingBuilder: React.FC = () => {
             )}
           </div>
         </div>
+
+        <Card className="bg-gray-800 border-gray-700 mt-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BookOpen className="w-5 h-5" />
+              Official Recipe Catalog ({allRecipes.length})
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-1 space-y-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input
+                    placeholder="Search recipes, ingredients, effects…"
+                    value={recipeSearch}
+                    onChange={(e) => setRecipeSearch(e.target.value)}
+                    className="pl-10 bg-gray-700 border-gray-600 text-white"
+                  />
+                </div>
+                <Select value={recipeSkillFilter} onValueChange={setRecipeSkillFilter}>
+                  <SelectTrigger className="bg-gray-700 border-gray-600">
+                    <SelectValue placeholder="Filter by skill" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-700 border-gray-600">
+                    <SelectItem value="all">All skills</SelectItem>
+                    {skills.map((skill) => (
+                      <SelectItem key={skill} value={skill}>{skill}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <div className="flex items-center justify-between text-xs text-gray-400">
+                  <span>
+                    {filteredRecipes.length} recipe{filteredRecipes.length === 1 ? '' : 's'}
+                    {hasActiveRecipeFilters ? ' (filtered)' : ''}
+                  </span>
+                  {hasActiveRecipeFilters && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={clearRecipeFilters}
+                      className="h-7 text-xs text-gray-300"
+                    >
+                      Clear filters
+                    </Button>
+                  )}
+                </div>
+                <div className="max-h-80 overflow-y-auto space-y-1 border border-gray-700 rounded p-2">
+                  {filteredRecipes.map((r) => (
+                    <button
+                      key={r.id}
+                      type="button"
+                      onClick={() => setSelectedRecipeId(r.id)}
+                      className={`w-full text-left px-2 py-1.5 rounded text-sm ${
+                        selectedRecipe?.id === r.id ? 'bg-purple-700/50 text-white' : 'text-gray-300 hover:bg-gray-700'
+                      }`}
+                    >
+                      <span className="font-medium">{r.name}</span>
+                      <span className="text-xs text-gray-400 block">{r.skill} · DC {r.difficulty}</span>
+                    </button>
+                  ))}
+                  {filteredRecipes.length === 0 && (
+                    <p className="text-sm text-gray-500 text-center py-4">No recipes match.</p>
+                  )}
+                  {filteredRecipes.length > 0 && (
+                    <p className="text-xs text-gray-500 text-center pt-2">
+                      {filteredRecipes.length} recipe{filteredRecipes.length === 1 ? '' : 's'}
+                    </p>
+                  )}
+                </div>
+              </div>
+              <div className="lg:col-span-2">
+                {selectedRecipe ? (
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-white">{selectedRecipe.name}</h3>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        <Badge className="bg-purple-600">{selectedRecipe.skill}</Badge>
+                        <Badge variant="outline" className="border-orange-500 text-orange-300">DC {selectedRecipe.difficulty}</Badge>
+                        <Badge variant="outline" className="border-blue-500 text-blue-300">{selectedRecipe.craftingTime}</Badge>
+                        <Badge className={getRarityColor(selectedRecipe.resultItem.rarity)}>
+                          {selectedRecipe.resultItem.rarity}
+                        </Badge>
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                      <div className="bg-gray-900/50 rounded p-3">
+                        <div className="text-gray-400 text-xs uppercase mb-1">Result</div>
+                        <div className="text-white font-medium">{selectedRecipe.resultItem.name}</div>
+                        <div className="text-yellow-400 mt-1">{selectedRecipe.resultItem.value} gold</div>
+                      </div>
+                      <div className="bg-gray-900/50 rounded p-3">
+                        <div className="text-gray-400 text-xs uppercase mb-1">Effects</div>
+                        <div className="text-purple-200/90">
+                          {selectedRecipe.resultItem.properties?.join('; ') || '—'}
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-gray-400 text-xs uppercase mb-2">Ingredients ({selectedRecipe.components.length})</div>
+                      <div className="grid sm:grid-cols-2 gap-2">
+                        {selectedRecipe.components.map((comp) => (
+                          <div key={comp.id} className="bg-gray-700/50 rounded px-3 py-2 text-sm flex justify-between gap-2">
+                            <span className="text-white">{comp.name}</span>
+                            <span className="text-gray-400 shrink-0">×{comp.quantity || 1}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-center py-12">Select a recipe from the catalog.</p>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

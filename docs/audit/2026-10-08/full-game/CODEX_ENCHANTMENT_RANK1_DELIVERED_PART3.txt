@@ -1,0 +1,123 @@
+PART 3 OF 4. Concatenate parts in numerical order after removing this first line; all four belong to one exact manuscript packet.
+ {
+  "id": "command",
+  "activation": "Action",
+  "targets": "One creature you perceive within30feet and line of effect; speak one word in a language you know. Actual hearing/understanding and hidden impossibility/prohibited conduct are resolved after payment, not through a free targeting oracle.",
+  "duration": "One commanded regular turn, no concentration; ends at the target’s first future regular-turn END, excluding the current turn if underway. Extra turns do not execute the order. Outside initiative, resolve one ordinary behavior opportunity within6elapsed seconds; establish initiative if combat timing matters.",
+  "concentration": false,
+  "resolution": "If it cannot hear/understand the word, no command applies. Otherwise it makes a Wisdom save. Success: no new command. Failure: it must perform a legal bounded interpretation on its next regular turn, using only its actual existing permissions. An impossible or prohibited command creates no behavior; no replacement word is chosen. Reserve the shared hard-control allowance when establishing any actual whole-Action/turn component. If blocked, only independently satisfiable non-hard movement/interaction portions may apply; do not invent another command.",
+  "effect": "After ordinary start-phase events, obey before contradictory voluntary choices. Approach: spend ordinary available movement toward you by a safe legal route, stopping on reaching an adjacent legal space or exhausting safe meaningful progress. Flee: spend ordinary available movement away by a safe legal route. Neither forces Dash or grants movement. Drop: ordinarily release one releasable held object chosen by the target/controller, using its actual ordinary release permission; ownership never transfers and normal later recovery remains possible. Halt: refrain from voluntary movement for that turn, without imposing Speed0 or preventing actual involuntary transport. Grovel: become/remain Prone for that turn if capable, without automatically losing Actions or legal crawling. Other one-word commands may require at most one coherent ordinary action/movement/interaction within this same turn and the limitations below; the word never grants an otherwise unavailable action or named condition. The target/controller chooses lawful details, safe route and object where the word leaves choices.",
+  "limitations": "No compelled attack/knowingly harmful act, direct self-harm, known serious hazard, protected/private secret disclosure, permanent surrender/ownership transfer, knowing binding-oath/duty violation, spell or optional limited-resource expenditure. If circumstances make the commanded behavior prohibited or impossible before execution, that portion fails rather than rewriting the word or extending the deadline. One pending Command application per target across casters; a later legally established failed-save application replaces it. No restoration of an older replaced command or spent hard-control allowance. A saved-against/wholly invalid new command creates no replacement. Simultaneous unresolved decisions use ordinary initiative order, else a fixed neutral order, never a caster’s after-the-fact preference. Unaffected Actions/BA/Reactions and movement remain; one-time Drop/Approach/Flee instructions finish once satisfied, while Halt/Grovel persist for the affected turn. Compelled movement uses the target’s movement and can provoke normal opportunity attacks. Hard whole-Action/turn components use the existing combined source-character/target/encounter allowance across class features, spells and companions. A blocked hard component gains no invented fallback; independent printed components retain their own defense checks. A successfully established hard component claims the allowance once, not again each turn; ending, dispelling, replacing or suppressing it does not refund the encounter history. Actual boss/control immunities remain effective",
+  "designNotes": "PRESERVED: Action/30feet/V,S,F, actual one-word compulsion for1round. NEW: WIS/hearing/language and bounded safe-command procedure. Exact completions retain other bounded words, define ordinary action costs, nonbanking competition and one-time versus turn-long instructions; they do not turn compulsion into voluntary advice.",
+  "sourcePlacements": [
+   {
+    "name": "Command",
+    "school": "Enchantment",
+    "level": 1,
+    "summary": "Force target to follow one-word command for 1 round."
+   }
+  ],
+  "sourceCoreEntries": [
+   {
+    "index": 336,
+    "original": {
+     "school": "Enchantment",
+     "level": 1,
+     "name": "Command",
+     "effect": "Force target to follow one-word command for 1 round.",
+     "source_paragraph": 9396,
+     "casting_time": "1 action",
+     "range": "30 feet",
+     "duration": "1 round",
+     "components": "V, S, F",
+     "resolution": "Automatic or opposed as described",
+     "tags": [
+      "Utility"
+     ],
+     "rp_cost": 2
+    }
+   }
+  ]
+ },
+ {
+  "id": "hideous-laughter",
+  "activation": "Action",
+  "targets": "One creature you perceive within30feet and line of effect; no biological, Humanoid or minimum-Intelligence predicate.",
+  "duration": "Concentration, up to1minute, or earlier ending below. In initiative, expires at the caster's tenth future regular-start marker after application; an already-passed start never counts. Outside initiative, expires after 60 elapsed seconds. Retain the original virtual phase or absolute deadline through initiative changes, absence and planar travel; moving between timing modes does not reset it.",
+  "concentration": true,
+  "resolution": "The target makes a Wisdom save. Success: no new application. Failure: immediately apply Prone and attempt a separate continuing Incapacitated component. The Incapacitated component claims the shared hard-control allowance when successfully applied; blocked hard control does not by itself block the independently printed Prone application. Actual Prone and Incapacitated immunities each retain their own scope.",
+  "effect": "An actually Incapacitated target loses Action/BA/Reaction and ends actual concentration through its normal callbacks, including exact class exceptions. Incapacitated alone does not reduce Speed or prohibit speech. At the end of each affected regular turn, including the current turn if the application was established during it, repeat the WIS save; success ends the ongoing laughter application. Extra turns grant no additional repeat save. A positive damage packet after defenses and before temporary HP also ends the ongoing laughter application; a fully prevented0packet does not. Resolve already determined attack/hit/critical consequences normally before damage-triggered ending.",
+  "limitations": "Prone is an immediate actual condition application, not a maintained forced posture: normal legal standing remains possible even while Incapacitated if it requires only movement. Crawling and speech follow actual conditions, without invented paralysis. Ending laughter never automatically stands the creature or restores concentration. If Incapacitated was blocked at application, no deferred hard component waits to activate later; the paid spell only inflicted whatever independent component could actually apply. For an existing valid hard application later suppressed by immunity, keep its clock and prior guard history; lifting suppression never creates a fresh use or replays Prone. Independent other sources remain. A new concentration cast still displaces incompatible old concentration before its save. Hard whole-Action/turn components use the existing combined source-character/target/encounter allowance across class features, spells and companions. A blocked hard component gains no invented fallback; independent printed components retain their own defense checks. A successfully established hard component claims the allowance once, not again each turn; ending, dispelling, replacing or suppressing it does not refund the encounter history. Actual boss/control immunities remain effective",
+  "designNotes": "PRESERVED: Action/30feet/V,S,F, WIS, falls Prone and Incapacitated. NEW: concentration minute, repeat regular-end saves and positive-packet ending. Exact completion distinguishes immediate Prone from sustained Incapacitated, initial prevention from later suppression, and a current-turn repeat save from the maximum-duration clock.",
+  "sourcePlacements": [
+   {
+    "name": "Hideous Laughter",
+    "school": "Enchantment",
+    "level": 1,
+    "summary": "Target falls prone, incapacitated by laughter (WIS save)."
+   }
+  ],
+  "sourceCoreEntries": [
+   {
+    "index": 337,
+    "original": {
+     "school": "Enchantment",
+     "level": 1,
+     "name": "Hideous Laughter",
+     "effect": "Target falls prone, incapacitated by laughter (WIS save).",
+     "source_paragraph": 9397,
+     "casting_time": "1 action",
+     "range": "30 feet",
+     "duration": "Instantaneous",
+     "components": "V, S, F",
+     "resolution": "Wisdom save",
+     "tags": [
+      "Control"
+     ],
+     "rp_cost": 2
+    }
+   }
+  ]
+ },
+ {
+  "id": "faction-charm",
+  "activation": "Action",
+  "targets": "One creature you perceive within30feet and line of effect; choose one exact canonical faction with which you actually currently have affiliation/membership.",
+  "duration": "1hour/3,600elapsed seconds from application, no concentration; clocks continue through initiative/scene/plane changes.",
+  "concentration": false,
+  "resolution": "After commitment, confirm your actual current affiliation with the chosen faction. Established canonical campaign fiction can supply it; reputation, costume, logo, asserted title or possession of an emblem alone does not. If absent, no affinity applies and no hidden-membership diagnostic is returned. Otherwise the creature makes a Wisdom save. Success: no new effect. Failure: genuine strong favorable affinity toward the selected faction for the duration.",
+  "effect": "The target ordinarily regards that faction favorably rather than neutrally/negatively where no stronger actual fact overrides that feeling. You gain advantage on actual Persuasion checks directed to this target specifically concerning that faction, its interests or cooperation with it. Ordinary beliefs, evidence, risk judgment, task legality and agency remain. End the application when you, or a creature the target actually recognizes as acting for this faction, commits an attack or knowingly harmful effect against the target, before the outcome; a later miss/prevention does not restore it. Unknown affiliation alone is not an omniscient ending trigger.",
+  "limitations": "The faction is snapshotted at application; your later membership/leadership changes do not retarget or automatically end it. This is not Core Charmed, a command, numeric reputation, membership, credential, authority, legal rights, permanent loyalty or erasure of grievances. Each caster/target/faction has one affinity record; later failed save refreshes that matching record, success leaves an existing one unchanged. Different factions/casters may have independent feelings and deadlines; advantage still never stacks and conflicting interests grant no compelled choice. No ongoing30foot or communication tether; actual Persuasion still needs an ordinary interaction",
+  "designNotes": "PRESERVED: Action/30feet/V,S,M/F as focus, strong faction affinity1hour, no source concentration. NEW: WIS, actual-affiliation predicate, genuine but bounded attitude, related Persuasion advantage and recognized-harm ending. Exact completion allows independent different faction relations without granting allegiance or stacked advantage.",
+  "sourcePlacements": [
+   {
+    "name": "Faction Charm",
+    "school": "Enchantment",
+    "level": 1,
+    "summary": "Target feels strong affinity toward your faction for 1 hour."
+   }
+  ],
+  "sourceCoreEntries": [
+   {
+    "index": 339,
+    "original": {
+     "school": "Enchantment",
+     "level": 1,
+     "name": "Faction Charm",
+     "effect": "Target feels strong affinity toward your faction for 1 hour.",
+     "source_paragraph": 9399,
+     "casting_time": "1 action",
+     "range": "30 feet",
+     "duration": "1 hour",
+     "components": "V, S, M/F",
+     "resolution": "Automatic or opposed as described",
+     "tags": [
+      "Ward",
+      "Control",
+      "Faction"
+     ],
+     "rp_cost": 2
+    }
+   }
+  ]
+ },

@@ -1,0 +1,207 @@
+{
+  "status": "PASS — exact-review conditions fulfilled",
+  "threadId": "6aca4e7e-fd2c-83ea-bf0f-971997ed1a9b",
+  "turnId": "3074a6c4-b718-4241-ae05-f6b3ed1238b0",
+  "replyId": "872837f3-e844-4e3f-9a79-068060b62213",
+  "preservedSubmittedRevision": "docs/audit/2026-10-08/full-game/jewelcrafting-before-exact-review-repairs",
+  "repairs": {
+    "JC-ER01": {
+      "result": "PASS",
+      "change": "Authoritative campaign/epoch/time/order/preceding-dawn checkpoints retained for each item. Reject unresolved preceding dawns and earlier or replayed transitions; one authoritative caller ledger. Creation checkpoints and actual historical dawn-state requirements retained.",
+      "checks": [
+        {
+          "name": "JC-ER01 spend before unresolved preceding dawn rejected",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 rejected spend leaves authoritative ledger unchanged",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 correct dawn then spend ends at one charge",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 late earlier dawn cannot overwrite spend",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 late earlier expenditure rejected",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 invalid earlier transitions do not mutate ledger",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 creation immediately before same-time dawn then spend",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 reversed order at identical timestamp rejected",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 creation after same-time dawn spends initial charges only",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 legal spends on opposite sides of one real dawn",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 actual chronological day 1",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 actual chronological day 2",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 actual chronological day 3",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 actual chronological day 4",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 fixed epoch mismatch rejected",
+          "pass": true
+        },
+        {
+          "name": "JC-ER01 missing scheduler checkpoint rejected",
+          "pass": true
+        }
+      ]
+    },
+    "JC-ER02": {
+      "result": "PASS",
+      "change": "Canonical event ID and consistent kind/actor/ability/proficiency/actual-roll/automatic-result descriptors required before either trade calculation. Item premises remain current-event specific, with independent vocabulary and designation validation first. Protected older trade artifacts unchanged.",
+      "checks": [
+        {
+          "name": "JC-ER02 older view rejects id earlier-different-check",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 older view rejects id None",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 older view rejects actualCheck False",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 older view rejects automaticResult True",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 older view rejects kind saving-throw",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 older view rejects actor B",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 older view rejects ability STR",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 older view rejects proficiency Athletics",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 jewel view rejects id",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 jewel view rejects actualRoll",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 jewel view rejects automaticResult",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 missing roll descriptor rejected",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 weaker actual jewel spends once while stronger current Garment supplies3",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 ordinary cancellation does not refund or create extra die",
+          "pass": true
+        },
+        {
+          "name": "JC-ER02 same-event second charge remains forbidden",
+          "pass": true
+        }
+      ]
+    },
+    "JC-ER03": {
+      "result": "PASS",
+      "change": "Recipe268 fixtures derive DC19,2gp body and4509gp finished reference from actual source/card/model. Positive Broken HP5 quote is8h,1127.25gp/112725cp. Missing crystal/mount negatives isolate original-assembly gates with that same profile. Card/source values unchanged.",
+      "checks": [
+        {
+          "name": "recipe268 repair profile bound to actual source and model",
+          "pass": true
+        },
+        {
+          "name": "recipe268 positive original-assembly reconstruction quote",
+          "pass": true
+        },
+        {
+          "name": "Gem missing original crystal cannot reconstruct",
+          "pass": true
+        },
+        {
+          "name": "Gem missing primary mount cannot reconstruct",
+          "pass": true
+        }
+      ]
+    }
+  },
+  "authorizedGuideAdditions": {
+    "docs/director-only/JEWELCRAFTING_INTERNAL_GUIDE.md": [
+      "Every participating item's evidence must describe this same actual roll. Match the roll's identity, kind, actor, ability, proficiency and whether a roll occurs; an automatic result grants no check bonus. Each trade may describe its qualifying contribution differently, but evidence from an earlier or different check cannot qualify an item now.",
+      "Resolve creation, dawns and expenditures in the campaign's actual event order, including their order at a shared timestamp. Before spending, resolve every preceding dawn from the item's actual state at that event. Retain each item's last processed event position and reject earlier or replayed transitions; a late dawn cannot overwrite a later expenditure. Use one authoritative resource history. Copies record that history and do not create another usable balance. This ordering grants no additional action or roll opportunity."
+    ],
+    "docs/mechanics/JEWELCRAFTING_RECIPE_PLAYTEST.md": [
+      "Every participating item's evidence must describe this same actual roll. Match the roll's identity, kind, actor, ability, proficiency and whether a roll occurs; an automatic result grants no check bonus. Each trade may describe its qualifying contribution differently, but evidence from an earlier or different check cannot qualify an item now.",
+      "Resolve creation, dawns and expenditures in the campaign's actual event order, including their order at a shared timestamp. Before spending, resolve every preceding dawn from the item's actual state at that event. Retain each item's last processed event position and reject earlier or replayed transitions; a late dawn cannot overwrite a later expenditure. Use one authoritative resource history. Copies record that history and do not create another usable balance. This ordering grants no additional action or roll opportunity."
+    ]
+  },
+  "repairedPrepromotionHashes": {
+    "data/director/jewelcrafting_recipe_candidate_internal.json": "793b9cb36679bf83ae501aa7261692ec4b174ad648c7ee458831d73a268bbb75",
+    "data/playtest/jewelcrafting_recipe_candidate.json": "52673c0a457842155cbcc02294ce80107e43b4b3cb67243e28d684f3093e8b15",
+    "docs/director-only/JEWELCRAFTING_INTERNAL_GUIDE.md": "cef8750f5846026f58c5a55b0008228ff549c89bb48fc22411141fc2ab4cd203",
+    "docs/director-only/JEWELCRAFTING_INTERNAL_RECIPE_CARDS.md": "097b406eccfd76548971351592b60f928d39a115570fda4823b933e061bdcf2a",
+    "docs/mechanics/JEWELCRAFTING_RECIPE_PLAYTEST.md": "00a18e7fdee1dec55588991dc4d6cd04e5192996b58f2f29004ed030c9c0053a",
+    "docs/mechanics/JEWELCRAFTING_PUBLIC_RECIPE_CARDS.md": "e1b771a57bdf71a8e8827706d111292c580ae0094675b7a164bd5edfa2f98ee3"
+  },
+  "finalArtifactHashes": {
+    "data/director/jewelcrafting_recipe_candidate_internal.json": "327cc301031b45506de52c5ecb609144f3d17671d9beb744d6159cd6ab11dedd",
+    "data/playtest/jewelcrafting_recipe_candidate.json": "a593fc08b4c8806a012dd283011805852b3aeef7a8062d6a178b4a048e5be4b8",
+    "docs/director-only/JEWELCRAFTING_INTERNAL_GUIDE.md": "0727f6e3006a71aeac4fa4418e622706778f897bf40a87d649d30b908e2dadb9",
+    "docs/director-only/JEWELCRAFTING_INTERNAL_RECIPE_CARDS.md": "4a6357da17232d423c4aa9eda31c25a172226748f36eda56fe1c3136270be09f",
+    "docs/mechanics/JEWELCRAFTING_RECIPE_PLAYTEST.md": "ac4f056d1566d1304c3cad942bb593d6c5200a5b428dcc16a7b98df7cf98f6c0",
+    "docs/mechanics/JEWELCRAFTING_PUBLIC_RECIPE_CARDS.md": "349e6d40a91ff27e71096427e8aa3617d15443529dcfc87756918ea6cd9fa877"
+  },
+  "checks": 131,
+  "predicateCases": 69,
+  "structuralStates": 486,
+  "valueCombinations": 86,
+  "protectedFilesUnchanged": 54,
+  "completePublicCardsGuideAndJsonProjection": true,
+  "referenceSha256": "ca34c01780ab1687055826a696d48de19f1ee5d7b1ac8f7b8342654b1b1b72ed",
+  "validatorSha256": "71afb12046fcb46b8d54b03a106c4a3cd60baad4295006d04fb419b2d9b5ddd6",
+  "verdictSha256": "7a0eb1a3ca364950b2447861dccd52ce5251f9feedcf8bf1ff15b6b7c68c2dd7",
+  "reviewerArchiveSha256": "e9148baf97308f53467f3cb2fe07793c8bdf392a1f2d96bf3197e7aec20cf4a8",
+  "verifiedReviewerArchiveHashes": 19,
+  "sourceInformationDeleted": 0,
+  "runtimeImplemented": false,
+  "balanceApproved": false
+}

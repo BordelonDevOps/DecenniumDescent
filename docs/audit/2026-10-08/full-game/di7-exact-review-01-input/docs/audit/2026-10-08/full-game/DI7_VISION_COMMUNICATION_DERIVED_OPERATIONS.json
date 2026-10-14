@@ -1,0 +1,38 @@
+{
+  "recordedAtUtc": "2026-10-14T01:56:06.054166+00:00",
+  "changes": [
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/tools/di7_vision_transactions.py",
+        "bytes": 15966,
+        "sha256": "2fb20d9bc67aa9aceb4a2b889a02b14b59cd85363283bf2d203c12e032cafc83",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-di7-vision-communication/DescentReviewChanges/ReviewBible/tools/di7_vision_transactions.py"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/tools/di7_vision_transactions.py",
+        "bytes": 16551,
+        "sha256": "6853d8c0f3591a9f0910029c202e722ad155848d93db663023393baa25aaa2f8"
+      },
+      "operations": [
+        {
+          "old": "        if not source or not channel or channel.get('speaker') != speaker or channel.get('listener') != listener or channel.get('at') != self.now or not channel.get('actuallyReceivedUnderstood'):\n            raise ValueError('Actual contemporaneous received/understood channel required')\n        if channel.get('used'): raise ValueError('Communication event already delivered')\n        channel['used'] = True\n        self.memories.setdefault(listener, []).append({'learnedFrom': speaker, 'channelEvent': channel_event,\n            'deliveredAt': self.now, 'answer': deepcopy(source['answer'])})\n        return deepcopy(source['answer'])\n",
+          "replacement": "        if not source or not channel or not channel.get('sourceFact') or channel.get('speaker') != speaker or channel.get('listener') != listener or channel.get('at') != self.now or not channel.get('actuallyReceivedUnderstood'):\n            raise ValueError('Actual contemporaneous source-qualified received/understood channel required')\n        if channel.get('used'): raise ValueError('Communication event already delivered')\n        delivered = channel.get('deliveredText')\n        if not isinstance(delivered, str) or not delivered.strip() or delivered not in source['answer']['text']:\n            raise ValueError('This bounded adapter requires the actual received literal excerpt of the remembered answer')\n        # A paraphrase/lie can exist under its own communication adjudication;\n        # this finite adapter neither authenticates it nor copies omitted facts,\n        # step lists or the private answer metadata into the listener's knowledge.\n        report = {'text': delivered}\n        channel['used'] = True\n        self.memories.setdefault(listener, []).append({'learnedFrom': speaker, 'channelEvent': channel_event,\n            'deliveredAt': self.now, 'answer': report})\n        return deepcopy(report)\n",
+          "textReplace": true
+        }
+      ],
+      "exactInverseBytesVerified": true
+    }
+  ],
+  "priorReportPreserved": {
+    "path": "docs/audit/2026-10-08/full-game/DI7_VISION_TRANSACTIONS_CHECK.json",
+    "bytes": 1136949,
+    "sha256": "d5afd39a0cf975cdacaf75246a766c73a4570b1db4ced72ad164e948d50021f3"
+  },
+  "newRunner": {
+    "path": "DescentReviewChanges/ReviewBible/tools/validate_di7_vision_transactions_v2.py",
+    "bytes": 23295,
+    "sha256": "3bd9b267ef19c7870c4b322da518920f2fe49e0a1cdd5b980715228c19d4eecb"
+  },
+  "newRuleAdoptions": 0,
+  "scope": "Implement existing actual-channel/only-communicated-content boundary; no new game rule or source approval."
+}

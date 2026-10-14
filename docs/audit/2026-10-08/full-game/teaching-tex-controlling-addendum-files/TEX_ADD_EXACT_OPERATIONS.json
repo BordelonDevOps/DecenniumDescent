@@ -1,0 +1,137 @@
+{
+  "addendumId": "TEX-ADD-2026-10-11",
+  "status": "AUTHORIZED FOR LOCAL APPLICATION; not an execution receipt",
+  "controllingPriorContract": {
+    "replyId": "cb2e5a59-d467-4439-903f-1af7c37c7838",
+    "packageSha256": "9d089706426f874a6f56ca097d6cf7836b3ffa023eb22e07751e5aade7ffb844",
+    "operationCount": 9,
+    "acceptanceCaseIds": [
+      "TB-01",
+      "TB-02",
+      "TB-03",
+      "TB-04",
+      "TB-05",
+      "TB-06",
+      "TB-07",
+      "TB-08",
+      "TB-09",
+      "TB-10",
+      "TB-11",
+      "TB-12",
+      "TB-13",
+      "TB-14",
+      "TB-15",
+      "TB-16"
+    ]
+  },
+  "additionalOperativeReplacementCount": 3,
+  "operations": [
+    {
+      "op": "replace_text",
+      "path": "DescentReviewChanges/ReviewBible/docs/director-only/ADVANCED_CRAFT_INTERNAL_OPERATIONAL_GUIDE.md",
+      "section": "TD-13 — Recycling refunds actual deployment RP only",
+      "submittedStartLine": 567,
+      "old": "KEEP actual enemy destruction, your own device, one minute after combat, once per short rest, consume its usable debris and return at most1RP actually paid to **deploy that same device**. Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name.",
+      "replacement": "KEEP qualifying destruction of your own device; enemy cause is not required. Keep the actual one-minute procedure after combat, once-per-short-rest allowance, and consumption of that device's qualifying usable debris. Return at most min(1 RP, the RP actually paid to **deploy that same device**). Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects, spent debris, prohibited resource-generation branches and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name.",
+      "expectedOccurrences": 1,
+      "id": "TEX-ADD-01",
+      "authorization": "APPROVED VERBATIM; not applied to the user repository by this package"
+    },
+    {
+      "op": "replace_json_string",
+      "path": "DescentReviewChanges/ReviewBible/data/director/advanced_craft_recipe_candidate_internal.json",
+      "pointer": "/procedureSections/TD-13/text",
+      "old": "KEEP actual enemy destruction, your own device, one minute after combat, once per short rest, consume its usable debris and return at most1RP actually paid to **deploy that same device**. Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name.",
+      "replacement": "KEEP qualifying destruction of your own device; enemy cause is not required. Keep the actual one-minute procedure after combat, once-per-short-rest allowance, and consumption of that device's qualifying usable debris. Return at most min(1 RP, the RP actually paid to **deploy that same device**). Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects, spent debris, prohibited resource-generation branches and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name.",
+      "id": "TEX-ADD-02",
+      "authorization": "APPROVED VERBATIM; not applied to the user repository by this package"
+    },
+    {
+      "op": "replace_text",
+      "path": "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md",
+      "section": "End a turn, end an encounter, finish a rest: first paragraph",
+      "submittedStartLine": 187,
+      "old": "At a regular turn boundary, resolve actual deadlines and tick round-recharge counters under the [timing rules](../mechanics/CLASS_PLAYTEST_RULES.md#action-and-timing-limits). An extra Action or extra turn does not supply another regular-turn recharge tick. A named counter can receive at most one reset/shortening per round, and a reset is neither a resource refill nor an extra activation.",
+      "replacement": "Resolve each deadline at its actual source-defined start, end or elapsed-time endpoint. Tick round-recharge counters once at the start of the owner's regular turn, even when the owner cannot act, under the [timing rules](../mechanics/CLASS_PLAYTEST_RULES.md#action-and-timing-limits). A turn end, extra Action or extra turn does not supply another regular-turn recharge tick. Outside initiative, use the same source's six-second elapsed-time procedure without double counting a boundary. Only a positive counter can be reset or shortened, at most once per named ability per numbered round; a reset is neither a resource refill nor an extra activation.",
+      "expectedOccurrences": 1,
+      "id": "TEX-ADD-03",
+      "authorization": "APPROVED VERBATIM; not applied to the user repository by this package"
+    }
+  ],
+  "provenanceAppend": {
+    "op": "append_json_array",
+    "path": "DescentReviewChanges/ReviewBible/data/director/advanced_craft_recipe_candidate_internal.json",
+    "pointer": "/controllingCorrections",
+    "createOnlyIfAbsent": true,
+    "preserveExistingMembers": true,
+    "onConflictingNullOrNonArray": "STOP; do not coerce or overwrite",
+    "duplicatePolicy": "Exact existing record is an idempotent no-op; same id with different value is a focused mismatch, not permission to append another conflicting record.",
+    "value": {
+      "id": "TEX-ADD-2026-10-11",
+      "issueId": "TC-RECYCLING-01",
+      "scope": "Current internal TD-13 text alignment only; retain fulfilled cb2 directions and every other eligibility restriction.",
+      "controllingPriorReplyId": "cb2e5a59-d467-4439-903f-1af7c37c7838",
+      "controllingPriorPackageSha256": "9d089706426f874a6f56ca097d6cf7836b3ffa023eb22e07751e5aade7ffb844",
+      "alternateReplyId": "96353644-689b-464c-b350-50ef1e6f55e4",
+      "alternatePackageSha256": "5d5f7d597ccac81787d5e196574fe19836ff206b04d2eb37eb91443131543f43",
+      "addendumFile": "docs/audit/2026-10-08/full-game/TEX_CONTROLLING_ADDENDUM_2026_10_11.md",
+      "addendumSha256": "304b7265a9c1f4e244c53abc2c0ad4396c4486407c6344019ebb3e5439817238",
+      "priorFulfillmentFile": "docs/audit/2026-10-08/full-game/TEACHING_TEX_EXACT_FULFILLMENT.json",
+      "priorFulfillmentSha256": "a3e447ce732c86818ca46468505ef8eb4fbea41a7b04340c4e5708576d9840d6",
+      "preservedSourceVerdictSha256": "48f885becd03e4a99ba8d6243ce286c1e1e88cfefc776af9ff89a9182c79c8e0",
+      "operativeTargets": [
+        "/procedureSections/TD-13/text",
+        "docs/director-only/ADVANCED_CRAFT_INTERNAL_OPERATIONAL_GUIDE.md#td-13"
+      ],
+      "replacementMeaning": "Enemy cause is not required for Efficient Recycling. All cb2 ownership, acquisition, non-copy/non-sacrifice, reachable unspent qualifying debris, actual postcombat minute, once-per-short-rest, deployment-RP, no-resource-generation, applicable no-own-destruction-chain and single-consumer restrictions remain.",
+      "preserveCurrentTinkerDisposition": "/tinkerInterfaceRegister/cards/31/authoringDisposition",
+      "preserveW19": true,
+      "newCardApprovals": 0,
+      "newGameplayRules": 0
+    }
+  },
+  "statusAppend": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_REVIEW_STATUS.json",
+    "pointer": "/subsequentInterfaceErrata",
+    "operation": "Append one new versioned entry; preserve every existing entry.",
+    "id": "TEX-ADD-2026-10-11",
+    "requiredMeasuredFields": [
+      "addendumFile",
+      "addendumSha256",
+      "fulfillmentReceiptFile",
+      "fulfillmentReceiptSha256",
+      "currentArtifactHashes"
+    ],
+    "newReceiptFile": "docs/audit/2026-10-08/full-game/TEACHING_TEX_ADDENDUM_FULFILLMENT.json",
+    "hashTargets": [
+      "DescentReviewChanges/ReviewBible/docs/director-only/ADVANCED_CRAFT_INTERNAL_OPERATIONAL_GUIDE.md",
+      "DescentReviewChanges/ReviewBible/data/director/advanced_craft_recipe_candidate_internal.json",
+      "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md"
+    ],
+    "retainOriginalArtifactHashes": true,
+    "retainPriorAuthorityAndReceipts": true,
+    "doNotUseAlternatePostReviewReconciliationsProcedure": true,
+    "hashOrder": "Write amended artifacts including the internal provenance append; measure them; write new receipt; hash receipt; append status entry. Preserve the prior status snapshot/hash. Any final-status hash is recorded in a separate downstream record, not inserted into its already-referenced receipt."
+  },
+  "reportedApplicationBaseline": {
+    "source": "User current fulfillment notice; not independently rehashed current repository files in this addendum",
+    "DescentReviewChanges/ReviewBible/data/director/advanced_craft_recipe_candidate_internal.json": "3e3907e0470bc32cb2bf524f7cf499cf0fbd4322bc2f22d919892407c155fafe",
+    "DescentReviewChanges/ReviewBible/docs/playtest/CLASS_RESOURCE_REFERENCE.md": "f959dfe9ee730ed2cca438cdd38fce020daf5cc7575021de0f9d03769ed66e7e",
+    "internalGuideHash": "Measure the actual current file before application; no hash was supplied in the notice."
+  },
+  "preservation": {
+    "cb2CurrentTinkerDisposition": "Ordinary deployment of all43 crafted items paid0RP; later activation/repair RP and GP price are not deployment credits. TD-13 applies with TC-RECYCLING-01 / TEX-01: enemy cause is not required for Efficient Recycling. Keep its actual owned-device, non-copy, non-sacrifice, one-minute postcombat, once-per-short-rest and single-consumer debris requirements, including the lifecycle's prohibited resource-generation and no-own-destruction-chain branches. No class-card status or recipe permission is changed.",
+    "sourceVerdictSha256": "48f885becd03e4a99ba8d6243ce286c1e1e88cfefc776af9ff89a9182c79c8e0",
+    "W19": "Unchanged",
+    "recipeCards": "All 167 internal and 100 public remain unchanged",
+    "classSourceObjects": "Unchanged; do not roll back the already corrected authoringDisposition",
+    "bodyModels": "Unchanged",
+    "coverageResolvedInterfaceIssuesCount": 5,
+    "coverageMutation": "None",
+    "pdfMutation": "None",
+    "navigationMutation": "None",
+    "newLabelNormalization": "None",
+    "publicCraftGuideAndEnvelopeMutation": "None"
+  },
+  "completion": "Exact limited application plus focused preservation/parity checks, TA-01–03 and a new measured receipt fulfills this addendum without a generic conference."
+}

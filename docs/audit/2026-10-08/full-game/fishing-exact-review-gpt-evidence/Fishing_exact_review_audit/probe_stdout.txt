@@ -1,0 +1,37 @@
+ACCEPTED Non-catch canonical descriptor kind {"state": "captured", "descriptor": {"id": "A-roll", "kind": "attack", "actor": "angler-A", "ability": "WIS", "proficiency": "Fishing tackle", "actualRoll": true, "automaticResult": false, "taskCategory": "ordinary-provision-catch"}, "recoveryEvaluated": true}
+ACCEPTED Non-catch canonical descriptor ability {"state": "captured", "descriptor": {"id": "A-roll", "kind": "ability-check", "actor": "angler-A", "ability": "DEX", "proficiency": "Fishing tackle", "actualRoll": true, "automaticResult": false, "taskCategory": "ordinary-provision-catch"}, "recoveryEvaluated": true}
+ACCEPTED Non-catch canonical descriptor proficiency {"state": "captured", "descriptor": {"id": "A-roll", "kind": "ability-check", "actor": "angler-A", "ability": "WIS", "proficiency": "Survival", "actualRoll": true, "automaticResult": false, "taskCategory": "ordinary-provision-catch"}, "recoveryEvaluated": true}
+ACCEPTED Non-catch canonical descriptor actualRoll {"state": "captured", "descriptor": {"id": "A-roll", "kind": "ability-check", "actor": "angler-A", "ability": "WIS", "proficiency": "Fishing tackle", "actualRoll": false, "automaticResult": false, "taskCategory": "ordinary-provision-catch"}, "recoveryEvaluated": true}
+ACCEPTED Non-catch canonical descriptor automaticResult {"state": "captured", "descriptor": {"id": "A-roll", "kind": "ability-check", "actor": "angler-A", "ability": "WIS", "proficiency": "Fishing tackle", "actualRoll": true, "automaticResult": true, "taskCategory": "ordinary-provision-catch"}, "recoveryEvaluated": true}
+ACCEPTED Non-catch canonical descriptor taskCategory {"state": "captured", "descriptor": {"id": "A-roll", "kind": "ability-check", "actor": "angler-A", "ability": "WIS", "proficiency": "Fishing tackle", "actualRoll": true, "automaticResult": false, "taskCategory": "harvest"}, "recoveryEvaluated": true}
+ACCEPTED Registered Bait contributes without a journal debit {"state": "intercepted", "baitUses": [], "eligibleExtra": 3, "scheduledExpiry": false}
+ACCEPTED Broken indispensable Line omitted from check admission {"state": "captured", "sourceExtra": 1}
+ACCEPTED Broken indispensable Line omitted from capture admission {"state": "captured", "sourceExtra": 1}
+ACCEPTED Twelve-pound body borrows a six-pound admission {"state": "captured", "manifestBodyLb": 12, "admittedPreyLb": 6}
+ACCEPTED Omitted qualifying maximum item is silently ignored {"state": "captured", "acceptedBonus": 1, "registeredFunctionalLineBonus": 2}
+ACCEPTED Trap set only during minutes 50-55 captures at minute 55 {"state": "captured", "actualSetupInterval": [3000, 3300], "acceptedSnapshotAt": 300, "captureAt": 3300}
+ACCEPTED Attended capture accepts a different workers retrieval minutes {"state": "captured", "lead": "angler-A", "creditedRetriever": "unrelated-helper"}
+ACCEPTED Rig grants +2 with no load or extra-work evidence {"state": "captured", "sourceExtra": 2, "rigChumLoadRecords": 0, "extraRigWorkRecords": 0}
+ACCEPTED Rod is relabeled as a Lure in presentation.forms {"state": "captured", "declaredLureSourceIsActually": "Rod179"}
+ACCEPTED Same canonical roll ID funds two different catches {"capturedBodies": 2, "rollIds": ["A-roll", "A-roll"]}
+ACCEPTED Trap closes as retrieved without five retrieval work minutes {"state": "closed", "equipmentReservations": {}, "retrievalWorkSeconds": 0}
+ACCEPTED Failed still-deployed Trap frees lead for another deployment {"oldTrapLocation": "still-deployed pond", "secondDeploymentState": "committed"}
+ACCEPTED Pending Trap handover deletes its scheduled check {"state": "closed", "due": {}, "successorRecordExists": false}
+ACCEPTED Outside 30-foot response region remains selectable {"state": "captured", "response": {"physicalId": "fish-A", "weights": [["fish-A", 1]], "draw": 1}}
+ACCEPTED Initial no-resource origin disappears in later permitted snapshots {"initialPolicy": "summoned-no-resources", "authorizedExtra": ["fish-A-extra1", "fish-A-extra2"], "extracted": ["fish-A-base", "fish-A-extra1", "fish-A-extra2"]}
+ACCEPTED Lost initial reserve becomes available again without a transition {"initialState": "lost", "authorizedExtra": ["fish-A-extra1", "fish-A-extra2"]}
+ACCEPTED Lost captured baseline is restored by a later manifest {"capturedState": "lost", "extracted": ["fish-A-base", "fish-A-extra1", "fish-A-extra2"]}
+ACCEPTED Harvest predates the capture record authorizing it {"captureAt": 3600, "harvestAt": 2000, "extracted": ["fish-A-base", "fish-A-extra1", "fish-A-extra2"]}
+ACCEPTED Harvest carries a future death or removal clock {"harvestAt": 7200, "deathOrRemovalAt": 10000}
+ACCEPTED Partition renaming bypasses whole-pool Forage exclusion {"routes": [[["shared-pond", "whole-pool", "Watch-1"], "Forage"], [["shared-pond", "new-name", "Watch-1"], "Fishing"]], "disjointMemberSetsPresent": false}
+ACCEPTED Future prey profile is used by earlier response allocation {"committedAt": 0, "profileEffectiveCheckpoint": 10000, "response": {"physicalId": "fish-A", "weights": [["fish-A", 2]], "draw": 1}}
+ACCEPTED Trap order accepts incomplete Hook bodies sharing a constituent {"recipeFamily": "Trap", "acceptedReserveModels": ["fishing.hook", "fishing.hook", "fishing.hook", "fishing.hook", "fishing.hook", "fishing.hook", "fishing.hook"], "allShareOneOriginalConstituent": true}
+ACCEPTED Rod repair accepts Hook pricing and only a listed clip {"rodRepairMaterials": "1/40", "correctRodMaterials": "1/8", "originalRequired": ["clip"]}
+ACCEPTED Inconsistent B5 maximum is silently normalized as full health {"maximumHP": 5, "currentHP": 5, "durabilityPercent": 0, "flawed": false}
+ACCEPTED Destroyed Bait carrier is accepted because it is not Spoiled {"quantity": 1, "selectedCondition": "destroyed"}
+REJECTED VALID post-capture loss reduces a previously whole authorized meat portion "Extra ordinary-meat unit requires one real pound"
+REJECTED VALID source timeline separates setup start from exposure at minute 5 "Wrong scheduled time or duplicate event"
+ACCEPTED CONTROL ordinary Rod "captured"
+ACCEPTED CONTROL ordinary Net "captured"
+ACCEPTED CONTROL ordinary Trap "captured"
+REJECTED CONTROL correctly linked Broken Line is rejected "Indispensable capture apparatus is Broken, incomplete or melded"

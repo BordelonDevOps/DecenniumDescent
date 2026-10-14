@@ -1,0 +1,2444 @@
+{
+  "schemaVersion": "1.0",
+  "objective": "Complete authored campaign-playtest candidate with every aspect discussed and reviewed",
+  "status": "ACTIVE-INCOMPLETE",
+  "aspects": [
+    {
+      "id": "DD-00",
+      "number": 0,
+      "domain": "Authority, provenance, versioning",
+      "requiredCoverage": "Canon hierarchy, V6 authority, V7.x evidence status, IDs, source references, superseded rules, provisional labels, change log, no destructive source edits",
+      "notebookInitialAssessment": "REVIEWED / partially VALIDATED",
+      "acceptanceGate": "Every operational rule points to source/provisional origin; conflicting originals retained; one entrypoint identifies active playtest configuration; zero accidental canon promotion",
+      "status": "partially-validated",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "docs/canon/CANON_MANIFEST.json",
+        "START_HERE.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [
+        "docs/audit/2026-10-08/classes/CLASS_PASS_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete rule provenance and consistent candidate entrypoint across all 75 areas."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-01",
+      "number": 1,
+      "domain": "Game identity & player promise",
+      "requiredCoverage": "Genre, tone, core fantasy, intended campaign structure, tactical vs narrative emphasis, lethality, complexity, progression promise, what Decennium means to play",
+      "notebookInitialAssessment": "DISCUSSED",
+      "acceptanceGate": "One concise design charter; every major subsystem can be tested against it; contradictions logged rather than papered over",
+      "status": "source-audit-in-progress",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DESIGN_DOCTRINE.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Review a concise player promise and check it against setting, campaign and mechanics."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-02",
+      "number": 2,
+      "domain": "Core resolution language",
+      "requiredCoverage": "Dice/check syntax, PB, ability mods, S/M/L, advantage/disadvantage, rounding, natural 1/20, DCs, opposed checks, distances, tiles, size, line of effect, target legality, timing vocabulary",
+      "notebookInitialAssessment": "DRAFTED / partially REVIEWED",
+      "acceptanceGate": "One source-linked glossary; every card/spell/monster can execute without inventing basic math/timing",
+      "status": "partially-reviewed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CORE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/CORE_RESOLUTION_SOURCE_EVIDENCE.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "The bounded core interface is reviewed and validated; complete remaining domain-specific cases and cross-system integration."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Core roll distinctions and HP/Wound/death/Injury reference interface: jointly reviewed and reference-validated."
+      ]
+    },
+    {
+      "id": "DD-03",
+      "number": 3,
+      "domain": "Time & action economy",
+      "requiredCoverage": "Regular turns, Actions, Bonus Actions, Reactions, free triggers, extra Actions, initiative, rounds, encounter start/end, recharge, delayed effects, simultaneous events, falling markers",
+      "notebookInitialAssessment": "DRAFTED / REVIEWED in part",
+      "acceptanceGate": "Deterministic timing order; no recursive Action grants; initiative edge cases reproducible; falling bridge incorporated as explicitly provisional",
+      "status": "bounded-scope-reviewed-and-reference-validated",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CORE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_ACTION_TIMING_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_ACTION_TIMING_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_COUNTEREXAMPLES.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_COUNTEREXAMPLE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_FINAL_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/CORE_RESOLUTION_SOURCE_EVIDENCE.json",
+        "docs/audit/2026-10-08/full-game/COMBAT_ACTION_VISION_SOURCE_PACKET.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "The bounded core interface is reviewed and validated; complete remaining domain-specific cases and cross-system integration.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Core roll distinctions and HP/Wound/death/Injury reference interface: jointly reviewed and reference-validated.",
+        "Supplied combat/action/timing/vision integration reviewed with GPT after marker, maneuver-budget and Ready-duration corrections;112 checks and285 movement-cost states pass. Broader domain acceptance gate remains open."
+      ]
+    },
+    {
+      "id": "DD-04",
+      "number": 4,
+      "domain": "Character creation",
+      "requiredCoverage": "Ancestry, background, stats, stat generation, HP, saves, proficiencies, skills, languages, starting gear, starting money/resources, spell choices, class entry",
+      "notebookInitialAssessment": "DISCUSSED; source inspection required",
+      "acceptanceGate": "Blank sheet → legal level-1 character for every supported ancestry/background/class combination without Director invention",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CHARGEN_PROGRESSION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Reconcile older chargen/path/progression guidance with the current class candidate and approved sources."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-05",
+      "number": 5,
+      "domain": "Character sheet/data model",
+      "requiredCoverage": "Identity, stats, defenses, skills, resources, RP/RC/BG/etc., spells, conditions, concentration, companion state, equipment, wounds, cooldowns, path choices",
+      "notebookInitialAssessment": "DISCUSSED",
+      "acceptanceGate": "Every active game state has one explicit field and ownership rule; paper and digital forms encode same state",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CHARGEN_PROGRESSION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Reconcile older chargen/path/progression guidance with the current class candidate and approved sources."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-06",
+      "number": 6,
+      "domain": "Advancement",
+      "requiredCoverage": "XP/milestone method, class levels, Base/Arch/Hero transition, ASI/feat gates, automatic vs selected features, retraining, dead/retired replacement PCs",
+      "notebookInitialAssessment": "DRAFTED for classes; broader integration open",
+      "acceptanceGate": "Level 1→20 advancement script produces no duplicate grants, illegal prerequisites or stage leakage",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CHARGEN_PROGRESSION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Reconcile older chargen/path/progression guidance with the current class candidate and approved sources."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-07",
+      "number": 7,
+      "domain": "Multiclassing",
+      "requiredCoverage": "Whether supported, entry requirements, PB, HP, proficiencies, class-level gates, shared resources, spell access, ASIs, subclasses/paths, capstones",
+      "notebookInitialAssessment": "UNRESOLVED AUTHOR/SOURCE DECISION",
+      "acceptanceGate": "Either explicitly unsupported, or fully operational with generated legal builds and no gate/resource exploits",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CHARGEN_PROGRESSION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Reconcile older chargen/path/progression guidance with the current class candidate and approved sources."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-08",
+      "number": 8,
+      "domain": "Respec/retraining/transformation",
+      "requiredCoverage": "Feature replacement, spell replacement, path change, Oath fall/restoration, permanent transformations, retraining cost/timing",
+      "notebookInitialAssessment": "PARTIALLY DRAFTED",
+      "acceptanceGate": "Every allowed change states what persists, what resets, cost, timing and legality; no resource refill exploit",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_FORM_TEMP_HP_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CHARGEN_PROGRESSION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Reconcile older chargen/path/progression guidance with the current class candidate and approved sources.",
+        "Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Selected form/tempHP175+5 interface closed with26 Druid profiles,165 contract checks and1053 shield/damage scenarios. Includes exact grant identity/lifetimes, same-body transitions, global instance IDs and combat/downtime recharge. Full cards, equipment/weapon taxonomy and named deferred components remain open.",
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions."
+      ]
+    },
+    {
+      "id": "DD-09",
+      "number": 9,
+      "domain": "17 class families",
+      "requiredCoverage": "Base features, Arch, Hero, path identities, resources, advancement, examples, source mapping",
+      "notebookInitialAssessment": "VALIDATED structurally; REVIEWED; not HUMAN-TESTED as a suite",
+      "acceptanceGate": "All 17 map source→operational rules; no stage leakage; validator PASS; representative table use",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/classes",
+        "docs/audit/2026-10-08/full-game/GPT_FORM_TEMP_HP_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/data/playtest/class_sources",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_INDEX.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "docs/audit/2026-10-08/classes/CLASS_PASS_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Authoring/acquisition checks passed for 17 families and 1223 cards; game-wide interactions and human use remain open.",
+        "Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Selected form/tempHP175+5 interface closed with26 Druid profiles,165 contract checks and1053 shield/damage scenarios. Includes exact grant identity/lifetimes, same-body transitions, global instance IDs and combat/downtime recharge. Full cards, equipment/weapon taxonomy and named deferred components remain open.",
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions."
+      ]
+    },
+    {
+      "id": "DD-10",
+      "number": 10,
+      "domain": "Class specializations",
+      "requiredCoverage": "Oaths, Mysteries/Curses, Circles, Hero paths, mutation trees, summons, class-specific spell systems",
+      "notebookInitialAssessment": "DRAFTED/REVIEWED; many structurally VALIDATED",
+      "acceptanceGate": "Each specialization is complete, mutually legal, source-traceable and has an executable level progression",
+      "status": "validated-in-stated-scope",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/classes"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/data/playtest/class_sources"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_INDEX.md"
+      ],
+      "validationEvidence": [
+        "docs/audit/2026-10-08/classes/CLASS_PASS_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Authoring/acquisition checks passed for 17 families and 1223 cards; game-wide interactions and human use remain open."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-11",
+      "number": 11,
+      "domain": "Ordinary spell identity/access",
+      "requiredCoverage": "848 IDs, 936 Core placements, school/rank per class, aliases, blocked conflicts, spellbook/preparation/known lists",
+      "notebookInitialAssessment": "72 REVIEWED; 776 pending",
+      "acceptanceGate": "All 848 accounted; every placement mapped; aliases adjudicated or blocked; no spell access by affordability alone",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_sources"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_STARTER.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "83 individual spell drafts reviewed;765 unfinished. Complete aliases, rituals and all class-specific repertoire interfaces."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions."
+      ]
+    },
+    {
+      "id": "DD-12",
+      "number": 12,
+      "domain": "Ordinary spell mechanics",
+      "requiredCoverage": "Activation, range, components, targets, duration, concentration, attack/save, success result, effect, scaling, limitations",
+      "notebookInitialAssessment": "72 DRAFTED/REVIEWED",
+      "acceptanceGate": "Every active spell has complete operational fields; unfinished entries remain unusable, not half-runnable",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_sources"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_STARTER.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "83 individual spell drafts reviewed;765 unfinished. Complete aliases, rituals and all class-specific repertoire interfaces."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions."
+      ]
+    },
+    {
+      "id": "DD-13",
+      "number": 13,
+      "domain": "RP / Dissonance / Refrain / rituals",
+      "requiredCoverage": "Rank prices, class-specific ranks, Retune, strain states, Refrain, class cadence exceptions, long/short-rest recovery, ritual cost/time/components",
+      "notebookInitialAssessment": "DRAFTED/REVIEWED provisionally",
+      "acceptanceGate": "One active test configuration; no simultaneous historical Burn/fizzle system; every class-specific exception explicit",
+      "status": "partially-reviewed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/data/playtest/spell_sources"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_STARTER.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "83 individual spell drafts reviewed;765 unfinished. Complete aliases, rituals and all class-specific repertoire interfaces."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-14",
+      "number": 14,
+      "domain": "Feats",
+      "requiredCoverage": "All 335: prerequisites, level gates, ASI replacement, class/path requirements, stacking, actions, resources, spell assumptions",
+      "notebookInitialAssessment": "DISCUSSED; not yet reviewed here",
+      "acceptanceGate": "335-source ledger; each feat operational or blocked; no obsolete engine references; acquisition validator",
+      "status": "eight-full-feats-reviewed-remainder-open",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_BRIDGES.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/BUFFER_FEAT_COMPLETION_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/BUFFER_FEAT_DEPENDENCY_SOURCES.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/feat_drafts/candidate_buffers.json"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/BUFFER_FEAT_SOURCE_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria.",
+        "Complete the remaining327 feat source objects; current full-feat overlay8/335 reviewed. Keep class selections, ordinary Soul Cage spell and Soulrender whole-soul ritual distinct."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Eight complete feat interfaces reviewed and provisionally promoted: Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and Soul Cage;131 targeted checks/2,520 funding boundary cases. All335 original objects preserved. Remaining327 feats, full economy/recipes/soul taxonomy/runtime and human balance remain open."
+      ]
+    },
+    {
+      "id": "DD-15",
+      "number": 15,
+      "domain": "Skills & noncombat checks",
+      "requiredCoverage": "Skill list, proficiency/expertise, passive checks, group checks, assistance, tool checks, investigation/social/exploration usage",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "Every common declared task has a known resolution method or explicit Director adjudication boundary",
+      "status": "partially-reviewed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CORE_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/CORE_RESOLUTION_SOURCE_EVIDENCE.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "The bounded core interface is reviewed and validated; complete remaining domain-specific cases and cross-system integration."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Core roll distinctions and HP/Wound/death/Injury reference interface: jointly reviewed and reference-validated."
+      ]
+    },
+    {
+      "id": "DD-16",
+      "number": 16,
+      "domain": "Conditions",
+      "requiredCoverage": "Core conditions plus Bleed/Burn/Shaken/etc.; application, stacking, ending, immunities, repeats",
+      "notebookInitialAssessment": "Glossary exists; integration PARTLY REVIEWED",
+      "acceptanceGate": "Every referenced condition resolves to one active definition; historical variants preserved but not co-executable",
+      "status": "reviewed-in-bounded-control-scope; broader-domain-open",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_PERIODIC_PROFILE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_PERIODIC_REFRESH_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_GENERIC_CUSTOM_ALIGNMENT.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_ACTION_TIMING_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_STRAIN_EXACT_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FINAL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_CONTROL_EXACT_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONTROL_STATE_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONTROL_COUNTEREXAMPLE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONTROL_CLOCK_CORRECTIONS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_CONTROL_EXACT_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONTROL_FINAL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/data/playtest/core_condition_sources.json",
+        "docs/audit/2026-10-08/full-game/V6_CONDITION_APPENDIX.json",
+        "docs/audit/2026-10-08/full-game/CODEX_CONDITION_SOURCE_PACKET.json",
+        "docs/audit/2026-10-08/full-game/CONDITION_DEPENDENCY_EXACT_PASSAGES.json",
+        "docs/audit/2026-10-08/full-game/STRAIN_SOURCE_BINDINGS.json",
+        "docs/audit/2026-10-08/full-game/CONTROL_STATE_SOURCE_PACKET.json",
+        "docs/audit/2026-10-08/full-game/CONTROL_STATE_SUPPLEMENT_SOURCE_PACKET.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_RECOVERY_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/condition_playtests.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/custom_condition_bindings.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/strain_bindings.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATE_COVERAGE.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/control_state_coverage.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/control_state_bindings.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDING_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_BINDING_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete remaining all-source condition semantics and actual disease/curse catalogs; supplied219 control interfaces are reviewed. DD16 remains open.",
+        "Audit all future individual condition-producing items/spells/hazards as those catalogs are completed; keep broader vision/control/recovery interfaces tracked in their rows.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "All28 Core condition identities, source conflicts and generic recovery procedures reviewed with GPT; bounded helpers validated.",
+        "The 32 registered periodic profiles and their shared family/cure/immunity/refresh interfaces reviewed with GPT and reference-validated (84 selected checks; 114 exact source references across the current registry).",
+        "Supplied serum/expedition Strain namespace, penalties, gain/cap transitions, Dash clocks, maxHP composition and generic recovery bookkeeping reviewed with GPT;71 transition checks,30 source checks and4949 maxHP scenarios pass. Broad domain remains open.",
+        "Supplied219-source control interface jointly reviewed and reference-validated:148 checks,9393 Speed states,219 bindings/180 component identities. Source-qualified clocks, riders, control and named metadata only; not full card execution."
+      ]
+    },
+    {
+      "id": "DD-17",
+      "number": 17,
+      "domain": "Combat core",
+      "requiredCoverage": "Initiative, attack actions, Extra Attack, melee/ranged, crits, opportunity attacks, movement, disengage, reactions, saves, area attacks",
+      "notebookInitialAssessment": "DRAFTED in shared integration; full source audit still needed",
+      "acceptanceGate": "Complete legal turn examples for martial, caster, summon, boss, downed creature; no undefined basic combat operation",
+      "status": "bounded-scope-reviewed-and-reference-validated",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CORE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_ACTION_TIMING_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_ACTION_TIMING_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_COUNTEREXAMPLES.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_COUNTEREXAMPLE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_FINAL_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FIRST_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/CORE_RESOLUTION_SOURCE_EVIDENCE.json",
+        "docs/audit/2026-10-08/full-game/COMBAT_ACTION_VISION_SOURCE_PACKET.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "The bounded core interface is reviewed and validated; complete remaining domain-specific cases and cross-system integration."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Core roll distinctions and HP/Wound/death/Injury reference interface: jointly reviewed and reference-validated.",
+        "Supplied combat/action/timing/vision integration reviewed with GPT after marker, maneuver-budget and Ready-duration corrections;112 checks and285 movement-cost states pass. Broader domain acceptance gate remains open."
+      ]
+    },
+    {
+      "id": "DD-18",
+      "number": 18,
+      "domain": "Control & action denial",
+      "requiredCoverage": "Grapple, Restrained, root, Stunned, Charmed, Frightened, silence, reaction denial, hard-denial ceiling",
+      "notebookInitialAssessment": "REVIEWED provisionally",
+      "acceptanceGate": "All control has save/escape/end timing; hard-denial ledger applies consistently across classes/spells/companions",
+      "status": "reviewed-in-bounded-control-scope; broader-domain-open",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_ACTION_TIMING_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_ACTION_TIMING_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_COUNTEREXAMPLES.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_COUNTEREXAMPLE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_FINAL_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_CONTROL_EXACT_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONTROL_STATE_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONTROL_COUNTEREXAMPLE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONTROL_CLOCK_CORRECTIONS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_CONTROL_EXACT_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONTROL_FINAL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/COMBAT_ACTION_VISION_SOURCE_PACKET.json",
+        "docs/audit/2026-10-08/full-game/CONTROL_STATE_SOURCE_PACKET.json",
+        "docs/audit/2026-10-08/full-game/CONTROL_STATE_SUPPLEMENT_SOURCE_PACKET.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATE_COVERAGE.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/control_state_coverage.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/control_state_bindings.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_BINDING_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Supplied combat/action/timing/vision integration reviewed with GPT after marker, maneuver-budget and Ready-duration corrections;112 checks and285 movement-cost states pass. Broader domain acceptance gate remains open.",
+        "Supplied219-source control interface jointly reviewed and reference-validated:148 checks,9393 Speed states,219 bindings/180 component identities. Source-qualified clocks, riders, control and named metadata only; not full card execution."
+      ]
+    },
+    {
+      "id": "DD-19",
+      "number": 19,
+      "domain": "Stealth, perception & vision",
+      "requiredCoverage": "Hide, concealment, invisibility, darkness, light, darkvision, blindsight if present, sound, detection, passive perception",
+      "notebookInitialAssessment": "PARTLY DRAFTED",
+      "acceptanceGate": "Hidden/invisible state transitions and targeting consequences are deterministic; no “invisible = untargetable” ambiguity",
+      "status": "bounded-scope-reviewed-and-reference-validated",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_ACTION_TIMING_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_ACTION_TIMING_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_COUNTEREXAMPLES.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_COUNTEREXAMPLE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_FINAL_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FIRST_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/COMBAT_ACTION_VISION_SOURCE_PACKET.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Supplied combat/action/timing/vision integration reviewed with GPT after marker, maneuver-budget and Ready-duration corrections;112 checks and285 movement-cost states pass. Broader domain acceptance gate remains open."
+      ]
+    },
+    {
+      "id": "DD-20",
+      "number": 20,
+      "domain": "Cover & line rules",
+      "requiredCoverage": "Half/three-quarter/full cover, line of sight/effect, firing through creatures, walls, spell areas, terrain obstruction",
+      "notebookInitialAssessment": "PARTLY DRAFTED",
+      "acceptanceGate": "One geometry procedure applies to attacks, spells, areas and detection",
+      "status": "bounded-scope-reviewed-and-reference-validated",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_ACTION_TIMING_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_ACTION_TIMING_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_COUNTEREXAMPLES.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_COUNTEREXAMPLE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_FINAL_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FIRST_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/COMBAT_ACTION_VISION_SOURCE_PACKET.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Supplied combat/action/timing/vision integration reviewed with GPT after marker, maneuver-budget and Ready-duration corrections;112 checks and285 movement-cost states pass. Broader domain acceptance gate remains open."
+      ]
+    },
+    {
+      "id": "DD-21",
+      "number": 21,
+      "domain": "Movement & positioning",
+      "requiredCoverage": "Speed, Dash, difficult terrain, crawling, climbing, swimming, jumping, forced movement, teleporting, flight, falling",
+      "notebookInitialAssessment": "PARTLY REVIEWED",
+      "acceptanceGate": "Every mode has exact timing/cost; provisional Falling bridge logged; flight-loss interactions tested",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_ACTION_TIMING_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_ACTION_TIMING_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_COUNTEREXAMPLES.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_COUNTEREXAMPLE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_COMBAT_FINAL_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/COMBAT_ACTION_VISION_SOURCE_PACKET.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references.",
+        "Mandatory-reversion geometry conflict: return root anatomy at same anchor, expose placementConflict and prohibit free relocation/barrier traversal; canonical conflict-resolution procedure still requires a dedicated source conference.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Supplied combat/action/timing/vision integration reviewed with GPT after marker, maneuver-budget and Ready-duration corrections;112 checks and285 movement-cost states pass. Broader domain acceptance gate remains open.",
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions."
+      ]
+    },
+    {
+      "id": "DD-22",
+      "number": 22,
+      "domain": "Hazards/environment",
+      "requiredCoverage": "Fire, cold, heat, drowning, suffocation, weather, poison, disease, traps, unstable terrain, darkness, falls, environmental damage",
+      "notebookInitialAssessment": "DISCUSSED / source audit needed",
+      "acceptanceGate": "Environment chapter supports expedition and combat without improvised core math",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-23",
+      "number": 23,
+      "domain": "HP, Downed, death & Wounds",
+      "requiredCoverage": "0 HP, death saves/checks, stabilization, massive damage if any, Wounds, death state, corpses, recovery",
+      "notebookInitialAssessment": "PARTLY REFERENCED; SOURCE AUDIT REQUIRED",
+      "acceptanceGate": "Exact state machine from healthy→Downed→stable/dead→recovery",
+      "status": "validated-in-stated-scope",
+      "closure": "closed",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CORE_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/CORE_RESOLUTION_SOURCE_EVIDENCE.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Core roll distinctions and HP/Wound/death/Injury reference interface: jointly reviewed and reference-validated."
+      ]
+    },
+    {
+      "id": "DD-24",
+      "number": 24,
+      "domain": "Healing & resurrection",
+      "requiredCoverage": "Real HP, temp HP, healing dice, pool healing, resurrection eligibility/window/cost, body/soul requirements, Wounds",
+      "notebookInitialAssessment": "PARTLY DRAFTED by integrations",
+      "acceptanceGate": "No unlimited healing; resurrection deterministic; death cannot be erased by ambiguous card wording",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CORE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_HEALING_DEATH_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_DEATH_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_HEALING_SUPPLEMENT_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_SUPPLEMENT_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_HEALING_IMPLEMENTATION_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_HEALING_REMAINING_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_REMAINING_CORRECTIONS.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_EXTENSIONS_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_REDIRECTION_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_REDIRECTION_IMPLEMENTATION_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/GPT_REDIRECTION_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_MAXIMUM_HP_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_PULSE_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_HEALING_PULSE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_DEVICE_LIFECYCLE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_DEVICE_LIFECYCLE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_CREATURE_LIFECYCLE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CREATURE_LIFECYCLE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_CREATURE_LIFECYCLE_EVENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_CREATURE_LIFECYCLE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_PROFILES.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_IMPLEMENTATION_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_FORM_TEMP_HP_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/CORE_RESOLUTION_SOURCE_EVIDENCE.json",
+        "docs/audit/2026-10-08/full-game/HEALING_DEATH_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/HEALING_SEMANTIC_SUPPLEMENT_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/HEALING_INTERFACE_SUPPLEMENT.json",
+        "docs/audit/2026-10-08/full-game/HEALING_REMAINING_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/REDIRECTION_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/MAXIMUM_HP_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/HEALING_PULSE_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/HEALING_PULSE_SUPPORTING_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/DEVICE_LIFECYCLE_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/CREATURE_LIFECYCLE_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/REMAINING_LIFECYCLE_CONFERENCE_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/FORM_TEMP_HP_CONFERENCE_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_SOURCE_EXTENSIONS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_REMAINING_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REDIRECTION_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_PULSE_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+        "docs/audit/2026-10-08/full-game/CODEX_CREATURE_LIFECYCLE_IMPLEMENTATION_COMPACT.md",
+        "docs/audit/2026-10-08/full-game/CODEX_REMAINING_LIFECYCLE_CONFERENCE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REMAINING_LIFECYCLE_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_SPELL_CANDIDATE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_EXTENSION_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_REMAINING_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REDIRECTION_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REDIRECTION_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_PULSE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/MAXIMUM_HP_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_PULSE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_PULSE_SUPPORT_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_PULSE_PROFILE_PROVENANCE.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REMAINING_LIFECYCLE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REMAINING_LIFECYCLE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Audit healing content in other domains; complete broader body/soul/affliction procedures.",
+        "Complete temporal topology/equipment/clock package; selected participant field checks are not complete Time Loop execution.",
+        "The175+5 form/tempHP interface is reviewed; finish remaining full-option clauses and Time Loop world conservation. No whole-card/catalog completion implied.",
+        "Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Core roll distinctions and HP/Wound/death/Injury reference interface: jointly reviewed and reference-validated.",
+        "Selected153-source healing/death interface jointly reviewed:164 targeted checks plus120 unchanged Core damage states; six reviewed ordinary spells promoted.",
+        "Three selected primitives from131-source remainder reviewed: Zealot backlash, locked-recipient Crown Burn shared healing and Dual Echo two-Mend components;21 checks.",
+        "39-source redirection interface plus2Tinker engines jointly reviewed:94 checks and186 conservation states. Broader defense/companion/global trigger engine remains open.",
+        "58-source maximum-HP/threshold interface jointly reviewed:60 targeted checks and909 systemic states. Guide records global Monk arbitration, compatible bonuses, capacity clamps, exact thresholds and historical event predicates; wider advancement/companion/feat lifecycle remains open.",
+        "Recurring healing/pulse100-source roles plus6 supporting passages jointly reviewed:89 checks,301 reserve partitions and33 source-linked internal aliases. Full card behavior, companion commands, object lifecycle and other catalogs remain open.",
+        "Device/Totem lifecycle and shared commands:74 source roles plus3 frozen paragraphs jointly reviewed;132 checks and1,200 reconfiguration states. Scraplings retain temporary-companion type, standard elementals retain half-PB AC, and Reaper respects death-trigger restrictions.",
+        "Selected creature lifecycle/command/body identity:100 source roles+5 frozen supports jointly reviewed;121 checks and2,800 Ranger HP-conversion states. Full forms/tempHP and whole-card execution are excluded.",
+        "Remaining companion/structure lifecycle80+5: joint bounded approval;129 targeted checks. Choir, Ritual Thrall, Oracle commands/interception/servants/scout, Paladin Echo, Soldier objects/materials and classified guards. No complete-card, tempHP/form or runtime claim.",
+        "Selected form/tempHP175+5 interface closed with26 Druid profiles,165 contract checks and1053 shield/damage scenarios. Includes exact grant identity/lifetimes, same-body transitions, global instance IDs and combat/downtime recharge. Full cards, equipment/weapon taxonomy and named deferred components remain open.",
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions.",
+        "Eight complete feat interfaces reviewed and provisionally promoted: Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and Soul Cage;131 targeted checks/2,520 funding boundary cases. All335 original objects preserved. Remaining327 feats, full economy/recipes/soul taxonomy/runtime and human balance remain open."
+      ]
+    },
+    {
+      "id": "DD-25",
+      "number": 25,
+      "domain": "Weapons",
+      "requiredCoverage": "Damage, type, properties, hands, reach, range, ammunition, reload, finesse, light, polearms, improvised weapons",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "All class weapon references resolve to exact weapon records/properties",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-26",
+      "number": 26,
+      "domain": "Armor/shields/defenses",
+      "requiredCoverage": "AC formula, armor categories, shield bonuses, penalties, DR, resistance, immunity, stacking",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "One defense calculation; no class/spell/item stacking contradiction",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_FORM_TEMP_HP_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria.",
+        "Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Selected form/tempHP175+5 interface closed with26 Druid profiles,165 contract checks and1053 shield/damage scenarios. Includes exact grant identity/lifetimes, same-body transitions, global instance IDs and combat/downtime recharge. Full cards, equipment/weapon taxonomy and named deferred components remain open.",
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions."
+      ]
+    },
+    {
+      "id": "DD-27",
+      "number": 27,
+      "domain": "Inventory/carrying/encumbrance",
+      "requiredCoverage": "Slots/weight if any, containers, hands, worn/readied gear, consumables, ammunition, loot burden",
+      "notebookInitialAssessment": "MISSING FROM PRIOR HIGH-LEVEL LIST; source audit required",
+      "acceptanceGate": "Expedition gear choices have enforceable capacity/carry rules",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions."
+      ]
+    },
+    {
+      "id": "DD-28",
+      "number": 28,
+      "domain": "Tools, consumables & item use",
+      "requiredCoverage": "Healing items, kits, flasks, traps, scrolls/wands if any, activation, charges, crafting interfaces",
+      "notebookInitialAssessment": "DISCUSSED",
+      "acceptanceGate": "Every item action/cost/recovery is executable and cannot bypass class resource limits",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Eight complete feat interfaces reviewed and provisionally promoted: Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and Soul Cage;131 targeted checks/2,520 funding boundary cases. All335 original objects preserved. Remaining327 feats, full economy/recipes/soul taxonomy/runtime and human balance remain open."
+      ]
+    },
+    {
+      "id": "DD-29",
+      "number": 29,
+      "domain": "Crafting system",
+      "requiredCoverage": "687 total recipes / 433 public, recipe discovery, materials, tools, checks, time, failures, output, repair, salvage",
+      "notebookInitialAssessment": "DISCUSSED; source inventory exists",
+      "acceptanceGate": "Every public recipe resolves all inputs/outputs; Director recipes remain segregated; zero duplication/economy loops",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-30",
+      "number": 30,
+      "domain": "Economy",
+      "requiredCoverage": "Currency, prices, wages, services, loot sale, rarity, markets, repair, travel costs, crafting profitability",
+      "notebookInitialAssessment": "MISSING from prior explicit detail; needs audit",
+      "acceptanceGate": "No infinite-money path; prices and campaign-resource costs are internally usable",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-31",
+      "number": 31,
+      "domain": "Magic items & special equipment",
+      "requiredCoverage": "Attunement/bonding if present, charges, identification, crafting, rarity, ownership, destruction",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "Every public item has complete mechanical lifecycle",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-32",
+      "number": 32,
+      "domain": "Mounts, vehicles, siege, chases",
+      "requiredCoverage": "If present in sources: movement, riders, passengers, vehicle HP/AC, collisions, chase timing",
+      "notebookInitialAssessment": "MISSING from prior taxonomy; check source",
+      "acceptanceGate": "Either explicitly unsupported or complete enough for sourced content",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-33",
+      "number": 33,
+      "domain": "Creature stat interface",
+      "requiredCoverage": "AC, HP, attacks, saves, skills, movement, traits, conditions, recharge, senses, size, tags",
+      "notebookInitialAssessment": "Source packs exist; integration audit pending",
+      "acceptanceGate": "Every public/Director creature can execute under the same combat rules",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-34",
+      "number": 34,
+      "domain": "Boss/legendary interface",
+      "requiredCoverage": "Boss flag, immunities, defenses, action economy, denial interaction, phases, legendary/reaction mechanics",
+      "notebookInitialAssessment": "KNOWN NEED; source audit pending",
+      "acceptanceGate": "Class/spell guards reference actual monster fields, not Director guesswork",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-35",
+      "number": 35,
+      "domain": "Summons/companions/pets",
+      "requiredCoverage": "Stat overrides, commands, shared damaging-action cap, persistence, healing, death, replacement",
+      "notebookInitialAssessment": "DRAFTED/REVIEWED provisionally",
+      "acceptanceGate": "All summons obey one command/persistence contract unless explicit exception",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_DEVICE_LIFECYCLE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_CREATURE_LIFECYCLE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CREATURE_LIFECYCLE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_CREATURE_LIFECYCLE_EVENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_CREATURE_LIFECYCLE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_PROFILES.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_IMPLEMENTATION_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/GPT_REMAINING_LIFECYCLE_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_FORM_TEMP_HP_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/DEVICE_LIFECYCLE_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/CREATURE_LIFECYCLE_SOURCE_CANDIDATES.json",
+        "docs/audit/2026-10-08/full-game/REMAINING_LIFECYCLE_CONFERENCE_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/FORM_TEMP_HP_CONFERENCE_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+        "docs/audit/2026-10-08/full-game/CODEX_CREATURE_LIFECYCLE_IMPLEMENTATION_COMPACT.md",
+        "docs/audit/2026-10-08/full-game/CODEX_REMAINING_LIFECYCLE_CONFERENCE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REMAINING_LIFECYCLE_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_SOURCE_BINDINGS.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REMAINING_LIFECYCLE_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/REMAINING_LIFECYCLE_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references.",
+        "The175+5 form/tempHP interface is reviewed; finish remaining full-option clauses and Time Loop world conservation. No whole-card/catalog completion implied.",
+        "Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are now reviewed and promoted; broader catalog work remains.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Device/Totem lifecycle and shared commands:74 source roles plus3 frozen paragraphs jointly reviewed;132 checks and1,200 reconfiguration states. Scraplings retain temporary-companion type, standard elementals retain half-PB AC, and Reaper respects death-trigger restrictions.",
+        "Selected creature lifecycle/command/body identity:100 source roles+5 frozen supports jointly reviewed;121 checks and2,800 Ranger HP-conversion states. Full forms/tempHP and whole-card execution are excluded.",
+        "Remaining companion/structure lifecycle80+5: joint bounded approval;129 targeted checks. Choir, Ritual Thrall, Oracle commands/interception/servants/scout, Paladin Echo, Soldier objects/materials and classified guards. No complete-card, tempHP/form or runtime claim.",
+        "Selected form/tempHP175+5 interface closed with26 Druid profiles,165 contract checks and1053 shield/damage scenarios. Includes exact grant identity/lifetimes, same-body transitions, global instance IDs and combat/downtime recharge. Full cards, equipment/weapon taxonomy and named deferred components remain open.",
+        "Five ordinary spell interfaces closed and promoted: Harmonic Bulwark, Polymorph, Shapechange, True Polymorph and Mass Polymorph;12 profiles,216 checks and729 spatial scenarios. Original848 IDs/936 placements preserved;83 operational/765 unfinished. Geometry/item/attack-taxonomy/runtime/balance remain bounded exclusions.",
+        "Eight complete feat interfaces reviewed and provisionally promoted: Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and Soul Cage;131 targeted checks/2,520 funding boundary cases. All335 original objects preserved. Remaining327 feats, full economy/recipes/soul taxonomy/runtime and human balance remain open."
+      ]
+    },
+    {
+      "id": "DD-36",
+      "number": 36,
+      "domain": "Encounter construction",
+      "requiredCoverage": "Difficulty methodology, party size/level assumptions, waves, terrain, objectives, bosses, retreats",
+      "notebookInitialAssessment": "DISCUSSED",
+      "acceptanceGate": "Director can build Base/Arch/Hero encounters from explicit procedure",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-37",
+      "number": 37,
+      "domain": "Encounter procedures",
+      "requiredCoverage": "Start, surprise, initiative, reinforcements, morale, flee/surrender, encounter end, resource reset",
+      "notebookInitialAssessment": "PARTLY DRAFTED",
+      "acceptanceGate": "“Encounter” cannot be player-farmed; start/end transitions deterministic",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-38",
+      "number": 38,
+      "domain": "Loot/reward system",
+      "requiredCoverage": "Currency, items, recipes, XP/milestone, materials, treasure tables, boss rewards",
+      "notebookInitialAssessment": "DISCUSSED",
+      "acceptanceGate": "Rewards feed advancement/economy without invalidating campaign pacing",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-39",
+      "number": 39,
+      "domain": "Exploration/travel",
+      "requiredCoverage": "Distance, pace, navigation, scouting, weather, random encounters, mapping, visibility",
+      "notebookInitialAssessment": "Existing procedures; integration audit needed",
+      "acceptanceGate": "One travel loop executes hour/day/expedition without missing checks/resources",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-40",
+      "number": 40,
+      "domain": "Expedition resources",
+      "requiredCoverage": "Supply, food/water, ammo, light, camp, fatigue/rest debt, pressure, encumbrance",
+      "notebookInitialAssessment": "Existing expedition procedures; integration audit needed",
+      "acceptanceGate": "Spells/items cannot silently erase resource gameplay; all depletion/recovery exact",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/CODEX_STRAIN_EXACT_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FINAL_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md",
+        "docs/audit/2026-10-08/full-game/STRAIN_SOURCE_BINDINGS.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/strain_bindings.json"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Supplied serum/expedition Strain namespace, penalties, gain/cap transitions, Dash clocks, maxHP composition and generic recovery bookkeeping reviewed with GPT;71 transition checks,30 source checks and4949 maxHP scenarios pass. Broad domain remains open."
+      ]
+    },
+    {
+      "id": "DD-41",
+      "number": 41,
+      "domain": "Rest/recovery",
+      "requiredCoverage": "Short rest, long rest, interruption, safe locations, RP/class resources, Wounds, limits",
+      "notebookInitialAssessment": "DRAFTED provisional bridge + existing source procedures",
+      "acceptanceGate": "One active recovery model with class exceptions; no rest chaining",
+      "status": "selected-interfaces-closed-remainder-integrating",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/spell-integration/REVIEW_DISPOSITION.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/CODEX_STRAIN_EXACT_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_STRAIN_FINAL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_FORM_TEMP_HP_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/STRAIN_SOURCE_BINDINGS.json"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+        "DescentReviewChanges/ReviewBible/data/playtest/strain_bindings.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_SOURCE_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/FORM_TEMP_HP_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Existing shared limits reviewed in class/spell scope; complete all remaining interfaces and content references.",
+        "Continue full domain criteria, including item/anatomy matrix, natural-weapon taxonomy, incomplete feat and spell clauses, Time Loop and runtime. Five named transformation/buffer spells are reviewed and provisionally promoted; broader catalog work remains."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Supplied serum/expedition Strain namespace, penalties, gain/cap transitions, Dash clocks, maxHP composition and generic recovery bookkeeping reviewed with GPT;71 transition checks,30 source checks and4949 maxHP scenarios pass. Broad domain remains open.",
+        "Selected form/tempHP175+5 interface closed with26 Druid profiles,165 contract checks and1053 shield/damage scenarios. Includes exact grant identity/lifetimes, same-body transitions, global instance IDs and combat/downtime recharge. Full cards, equipment/weapon taxonomy and named deferred components remain open.",
+        "Eight complete feat interfaces reviewed and provisionally promoted: Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and Soul Cage;131 targeted checks/2,520 funding boundary cases. All335 original objects preserved. Remaining327 feats, full economy/recipes/soul taxonomy/runtime and human balance remain open."
+      ]
+    },
+    {
+      "id": "DD-42",
+      "number": 42,
+      "domain": "Extraction/retreat/failure",
+      "requiredCoverage": "Leaving dungeon/expedition, failed objectives, pursuit, lost characters, abandoned loot, safe return",
+      "notebookInitialAssessment": "MISSING from prior detail; check source",
+      "acceptanceGate": "Campaign can survive failure without Director inventing consequences",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-43",
+      "number": 43,
+      "domain": "Haven/settlement loop",
+      "requiredCoverage": "Recovery, markets, crafting, training, contacts, faction actions, upgrades",
+      "notebookInitialAssessment": "Existing Haven procedures; integration audit needed",
+      "acceptanceGate": "Expedition→Haven→next expedition loop fully executable",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-44",
+      "number": 44,
+      "domain": "Downtime",
+      "requiredCoverage": "Crafting, training, research, healing, faction work, employment, travel, respec if allowed",
+      "notebookInitialAssessment": "DISCUSSED / source exists unknown",
+      "acceptanceGate": "Every supported downtime action has time, cost, check, output",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-45",
+      "number": 45,
+      "domain": "Social rules",
+      "requiredCoverage": "NPC attitude, persuasion, intimidation, deception, bargaining, reputation, social conflict",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "Social outcomes preserve agency and give Directors usable resolution bounds",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-46",
+      "number": 46,
+      "domain": "Languages/literacy/communication",
+      "requiredCoverage": "Starting languages, learning, scripts, translation, magical communication",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "Character creation and spell interactions share one language model",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-47",
+      "number": 47,
+      "domain": "World history & chronology",
+      "requiredCoverage": "Historical eras, current date, Decennium origin/cycle, key wars/events",
+      "notebookInitialAssessment": "DISCUSSED only from this notebook",
+      "acceptanceGate": "One contradiction-audited chronology",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-48",
+      "number": 48,
+      "domain": "Geography & travel map",
+      "requiredCoverage": "Regions, settlements, distances, routes, hazards, borders",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "Locations referenced by adventures/campaign procedures exist consistently",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-49",
+      "number": 49,
+      "domain": "Factions & politics",
+      "requiredCoverage": "Goals, resources, relationships, ranks, reputation, conflict clocks",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "Director and public knowledge separated; faction behavior supports campaign play",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-50",
+      "number": 50,
+      "domain": "Religion/cosmology",
+      "requiredCoverage": "Gods/powers, faiths, afterlife, divine magic implications, public vs secret truth",
+      "notebookInitialAssessment": "SOURCE INSPECTION REQUIRED",
+      "acceptanceGate": "Cleric/Paladin/Oracle lore and resurrection rules do not contradict setting truth",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Eight complete feat interfaces reviewed and provisionally promoted: Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and Soul Cage;131 targeted checks/2,520 funding boundary cases. All335 original objects preserved. Remaining327 feats, full economy/recipes/soul taxonomy/runtime and human balance remain open."
+      ]
+    },
+    {
+      "id": "DD-51",
+      "number": 51,
+      "domain": "Decennial cycle",
+      "requiredCoverage": "Exact cycle mechanics, world changes, timing, escalation, resets/non-resets",
+      "notebookInitialAssessment": "KNOWN CORE TOPIC; not audited here",
+      "acceptanceGate": "Cycle has explicit campaign procedure and interfaces with advancement/world state",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-52",
+      "number": 52,
+      "domain": "Late-game/endings",
+      "requiredCoverage": "Level-20 play, endgame threats, Decennium resolution, success/failure endings, postgame",
+      "notebookInitialAssessment": "MISSING from mechanical audit",
+      "acceptanceGate": "Campaign has intentional terminal states rather than endless extrapolation",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-53",
+      "number": 53,
+      "domain": "Director authority & adjudication",
+      "requiredCoverage": "What Director decides, what rules decide, uncertainty, hidden DCs, exceptions, fiat boundaries",
+      "notebookInitialAssessment": "PARTLY DRAFTED",
+      "acceptanceGate": "Players know predictable rule surface; Director knows permitted discretion",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-54",
+      "number": 54,
+      "domain": "Director secrets/data separation",
+      "requiredCoverage": "Secret creatures, plot truths, hidden items, encounter notes, public leakage",
+      "notebookInitialAssessment": "KNOWN GAP",
+      "acceptanceGate": "Automated build finds zero Director-only leakage into public package",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-55",
+      "number": 55,
+      "domain": "Adventure design procedure",
+      "requiredCoverage": "Hooks, objectives, encounter mix, clues, pacing, rests, rewards, failure paths, bosses",
+      "notebookInitialAssessment": "DISCUSSED",
+      "acceptanceGate": "Director can author an adventure from a repeatable checklist",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-56",
+      "number": 56,
+      "domain": "Campaign design procedure",
+      "requiredCoverage": "Arcs, clocks, faction movement, Decennial advancement, milestones, world-state changes",
+      "notebookInitialAssessment": "DISCUSSED",
+      "acceptanceGate": "Multi-session campaign can evolve mechanically without ad hoc tracking",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "An existing procedure is available. Audit its domain authority, conflicts and interfaces rather than treating it as absent."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-57",
+      "number": 57,
+      "domain": "Random tables/procedural content",
+      "requiredCoverage": "Encounter tables, loot, weather, rumors, travel events if sources use them",
+      "notebookInitialAssessment": "MISSING from prior list; source-check",
+      "acceptanceGate": "Every public table has ranges/results and no unresolved references",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-58",
+      "number": 58,
+      "domain": "Session zero & table contract",
+      "requiredCoverage": "Expectations, tone, character fit, PvP, attendance, lethality, content boundaries",
+      "notebookInitialAssessment": "DISCUSSED as need only",
+      "acceptanceGate": "One concise procedure usable before play",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-59",
+      "number": 59,
+      "domain": "Accessibility",
+      "requiredCoverage": "Color independence, readable typography, table complexity, cognitive load, physical/digital accessibility",
+      "notebookInitialAssessment": "NOT YET AUDITED",
+      "acceptanceGate": "Core references usable without color-only cues; critical rules available in compact form",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-60",
+      "number": 60,
+      "domain": "Onboarding/quickstart",
+      "requiredCoverage": "First character, first turn, first encounter, spellcasting, rests, advancement",
+      "notebookInitialAssessment": "Quickstart exists; not yet source-audited here",
+      "acceptanceGate": "New group can complete a starter session without owner intervention",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-61",
+      "number": 61,
+      "domain": "Reference sheets/indexes",
+      "requiredCoverage": "Conditions, Actions, spellcasting, travel, Director procedures, class resource summaries",
+      "notebookInitialAssessment": "PARTIAL",
+      "acceptanceGate": "Every frequently queried mechanic reachable in ≤2 lookups",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-62",
+      "number": 62,
+      "domain": "Examples & worked turns",
+      "requiredCoverage": "Creation, combat, casting, companions, travel, crafting, death, advancement",
+      "notebookInitialAssessment": "Class examples exist; game-wide examples incomplete",
+      "acceptanceGate": "Examples all legal under final playtest rules and validator fixtures",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-63",
+      "number": 63,
+      "domain": "Companion persistence/state parity",
+      "requiredCoverage": "Paper ↔ digital, HP/resources/cooldowns, summons, campaign state, save/load/migrations",
+      "notebookInitialAssessment": "KNOWN NEED",
+      "acceptanceGate": "Reloading/reopening cannot alter mechanical state; schema migration tested",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-64",
+      "number": 64,
+      "domain": "Data schemas/IDs/migrations",
+      "requiredCoverage": "Stable IDs, aliases, deprecation, source references, version migration",
+      "notebookInitialAssessment": "PARTIALLY VALIDATED",
+      "acceptanceGate": "No duplicate canonical IDs; old saves/data can map or explicitly fail safely",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_WORLD_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FINDINGS.md",
+        "docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_KERNEL_REPAIRS.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_KERNEL_FOUNDATION_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_PULSE_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PULSE_BRIDGE_CLOSURE.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/TEMPORAL_WORLD_EXACT_SOURCES.json",
+        "docs/audit/2026-10-08/full-game/TEMPORAL_EXISTING_STATE_HOLDERS.json",
+        "DescentReviewChanges/ReviewBible/tools/temporal_playtest_rules.py",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_KERNEL_PLAYTEST.md"
+      ],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_VALIDATION.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CONTROL_WORLD_CLOSURE.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_CONTROL_WORLD_REVIEW_STATUS.json",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_BOUNDARIES.md",
+        "docs/audit/2026-10-08/full-game/GPT_TEMPORAL_PARENT_CADENCE_CLARIFICATION.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_REVIEW_STATUS.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/TEMPORAL_PARENT_PLAYTEST.md"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria.",
+        "Time Loop: bounded foundational transaction kernel jointly reviewed with76 passing test methods; all nine independent findings resolved. Seven larger integrations remain missing and full playable activation stays disabled. No whole-domain closure.",
+        "Temporal control/pulse source conference completed for nine holder families. Canonical payment and resolved Ki/Conviction-output guards passed22 focused tests and completed bounded independent code review. Source-clock/parent restoration and native receipts remain unfinished; Rapid Coagulation needs snapshot movement history. No full temporal integration or whole-domain closure.",
+        "The bounded live control/pulse transaction interface and exact foundation extension are jointly reviewed (50+76+22 methods). Complete source parents, final output application and all seven larger temporal integrations remain open.",
+        "Ten form/concentration/Druid parent cases and the Action-budget clarification are source-discussed;85 actual fields and26 Druid profiles inventoried. Parent runtime and adversarial review remain pending, with all seven major temporal integrations still open."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-65",
+      "number": 65,
+      "domain": "Public/Director build packaging",
+      "requiredCoverage": "Separate datasets, references, exports, manifests, player-only docs",
+      "notebookInitialAssessment": "KNOWN GAP",
+      "acceptanceGate": "Zero secret leakage; zero broken public references",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-66",
+      "number": 66,
+      "domain": "Editing consistency",
+      "requiredCoverage": "Terminology, capitalization, units, timing phrases, condition names, cross references",
+      "notebookInitialAssessment": "ONGOING",
+      "acceptanceGate": "Lint pass and terminology dictionary produce zero unresolved style/mechanical ambiguities",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-67",
+      "number": 67,
+      "domain": "Layout/publication structure",
+      "requiredCoverage": "Book order, navigation, page references, tables, callouts, glossary, appendices",
+      "notebookInitialAssessment": "NOT YET READY",
+      "acceptanceGate": "Complete playtest books generate without missing sections/references",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "authored-candidate"
+    },
+    {
+      "id": "DD-68",
+      "number": 68,
+      "domain": "Legal/IP/credits/licensing",
+      "requiredCoverage": "Third-party assets, fonts, art, names, licenses, contributor credits",
+      "notebookInitialAssessment": "MISSING from prior list; required before publication",
+      "acceptanceGate": "Rights/credits ledger complete; no unlicensed publication dependency",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "release-gate"
+    },
+    {
+      "id": "DD-69",
+      "number": 69,
+      "domain": "Machine verification",
+      "requiredCoverage": "Source counts, acquisition, prerequisites, ranks, resources, action limits, concentration, copies, summons, public leaks",
+      "notebookInitialAssessment": "Class validation strong; game-wide incomplete",
+      "acceptanceGate": "Full deterministic suite passes with reproducible failures",
+      "status": "partially-validated",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "docs/audit/2026-10-08/classes/CLASS_PASS_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Existing class and spell tests have limited stated scopes. Extend meaningful cross-system scenarios as implementations are completed."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Eight complete feat interfaces reviewed and provisionally promoted: Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and Soul Cage;131 targeted checks/2,520 funding boundary cases. All335 original objects preserved. Remaining327 feats, full economy/recipes/soul taxonomy/runtime and human balance remain open."
+      ]
+    },
+    {
+      "id": "DD-70",
+      "number": 70,
+      "domain": "Generated scenario testing",
+      "requiredCoverage": "Legal build generation, random turns, cross-system combinations, resource invariants",
+      "notebookInitialAssessment": "PARTIAL for classes",
+      "acceptanceGate": "Large sampled suite finds no negative resources, illegal gates, loops, double concentration, etc.",
+      "status": "partially-validated",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_BUFFER_FEAT_FINAL_CLOSURE.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md"
+      ],
+      "validationEvidence": [
+        "docs/audit/2026-10-08/classes/CLASS_PASS_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_VALIDATION.json",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_PLAYTEST_VALIDATION.json"
+      ],
+      "humanEvidence": [],
+      "openIssues": [
+        "Existing class and spell tests have limited stated scopes. Extend meaningful cross-system scenarios as implementations are completed."
+      ],
+      "completionClass": "authored-candidate",
+      "completedScopes": [
+        "Eight complete feat interfaces reviewed and provisionally promoted: Chef, Inspiring Leader, Empowered Summoning, Field Medic, Blood Ritual, Necrotic Affinity, Lifeleech and Soul Cage;131 targeted checks/2,520 funding boundary cases. All335 original objects preserved. Remaining327 feats, full economy/recipes/soul taxonomy/runtime and human balance remain open."
+      ]
+    },
+    {
+      "id": "DD-71",
+      "number": 71,
+      "domain": "Human rules playtest",
+      "requiredCoverage": "Base, Arch, Hero, mixed parties, new players, experienced players, Directors",
+      "notebookInitialAssessment": "NOT COMPLETE",
+      "acceptanceGate": "Recorded sessions at all stages; friction and ambiguity issues dispositioned",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "human-gate"
+    },
+    {
+      "id": "DD-72",
+      "number": 72,
+      "domain": "Human numerical/balance playtest",
+      "requiredCoverage": "DPR, survivability, healing, control, resource pacing, encounter difficulty, build diversity",
+      "notebookInitialAssessment": "NOT CLAIMED",
+      "acceptanceGate": "Sufficient table evidence to make balance claims; separate from structural correctness",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "human-gate"
+    },
+    {
+      "id": "DD-73",
+      "number": 73,
+      "domain": "Campaign-duration playtest",
+      "requiredCoverage": "Multi-session advancement, rests, economy, crafting, Decennial cycle, long-term state",
+      "notebookInitialAssessment": "NOT COMPLETE",
+      "acceptanceGate": "At least one sustained campaign validates the loop rather than isolated combats",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria."
+      ],
+      "completionClass": "human-gate"
+    },
+    {
+      "id": "DD-74",
+      "number": 74,
+      "domain": "Release candidate/errata process",
+      "requiredCoverage": "Version freeze, known issues, errata, migration, feedback intake",
+      "notebookInitialAssessment": "FUTURE",
+      "acceptanceGate": "Playtest candidate versioned, reproducible, with known-issues ledger",
+      "status": "discussed",
+      "closure": "open",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_COMPLETE_COVERAGE_REVIEW.md"
+      ],
+      "sourceEvidence": [
+        "docs/audit/2026-10-08/full-game/FINAL_FLOW_AND_GITHUB_DELIVERY.md"
+      ],
+      "draftEvidence": [],
+      "validationEvidence": [],
+      "humanEvidence": [],
+      "openIssues": [
+        "Complete the source audit and individual acceptance criteria.",
+        "Owner-authorized final gate: after authored completion, obtain actual Codex/GPT whole-game flow agreement, then push consolidated game to BordelonDevOps/DecenniumDescent. Push remains conditional/pending; remote history clone prepared without authoring changes or upload."
+      ],
+      "completionClass": "authored-candidate"
+    }
+  ],
+  "completionPolicy": "Discussion, indexing, source counts, generic templates and blocked labels are not completion. Close an aspect only when its source audit, operational authored coverage, adversarial review and appropriate validation are evidenced. Any intentionally excluded option needs an explicit reviewed disposition, not a blanket unfinished status. Human sessions, numerical balance and publication approval remain separate gates."
+}

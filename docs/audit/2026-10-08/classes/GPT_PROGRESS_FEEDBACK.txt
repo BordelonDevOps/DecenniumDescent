@@ -1,0 +1,40 @@
+
+
+Overall, the project is moving in a much better direction than it was before the Bard pilot. The biggest improvement is that we now have a repeatable method rather than trying to repair hundreds of vague class entries one by one.
+
+The strongest parts so far are:
+
+Class identities are surviving normalization. Bard still feels like Bard, Warrior is genuinely built around mutation/serum/BT, Oracle is RC/Mystery/Curse rather than a reskinned caster, Wizard is matrix preparation, Monk is Ki/Stance, etc.
+Base → Arch → Hero is now consistently treated as progression, not three simultaneous classes or a giant level-1 ability buffet.
+Source provenance is being preserved. Original names and source locations remain attached while the new numbers are visibly provisional.
+Undefined prose is becoming executable rules. Percentages, “chance to,” “powerful effect,” unlimited regeneration, ambiguous extra actions, corpse loops, and similar issues are being converted into things a table and validator can actually resolve.
+We are building global safety rails instead of patching exploits individually: one extra Action/round, hard-control limits, reset caps, nonrecursive copies, finite healing, anti-farming rules, class-level gates, shared concentration, etc.
+Most importantly, we aren't silently modifying approved books. These remain ReviewBible/playtest constructions until you explicitly promote them.
+
+The Bard is still the strongest benchmark because it has actually gone through the full cycle: source mapping → authored mechanics → adversarial review → corrections → executable validation → readable module. The other classes we've authored are presently design-complete drafts, not Bard-level validated modules yet. That distinction matters.
+
+At this point we've substantially authored Bard, Cleric, Mage, Monk, Wizard, Warrior and Oracle, with Paladin underway. So the normalization work is no longer theoretical; we're getting enough different class architectures that the common framework is being stress-tested against very different designs.
+
+There are three things I would watch closely now.
+
+First, consistency drift is becoming the main technical danger. We are producing hundreds of cards. Something as simple as one class interpreting “once per round,” concentration, a copied roll, temporary HP, or a recharge differently can create cross-class bugs. Codex should eventually run a schema-level rules audit across every completed class looking specifically for those shared terms.
+
+Second, mechanical completeness is not balance. Some of these classes are intentionally wild. Warrior's stacked mutation ecosystem, high-level Oracle control/time manipulation, Wizard's matrix combinations, and Paladin aura/Smite interactions could all be numerically overtuned even if every rule is perfectly deterministic. That is exactly what human playtesting is for.
+
+Third, we need to keep doing count/source validation after every class. The Warrior miss, where I initially returned only 10 of the requested 52 indexed cards, is precisely the kind of production error that automated source-count assertions should catch immediately. The correction process worked, but Codex should make expected source entries == generated source mappings a hard validator failure for every future class.
+
+One immediate housekeeping point: the remaining-five Paladin response in the chat above was cut off mid-JSON during Noble Bearing, so I would not treat that packet as complete or hand it to Codex as authoritative. The first five Oaths were completed; the second-five packet should be regenerated cleanly before Paladin is marked drafted.
+
+My current project-status label would be:
+
+Class Normalization / Campaign Playtest Construction — architecture increasingly stable, substantial class content authored, automated class-by-class validation still required, numerical balance and human campaign validation pending.
+
+That is a materially healthier state than the repository was in when we started. The remaining work is large, but it is now mostly systematic production and validation, rather than figuring out what the game even means.
+
+ChatGPT can make mistakes. Check important info.
+Latest response
+
+
+
+
+5.6 High

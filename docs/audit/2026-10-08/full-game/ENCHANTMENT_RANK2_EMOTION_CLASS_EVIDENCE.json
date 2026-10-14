@@ -1,0 +1,171 @@
+{
+  "status": "existing class source evidence for forthcoming Calm Emotions exact review; no class or spell change",
+  "records": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f",
+      "cards": [
+        {
+          "id": "druid.hero.moon.mooncursed",
+          "name": "Mooncursed",
+          "className": "Druid",
+          "band": "Hero",
+          "path": "Moon",
+          "sourceKind": "form",
+          "minimumClassLevel": 10,
+          "acquisition": "automatic",
+          "activation": "Action bite or Howl",
+          "cost": "One shift; Howl 1 Form Surge",
+          "rangeAndTarget": "Moon Hero; bite 5 ft/Howl 30 ft",
+          "duration": "While in Mooncursed",
+          "frequency": "Howl 1/shift and finite reserve",
+          "effect": "Resistance to nonmagical physical damage except silver; other types unchanged. Bite 2d6+WIS piercing, +1d8 once/turn under real full moon. Howl Action choose up to 3 allies gain 2d8 temp HP total roll, or 3 enemies WIS save or Frightened through end next turn. Temp HP draws from Buffer Reserve per recipient.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 2703,
+            "originalText": "Mooncursed\nLycanthropic Resilience: You have resistance to all damage except silver\nLunar Rage: During a full moon, your attacks deal an additional 1d8 damage\nHowl of the Wild: As an action, you can emit a howl that inspires allies or terrifies enemies. Choose one effect: allies within 30 ft. gain 2d8 temporary hit points, or enemies within 30 ft. must make a Wisdom saving throw or be frightened for 1 minute."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/dragoon.json",
+      "sha256": "b55a59ae743bc1b8ed0d5832eb40453f438bc9c9f4a69aef87f3e19048e0fb0e",
+      "cards": [
+        {
+          "id": "dragoon.hero.dragon-tyrant.momentum-rampage",
+          "name": "Momentum Rampage",
+          "className": "Dragoon",
+          "band": "Hero",
+          "path": "Dragon Tyrant",
+          "sourceKind": "active",
+          "minimumClassLevel": 12,
+          "acquisition": "selection",
+          "activation": "Bonus Action",
+          "cost": "3 Momentum",
+          "rangeAndTarget": "Self",
+          "duration": "3 of your turns",
+          "frequency": "Recharge 4",
+          "effect": "Once/own turn your first polearm hit adds S d6 damage. Gain+10 ft Speed but suffer-1 AC. No extra attacks, Actions, crit range or scaling from an unbounded resource count.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 2359,
+            "originalText": "Momentum Rampage: Enter a state of draconic fury, gaining increased damage and attack speed based on your current Momentum."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327",
+      "cards": [
+        {
+          "id": "oracle.supplement.battle.divine-fury",
+          "name": "Divine Fury",
+          "className": "Oracle",
+          "band": "Arch",
+          "path": "Battle",
+          "sourceKind": "tier-ii-revelation",
+          "minimumClassLevel": 6,
+          "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+          "activation": "Bonus Action",
+          "cost": "2 RC",
+          "rangeAndTarget": "Self",
+          "duration": "2 rounds",
+          "frequency": "At will while RC remains",
+          "effect": "For 2 rounds, once on each of your turns when a weapon or touch attack hits, add damage equal to half its unmodified base damage dice total, rounded down, minimum 1. Your attacks ignore 1 point of flat DR. When you critically hit, the target makes a Wisdom save; on failure it is Frightened until the end of its next turn. Once during each of your turns while Fury lasts, after your first weapon or touch attack hits, you may make one additional weapon or touch attack as a Bonus Action if you have not already used a Bonus Action that turn; this is not an extra full Action.",
+          "prerequisite": "Oracle 6; Mystery: Battle; selected Tier II Revelation",
+          "source": {
+            "line": null,
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[1].tierII[0]",
+            "originalText": "",
+            "status": "source-derived",
+            "originalObjects": [
+              {
+                "reference": "MYSTERIES.ORACLE_MYSTERIES[1].tierII[0]",
+                "value": {
+                  "name": "Divine Fury",
+                  "charges": 2,
+                  "kind": "active",
+                  "description": "Spend 2 charges: for 2 rounds, your weapon and touch attacks deal +50% bonus weapon damage and ignore 5% DR; the War Chorus roars through each strike — on a critical hit, the target must save or suffer Fear (−10% hit) until end of next turn, and your second attack during the fury may be made as a bonus action if the first hit."
+                }
+              }
+            ]
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        },
+        {
+          "id": "oracle.supplement.battle.fury-of-the-host",
+          "name": "Fury of the Host",
+          "className": "Oracle",
+          "band": "Arch",
+          "path": "Battle",
+          "sourceKind": "tier-iii-revelation",
+          "minimumClassLevel": 9,
+          "acquisition": "automatic for chosen Mystery",
+          "activation": "Action",
+          "cost": "3 RC",
+          "rangeAndTarget": "Self and allies within 5 tiles",
+          "duration": "2 rounds; Revelation backlash 1 round",
+          "frequency": "At will while RC remains",
+          "effect": "For 2 rounds, each ally in range may once on its regular turn gain one additional full Action usable only for one ordinary weapon attack or Dash/Move, subject to the universal extra-Action cap. Allies also gain +1 on attack rolls and reduce the first damage they take each round by 1. You gain +2 AC and immunity to Frightened. Once per round you may activate one known Tier I Battle Revelation for 0 RC using its normal action type. The first qualifying ally each round to reduce a meaningful enemy to 0 HP regains 1d6 HP. When the effect ends, you are suffering Revelation backlash until the end of your next turn: -1 on attacks and saves and Speed -5 feet. Concentration is required; choose at most three allies for its benefits. Each granted Action may make only one ordinary weapon attack or Dash, and cannot grant another action.",
+          "prerequisite": "Oracle 9; Mystery: Battle",
+          "source": {
+            "line": null,
+            "reference": "MYSTERIES.ORACLE_MYSTERIES[1].tierIII",
+            "originalText": "",
+            "status": "source-derived",
+            "originalObjects": [
+              {
+                "reference": "MYSTERIES.ORACLE_MYSTERIES[1].tierIII",
+                "value": {
+                  "name": "Fury of the Host",
+                  "charges": 3,
+                  "kind": "active",
+                  "description": "Spend 3 charges: for 2 turns, allies within 5 tiles gain +1 action per turn (attack or move only), +10% crit chance, and +5% DR as the War Chorus banners them — you gain +2 AC and immunity to Fear; once per round you may cast one Tier I Battle Revelation at no cost, and the first ally to drop an enemy each round regains 1d6 HP. After: Exhausted (−1 action, −10% resist for 1 round)."
+                }
+              }
+            ]
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+      "sha256": "584df9db3a6785f6268709cf3e376ae48dd62607c3ddb8e5ad5b2cc57e62f3f2",
+      "cards": [
+        {
+          "id": "ranger.hero.warder.beast-empathy",
+          "name": "Beast Empathy",
+          "className": "Ranger",
+          "band": "Hero",
+          "path": "Warder",
+          "sourceKind": "passive",
+          "minimumClassLevel": 10,
+          "acquisition": "selection",
+          "activation": "Passive",
+          "cost": "0",
+          "rangeAndTarget": "Natural beasts within 30 ft that hear you",
+          "duration": "While communicating",
+          "frequency": "Continuous",
+          "effect": "Communicate simple emotions/directions. They are not automatically friendly or controlled, cannot answer beyond their experience, and may need normal Animal Handling. No language-based compulsion or extra companion slot.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 3880,
+            "originalText": "Beast Empathy: Communicate basic concepts with natural beasts."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        }
+      ]
+    }
+  ],
+  "scope": "Bounded five-card comparison. Display names or historical fury/rage flavor do not alone establish an operational emotional-state dependency. Separate actual Frightened riders from the remaining printed buffs/actions/costs. This is not an exhaustive audit of all mental effects and does not authorize suppression of any card."
+}

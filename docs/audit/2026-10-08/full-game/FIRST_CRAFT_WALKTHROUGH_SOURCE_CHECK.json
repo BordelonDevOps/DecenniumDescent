@@ -1,0 +1,338 @@
+{
+  "status": "PASS — source and arithmetic checks for an unsent teaching draft",
+  "scope": "Read-only comparison to actual reviewed recipe and source arithmetic; no runtime execution or human teaching/balance evidence.",
+  "manuscript": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_CRAFT_WALKTHROUGH.md",
+  "manuscriptSha256": "77ca7d7099ef96272ca55e7ed8f1a7d2c027154a595136e4ca055b89ba3ef28f",
+  "sourceHashes": {
+    "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md": "9de8a0f292ecb248ada84d73a0dcaa47fe2b33e842700b2bc1c5e9bedd198c0b",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_TRADE_REFERENCE.md": "fa266be45fb9741db05f7558232bcd69025642c81961afde4f1ce84f38228318",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/HERBALISM_RECIPE_PLAYTEST.md": "583da73b178a8f8148b30f06033d02c1a5158bbe0cb159030ac17e31197d58a9",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/HERBALISM_PUBLIC_RECIPE_CARDS.md": "26fbee97345de2eba5b654f795a47c5dc410d060e1e20d239ba72da260dd1cd8",
+    "DescentReviewChanges/ReviewBible/data/playtest/herbalism_recipe_candidate.json": "26eeffd8f1d16ed02a1ddd9277d0605f3f67865c13cf29202af6e4398c05891f",
+    "DescentReviewChanges/ReviewBible/data/director/herbalism_recipe_candidate_internal.json": "50ad1851f059b58d7857369d6e0e8d9560479914902274d1103ddb3dae1e6f9f",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+    "docs/audit/2026-10-08/full-game/GPT_CRAFTING_ENGINE_EXACT_REVIEW.md": "1ef79981f3c80cb596a7ca8e709607c1ebcb7ee8a08f628387f387c1da3e20b8",
+    "docs/audit/2026-10-08/full-game/GPT_HERBALISM_EXACT_REVIEW.md": "40725c117e47bc9da5b4b8c3f108c356b2a4557fceae04b07fbf6aa733ce21a9",
+    "docs/audit/2026-10-08/full-game/HERBALISM_EXACT_REPAIRS_APPLIED.json": "c316f38dce34938af4b2c3f7a58878bf56a00b5f27507baa47dcff832771bcaf",
+    "docs/audit/2026-10-08/full-game/HERBALISM_CANDIDATE_VALIDATION.json": "ca4d26a9941c9b1fedd267b6280d06591255cfbd78f343301b2f121a7e036666",
+    "DescentReviewChanges/ReviewBible/docs/playtest/ONBOARDING_REVIEW_STATUS.json": "5272bfd236188702fab76f794a5c6ecfe16498fb87e091bba57179b5e97e2777",
+    "docs/audit/2026-10-08/full-game/ONBOARDING_CHARTER_EXACT_FULFILLMENT.json": "67bf41343c8b6dbc7183cb912e5b893df597ed249a17a8c3a666cd386df64b25"
+  },
+  "selectedPublicCard": {
+    "recipeId": "recipe-200",
+    "name": "Refined Frost Antidote",
+    "visibility": "public",
+    "status": "reviewed-authored-operational-playtest",
+    "sourceSha256": "32b2bf00c28584ad259c343bc5b961126d25078c094444c05bf3caf0c9edda5e",
+    "sourceRecipeIndex": 199,
+    "sourceEffect": "Ends the poisoned condition and grants advantage on saves against poison for 10 minutes.",
+    "sourceMechanics": {
+      "type": "remedy",
+      "tag": "Cold",
+      "tier": 2,
+      "conditions": [
+        "poisoned"
+      ],
+      "bonus": 1
+    },
+    "sourceLegacyFields": {
+      "legacyName": "Organic Antidote",
+      "legacyEffect": "Small bonus to one skill"
+    },
+    "sourceRequirements": {
+      "skill": "Herbalism",
+      "skillLevel": 4,
+      "difficulty": 10,
+      "tier": 2,
+      "rarity": "Common",
+      "quantity": 5,
+      "craftingTime": "2 hours",
+      "workRequirements": {
+        "station": "Herbalist's Table",
+        "requiredTools": [
+          "Herbalism kit",
+          "Mortar and pestle",
+          "Drying rack"
+        ],
+        "fieldCraftable": true,
+        "timeMode": "field",
+        "activeWorkHours": 2,
+        "maximumAssistants": 0,
+        "facilityBonusEligible": true
+      },
+      "craftingCheck": {
+        "abilityOptions": [
+          "Wisdom"
+        ],
+        "formula": "d20 + chosen ability modifier + proficiency bonus + tool bonus + facility bonus + assistant bonus",
+        "targetDC": 10,
+        "qualityOutcomes": [
+          {
+            "margin": "10+",
+            "result": "Masterwork",
+            "effect": "Increase yield by 50% or improve one item property; preserve one catalyst."
+          },
+          {
+            "margin": "5 to 9",
+            "result": "Exceptional",
+            "effect": "Increase yield by 25% or improve durability/charges."
+          },
+          {
+            "margin": "0 to 4",
+            "result": "Standard",
+            "effect": "Create the listed result."
+          },
+          {
+            "margin": "-1 to -4",
+            "result": "Flawed",
+            "effect": "Create half yield or one reduced-duration/flawed result."
+          },
+          {
+            "margin": "-5 to -9",
+            "result": "Failed",
+            "effect": "No finished item; recover 25% of non-catalyst materials."
+          },
+          {
+            "margin": "-10 or natural 1",
+            "result": "Mishap",
+            "effect": "Lose consumed materials and roll on the tradeskill mishap table."
+          }
+        ]
+      },
+      "discovery": {
+        "sources": [
+          "trainer",
+          "starter manual",
+          "common experimentation"
+        ],
+        "minimumResearchHours": 0,
+        "requiresFormula": false,
+        "formulaConsumed": false
+      },
+      "components": [
+        {
+          "id": "ing-200-0-purified_water",
+          "name": "Purified water",
+          "tier": 2,
+          "rarity": "Uncommon",
+          "category": "crafting_supply",
+          "value": 8,
+          "weight": 0.5,
+          "quantity": 4,
+          "properties": [
+            "solvent"
+          ],
+          "materialCategory": "solvent",
+          "consumed": true,
+          "role": "solvent"
+        },
+        {
+          "id": "drop-sparkling_petal",
+          "name": "sparkling petal",
+          "tier": 1,
+          "rarity": "Common",
+          "category": "monster_part",
+          "value": 10,
+          "weight": 0.36,
+          "quantity": 1,
+          "properties": [
+            "botanical",
+            "lightning",
+            "organic"
+          ],
+          "legacyName": "Chillslag Blood",
+          "materialCategory": "plant",
+          "sourceMonsters": [
+            "Annis Hag",
+            "Season-Bound Autumn",
+            "Boggle",
+            "Green Hag",
+            "Satyr (and 3 more)"
+          ],
+          "dropRate": 0.83,
+          "dropQuantity": "1d4",
+          "description": "A common sparkling petal. Unusual material with various crafting applications.",
+          "consumed": true,
+          "role": "material"
+        }
+      ],
+      "economy": {
+        "consumedMaterialValue": 42,
+        "consumedWeight": 2.36,
+        "laborValue": 4.0,
+        "recommendedMarketValue": 61,
+        "commissionDepositPercent": 50,
+        "salvageRecoveryOnFailurePercent": 25
+      },
+      "skillProgression": {
+        "skillXPOnSuccess": 4,
+        "trivialAtSkillLevel": 9,
+        "firstCraftBonus": true
+      }
+    },
+    "operational": {
+      "text": "End every present removable Poisoned application, without deleting its independent underlying cause; future exposure may reapply it. Gain advantage on saves against poison for 10 elapsed minutes. No added numeric bonus, poison immunity, resistance, disease or intoxication cure.",
+      "effect": {
+        "kind": "antidote",
+        "magical": true,
+        "spell": false,
+        "concentration": false,
+        "createsResourcePool": false,
+        "poisonedRemoval": "all present removable Poisoned applications; underlying independent causes remain",
+        "poisonSaveAdvantage": true,
+        "numericSaveBonus": 0,
+        "durationSeconds": 600,
+        "endsAtNextBeneficialLongRest": false,
+        "conditionCureIndependentOfSaveBuff": true,
+        "recipeTags": [
+          "Cold"
+        ]
+      },
+      "activation": {
+        "action": "Action",
+        "activeMinutes": 0,
+        "consecutiveRegularTurnActions": 1,
+        "requiresElapsedTimeAndActions": false,
+        "availableHands": 1,
+        "recipientRangeFeet": 5,
+        "delivery": "drink or feed",
+        "recipientConsent": "willing or Incapacitated; actual anatomical compatibility required",
+        "doseCommit": "legal administration start",
+        "interruptionRefund": false,
+        "recipientIdentityLocked": true,
+        "spellRank": null,
+        "school": null
+      },
+      "physical": {
+        "compoundWeightLb": 0.1,
+        "containerWeightLb": 0.1,
+        "grossWeightLb": 0.2,
+        "containerAC": 13,
+        "containerHP": 1,
+        "doses": 1,
+        "vialSlots": 1,
+        "classification": "magical-nonspell-consumable; no default artifact status",
+        "sealedShelfLife": "indefinite while intact in ordinary conditions",
+        "openedLifetimeSeconds": 3600,
+        "postUseContainer": {
+          "kind": "ordinary-spent-dose-vial",
+          "weightLb": 0.1,
+          "AC": 13,
+          "capacityDoses": 1,
+          "actualCurrentAndMaxHpRetained": true,
+          "magicalUsesRemaining": 0,
+          "ingredientTierBenefit": null,
+          "ingredientPropertiesRecovered": false,
+          "originalIngredientValueRecovered": false,
+          "referenceValueCp": 100,
+          "supplementaryPackagingReuseIfIntact": true,
+          "reuseRequiresRepurchase": false
+        }
+      },
+      "craft": {
+        "batchQuantity": 5,
+        "sourceVesselUnits": 0,
+        "additionalStandardGlassVials": 5,
+        "additionalExceptionalGlassVials": 6,
+        "additionalMasterworkGlassVials": 7,
+        "extraPackagingItemId": "alchemical-containers.glass-vial",
+        "extraPackagingUnitCp": 100,
+        "packagingAndCarrierReservedBeforeCheck": true,
+        "postRollAcquisitionAllowed": false,
+        "sourceConsumedMassLb": 2.36,
+        "maximumReturnedCatalystMassLb": 0.0,
+        "minimumAvailableCompoundMassLb": 2.36,
+        "masterworkSupplementaryCarrierLb": 0.0,
+        "firstStabilizationPhaseMinutes": 15,
+        "firstPhaseIncludedInTotal": true,
+        "flawed": {
+          "mode": "half-batch-quantity",
+          "quantity": 2,
+          "effectChange": null
+        },
+        "qualityPotencyBonus": false,
+        "qualityDurabilityOption": {
+          "batchQuantity": "Standard",
+          "allFinishedContainersMaxAndCurrentHP": 2,
+          "bonusYieldCombined": false
+        },
+        "maximumMasterworkReserveMandatory": true
+      },
+      "value": {
+        "sourceStandardBatchReferenceGp": 61,
+        "unitReferenceGp": {
+          "numerator": 61,
+          "denominator": 5
+        },
+        "extraPackagingIncludedInSourceCost": false
+      },
+      "sharedRules": "docs/mechanics/HERBALISM_RECIPE_PLAYTEST.md",
+      "privateRules": null
+    },
+    "sourceRecipeTags": [
+      "Cold"
+    ]
+  },
+  "exampleCharacterSource": "FIRST_BARD_WALKTHROUGH.md, Mira Bard1 Human Nomadic Battlefield Medic",
+  "scenarioAssumptions": [
+    "Separate safe crafting scene with actual station/tool access already obtained",
+    "All exact ingredients and seven intact empty vials actually acquired and reserved",
+    "No assistant, special bonus, time modifier, interruption or illegal ingredient",
+    "One Standard-result timeline; quality table rows are independent alternatives",
+    "Antidote recipient is living, willing, can swallow and has one removable Poisoned application without ongoing exposure",
+    "Administration resolves at12:00; expire12:10"
+  ],
+  "arithmetic": {
+    "mainCheckTotal": 12,
+    "mainMargin": 2,
+    "eligibilityLimit": 4,
+    "standardDoses": 5,
+    "exceptionalDoses": 6,
+    "masterworkDoses": 7,
+    "flawedDoses": 2,
+    "firstSuccessXP": 4,
+    "level1Threshold": 11,
+    "afterCraftObjectMassLb": "1.2",
+    "afterDoseObjectMassLb": "1.1",
+    "failedWaterUnitsRecovered": 1,
+    "failedWholePetalsRecovered": 0,
+    "referenceIngredientsAndSevenVialsGp": 49,
+    "workMinutesIncludingBinding": 120,
+    "bindingMinutesIncluded": 15,
+    "remainingWorkMinutes": 105
+  },
+  "checks": {
+    "public card is reviewed and equals internal same-ID card": true,
+    "Mira training matches reviewed first-character guide": true,
+    "eligibility DC time quantity and formula": true,
+    "tool station assistance and ability requirements": true,
+    "components exact identities quantities and tiers": true,
+    "component mass and value": true,
+    "finite vial reserves carrier and binding": true,
+    "quality variants": true,
+    "administration action hand range consent": true,
+    "effect ten minute advantage and nonspell nature": true,
+    "dose and empty vial mass container hp and opened clock": true,
+    "recipe trivial threshold": true,
+    "continuous batch and one-dose mass arithmetic": true,
+    "link exists ../mechanics/HERBALISM_PUBLIC_RECIPE_CARDS.md#recipe-200--refined-frost-antidote": true,
+    "link exists ../mechanics/HERBALISM_RECIPE_PLAYTEST.md": true,
+    "link exists ../mechanics/CRAFTING_HARVEST_PLAYTEST.md": true,
+    "link exists FIRST_BARD_WALKTHROUGH.md": true,
+    "all342 active review inputs unchanged": true
+  },
+  "localLinks": [
+    "../mechanics/HERBALISM_PUBLIC_RECIPE_CARDS.md#recipe-200--refined-frost-antidote",
+    "../mechanics/HERBALISM_RECIPE_PLAYTEST.md",
+    "../mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+    "FIRST_BARD_WALKTHROUGH.md"
+  ],
+  "sourceInformationDeleted": false,
+  "newRules": false,
+  "presentationReviewComplete": false,
+  "submittedToGPT": false,
+  "runtimeImplemented": false,
+  "humanTeachingVerified": false,
+  "balanceApproved": false
+}

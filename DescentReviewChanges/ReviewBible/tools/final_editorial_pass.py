@@ -1,0 +1,13 @@
+"""Remove contradictory superseded clauses from operational text, retaining sources."""
+from pathlib import Path
+import json
+D=Path(__file__).resolve().parents[1]/'data/playtest/class_drafts'
+p=D/'oracle.json';d=json.loads(p.read_text(encoding='utf-8'))
+def c(n):return next(x for x in d['extraCards'] if x['name']==n)
+c('Ledger Unbound')['effect']='Choose up to three enemies in range. Roll 4S d8+M once; each target takes necrotic damage equal to the lesser of that roll or one-quarter its maximum HP, with a Constitution save for half. This blast cannot reduce HP below 1. Raise up to three nonsummoned corpses as 1-HP bone servants for three rounds. Once per round spend your shared companion Bonus Action to move and attack with ONE servant using your Revelation attack bonus for 1d8+S necrotic damage. Alternatively, your Reaction may sacrifice one servant to intercept a single-target attack against you; no attack is made by that servant that round. Servants grant no XP, loot, harvestable corpses or RC. For three rounds, up to three undead you already control add S damage to their one shared commanded attack and reduce the first damage they take each round by 1. No extra creature turns or command budgets are created.'
+c("Fate's Glimpse")['effect']='Before the duration ends, when the chosen ally fails one attack roll, saving throw or ability check, it may reroll with +2 and must use the new result. If the reroll succeeds, you gain advantage on your next Revelation attack before the end of your next regular turn. You do not roll another creature’s saving throw. No Oracle feature rerolls the same roll twice; this reroll cannot trigger another reroll.'
+c('Prophecy Trigger Mastery')['effect']='When you fail a saving throw, regain 1 RC after resolving the failure, subject to the shared maximum of one triggered RC recovered per round and never above maximum. Up to three allies within 30 feet who perceive your prophetic reaction gain advantage on their next save against that same named effect or damage/control source before the start of your next regular turn. This remains one use per long rest even when the recovery is prevented by the cap.'
+c('Shattered Mind')['effect']=c('Shattered Mind')['effect'].replace('normal concentration saves threaten both.','normal concentration saves threaten both. At the end of the extension choose one sustained effect to end; starting a third ends the previous two immediately.')
+d['engine']=[s.replace(' Source packet: preserved source packet','') for s in d['engine']]
+p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print('Operational Oracle clauses consolidated; original notebook replies unchanged.')

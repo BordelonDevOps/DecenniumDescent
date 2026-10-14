@@ -1,0 +1,74 @@
+FEAT327-ACQ-02 — narrow Warrior tier-cap source ambiguity found while qualifying the twelve shared mutation feats.
+
+ACQ-01 is fulfilled locally and its original response/source history preserved. The numeric cohort has independent boundary checks for209 identities; these are partial predicate projections, not full acquisitions or exact approval. No new whole-game or cosmology review is requested here.
+
+I need one explicit ruling before testing mixed-tree loadouts. The current Warrior engine says “Each tree permits” before its tier limits, while each Apex card says “maximum one Apex equipped.” The original book puts “Max Equipped” over rows saying “Max2 active”/“Max1 active.” Please resolve whether the actual current acquisition limits are global across all trees or per tree, and which later activation exceptions can exceed only concurrency rather than equipment/tier caps. Do not silently present a new choice as recovered original wording.
+
+CURRENT FILE (full bytes preserved locally): DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json; bytes 158412; SHA256 9a7de82d75e74ae22135266cd4b0c0951ba6bd280e72584212f441d4fa91fc17
+
+CURRENT COMPLETE RELEVANT ENGINE PARAGRAPHS:
+/engine/2: MUTATION SLOTS. At Warrior 1 you have one mutation slot; slot II unlocks at Warrior 5, slot III at Warrior 13 and slot IV at Warrior 20. During a completed short or long rest, equip one eligible mutation in each slot. Equipped mutations are dormant until activated unless their text explicitly says otherwise. You cannot equip the same named mutation twice.
+
+/engine/3: ACTIVE MUTATIONS. Before Juggernaut Mutation Efficiency, only one equipped mutation can be active at a time. Mutation Efficiency raises the ordinary simultaneous-active limit to two. Transcendent, Apex Form and other explicit features can temporarily exceed that limit. Activating a mutation beyond the current limit ends one active mutation of your choice unless an explicit exception permits otherwise.
+
+/engine/17: MUTATION TIERS. Basic mutations require Warrior 1. Advanced mutations require Warrior 6. Apex mutations require Warrior 15. You may equip any mutation whose level gate and other prerequisite you meet. Each tree permits any number of Basic mutations up to slot limits, at most two equipped Advanced mutations at once, and at most one equipped Apex mutation at once.
+
+/engine/18: MUTATION FEATS. Mutation feats are not free mutation selections. They become eligible choices at an ASI/feat opportunity or other campaign feat grant once their listed level and mutation prerequisite are met. They do not consume mutation slots unless their own text says otherwise.
+
+/engine/23: All class gates use Warrior class level, not total character level. Proficiency bonus follows the game's ordinary total-character-level rule. No other class level unlocks Warrior mutation tiers, serum capacity, Juggernaut, Hero paths, Apex mutations or Final Forms.
+
+COMPLETE RELEVANT CURRENT CARDS:
+{"id": "warrior.supplement.apex-form", "name": "Apex Form", "className": "Warrior", "band": "Hero", "path": null, "sourceKind": "progression", "minimumClassLevel": 20, "acquisition": "automatic", "activation": "Bonus Action", "cost": "0", "rangeAndTarget": "Self", "duration": "3 rounds", "frequency": "1/encounter", "effect": "Gain mutation slot IV permanently. When Apex Form activates, all equipped mutations become active for 3 rounds without consuming serum doses and ignore the normal active-mutation concurrency limit. Serum-profile effects are not granted. When the form ends, choose active mutations up to your normal limit; all others become dormant.", "prerequisite": "Warrior 20", "source": {"line": 4798, "reference": null, "originalText": "| 20 | Apex Form – Gain a permanent 4th mutation & unleash once/encounter ultimate form |", "status": "source-derived"}, "designStatus": "provisional-playtest", "spellRank": null}
+
+{"id": "warrior.supplement.transcendent", "name": "Transcendent", "className": "Warrior", "band": "Hero", "path": null, "sourceKind": "brutalityState", "minimumClassLevel": 12, "acquisition": "supplement", "activation": "Triggered", "cost": "0", "rangeAndTarget": "Self", "duration": "Until start of your next regular turn", "frequency": "1/encounter total, regardless of trigger", "effect": "At Warrior 12+, the first time this encounter you cross 100% Brutality Progress or reach stored BT 4, activate all equipped mutations until start of your next regular turn. No serum profile or immediate healing trigger is granted. This is one total pulse, never a permanent BT 4 concurrency increase. At end choose active mutations up to normal limit, with their original remaining durations; others become dormant.", "prerequisite": "Warrior 12; 100% Brutality Progress or BT 4 with raised cap; new explicit level gate", "source": {"line": 5069, "reference": null, "originalText": "| Transcendent | Deal 100% of max HP as damage | All mutations active simultaneously for 1 round |", "status": "source-derived"}, "designStatus": "provisional-playtest", "spellRank": null}
+
+{"id": "warrior.supplement.mythic-carapace", "name": "Mythic Carapace", "className": "Warrior", "band": "Hero", "path": null, "sourceKind": "mutation", "minimumClassLevel": 15, "acquisition": "supplement", "activation": "Passive while active", "cost": "One mutation slot; serum activation", "rangeAndTarget": "Self", "duration": "Until encounter ends, mutation ends or you fall below one-quarter maximum HP", "frequency": "Apex mutation", "effect": "Gain DR 3 against all damage and immunity to Bleed, Poisoned and Burn-style ongoing fire effects. Once per encounter when one hit deals more than 20 actual damage after mitigation, gain 1 BT and refresh the remaining duration of your other active mutations to 3 rounds. It grants no serum-profile refresh.", "prerequisite": "Warrior 15; Apex Vital; maximum one Apex equipped", "source": {"line": 4955, "reference": null, "originalText": "| Mythic Carapace | While this is active:<br>- +3 DR flat<br>- Immune to Bleed, Poison, and Burn<br>- Once per combat, when you're struck for more than 20 damage: immediately gain +1 BT and refresh all active mutations<br>- Lasts until the end of combat or you fall below 25% HP |", "status": "source-derived"}, "designStatus": "provisional-playtest", "spellRank": null}
+
+{"id": "warrior.supplement.butcherform-chassis", "name": "Butcherform Chassis", "className": "Warrior", "band": "Hero", "path": null, "sourceKind": "mutation", "minimumClassLevel": 15, "acquisition": "supplement", "activation": "Passive while active", "cost": "One mutation slot; serum activation", "rangeAndTarget": "Self", "duration": "3 rounds or until below one-quarter maximum HP", "frequency": "Apex mutation", "effect": "When you take the ordinary Attack action, make one additional melee attack beyond other Extra Attack effects, respecting the one-additional-full-Action guard because this is part of the same Action. Your melee criticals add one extra weapon damage die beyond normal critical dice, not triple total damage. Once per round when you personally kill a meaningful hostile with a melee attack, restore one consumed prepared serum dose, never above reserve capacity.", "prerequisite": "Warrior 15; Apex Combat; maximum one Apex equipped", "source": {"line": 4996, "reference": null, "originalText": "| Butcherform Chassis | While active:<br>- Gain +2 attacks per round<br>- Crits deal triple damage<br>- Melee kills instantly refresh 1 serum or 1 mutation use<br>- Lasts for 3 rounds or until you're below 25% HP |", "status": "source-derived"}, "designStatus": "provisional-playtest", "spellRank": null}
+
+{"id": "warrior.supplement.voidbirth-shell", "name": "Voidbirth Shell", "className": "Warrior", "band": "Hero", "path": null, "sourceKind": "mutation", "minimumClassLevel": 15, "acquisition": "supplement", "activation": "Passive while active", "cost": "One mutation slot; serum activation", "rangeAndTarget": "Self and enemies within 15 feet", "duration": "3 rounds", "frequency": "Apex mutation", "effect": "You may move through enemy spaces and nonmagical difficult terrain without extra cost but cannot end inside a creature or solid object. Enemies within 15 feet take -1 on attack rolls and morale. At the end of each of your turns create one 1-HP clone in an adjacent legal space, maximum 2 clones. A clone cannot attack or block movement; when destroyed it explodes, creatures within 5 feet make Dexterity saves taking 2d6 psychic on failure or half on success. Clones grant no resources, corpses, XP or BT.", "prerequisite": "Warrior 15; Apex Aberrant; maximum one Apex equipped", "source": {"line": 5037, "reference": null, "originalText": "| Voidbirth Shell | While active:<br>- Gain Ethereal Movement (ignore terrain, move through enemies)<br>- Enemies within 3 tiles have –2 morale and suffer Weakened<br>- Each turn, summon 1 temporary clone (1 HP, explodes on death for 2d6 psychic)<br>- Lasts 3 rounds or until all clones are expended |", "status": "source-derived"}, "designStatus": "provisional-playtest", "spellRank": null}
+
+ORIGINAL BOOK EXCERPTS (preserved historical evidence, not automatic priority over current class directions):
+docs/reference/Player_Rulebook_v6_source_text.txt; SHA256 a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b
+4924: Vital Mutation Tree
+4925: "Survival isn't instinct. It's adaptation."
+4926: 
+4927: Structure
+4928: | Tier | Access Level | Max Equipped |
+4929: |------|--------------|--------------|
+4930: | Basic Tier | Lv 1 | Unlimited (up to slot limit) |
+4931: | Advanced Tier | Lv 6+ | Max 2 active |
+4932: | Apex Tier | Lv 15+ | Max 1 active |
+
+4965: Combat Mutation Tree
+4966: "I don't fight better, I become something that wins."
+4967: 
+4968: Structure
+4969: | Tier | Access Level | Max Equipped |
+4970: |------|--------------|--------------|
+4971: | Basic Tier | Lv 1 | Unlimited (up to slot limit) |
+4972: | Advanced Tier | Lv 6+ | Max 2 active |
+4973: | Apex Tier | Lv 15+ | Max 1 active |
+
+5005: 
+5006: Aberrant Mutation Tree
+5007: "The first step to winning is making them think you shouldn't exist."
+5008: 
+5009: Structure
+5010: | Tier | Access Level | Max Equipped |
+5011: |------|--------------|--------------|
+5012: | Basic Tier | Lv 1 | Unlimited (up to slot limit) |
+5013: | Advanced Tier | Lv 6+ | Max 2 active |
+5014: | Apex Tier | Lv 15+ | Max 1 active |
+5015: 
+5016: Basic Tier Mutations
+
+CONCRETE CASES TO SETTLE:
+1. Warrior13 with three slots: Ossified Core (Advanced Vital), Echo Knuckles and Warpgrip Talons (both Advanced Combat). May all three be equipped while dormant? If yes, does ordinary Mutation Efficiency still permit only two active until an actual temporary exception?
+2. Warrior16 with three slots: Mythic Carapace (Apex Vital) plus Butcherform Chassis (Apex Combat). Does the explicit one-Apex prerequisite reject this even though they are different trees?
+3. Warrior20 with four slots: three Advanced Combat mutations. Are three in a single tree always rejected? Does Apex Form affect that acquisition/equipment cap at all?
+4. Warrior16 with three Basic Vital mutations already equipped and lawful Living Fortress acquisition: ordinary two-active limit fails its benefit; a genuine Transcendent pulse can activate all three briefly. Confirm this distinction without treating the feature name or a supplied boolean as proof of its actual event trigger.
+
+LOCAL PROPOSED RESOLUTION FOR YOUR REVIEW: make the tier ceilings explicitly global: at most two Advanced mutations and one Apex mutation equipped across all trees, subject to actual total slots; Basic occupies the remaining slots. This conservative wording resolves the contradictory scope but is a NEW clarification if the current “Each tree” wording instead meant per-tree ceilings. Please adopt, revise or reject this proposal on its merits. A per-tree Advanced/global Apex split is also possible if that is the intended exact source interpretation—say so explicitly rather than smoothing away the distinction.
+
+Please return a finite named addendum with exact wording and outcomes for these four cases. Identify the precise scope: feat-acquisition interpretation only or a necessary derived Warrior class-engine correction. Preserve all original book/class snapshots and source hashes; no unrelated class regeneration, feat promotion, runtime/balance claim, deletion, push or cosmology work. If exact changed representations are required, name the semantic locations and a finite local fulfillment path that does not require another generic conference. All twelve existing feat operating procedures and their actual use-time predicates should remain unchanged unless this ruling necessarily changes one.

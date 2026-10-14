@@ -1,0 +1,55 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L20-CEILING",
+  "agentId": "director",
+  "seed": "agg-15-seeds",
+  "observations": [
+    "Ran high-level boss suites at listed difficulty Catastrophic for objective: Find ceilings, loops, and dead options.",
+    "Budget model (4PC base adjusted): ~864 Threat Points before objective/hazard steps.",
+    "Observed win_rate=1.0, objective_rate=1.0, avg_rounds=2.8, KO/seed=0.0.",
+    "Did not alter enemy HP/damage mid-run to force outcomes; Tenacity and summon caps applied as rulings when triggered.",
+    "Difficulty vs result: diverged \u2014 budget may need recalibration."
+  ],
+  "metrics": {
+    "iterations": 15,
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 2.8,
+    "avg_party_damage": 851.29,
+    "avg_enemy_damage": 131.3,
+    "avg_healing": 35.09,
+    "avg_prevented": 76.15,
+    "avg_control_applied": 6.47,
+    "avg_full_turns_denied": 0.0,
+    "max_summons_peak": 4,
+    "summons_illegal_rate": 0.667,
+    "extra_action_stack_rate": 0.0,
+    "avg_tenacity_triggers": 0.8,
+    "avg_knockouts": 0.0,
+    "avg_wounds": 0.0,
+    "avg_rp_spent": 23.76,
+    "avg_decision_steps": 2.89,
+    "avg_lookups": 3.25,
+    "deadlock_seeds": 0,
+    "retreat_success_rate": null,
+    "party_size": 17,
+    "stated_difficulty": "Catastrophic",
+    "modeled_budget_tp": 864.0
+  },
+  "rulesQuestions": [
+    "Mirrorsage copy release + Charm Bind companion: draft ceiling 1 copy/round vs observed desire to release + companion act \u2014 confirm both count toward action/summon caps.",
+    "Tinker draft ceiling 3 concurrent gadgets vs Loop summon cap 2 \u2014 are deployables 'summons'?",
+    "Wizard Dual Cast (class-details L9) vs 'no more than one additional full Action' \u2014 is Dual Cast a second Action or a single Action with two spells?",
+    "Wizard Necromancer permanent undead (Core Systems Data) vs Gameplay Loop 2-summon command cap \u2014 unresolved layering."
+  ],
+  "exploits": [
+    "Mirrorsage hypothesis: Mirrorbind release + Reflective Companion action approximates a second independent actor beyond 2-summon intent when Echo already active.",
+    "Tinker attempted 3 independent combat units; GAMEPLAY_LOOP_CANON summon cap is 2 (excess should collapse to swarm/unit block).",
+    "Wizard attempted 4 independent combat units; GAMEPLAY_LOOP_CANON summon cap is 2 (excess should collapse to swarm/unit block)."
+  ],
+  "recommendations": [
+    "Record budget outcomes in BALANCE ledger; revise Threat Point table only with multi-scenario evidence.",
+    "Publish Director ruling sheet for summon-cap vs undead/deployables/reflections."
+  ],
+  "confidence": "high"
+}

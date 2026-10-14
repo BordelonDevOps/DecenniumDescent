@@ -1,0 +1,87 @@
+
+=== preflight.py ===
+PASS spells=848 placements=936 varied_acquisition=619 classes=17
+PASS classes=17 core=17 feats=335 oaths=10 mysteries=10 curses=10
+PASS public-canon-boundary bestiary=65 tiers<=6 crafting=public
+Gameplay loop validation: PASS - preparation -> descent -> extraction -> Haven -> one decennial Opening
+Prestige snapshot validation: PASS - 18 paths
+Gameplay state validation: PASS - roster, Rest Debt, action, extraction, Haven guards present
+{
+  "release": "V7.2",
+  "profiles": 68,
+  "packs": 20,
+  "sourceHashes": "source-hashes.json",
+  "sourceMutationAllowed": false
+}
+
+=== run_budget_autotune.py ===
+{
+  "trainingRunsPerCandidate": 40,
+  "holdoutRunsPerCell": 100,
+  "holdoutCells": 120,
+  "passingCells": 77,
+  "passRate": 0.6416666666666667,
+  "warning": "Candidate budgets are proxy evidence until frozen class builds and dice-level fixtures corroborate them. No canon was edited."
+}
+
+=== run_objective_calibration.py ===
+{
+  "rows": 300,
+  "runs": 60000,
+  "rule": "Each objective adjustment was represented once; kill win rate was not substituted for objective success."
+}
+
+=== run_coupled_expedition.py ===
+{
+  "rows": 48,
+  "simulatedExpeditions": 96000,
+  "rulesRepresented": [
+    "combat attrition",
+    "Supply",
+    "Strain",
+    "Pressure",
+    "bounded Forage",
+    "Unknown-route Forced March",
+    "cargo-linked extraction"
+  ]
+}
+
+=== run_haven_formulas.py ===
+{
+  "transactions": 100000,
+  "violations": [],
+  "passes": true,
+  "formulas": [
+    "sale value",
+    "taxes",
+    "sponsor shares",
+    "insurance bounds",
+    "Heat",
+    "reputation gates",
+    "counterfeit forfeiture prose audit"
+  ]
+}
+
+=== run_one_opening_cycle.py ===
+{
+  "cycles": 10000,
+  "openings": 10000,
+  "violations": 0,
+  "rule": "Exactly one Opening per ten-year Cycle; many expeditions may occur inside that Opening."
+}
+
+=== run_fail_closed_fuzz.py ===
+{
+  "states": 100000,
+  "seed": 720200,
+  "failureCount": 0,
+  "passes": true,
+  "note": "Tests encoded guards and fail-closed normalization; it does not prove unencoded prose."
+}
+
+=== compile_all_results.py ===
+{
+  "machineReadableFiles": 11,
+  "invalidJson": [],
+  "packCount": 20
+}

@@ -1,0 +1,30 @@
+{
+  "threadId": "6aca4e7e-fd2c-83ea-bf0f-971997ed1a9b",
+  "title": "Calibration Review Part 2",
+  "turn": {
+    "id": "e0bcd58f-c9c5-4c44-87ef-83558e494f9b",
+    "status": "completed",
+    "error": null,
+    "startedAt": 1791738929.969,
+    "completedAt": 1791739228.987501,
+    "durationMs": null,
+    "items": [
+      {
+        "type": "userMessage",
+        "id": "e0bcd58f-c9c5-4c44-87ef-83558e494f9b",
+        "content": [
+          {
+            "type": "text",
+            "text": "Codex has downloaded EX58-SOURCE-2026-10-11 package SHA-256 98444b380e08aba6f3848cd2824245b52c8428e6a1b913907567dceeee04470e (439,330 bytes), verified all 17 payload hashes and reproduced all 2,316 checks with zero failures. The final source directions are preserved; I am authoring the complete exact candidate. One narrow contract discrepancy needs correction, without reopening the source conference: FL-02 explicitly says to keep the five named offices. Frozen GAMEPLAY_LOOP_CANON.md section 3 actually lists Expedition Leader, Quartermaster, Routekeeper, Surgeon, and Claimant of Record. The EC-01 requiredFields.offices text in EX58_FIELD_CONTRACTS.json instead says “Leader, Quartermaster, Routekeeper, Lorekeeper and other source offices ...”. Lorekeeper is not one of those five and the field omits Surgeon/Claimant of Record. Please confirm the exact replacement field wording naming all five source offices and no newly invented office, identify all affected representations in your package, and return a small source-linked correction/addendum. Preserve the original package as history. I will use the actual five source offices in the candidate; this request does not reopen any other EX58 decision or grant exact-candidate approval. No need to regenerate unrelated chapters or repeat the 58-question conference."
+          }
+        ]
+      },
+      {
+        "type": "agentMessage",
+        "id": "da51e55d-28ce-4c01-8639-c40d9e37fad4",
+        "text": "# EX58-EDIT-01 — Five source offices\n\n**KEEP FL-02. Correct EC-01’s office enumeration.** This was my transcription error, not an intended new office or change to Expedition organization.\n\nI checked the frozen `GAMEPLAY_LOOP_CANON.md`, §3, lines **101–109**. It names **Expedition Leader, Quartermaster, Routekeeper, Surgeon, and Claimant of Record** and permits one character to hold multiple offices without changing class abilities. :chatgpt-content-reference{index=\"0\"}[Verified source excerpt](sandbox:/mnt/data/ex58_edit_01/EX58_EDIT_01_SOURCE_EXCERPT.md)\n\n## Exact replacement wording\n\nReplace the complete `requiredFields.offices` string with:\n\n> Expedition Leader, Quartermaster, Routekeeper, Surgeon, and Claimant of Record, each bound to a real person; one person may hold multiple offices but not incompatible simultaneous work.\n\nThis restores **Surgeon** and **Claimant of Record**, uses the full title **Expedition Leader**, and removes **Lorekeeper** and the open-ended “other source offices” wording. It does not require five distinct people or alter the offices’ source duties.\n\n## All affected package representations\n\nThe erroneous enumeration occurs in **exactly two locations**:\n\n| Operation | File and location | Correction |\n|---|---|---|\n| **EX58-EDIT-01.1** | `EX58_FIELD_CONTRACTS.json` — `/contracts/0/requiredFields/offices`, submitted line **30**; verify `/contracts/0/id` is `EC-01` | Replace the entire string with the wording above. |\n| **EX58-EDIT-01.2** | `EX58_CONTRACTS_AND_EXACT_REVIEW.md` — **EC-01 — Expedition, charter and roster**, `offices` table row, submitted line **35** | Replace its meaning cell with the identical wording. |\n\n**No replacement is needed** in FL-02’s wording in `EX58_AUTHORING_VERDICT.md`, `EX58_AUTHORING_REGISTER.json`, or `EX58_CONFLICT_DISPOSITIONS.json`. Those representations already retain the five source offices.\n\n## Preservation and finite acceptance\n\nPreserve the original package, manifest, receipt, source provenance and **2,316-check report** unchanged. Apply these two replacements to the current authoring copies and record this addendum and the measured descendant hashes separately.\n\nAcceptance requires exact JSON/Markdown wording parity, the five correct office names, unchanged multiple-office and work restrictions, and no unrelated field or source changes. **Eighteen focused source, preservation and in-memory replacement checks passed with zero failures.** These were not runtime tests or a rerun of the full conference.\n\n**The candidate should use these five offices. No other EX58 decision changes, no further source conference is needed for this correction, and no exact-candidate approval is granted.**\n\n## Correction files\n\n:chatgpt-content-reference{index=\"1\"}[Download the small source-linked addendum package](sandbox:/mnt/data/DD_EX58_EDIT_01_Offices_Addendum.zip) — **7,595 bytes**, four payloads plus manifest, containing the controlling addendum, exact machine-readable operations, verified source excerpt and focused-check evidence.\n\n:chatgpt-content-reference{index=\"2\"}[Readable addendum](sandbox:/mnt/data/ex58_edit_01/EX58_EDIT_01_OFFICES_ADDENDUM.md) · :chatgpt-content-reference{index=\"3\"}[Exact correction operations](sandbox:/mnt/data/ex58_edit_01/EX58_EDIT_01_CORRECTIONS.json)\n\nPackage SHA-256:\n\n```text\n7dd5e4999054e16a88a7d5bdd021bb217f31b720d546a6d4536e085783292fe3\n```"
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,100 @@
+{
+  "status": "authoring direction and exact manuscripts reviewed; four repairs applied in final artifacts",
+  "sourceConferenceTurnId": "c79c204e-c973-4340-a590-7aae79c1110c",
+  "sourceConferenceReplyId": "cbbb06fe-f365-4437-8b62-69f6a8768980",
+  "hazardScopes": {
+    "Poison": {
+      "text": "Saves against actual poison or Poisoned effects; checks directly identifying, avoiding, safely handling or disabling an actual poison hazard."
+    },
+    "Fire": {
+      "text": "Saves against actual fire-damage or fire environmental hazards; checks directly avoiding, extinguishing or safely traversing a fire hazard."
+    },
+    "Cold": {
+      "text": "Saves against actual cold-damage or cold-exposure hazards; checks directly surviving or avoiding an actual cold hazard."
+    },
+    "Lightning": {
+      "text": "Saves against actual lightning-damage or electrical hazards; checks directly identifying, avoiding or disabling such a hazard."
+    },
+    "Acid": {
+      "text": "Saves against actual acid-damage or corrosive hazards; checks directly handling, avoiding or disabling such a hazard."
+    },
+    "Earth": {
+      "text": "Rockfall, cave-in, burial, unstable stone or ground, crushing geological movement or another explicitly physical earth/stone hazard; not every event on stone or earth."
+    },
+    "Water": {
+      "text": "Currents, flooding, drowning, undertow, hazardous immersion or another actual water hazard."
+    },
+    "Air": {
+      "text": "Hazardous wind, pressure, inhalation, air deprivation or airborne environmental force; not thunder from theme alone."
+    },
+    "Psychic": {
+      "text": "Actual psychic damage, mental intrusion or an explicitly psychic hazard; not every mental save or ordinary social influence."
+    },
+    "Unholy": {
+      "text": "Only an explicitly mechanically labeled Unholy hazard; never inferred from species, morality, religion, appearance or origin."
+    },
+    "Arcane": {
+      "text": "Explicit magical/Arcane traps, wards, fields, environmental phenomena or similar hazards; not every hostile spell or caster action."
+    },
+    "Strength": {
+      "text": "STR checks and saves to resist or escape an actual physical hazard, restraint, crushing force, forced movement or entrapment; not attacks, damage, carrying capacity or every STR roll."
+    },
+    "Stealth": {
+      "text": "Stealth checks to avoid detection by a present hostile observer, pursuer, guard, sensor or hazard-detection system; no Deception, Initiative, attack bonus or automatic Hidden state."
+    },
+    "Vitality": {
+      "text": "CON checks and saves against fatigue, exposure, environmental endurance or disease hazards; never death saves, concentration, Wound/Injury saves or an additional recovery roll."
+    }
+  },
+  "localCare": {
+    "timing": "after healing and its condition endpoints",
+    "maxSelectedRecords": 1,
+    "medicineAbility": "WIS",
+    "requiresExistingMedicineRemovalDC": true,
+    "duplicatesHealingEndpointAttempt": false,
+    "extraHealerKitCharge": false,
+    "automaticallyRemovesWoundBurningDisease": false,
+    "text": "After healing and its condition endpoints, choose at most one present local wound, burn, infection or Bleeding source appropriate to topical treatment. A Bleeding source with an existing Medicine-based removal DC permits one immediate WIS (Medicine) check against that DC using this dose as dressing, with no extra healer-kit charge. Do not attempt this if this dose already resolved a healing-triggered removal/treatment attempt for that record. Otherwise it supplies only one expressly required topical dressing/cleaning step in the source procedure; every other time, check, Supply, kit, medicine, rest and cure requirement remains. No defined interaction means no extra condition removal."
+  },
+  "panacea": {
+    "cure": {
+      "count": 1,
+      "eligibleCategories": [
+        "removable disease source",
+        "removable poison/toxin source",
+        "external removable curse source",
+        "legally removable Exhaustion level"
+      ],
+      "timing": "before healing",
+      "independentOfHealing": true,
+      "ignoresSourceRemovalRestrictions": false,
+      "noEligibleCureBlocksHealing": false
+    },
+    "cooldown": {
+      "campaignModeLockedBeforeFirstUse": true,
+      "modes": [
+        "registered-campaign-season",
+        "100-elapsed-day-fallback"
+      ],
+      "fallbackSeconds": 8640000,
+      "anchor": "successful benefit resolution",
+      "spentOnInterruption": false,
+      "oneConcurrentAttemptPerRecipient": true,
+      "resetsOnDeathRestOpeningOrOwnership": false,
+      "modeMigrationRequiresOwnerApproval": true,
+      "benefitCriteria": [
+        "actual eligible source/Exhaustion level removal",
+        "positive actual current HP restoration",
+        "actual eligible condition removal through a legitimate healing endpoint"
+      ],
+      "spentOnWhollyBlockedCompletion": false,
+      "eligibilityRecheckedBeforeResolution": true
+    },
+    "text": "Apply over 10 uninterrupted active minutes. On completion, end one present eligible disease, poison/toxin or external curse source, or remove one legally removable Exhaustion level; then attempt 10d6+20 ordinary magical nonspell HP healing. Cure and healing are independent. Use the Director procedure for the recipient season limit, successful-benefit commitment, concurrent-attempt lock and actual source restrictions. No Wound, intrinsic trait, Corruption or resurrection removal."
+  },
+  "exactReviewClarifications": [
+    "Panacea commitment requires an actual successful benefit (cure, positive HP or legitimate healing-triggered condition removal), not interrupted or wholly blocked completion. Only one concurrent attempt; check eligibility again before resolution. No eligible cure skips cure but does not block independent HP attempt.",
+    "Full maximum-yield packaging/carrier reservation is mandatory before crafting; unused vials/carrier remain actual ordinary stock."
+  ],
+  "exactReviewTurnId": "45dfe30e-6f5a-4efd-adaf-5fea18fbfd6f"
+}

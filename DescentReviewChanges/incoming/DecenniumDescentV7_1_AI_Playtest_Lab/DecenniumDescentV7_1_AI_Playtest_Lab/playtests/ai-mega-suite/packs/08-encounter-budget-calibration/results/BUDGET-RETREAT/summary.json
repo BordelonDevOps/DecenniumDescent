@@ -1,0 +1,308 @@
+{
+  "pack": "08-encounter-budget-calibration",
+  "scenarioId": "BUDGET-RETREAT",
+  "runId": "BUDGET-RETREAT-80800",
+  "seed": 80800,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": "0a26a63e4ec7b08b74961b249b99f2b53019a27e5637894fcca26bbca6df37d5",
+  "evidenceLevel": "A",
+  "outcome": "WARN",
+  "metrics": {
+    "cells": [
+      {
+        "level": 5,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 0.7921,
+        "meanRounds": 2.0,
+        "budget": 180.0
+      },
+      {
+        "level": 5,
+        "partySize": 4,
+        "difficulty": "catastrophic",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 0.7863,
+        "meanRounds": 2.0,
+        "budget": 240.0
+      },
+      {
+        "level": 5,
+        "partySize": 6,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 1.0,
+        "meanRounds": 1.0,
+        "budget": 251.99999999999997
+      },
+      {
+        "level": 5,
+        "partySize": 6,
+        "difficulty": "catastrophic",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 1.0,
+        "meanRounds": 1.0,
+        "budget": 336.0
+      },
+      {
+        "level": 10,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 0.825,
+        "meanRounds": 2.0,
+        "budget": 180.0
+      },
+      {
+        "level": 10,
+        "partySize": 4,
+        "difficulty": "catastrophic",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 0.8281,
+        "meanRounds": 2.0,
+        "budget": 240.0
+      },
+      {
+        "level": 10,
+        "partySize": 6,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 1.0,
+        "meanRounds": 1.0,
+        "budget": 251.99999999999997
+      },
+      {
+        "level": 10,
+        "partySize": 6,
+        "difficulty": "catastrophic",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 1.0,
+        "meanRounds": 1.0,
+        "budget": 336.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 0.8446,
+        "meanRounds": 2.0,
+        "budget": 180.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "catastrophic",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 0.8551,
+        "meanRounds": 2.0,
+        "budget": 240.0
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "severe",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 1.0,
+        "meanRounds": 1.0,
+        "budget": 251.99999999999997
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "catastrophic",
+        "runs": 200,
+        "successRate": 1.0,
+        "successCI95": [
+          1.0,
+          1.0
+        ],
+        "wipeRate": 0.0,
+        "meanHpPct": 1.0,
+        "meanRounds": 1.0,
+        "budget": 336.0
+      }
+    ],
+    "cellCount": 12,
+    "runsPerCell": 200,
+    "objective": "successful controlled withdrawal"
+  },
+  "rulesHalts": [
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    },
+    {
+      "code": "RULES_HALT",
+      "topic": "encounterMath.objectiveStep",
+      "detail": "GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels catastrophic for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count)."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 5,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 5,
+      "partySize": 6,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 10,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 10,
+      "partySize": 6,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 15,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    },
+    {
+      "severity": "suspected",
+      "type": "budget_band_nondistinct",
+      "scenario": "BUDGET-RETREAT",
+      "level": 15,
+      "partySize": 6,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "successRates": [
+        1.0,
+        1.0
+      ],
+      "detail": "Adjacent budgets not distinct in outcome distribution (<5pp)."
+    }
+  ],
+  "rawEvidencePath": "results/08-encounter-budget-calibration/BUDGET-RETREAT/"
+}

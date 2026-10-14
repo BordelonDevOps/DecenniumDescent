@@ -1,0 +1,513 @@
+{
+  "class": "Shaman",
+  "engine": [
+    "Wisdom is the class ability. Choose Elemental Affinity automatically at1: Fire, Ice, Air or Earth. Spellcasting/RP remain separate from Totem objects and flasks. Totem capacity1, rises2 at13; any third replaces one of your existing totems. A totem is a visible Tiny magical object: AC12+PB, HP2L, immobile, immune to poison/psychic/conditions, vulnerable to ordinary weapon and other damage. At0HP its aura ends. A new totem appears within30ft; cannot occupy a creature's space, serve as a bridge, trap a creature without a save or move through walls.",
+    "Totem Casting is Action2RP, duration3 of your turns,15ft aura. Choose Flame, Stone, Frost, Spirit or Renewal. Benefits require an ally/target in the aura, maximum3 creatures benefiting per pulse/round chosen by you. Flame adds1fire to an ally's first direct weapon hit per round; on critical that target Burns1d4 next turn. Stone reduces damage by1 and gives enemies-1 to STR checks to shove. Frost: enemy first entering/starting each round makes CON save or Speed-10ft until end its turn. Spirit: first necrotic/hex damage per target per round adds1. Renewal: on start and each of next2 turns with Bonus Action+1RP maintenance, up to3 allies regain2HP. Thus Renewal total cost4RP for3pulses; no free healing on entry. All totems share one concentration burden; losing it ends all. Other concentration effects replace them. Non-Renewal auras need no Bonus Action upkeep. Multiple same-name/stat auras do not stack.",
+    "On your turn you may spend Bonus Action to move one totem up to15ft along unobstructed ground, remaining within60ft. This competes with healing maintenance, companion commands and advanced flasks. Moving an aura over a creature cannot trigger its once/round effect repeatedly. Totem destruction creates no resource return. Once per round, the first ordinary spell cast while inside your own active totem aura generates1 less Dissonance, minimum0; no RP reduction.",
+    "The book places Flask Use at Base but describes advanced flask casting as Theurgist/Soothsayer-only. For this draft, Base Flask Use grants mundane prepared tactical flasks thrown with an Action; at Hero10 only Theurgist/Soothsayer gain magical Bonus Action flasks. Bloodcaller retains mundane alchemical knowledge, not the advanced flask subsystem. At long rest prepare2 flasks, rising to3 at5 and4 at11; no encounter refill or stockpiling, total carry cap4, unused contents become inert when preparing a new batch. This finite-rest supply replaces encounter-based free heal farming.",
+    "Flask tier uses S. Mundane Base modes: Burn=one enemy30ft DEX save S d6 fire half, failure1d4fire next turn; Root=one ground enemy30ft STR save Speed0 until end its next turn; Weaken=one enemy30ft CON save or-1attack damage until end its next turn. Advanced Hero modes additionally: Stun=one enemy30ft CON save or no Reactions, failure by10 Stunned until end its next turn; Heal=one living ally30ft S d6+M HP; Restore=end Frightened or Poisoned on one ally30ft. Every thrown flask consumes one prepared unit and2RP for advanced magic (Base mundane flasks cost0RP). Changing payload requires no separate crafting action when throwing. No flask leaves harvestable poison or another flask.",
+    "Choose Fire/Ice/Air/Earth bonuses through affinity card; Ember/Cold/Shock damage are fire/cold/lightning, Earth uses bludgeoning. Summoned elemental spirits use one standard companion each, maximum one normally; Elemental Chorus expressly summons a package of4 but all share one Bonus Action command and a printed combined pulse. Companions cannot generate RP, trigger flask refunds or create corpse/kill farms.",
+    "Bloodcaller at Hero10 transforms permanently into Hagraven, with the player choosing this class path and its stated loss of ordinary Shaman spellcasting. It does NOT lose its RP reservoir: printed Hagraven/Totem techniques still pay RP, but it cannot cast ordinary Shaman spells or advanced magical flasks. It retains prior totem/technique selections. The change is a class choice, not permission for involuntary player-character conversion; ancestry identity and player control remain. At long rest it can prepare mundane flasks only if Base Flask Use is known.",
+    "Shaman Base1–2, Spiritwalker Arch3–9, and Theurgist/Soothsayer/Bloodcaller Hero10–20 remain separate stages. Elemental Affinity is automatic1, not an extra selection cost. No explicit Arch capstone in source:9 has its ordinary choice. At20 your selected Hero's last active ultimate gains the explicit new capstone improvement below; no new generic Hero class is invented."
+  ],
+  "workedExample": [
+    "Shaman5, WIS16, PB3, S2, M3, RP12. Know Totem Casting, Spirit Shock, Flask Use, Elemental Ward at1. Prepare3 mundane flasks after a real long rest. Totem capacity1.",
+    "Turn1: Action Totem Casting places Renewal within30ft, pays2RP (12→10). Up to3 allies inside regain2HP each. One concentration effect is active.",
+    "Turn2: Bonus Action maintenance pays1RP (10→9), heals2HP to up to3 allies. Action Spirit Shock costs2RP (9→7) and deals2d8 on failed save. No extra flask Bonus Action remains.",
+    "Turn3: Bonus Action+1RP Renewal maintenance (7→6), final2HP pulse. Action throws one mundane Root flask, prepared count3→2, noRP; target STR save. Its save success gives no refund.",
+    "At start turn4 totem expires. Placing a new Renewal costs full2RP and starts another finite3pulse effect. Encounter end does not refill flasks or RP.",
+    "At Hero10 a Bloodcaller still uses this totem/technique loop, but cannot cast ordinary Shaman spells or advanced Bonus Action magical flasks."
+  ],
+  "balanceQuestions": [
+    "Do totem movement and maintenance create useful Bonus Action choices?",
+    "Do flask preparation limits stop healing stockpiles without making alchemy tedious?",
+    "Does Hagraven retain enough breadth after losing ordinary spellcasting?"
+  ],
+  "cards": [
+    [
+      4011,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "Chosen permanently at1",
+      "Automatic",
+      "Choose Fire: first fire technique hit/turn adds1damage; Ice: first cold damage target/turn loses5ft Speed until end next turn; Air:+5ft Speed; Earth:+1 on STR/CON saves against forced movement. These are alternatives, not cumulative affinities."
+    ],
+    [
+      4012,
+      1,
+      "Action",
+      "1RP",
+      "Exposed spirits/elementals within30ft",
+      "1 minute",
+      "Recharge3",
+      "Perceive location/outline of invisible spirits and elementals not behind total cover. This does not reveal unrelated invisible creatures, private memories or all magical traps. No attack advantage against ordinary hidden creatures."
+    ],
+    [
+      4013,
+      1,
+      "Passive",
+      "0",
+      "One potion/substance examined for1 minute",
+      "Check only",
+      "At will",
+      "Gain advantage on INT(Arcana) or alchemist-tool checks to identify a substance's mundane ingredients and likely purpose. Identification does not guarantee safety or supply a recipe/materials; failure yields uncertainty, not false certainty."
+    ],
+    [
+      4014,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Resistance to affinity damage: Fire fire, Ice cold, Air lightning, Earth thunder. Does not stack with another resistance or grant immunity to related terrain hazards."
+    ],
+    [
+      4015,
+      1,
+      "Reaction",
+      "1 short-rest use",
+      "Self just failing a Perception or initiative-related check",
+      "One roll",
+      "1/short rest",
+      "Reroll with+M, using the new result. Requires ability to hear the spirit warning; cannot reroll a save/attack or retroactively undo a completed ambush round."
+    ],
+    [
+      4018,
+      1,
+      "Action",
+      "1 prepared mundane flask",
+      "One target within30ft",
+      "Payload-specific",
+      "Prepared2/3/4 at1/5/11 per long rest",
+      "Throw a Burn, Root or Weaken flask using the exact engine profile. At Hero10 Theurgist/Soothsayer may instead throw an advanced mode as Bonus Action for2RP and a prepared flask. Bloodcaller does not gain that upgrade."
+    ],
+    [
+      4019,
+      1,
+      "Action",
+      "2RP; Renewal upkeep1RP+Bonus Action",
+      "One totem within30ft with15ft aura",
+      "3 of your turns",
+      "Capacity1,2 at13",
+      "Place one Flame/Stone/Frost/Spirit/Renewal totem using the engine's exact profile. All your totems share concentration. Respect3creature aura/pulse limit; same-stat bonuses do not stack. Replacing a totem ends it without refund."
+    ],
+    [
+      4020,
+      1,
+      "Action",
+      "2RP",
+      "One enemy within60ft",
+      "Instant",
+      "Recharge2",
+      "Target makes DEX save: S d8 affinity damage, half on success. Affinity rider applies once; this printed technique is not an ordinary spell, cannot Overcast and does not generate a flask or totem."
+    ],
+    [
+      4021,
+      1,
+      "Ritual",
+      "1RP; 10 minutes",
+      "Local spirit within30ft or area examined",
+      "Up to3 questions",
+      "1/short rest",
+      "Ask about events the local spirit could have perceived within the previous day. Director gives truthful sensory information or unknown. No compelled omniscience, future certainty or forced player beliefs."
+    ],
+    [
+      4022,
+      1,
+      "Reaction",
+      "1RP",
+      "Self or ally within15ft taking elemental damage",
+      "One damage instance",
+      "Recharge2",
+      "Reduce acid/cold/fire/lightning/thunder damage by S d6+M, minimum0. No reflected damage or resource gain. Does not protect from unrelated physical/psychic damage."
+    ],
+    [
+      4028,
+      3,
+      "Passive",
+      "0",
+      "Your affinity techniques",
+      "While known",
+      "Once/turn",
+      "Fire adds1 to first fire damage roll; Ice's slow increases to10ft; Air also gives+1initiative; Earth adds+1 to CON concentration saves. These replace corresponding basic affinity quantities rather than duplicating them."
+    ],
+    [
+      4029,
+      3,
+      "Passive",
+      "0; full upkeep for extra Renewal pulse",
+      "One of your totems",
+      "Maximum4 of your turns",
+      "Continuous",
+      "Totems last1 extra turn. Renewal may have a fourth pulse only if you pay Bonus Action+1RP on that turn; no fifth pulse and no automatic free healing. Concentration still required."
+    ],
+    [
+      4030,
+      3,
+      "Triggered",
+      "1 short-rest use",
+      "One flask/to-tem effect you directly used",
+      "Stored until encounter end",
+      "1/short rest",
+      "Store its profile, not an active copy. On a later turn use normal Action/Bonus Action and pay all RP and a new flask unit or full totem cost to repeat it. Add1d6 to one numerical damage/heal amount; no copy of refund/limited use."
+    ],
+    [
+      4031,
+      6,
+      "Passive",
+      "1RP optional",
+      "Up to3 creatures inside newly placed non-healing totem",
+      "Instant",
+      "Once/turn",
+      "On placement pay1RP: allies gain M temporary HP OR enemies make DEX save for S affinity damage, half on success. No immediate second Renewal healing pulse, no repeat from moving the totem."
+    ],
+    [
+      4032,
+      9,
+      "Triggered",
+      "1 long-rest use",
+      "One non-Renewal totem you place",
+      "Normal duration",
+      "1/long rest",
+      "Waive its2RP placement cost once. Still use Action, concentration, capacity and any added costs. Cannot create a healing totem or be cached/refunded to generate more free casts."
+    ],
+    [
+      4035,
+      3,
+      "Bonus Action",
+      "2RP",
+      "Self",
+      "Concentration, 3 of your turns",
+      "Recharge3",
+      "Embody affinity: gain+10ft Speed and once/turn add1d4 affinity damage to a weapon hit. Fire/cold/lightning/bludgeoning by affinity. This concentration replaces your totem burden, so it is a tactical alternative."
+    ],
+    [
+      4036,
+      3,
+      "Bonus Action",
+      "3RP",
+      "Self",
+      "Until end current turn",
+      "Recharge3",
+      "Move up to15ft through creatures and nonmagical material no thicker than5ft, ending in a visible empty space. Gain no attack immunity; take1d6force if no legal exit and return to starting space. No attacks/casts while inside matter."
+    ],
+    [
+      4037,
+      3,
+      "Reaction",
+      "2RP",
+      "Ally within30ft being damaged",
+      "One damage instance",
+      "Recharge3",
+      "A guardian prevents S d8+M damage, minimum0. It then vanishes and creates no companion action, corpse or refund. Cannot prevent sacrifice/trauma or redirect prevented damage into another trigger."
+    ],
+    [
+      4038,
+      5,
+      "Bonus Action",
+      "2RP",
+      "One active totem within60ft",
+      "Until start next turn",
+      "Recharge3",
+      "Choose one: aura radius+5ft OR numerical flat benefit improves by1. Renewal instead adds M HP to its next paid pulse, once, without adding a pulse. Same-name/stat stacking rules remain."
+    ],
+    [
+      4039,
+      7,
+      "Action",
+      "3RP",
+      "One willing ally or held object within30ft",
+      "Concentration, 3 of your turns",
+      "Recharge3",
+      "Ally gains resistance to your affinity damage; OR its held weapon adds1d4 affinity damage on first hit/turn. Choose one, fixed for duration. Spirit cannot cast independently or grant spell knowledge."
+    ],
+    [
+      4048,
+      10,
+      "Triggered",
+      "1 additional RP",
+      "Adjacent empty space within5ft of newly placed totem",
+      "Same remaining duration",
+      "Once/placement",
+      "Create a weak echo anchor of that totem. It counts toward capacity; if no space in capacity, cannot create it. Its radius10ft and numerical bonuses/healing are half, rounded down. Shared concentration/upkeep and same-name nonstacking prevent double healing."
+    ],
+    [
+      4049,
+      10,
+      "Passive",
+      "0",
+      "Your summoned elemental",
+      "Summon duration",
+      "Continuous",
+      "Add class level to its maximum/current HP on creation and1 turn duration, maximum4 turns for class summons. Cannot extend once/day Chorus beyond4turns or restore an existing creature's lost HP."
+    ],
+    [
+      4050,
+      10,
+      "Passive",
+      "0",
+      "Two of your active totems within10ft of one another",
+      "While placement condition holds",
+      "Continuous",
+      "Their aura radii increase5ft. No extra targets or extra pulses and overlapping same-name benefits do not stack. One totem and its echo still use normal capacity."
+    ],
+    [
+      4051,
+      10,
+      "Passive",
+      "0",
+      "One ally below half HP healed by your paid technique",
+      "Instant",
+      "Once/turn",
+      "Add M HP to that healing. It does not improve multiple targets, copies or triggered heals, and cannot itself trigger Benevolent Spirits again."
+    ],
+    [
+      4054,
+      10,
+      "Action",
+      "4RP",
+      "One spirit in empty space within30ft",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Summon standard Ice Wisp with fly30ft. Commanded attack deals cold; on hit target STR save or Speed0 until end its next turn. No whole-turn freezing, bonus independent spells or multiple companion attacks."
+    ],
+    [
+      4055,
+      10,
+      "Action",
+      "4RP",
+      "One spirit within30ft",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Summon standard Airling with fly40ft. Commanded attack deals lightning; on hit target CON save or loses Reactions until end its next turn. Failure by 10 also Stunned, subject to the shared hard-denial guard across all the Shaman’s features. Companion Stun counts as the Shaman’s denial; if the target already suffered that denial this encounter, only damage and Reaction loss resolve. One shared companion command."
+    ],
+    [
+      4056,
+      12,
+      "Action",
+      "4RP",
+      "One spirit within30ft",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Summon standard Cinderflame. Commanded hit deals fire plus Burn1d4 next target turn. On destruction only (not dismissal), up to3 enemies within5ft make DEX save for S d4fire, half. Explosion creates no further death/resource triggers."
+    ],
+    [
+      4057,
+      14,
+      "Action",
+      "4RP",
+      "One spirit within30ft",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Summon standard Stonekin. Command chooses bludgeoning attack with STR save or Prone on hit, OR gives up to3 adjacent allies reduction2 until start next turn. No simultaneous attack and protection command."
+    ],
+    [
+      4058,
+      16,
+      "Action",
+      "8RP; 1 long-rest use",
+      "Four spirits in10ft-radius zone within30ft",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "Summon a single Chorus package: four visible spirits share HP4L, AC12+PB, immobile. Bonus Action command pulses up to3 enemies: DEX save S d6 chosen affinity damage half; one failed target Speed-10ft until end next turn. Four spirits do not make four separate attacks."
+    ],
+    [
+      4064,
+      10,
+      "Action",
+      "3RP",
+      "One divining totem within30ft; observed enemy in aura",
+      "3 of your turns",
+      "Capacity and concentration as totems",
+      "Each own-turn start choose one visible enemy in15ft aura. First ally attack against it before your next turn gains+1 to hit; first attack it makes has-1. Predicts immediate intent, not guaranteed future actions; totem has ordinary object stats."
+    ],
+    [
+      4065,
+      10,
+      "Triggered",
+      "1 long-rest use",
+      "One prepared flask just thrown",
+      "Instant",
+      "1/long rest",
+      "Retain the spent flask count once, but still pay RP/Action and all other costs. This deterministic refund cannot be copied, cached or apply to another refunded use. Carry cap4 remains."
+    ],
+    [
+      4066,
+      10,
+      "Reaction",
+      "1 short-rest use",
+      "Self before making a saving throw",
+      "One save",
+      "1/short rest",
+      "Gain advantage on that save. Must declare before rolling; no additional reroll if advantage already applies. Does not create a Prophecy Trigger or restore RP."
+    ],
+    [
+      4067,
+      10,
+      "Passive",
+      "0",
+      "Your own elemental slowing/burning effect",
+      "As modified",
+      "Once/turn",
+      "Choose one application: add1damage to its next Burn tick OR extend a Speed reduction until end target's following turn. Never extends Stunned, silence, concentration duration or whole-Action denial."
+    ],
+    [
+      4070,
+      10,
+      "Action",
+      "1prepared flask; normal payload RP",
+      "Point within30ft",
+      "Until start your next turn",
+      "Recharge3",
+      "Set a flask to trigger at start next turn or first enemy entering5ft before then; choose when placing. On trigger one creature within5ft resolves its normal payload/save. If no target when timer ends it is spent harmlessly. No repeated explosions."
+    ],
+    [
+      4071,
+      10,
+      "Bonus Action",
+      "1prepared flask; 3RP",
+      "Up to3 living allies in5ft radius within30ft",
+      "Instant",
+      "Recharge3",
+      "Each regains S d6+M HP, shared roll. This consumes a flask and replaces its normal payload. No damage to enemies, free conditions removed or resource refunds beyond the explicit once/day Predictive Alchemy."
+    ],
+    [
+      4072,
+      12,
+      "Bonus Action",
+      "2RP",
+      "One enemy within60ft",
+      "Until end next turn",
+      "Recharge3",
+      "Next ally attack against target has advantage and ignores half cover; not an automatic hit. If attack misses the brand ends. Cannot override total cover, immunity or target legality."
+    ],
+    [
+      4073,
+      14,
+      "Reaction",
+      "4RP; 1 short-rest use",
+      "One creature within60ft just rolled an attack/save/check",
+      "Immediate reroll",
+      "1/short rest",
+      "Force one d20 reroll after result known but before consequence, using new result. Cannot reroll damage, resource quantities, a reroll or an already resolved event. No beliefs or future outcomes guaranteed."
+    ],
+    [
+      4074,
+      16,
+      "Action",
+      "Normal RP+2RP; fresh flask if required; 1 long-rest use",
+      "Your own qualifying effect used within previous2 turns",
+      "Normal effect duration",
+      "1/long rest",
+      "Repeat one non-Finale, non-resource-restoring class flask/totem effect with normal targets and full costs. It replaces the current Action; cannot repeat another repeat, regain per-rest uses or exceed totem capacity. If effect required a flask, consume one now."
+    ],
+    [
+      4082,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "Permanent while Bloodcaller",
+      "Automatic on Hero entry",
+      "Become Hagraven: retain player control/mental stats, light-armor use and ordinary movement; claws are finesse1d6slashing, darkvision60ft and poison resistance. Lose ordinary Shaman spellcasting/advanced magical flasks; retain RP for printed techniques and totems. No free flight or hidden monster stat block."
+    ],
+    [
+      4083,
+      10,
+      "Triggered",
+      "1RP",
+      "Self at start regular turn; hostile bleeding creature within10ft",
+      "Instant",
+      "Once/turn",
+      "Pay1RP to regain M HP. Bleeding allies, summons or staged captives cannot qualify. No healing while Downed; secondary heal creates no damage/resource triggers."
+    ],
+    [
+      4084,
+      10,
+      "Triggered",
+      "1RP",
+      "Up to3 enemies within10ft at your turn start",
+      "Instant",
+      "Once/turn",
+      "Pay1RP; CON save S d4necrotic, half on success. This replaces unlimited free aura damage. Cannot trigger itself, create Bleed or generate additional RP from kills."
+    ],
+    [
+      4085,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Advantage on saving throws against spells. Does not give advantage against every supernatural weapon or class technique unless it is explicitly a spell; no automatic spell negation or RP refund."
+    ],
+    [
+      4088,
+      10,
+      "Action",
+      "3RP",
+      "Totem within30ft;15ft aura affecting all creatures",
+      "3 of your turns",
+      "Ordinary totem capacity/concentration",
+      "HP healing received inside aura is halved, rounding down, including allies and you. Nonstacking with another healing reduction; temporary HP unaffected. This totem has standard object stats and grants no free damage/healing."
+    ],
+    [
+      4089,
+      10,
+      "Action",
+      "3RP",
+      "One living enemy within60ft",
+      "3 target turns",
+      "Recharge3",
+      "CON save or Bleed1d4necrotic at start of each of next3 turns. Action plus successful Medicine check against classDC ends it; magical healing also permits an immediate CON save to end. Never permanently unhealable; no repeated stacking."
+    ],
+    [
+      4090,
+      12,
+      "Action",
+      "2RP",
+      "One enemy in claw reach",
+      "Instant; reduction until end next turn",
+      "Recharge2",
+      "Make one claw attack; hit adds S d6necrotic and reduces the next healing it receives by M, minimum0. Applies once and ends. No arbitrary percent stacking or permanent maximum-HP reduction."
+    ],
+    [
+      4091,
+      14,
+      "Action",
+      "4RP",
+      "Up to3 enemies within15ft that hear you",
+      "Until end each target's next turn",
+      "Recharge3",
+      "WIS save or Frightened and disadvantage on next concentration save. It still gets ordinary Actions and new saves normally; repeats WIS save at turn end to end fear early. Not automatic failure or total spell disable."
+    ],
+    [
+      4092,
+      16,
+      "Bonus Action",
+      "6RP; 1 long-rest use",
+      "Up to30ft of ground traversed this turn,5ft wide",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "Leave a visible bloodroot trail, no solid wall. Each enemy first entering/starting on it per round makes DEX save for S d6necrotic, half on success; failure Bleed1d4 next turn. Maximum3 creatures damaged/round chosen in entry order; no persistent corruption after expiry."
+    ]
+  ],
+  "extraCards": [
+    {
+      "name": "Elder Spirit Accord — new Hero capstone",
+      "level": 20,
+      "activation": "Triggered",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "Your chosen Hero ultimate",
+      "duration": "One activation",
+      "frequency": "1/long rest",
+      "effect": "When starting Elemental Chorus, Omen Loop or Bloodroot Trail, reduce its RP cost by3, minimum1, and add M to one damage/healing roll from that use. You must know that ability and still spend its own limited use. If you do not know it, instead reduce one known Hero technique's RP cost by3, minimum1. No extra duration, flask, totem, command or repeated cast.",
+      "acquisition": "automatic",
+      "band": "Hero"
+    }
+  ],
+  "reviewStatus": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

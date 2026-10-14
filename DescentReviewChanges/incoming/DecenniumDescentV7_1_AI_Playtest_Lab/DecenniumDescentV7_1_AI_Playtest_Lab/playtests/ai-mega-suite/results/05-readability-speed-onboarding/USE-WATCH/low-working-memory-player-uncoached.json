@@ -1,0 +1,61 @@
+{
+  "pack": "05-readability-speed-onboarding",
+  "scenarioId": "USE-WATCH",
+  "agentId": "low-working-memory-player-uncoached",
+  "seed": 51752,
+  "runId": "2026-08-06T122200Z-USE-WATCH-low-working-memory-player-uncoached",
+  "observations": [
+    "Task: Resolve three Watches including one Pressure complication",
+    "Run: uncoached; facilitator answered only by pointing to rule text.",
+    "Cited: docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches; docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications.",
+    "Persona friction terms: ten Haven steps, five offices, Pressure 0–6 states.",
+    "Observed ExpeditionTracker Rest debt /3 label while reading Rest Debt in GAMEPLAY_LOOP_CANON §5."
+  ],
+  "metrics": {
+    "coachedRun": false,
+    "decisionSteps": 20,
+    "ruleLookups": 11,
+    "invalidActionsAttempted": 1,
+    "misreadTerms": [
+      "ten Haven steps",
+      "five offices"
+    ],
+    "minutesEstimateProxy": 29.1,
+    "canStateFullLoop": null,
+    "conceptUnderstood": {
+      "Pressure": false
+    },
+    "citationsUsed": [
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §8 Team activities",
+      "src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    ],
+    "evidenceLevel": "B",
+    "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014",
+    "rulesHaltCount": 1
+  },
+  "rulesQuestions": [
+    "ExpeditionTracker Rest debt shows /3 while canon Rest Debt is 'within next two Watches' — which governs?",
+    "Does every member need an activity even on Rest Watch?",
+    "Undefined-on-first-read: ten Haven steps",
+    "Undefined-on-first-read: five offices"
+  ],
+  "exploits": [],
+  "recommendations": [
+    "Align ExpeditionTracker Rest-debt UI copy with GAMEPLAY_LOOP_CANON §5 wording.",
+    "Add a Watch sheet: team activity + Pressure d6 + Supply tick.",
+    "Externalize state on companion cards; do not require holding Pressure+Supply+Load+offices simultaneously."
+  ],
+  "confidence": "medium",
+  "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014",
+  "evidenceLevel": "B",
+  "rulesHalts": [
+    {
+      "id": "RH-05-REST-DEBT-UI",
+      "rule": "Rest Debt timing",
+      "conflict": "Canon: clear Rest Debt within next two Watches / before day boundary. UI: watchesWithoutRest/3.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Rest Debt / Strain vs src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    }
+  ]
+}

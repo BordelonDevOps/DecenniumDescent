@@ -1,0 +1,301 @@
+Codex source audit and second condition conference. Raw first response saved intact; all28 entries parsed. Please review these corrections and propose exact bounded missing bridges, clearly NEW rather than canon. We intend complete operational conditions, not indefinite dependency labels.
+
+SOURCE CORRECTION: approved V6 movement: drop Prone without speed; stand costs half speed; crawl each foot costs2 feet,3 in difficult terrain. V6 unseen combat: attacking unseen has advantage; you reveal your location upon attacking. Core Invisible still overrides generic V6 attack modifiers after location known. Need prevent V6 unseen rule immediately re-granting the identical bonus Core just ends. Special senses seeing target never take invisible penalties. Per-observer rules and hiding/detection still need the later broad vision audit.
+
+V6 alignment prose says alignment describes professed orientation, values create pressure not automatic failure, obligations matter more than labels, no mandatory party restructuring because alignment changes. Keep moral-axis step Good→Neutral→Evil, law/chaos unchanged; never compel player conduct, PvP or automatic oathbreak from label. The aura/evil saves use recorded individual alignment/tags, never ancestry inference. Does this close Corrupted's narrow classification interface?
+
+CORRECTIONS proposed: (A) Incapacitation/concentration ending was already explicit in shared class rules, not new. (B) Dazed must apply immediately if gained mid-turn: already spent voluntary movement forbids further Actions; already taken Action forbids further voluntary Speed movement; already both means no further either, no retroactive undo. On every affected turn including extra turns choose allowed mode; no BonusAction ever; grants of additional actions cannot bypass Action-mode's one Action. Reactions unchanged; forced movement allowed; movement expressly within permitted Action allowed. (C) Exhaustion maxHP derived as max(1,floor(otherwise-applicable maximumHP/2)), recompute when base/max effects change, never halve previously halved value. Clamp currentHP down if max falls; raising max does not heal. Speed flat changes first then halve once; Speed0 overrides. Level6 death remains until resurrection; no level removal revives. MoistureDependency source blocks removing its levels until immersion1h, not auto-removal by immersion. (D) Generic Bleeding and Burning ticking once at END OF REGULAR TURN, not farmed extra turns; outside initiative every elapsed6seconds once. Preserve separately recorded source durations; one magnitude chosen before rolling by greatest expected damage, then highest DC, then earliest application; use that record's type/DC as a unit. A specific cure naming condition clears all generic records; stopping one named source leaves others. Burning Action by affected or adjacent helper; immersion means all burning portions actually submerged; magical fires only exception if card prints. Bleeding heal at fullHP? Core says magical healing ends it, without positiveHP restriction. I favor legal magical-healing effect with positive potential heals/cures Bleeding even when HP cap absorbs it; Corrupted reducing an actual1HP healing event to0 still means valid healing attempted. This avoids fullHP impossible bandage weirdness and follows source better than your positive-restoration limitation. Please agree/qualify each.
+
+Please propose exact NEW bridge endpoints for: generic Exhaustion recovery (safe beneficial8h longrest + food/water + rootcause removed;1level?), fictional-substance dependence recovery and maintenance timing/tolerance reset, intoxication5-level recovery/poisonDC/emergency procedure, Corrupted cleansing. Use existing treatment day care advantage as compatible source, finite costs/time and no free loop. Real-source addiction details and brew/substance item DCs govern; don't substitute an unrelated system.
+
+Unity: focused source searches of public/Director Core books, approved V6, Complete Director Crucible, current mechanics/director-only/bestiary found the0–6 condition and exposure sources but NO operational threshold table. This is a bounded absence finding, not claim every archive searched. We should author provisional PUBLIC threshold mechanics + separate DIRECTOR handling, preserve narrative source and character agency, no invented canon plot truths. Suggest a compact usable0–6 progression and finite recovery/project with explicit high-score consequences; no forced player beliefs or automatic character deletion. Do not expose actual hidden plot in public text. If your notebook has an owner-approved numeric table, give exact quote and provenance instead. Need all values, no unexplained 'Director discretion' endpoint.
+
+Reply in numbered rulings plus self-contained proposed bridge text; do not declare the whole game complete. Attached newly read exact V6 passages below.
+
+{
+  "movement": [
+    {
+      "pythonDocxParagraph": 7879,
+      "text": "You can communicate briefly (speech, gestures) and interact with one object for free (drawing a weapon, opening a door). Interacting with a second object requires your action. Complex interactions (disarming a complex trap, deciphering a rune under pressure) might also require an action at the Director's discretion."
+    },
+    {
+      "pythonDocxParagraph": 7881,
+      "text": "Movement and Position"
+    },
+    {
+      "pythonDocxParagraph": 7883,
+      "text": "Effective positioning is key to survival. Your speed determines how far you can move."
+    },
+    {
+      "pythonDocxParagraph": 7885,
+      "text": "Breaking Up Your Move"
+    },
+    {
+      "pythonDocxParagraph": 7887,
+      "text": "You can split your movement, moving some distance before your action and some after. If a class feature grants multiple attacks, you can even move between those attacks."
+    },
+    {
+      "pythonDocxParagraph": 7889,
+      "text": "Using Different Speeds"
+    },
+    {
+      "pythonDocxParagraph": 7891,
+      "text": "If you have multiple movement types (walking, flying, swimming), you can switch between them. Subtract the distance already moved from the new speed to determine remaining movement."
+    },
+    {
+      "pythonDocxParagraph": 7893,
+      "text": "Difficult Terrain"
+    },
+    {
+      "pythonDocxParagraph": 7895,
+      "text": "Rubble, thick undergrowth, steep stairs, shallow bogs, crowded spaces, and areas tainted by Corruption can be difficult terrain. Every foot of movement in difficult terrain costs 1 extra foot (e.g., moving 5 feet costs 10 feet of speed)."
+    },
+    {
+      "pythonDocxParagraph": 7897,
+      "text": "Being Prone"
+    },
+    {
+      "pythonDocxParagraph": 7899,
+      "text": "You can drop prone without using speed. Standing up costs half your speed. Moving while prone requires crawling (each foot costs 1 extra foot, 3 feet total in difficult terrain). Attack rolls against prone creatures have advantage if the attacker is within 5 feet, otherwise they have disadvantage. A prone creature has disadvantage on its own attack rolls."
+    },
+    {
+      "pythonDocxParagraph": 7901,
+      "text": "Moving Around Other Creatures"
+    },
+    {
+      "pythonDocxParagraph": 7903,
+      "text": "You can move through a nonhostile creature's space (it's difficult terrain). You can only move through a hostile creature's space if it's at least two sizes larger or smaller than you. You cannot willingly end your move in another creature's space."
+    },
+    {
+      "pythonDocxParagraph": 7905,
+      "text": "Flying Movement"
+    }
+  ],
+  "vision": [
+    {
+      "pythonDocxParagraph": 7947,
+      "text": "Unseen Attackers and Targets"
+    },
+    {
+      "pythonDocxParagraph": 7949,
+      "text": "*   Attacking a target you can't see: Disadvantage on the attack roll."
+    },
+    {
+      "pythonDocxParagraph": 7950,
+      "text": "*   Attacking while unseen: Advantage on the attack roll. You reveal your location upon attacking."
+    },
+    {
+      "pythonDocxParagraph": 7952,
+      "text": "Ranged Attacks"
+    }
+  ],
+  "alignment": [
+    {
+      "pythonDocxParagraph": 5300,
+      "text": "Reputation: Seen as unreliable by authorities, as refreshingly honest by free spirits"
+    },
+    {
+      "pythonDocxParagraph": 5301,
+      "text": "Evil Alignments"
+    },
+    {
+      "pythonDocxParagraph": 5302,
+      "text": "Lawful Evil (LE): The Tyrant"
+    },
+    {
+      "pythonDocxParagraph": 5303,
+      "text": "Uses order, tradition, and rules to dominate others"
+    },
+    {
+      "pythonDocxParagraph": 5304,
+      "text": "Methodical, organized, and calculating in pursuit of power"
+    },
+    {
+      "pythonDocxParagraph": 5305,
+      "text": "Honors agreements while exploiting loopholes"
+    },
+    {
+      "pythonDocxParagraph": 5306,
+      "text": "Creates and enforces systems that benefit themselves at others' expense"
+    },
+    {
+      "pythonDocxParagraph": 5307,
+      "text": "Values loyalty and hierarchy with themselves at the top"
+    },
+    {
+      "pythonDocxParagraph": 5308,
+      "text": "May struggle with impulsive opportunities that break their own rules"
+    },
+    {
+      "pythonDocxParagraph": 5309,
+      "text": "Reputation: Feared but sometimes respected for predictability and keeping their word"
+    },
+    {
+      "pythonDocxParagraph": 5310,
+      "text": "Neutral Evil (NE): The Malevolent"
+    },
+    {
+      "pythonDocxParagraph": 5311,
+      "text": "Pursues self-interest without ideological constraints"
+    },
+    {
+      "pythonDocxParagraph": 5312,
+      "text": "Does whatever benefits them with no regard for others"
+    },
+    {
+      "pythonDocxParagraph": 5313,
+      "text": "Pragmatic and opportunistic in their cruelty"
+    },
+    {
+      "pythonDocxParagraph": 5314,
+      "text": "Neither bound by codes nor driven by chaos"
+    },
+    {
+      "pythonDocxParagraph": 5315,
+      "text": "Views others as tools or obstacles"
+    },
+    {
+      "pythonDocxParagraph": 5316,
+      "text": "May struggle with maintaining alliances due to untrustworthiness"
+    },
+    {
+      "pythonDocxParagraph": 5317,
+      "text": "Reputation: Universally distrusted once their nature is revealed"
+    },
+    {
+      "pythonDocxParagraph": 5318,
+      "text": "Chaotic Evil (CE): The Destroyer"
+    },
+    {
+      "pythonDocxParagraph": 5319,
+      "text": "Revels in destruction, violence, and unpredictability"
+    },
+    {
+      "pythonDocxParagraph": 5320,
+      "text": "Rejects both order and the rights of others"
+    },
+    {
+      "pythonDocxParagraph": 5321,
+      "text": "Driven by bloodlust, madness, or hatred"
+    },
+    {
+      "pythonDocxParagraph": 5322,
+      "text": "Acts on impulse and desire without restraint"
+    },
+    {
+      "pythonDocxParagraph": 5323,
+      "text": "May destroy things beneficial to themselves out of spite or pleasure"
+    },
+    {
+      "pythonDocxParagraph": 5324,
+      "text": "May struggle with any form of cooperation or long-term planning"
+    },
+    {
+      "pythonDocxParagraph": 5325,
+      "text": "Reputation: Feared and avoided by all but the most desperate or similarly aligned"
+    },
+    {
+      "pythonDocxParagraph": 5326,
+      "text": "Alignment, Conduct, and Expeditions"
+    },
+    {
+      "pythonDocxParagraph": 5327,
+      "text": "Alignment describes a character’s professed moral and ethical orientation. It is a roleplaying tool and a source of social consequence, not an invisible force that automatically determines whether two people can stand in the same Expedition."
+    },
+    {
+      "pythonDocxParagraph": 5328,
+      "text": "Expeditions survive through shared purpose, negotiated boundaries, loyalty, fear, profit, necessity, friendship, coercion, or any combination of those things. A Lawful Good paladin and a Neutral Evil agent can descend together if both have a reason to do so. Whether that alliance survives depends on what they actually do."
+    },
+    {
+      "pythonDocxParagraph": 5330,
+      "text": "Expedition Strain"
+    },
+    {
+      "pythonDocxParagraph": 5331,
+      "text": "Values create pressure, not automatic failure. Opposed characters may argue, refuse methods, demand concessions, or break alliances when actions cross personal lines."
+    },
+    {
+      "pythonDocxParagraph": 5332,
+      "text": "Vows and obligations matter more than labels. Paladin Conduct Clauses, divine obligations, faction duties, blood debts, and personal bonds can create hard limits."
+    },
+    {
+      "pythonDocxParagraph": 5333,
+      "text": "The Director judges consequences through play. There is no universal Good-versus-Evil party prohibition and no mandatory party restructuring simply because an alignment changes."
+    },
+    {
+      "pythonDocxParagraph": 5334,
+      "text": "Conflict can be productive. Decennium Descent assumes meaningful difference is part of life. Moral disagreement can create story, choice, and Resonance without requiring PvP."
+    }
+  ],
+  "conditions": [
+    {
+      "pythonDocxParagraph": 9657,
+      "text": "Corrupted"
+    },
+    {
+      "pythonDocxParagraph": 9658,
+      "text": "Your alignment shifts one step toward evil at the end of each long rest unless you succeed on a DC 15 Wisdom saving throw."
+    },
+    {
+      "pythonDocxParagraph": 9659,
+      "text": "You have disadvantage on saving throws against spells and abilities from evil creatures."
+    },
+    {
+      "pythonDocxParagraph": 9660,
+      "text": "Healing effects only restore half the normal amount of hit points to you."
+    },
+    {
+      "pythonDocxParagraph": 9661,
+      "text": "You emit a faint aura detectable by spells that reveal evil."
+    },
+    {
+      "pythonDocxParagraph": 9663,
+      "text": "Deafened"
+    },
+    {
+      "pythonDocxParagraph": 9664,
+      "text": "You can't hear and automatically fail any ability check that requires hearing."
+    },
+    {
+      "pythonDocxParagraph": 9666,
+      "text": "Exhaustion"
+    },
+    {
+      "pythonDocxParagraph": 9667,
+      "text": "Exhaustion is measured in six levels. Effects are cumulative."
+    },
+    {
+      "pythonDocxParagraph": 9668,
+      "text": "Disadvantage on ability checks"
+    },
+    {
+      "pythonDocxParagraph": 9669,
+      "text": "Speed halved"
+    },
+    {
+      "pythonDocxParagraph": 9670,
+      "text": "Disadvantage on attack rolls and saving throws"
+    },
+    {
+      "pythonDocxParagraph": 9671,
+      "text": "Hit point maximum halved"
+    },
+    {
+      "pythonDocxParagraph": 9672,
+      "text": "Speed reduced to 0"
+    },
+    {
+      "pythonDocxParagraph": 9673,
+      "text": "Death"
+    },
+    {
+      "pythonDocxParagraph": 9675,
+      "text": "Frightened"
+    },
+    {
+      "pythonDocxParagraph": 9676,
+      "text": "You have disadvantage on ability checks and attack rolls while the source of your fear is within line of sight."
+    }
+  ],
+  "referenceNote": "These are zero-based python-docx Document.paragraphs, excluding table-cell paragraphs; older audits used all w:p descendants. Do not conflate numbering."
+}

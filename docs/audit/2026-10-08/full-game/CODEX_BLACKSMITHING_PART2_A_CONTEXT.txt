@@ -1,0 +1,1598 @@
+Codex to Calibration Review Part 2 — Blacksmithing exact review, Part A of 3. Browser file upload is unavailable, so I am supplying actual text directly. This part contains the two complete prior GPT decisions and five existing reviewed rule documents. Their file paths are provenance labels; the text is included. Read and retain them; acknowledge receipt briefly and wait for Part B (complete source records and base equipment) and Part C (exact manuscript and projections). Do not issue the exact-manuscript verdict before Part C.
+
+# Blacksmithing Part 2 — actual supporting decisions and reviewed rules
+
+This is the preserved text of two completed Part 1 decisions and five existing reviewed rules documents. It accompanies the exact, still-unapproved 43-card manuscript. Earlier decisions do not themselves approve that manuscript. All source files remain unchanged; the wrapper adds no rules. The owner requires cosmology only after final joint flow review, successful GitHub push and verified remote commit.
+
+
+===== BEGIN GPT_BLACKSMITHING_SOURCE_CONFERENCE.txt =====
+Source: docs/audit/2026-10-08/full-game/GPT_BLACKSMITHING_SOURCE_CONFERENCE.txt
+SHA256 of original bytes: 92663021205fa2d0854548d004b6fdf08f4b73792f3a58d72d83e1d7c74491d0
+
+Blacksmithing source-conference verdict
+
+The 43 formulas have enough source support to author complete operational cards. The cleanest construction model is an actual mundane base item plus the exact source recipe components. That avoids inventing per-pound metal pricing and prevents low-mass ingredient batches from creating full weapons or armor from nothing.
+
+Everything below is authoring direction only. It does not approve the unwritten cards, balance, availability, runtime, or the remaining 512 recipe effects.
+
+1. Base models
+
+RECOVERED: each recipe's recipeFamily, outputType, exact effect, and numerical mechanics remain controlling. A title never grants a different weapon die, property, armor formula, or resistance.
+
+NEW — predeclared base mapping:
+
+Recipe family	Legal mundane base models
+Sword	Shortsword, Longsword, Greatsword, Rapier, Scimitar
+Hammer	Light hammer, Warhammer, Maul
+Axe	Handaxe, Battleaxe, Greataxe
+Mace	Mace, Flail, Morningstar
+Spear	Spear, Javelin, Trident, Pike, Lance
+Weapon	Dagger, Dart, Handaxe, Javelin, Light hammer, Mace, Sickle, Spear, Battleaxe, Flail, Glaive, Greataxe, Greatsword, Halberd, Lance, Longsword, Maul, Morningstar, Pike, Rapier, Scimitar, Shortsword, Trident, War pick, Warhammer, Kama
+Shield	Buckler, Shield, Tower shield
+Armor	Chain shirt, Scale mail, Breastplate, Half plate, Ring mail, Chain mail, Splint, Plate, Dwarven plate
+Helm	new Helm blank below
+Gauntlets	new Gauntlets blank below
+
+Generic Weapon therefore does not authorize bows, crossbows, repeating crossbows, firearms, ammunition, blowguns, nets, natural weapons, clubs, greatclubs, quarterstaffs, slings, whips or nunchaku.
+
+Dart is legal because it is itself a discrete reviewed thrown weapon, not ammunition.
+
+Specific bindings:
+
+recipe-628 Alien-Chitin Lamellar uses the existing Scale mail profile: 14 + DEX max 2, Stealth disadvantage, 45 lb, 50 gp Medium Standard baseline.
+recipe-631 Ancient Red-Scale Cuirass uses the existing Breastplate profile: 14 + DEX max 2, no Stealth disadvantage, 20 lb, 400 gp Medium Standard baseline.
+
+These names do not create new armor formulas.
+
+For every work order, declare one base model, one fitted size and one legal equipment grade before work. Every unit in that batch uses that same model, size and grade. Individual current structural HP may differ, but Broken bases are not legal inputs.
+
+A base must be a complete mundane item. An item already carrying a magical Blacksmithing recipe imprint is not a legal generic base for another Blacksmithing recipe.
+
+2. Construction and physical conservation
+
+Use complete mundane base items, not a new structural-stock system.
+
+NEW procedure:
+
+Before work begins, reserve maximumYield = floor(1.5 × source quantity) complete legal base items of the selected model/size/grade. These bases are supplemental structural inputs and do not replace any printed recipe component.
+
+The source recipe components are then the special alloying, reinforcement, magical integration and process materials. Their source identities and consumed flags remain exact.
+
+For construction accounting:
+
+role=tool, including Forge water, supplies zero finished structural mass.
+Fuel supplies zero finished structural mass.
+Solvent supplies zero finished structural mass.
+Binder, substrate, material and catalyst components are consumed as exact recipe inputs but do not add their listed mass to the finished item's operational weight unless a future card expressly says otherwise.
+The completed item's mass is the actual selected base item's mass.
+Excess ingredient mass is slag, trimming, evaporation or process waste with no automatic sale/salvage identity.
+A returned Masterwork catalyst keeps its original identity and never becomes part of the finished body's mass.
+
+On resolution:
+
+Standard: transform source quantity reserved bases.
+Exceptional yield: transform floor(1.25Q) bases.
+Masterwork yield: transform floor(1.5Q) bases.
+Flawed Q≥2: transform floor(Q/2) bases.
+Singleton Flawed: transform one base with the structural flaw described below.
+Failed/Mishap: no reserved base receives the recipe imprint. Reserved mundane bases remain mundane and return to inventory unless a separately resolved physical event actually damages one. Source consumed-material recovery/loss follows the existing crafting result exactly.
+
+This does not refund source ingredients. The base is not a source component and is therefore not included in source 25% failure recovery.
+
+A base cannot be counted twice for two simultaneous work orders.
+
+Worked example — recipe-45. Superior Vital Axe of Putrid Marrow has Q=5, so maximum yield is 7. If Battleaxe is chosen, reserve seven actual Battleaxes. Medium Standard Battleaxes are 4 lb and 10 gp each. The recipe still consumes its exact four Brightsteel Ingots plus putrid marrow once. Standard transforms five Battleaxes and returns two mundane ones. Masterwork yield transforms all seven. The finished weapons remain 4 lb each; the source's 4.18 lb of consumed recipe material does not somehow become seven complete axe bodies.
+
+Worked example — recipe-53. Refined Veiled Shield has Q=5, maximum yield 7. If Tower shield is declared, reserve seven actual Tower shields, each 15 lb/50 gp before any legitimate size/grade adjustment. Standard transforms five; two remain mundane. The recipe's 5.43 lb source mass does not replace 75 lb of structural shield bodies.
+
+This is the central conservation rule for all 43.
+
+3. Weapon enhancement, grade and attack resolution
+
+RECOVERED: the exact recipe attackBonus and damageBonus are real +1/+2/+3 values.
+
+NEW integration:
+
+An intact, unsuppressed Blacksmith weapon adds its recipe attackBonus to attacks actually made with that physical weapon, including legal melee, off-hand and Thrown use. It grants no proficiency and does nothing merely because it is carried.
+
+Its damageBonus is added once to that attack's ordinary weapon-damage component on a hit.
+
+Thus:
+
+normal STR/DEX and weapon rules still determine the attack and ordinary ability damage;
+if an off-hand procedure omits ordinary ability damage, the recipe's magical flat damage bonus still applies;
+a lawful Thrown attack receives the same recipe attack/damage enhancement;
+object attacks receive the bonuses when that weapon can legally attack the object;
+the flat recipe damage bonus never multiplies across multiple damage types;
+if a reviewed effect lawfully changes the weapon's ordinary damage type for that attack, the recipe flat bonus follows that actual weapon-damage component;
+flat bonuses do not double on critical hits.
+
+An unsuppressed Blacksmith weapon's ordinary bludgeoning/piercing/slashing weapon damage counts as magical for resistance/immunity classification. Suppression removes that magical classification until the recipe magic resumes.
+
+Equipment-grade interaction
+
+The mundane base retains its actual V6 equipment grade. Blacksmithing does not change that grade.
+
+NEW item-enhancement arbitration: the V6 weapon-grade attack bonus and this Blacksmith recipe's attackBonus occupy one item-derived weapon-accuracy family. Use the stronger value; do not add them.
+
+Examples:
+
+Standard weapon + Blacksmith +2 → +2 item attack bonus.
+Fine weapon +1 grade processed by a +2 recipe → +2, not +3.
+Exceptional weapon +3 processed by a +1 recipe → +3 attack, plus the recipe's +1 damage.
+The retained Superior/Exceptional critical-grade dice remain separate because they are not a flat attack bonus.
+
+No generic second Blacksmith recipe imprint stacks on the same item. Applying another Blacksmith formula to an already imprinted item requires a future explicit replacement/upgrade procedure.
+
+Another non-Blacksmith spell/class/item bonus follows its own reviewed combination rule; this conference does not create a universal strongest-bonus rule.
+
+All newly created mundane bases default to Standard equipment grade unless the actual supplied base already has another legal recorded grade.
+
+No recipe rarity, recipe title, Exceptional crafting outcome or Forge Dwarf result silently changes that equipment grade.
+
+NEW classification: no attunement, RP expenditure, concentration or activation Action is required. These are passive magical weapon properties while the item is intact and unsuppressed.
+
+4. Elemental weapon riders
+
+This applies only where bonusDamage actually exists. No name or secondary source tag creates one.
+
+NEW operational rule:
+
+Once during each actual turn, when a creature hits a legal target with an attack actually made using this intact, unsuppressed weapon, that attacking creature may cause the weapon to deal its printed bonusDamage to the same target.
+
+The choice is made after the hit is known and before that attack's damage is finalized. Declining it does not spend the budget.
+
+The rider is an additional typed damage component of the same attack damage event. It is not another attack, hit, proc, target, save or action.
+
+Critical hit: the rider's dice are attack damage dice and are doubled normally. The flat recipe damageBonus is not doubled.
+
+Frequency identity is the physical item + current turn instance.
+
+Consequences:
+
+two physical copies each have their own once-per-turn budget;
+two different Blacksmith weapons can each trigger once on the same turn;
+wielding two weapons therefore does not collapse their budgets into one global elemental proc;
+transferring the weapon during the same turn does not reset its used budget;
+an extra Action during the same turn does not reset it;
+an actual extra turn is a new turn instance and therefore has a new budget;
+a Reaction or Readied attack made during somebody else's turn can trigger the item on that other turn if its budget for that turn remains unused;
+an opportunity attack on another creature's turn follows the same rule.
+
+A legal attack against an ally still qualifies, but because triggering is optional the wielder can decline the rider. There is no generic permission to attack oneself.
+
+A legal object hit may receive the rider, subject to actual object/damage compatibility. For example, an object's existing psychic immunity still defeats psychic rider damage.
+
+Copies of attacks or damage do not create another trigger, refresh the item budget, or spend it a second time. A copied already-resolved damage event follows the copy effect's own text; the Blacksmith weapon itself does not proc again.
+
+A companion receives no new permission or proficiency to wield one. If some separately reviewed companion rule genuinely permits an attack using the physical weapon, its attack can use the item's remaining turn budget normally.
+
+5. Armor, shields and AC
+
+The printed armorBonus is an enhancement bonus, not the item's entire AC.
+
+A selected armor base keeps its complete existing armor profile: base AC formula, DEX cap, STR requirement, Stealth property, weight, proficiency, don/doff and size.
+
+A selected shield keeps its actual base shield bonus and all existing hand/STR/proficiency rules.
+
+Shield family includes all three: Buckler, Shield and Tower shield.
+
+NEW defensive-enhancement family
+
+V6 worn-armor grade AC and all active Blacksmith recipe armorBonus values occupy one named family:
+
+equipment.defense-enhancement
+
+Use the strongest single value from that family. Do not add multiple grade/Blacksmith enhancement values together.
+
+The base shield contribution is not part of this family; it remains the item's normal +1/+2/+3.
+
+Eligibility:
+
+a suit's Blacksmith enhancement qualifies only when that suit's AC formula is the worn-armor formula being used;
+a shield's Blacksmith enhancement qualifies only when that shield is the one usable shield contributing its ordinary shield bonus;
+a worn Helm or Gauntlets pair qualifies while intact, worn and unsuppressed;
+a V6 armor-grade AC bonus qualifies from the worn suit under its normal rules.
+
+Independent class, spell, ancestry or natural/unarmored rules remain governed by their own wording. This new family does not convert those into Blacksmith bonuses.
+
+Examples:
+
+recipe-53 on ordinary Shield
+
+ordinary Shield: +2 AC
+recipe enhancement: +1
+total contribution when it is the active strongest enhancement: +3 AC
+
+recipe-630 on ordinary Shield
+
+ordinary Shield: +2
+recipe enhancement: +3
+total: +5 AC
+
+If recipe-630 instead uses a Tower shield:
+
+base Tower shield +3
+recipe enhancement +3
+effective shield-related total = +6
+Tower shield's STR 13, Stealth disadvantage, hand use, proficiency and weight remain unchanged.
+
+A Fine worn armor suit's +1 grade and a +3 Blacksmith Helm do not add to +4; the family contributes +3.
+
+Resistance is separate from AC enhancement. A weaker item's AC bonus can be inactive while its printed resistance remains active.
+
+Different resistance types can coexist. Two sources of resistance to the same damage type remain resistance, never immunity.
+
+6. Helm and Gauntlet profiles
+
+These require genuine NEW equipment bodies because no reviewed standalone profiles exist.
+
+NEW Helm blank
+
+one Helm = one item
+Standard Medium baseline price: 10 gp
+weight: 5 lb
+dominant material: iron/steel
+structural AC: 19
+maximum structural HP: 5
+slot: one head slot
+don: 1 Action
+doff: 1 Action
+
+NEW Gauntlets blank
+
+one recipe unit means one matched pair, not one glove
+Standard Medium baseline price: 10 gp per pair
+weight: 4 lb per pair
+dominant material: iron/steel
+structural AC: 19
+maximum structural HP: 5 for the pair as one tracked object
+slot: one gauntlet/handwear pair
+don pair: 1 Action
+doff pair: 1 Action
+
+One creature cannot gain benefits from multiple simultaneous Helms or multiple Gauntlet pairs. Additional copies remain carried/stowed objects.
+
+Helms and Gauntlets are defensive accessories, not full armor suits:
+
+they do not themselves require armor proficiency;
+they create no armor STR minimum;
+they create no generic Stealth penalty;
+wearing them alone does not count as wearing light/medium/heavy armor for an unarmored-formula restriction;
+Gauntlets do not occupy the creature's hands;
+the wearer can hold weapons, manipulate objects, perform S components and manipulate a legal focus normally;
+they do not create a free hand if the hand is otherwise occupied;
+they do not become weapons or unarmed-strike enhancements merely because they are metal.
+
+A suit descriptively containing a helm or gloves does not create extra accessory slots and does not prohibit equipping these separately.
+
+For Large fittings, extend the reviewed Large wearable rule: ×2 price, ×2 weight, ×2 structural HP, with no AC increase. Small/Medium/Tiny retain the listed profile unless another rule says otherwise.
+
+Helm/Gauntlet blanks currently have no independent V6 equipment-grade track beyond Standard. A later explicit rule would be required to create Fine/Superior/Exceptional accessory grades.
+
+7. Magic, suppression and breakage
+
+NEW classification: every completed Blacksmith recipe output in this set is a durable magical nonartifact item.
+
+This classification does not make its ingredients artifacts, reveal origin, establish ontology or answer cosmology.
+
+While intact and unsuppressed, use its exact reviewed recipe properties.
+
+While its magic is legally suppressed:
+
+the mundane base item's normal profile remains usable;
+size, mundane equipment grade, weight, hands, armor formula, STR minimum, Stealth properties, don/doff and physical drawbacks remain;
+recipe attack bonus is inactive;
+recipe damage bonus is inactive;
+elemental rider is inactive;
+recipe AC enhancement is inactive;
+recipe resistance is inactive;
+weapon B/P/S no longer receives magical classification from this recipe.
+
+Suppression does not restore durability or reset once-per-turn use.
+
+If a rider was already used earlier in the current turn, later suppression/unsuppression does not refresh it. If it had not been used, ending suppression later in that same turn can leave the unused item budget available.
+
+At 0 structural HP, the whole item is Broken under the existing equipment procedure:
+
+mundane weapon/shield/armor positive function stops;
+all recipe magical benefits stop;
+mass, slot occupation, worn drawbacks and don/doff remain;
+the magical imprint becomes dormant, not automatically erased, provided the recoverable main body still exists.
+
+Ordinary rest restores neither structural HP nor magical function.
+
+A missing/destroyed main body cannot be reconstructed by saying its magical imprint once existed.
+
+8. Quality, damage, repair and rework
+
+Use this order:
+
+establish mundane model and fitted size;
+apply the actual preserved mundane equipment grade, including grade price/weight/stat/Crude HP effects;
+record actual maximum HP and current HP and therefore the current damage deficit;
+apply the Blacksmith magical recipe imprint;
+resolve the crafting outcome's structural effect.
+
+The crafting outcome never changes recipe potency.
+
+Damaged input
+
+A damaged but functional base with HP ≥1 is legal.
+
+Standard output preserves its exact structural damage.
+
+For an Exceptional/Masterwork structural-HP improvement:
+
+calculate the new maximum from the existing post-size/post-grade maximum;
+increase current HP by the same numerical increase;
+therefore preserve the existing damage deficit.
+
+Example: a 3/5 weapon receiving +1 maximum becomes 4/6, not 6/6.
+
+This improvement is recorded once as part of that work order and never compounds from repair/reuse.
+
+Singleton Flawed
+
+Apply the existing crafting flaw after size and equipment grade.
+
+New maximum HP = half the post-size/post-grade ordinary maximum, rounded down, minimum 1.
+
+Preserve preexisting damage deficit:
+
+new current HP = max(0, flawed maximum HP − prior damage deficit).
+
+It is therefore possible for an already badly damaged base to emerge Broken on a Flawed result.
+
+Ordinary repair cannot remove that reduced maximum.
+
+Repair while HP is positive
+
+An intact Blacksmith magical item with HP ≥1 still has an intact magical imprint. Use the reviewed structural self-repair procedure, with this binding:
+
+Smith's tools;
+actual Forge and Anvil plus Tongs for these Blacksmith outputs;
+STR or INT, chosen before the check;
+PB once from Smith's-tools proficiency;
+DC 10;
+existing max(1 hour, max structural HP / 10 hours) active work;
+materials cost 25% of the item's mundane size-and-equipment-grade base value, not its magical recipe value.
+
+Success restores current HP to its already recorded maximum. It does not reroll quality, change grade, remove a Flawed maximum, re-award catalysts or improve the magic.
+
+Reconstruction from HP 0
+
+NEW magical reconstruction interface:
+
+A Broken Blacksmith magic item at 0 HP with its recoverable main body may be reconstructed at Forge and Anvil with Smith's tools and Tongs.
+
+ability: STR or INT
+PB: Smith's-tools proficiency once
+DC: the item's original recipe crafting DC
+active work: max(8 hours, maximum structural HP / 10 hours)
+materials: 25% of that item's undamaged Blacksmith finished reference value, rounded as an actual purchase
+result is binary; this is a repair task, not the six-band crafting table
+success restores current HP to the item's existing maximum and reactivates its dormant imprint
+failure consumes the repair materials and work time but leaves it Broken
+
+No crafting XP, quality roll, yield increase, first-craft award or catalyst return occurs.
+
+Forge Dwarf's reviewed creation-time reduction does not shorten this reconstruction because this is repair, not creation.
+
+The reconstruction preserves:
+
+base model;
+size;
+equipment grade;
+recipe identity;
+existing crafting quality;
+Flawed maximum if applicable;
+prior noncompounding quality HP increase.
+
+No generic Blacksmith rework removes a crafting flaw. No generic procedure replaces one Blacksmith recipe with another. No stacking/upgrading the same body through repeated recipes is authorized by this conference.
+
+A missing main body requires a new craft using a new base and new recipe ingredients.
+
+9. Work, phases and source conservation
+
+RECOVERED:
+
+Blacksmithing uses STR or INT.
+Primary proficiency is Smith's tools.
+It is an artisan trade.
+Every source record has populated activeWorkHours.
+Exact station/tools/components/assistants remain source-controlled.
+Forge Dwarf applies because Blacksmithing is an artisan-tool creation trade, within the ancestry's already-reviewed scope.
+
+NEW first stable phase:
+
+The first Blacksmithing stable integration phase is min(8 active hours, final actual required work time).
+
+Calculate lawful time reductions first, then establish phases.
+
+So an eligible Forge Dwarf:
+
+source 8 hours → 6 actual hours → one 6-hour first phase;
+source 4 hours → 3 actual hours → one 3-hour first phase;
+source 80 hours → 60 actual hours → first phase 8 hours, then ordinary remaining phases.
+
+At completion of the first stable phase, perishable/reactive recipe components already incorporated into the workpiece are stable as part of that work order. Before that point they retain their normal preservation clocks. Reserved components not yet physically incorporated remain subject to their own actual clocks.
+
+This phase does not create a second ingredient charge or early crafting roll.
+
+Assistants work the same actual modified hours as the lead, under the already-reviewed rules.
+
+Forge/station overlap
+
+station: Forge and Anvil plus requiredTools:["Smith's tools","Forge","Anvil","Tongs"] does not require two separate forges and two anvils.
+
+One actual operational Forge and one actual Anvil satisfy both the station identity and those listed fixture requirements.
+
+Smith's tools and Tongs must also actually be available.
+
+Ordinary unquantified forge heat/fuel required simply to operate a proper Forge is part of lawful station operation. Do not invent another coal charge where the recipe prints none.
+
+If the recipe actually lists Coal, that Coal is a separate exact consumed recipe input in addition to ordinary station operation.
+
+If the recipe lists Forge water, that exact source component must be present. Its consumed:false flag means it returns unchanged unless some separately resolved event damages/destroys it. It is not generic free water and is not structural item mass.
+
+Optional Director guidance remains optional and cannot silently add Gate materials, rituals or hours.
+
+Important source conflict: fieldCraftable
+
+All 43 inherit fieldCraftable:false from COMMON.
+
+That boolean remains controlling.
+
+Therefore a source timeMode:"field" does not authorize the framework's portable field-crafting route. Such a recipe still requires its actual Forge-and-Anvil worksite. Likewise, expedition can be performed only where an expedition site actually provides the required Forge and Anvil; the label does not conjure them.
+
+Do not silently rewrite the preserved source flag.
+
+10. Economics, access and visibility
+
+The source recommendedMarketValue remains the Standard source batch reference, exactly as stored. It is never multiplied by quantity again.
+
+Because the new construction rule requires a real base, define a separate finished reference.
+
+For source Standard quantity Q:
+
+source magic/process unit reference = recommendedMarketValue / Q
+
+For each finished unit:
+
+Blacksmith finished reference = source magic/process unit reference + actual undamaged mundane baseline value of that transformed base
+
+The base baseline includes its legitimate size and preserved equipment grade.
+
+Thus the source field remains untouched while model/size/grade choices have finite economic consequences.
+
+For an output count N, sum the N actual finished-unit references. Crafting quality itself grants no automatic market multiplier.
+
+Examples:
+
+recipe-42 source batch reference 92 gp, Q1, on a Medium Standard Longsword: nominal finished reference = 92 + 15 = 107 gp.
+the same recipe on a Large Standard Longsword uses the reviewed ×2 base price, so base reference 30 gp → 122 gp.
+recipe-53 source batch 94 gp/Q5 = 18.8 gp source-reference per shield. A Medium Standard ordinary Shield adds 10 gp → 28.8 gp nominal reference per finished unit before an actual market quote.
+
+The supplemental base purchase is a real character expense when purchased. It does not alter consumedMaterialValue, laborValue, or any original source economy field.
+
+If the character already owns the base, no purchase occurs; the asset is simply transformed and ceases to exist as the separate mundane item.
+
+Damage, Flawed condition, scarcity, law, reputation and demand remain actual quote concerns; there is no guaranteed adjustment factor.
+
+Once transformed, the output is magical nonartifact equipment, so the ordinary mundane resale standing table is not automatically a guaranteed magic-item buyback formula. Require a legitimate buyer and quote using the finished reference above. Do not invoke artifact valuation merely because the item is magical or high tier.
+
+The HP-0 reconstruction price in §8 uses that same undamaged finished per-item reference.
+
+Visibility remains exactly:
+
+27 public
+4 restricted
+12 Director-only
+
+A public card cannot expose restricted/Director formulas, their effects, components, donor identities or guidance.
+
+Monster/source names create no availability right or bestiary statistics. wholeCreatureUse:true creates no donor ability, anatomy power or trait transfer.
+
+Only mechanics.tag is mechanically operative. Secondary source tags remain metadata unless another reviewed rule expressly uses them. Therefore, for example:
+
+recipe-74's extra Cold metadata does not create cold damage/resistance;
+recipe-75's Poison metadata does not turn its psychic rider into a poison effect;
+recipe-73's Vitality metadata adds no healing;
+recipe-80's Poison/Vitality metadata adds no poison or regeneration mechanics.
+
+No cosmology/origin/soul conclusion is made here.
+
+Additional issues revealed by the records
+
+Three items should be explicitly carried into the authored manuscript even though they were not separate numbered questions.
+
+First, recipe-80 contains three separate consumed catalyst occurrences of green dragon heartstone. They require three actual units. The repeated component ID/name does not merge them into one reusable object. On a Masterwork result, the existing catalyst rule may preserve at most one eligible catalyst unit total, not all three, unless the exact formula later marks one irreplaceable.
+
+Second, all maximum-yield batches need enough predeclared base bodies even when the source ingredient mass is tiny. That includes recipes such as recipe-44 Q3→max4, recipe-45 Q5→max7, recipe-48 Q5→max7, recipe-50 Q5→max7 and recipe-53 Q5→max7. The base-body reserve must be machine-audited just as Poisoncrafting audited containers.
+
+Third, the eventual machine projection should track base model ID, fitted size, preserved equipment grade, base maximum/current HP, source recipe imprint ID, crafting-quality HP modifier, source unit reference, base mundane reference, finished reference and magical suppression/broken state separately. Collapsing those into one generic quality or value field would recreate the grade/crafting/artifact ambiguity the existing framework already removed.
+
+With these decisions, the complete 43-card Blacksmithing family can now be authored for exact review. No additional generic source conference is required unless the later manuscript introduces behavior outside these bindings.
+
+===== END GPT_BLACKSMITHING_SOURCE_CONFERENCE.txt =====
+
+
+===== BEGIN GPT_BLACKSMITHING_INTERFACE_REVIEW.txt =====
+Source: docs/audit/2026-10-08/full-game/GPT_BLACKSMITHING_INTERFACE_REVIEW.txt
+SHA256 of original bytes: dd0ffe5c1da2663ce991d4750a682efd9cceef98ef8c91dbe498a5a8ac398822
+
+These eight bindings close the remaining implementation gaps without reopening the Blacksmithing family decisions.
+
+1. **Magical-output structural profiles — APPROVED with actual-base binding.** **PRESERVED:** the selected mundane base keeps its reviewed structural body after the Blacksmithing recipe makes it magical. Magic does not replace the base HP/material profile. Use weapon HP 5; Buckler/Shield HP 10; Tower shield HP 15; Medium armor HP 15; Heavy armor HP 20; Helm HP 5; Gauntlet pair HP 5. Large sizing doubles the applicable maximum HP before later durability modifiers.
+
+**NEW:** record `dominantLoadBearingMaterial` on every reserved base before work. Preserve that material through the craft. Iron/steel-dominant bodies use AC 19; wood/leather-dominant bodies use AC 15; another already-reviewed mundane material AC remains what that actual base already had. Mixed items use the material genuinely carrying most of the item's structural load, declared before work and never chosen after an attack is known. Ingredient names/tags do not alter structural AC or HP. A red-dragon ingredient does not make a steel sword harder to Sunder; a wooden haft does not lower a metal-dominant sword unless the complete base was actually recorded that way.
+
+For the fixed armor mappings, Alien-Chitin Lamellar inherits Scale mail's Medium-armor HP 15; Ancient Red-Scale Cuirass inherits Breastplate's Medium-armor HP 15. Both use the actual base's recorded dominant material AC.
+
+2. **Reserved-base ordering — APPROVED.** **NEW exact procedure:** before any active work, record all `maximumYield` bases in a stable ordered list. Every entry must already have its model, size, grade, dominant material, maximum/current HP and any persistent durability modifiers recorded.
+
+At completion, transform the first `N` entries where `N` is the resolved finished quantity. Returned entries keep their exact prior condition.
+
+No reordering, substitution, acquisition or "pick the best ones" occurs after seeing the crafting roll.
+
+If a reserved base becomes missing, committed elsewhere or Broken before the completion check, the order pauses. It must be repaired or replaced with another fully legal base before the roll. A replacement occupies that exact list position; it does not move to the end or reorder the batch. Record its own actual condition when inserted.
+
+A damaged but non-Broken reserved base remains legal. This makes damage preservation deterministic.
+
+For the durability-improvement option rather than bonus yield, transform the first Standard `Q` entries and return the remaining reserved entries unchanged. Failed/Mishap transforms none.
+
+3. **Preexisting durability modifiers — admitted, with one noncompounding calculation.** A mundane, nonmagical, non-Broken base may already possess a reviewed crafting-quality durability increase or persistent Flawed maximum. Such a base is legal. A base already bearing another magical Blacksmith imprint remains ineligible absent a future explicit rework rule.
+
+Use these layers:
+
+`B = ordinary maximum HP after model + size + any actual equipment-grade HP rule`
+
+Then determine the strongest positive crafting durability modifier ever legally attached to that base:
+
+- none = `P 0`
+- Exceptional structural improvement = `P 25%`
+- Masterwork structural improvement = `P 50%`
+
+A later Blacksmith durability improvement **replaces P only if stronger**. Percentages never multiply each other and never calculate from an already-improved maximum.
+
+Calculate:
+
+`ImprovedMax = B + floor(B × P)`
+
+When `P > 0`, preserve the framework's minimum +1 increase if the percentage would otherwise add zero.
+
+Then apply the persistent crafting flaw **last**:
+
+`FinalMax = max(1, floor(ImprovedMax / 2))` if the item has a singleton-Flawed durability state.
+
+Otherwise `FinalMax = ImprovedMax`.
+
+There is only one persistent singleton-Flawed layer. A new Flawed result on an already Flawed base does **not** halve it again. Conversely, a later Masterwork durability option does not erase the flaw; it increases the underlying durability calculation and the flaw continues to halve the resulting maximum.
+
+Preserve damage deficit:
+
+`DamageDeficit = OldMax - OldCurrent`
+
+`NewCurrent = max(0, FinalMax - DamageDeficit)`, capped at `FinalMax`.
+
+Example: ordinary B=20, existing Flawed state, existing Exceptional durability. `ImprovedMax=25`; Flawed final max=`12`. A later Masterwork replaces +25% with +50%: `ImprovedMax=30`; Flawed final max=`15`. The flaw remains.
+
+Suppression and ordinary repair never remove either persistent modifier.
+
+4. **Multiple donned shields and resistance — APPROVED.** One shield supplies the creature's ordinary shield AC contribution under the existing equipment rule. Only that selected AC-contributing shield may offer its Blacksmith `armorBonus` to `equipment.defense-enhancement`.
+
+However, **each separately lawfully donned, intact and unsuppressed Blacksmith shield still supplies its printed resistance while worn**, even if that shield is not the one currently supplying ordinary shield AC.
+
+Therefore a creature legally using two shields could, for example, receive fire resistance from one and lightning resistance from the other while only one shield contributes its ordinary AC and enhancement calculation.
+
+Same-type resistance still does not stack or become immunity.
+
+A shield merely carried, slung on the back, stored, dropped or otherwise not actually donned grants neither its resistance nor recipe AC enhancement.
+
+Normal hand/forearm occupation, STR minimum, Stealth, proficiency and other drawbacks remain for every actually donned shield.
+
+For grade: newly supplied ordinary shield bases default to **Standard**. Blacksmithing creates no shield grade. If an actual preexisting shield already has a legitimately reviewed equipment grade, preserve that recorded grade and any properties explicitly established for that shield. Do **not** import the worn-suit grade AC bonuses onto shields. Likewise, do not infer a shield weight/HP effect from a suit-only grade clause unless an already-reviewed rule expressly gave it one. A legitimately established grade value may still remain part of its valuation where the prior grade rule actually applies.
+
+5. **Repair/reconstruction access — Smith's proficiency required; formula access not required.** Both HP-positive repair and HP-0 magical reconstruction require actual **Smith's-tools proficiency**. Owning Smith's tools, having a Blacksmithing trade level, or possessing the damaged item does not substitute for proficiency.
+
+HP-positive Blacksmith repair retains:
+
+- Smith's tools
+- Forge and Anvil
+- Tongs
+- STR or INT
+- PB once from Smith's-tools proficiency
+- DC 10
+- existing repair time/material calculation
+
+HP-0 reconstruction retains the previously approved:
+
+- same physical facilities/tools
+- STR or INT
+- Smith's-tools PB once
+- original recipe DC
+- `max(8 hours, maximum structural HP / 10 hours)`
+- 25% of undamaged finished Blacksmith reference value
+- binary success/failure
+
+**NEW clarification:** neither formula ownership nor the original recipe's trade-level eligibility is required to repair/reconstruct the surviving imprinted object. The object itself carries the existing imprint being restored; reconstruction does not teach, copy or grant that formula.
+
+A smith can therefore repair a restricted item without becoming entitled to manufacture another one. Formula secrecy/access remains unchanged.
+
+Forge Dwarf's creation-time reduction applies to **neither** HP-positive repair nor HP-0 reconstruction. Both are repair tasks, not item creation. A future explicit repair feature could override this, but the ancestry's current creation permission does not.
+
+6. **Suppression versus structural workmanship — CONFIRMED.** Crafting-quality structural HP increases and singleton-Flawed maximum reductions are **physical workmanship records**, not suppressible magical effects.
+
+Suppression therefore changes neither:
+
+- maximum structural HP,
+- current structural HP,
+- damage deficit,
+- persistent Flawed status,
+- Exceptional/Masterwork structural durability record,
+- size,
+- dominant material AC,
+- mundane equipment grade.
+
+Suppression disables only the magical functions already enumerated: recipe attack/damage enhancement, elemental rider, recipe defensive enhancement, resistance, and recipe-supplied magical weapon classification.
+
+When suppression ends, those magical benefits resume if the item remains otherwise functional. No HP disappears/reappears, no damage heals, no budget refresh occurs and no flaw is removed.
+
+Repair likewise cannot erase the Flawed maximum.
+
+7. **Outside-initiative elemental-rider timing — use absolute six-second windows with transition protection.** Do not manufacture abstract turns outside initiative.
+
+**NEW rule:** when a lawful weapon attack is being resolved outside initiative and the scene genuinely remains outside initiative, the item uses one rider budget per **absolute six-second combat-action window**.
+
+The first relevant combat-scale attack establishes that item's current six-second window. Additional lawful attacks that somehow occur within that same elapsed window do not create additional rider budgets. After six full seconds, a new window can begin. This rule grants no Action, attack, Reaction or acceleration by itself.
+
+For transitions:
+
+- If the attempted attack itself begins an encounter, establish initiative and resolve that attack under the encounter's actual legal turn/entry procedure. It does **not** first claim an outside-initiative rider budget.
+- Merely toggling into initiative never refreshes an item.
+- If an item actually triggered outside initiative and initiative begins before six elapsed seconds have passed, treat that item's rider as **already spent for its first actual turn** occurring before that six-second deadline. After that transition guard is satisfied, normal actual-turn budgets control.
+- Once initiative governs, each genuine regular or genuine extra turn is its own item budget as previously approved.
+- When initiative ends, an item that triggered on an initiative turn cannot trigger again outside initiative until six elapsed seconds have passed since that last trigger. Thereafter use normal absolute six-second windows.
+
+Thus a character cannot strike an object, switch into initiative, and immediately claim another elemental rider merely because the bookkeeping mode changed.
+
+Track `lastElementalRiderTriggerTime` across the transition in addition to the normal in-initiative `actualTurnId`.
+
+8. **Crude grade composition — CONFIRMED, with no implicit +0.** For functional weapons, V6 weapon-grade attack modifier and Blacksmith recipe attack enhancement remain one item-derived accuracy family.
+
+Evaluate only modifiers that actually exist.
+
+Therefore:
+
+- Crude weapon `−1` + active recipe `+1` → use `+1`.
+- Crude weapon `−1` + active recipe `+2` → use `+2`.
+- Crude weapon while recipe magic is suppressed → use `−1`.
+- There is no imaginary Standard `+0` entry that cancels the Crude penalty.
+
+The same logic applies to a worn suit's defensive-enhancement family:
+
+- Crude suit `−1 AC` + active Blacksmith `+1` → family contribution `+1`.
+- Suppress the recipe → the remaining family contribution is `−1`.
+- Fine/Superior/Exceptional suit bonuses compete normally with the active recipe enhancement under the already-agreed strongest-single-value rule.
+
+Shield AC remains outside the suit-grade clause as settled above.
+
+At **Broken**, do not continue evaluating attack/AC enhancement arithmetic for a function the item no longer supplies. A Broken weapon is no longer usable as its normal weapon profile, and a Broken armor/shield supplies no normal positive AC function. It still retains the already-reviewed physical drawbacks, occupation, weight, don/doff, STR/Stealth/nonproficiency consequences where applicable. An improvised use of a Broken weapon, if separately legal, does not recover its Blacksmith or normal weapon-profile bonuses.
+
+These bindings are sufficient for the upcoming 43-card manuscript. They do not require another generic Blacksmithing source conference unless the authored cards introduce a genuinely new mechanical behavior beyond the agreed source family and these eight clarifications.
+
+===== END GPT_BLACKSMITHING_INTERFACE_REVIEW.txt =====
+
+
+===== BEGIN CRAFTING_HARVEST_PLAYTEST.md =====
+Source: DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md
+SHA256 of original bytes: b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479
+
+# Crafting, harvesting and preservation
+
+**Status: REVIEWED authored operational PLAYTEST crafting/harvesting/preservation framework.** This supplement makes the shared procedure executable. It does not approve any of the 687 recipe effects, infer missing magic-item powers, approve balance, or change the companion runtime. An unreviewed recipe may be executed only as an isolated framework test of access, scheduling, ingredients, crafting check, quality, yield, trade XP, preservation or price-reference behavior. Its unfinished output effect grants no gameplay benefit, activation, statistic, condition, spell-like effect, charge, duration, resource change or market classification beyond fields already independently reviewed. Normal campaign use of the finished product requires that recipe's output/effect card to be separately completed and reviewed.
+
+The mechanical source is Crafting Bible V4 (687 recipes, 696 material records, 16 trades); the public V5 book contains 433 formulas and 604 materials. Preserve all source IDs and visibility: 433 public, 39 restricted, 215 Director-only recipes. Public availability does not mean free ownership of a formula. Public dossiers must not expose the other 254 recipes or 92 restricted materials. Cosmology remains outside this review until after the authorized GitHub push is verified.
+
+The [actual GPT review](../../../../docs/audit/2026-10-08/full-game/GPT_CRAFTING_ENGINE_EXACT_REVIEW.md) conditionally approved this framework; all eight required repairs are applied. Exact source text, hashes and paragraph/line bindings are in `docs/audit/2026-10-08/full-game/CRAFTING_ENGINE_SOURCE_EVIDENCE.json` at the game root. In this supplement, **Source** identifies recovered procedure; **Completion** identifies a new bounded interpretation. The original JSON, books and historical procedures remain unchanged.
+
+## One work order, one batch
+
+Before work, record the recipe ID and visibility, crafter and trade level, actual formula access, batch quantity, chosen ability, tools and station, component lots and substitutions, assistants, DC, expected active hours, work schedule, final product profile and market quotation. Record whether a product is an ordinary item, a magical item, a consumable or an alteration to an existing item. The name alone cannot decide that classification.
+
+Check eligibility and reserve actual ingredients before beginning. Perform the required active work. Make one completion check for the entire batch; resolve quality, catalyst retention and failure recovery once. Debit consumed components, record returned components, add only actual finished units, and record trade XP. An interrupted batch is the same work order, with the same reserved ingredients. Neither interruptions nor moving to a new station create another roll, yield or first-craft award.
+
+**Source:** quantity, difficulty, components, workRequirements and craftingCheck come from the exact recipe. **Completion:** recipe quantity is the number of finished units in one batch. Component quantities and costs are for that batch, not for each finished unit. Do not multiply components or recommended batch value by output quantity a second time. This interpretation applies to the new playtest projection; the ambiguous source `resultItem.value` is retained unchanged.
+
+An unfinished output profile is a real dependency. The framework cannot invent a spell effect, charge recharge, activation action, target, range, save, duration, stacking rule, output weight or item price merely because a recipe has a `developed` label.
+
+## Training and recipe access
+
+**Source:** a character lacking the trade or the required tool proficiency has disadvantage and cannot attempt formulas above recipe skill level 4. Formulas above level 4 normally require a formula, schema, pattern or documented oral tradition. All 687 source formula flags agree with this threshold. Trade levels run from 1 to 20, separately from character level, class stage, PB, spell rank and material tier.
+
+**Completion:** the primary-tool bindings in `CRAFTING_TRADE_REFERENCE.md` define the relevant training. A character who already has the listed proficiency may initialize that trade at level 1, with zero trade XP, without an extra proficiency grant. Merely owning the kit grants neither PB nor a trade level. Trade training and primary-tool proficiency acquired through this procedure are one credential, not two PB contributions. Existing explicit trade-level grants remain intact. Being proficient with unrelated tools, Arcana or Survival does not automatically give this credential.
+
+An untrained crafter has effective trade level 0. Recipes of skill levels 1–4 can be attempted with the source disadvantage when otherwise physically possible. A trained crafter can attempt recipes up to `max(4, current trade level)`. Above level 4 the crafter must also possess or be given legitimate access to the exact formula. A trained level-1 novice does not lose the basic recipes available to an untrained character. Missing necessary physical tools or the station prevents the attempt; disadvantage does not manufacture either.
+
+For a new credential during play, complete 80 active training hours with a willing instructor proficient in that primary tool and at least level 5 in that trade. Pay a default 10 gp tuition for the course, plus actual tool ownership or rental and living costs. Hours cannot overlap other work or rest. Completion grants that tool proficiency and trade level 1 with zero XP, once; repeated courses give no duplicate benefit. This is a new playtest training route, not a revision of class/ancestry/background grants. A named source's specific training route wins for its own grant.
+
+Source rank bands (Novice, Apprentice, Journeyman, Expert, Master, Grandmaster) are descriptions of the catalog, not another hard tier gate. Forty-nine records sit outside the printed rank/tier bands. Use their exact skillLevel and explicit prerequisites rather than silently changing those recipes or denying them by a second band test. Public Tier I–V remains the public knowledge ceiling regardless of a character's high trade level. Restricted and Director recipes require actual in-world access and their separately reviewed cards; a rank title cannot reveal them.
+
+## The crafting check
+
+**Source:** `d20 + chosen ability modifier + proficiency contribution + tool bonus + facility bonus + assistant bonus`, against the recipe difficulty. Choose one of the recipe's printed ability options before rolling. **Completion:** do not add the numerical trade level to the check. PB comes from total character level, once, when qualified by actual primary-tool training; an explicit applicable expertise feature replaces that contribution with its stated multiplier. Training in both a skill and the tool cannot double it.
+
+Ordinary functional tools and a suitable ordinary facility each give a bonus of +0. They permit the work. A specific reviewed item, facility or feature may give a stated bonus; similar descriptive words such as fine, superior or research station do not invent a crafting bonus. The expedition research station's +2 research/identification applies to those checks, not crafting. Same-named bonuses do not stack. At trade level 10, choose and record one specialty; its source +1 applies only to a work order within that specialty. No automatic free ingredient substitution follows from the word specialty.
+
+Each qualified assistant gives +1, up to the recipe's `maximumAssistants` (0–3). They must possess the relevant primary-tool proficiency, be eligible to attempt that recipe, and work all of its required active hours alongside the lead. Formula access can be shared for this work order. Assistance does not reduce time, waive ingredients, award extra output or grant assistant trade XP. Assistants cannot assist multiple simultaneous orders or perform a separate Watch activity during those same hours. General team assistance cannot bypass a recipe's zero-assistant limit.
+
+In a safe suitable workshop, a trained lead may use 10 on the die if the recipe is at least five skill levels below their current trade level. This replaces the die, is not a natural 10/20/1, and uses the same bonuses, costs and hours. It is unavailable when under threat or when actual disadvantage remains on the crafting check. Declare it before rolling; a failed roll cannot be replaced afterward.
+
+## Active time and expedition scheduling
+
+**Source recovered from public V5 P11–12 and P88:** an Opening is 100 days, or 2,400 elapsed hours. The V4 system's 240-hour references are stale. Crafting hours represent active work, not free downtime. The recipe records consistently convert a workday to 8 active hours, a workweek to 40, and a workmonth to 160. These are work units, not a promise that every calendar week/month has that many days.
+
+**Completion:** use `activeWorkHours` when present. Five Director-only one-year recipes have null hours; for this framework only, one workyear is 12 workmonths = 1,920 active hours. Preserve their source null and mark the overlay as new; these formulas remain individually unreviewed. A time-mode name is a station/access requirement, not permission to reduce required hours. An eight-hour recipe labeled expedition still needs all eight hours.
+
+Field work requires its actual portable tools and a suitable place. A recipe is field-capable only when its `fieldCraftable` flag permits it; the fact that its trade is generally field-capable is insufficient. Expedition-mode work needs a fortified camp or research station. Workshop work needs a proper workshop. Haven-mode work needs a named secure workshop and storage. Legacy/special work needs a protected long-term facility or an explicitly supported between-season arrangement. Shorter time from a feature does not erase the recipe's station/access requirement.
+
+Schedule one eight-hour Watch at a time. A member assigned to crafting, gathering or preservation can perform compatible sequential tasks within that Watch, recording actual minutes. The unused minutes are not another full team activity. Travel, guarding, assisting, spellcasting, training and work cannot all claim the same minutes; only an explicit ability can authorize concurrent tasks. Each character may schedule at most two active Watches and must satisfy the separately reviewed rest rules; this is a ceiling, not an exemption from fatigue, interruption or danger. For this supplement, an active work Watch means time committed to crafting, harvesting, preservation, trade training, formula research or assisting those activities. The two-Watch ceiling limits this framework's work contribution; it does not by itself resolve whether another reviewed subsystem permits a distinct noncrafting activity in the remaining Watch. Rest, Strain, fatigue and expedition legality continue to come from their own governing rules. An eight-hour beneficial Long Rest cannot simultaneously be eight hours of crafting. Trance's sleep reduction does not shorten the required Long Rest or grant free working time.
+
+Workday notation is normalized to active hours before a valid speed feature applies. Forge Dwarf Master Craftsman reduces eligible artisan-tool creation hours by 25%; use hours × 0.75, rounding upward only to the next whole minute. It does not shorten rest, travel, ingredient growth/spoilage, training, another person's work, harvesting, or a separately fixed natural-remedy/tinker racial procedure. It does not shorten a recipe's independently stated incubation or calendar wait. Other applicable time modifiers require their own actual text; no unprinted stacking multiplier is created here.
+
+Long orders may be paused between active phases. A default phase is at most eight active hours. Completing a phase safely permits secure storage and later resumption without lost progress. Forced interruption inside a phase loses only unfinished progress in that phase; completed phases remain. No crafting roll occurs yet. Reserved perishables still age, and explicit physical destruction can lose actual inventory. There is no arbitrary full restart or repeated free quality roll. Before an uninterrupted-phase order begins, record its phase lengths and storage needs; absent a more specific formula, use this default.
+
+At the season boundary, unfinished work continues only if its actual location, workers and storage remain legally and physically available under the existing campaign rules. The 2,400-hour Opening does not grant 2,400 labor hours per character. The Haven activity 'Brew a Batch' supplies a workday assignment (8 hours), not automatic completion of every recipe regardless of its own duration.
+
+## Quality and finite output
+
+These are **crafting outcome labels**, separate from equipment grade and Core artifact market condition. An Exceptional craft does not automatically become Exceptional equipment (+3 statistics), and a Masterwork craft does not create a new grade or a magic item. An item named Superior does not obtain equipment-grade bonuses unless its reviewed profile explicitly binds that grade.
+
+Resolve this specific six-band crafting table instead of general expedition outcome shifts. A natural 1 is a Mishap even if the total is high. A natural 20 uses its numerical total with no extra band shift. A margin of −10 or lower is a Mishap.
+
+| Total minus DC | Result | Procedure |
+|---|---|---|
+| 10 or more | Masterwork | Choose 150% batch yield, rounded down, or the improvement option below; also preserve one eligible catalyst unit. |
+| 5 through 9 | Exceptional | Choose 125% batch yield, rounded down, or the improvement option below. |
+| 0 through 4 | Standard | Listed number of ordinary finished units. |
+| −1 through −4 | Flawed | If base batch quantity is at least 2, produce half quantity rounded down, with ordinary unit effects. If quantity is 1, make one item with a defined flaw below. |
+| −5 through −9 | Failed | No product; recover 25% of consumed non-catalyst input quantity for each material identity, rounded down to that material's permitted unit. |
+| −10 or less, or natural 1 | Mishap | No product; lose consumed inputs, return nonconsumed tools, and roll the mishap procedure. |
+
+**Completion:** quality choices are declared after the check, once for the whole batch. Extra yield does not itself consume another batch of ingredients; it represents reduced processing waste. For physical outputs the card must specify lawful packaging and output mass; total output cannot exceed actual retained material plus explicitly supplied extra mundane carrier/packaging. A yield increase cannot create missing bottles, duplicate a unique named core, or duplicate the existing item being enchanted. Such an order uses its legal improvement option or retains Standard quantity and its quality label. Floor arithmetic may give no extra units; no fractional item or banked remainder is created.
+
+The default improvement option increases explicitly defined maximum structural item HP by 25% (Exceptional) or 50% (Masterwork), rounded down, minimum +1. Current HP increases by the same amount for the new undamaged item. It never increases creature HP, AC, damage, save DC, spell rank, RP, charges or capacity. A recipe card may replace this with one precise property/charge option reviewed for that recipe. With neither known structural HP nor a reviewed improvement option, retain Standard output and the quality label only. Consumables do not gain reusable doses or longer durations from this generic option.
+
+A quantity-1 Flawed durable item has maximum structural HP equal to half its ordinary maximum, rounded down, minimum 1, and begins at that reduced maximum. This reduced maximum is a crafting flaw, not ordinary structural damage. Ordinary equipment repair may restore current structural HP only up to that reduced maximum; it does not remove the flaw, increase the item's maximum, alter its equipment grade or convert it to Standard quality. Removing a crafting flaw requires an explicit reviewed rework procedure; absent one, the reduced maximum persists. A quantity-1 consumable whose useful effect has a positive finite duration instead has half that duration, rounded down to a whole round (six seconds), minimum one round. Instant healing/damage/RP restoration and otherwise incompatible results have no generic flaw profile: treat that Flawed result as Failed with the normal 25% non-catalyst recovery. Do not halve an undefined feature or invent a permanent debuff. The completed output card must state whether either default applies.
+
+Masterwork preserves **one component unit total** bearing role catalyst and consumed=true, chosen after the check. It must be an actual catalyst used in this batch, not a named irreplaceable component whose exact formula requires destruction; an indivisible catalyst cannot be split. Return that unit to inventory unchanged rather than deducting it. With no eligible catalyst, nothing is returned. The ingredient's exact identity, tier and remaining shelf life persist; this is not a fresh item. Nonconsumed tools always remain unless a specific mishap physically damages one.
+
+**Reviewed Forge Dwarf completion:** when eligible artisan-tool creation achieves Standard, treat its output as Exceptional for the yield/improvement choice. Already Exceptional/Masterwork remains so. Failed, Flawed and Mishap do not upgrade. This gives the ancestry's quality language a bounded crafting function; it grants no equipment grade, price multiplier, success guarantee or extra XP.
+
+## Mishaps
+
+The public source references a tradeskill mishap table but contains none. **Completion:** after losing consumed inputs, roll 1d6 on this shared table. The trade reference supplies the injury damage type, giving every trade an executable table. A Mishap still never destroys a formula or an irreplaceable tool unless the damage below actually reduces that tool to 0 HP. Cleanup/calibration time is extra active time after the failed batch, not part of its completion hours.
+
+| d6 | Result |
+|---|---|
+| 1 | Spilled workspace: 1 active hour of cleanup before this station can be used again. |
+| 2 | Miscalibration: the primary kit cannot support another crafting check until someone proficient with it spends 2 active hours recalibrating it. No extra ingredients are required. |
+| 3 | Tool damage: the lead's primary kit takes 1 point of compatible physical structural damage, using its actual object defenses; if that kit cannot physically suffer it, use result 1 instead. |
+| 4 | Minor accident: the lead takes 1d4 damage of the trade's listed injury type, resolved normally through defenses, with no extra condition. Assistants take none. |
+| 5 | Fouled apparatus: the station requires cleanup labor equal to 1 active labor-hour × the number of workers who participated in the failed order. Any physically capable workers may perform that cleanup; multiple workers may contribute simultaneously. The station cannot support another crafting order until the total required cleanup labor is completed. |
+| 6 | Lost notes: this order yields no failure-research XP; the lead must spend 1 active hour reconstructing its work log before beginning another order in this trade. The owned formula remains intact. |
+
+No ordinary mishap automatically creates a curse, disease, Strain, cosmological revelation, persistent hazard or lost proficiency. A specific reviewed volatile component can supply a separately declared hazard before the order starts. Do not invent that hazard after the roll. The Director describes the accident according to the actual trade and ingredients.
+
+## Trade XP and specialties
+
+**Source:** first successful craft 4 XP; nontrivial repeat 2; difficult failed attempt with usable research 1; trivial mass production 0. Advancing from level L to L+1 costs 10+L trade XP. Maximum level 20. The source per-recipe 4-XP field is not an extra award on top of this system.
+
+**Completion:** a successful craft means Standard, Exceptional or Masterwork. Award 4 for the first success of a recipe ID in that trade if not trivial; subsequent nontrivial successes award 2. A recipe is trivial when current trade level is at least `trivialAtSkillLevel` (all source thresholds are recipe skill level +5). Triviality wins even for a previously unmade recipe. Changing ingredients, quality, batch size, location or a source alias does not reset first-success history.
+
+A Flawed/Failed/Mishap order may give 1 XP only when its recipe is at least the crafter's current trade level, it consumed actual inputs and hours, and the lead records a concrete usable research finding. This is once per recipe ID per trade level, not repeat failure farming; mishap 6 gives none. No assistant or uninvolved observer receives this work-order award. Untrained attempts record experience narratively but bank no numerical trade XP and grant no proficiency. Training initializes zero XP.
+
+Spend XP immediately when a threshold is reached; carry excess toward the next level, repeat if enough, and stop at 20. At level 10 select one concrete specialty such as antidotes, metal shields or textile containers. Record its scope before the next check; it cannot be renamed for each work order. Its +1 applies once. Further specialties, retraining and unique substitutions require another explicit feature or agreed research result; the rank alone grants none.
+
+## Material identity, consumption and substitution
+
+Keep the exact recipe ID and component occurrence. Global material names alone are insufficient: 143 embedded names have different tier/price/weight variants. Record identity as the recipe component's name, tier, category, properties, unit weight, unit value and source occurrence. Quantity belongs to the inventory lot, not the identity. Preserve component IDs where supplied; none are silently merged or normalized to a cheaper same-name material. The 2-gp crafting Crystal Vial and 5-gp equipment Vial remain distinct records unless an explicit compatibility/substitution ruling is recorded.
+
+An exact recipe component's stored numeric `tier` remains part of that component's identity and may be compared for that recipe's explicit substitution requirements even when the stored number exceeds 6. This does not extend the generic V4 material-tier ladder or generic harvesting entitlement beyond Tier VI. A Tier 7–10 stored component therefore receives no generic harvest DC, public availability, rarity right or substitution source merely from that number; it requires its actual recipe/source acquisition procedure or another separately reviewed rule.
+
+**Source:** substitutions require the relevant properties and tier unless the recipe names an irreplaceable ingredient. **Completion:** before spending materials, a substitute must satisfy each replaced unit's tier (equal or higher), all required functional properties and role, compatible physical form, and at least its required amount. The Director records the mapping and its actual unit quantities/weights/value. Higher price alone is not compatibility; a higher-tier component does not increase the result tier, quantity or effect. A unique named core cannot be replaced under this general permission. Do not repeatedly change the substitution after observing the outcome.
+
+Reserve consumed quantities at the start and deduct them once at resolution or deliberate abandonment. Abandonment after work starts loses consumed inputs with no product/recovery roll; actual nonconsumed tools and intact independently stored unused supplies remain. Ingredients left outside the reservation remain usable but cannot also fund another order. Return only the exact quantities authorized by Masterwork or ordinary failure, never both for one result. No recovery from a Mishap. Component `consumed=false` returns its full reserved quantity; role=tool is not itself a consumed flag.
+
+Nineteen source component rows have role=tool and consumed=true. Treat these as incorporated parts in those exact recipes, not the separately required reusable toolkit; retain their flags until individual recipe review. A focusing lens incorporated into a device is not a reusable station lens. The work order must supply both if it needs both. Never 'repair' all role=tool rows to nonconsumed in bulk.
+
+Ordinary failure recovery uses each identity's physical units: an indivisible organ, lens, bottle or crystal rounds down to whole units; explicitly divisible bulk reagent can be recorded to 0.01 source units. Recovery never creates money. For example, four ordinary indivisible non-catalyst vials return one; one irreplaceable catalyst returns zero. These recovered lots retain their age and identity. A failed batch cannot be salvaged again for another automatic 25%.
+
+## Identify and harvest
+
+**Source:** identify with the creature type's knowledge skill, then extract using a relevant gathering trade. The type mapping and size times/yields are in the trade reference. This procedure concerns actual remains and environmental nodes already present; it does not create a creature, corpse, mineral vein, legal entitlement or formula.
+
+**Completion:** the Director records a finite harvest manifest before checks: actual accessible categories, unit identities/tier/weight/value, quantities or yield dice, damaged/unavailable parts, preservation deadlines, and any exceptional drop. Normally expose four to six plausible categories, but a creature with fewer real categories has fewer. These are choices within one finite yield pool, not four to six copies of the yield roll. A Tiny creature cannot produce a Large creature's organ or an unlimited number of crystals.
+
+Use the exact component's explicit harvest DC when present; otherwise the highest desired material tier sets DC: I 12, II 13, III 15, IV 16, V 18, VI 19. These are the existing expedition tier DCs, not recipe crafting DCs. The generic table has no public Tier VII–X harvest entitlement. A specially restricted ingredient beyond this table needs a separately stated DC and access procedure before rolling.
+
+Identification takes 1 minute of close examination. Use INT and the source type skill except Medicine uses WIS; PB requires actual relevant training, with existing task-scoped expertise replacing it. One lead and at most one trained assistant (+1) can participate. A success reveals the manifest's usable categories, hazards and preservation needs; failure identifies no hidden qualities. There is no invented false fact on failure. The party may still extract a plainly recognizable category such as a hide, using the declared DC with disadvantage while unidentified. Further identification attempts require new evidence, a different method or consultation, not repeated rolls by every party member on unchanged evidence. Identification does not itself extract anything.
+
+The extraction lead selects a compatible gathering trade: Skinning for animal parts, Herbalism for plants, Mining for mineral deposits, Fishing for aquatic gathering, Salvaging for constructs and dismantled devices; a specific listed source may authorize another. Use that trade's ability and primary-tool rules. Recipe-level access gates do not apply to an unranked generic harvest; actual restricted material access still does. Up to one eligible assistant gives +1 and spends the same extraction time. Tools and access are required; no station is required for ordinary physical field removal beyond a stable accessible work surface and appropriate containers. A kit cannot contain an unsafe magical essence without a suitable actual vessel.
+
+| Size | Full extraction time | Base total units |
+|---|---|---|
+| Tiny | 10 minutes | 1 |
+| Small | 20 minutes | 1d2 |
+| Medium | 30 minutes | 1d4 |
+| Large | 1 hour | 2d4 |
+| Huge | 2 hours | 4d4 |
+| Gargantuan | 4 hours | 8d4 |
+
+Roll base yield once for the remains when the manifest is made. It is the shared total of ordinary units across categories, constrained by actual anatomy and mass. An explicit bestiary drop uses its own finite chance/quantity, once, in addition only when the source calls it an exceptional separate drop. A global material's dropRate does not add another independent roll for every identical name in the material catalog. State which exceptional drops depend on a successful extraction before rolling.
+
+Full extraction uses the listed time. For a partial harvest, select which manifest categories to attempt first. Time is full time × chosen categories / available categories, rounded up to whole minutes, minimum 1 minute. Allocation of the finite units across categories is fixed before selection, so selecting one category cannot redirect the entire pool into its most valuable part. Once partial harvesting begins, unselected ordinary categories are forfeited for this generic procedure; another worker cannot harvest the same remainder again. An explicit unique drop can retain its separately stated procedure.
+
+Use the core four-degree check for extraction: total ≥DC+10 critical success, ≥DC success, >DC−10 failure, ≤DC−10 critical failure; natural 20 improves one degree and natural 1 worsens one. Success recovers the selected allocation. Critical success additionally preserves one otherwise damaged ordinary unit within the selected attempted allocation that the manifest already recorded as damaged but potentially recoverable. If the selected allocation contains no such unit, Critical Success grants no additional unit. It cannot recover an unselected or already-forfeited category, duplicate an exceptional drop or exceed the manifest's finite anatomy. Failure ruins one selected unit (highest-value selected unit, tied at player's choice), recovers no selected units, and ends that attempt. Critical failure ruins all selected ordinary units, recovers none, and invokes only a hazard explicitly declared in the manifest; absent one, apply the gathering trade's minor accident (1d4 damage) to the lead. No reroll or new generic attempt on the same exhausted selection; named exceptional-drop procedures remain as stated.
+
+A hurried extraction takes half the listed/partial time, rounded up to whole minutes, minimum 1 minute, with disadvantage. This is a new reconciliation of the detailed size table with the older one-hour rushed Watch summary; it avoids making a hurried Tiny harvest slower than normal. Normal and hurried harvesting consume actual Watch time, not a second automatic eight-hour charge. Yield, limits and spoilage are unchanged. Resource Team membership grants no duplicate attempt or extra yield.
+
+Harvested lots become actual cargo immediately, including containers and weight. Food, water or fuel gathered separately does not magically become the complete expedition Supply bundle. An ancestry's explicit forage or Natural Remedy grant follows its own finite procedure; this generic harvest does not refresh those uses. Humanoid and celestial remains keep the source's consent, lawful-authority or explicit-dark-path restriction; the procedure supplies no blanket permission and makes no cosmological conclusion.
+
+## Preservation and spoilage
+
+**Source:** blood/organs 1–4 hours, essence 30 minutes–2 hours unless contained, meat 8–24 hours, hides 12–24 hours before curing; dry bone/horn/teeth/mineral and ordinary construct parts can last indefinitely. Active cores are exceptions. **Completion:** the manifest fixes the interval before harvesting. Where no more specific interval is stated, use the conservative low end: organs/blood 1 hour, essence 30 minutes, meat 8 hours, hide 12 hours. The clock starts when the creature dies or the material leaves its sustaining environment, not when the player finally harvests it.
+
+Track condition separately from material tier and rarity: Fresh → Degraded → Spoiled. At one unprotected interval the lot becomes Degraded: its unit value halves and it cannot meet a recipe calling for Fresh ingredients, but otherwise retains its exact tier/properties. At two unprotected intervals it is Spoiled, value zero and unusable as an ordinary recipe ingredient or edible food. A specific recipe may explicitly require spoiled material. No new poison, curse or disease is inferred. Dividing, trading, repackaging, recovering or reharvesting a lot cannot reset its elapsed age. The label quality here is preservation condition, never an equipment grade or crafting outcome.
+
+Work on a perishable ingredient must begin while it is eligible; ordinary reservation does not suspend aging. An exact recipe card may say its first processing phase stabilizes the input; otherwise it must remain eligible through completion. A generic engine cannot promise a 160-hour potion made from an untreated one-hour organ will succeed. This makes the card's storage/processing details mandatory.
+
+If a required reserved component ceases to satisfy its recipe requirement before completion and no completed recipe phase expressly stabilized it, pause the order before further active work. Before resuming, the lead may reserve a fresh legal component satisfying that same requirement, including an already-legal substitution. The replacement lot keeps its own identity and age. Completed active-work phases remain completed, but any component already physically consumed or irreversibly processed before becoming unusable remains spent. If no legal replacement is supplied, abandon the order under the normal abandonment rule; do not make a completion or quality roll.
+
+The following new mundane preservation procedure supplies a usable default without inventing magical stasis. For each lot of at most 10 lb of eligible blood/organs, meat or hide, spend 30 active minutes, a suitable trade kit, a sealable appropriately sized container, and 1 gp/0.5 lb of preservative supplies (salt, clean packing and the appropriate nonmagical stabilizer). These supplies have no independent combat or magical effect. Alchemy handles specimens, Cooking handles food, and Skinning handles hide. Make one DC 10 check using the trade's normal ability/proficiency, no assistants or quality-yield table. Success pauses spoilage for 24 elapsed hours; failure uses the supplies and time but gives no extension. This treatment must finish before the lot becomes Spoiled. It does not restore Fresh condition or remove existing age.
+
+On a successful treatment, freeze accumulated unprotected age and resume it after the 24 hours. A replacement treatment takes the same cost/time and extends protection from its completion to 24 hours later, never adding stacked days. Any actual container breach, contamination or incompatible heat ends protection; merely opening to portion with clean tools for less than a minute does not. Preserved supplies and container mass count as cargo until discarded or used. Processing into food is not automatically safe if the source explicitly says otherwise.
+
+Mundane specimen jars alone contain fluids but do not pause decay. They do not stabilize magical essence or active cores. Those require a separately defined compatible containment method with its own lifetime, capacity and costs; without one, the printed/default clock continues. Dry durable materials remain indefinite only while kept dry and physically intact. No generic refrigeration, freezing or stasis benefit is inferred from a spell name; its actual reviewed effect must support the storage method.
+
+## Salvage, research and sale
+
+Do not confuse harvesting remains, manufacturing a Salvaging-tool recipe, and dismantling an existing item. A salvage tool's particular bonus requires its reviewed card. Ordinary failure recovery is already part of the batch check and cannot be claimed again as dismantling that failed batch.
+
+**New basic dismantling procedure:** spend 1 active hour per item of at most 50 lb with actual Salvager's tools, a stable work surface, and applicable proficiency. Larger or magical/unique items require an explicit salvage profile first. Before work begins, record each recoverable ordinary component and the maximum quantity physically remaining in the item after known prior damage, loss or consumption. On Success, recover 25% of each recorded recoverable quantity, rounded down under that component's normal unit rule. Explicitly divisible bulk material may use the framework's 0.01-source-unit precision. Failure recovers none. No later appraisal may increase the predeclared recoverable cap. An unknown bill of materials gives no invented valuable component. Roll INT or WIS plus the one applicable PB contribution against DC 10. The item is irreversibly dismantled on either result. No general recovery of catalysts, expended ammunition/consumables, enchanting power, RP, souls, formulas or previously missing parts. No sale-value-to-free-material conversion. This check uses binary success; no natural-die degree bonus or extra recovery is introduced. If there are no known recoverable materials, ordinary scrap may be described but has no assigned recipe identity or automatic resale value.
+
+**Source:** experiment with a stated goal, compatible components, station and research check; failed research can create notes. **Completion:** researching an existing available formula uses its `minimumResearchHours`, minimum 8 active hours, and a copy/sample or credible source sufficient for that knowledge. It uses the trade ability with proficiency against that recipe's DC, plus explicit applicable research bonuses. Success yields a usable transcription of the exact formula if the source actually contains enough information; failure yields notes, no formula, and consumes those research hours. No automatic ingredient consumption unless a destructive sample test is declared with actual quantities before research. Do not reroll unchanged evidence; a fresh attempt needs a new source/sample or eight additional hours of a concretely different method. Copying an already legible legitimately accessible formula requires 1 hour and 1 sp of writing supplies per recipe and no check, and grants no trade XP. These routes grant knowledge, not item effects or access through a faction's restrictions.
+
+Designing a new recipe, a unique substitution, or reverse-engineering an unknown magical item yields a proposal for a new reviewed card. It cannot automatically invent a numerical power from a high roll. State the desired result, consumed test materials, facility, hours, DC and what information success can actually reveal before experimentation. This is an authoring boundary, not cosmology research or permission to expose Director lore.
+
+**Batch pricing completion:** `recommendedMarketValue` is the recommendation for the Standard batch. A nominal unit reference value is batch value divided by Standard batch quantity; keep exact precision until the final transaction. Market recommendation is not a guaranteed buyer or profit. Actual quotes specify units, finished quality, condition, availability, legal claims and demand. Ordinary crafted mundane equipment uses the already reviewed mundane resale standing percentages. Actual artifacts use the Core artifact market procedure only when their reviewed profiles classify them as artifacts. The frameworks are not multiplied together indiscriminately. Crafting quality alone supplies no extra sale multiplier.
+
+The source commission default is a 50% deposit on the agreed complete quote, plus delivery of all agreed irreplaceable monster parts before work. The quote explicitly states who supplies other ingredients, whether those costs are included, delivery schedule, acceptable quality and failure/replacement terms. There is no universal refund or loss of all funds inferred from a failed roll. Record these terms before accepting a commission in the fiction. Do not charge the same supplied ingredient twice or turn returned unused ingredients into a second payout. Use reviewed equipment rounding: final purchase cost up to a copper; final sale proceeds down to a copper, once.
+
+A buyer commits to a finite quoted quantity and price before mass-production plans rely on that sale. Once it is filled, more production needs another actual buyer/quote; a reference price does not generate infinite demand. Existing Core/local market procedures can change later quotes. Generic crafting does not manufacture gold, create a guaranteed arbitrage floor, or silently apply the artifact market to every mundane crafted object.
+
+The older expedition 0–3 Integrity scale does not replace reviewed structural HP for personal equipment or this chapter's kits. Use the equipment repair procedure for those actual items. Convoy/vehicle Integrity, wider Haven services, Supply conversion and the full expedition loop remain separate integration work; this supplement does not claim they are completed.
+
+## Worked cases and release boundary
+
+- A Standard recipe-1 batch reserves the printed ingredients once, takes 1 active hour and lists 3 outputs with a 54-gp batch reference (18 gp each). Its resistance effect and actual output card remain separately unreviewed. The historical healing text is not activated.
+- A Masterwork base quantity 3 yields floor(4.5)=4 legal packaged units, or 3 units with a permitted improvement. It does not yield 4.5 units, 6 units or another free bottle. A base quantity 1 weapon can use its known HP improvement; it cannot become +3 equipment by name.
+- An ordinary Failed batch using 5 indivisible non-catalyst vials and 1 catalyst returns 1 vial and no catalyst. A Mishap returns none of those consumed inputs, while the separate reusable kit remains subject only to its actual mishap.
+- A Forge Dwarf's eligible 8-hour artisan order takes 6 active hours; a Long Rest still takes 8 hours. Two qualified assistants would each need to spend the same actual 6 hours if that recipe permits two assistants.
+- A Medium body with four categories and a total yield of 3 units allocates those units before selection. Choosing one category uses 8 minutes (30/4 rounded up) and forfeits the other ordinary categories. It cannot yield all three units from each category.
+- Blood with a 1-hour interval dies at 09:00 and is harvested at 09:20. Untreated it degrades at 10:00 and spoils at 11:00. Successful treatment ending at 09:50 freezes 50 minutes of age until 09:50 the next day; degradation then occurs after 10 further unprotected minutes.
+
+Framework review and individual recipe approval are separate. The source catalog stays intact; unreviewed outputs must retain their open status. Human balance testing, runtime implementation, full expedition/Haven integration, final joint flow confirmation and the authorized GitHub push remain later gates. Cosmology review follows the verified push.
+
+===== END CRAFTING_HARVEST_PLAYTEST.md =====
+
+
+===== BEGIN CRAFTING_TRADE_REFERENCE.md =====
+Source: DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_TRADE_REFERENCE.md
+SHA256 of original bytes: fa266be45fb9741db05f7558232bcd69025642c81961afde4f1ce84f38228318
+
+# Crafting trade reference
+
+**Status: reviewed authored operational PLAYTEST framework reference.** Mechanical source ability/station/tools are preserved below. Primary-tool bindings, kit grouping and injury damage types are new playtest completions. None grants a proficiency through ownership.
+
+| Trade | Ability options | Primary proficiency | Artisan category | Mishap injury |
+|---|---|---|---|---|
+| Alchemy | Intelligence | Alchemist's supplies | Yes | acid |
+| Blacksmithing | Strength / Intelligence | Smith's tools | Yes | fire |
+| Cooking | Wisdom | Cook's utensils | Yes | fire |
+| Enchanting | Intelligence | Enchanter's tools | Yes | force |
+| Fishing | Wisdom | Fishing tackle | No | piercing |
+| Herbalism | Wisdom | Herbalism kit | No | slashing |
+| Jewelcrafting | Dexterity / Intelligence | Jeweler's tools | Yes | piercing |
+| Leatherworking | Dexterity | Leatherworker's tools | Yes | slashing |
+| Mining | Strength / Wisdom | Miner's tools | No | bludgeoning |
+| Poisoncrafting | Intelligence | Poisoner's kit | No | poison |
+| Rune Carving | Intelligence | Runecarver's tools | Yes | force |
+| Salvaging | Intelligence / Wisdom | Salvager's tools | No | slashing |
+| Scribing | Intelligence | Calligrapher's supplies | Yes | piercing |
+| Skinning | Dexterity / Wisdom | Skinner's tools | No | slashing |
+| Tailoring | Dexterity | Weaver's tools | Yes | piercing |
+| Tinkering | Intelligence | Tinker's tools | Yes | piercing |
+
+Existing equipment supplies its actual price, mass and container capacity. Scribe's supplies use Calligrapher's supplies, as already reviewed. **New binding:** Tailor's tools use Weaver's tools; needles and shears are ordinary durable implements of that kit, while a loom/cutting table remains a separate station. Skinning's listed implements are grouped into the new Skinner's tools credential and kit. Fishing tackle is a permissible particular tool proficiency when a grant allows any tool; it is not an artisan-tool choice. The other non-artisan categories likewise do not become artisan tools just because a character has an artisan choice.
+
+Arcana tools, religious implements, divination tools, survival tools, siege engineer tools, carpenter tools and unrelated proficiencies do not automatically substitute for one of these primary credentials. Explicit grants keep their actual scopes. They may support a plausible task without conferring a separate crafting trade.
+
+## New mundane kits
+
+| Kit | Price | Weight | Contents/limits |
+|---|---:|---:|---|
+| Enchanter's tools | 25 gp | 5 lb | Inscription stylus and ordinary focusing lens; no spell, RP or charge grant. |
+| Miner's tools | 25 gp | 10 lb | Pick and portable assay tools; no ore or automatic prospecting success. |
+| Runecarver's tools | 25 gp | 5 lb | Carving stylus and ordinary focusing crystal; no prepared rune or magical effect. |
+| Salvager's tools | 25 gp | 5 lb | Separation tools, shallow trays and 1-pound-capacity mundane containment box; no magical stasis. |
+| Skinner's tools | 5 gp | 5 lb | Skinning knife, bone saw and scraper; no automatic harvest or food. |
+
+These kits use ordinary object/tool structural HP 5 and their actual material defenses from the equipment procedure. They grant no numeric check bonus. Their implements are tools rather than automatically weapon profiles. The Salvager box has a maximum 1-lb and 0.05-cubic-foot capacity, both required; its own mass is already in the kit weight. These prices and weights are new completions, not recovered source prices.
+
+## Actual stations and auxiliary implements
+
+A listed auxiliary implement already physically present inside a relevant kit can satisfy that same requirement; do not buy a duplicate simply because the source lists both the kit and its normal knife/stylus. Required simultaneous counts still matter. A nonconsumed component and the required toolkit may share an actual implement only if its form and available quantity satisfy both. A consumed incorporated part cannot simultaneously serve as the retained kit component. Heat, a forge/anvil, a loom, stable benches, secure storage, harvested ingredients and separately consumed parts are not conjured by kit ownership.
+
+**New Haven service:** an available ordinary staffed workshop can rent one compatible station for 1 gp per eight reserved work hours, charged proportionately and rounded up once to a copper. This includes its ordinary fixed fixtures, nonconsumed auxiliary implements and ordinary operating heat/fuel, not the crafter's primary kit, recipe components, labor, rare reagents, magic power, protected long-term storage, legal access or a numeric bonus. Record the real facility and capacity before work. Availability and an explicit local quote take precedence. This is an ordinary rental baseline, not a construction cost or an infinite number of stations.
+
+| Trade | Source station | Source required implements | Generally field-capable |
+|---|---|---|---|
+| Alchemy | Alchemical Bench | Alchemist's supplies; Heat source; Measuring glassware | Yes |
+| Blacksmithing | Forge and Anvil | Smith's tools; Forge; Anvil; Tongs | No |
+| Cooking | Cookfire or Kitchen | Cook's utensils; Knife; Pot or pan | Yes |
+| Enchanting | Resonance Circle | Enchanter's tools; Focusing lens; Inscription stylus | No |
+| Fishing | Shoreline, dock, or fishing station | Fishing tackle; Knife; Bait container | Yes |
+| Herbalism | Herbalist's Table | Herbalism kit; Mortar and pestle; Drying rack | Yes |
+| Jewelcrafting | Jeweler's Bench | Jeweler's tools; Fine files; Magnifying lens | No |
+| Leatherworking | Tannery Bench | Leatherworker's tools; Awl; Cutting knife | No |
+| Mining | Mine Face or Assay Bench | Miner's tools; Pick; Assay kit | Yes |
+| Poisoncrafting | Poisoner's Bench | Poisoner's kit; Sealed glassware; Protective gloves | Yes |
+| Rune Carving | Runecarver's Slab | Runecarver's tools; Carving stylus; Focusing crystal | No |
+| Salvaging | Salvage Table | Salvager's tools; Separation trays; Containment box | Yes |
+| Scribing | Scribe's Desk | Calligrapher's supplies; Quill; Straightedge | No |
+| Skinning | Harvesting Rack | Skinning knife; Bone saw; Scraper | Yes |
+| Tailoring | Loom and Cutting Table | Tailor's tools; Needles; Shears | No |
+| Tinkering | Tinker's Workshop | Tinker's tools; Precision drivers; Calibration gauge | No |
+
+Both the actual recipe's fieldCraftable flag and its physical requirements still apply. A dock needs water and a mine face needs an actual deposit. Renting a room cannot supply either. A field-capable trade does not make every recipe portable.
+
+## Source identification mapping
+
+| Creature type | Knowledge skill |
+|---|---|
+| Beast | Nature |
+| Dragon | Arcana |
+| Monstrosity | Nature |
+| Giant | History |
+| Aberration | Arcana |
+| Construct | Engineering |
+| Elemental | Arcana |
+| Undead | Religion |
+| Fiend | Religion |
+| Celestial | Religion |
+| Fey | Nature |
+| Plant | Nature |
+| Ooze | Nature |
+| Humanoid | Medicine |
+
+Use the main supplement's declared manifest, finite yield pool, times, DCs and assistant limit. A creature's type is its actual reviewed game type; this table makes no assertion about its origin or cosmology.
+
+===== END CRAFTING_TRADE_REFERENCE.md =====
+
+
+===== BEGIN EQUIPMENT_ACQUISITION_PLAYTEST.md =====
+Source: DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md
+SHA256 of original bytes: 406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d
+
+# Equipment and acquisition
+
+**REVIEWED authored operational PLAYTEST equipment/acquisition scope.** This guide applies the [equipment conference](../../../../docs/audit/2026-10-08/full-game/GPT_EQUIPMENT_ACQUISITION_CONFERENCE.md), including its twelve conference repairs, the [six exact-review repairs](../../../../docs/audit/2026-10-08/full-game/GPT_EQUIPMENT_EXACT_REVIEW.md), transaction rounding and poison clarification. Use the complete [source tables](EQUIPMENT_SOURCE_BINDINGS.md), [item procedures](EQUIPMENT_ITEM_PROCEDURES.md), [starting packages](EQUIPMENT_STARTING_PACKAGES.md) and [equipment data](../../data/playtest/equipment_acquisition_candidate.json) together. Source tables remain evidence where this guide explicitly replaces or completes a rule.
+
+This covers mundane armor, weapons, tools, focuses, common gear, creation packages, object damage, repair and ordinary acquisition. Full crafting recipes, harvesting, vehicles, mounted combat and artifact/faction economy retain their separate unfinished work. Original books and alternate rules remain preserved. Cosmology is deferred until after a successful authorized GitHub push and verification of its remote commit.
+
+## Record possessions and permissions
+
+Record each physical item's identity, quantity, actual owner/custodian, location, size, equipment grade, condition, remaining contents/charges and any explicit source exception. Ownership grants no proficiency, spell access, recipe, attunement or class feature. Training grants no free item. A price is a baseline quote, not automatic shop stock or a guaranteed buyer.
+
+The source catalog retains unknown fields as null. Its printed price or weight can apply to a bundle, such as twenty arrows, rather than one unit. The operational projection records bundle size and unit values separately. Unarmed strike is an attack option, not an inventory object. Services and living mounts are not generic mundane objects with a weapon's durability.
+
+Use the actual equipped item and current legal class/ancestry/card permissions. A historical feature with the same name supplies no additional grant. Spells and items require their own real targets and actions. A flask cannot be thrown from inside inaccessible melded equipment.
+
+## Armor and shields
+
+Choose one applicable AC formula. Light armor adds the full DEX modifier to its printed base. Medium adds `min(DEX modifier, 2)`, including a negative modifier. Heavy uses its fixed AC without positive or negative DEX. Explicit separate AC bonuses apply only when their own requirements are met.
+
+One usable equipped shield contributes its printed bonus: buckler +1, shield +2, tower shield +3. No second shield bonus. Elven weave's printed Stealth advantage uses ordinary advantage/disadvantage cancellation. Dwarven plate is AC 18; its descriptive superior protection adds nothing. Scale mail's description adds no slashing resistance. Tower shield adds no unprinted cover or additional movement penalty.
+
+**Nonproficient worn armor.** Retain V6 disadvantage on STR/DEX ability checks, saving throws and attacks. Core replaces the older casting prohibition: spells remain permitted, but an RP-priced spell costs +1 RP once per cast and concentration checks/saves have disadvantage. Multiple nonproficient armor pieces never multiply this surcharge. A normal 0-RP spell using the RP price interface can cost 1 RP. Apply this ordinary price addition before the already reviewed eligible reductions and final Resonance Influence step.
+
+**Nonproficient shield — new completion.** While using a shield without shield proficiency, apply the STR/DEX check/save/attack disadvantage. A shield alone adds neither Core's armor RP surcharge nor concentration disadvantage and does not prohibit casting. Core names worn armor for those casting penalties.
+
+A charge-only ancestry spell, Oracle effect or other cast with no RP-price interface acquires no RP price or pool from nonproficient armor. Actual concentration still has disadvantage from nonproficient worn armor. Hands, spell components and other independent casting restrictions remain.
+
+**Strength minimum — new completion.** If one or more equipped armor/shield records have a listed STR minimum you do not meet, reduce Speed by 10 feet total, minimum 0. This is not a minimum to equip; multiple deficient pieces do not stack the reduction. This penalty can coexist with Load/Burden.
+
+The Dwarf's printed rule that Speed is not reduced by wearing heavy armor prevents this penalty when the deficient item is heavy armor. It does not waive Load/Burden, another movement penalty or a tower shield's separate STR minimum. If a table chooses V6's preserved optional encumbrance alternate, that alternate ignores the Armor Table Strength column; the active reviewed Load procedure is not that alternate.
+
+| Equipment | Don | Doff |
+|---|---|---|
+| Light armor | 1 minute | 1 minute |
+| Medium armor | 5 minutes | 1 minute |
+| Heavy armor | 10 minutes | 5 minutes |
+| Any shield | 1 Action | 1 Action |
+
+One actual assisting creature halves doff time only; a shield still takes at least one Action. Additional helpers do not repeatedly halve it.
+
+## Hands and focuses
+
+A buckler straps to one forearm. Its partially available hand can carry a small nonweapon object, but supplies no free S hand, loading hand, second-weapon attack, two-handed weapon support or active focus manipulation. An ordinary shield or tower shield occupies one hand. Soldier Shield Trained is a specific selected-feature exception for its repeating-crossbow/strapped-shield use, with that feature's actual reload requirements.
+
+A two-handed weapon requires both hands when attacking with it. Releasing one grip costs no Action; regripping is part of its next legal use. This does not free a hand already occupied by another object, restraint or incompatible anatomy.
+
+F requires an actual focus legal for the casting source. A hand holding only that focus may manipulate it and supply S for the same cast; the focus itself is not a conflicting object. A weapon, shield, second object, loading requirement or other hand restriction can make that hand unavailable. An item independently serving as both weapon and focus can use this rule only when an actual source authorizes that item as the caster's focus.
+
+A holy symbol may supply F while held, visibly worn or borne on a shield where that casting source permits holy symbols. A worn or shield-borne symbol does not supply a free S hand. V still requires actual audible speech, and neither a focus nor component pouch waives explicitly priced or consumed materials. The component pouch supplies its ordinary storage function; this guide does not give it a new universal F substitution.
+
+The following focus assignments are **new class integration** for actual legal class spells requiring F. They grant no spells or resource pools. Exact class features may override their own focus rules.
+
+| Casting class | Ordinary focus |
+|---|---|
+| Bard | One actual instrument |
+| Cleric, Paladin | Holy symbol |
+| Druid, Shaman, Ranger | Druidic focus |
+| Mage, Wizard | Arcane focus |
+| Mirrorsage | Steel mirror |
+| Oracle | Divination token |
+| Crimson Agent, Dragoon, Monk, Thief, Tinker | Token for that class |
+
+Soldier and Warrior gain no spellcasting from focus ownership. An ancestry casting token remains ancestry-grant scoped and cannot substitute for a class focus. An explicitly granted ordinary background arcane focus or holy symbol retains its normal equipment function for a casting source already entitled to that focus category.
+
+## Weapons and ammunition
+
+Use the source table's exact weapon damage, type, properties, cost and weight. Proficiency follows the reviewed [character foundation](CHARACTER_FOUNDATION_TABLES.md), not the source introduction's general statement about most people using simple weapons. A normal proficient attack adds PB once. Normal ability damage follows the attack's actual rules; an item procedure saying no ability damage overrides it for that item.
+
+- **Finesse:** choose STR or DEX for both attack and damage.
+- **Thrown:** a thrown melee weapon uses its ordinary melee ability; Finesse can still supply its choice.
+- **Heavy:** Small creatures attack with disadvantage. Extending this to Tiny is a new completion.
+- **Light:** enables only the actual reviewed Two-Weapon Fighting procedure, not an independent free attack.
+- **Reach:** add 5 feet for that weapon's attacks and its actual opportunity-attack reach.
+- **Two-handed:** both hands are required for an attack, subject to an explicit feature exception.
+- **Versatile:** use the printed alternate damage for an actual two-handed melee attack.
+- **Ammunition:** spend one real compatible ammunition unit per attack. Drawing it is part of the attack; non-repeating loading needs an available hand. Using an ammunition weapon in melee is improvised; a sling must be loaded to deal its improvised damage.
+- **Loading:** only one ammunition attack per Action, Bonus Action or Reaction, regardless of Extra Attack. This is not one attack per entire turn or round.
+- **Range:** the first number is normal range, the second maximum. Beyond normal range gives disadvantage; beyond maximum is illegal. Ordinary close-range ranged-attack rules still apply.
+
+After an encounter, one uninterrupted minute searching accessible locations recovers `floor(eligible ordinary ammunition expended in that encounter / 2)`. Resolve recovery once for that encounter's expended ammunition; another search cannot recover another half. Only physically accessible, intact ordinary ammunition qualifies. Destroyed, consumed, irretrievable or specifically nonrecoverable ammunition does not. Recovered units remain the same physical items and cannot exist in two inventories. Nets and ordinary thrown weapons do not use this half-ammunition rule.
+
+**Ammunition retail units.** A source ammunition bundle remains the ordinary market purchase unit. `unitPriceCp` and `unitWeightLb` are derived inventory/accounting values and do not by themselves guarantee that a merchant sells fractional bundles. If an actual buyer or seller agrees to split a bundle, price the agreed quantity proportionally and apply transaction rounding once to the final transaction. Starting-kit references record one retail bundle and its twenty `grantedUnits`, not twenty bundles.
+
+**Lance.** Attacks against a target within 5 feet have disadvantage. It requires two hands unless mounted; the item supplies no mount or general mounted-combat procedure.
+
+**Net.** A hit restrains a Large-or-smaller creature unless formless; it deals no damage. Its range remains 5/15 feet. The target or a helper within reach can spend an Action on DC 10 STR to free it. Dealing 5 slashing damage to the net against AC 10 destroys it and frees the victim without hurting that victim. When using a net with an Action, Bonus Action or Reaction, make only one attack for that Action/BA/Reaction regardless of normal attack count. Use the reviewed Restrained condition. A missed net remains an actual object at the target location if physically accessible, not an automatically returned weapon.
+
+**Improvised weapon.** Before rolling, the Director may agree that an actual similar object uses an existing weapon's full profile and relevant proficiency. Otherwise it deals 1d4 appropriate physical damage, with no PB absent actual improvised-weapon proficiency. Throwing an object without Thrown, or using a ranged weapon in melee, uses the improvised rule; improvised throwing range is 20/60 feet.
+
+**Silvering.** Silver one weapon or ten ammunition units for 100 gp. This supplies actual silver eligibility only, with no automatic magic tag, attack bonus or damage bonus.
+
+### New class equipment profiles
+
+| Item | Price | Weight | Profile |
+|---|---:|---:|---|
+| Repeating heavy crossbow | 100 gp | 20 lb | Martial ranged; 1d10 piercing; 80/320 feet; Heavy, Two-handed, Ammunition, Repeating 5 |
+| Kama | 2 gp | 2 lb | Simple melee; 1d4 slashing; Light |
+| Nunchaku | 2 gp | 2 lb | Simple melee; 1d4 bludgeoning; Light |
+
+**Repeating 5:** an internal magazine holds five bolts, replaces Loading, and spends one bolt per attack. An Action with an appropriate free loading hand loads up to five actually carried bolts. No spare-magazine multiplication, free refill or sixth shot. An exact feature such as Tactical Reload can change the action cost without creating ammunition. The ordinary heavy crossbow remains its separate source profile: 50 gp, 18 lb, 1d10 piercing, 100/400 feet and Loading.
+
+The new **Sidearm** tag applies only to dagger, club, light hammer, handaxe and hand crossbow. Soldier's actual sidearm proficiency can therefore use those profiles; the tag supplies no new statistics or general Martial proficiency. Monk/Shaman staff maps to quarterstaff. Symbolic or relic weapons need an actual existing profile. Kama and nunchaku are not automatically Finesse.
+
+## Equipment grade
+
+An explicit V6 equipment grade changes the item's statistics and mundane baseline price as below. Structural damage does not automatically change grade. Ordinary grade does not create magical eligibility. Only one equipment grade applies.
+
+| Grade | Worn armor | Weapon | Baseline price |
+|---|---|---|---:|
+| Crude | −1 AC; half normal structural HP, rounded down, minimum 1 | −1 attack; natural-1 break check | ×0.5, new price completion |
+| Standard | Printed profile | Printed profile | ×1 |
+| Fine | +1 AC | +1 attack | ×3 |
+| Superior | +2 AC; 80% ordinary weight | +2 attack; one extra single base weapon die on a critical | ×10 |
+| Exceptional | +3 AC; 70% ordinary weight | +3 attack; two extra single base weapon dice on a critical | ×25 |
+
+Armor grade applies to worn suits, not shield AC. A future explicit crafted output may define its own shield improvements. Weapons gain no generic flat damage bonus. On a critical, double the ordinary damage dice, then add the quality dice once; a greatsword's extra quality die is one d6, not its entire 2d6 profile. A Crude weapon's natural-1 attack rolls d100: 5 or less sets structural HP to zero and breaks it. Its material remains recoverable.
+
+Exceptional's source “minor special property” provides no additional effect until an exact property is authored. No free random enchantment is implied. Repair preserves the surviving item's recorded grade unless an exact procedure changes it.
+
+Keep three distinct records:
+
+| Record | What it affects |
+|---|---|
+| V6 equipment grade | The above combat statistics and mundane baseline price |
+| Crafting outcome such as Exceptional or Masterwork | That recipe's actual yield, charges, catalyst or result procedure |
+| Core artifact-market Quality | One factor inside the actual artifact valuation formula |
+
+A successful craft does not automatically acquire a V6 grade. A recipe must explicitly specify its resulting equipment grade. Forge Dwarf's retained “exceptional quality” label remains nonnumeric until the crafting integration defines its actual result interaction. Do not multiply all three systems merely because they use similar words.
+
+## Carrying and containers
+
+Use the reviewed [body and equipment guide](BODY_EQUIPMENT_PLAYTEST.md) for actual pounds, Load, size, casualty transport and melded equipment. Keep known physical mass distinct from Load and Extraction Class. Known-weight-only items use pounds divided by ten as provisional Load. Every item's weight and Load count once, including containers and contents. An inclusive gross value covers only the contents it names; it does not erase unrelated quantities or supplies.
+
+**New small-weight completion.** A genuinely small physical source unit lacking weight uses 0.02 lb, except fluid vials, full antitoxin/perfume/basic-poison vials, candles, focus sprigs/totems, holy emblems, sealing wax and soap use 0.1 lb. An ink bottle also uses the small-fluid-container 0.1-lb profile. Narrative background small tokens use the separately stated 0.1-lb accessory profile. Record these as operational estimates, keeping the original source weight null. Larger unweighed items, mounts, vehicles and services do not use this fallback. Do not round away accumulated small items. Coins of every ordinary denomination use fifty coins per pound as a new game-weight convention.
+
+The following **new content capacities** exclude the empty container's own weight. Both weight and volume constraints apply where both are given, along with actual shape, closure and access.
+
+| Container | Maximum contents |
+|---|---|
+| Backpack or sack | 30 lb and 1 cubic foot |
+| Pouch | 6 lb and 0.2 cubic feet |
+| Component pouch | 6 lb and 0.2 cubic feet |
+| Chest | 300 lb and 12 cubic feet |
+| Barrel | 500 lb and 40 gallons |
+| Basket | 40 lb and 2 cubic feet |
+| Bucket | 3 gallons |
+| Glass bottle | 1.5 pints |
+| Flask | 1 pint |
+| Iron pot | 1 gallon |
+| Waterskin | 4 pints |
+
+Water uses 1 lb per pint for this game procedure. A waterskin is 1 lb empty plus up to 4 lb water, matching its source 5 lb full value. Do not add that water to the full value a second time. A printed full potion/vial weight includes contents; separately measured contents replace rather than duplicate its covered gross amount.
+
+The component pouch retains its own source weight of 2 lb and price of 25 gp. Its capacity is mundane storage only, with no universal F substitution, automatic materials, costly-component waiver or spell access.
+
+Preserve the source alchemical capacities: glass or crystal vial one dose; alchemist's bottle three doses; reinforced flask five doses; potion belt six actual vials; potion case twelve actual vials. The belt/case also has its printed empty weight. Extra capacity never creates doses, waives ingestion Actions or makes a multi-dose bottle into multiple physical bottles.
+
+The seven packs expand into exactly their source contents at their source package price, not a forced sum of individual retail prices. They have no extra phantom pack-body weight beyond the named backpack/chest. A pack price does not assert that every item is inside that container or waive its capacity: record legal internal storage, external attachment or another actual custody arrangement. An external rope is still carried weight. Rations provide daily food, not full abstract Supply; Goodberry, Jungle Survival and created water retain their reviewed limited food/water effects.
+
+## Fit and size
+
+Equipment must fit its intended user. Small/Medium and Tiny fitted ordinary items retain the listed price, mass and profile in this candidate; fit creates no unprinted benefit. **New Large sizing:** ordinary armor, shields and weapons use twice the baseline price, twice the weight and twice generic structural HP, with the same AC, damage, reach and properties unless an exact source says otherwise.
+
+A fixed creation package includes the necessary fitting without an added creation charge. Its sized baseline matters for replacement, resale and repair. On the wealth route, buy the fitted item at its actual sized price. Powerful Build changes only its expressly permitted carrying calculations, not item size or weapon damage. It does not resize equipment on transformation; the reviewed body/equipment rules govern that transition.
+
+## Object damage and Sunder
+
+These are **new mundane object procedures** completing the Core Sunder interface. A target must be one actual separately tracked object or explicitly modeled separable component. Naming an armor strap, pin, lace, hinge or seam does not create a cheaper independent target. Construct joints remain subject to the creature's actual stat block.
+
+Sunder uses an actual legal weapon attack against one perceived reachable object/component, consuming one attack when taking the Attack Action. It grants no extra attack or free damage to a wearer. The attacker cannot target a hidden component through a creature or solid obstruction. Against worn/held gear, target AC is the higher of the material AC and wearer's current AC. Unattended gear uses material AC. Ordinary attack eligibility and printed object-target exclusions still apply.
+
+Worn/carried inventory is never damaged merely because its creature is hit. An attack, spell or hazard damages equipment only if its actual rule expressly targets/includes objects, structures, carried gear or that item. Sunder never also damages the wearer unless another source expressly says so.
+
+| Load-bearing material | AC |
+|---|---:|
+| Cloth, paper, rope | 11 |
+| Glass, crystal | 13 |
+| Wood, leather | 15 |
+| Stone | 17 |
+| Iron, steel | 19 |
+
+For a mixed object, establish its dominant load-bearing material before damage. Do not retroactively select a material after the attack roll.
+
+| Mundane object | Maximum structural HP |
+|---|---:|
+| Tiny vial or letter | 1 |
+| Tool, weapon or focus | 5 |
+| Ordinary shield | 10 |
+| Tower shield | 15 |
+| Light armor | 10 |
+| Medium armor | 15 |
+| Heavy armor | 20 |
+| Ordinary chest or door | 20 |
+| Cart | 30 |
+| Targeted rope segment | 5 |
+| Targeted chain segment | 10 |
+
+Large-sized wearable/item generic HP doubles; Crude armor's half-HP rule then applies. Specific source/card durability wins, including a net's AC 10/5 slashing destruction rule and Tinker gnome devices' AC 5/HP 1. The ordinary buckler is a shield using 10 generic HP. Objects outside a listed or genuinely comparable category need an actual assigned profile before targeted durability resolution; no automatic structure or artifact certification is implied.
+
+Objects are immune to poison and psychic damage unless an exact rule says otherwise. Establish physical damage compatibility before rolling: a sword cannot chop a liquid. Do not invent retroactive resistances. Use ordinary attack damage and applicable weapon properties; creature-only conditions and resource triggers do not become object-eligible.
+
+At zero structural HP, the object is **Broken** and loses usable AC, weapon, focus, tool or other functional benefits. It still exists, occupies its hand/slot/container and retains mass until dropped, removed or repaired. Broken armor does not disappear. No negative HP, duplicated loot, automatic explosion, passive regeneration or repair from ordinary rest. Magic items/artifacts need their own durability; no mundane default is assigned to unresolved magical gear. True Polymorph's independently excluded-object rules still apply even when an object has HP.
+
+A Broken item grants none of its positive usable benefits, but remains physically worn, held or strapped until removed. It continues to occupy its hand/slot and contribute weight/Load, and retains physical drawbacks from still wearing or carrying it: applicable don/doff requirements, armor Stealth disadvantage, STR-minimum movement penalty and nonproficiency consequences. A Broken shield grants no AC bonus but still occupies its actual hand/forearm until doffed. A specific source may state otherwise.
+
+## Repair
+
+**Self-repair — new procedure.** Use a relevant trained toolkit and workable materials. Materials cost 25% of the item's current mundane equipment-grade baseline purchase price before temporary market/standing adjustments. Include its actual size. Superior uses Standard price ×10, then 25%; Crude uses ×0.5. An item without an equipment grade uses its ordinary listed baseline.
+
+Spend `max(1 hour, maximum structural HP / 10 hours)` active work and make the appropriate DC 10 tool task check. Success restores structural HP to maximum. Failure consumes the time and materials; another attempt requires fresh payment. No unprinted extra effect arises from a task critical result. Repair at zero HP needs the recoverable main body. It cannot recreate consumed potions, expended ammunition, burnt pages or a missing item. Preserve recorded grade; magical/artifact reconstruction requires its own rule.
+
+**Core dungeon repair service.** Where an appropriate service is actually available, Tier I–III costs 10% and Tier IV–VI costs 15% of the item's applicable undamaged valuation immediately before structural-damage discounting. For an ordinary mundane item, use its legitimate current size and equipment-grade baseline value before damage; for an actual artifact or magic item, use its separately established applicable valuation. Do not apply a damaged-resale discount, buyer-standing sale fraction or transaction-sale penalty to the repair-price base. This percentage is the complete quoted repair service unless that service expressly lists additional costs. Do not automatically add the self-repair material price. The service cannot recreate a consumed item, missing main body, expended ammunition, burnt pages or an unresolved destroyed magical/artifact item. These source service prices do not establish full transport or Tier VI content readiness.
+
+## Purchase and sale
+
+Preserve the source exchange rates: 1 sp = 10 cp, 1 gp = 100 cp, 1 pp = 1,000 cp, and 1 Mithril Mark = 500 cp = 5 gp. Regional Embermark is 2 sp, Soulshard 1 gp and Tidesilver 1 sp where accepted; a Verdant Leaf has no universal GP price. Special soul-linked currency and its origin claims are outside this mundane integration.
+
+An actual available seller/buyer and a legitimate agreed transaction are required. No infinite catalog inventory, guaranteed buyback or universal acceptance. Source trade goods retain their actual units. Ordinary undamaged mundane equipment sells at the following fraction of its actual equipment-grade baseline price, including legitimate item sizing, to that buyer:
+
+| Qualitative standing | Sale fraction |
+|---|---:|
+| Honored | 75% |
+| Liked | 60% |
+| Neutral | 50% |
+| Disliked | 40% |
+| Hated | 25%, or refusal |
+
+Use the actual qualitative relationship to that buyer. This does not choose between the competing historical numeric reputation scales. Damaged equipment needs an explicit quoted valuation; no percentage creates a minimum sale. Gems, jewelry and art can sell at full assessed value only with an actual suitable buyer. Monster-used gear may have no saleable market under the source rule. Trade goods use the source barter context and actual deal; relabeling an assembled kit or quality cannot create a guaranteed arbitrage transaction.
+
+**New rounding:** convert the final transaction price to cp. A purchase price paid by the character rounds up to the nearest cp. Sale proceeds paid to the character round down to the nearest cp, minimum zero. Round only after all applicable modifiers, not at intermediate multiplication steps.
+
+Recipe material/component units retain their own explicit identities and costs until reconciled. A Crafting crystal vial priced at 2 gp is not silently rewritten to the Player catalog's 5 gp retail vial, or vice versa. Existing recipe totals remain intact.
+
+Core's actual artifact formula is `base function value × Gate tier multiplier × market Quality × provenance × demand × legality − actual stabilization, transport, tax and liability costs`. It wins conflicting historical artifact-sale formulas. It is not applied to an ordinary sword simply because recovered in the dungeon. This guide records that boundary without certifying unfinished artifact valuation, factions, tax, wages, demand, commissions or all crafting outputs.
+
+## Evidence and remaining review
+
+The [source evidence](../../../../docs/audit/2026-10-08/full-game/EQUIPMENT_SOURCE_EVIDENCE.json) preserves exact Player lines and Core paragraphs. The [crafting structural audit](../../../../docs/audit/2026-10-08/full-game/CRAFTING_COMPONENT_STRUCTURAL_AUDIT.json) confirms all 687 stored consumed-material value/weight calculations but does not approve their complete effects. The public recipe file exactly matches the intended 433 public source records; the 39 restricted and 215 Director entries remain segregated.
+
+All new procedures above are authored playtest decisions. Oil prices/damage, restraints, inexpensive consumables, equipment grades, large sizing, kit burden and repair economics need human balance/economy testing. Runtime inventory execution and companion parity remain separate. No whole-game completion, final flow approval or GitHub push is implied.
+
+===== END EQUIPMENT_ACQUISITION_PLAYTEST.md =====
+
+
+===== BEGIN BODY_EQUIPMENT_PLAYTEST.md =====
+Source: DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md
+SHA256 of original bytes: d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3
+
+# Bodies equipment and carrying
+
+**REVIEWED — authored tabletop body, equipment, carrying and continuous meld procedures.** New integration mechanics remain explicitly provisional; runtime implementation is pending. These procedures connect the [Druid form rules](FORM_TEMP_HP_PLAYTEST.md) and [transformation spells](TRANSFORMATION_SPELL_PLAYTEST.md). They apply to the same character, HP record and physical belongings throughout a change. They grant no additional forms, spell access, actions or resources. The approved books remain preserved.
+
+## Entering and changing forms
+
+Before paying for a voluntary change, choose a legal form and size, check its space at your current position, and identify any equipment that must be dropped. If the destination or required drops are illegal, the change does not begin and spends nothing. Otherwise pay the source's normal costs and resolve its actual entry effects once. A successful hostile or forced transformation cannot be prevented merely by excess gear: resolve it under its source rules, then reconcile excess equipment by keeping it external, dropping it or recording pending placement. Other source requirements still apply.
+
+Your Druid form uses your own HP, ability scores, saves, proficiency and conditions. It supplies only its printed anatomy and features. Speech does not imply hands: none of the 26 current Druid profiles grants ordinary hand-based equipment use. Of the 12 spell profiles, only Humanoid grants hands. Each profile retains its exact size and movement permissions.
+
+| Change | Equipment procedure |
+|---|---|
+| Root body to first Druid form | Record and meld the equipment physically worn, held or carried by your body, including carried containers and their contents. |
+| Druid form to another Druid form | Keep the same original melded equipment. End the former form's dependent effects and start the new form under its normal rules. Reconcile newly acquired external items with the new anatomy. |
+| A successful spell replaces a Druid or spell form | Close the former transformation and capture the legitimate resulting gear under the new spell's meld rules in one continuous change. There is no moment when you can use the returning equipment. |
+| Shapechange changes its current spell profile | Keep compatible external items. Drop incompatible external items; they do not join the original melded equipment. |
+| Suppression | Follow the spell's suppression procedure. It is not an ending or a fresh capture of equipment. Original melded gear stays inaccessible. |
+| Final reversion, expiry or forced ending | Return to root anatomy, end the source's dependent effects and reconcile surviving equipment as described below. |
+
+The continuing meld record across Druid-to-Druid changes is a **new provisional integration rule**. It prevents shifting from opening an equipment-use window between forms. A spell replacement retains the already-reviewed close-and-capture procedure.
+
+## What melds
+
+Record where each item was before the first change: worn in a particular slot, held in a particular hand, or carried in a particular container or on the body. Ownership alone is insufficient. A sword stored in a wagon stays in the wagon when its owner becomes a Hawk. A legitimately borrowed sword in your actual custody can meld and return normally; the lender remains its owner. Changing ownership metadata does not itself move an inaccessible physical item.
+
+A backpack and each of its contents remain distinct items. Count each item's own weight or Load once; a container does not erase its contents. Melded items remain in your custody but are inaccessible. You cannot withdraw or add contents, use components, consume supplies, fire ammunition or activate equipment through the meld.
+
+Melding never repairs damage, reloads a weapon, restores charges, replenishes supplies or creates a replacement item. Destruction, consumption and legitimate transfers remain real. Keep the current condition and quantity of each actual item.
+
+## Using equipment in a form
+
+| Item or effect | Rule |
+|---|---|
+| Original armor and shield | Melded and unusable. Exclude their worn or held AC benefits from the form's normal AC. |
+| Held weapon, tool, focus or material component | Requires actual access and the appropriate anatomy. A form without hands receives no general permission to use it. |
+| Effect requiring an item to be worn, held or equipped | Suspended while the item is melded. |
+| Effect requiring only possession or attunement | May continue only when its exact rule is independent of the lost anatomy and physical use. An unspecified magic bonus is not automatically operative. |
+| Newly acquired armor, harness, collar or container | Must fit the actual size and anatomy and have a legal way to remain attached or carried. Hands are required for held items, not automatically for every wearable item. |
+| Newly acquired external gear when the form changes | Remains external if compatible. Otherwise use the normal drop procedure. It does not silently join an existing meld record. |
+
+The possession-versus-use distinction and individual compatibility checks are **new provisional defaults**. A specific item or form can supply an explicit exception. Do not infer one from a creature's name, appearance or ability to speak. Item-specific compatibility across the full equipment catalog remains to be authored.
+
+## Returning equipment
+
+Resolve a final reversion in this order:
+
+1. Keep current external items that still exist and remain legally equipped or carried by the root body.
+2. Return each surviving melded item that remains in the character's legitimate custody to its recorded former slot or container, if available and legal.
+3. If an external item now occupies that slot, leave it there. Return the former item as carried inventory if there is a legal place and sufficient capacity.
+4. Drop an item that cannot be carried or equipped at the current position or the nearest legal adjacent item position.
+5. If no legal drop position exists, record that item's placement as pending. It continues to exist; it is not duplicated, destroyed or used to displace another creature.
+
+Current external equipment taking priority over a former slot is a **new provisional integration rule**. A returned sword may go into available carried storage instead of replacing a sword you actually acquired and equipped during the transformation. Both retain their current condition and ownership.
+
+Destroyed, consumed, physically transferred, lost or otherwise unavailable items never reappear. An item in another custodian's possession cannot return merely because you still claim ownership of it. Someone else's legal ownership does not prevent an intact borrowed item from returning to your continuing legitimate custody.
+
+## Placement and involuntary endings
+
+A transformation does not grant movement. A voluntary size change keeps the same spatial anchor and must fit before payment. Preserve the existing footprint on a same-size change when possible.
+
+A mandatory ending still occurs if the root anatomy does not fit. First try its normal space at the same position, then a legal squeeze under the [movement rules](COMBAT_ACTION_PLAYTEST.md). If neither fits, record a placement conflict. The **new provisional placement procedure** permits only a nearest legal adjacent placement in the same unobstructed region. It cannot pass through a wall, closed barrier or occupied space. Choose the minimum displacement that fits the whole body; among ties, preserve the greatest overlap with its previous footprint. If still tied, the Director uses a fixed neutral board order, not a tactical choice by the affected player. If no adjacent candidate fits, the conflict remains until the obstruction is removed or a legal relocation effect resolves it. Do not search farther afield.
+
+This mandatory normalization spends no movement and triggers no opportunity attack, charge distance, movement benefit or other movement rider. It changes no remaining movement allowance and grants no invented crushing damage. It does not permit a voluntary form change to bypass its preflight.
+
+Track actual height and terrain. Losing flight while unsupported starts ordinary falling from the current location; reversion never moves the creature directly to the ground. Ending a burrowing form underground does not move the creature to the surface. Master of Vermin's permission to pass through Tiny gaps changes clearance, not its printed size.
+
+Use the actual space of the expressed anatomy:
+
+| Size | Space | On a grid of 2.5-foot subcells |
+|---|---|---|
+| Tiny | 2.5 by 2.5 feet | 1 subcell |
+| Small | 5 by 5 feet | 2 by 2 subcells |
+| Medium | 5 by 5 feet | 2 by 2 subcells |
+| Large | 10 by 10 feet | 4 by 4 subcells |
+
+V6 explicitly supplies Tiny and Medium space. Small and Large complete this bounded table provisionally; the supplied V6 passage does not separately list them. Size category still matters even when two sizes occupy the same space. Squeezing changes clearance and its penalties; it does not change size, carrying capacity or weight. Exact Tiny occupancy requires subcells or equivalent measurement, not treating Tiny as Medium.
+
+## Body weight and conditions
+
+**New provisional rule:** a creature-form transformation preserves the body's existing base physical weight unless an exact rule changes it. Size alone does not change weight. A 180-pound character therefore remains 180 pounds as a Tiny Hawk or Large Bear. This is a magical transformation rule, not a claim about the weight of ordinary animals. It applies equally to the current 26 Druid and 12 creature-form spell profiles.
+
+Record base body weight separately from equipment and condition effects. Petrified multiplies current body weight by ten once; it does not rewrite the base weight or multiply repeatedly for multiple applications. Ending or changing a form does not cure that condition. Temporary Druid form ends under its existing Incapacitated rule, then Petrified continues to apply to the reverted body. An anatomy permitted to persist keeps its own base weight and the same condition overlay.
+
+True Polymorph object anatomy uses its actual documented output weight. Its output ceiling remains the lower of current effective input weight and earliest recorded origin weight. Include a current applicable weight-changing condition in the input, but never rebase the origin ceiling upward. Equipment, casualty Load and estimated pounds do not establish material available for a transformation. Creature-origin object anatomy has no independent sale, salvage or harvest value.
+
+For another creature, mount, floor or platform supporting you, count your effective body weight plus all actual equipment in your custody, including melded items, once. For your own inventory capacity, count what you carry, not your own body weight. Conditions change only the items or body their exact rules affect.
+
+## Carrying and Load
+
+Use pounds for actual weight and Load for inventory burden. Extraction Class describes cargo danger and attention. A casualty's Load describes the difficulty of transporting a body; it is not the body's weight. These quantities answer different questions and never convert automatically into each other.
+
+The following is a **new provisional reconciliation** of V6 physical handling with the staged Gameplay Loop inventory rules. It does not promote the historical Gameplay Loop file into the approved books. V6's optional encumbrance variant remains preserved as an alternative; do not add its penalties to this Load procedure.
+
+| Carrier size | Physical carry limit in pounds | Push, drag or lift limit in pounds | Inventory capacity in Load | Casualty Load for a body of this size |
+|---|---|---|---|---|
+| Tiny | Strength score × 7.5 | Strength score × 15 | Strength score ÷ 2 | 1.5 |
+| Small | Strength score × 15 | Strength score × 30 | Maximum of 0 and Strength score − 2 | 3 |
+| Medium | Strength score × 15 | Strength score × 30 | Strength score | 6 |
+| Large | Strength score × 30 | Strength score × 60 | Strength score × 2 | 12 |
+
+Use the character's current Strength score, not the modifier or an imported monster score. Tiny's Inventory capacity and casualty Load are new provisional additions. The pound limits come from V6; Small, Medium and Large Load values come from the Gameplay Loop. Larger unsupported transport sizes require their own completed rule before this table can handle them.
+
+Keep fractional Loads without rounding. An item with a printed Load uses that value. If it has only a known weight, its **provisional Load is pounds divided by ten**. A Load-only item may use ten pounds per Load as a clearly labeled estimate for ordinary hauling; this is insufficient for effects requiring documented physical mass.
+
+Count a container's own empty Load plus the contents' Loads, unless an explicitly inclusive Load already covers those exact contents. Handle pounds separately: sum the empty container weight and contents' weights, or use an explicitly inclusive gross weight for the contents it covers. An inclusive Load does not make a printed weight inclusive, or vice versa. Apply this rule through nested containers and meld budgets so every item counts exactly once in each quantity.
+
+With positive carried Load at or above half capacity and no greater than capacity, you are **Burdened**: reduce Speed by 10 feet and apply disadvantage to checks to climb, swim or move silently. An empty inventory is not Burdened, including at zero capacity. Above capacity, that inventory cannot be carried routinely; drop or transfer something, or use a legal alternative such as dragging or a vehicle. These threshold and zero-Load details are provisional clarifications.
+
+Apply actual physical limits when handling a known weight. Between physical carry capacity and twice that capacity, pushing or dragging uses the lower of otherwise-current Speed and 5 feet. A Speed of 0 stays 0; a Speed of 3 stays 3. Lifting does not independently permit movement: moving while supporting a weight must satisfy carrying, pushing, dragging or another exact rule. An anatomy restriction, such as Hawk's prohibition on carrying a Medium ally, still applies even if numbers would fit. Burden penalties do not create hands, harnesses, lift or access to melded gear.
+
+Transporting a creature must pass both checks: the carrier can physically handle the body's effective weight and associated equipment, and can accommodate the casualty Load plus the equipment's Load. Petrified multiplies the body weight by ten, not its casualty Load. Removing gear can reduce equipment weight and Load; it cannot reduce the body's weight or erase its condition.
+
+## Meld limits across repeated transformations
+
+**New provisional meld exception:** legally melded gear is excluded from both your transformed body's active Inventory Load and its own active pound-carrying limit. Record its full Load and weight separately while it remains inaccessible. New external equipment uses the expressed form's current capacities and still needs compatible anatomy and custody.
+
+A **continuous meld chain** begins when root anatomy first enters a transformation that melds gear. At that instant, record two fixed ceilings: the pre-transformation body's ordinary active Load capacity and its ordinary physical carrying capacity in pounds. Legally melded gear must fit both. Keep the actual total Load and pounds of the hidden gear, counting containers and contents once in each quantity.
+
+Druid-to-Druid changes, internal Shapechange switches, suppression, permanent True Polymorph and continuous replacement by another spell do not end the chain or increase its ceilings. Later changes to size or Strength neither increase nor retroactively shrink these historical ceilings. An existing item is not expelled merely to make room for a new one.
+
+A later spell replacement may capture an external item only if the whole item fits the remaining room under **both** ceilings. Do not partially meld an item unless its source defines a divisible cargo quantity. A new item that will not fit remains external if compatible with the destination and within its current carrying limits; otherwise drop it or, for a forced resolution without legal placement, record its placement as pending. Excess cargo never grants immunity to a hostile or forced transformation. Druid-to-Druid changes continue to preserve their existing meld and never recapture external cargo.
+
+For a voluntary change, declare and preflight the full item disposition before spending costs. A successful hostile or forced change resolves its mandatory custody consequences without deleting items or refunding its costs. This same overflow procedure applies at the first forced transformation if the target began with excess cargo; only gear within both starting ceilings can become hidden.
+
+When someone else carries the transformed character, count its casualty Load plus both its melded and external equipment Load. Count the effective physical body weight plus all that equipment for actual weight handling. Melding therefore provides no weightless cargo for another carrier.
+
+Only an actual final return to root anatomy, with the hidden equipment released and reconciled, ends the chain. Returned gear rejoins active inventory under the root body's **current** capacities. Resolve excess with the return-and-drop procedure; overload cannot prevent a mandatory reversion. A later new transformation can then establish a new pair of ceilings from its actual legal starting state.
+
+## Extraction Class and Secure Cargo
+
+Extraction Class is a danger and logistics rating, not a carrying allowance:
+
+| Class | Cargo |
+|---|---|
+| 0 | Ordinary trade goods |
+| 1 | Common monster parts or durable salvage |
+| 2 | Uncommon, fragile or regulated cargo |
+| 3 | Rare artifacts, volatile substances or living captives |
+| 4 | Very rare strategic cargo or dangerous curses |
+| 5 | Epic cargo likely to attract sovereign or faction intervention |
+| 6 | Legendary cargo requiring a dedicated extraction operation |
+
+Retain relevant Fragile, Volatile, Cursed, Living, Contraband, Perishable and Attention tags. A light object can carry a high Extraction Class, and a heavy ordinary crate can remain Class 0.
+
+**New provisional wording for Secure Cargo:** spend an Action on one legal attach, lift, transfer or protective operation involving one discrete cargo unit or bundle with an assigned Extraction Class. The unit must be physically handleable as declared; naming an entire convoy a bundle does not make it one operation. The action grants no extra capacity, hands, equipment, automatic success, invulnerability or reduction in Extraction Class. Apply actual restraints, harnesses, checks, hazards and source-specific handling requirements.
+
+## Examples
+
+**The remote sword.** A Druid wears armor, holds a staff and carries a pack containing two potions. A spare sword is in a wagon. The armor, staff, pack and both potions meld when the Druid changes. The sword remains in the wagon. Neither potion can be consumed from the melded pack.
+
+**A compatible harness.** A transformed creature acquires a harness made for its present anatomy. A later change checks the harness against the destination form. If it does not fit, the voluntary change requires a legal drop. The harness is neither erased nor added to the old melded equipment.
+
+**The crowded hand.** A spell Humanoid acquires and holds a new weapon. When the spell ends, root anatomy can keep that weapon if legal. The original melded weapon returns to an available legal carrying position, or is dropped if necessary. It does not replace or duplicate the new weapon.
+
+**The loaded Hawk.** A Strength 9 Druid becomes Tiny with 3 Load of legally melded gear. It stays inaccessible and uses neither of the Hawk's active carrying capacities. Tiny capacity is 4.5 Load and 67.5 pounds. An additional package of 3 Load and 30 pounds in a genuinely compatible external carrying arrangement fits both capacities, but exceeds half the Load capacity of 2.25 and makes the Druid Burdened. A rescuer carrying that Hawk counts 1.5 casualty Load plus all 6 Load of equipment, totaling 7.5 Load, and separately satisfies the full body and equipment weight.
+
+**The repeated replacement.** A Strength 9 Medium character starts a chain with 8 Load and 80 pounds of legal gear. The fixed ceilings are 9 Load and 135 pounds. The remaining hidden capacity is therefore 1 Load and 55 pounds. A later spell cannot hide a new 3-Load, 30-pound package even if the current form can carry it externally. A whole 0.5-Load, 50-pound item fits both remaining ceilings; a 0.5-Load, 60-pound item fails the pound limit. Changing form or casting again does not refresh either ceiling.
+
+**The stone casualty.** A Medium ally has a documented base weight of 180 pounds and becomes Petrified. The body now weighs 1,800 pounds but still contributes 6 casualty Load. A Strength 18 Medium rescuer can normally carry 270 pounds or push, drag or lift 540 pounds, so cannot move that body alone through these ordinary procedures, even with enough spare Load capacity. Additional gear is counted separately.
+
+## Source decisions and implementation status
+
+The [first body and equipment conference](../../../../docs/audit/2026-10-08/full-game/GPT_TEMPORAL_BODY_EQUIPMENT_CONFERENCE.md) supplies the equipment procedures. The [additional exact evidence](../../../../docs/audit/2026-10-08/full-game/CODEX_TEMPORAL_CARRYING_EVIDENCE.md) and [GPT's completed reconciliation](../../../../docs/audit/2026-10-08/full-game/GPT_TEMPORAL_CARRYING_RECONCILIATION.md) preserve the V6, Gameplay Loop and Core conflicts and their dispositions. The corrected candidate above replaces the first conference's full-cell Tiny footprint, factor-four mass proposal and automatic active Load from melded equipment. The manuscript review's chain budgets, pound exemption, borrowed-custody correction, separate inclusive quantities and neutral placement tie rule are applied here. [GPT confirmed this exact revised manuscript and its six examples](../../../../docs/audit/2026-10-08/full-game/GPT_BODY_FINAL_AND_ABJURATION_CONFERENCE.md); the [review manifest](BODY_EQUIPMENT_REVIEW_STATUS.json) records its scope.
+
+The current Druid helper does not yet update the shared body, equipment custody or geometry. The spell helper's coarse hands check does not implement the full compatibility procedure. The finite ground-plane temporal helper does not model elevation, burrowing or Tiny subcells. The authored rules and these implementation gaps are separate; none of them enables full Time Loop or closes the whole-game review.
+
+===== END BODY_EQUIPMENT_PLAYTEST.md =====
+
+
+===== BEGIN COMBAT_ACTION_PLAYTEST.md =====
+Source: DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+SHA256 of original bytes: f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6
+
+# Combat, actions and timing — provisional playtest integration
+
+**Status: REVIEWED / reference-VALIDATED within the supplied combat/action/timing/vision scope.** [GPT's disposition](../../../../docs/audit/2026-10-08/full-game/GPT_STRAIN_FIRST_REVIEW.md) confirms the corrected candidate. This does not close all combat, movement, encounter or condition work. Original books, class cards and earlier drafts are preserved. The NEW decisions below apply to this candidate only.
+
+Read alongside [core resolution and injury](CORE_RESOLUTION_PLAYTEST.md), [conditions](CONDITIONS_PLAYTEST.md), [custom riders](CUSTOM_CONDITION_BINDINGS.md), [spell integration](SPELL_INTEGRATION_RULES.md) and [shared class rules](CLASS_PLAYTEST_RULES.md). This document explicitly supersedes conflicting provisional clauses only where listed. A specific reviewed feature retains its printed costs, prerequisites and exceptions.
+
+## Source decisions
+
+The [exact packet](../../../../docs/audit/2026-10-08/full-game/COMBAT_ACTION_VISION_SOURCE_PACKET.json) contains 217 paragraphs from unchanged Core V2 and V6 books. Paragraph indices are zero-based all Word XML `w:p` descendants. [Source validation](COMBAT_SOURCE_VALIDATION.json) verifies quotations and whole-book hashes. The [first GPT proposal](../../../../docs/audit/2026-10-08/full-game/GPT_COMBAT_ACTION_TIMING_FIRST_REVIEW.md), [counterexamples](../../../../docs/audit/2026-10-08/full-game/CODEX_COMBAT_COUNTEREXAMPLES.md) and [revised decisions](../../../../docs/audit/2026-10-08/full-game/GPT_COMBAT_COUNTEREXAMPLE_REVIEW.md) preserve the conference.
+
+| Topic | Source / conflict | Candidate decision |
+|---|---|---|
+| Initiative, action list, encounter clock | Core 373–418 | Core controls; compatible V6 8066–8244 supplies detailed procedures. |
+| Reaction | Core/V6 summarize one per round; V6 and class integration refresh own turn | NEW explicit interpretation: one resource between regular own-turn starts; no global-round reset. |
+| Stances | Core 419–435; extra-turn ambiguity | Keep listed effects; NEW regular-turn selection and finite allowances. |
+| Movement | Core 436–458; V6 mode switching subtracts physical distance | NEW spent-cost ledger prevents terrain/standing refunds; multiple legal Dashes each add Speed. |
+| Maneuvers | Core 460–486 | Preserve sourced effects; NEW declaration, costs and endpoints fill missing execution details. |
+| Grapple/Shove | V6 opposed procedure vs older shared-class generic DC | Ordinary maneuvers use V6 opposed rolls. Printed card saves/DCs retain their scope. |
+| Prone and Invisible | Core/V6 conflicts already reviewed | Current condition reference controls, including Core ranged Prone disadvantage and Invisible position-reveal exception. |
+| Round duration / simultaneous events | Sources do not give complete ordering | NEW preserved virtual markers and explicit start/end sequence below. |
+| Ready | V6 casts and holds spell; generic Action or movement | Preserve that procedure; NEW one pending state and preparation/release details. |
+| Hide/Search | Core lists actions; V6 unseen attacks | NEW passive DC and observer-specific Hidden procedure using Core task degrees. |
+| Diagonals / terrain composition | 5-ft tile convention; missing full composition | NEW equal orthogonal/diagonal metric and additive movement costs. |
+| Periodic and falling clocks | Existing reviewed overlays | Remain authoritative in their stated scope; no extra-turn tick or duplicated fall step. |
+| Equipment, cargo and Sunder | Core delegates actual object/cargo systems | No invented durability, capacity or automatic cargo protection. These dependencies remain open. |
+
+## Encounter and action resources
+
+Establish terrain, light, hazards, objectives, exits and cargo; determine awareness; roll `d20 + DEX modifier + legal bonuses`. Highest first. Players choose player/player ties; the Director resolves ties involving NPCs. Keep the resulting ordered slots for the encounter. A round represents approximately six seconds. A **regular turn** is a creature's normal initiative slot even if it cannot act. An extra turn is distinct.
+
+A turn normally permits movement, one Action, a Bonus Action when an actual rule grants a use, and one ordinary free object interaction. A second ordinary interaction or an Action-time object activation uses an Action. Brief communication is not an extra Action. Conditions and specific features may restrict these permissions.
+
+The shared limit is one **extra full Action per creature per numbered round**. Such an Action cannot grant another extra Action, Bonus Action or Reaction. This cap is independent of Reaction timing. Extra turns do not by themselves refresh Reactions, recharge, periodic ticks, recovery ticks or the regular-turn allowances defined here.
+
+**Reaction interpretation.** Begin an encounter with one available Reaction unless surprised or otherwise prohibited. Refresh at each regular own-turn start; never at the numbered round boundary or an extra turn. A late-initiative creature can therefore react before its first turn, refresh, and react again in the same numbered round. A legal trigger, available resource and all feature prerequisites are still required.
+
+**Explicit additional Reactions.** A reviewed card can grant a separate limited use without refreshing the ordinary resource. Warrior Mind Shock supplies its stated once-per-duration non-attack Reaction; spending one resource does not consume/reset the other. Surprise, Incapacitated and Focused still restrict both. It grants no Counterspell knowledge or waived costs. Extra turns refresh neither. Per-dose reapplication/stacking and other specific grants remain part of the class semantic pass.
+
+**Surprise — V6 plus NEW Bonus Action clarification.** On a surprised creature's first regular turn it cannot voluntarily move or take an Action or Bonus Action. It cannot react until that turn ends. Its slot, durations, passive effects, concentration, periodic effects and recharge still occur. Surprise alone is not Incapacitated or Unconscious. Brief communication and an otherwise legal simple free interaction remain possible.
+
+**Entry — NEW.** Standard end-round reinforcements roll/receive initiative and first act next round. An explicit midround entrant acts this round only if its complete ordered slot is still upcoming; entry during that exact slot counts as already passed. It has its initial Reaction unless prohibited. A summon-specific timing rule overrides this generic entry procedure.
+
+After the final slot, resolve Core's end-round hazards, reinforcements, morale, objectives and boss phases. Conclude the scene with surrender, capture, pursuit, harvesting access and noise consequences under their own rules; winning initiative does not resolve those automatically.
+
+## Time and event ordering — NEW
+
+For a duration created in initiative, record the relevant original regular start/end marker. Existing effects keep that **virtual marker**, repeating every six seconds if the creature leaves or changes initiative. Reordering, rerolling, extra turns, death/removal or leaving/reentering initiative never restart an existing duration. New effects use the current schedule. Source death still ends concentration, a source-dependent aura/tether or an effect explicitly ending on death.
+
+- A bare hostile target-bound **N rounds** ends at the Nth future regular target-end marker. An in-progress target turn's current end does not count.
+- A bare self/source buff, ally-targeted buff or source-controlled aura **N rounds** ends at the Nth future source-start marker. Explicit target-turn, pulse or absolute timing overrides this default. Activation during source turn 1 for three rounds ends at source turn 4's start.
+- **Next turn** means the next future regular turn of the named creature, not the current turn's still-upcoming end. An unqualified next turn refers to source/user under the existing shared rule. Explicit “this turn” can include the current turn.
+- An outside-initiative bare N-round effect instead gets an absolute application-time + N×6 seconds deadline. Entering initiative preserves that deadline.
+- Explicit periodic profiles retain their registered clocks and tick counts. Never create a second timer merely because a generic duration rule also exists.
+
+The [exact GPT review](../../../../docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md) confirms ally-buff source clocks and excluding the current turn for explicit next-turn endpoints. The helper excludes a specific current-end marker only if that marker would otherwise be selected: application during a turn at time1 with end3 excludes3 and selects9; application at/after3 also selects9, without erroneously skipping again to15.
+
+At a regular turn's **start**, resolve in this order:
+
+1. Expire start-ending effects and apply immediate state changes from those expirations.
+2. Refresh Reaction; tick regular-start recharge/non-action clocks.
+3. Resolve already-due absolute state recovery if now legal, including a previously blocked Stable recovery deadline.
+4. If still alive, dying and at 0 HP with death saves, make that turn's death save.
+5. Resolve other start effects and periodic events in application order.
+6. Begin voluntary turn decisions.
+
+At **end**, resolve triggered effects, due damage, saves and maintenance before end-ending effects expire; then the slot finishes. No extra turn creates another regular marker. The caller must not reuse a resolved marker.
+
+For simultaneous effects, earlier application timestamp precedes later. For simultaneous components of one source, its printed internal order controls; otherwise use stable application sequence, with source/mechanical ID as a final tie-break. Record that sequence when creating the effects. Beneficial/harmful labels do not change priority. Periodic family arbitration happens once per family/marker before its damage, retaining the family registry's consumed loser ticks.
+
+Examples: dying at 0 rolls its death save before ordinary start-turn healing; a fatal death save is not undone by ordinary healing. Stable at 0 skips the save, then start-turn damage can break Stable. A natural 20 can restore 1 HP before a due Bleed drops it to 0 as a new drop event. If Decay expires while a Stable recovery deadline is already due, the old deadline resolves once without rerolling recovery time.
+
+## Standard Actions
+
+| Action | Procedure |
+|---|---|
+| Attack | Make the attacks legally granted by class and weapon. Replacing one attack does not replace the entire Action unless specified. |
+| Cast | Use an Action-time spell or Resonance technique; all known/prepared, cost, component and target requirements apply. |
+| Dash | Add one current Speed to each mode's turn cap; see movement ledger. Speed 0 grants none. A second legally paid Dash adds another Speed. |
+| Disengage | Voluntary movement does not provoke opportunity attacks for the rest of that turn. |
+| Dodge | Until next regular start, attacks from attackers you can see have disadvantage; your DEX saves have advantage. Benefit fails while Incapacitated or Speed 0. |
+| Guard | +2 AC against the first attack against you before next regular start; consumed on that attack hit or miss. Guard state and Interpose permission remain until expiry even after the +2 is spent. |
+| Aim | Action; no prior voluntary movement this turn, and no subsequent voluntary movement that turn. +2 to one ranged/spell attack before turn end. Forced movement does not cancel it. It grants no attack; a legal Bonus Action/extra Action/express attack must supply one. |
+| Help | Advantage on a relevant ally check before next regular start, or assist an attack against a foe within 5 ft: the helped ally's first attack before that deadline has advantage. Assistance must be physically possible. |
+| Hide / Search | Use the observer-specific procedures below. |
+| Ready | Prepare an Action or movement; release uses Reaction as detailed below. |
+| Use Object | Pay for the second ordinary interaction or an object's required Action activation. No extra hands/capacity are granted. |
+| Improvise | Director declares ability, applicable proficiency, DC/opposed method and intended consequence before rolling. Success does not create unannounced conditions/actions. |
+
+**Brace — NEW.** Action, choose one mode until next regular start. **Intercept:** choose a breach/doorway edge or current melee reach; when a hostile creature charges/leaps/breaches into it and enters legal reach, spend Reaction for one legal melee weapon attack after entry and before later movement/actions. **Hold Ground:** spend Reaction on the first applicable discrete push/pull/shove/knockback to reduce displacement 5 ft, minimum 0. It does not reduce damage, prevent independent Prone, stop gravity/fall steps, currents, conveyors, collapsing ground or teleportation, or grant support/hover. One Brace supplies one opportunity, not an extra Reaction.
+
+**Rally — NEW.** Action; choose one ally within 30 ft able to perceive the rally and one active source-qualified Frightened record. CHA check at that record's source DC, otherwise 10; Success/Critical Success ends only that record. A later reviewed morale rule can supply a separate specific interaction. No automatic temporary HP, loyalty, belief or advantage.
+
+**Withdraw.** Action; separate half-current-Speed movement budget, normal terrain costs, no opportunity attacks from that movement and +2 AC only while that movement resolves. Speed 0 grants none. Moving zero grants no lingering +2. Ordinary movement before/after remains separate. The separate budget is NEW interpretation of Core 480.
+
+**Secure Cargo.** Core 482 preserves the wording “up to one Extraction Load class.” The subsequently reviewed [body and carrying guide](BODY_EQUIPMENT_PLAYTEST.md) supplies the provisional interpretation: spend an Action on one legal attach, lift, transfer or protective operation involving one actual cargo unit or physically constituted bundle with an assigned Extraction Class. Load measures burden; Extraction Class measures danger and logistics. Apply actual capacity, custody, hands, harnesses, checks and durability. The Action grants no extra capacity, equipment, automatic success, invulnerability or reduction in Extraction Class. Full equipment and extraction catalogs remain open.
+
+## Ready
+
+Spend an Action to declare a perceivable trigger and one legal Action-time action or movement. It expires next regular own-turn start. **NEW:** only one pending Ready per creature; replacing it loses the prior setup and any paid held-spell costs. No Bonus Action/Reaction ability, long ritual or multi-minute activity can be prepared by generic Ready.
+
+The trigger happens first, then the readied response immediately follows before later events, unless a specific effect explicitly interrupts. On release spend the normal Reaction and recheck target, range, sight/perception, line of effect, ammunition and other prerequisites. An invalid or declined occurrence spends no release resource; the Ready can wait for another valid occurrence before expiry. This does not undo setup costs. Once released, it is consumed.
+
+For ordinary nonspell actions, feature/ammunition costs are paid on release unless text charges setup. A readied **Attack Action** gets its legally available ordinary attack count; a feature limited to your own turn does not thereby work off-turn. Core Overwatch is explicitly one ranged attack, not that full Attack Action and not Soldier's distinct engine.
+
+A readied spell is actually **cast at preparation**: choose spell/mode, verify legality, pay RP/material/other costs, provide components, resolve Dissonance/Refrain and cast-trigger effects once. Counterspell/cast-interruption opportunity occurs then, not again at release. Every held spell requires concentration, even ordinarily non-concentration spells; incompatible prior concentration ends. Lost concentration loses the held spell and costs. NEW: select the legal target/area point at release and recheck legality without repaying. At release the hold continues as ordinary spell concentration if required, otherwise ends after resolution. Expired/replaced/countered held spells do not refund paid costs.
+
+Ready movement grants a separate current-Speed budget on release, pays terrain costs and can provoke ordinary opportunity attacks. It grants no extra Action, Bonus Action or interaction.
+
+Focused stance's Reaction restriction also blocks an ordinary Ready release; Ready does not create a Counterspell exception. Holding a spell does not waive any current Reaction prohibition.
+
+**Spell-effect duration begins at release.** Its normal duration is anchored when the effect manifests, while Ready expiry and held concentration already run from preparation. A source explicitly tying a particular consequence to casting/preparation retains that consequence's stated clock. No casting cost, Refrain, Dissonance or cast trigger occurs a second time merely from release.
+
+## Stances
+
+Choose one stance during a **regular** own turn before the first event that would use any stance benefit/restriction: attack, spell, relevant check/save or movement. If none occurs, choose before turn end. No retroactive selection. It lasts until next regular start. NEW: extra turns preserve the stance and spent allowances; they cannot choose/replenish it.
+
+| Stance | Effect |
+|---|---|
+| Aggressive | +2 damage once per qualifying weapon attack's damage packet; −2 AC. Not periodic or copied damage. |
+| Guarded | +1 AC, advantage on explicit roll/contest resisting Shove, Speed −5 (minimum 0). Its +1 can coexist with Guard's first-attack +2, giving +3 then +1. This combination is explicitly allowed here. |
+| Mobile | First 5 ft of actual voluntary movement does not provoke; no free movement is granted. Your opportunity attacks reduce each base weapon die one step: d12→d10→d8→d6→d4 (minimum d4). Rider dice unchanged. Die sequence is NEW. |
+| Focused | Choose +1 save DC for one spell OR +1 to one attack roll from one spell. After use, no-Reaction-except-Counterspell restriction remains through expiry. This grants no Counterspell knowledge, free cost or extra Reaction. |
+| Carrying | Choose one actual currently applicable cargo penalty to ignore; choice fixed through expiry. It does not increase capacity or erase all load limits. DEX saves have disadvantage. |
+
+## Maneuvers and ordinary attacks
+
+All opposed checks use Core total comparison: higher wins, exact tie preserves state. No natural-20 automatic victory or hidden task-degree effect on an opposed tie. A printed save-based class maneuver keeps its own method.
+
+| Maneuver | Execution |
+|---|---|
+| Grapple | Replace one Attack Action attack; reach and target ≤one size larger. STR Athletics vs defender STR Athletics/DEX Acrobatics. Escape Action uses same opposed contest. NEW one free usable grasping hand/appendage per target; release freely on own turn. Ends if required reach breaks or grappler becomes Incapacitated. No concentration required. Dragging halves Speed unless target ≥two sizes smaller. Magical/card exceptions remain source-specific. |
+| Shove | Replace one attack; same reach/size/contest limits; success pushes 5 ft away or knocks Prone. |
+| Trip | Replace one melee attack, Athletics vs Athletics/Acrobatics, success Prone. NEW same one-size-larger cap. |
+| Disarm | Replace one attack, Athletics or weapon check vs Athletics/Acrobatics. Item must be held and reachable. Attacker chooses legal adjacent unoccupied drop space, otherwise target's own space. Explicit non-droppable bonds prevent it; magic/curse alone does not. No severed attunement/ownership/curse. |
+| Feint | Bonus Action Deception vs Insight; success advantage on next melee attack this turn only. |
+| Sunder | Attack an object/shield/armor component/construct joint using its actual durability system rather than creature HP. Unspecified durability remains an equipment dependency. |
+| Break Formation | Special Shove replacing one attack, same reach/size contest with attacker disadvantage. Success pushes 10 ft; snapshot target's adjacent allies before push and remove their Guard Action benefits. Does not remove Guarded stance or target's own Guard. |
+| Overwatch | Ready one ranged attack against movement in a named lane. Reaction and ammunition paid at release. Distinct from Soldier's class engine. |
+
+**Pin and Silence the Caster — NEW tradeoff.** Declare before rolling and take **−2 to that attack roll**. Each creature has one Pin token and one Silence the Caster token between starts of its regular turns. An unused token may be spent on any otherwise legal qualifying attack, including off-turn, extra-turn or readied attacks. A legal declaration followed by an attack roll consumes the token even on a miss; an illegal declaration rejected before rolling consumes nothing. Tokens refresh only at regular own-turn start, never on an extra turn or numbered-round boundary. One attack cannot combine another optional tactical maneuver. These provisional numbers require table playtesting.
+
+Pin uses a ranged weapon attack. On hit deal ordinary damage and apply Speed −10 (floor 0), DC `8 + PB + attack ability modifier`. Ordinary Pins do not stack the penalty. At target's regular start, one optional STR Athletics task check against the highest active ordinary Pin DC ends all ordinary Pins on Success/Critical Success. Alternatively one Action removes all automatically. Source-specific card Pins do not silently acquire this generic definition or removal scope.
+
+Silence the Caster uses a melee attack. On hit prevent verbal-component Reactions until target's next regular start. If concentrating, make exactly one CON concentration save at `max(10, floor(post-mitigation damage/2))`, including DC10 when damage is zero. This fulfills, rather than duplicates, the normal damage concentration check. It is not Core Silenced: speech and Action-time verbal casting remain possible.
+
+**Interpose.** While Guarding, after an adjacent ally becomes an attack target but before its roll, spend Reaction and become target if legal for that attack (range/type/line/cover). NEW may move **up to** 5 ft using a separate terrain-paying budget, including zero if already legally positioned. Speed0 permits the zero-movement case only. It redirects one attack without cancelling or duplicating it. Guard's unspent +2 applies if this is the first attack against you. Voluntary movement has ordinary opportunity-attack consequences.
+
+**Press.** On a melee hit during your regular turn, arm one target until next regular start. While unconsumed, another qualifying hit during that turn may replace it. If the target voluntarily retreats from an adjacent space, follow up to 5 ft into the vacated space using a separate terrain-paying budget; no Action/BA/Reaction. It can provoke ordinary opportunity attacks. No following teleport/forced movement. Once used, cannot rearm before next regular turn, including during an extra turn. Speed0 prevents movement.
+
+**Opportunity attack.** Spend Reaction for one melee attack against a seen hostile creature voluntarily leaving reach, immediately **before** exit. Forced movement/teleport do not trigger; Disengage suppresses it for its stated turn. Specific reviewed triggers may override these conditions.
+
+**Two-weapon fighting.** After taking Attack and attacking with a Light melee weapon in one hand, spend Bonus Action for one attack with a different Light melee weapon in the other hand. Do not add a positive ability modifier to that attack's damage; include a negative modifier. This grants neither another Bonus Action nor a class feature.
+
+## Movement and geometry
+
+Track **spent movement cost**, not distance, for ordinary turn movement. Mode cap = `(1 + number of legal Dash actions this turn) × current Speed for that mode`; remaining = max(0, cap − spent cost). Switching modes never refunds cost. Recalculate cap on Speed changes, preserving spent cost. Stand from Prone costs floor(half current Speed) and requires nonzero Speed and enough budget. Dropping Prone costs no movement.
+
+For each foot traveled, normal/difficult/severe terrain costs 1/2/3; use strongest terrain only. Add +1 for crawling and +1 for squeezing. Crawl in difficult =3:1; crawl+squeeze in difficult =4:1. A nonhostile occupied space counts as difficult terrain. Enter a hostile creature's space only with ≥two-size difference or an express feature; never willingly end in an occupied space. Squeeze through a space one size smaller, with own attack/DEX-save disadvantage and attacks-against advantage.
+
+Walk10 through difficult spends20; switch to Fly30 leaves10. Stand with Speed30 spends15; switching to Fly30 leaves15. Two legal Dashes at Speed30 give cap90; prior expenditure still counts. Interpose/Press grant5 budget: they cannot enter a difficult 5-ft tile costing10. Their separate budgets never refill ordinary movement. Ready movement uses Speed at release; Withdraw uses half current Speed. All voluntary movement requires nonzero relevant Speed.
+
+Forced movement does not use these ledgers or provoke ordinary opportunity attacks, cannot place creatures in solid matter, and stops at obstacles. Teleport does not traverse intervening terrain or spend Speed unless printed; it requires a legal destination. Speed0 alone does not block forced movement or teleport. Flight with Prone/Speed0/lost support causes Falling unless Hover or an explicit magical support exception applies; use the existing fixed Fall Marker procedure. Reaching support ends Falling.
+
+NEW grid metric: each orthogonal or diagonal neighboring tile is 5 ft; use the same metric for ordinary ranges/areas. No diagonal cut through a corner when both adjacent orthogonal sides are completely blocked. Exact templates, 3D geometry, mounts, chases, jumping, climbing/swimming procedures and currents need further source review.
+
+## Cover, sight, Hide and Search
+
+Keep **visibility**, **known location**, and **line of effect** separate. Seeing through a barrier does not itself permit attacking through it. Best cover only: half +2 AC/DEX saves; three-quarters +5; total prevents direct targeting through that obstruction. Never add +2 and +5. For areas, evaluate line/cover from the area's origin to each target; total cover there excludes a creature unless the effect explicitly travels around/through the obstruction. The origin point itself must be legally targetable.
+
+Within normal ranged range, no range penalty; beyond normal through long, disadvantage; beyond long, illegal. Ranged attacks also have disadvantage when within5ft of a non-Incapacitated hostile that can see the attacker, even if the attacker cannot see that hostile. All advantage/disadvantage follows the single cancellation rule.
+
+NEW **Hide**: permitted only against observers unable to see you clearly or where a feature permits. Roll DEX Stealth once, record natural die and total. Against each observer's passive DC `10 + WIS Perception modifier including applicable proficiency`, use the Core four-degree task system. Meet DC succeeds before natural1/20 degree adjustment; Success/Critical Success establishes Hidden for that observer. No unsourced passive ±5 adjustment for advantage/disadvantage. Actual Search rolls use their normal modifiers.
+
+Hidden means that observer cannot see you and does not know your location. Clear sight or learning your position ends Hidden for that observer. Moving between hiding places can retain Hidden only if no clear sight/revealing event occurs. A failed Hide cannot simply be rerolled unchanged; a materially new hiding position, concealment, distraction, sight-breaking event or express reroll feature is required. Hidden is not a generic immunity or a free stealth roll for every move.
+
+**Search** Action: WIS Perception for sensory detection; INT Investigation for appropriate traces/deduction; Core Arcana/Engineering where relevant. Directly locating a Hidden creature defaults to Perception against its recorded final Stealth total as a static DC, using task degrees/natural shifts. Success reveals location only to the searcher and ends Hidden for that observer, without automatically granting sight. Communicate normally to inform others. Search can be repeated on later turns by paying the Action.
+
+Attacks against unseen targets have disadvantage; unseen attackers have advantage, subject to the **Core Invisible exception**: once its position is known, Invisible's own attack modifiers end for that observer and cannot immediately return solely because it remains Invisible. Independent darkness, smoke, blindness or hiding can still supply modifiers.
+
+Resolve an attack using pre-attack information; afterward reveal location to observers able to perceive its evidence. If an unseen target's location is unknown, do not directly choose it for a creature-target effect. A weapon/projectile can instead attack a suspected space: wrong space automatically misses; correct space uses unseen rules. A “creature you can see” requirement is never met by position knowledge alone. Area effects can target legal points under their own rules.
+
+## Scope and validation
+
+[Reference checks](COMBAT_PLAYTEST_VALIDATION.json) exercise selected budgets, clocks and edge cases. They do not implement map visibility, inventory, feature legality, complete event dispatch, all maneuvers or a live application. No claim of encounter balance or human playtest completion follows from a passing report.
+
+`start_life_sequence` receives already-resolved/arbitrated HP events; it does not perform condition-family arbitration, cure processing, trigger generation, duration expiry, target legality, defense calculations or general simultaneous-event dispatch. `hide_results` answers only whether Hidden is established, collapsing the two success degrees and two failure degrees; it does not retain the full task-degree record. The Reaction helper models the ordinary resource, not additional Reaction grants printed on specific cards.
+
+Remaining work includes cargo terminology/capacity/durability; detailed movement/environment/chases; area templates and sensory abilities; summons/boss full-turn examples; all-source class/spell semantic interactions and specific resource grants; and the whole-game ledger's other acceptance gates.
+
+===== END COMBAT_ACTION_PLAYTEST.md =====

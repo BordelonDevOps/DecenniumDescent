@@ -1,0 +1,67 @@
+ChatGPT said:
+
+The packet is mechanically close, but I found several concrete issues worth fixing before calling the Bard draft deterministic. The global contract is otherwise coherent: 0–5 Crescendo, one concentration slot, bounded Echo copying, Core V2 RP separation, and the extra-Action/reset caps all meaningfully close recursion exploits. 
+Pasted text
+
+Concrete defects / ambiguities
+
+Song of Serenity has an impossible timing check. It says the healing occurs “at the start of each of your next two turns” if “you have paid that turn’s maintenance.” Maintenance is paid with a Bonus Action during that turn, so at turn start it cannot already have been paid.
+Fix: trigger the 2 HP immediately after you successfully pay the Chant’s maintenance, once per marked creature per turn. For the first later turn, this cleanly follows the Bonus Action.
+
+Cascading Echo contradicts the global Echo rounding rule. Global says aggregate copied fractions first, then round once. Cascading Echo says resolve 50% and 25% separately, each rounded down with its own minimum 1. That can produce more damage/healing than the global contract permits.
+Fix: without Crescendo, copy 75% aggregate, round once. With its Crescendo rider, copy 100% aggregate, round once. Keep the “two fading echoes” as flavor only if desired.
+
+Verse / Chant / Echo categories are not formally tagged. Numerous passives depend on “Verse,” “Chant,” “healing Chant,” or “Echo performance”: Verse Mastery, Chorus Shield, Song of Serenity, Chant Cascade, Dissonant Pulse, Maddening Echo, etc. Determining category from the English name is brittle. 
+Pasted text
+
+Fix: every Active gets explicit tags, e.g. ["Performance","Verse"], ["Performance","Chant","Healing"], ["Performance","Echo"], ["Performance","Symphony","Zone"]. Rules reference tags, never name strings.
+
+Round recharge has no out-of-combat rule. Counters tick at the start of a Bard’s normal turn. Outside initiative there may be no “turns,” potentially leaving an ability technically unrecharged indefinitely or inviting fake combat turns.
+Fix: define: “Outside an encounter, each round of recharge represents 6 seconds. If at least that much uninterrupted time passes, decrement normally.” Encounter end does not automatically clear recharge unless enough time passes.
+
+Clarify what a “normal Bard turn” means for recharge. Stunned/incapacitated characters still normally have a turn even though they cannot act.
+Fix: “Recharge ticks once at the start of your regular initiative turn, whether or not you can act. Extra turns/actions never tick recharge.”
+
+Encore can accidentally waste itself on an at-will Performance. Its wording is “Once per short rest after you resolve a Bard performance, reset…” rather than optional.
+Fix: “Once per short rest, you may, after resolving a Bard Performance with a positive round-recharge counter, reset that counter to 0…” Also add a structured shortRestUses:1 field; currently its recharge metadata does not represent its actual limit.
+
+Multi-target healing rolls are underspecified. Healing Harmony, Resonant Chant, Symphony of Serenity, Crescendo of Hope, etc. do not consistently say whether one healing roll applies to every target or each target is rolled separately. This matters directly to Echo source recording.
+Fix: adopt one global convention. I recommend: roll healing once per Performance/pulse and apply that result to every eligible target, unless the card explicitly says separate rolls. Then an Echo stores that one unmodified dice roll. If individual rolls are preferred, state that instead everywhere.
+
+Virtuoso’s Medley silently exceeds normal Echo memory. Global memory is current/previous turn; Echo Harmonization extends it one more. Medley independently allows previous two turns.
+Fix: either make this an explicit card exception: “Medley has a two-turn source window regardless of Echo Harmonization,” or reduce it to the standard window and let Echo Harmonization extend it. Do not leave the conflict implicit.
+
+Performance RP needs one sentence tying it explicitly to Core V2. The contract says printed RP only but could still be read as a separate Performance resource.
+Fix: “All Performance RP costs are paid from the Bard’s single Core V2 Resonance Point pool. They are not spell-rank costs, do not use Overcast, and do not generate Dissonance unless a card explicitly states otherwise.”
+
+Dissonance needs an explicit floor. Spending 5 vents 2, but the packet does not state here whether Dissonance can become negative.
+Fix: “Dissonance cannot be reduced below 0.” Also specify that all activation costs are validated before Crescendo or RP is spent.
+
+Dissonant Note is the clearest Bard-dip exploit. A Bard 1 / other class 19 retains a performance DC using total-character PB + CHA, yet the card’s reaction denial, concentration disruption, and failure-by-10 Stun barely depend on Bard level. That gives near-full endgame control scaling from a one-level dip.
+Fix: preserve total-character PB for consistency, but gate the Stun rider: “Beginning at Bard level 5, failure by 10+ also Stuns.” The reaction/concentration disruption can remain the L1 identity. This avoids inventing a second proficiency formula.
+
+Symphony of Mastery needs precise sustain/order language. On later turns its special Bonus Action Performance consumes the same Bonus Action needed to maintain the Symphony. Current wording says the Symphony ends after that Performance, but it is unclear whether its Crescendo acceleration remains active through that Performance.
+Fix: explicitly say: “If you use this special Bonus Action on a later turn before maintaining the Symphony, the Symphony remains active through resolution of that Performance, then immediately ends.”
+
+Healing Harmony Echo source is ambiguous when two allies are healed. It says only one recipient’s dice can be stored, but not whether the recipients had separate dice in the first place. This is resolved by the global multi-target-roll convention above; until then it is ambiguous.
+
+Chorus of Renewal / Grand Performance / Dirge of Madness correctly avoid double-spending Crescendo, but formalize the rule globally.
+Fix: “If a Performance has an explicit spend-all Crescendo cost, that expenditure replaces the automatic-at-five expenditure; it never spends Crescendo twice. If exactly 5 were spent, vent 2 Dissonance once.”
+
+Performance Focus and other reset effects need a target-validity rule when recharge is already 0.
+Fix: a reset/shortening feature must target an ability whose current counter is greater than 0. Otherwise it is not considered used. This prevents meaningless consumption and simplifies Encore/Chant Cascade adjudication.
+
+No defect found
+
+The sample progression has legal selections at each milestone; Base is correctly six passives/four actives; all three Hero paths are 4 passives + Finale + 5 actives; Symphonies are level 16; Perfect Pitch is automatic at 9; Hero Finales are automatic at 20; and the packet does not introduce spell slots or Skill Points. The Crescendo/Dissonance separation is also sound once the shared Core V2 RP pool and Dissonance floor are made explicit. 
+Pasted text
+
+The most important fixes before card-by-card balance testing are formal tags, Song of Serenity timing, Echo rounding, recharge outside combat, and the Bard-1 Dissonant Note dip.
+
+ChatGPT can make mistakes. Check important info.
+Latest response
+
+
+
+
+5.6 High

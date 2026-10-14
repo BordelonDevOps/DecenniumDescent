@@ -1,0 +1,193 @@
+# Additional exact evidence: Time Loop and conserved casting cadence
+
+One wording correction also needs confirmation in the parent conference: its case1 says later concentration's "RP/uses/actions already spent on it remain conserved." The approved kernel restores snapshot Action/Bonus Action/Reaction budgets, with all Time Loop Reaction debts overlaid; it conserves RP and actual per-rest uses and keeps historical action events. I read your phrase as conserving the past paid event, not as silently overriding the approved restored action allowances. Please confirm that distinction. Retiring a later cast itself neither refunds an Action nor adds a fresh charge; the one canonical snapshot-budget rule still applies.
+
+This supplies the frozen common rules and the actual quote helper for parent-conference case9. They are unchanged, not newly authored replacements. Dissonance survives encounters and costs/resources remain conserved; Refrain survives idle/weapon turns but a real Druid form entry clears its remembered spell/count. Time Loop itself is not such an entry. The exact original Time Loop procedure is included below.
+
+Please distinguish: restoring anatomy without firing entry; preserving the current already-paid casting economy; and any genuine iteration-qualified idle/grounding event later. Proposed rule for this evidence is to conserve current Dissonance, Refrain count and remembered spell through temporal assignment, then use actual new legal events normally. No past idle turn, vent, shift or rest replays. This would be an explicit temporal cadence bridge, not a claim that all17 class-specific cadence hooks are implemented. If the evidence does not authorize that choice, identify the exact remaining ambiguity.
+
+
+## Exact docs/mechanics/CLASS_PLAYTEST_RULES.md
+SHA-256: `adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81`
+
+# Shared rules for the class playtest drafts
+
+**Provisional design integration, 8 October 2026.** These rules make the class drafts usable together for testing. They preserve each protected class engine while specifying missing timing and replacing conflicting old percentages. They do not rewrite the approved Word books. Original descriptions and alternate registry entries remain in `data/playtest/class_sources`.
+
+## Reading a class card
+
+Use the class's own level, never total character level, for gates and effects. **L** means that class level; **S** is 1/2/3/4 at class levels 1/5/11/17. **M** means max(1, the class ability modifier), for effect a mounts only. Attacks use d20 + normal character proficiency + the actual appropriate ability modifier. Class save DC is 8 + normal proficiency + actual class ability modifier. Negative modifiers still apply to attacks and DCs. One tile is 5 ft. Fractions round down unless specified. Distances cannot be negative.
+
+A weapon attack uses its usual ability, weapon die and damage type. A technique that says “make one weapon attack” replaces your Action with that attack; it does not also grant a normal Attack Action or Extra Attack. Generic attack-speed language has no effect beyond the exact attacks printed in the draft. A spell attack uses the class's stated casting ability. Natural 1 misses and natural 20 hits/critically doubles damage dice; flat bonuses do not double. A save succeeds at DC; “fails by 10” means the total is at least 10 below DC. Critical-range improvements never stack; use the broadest one.
+
+An ability is known only if granted or selected by the draft schedule. Satisfy all printed prerequisites, target legality, action availability, recharge and resource costs before spending anything. A failed legal attack/save attempt still pays; an illegal activation spends nothing. No resource goes below 0 or above its cap. A class feature name shared with a spell does not grant both versions; use the version selected, with its own cost and timing. Names and source text are preserved; the current card is the operational draft.
+
+## Action and timing limits
+
+One regular Action, one Bonus Action if a feature permits it, normal movement and one Reaction between starts of your turns. A free trigger costs no Action only if expressly stated. All grants share **one extra full Action per creature per round**. An extra Action cannot grant another Action, recharge itself, or start another extra-Action grant. It supplies no extra Bonus Action or Reaction. A card granting additional attacks is not permission to repeat all class riders on every hit: obey each rider's frequency.
+
+Recharge N sets a counter to N after use; reduce once at the start of the owner's regular initiative turn, whether able to act or not. Extra turns/Actions do not tick it. Outside combat tick once per 6 elapsed seconds, without double counting. Recharge 2 used on turn 1 is ready on turn 3. A positive counter can be reset/shortened at most once per ability per round. Zero counters are not legal reset targets and expend no reset use. Resets never restore RP or per-rest uses or grant an immediate activation.
+
+An encounter is a genuine scene of uncertain opposition chosen by the Director, not a player declaration used to reset resources. No encounter gain from attacking allies, one's summons, harmless animals, helpless captives or reused corpses. Out-of-combat abilities retain all printed costs and time. Short-rest means a completed uninterrupted hour of permitted recovery; long-rest means a completed 8-hour Rest Watch. This time convention is a draft integration. Expedition pressure, supplies, safe locations and rest debt still matter. A long rest also refreshes short-rest uses; a short rest never refreshes long-rest uses. Weekly uses refresh after seven full in-world days, not repeated rests.
+
+## Targets, concentration and control
+
+Unless expressly stated, perceive the target, remain within range and have line of effect; total cover blocks targeting. “Ally” includes self unless it says OTHER. A list cannot contain a creature twice. Select up to the printed limit; an empty target list is not a valid way to farm activation benefits. Zones remain at their chosen point unless described as an aura; allies can leave and lose their benefits. An aura requires its owner conscious unless the card supplies a bounded exception. An effect ending at “end next turn” means the affected creature's next turn only when the card says target's; otherwise the user's.
+
+One concentration slot for all spells, Chants, Veinweaves, forms or zones that require concentration. Starting another ends the old before the new effect resolves, except for an explicit limited linked-effect rule. Damage prompts CON save against max(10, floor(damage/2)); incapacitation or a failed save ends concentration. The round-down convention is a deliberate pilot interpretation. Concentration does not demand a Bonus Action unless maintenance says so. For a paid 3-pulse effect, start is pulse 1; pay maintenance on each of the next 2 regular turns by turn end for pulses 2/3. Missing payment ends it at that turn's end; otherwise it ends at start of turn 4. No repeated start triggers on maintenance.
+
+Forced movement does not provoke opportunity attacks unless explicitly stated, cannot place a creature inside solid matter, and stops at an obstacle. Grapples use the card's save/DC, can be escaped with an Action and STR(Athletics) or DEX(Acrobatics) against that DC, and end beyond reach. A root sets Speed 0 but does not remove Actions. Slows reduce Speed to minimum 0. Silence blocks verbal spells/audible abilities, not all thought or all class features. Charmed effects never determine a player's beliefs; use only the printed action restrictions.
+
+No repeated hard denial without a new save and cost. For this class suite, a creature can suffer **Stunned, compelled loss of its whole Action/turn, or equivalent hard denial from a given character at most once per encounter**, across that character's class features; later such riders fail while damage and soft riders resolve normally. Record source and target. This draft guard is broader than the older Oracle-only ceiling and is an explicit balance proposal. Reaction denial, Speed reduction, penalties and Frightened do not count as whole-turn loss. Do not silently waive boss immunities, legendary defenses or anatomy.
+
+## Damage, healing, stacking and companions
+
+Roll once for each shared area/pulse and apply saves/defenses to each target separately; separate attacks roll separately. Halve once for a successful save and apply resistance/immunity normally. Same-named conditions/bonuses do not stack unless a printed cap allows it; same-stat flat bonuses from these class techniques use the strongest. Different resources remain separate. Damage reduction from these class features uses the strongest flat reduction, then applies resistance; it cannot create negative damage or healing. Temporary HP never stack; choose the larger remaining amount. Immunity is not reduced resistance.
+
+Repeated permanent HP recovery must consume finite RP, a per-rest use or another finite resource; a combat-generated gauge alone never enables unlimited healing. Healing cannot exceed maximum HP or erase Wounds, death consequences, debt or Corruption unless explicit. Downed is living at 0 HP; dead is different. Resurrection requires a willing soul and sufficiently intact body, obeys its time window, cannot create a duplicate and never refunds the feature on failure to meet known prerequisites. Sacrificial HP is actual unpreventable loss, cannot be redirected or paid with temporary HP, and is not damage for resource triggers. It cannot reduce the donor below 1 unless a card expressly grants a death-triggered effect.
+
+No damage/healing copy repeats the source's costs, procs, resource generation, critical bonus dice, buffs, actions, cooldown resets or duration. Compute fractions once, capped at 100% of one stored source unless an explicit card states a separately priced higher amount. Copies still cause ordinary damage consequences, concentration checks and death. A copy cannot copy another copy. A target/source record must refer to an actual resolved event, not merely a known ability name.
+
+Where a class card calls for a **standard companion** without a more specific profile, use: Small or Medium; AC 12+floor(PB/2); HP 2 L; walking Speed 30 ft; saves equal owner's PB; one melee or ranged attack (reach 5 ft/range 30 ft) at owner's class attack bonus, damage S d6 of the printed type. It has no independent class features, resources, loot, death triggers or extra turns. All companions belonging to one character share one Bonus Action command and **one damaging attack/action total per round** unless a specifically priced feature grants more. Without a command they move and Dodge. Act immediately after owner. A standard companion lasts 1 minute, disappears at 0 HP and cannot be healed for free by dismissing/resummoning. The creation cost must be paid again. Creature-specific stat blocks override this profile only where explicitly printed.
+
+## Ordinary spells: one explicit test configuration
+
+Use the manifest-owned **Core Systems Known Descent V 2** class RP tables and rank costs: rank 0–9 costs 0/2/3/5/7/10/13/17/21/26; Grand 32. Follow `src/data/class-spell-progression.js` for each class's rank gates and the existing spell catalog for class/school access. Having enough RP never bypasses a rank gate. Oracle has Revelation Charges, and Soldier/Warrior have no general RP spellcasting. Multiclass spell access is determined separately per class; do not add complete class pools or use total level to unlock a rank. This suite's printed pool tables are single-class; use the existing multiclass pool formula with the new constituent Core V 2 pools for mixed characters.
+
+Four classes have no direct Core V 2 pool row. For this pilot, Crimson Agent uses the Cleric curve multiplied by 0.5; Dragoon, Monk and Thief use that curve multiplied by 0.35, rounded to nearest integer with halves upward, minimum 1. These fallback factors come from the preserved `src/data/resonance-economy.js`; they are explicitly distinguished from direct book tables. The generic Core V 2 Oracle RP row is rejected for this class suite because Oracle's protected class contract uses Revelation Charges only. Oracle never receives RP or ordinary spell access. Retune here means one recovery at the end of a completed short rest, not an unrestricted action.
+
+For a reproducible pilot, retain the protected **Dissonance** layer with Core V 2 numeric RP costs. This combination is a new integration decision: do not also roll a second historical Burn/fizzle system on top of it. Limit=max(4, 2+PB+max(0, casting modifier)). Before a ranked cast, Dissonance at limit/limit+3/limit+6 adds 1/2/3 RP respectively; at limit+6 ordinary casters cannot cast rank 1+. At limit+3 ordinary Overcast is unavailable. A cast then adds base Dissonance 0 at rank 0, 1 at ranks 1–5, 2 at ranks 6–9. Immediate repeated casts of the same named spell add 1, 2, then 3 maximum. Another named spell resets the repeat counter but not accumulated strain. Apply the class's exact cadence reduction/vent; never infer a free RP reduction. Printed class techniques pay printed costs and cause no automatic spell Dissonance unless tagged or expressly described as spells, Echo releases or Matrix casts. For a Mage/Wizard class card tagged as a spell, use the rank printed in normalized data; its rank is fixed at acquisition and does not rise with S. Other techniques are not counterspell able unless their card says so.
+
+Retune recovers max(0, round(max RP/4)+casting modifier), never above maximum, and clears Dissonance. A long rest restores RP and clears Dissonance. Optional 10-minute meditation once/day recovers positive casting modifier RP and reduces Dissonance by PB+positive modifier. A regular turn with no spell or magical class ability loses 1 Dissonance; an Action spent Grounding without casting loses PB instead (not both). Merely ending an encounter does not clear accumulated Dissonance. Refrain survives idle/weapon turns unless a class explicitly clears it. Lich/Necromancer may force ranked casts through Fracture; after resolution take direct unpreventable trauma equal to rank×1/2/3 at the three strained states, minimum 1, based on state before casting. This trauma cannot generate resources or trigger damage-sharing. They still pay RP and meet rank gates.
+
+Generic Overcast is excluded from the initial suite configuration until its options are separately fixed; cards such as Overchannel have their own exact costs and gates. Core V 2's original Burn procedures, older rank×2 costs and smaller companion RP tables remain preserved as alternatives, not silently combined. This configuration is suit able for comparing class drafts, not a claim that all historical magic sources already agree.
+
+## Spell repertoires and acquisition
+
+Preserve explicit class spellbook/preparation rules where given. For classes missing a known-spell count, this suite proposes: full casters know 3 cantrips at 1, 4 at 4, 5 at 10 and choose 2 ranked spells at first spell access plus 1 each later class level; hybrid/half/minor casters know 2 cantrips at first cantrip access and 3 at class 10, and choose 2 ranked spells at first ranked access plus 1 on each later even class level. At a long rest, a known caster may replace one known spell with a legal same-or-lower rank selection. This fills an actual missing rule and does not replace a more specific Druid prepared list or Wizard spellbook. Bonus spells expressly granted by a class are additional. No unnamed or mechanically unfinished catalog spell becomes complete merely by entering this repertoire; select operational spells for the test and record them.
+
+Scheduled selection applies only where the class document says so. At each milestone choose distinct eligible entries; no banked Skill Points. Automatic engines, ASIs, feats, forms and finales do not also consume a choice unless stated. Ordinary-class schedule:4 Base at 1 (at least 2 active), 2 Base at 2; 2 Arch at 3 (at least 1 active); alternating 1 Base/Arch at 4/6/8/11/13/15/17/19 and 1 Arch at 5/7/9; choose Hero at 10 and 2 Hero (at least 1 active), then 1 Hero at 12/14/16/18; finale 20. If a class has no source Arch capstone, level 9 has the printed class-specific grant or another choice, explicitly shown. The individual schedule and prerequisite checks win over this summary. ASI or eligible feat at 4/8/12/16/19, separate from choices, except Oracle uses its explicit 4/8/14/19 schedule. Druid, Oracle and Paladin use their own schedules.
+
+## Source and review status
+
+The owner asked to extend the Bard treatment to all classes. Each draft separates the original wording, provisional numerical specification, acquisition and examples. Earlier contradictory level-table entries are retained as source evidence and marked reconciled/replaced for this draft; never stack them on top of the new schedule. Automated checks cover acquisition, source completeness and selected resource invariants. Human table play is still needed to judge balance, fun, and numerical tuning.
+
+
+## Core condition reference
+
+The following descriptions are preserved from [Core Systems Known Descent V2](../../data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json). The class suite adds its explicit duration, escape and hard-denial limits; it does not give the same named condition a different meaning in each class. Dread, Grief, Bleed and other custom riders use their card’s exact definition.
+
+| Condition | Core V2 rule |
+|---|---|
+| Blinded | Cannot see; automatically fails sight checks; attacks have disadvantage and attacks against it have advantage. |
+| Charmed | Cannot willingly harm the charmer; charmer has advantage on social checks against it. |
+| Deafened | Cannot hear and fails hearing checks; verbal coordination may fail. |
+| Frightened | Disadvantage while source is visible and cannot willingly move closer. |
+| Grappled | Speed 0; ends if grappler is incapacitated or reach is broken. |
+| Incapacitated | Cannot take actions or reactions. |
+| Invisible | Cannot be seen normally; attacks against it have disadvantage and its attacks have advantage until location is revealed. |
+| Paralyzed | Incapacitated, cannot move or speak, fails Strength/Dexterity saves, adjacent hits are critical. |
+| Poisoned | Disadvantage on attacks and ability checks. |
+| Prone | Crawl or stand; melee attackers within 5 ft. have advantage; ranged attackers have disadvantage. |
+| Restrained | Speed 0; attacks against have advantage, own attacks and Dexterity saves have disadvantage. |
+| Silenced | Cannot use verbal components, command words, Chants, or audible coordination. |
+| Staggered | Cannot react, loses Guard, and the next forced movement gains +5 ft. Ends at start of next turn. |
+| Stunned | Incapacitated, cannot move, fails Strength/Dexterity saves, attacks against have advantage. |
+| Unconscious | Incapacitated, unaware, drops held items, falls Prone, adjacent hits are critical. |
+
+
+## Exact tools/spell_playtest_rules.py
+SHA-256: `16e31c5668fcd318433104fa7d67c499b76a1057c460cf8d3c63668aa096019e`
+
+"""Reference access and ordinary-cast pricing, not a combat/effect simulator."""
+import math
+
+
+class SpellRuleError(ValueError):
+    pass
+
+
+def integer(value, label, minimum, maximum=None):
+    if isinstance(value, bool) or not isinstance(value, int) or value < minimum or (maximum is not None and value > maximum):
+        raise SpellRuleError(f'Invalid {label}')
+    return value
+
+
+def access_for(spell, class_name, class_level, *, require_operational=True):
+    integer(class_level, 'class level', 1, 20)
+    if require_operational and spell['status'] != 'operational-playtest-draft':
+        raise SpellRuleError('Spell is not operational in this packet')
+    access = spell['classAccess'].get(class_name)
+    if access is None:
+        raise SpellRuleError('Class has no ordinary access to this spell')
+    if class_level < access['minimumClassLevel']:
+        raise SpellRuleError('Class-level spell gate is not met')
+    return access
+
+
+def quote_cast(spell, class_name, class_level, *, available_spell_ids, rp, max_rp,
+               dissonance, proficiency, casting_modifier, previous_spell_id=None,
+               previous_refrain=0, traumatic_casting=False):
+    """Price one already-target-legal cast. Does not consume actions or apply class cadence hooks.
+
+    available_spell_ids must be the character's actually known/prepared repertoire, not all
+    catalog options. The caller verifies components, targets, concentration choice and action.
+    Traumatic casting must be granted by an explicit Lich/Necromancer feature, never inferred.
+    """
+    access = access_for(spell, class_name, class_level)
+    if spell['id'] not in available_spell_ids:
+        raise SpellRuleError('Spell is not currently known/prepared')
+    integer(max_rp, 'maximum RP', 0)
+    integer(rp, 'RP', 0, max_rp)
+    integer(dissonance, 'Dissonance', 0)
+    integer(proficiency, 'proficiency', 2, 6)
+    integer(casting_modifier, 'casting modifier', -5, 10)
+    integer(previous_refrain, 'Refrain', 0, 3)
+    rank = access['rank']
+    limit = max(4, 2 + proficiency + max(0, casting_modifier))
+    state = 3 if dissonance >= limit+6 else 2 if dissonance >= limit+3 else 1 if dissonance >= limit else 0
+    if rank > 0 and state == 3 and not traumatic_casting:
+        raise SpellRuleError('Fractured: ordinary ranked casting is blocked')
+    surcharge = state if rank > 0 else 0
+    cost = access['baseRpCost'] + spell['additionalRpCost'] + surcharge
+    if rp < cost:
+        raise SpellRuleError('Insufficient RP')
+    refrain = min(3, previous_refrain+1) if previous_spell_id == spell['id'] else 0
+    base_d = 0 if rank == 0 else 1 if rank <= 5 else 2
+    return {'spellId':spell['id'], 'rank':rank, 'cost':cost, 'baseRpCost':access['baseRpCost'],
+            'additionalRpCost':spell['additionalRpCost'], 'surcharge':surcharge,
+            'rpAfterPayment':rp-cost, 'limit':limit, 'refrain':refrain,
+            'dissonanceAddedBeforeClassInterface':base_d+refrain,
+            'dissonanceBeforeClassInterface':dissonance+base_d+refrain,
+            'trauma':rank*state if traumatic_casting and rank > 0 and state else 0}
+
+
+def retune_amount(max_rp, casting_modifier):
+    integer(max_rp, 'maximum RP', 0)
+    integer(casting_modifier, 'casting modifier', -5, 10)
+    # Explicit halves-up interpretation matches positive-number JS Math.round.
+    return max(0, math.floor(max_rp/4 + 0.5) + casting_modifier)
+
+
+## Exact normalized Time Loop procedure
+
+```json
+{
+  "id": "oracle.supplement.spiral-touched.spiral-touched-boon-v",
+  "name": "Spiral-Touched — Boon V",
+  "className": "Oracle",
+  "band": "Hero",
+  "path": "Spiral-Touched",
+  "sourceKind": "curseBoon",
+  "minimumClassLevel": 20,
+  "acquisition": "automatic for selected Curse",
+  "activation": "Reaction before round 4",
+  "cost": "0",
+  "rangeAndTarget": "Recorded encounter participants",
+  "duration": "Restore recorded encounter-start state",
+  "frequency": "1/long rest",
+  "effect": "1/long rest as a Reaction before the fourth round of the encounter begins, rewind the current encounter to its initiative-start snapshot: restore combatant positions, HP, temporary HP, conditions, RC and per-encounter uses to that snapshot. Short-/long-rest uses, physical consumables and this Time Loop use remain spent. Slain encounter participants return to their snapshot state and no duplicate XP, treasure or consumables are created. Allies retain memory of the previous timeline. Time Loop does not restore RP, Ki, Conviction, Blood Gauge, device stock, healing reserves or any other daily/rest resource; only the named RC and per-encounter states rewind. No loot changes ownership through rewinding. Record the snapshot at initiative; if no complete snapshot exists, this option is unavailable and unspent. It cannot undo a previous encounter or duplicate a per-rest use.",
+  "prerequisite": "Oracle 20; selected Curse:Spiral-Touched",
+  "spellRank": null
+}
+```

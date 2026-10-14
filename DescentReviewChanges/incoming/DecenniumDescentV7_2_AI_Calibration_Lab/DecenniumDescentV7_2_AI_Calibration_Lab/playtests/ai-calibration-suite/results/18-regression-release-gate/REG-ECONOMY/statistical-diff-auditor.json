@@ -1,0 +1,57 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-ECONOMY",
+  "runId": "2026-08-06T151746Z-REG-ECONOMY",
+  "seed": 77103,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "7219c8b83cc73cb84d758298a240de6f6767f1ebb130119705bfbab68cee8507",
+  "evidenceLevel": "A",
+  "outcome": "BASELINE_LOCKED",
+  "metrics": {
+    "presentFiles": [
+      "results\\13-haven-formulas\\summary.json",
+      "results\\13-haven-formulas\\haven_results.csv"
+    ],
+    "missingFiles": [],
+    "csvRows": 5,
+    "summaries": {
+      "summary.json": {
+        "transactions": 100000,
+        "violations": [],
+        "passes": true,
+        "formulas": [
+          "sale value",
+          "taxes",
+          "sponsor shares",
+          "insurance bounds",
+          "Heat",
+          "reputation gates",
+          "counterfeit forfeiture prose audit"
+        ]
+      }
+    },
+    "dependencyPackJsonCounts": {
+      "01-combat-class-balance": 160,
+      "07-statistical-combat-calibration": 8,
+      "11-expedition-attrition-monte-carlo": 198,
+      "13-haven-economy-stress": 43,
+      "16-rules-fuzz-property-tests": 6
+    },
+    "note": "No proposed-patches/ deltas; gate uses V7.2 executable math outputs + packs 05/17/19/20 from this run."
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "REG-ECONOMY: present=2 missing=0 csvRows=5.",
+      "citation": "playtests/ai-calibration-suite/results/"
+    },
+    {
+      "severity": "null",
+      "summary": "Release gate is validator status + executable math integrity + usability/edge/integrity packs from this final wave.",
+      "citation": "playtests/ai-calibration-suite/proposed-patches/"
+    }
+  ],
+  "rawEvidencePath": "results\\13-haven-formulas\\summary.json",
+  "agentId": "statistical-diff-auditor"
+}

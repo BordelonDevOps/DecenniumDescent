@@ -1,0 +1,41 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L5-SUPPORT",
+  "agentId": "bard",
+  "seed": "agg-15-seeds",
+  "observations": [
+    "Played 15 seeds as Bard (Crescendo) under scenario CMB-L5-SUPPORT.",
+    "Identity loop remained: Crescendo; role=support.",
+    "Aggregate win_rate=1.0, objective_rate=1.0, avg_rounds=15.6.",
+    "Decision steps avg=1.5; rule lookups avg=1.85.",
+    "Sample actions: Crescendo consume for ally tempo; Crescendo consume for ally tempo; Crescendo consume for ally tempo; Crescendo consume for ally tempo; Crescendo consume for ally tempo",
+    "Crescendo/tempo grants were offered; Loop additional-Action cap enforced when stacked with Action Surge."
+  ],
+  "metrics": {
+    "class": "Bard",
+    "role": "support",
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 15.6,
+    "avg_party_damage": 463.09,
+    "avg_healing": 139.6,
+    "avg_prevented": 77.88,
+    "avg_control_applied": 22.93,
+    "avg_lookups": 1.85,
+    "avg_decision_steps": 1.5,
+    "avg_rp_spent": 76.04,
+    "class_dpr_model": 5.92
+  },
+  "rulesQuestions": [
+    "Does Crescendo-enhanced ally 'extra attack' count as the one additional full Action?",
+    "Oracle attempted second full-turn denial from same control source without new save/escalation (Loop \u00a7Encounter)."
+  ],
+  "exploits": [
+    "Action-economy stack attempt on Soldier: class Action Surge/extra + Bard/support grant; Loop limit = choose one additional Action.",
+    "Full-turn denial chain by Oracle without escalation cost \u2014 blocked by Loop rule in adjudication."
+  ],
+  "recommendations": [
+    "Clarify Bard tempo grants as Bonus Action riders or as the single additional Action slot."
+  ],
+  "confidence": "medium"
+}

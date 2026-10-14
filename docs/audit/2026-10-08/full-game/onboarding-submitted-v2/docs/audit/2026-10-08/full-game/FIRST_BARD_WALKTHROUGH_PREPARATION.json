@@ -1,0 +1,1987 @@
+{
+  "status": "Draft authored; source-bound numerical spot checks and links pass; joint semantic review pending",
+  "preparedAtUtc": "2026-10-11T04:21:16.820088+00:00",
+  "manuscript": "DescentReviewChanges/ReviewBible/docs/playtest/FIRST_BARD_WALKTHROUGH.md",
+  "manuscriptSha256": "2018f4543880366c7e0dca86829a127ca4128e9dcc3f6ba38b6ccf4786526fd7",
+  "assignedScores": {
+    "STR": 10,
+    "DEX": 14,
+    "CON": 13,
+    "INT": 12,
+    "WIS": 8,
+    "CHA": 15
+  },
+  "humanSource": {
+    "id": "human",
+    "name": "Human",
+    "abilityBonuses": {
+      "STR": 1,
+      "DEX": 1,
+      "CON": 1,
+      "INT": 1,
+      "WIS": 1,
+      "CHA": 1
+    },
+    "traits": [
+      {
+        "name": "Ability Score Increase",
+        "sourceLine": 1100,
+        "text": "Your ability scores each increase by 1.",
+        "id": "human--ability-score-increase",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      },
+      {
+        "name": "Size",
+        "sourceLine": 1106,
+        "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+        "id": "human--size",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      },
+      {
+        "name": "Speed",
+        "sourceLine": 1108,
+        "text": "Your base walking speed is 30 feet.",
+        "id": "human--speed",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      },
+      {
+        "name": "Versatility",
+        "sourceLine": 1110,
+        "text": "You gain proficiency in one skill of your choice.",
+        "id": "human--versatility",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      },
+      {
+        "name": "Languages",
+        "sourceLine": 1112,
+        "text": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects.",
+        "id": "human--languages",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      }
+    ],
+    "variants": [
+      {
+        "id": "imperial-human",
+        "name": "Imperial Human",
+        "abilityBonuses": {
+          "CHA": 1
+        },
+        "combinedAbilityBonuses": {
+          "STR": 1,
+          "DEX": 1,
+          "CON": 1,
+          "INT": 1,
+          "WIS": 1,
+          "CHA": 2
+        },
+        "traits": [
+          {
+            "name": "Ability Score Increase",
+            "sourceLine": 1122,
+            "text": "Your Charisma score increases by 1 (for a total of +2 to Charisma).",
+            "id": "imperial-human--ability-score-increase",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Social Intuition",
+            "sourceLine": 1124,
+            "text": "You have proficiency in the Persuasion skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Deception, Insight, or Intimidation.",
+            "id": "imperial-human--social-intuition",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Diplomatic Training",
+            "sourceLine": 1126,
+            "text": "You know one additional language of your choice.",
+            "id": "imperial-human--diplomatic-training",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Natural Leader",
+            "sourceLine": 1128,
+            "text": "Once per short rest, when you or an ally within 30 feet of you rolls a 1 on an attack roll, ability check, or saving throw, you can call out a warning or offer quick advice, allowing the roll to be rerolled. The second roll must be used.",
+            "id": "imperial-human--natural-leader",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          }
+        ]
+      },
+      {
+        "id": "nomadic-human",
+        "name": "Nomadic Human",
+        "abilityBonuses": {
+          "CON": 1,
+          "WIS": 1
+        },
+        "combinedAbilityBonuses": {
+          "STR": 1,
+          "DEX": 1,
+          "CON": 2,
+          "INT": 1,
+          "WIS": 2,
+          "CHA": 1
+        },
+        "traits": [
+          {
+            "name": "Ability Score Increase",
+            "sourceLine": 1134,
+            "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+            "id": "nomadic-human--ability-score-increase",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Environmental Adaptation",
+            "sourceLine": 1136,
+            "text": "You have advantage on saving throws against extreme heat and cold.",
+            "id": "nomadic-human--environmental-adaptation",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Survival Instinct",
+            "sourceLine": 1138,
+            "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+            "id": "nomadic-human--survival-instinct",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Wayfinder",
+            "sourceLine": 1140,
+            "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+            "id": "nomadic-human--wayfinder",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          }
+        ]
+      },
+      {
+        "id": "scholarly-human",
+        "name": "Scholarly Human",
+        "abilityBonuses": {
+          "INT": 1
+        },
+        "combinedAbilityBonuses": {
+          "STR": 1,
+          "DEX": 1,
+          "CON": 1,
+          "INT": 2,
+          "WIS": 1,
+          "CHA": 1
+        },
+        "traits": [
+          {
+            "name": "Ability Score Increase",
+            "sourceLine": 1146,
+            "text": "Your Intelligence score increases by 1 (for a total of +2 to Intelligence).",
+            "id": "scholarly-human--ability-score-increase",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Knowledge Seeker",
+            "sourceLine": 1148,
+            "text": "You have proficiency in the History skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Arcana, Investigation, or Religion.",
+            "id": "scholarly-human--knowledge-seeker",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Quick Learner",
+            "sourceLine": 1150,
+            "text": "You gain proficiency with one set of tools of your choice.",
+            "id": "scholarly-human--quick-learner",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Lore Master",
+            "sourceLine": 1152,
+            "text": "When you make an Intelligence check to recall information about something you've studied, you can add double your proficiency bonus instead of any proficiency bonus you normally apply.",
+            "id": "scholarly-human--lore-master",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          }
+        ]
+      }
+    ],
+    "size": "Medium",
+    "baseWalkFeet": 30
+  },
+  "selectedVariant": {
+    "id": "nomadic-human",
+    "name": "Nomadic Human",
+    "abilityBonuses": {
+      "CON": 1,
+      "WIS": 1
+    },
+    "combinedAbilityBonuses": {
+      "STR": 1,
+      "DEX": 1,
+      "CON": 2,
+      "INT": 1,
+      "WIS": 2,
+      "CHA": 1
+    },
+    "traits": [
+      {
+        "name": "Ability Score Increase",
+        "sourceLine": 1134,
+        "text": "Your Constitution score increases by 1, and your Wisdom score increases by 1 (for a total of +2 to Constitution and +2 to Wisdom).",
+        "id": "nomadic-human--ability-score-increase",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      },
+      {
+        "name": "Environmental Adaptation",
+        "sourceLine": 1136,
+        "text": "You have advantage on saving throws against extreme heat and cold.",
+        "id": "nomadic-human--environmental-adaptation",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      },
+      {
+        "name": "Survival Instinct",
+        "sourceLine": 1138,
+        "text": "You have proficiency in the Survival skill. If you already have this proficiency, you gain proficiency in one of the following skills of your choice: Animal Handling, Medicine, or Nature.",
+        "id": "nomadic-human--survival-instinct",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      },
+      {
+        "name": "Wayfinder",
+        "sourceLine": 1140,
+        "text": "You always know which way is north, and you have advantage on Wisdom (Survival) checks to avoid becoming lost.",
+        "id": "nomadic-human--wayfinder",
+        "status": "original-source-preserved; apply-reviewed-integration-guide"
+      }
+    ]
+  },
+  "backgroundSource": {
+    "id": "battlefield-medic",
+    "name": "Battlefield Medic",
+    "status": "source-package-reviewed; integration-guide-and-stated-equipment-dependencies-apply",
+    "source": [
+      {
+        "line": 6124,
+        "text": "Skill Proficiencies: Medicine, Insight"
+      },
+      {
+        "line": 6125,
+        "text": "Tool Proficiencies: Healer's kit, Herbalism kit"
+      },
+      {
+        "line": 6126,
+        "text": "Equipment: A healer's kit, a bloodstained bandana or token from your service, a journal containing medical notes and sketches, a set of common clothes, and a pouch containing 10 gp."
+      },
+      {
+        "line": 6127,
+        "text": "Feature: Trauma Response: Your battlefield experience has honed your emergency medical skills. When you use a healer's kit to stabilize a dying creature, they regain 1 hit point immediately. Additionally, you can identify the nature and severity of injuries at a glance. Your service grants you Liked starting Reputation with veterans of the conflict you served in but Neutral starting Reputation with those who fought on the opposing side."
+      }
+    ],
+    "skillsSource": "Medicine, Insight",
+    "toolsSource": "Healer's kit, Herbalism kit",
+    "equipmentSource": "A healer's kit, a bloodstained bandana or token from your service, a journal containing medical notes and sketches, a set of common clothes, and a pouch containing 10 gp.",
+    "featureSource": "Trauma Response: Your battlefield experience has honed your emergency medical skills. When you use a healer's kit to stabilize a dying creature, they regain 1 hit point immediately. Additionally, you can identify the nature and severity of injuries at a glance. Your service grants you Liked starting Reputation with veterans of the conflict you served in but Neutral starting Reputation with those who fought on the opposing side."
+  },
+  "scores": {
+    "STR": 11,
+    "DEX": 15,
+    "CON": 15,
+    "INT": 13,
+    "WIS": 10,
+    "CHA": 16
+  },
+  "modifiers": {
+    "STR": 0,
+    "DEX": 2,
+    "CON": 2,
+    "INT": 1,
+    "WIS": 0,
+    "CHA": 3
+  },
+  "PB": 2,
+  "firstLevelRP": {
+    "maximum": 2,
+    "primary": {
+      "class": "Bard",
+      "level": 1,
+      "tier": "hybrid",
+      "pool": 2,
+      "acquired": 0
+    },
+    "secondary": null,
+    "secondaryBonus": 0,
+    "noncontributingWeaveClasses": []
+  },
+  "firstLevelHP": {
+    "baseMaximum": 10,
+    "contributions": [
+      10
+    ],
+    "hitDiceBySize": {
+      "8": 1
+    }
+  },
+  "levelTwoHP": {
+    "baseMaximum": 17,
+    "contributions": [
+      10,
+      7
+    ],
+    "hitDiceBySize": {
+      "8": 2
+    }
+  },
+  "selectedBardCards": [
+    {
+      "id": "bard.base.verse-of-courage",
+      "name": "Verse of Courage",
+      "className": "Bard",
+      "band": "Base",
+      "path": null,
+      "kind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "rangeFeet": 60,
+      "target": "One enemy; one other ally within 30 feet",
+      "duration": "Instantaneous",
+      "resourceCost": {
+        "rp": 0,
+        "maintenanceRp": 0,
+        "crescendo": "automatic-at-five"
+      },
+      "recharge": {
+        "rounds": 0,
+        "longRestUses": null,
+        "shortRestUses": null
+      },
+      "resolution": "Performance attack vs AC",
+      "effect": "Make a performance attack against one enemy. On a hit, deal S d6 psychic damage. Whether you hit or miss, choose one other ally within 30 feet; its next successful weapon attack before the end of your next turn deals +1 damage. The encouragement does not stack with itself.",
+      "crescendoRider": "The encouraged ally also gains advantage on its next saving throw before the end of your next turn. No additional damage is copied by an Echo.",
+      "tags": [
+        "verse",
+        "damage",
+        "support",
+        "performance"
+      ],
+      "echoEligible": true,
+      "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1825,
+        "originalText": "Verse of Courage: A quick musical phrase that deals minor damage to a single target and grants +5% damage to an ally for 2 turns."
+      },
+      "designStatus": "playtest-draft",
+      "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+      "prerequisites": {
+        "bardClassLevel": 1,
+        "heroPath": null,
+        "additional": "Only the activation conditions printed in this card and the common rules."
+      }
+    },
+    {
+      "id": "bard.base.chant-of-renewal",
+      "name": "Chant of Renewal",
+      "className": "Bard",
+      "band": "Base",
+      "path": null,
+      "kind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "rangeFeet": 15,
+      "target": "One living ally per pulse, including yourself",
+      "duration": "Concentration, at most 3 Bard turns",
+      "resourceCost": {
+        "rp": 2,
+        "maintenanceRp": 1,
+        "crescendo": "automatic-at-five"
+      },
+      "recharge": {
+        "rounds": 0,
+        "longRestUses": null,
+        "shortRestUses": null
+      },
+      "resolution": "None",
+      "effect": "On starting and on each paid maintenance pulse, one living ally within 15 feet regains 1d6+C HP. You may choose a different ally each pulse. There are at most 3 pulses, including the initial pulse. A creature can benefit from this named Chant only once per round across all Bards. This never removes Wounds or restores life.",
+      "crescendoRider": "The initial recipient also gains C temporary HP for 1 round; subsequent pulses are unchanged.",
+      "tags": [
+        "chant",
+        "healing",
+        "sustained",
+        "performance"
+      ],
+      "echoEligible": true,
+      "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1826,
+        "originalText": "Chant of Renewal: A sustained melody that heals nearby allies for a small amount each turn while maintained."
+      },
+      "designStatus": "playtest-draft",
+      "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+      "prerequisites": {
+        "bardClassLevel": 1,
+        "heroPath": null,
+        "additional": "Only the activation conditions printed in this card and the common rules."
+      }
+    },
+    {
+      "id": "bard.base.dissonant-note",
+      "name": "Dissonant Note",
+      "className": "Bard",
+      "band": "Base",
+      "path": null,
+      "kind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "rangeFeet": 60,
+      "target": "One enemy",
+      "duration": "Instantaneous",
+      "resourceCost": {
+        "rp": 1,
+        "maintenanceRp": 0,
+        "crescendo": "automatic-at-five"
+      },
+      "recharge": {
+        "rounds": 2,
+        "longRestUses": null,
+        "shortRestUses": null
+      },
+      "resolution": "Wisdom; then Constitution concentration if applicable",
+      "effect": "The enemy makes a Wisdom save. On failure it loses its Reaction until the start of your next turn. If it is concentrating, it also makes a Constitution concentration save against your performance DC; failure ends its sustained effect. Success on the Wisdom save prevents both effects.",
+      "crescendoRider": "Beginning at Bard class level 5, if the Wisdom save fails by 10 or more, the target is also Stunned until the end of its next turn. A natural 1 alone does not substitute for this margin.",
+      "tags": [
+        "control",
+        "performance"
+      ],
+      "echoEligible": false,
+      "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1828,
+        "originalText": "Dissonant Note: A jarring sound that interrupts enemy concentration and has a chance to briefly stun."
+      },
+      "designStatus": "playtest-draft",
+      "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+      "prerequisites": {
+        "bardClassLevel": 1,
+        "heroPath": null,
+        "additional": "Only the activation conditions printed in this card and the common rules."
+      }
+    },
+    {
+      "id": "bard.base.echo-of-inspiration",
+      "name": "Echo of Inspiration",
+      "className": "Bard",
+      "band": "Base",
+      "path": null,
+      "kind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "rangeFeet": 30,
+      "target": "One original target of one eligible source",
+      "duration": "Instantaneous",
+      "resourceCost": {
+        "rp": 1,
+        "maintenanceRp": 0,
+        "crescendo": "automatic-at-five"
+      },
+      "recharge": {
+        "rounds": 2,
+        "longRestUses": null,
+        "shortRestUses": null
+      },
+      "resolution": "None",
+      "effect": "Create one pending Echo package using the immediate, unmodified damage OR healing dice of one eligible performance you resolved this turn or on your previous turn. At the start of your next turn, repeat 50% of that stored dice total, rounded down, to one of its original affected targets still within 30 feet. A positive fraction has minimum 1. Apply current resistance/immunity to damage and the ordinary missing-HP limit to healing.",
+      "crescendoRider": "Increase the copied fraction by 25 percentage points, subject to the 100% package cap. This copies no Crescendo rider or other trigger.",
+      "tags": [
+        "echo",
+        "performance"
+      ],
+      "echoEligible": false,
+      "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1827,
+        "originalText": "Echo of Inspiration: Amplifies your last performed ability, causing its effects to repeat at 50% potency next turn."
+      },
+      "designStatus": "playtest-draft",
+      "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+      "prerequisites": {
+        "bardClassLevel": 1,
+        "heroPath": null,
+        "additional": "Only the activation conditions printed in this card and the common rules."
+      }
+    }
+  ],
+  "selectedOrdinarySpells": [
+    {
+      "id": "shield",
+      "name": "Shield",
+      "schools": [
+        "Abjuration",
+        "Universal"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Bard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 2
+        },
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Monk": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Mirrorsage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Abjuration",
+          "baseRpCost": 2
+        }
+      },
+      "operational": {
+        "id": "shield",
+        "activation": "Reaction — when the chosen creature is targeted by an attack roll or Magic Missile, before the attack or damage resolves",
+        "rangeFeet": 30,
+        "targets": "Self or one willing creature you can perceive within 30 feet",
+        "duration": "Until the start of your next regular turn",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "None. Re-evaluate the triggering attack against the chosen creature's increased AC; negate Magic Missile damage to that creature while the spell lasts.",
+        "effect": "The chosen creature gains +5 AC until the start of your next regular turn. During the same duration, Magic Missile cannot deal damage to that creature.",
+        "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+        "limitations": "Does not protect against saving-throw effects, attacks that already resolved, or other automatically hitting effects unless explicitly named Magic Missile. Multiple Shield casts do not stack. Ranked casting causes normal Dissonance and Refrain.",
+        "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions.  GPT conference correction: retain Core30ft range; self-only narrowing rejected. One willing recipient is a provisional target specification.",
+        "previousDraftDesignNotes": "NEW provisional Reaction trigger and exact timing; numerical effects are preserved from both source placements.",
+        "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "shield",
+        "original": {
+          "name": "Shield",
+          "level": 1,
+          "resonanceRank": 1,
+          "school": "Abjuration",
+          "schools": [
+            "Abjuration",
+            "Universal"
+          ],
+          "placements": [
+            {
+              "name": "Shield",
+              "school": "Abjuration",
+              "level": 1,
+              "summary": "+5 AC and immunity to Magic Missile until your next turn."
+            },
+            {
+              "name": "Shield",
+              "school": "Universal",
+              "level": 1,
+              "summary": "+5 AC and immunity to Magic Missile until your next turn."
+            }
+          ],
+          "classLevels": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 1,
+            "Mirrorsage": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 1
+          },
+          "classRanks": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 1,
+            "Mirrorsage": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 1
+          },
+          "classLearnLevels": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Druid": 1,
+            "Mage": 1,
+            "Monk": 3,
+            "Mirrorsage": 1,
+            "Tinker": 2,
+            "Wizard": 1,
+            "Paladin": 2
+          },
+          "classSchools": {
+            "Bard": "Universal",
+            "Cleric": "Abjuration",
+            "Druid": "Abjuration",
+            "Mage": "Abjuration",
+            "Monk": "Abjuration",
+            "Mirrorsage": "Universal",
+            "Tinker": "Abjuration",
+            "Wizard": "Abjuration",
+            "Paladin": "Abjuration"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "+5 AC and immunity to Magic Missile until your next turn.",
+          "alternateSummaries": [],
+          "classes": [
+            "Bard",
+            "Cleric",
+            "Druid",
+            "Mage",
+            "Monk",
+            "Mirrorsage",
+            "Tinker",
+            "Wizard",
+            "Paladin"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 16,
+            "original": {
+              "school": "Abjuration",
+              "level": 1,
+              "name": "Shield",
+              "effect": "+5 AC and immunity to Magic Missile until your next turn.",
+              "source_paragraph": 9001,
+              "casting_time": "1 reaction",
+              "range": "30 feet",
+              "duration": "1 round",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward"
+              ],
+              "rp_cost": 2
+            }
+          },
+          {
+            "index": 858,
+            "original": {
+              "school": "Universal",
+              "level": 1,
+              "name": "Shield",
+              "effect": "+5 AC and immunity to Magic Missile until your next turn.",
+              "source_paragraph": 10043,
+              "casting_time": "1 reaction",
+              "range": "30 feet",
+              "duration": "1 round",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Ward"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    {
+      "id": "detect-magic",
+      "name": "Detect Magic",
+      "schools": [
+        "Divination",
+        "Universal"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Bard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 2
+        },
+        "Cleric": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 2
+        },
+        "Mirrorsage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Divination",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Universal",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Divination",
+          "baseRpCost": 2
+        },
+        "Paladin": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Divination",
+          "baseRpCost": 2
+        }
+      },
+      "operational": {
+        "id": "detect-magic",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "Self; magical auras on creatures, objects, and active effects within 30 feet that you can perceive",
+        "duration": "Concentration, up to 10 minutes",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "None.",
+        "effect": "For the duration, perceive the presence and visible outline of active magical auras within 30 feet. As an Action on a later turn, you may focus on one perceived aura to learn its broad magical school/category if that information is not protected.",
+        "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+        "limitations": "Total cover and explicit anti-divination effects block detection. Does not reveal exact spell names, ranks, statistics, owners, motives, hidden curses, dormant magic, secret Director information, or mundane invisible creatures. Detecting an aura does not grant line of effect or permission to target through barriers. Ranked casting causes normal Dissonance and Refrain.",
+        "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core instantaneous metadata cannot sustain the described perception; this pilot uses explicit concentration for up to10minutes. The30ft range limits perception of spell-granted information.",
+        "previousDraftDesignNotes": "NEW provisional 10-minute concentration duration and two-step information model. Source 30-foot magical detection is preserved.",
+        "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "detect-magic",
+        "original": {
+          "name": "Detect Magic",
+          "level": 1,
+          "resonanceRank": 1,
+          "school": "Divination",
+          "schools": [
+            "Divination",
+            "Universal"
+          ],
+          "placements": [
+            {
+              "name": "Detect Magic",
+              "school": "Divination",
+              "level": 1,
+              "summary": "See magic within 30 ft (concentration)."
+            },
+            {
+              "name": "Detect Magic",
+              "school": "Universal",
+              "level": 1,
+              "summary": "Sense magical auras within 30 feet."
+            }
+          ],
+          "classLevels": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Mage": 1,
+            "Mirrorsage": 1,
+            "Ranger": 1,
+            "Shaman": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 1
+          },
+          "classRanks": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Mage": 1,
+            "Mirrorsage": 1,
+            "Ranger": 1,
+            "Shaman": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 1
+          },
+          "classLearnLevels": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Mage": 1,
+            "Mirrorsage": 1,
+            "Ranger": 2,
+            "Shaman": 1,
+            "Tinker": 2,
+            "Wizard": 1,
+            "Paladin": 2
+          },
+          "classSchools": {
+            "Bard": "Universal",
+            "Cleric": "Divination",
+            "Mage": "Universal",
+            "Mirrorsage": "Divination",
+            "Ranger": "Divination",
+            "Shaman": "Divination",
+            "Tinker": "Universal",
+            "Wizard": "Divination",
+            "Paladin": "Divination"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "See magic within 30 ft (concentration).",
+          "alternateSummaries": [
+            "Sense magical auras within 30 feet."
+          ],
+          "classes": [
+            "Bard",
+            "Cleric",
+            "Mage",
+            "Mirrorsage",
+            "Ranger",
+            "Shaman",
+            "Tinker",
+            "Wizard",
+            "Paladin"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 225,
+            "original": {
+              "school": "Divination",
+              "level": 1,
+              "name": "Detect Magic",
+              "effect": "See magic within 30 ft (concentration).",
+              "source_paragraph": 9260,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Detection"
+              ],
+              "rp_cost": 2
+            }
+          },
+          {
+            "index": 856,
+            "original": {
+              "school": "Universal",
+              "level": 1,
+              "name": "Detect Magic",
+              "effect": "Sense magical auras within 30 feet.",
+              "source_paragraph": 10041,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Detection"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    {
+      "id": "mage-light",
+      "name": "Mage Light",
+      "schools": [
+        "Universal"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Cleric": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Universal",
+          "baseRpCost": 0
+        }
+      },
+      "operational": {
+        "id": "mage-light",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One unoccupied point you can perceive within range",
+        "duration": "1 hour",
+        "concentration": false,
+        "components": [
+          "V",
+          "S"
+        ],
+        "resolution": "None.",
+        "effect": "Create one floating orb of harmless visible light at the chosen fixed point. It illuminates a 20-foot radius sufficiently for ordinary visual perception.",
+        "scaling": "None.",
+        "limitations": "You may have only one Mage Light orb active at a time; recasting ends the previous one. The orb is stationary after creation, creates no heat or damage, cannot blind, reveal invisibility by itself, ignite objects, trigger solar/light vulnerabilities unless they explicitly react to ordinary light, or serve as a physical object. Cantrip repeats use Refrain.",
+        "designNotes": "Core V2 Action, 30-foot range, 1-hour duration, and V/S components are retained. The source gives no illumination radius or movement procedure; a fixed 20-foot illumination radius and one-orb cap are NEW provisional mechanics.",
+        "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "mage-light",
+        "original": {
+          "name": "Mage Light",
+          "level": 0,
+          "resonanceRank": 0,
+          "school": "Universal",
+          "schools": [
+            "Universal"
+          ],
+          "placements": [
+            {
+              "name": "Mage Light",
+              "school": "Universal",
+              "level": 0,
+              "summary": "Create a floating orb of light for 1 hour."
+            }
+          ],
+          "classLevels": {
+            "Bard": 0,
+            "Cleric": 0,
+            "Mage": 0,
+            "Mirrorsage": 0,
+            "Tinker": 0,
+            "Wizard": 0,
+            "Paladin": 0
+          },
+          "classRanks": {
+            "Bard": 0,
+            "Cleric": 0,
+            "Mage": 0,
+            "Mirrorsage": 0,
+            "Tinker": 0,
+            "Wizard": 0,
+            "Paladin": 0
+          },
+          "classLearnLevels": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Mage": 1,
+            "Mirrorsage": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 2
+          },
+          "classSchools": {
+            "Bard": "Universal",
+            "Cleric": "Universal",
+            "Mage": "Universal",
+            "Mirrorsage": "Universal",
+            "Tinker": "Universal",
+            "Wizard": "Universal",
+            "Paladin": "Universal"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Create a floating orb of light for 1 hour.",
+          "alternateSummaries": [],
+          "classes": [
+            "Bard",
+            "Cleric",
+            "Mage",
+            "Mirrorsage",
+            "Tinker",
+            "Wizard",
+            "Paladin"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 833,
+            "original": {
+              "school": "Universal",
+              "level": 0,
+              "name": "Mage Light",
+              "effect": "Create a floating orb of light for 1 hour.",
+              "source_paragraph": 10016,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "1 hour",
+              "components": "V, S",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 0
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    },
+    {
+      "id": "message",
+      "name": "Message",
+      "schools": [
+        "Universal"
+      ],
+      "status": "operational-playtest-draft",
+      "visibility": "public-source-review",
+      "classAccess": {
+        "Bard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Cleric": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Mage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Mirrorsage": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Tinker": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Wizard": {
+          "rank": 0,
+          "minimumClassLevel": 1,
+          "school": "Universal",
+          "baseRpCost": 0
+        },
+        "Paladin": {
+          "rank": 0,
+          "minimumClassLevel": 2,
+          "school": "Universal",
+          "baseRpCost": 0
+        }
+      },
+      "operational": {
+        "id": "message",
+        "activation": "Action",
+        "rangeFeet": 120,
+        "targets": "One creature you can perceive within range",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "components": [
+          "V",
+          "S"
+        ],
+        "resolution": "None.",
+        "effect": "Transmit one brief whispered message that could ordinarily be spoken during one Action directly to the target, so only it clearly hears the magical whisper.",
+        "scaling": "None.",
+        "limitations": "The spell does not grant a reply, language comprehension, mind reading, command authority, guaranteed identity verification, communication through total cover or an effect explicitly blocking magical communication, or transmission across planes. The target hears the actual words used and may respond only through ordinary means. Cantrip repeats use Refrain.",
+        "designNotes": "Core V2 Action, 120-foot range, Instantaneous duration, and V/S components are retained. The 25-word cap, direct-hearing procedure, and no-reply boundary are NEW provisional mechanics because the source only says to whisper to a creature within 120 feet. Conference correction: remove unsupported25-word limit; one Action bounds ordinary speech.",
+        "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+      },
+      "additionalRpCost": 0,
+      "source": {
+        "catalogPath": "src/data/spells.js",
+        "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+        "catalogKey": "message",
+        "original": {
+          "name": "Message",
+          "level": 0,
+          "resonanceRank": 0,
+          "school": "Universal",
+          "schools": [
+            "Universal"
+          ],
+          "placements": [
+            {
+              "name": "Message",
+              "school": "Universal",
+              "level": 0,
+              "summary": "Whisper to creature within 120 feet."
+            }
+          ],
+          "classLevels": {
+            "Bard": 0,
+            "Cleric": 0,
+            "Mage": 0,
+            "Mirrorsage": 0,
+            "Tinker": 0,
+            "Wizard": 0,
+            "Paladin": 0
+          },
+          "classRanks": {
+            "Bard": 0,
+            "Cleric": 0,
+            "Mage": 0,
+            "Mirrorsage": 0,
+            "Tinker": 0,
+            "Wizard": 0,
+            "Paladin": 0
+          },
+          "classLearnLevels": {
+            "Bard": 1,
+            "Cleric": 1,
+            "Mage": 1,
+            "Mirrorsage": 1,
+            "Tinker": 1,
+            "Wizard": 1,
+            "Paladin": 2
+          },
+          "classSchools": {
+            "Bard": "Universal",
+            "Cleric": "Universal",
+            "Mage": "Universal",
+            "Mirrorsage": "Universal",
+            "Tinker": "Universal",
+            "Wizard": "Universal",
+            "Paladin": "Universal"
+          },
+          "castingTime": "Not specified in current rulebook",
+          "range": "Not specified in current rulebook",
+          "components": "Not specified in current rulebook",
+          "duration": "Not specified in current rulebook",
+          "description": "Whisper to creature within 120 feet.",
+          "alternateSummaries": [],
+          "classes": [
+            "Bard",
+            "Cleric",
+            "Mage",
+            "Mirrorsage",
+            "Tinker",
+            "Wizard",
+            "Paladin"
+          ],
+          "status": "canon",
+          "source": "Player Rulebook — Spell Lists"
+        },
+        "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+        "coreEntries": [
+          {
+            "index": 843,
+            "original": {
+              "school": "Universal",
+              "level": 0,
+              "name": "Message",
+              "effect": "Whisper to creature within 120 feet.",
+              "source_paragraph": 10026,
+              "casting_time": "1 action",
+              "range": "120 feet",
+              "duration": "Instantaneous",
+              "components": "V, S",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Utility"
+              ],
+              "rp_cost": 0
+            }
+          }
+        ],
+        "possibleHistoricalAliases": []
+      },
+      "reviewFlags": [
+        "Core resolution requires an explicit operational interpretation"
+      ]
+    }
+  ],
+  "selectedSpellAccess": {
+    "shield": {
+      "rank": 1,
+      "minimumClassLevel": 1,
+      "school": "Universal",
+      "baseRpCost": 2
+    },
+    "detect-magic": {
+      "rank": 1,
+      "minimumClassLevel": 1,
+      "school": "Universal",
+      "baseRpCost": 2
+    },
+    "mage-light": {
+      "rank": 0,
+      "minimumClassLevel": 1,
+      "school": "Universal",
+      "baseRpCost": 0
+    },
+    "message": {
+      "rank": 0,
+      "minimumClassLevel": 1,
+      "school": "Universal",
+      "baseRpCost": 0
+    }
+  },
+  "inventory": [
+    {
+      "name": "Leather",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "armor-and-shields.leather",
+        "name": "Leather",
+        "category": "Armor and shields",
+        "group": "Light Armor",
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6660,
+        "sourceFields": {
+          "Armor": "Leather",
+          "Cost": "10 gp",
+          "Armor Class (AC)": "11 + Dex modifier",
+          "Strength": ",",
+          "Stealth": ",",
+          "Weight": "10 lb."
+        },
+        "sourcePriceCp": 1000.0,
+        "sourceWeightLb": 10.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 10.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 10.0,
+        "unitPriceCp": 1000.0,
+        "tags": [],
+        "largeSizingEligible": true
+      },
+      "totalWeightLb": "10"
+    },
+    {
+      "name": "Dagger",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "simple-melee-weapons.dagger",
+        "name": "Dagger",
+        "category": "Simple melee weapons",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6767,
+        "sourceFields": {
+          "Weapon": "Dagger",
+          "Cost": "2 gp",
+          "Damage": "1d4 piercing",
+          "Weight": "1 lb.",
+          "Properties": "Finesse, light, thrown (range 20/60)"
+        },
+        "sourcePriceCp": 200.0,
+        "sourceWeightLb": 1.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 1.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 1.0,
+        "unitPriceCp": 200.0,
+        "tags": [
+          "sidearm"
+        ],
+        "largeSizingEligible": true
+      },
+      "totalWeightLb": "1"
+    },
+    {
+      "name": "Flute",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "tools.flute",
+        "name": "Flute",
+        "category": "Tools",
+        "group": "Musical Instruments",
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 7046,
+        "sourceFields": {
+          "Item": "Flute",
+          "Cost": "2 gp",
+          "Weight": "1 lb."
+        },
+        "sourcePriceCp": 200.0,
+        "sourceWeightLb": 1.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 1.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 1.0,
+        "unitPriceCp": 200.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "1"
+    },
+    {
+      "name": "Backpack",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "adventuring-gear.backpack",
+        "name": "Backpack",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6936,
+        "sourceFields": {
+          "Item": "Backpack",
+          "Cost": "2 gp",
+          "Weight": "5 lb."
+        },
+        "sourcePriceCp": 200.0,
+        "sourceWeightLb": 5.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 5.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 5.0,
+        "unitPriceCp": 200.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "5"
+    },
+    {
+      "name": "Bedroll",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "adventuring-gear.bedroll",
+        "name": "Bedroll",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6940,
+        "sourceFields": {
+          "Item": "Bedroll",
+          "Cost": "1 gp",
+          "Weight": "7 lb."
+        },
+        "sourcePriceCp": 100.0,
+        "sourceWeightLb": 7.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 7.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 7.0,
+        "unitPriceCp": 100.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "7"
+    },
+    {
+      "name": "Clothes, costume",
+      "quantity": 2,
+      "sourceRecord": {
+        "id": "adventuring-gear.clothes-costume",
+        "name": "Clothes, costume",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6956,
+        "sourceFields": {
+          "Item": "Clothes, costume",
+          "Cost": "5 gp",
+          "Weight": "4 lb."
+        },
+        "sourcePriceCp": 500.0,
+        "sourceWeightLb": 4.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 4.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 4.0,
+        "unitPriceCp": 500.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "8"
+    },
+    {
+      "name": "Candle",
+      "quantity": 5,
+      "sourceRecord": {
+        "id": "adventuring-gear.candle",
+        "name": "Candle",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6948,
+        "sourceFields": {
+          "Item": "Candle",
+          "Cost": "1 cp",
+          "Weight": ","
+        },
+        "sourcePriceCp": 1.0,
+        "sourceWeightLb": null,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 0.1,
+        "weightProvenance": "new small-item completion; source null preserved",
+        "unitWeightLb": 0.1,
+        "unitPriceCp": 1.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "1/2"
+    },
+    {
+      "name": "Rations (1 day)",
+      "quantity": 5,
+      "sourceRecord": {
+        "id": "adventuring-gear.rations-1-day",
+        "name": "Rations (1 day)",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6995,
+        "sourceFields": {
+          "Item": "Rations (1 day)",
+          "Cost": "5 sp",
+          "Weight": "2 lb."
+        },
+        "sourcePriceCp": 50.0,
+        "sourceWeightLb": 2.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 2.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 2.0,
+        "unitPriceCp": 50.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "10"
+    },
+    {
+      "name": "Waterskin",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "adventuring-gear.waterskin",
+        "name": "Waterskin",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 7013,
+        "sourceFields": {
+          "Item": "Waterskin",
+          "Cost": "2 sp",
+          "Weight": "5 lb. (full)"
+        },
+        "sourcePriceCp": 20.0,
+        "sourceWeightLb": 5.0,
+        "sourceWeightIncludesContents": true,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 5.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 5.0,
+        "unitPriceCp": 20.0,
+        "tags": [],
+        "largeSizingEligible": false,
+        "emptyWeightLb": 1,
+        "waterCapacityPints": 4
+      },
+      "totalWeightLb": "5"
+    },
+    {
+      "name": "Disguise kit",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "tools.disguise-kit",
+        "name": "Disguise kit",
+        "category": "Tools",
+        "group": "Other Tools",
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 7054,
+        "sourceFields": {
+          "Item": "Disguise kit",
+          "Cost": "25 gp",
+          "Weight": "3 lb."
+        },
+        "sourcePriceCp": 2500.0,
+        "sourceWeightLb": 3.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 3.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 3.0,
+        "unitPriceCp": 2500.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "3"
+    },
+    {
+      "name": "Healer's kit",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "adventuring-gear.healer-s-kit",
+        "name": "Healer's kit",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6966,
+        "sourceFields": {
+          "Item": "Healer's kit",
+          "Cost": "5 gp",
+          "Weight": "3 lb."
+        },
+        "sourcePriceCp": 500.0,
+        "sourceWeightLb": 3.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 3.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 3.0,
+        "unitPriceCp": 500.0,
+        "tags": [],
+        "largeSizingEligible": false,
+        "chargesWhenFull": 10,
+        "weightPolicy": "Fixed 3 lb regardless of remaining charges; no separate container mass",
+        "operationalWeightIncludesContents": true,
+        "chargeProcedure": "EQUIPMENT_ITEM_PROCEDURES.md#medicine-and-alchemy"
+      },
+      "totalWeightLb": "3"
+    },
+    {
+      "name": "Small narrative token",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "new.small-narrative-token",
+        "name": "Small narrative token",
+        "category": "Narrative accessory",
+        "status": "reviewed-authored-playtest",
+        "sourceLine": null,
+        "sourceFields": null,
+        "sourcePriceCp": null,
+        "sourceWeightLb": null,
+        "bundleSize": 1,
+        "unitPriceCp": null,
+        "unitWeightLb": 0.1,
+        "operationalBundleWeightLb": 0.1,
+        "weightProvenance": "new conference completion",
+        "profile": "One trinket/insignia/charm/small relic; retain description, no automatic power or sale value",
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "1/10"
+    },
+    {
+      "name": "Journal",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "new.journal",
+        "name": "Journal",
+        "category": "Accessory",
+        "status": "reviewed-authored-playtest",
+        "sourceLine": null,
+        "sourceFields": null,
+        "sourcePriceCp": null,
+        "sourceWeightLb": null,
+        "bundleSize": 1,
+        "unitPriceCp": 100,
+        "unitWeightLb": 1,
+        "operationalBundleWeightLb": 1,
+        "weightProvenance": "new conference completion",
+        "profile": "Also ledger/notebook",
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "1"
+    },
+    {
+      "name": "Clothes, common",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "adventuring-gear.clothes-common",
+        "name": "Clothes, common",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6955,
+        "sourceFields": {
+          "Item": "Clothes, common",
+          "Cost": "5 sp",
+          "Weight": "3 lb."
+        },
+        "sourcePriceCp": 50.0,
+        "sourceWeightLb": 3.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 3.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 3.0,
+        "unitPriceCp": 50.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "3"
+    },
+    {
+      "name": "Pouch",
+      "quantity": 1,
+      "sourceRecord": {
+        "id": "adventuring-gear.pouch",
+        "name": "Pouch",
+        "category": "Adventuring gear",
+        "group": null,
+        "status": "reviewed-authored-playtest",
+        "sourceLine": 6992,
+        "sourceFields": {
+          "Item": "Pouch",
+          "Cost": "5 sp",
+          "Weight": "1 lb."
+        },
+        "sourcePriceCp": 50.0,
+        "sourceWeightLb": 1.0,
+        "sourceWeightIncludesContents": false,
+        "procedure": "docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+        "bundleSize": 1,
+        "operationalBundleWeightLb": 1.0,
+        "weightProvenance": "source",
+        "unitWeightLb": 1.0,
+        "unitPriceCp": 50.0,
+        "tags": [],
+        "largeSizingEligible": false
+      },
+      "totalWeightLb": "1"
+    }
+  ],
+  "coins": {
+    "count": 10,
+    "denomination": "gp",
+    "weightLb": "1/5"
+  },
+  "weightLb": "294/5",
+  "inventoryLoad": "147/25",
+  "burdenThreshold": "11/2",
+  "loadCapacity": 11,
+  "physicalCapacityLb": 165,
+  "burdened": true,
+  "walkingSpeedFeet": 20,
+  "backpackContentsLb": "45/2",
+  "containerVolumeFitAndExternalAttachments": "Physical prerequisites; not authenticated by these weight calculations",
+  "rollExamples": {
+    "perceptionSuccess": {
+      "total": 13,
+      "degree": "success",
+      "success": true
+    },
+    "perceptionNaturalOne": {
+      "total": 3,
+      "degree": "critical-failure",
+      "success": false
+    },
+    "verseHit": {
+      "total": 12,
+      "hit": true,
+      "critical": false
+    },
+    "noteFailedSave": {
+      "total": 7,
+      "success": false,
+      "failureMargin": 6
+    }
+  },
+  "spellSequence": [
+    {
+      "turn": 1,
+      "choice": "mage-light",
+      "quote": {
+        "spellId": "mage-light",
+        "rank": 0,
+        "cost": 0,
+        "baseRpCost": 0,
+        "additionalRpCost": 0,
+        "surcharge": 0,
+        "rpAfterPayment": 2,
+        "limit": 7,
+        "refrain": 0,
+        "dissonanceAddedBeforeClassInterface": 0,
+        "dissonanceBeforeClassInterface": 0,
+        "trauma": 0
+      },
+      "dissonanceAfter": 0
+    },
+    {
+      "turn": 2,
+      "choice": "message",
+      "quote": {
+        "spellId": "message",
+        "rank": 0,
+        "cost": 0,
+        "baseRpCost": 0,
+        "additionalRpCost": 0,
+        "surcharge": 0,
+        "rpAfterPayment": 2,
+        "limit": 7,
+        "refrain": 0,
+        "dissonanceAddedBeforeClassInterface": 0,
+        "dissonanceBeforeClassInterface": 0,
+        "trauma": 0
+      },
+      "dissonanceAfter": 0
+    },
+    {
+      "turn": 3,
+      "choice": "message",
+      "quote": {
+        "spellId": "message",
+        "rank": 0,
+        "cost": 0,
+        "baseRpCost": 0,
+        "additionalRpCost": 0,
+        "surcharge": 0,
+        "rpAfterPayment": 2,
+        "limit": 7,
+        "refrain": 1,
+        "dissonanceAddedBeforeClassInterface": 1,
+        "dissonanceBeforeClassInterface": 1,
+        "trauma": 0
+      },
+      "dissonanceAfter": 1
+    },
+    {
+      "turn": 4,
+      "choice": "nonmagical regular turn",
+      "dissonanceAfter": 0,
+      "previousSpell": "message",
+      "refrain": 1
+    },
+    {
+      "turn": 5,
+      "choice": "message",
+      "quote": {
+        "spellId": "message",
+        "rank": 0,
+        "cost": 0,
+        "baseRpCost": 0,
+        "additionalRpCost": 0,
+        "surcharge": 0,
+        "rpAfterPayment": 2,
+        "limit": 7,
+        "refrain": 2,
+        "dissonanceAddedBeforeClassInterface": 2,
+        "dissonanceBeforeClassInterface": 2,
+        "trauma": 0
+      },
+      "dissonanceAfter": 2
+    }
+  ],
+  "shieldQuote": {
+    "spellId": "shield",
+    "rank": 1,
+    "cost": 2,
+    "baseRpCost": 2,
+    "additionalRpCost": 0,
+    "surcharge": 0,
+    "rpAfterPayment": 0,
+    "limit": 7,
+    "refrain": 0,
+    "dissonanceAddedBeforeClassInterface": 1,
+    "dissonanceBeforeClassInterface": 1,
+    "trauma": 0
+  },
+  "shieldAtOneRP": "Insufficient RP",
+  "retuneUncapped": 4,
+  "retuneFromZeroCapped": 2,
+  "links": [
+    {
+      "target": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\docs\\playtest\\NEWCOMER_PLAYER_GUIDE.md",
+      "exists": true
+    },
+    {
+      "target": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\docs\\mechanics\\BARD_PLAYTEST_v0_1.md",
+      "exists": true
+    },
+    {
+      "target": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\docs\\mechanics\\ANCESTRY_BACKGROUND_PLAYTEST.md",
+      "exists": true
+    },
+    {
+      "target": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\data\\public\\spell_playtests\\catalog.json",
+      "exists": true
+    },
+    {
+      "target": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\docs\\mechanics\\SPELL_INTEGRATION_RULES.md",
+      "exists": true
+    },
+    {
+      "target": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\docs\\mechanics\\COMBAT_ACTION_PLAYTEST.md",
+      "exists": true
+    },
+    {
+      "target": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\docs\\playtest\\SESSION_ZERO_PLAYTEST.md",
+      "exists": true
+    }
+  ],
+  "sourceHashes": {
+    "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json": "23a3b37796c4adb8191dd0156fde8059c39c0983d494e64ec5e9445cdfad9e2f",
+    "DescentReviewChanges/ReviewBible/data/playtest/ancestry_background_candidate.json": "d8e728a1c5b9d28b7e42a035aedf99c295f7d90aa69ddae5a46f2f76959aadfb",
+    "DescentReviewChanges/ReviewBible/data/playtest/equipment_acquisition_candidate.json": "4037e188edb890c971acb39e8679cfd5a142b0042508af30c95d4703d2a2745b",
+    "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Bard_Playtest_v0_1.json": "b514ef61a468d5d9b19031811f98860f1a61324b4626df601d2748dcb46ce6a6",
+    "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json": "1227af1d81eebf793adda68b6b375f3b351629929eb022526fb8ce4642b0c584",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md": "e59456f4430f7f72db0392c3a52be8ec8b7d804b4b765c0a73f81c72f060a49e",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md": "8ce30a927b550d31bc981fc9537fccd178507c6b5e671fe9c6d82b987476f871",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/ANCESTRY_BACKGROUND_PLAYTEST.md": "2bb46707d22caee6e669f6d5978db0ef30211d61049c7a88818f92cf7461e384",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/ANCESTRY_BACKGROUND_SOURCE_BINDINGS.md": "6ddd6127c67ff3b4e98dfefbb54858ddacd2c49be78d1b50e36e444e93684bc0",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BARD_PLAYTEST_v0_1.md": "24a948bf66f6df37ff4beae9f5eb873493e983040326019a4a5a82162d950996",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md": "256bb99fce3855a78b381577d7c4c1ec448c41d7cde79a6b238b01ca47ff35a3",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md": "ea0b6c89191160c9e56a97563d55e9f1022bd1b7b732c648fd0c3882aab2a050",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_STARTING_PACKAGES.md": "a6e2ad93e5fabc0a28b475bcffc74952a6b5c4d70139f11251f0d74cc14b9b62",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md": "32ca16894c29ba2906f8d510ef9781951bc8780e4a91ee84671f250f4de62b5f",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7",
+    "DescentReviewChanges/ReviewBible/tools/character_foundation.py": "25e49a3342ca19aaf6c3b1623e1fd04f57b543312ea3d2098f93ca391c54464b",
+    "DescentReviewChanges/ReviewBible/tools/core_playtest_rules.py": "a162117cf2c0c96a77ef5e594ce7247593930c57e6223fc7291ab12fc45c8d7d",
+    "DescentReviewChanges/ReviewBible/tools/spell_playtest_rules.py": "16e31c5668fcd318433104fa7d67c499b76a1057c460cf8d3c63668aa096019e"
+  },
+  "runtimeOrFullSceneSimulation": false,
+  "humanBalanceVerified": false,
+  "sentToGPT": false,
+  "newRuleApprovals": 0,
+  "newWorldFacts": false,
+  "openReview": [
+    "Exact prose and timing review of the walkthrough",
+    "Session-zero and broader newcomer manuscript joint review",
+    "Actual campaign group names and physical packing at the table",
+    "Expedition/Haven and final whole-game flow"
+  ]
+}

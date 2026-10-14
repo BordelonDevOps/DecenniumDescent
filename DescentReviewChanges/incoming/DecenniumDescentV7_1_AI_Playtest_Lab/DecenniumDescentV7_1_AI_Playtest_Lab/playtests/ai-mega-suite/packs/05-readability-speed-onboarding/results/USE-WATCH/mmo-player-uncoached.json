@@ -1,0 +1,54 @@
+{
+  "pack": "05-readability-speed-onboarding",
+  "scenarioId": "USE-WATCH",
+  "agentId": "mmo-player-uncoached",
+  "seed": 51744,
+  "runId": "2026-08-06T122200Z-USE-WATCH-mmo-player-uncoached",
+  "observations": [
+    "Task: Resolve three Watches including one Pressure complication",
+    "Run: uncoached; facilitator answered only by pointing to rule text.",
+    "Cited: docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches; docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications.",
+    "Persona friction terms: no aggro table, roles vs five expedition teams, Pressure as threat meter.",
+    "Observed ExpeditionTracker Rest debt /3 label while reading Rest Debt in GAMEPLAY_LOOP_CANON §5."
+  ],
+  "metrics": {
+    "coachedRun": false,
+    "decisionSteps": 14,
+    "ruleLookups": 7,
+    "invalidActionsAttempted": 1,
+    "misreadTerms": [
+      "no aggro table",
+      "roles vs five expedition teams"
+    ],
+    "minutesEstimateProxy": 19.6,
+    "canStateFullLoop": null,
+    "conceptUnderstood": {
+      "Pressure": false
+    },
+    "citationsUsed": [
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §8 Team activities",
+      "src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    ],
+    "evidenceLevel": "B",
+    "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014",
+    "rulesHaltCount": 0
+  },
+  "rulesQuestions": [
+    "ExpeditionTracker Rest debt shows /3 while canon Rest Debt is 'within next two Watches' — which governs?",
+    "Does every member need an activity even on Rest Watch?",
+    "Undefined-on-first-read: no aggro table",
+    "Undefined-on-first-read: roles vs five expedition teams"
+  ],
+  "exploits": [],
+  "recommendations": [
+    "Align ExpeditionTracker Rest-debt UI copy with GAMEPLAY_LOOP_CANON §5 wording.",
+    "Add a Watch sheet: team activity + Pressure d6 + Supply tick.",
+    "Map five expedition teams to plain verbs on the Watch UI (Fight/Scout/Study/Gather/Care)."
+  ],
+  "confidence": "medium",
+  "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014",
+  "evidenceLevel": "B",
+  "rulesHalts": []
+}

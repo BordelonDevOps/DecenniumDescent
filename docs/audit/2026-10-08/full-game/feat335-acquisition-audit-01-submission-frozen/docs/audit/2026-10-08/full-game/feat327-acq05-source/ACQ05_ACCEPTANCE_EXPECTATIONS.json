@@ -1,0 +1,147 @@
+{
+  "id": "FEAT327-ACQ-05",
+  "kind": "Authored finite expectations; NOT executed lifecycle/runtime tests",
+  "count": 20,
+  "cases": [
+    {
+      "id": "ACQ05-T01",
+      "title": "Purchase without an animal",
+      "premise": "A character has actual Animal Handling proficiency, does not own animal_companion, and has one source-qualified unspent feat opportunity. No animal is present.",
+      "expected": "Commit that opportunity once; record owned feat, no bond, and one unspent initial attempt. No animal, real-world receipt or rest is created.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T02",
+      "title": "Failed or duplicate purchase",
+      "premise": "Missing proficiency or opportunity, or the feat is already owned.",
+      "expected": "Reject that purchase without a new grant, payment or allowance initialization. A proposed purchase canceled before commitment has no payment; cancellation after a valid purchase is not a refund.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T03",
+      "title": "Valid start and first success",
+      "premise": "Previously paid grant; initial attempt 1; eligible real conditional animal with complete ordinary profile; actual uninterrupted touch-range work from t to t+3600 seconds.",
+      "expected": "At the single valid start spend 1→0 and record a pending attempt, with no companion profile yet. On lawful completion install one bond using latest actual body and owner values. No extra feat payment, RP or die roll.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T04",
+      "title": "Four preserved HP endpoints",
+      "premise": "Owner total level4; corresponding genuine conditional SUP-02 bodies: Small ground5/10, Medium ground1/20, Tiny flyer3/7, Small swimmer7/10.",
+      "expected": "At successful bond maxHP9 and currentHP4,1,3,6 respectively. Conditions/injuries/breathing/identity persist. At owner level8 maxHP13, current values stay4,1,3,6 and spent attempt remains0. These are arithmetic fixtures, not authenticated animals.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T05",
+      "title": "Rejected preflight versus prior paid grant",
+      "premise": "Feat already purchased. Proposed target has absent ordinaryHP, invalid type/INT/size/native mode, no real access/willing-or-tamed relation, or incompatible existing bond. No start occurred.",
+      "expected": "Reject start and leave its unspent attempt unchanged; preserve the previously paid feat. A missing record is not proof no earlier real start occurred.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T06",
+      "title": "Interrupted first attempt",
+      "premise": "After a valid spent start, separately exercise contact/access loss, loss of both qualifying willing/tamed alternatives, disqualifying body change, owner incapacitation, voluntary abandonment or actual target death.",
+      "expected": "Terminate that attempt, retain spent allowance and elapsed time, preserve actual ordinary body losses/conditions/corpse as governed. No companion conversion. Resumed contact cannot complete the old partial hour.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T07",
+      "title": "Same-epoch retry",
+      "premise": "T06 followed by another proposal before a new beneficial owner Long Rest; change scene, body, controller label or date label.",
+      "expected": "No new attempt. Feat ownership remains; no re-purchase, refund or late reconstruction of an unspent allowance.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T08",
+      "title": "Genuine recharge",
+      "premise": "A new actually beneficial owner Long Rest completes under FS-06/EX58.",
+      "expected": "Set attempt allowance to1, never2. A new valid attempt needs all current gates and a new full hour; the earlier failure remains recorded. No animal heal, revival or automatic bond is granted.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T09",
+      "title": "False recharge",
+      "premise": "Short Rest; debt-only eight-hour Rest; fewer than24 hours since previous beneficial LR; duplicate rest receipt; location/calendar reset; unsupported rest; or crediting active hour as rest.",
+      "expected": "No additional LR attempt recovery. Actual debt clearing remains where lawful; it is not a second beneficial resource refill.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T10",
+      "title": "Replacement while bonded",
+      "premise": "Owner retains a current Animal Companion bond and has an unused refreshed attempt.",
+      "expected": "Reject the new bond start. No charge is spent by that rejected start and the old bond is not automatically released. No simultaneous provisional second companion or success-only exchange.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T11",
+      "title": "Interrupted release",
+      "premise": "Owner begins the separate release hour; an interruption occurs before completion.",
+      "expected": "Old bond survives unless an independent event ended it. Actual time remains spent, no partial release progress is reusable; a fresh full release hour is allowed. No bond attempt/feat opportunity/RP is charged.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T12",
+      "title": "Completed release and later rest gate",
+      "premise": "An owner with live companion and one unused attempt finishes a lawful release. For the numeric example companion current4/max9, saved ordinary maximum10.",
+      "expected": "Bond ends; restored ordinary current4/max10 under existing ratio conversion; conditions/custody remain. Prior unused attempt does not permit immediate replacement. Require a beneficial owner LR completion ordered after this end. Its start need not be after the end if the rest is genuinely lawful; active release work itself cannot count as rest.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T13",
+      "title": "Death and no resurrection",
+      "premise": "Feat-chassis animal reaches0HP, or owner actually dies while the animal survives.",
+      "expected": "Retain the printed distinct outcomes: animal0HP is its one corpse/no death saves; owner death ends bond and restores a surviving animal by existing ratio. Death never creates another animal, new feat opportunity, attempt reset or permission to use a corpse.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T14",
+      "title": "Failed replacement after release",
+      "premise": "Old bond validly ended, owner later completed beneficial LR, then began and interrupted replacement.",
+      "expected": "Feat remains owned; old bond stays ended; new attempt stays spent; neither old nor proposed animal becomes a companion. Another actual beneficial LR and full valid attempt are needed. Rebonding a released living individual uses the same gates and continuing identity, never a refreshed body.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T15",
+      "title": "Receiving existing feat owner",
+      "premise": "Sender lawfully released living animal. Receiver already owns Animal Companion and is unbonded, with a legal attempt and own post-ending rest requirement satisfied, if applicable.",
+      "expected": "Receiver performs own full hour and spends own attempt, not another feat opportunity. Sender rest/ownership/cooldown never transfers. Receiver with an active bond or unmet own rest gate cannot begin.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T16",
+      "title": "Receiving nonowner and class alternative",
+      "premise": "Receiver lacks Animal Companion; separately test actual opportunity/proficiency, neither feat nor class grant, and an actually selected eligible Ranger Warder Beast Companion.",
+      "expected": "Animal custody grants no feat. A legal first feat purchase initializes only that owner’s first allowance. Without either actual receiving grant there is no special bond. Ranger branch uses real Ranger16/Warder selection, CR≤Ranger level, willing/tamed noncorrupted Beast INT<7, real4RP, native once/LR and one-hour touch rules, not feat no-RP terms. No Ranger grant or timing exception is manufactured.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T17",
+      "title": "No forced cross-engine termination",
+      "premise": "Proposed animal still belongs to an Animal Companion or Ranger bond; custody alone changed.",
+      "expected": "No receiving bond or stat addition. Outgoing source must genuinely end its bond first. Feat release does not author a Ranger-release procedure. Dead targets stay ineligible.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T18",
+      "title": "Record and phase conservation",
+      "premise": "Valid transfer/rebond, latest injury during a successful hour, companion also proposed as a ridden mount, or attempted stale source reuse.",
+      "expected": "Use current actual HP/condition at completion; preserve underlying identity, ordinary profile, source restrictions, spent actor/body budgets and actual custody. Never import sender feat ownership/profile as receiver grant, clone a phase/controller/Reaction, reset an attack, heal to full or waive EX58 tack/load/mount gates.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T19",
+      "title": "Invalid completion is not refund",
+      "premise": "An actual start already spent the allowance. A later submitted completion is short, interrupted, mismatched, missing or otherwise invalid.",
+      "expected": "Reject completion only. The recorded real purchase/start expenditure remains. No inferred refund, unspent state or retrospective valid hour. Source-supported record corrections retain predecessors, not a favorable fabricated past.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    },
+    {
+      "id": "ACQ05-T20",
+      "title": "Child ownership and preservation",
+      "premise": "Animal Companion was lawfully purchased without a current bond; later actual separate Warrior8 opportunity is available. Also inspect proposed edits.",
+      "expected": "Owned parent meets Companion Training’s printed OR node, subject to its other gates; no animal/use benefit is created. Preserve Animal Handling alternative, full Companion Training procedure, original objects, historical sourceDirection/submitted text, FS-01/06/10, all SUP-02 bodies, Ranger/EX58, unrelated feats and all existing approval/selection flags.",
+      "executionStatus": "NOT_EXECUTED_AUTHORED_EXPECTATION"
+    }
+  ]
+}

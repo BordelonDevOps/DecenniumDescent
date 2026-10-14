@@ -1,0 +1,188 @@
+{
+  "name": "The Haven",
+  "depth": "Approximately Tier 2.5",
+  "status": "The economic and professional center of dungeon exploration",
+  "careerMeaning": "Returning from the Haven with a profitable cargo is a career-defining achievement. Most successful expeditions build their reputations here rather than attempting the deep frontier.",
+  "economyLoop": [
+    "Surface sponsors finance entry, transport, insurance, and replacement equipment.",
+    "Expeditions carry labor, tools, brewing stock, trade goods, and contracts inward.",
+    "The Haven converts recovered materials and information into portable value.",
+    "Caravans move artifacts, crafted gear, substances, records, and rescued or captive persons toward the surface.",
+    "Assay houses, banks, guilds, and governments divide the proceeds through taxes, liens, shares, and seizure claims."
+  ],
+  "districts": [
+    {
+      "name": "Gateward Caravan Yards",
+      "function": "Porters, pack animals, carts, storage, route contracts, repair crews, and outbound convoy formation."
+    },
+    {
+      "name": "Seal Exchange",
+      "function": "Artifact appraisal, provenance disputes, auctions, expedition shares, insurance, and sovereign claims."
+    },
+    {
+      "name": "Iron Ledger Houses",
+      "function": "Banking, reminting, coin assays, shaved-coin detection, debt instruments, and goblin-founded exchange practices."
+    },
+    {
+      "name": "Makers' Quarter",
+      "function": "Crafting guilds, monster-part preservation, commissions, salvage breakdown, and equipment retirement."
+    },
+    {
+      "name": "Chain Market",
+      "function": "The legal and illegal trade in enslaved people, penal labor, debt bondage, dungeon captives, ransom claims, and liberation contracts. It is a major source of political conflict and organized crime."
+    },
+    {
+      "name": "Low Lantern Ward",
+      "function": "Inns, consensual adult sex work, pleasure houses, information brokerage, blackmail, patronage, and anti-trafficking investigations."
+    },
+    {
+      "name": "Draughtworks",
+      "function": "Breweries, medicinal spirits, magical intoxicants, dependence treatment, contraband laboratories, and customs inspection."
+    },
+    {
+      "name": "Underways",
+      "function": "Smuggling routes, sewer predators, hidden shrines, counterfeit Gate seals, and cargo laundering."
+    }
+  ],
+  "expeditionStanding": [
+    {
+      "depth": "Tier I",
+      "meaning": "Proven adventurer"
+    },
+    {
+      "depth": "Tier II",
+      "meaning": "Established professional"
+    },
+    {
+      "depth": "The Haven",
+      "meaning": "Career-defining success"
+    },
+    {
+      "depth": "Tier III",
+      "meaning": "Elite expedition member"
+    },
+    {
+      "depth": "Tier IV",
+      "meaning": "Famous, feared, or considered reckless"
+    },
+    {
+      "depth": "Tier V",
+      "meaning": "Living legend"
+    },
+    {
+      "depth": "Sixth Gate",
+      "meaning": "Historical figure; the known expedition failed here"
+    }
+  ],
+  "taxSchedule": {
+    "routineRegisteredGoods": 0.03,
+    "licensedMaterialsOrCraftedGoods": 0.05,
+    "artifactsOrAuctionedRelics": 0.06,
+    "strategicOrRegulatedCargo": 0.08,
+    "authorizedContrabandAmnesty": 0.12
+  },
+  "coinAssay": {
+    "dcs": {
+      "obviousShaving": 10,
+      "professionalClippingOrMixedWeight": 13,
+      "platedOrSophisticatedCounterfeit": 16,
+      "masterworkFalseDieOrMint": 19
+    },
+    "assayFee": 0.01,
+    "minimumFeeGp": 1,
+    "remintFee": 0.02
+  },
+  "commodityIndex": {
+    "Tier I": {
+      "rangeGp": [
+        5,
+        15
+      ],
+      "medianGp": 10
+    },
+    "Tier II": {
+      "rangeGp": [
+        15,
+        50
+      ],
+      "medianGp": 30
+    },
+    "Tier III": {
+      "rangeGp": [
+        51,
+        148
+      ],
+      "medianGp": 100
+    },
+    "Tier IV": {
+      "rangeGp": [
+        151,
+        499
+      ],
+      "medianGp": 320
+    },
+    "Tier V": {
+      "rangeGp": [
+        512,
+        1465
+      ],
+      "medianGp": 950
+    }
+  },
+  "underwaysHeat": {
+    "minimum": 0,
+    "maximum": 6,
+    "severity": {
+      "petty": 1,
+      "restricted": 2,
+      "strategic": 3,
+      "traffickingOrForbidden": 4
+    },
+    "check": "at end of active Haven Turn, 1d6 <= Heat creates enforcement complication",
+    "bribes": {
+      "tenPercent": -1,
+      "twentyFivePercent": -2,
+      "floorWhileActive": 1
+    }
+  },
+  "labor": {
+    "statusTags": [
+      "Free",
+      "Contracted",
+      "Debt-Bound",
+      "Penal",
+      "Enslaved",
+      "Rescued",
+      "Disputed"
+    ],
+    "dailyWagesGp": {
+      "unskilled": 1,
+      "skilled": 3,
+      "specialist": 10
+    },
+    "dangerousExpeditionMultiplier": 2,
+    "debtInterestCapPerOpening": 0.1,
+    "raceBasedPriceTables": false
+  },
+  "traffickingEvidence": {
+    "minimum": 0,
+    "maximum": 4,
+    "success": 1,
+    "criticalSuccess": 2,
+    "completion": "warrant, raid, public hearing, rescue operation, or faction confrontation"
+  },
+  "downtime": [
+    "Seek Patronage or Information",
+    "Secure a License",
+    "Brew a Batch",
+    "Treat Dependence or Withdrawal",
+    "Protect Workers"
+  ],
+  "districtConditionTrack": [
+    "Intact",
+    "Strained",
+    "Damaged",
+    "Captured",
+    "Recovering"
+  ]
+}

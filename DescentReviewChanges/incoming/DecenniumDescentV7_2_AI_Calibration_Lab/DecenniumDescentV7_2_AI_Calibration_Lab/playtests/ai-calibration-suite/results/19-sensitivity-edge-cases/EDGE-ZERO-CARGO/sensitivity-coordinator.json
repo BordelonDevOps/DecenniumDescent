@@ -1,0 +1,28 @@
+{
+  "pack": "19-sensitivity-edge-cases",
+  "scenarioId": "EDGE-ZERO-CARGO",
+  "runId": "2026-08-06T151746Z-EDGE-ZERO-CARGO-sensitivity-coordinator",
+  "seed": 78024,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "00172be7a039049ba00006af7905c451097ee0b409b14a6772cfb696f38669b7",
+  "evidenceLevel": "B",
+  "outcome": "PASS",
+  "metrics": {
+    "fixture": {
+      "cargoLoad": 0,
+      "note": "Zero-cargo extraction route"
+    },
+    "agentRole": "sensitivity-coordinator",
+    "seed": 78024
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "Zero cargo still requires Extraction Test cadence by route; Pressure from Extraction Class is 0.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §16"
+    }
+  ],
+  "rawEvidencePath": "results/raw/EDGE-ZERO-CARGO/sensitivity-coordinator.json",
+  "agentId": "sensitivity-coordinator"
+}

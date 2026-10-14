@@ -1,0 +1,48 @@
+{
+  "pack": "02-expedition-extraction",
+  "scenarioId": "EXP-CASUALTY",
+  "agentId": "director",
+  "seed": "10615-11488",
+  "observations": [
+    "Across 10 seeded runs, outcomes={'haven': 10}; objective_met=0.0%; Haven=100.0%; sealed=0.0%.",
+    "Average elapsed 160.0h; peak Pressure avg 6.0; extraction test failures avg 1.2.",
+    "At-risk cargo was stated before every extraction response (sim enforces Director Quick Procedure \u00a7Resolving a cargo loss).",
+    "Pack 01 combat findings unavailable (0 result JSON); assumed class checks use bible tier DC + listed lead mods only."
+  ],
+  "metrics": {
+    "iterations": 10,
+    "outcomes": {
+      "haven": 10
+    },
+    "objective_met_pct": 0.0,
+    "haven_arrival_pct": 100.0,
+    "sealed_pct": 0.0,
+    "avg_profit_gp": -864.0,
+    "avg_net_after_sponsor_gp": 0.0,
+    "avg_elapsed_hours": 160.0,
+    "avg_pressure_peak": 6.0,
+    "avg_supply_end": 44.0,
+    "avg_abandoned_cargo_gp": 0.0,
+    "avg_abandoned_load": 6.0,
+    "avg_downed_or_dead": 2.0,
+    "avg_extraction_test_fails": 1.2,
+    "avg_complications": 12.0,
+    "combat_team_size": 3,
+    "combat_optimal_band": "4-6",
+    "source_note": "GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt (pending promotion); SOURCE_MANIFEST companions partially missing"
+  },
+  "rulesQuestions": [
+    "When evening Rest Watch workers Establish Camp, does their missed Rest grant Strain the same day or only after 24h without Rest (bible \u00a75 vs camp example)?",
+    "Does Attention-tagged cargo increase Pressure every active Watch or once while carried (bible \u00a77 lists condition but not stacking cadence)?",
+    "Extraction Test 'major route transition' interval is undefined numerically \u2014 sim used every 4 Progress as a Director ruling."
+  ],
+  "exploits": [
+    "Abort-continue then immediately extract still paid the +1 Pressure once \u2014 easy to miss if Directors treat abort as soft advice."
+  ],
+  "recommendations": [
+    "Publish a one-page Watch checklist card matching bible Quick Reference (assignments \u2192 1/3 Supply \u2192 activities \u2192 Progress \u2192 Pressure \u2192 d6).",
+    "Define Extraction Test spacing (per Length segment, per Gate, or per N Progress) with a worked table.",
+    "Clarify Attention Pressure cadence and Rest-debt timing for the 3-worker evening camp pattern."
+  ],
+  "confidence": "high"
+}

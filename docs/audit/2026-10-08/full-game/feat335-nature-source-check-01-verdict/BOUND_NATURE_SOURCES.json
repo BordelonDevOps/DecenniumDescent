@@ -1,0 +1,616 @@
+{
+  "reviewId": "FEAT335-NATURE-SOURCE-CHECK-01",
+  "submission": {
+    "name": "DD_FEAT335_Nature_Source_Check_01.zip",
+    "bytes": 726171,
+    "sha256": "3d53960f3bd4b83f726f77e491c575d32b9fdd818932c922657564493722715c",
+    "payloads": 23,
+    "manifest": "PACKAGE_MANIFEST.json",
+    "manifestSha256": "62896e6417c892342e1e355752db9b238e8591c495018fe3b48cbe57f229c318"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+      "bytes": 59912,
+      "sha256": "584df9db3a6785f6268709cf3e376ae48dd62607c3ddb8e5ad5b2cc57e62f3f2",
+      "locator": {
+        "engine": "/engine",
+        "card": "/cards/7",
+        "RP": "/rpByClassLevel",
+        "spellRank": "/cards/7/spellRank"
+      },
+      "inspectionScope": "Complete affected card, all nine engine paragraphs, source metadata, level-one schedule and RP table read; other cards preserved, not a new class audit.",
+      "content": {
+        "engine": [
+          "Dexterity governs weapons; Wisdom governs primal technique DC/M. This draft uses the detailed book's d8 Hit Die; older runtime d10 remains preserved as a conflicting alternative. At 1 gain Track Target engine: Bonus Action mark one perceived enemy within 90 ft for 1 minute, no RP, one quarry at a time; new mark replaces old. Once/own turn a weapon hit against quarry adds S damage. Mark does not reveal creatures through total cover. Track Target selection is an upgrade, not a second unlock tax.",
+          "Weapon Synergy tracks last successful direct weapon hit on your own turns. Changing melee→ranged grants+1 to that ranged attack roll if it is your first attack of the turn; changing ranged→melee makes the hit apply Bleed 1d4 on target's next 2 turns. Once/turn synergy; Do Ts, copies, companions, forced attacks and misses do not advance it. At 5 ordinary Attack Action makes two attacks; techniques use only printed counts. You may draw/stow one weapon as normal object interaction; Dual Style later improves this.",
+          "Elemental Attunement is defensive; Elemental Imbue is the separate Pathfinder feature gated 6. Imbue Bonus Action 2 RP, one element for 3 of your turns; once/turn a weapon hit adds 1d4 of chosen element plus fire:Burn 1d4 next target turn, cold:Speed-10 ft until end next turn, poison:CON save or-1 attack rolls until end next turn. Nonstacking; Do Ts never build Hit Chain. Switching element pays again.",
+          "Druidic Arrow Combo starts at Ranger 11, not at Base 1. Each direct successful weapon hit adds 1 Hit Chain, maximum 2 gained per regular turn and cap 3. Completing 3 primes one Arrow until end next turn; using it consumes the chain, even on miss. Efficient Killer lowers threshold 2. Chain starts/ends encounters 0, cannot be stocked against allies/captives/summons and is cleared by incapacitation. The Arrow is one Action with a ranged weapon attack or the stated save, costs 0 RP when primed, and is a magical class technique rather than an ordinary spell cast. At most one Arrow per round; it cannot advance its own chain. It requires a wielded bow and ammunition. Ordinary attack/damage riders apply once as printed, never another free arrow.",
+          "All Rangers learn five bounded Arrows at 11. Emberroot requires the previous 3 successful weapon hits carried fire imbue: ranged attack, weapon+S d6 fire on hit; up to 2 others within 5 ft take S fire, and primary target Burns 1d4 next turn. Glacial Thorn requires 2 ranged+1 melee among those 3 hits: ranged attack weapon+S d6 cold; on hit STR save or Speed 0 until end next turn. Venomlash requires poisoned/blighted terrain at you or target: ranged attack weapon+S d6 poison; on hit CON save or-1 damage on its next attack. Spirit Fang requires quarry: ranged attack at advantage, weapon+S d6 force; ignores resistance but not immunity on the added force only. Cleansing Grove requires natural terrain at you or target: up to 3 living allies within 10 ft of a point within 60 ft each end Frightened or Poisoned; no attack or damage.",
+          "Chosen Hero grants a sixth Arrow at 11. Warder Nature's Wrath: ranged attack weapon+S d6 piercing; up to 2 allies within 10 ft gain M temporary HP (finite mitigation, not repeatable real healing). Stalker Phantom: two ranged attacks against different aligned targets within 60 ft, each weapon damage, no extra dice; one Arrow activation. Outrider Corruption: place 10 ft-radius zone within 60 ft, concentration until start next turn; up to 3 enemies entering/starting there take S d4 necrotic once each, CON half. Arrow copies cannot generate extra attacks, resources or permanent terrain changes.",
+          "A successful direct weapon hit between ordinary spell casts clears Refrain and gives the next ordinary spell before end next turn 1 less Dissonance, minimum 0. The benefit is single-use/nonstacking; it reduces neither RP nor both base and repeat separately. Ordinary spells use Ranger rank gates and the shared test magic configuration.",
+          "Base choices 1–2, Pathfinder Arch 3–9, and chosen Warder/Stalker/Outrider Hero 10–20 are distinct stages. No source Arch capstone/Finale exists: level 9 receives its normal eligible choice, while 20 automatically improves your Hero Arrow once/long rest (new capstone below). Do not acquire a Hero by spending Base choices. Beast Companion is one permanent bond; it must be a willing/tamed noncorrupted beast with INT<7 and CR no greater than your class level. Its combat profile uses the bounded companion below rather than importing a full CR 20 monster.",
+          "If a primed Arrow expires unused, the prime ends and Hit Chain resets to 0. This applies equally to Efficient Killer’s threshold of two. Efficient Killer itself requires Ranger 11, when Hit Chain exists."
+        ],
+        "card": {
+          "id": "ranger.base.nature-s-whisper",
+          "name": "Nature's Whisper",
+          "className": "Ranger",
+          "band": "Base",
+          "path": null,
+          "sourceKind": "active",
+          "minimumClassLevel": 1,
+          "acquisition": "selection",
+          "activation": "Action",
+          "cost": "1 RP",
+          "rangeAndTarget": "Natural terrain within 15 ft",
+          "duration": "1 minute",
+          "frequency": "Recharge 3",
+          "effect": "Gain advantage on one Perception/Survival check to find tracks, hidden natural creatures or signs of passage. It reveals evidence on success, not automatically creatures through total cover, incorporeal beings or thoughts.",
+          "source": {
+            "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+            "line": 3850,
+            "originalText": "Nature's Whisper: Cast a minor nature spell that reveals hidden creatures or tracks within a small area."
+          },
+          "designStatus": "provisional-playtest",
+          "spellRank": null
+        },
+        "rpByClassLevel": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          34,
+          36
+        ],
+        "scheduleLevel1": {
+          "classLevel": 1,
+          "choose": 4,
+          "bands": [
+            "Base"
+          ],
+          "minimumActives": 2,
+          "asiOrFeat": false
+        }
+      }
+    },
+    {
+      "id": "S2",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/ranger.md",
+      "bytes": 41736,
+      "sha256": "a223a20984611b614d1fd952a405a1cb5b1a88463611f83ea901835712115134",
+      "locator": "lines 194–208",
+      "inspectionScope": "Full Nature's Whisper manuscript entry including table and preserved original.",
+      "content": "#### Nature's Whisper\n\n**Level 1 · selection · ranger.base.nature-s-whisper**\n\n| Activation | Cost | Range / targets | Duration | Frequency |\n|---|---|---|---|---|\n| Action | 1 RP | Natural terrain within 15 ft | 1 minute | Recharge 3 |\n\nGain advantage on one Perception/Survival check to find tracks, hidden natural creatures or signs of passage. It reveals evidence on success, not automatically creatures through total cover, incorporeal beings or thoughts.\n\n<details><summary>Preserved source wording — book line3850</summary>\n\nNature's Whisper: Cast a minor nature spell that reveals hidden creatures or tracks within a small area.\n\n</details>"
+    },
+    {
+      "id": "S3",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "bytes": 17321,
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "locator": "Reading / timing / targets / strain / conditions",
+      "inspectionScope": "Controlling shared class paragraphs; no unrelated source/status revision.",
+      "content": {
+        "readingTimingTargets": "## Reading a class card\n\nUse the class's own level, never total character level, for gates and effects. **L** means that class level; **S** is 1/2/3/4 at class levels 1/5/11/17. **M** means max(1, the class ability modifier), for effect a mounts only. Attacks use d20 + normal character proficiency + the actual appropriate ability modifier. Class save DC is 8 + normal proficiency + actual class ability modifier. Negative modifiers still apply to attacks and DCs. One tile is 5 ft. Fractions round down unless specified. Distances cannot be negative.\n\nA weapon attack uses its usual ability, weapon die and damage type. A technique that says “make one weapon attack” replaces your Action with that attack; it does not also grant a normal Attack Action or Extra Attack. Generic attack-speed language has no effect beyond the exact attacks printed in the draft. A spell attack uses the class's stated casting ability. Natural 1 misses and natural 20 hits/critically doubles damage dice; flat bonuses do not double. A save succeeds at DC; “fails by 10” means the total is at least 10 below DC. Critical-range improvements never stack; use the broadest one.\n\nAn ability is known only if granted or selected by the draft schedule. Satisfy all printed prerequisites, target legality, action availability, recharge and resource costs before spending anything. A failed legal attack/save attempt still pays; an illegal activation spends nothing. No resource goes below 0 or above its cap. A class feature name shared with a spell does not grant both versions; use the version selected, with its own cost and timing. Names and source text are preserved; the current card is the operational draft.\n\n## Action and timing limits\n\nOne regular Action, one Bonus Action if a feature permits it, normal movement and one Reaction between starts of your turns. A free trigger costs no Action only if expressly stated. All grants share **one extra full Action per creature per round**. An extra Action cannot grant another Action, recharge itself, or start another extra-Action grant. It supplies no extra Bonus Action or Reaction. A card granting additional attacks is not permission to repeat all class riders on every hit: obey each rider's frequency.\n\nRecharge N sets a counter to N after use; reduce once at the start of the owner's regular initiative turn, whether able to act or not. Extra turns/Actions do not tick it. Outside combat tick once per 6 elapsed seconds, without double counting. Recharge 2 used on turn 1 is ready on turn 3. A positive counter can be reset/shortened at most once per ability per round. Zero counters are not legal reset targets and expend no reset use. Resets never restore RP or per-rest uses or grant an immediate activation.\n\nAn encounter is a genuine scene of uncertain opposition chosen by the Director, not a player declaration used to reset resources. No encounter gain from attacking allies, one's summons, harmless animals, helpless captives or reused corpses. Out-of-combat abilities retain all printed costs and time. Short-rest means a completed uninterrupted hour of permitted recovery; long-rest means a completed 8-hour Rest Watch. This time convention is a draft integration. Expedition pressure, supplies, safe locations and rest debt still matter. A long rest also refreshes short-rest uses; a short rest never refreshes long-rest uses. Weekly uses refresh after seven full in-world days, not repeated rests.\n\n## Targets, concentration and control\n\nUnless expressly stated, perceive the target, remain within range and have line of effect; total cover blocks targeting. “Ally” includes self unless it says OTHER. A list cannot contain a creature twice. Select up to the printed limit; an empty target list is not a valid way to farm activation benefits. Zones remain at their chosen point unless described as an aura; allies can leave and lose their benefits. An aura requires its owner conscious unless the card supplies a bounded exception. An effect ending at “end next turn” means the affected creature's next turn only when the card says target's; otherwise the user's.\n\nOne concentration slot for all spells, Chants, Veinweaves, forms or zones that require concentration. Starting another ends the old before the new effect resolves, except for an explicit limited linked-effect rule. Damage prompts CON save against max(10, floor(damage/2)); incapacitation or a failed save ends concentration. The round-down convention is a deliberate pilot interpretation. Concentration does not demand a Bonus Action unless maintenance says so. For a paid 3-pulse effect, start is pulse 1; pay maintenance on each of the next 2 regular turns by turn end for pulses 2/3. Missing payment ends it at that turn's end; otherwise it ends at start of turn 4. No repeated start triggers on maintenance.\n\nForced movement does not provoke opportunity attacks unless explicitly stated, cannot place a creature inside solid matter, and stops at an obstacle. Grapples use the card's save/DC, can be escaped with an Action and STR(Athletics) or DEX(Acrobatics) against that DC, and end beyond reach. A root sets Speed 0 but does not remove Actions. Slows reduce Speed to minimum 0. Silence blocks verbal spells/audible abilities, not all thought or all class features. Charmed effects never determine a player's beliefs; use only the printed action restrictions.\n\nNo repeated hard denial without a new save and cost. For this class suite, a creature can suffer **Stunned, compelled loss of its whole Action/turn, or equivalent hard denial from a given character at most once per encounter**, across that character's class features; later such riders fail while damage and soft riders resolve normally. Record source and target. This draft guard is broader than the older Oracle-only ceiling and is an explicit balance proposal. Reaction denial, Speed reduction, penalties and Frightened do not count as whole-turn loss. Do not silently waive boss immunities, legendary defenses or anatomy.",
+        "strain": "## Ordinary spells: one explicit test configuration\n\nUse the manifest-owned **Core Systems Known Descent V 2** class RP tables and rank costs: rank 0–9 costs 0/2/3/5/7/10/13/17/21/26; Grand 32. Follow `src/data/class-spell-progression.js` for each class's rank gates and the existing spell catalog for class/school access. Having enough RP never bypasses a rank gate. Oracle has Revelation Charges, and Soldier/Warrior have no general RP spellcasting. Multiclass spell access is determined separately per class; do not add complete class pools or use total level to unlock a rank. This suite's printed pool tables are single-class; use the existing multiclass pool formula with the new constituent Core V 2 pools for mixed characters.\n\nFour classes have no direct Core V 2 pool row. For this pilot, Crimson Agent uses the Cleric curve multiplied by 0.5; Dragoon, Monk and Thief use that curve multiplied by 0.35, rounded to nearest integer with halves upward, minimum 1. These fallback factors come from the preserved `src/data/resonance-economy.js`; they are explicitly distinguished from direct book tables. The generic Core V 2 Oracle RP row is rejected for this class suite because Oracle's protected class contract uses Revelation Charges only. Oracle never receives RP or ordinary spell access. Retune here means one recovery at the end of a completed short rest, not an unrestricted action.\n\nFor a reproducible pilot, retain the protected **Dissonance** layer with Core V 2 numeric RP costs. This combination is a new integration decision: do not also roll a second historical Burn/fizzle system on top of it. Limit=max(4, 2+PB+max(0, casting modifier)). Before a ranked cast, Dissonance at limit/limit+3/limit+6 adds 1/2/3 RP respectively; at limit+6 ordinary casters cannot cast rank 1+. At limit+3 ordinary Overcast is unavailable. A cast then adds base Dissonance 0 at rank 0, 1 at ranks 1–5, 2 at ranks 6–9. Immediate repeated casts of the same named spell add 1, 2, then 3 maximum. Another named spell resets the repeat counter but not accumulated strain. Apply the class's exact cadence reduction/vent; never infer a free RP reduction. Printed class techniques pay printed costs and cause no automatic spell Dissonance unless tagged or expressly described as spells, Echo releases or Matrix casts. For a Mage/Wizard class card tagged as a spell, use the rank printed in normalized data; its rank is fixed at acquisition and does not rise with S. Other techniques are not counterspell able unless their card says so.\n\nRetune recovers max(0, round(max RP/4)+casting modifier), never above maximum, and clears Dissonance. A long rest restores RP and clears Dissonance. Optional 10-minute meditation once/day recovers positive casting modifier RP and reduces Dissonance by PB+positive modifier. A regular turn with no spell or magical class ability loses 1 Dissonance; an Action spent Grounding without casting loses PB instead (not both). Merely ending an encounter does not clear accumulated Dissonance. Refrain survives idle/weapon turns unless a class explicitly clears it. Lich/Necromancer may force ranked casts through Fracture; after resolution take direct unpreventable trauma equal to rank×1/2/3 at the three strained states, minimum 1, based on state before casting. This trauma cannot generate resources or trigger damage-sharing. They still pay RP and meet rank gates.\n\nGeneric Overcast is excluded from the initial suite configuration until its options are separately fixed; cards such as Overchannel have their own exact costs and gates. Core V 2's original Burn procedures, older rank×2 costs and smaller companion RP tables remain preserved as alternatives, not silently combined. This configuration is suit able for comparing class drafts, not a claim that all historical magic sources already agree.\n\n## Spell repertoires and acquisition\n\nPreserve explicit class spellbook/preparation rules where given. For classes missing a known-spell count, this suite proposes: full casters know 3 cantrips at 1, 4 at 4, 5 at 10 and choose 2 ranked spells at first spell access plus 1 each later class level; hybrid/half/minor casters know 2 cantrips at first cantrip access and 3 at class 10, and choose 2 ranked spells at first ranked access plus 1 on each later even class level. At a long rest, a known caster may replace one known spell with a legal same-or-lower rank selection. This fills an actual missing rule and does not replace a more specific Druid prepared list or Wizard spellbook. Bonus spells expressly granted by a class are additional. No unnamed or mechanically unfinished catalog spell becomes complete merely by entering this repertoire; select operational spells for the test and record them.\n\nScheduled selection applies only where the class document says so. At each milestone choose distinct eligible entries; no banked Skill Points. Automatic engines, ASIs, feats, forms and finales do not also consume a choice unless stated. Ordinary-class schedule:4 Base at 1 (at least 2 active), 2 Base at 2; 2 Arch at 3 (at least 1 active); alternating 1 Base/Arch at 4/6/8/11/13/15/17/19 and 1 Arch at 5/7/9; choose Hero at 10 and 2 Hero (at least 1 active), then 1 Hero at 12/14/16/18; finale 20. If a class has no source Arch capstone, level 9 has the printed class-specific grant or another choice, explicitly shown. The individual schedule and prerequisite checks win over this summary. ASI or eligible feat at 4/8/12/16/19, separate from choices, except Oracle uses its explicit 4/8/14/19 schedule. Druid, Oracle and Paladin use their own schedules.",
+        "conditions": "## Core condition reference\n\nThe following descriptions are preserved from [Core Systems Known Descent V2](../../data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json). The class suite adds its explicit duration, escape and hard-denial limits; it does not give the same named condition a different meaning in each class. Dread, Grief, Bleed and other custom riders use their card’s exact definition.\n\n| Condition | Core V2 rule |\n|---|---|\n| Blinded | Cannot see; automatically fails sight checks; attacks have disadvantage and attacks against it have advantage. |\n| Charmed | Cannot willingly harm the charmer; charmer has advantage on social checks against it. |\n| Deafened | Cannot hear and fails hearing checks; verbal coordination may fail. |\n| Frightened | Disadvantage while source is visible and cannot willingly move closer. |\n| Grappled | Speed 0; ends if grappler is incapacitated or reach is broken. |\n| Incapacitated | Cannot take actions or reactions. |\n| Invisible | Cannot be seen normally; attacks against it have disadvantage and its attacks have advantage until location is revealed. |\n| Paralyzed | Incapacitated, cannot move or speak, fails Strength/Dexterity saves, adjacent hits are critical. |\n| Poisoned | Disadvantage on attacks and ability checks. |\n| Prone | Crawl or stand; melee attackers within 5 ft. have advantage; ranged attackers have disadvantage. |\n| Restrained | Speed 0; attacks against have advantage, own attacks and Dexterity saves have disadvantage. |\n| Silenced | Cannot use verbal components, command words, Chants, or audible coordination. |\n| Staggered | Cannot react, loses Guard, and the next forced movement gains +5 ft. Ends at start of next turn. |\n| Stunned | Incapacitated, cannot move, fails Strength/Dexterity saves, attacks against have advantage. |\n| Unconscious | Incapacitated, unaware, drops held items, falls Prone, adjacent hits are critical. |"
+      }
+    },
+    {
+      "id": "S4",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "bytes": 49780,
+      "sha256": "256bb99fce3855a78b381577d7c4c1ec448c41d7cde79a6b238b01ca47ff35a3",
+      "locator": "Select / resolve / Counterspell / components / recovery",
+      "inspectionScope": "Complete controlling casting/Counterspell and component/recovery passages; later reviewed spell clauses remain within their own scopes.",
+      "content": {
+        "authorityCastingCountering": "## What owns each decision\n\n| Decision | Source used for this packet |\n|---|---|\n| Spell identity, every school placement and per-class rank/access | Preserved `src/data/spells.js`; do not collapse different class ranks into one global rank. |\n| Common RP prices and additional spell evidence | Core Systems Known Descent V2. Its spell blocks are retained with the catalog summaries. |\n| Class identity, engine, spellbook/preparation and cadence exceptions | The current class playtest packet. |\n| Generic Dissonance/Refrain, action limits and core conditions | Shared class playtest rules; source Core conditions remain unchanged. |\n| Missing targeting, exact endpoints, concentration ambiguities and exploit limits | Explicitly provisional decisions on each spell card. |\n\nThe approved Core V2 source has 936 spell blocks. The companion catalog has 848 unique IDs with 936 school placements, but leaves four metadata fields unspecified. These are different views of the source, not evidence that all casting details were absent. Core's generic “Automatic or opposed as described” does not supply a concrete save or targeting rule.\n\nEleven possible renamed entries remain comparative evidence in the register. Harmonic Bulwark's catalog summary says 5 temporary HP per RP while the possible historical Mana Shield entry says 2; its [individual transformation and buffer review](TRANSFORMATION_SPELL_PLAYTEST.md) now supplies the operational decision. Both source variants remain preserved. Other unresolved aliases stay pending their own review; matching names never silently merge effects.\n\nResonance Kindle now has [exact manuscript approval](../../../../docs/audit/2026-10-08/full-game/GPT_CONJURATION_CANTRIP_EXACT_REVIEW.md): Action/Self/V/S, recover 1 RP only when this spell reaches resolution. Its one character-wide use is spent at legal cast start and refreshes only on a beneficial completed long rest. The comparative Mana Kindle block remains separately preserved; its broader wording does not trigger recovery from other cantrips and its historical range grants no remote recipient. The [Conjuration cantrip status](CONJURATION_CANTRIP_REVIEW_STATUS.json) records this bounded decision and the other eleven approved cards.\n\n## Select a spell\n\n1. Choose the class through which you are learning/casting it. Check that class's school access and minimum **class** level on the card.\n2. Use that class's spell rank and Core V2 cost. A different eligible class may receive the same spell at a different rank and level.\n3. Record it in your allowed known, prepared or spellbook choices. An eligible catalog entry is not an automatic grant. Wizard and Druid keep their explicit preparation systems; fallback counts apply only where the class has no more specific rule.\n4. Select only a spell marked `operational-playtest-draft` in this packet, or an operational spell expressly supplied by a class card. Other records stay visible in the unfinished queue.\n5. A class card and an ordinary spell with the same name remain separate records with separate acquisition and costs. Knowing one does not grant the other. Oath spells, Matrix techniques and similar class spells use their own card.\n\nOracle uses RC and its Mystery/Curse system. Soldier and Warrior have no general Weave access. Dragoon first gains ordinary magic at class 3; Paladin at class 2. Sufficient RP, total character level, a class feature with the same name, or a borrowed spellbook cannot bypass a gate.\n\n## Resolve a cast at the table\n\n1. Verify the available Action/Bonus Action/Reaction, its exact trigger, components, targets, range and line of effect. No legal target means no activation or payment. A target in an area still needs the card's eligibility. Total cover blocks direct targeting unless expressly overridden.\n2. Choose a spell from your actual repertoire. Determine its class-specific rank and RP cost: rank 0–9 costs **0/2/3/5/7/10/13/17/21/26**. Add explicitly printed extra costs; Resonance Shield adds 1 RP even when the caster receives it as a cantrip. Generic Overcast is excluded.\n3. Read Dissonance **before** casting. Limit = max(4, 2 + PB + max(0, casting modifier)). At limit/limit+3/limit+6, ranked spells cost +1/+2/+3 RP. At limit+6 ordinary rank-1+ casting is blocked. Cantrips have no strain surcharge but still build Refrain. An expressly granted traumatic-casting exception pays the cost and its printed trauma; it grants neither rank nor repertoire access.\n4. Commit the legal cast's RP, materials and other printed costs before any attack/save or interruption. Perform its components and establish concentration if required, ending incompatible prior concentration. An ordinary missed, saved-against or countered legal cast refunds nothing and never restores displaced concentration.\n5. At this cast's beginning, apply ordinary Dissonance and Refrain once: 0 base for rank 0, 1 for ranks 1–5, 2 for ranks 6–9; consecutive same-named casts add Refrain +1/+2/+3, capped at +3. First cast or a different name adds +0. Apply the class's exact protected reduction, routing or vent and any hook whose printed trigger is beginning/casting. Weapon or idle turns do not reset the previous name/Refrain unless the class expressly says so. This chronological commitment occurs before the Counterspell window; a later Reaction cast updates its own history, and resuming the earlier cast does not update that history again.\n6. Open legal cast-interruption Reactions, resolving nested counters last-in, first-out. A surviving cast then resolves its effect: spell attacks are d20 + PB + the actual casting ability modifier; save DC is 8 + PB + that modifier. Use the exact card's hit/failure/success results and ordinary damage/conditions. Outcome-dependent class hooks occur only at their printed timing and with the required actual result. No automatic cantrip scaling applies. A negated spell grants no success/hit/damage effect merely because its casting cost was paid.\n7. Record concentration, exact expiration, per-rest use, summon and companion command obligations. A second spell cannot supply an ungranted Action, duplicate concentration or resource reset. A readied spell commits this casting sequence at preparation; release has no second cast, cost, cadence update or Counterspell window.\n\nCountering requires an actual operational spell or class card, its repertoire/access and a legal remaining Reaction. The ordinary Counterspell is now reviewed; it is separate from the Mage and Wizard class cards. Dispel Minor, Dispel Resonance, Dispel Magic (Lesser) and Dispel Magic use their exact individual scopes. Rank-limited dispels inspect the original generating cast's spell rank, not RP cost or the dispeller's rank. Higher and unassigned source variants retain their own unfinished status.\n\n## Counterspell checks and interruption\n\nThe [exact notebook review](../../../../docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md) confirms this authored timing interface and corrects the earlier binary-check proposal using the existing [Core roll rules](CORE_RESOLUTION_PLAYTEST.md). This is a tabletop procedure; the pricing helper does not implement nested reactions.\n\nOrdinary Counterspell uses its casting class's actual spellcasting ability + PB against **DC 10 + twice the triggering spell's actual rank**. The class Wizard/Mage cards retain their printed Intelligence + PB check and their own acquisition, cost, rank and recharge. Apply the existing fixed-DC task degrees and natural shifts, then collapse Critical Success/Success to success and Failure/Critical Failure to failure. No extra critical counter effect is invented. It is neither a spell attack nor a saving throw.\n\n| Natural d20 + modifier | DC | Existing task result | Counter result |\n|---|---:|---|---|\n| 20 + 0 | 22 | Failure improves to Success | Success |\n| 1 + 9 | 10 | Success worsens to Failure | Failure |\n| 1 + 20 | 10 | Critical Success worsens to Success | Success |\n\nThe target must be an actual pending spell with a recorded rank. The Director may use hidden source data without revealing the spell's identity/rank; attempting grants no free identification. An unassigned rank is not automatically zero. A source-defined technique is not counterable merely because it spends RP or resembles magic.\n\nA creature normally attempts Counterspell once against a particular pending cast, across its ordinary and same-named class sources. Another Reaction alone does not supply another attempt. An exact source expressly granting an additional attempt against that same cast overrides the default. After failure, another eligible creature may react; after negation there is no further trigger. Counterspell is itself a spell and can be countered. Resolve nested counters last-in, first-out and resume surviving parents without recasting, paying again, or replaying their earlier Refrain/Dissonance. Negation refunds no costs and restores no prior concentration. Countering one spell is not whole-Action/turn hard denial and does not spend that combined ledger.",
+        "components": "## Components, summons and ongoing effects\n\n**V** requires audible speech; **S** requires a free hand or a class feature expressly permitting the gesture; **F** is the class's ordinary casting focus. Core's M/F shorthand is interpreted here as the existing focus alternative. No unspecified costly or consumed material is added. These hand/focus conventions are provisional and may require equipment integration. A spell with V is blocked by an effect explicitly preventing verbal casting.\n\nSummon stat blocks use their printed AC/HP/attack die. Where absent, saves use the owner's PB, other ability checks use +0, walking Speed is 30 feet, and there are no unstated creature immunities or extraordinary senses. Unless a card explicitly gives another bounded range, a commanded companion must be within 60 feet and able to perceive its owner. All one owner's companions share one Bonus Action command and **one damaging action total per round**. Without a command they move and Dodge. A replacement requires the full casting cost. No summon grants loot, a reusable corpse or resource-generating death trigger.",
+        "recovery": "## Recovery bridge and unresolved integration\n\nThe class suite's **Retune** formula is the active RP rule for this combined test: recover max(0, floor(maxRP/4 + 0.5) + actual casting modifier), capped at maximum, and clear Dissonance after a completed one-hour short rest. Retain the expedition rule of at most **two beneficial short rests between long rests**, and one beneficial eight-hour long rest per **24 hours**. A long rest restores RP and clears Dissonance; expedition time, supply, pressure, Wounds and rest legality still apply. Count time once, not once in each tracker. Oracle and other non-RP engines use their class-specific recovery, not this formula.\n\nThis bridge explicitly chooses the class Retune formula over the gameplay draft's quarter-pool-only RP paragraph. Both originals remain preserved. A completed long rest also resets the remembered spell name and Refrain counter. A short rest clears Dissonance through Retune but does not reset Refrain unless a class feature expressly says so. This reset convention is an explicit provisional decision agreed in the notebook review. Broader recovery decisions for all class resources still require the character/campaign integration pass.\n\n## Developer verification\n\n`tools/spell_playtest_rules.py` checks operational status, class access, level gates, known/prepared membership and the **common pricing step**. Its Dissonance result is deliberately labelled *before class interface*. The caller must apply the actual protected class cadence or vent and verify actions, components, target legality, concentration and effect resolution. This helper is not an automatic implementation of every spell or class.\n\nRun `python tools/build_spell_playtests.py`, then `python tools/validate_spell_playtests.py`. Source accounting, metadata coverage, access boundaries and cost/reference scenarios are independently reported. A passing result does not certify the remaining catalog, all cross-class combinations, human balance or live-app readiness."
+      }
+    },
+    {
+      "id": "S5",
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "bytes": 1345296,
+      "sha256": "fa53d48899442b62fd750199bc698457d1b362ef165287e5767d206b73deff32",
+      "locator": "/feats/278",
+      "inspectionScope": "Complete affected current feat record including source, mirrored full operative procedure and unchanged flags; no all335 audit.",
+      "content": {
+        "id": "versatile_mastery",
+        "name": "Versatile Mastery",
+        "cohort": "heritage_mutation",
+        "sourceObject": {
+          "id": "versatile_mastery",
+          "name": "Versatile Mastery",
+          "description": "Racial feat tied to Human heritage.",
+          "prerequisite": "Human heritage",
+          "effect": "Once per rest, use a class skill or ability from another party member.",
+          "type": "Racial",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": false
+        },
+        "reviewStatus": "Source-authored; exact candidate review pending.",
+        "operationalRules": "Require actual Human heritage. NEW once per completed beneficialSR orLR, borrow one permitted class skill for one check OR one class ability activation from a real willing current party member. Before use, spend one uninterrupted minute together within5ft communicating through an actual shared language/channel; choose the exact currently acquired donor skill/card and record donor consent. This preparation changes no resources and does not spend the use; one prepared choice at a time, ending at the next completedrest or replacement. Donor must have it through actual class training/acquisition, not a copied, borrowed or suppressed grant; you must meet actual body/equipment and the menu's total-level gate. You may then consume the feat use on your own legal check/activation while donor is conscious within30ft and can perceive/understand your signal; donor spends noAction, use or resource. A skill choice uses your own ability+normalPB for one real check, replacing lower proficiency, never donor ability, expertise or passive bonus; the task must actually use that donor's class-granted skill. An ability choice uses one of the twelve exact permitted cards/procedures below, your own stats/PB/materials and actual activation cost. These finite NEW borrowing limits deliberately narrow the source's otherwise unbounded class-ability promise for joint decision. No extra feat use after failure, no copied class levels/engines, passive/Arch/Hero/finale ability, transformation, companion, summon, item production, resource generation, permanent learning or further borrowing. The menu grants a one-use ability permission, never its independent class resource pool; actual1RP cost must be paid from your existing personal legalRPpool. Shared spell/Weave restrictions still apply where printed. An already-known same card shares its own recharge/use ledger, so borrowing cannot bypass a spent natural entitlement; an unknown menu card gets only this one borrowed activation and its future recharge history is retained. Existing ordinary resources and restrictions persist after the temporary permission ends. Lasting riders keep their original deadlines and source identity, with you as actor and donor provenance retained.",
+        "workedCases": [
+          "A willing Soldier teaches Tactical Reposition; the Human spends its ownBA and feat use to move half its ownSpeed along a legal route.",
+          "Borrowing Nature's Whisper still costs1realRP. A Human with noRPpool cannot pay and must choose a different legal option before committing."
+        ],
+        "payloadOperational": "Require actual Human heritage. NEW once per completed beneficialSR orLR, borrow one permitted class skill for one check OR one class ability activation from a real willing current party member. Before use, spend one uninterrupted minute together within5ft communicating through an actual shared language/channel; choose the exact currently acquired donor skill/card and record donor consent. This preparation changes no resources and does not spend the use; one prepared choice at a time, ending at the next completedrest or replacement. Donor must have it through actual class training/acquisition, not a copied, borrowed or suppressed grant; you must meet actual body/equipment and the menu's total-level gate. You may then consume the feat use on your own legal check/activation while donor is conscious within30ft and can perceive/understand your signal; donor spends noAction, use or resource. A skill choice uses your own ability+normalPB for one real check, replacing lower proficiency, never donor ability, expertise or passive bonus; the task must actually use that donor's class-granted skill. An ability choice uses one of the twelve exact permitted cards/procedures below, your own stats/PB/materials and actual activation cost. These finite NEW borrowing limits deliberately narrow the source's otherwise unbounded class-ability promise for joint decision. No extra feat use after failure, no copied class levels/engines, passive/Arch/Hero/finale ability, transformation, companion, summon, item production, resource generation, permanent learning or further borrowing. The menu grants a one-use ability permission, never its independent class resource pool; actual1RP cost must be paid from your existing personal legalRPpool. Shared spell/Weave restrictions still apply where printed. An already-known same card shares its own recharge/use ledger, so borrowing cannot bypass a spent natural entitlement; an unknown menu card gets only this one borrowed activation and its future recharge history is retained. Existing ordinary resources and restrictions persist after the temporary permission ends. Lasting riders keep their original deadlines and source identity, with you as actor and donor provenance retained.",
+        "selectionEnabled": false,
+        "exactApproved": false,
+        "runtimeApproved": false,
+        "sharedRulesRef": "shared_rules.json",
+        "supplementsRef": "supplements.json"
+      }
+    },
+    {
+      "id": "S6",
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "bytes": 805113,
+      "sha256": "18536daa06d5bbf81fe5f1d96b51213255854a6ec7bff58cb2c298be9b48dae5",
+      "locator": "/groups/8",
+      "inspectionScope": "Complete twelve-entry SUP-09 read; only Nature's Whisper row is amended.",
+      "content": {
+        "id": "SUP-09",
+        "cohort": "heritage_mutation",
+        "status": "NEW supplement; source directions settled, exact review pending; not an original catalog identity.",
+        "selectionEnabled": false,
+        "value": [
+          {
+            "sourceId": "soldier.base.covering-fire",
+            "name": "Covering Fire",
+            "actualSourceClass": "Soldier",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "Action; own actual ranged weapon/ammunition and normal attack/damage. On hit one−2 next attack against an ally other than you, until your next regular start. One attack only; no Soldier engine."
+          },
+          {
+            "sourceId": "soldier.base.tactical-reposition",
+            "name": "Tactical Reposition",
+            "actualSourceClass": "Soldier",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "BA; move half current usableSpeed as a separate movement-cost budget, normal terrain/route/endpoint restrictions, no opportunity attacks; no teleport or escape from actual restraints."
+          },
+          {
+            "sourceId": "warrior.base.brutal-strike",
+            "name": "Brutal Strike",
+            "actualSourceClass": "Warrior",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "Action; one own actual meleeweapon attack, hit adds1d6 native weapon type (NEW fixedS1 for borrowing, doubled on critical). TargetCONsaveDC8+yourPB+actualattackability; fail Staggered−1attacks and−5Speed through next future target regular end. No mutation/BT grant."
+          },
+          {
+            "sourceId": "ranger.base.quick-shot",
+            "name": "Quick Shot",
+            "actualSourceClass": "Ranger",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "BA; one own legal bowattack using normal attack ability/proficiency, weapon die only without any ability damage modifier. Spend one borrowed entitlement, never donor use. No ExtraAttack, QuickShot loop or HitChain generation from borrowing."
+          },
+          {
+            "sourceId": "ranger.base.twin-strike",
+            "name": "Twin Strike",
+            "actualSourceClass": "Ranger",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "Action; two actually wieldedLightmeleeweapons, one attack with each against one/two legaltargets. Add actual ability damage only to first successful hit. Two are the wholeAction; no ordinaryExtraAttack or borrowedHitChain."
+          },
+          {
+            "sourceId": "ranger.base.nature-s-whisper",
+            "name": "Nature's Whisper",
+            "actualSourceClass": "Ranger",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "Action and1actualpersonalRP; for1minute gain advantage on one actualPerception/Survival check to find tracks/hidden natural creatures/signs of passage in natural terrain within15ft. Success reveals real evidence only. No free check, location through totalcover or borrowedclassengine; apply actual minorWeave/sharedcasting restrictions of the source."
+          },
+          {
+            "sourceId": "ranger.base.skirmisher-s-step",
+            "name": "Skirmisher's Step",
+            "actualSourceClass": "Ranger",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "BA; half current usableSpeed as separate movement-cost budget, no opportunity attacks, ordinary terrain/legalroute/endpoint and actual restraint restrictions; ordinary movement is not refunded."
+          },
+          {
+            "sourceId": "thief.base.cunning-movement",
+            "name": "Cunning Movement",
+            "actualSourceClass": "Thief",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "BA; half current usableSpeed separate movement-cost budget, no opportunity attacks, may cross hostile occupiedspace but never end there; ordinary terrain/cost, no impassable route or escape from restraints."
+          },
+          {
+            "sourceId": "thief.base.disable-device",
+            "name": "Disable Device",
+            "actualSourceClass": "Thief",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "Action with actual usablethieves tools; one accessible nonmagical mechanism in reach,DEX+ownPB vsactualdisarmDC, otherwise15ordinary/20complex. Apply taskdegrees/naturalshifts; success disarms one mechanism, numericfailuremargin5triggersit as source. No magicdispel or blanket toolproficiency."
+          },
+          {
+            "sourceId": "thief.base.feint",
+            "name": "Feint",
+            "actualSourceClass": "Thief",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "BA; one perceivedenemy within10ft able to perceiveyou,chooseCHAorDEX+ownPB vsitsactualpassiveInsight. Ordinarytaskresolution; successadvantage on yournextweaponattackagainst it thisactualturn, no automaticcritical/mindcontrol."
+          },
+          {
+            "sourceId": "thief.base.shadow-step",
+            "name": "Shadow Step",
+            "actualSourceClass": "Thief",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "BA; begin in actualcover/concealment,movehalfcurrentSpeed with ordinarycost/route, then one actualHidecheck only ifdestinationqualifies. No deliberatefootfallnoise fromthismove; ordinaryOA stillapply. No teleport, invisibility or removal of other tracking evidence."
+          },
+          {
+            "sourceId": "monk.base.flurry-of-blows",
+            "name": "Flurry of Blows",
+            "actualSourceClass": "Monk",
+            "minimumBorrowerTotalLevel": 1,
+            "proposedBorrowedProcedure": "Action; exactlytwo separate actualunarmedstrikes with your ownbody/normalunarmedprofile againstone/twolegalcreatures. No borrowedmartialdie,unarmedproficiency,Ki,Tiger/FlowingFormorMonkengine. Actuallyowned independentfeatures may operate within their owncaps; this permission itself generates no resource or recursiveattack."
+          }
+        ]
+      }
+    },
+    {
+      "id": "S7",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "bytes": 30409,
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+      "locator": "Action/time / Ready / sight and Search",
+      "inspectionScope": "All relevant Action, phase, Ready, target and actual-check procedures.",
+      "content": {
+        "actionTime": "## Encounter and action resources\n\nEstablish terrain, light, hazards, objectives, exits and cargo; determine awareness; roll `d20 + DEX modifier + legal bonuses`. Highest first. Players choose player/player ties; the Director resolves ties involving NPCs. Keep the resulting ordered slots for the encounter. A round represents approximately six seconds. A **regular turn** is a creature's normal initiative slot even if it cannot act. An extra turn is distinct.\n\nA turn normally permits movement, one Action, a Bonus Action when an actual rule grants a use, and one ordinary free object interaction. A second ordinary interaction or an Action-time object activation uses an Action. Brief communication is not an extra Action. Conditions and specific features may restrict these permissions.\n\nThe shared limit is one **extra full Action per creature per numbered round**. Such an Action cannot grant another extra Action, Bonus Action or Reaction. This cap is independent of Reaction timing. Extra turns do not by themselves refresh Reactions, recharge, periodic ticks, recovery ticks or the regular-turn allowances defined here.\n\n**Reaction interpretation.** Begin an encounter with one available Reaction unless surprised or otherwise prohibited. Refresh at each regular own-turn start; never at the numbered round boundary or an extra turn. A late-initiative creature can therefore react before its first turn, refresh, and react again in the same numbered round. A legal trigger, available resource and all feature prerequisites are still required.\n\n**Explicit additional Reactions.** A reviewed card can grant a separate limited use without refreshing the ordinary resource. Warrior Mind Shock supplies its stated once-per-duration non-attack Reaction; spending one resource does not consume/reset the other. Surprise, Incapacitated and Focused still restrict both. It grants no Counterspell knowledge or waived costs. Extra turns refresh neither. Per-dose reapplication/stacking and other specific grants remain part of the class semantic pass.\n\n**Surprise — V6 plus NEW Bonus Action clarification.** On a surprised creature's first regular turn it cannot voluntarily move or take an Action or Bonus Action. It cannot react until that turn ends. Its slot, durations, passive effects, concentration, periodic effects and recharge still occur. Surprise alone is not Incapacitated or Unconscious. Brief communication and an otherwise legal simple free interaction remain possible.\n\n**Entry — NEW.** Standard end-round reinforcements roll/receive initiative and first act next round. An explicit midround entrant acts this round only if its complete ordered slot is still upcoming; entry during that exact slot counts as already passed. It has its initial Reaction unless prohibited. A summon-specific timing rule overrides this generic entry procedure.\n\nAfter the final slot, resolve Core's end-round hazards, reinforcements, morale, objectives and boss phases. Conclude the scene with surrender, capture, pursuit, harvesting access and noise consequences under their own rules; winning initiative does not resolve those automatically.\n\n## Time and event ordering — NEW\n\nFor a duration created in initiative, record the relevant original regular start/end marker. Existing effects keep that **virtual marker**, repeating every six seconds if the creature leaves or changes initiative. Reordering, rerolling, extra turns, death/removal or leaving/reentering initiative never restart an existing duration. New effects use the current schedule. Source death still ends concentration, a source-dependent aura/tether or an effect explicitly ending on death.\n\n- A bare hostile target-bound **N rounds** ends at the Nth future regular target-end marker. An in-progress target turn's current end does not count.\n- A bare self/source buff, ally-targeted buff or source-controlled aura **N rounds** ends at the Nth future source-start marker. Explicit target-turn, pulse or absolute timing overrides this default. Activation during source turn 1 for three rounds ends at source turn 4's start.\n- **Next turn** means the next future regular turn of the named creature, not the current turn's still-upcoming end. An unqualified next turn refers to source/user under the existing shared rule. Explicit “this turn” can include the current turn.\n- An outside-initiative bare N-round effect instead gets an absolute application-time + N×6 seconds deadline. Entering initiative preserves that deadline.\n- Explicit periodic profiles retain their registered clocks and tick counts. Never create a second timer merely because a generic duration rule also exists.\n\nThe [exact GPT review](../../../../docs/audit/2026-10-08/full-game/GPT_COMBAT_EXACT_FINDINGS.md) confirms ally-buff source clocks and excluding the current turn for explicit next-turn endpoints. The helper excludes a specific current-end marker only if that marker would otherwise be selected: application during a turn at time1 with end3 excludes3 and selects9; application at/after3 also selects9, without erroneously skipping again to15.\n\nAt a regular turn's **start**, resolve in this order:\n\n1. Expire start-ending effects and apply immediate state changes from those expirations.\n2. Refresh Reaction; tick regular-start recharge/non-action clocks.\n3. Resolve already-due absolute state recovery if now legal, including a previously blocked Stable recovery deadline.\n4. If still alive, dying and at 0 HP with death saves, make that turn's death save.\n5. Resolve other start effects and periodic events in application order.\n6. Begin voluntary turn decisions.\n\nAt **end**, resolve triggered effects, due damage, saves and maintenance before end-ending effects expire; then the slot finishes. No extra turn creates another regular marker. The caller must not reuse a resolved marker.\n\nFor simultaneous effects, earlier application timestamp precedes later. For simultaneous components of one source, its printed internal order controls; otherwise use stable application sequence, with source/mechanical ID as a final tie-break. Record that sequence when creating the effects. Beneficial/harmful labels do not change priority. Periodic family arbitration happens once per family/marker before its damage, retaining the family registry's consumed loser ticks.\n\nExamples: dying at 0 rolls its death save before ordinary start-turn healing; a fatal death save is not undone by ordinary healing. Stable at 0 skips the save, then start-turn damage can break Stable. A natural 20 can restore 1 HP before a due Bleed drops it to 0 as a new drop event. If Decay expires while a Stable recovery deadline is already due, the old deadline resolves once without rerolling recovery time.",
+        "ready": "## Ready\n\nSpend an Action to declare a perceivable trigger and one legal Action-time action or movement. It expires next regular own-turn start. **NEW:** only one pending Ready per creature; replacing it loses the prior setup and any paid held-spell costs. No Bonus Action/Reaction ability, long ritual or multi-minute activity can be prepared by generic Ready.\n\nThe trigger happens first, then the readied response immediately follows before later events, unless a specific effect explicitly interrupts. On release spend the normal Reaction and recheck target, range, sight/perception, line of effect, ammunition and other prerequisites. An invalid or declined occurrence spends no release resource; the Ready can wait for another valid occurrence before expiry. This does not undo setup costs. Once released, it is consumed.\n\nFor ordinary nonspell actions, feature/ammunition costs are paid on release unless text charges setup. A readied **Attack Action** gets its legally available ordinary attack count; a feature limited to your own turn does not thereby work off-turn. Core Overwatch is explicitly one ranged attack, not that full Attack Action and not Soldier's distinct engine.\n\nA readied spell is actually **cast at preparation**: choose spell/mode, verify legality, pay RP/material/other costs, provide components, resolve Dissonance/Refrain and cast-trigger effects once. Counterspell/cast-interruption opportunity occurs then, not again at release. Every held spell requires concentration, even ordinarily non-concentration spells; incompatible prior concentration ends. Lost concentration loses the held spell and costs. NEW: select the legal target/area point at release and recheck legality without repaying. At release the hold continues as ordinary spell concentration if required, otherwise ends after resolution. Expired/replaced/countered held spells do not refund paid costs.\n\nReady movement grants a separate current-Speed budget on release, pays terrain costs and can provoke ordinary opportunity attacks. It grants no extra Action, Bonus Action or interaction.\n\nFocused stance's Reaction restriction also blocks an ordinary Ready release; Ready does not create a Counterspell exception. Holding a spell does not waive any current Reaction prohibition.\n\n**Spell-effect duration begins at release.** Its normal duration is anchored when the effect manifests, while Ready expiry and held concentration already run from preparation. A source explicitly tying a particular consequence to casting/preparation retains that consequence's stated clock. No casting cost, Refrain, Dissonance or cast trigger occurs a second time merely from release.",
+        "sightSearch": "## Cover, sight, Hide and Search\n\nKeep **visibility**, **known location**, and **line of effect** separate. Seeing through a barrier does not itself permit attacking through it. Best cover only: half +2 AC/DEX saves; three-quarters +5; total prevents direct targeting through that obstruction. Never add +2 and +5. For areas, evaluate line/cover from the area's origin to each target; total cover there excludes a creature unless the effect explicitly travels around/through the obstruction. The origin point itself must be legally targetable.\n\nWithin normal ranged range, no range penalty; beyond normal through long, disadvantage; beyond long, illegal. Ranged attacks also have disadvantage when within5ft of a non-Incapacitated hostile that can see the attacker, even if the attacker cannot see that hostile. All advantage/disadvantage follows the single cancellation rule.\n\nNEW **Hide**: permitted only against observers unable to see you clearly or where a feature permits. Roll DEX Stealth once, record natural die and total. Against each observer's passive DC `10 + WIS Perception modifier including applicable proficiency`, use the Core four-degree task system. Meet DC succeeds before natural1/20 degree adjustment; Success/Critical Success establishes Hidden for that observer. No unsourced passive ±5 adjustment for advantage/disadvantage. Actual Search rolls use their normal modifiers.\n\nHidden means that observer cannot see you and does not know your location. Clear sight or learning your position ends Hidden for that observer. Moving between hiding places can retain Hidden only if no clear sight/revealing event occurs. A failed Hide cannot simply be rerolled unchanged; a materially new hiding position, concealment, distraction, sight-breaking event or express reroll feature is required. Hidden is not a generic immunity or a free stealth roll for every move.\n\n**Search** Action: WIS Perception for sensory detection; INT Investigation for appropriate traces/deduction; Core Arcana/Engineering where relevant. Directly locating a Hidden creature defaults to Perception against its recorded final Stealth total as a static DC, using task degrees/natural shifts. Success reveals location only to the searcher and ends Hidden for that observer, without automatically granting sight. Communicate normally to inform others. Search can be repeated on later turns by paying the Action.\n\nAttacks against unseen targets have disadvantage; unseen attackers have advantage, subject to the **Core Invisible exception**: once its position is known, Invisible's own attack modifiers end for that observer and cannot immediately return solely because it remains Invisible. Independent darkness, smoke, blindness or hiding can still supply modifiers.\n\nResolve an attack using pre-attack information; afterward reveal location to observers able to perceive its evidence. If an unseen target's location is unknown, do not directly choose it for a creature-target effect. A weapon/projectile can instead attack a suspected space: wrong space automatically misses; correct space uses unseen rules. A “creature you can see” requirement is never met by position knowledge alone. Area effects can target legal points under their own rules.\n"
+      }
+    },
+    {
+      "id": "S8",
+      "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "bytes": 110219,
+      "sha256": "b514ef61a468d5d9b19031811f98860f1a61324b4626df601d2748dcb46ce6a6",
+      "locator": "/rpByClassLevel; card performance tags and exclusions",
+      "inspectionScope": "Actual Bard pool and complete selected performance/cadence comparison cards; Nature does not become any of them. No full Bard class-hook simulation claimed.",
+      "content": {
+        "rpByClassLevel": [
+          2,
+          3,
+          5,
+          7,
+          9,
+          11,
+          14,
+          17,
+          20,
+          23,
+          26,
+          29,
+          32,
+          35,
+          38,
+          41,
+          44,
+          47,
+          50,
+          54
+        ],
+        "cardExamples": [
+          {
+            "id": "bard.base.verse-mastery",
+            "name": "Verse Mastery",
+            "className": "Bard",
+            "band": "Base",
+            "path": null,
+            "kind": "passive",
+            "minimumClassLevel": 1,
+            "acquisition": "selection",
+            "activation": "Passive",
+            "rangeFeet": 0,
+            "target": "Self",
+            "duration": "While known; individual riders last as stated",
+            "resourceCost": {
+              "rp": 0,
+              "maintenanceRp": 0,
+              "crescendo": "none"
+            },
+            "recharge": {
+              "rounds": 0,
+              "longRestUses": null,
+              "shortRestUses": null
+            },
+            "resolution": "None",
+            "effect": "Once on each of your turns, add 1 to the damage dealt to one target by a directly performed Verse. This is a flat bonus, not a damage die; Echoes never inherit it.",
+            "crescendoRider": "Not a started Performance; no Crescendo rider.",
+            "tags": [],
+            "echoEligible": false,
+            "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+            "source": {
+              "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 1818,
+              "originalText": "Verse Mastery: +5% damage on all Verses."
+            },
+            "designStatus": "playtest-draft",
+            "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+            "prerequisites": {
+              "bardClassLevel": 1,
+              "heroPath": null,
+              "additional": "Only the activation conditions printed in this card and the common rules."
+            }
+          },
+          {
+            "id": "bard.base.performance-focus",
+            "name": "Performance Focus",
+            "className": "Bard",
+            "band": "Base",
+            "path": null,
+            "kind": "passive",
+            "minimumClassLevel": 1,
+            "acquisition": "selection",
+            "activation": "Passive",
+            "rangeFeet": 0,
+            "target": "Self",
+            "duration": "While known; individual riders last as stated",
+            "resourceCost": {
+              "rp": 0,
+              "maintenanceRp": 0,
+              "crescendo": "none"
+            },
+            "recharge": {
+              "rounds": 0,
+              "longRestUses": null,
+              "shortRestUses": null
+            },
+            "resolution": "None",
+            "effect": "Once per round, after you spend 5 Crescendo, reduce the positive round-recharge counter of one OTHER Bard performance by 1, minimum 0. This counts as that ability's one allowed reset/shortening for the round. It cannot restore per-rest uses, RP, an Action or the performance just used.",
+            "crescendoRider": "Not a started Performance; no Crescendo rider.",
+            "tags": [],
+            "echoEligible": false,
+            "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+            "source": {
+              "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 1822,
+              "originalText": "Performance Focus: Gain 10% reduced cooldown on Bard skills when at max Crescendo."
+            },
+            "designStatus": "playtest-draft",
+            "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+            "prerequisites": {
+              "bardClassLevel": 1,
+              "heroPath": null,
+              "additional": "Only the activation conditions printed in this card and the common rules."
+            }
+          },
+          {
+            "id": "bard.base.verse-of-courage",
+            "name": "Verse of Courage",
+            "className": "Bard",
+            "band": "Base",
+            "path": null,
+            "kind": "active",
+            "minimumClassLevel": 1,
+            "acquisition": "selection",
+            "activation": "Action",
+            "rangeFeet": 60,
+            "target": "One enemy; one other ally within 30 feet",
+            "duration": "Instantaneous",
+            "resourceCost": {
+              "rp": 0,
+              "maintenanceRp": 0,
+              "crescendo": "automatic-at-five"
+            },
+            "recharge": {
+              "rounds": 0,
+              "longRestUses": null,
+              "shortRestUses": null
+            },
+            "resolution": "Performance attack vs AC",
+            "effect": "Make a performance attack against one enemy. On a hit, deal S d6 psychic damage. Whether you hit or miss, choose one other ally within 30 feet; its next successful weapon attack before the end of your next turn deals +1 damage. The encouragement does not stack with itself.",
+            "crescendoRider": "The encouraged ally also gains advantage on its next saving throw before the end of your next turn. No additional damage is copied by an Echo.",
+            "tags": [
+              "verse",
+              "damage",
+              "support",
+              "performance"
+            ],
+            "echoEligible": true,
+            "scaling": "Bard class level determines S. C=max(1, Charisma modifier). Attacks and save DC use ordinary total-character proficiency.",
+            "source": {
+              "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 1825,
+              "originalText": "Verse of Courage: A quick musical phrase that deals minor damage to a single target and grants +5% damage to an ally for 2 turns."
+            },
+            "designStatus": "playtest-draft",
+            "designNote": "Exact quantities, timing and restrictions are new playtest specifications; preserve the original text for comparison.",
+            "prerequisites": {
+              "bardClassLevel": 1,
+              "heroPath": null,
+              "additional": "Only the activation conditions printed in this card and the common rules."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "S9",
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "bytes": 52692,
+      "sha256": "b5c312539ccb449a10d0217ec34b02420cded411a5b2f7f6955312cd8b786fd6",
+      "locator": "/rules[id=FS-01,FS-03,FS-06,FS-09]",
+      "inspectionScope": "Current shared acquisition, stacking, cadence and feat spell-route contracts inspected; none altered.",
+      "content": [
+        {
+          "id": "FS-01",
+          "title": "Authority, identity and acquisition",
+          "disposition": "ADOPT EXPLICIT NEW COMPLETION",
+          "wording": "These are source/proposal-authoring directions for 327 exact existing IDs, not approval of assembled operational cards. Preserve all 335 originals, eight already-reviewed full feats, every description/effect/legacy alternative, original questions, absent/null distinctions and prior labels. A real class-scheduled feat/ASI opportunity pays for a grant; merely reaching a total level, possessing an item, meeting prerequisites or reading this register gives no selection. Unqualified Level means total character level; named Warrior or other class gates use that class level. Check printed permanent ability, actual feat ownership and credential prerequisites at acquisition. A half-feat ability increase is capped at 20, contributes zero rather than reducing a higher score, and does not grant another selection. The pure ASI option requires its full legal allocation. Numerical skill prerequisites require actual proficiency and permanent governing ability modifier plus the applicable normal PB or replacing Expertise contribution, excluding equipment, temporary modifiers, situational feats, Help and advantage. Preserve the acquisition snapshot. Later prerequisite loss does not erase a grant; ongoing equipped/active/body requirements can disable its use.\nNEW nonrepeatability: each identity is acquired once, except the explicitly repeatable ASI, Armor Proficiency for a distinct missing tier, Resilient for a different save, and Weapon Focus for a different actual weapon type. Elemental Affinity/Adept, Spell Focus and other chosen-type feats do not gain unprinted repeatability. One same-named source represented in two catalogs is not two selections. The twelve explicitly mapped Warrior mutation-feat pairs are one paid identity; their actual class gates and active-mutation conditions control as stated in HM rows. Other shared names do NOT merge class, ancestry, item, feat, ordinary-spell or supplement permissions.\n\nWarrior mutation-feat acquisition uses the equipped-loadout rules in the Warrior engine as corrected by FEAT327-ACQ-02: at most two equipped Advanced mutations per actual tree and at most one equipped Apex mutation across all trees, within the actual unlocked total slots. Dormant equipped mutations count toward those ceilings. Evaluate each feat's equipped and active prerequisites only at the acquisition or use-time checkpoints that its exact procedure specifies. A temporary all-equipped activation does not supply an equipped prerequisite, slot, mutation, class level or feat opportunity. Preserve each feat's acquisition snapshot and existing ongoing operating conditions.",
+          "basis": [
+            "All nine sharedProposal objects",
+            "CHARACTER_CREATION_PLAYTEST.md",
+            "MAXIMUM_HP_PLAYTEST.md",
+            "heritage_mutation/originalWarriorCounterpartPairs"
+          ],
+          "exactCardApproval": false
+        },
+        {
+          "id": "FS-03",
+          "title": "Distinct feat bonuses and retained comparison families",
+          "disposition": "ADOPT EXPLICIT NEW COMPLETION",
+          "wording": "NEW joint convention: after eligibility, flat numeric bonuses from DISTINCT feat identities add unless an explicit shared comparison family says otherwise. One feat identity contributes once to the same event/statistic across duplicate representations, sources and owners. This replaces Extended Magic's blanket strongest-same-stat proposal and the conflicting individual statements/examples named in the correction register. It does not rewrite the eight reviewed feats or reviewed maximum-HP components.\nClass techniques still perform their own strongest-class-bonus comparison; spells perform their reviewed same-stat comparison; item, attire, tool, facility, cover and item-enhancement contributions retain their own reviewed families. Then add the independently legal feat contribution. A feat-created weapon/armor enhancement explicitly put into an equipment family remains there, not also a feat bonus. Same named condition penalties retain their own comparison rather than becoming additive because a feat created them. Advantage/disadvantage still cancel normally; more sources of advantage do not outvote one disadvantage. Damage resistance of the same scope applies once; immunity retains priority; keep the greatest remaining temporary HP, not their sum. Expanded critical ranges use the broadest applicable range rather than adding chance points. Copies cannot exploit a new family name to duplicate a source. Actual unusual source overrides retain their explicitly narrower predicates.",
+          "basis": [
+            "skill/sharedProposal/bonuses",
+            "crafting/sharedProposal",
+            "combat/sharedProposal",
+            "general_combat/sharedProposal",
+            "magic_extended/sharedProposal/Casting and arithmetic",
+            "CORE_RESOLUTION_PLAYTEST.md",
+            "CLASS_PLAYTEST_RULES.md"
+          ],
+          "exactCardApproval": false
+        },
+        {
+          "id": "FS-06",
+          "title": "One clock, deadlines, rests and initial uses",
+          "disposition": "ADOPT EXPLICIT NEW COMPLETION",
+          "wording": "Use EX58's single elapsed clock, eight-hour Watches, actual task minutes, two-active-work-Watch ceiling and scheduled Rest. A change of scene, gate, holder, location, initiative, class representation or calendar label does not reset a resource. SR/LR in these new procedures mean the actual beneficial completed owner rest, with one beneficial Long Rest per 24 elapsed hours and at most two beneficial Short Rests between beneficial Long Rests. A qualifying long rest restores a short-rest allowance as already governed. Extra safe Rest paying Rest Debt alone provides no second resource recovery. Recipient-rest limits use the actual named recipient's rest epoch.\nNEW initial acquisition completion: the newly acquired limited-use feat begins with its specified full finite allowance, unless it expressly starts empty (such as accumulated stacks/charges). Reacquisition/alias duplication cannot initialize it again. An increase in a PB-based maximum increases capacity only, not current unspent uses. Genuine maximum-HP/RP/RC, Hit Die, reserve and slot changes never heal or refill unrelated current values.\nUse each explicit own-turn/any-turn/round predicate literally. A per-round allowance has one numbered global-round identity; extra turns do not refresh it. A default 'your turn' feat allowance uses the owner's regular interval unless its exact source direction expressly retains any actual turn. Newly completed missing durations use the next future original regular marker specified by the row, not the already-underway marker, retaining virtual/absolute deadlines across schedule changes. Outside initiative use the governed six-second phase without double ticks. A missed trigger is not queued for later. An early ending does not refund time or a use.\n\nNEW FEAT335-CADENCE-CHECK-01 completion, limited to feat procedures governed by FS-06: an otherwise unqualified \"once per turn\" allowance is once for that feat owner during each genuine actual creature turn in which its exact trigger legally occurs, whether that turn belongs to the owner or another creature. A separately sourced and actually occurring extra turn has a distinct actual-turn identity and can supply a distinct opportunity for that unqualified allowance; this rule grants no extra turn. Another Action, Bonus Action, attack, Reaction, nested event, target or resumed segment of the same actual turn does not create another turn identity. Returning to or replaying an already recorded turn retains that turn's spent claim. Actual body, movement, attack, casting, payment, causal-root and recipient restrictions still govern independently.\n\nThis completion does not replace an expressly regular-turn allowance or FS-06's existing default owner-regular-interval allowance for \"your turn\". In particular, Savage Attacker retains its stated own/off-turn regular-turn allowances, and Eldritch Combat retains its expressly regular-creature-turn shared embedded-cast cap plus its owner-regular-interval ordinary-append cap. Overrun's per-creature challenge limit belongs to the actual turn containing its qualifying Dash and subsequent movement; another Dash in that same turn does not renew it. Quickened Thought keeps its expressly any-later-actual-turn release window and the shared one-free-stored-release-per-owner/numbered-round cap, not a new bank at each turn. Per-round, encounter, underlying-roll/cast, recipient-rest and source-defined duration/deadline histories are not reset by an extra turn. Outside initiative retain the governed six-second procedure without inventing a turn from each action or counting an initiative transition twice. Source-specific temporal restoration remains separately governed; this completion supplies no rewind or unsupported extra-turn adapter.",
+          "basis": [
+            "EX58 FL-03",
+            "CLASS_PLAYTEST_RULES.md",
+            "TEX-ADD regular-turn recharge correction",
+            "all cohort resource conventions"
+          ],
+          "exactCardApproval": false
+        },
+        {
+          "id": "FS-09",
+          "title": "Feat-only grants, schools and casting prices",
+          "disposition": "ADOPT EXPLICIT NEW COMPLETION",
+          "wording": "ADOPT the supplied bounded feat-casting route as NEW. Choose and record the exact curriculum where applicable, spell identity and source version, grant rank and permanent casting ability at acquisition from the allowed source-linked list. Preserve the source’s actual school value, explicit null or absent school field; recording source identity does not authorize assigning a missing school. Apply FEAT327-ACQ-03 to casting-prerequisite snapshots and required school selections. Preserve every curriculum’s exact permitted spell, class placement, mode and casting ability; this clarification does not enlarge a curriculum or waive a required source-linked choice. It gives only that feat's repertoire/charge, no ordinary class levels, rank progression, RP pool, prepared positions or class engine. Generic and named Magic Initiate for the same curriculum share one acquisition entitlement; a different name cannot give duplicate charges for that same grant. Actual source-specific versions/modes/components/range remain; no lowest-price or school-union shortcut. Named Sorcerer/Warlock curricula are limited feat lists, not newly created classes. When a granted payload explicitly scales by casting class level, NEW feat route uses total character level only for that payload's printed scaling; it invents no scaling otherwise.\nA finite 'cast without RP' grant waives its normal rank/ordinary price and price-derived Dissonance surcharge only, not an explicitly consumed independent RP payment such as Resonance Shield's 1 RP, Silent/Still surcharge, material, maintenance, blood cost or charge. The feat route uses actual total PB and its specified ability, DC8+PB+ability, attackPB+ability. With no acquired class casting-engine override for that feat route, NEW base Dissonance is0 for rank0,1 for ranks1–5 and2 for ranks6–9; use ordinary Refrain and Limit=max(4,2PB+casting modifier), including the governed ranked-block threshold and component/interruption rules. Being a Wizard does not make an independently acquired feat charge a prepared Wizard matrix.\nFor ordinary priced spells, apply actual existing discounts, Dissonance-price addition, source independent additions, armor and final source multipliers in their reviewed order; apply Efficient Caster only at its stated stage to an actual price of at least2 and never below1 at that stage. Heighten substitutes only the proper ordinary class route's higher base rank-price, not the identity/rank of the resulting spell or a fictitious price for a free charge. Silent and Still each add1 real independent RP when used; they do not pay themselves from a zero-capacity pool. Keep source-specific minimum prices and no-refund rules.",
+          "basis": [
+            "magic_core/sharedProposal",
+            "magicInitiateCurricula",
+            "SPELL_INTEGRATION_RULES.md",
+            "CLASS_PLAYTEST_RULES.md",
+            "current Resonance Shield record"
+          ],
+          "exactCardApproval": false
+        }
+      ]
+    },
+    {
+      "id": "S10",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_borrowed_stunts.py",
+      "bytes": 19526,
+      "sha256": "471ab8893b09529a82a8d9d8a35df8f0eb8fded7a48bd999128e6708f2456ea6",
+      "locator": "lines 52–101 and 190–208",
+      "inspectionScope": "Complete three submitted borrowed modules read; cited old Nature methods are source-qualified partial models, not full clearance or casting evidence.",
+      "content": {
+        "preflightCommit": "    def donor_ok(self,identity,choice,*,distance):\n        donor=self.donors.get(identity)\n        if not donor or not donor['party'] or not donor['willing'] or not donor['conscious'] or not donor['sharedChannel']:\n            raise ValueError('Real willing conscious party donor and shared channel required')\n        if abs(donor['position']-self.world['owner']['position'])>distance:raise ValueError('Donor out of range')\n        if choice in donor['suppressed'] or choice in donor['copiedOrBorrowed']:raise ValueError('Suppressed/copied/borrowed grants cannot teach')\n        if choice not in donor['selectedCards'] and choice not in donor['selectedSkills']:raise ValueError('Exact class-acquired card or skill required')\n        if choice in self.menu and self.menu[choice]['actualSourceClass']!=donor['class']:raise ValueError('Wrong class provenance')\n        return donor\n\n    def start_prepare(self,event,donor,choice):\n        if event in self.events or self.preparing:raise ValueError('Duplicate or overlapping preparation')\n        self.donor_ok(donor,choice,distance=5)\n        if choice not in self.menu and choice not in self.donors[donor]['selectedSkills']:raise ValueError('Outside finite menu/class skill')\n        self.preparing={'event':event,'donor':donor,'choice':choice,'start':self.now}\n    def complete_prepare(self,now,*,uninterrupted):\n        if not self.preparing:raise ValueError('No preparation start')\n        work=deepcopy(self.preparing)\n        if not uninterrupted:\n            self.advance(now);self.preparing=None;self.history.append({'kind':'preparation-interrupted','work':work});return False\n        if now<work['start']+60:raise ValueError('One actual uninterrupted minute required')\n        self.donor_ok(work['donor'],work['choice'],distance=5)\n        self.advance(now);self.prepared=work;self.preparing=None;self.events[work['event']]={'kind':'prepared','choice':work['choice']}\n        return True\n\n    def preflight(self,event,kind):\n        if event in self.events or not self.prepared:raise ValueError('An unused event and actual prepared choice required')\n        if not self.world['owner']['canAct'] or not self.allowance.use.operative or self.allowance.use.current<1:raise ValueError('Feat unavailable')\n        choice=self.prepared['choice'];donor=self.donor_ok(self.prepared['donor'],choice,distance=30)\n        if not donor['perceivesSignal']:raise ValueError('Donor must perceive and understand the signal')\n        if kind=='skill':return choice\n        if choice not in self.menu:raise ValueError('This is not a permitted card')\n        row=self.menu[choice]\n        if sum(self.acquired.pay.current_classes.values())<row['minimumBorrowerTotalLevel']:raise ValueError('Borrower level insufficient')\n        card=next(c for c in self.class_sources[row['actualSourceClass']]['cards'] if c['id']==choice)\n        if self.cooldowns.get(choice,0)>0 or choice in self.card_rest_spent:raise ValueError('Existing personal same-card ledger is spent')\n        cost='bonus' if card['activation']=='Bonus Action' else 'action'\n        if (self.bonus_actions if cost=='bonus' else self.actions)<1:raise ValueError('Actual activation cost unavailable')\n        return choice,card,cost\n\n    def commit(self,event,choice,card,cost):\n        provenance=deepcopy(self.prepared);self.allowance.spend()\n        if cost=='bonus':self.bonus_actions-=1\n        elif cost=='action':self.actions-=1\n        match=re.match(r'Recharge (\\d+)',card['frequency']) if card else None\n        if match:self.cooldowns[choice]=int(match[1])\n        if card and card['frequency']=='1/short rest':self.card_rest_spent.add(choice)\n        self.events[event]={'choice':choice,'donor':provenance['donor'],'actor':'owner','cost':cost,'committedBeforeOutcome':True}\n        self.history.append({'event':event,'kind':'borrowed-activation','preparedProvenance':provenance})\n        return provenance",
+        "nature": "    def nature_whisper(self,event):\n        choice,card,cost=self.preflight(event,'card')\n        if choice!='ranger.base.nature-s-whisper':raise ValueError('Exact prepared Nature Whisper required')\n        owner=self.world['owner']\n        if owner['personalRP']<1 or not owner['sourceQualifiedPersonalRPPool'] or not owner['actualMinorWeaveClearance']:raise ValueError('Existing personal RP and actual source-specific Weave clearance required')\n        self.commit(event,choice,card,cost);owner['personalRP']-=1\n        self.riders.append({'kind':'NatureWhisper','deadline':self.now+60,'source':event,'oneActualCheckRemaining':True})\n        return {'rpSpent':1,'checkGranted':False,'automaticEvidence':False,'deadline':self.now+60}\n\n    def use_nature_advantage(self,event,skill,faces,dc,*,distance,natural_terrain,total_cover,evidence,actual_check_action):\n        rider=next((r for r in self.riders if r['kind']=='NatureWhisper' and r['oneActualCheckRemaining']),None)\n        if event in self.events or not rider or self.now>=rider['deadline'] or skill not in {'Perception','Survival'} or distance>15 or not natural_terrain or total_cover:\n            raise ValueError('A current remaining bonus and an actual eligible natural-evidence check required')\n        if not actual_check_action or self.actions<1 or not self.world['owner']['canAct']:raise ValueError('No free check/action supplied by Whisper')\n        if len(faces)!=2 or any(type(x)is not int or not 1<=x<=20 for x in faces):raise ValueError('Actual advantage dice required')\n        modifier=self.mod('WIS')+self.proficiency()*self.acquired.training_projection['skills'].get(skill,0)\n        result=task_check(max(faces),modifier,dc);rider['oneActualCheckRemaining']=False;self.actions-=1\n        result['revealedEvidence']=deepcopy(evidence) if result['success'] else []\n        self.events[event]={'kind':'actual-check-with-existing-Whisper','result':deepcopy(result),'bonusConsumed':True};return result"
+      }
+    },
+    {
+      "id": "S11",
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "bytes": 15877,
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+      "locator": "Rolls, lines 23–33",
+      "inspectionScope": "Actual task degrees, natural shifts, modifier and advantage cancellation.",
+      "content": "## Rolls\n\nChoose the roll type before rolling. Use the actual ability modifier, including negative values, and normal proficiency only when applicable. Existing advantage/disadvantage chooses the higher/lower of two d20s; multiple sources do not stack, and any advantage plus disadvantage cancels. Add other legal modifiers once. Fractions round down unless a rule specifies otherwise. One tile is 5 feet. Class L, S and effect M retain their definitions in the shared class rules.\n\n**Attack:** roll d20 plus the appropriate attack modifier against AC. Meeting AC hits. Natural 1 always misses; natural 20 always hits and critically doubles damage dice, not flat modifiers. Beating AC by 10 is not a critical hit. An explicit broader critical range does not stack with another; use the broadest eligible range. In this overlay, a natural result below 20 in that range must still meet AC unless the feature expressly says it always hits.\n\n**Task, skill or tool check against a fixed DC:** total at least DC+10 is Critical Success; at least DC is Success; at most DC-10 is Critical Failure; other totals below DC are Failure. Natural 20 then improves one degree and natural 1 worsens one, bounded at either end. A task printing only success/failure collapses the two upper degrees to success and two lower degrees to failure; no extra consequence is invented. A natural 20 can still fail an otherwise impossible check, and a natural 1 with sufficient modifiers can still succeed.\n\n**Saving throw:** total at least DC succeeds; otherwise it fails. Natural 1 and 20 have no generic special outcome. A printed failure by 5 or 10 compares the final total with the DC; it does not add an unprinted critical-save system. Death saves are the specific exception below.\n\n**Opposed check, new provisional tie rule:** compare final totals. Higher wins; an exact tie leaves the existing state unchanged, so the initiating creature fails to change it. Do not turn task natural shifts into hidden numeric modifiers. A maneuver explicitly printing degree outcomes must specify how those apply."
+    },
+    {
+      "id": "S12",
+      "path": "docs/audit/2026-10-08/full-game/feat327-source-verdict/cohorts/HERITAGE_MUTATION.md",
+      "bytes": 55325,
+      "sha256": "1d7678940969081c64b7893318355a08004434d72c49289e26b7c79be6597eb4",
+      "locator": "HM-22 complete decision and two examples",
+      "inspectionScope": "Historical exact feat-source direction preserved; present addendum completes only its Nature row.",
+      "content": "## HM-22 — Versatile Mastery (`versatile_mastery`)\n\n**Disposition:** AUTHOR_FROM_SUBMITTED_PROCEDURE_WITH_FINAL_SHARED_RULES.\n\n**Source:** `DescentReviewChanges/ReviewBible/data/director/heritage_mutation_feat_operating_proposal_internal.json` `/records/21`; file SHA-256 `cd7e83ebcf0cbbbcf71b9c60a6ca2bdb3204769d3afafd2d86a4b15e85bd5147`.\n\n**Original question:** Bind Human heritage and once-per-rest clock. Define an explicit finite borrowing procedure for an actual party member class skill/ability,consent/availability,character/class-level gates,activation/RP/other resources,DC/scaling,duration and restrictions. No copied permanent progression,free resources/companions,signature identity or automatic full class access.\n\n**Decision:** Adopt12 closed borrowed stunts with real minute teaching, conscious30ft donor window, own stats/cost and preserved shared identity; no borrowed full class engine or resources.\n\n### Complete authoring text\n\nRequire actual Human heritage. NEW once per completed beneficialSR orLR, borrow one permitted class skill for one check OR one class ability activation from a real willing current party member. Before use, spend one uninterrupted minute together within5ft communicating through an actual shared language/channel; choose the exact currently acquired donor skill/card and record donor consent. This preparation changes no resources and does not spend the use; one prepared choice at a time, ending at the next completedrest or replacement. Donor must have it through actual class training/acquisition, not a copied, borrowed or suppressed grant; you must meet actual body/equipment and the menu's total-level gate. You may then consume the feat use on your own legal check/activation while donor is conscious within30ft and can perceive/understand your signal; donor spends noAction, use or resource. A skill choice uses your own ability+normalPB for one real check, replacing lower proficiency, never donor ability, expertise or passive bonus; the task must actually use that donor's class-granted skill. An ability choice uses one of the twelve exact permitted cards/procedures below, your own stats/PB/materials and actual activation cost. These finite NEW borrowing limits deliberately narrow the source's otherwise unbounded class-ability promise for joint decision. No extra feat use after failure, no copied class levels/engines, passive/Arch/Hero/finale ability, transformation, companion, summon, item production, resource generation, permanent learning or further borrowing. The menu grants a one-use ability permission, never its independent class resource pool; actual1RP cost must be paid from your existing personal legalRPpool. Shared spell/Weave restrictions still apply where printed. An already-known same card shares its own recharge/use ledger, so borrowing cannot bypass a spent natural entitlement; an unknown menu card gets only this one borrowed activation and its future recharge history is retained. Existing ordinary resources and restrictions persist after the temporary permission ends. Lasting riders keep their original deadlines and source identity, with you as actor and donor provenance retained.\n\n### Worked boundaries\n\n**HM-22-E01.** A willing Soldier teaches Tactical Reposition; the Human spends its ownBA and feat use to move half its ownSpeed along a legal route.\n\n**HM-22-E02.** Borrowing Nature's Whisper still costs1realRP. A Human with noRPpool cannot pay and must choose a different legal option before committing.\n"
+    },
+    {
+      "id": "S13",
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "bytes": 1182548,
+      "sha256": "8f54c2655c9a9ee2e40a653e9461ba2557281fed32f5bc1cd8ce238009c6417d",
+      "locator": "/records/278",
+      "inspectionScope": "Complete Versatile Mastery acquisition contract; no change to acquisition, repeatability or flags.",
+      "content": {
+        "id": "versatile_mastery",
+        "name": "Versatile Mastery",
+        "originalObject": {
+          "id": "versatile_mastery",
+          "name": "Versatile Mastery",
+          "description": "Racial feat tied to Human heritage.",
+          "prerequisite": "Human heritage",
+          "effect": "Once per rest, use a class skill or ability from another party member.",
+          "type": "Racial",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": false
+        },
+        "printedPrerequisitePresent": true,
+        "printedPrerequisite": "Human heritage",
+        "candidatePointer": "/feats/278",
+        "requirements": {
+          "kind": "actualLineageReceipt",
+          "lineage": "Human",
+          "noSilentAlias": true
+        },
+        "additionalUniversalAcquisitionGate": "One actual unspent class-scheduled ASI/feat opportunity or separately authorized feat grant; prerequisite success never creates a choice.",
+        "actualClassScheduleRequired": true,
+        "candidateSelectionEnabled": false,
+        "acquisitionDoesNotGrantUseWithoutOngoingPredicates": true,
+        "completeOperativeProcedure": "Require actual Human heritage. NEW once per completed beneficialSR orLR, borrow one permitted class skill for one check OR one class ability activation from a real willing current party member. Before use, spend one uninterrupted minute together within5ft communicating through an actual shared language/channel; choose the exact currently acquired donor skill/card and record donor consent. This preparation changes no resources and does not spend the use; one prepared choice at a time, ending at the next completedrest or replacement. Donor must have it through actual class training/acquisition, not a copied, borrowed or suppressed grant; you must meet actual body/equipment and the menu's total-level gate. You may then consume the feat use on your own legal check/activation while donor is conscious within30ft and can perceive/understand your signal; donor spends noAction, use or resource. A skill choice uses your own ability+normalPB for one real check, replacing lower proficiency, never donor ability, expertise or passive bonus; the task must actually use that donor's class-granted skill. An ability choice uses one of the twelve exact permitted cards/procedures below, your own stats/PB/materials and actual activation cost. These finite NEW borrowing limits deliberately narrow the source's otherwise unbounded class-ability promise for joint decision. No extra feat use after failure, no copied class levels/engines, passive/Arch/Hero/finale ability, transformation, companion, summon, item production, resource generation, permanent learning or further borrowing. The menu grants a one-use ability permission, never its independent class resource pool; actual1RP cost must be paid from your existing personal legalRPpool. Shared spell/Weave restrictions still apply where printed. An already-known same card shares its own recharge/use ledger, so borrowing cannot bypass a spent natural entitlement; an unknown menu card gets only this one borrowed activation and its future recharge history is retained. Existing ordinary resources and restrictions persist after the temporary permission ends. Lasting riders keep their original deadlines and source identity, with you as actor and donor provenance retained.",
+        "requirementsStatus": "Source-derived finite validation contract; actual positive/negative actor histories still require testing.",
+        "boundaryCasesValidated": false,
+        "repeats": {
+          "policy": "nonrepeatable",
+          "permanentChoice": true
+        },
+        "sourceDecision": "Adopt12 closed borrowed stunts with real minute teaching, conscious30ft donor window, own stats/cost and preserved shared identity; no borrowed full class engine or resources.",
+        "requiresLegacyOrContextReceiptWithoutCreatingIt": true
+      }
+    },
+    {
+      "id": "S14",
+      "path": "docs/audit/2026-10-08/full-game/FEAT335_BORROWED_SKILL_TRANSACTIONS_SCOPE.json",
+      "bytes": 1943,
+      "sha256": "49b0a657e7572aab308f36852194f33914f3ec5246e4130549c0ca68707dd247",
+      "locator": "complete scope object",
+      "inspectionScope": "Read full scope and Nature-related history in the complete report; reported362 results are not reviewer-executed.",
+      "content": {
+        "report": {
+          "path": "docs/audit/2026-10-08/full-game/FEAT335_BORROWED_SKILL_TRANSACTIONS_CHECK.json",
+          "bytes": 995028,
+          "sha256": "5946f350370e88bada22ed722d969ee87a0e969e63916f6f17836eac996f8a75"
+        },
+        "earlierReport": {
+          "path": "docs/audit/2026-10-08/full-game/FEAT335_BORROWED_TRANSACTIONS_CHECK.json",
+          "bytes": 763928,
+          "sha256": "7559dec1b643a9febc3291b29e50f7ff3e581932a3287ceb8ac84300a4940035"
+        },
+        "resolvedEarlierLimit": "The class-skill alternative now exposes separate declaration/payment and task resolution. Declaration admits no die/result, validates the exact prepared actual class skill, ordinary source ability, actual legal Action task and available donor/channel/use. It pays before any roll. Failed/invalid outcomes do not refund the commitment; authorized interruption closes it with costs spent.",
+        "scope": "Two genuinely class-selected Soldier skills, borrower trained Athletics and untrained Intimidation, separately paid before four actual Core task faces; exact precommit validation, interruption and recovery. Other authorized ability/task timing variants and real task context are not invented.",
+        "remainingLimits": [
+          "Task Action legality and DC are explicit conditional premises. Other authorized task timings or alternate abilities are outside this finite interface, not declared illegal game actions.",
+          "No donor proficiency or stats are imported. The tested borrower histories cover existing normal Athletics proficiency and untrained Intimidation. Separate own Expertise acquisition/integration is not newly certified.",
+          "Nature Whisper full minor-Weave, components, Dissonance and interrupted casting still require integration. Actual event/clock/party/geometry authority, ordinary defenses/life state and full FXC04/06–10 gates remain open."
+        ],
+        "newRules": 0,
+        "fullFeatExactApproved": false,
+        "runtimeApproved": false,
+        "humanBalanceApproved": false
+      }
+    }
+  ]
+}

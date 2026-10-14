@@ -1,0 +1,33 @@
+{
+  "pack": "17-gm-readiness-usability",
+  "scenarioId": "GM-ERROR-RECOVERY",
+  "runId": "2026-08-06T151746Z-ERR-010",
+  "seed": 76010,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": null,
+  "evidenceLevel": "B",
+  "outcome": "recovered_with_halt",
+  "metrics": {
+    "promptIndex": 10,
+    "prompt": "Players forget to assign Rest Watch — how to recover mid-day? (case 10)",
+    "recovery": "assign_rest_debt_and_continue",
+    "ambiguous": false
+  },
+  "rulesHalts": [
+    {
+      "id": "RH-17-ERR-010",
+      "prompt": "Players forget to assign Rest Watch — how to recover mid-day? (case 10)",
+      "status": "RULES_HALT",
+      "note": "If using ExpeditionTracker /3 counter, reconcile with §5 before ruling."
+    }
+  ],
+  "findings": [
+    {
+      "severity": "usability",
+      "summary": "Mark Rest Debt; must Rest within next two Watches / before day boundary.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md"
+    }
+  ],
+  "rawEvidencePath": "results/GM-ERROR-RECOVERY/010-simulationist-gm.json",
+  "agentId": "simulationist-gm"
+}

@@ -1,0 +1,87 @@
+{
+  "status": "promoted and verified; 16 promotion checks plus 42 pipeline checks pass",
+  "ids": [
+    "false-comfort",
+    "glimmering-eyes",
+    "disrupt-memory",
+    "enthralling-tune",
+    "mental-tap",
+    "friends",
+    "soothe-animal",
+    "faction-sympathy",
+    "alignment-empathy",
+    "resonance-whisper",
+    "minor-suggestion",
+    "beguiling-gaze"
+  ],
+  "candidatePath": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\data\\playtest\\spell_drafts\\candidate_enchantment_cantrips.json",
+  "candidateSha256BeforeReview": "ac685f6391454c3c41054466f451f84be2243a987992910be06b06394ed09c79",
+  "packetPath": "C:\\Github\\DecenniumDescent\\docs\\audit\\2026-10-08\\full-game\\CODEX_ENCHANTMENT_CANTRIP_EXACT_REVIEW.md",
+  "packetSha256": "402011371aef8dc764848849eac112e2ab17b5bd37eedbbd1a629a7b5ea20b7d",
+  "operationalBefore": 198,
+  "unfinishedBefore": 650,
+  "classRulesSha256Before": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+  "sourceHashLedgerBefore": [
+    {
+      "path": "src/data/spells.js",
+      "sha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078"
+    },
+    {
+      "path": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "sha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f"
+    },
+    {
+      "path": "src/data/class-spell-progression.js",
+      "sha256": "42ab857dc9a90d1233ab3d436e712d19b113293dd926a1624da6527be283a64a"
+    },
+    {
+      "path": "docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+    }
+  ],
+  "previousOperationalSha256": "6c4120ec2d19e6887a4b4a2cb417d6bb3c11a8e415ae826f6858e34268d4ce4f",
+  "reviewEvidence": "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_CANTRIP_EXACT_REVIEW.md",
+  "requiredRepairsApplied": [
+    {
+      "id": "mental-tap",
+      "field": "effect",
+      "before": "Finish this spell’s damage packet and its immediately due damage/concentration consequences before establishing the new benefit. It cannot change the target’s already-resolved initial INT save or a save already resolved as part of that damage sequence, even if you targeted yourself. At your next actual saving-throw event after the benefit exists, apply +1 under the strongest-applicable-flat-bonus rule and consume it before resolving the save. Consumption still occurs if a stronger bonus supersedes it or a source assigns an automatic save result with no die to modify; if no saving throw event occurs, no consumption occurs. Actual concentration/death saves qualify when their own rules classify them as saving throws. One pending Mental Tap benefit per caster; a later qualifying actual-damage event replaces it with a fresh endpoint. A later zero-damage or successful-save cast does not erase an existing benefit.",
+      "after": "After defenses and actual HP handling determine actualDamageDealt. If it is greater than zero, establish the +1 benefit immediately at that point. It cannot modify the target’s already-resolved initial Intelligence save or any saving throw that resolved before actualDamageDealt became known. A saving throw subsequently caused by that damage, including your own concentration save if you targeted yourself, can be the next qualifying save and may consume the benefit. At your next actual saving-throw event after the benefit exists, apply +1 under the strongest-applicable-flat-bonus rule and consume it before resolving the save. Consumption still occurs if a stronger bonus supersedes it or a source assigns an automatic save result with no die to modify; if no saving throw event occurs, no consumption occurs. Actual concentration/death saves qualify when their own rules classify them as saving throws. One pending Mental Tap benefit per caster; a later qualifying actual-damage event replaces it with a fresh endpoint. A later zero-damage or successful-save cast does not erase an existing benefit.",
+      "reason": "Exact review: benefit begins as soon as positive numeric actual damage is established, before later qualifying concentration saves"
+    },
+    {
+      "id": "mental-tap",
+      "field": "designNotes",
+      "before": "PRESERVED: Action/30 feet/V,S, 1d4 psychic and caster +1 next save only if damage is dealt. NEW: INT save with no damage on success, numeric actualDamageDealt trigger and one-minute entitlement. Exact completion orders the new grant after this damage sequence, including immediate concentration consequences, rather than retroactively modifying the same packet.",
+      "after": "PRESERVED: Action/30 feet/V,S, 1d4 psychic and caster +1 next save only if damage is dealt. NEW: INT save with no damage on success, numeric actualDamageDealt trigger and one-minute entitlement. Exact-review timing repair establishes the benefit immediately when positive actualDamageDealt is known; a subsequently triggered concentration save can consume it, while already-resolved saves cannot change.",
+      "reason": "Conform the timing explanation to the exact approved effect repair"
+    },
+    {
+      "id": "soothe-animal",
+      "field": "limitations",
+      "before": "The spell does not remove Frightened or another named condition; retain their actual restrictions even while ordinary agitation is calmed. No taming, ownership, domination, forced movement, standing/reputation change, blanket whole-Action denial or permanent attitude change. A previously committed action is not retroactively undone merely by this new restriction. One active Soothe Animal calm record per target across casters; a later failed save replaces its deadline, while a later successful save leaves an existing valid record intact. Losing the qualifying Beast/animal classification ends the calm; the record does not follow a later return to that classification. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "after": "The spell does not remove Frightened or another named condition; retain their actual restrictions even while ordinary agitation is calmed. No taming, ownership, domination, forced movement, standing/reputation change, blanket whole-Action denial or permanent attitude change. A previously committed action is not retroactively undone merely by this new restriction. One active Soothe Animal calm record per target across casters; a later failed save replaces its deadline, while a later successful save leaves an existing valid record intact. The Beast/animal predicate is checked when the spell resolves. A later transformation or classification change does not by itself end an already-applied calm on the same continuing creature unless that transformation’s actual rules expressly end or suppress the effect. A successful replacement owns its new endpoint; stale cleanup cannot erase it. A failed or countered new cast creates no replacement, though independently required concentration/contact endings still occur. Actual class access, repertoire, components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Base 0 RP does not waive Action/components or Refrain. A failed, blocked or countered cast refunds no committed cost and restores no old concentration. V is audible and S needs its normal usable hand; subtle names do not hide casting. Saves use the actual casting class's spell DC, with ordinary binary save rules. Creature type alone grants no mental immunity. Actual mental/Enchantment/other defenses apply only within their written scope; immunity only to Charmed does not automatically block a spell that never imposes Charmed. No automatic cantrip scaling.",
+      "reason": "Exact review: target classification is an application gate, not an unprinted ongoing tether"
+    },
+    {
+      "id": "soothe-animal",
+      "field": "designNotes",
+      "before": "PRESERVED: Action/30 feet/V,S and one minute calming a beast or animal, without concentration. NEW: actual classification predicate, WIS save, voluntary-harm restriction and harm-ending rule. Exact completions place hidden classification after payment, distinguish positive damage packets from zero prevention, and end the effect on actual loss of the required classification.",
+      "after": "PRESERVED: Action/30 feet/V,S and one minute calming a beast or animal, without concentration. NEW: actual classification predicate, WIS save, voluntary-harm restriction and harm-ending rule. Exact completions place hidden classification after payment and distinguish positive damage packets from zero prevention. The exact-review repair keeps classification as an application-only predicate; later changes do not themselves dispel the calm.",
+      "reason": "Conform the target-classification explanation to the approved limitation repair"
+    },
+    {
+      "id": "beguiling-gaze",
+      "field": "resolution",
+      "before": "The target makes a Wisdom save against your spell DC. Success: no new lock. Failure: the gaze locks. While locked, it cannot voluntarily avert its primary gaze from you or voluntarily close/cover its visual organs to break or evade that gaze. In particular, it cannot evade an independently actual gaze rule by claiming that voluntary eye closure has a different intended benefit. Ordinary involuntary blinking or another actual involuntary loss of sight is not a compelled harmful action.",
+      "after": "The target makes a Wisdom save against your spell DC. Success: no new lock. Failure: the gaze locks. While locked, the target cannot voluntarily avert its primary gaze from you or deliberately close, cover or otherwise block its relevant visual organs in a manner that would meaningfully break or evade the maintained gaze, regardless of the stated reason for doing so. Ordinary momentary blinking that does not meaningfully break mutual visual contact remains possible. An actual involuntary loss of sight or visual contact can end the lock normally.",
+      "reason": "Exact review: objective meaningful-gaze-break rule permits ordinary blinking without an intent loophole"
+    }
+  ],
+  "changesLimitedToReviewedRepairs": true,
+  "candidateSha256AfterPromotion": "713e16cbd286ef61f93b1ded0913218823fa1ec98b3a17390b0f46d37a7dc0b6",
+  "batchSha256": "713e16cbd286ef61f93b1ded0913218823fa1ec98b3a17390b0f46d37a7dc0b6",
+  "operationalAfter": 210,
+  "unfinishedAfter": 638,
+  "promotionVerification": "docs/audit/2026-10-08/full-game/ENCHANTMENT_CANTRIP_PROMOTION_CHECK.json"
+}

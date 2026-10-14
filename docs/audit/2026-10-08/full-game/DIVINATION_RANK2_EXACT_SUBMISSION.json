@@ -1,0 +1,94 @@
+{
+  "status": "promoted and verified; 15 promotion checks plus 42 pipeline checks pass",
+  "ids": [
+    "augury",
+    "divine-perception",
+    "clairvoyance",
+    "vision-trap",
+    "locate-person",
+    "faction-spy",
+    "alignment-prediction",
+    "resonance-tracking"
+  ],
+  "candidatePath": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible\\data\\playtest\\spell_drafts\\candidate_divination_rank2.json",
+  "candidateSha256BeforeReview": "2680ca1c067fcaa17e9b17ffec501fac993d3a98fbfd9390421016dc4a2353c5",
+  "packetPath": "C:\\Github\\DecenniumDescent\\docs\\audit\\2026-10-08\\full-game\\CODEX_DIVINATION_RANK2_EXACT_REVIEW.md",
+  "packetSha256": "5fef9a5cd4c3eac7b0480b212a27987a677fee802e2af59d3ada36691281ce2e",
+  "operationalBefore": 182,
+  "unfinishedBefore": 666,
+  "classRulesSha256Before": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+  "sourceHashLedgerBefore": [
+    {
+      "path": "src/data/spells.js",
+      "sha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078"
+    },
+    {
+      "path": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "sha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f"
+    },
+    {
+      "path": "src/data/class-spell-progression.js",
+      "sha256": "42ab857dc9a90d1233ab3d436e712d19b113293dd926a1624da6527be283a64a"
+    },
+    {
+      "path": "docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+    }
+  ],
+  "candidateSha256AfterPreflightRepairs": "5a789c11a2dace0901ea408f4a95150edd946280d29981daa9d3b1802cd71bc5",
+  "requiredRepairsApplied": [
+    {
+      "id": "locate-person",
+      "field": "targets",
+      "before": "Self; one specific individual person unambiguously identified through personal acquaintance or a reliable identity description/name that resolves to one actual individual, within 1 mile on your plane.",
+      "after": "Self; designate one intended specific person through personal acquaintance or a reliable identity description/name intended to refer to one actual individual.",
+      "reason": "Exact-review required preflight repair"
+    },
+    {
+      "id": "locate-person",
+      "field": "resolution",
+      "before": "No save. If the designated person currently exists as an eligible creature on your plane within 5,280 feet and the information is unblocked, privately learn the direction from you to that individual, including meaningful vertical bearing. Ordinary walls, cover and lack of originating line of effect do not block this bearing; no prior 30-foot mark or encounter is required.",
+      "after": "No save. After costs are committed, resolve whether the designation identifies one actual qualifying person and whether that person currently exists as an eligible creature on your plane within 5,280 feet with readable location information. If so, privately learn the direction, including meaningful vertical bearing. Otherwise receive no direction, without distinguishing ambiguity, death/destruction, range, plane, eligibility or protection. Ordinary walls, cover and lack of originating line of effect do not block a permitted bearing; no prior 30-foot mark or encounter is required.",
+      "reason": "Exact-review required post-commitment eligibility repair"
+    },
+    {
+      "id": "faction-spy",
+      "field": "targets",
+      "before": "Self; observe one specifically identifiable headquarters of one exact canonical faction, at any distance on your plane.",
+      "after": "Self; choose one specifically identifiable headquarters of one exact canonical faction and the qualifying room/area to observe.",
+      "reason": "Exact-review required preflight repair"
+    },
+    {
+      "id": "faction-spy",
+      "field": "effect",
+      "before": "Create a fixed nonphysical observation point at the center of the selected room/area’s ordinarily usable interior space, at an ordinary standing observer’s eye height. If that point is inside solid matter, use the nearest open point within the same selected space; the Director resolves equal choices with a fixed neutral spatial order. No point outside that space or inside a secret adjacent room is substituted. If the selected HQ does not exist, is not the identified HQ, no longer belongs to the chosen faction at resolution, or has no valid viewpoint, receive no feed. For the duration, receive ordinary sight in all directions and hearing from the point alongside your local senses. Local light, obscurity, walls and sound conditions apply; no enhanced senses are granted. Blindness suppresses remote sight and Deafened suppresses remote hearing. Subject/area Divination protections filter only information within their actual scope.",
+      "after": "Create a fixed nonphysical observation point at the center of the selected room/area’s ordinarily usable interior space, at an ordinary standing observer’s eye height. If that point is inside solid matter, use the nearest open point within the same selected space; the Director resolves equal choices with a fixed neutral spatial order. No point outside that space or inside a secret adjacent room is substituted. If the selected HQ does not exist, is not the identified HQ, no longer belongs to the chosen faction at resolution, or has no valid viewpoint, receive no feed. The observation feed operates at any distance, but only while the selected physical viewpoint and caster are on the same plane. If they are not, no remote sight or hearing is received and the spell does not identify plane separation as the reason. For the duration while this feed is available, receive ordinary sight in all directions and hearing from the point alongside your local senses. Local light, obscurity, walls and sound conditions apply; no enhanced senses are granted. Blindness suppresses remote sight and Deafened suppresses remote hearing. Subject/area Divination protections filter only information within their actual scope.",
+      "reason": "Exact-review required same-plane feed condition after commitment"
+    },
+    {
+      "id": "resonance-tracking",
+      "field": "targets",
+      "before": "Self; initially select one actual spell-casting trace within 30 feet and line of effect on your plane; sense that selected cast’s surviving local trace within the same 30-foot radius and line of effect.",
+      "after": "Self; search the area within 30 feet and line of effect for one qualifying actual spell-casting trace, then track the selected event’s surviving local trace under this spell’s rules.",
+      "reason": "Exact-review required Self/search-area preflight repair"
+    },
+    {
+      "id": "vision-trap",
+      "field": "effect",
+      "before": "The false mental sight produces only this brief disorientation. The first qualifying attack roll consumes the rider even when advantage cancels it or another effect already imposes disadvantage. If no attack occurs by the endpoint, it expires. Use the first future regular target-end marker strictly after application; an end phase already in progress does not count. Outside initiative the rider lasts at most 6 elapsed seconds; preserve its assigned virtual marker or deadline when initiative changes. At the endpoint, ordinary already-scheduled end-phase effects resolve before cleanup under shared timing. One pending Vision Trap rider per target across all casters. A later failed save replaces that rider with its new endpoint, without stacking; a later successful save creates no rider and does not erase an earlier one. Instantaneous damage still resolves separately for each legal cast.",
+      "after": "The false mental sight produces only this brief disorientation. The first qualifying attack roll consumes the rider even when advantage cancels it or another effect already imposes disadvantage. If no attack occurs by the endpoint, it expires. Use the end marker of the target’s first future regular turn. If application occurs during the target’s current turn, exclude that entire current turn’s end, whether still upcoming or already in progress. Outside initiative the rider lasts at most 6 elapsed seconds; preserve its assigned virtual marker or deadline when initiative changes. At the endpoint, ordinary already-scheduled end-phase effects resolve before cleanup under shared timing. One pending Vision Trap rider per target across all casters. A later failed save replaces that rider with its new endpoint, without stacking; a later successful save creates no rider and does not erase an earlier one. Instantaneous damage still resolves separately for each legal cast.",
+      "reason": "Final GPT clarification: exclude the entire current target turn from the next-turn endpoint"
+    }
+  ],
+  "previousOperationalSha256": "a4788c10efacd80f683fae982131d910aa05487c938caeb62b48af288954fc2a",
+  "reviewEvidence": [
+    "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK2_EXACT_REVIEW.md",
+    "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK2_FINAL_CLARIFICATION.md"
+  ],
+  "changesLimitedToReviewedRepairs": true,
+  "candidateSha256AfterPromotion": "e91b12ba2d562fb38ae7de2336f0604cdaf198b72f8f62efcea3d16a300fa73b",
+  "batchSha256": "e91b12ba2d562fb38ae7de2336f0604cdaf198b72f8f62efcea3d16a300fa73b",
+  "operationalAfter": 190,
+  "unfinishedAfter": 658,
+  "promotionVerification": "docs/audit/2026-10-08/full-game/DIVINATION_RANK2_PROMOTION_CHECK.json"
+}

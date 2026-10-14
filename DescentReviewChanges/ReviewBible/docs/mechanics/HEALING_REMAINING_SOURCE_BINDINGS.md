@@ -1,0 +1,3089 @@
+# Remaining healing/recovery source register
+
+**IN PROGRESS —131 exact passages.** This register does not expand the prior153-source closure. Source integrity is distinct from a discussed or operational rule.
+
+[Healing interface](HEALING_DEATH_PLAYTEST.md) · [Source integrity](HEALING_REMAINING_SOURCE_VALIDATION.json)
+
+## class-card:cleric:cleric.base.sacred-chant
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/cleric.json` / `cleric.base.sacred-chant` · SHA256 `4053fdc1a1a48cc3fdb2accfef3abad95e23fce696a30321c714a2934e4a66b2`.
+
+**name:** Sacred Chant
+
+**activation:** Action
+
+**cost:** 1 RP to start; 0 RP maintenance
+
+**rangeAndTarget:** Self; audible 15-foot prayer aura
+
+**duration:** Concentration, maximum 3 Cleric turns
+
+**frequency:** At will while RP remains
+
+**effect:** Sacred Chant. Tags: chant, sustained, conviction. Pulse on start and once when maintained on each later regular turn with a Bonus Action. Under the base feature, the third pulse generates 1 Conviction. Only a real encounter can generate Conviction this way. Maintenance itself does not otherwise heal, damage or grant Conviction.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Sustained pulse cadence/Conviction only; no healing component.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:cleric:cleric.arch.miraculous-channel
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/cleric.json` / `cleric.arch.miraculous-channel` · SHA256 `62a4e9464b45373b6367c79bc63942864c07a3e928742a4dcf67a48aa97c3d99`.
+
+**name:** Miraculous Channel
+
+**activation:** Bonus Action
+
+**cost:** 3 Conviction
+
+**rangeAndTarget:** Your next ally-targeting Rite this turn
+
+**duration:** Until end of current turn
+
+**frequency:** At will while Conviction remains
+
+**effect:** Miraculous Channel. Tags: rite, channel, bishop. Your next Rite this turn that normally affects one or more willing allies may affect up to six legal willing allies within the Rite's normal range instead. Roll shared healing or numeric effects once and apply normally. It does not multiply hostile targets, corpse targets or resource generation.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Expands legal ally targets; shared healing/numeric roll remains one roll; never multiplies resource generation.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:cleric:cleric.arch.divine-invocation
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/cleric.json` / `cleric.arch.divine-invocation` · SHA256 `7dae262ad987193dc14e8ce21c6d45c5a2ad7d0f2008377d0217f5959e2848c2`.
+
+**name:** Divine Invocation
+
+**activation:** Action
+
+**cost:** 2 Conviction + 3 RP
+
+**rangeAndTarget:** Mode-dependent; maximum 60 feet
+
+**duration:** Instantaneous unless mode states otherwise
+
+**frequency:** Recharge 3 rounds
+
+**effect:** Divine Invocation. Tags: invocation, bishop. Use only your selected Invocation Path. Radiance: up to 3 allies within 30 feet each regain S d8+M HP; one may end Frightened or Poisoned. Judgment: one enemy within 60 feet makes a Wisdom save, taking (S+1)d8 radiant on failure or half on success; failure also applies Judged for 2 rounds. Renewal: up to 2 allies within 30 feet each regain S d8+M HP and 5 Stamina. Flame: creatures in a 15-foot cone make Dexterity saves, taking (S+1)d8 fire on failure or half on success; failed targets also take 1d6 fire at the start of their next turn. Veil: up to 3 allies within 30 feet can see invisible/ethereal creatures within 30 feet and gain advantage on saves against illusions for 3 rounds. Echoes: choose one eligible Smite or Rite you resolved this turn or previous regular turn and one original target within 30 feet; repeat 50% of its immediate unmodified rolled damage or healing dice, rounded down once, minimum 1 for a positive source, with no copied conditions, resources or triggers.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Radiance/Renewal heal; Renewal's 5 Stamina is independent of actual HP gain; Echoes repeats flat copied numeric amount with no conditions/resources/triggers.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:cleric:cleric.hero.saint.radiant-burst
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/cleric.json` / `cleric.hero.saint.radiant-burst` · SHA256 `8928e751210f646a5d54e7a8236b91f7de9ecf4fae381566e346d055f70a8387`.
+
+**name:** Radiant Burst
+
+**activation:** Action
+
+**cost:** 6 RP
+
+**rangeAndTarget:** 15-foot radius centered on you; up to six allies and six Undead/Fiends
+
+**duration:** Instantaneous
+
+**frequency:** Recharge 4 rounds
+
+**effect:** Radiant Burst. Tags: saint, healing, radiant. Roll S d8 once. Each chosen living ally regains that roll + M HP. Each chosen Undead or Fiend makes a Wisdom save, taking the same S d8 roll as radiant damage on failure or half on success. Healing and damage are separate applications of the shared roll.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: One shared S d8 roll; healing and damage are separate target applications.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:cleric:cleric.hero.priest.scriptural-echo
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/cleric.json` / `cleric.hero.priest.scriptural-echo` · SHA256 `d259a77c1ade72316bb9af60159531f9df4e526050dfd90de8c8e97da6a987e0`.
+
+**name:** Scriptural Echo
+
+**activation:** Triggered
+
+**cost:** 0
+
+**rangeAndTarget:** One legal original target of your previously used Divine Invocation
+
+**duration:** Instantaneous
+
+**frequency:** 1/short rest
+
+**effect:** Scriptural Echo. Tags: priest, rite, invocation. When you start a Rite, you may repeat 50% of the immediate rolled damage or healing dice from the most recent Divine Invocation you personally resolved since the end of your previous regular turn. Round down once, minimum 1 for a positive source. It copies no conditions, movement, resource effects, control or Invocation Path triggers.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Half prior rolled amount; copied result is flat numeric, `diceCount=0`; no triggers/resources.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:cleric:cleric.hero.priest.balanced-scales
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/cleric.json` / `cleric.hero.priest.balanced-scales` · SHA256 `7e7adca22a150348e1afd85fcf4ca10e7c6a2395883b66b2d889b097f8200b98`.
+
+**name:** Balanced Scales
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Living creatures healed by your Cleric features
+
+**duration:** Until start of your next regular turn
+
+**frequency:** At most once per marked ally per round
+
+**effect:** Balanced Scales. Tags: priest, healing, retaliation. After you restore HP to a living ally, mark it until the start of your next regular turn. The first enemy to damage that ally during the mark takes S + M radiant damage. The retaliation is not an attack, cannot critically hit and cannot recursively trigger another Balanced Scales event.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Requires actual HP restoration to mark; retaliation uses positive damage-event predicate.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:cleric:cleric.hero.priest.balance-restoration
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/cleric.json` / `cleric.hero.priest.balance-restoration` · SHA256 `abd40ab2ef9c1cbfc23fe7c0a1bd3fb784ffee8cf1d2b050f1c6b78e4456740d`.
+
+**name:** Balance Restoration
+
+**activation:** Action
+
+**cost:** 5 RP
+
+**rangeAndTarget:** 15-foot-radius area centered at a point within 30 feet
+
+**duration:** Instantaneous
+
+**frequency:** Recharge 3 rounds
+
+**effect:** Balance Restoration. Tags: priest, healing, radiant. Choose up to three living allies and three enemies in the area. Roll S d8 once. Each ally regains the roll + M HP. Each enemy makes a Wisdom save, taking the same S d8 roll as radiant damage on failure or half on success.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Shared roll with separate per-target heal/damage applications.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:cleric:cleric.hero.priest.word-of-power
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/cleric.json` / `cleric.hero.priest.word-of-power` · SHA256 `b238551c3ab4549273d2ad295301aba312d27d3cc75f8768e800cc67fb23c175`.
+
+**name:** Word of Power
+
+**activation:** Action
+
+**cost:** 4 RP
+
+**rangeAndTarget:** One creature within 30 feet
+
+**duration:** Instantaneous
+
+**frequency:** Recharge 2 rounds
+
+**effect:** Word of Power. Tags: priest, divine. Choose one mode. Mercy: one willing living creature regains S d8+M HP. Rebuke: one Undead or Fiend makes a Constitution save, taking (S+1)d8 radiant on failure or half on success; failure also removes its Reaction until the start of its next turn. Command: one other hostile creature makes a Wisdom save; failure knocks it Prone and removes its Reaction until the start of its next turn. No mode changes beliefs, loyalty or ideology.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Mercy heals; Rebuke/Command remain damage/control.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:cleric:cleric.hero.cultist.zealot-s-touch
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/cleric.json` / `cleric.hero.cultist.zealot-s-touch` · SHA256 `d419c667240c84d69d12a5f639b9466ef00ed47af9eb2a0eea3e9c3d924649e6`.
+
+**name:** Zealot's Touch
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Healing-over-time Rites you control
+
+**duration:** Passive
+
+**frequency:** Always
+
+**effect:** Zealot's Touch. Tags: cultist, rite, necrotic. When starting a Rite whose printed pulse would restore HP over multiple turns, you may designate a hostile creature instead of a healing recipient. At each applicable pulse that enemy makes a Wisdom save. On failure it takes necrotic damage equal to the Rite's rolled healing dice; on success it takes half. Flat healing bonuses are not converted. The enemy receives no healing.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Converts printed HoT healing dice into damage; flat healing bonuses do not convert.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:cleric:cleric.hero.cultist.dark-sacrament
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/cleric.json` / `cleric.hero.cultist.dark-sacrament` · SHA256 `86c14c628a3b9ee335e2c7316844416ed1cd61e83f60f83d5af04d2e216071f4`.
+
+**name:** Dark Sacrament
+
+**activation:** Action
+
+**cost:** 3 Conviction + 5 RP to start; 1 RP maintenance
+
+**rangeAndTarget:** 15-foot-radius fixed zone centered within 30 feet
+
+**duration:** Concentration, maximum 3 Cleric turns
+
+**frequency:** Recharge 4 rounds
+
+**effect:** Dark Sacrament. Tags: cultist, sacrament, rite, sustained, zone. On start and each paid maintenance pulse, roll S d6 once. Up to three enemies in the zone make Constitution saves, taking that roll as necrotic damage on failure or half on success. If at least one enemy takes damage, up to three living allies in the zone each regain floor(roll/2)+M HP. Maximum 3 pulses. The Conviction expenditure can vent Dissonance once.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Ally healing occurs if at least one enemy has a positive damage packet; derived heal is a flat value from the shared damage roll.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:crimson-agent:2
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/crimson-agent.json` / `2` · SHA256 `44a38acbffca3c994c2444d9f9183f7d8013ddda451f37182a4c2c25150755ea`.
+
+**text:** Your Bleed is a physical ongoing effect on a living, non-bloodless creature: 1d4 damage at the start of each of its next 3 turns, then ends. It is not a new attack and generates no BG or procs. Refresh duration instead of stacking; Blood Echo expressly allows two independent instances, maximum. An Action by the victim or an adjacent creature using a healer's kit ends all your Bleeds on that victim. Apply physical resistance/immunity normally. Track remaining ticks and creator per instance. Allied healing versions from Bloodweaver cost RP and never count as hostile Bleeds for detonation, spreading or generation.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Periodic Bleed engine; allied Bloodweaver healing records are not hostile Bleeds.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:crimson-agent:5
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/crimson-agent.json` / `5` · SHA256 `f0909f1cf6ccaa56c2438dd0a9dd04e6b96640047167d9f79da6298b765de52a`.
+
+**text:** The healing, execution and denial text below deliberately bounds the source's vague percentage/instant-kill claims. HP sacrificed is direct loss, bypasses temporary HP and defenses, cannot be redirected, and cannot reduce the donor below 1. Only a willing ally can donate. HP sacrifice is never damage for class triggers. No class feature here restores the dead or removes Wounds.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Direct HP sacrifice is non-damage, nonredirectable, floor 1.
+
+**Reviewed interface:** [Damage-sharing/prevention/retargeting role only](DAMAGE_SHARING_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:crimson-agent:crimson-agent.arch.bloodbound-edge
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/crimson-agent.json` / `crimson-agent.arch.bloodbound-edge` · SHA256 `32b626dc7fd10305e0f166a3377e7def889b2075dd575cb6c1f9f0834de7619a`.
+
+**name:** Bloodbound Edge
+
+**activation:** Action
+
+**cost:** 3 BG; 1 short-rest use
+
+**rangeAndTarget:** Up to 3 enemies with your Bleed within 30 ft
+
+**duration:** Instant
+
+**frequency:** 1/short rest
+
+**effect:** End up to 2 of your Bleed instances per target. Each takes 1d4 per remaining tick, maximum S d4 per creature, ignoring resistance but respecting immunity. This replaces their future ticks and grants no BG, healing or kill-trigger benefit.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage detonation; expressly no healing/BG/kill-trigger benefit.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:crimson-agent:crimson-agent.hero.bloodweaver.bloodbond
+
+**DISCUSSED; source-specific implementation review pending** · TEMP_HP + OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/crimson-agent.json` / `crimson-agent.hero.bloodweaver.bloodbond` · SHA256 `1113d2b822287bb66bb1759c1d7e674dbcb87534005a9e65e5111bb51b5c1263`.
+
+**name:** Bloodbond
+
+**activation:** Bonus Action
+
+**cost:** 2 RP
+
+**rangeAndTarget:** One willing ally within 30 ft
+
+**duration:** Concentration, 3 of your turns
+
+**frequency:** Recharge 3
+
+**effect:** Create Bloodbond while both remain within 30 ft. When ally takes damage, you may use Reaction to redirect floor(one-quarter of pre-mitigation damage) to yourself; each recipient applies its own defenses once. Once/round when a paid technique heals you, ally gains M temporary HP. No recursive transfers.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Actual paid-technique HP restoration triggers M temp HP; redirection uses pre-mitigation split.
+
+**Reviewed interface:** [Damage-sharing/prevention/retargeting role only](DAMAGE_SHARING_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:crimson-agent:crimson-agent.hero.bloodweaver.crimson-pact
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + TEMP_HP
+
+Source `data/public/class_playtests/crimson-agent.json` / `crimson-agent.hero.bloodweaver.crimson-pact` · SHA256 `f3f3244b7c7f173094327ca40c0a8f41ff05495995d8aba5021b3e9792808f92`.
+
+**name:** Crimson Pact
+
+**activation:** Action
+
+**cost:** 5 BG; 1 long-rest use
+
+**rangeAndTarget:** Up to 3 bleeding enemies and 6 living allies within 30 ft
+
+**duration:** Instant; shields 1 minute
+
+**frequency:** 1/long rest
+
+**effect:** End your Bleeds on chosen enemies; each makes CON save against 4d8 necrotic, half on success. Each chosen ally regains 4d8+M HP and gains 10 temporary HP. Use one shared roll per damage/healing effect; healing does not multiply by enemies or remaining ticks.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: One shared damage roll and separate shared healing roll; temp HP independent of actual heal.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:crimson-agent:crimson-agent.hero.bloodweaver.purify-blood
+
+**DISCUSSED; source-specific implementation review pending** · CONDITION_CURE
+
+Source `data/public/class_playtests/crimson-agent.json` / `crimson-agent.hero.bloodweaver.purify-blood` · SHA256 `c55e2fab4332f4dfb55146f3b4766e2d71a2b40db580a5a313fe116de9ed3945`.
+
+**name:** Purify Blood
+
+**activation:** Action
+
+**cost:** 4 RP
+
+**rangeAndTarget:** One willing living creature touched
+
+**duration:** Instant
+
+**frequency:** Recharge 3
+
+**effect:** End Poisoned and one nonmagical disease. Magical disease needs a successful INT ability check against its stated treatment DC, or DC 15 if absent; failure spends the cost. No curse, Wound, death or Corruption removal.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Poisoned/disease cure only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:crimson-agent:crimson-agent.hero.bloodweaver.lifewell
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/crimson-agent.json` / `crimson-agent.hero.bloodweaver.lifewell` · SHA256 `df6aec7b14a71408fb30b0e66b2051a09d3570829b228e4e04c55b7cb0ae2568`.
+
+**name:** Lifewell
+
+**activation:** Action
+
+**cost:** 4 RP; all BG, minimum 3
+
+**rangeAndTarget:** Up to 3 living allies within 15 ft
+
+**duration:** Concentration, 3 of your turns
+
+**frequency:** 1/long rest
+
+**effect:** Spend K BG. At start and on each of your next 2 turns, use Bonus Action and pay 1 RP to pulse healing: each chosen ally still within 15 ft regains 1d8+K HP. Without maintenance it ends at turn end. Total 3 pulses; no triggers create more BG.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Same-turn first BA+1RP pulse confirmed.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:crimson-agent:crimson-agent.hero.thirstborn.veinburst-requiem
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/crimson-agent.json` / `crimson-agent.hero.thirstborn.veinburst-requiem` · SHA256 `f6a4ae95d261e3b3ffa714953d0f1fb0769bf9bd3396ed50e6daac3a41719076`.
+
+**name:** Veinburst Requiem
+
+**activation:** Action
+
+**cost:** All BG, minimum 3; 1 long-rest use
+
+**rangeAndTarget:** Up to 6 enemies with your Bleed within 30 ft
+
+**duration:** Instant
+
+**frequency:** 1/long rest
+
+**effect:** Spend K BG and end your Bleeds on targets. CON save: (S+K)d8 necrotic, half on success. A target failing by 10 with remaining HP no greater than your class level falls to 0; ordinary death rules follow. No percentage-based automatic boss execution or BG refund.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Post-damage direct set-to-zero; no second Wound save.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:crimson-agent:crimson-agent.hero.thirstborn.crimson-harvest
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/crimson-agent.json` / `crimson-agent.hero.thirstborn.crimson-harvest` · SHA256 `3890667b7605bb482a7334e0dd8fd8266cb60e4849aa7761483acce3d945c7b7`.
+
+**name:** Crimson Harvest
+
+**activation:** Action
+
+**cost:** 2 BG; 1 short-rest use
+
+**rangeAndTarget:** One enemy in weapon reach at half HP or less
+
+**duration:** Instant
+
+**frequency:** 1/short rest
+
+**effect:** Make one weapon attack; on hit add S d8 damage. If this reduces it to 0, regain S+M HP and 1 BG within gain cap. No instant kill from a percentage threshold; summoned/allied/helpless creatures yield no recovery.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Heal/BG only if that attack actually reduces eligible target to 0.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:dragoon:4
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/dragoon.json` / `4` · SHA256 `250848ddbb6f7e2f67c7ae07765b704f2c2dfcee59e1acb21e1b1c32c622a8cd`.
+
+**text:** Spending Momentum pays before resolution; a hit refund cannot pay its own activation. Burn means 1d4 fire at start of target's next 2 turns, nonstacking. Bleed means 1d4 physical at start of next 2 turns; an Action with a healer's kit ends it. Do Ts give no Momentum or critical triggers. Hard denial uses the shared once-per-target/encounter guard.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Burn/Bleed and Momentum guard; no healing.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:dragoon:dragoon.base.wyvern-s-guard
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/dragoon.json` / `dragoon.base.wyvern-s-guard` · SHA256 `2d9034c5ec6b41dcf701dd0654cd9d21edc926dc797ae707837972459710f5c7`.
+
+**name:** Wyvern's Guard
+
+**activation:** Bonus Action
+
+**cost:** 1 Momentum
+
+**rangeAndTarget:** Self
+
+**duration:** Until start next turn
+
+**frequency:** Recharge 2
+
+**effect:** The next attack that damages you has damage reduced by S d6+M, minimum 0; then the guard ends. Roll the reduction only when damage occurs. This reduction cannot heal or reflect damage.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage reduction only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:dragoon:dragoon.hero.dragon-guardian.draconic-ward
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/dragoon.json` / `dragoon.hero.dragon-guardian.draconic-ward` · SHA256 `fd0c2098f7607c7170d51fd7b0a76a121ba9c8a5d3a6c87e67e889299defa2e0`.
+
+**name:** Draconic Ward
+
+**activation:** Action
+
+**cost:** 3 Momentum
+
+**rangeAndTarget:** Self and up to 3 allies within 10 ft
+
+**duration:** Concentration, 3 of your turns
+
+**frequency:** Recharge 4
+
+**effect:** Project a ward: chosen creatures while within 10 ft reduce damage by S, minimum 0. The reduction does not stack with Wyrmhide or another flat class reduction. No passive healing or extra Actions.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage reduction only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:druid:4
+
+**DISCUSSED; source-specific implementation review pending** · TEMP_HP + RESOURCE_ONLY
+
+Source `data/public/class_playtests/druid.json` / `4` · SHA256 `7befb5eef095e247cb6cab325a66a0e3b84d24b9ea7771ba28fa9a13c2afa976`.
+
+**text:** Transformation reserves prevent unlimited replacement HP: at long rest record Buffer Reserve=2 L+M and Form Surge Reserve=PB. A form giving temporary HP draws that many from Buffer Reserve, up to remaining amount, with normal nonstacking; never real healing. A form special described once/transformation also spends 1 Form Surge and cannot be refreshed by resuming the form. Form Surge refills only long rest. Forms cannot grant free casts, RP or shift uses. Auras affect at most 3 enemies and once per enemy per round; retaliation once/round total; ongoing riders refresh, never stack. Entering a legal Shapeshift clears the Refrain counter and remembered repeated-spell name, as the protected source contract requires. It does not reduce accumulated Dissonance. Natural attacks do not clear Refrain.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Buffer/Form Surge reserves; not real healing. Exact reserve-spend-vs-existing-temp-HP interaction remains for temp-HP pass.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:druid:druid.base.moon.combat-shapeshifting
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/druid.json` / `druid.base.moon.combat-shapeshifting` · SHA256 `62af6304ba60c8db517a243bb78d34ac26f1b366394799b25660b02a35a23652`.
+
+**name:** Combat Shapeshifting
+
+**activation:** Bonus Action
+
+**cost:** 1 to S RP
+
+**rangeAndTarget:** Moon Circle self in form
+
+**duration:** Instant
+
+**frequency:** Once/own turn
+
+**effect:** Restore 1d8 real HP per RP paid, never beyond maximum. Does not restore temporary buffer or shift uses. No Dissonance as class technique; cannot heal after form ended/incapacitated.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Paid real-HP self-heal; does not restore form buffer/shift uses.
+
+**Reviewed interface:** [Selected creature lifecycle, command, dependency or guard role only; full form/tempHP effects excluded](CREATURE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:mirrorsage:mirrorsage.base.echo-channeling
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.base.echo-channeling` · SHA256 `30d4707be102d60172da98af071d9d9d8e12896f8e4c9ec7fe9ad9c0419a4cf8`.
+
+**name:** Echo Channeling
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Your own Echo Release
+
+**duration:** Instant
+
+**frequency:** Once/short rest
+
+**effect:** After releasing an Echo, add M to one target's damage or healing. No modifier to resource effects; this upgrade does not grant another release or repeat the source's rider.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: +M pre-resolution to one Echo target, same release.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:mirrorsage:mirrorsage.arch.advanced-mirrorcall
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.arch.advanced-mirrorcall` · SHA256 `852a6e232236fcdf33d3046e4547aea02a7a11f4b8376a071267afeeb5ecb8b8`.
+
+**name:** Advanced Mirrorcall
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Your Mirror Beast
+
+**duration:** While summoned
+
+**frequency:** Once/encounter
+
+**effect:** You may change Beast appearance to another stored source as a Bonus Action without resummoning or restoring HP. It gains either+10 ft swim or climb Speed until it ends. No new release, attack or capture.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Appearance/movement only; no HP restoration.
+
+**Reviewed interface:** [Selected creature lifecycle, command, dependency or guard role only; full form/tempHP effects excluded](CREATURE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:mirrorsage:mirrorsage.arch.dual-echo-cast
+
+**REVIEWED / reference-VALIDATED: two-Mend numeric components only** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.arch.dual-echo-cast` · SHA256 `a200fe3afb6d171bd8cab07433496e470febb0fcf099be78e0bfc72ac8e39dd2`.
+
+**name:** Dual Echo Cast
+
+**activation:** Action
+
+**cost:** RP for each of 2 Echoes; consume both
+
+**rangeAndTarget:** One target per eligible profile
+
+**duration:** Immediate; riders at most 1 turn
+
+**frequency:** Recharge 3
+
+**effect:** Release two records captured from different creatures as ONE combined release. Each deals/heals half its profile's rolled amount, round once per component. At most one Hindrance rider; no duplicated resources or additional release this round.
+
+**Discussion/overlay:** CORRECTION: No imported Echo Fusion one-healing-profile limit. Two eligible paid/consumed Mend records from different creatures may each supply half its own profile amount, rounded independently once, including to the same target. One combined release; normal source costs/provenance/no-recursion rules remain. Exact helper in healing_source_extensions.py;21 reference checks. Crown recipients fixed at activation, with no denominator recomputation or replacement after lost eligibility.
+
+**Open:** Other components, full source lifecycle and broader scheduler/copy interfaces remain outside this primitive closure.
+
+## class-card:mirrorsage:mirrorsage.arch.mimicry-focus
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY + HEALING_INTERFACE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.arch.mimicry-focus` · SHA256 `209e0e7330702a58dec0ba293314a6644ac644408cbbc87235c39f1adf4e8d88`.
+
+**name:** Mimicry Focus
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Self
+
+**duration:** Encounter
+
+**frequency:** Once/encounter
+
+**effect:** At genuine encounter start gain 1 Focus Point, cap 1; any previous point is replaced. Spend on Focus Channel or pay 1 Focus during a release to add 1d6 to one damage/healing target. No point generation from staged combat.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Focus-spent +1d6 is a real added healing/damage die.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:mirrorsage:mirrorsage.arch.echo-fusion
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.arch.echo-fusion` · SHA256 `b3dbb6ad298bfb88de88710621793c01bb75ed596e74bf4c7f82d8a89d477e9c`.
+
+**name:** Echo Fusion
+
+**activation:** Action
+
+**cost:** RP for 2 Echoes; consume both
+
+**rangeAndTarget:** Up to 2 profile targets within 30 ft
+
+**duration:** Instant or 1 turn
+
+**frequency:** Recharge 3
+
+**effect:** Choose two stored profiles. Resolve one at full dice and the other at half dice to one target each. Only one may be healing; at most one Hindrance rider. Counts as one combined release and cannot receive Dual Echo Cast simultaneously.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Full profile retains dice; half profile becomes flat copied amount.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:mirrorsage:mirrorsage.arch.mirror-shift
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.arch.mirror-shift` · SHA256 `91b8dc56df555654fb82d02af20870164dd0a6650d31608c759ca08e5211c568`.
+
+**name:** Mirror Shift
+
+**activation:** Bonus Action
+
+**cost:** 1 RP
+
+**rangeAndTarget:** Your Mirror Beast within 60 ft
+
+**duration:** Remaining summon duration
+
+**frequency:** Recharge 2
+
+**effect:** Switch its appearance to a stored source and choose swim 30 ft or climb 30 ft until next shift. Restore no HP or attacks; no flight, incorporeality or copied creature special actions. Does not release or consume the Echo.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: No HP restoration.
+
+**Reviewed interface:** [Selected creature lifecycle, command, dependency or guard role only; full form/tempHP effects excluded](CREATURE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:mirrorsage:mirrorsage.arch.focus-channel
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.arch.focus-channel` · SHA256 `1b666c0afc919712fb07a5c37c70d3e961c2112309812527191692ee033435c1`.
+
+**name:** Focus Channel
+
+**activation:** Bonus Action
+
+**cost:** 1 Focus
+
+**rangeAndTarget:** Self; next release this turn
+
+**duration:** This turn
+
+**frequency:** Once/encounter via Focus cap
+
+**effect:** Next Echo release adds 1d6 to one damage/healing amount OR adds 30 ft range, chosen now. Cannot multiply duration, bypass concentration, add targets or override release caps. If no release occurs this turn the point remains spent.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: +1d6 option is real added die, same packet.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:mirrorsage:mirrorsage.hero.light-weaver.blessed-copy
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.hero.light-weaver.blessed-copy` · SHA256 `47fbe8f7fa7749fa885d6237afd8cdf9e8ff7ae2723ec581bf82f7f09cd94149`.
+
+**name:** Blessed Copy
+
+**activation:** Passive
+
+**cost:** 1 additional RP
+
+**rangeAndTarget:** Second living ally within 15 ft of original Mend/Ward target
+
+**duration:** Same healing/shield duration
+
+**frequency:** Once/round
+
+**effect:** When releasing Mend or Ward, pay 1 extra RP to give a second ally half the rolled amount, rounded once. This is within the same release, no new source or healing proc. No duplication of concentration or resources.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Second-target half amount, same root/release; no new healing proc.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:mirrorsage:mirrorsage.hero.light-weaver.radiant-mirror-beast
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + COMPANION_DEVICE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.hero.light-weaver.radiant-mirror-beast` · SHA256 `503995012da6950e725630b121f8558f9bd0b21bd50bc0b71d392706a3d5459c`.
+
+**name:** Radiant Mirror Beast
+
+**activation:** Action
+
+**cost:** 4 RP
+
+**rangeAndTarget:** Empty space within 15 ft
+
+**duration:** Concentration, 3 of your turns
+
+**frequency:** Recharge 4
+
+**effect:** Summon radiant standard Beast. Bonus Action command chooses normal attack or healing S d4 to one living ally within 5 ft, paying 1 RP per heal. It may instead originate your paid Echo release under common limits. Cannot perform two options in one round.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Paid commanded primary heal; shared companion command budget.
+
+**Reviewed interface:** [Selected creature lifecycle, command, dependency or guard role only; full form/tempHP effects excluded](CREATURE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:mirrorsage:mirrorsage.hero.light-weaver.blessing-echo
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + TEMP_HP
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.hero.light-weaver.blessing-echo` · SHA256 `c51441ad7b2be81e5fd5a303532dd579a7435058a89c768a4bcd2277b9bf8aeb`.
+
+**name:** Blessing Echo
+
+**activation:** Action
+
+**cost:** Recorded RP cost+1; consume offensive Echo
+
+**rangeAndTarget:** One living ally within 30 ft
+
+**duration:** Instant or 1 minute shield
+
+**frequency:** Recharge 3
+
+**effect:** Convert a stored Strike/Burst record to Mend/Ward for this release, chosen on activation; heal S d6+M or grant same temporary HP. This explicit conversion cannot also deal offensive damage or copy a condition.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Explicit fresh Mend/Ward conversion; no simultaneous offense.
+
+**Reviewed interface:** [Selected creature lifecycle, command, dependency or guard role only; full form/tempHP effects excluded](CREATURE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:mirrorsage:mirrorsage.hero.light-weaver.purifying-reflection
+
+**DISCUSSED; source-specific implementation review pending** · CONDITION_CURE + HEALING_INTERFACE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.hero.light-weaver.purifying-reflection` · SHA256 `2646544b5c9adf14794d43c6e1b609e99606ed3129a977dc933d4808df0f9d69`.
+
+**name:** Purifying Reflection
+
+**activation:** Reaction
+
+**cost:** 5 RP; 1 long-rest use
+
+**rangeAndTarget:** Ally within 30 ft failing save against Charmed/Frightened/Poisoned
+
+**duration:** Instant
+
+**frequency:** 1/long rest
+
+**effect:** Ally rerolls that save with advantage; use new result. If it succeeds, it regains S d6 HP. No arbitrary curse or death reversal; costs remain if it fails. This is not a captured Echo and creates no record.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Heal only if rerolled condition save succeeds.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:mirrorsage:mirrorsage.hero.mirror-mage.mirror-double
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.hero.mirror-mage.mirror-double` · SHA256 `407817e98a7aa859c2f264fa469db545fd1d9a1629b09ed77ff79921e3430692`.
+
+**name:** Mirror Double
+
+**activation:** Bonus Action
+
+**cost:** 2 RP
+
+**rangeAndTarget:** One damage Echo you released this turn
+
+**duration:** Resolves start next turn
+
+**frequency:** Recharge 3
+
+**effect:** Create one illusory double; it repeats half the unmodified immediate damage dice to one original enemy still within 30 ft, without roll or conditions. Declare Mirror Double before the current turn ends; its pending copy remains part of this turn’s one release package and does not consume a later release allowance. Only one pending copy; cannot copy copies/healing.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage copy only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:mirrorsage:mirrorsage.hero.mirror-mage.reality-fracture
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.hero.mirror-mage.reality-fracture` · SHA256 `01db39e48e6febb6fea905259253d2c146292352ba0876f75fc6101b79c195cd`.
+
+**name:** Reality Fracture
+
+**activation:** Action
+
+**cost:** 6 RP; 1 long-rest use
+
+**rangeAndTarget:** Fixed 10 ft-radius zone within 30 ft
+
+**duration:** Concentration, 3 of your turns
+
+**frequency:** 1/long rest
+
+**effect:** While you stand inside, once/turn add 1d6 to one Echo damage/healing amount or impose-1 on one target's Echo save. Choose before resolving. No free releases, random recasts, resource refunds or extra targets.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: +1d6 is a real added Echo healing die.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:mirrorsage:mirrorsage.hero.shattered-one.fractured-dominion
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/mirrorsage.json` / `mirrorsage.hero.shattered-one.fractured-dominion` · SHA256 `7eb5063a016220234c5eca407a3ccd2eb580379e56ac90b5fb8dc4ade2315150`.
+
+**name:** Fractured Dominion
+
+**activation:** Bonus Action
+
+**cost:** 8 RP; 1 long-rest use
+
+**rangeAndTarget:** Self
+
+**duration:** 2 of your turns
+
+**frequency:** 1/long rest
+
+**effect:** Your first damage release on each of these 2 turns adds one half-dice component against a DIFFERENT enemy within 10 ft of an original target. Same package and shared copy cap; excludes healing/control. Never recursively copies a copy or adds a release action.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage-only copy.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:monk:1
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/monk.json` / `1` · SHA256 `8f5b16f6b93be4436573be5b6ca7f7e4111c1484b2292d61becbde14dfeec78f`.
+
+**text:** Ki Chain is a Monk-only resource from 0 to 5. Begin each real encounter at 0 Ki and clear Ki when the encounter ends or after 1 minute without a real encounter. Ki cannot be generated by sparring with willing creatures, attacking objects, repeatedly dodging harmless attacks, healing between encounters or other staged actions. Ki is separate from Resonance Points and Dissonance.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Ki resource/anti-farm.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:monk:5
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/monk.json` / `5` · SHA256 `dfcff8cf61aad0fc8759ed6853ecdcd2beb82ce17a4e9db9430eba6ed2e1f85a`.
+
+**text:** Tiger, Tortoise and Crane Ki generation obey the global Ki-gain ceilings. Tiger can generate Ki from critical unarmed strikes. Tortoise can generate Ki from specified defensive successes. Crane provides mobility and support but does not create free out-of-combat healing. A single event can satisfy more than one generator, but total gain still cannot exceed the appropriate own-turn or off-turn ceiling.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Ki-generation guard; no free healing.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:monk:9
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/monk.json` / `9` · SHA256 `e3923490d9849612190a0954ff0749b6e2517862bdfb1c2d7b5dbdfcff1e2eb7`.
+
+**text:** Temporary maximum-HP reductions caused by Monk features do not stack on the same creature; use the largest reduction from your Monk features. Maximum HP cannot be reduced below 1. Unless a card specifies an earlier end, the reduction lasts until the creature completes a short or long rest. Restoring maximum HP does not restore current HP. These effects are temporary combat trauma, not unstated permanent injuries.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Monk maximum-HP stat layer.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:monk:monk.arch.martial-apex-capstone
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/monk.json` / `monk.arch.martial-apex-capstone` · SHA256 `c4f461c0745dcee1e36c57c48225ec0107d6dbe5e6d65343c2690726828d082f`.
+
+**name:** Martial Apex (Capstone)
+
+**activation:** Triggered
+
+**cost:** Spend all 5 Ki
+
+**rangeAndTarget:** One Monk Action technique you are beginning to use
+
+**duration:** For that technique
+
+**frequency:** 1/encounter; automatic Arch capstone
+
+**effect:** Martial Apex. Tags: arch, capstone, action. When at exactly 5 Ki, spend all 5 as you begin a Monk technique that normally requires an Action. That technique does not consume your normal Action but counts as the one additional full Action allowed to you that round. Add one additional copy of its base rolled damage dice to one damage roll. It cannot be used on healing-only techniques or a Hero Final. Spending all 5 Ki replaces only that technique's printed Ki cost; any RP, rest-use, target and recharge requirements are still paid/met. The bonus dice apply to one target only, cannot copy critical bonus dice, and cannot generate further attacks or resources.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Healing-only technique expressly ineligible.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:monk:monk.hero.iron-fist-master.ribcrusher-strike
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/monk.json` / `monk.hero.iron-fist-master.ribcrusher-strike` · SHA256 `11eb73eb0d8587fb3a965d0b24386deb32cde0270d51810eec36cd841fdcc077`.
+
+**name:** Ribcrusher Strike
+
+**activation:** Triggered
+
+**cost:** 2 Ki
+
+**rangeAndTarget:** One creature hit by your unarmed strike
+
+**duration:** Until target completes a short or long rest
+
+**frequency:** Once per target per encounter
+
+**effect:** Ribcrusher Strike. Tags: hero, iron-fist, attack, max-hp. After an unarmed strike hits, spend 2 Ki. The target makes a Constitution save. On failure reduce its maximum HP by S+M, minimum maximum HP 1. This reduction follows the common non-stacking maximum-HP rule and is restored after a completed short or long rest without restoring current HP.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Max-HP reduction.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:monk:monk.hero.iron-fist-master.bone-breaking-strike
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/monk.json` / `monk.hero.iron-fist-master.bone-breaking-strike` · SHA256 `be603265c88626d789efc7c940a4151d6201a7dd4548f0d8dd7b516afed85fc8`.
+
+**name:** Bone-Breaking Strike
+
+**activation:** Action
+
+**cost:** 2 Ki
+
+**rangeAndTarget:** One creature within unarmed reach
+
+**duration:** Until target completes a short or long rest
+
+**frequency:** Recharge 3 rounds
+
+**effect:** Bone-Breaking Strike. Tags: hero, iron-fist, attack, max-hp. Make one unarmed strike. On a hit, the target makes a Constitution save. On failure reduce its maximum HP by 2 S+M under the common non-stacking maximum-HP rule. This creates no persistent broken-limb injury; the maximum returns after a completed short or long rest without restoring current HP.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Max-HP reduction.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:monk:monk.hero.way-of-shadow.deathless-silence
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/monk.json` / `monk.hero.way-of-shadow.deathless-silence` · SHA256 `a23f961c0455ab3ceeaf270e1f5493914a4d5c257841e084367c9bfc8cd7d1dd`.
+
+**name:** Deathless Silence
+
+**activation:** Action
+
+**cost:** 5 Ki + 5 RP
+
+**rangeAndTarget:** Up to three enemies you can perceive within 60 feet
+
+**duration:** Until start of your next regular turn; max-HP reduction until rest
+
+**frequency:** 1/long rest; automatic Hero Final
+
+**effect:** Final — Deathless Silence. Tags: hero, shadow, final, teleportation, max-hp, weave. Until the start of your next regular turn you cannot be targeted by opportunity attacks or Reactions. Teleport adjacent to up to three different chosen enemies in sequence and make one unarmed strike against each. On each hit, the target makes a Constitution save. Failure reduces its maximum HP by 4 S+M under the common non-stacking rule and suppresses one non-core defensive passive it possesses until the end of its next turn; the Director identifies an applicable visible passive before the save. This does not disable core class engines, legendary rules or creature type traits.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Max-HP reduction plus other combat riders.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:monk:monk.hero.way-of-shadow.death-touch
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/monk.json` / `monk.hero.way-of-shadow.death-touch` · SHA256 `a3a0f7f23883eb6888e379b73620f29e0f12f9945c1d6a4afd376038a342e8ea`.
+
+**name:** Death Touch
+
+**activation:** Action
+
+**cost:** 5 Ki
+
+**rangeAndTarget:** One creature within unarmed reach
+
+**duration:** Instantaneous
+
+**frequency:** 1/long rest
+
+**effect:** Death Touch. Tags: hero, shadow, attack, finisher. Make one unarmed strike. On a hit add 3 S d8 necrotic damage. If the target began the strike at or below one-quarter maximum HP, it also makes a Constitution save; on failure add another 2 S d8 necrotic damage. This never causes automatic death, bypasses no ordinary dying rules and creates no permanent injury beyond the damage actually dealt.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage finisher only.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:oracle:6
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/oracle.json` / `6` · SHA256 `717dd85de2d0cf08acd6cb90398fe94fbdf1ef78d041eda15be83755cffaebd5`.
+
+**text:** RC RECOVERY. A completed long rest restores RC to maximum. A completed short rest restores 1 spent RC, never above maximum. Each Mystery has exactly one Prophecy Trigger. During a real encounter, your Prophecy Trigger can restore at most 1 RC per round and never above maximum. Trivial enemies, willing staged targets, summoned sacrifices, repeated corpse abuse, copied damage, copied healing and events generated solely to trigger recovery do not qualify.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: RC recovery ceilings and anti-farm.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:oracle:14
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/oracle.json` / `14` · SHA256 `53c0ee49032421d155b7c10311016dcaf92540557980c6b9553327dc3f2f575d`.
+
+**text:** Copied, echoed, repeated or redirected damage/healing uses only the explicitly copied numeric component. It cannot repeat RC recovery, Prophecy Triggers, action grants, conditions, passive triggers, resource restoration or another copy effect unless the copying feature explicitly says otherwise.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Copy provenance: numeric component only; no RC/Prophecy/proc copying without explicit exception.
+
+**Reviewed interface:** [Damage-sharing/prevention/retargeting role only](DAMAGE_SHARING_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:oracle:26
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `26` · SHA256 `dd6003b655e77deb78cbdc17b83837c51b1f4798eb77d546cbd9b865cdf725b2`.
+
+**text:** Oracle zone default: choose at most three allies and three enemies for each pulse or aura benefit, fixed at activation unless the card names fewer. Persistent damaging/healing zones require concentration and at most three pulses. Pay 1 RC before each pulse after the first, or end the effect; once-per-long-rest Finals include their printed pulses in that limited use. One pulse can affect a creature only once per round. Passive personal resistance and a single-target temporary buff are not zones.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Generic zone schedule/upkeep; async pulse-window bridge required.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.shared.mystery-surge
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.shared.mystery-surge` · SHA256 `63a3de2571d70f7c77bf5895c7b77caffd84a0c5d2fb920c23ddbb74b4dc5945`.
+
+**name:** Mystery Surge
+
+**activation:** Triggered
+
+**cost:** 0
+
+**rangeAndTarget:** One Tier II Revelation you are activating
+
+**duration:** For that use
+
+**frequency:** 1/short rest
+
+**effect:** When you activate a known Tier II Revelation, choose one applicable surge: increase its Revelation attack roll or save DC by 1 for that use; add S to one rolled damage or healing result; or increase one printed non-concentration duration of 1-2 rounds by 1 round. A Surge cannot create additional Actions, targets, RC recovery or hard-control repetitions.
+
+**prerequisite:** Oracle 6 and a known Tier II Revelation
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: +S to one healing result is pre-resolution flat modifier; no extra targets/actions.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:oracle:oracle.supplement.burning-blood.burning-blood-boon-v
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.burning-blood.burning-blood-boon-v` · SHA256 `2632f2e1356764183fce28146213368f6ddea68646318394a679610edc8c2d83`.
+
+**name:** Burning Blood — Boon V
+
+**activation:** Bonus Action
+
+**cost:** 0
+
+**rangeAndTarget:** Self; up to three enemies/allies within 15 feet
+
+**duration:** Three rounds
+
+**frequency:** 1/long rest; one pulse/target/round
+
+**effect:** 1/long rest as a Bonus Action become a living pyre for 3 rounds. At the start of each hostile creature's turn within 15 feet it takes S d6 fire damage. Once per your turn when at least one enemy takes fire damage from you, regain 1d6 HP, capped at S+M HP per turn. Allies in the aura gain fire resistance and hidden/invisible creatures within 10 feet cannot benefit from mundane darkness or visual concealment against creatures illuminated by your pyre.
+
+**prerequisite:** Oracle 20; selected Curse:Burning Blood
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Once/turn self-heal if at least one enemy takes a positive fire-damage packet.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.consumed.consumed-boon-v
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.consumed.consumed-boon-v` · SHA256 `50d2ca5f682a506377c7b843b7ce6a077296b98aa74cd95085384509ac42ccd0`.
+
+**name:** Consumed — Boon V
+
+**activation:** Bonus Action
+
+**cost:** 0
+
+**rangeAndTarget:** Self and up to three allies within 10 feet
+
+**duration:** Three rounds
+
+**frequency:** 1/long rest
+
+**effect:** 1/long rest as a Bonus Action fully embody your Mystery for 3 rounds. Gain immunity to the theme damage type, +2 on Revelation attack rolls and Revelation save DC, and add S to one Revelation damage or healing roll each turn. Allies within 10 feet gain +1 AC. Visible transformation cannot be suppressed during this embodiment.
+
+**prerequisite:** Oracle 20; selected Curse:Consumed
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: +S to one Revelation healing roll/turn.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.battle.host-s-cry
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.battle.host-s-cry` · SHA256 `f5e2cc86aa1e1847174901f1f2a33f77f47e0084e155654ed229f472bd4ace4e`.
+
+**name:** Host's Cry
+
+**activation:** Action
+
+**cost:** 1 RC
+
+**rangeAndTarget:** Allies within 4 tiles
+
+**duration:** 2 rounds
+
+**frequency:** At will while RC remains
+
+**effect:** Allies in range gain +S damage on one weapon hit per turn and reduce the first damage they take each round by 1. Once during this Cry, when a qualifying ally reduces a meaningful hostile creature to 0 HP, that ally regains 1d6 HP and you regain 1 RC, never above maximum. This special refund can occur only once per Host's Cry and still obeys the once-per-round RC recovery ceiling.
+
+**prerequisite:** Oracle 3; Mystery: Battle; selected Tier I Revelation
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Ally heal and RC refund share trigger but are independent outcomes.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:oracle:oracle.supplement.battle.fury-of-the-host
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.battle.fury-of-the-host` · SHA256 `cb733e2a06e3602fcd811c12135fbdbb892c9b4146dee1c82d0b5ed4f1e52cd4`.
+
+**name:** Fury of the Host
+
+**activation:** Action
+
+**cost:** 3 RC
+
+**rangeAndTarget:** Self and allies within 5 tiles
+
+**duration:** 2 rounds; Revelation backlash 1 round
+
+**frequency:** At will while RC remains
+
+**effect:** For 2 rounds, each ally in range may once on its regular turn gain one additional full Action usable only for one ordinary weapon attack or Dash/Move, subject to the universal extra-Action cap. Allies also gain +1 on attack rolls and reduce the first damage they take each round by 1. You gain +2 AC and immunity to Frightened. Once per round you may activate one known Tier I Battle Revelation for 0 RC using its normal action type. The first qualifying ally each round to reduce a meaningful enemy to 0 HP regains 1d6 HP. When the effect ends, you are suffering Revelation backlash until the end of your next turn: -1 on attacks and saves and Speed -5 feet. Concentration is required; choose at most three allies for its benefits. Each granted Action may make only one ordinary weapon attack or Dash, and cannot grant another action.
+
+**prerequisite:** Oracle 9; Mystery: Battle
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: First qualifying defeat each round heals 1d6.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:oracle:oracle.supplement.bones.death-s-threshold
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.bones.death-s-threshold` · SHA256 `7e8778eca9a8b8ee70ff366b67e6fd5f43aa3b5aae72cc6d5815df0f86e4abff`.
+
+**name:** Death's Threshold
+
+**activation:** Passive
+
+**cost:** 0 RC
+
+**rangeAndTarget:** Self; undead enemies within 3 tiles
+
+**duration:** Until healed above half maximum HP
+
+**frequency:** 1/short rest
+
+**effect:** The first time after a short rest that you fall to one-quarter maximum HP or less, activate Death's Threshold. Until you are healed above half maximum HP, reduce the first necrotic damage and first nonmagical weapon damage you take each round by S and gain +1 to your Revelation save DC. Undead enemies within 3 tiles take -1 on their first attack roll against you each round. The effect then ends and cannot reactivate until after another short rest.
+
+**prerequisite:** Oracle 6; Mystery: Bones; selected Tier II Revelation
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Threshold defensive state; ends when current HP actually exceeds half max.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.bones.ledger-s-memory
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.bones.ledger-s-memory` · SHA256 `749c98cbd9fc797d2bd2dba91bf92eaf38df0e64c0e340bc4fd95717c490cec1`.
+
+**name:** Ledger's Memory
+
+**activation:** Passive and Action
+
+**cost:** 0 RC
+
+**rangeAndTarget:** Self; one corpse touched
+
+**duration:** Permanent; consultation instantaneous
+
+**frequency:** Knowledge always; corpse reading 1/long rest
+
+**effect:** Gain advantage on checks to identify undead, poison and disease. Once per long rest, touch one corpse and learn its identity if the Pale Ledger could reasonably know it, its approximate time of death and the direct physical or magical cause of death. This does not reveal the killer's identity unless the corpse or supernatural Ledger actually knows it.
+
+**prerequisite:** Oracle 12; Mystery: Bones
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Corpse information only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:oracle:oracle.supplement.bones.bones-revelation-mastery
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + MOVEMENT_CONTROL_ONLY
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.bones.bones-revelation-mastery` · SHA256 `14d4537572a0e9d37eb62850c1881097ec9da711640be7b293b0ff0918640577`.
+
+**name:** Bones Revelation Mastery
+
+**activation:** Passive
+
+**cost:** 0 RC
+
+**rangeAndTarget:** One eligible known Bones Revelation
+
+**duration:** Permanent
+
+**frequency:** Choose one upgrade at Oracle 15
+
+**effect:** Choose one mastery for a Revelation you know. Enhanced Marrow Drain: a living target hit also has Speed reduced by 1 tile until the end of its next turn. Enhanced Ledger's Command: may target up to 3 undead, but all controlled undead still share one Bonus Action command per round. Enhanced Unfinished Chorus: when its drain resolves, you may always redirect the healing to one ally within 3 tiles of you rather than yourself; its healing cap remains S+M.
+
+**prerequisite:** Oracle 15; Mystery: Bones; Revelation Mastery
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Unfinished Chorus redirect changes recipient before resolution, not secondary healing.
+
+**Reviewed interface:** [Damage-sharing/prevention/retargeting role only](DAMAGE_SHARING_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.flame.flame-prophecy-trigger
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.flame-prophecy-trigger` · SHA256 `5a7f8bf44dc4308f866f6ce68c1b6573ac54dd1747f50ccb4fc155bbbb582b99`.
+
+**name:** Flame Prophecy Trigger
+
+**activation:** Triggered
+
+**cost:** 0 RC
+
+**rangeAndTarget:** Self
+
+**duration:** Instantaneous
+
+**frequency:** At most once per round during a real encounter
+
+**effect:** When one of your Revelations restores HP to a living ally or deals fire damage to a meaningful hostile creature, regain 1 RC, never above maximum. One Revelation use can restore at most 1 RC even if it both heals and burns or affects multiple targets.
+
+**prerequisite:** Oracle 1; Mystery: Flame
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Heal branch requires actual HP restoration; fire branch requires positive fire packet.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:oracle:oracle.supplement.flame.wrathful-brand
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.wrathful-brand` · SHA256 `ca22b7513003b2cd62230ab868aa357102d381871b66761712fa3e9599915dc0`.
+
+**name:** Wrathful Brand
+
+**activation:** Bonus Action
+
+**cost:** 1 RC
+
+**rangeAndTarget:** One enemy within 4 tiles
+
+**duration:** Until end of your next regular turn
+
+**frequency:** At will while RC remains; one Brand at a time
+
+**effect:** Mark one enemy. The next damaging attack you hit it with before the Brand ends adds fire damage equal to half that attack's unmodified rolled base damage dice total, rounded down, minimum 1. If an ally damages the marked target before the Brand ends, that ally regains 1d6 HP once per Brand and the target makes a Wisdom save; on failure it has -1 on attack rolls until the end of its next turn.
+
+**prerequisite:** Oracle 3; Mystery: Flame; selected Tier I Revelation
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Triggered ally heal from positive damage event; reviewed Brand entitlement retained.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:oracle:oracle.supplement.flame.purging-flame
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + CONDITION_CURE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.purging-flame` · SHA256 `7494667c38b68d0b0ee3d514dee3b0e9abcd0794d83df4b593b5702d642487ee`.
+
+**name:** Purging Flame
+
+**activation:** Action
+
+**cost:** 1 RC
+
+**rangeAndTarget:** One creature you touch
+
+**duration:** Instantaneous; attack penalty until end of undead target's next turn
+
+**frequency:** At will while RC remains
+
+**effect:** If the target is a living ally, it regains 1d8+M HP and may end Poisoned or immediately repeat one saving throw against a disease that normally permits saves. This removes no Wounds. If the target is undead, make a Revelation attack; on hit it takes 1d8+M fire damage and makes a Constitution save, suffering -1 on attack rolls until the end of its next turn on failure.
+
+**prerequisite:** Oracle 3; Mystery: Flame; selected Tier I Revelation
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Cure independent of actual HP gain.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:oracle:oracle.supplement.flame.crown-s-burn
+
+**REVIEWED / reference-VALIDATED: pooled/shared healing with locked activation recipients only** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.crown-s-burn` · SHA256 `a91ecf1e3e672a2cee0fa076612707fd189836da45ef0047c77bee5e29770c7c`.
+
+**name:** Crown's Burn
+
+**activation:** Action
+
+**cost:** 2 RC
+
+**rangeAndTarget:** 3-tile-radius burst centered within 4 tiles
+
+**duration:** Damage/healing instantaneous; penalties until end of next turn
+
+**frequency:** At will while RC remains
+
+**effect:** Enemies in the burst make Dexterity saves, taking 2d6+M fire damage on failure or half on success. A failing enemy also has -1 on attack rolls until the end of its next turn. Total the actual fire damage dealt to meaningful hostile creatures, then divide by the number of allied recipients chosen in the burst; up to three living allies in the burst each regain the lesser of that share or S d6+M HP, minimum 1 if any qualifying damage was dealt. Each healed ally reduces the first fire damage it takes before your next turn by S.
+
+**prerequisite:** Oracle 6; Mystery: Flame; selected Tier II Revelation
+
+**Discussion/overlay:** CORRECTION: One shared S d6+M cap roll. Source amount per recipient is max(1,min(floor(total qualifying actualDamageDealt/recipient count),shared cap)) only if numeric total>0; no recipients skips healing. Each target then applies its healing restrictions. No independent cap rolls. Exact helper in healing_source_extensions.py;21 reference checks. Crown recipients fixed at activation, with no denominator recomputation or replacement after lost eligibility.
+
+**Open:** Other components, full source lifecycle and broader scheduler/copy interfaces remain outside this primitive closure.
+
+## class-card:oracle:oracle.supplement.flame.zealot-s-renewal
+
+**REVIEWED / reference-VALIDATED: minimum resolved backlash damage only** · HEALING_INTERFACE + CONDITION_CURE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.zealot-s-renewal` · SHA256 `c5be3b9f61b1d449a60c73c0d7441db0451cec2ddf56b73113e480ccb08aaf91`.
+
+**name:** Zealot's Renewal
+
+**activation:** Action
+
+**cost:** 2 RC
+
+**rangeAndTarget:** One living ally within 3 tiles; adjacent enemies
+
+**duration:** Instantaneous; fire ward until start of your next turn
+
+**frequency:** At will while RC remains
+
+**effect:** The ally regains 2 S d8+M HP, then takes 1d4 fire backlash that cannot be reduced below 1 unless First Flame Convergence suppresses it. It may end Poisoned or immediately repeat one disease save. Until the start of your next turn it reduces the first fire damage it takes by S. Hostile creatures adjacent to the healed ally take 1d4 fire damage once from scattering embers.
+
+**prerequisite:** Oracle 6; Mystery: Flame; selected Tier II Revelation
+
+**Discussion/overlay:** CORRECTION: Backlash is a separate1d4 fire packet after the healing attempt. Apply ordinary defenses, then enforce minimum RESOLVED DAMAGE1 unless an explicit Convergence/Prophecy suppresses the component. No survivalHP floor; normal tempHP/Wounds/zero/death follow. Cure clause is independent of actualHP gained. Exact helper in healing_source_extensions.py;21 reference checks. Crown recipients fixed at activation, with no denominator recomputation or replacement after lost eligibility.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** Other components, full source lifecycle and broader scheduler/copy interfaces remain outside this primitive closure. See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.flame.first-flame-convergence
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.first-flame-convergence` · SHA256 `25282e2ec8de9b5017e44ff952f9082abcada88b6d5990dbb595d67b44540b76`.
+
+**name:** First Flame Convergence
+
+**activation:** Action
+
+**cost:** 3 RC
+
+**rangeAndTarget:** Self and allies within 4 tiles
+
+**duration:** 2 rounds
+
+**frequency:** At will while RC remains
+
+**effect:** For 2 rounds, once on each of your turns when a Flame Revelation deals fire damage, add one extra die matching that Revelation's primary damage die to one damage roll. Once per turn when one of your Flame Revelations damages a meaningful hostile creature, one living ally within 4 tiles regains 1d6 HP. Allies within 4 tiles are immune to Frightened. Once per turn when this effect heals an ally, that ally reduces the first damage it takes before your next turn by 1. Zealot's Renewal deals no backlash while Convergence lasts.
+
+**prerequisite:** Oracle 9; Mystery: Flame
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Positive fire packet can create child heal; its later damage-reduction rider requires actual HP restoration.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.flame.flame-revelation-mastery
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + TEMP_HP
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.flame-revelation-mastery` · SHA256 `e1fa6ebc49b28e5f65e9a59fb6a36b0f982f9f3653062780e082ed242e1e6232`.
+
+**name:** Flame Revelation Mastery
+
+**activation:** Passive
+
+**cost:** 0 RC
+
+**rangeAndTarget:** One eligible known Flame Revelation
+
+**duration:** Permanent
+
+**frequency:** Choose one upgrade at Oracle 15
+
+**effect:** Choose one mastery for a Revelation you know. Enhanced Wrathful Brand: its maximum duration becomes 2 rounds. Enhanced Crown's Burn: its healing may target up to three living allies within 4 tiles of the burst center rather than requiring them inside the burst. Enhanced First Flame Convergence: Zealot's Renewal backlash remains suppressed for the full Convergence duration; if already suppressed by the base effect, additionally one ally healed by Zealot's Renewal during Convergence gains S temporary HP.
+
+**prerequisite:** Oracle 15; Mystery: Flame; Revelation Mastery
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Enhanced Convergence temp HP requires actual Zealot HP gain.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.flame.flame-prophecy
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.flame-prophecy` · SHA256 `4a6f96af0e3447562f101a5af4e88496182172029b499cfca727c2fec349ff7f`.
+
+**name:** Flame Prophecy
+
+**activation:** Triggered
+
+**cost:** 0 RC for chosen Revelation
+
+**rangeAndTarget:** One known Flame Revelation; allies within 4 tiles
+
+**duration:** Chosen Revelation; secondary effects until end of your next turn
+
+**frequency:** 1/long rest
+
+**effect:** Activate one known Flame Revelation for 0 RC. Until the end of your next regular turn, the next Zealot's Renewal or other Flame Revelation you use that has self-damaging healing backlash ignores that backlash, and allies within 4 tiles reduce the first fire damage they take by S. The next time you damage a creature already suffering ongoing fire damage before the effect ends, add S fire damage once.
+
+**prerequisite:** Oracle 18; Mystery: Flame
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Free chosen Flame Revelation; suppresses one eligible backlash; otherwise no healing packet of its own.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:oracle:oracle.supplement.flame.crown-restored
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.flame.crown-restored` · SHA256 `354e4fb2b53a1b46b121c1edc36df4e364f0dbf66931fa7bdb453e68d6f3ab8f`.
+
+**name:** Crown Restored
+
+**activation:** Bonus Action
+
+**cost:** 0 RC
+
+**rangeAndTarget:** Self and allies within 5 tiles
+
+**duration:** 3 rounds
+
+**frequency:** 1/long rest
+
+**effect:** Manifest the Crown for 3 rounds. Once on each of your turns add 2 fire damage to one damaging attack or Revelation. At the start of each living ally's turn within 5 tiles, including yours, that ally regains 1d6 HP, at most three pulses per creature from this Final and never above maximum HP. Once per round you may activate one known Tier I Flame Revelation for 0 RC using its normal action type. Free Revelations cannot recursively restore additional RC beyond the normal once-per-round Prophecy Trigger cap.
+
+**prerequisite:** Oracle 20; Mystery: Flame
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: 1/LR Final; printed target-start healing pulses included without generic RC upkeep.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.life.resonant-seed
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + MOVEMENT_CONTROL_ONLY
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.life.resonant-seed` · SHA256 `ee79b90bfc9c7117d99edebc2dc66e6b79b37bbc5f732ac6a2c4bedabab152ab`.
+
+**name:** Resonant Seed
+
+**activation:** Action
+
+**cost:** 1 RC
+
+**rangeAndTarget:** 2-tile-radius fixed zone centered within 4 tiles
+
+**duration:** 3 rounds
+
+**frequency:** At will while RC remains; one Seed zone at a time
+
+**effect:** When a living ally starts its turn in the zone, it regains 1d4 HP, at most once per round and for at most three pulses from this use, and may end Frightened or Poisoned on the first pulse it receives. Undead entering or starting their turn in the zone take 1d4 radiant damage once per round and make a Strength save; on failure their Speed is reduced by 1 tile until the end of that turn. Healing requires the paid 1 RC activation and ends after 3 rounds.
+
+**prerequisite:** Oracle 3; Mystery: Life; selected Tier I Revelation
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Target-start healing zone; asynchronous upkeep scheduler still provisional.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.life.life-revelation-mastery
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + CONDITION_CURE
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.life.life-revelation-mastery` · SHA256 `f231bdb47b3545daad32777e23dd58122092961abb95c826436a646ab5e62b44`.
+
+**name:** Life Revelation Mastery
+
+**activation:** Passive
+
+**cost:** 0 RC
+
+**rangeAndTarget:** One eligible known Life Revelation
+
+**duration:** Permanent
+
+**frequency:** Choose one upgrade at Oracle 15
+
+**effect:** Choose one mastery for a Revelation you know. Enhanced Overflowing Light: maximum temporary HP from excess healing becomes 20. Enhanced Garden of Restoration: the first Garden pulse a creature receives may end both Poisoned and one disease that explicitly allows magical curing, rather than only one of those benefits. Enhanced Song of Mending: duration becomes 3 rounds and gains one additional 2d6 healing pulse at the start of your second later regular turn; each ally still receives only one 1-HP death prevention per use.
+
+**prerequisite:** Oracle 15; Mystery: Life; Revelation Mastery
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Modifier only: Overflowing/Garden/Song upgrades; no independent heal.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:oracle:oracle.supplement.stars.radiant-path
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + MOVEMENT_CONTROL_ONLY
+
+Source `data/public/class_playtests/oracle.json` / `oracle.supplement.stars.radiant-path` · SHA256 `811efd765eab96e4ea141e13f5ef12ca707891c26afe7eec8610ef38aa084365`.
+
+**name:** Radiant Path
+
+**activation:** Action
+
+**cost:** 2 RC
+
+**rangeAndTarget:** 5-tile line originating from you; enemies and up to 3 allies in line
+
+**duration:** Instantaneous; star-ash until end of your next turn
+
+**frequency:** At will while RC remains
+
+**effect:** Enemies in the line make Dexterity saves, taking 2d6+M radiant damage on failure or half on success. Failed enemies are covered in star-ash until the end of your next turn and cannot benefit from mundane concealment. Choose up to three living allies in the line; roll 1d6 once and each regains that much HP if at least one meaningful hostile took damage, maximum healing per ally S+M if lower. After resolution, you and one chosen ally in the line may each move 1 tile along the Path without provoking opportunity attacks.
+
+**prerequisite:** Oracle 6; Mystery: Stars; selected Tier II Revelation
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Shared 1d6 ally heal only if meaningful hostile takes qualifying damage; movement separate.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:paladin:1
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/paladin.json` / `1` · SHA256 `86aaecab1eb2c0b9832de33a50010219619f90748660b8eeb0586f3e73965db8`.
+
+**text:** Base progression is explicit rather than the ordinary 25-card template: at 1 automatically gain Lay on Hands, Divine Sense, Martial Proficiency, Divine Strike, Protective Stance and Sacred Touch. At 2 gain Righteous Challenge, Bolstering Presence, Fighting Style and ordinary Paladin spell access. At 3 swear ONE of ten Oaths; gain only its Smite modification, Aura and first Revelation spell. This Oath is the Arch specialization. At 10 enter Hero Oath Mastery of that SAME Oath; no second Oath or additional generic Hero tree. Signature Power unlocks 11, Final Gift 20. Oath Revelations automatically unlock 3/5/9/13/17, always known in addition to the shared spell repertoire, rank 1/2/3/4/5 respectively. Exact printed RP costs replace generic cost only if the card explicitly supplies them.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Progression/access only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:paladin:2
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/paladin.json` / `2` · SHA256 `a75d29d2ed079e1fcabb1a29c33f9dcd230db247285047ada790bc59b6e8e309`.
+
+**text:** At 2 choose one Fighting Style: Defense +1 AC while armored; Dueling +2 damage to first one-handed melee hit on your own turn; Protection Reaction impose disadvantage on one attack against an adjacent ally when using a shield. At 3 Divine Health gives advantage on disease saves, not universal immunity. At 5 Extra Attack makes two attacks when taking the ordinary Attack Action; named attack techniques use their own counts. These three features reconcile preserved main-registry entries; other old level-table extras, including extra level 14 ASI and undefined free slot riders, are not stacked into this draft. ASI/feat at 4/8/12/16/19 follows general advancement once.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Fighting style, disease-save and Extra Attack reconciliation only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:paladin:3
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/paladin.json` / `3` · SHA256 `dd7adf4f3196fa1eaecc7847a4c2bb9fd5fe475f67e122a724b9e31194551c26`.
+
+**text:** Divine Strike at 1: after one melee weapon hit on your regular turn, spend 1 RP to add S d6 radiant. At 2 this becomes Divine Smite: choose 1 RP for S d6 or 2 RP for(S+1)d8 radiant, once/own turn total. Oath 3 changes type/rider as its card states, never adds another copy of the base damage. Smite is not an ordinary spell, cannot be counterspelled or generically Overcast, and causes no Dissonance. A critical hit doubles Smite damage dice under ordinary rules, but never healing, resources or percentage copies.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Smite own-turn restriction; also obey narrower engine[10] one-paid-Smite/round cap.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:paladin:6
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/paladin.json` / `6` · SHA256 `234ddcd8d38211285470daa1639dddcccb3bcfaf77b526b262b1792dbe2923d0`.
+
+**text:** Protected interface: Smite, Aura and Lay on Hands generate no Weave Dissonance. After a successful direct melee hit, your next Oath spell before end next turn generates 1 less Dissonance, minimum 0, consuming the benefit. No stacking, RP discount or Refrain reset. Oath Revelation spells and the five replacement Forbidden spells below are ordinary spells for strain, countering and concentration; signature powers and final gifts are Oath techniques unless expressly tagged otherwise.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Smite/Aura/LoH Dissonance interface.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:paladin:7
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY + OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/paladin.json` / `7` · SHA256 `2377dfa4952008e3e9a15e45ec5c94ebc575dedfb63ed897955d1b6e1e2d826e`.
+
+**text:** Oath conduct clauses remain intact in source and Oath cards. The Director identifies a relevant clause and a knowingly chosen serious breach before applying a fall. A disagreement, failed roll, coerced act or unknown fact does not silently remove a character. A fall is an explicit story transition recorded with the player: choose the corresponding Oathbreaker inversion or pursue an agreed restoration scene. Preserve class level and already spent resources. Oathbreaker replaces its Oath Aura, Smite rider, Signature and Revelation list, rather than stacking both sets. Base martial abilities remain; Lay on Hands becomes Death Touch using the same current 5 L pool, with no refill on switching.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Oath/Oathbreaker transition; LoH pool persists through switch.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:paladin:8
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/paladin.json` / `8` · SHA256 `ca312e539af5ede155e680dc9a3eb40654684fa362dab822179d3f3ae054e748`.
+
+**text:** Death Touch baseline: Action melee divine attack PB+CHA; declare and spend 1 through 2 S+M points before the attack from remaining Lay on Hands pool to deal that much necrotic damage (choose amount before roll; miss still spends declared points). Each Oath inversion may alter type or add its bounded rider; never copy innate traits, confiscate class engines or automatically execute a target. A listed inverted Signature is available only at 11 and replaces the ordinary Signature use, one/short rest. An inverted aura follows the same radius, target cap and timing. Oathbreaker 20 uses the new Black Manifestation common capstone instead of its original Final Gift.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Death Touch spends LoH points as damage; not healing.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:paladin:10
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/paladin.json` / `10` · SHA256 `240e342dd180de5c960ceeabad4c9a8302f5c4a1d0ddcb324310c42669cc4c93`.
+
+**text:** Oath integration limits: one paid Smite total per round, including the level-7 Reaction; one Oath-aura reactive event per round. Multiple damage-redirection options share one event per round unless Crown Undying expressly allows two. Apply original-target defenses once, then split actual damage; transferred damage cannot be mitigated again, reflected, redirected again or generate resources. This explicit rule supersedes wording that permits recipient defenses again.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Shared Smite/redirection limits; dedicated redirection procedure still open.
+
+**Reviewed interface:** [Damage-sharing/prevention/retargeting role only](DAMAGE_SHARING_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:paladin:13
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/paladin.json` / `13` · SHA256 `be41b24ab1200562cd74cfb7cebce72521c85bf8f589ce8d5da9dc945345eb2d`.
+
+**text:** The source ceiling’s half-pool-per-round Lay on Hands cap is a preserved alternative. This pilot instead uses maximum class level per ordinary Lay on Hands Action and the explicitly once-per-long-rest level-17 Wave that distributes the current remaining pool. No normal heal gains the Wave’s exception.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: **Operational correction:** level-17 Wave = 1/long rest; preserve conflicting 1/SR historical card text.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:paladin:14
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/paladin.json` / `14` · SHA256 `b38dbf499f21d489b9848610ad2d5bd91a94b22ccb0a92ca613d3fbb6fa51c0d`.
+
+**text:** For any one damage event choose exactly one Paladin redirection feature. Using it consumes the shared redirection allowance for that round. Crown Undying permits two DIFFERENT ally-damage events per round, but still only one redirection feature may modify each event.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Redirection selection/event cap; Crown Undying exception.
+
+**Reviewed interface:** [Damage-sharing/prevention/retargeting role only](DAMAGE_SHARING_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:paladin:paladin.supplement.oathbreaker-shared.blighted-benediction
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oathbreaker-shared.blighted-benediction` · SHA256 `00c2d8ac6fd0610d9adeb591e2d3fa26e144e5ab2aeefead66cac086a14eedb4`.
+
+**name:** Blighted Benediction
+
+**activation:** Action
+
+**cost:** 2 RP
+
+**rangeAndTarget:** One creature 30 ft
+
+**duration:** Until end target next turn
+
+**frequency:** At will while RP remains
+
+**effect:** New rank 1 Forbidden spell. Divine spell attack; hit S d8 necrotic and target-1 on next attack roll. No healing, command or second strike. Ordinary spell strain applies.
+
+**prerequisite:** Paladin 3; selected Oathbreaker inversion
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage/debuff only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:paladin:paladin.supplement.oathbreaker-shared.dread-shelter
+
+**DISCUSSED; source-specific implementation review pending** · TEMP_HP
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oathbreaker-shared.dread-shelter` · SHA256 `21aacaa2a10867f745124fcb7d6c76eb33b0c79c19178726cd324df4b92df562`.
+
+**name:** Dread Shelter
+
+**activation:** Bonus Action
+
+**cost:** 3 RP
+
+**rangeAndTarget:** Self
+
+**duration:** Concentration, 1 minute
+
+**frequency:** At will while RP remains
+
+**effect:** New rank 2 Forbidden spell. Gain 2 S+M temporary HP on casting and 1 flat DR against weapon damage for duration. No recurring temp HP pulse or healing.
+
+**prerequisite:** Paladin 5; selected Oathbreaker inversion
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: One temp-HP grant plus DR; no recurring healing.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:paladin:paladin.supplement.oathbreaker-shared.black-manifestation
+
+**DISCUSSED; source-specific implementation review pending** · TEMP_HP + RESOURCE_ONLY
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oathbreaker-shared.black-manifestation` · SHA256 `fa105c2d7a52015f0d3640f7d570072e5e0a5d005d7e818da9bac58bd438247f`.
+
+**name:** Black Manifestation
+
+**activation:** Bonus Action
+
+**cost:** 1 long-rest use
+
+**rangeAndTarget:** Self and up to 3 enemies in aura
+
+**duration:** Until start next turn
+
+**frequency:** 1/long rest
+
+**effect:** New Oathbreaker Final: gain 2 S+M temporary HP; chosen enemies WIS save or lose Reactions and Speed-10 ft for duration. Refresh one expended Signature use, then pay its normal Action and other costs when used. No Death Touch pool, RP, extra Action or Final reset.
+
+**prerequisite:** Paladin 20; selected Oathbreaker inversion
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Temp HP plus Signature-use refresh.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:paladin:paladin.supplement.oathbreaker-oath-of-mercy.death-touch-life-drain
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oathbreaker-oath-of-mercy.death-touch-life-drain` · SHA256 `5ccd03c0b35257adb0ffa15f6503d73d63e83381e1ffeba14e02e16556a0b68f`.
+
+**name:** Death Touch — Life Drain
+
+**activation:** Action
+
+**cost:** Declare and spend 1 through 2 S+M points from current Lay on Hands pool, even on miss
+
+**rangeAndTarget:** One creature within melee reach; up to 2 additional living creatures within 5 feet
+
+**duration:** Instantaneous
+
+**frequency:** At will while Lay on Hands points remain; rider once per turn
+
+**effect:** Make a melee divine attack using PB+Charisma. On hit the primary target takes necrotic damage equal to the declared Lay on Hands points. Then up to 2 other living creatures within 5 feet make Constitution saves, taking S necrotic damage on failure or half on success. Regain HP equal to half the total actual necrotic damage dealt by the secondary drain, rounded down, maximum S+M. Constructs and undead provide no healing.
+
+**prerequisite:** Paladin 3; Oathbreaker — Oath of Mercy
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Drain heal uses secondary targets' total numeric actual necrotic damage; primary LoH-point damage does not feed heal.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:paladin:paladin.supplement.oathbreaker-oath-of-mercy.exsanguinate
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oathbreaker-oath-of-mercy.exsanguinate` · SHA256 `7fdfc30a56a5fbfec418c11a859f48cc7636e45998913a574f3b8dd80d7d14f5`.
+
+**name:** Exsanguinate
+
+**activation:** Action
+
+**cost:** 2 RP
+
+**rangeAndTarget:** Up to 3 living creatures in your Oath aura
+
+**duration:** Instantaneous
+
+**frequency:** 1/short rest; replaces Signature Power use
+
+**effect:** Each target makes a Constitution save, taking 2 S d8 necrotic damage on failure or half on success. Regain HP equal to half the total actual damage dealt, rounded down, maximum Paladin level+M. Undead and constructs are unaffected and cannot be used to generate healing.
+
+**prerequisite:** Paladin 11; Oathbreaker — Oath of Mercy
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Heal from half summed qualifying `actualDamageDealt`, source cap applies.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:paladin:paladin.supplement.oathbreaker-oath-of-vengeance.death-touch-malicious-execution
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oathbreaker-oath-of-vengeance.death-touch-malicious-execution` · SHA256 `42295f38a12b89d74114739244ddfb5ba9e19a6f750356f0cf42fbbdfaf16740`.
+
+**name:** Death Touch — Malicious Execution
+
+**activation:** Action
+
+**cost:** Declare and spend 1 through 2 S+M points from current Lay on Hands pool, even on miss
+
+**rangeAndTarget:** One creature within melee reach
+
+**duration:** Instantaneous
+
+**frequency:** At will while Lay on Hands points remain; rider once per turn
+
+**effect:** Make a melee divine attack using PB+Charisma. On hit deal necrotic damage equal to the declared Lay on Hands points. If the target was already at or below half maximum HP, it makes a Constitution save; on failure add S d6 necrotic damage. This rider never automatically executes or bypasses normal death rules.
+
+**prerequisite:** Paladin 3; Oathbreaker — Oath of Vengeance
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage rider only; no auto-execution.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:paladin:paladin.supplement.oathbreaker-oath-of-flame.death-touch-blighting-blood
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oathbreaker-oath-of-flame.death-touch-blighting-blood` · SHA256 `d622135b269bb89a3f32d0f6ef20481b4d3b7a70ffe4601e14e0212048d385b5`.
+
+**name:** Death Touch — Blighting Blood
+
+**activation:** Action
+
+**cost:** Declare and spend 1 through 2 S+M points from current Lay on Hands pool, even on miss
+
+**rangeAndTarget:** One creature within melee reach; its occupied space
+
+**duration:** Damage instantaneous; blighted space until start of your next regular turn
+
+**frequency:** At will while Lay on Hands points remain; terrain rider once per turn
+
+**effect:** Make a melee divine attack using PB+Charisma. On hit deal necrotic damage equal to the declared points and blight the target's space until the start of your next turn. The first hostile creature other than the original target that enters or starts its turn in that space takes S necrotic damage. The patch creates no corpse, healing or resource trigger.
+
+**prerequisite:** Paladin 3; Oathbreaker — Oath of Flame
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage + temporary terrain rider only.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:paladin:paladin.supplement.oath-of-the-ancients.thorn-crown
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oath-of-the-ancients.thorn-crown` · SHA256 `fdae69088633aa52c7c8c0f4ac3870f2f6ae9660f18605317353981d442c74ea`.
+
+**name:** Thorn Crown
+
+**activation:** Reaction
+
+**cost:** 2 RP
+
+**rangeAndTarget:** Creature that just imposed a condition on you within 60 feet
+
+**duration:** Reflected condition maximum 1 round
+
+**frequency:** 1/short rest
+
+**effect:** Trigger after a hostile creature causes you to fail a save and gain a finite-duration condition. The source immediately makes the same type of saving throw against your Oath DC. On failure it suffers the same named condition until the end of its next turn, subject to the universal hard-denial guard. Your original condition is not removed unless another feature removes it. Thorn Crown cannot reflect damage, death, curses, Wounds, resource loss or permanent transformations.
+
+**prerequisite:** Paladin 11; Oath of the Ancients
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Condition reflection, not healing/cure.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:paladin:paladin.supplement.oath-of-the-chain.chain-of-duty
+
+**DISCUSSED; source-specific implementation review pending** · MOVEMENT_CONTROL_ONLY
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oath-of-the-chain.chain-of-duty` · SHA256 `98689aca46585afeb54021721adc7ca7afebe7efb88da76926ab7dfd3e986563`.
+
+**name:** Chain of Duty
+
+**activation:** Action
+
+**cost:** 3 RP
+
+**rangeAndTarget:** One willing ally within 30 feet
+
+**duration:** Concentration, maximum 3 rounds
+
+**frequency:** At will while RP remains
+
+**effect:** Mark the ally. If it is reduced to 0 HP while within 60 feet and on the same plane, you may use your Reaction to teleport to an unoccupied space adjacent to it. This teleport prevents no damage and does not heal either creature. The spell then ends.
+
+**prerequisite:** Paladin 5; Oath of the Chain
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Triggered teleport only; prevents/heals no damage.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:paladin:paladin.supplement.oath-of-grief.memorial-flame
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oath-of-grief.memorial-flame` · SHA256 `31b7ad68f7311e9406f2375bf74d06cf569de3ecd0cc1f9ba8b0179ab3bd6e31`.
+
+**name:** Memorial Flame
+
+**activation:** Action
+
+**cost:** 5 RP
+
+**rangeAndTarget:** 30-foot-radius light centered on a point within 30 feet
+
+**duration:** Concentration, maximum 1 minute
+
+**frequency:** At will while RP remains
+
+**effect:** The memorial light reveals hidden or invisible undead within it unless an effect explicitly defeats divine detection. Allies in the light gain +2 on death saves. Hostile undead in the light have disadvantage on attack rolls. The light does not damage undead or reveal non-undead invisible creatures.
+
+**prerequisite:** Paladin 9; Oath of Grief
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Death-save bonus + undead detection/attack penalty.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:paladin:paladin.supplement.oath-of-the-martyr-king.crown-of-embers
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oath-of-the-martyr-king.crown-of-embers` · SHA256 `0ff07991fa0838522e96deb9434534c8c584850c6203ed3b47e8eeaf4246980f`.
+
+**name:** Crown of Embers
+
+**activation:** Bonus Action
+
+**cost:** 2 RP
+
+**rangeAndTarget:** Up to 3 allies in your Oath aura
+
+**duration:** Until start of your next regular turn
+
+**frequency:** 1/short rest
+
+**effect:** Selected allies reduce the first damage they take before the start of your next turn by S. During this period you may redirect damage from one selected ally to yourself without using a Reaction, once total for the Crown, up to Paladin level+M damage. Redirected damage retains type and cannot be redirected again. The Crown grants no healing by itself.
+
+**prerequisite:** Paladin 11; Oath of the Martyr King
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage reduction/redirection; no healing itself.
+
+**Reviewed interface:** [Damage-sharing/prevention/retargeting role only](DAMAGE_SHARING_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:paladin:paladin.supplement.oath-of-the-martyr-king.burden-shared
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/paladin.json` / `paladin.supplement.oath-of-the-martyr-king.burden-shared` · SHA256 `2a0ff54276d9127ac30458bae7ea5dc0f1295b5ec34ca63bb5ce22efdabb29d1`.
+
+**name:** Burden Shared
+
+**activation:** Reaction when an ally takes damage
+
+**cost:** 5 RP
+
+**rangeAndTarget:** Triggering ally and up to two other willing allies in your aura
+
+**duration:** One damage event
+
+**frequency:** While RP remains
+
+**effect:** After applying the original target’s defenses once, divide up to Paladin level+M of the remaining damage among the willing recipients as you choose; each recipient must explicitly accept its amount. The original ally takes the remainder. Transferred damage keeps its type and cannot be reduced again, redirected, reflected or trigger healing/resources. This uses the one redirection event per round.
+
+**prerequisite:** Paladin 9; Oath of the Martyr King
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Post-defense damage division; belongs in redirection packet.
+
+**Reviewed interface:** [Damage-sharing/prevention/retargeting role only](DAMAGE_SHARING_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:ranger:5
+
+**DISCUSSED; source-specific implementation review pending** · TEMP_HP
+
+Source `data/public/class_playtests/ranger.json` / `5` · SHA256 `f45c0cef68da878ce0d7921f372222c3698711b0f412f432597bbc20445859da`.
+
+**text:** Chosen Hero grants a sixth Arrow at 11. Warder Nature's Wrath: ranged attack weapon+S d6 piercing; up to 2 allies within 10 ft gain M temporary HP (finite mitigation, not repeatable real healing). Stalker Phantom: two ranged attacks against different aligned targets within 60 ft, each weapon damage, no extra dice; one Arrow activation. Outrider Corruption: place 10 ft-radius zone within 60 ft, concentration until start next turn; up to 3 enemies entering/starting there take S d4 necrotic once each, CON half. Arrow copies cannot generate extra attacks, resources or permanent terrain changes.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Warder Arrow grants finite temp HP; remaining Arrow modes nonhealing.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected creature lifecycle, command, dependency or guard role only; full form/tempHP effects excluded](CREATURE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:ranger:ranger.hero.warder.healing-briar
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/ranger.json` / `ranger.hero.warder.healing-briar` · SHA256 `d1ca2d633ca412393953afab0065f0439a3ad3a7f95d50500385078c999e1f6f`.
+
+**name:** Healing Briar
+
+**activation:** Action
+
+**cost:** 4 RP
+
+**rangeAndTarget:** Fixed 10 ft-radius natural-ground zone within 30 ft; 3 allies/pulse
+
+**duration:** Concentration, 3 of your turns
+
+**frequency:** Recharge 4
+
+**effect:** On start heal 1d8+M per chosen living ally; on next 2 turns Bonus Action+1 RP repeats pulse. Maximum 3 pulses; no passive additional entry healing and no Wound removal.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Initial Action pulse included; next two require BA+1 RP.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:ranger:ranger.hero.warder.beast-companion
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/ranger.json` / `ranger.hero.warder.beast-companion` · SHA256 `4e0bcac233471e7b07eeab712d1373a5591a2ec588d1684d4ca52499eabae643`.
+
+**name:** Beast Companion
+
+**activation:** Ritual
+
+**cost:** 4 RP; 1 hour with a willing/tamed eligible beast
+
+**rangeAndTarget:** One beast touched
+
+**duration:** Bond persists; one companion
+
+**frequency:** 1/long rest
+
+**effect:** Bond eligible beast using standard companion stats plus Wisdom modifier HP; preserve one movement mode up to 40 ft and keen-sense advantage. Bonus Action command gives one attack, no imported boss powers. Injury persists; heal normally. Death requires a new bond after long rest, not free resummoning.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Living companion; ordinary healing allowed, death/injury lifecycle still dependency.
+
+**Reviewed interface:** [Selected creature lifecycle, command, dependency or guard role only; full form/tempHP effects excluded](CREATURE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:shaman:2
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/shaman.json` / `2` · SHA256 `673d1b3887e874041180d1c813ee02efa51962dbc07a33844853a708b1468a5a`.
+
+**text:** On your turn you may spend Bonus Action to move one totem up to 15 ft along unobstructed ground, remaining within 60 ft. This competes with healing maintenance, companion commands and advanced flasks. Moving an aura over a creature cannot trigger its once/round effect repeatedly. Totem destruction creates no resource return. Once per round, the first ordinary spell cast while inside your own active totem aura generates 1 less Dissonance, minimum 0; no RP reduction.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Totem movement competes with healing upkeep/commands.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:shaman:3
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/shaman.json` / `3` · SHA256 `2727bf8ec8543adfa5e30f4fecfc506e6c350f52a84612e6387f26963e9b3716`.
+
+**text:** The book places Flask Use at Base but describes advanced flask casting as Theurgist/Soothsayer-only. For this draft, Base Flask Use grants mundane prepared tactical flasks thrown with an Action; at Hero 10 only Theurgist/Soothsayer gain magical Bonus Action flasks. Bloodcaller retains mundane alchemical knowledge, not the advanced flask subsystem. At long rest prepare 2 flasks, rising to 3 at 5 and 4 at 11; no encounter refill or stockpiling, total carry cap 4, unused contents become inert when preparing a new batch. This finite-rest supply replaces encounter-based free heal farming.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Finite prepared-flask inventory and carry cap.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:shaman:4
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + CONDITION_CURE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/shaman.json` / `4` · SHA256 `45e8077b1ba921b793f0eb5f15592c8210b900c564edb6da35be433b37897a74`.
+
+**text:** Flask tier uses S. Mundane Base modes: Burn=one enemy 30 ft DEX save S d6 fire half, failure 1d4 fire next turn; Root=one ground enemy 30 ft STR save Speed 0 until end its next turn; Weaken=one enemy 30 ft CON save or-1 attack damage until end its next turn. Advanced Hero modes additionally: Stun=one enemy 30 ft CON save or no Reactions, failure by 10 Stunned until end its next turn; Heal=one living ally 30 ft S d6+M HP; Restore=end Frightened or Poisoned on one ally 30 ft. Every thrown flask consumes one prepared unit and 2 RP for advanced magic (Base mundane flasks cost 0 RP). Changing payload requires no separate crafting action when throwing. No flask leaves harvestable poison or another flask.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Advanced Heal/Restore consume flask + 2 RP.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:shaman:shaman.arch.extended-totem-duration
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/shaman.json` / `shaman.arch.extended-totem-duration` · SHA256 `d3e1a07ab47f089ce66a98f3ef5083eb604f55174892955836175df7c94724bb`.
+
+**name:** Extended Totem Duration
+
+**activation:** Passive
+
+**cost:** 0; full upkeep for extra Renewal pulse
+
+**rangeAndTarget:** One of your totems
+
+**duration:** Maximum 4 of your turns
+
+**frequency:** Continuous
+
+**effect:** Totems last 1 extra turn. Renewal may have a fourth pulse only if you pay Bonus Action+1 RP on that turn; no fifth pulse and no automatic free healing. Concentration still required.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Fourth Renewal pulse requires genuine BA+1 RP; no fifth.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:shaman:shaman.arch.spirit-cache
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/shaman.json` / `shaman.arch.spirit-cache` · SHA256 `9a84d6cf21f387bfc7fc32c7e9e7344aa7449da4abd8e24b96e76710e18249ce`.
+
+**name:** Spirit Cache
+
+**activation:** Triggered
+
+**cost:** 1 short-rest use
+
+**rangeAndTarget:** One flask/to-tem effect you directly used
+
+**duration:** Stored until encounter end
+
+**frequency:** 1/short rest
+
+**effect:** Store its profile, not an active copy. On a later turn use normal Action/Bonus Action and pay all RP and a new flask unit or full totem cost to repeat it. Add 1d6 to one numerical damage/heal amount; no copy of refund/limited use.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Replay pays normal activation plus new flask/full totem cost; +1d6 is real added die.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:shaman:shaman.arch.totem-pulse
+
+**DISCUSSED; source-specific implementation review pending** · TEMP_HP
+
+Source `data/public/class_playtests/shaman.json` / `shaman.arch.totem-pulse` · SHA256 `da88a2c237b85efcd2b52a63b65f8a2decafbdc6671d11820ab72f859f0c0ce6`.
+
+**name:** Totem Pulse
+
+**activation:** Passive
+
+**cost:** 1 RP optional
+
+**rangeAndTarget:** Up to 3 creatures inside newly placed non-healing totem
+
+**duration:** Instant
+
+**frequency:** Once/turn
+
+**effect:** On placement pay 1 RP: allies gain M temporary HP OR enemies make DEX save for S affinity damage, half on success. No immediate second Renewal healing pulse, no repeat from moving the totem.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Non-Renewal placement only; cannot produce immediate Renewal heal.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:shaman:shaman.arch.spirit-saturation
+
+**DISCUSSED; source-specific implementation review pending** · RESOURCE_ONLY
+
+Source `data/public/class_playtests/shaman.json` / `shaman.arch.spirit-saturation` · SHA256 `e25c049b60111d478b8844f935bfdf3b1f6068d80100de6a8c2d702a9723f543`.
+
+**name:** Spirit Saturation
+
+**activation:** Triggered
+
+**cost:** 1 long-rest use
+
+**rangeAndTarget:** One non-Renewal totem you place
+
+**duration:** Normal duration
+
+**frequency:** 1/long rest
+
+**effect:** Waive its 2 RP placement cost once. Still use Action, concentration, capacity and any added costs. Cannot create a healing totem or be cached/refunded to generate more free casts.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Free placement limited to non-Renewal totem.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:shaman:shaman.hero.theurgist.echo-totem
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/shaman.json` / `shaman.hero.theurgist.echo-totem` · SHA256 `20874e77366801074f6dc417c26450a1957dab6d55ca77ba083e370fec3fa92b`.
+
+**name:** Echo Totem
+
+**activation:** Triggered
+
+**cost:** 1 additional RP
+
+**rangeAndTarget:** Adjacent empty space within 5 ft of newly placed totem
+
+**duration:** Same remaining duration
+
+**frequency:** Once/placement
+
+**effect:** Create a weak echo anchor of that totem. It counts toward capacity; if no space in capacity, cannot create it. Its radius 10 ft and numerical bonuses/healing are half, rounded down. Shared concentration/upkeep and same-name nonstacking prevent double healing.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Shares parent concentration/upkeep; half numeric healing; same-name overlap cannot double-heal.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:shaman:shaman.hero.theurgist.elemental-harmony
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/shaman.json` / `shaman.hero.theurgist.elemental-harmony` · SHA256 `d888897e75f58e90c484e854a9686be7b3a4fddb44bd65235cde7ac1980a94e2`.
+
+**name:** Elemental Harmony
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Your summoned elemental
+
+**duration:** Summon duration
+
+**frequency:** Continuous
+
+**effect:** Add class level to its maximum/current HP on creation and 1 turn duration, maximum 4 turns for class summons. Cannot extend once/day Chorus beyond 4 turns or restore an existing creature's lost HP.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Adds max/current HP on summon creation; not healing damaged summon.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:shaman:shaman.hero.theurgist.summon-cinderflame
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/shaman.json` / `shaman.hero.theurgist.summon-cinderflame` · SHA256 `f4422bf6b56fe62a9c13837fb6728fad8bd76836897d6c291001372a858291f4`.
+
+**name:** Summon Cinderflame
+
+**activation:** Action
+
+**cost:** 4 RP
+
+**rangeAndTarget:** One spirit within 30 ft
+
+**duration:** Concentration, 3 of your turns
+
+**frequency:** Recharge 4
+
+**effect:** Summon standard Cinderflame. Commanded hit deals fire plus Burn 1d4 next target turn. On destruction only (not dismissal), up to 3 enemies within 5 ft make DEX save for S d4 fire, half. Explosion creates no further death/resource triggers.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Summon/destruction interface only.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:shaman:shaman.hero.soothsayer.healing-splash
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/shaman.json` / `shaman.hero.soothsayer.healing-splash` · SHA256 `7d18aa816ed85627ade8be559cbe5f2f535738871562c4d8f2dd7024e0be61d5`.
+
+**name:** Healing Splash
+
+**activation:** Bonus Action
+
+**cost:** 1 prepared flask; 3 RP
+
+**rangeAndTarget:** Up to 3 living allies in 5 ft radius within 30 ft
+
+**duration:** Instant
+
+**frequency:** Recharge 3
+
+**effect:** Each regains S d6+M HP, shared roll. This consumes a flask and replaces its normal payload. No damage to enemies, free conditions removed or resource refunds beyond the explicit once/day Predictive Alchemy.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Shared-roll heal; flask and 3 RP consumed.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:shaman:shaman.supplement.elder-spirit-accord-new-hero-capstone
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/shaman.json` / `shaman.supplement.elder-spirit-accord-new-hero-capstone` · SHA256 `14135567a903c049f854953b8feb74893959b5f92c58123af008a3d8e67eac70`.
+
+**name:** Elder Spirit Accord — new Hero capstone
+
+**activation:** Triggered
+
+**cost:** 1 long-rest use
+
+**rangeAndTarget:** Your chosen Hero ultimate
+
+**duration:** One activation
+
+**frequency:** 1/long rest
+
+**effect:** When starting Elemental Chorus, Omen Loop or Bloodroot Trail, reduce its RP cost by 3, minimum 1, and add M to one damage/healing roll from that use. You must know that ability and still spend its own limited use. If you do not know it, instead reduce one known Hero technique's RP cost by 3, minimum 1. No extra duration, flask, totem, command or repeated cast.
+
+**prerequisite:** See class engine and progression.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Cost reduction plus +M to one healing/damage roll; no extra use/pulse.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:soldier:4
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/soldier.json` / `4` · SHA256 `f4f11a1404b15b950d423edee89296a42130ca4ca686b322d4259ecda7e1b6ed`.
+
+**text:** Base 1–2, Commander Arch 3–9, then Champion/Artillerist/Tyrant Hero 10–20. Palisade 5 is automatic; Intercepting Shot has minimum 6 and Fortify Zone 9. Other cards require selection. There is no source automatic Arch capstone. At 20 gain the new Final Command below, clearly a playtest addition. No spell or sustained technique may be used to obtain infinite ammunition, structures, actions or permanent healing.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Progression and anti-infinite-healing guard only.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:soldier:soldier.hero.artillerist.precision-engineering
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/soldier.json` / `soldier.hero.artillerist.precision-engineering` · SHA256 `6b29963da5011a7c7e68f88aca1beb310693417816b358d2753f5eabfdf7c6d6`.
+
+**name:** Precision Engineering
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Your constructed barriers and turrets
+
+**duration:** While present
+
+**frequency:** Continuous
+
+**effect:** Increase maximum and initial HP by M. Does not heal existing damaged structures when learned or moved; repairing remains finite.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Increases maximum/initial construct HP; never repairs existing damage.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:soldier:soldier.hero.tyrant.brutal-example
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/soldier.json` / `soldier.hero.tyrant.brutal-example` · SHA256 `fe2dfa2361ebbc77b36e4c3e9b76455c6a5605658aa68c5564529978e2f4d93f`.
+
+**name:** Brutal Example
+
+**activation:** Action
+
+**cost:** One ammunition; 1 short-rest use
+
+**rangeAndTarget:** One enemy below half HP in weapon range
+
+**duration:** Until end next target turn
+
+**frequency:** 1/short rest
+
+**effect:** Weapon attack; on hit add 2 S d6 damage. Up to 2 enemies within 10 ft of victim WIS save or Frightened of you for duration. No automatic death threshold or fear through immunity.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage/fear only.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:thief:2
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/thief.json` / `2` · SHA256 `9788c5b804bfc6020f369451da6ccdb17841c4ed77d19783758affe119737808`.
+
+**text:** At 1 know all four Tier I recipes, at 7 add Tier II, at 14 Tier III. Poison saving throws use Thief DC except preserved source fixed DC 12 becomes max(12, Thief DC) for Mindburn/Venombite. Unless stated damage/conditions require a failed CON save; initial weapon damage is unaffected. Critical riders also need this failed save. One ongoing instance of each recipe per target; another application refreshes rather than stacks. Maximum 2 simultaneous different poison recipes from you per target. Bleed never stops all healing by default, Poisoned uses the Core V 2 condition: disadvantage on attacks and ability checks (not saving throws), and Shaken means disadvantage on next fear save. Neither is a hidden full-turn disable.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Poison/Bleed engine; Bleed does not generically block healing.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:thief:3
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/thief.json` / `3` · SHA256 `c5fac65653074918bb13991bca6466ad149c59c53e2007eca49d69231e9e79a4`.
+
+**text:** Tier I: Bloodleech gives Bleed 1d4 at start next 2 target turns; critical restores 1d4 of your HP, once per dose. Crippler gives-1 on next attack before end next turn; critical also half Speed for that duration. Mindburn uses WIS save: -1 spell-attack rolls until end next turn, critical also no Reactions. Venombite gives Poisoned until end next turn; critical also-1 on next save. Tier II: Ashblood adds 2d6 poison now and 1 fire at start next 2 turns; critical prevents HP recovery through end next turn. Silencer prevents verbal spellcasting through end next turn, critical also drops one held nonbonded item into its space; it can retrieve normally. Shiver gives Shaken through end next turn; critical also no Reactions. Hexroot gives-1 saves for 2 target turns; critical lets next weapon hit ignore resistance, never immunity, before end next turn.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Bloodleech critical heal; Ashblood critical healing prohibition; remaining poison riders nonhealing.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:tinker:2
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/tinker.json` / `2` · SHA256 `fc21b2a2fbc8af0dc175d90e8d8be5d9a90480a1c8aab1ec23d7aa0d6eebd01a`.
+
+**text:** A destroyed drone remains 0 HP until repaired for 1 RP and 10 minutes with tools to half HP, once/short rest, or rebuilt during long rest to full. Ordinary repairing does not recharge devices, grant organic healing or trigger destruction bonuses. At 13 Dual Drone Protocols automatically chooses on each long rest either 2 basic drones each with one module, or one drone with 2 distinct modules. Still one command budget. Never more than 2 drones.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Destroyed-drone reconstruction distinct from functional repair.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:tinker:7
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/tinker.json` / `7` · SHA256 `9429949777c5be914254699b4403f903a1e617504b801672deaff80b2f0ae0d4`.
+
+**text:** Base 1–2, Mechanist Arch 3–9, then Artificer/Techsmith/Warmachine Hero 10–20. Upgrade Slot 5 is automatic; Sentry and Net minimum 6, Remote Detonation 9. There is no source automatic Arch capstone. Mech Overdrive 20 is automatic: once/long rest when deploying choose one device whose duration becomes encounter end (maximum 1 minute), still command dependent, slot limited and destructible. No infinite pulses: healing effects keep original pulse cap and all per-use costs remain. Protected magic interface: once per short rest, as a Bonus Action route up to 2 current Dissonance into one of your active devices within 30 ft. Reduce Dissonance by that amount; the device is disabled and cannot move, attack, emit an aura or trigger effects until repaired or your next completed short rest. Its duration keeps ticking. Repair with an Action and 1 RP using Field Repair, or with 10 minutes and 1 RP using tinkers tools. No RP is created and no Refrain counter resets.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Device duration/repair/Dissonance-routing; healing pulse caps preserved.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.base.quick-fingers
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/tinker.json` / `tinker.base.quick-fingers` · SHA256 `f5971b6b7ae9f754ee2f67caf99f4189305214c5c58a2bd5446bce35e0f72ae0`.
+
+**name:** Quick Fingers
+
+**activation:** Bonus Action
+
+**cost:** 0
+
+**rangeAndTarget:** One noncombat mechanism touched
+
+**duration:** One manipulation
+
+**frequency:** Once/turn
+
+**effect:** Open unlocked latch, operate simple switch or retrieve a carried gadget. Does not activate damaging/healing devices, disarm a trap, reload every weapon or add another Bonus Action.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Explicitly cannot activate healing devices.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.arch.deployable-expertise
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/tinker.json` / `tinker.arch.deployable-expertise` · SHA256 `4f63c35881564989abeaf3c37286af4f79c52d22f983f667d09ab22dcbf1ee58`.
+
+**name:** Deployable Expertise
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Your deployables
+
+**duration:** While deployed
+
+**frequency:** Continuous
+
+**effect:** Gain M maximum/initial HP and+1 AC. Does not heal existing damage when moved or grant additional slots. Drones excluded unless another card says otherwise.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Max/initial deployable HP only; no repair.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.hero.artificer.protective-programming
+
+**DISCUSSED; source-specific implementation review pending** · TEMP_HP + COMPANION_DEVICE
+
+Source `data/public/class_playtests/tinker.json` / `tinker.hero.artificer.protective-programming` · SHA256 `e76aac51eaced741048fcaefeed7ca204d63230910195d42fde9ebe7f59888d1`.
+
+**name:** Protective Programming
+
+**activation:** Reaction
+
+**cost:** 1 RP
+
+**rangeAndTarget:** Drone adjacent to ally hit by attack
+
+**duration:** One hit
+
+**frequency:** Once/round
+
+**effect:** Drone grants ally S+M temporary HP before hit resolves. No heal or reversal of hit; max one protected ally, normal temporary HP nonstacking.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Pre-hit temp HP; not healing.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.hero.artificer.efficient-power-cells
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/tinker.json` / `tinker.hero.artificer.efficient-power-cells` · SHA256 `c9738585ed8fae504de1ec5a0603fbea55a31fbcc5c4711838d7c7a252736c44`.
+
+**name:** Efficient Power Cells
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Your nonhealing deployables
+
+**duration:** Deployment
+
+**frequency:** Continuous
+
+**effect:** A 3 round device lasts 4 rounds (50%rounded down). Healing pulse count unchanged, no extra ammunition or free commands. Does not extend spell concentration.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Nonhealing device-duration extension only.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.hero.artificer.nano-aegis-drone
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + TEMP_HP + COMPANION_DEVICE
+
+Source `data/public/class_playtests/tinker.json` / `tinker.hero.artificer.nano-aegis-drone` · SHA256 `a3117289c319bbe6ef18ae9437975f46db8da26795fd3f271cb54b443b93ee01`.
+
+**name:** Nano-Aegis Drone
+
+**activation:** Action
+
+**cost:** 2 RP
+
+**rangeAndTarget:** Your drone within 15 ft
+
+**duration:** 3 rounds
+
+**frequency:** Recharge 4
+
+**effect:** Replace bolts with support mode. Each Bonus Action command pay 1 RP choose one ally 30 ft to heal S d6+M or grant 2 S+Mtemp HP. Maximum 3 pulses; organic healing explicit exception, no attack during mode.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Paid commanded organic heal or temp HP; max three pulses.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.hero.artificer.restoration-field
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + COMPANION_DEVICE
+
+Source `data/public/class_playtests/tinker.json` / `tinker.hero.artificer.restoration-field` · SHA256 `a791259766db2192f9effe98f8946304ee8ef85d4ff243faa87c04665bf96ffa`.
+
+**name:** Restoration Field
+
+**activation:** Action
+
+**cost:** 3 RP start; 1 RP maintenance; one slot
+
+**rangeAndTarget:** 10 ft radius within 30 ft
+
+**duration:** Maximum 3 pulses
+
+**frequency:** Recharge 4
+
+**effect:** Concentration. Initial and paid Bonus Action pulse heals up to 3 living allies/devices S d6 HP. Devices must not be destroyed. Same creature once/round, no extra autonomous healing or longer Efficient Cells.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Initial heal/repair pulse included; later paid maintenance; device repair does not trigger organic-healing hooks.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.hero.techsmith.technical-mastery
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/tinker.json` / `tinker.hero.techsmith.technical-mastery` · SHA256 `3a4d62af52179da3430c9fa28c1ea84dfbb27f435dc8eb81ef9764e8d157eca1`.
+
+**name:** Technical Mastery
+
+**activation:** Triggered
+
+**cost:** 1 RP
+
+**rangeAndTarget:** Your damaging device activation
+
+**duration:** One target
+
+**frequency:** Once/own turn
+
+**effect:** After damage rolld 10; on 10 you may pay 1 RP to add half its unmodified damage dice total rounded down to one target. No second activation, commands, procs, resources or healing duplication.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Damage modifier only.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.hero.techsmith.reconfiguration
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/tinker.json` / `tinker.hero.techsmith.reconfiguration` · SHA256 `b002ce1fcf72933c9ee498d43d32bcc0f93e2476240fa85d4715ca7deae0ff74`.
+
+**name:** Reconfiguration
+
+**activation:** Action
+
+**cost:** 1 RP
+
+**rangeAndTarget:** One deployed device within 15 ft
+
+**duration:** Remaining duration
+
+**frequency:** Recharge 3
+
+**effect:** Change between known nonhealing profiles using same HP fraction, slot, expiry and spent uses. Cannot turn a 1 slot device into two, refill ammo, reset trap, create fresh death trigger or morph drone into free bomb.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Nonhealing profile changes only.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.hero.warmachine.scrap-reaper
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/tinker.json` / `tinker.hero.warmachine.scrap-reaper` · SHA256 `136ff6f663a889e441bd405548be1d826807ab93ee75e55500487ccd6c9f0e55`.
+
+**name:** Scrap Reaper
+
+**activation:** Reaction
+
+**cost:** 2 RP; one destroyed enemy-hit device
+
+**rangeAndTarget:** Debris within 30 ft
+
+**duration:** Until end next turn
+
+**frequency:** 1/short rest
+
+**effect:** Create one Scrapling Speed 30, AC 12 HP L; next Bonus Action command moves and detonates within 5 ft one enemy for 2 S d6 fire DEX half. Uses one command budget and ends. No chain from deliberate sacrifice or its own death.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Temporary Scrapling creation from eligible destroyed device; no recursive death chain.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:tinker:tinker.supplement.mech-overdrive
+
+**DISCUSSED; source-specific implementation review pending** · COMPANION_DEVICE
+
+Source `data/public/class_playtests/tinker.json` / `tinker.supplement.mech-overdrive` · SHA256 `0a3d5549a68c395cdfa364bac06f334436af7ac848ca5fed71a0a9bc141aec73`.
+
+**name:** Mech Overdrive
+
+**activation:** Triggered on deploying a device
+
+**cost:** 1 long-rest use plus original deployment cost
+
+**rangeAndTarget:** One of your newly deployed devices
+
+**duration:** Until encounter end, maximum 1 minute
+
+**frequency:** 1/long rest; automatic Hero capstone
+
+**effect:** Source-derived level 20 feature: extend device duration only. It still occupies its slot, requires normal commands and payments, and is destructible. Healing devices keep maximum 3 pulses; bombs, spent uses and expended charges never refill. Does not create permanent equipment.
+
+**prerequisite:** See class engine and progression.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Extends device duration only; healing pulse count unchanged.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Device/Totem lifecycle, shared-command or guard/exclusion role only](DEVICE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:warrior:15
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/warrior.json` / `15` · SHA256 `131241182dc02a463a2ac51c44a39e0d15e63ccfa46eeb436bc8763593d8e312`.
+
+**text:** HEALING AND REGENERATION. Warrior healing cannot exceed maximum HP, restore the dead or remove Wounds unless a card explicitly says otherwise. Regeneration and repeated healing effects operate only during real encounters unless their card explicitly permits downtime healing. No corpse, summoned creature, trivial enemy or friendly target can be used to create infinite healing, serum doses or BT.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: General Warrior healing/regeneration guard.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected remaining lifecycle, object, command or guard role only; full tempHP/form/Time Loop effects excluded](REMAINING_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:warrior:warrior.arch.mutation-overload
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/warrior.json` / `warrior.arch.mutation-overload` · SHA256 `17434e4d9492799006297db7be8c411a853a0c7b5781ed727b0c457b5a2a77f9`.
+
+**name:** Mutation Overload
+
+**activation:** Bonus Action
+
+**cost:** +2 Strain
+
+**rangeAndTarget:** Your currently active mutations
+
+**duration:** 2 rounds; backlash until end of following turn
+
+**frequency:** 1/short rest
+
+**effect:** Mutation Overload. For 2 rounds, enhance each currently active mutation once: an AC, DR, attack, save or flat-damage bonus increases by 1; a movement or reach bonus increases by 5 feet; or one mutation damage/healing roll gains +1d4. Immunities, target counts, resource generation and action grants cannot be increased. When Overload ends, you suffer -1 on attack rolls and saving throws and -5 feet Speed until the end of your next regular turn. This activation is illegal if +2 Strain would exceed the Strain cap.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: +1d4 to one mutation healing roll = real added die, same packet.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:warrior:warrior.hero.dreadspawn.pain-empowerment
+
+**DISCUSSED; source-specific implementation review pending** · OTHER_NAMED_DEPENDENCY
+
+Source `data/public/class_playtests/warrior.json` / `warrior.hero.dreadspawn.pain-empowerment` · SHA256 `2b76787a8cddab4ebacdbf316a7c566f95cc8e0607dcc02cafc57f0dc09741ab`.
+
+**name:** Pain Empowerment
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** Self
+
+**duration:** While below maximum HP
+
+**frequency:** Always
+
+**effect:** Pain Empowerment. For every full 10% of your maximum HP currently missing, add +1 damage to one weapon or natural-weapon damage roll on each of your turns, maximum +5. Determine the bonus immediately before the chosen damage roll. Healing can reduce the bonus during the encounter. It does not increase mutation retaliation, ongoing damage or area effects.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Continuous missing-HP percentage state; no healing.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:warrior:warrior.supplement.primed
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/warrior.json` / `warrior.supplement.primed` · SHA256 `4ed45f7e4cbd2ee61dab2a5126f7d5494750257f17b5699d5ff4bb5fcffbc324`.
+
+**name:** Primed
+
+**activation:** Passive
+
+**cost:** 0
+
+**rangeAndTarget:** One active mutation each turn
+
+**duration:** While BT remains at least 2
+
+**frequency:** Once per turn
+
+**effect:** Enhance one active mutation's numeric benefit for the turn: +1 to one AC, DR, attack, save or flat damage bonus; +5 feet to one movement/reach bonus; or +1 damage/healing to one mutation-generated roll. Primed never increases duration, targets, immunity or resource generation.
+
+**prerequisite:** BT 2+
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: +1 to one mutation-generated healing roll, same packet.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:warrior:warrior.supplement.transcendent
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/warrior.json` / `warrior.supplement.transcendent` · SHA256 `473a344f361727b78897d649edbcc5fa6ad32f5edee5a0a6e9c943f027272f3c`.
+
+**name:** Transcendent
+
+**activation:** Triggered
+
+**cost:** 0
+
+**rangeAndTarget:** Self
+
+**duration:** Until start of your next regular turn
+
+**frequency:** 1/encounter total, regardless of trigger
+
+**effect:** At Warrior 12+, the first time this encounter you cross 100% Brutality Progress or reach stored BT 4, activate all equipped mutations until start of your next regular turn. No serum profile or immediate healing trigger is granted. This is one total pulse, never a permanent BT 4 concurrency increase. At end choose active mutations up to normal limit, with their original remaining durations; others become dormant.
+
+**prerequisite:** Warrior 12; 100% Brutality Progress or BT 4 with raised cap; new explicit level gate
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Explicitly grants no immediate healing.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-card:warrior:warrior.supplement.sanguine-surge
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE + RESOURCE_ONLY
+
+Source `data/public/class_playtests/warrior.json` / `warrior.supplement.sanguine-surge` · SHA256 `8f4cb446c0ec4b28716532e2f3decc1918c85c4e803f41ec03d44fa427b27d5b`.
+
+**name:** Sanguine Surge
+
+**activation:** Via Serum Injection
+
+**cost:** Dose consumption and normal Strain
+
+**rangeAndTarget:** Injected living creature
+
+**duration:** 3 rounds
+
+**frequency:** Per prepared dose; same creature cannot receive its healing more than once per short rest
+
+**effect:** On injection regain 2d6 HP and gain +10 feet Speed for 3 rounds. Side effect: when the profile ends gain 1 additional Strain, maximum 3. Serum Tolerance suppresses that ending side effect. This healing removes no Wounds and cannot operate on a dead creature.
+
+**prerequisite:** Prepared serum dose
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Finite serum-dose heal; separate from Mutation Recovery Reserve; ending Strain remains separate.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-engine:wizard:10
+
+**DISCUSSED; source-specific implementation review pending** · TEMP_HP + COMPANION_DEVICE
+
+Source `data/public/class_playtests/wizard.json` / `10` · SHA256 `673521960e487b21772372733af6aaa0c478c7f3308b6a58607a3c5ac2d83f99`.
+
+**text:** ABJURATION, provisional completion for the omitted eighth row: once per round after you cast an Abjuration spell, gain temporary HP equal to PB until the start of your next regular turn. CONJURATION: creatures summoned by your Wizard spells gain +1 maximum HP per Wizard level. DIVINATION: once per long rest reroll one failed saving throw and use the new result. ENCHANTMENT: when a creature fails its initial save against one of your Enchantment spells, a printed control duration of at least 1 round may last one additional round, but every normally allowed repeat save still occurs. EVOCATION: when casting an area Evocation spell, exclude one creature from its initial damaging area; that creature automatically succeeds and takes no damage if success normally halves damage. ILLUSION: gain +2 on concentration saves made to maintain Illusion spells. NECROMANCY: once per turn during a real encounter when a hostile non-summoned creature dies from your Necromancy spell, gain 1 temporary HP; it is not permanent healing. TRANSMUTATION: after casting a Transmutation spell, gain +5 feet Speed until the end of that turn.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Abjuration/Necromancy temp HP; Conjuration summon HP granted at creation, not healing.
+
+**Reviewed interface:** [Maximum-HP/threshold role only](MAXIMUM_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Recurring-healing scheduling or guard/exclusion role only](HEALING_PULSE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected creature lifecycle, command, dependency or guard role only; full form/tempHP effects excluded](CREATURE_LIFECYCLE_PLAYTEST.md). Wider card status remains separate.
+
+**Reviewed interface:** [Selected form/tempHP grant, identity, lifecycle, payment, clock or guard role only; named deferred components and full card/runtime completion excluded](FORM_TEMP_HP_PLAYTEST.md). Wider card status remains separate.
+
+**Open:** See reviewedInterfaces for bounded closures; other card components retain their own unfinished review requirements.
+
+## class-engine:wizard:15
+
+**DISCUSSED; source-specific implementation review pending** · HEALING_INTERFACE
+
+Source `data/public/class_playtests/wizard.json` / `15` · SHA256 `c2c4c1d25080e5c3fec28263df1d91aab669897ec699dfde9ee2346d4480ccc6`.
+
+**text:** MATRIX MASTERY MODIFICATIONS. After acquiring Matrix Mastery, each prepared ordinary spell matrix may carry at most one modification chosen during preparation. QUICK SUBSTITUTION: once per short rest, replace one matrix marked Quick Substitution with another spellbook spell of exactly the same rank using a 1-minute ritual instead of the normal 10-minute midday swap; the replacement loses the modification until the next long rest. COMPONENT ENHANCEMENT: when casting a damaging or healing matrix, spend 1 additional RP to add one extra die of the spell's primary damage or healing die to one roll; if the spell has no such die this modification has no effect. MATRIX LINKING: pair two different prepared matrix families during preparation; after legally casting one, the other costs 1 less RP, minimum 1, if cast before the end of your next regular turn, at most once per pair per round. STABILITY REINFORCEMENT: gain +2 on concentration saves caused by damage while maintaining that matrix. A matrix modification never creates another spell cast or proc event.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Component Enhancement adds one real primary healing die for +1 RP; same cast/event.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.
+
+## class-card:wizard:wizard.hero.spellbinder.arcane-sanctuary
+
+**DISCUSSED; source-specific implementation review pending** · EXCLUSION
+
+Source `data/public/class_playtests/wizard.json` / `wizard.hero.spellbinder.arcane-sanctuary` · SHA256 `dea2fbda84e987c9fdc588231745b981f92be383752b098be528d1a50d7b2499`.
+
+**name:** Arcane Sanctuary
+
+**activation:** Ritual
+
+**cost:** 10 RP
+
+**rangeAndTarget:** You and up to eight willing creatures within 15 feet
+
+**duration:** 1 hour
+
+**frequency:** 1/week; automatic Spellbinder Final Theorem
+
+**effect:** Arcane Sanctuary. Tags: hero, spellbinder, final-theorem, demiplane. Perform a 10-minute ritual to open a temporary demiplane and transport the willing targets inside. For 1 hour creatures inside cannot cast or activate harmful magical effects and magical effects originating outside cannot enter. Nonmagical violence remains physically possible, ordinary healing and communication may function, and creatures can leave through the visible exit as an Action. When the hour ends all occupants return to the entry location or nearest legal spaces.
+
+**Discussion/overlay:** DISCUSSION CANDIDATE, not full-card closure: Allows ordinary healing but grants none; belongs to environment/planar rules.
+
+**Open:** Implement/verify relevant interface or record a bounded exclusion before broader closure.

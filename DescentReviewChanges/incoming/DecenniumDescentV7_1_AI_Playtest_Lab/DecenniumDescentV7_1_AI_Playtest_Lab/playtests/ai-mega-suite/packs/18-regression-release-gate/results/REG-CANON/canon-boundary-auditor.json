@@ -1,0 +1,33 @@
+{
+  "pack": "18-regression-release-gate",
+  "scenarioId": "REG-CANON",
+  "runId": "2026-08-06T122200Z-REG-CANON",
+  "seed": 57000,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "FAIL",
+  "metrics": {
+    "publicCanonValidatorFailed": true,
+    "visibilityRule": "Public-player agents may not read directorOnlyOptional.",
+    "usabilityPacksThisRun": {
+      "05": 152,
+      "17": 178
+    }
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "defect",
+      "summary": "validate_public_canon.py fails on Windows charmap decode for floor-encounters.json and bestiary_data_full.json (byte 0x9d). This is a tooling/encoding release-gate failure, not a proven lore spoiler leak.",
+      "citation": "tools/validate_public_canon.py"
+    },
+    {
+      "severity": "observed",
+      "summary": "Packs 05 and 17 completed in this run; their COMPILED_REPORT findings are usability-only and must not silently rewrite combat math baselines.",
+      "citation": "packs/05 and packs/17 COMPILED_REPORT.md"
+    }
+  ],
+  "rawEvidencePath": "results/18-regression-release-gate/validator_rerun.json",
+  "agentId": "canon-boundary-auditor"
+}

@@ -1,0 +1,685 @@
+{
+  "sourceIntegrityStatus": "PASS",
+  "interfaceStatus": "PASS",
+  "interfaceChecks": 98,
+  "interfaceFailures": [],
+  "interfaceResults": [
+    {
+      "name": "Own multiclass Bleed can satisfy possessive Thief hook",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Another character Bleed does not satisfy your Thief hook",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Vile Tactics does not invent an owner restriction",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Owned Crimson instance qualifies its technical engine",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Owned other-class Bleed is not a Crimson tick instance",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Judging Light recognizes explicit weakened tag",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Suppressed weakness cannot qualify",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Immune weakness cannot qualify",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Oracle Curse engine name is not an inflicted curse",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Terror Engine uses own Warrior source",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Terror Engine rejects same owner another class source",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Pending Disoriented cannot activate Terror Engine early",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Active Disoriented qualifies Terror Engine",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Zero-Speed Grappled does not automatically qualify slowed hook",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Explicit hostile root tag qualifies slowed hook",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Permitted two Crimson instances compete as one group",
+      "pass": true,
+      "actual": "crimson:A",
+      "expected": "crimson:A"
+    },
+    {
+      "name": "Losing group consumes its tick instead of banking",
+      "pass": true,
+      "actual": [
+        "crimson:A",
+        "generic:B"
+      ],
+      "expected": [
+        "crimson:A",
+        "generic:B"
+      ]
+    },
+    {
+      "name": "Equal expected damage chooses earlier group",
+      "pass": true,
+      "actual": "generic:B",
+      "expected": "generic:B"
+    },
+    {
+      "name": "No due Bleeds means no damaging group",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Quarter-HP boundary qualifies",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "26 of100 does not qualify",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Correct notebook arithmetic:30 of100 does not qualify",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Odd maximum uses exact quarter comparison",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Out of range does not qualify",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Spending Retribution die retains opportunity benefit",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Spending die retains Vengeance eligibility",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Spending die leaves expiry unchanged",
+      "pass": true,
+      "actual": 200,
+      "expected": 200
+    },
+    {
+      "name": "Another Paladin does not inherit the mark",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Doomed subtracts one round from finite buff deadline",
+      "pass": true,
+      "actual": 114,
+      "expected": 114
+    },
+    {
+      "name": "Duplicate Doomed cannot subtract twice that turn",
+      "pass": true,
+      "actual": 114,
+      "expected": 114
+    },
+    {
+      "name": "Doomed does not alter permanent or recharge metadata",
+      "pass": true,
+      "actual": 120,
+      "expected": 120
+    },
+    {
+      "name": "An advanced expiry in the past ends at this check",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Blocked natural20 stabilizes without HP",
+      "pass": true,
+      "actual": [
+        0,
+        true,
+        0,
+        0
+      ],
+      "expected": [
+        0,
+        true,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Blocked natural20 establishes one original deadline",
+      "pass": true,
+      "actual": 7250,
+      "expected": 7250
+    },
+    {
+      "name": "Due blocked recovery keeps original deadline",
+      "pass": true,
+      "actual": 7250,
+      "expected": 7250
+    },
+    {
+      "name": "Due blocked recovery remains at zero",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "Removing prohibition resolves due HP once",
+      "pass": true,
+      "actual": [
+        1,
+        false,
+        null
+      ],
+      "expected": [
+        1,
+        false,
+        null
+      ]
+    },
+    {
+      "name": "No second deferred HP from rechecking deadline",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Damage cancels blocked Stable timer",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Later ending prohibition does not resurrect canceled recovery",
+      "pass": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "Ordinary HP prohibition blocks healing",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "Legal natural20 recovery remains normal",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Attached fire uses its own same-marker arbitration",
+      "pass": true,
+      "actual": "generic:B",
+      "expected": "generic:B"
+    },
+    {
+      "name": "Fire groups cannot compete with Bleed groups",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Fire damage alone cannot grant family arbitration",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Positive legal magical heal cures ordinary Bleed even at zero HP gained",
+      "pass": true,
+      "actual": "end",
+      "expected": "end"
+    },
+    {
+      "name": "Blood Curse gets CON save under blocked recovery",
+      "pass": true,
+      "actual": "saveToEnd",
+      "expected": "saveToEnd"
+    },
+    {
+      "name": "Explicit actual-HP prerequisite still matters",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    },
+    {
+      "name": "Cure rejects legal_effect=False",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    },
+    {
+      "name": "Cure rejects magical=False",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    },
+    {
+      "name": "Cure rejects potential=0",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    },
+    {
+      "name": "Display name alone cannot create healing cure",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    },
+    {
+      "name": "Missing registered endpoint never silently imports generic cure",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    },
+    {
+      "name": "Ordinary Persistent refreshes one remaining to two",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "Ordinary Persistent never shortens three remaining",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "Prolonged changes eligible refresh to four",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "Prolonged refresh is replacement not addition",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "Crimson base three is ineligible regardless remaining",
+      "pass": true,
+      "actual": 2,
+      "expected": 2
+    },
+    {
+      "name": "A base duration alone does not cap Prolonged",
+      "pass": true,
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "name": "An express cap limits an otherwise legal extension",
+      "pass": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "name": "Another owner cannot trigger your refresh",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "An absent trigger does not grant a free refresh",
+      "pass": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Refresh cannot resurrect an expired record",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "One extinguish action ends all ordinary eligible fires only",
+      "pass": true,
+      "actual": [
+        "fire1",
+        "fire2"
+      ],
+      "expected": [
+        "fire1",
+        "fire2"
+      ]
+    },
+    {
+      "name": "Remaining future tick permits ending save",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Final consumed tick does not create pointless ending save",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Indefinite generic fire retains ending save",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Extra turn does not create a new ending save",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Mundane extinguish prohibition does not erase separate DEX endpoint",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Specific Bleed replaces rather than duplicates Core fallback",
+      "pass": true,
+      "actual": "dragoon.bleed",
+      "expected": "dragoon.bleed"
+    },
+    {
+      "name": "Explicit Core-only application retains Core identity",
+      "pass": true,
+      "actual": "core.burning",
+      "expected": "core.burning"
+    },
+    {
+      "name": "A display name alone grants no implicit periodic record",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Condition immunity prevents initial periodic record",
+      "pass": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "name": "Mage internal maximum precedes global selection",
+      "pass": true,
+      "actual": [
+        "B"
+      ],
+      "expected": [
+        "B"
+      ]
+    },
+    {
+      "name": "Every due application consumes its tick",
+      "pass": true,
+      "actual": [
+        "A",
+        "B",
+        "C"
+      ],
+      "expected": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "name": "Suppressed high group cannot starve active Core fire",
+      "pass": true,
+      "actual": [
+        "C"
+      ],
+      "expected": [
+        "C"
+      ]
+    },
+    {
+      "name": "Suppressed records still consume scheduled clocks",
+      "pass": true,
+      "actual": [
+        "A",
+        "B",
+        "C"
+      ],
+      "expected": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "name": "Damage immunity alone does not exclude winner",
+      "pass": true,
+      "actual": [
+        "B"
+      ],
+      "expected": [
+        "B"
+      ]
+    },
+    {
+      "name": "Different marker neither damages nor consumes early",
+      "pass": true,
+      "actual": [
+        "A",
+        "C"
+      ],
+      "expected": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "name": "Two legal Crimson instances beat one PB4 Core group",
+      "pass": true,
+      "actual": [
+        "blood1",
+        "blood2"
+      ],
+      "expected": [
+        "blood1",
+        "blood2"
+      ]
+    },
+    {
+      "name": "Duplicate record cannot create duplicate tick",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Cured Bloodleech plus resolved critical heal leaves no recipe slot",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "An actual other ongoing component retains recipe slot",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Suppressed ongoing component still retains recipe slot",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Present suppressed Bleed is cured by positive-potential magic",
+      "pass": true,
+      "actual": "end",
+      "expected": "end"
+    },
+    {
+      "name": "Present suppressed Blood Curse retains its CON ending save",
+      "pass": true,
+      "actual": "saveToEnd",
+      "expected": "saveToEnd"
+    },
+    {
+      "name": "Present suppressed fire may be extinguished",
+      "pass": true,
+      "actual": [
+        "fire1"
+      ],
+      "expected": [
+        "fire1"
+      ]
+    },
+    {
+      "name": "Present suppressed fire may use its existing ending save",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Cured suppressed Bleed never resumes eligibility",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    },
+    {
+      "name": "Present immune Bleed is cured by positive-potential magic",
+      "pass": true,
+      "actual": "end",
+      "expected": "end"
+    },
+    {
+      "name": "Present immune Blood Curse retains its CON ending save",
+      "pass": true,
+      "actual": "saveToEnd",
+      "expected": "saveToEnd"
+    },
+    {
+      "name": "Present immune fire may be extinguished",
+      "pass": true,
+      "actual": [
+        "fire1"
+      ],
+      "expected": [
+        "fire1"
+      ]
+    },
+    {
+      "name": "Present immune fire may use its existing ending save",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Cured immune Bleed never resumes eligibility",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    },
+    {
+      "name": "Ended fire is not a cure target",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "Suppression cannot bypass protected-fire cure",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "Suppressed fire with no future ticks gets no ending save",
+      "pass": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "name": "Suppressed Bleed still honors explicit actual-gain cure prerequisite",
+      "pass": true,
+      "actual": "none",
+      "expected": "none"
+    }
+  ],
+  "registryStatus": "IN_PROGRESS",
+  "definitions": 57,
+  "hooks": 14,
+  "sourceReferencesVerified": 114,
+  "sourceIssues": [],
+  "openIntegrationIssues": [
+    "Complete source-qualified hook references and remaining root/slow/curse/disease/mark metadata.",
+    "Apply reviewed common round-marker defaults to every remaining source; resolve mark effects whose source/target clock is still ambiguous.",
+    "Semantically classify all active class/spell rider references; reference integrity does not prove exhaustive semantic coverage."
+  ],
+  "scope": "Exact card/engine references and selected ownership, stacking, snapshot, buff-expiry and blocked-HP interfaces. Not exhaustive semantic coverage, completed hook integration, a full runtime or balance validation."
+}

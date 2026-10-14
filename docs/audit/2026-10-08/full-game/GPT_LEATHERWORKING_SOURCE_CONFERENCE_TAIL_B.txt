@@ -1,0 +1,109 @@
+LW-D07. Adopt complete ordered base reserves explicitly for Leatherworking
+
+NEW cross-trade adoption: every output transforms one actual complete mundane base body in addition to every printed component.
+
+The bodies above are fully constructed, ordinary stitched/riveted equipment before enchanting. Acquire them through actual ownership, purchase, commission or a separately supported mundane construction procedure. A blank’s baseline price is not permission to create it with an unprovided stock recipe or free check.
+
+Before work, declare one model, fitted size and legal grade for the batch. Reserve:
+
+maximum bases = floor(1.5 × source quantity)
+
+Record a stable ordered list of physical identities, body profiles, actual material, current/maximum HP, persistent flaw/durability state and baseline values. Reserved containers must be empty. Bases must be nonmagical, complete and non-Broken; no existing recipe imprint from either trade is admitted through this generic route.
+
+A damaged functional base is legal. A missing, committed-elsewhere or Broken reserve pauses the order before the completion roll. Repair or replace it at its existing list position, with no post-roll substitutions or reordering.
+
+Source Q	Standard	Exceptional yield	Masterwork yield	Flawed output
+1	1	1	1	1 with persistent flaw
+2	2	2	3	1 ordinary-effect unit
+3	3	3	4	1 ordinary-effect unit
+4	4	5	6	2 ordinary-effect units
+5	5	6	7	2 ordinary-effect units
+
+Transform the first resolved N bodies. A durability choice transforms the first Standard Q. Failed/Mishap transforms none. Untransformed bodies return in their actual condition and are not also credited under 25% ingredient recovery.
+
+Use the latest lawful completion state, including intervening damage or repair, not the old reservation snapshot.
+
+Physical conservation and quality
+
+Finished empty weight is the actual base-body weight. Printed ingredients remain mandatory process/reinforcement inputs; their listed mass does not add a second body or a second saleable inventory asset. Solvent and process waste grant no automatic salvage identity.
+
+For recipe-280, reserve six actual 5-lb backpacks. Standard transforms four; Masterwork yield transforms six. The 1.44 lb of source ingredients is paid once and does not supply those 30 lb of bodies.
+
+NEW explicit durability adoption: use the reviewed Blacksmithing noncompounding physical layers:
+
+B = ordinary body HP after actual size and applicable grade
+
+P = strongest legally attached durability percentage: 0%, 25% or 50%
+
+ImprovedMax = B + (P > 0 ? max(1, floor(B × P)) : 0)
+
+Apply one persistent singleton-Flawed halving last, minimum 1. Preserve the completion-state damage deficit:
+
+NewCurrent = max(0, FinalMax − (OldMax − OldCurrent)), capped at FinalMax.
+
+Repeated flaws do not halve again. A stronger improvement does not remove the flaw. A badly damaged singleton can emerge Broken with a dormant imprint.
+
+Quality never increases capacity, R, check bonus, AC enhancement, resistance or equipment grade.
+
+All 201 source component occurrences are consumed, and none is a catalyst or tool. Therefore every one of these 44 recipes has zero eligible Masterwork catalyst returns. Independently required tools remain tools; do not relabel a consumed material to produce a return.
+
+LW-D08. Work, repair and valuation
+Work and incorporation
+
+EXISTING: DEX; Leatherworker’s-tools credential; Tannery Bench; actual Awl and Cutting knife. Toolkit contents may satisfy auxiliary implements only where the actual kit contains them.
+
+All fieldCraftable:false flags control. In particular, preserve the contradictory timeMode:"field" labels on 283, 285, 292 and 293 without allowing the portable field route.
+
+Apply the framework’s actual formula/trade-level gates, assistant caps, Watch limits and active-work scheduling. No numeric trade level is added to the check.
+
+NEW Leatherworking phase binding: after lawful creation-time adjustments, the first stable incorporation phase is:
+
+min(8 active hours, final required active work time)
+
+Later phases are at most eight active hours. Record incorporation and storage before work. Only actually incorporated components stabilize at the first phase’s completion; untreated or unincorporated lots retain their clocks. A replacement ingredient does not recover spent material or erase completed phases.
+
+Forge Dwarf applies to this artisan creation work: ×0.75 time, rounded upward to a whole minute, and the reviewed Standard-to-Exceptional output choice. It does not shorten repair, training, preservation clocks or rest.
+
+For recipe-319, preserve activeWorkHours:null, the one-year source text and laborValue:0. Use the existing framework’s explicitly labeled 1,920-active-hour overlay. An eligible Forge Dwarf requires 1,440 active hours = 86,400 minutes, ordinarily 180 eight-hour phases. This is not a guaranteed calendar completion or automatic multiseason access.
+
+Use each recipe’s exact trivialAtSkillLevel, including the high-level records capped at 20. Do not regenerate those fields from the framework’s overgeneralized “skill level +5” description.
+
+Repair and reconstruction
+
+NEW Leatherworking repair binding:
+
+Requirement	Functional item, HP≥1	Broken imprinted item, HP0
+Credential	Actual Leatherworker’s-tools proficiency	Same
+Equipment	Leatherworker’s tools, Tannery Bench, Awl, Cutting knife	Same
+Check	DEX + applicable proficiency, DC 10	DEX + applicable proficiency, original recipe crafting DC
+Active work	max(1 hour, recorded maximum HP/10 hours)	max(8 hours, recorded maximum HP/10 hours)
+Materials	25% of mundane size/grade base reference	25% of undamaged finished per-item reference
+Outcome	Binary; success restores recorded maximum	Binary; success restores recorded maximum and dormant imprint, subject to suppression
+
+Failure consumes the repair materials and work. Neither procedure grants formula knowledge, requires the original recipe’s trade-level eligibility, rolls crafting quality, returns catalysts, awards crafting XP or receives Forge Dwarf’s creation reduction.
+
+A recoverable original main body is required. For a Boots/Gloves pair, both original members must remain recoverable for this generic reconstruction; replacing a missing member needs a separate procedure. No duplicate pair is reconstructed from fragments assigned to another item.
+
+Repair preserves grade, model, fit, identity, physical durability and flaw. It restores no lost contents. Core service pricing remains its separately available quoted route, not an additional automatic charge.
+
+Valuation
+
+NEW explicit body-cost integration:
+
+source unit reference = preserved Standard batch reference / source Q
+
+finished unit reference = source unit reference + actual undamaged mundane base reference
+
+Keep exact precision until the actual transaction. Purchased reserves are separate expenses; owned bodies need no repurchase. Source economy fields remain unchanged.
+
+Examples under these body decisions:
+
+Recipe/body	Finished unit reference
+280, ordinary Backpack	178/4 + 2 = 46.5 gp
+652, ordinary Backpack	1196 + 2 = 1198 gp
+653, new Boots pair	1057 + 2 = 1059 gp
+655, new Coat	6282 + 10 = 6292 gp
+
+Finished items are NEW-classified durable magical nonartifact equipment. Their passive recipe properties require no attunement, RP, concentration or spell activation. This classification supplies no origin explanation.
+
+Use legitimate finite buyers and quotes. Neither crafting quality nor magical status automatically invokes artifact multipliers or the mundane standing buyback table.

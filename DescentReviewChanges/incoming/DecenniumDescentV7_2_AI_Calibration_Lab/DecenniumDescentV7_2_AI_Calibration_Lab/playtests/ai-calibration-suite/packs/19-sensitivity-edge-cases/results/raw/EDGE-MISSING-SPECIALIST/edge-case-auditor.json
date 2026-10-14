@@ -1,0 +1,31 @@
+{
+  "pack": "19-sensitivity-edge-cases",
+  "scenarioId": "EDGE-MISSING-SPECIALIST",
+  "runId": "2026-08-06T151746Z-EDGE-MISSING-SPECIALIST-edge-case-auditor",
+  "seed": 78013,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "c214c67b16f8fce03c9153c21a66f28ae2ba22f553bfab6bc1ca69bc8de406eb",
+  "evidenceLevel": "B",
+  "outcome": "DEGRADED",
+  "metrics": {
+    "fixture": {
+      "missing": [
+        "surgeon",
+        "routekeeper"
+      ],
+      "note": "Expedition missing required offices"
+    },
+    "agentRole": "edge-case-auditor",
+    "seed": 78013
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "usability",
+      "summary": "Missing Surgeon/Routekeeper does not hard-block entry but increases lookup/error risk for Wound transport and route Progress.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §3"
+    }
+  ],
+  "rawEvidencePath": "results/raw/EDGE-MISSING-SPECIALIST/edge-case-auditor.json",
+  "agentId": "edge-case-auditor"
+}

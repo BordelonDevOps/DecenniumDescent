@@ -1,0 +1,153 @@
+{
+  "scenarioId": "DICE-L5-ACTORS",
+  "level": 5,
+  "budget": "Hard",
+  "objective": "test independent actor cap",
+  "terrain": "arena-standard",
+  "startingPositions": {
+    "party": [
+      {
+        "id": "tinker",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "mirrorsage",
+        "x": 0,
+        "y": 5
+      },
+      {
+        "id": "wizard",
+        "x": 0,
+        "y": 10
+      },
+      {
+        "id": "shaman",
+        "x": 0,
+        "y": 15
+      }
+    ],
+    "enemies": [
+      {
+        "id": "Fracture-Kin Fleshwright",
+        "x": 30,
+        "y": 0
+      },
+      {
+        "id": "Charnel Crawler",
+        "x": 30,
+        "y": 5
+      }
+    ]
+  },
+  "cargo": null,
+  "partyBuildHashes": [
+    "d3bca1f266b675fdd25d84779db3818ee456cf46447cfa2d213d51ef99dbd14c",
+    "f1ef99c3f58814bccdc69002a44b2b455ea756340982ed453830ba8076a1f254",
+    "2594489cd429d22028dcdde4fa57b8f9e03001de82c9e089d5260d51dff2a1ff",
+    "89a26d3ad31bba23056310ae04b5f3266f5d81b56c6595ec983990aad5576e2c"
+  ],
+  "enemies": [
+    {
+      "name": "Fracture-Kin Fleshwright",
+      "hitPoints": 95,
+      "armorClass": 15,
+      "challengeRating": "5",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Abyssal Rend",
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+4 necrotic damage (average 13)."
+        },
+        {
+          "name": "Soul Burn",
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+3 fire damage (average 12)."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Unstable Geometry",
+          "text": "The first time each round a creature repeats the same movement path or action sequence, the monster gains a defensive reaction."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Abyssal Rend",
+          "bonus": 6,
+          "n": 2,
+          "sides": 8,
+          "mod": 4,
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+4 necrotic damage (average 13).",
+          "dc": null
+        },
+        {
+          "name": "Soul Burn",
+          "bonus": 6,
+          "n": 2,
+          "sides": 8,
+          "mod": 3,
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+3 fire damage (average 12).",
+          "dc": null
+        }
+      ],
+      "multiattack": 1,
+      "isBoss": false,
+      "tenacityPerRound": 0,
+      "source": "src/bestiary_data_full.json"
+    },
+    {
+      "name": "Charnel Crawler",
+      "hitPoints": 168,
+      "armorClass": 15,
+      "challengeRating": "6",
+      "saves": {},
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The creature makes 2 attacks using the actions below."
+        },
+        {
+          "name": "Crushing Maw",
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+5 piercing damage (average 14)."
+        },
+        {
+          "name": "Tail Lash",
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+4 bludgeoning damage (average 13)."
+        }
+      ],
+      "traits": [
+        {
+          "name": "Living Substrate",
+          "text": "It can use roots, spores, corpses, or standing water in its lair as the origin point of one action."
+        }
+      ],
+      "parsedAttacks": [
+        {
+          "name": "Crushing Maw",
+          "bonus": 6,
+          "n": 2,
+          "sides": 8,
+          "mod": 5,
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+5 piercing damage (average 14).",
+          "dc": null
+        },
+        {
+          "name": "Tail Lash",
+          "bonus": 6,
+          "n": 2,
+          "sides": 8,
+          "mod": 4,
+          "text": "Attack: +6 to hit, one target. Hit: 2d8+4 bludgeoning damage (average 13).",
+          "dc": null
+        }
+      ],
+      "multiattack": 2,
+      "isBoss": false,
+      "tenacityPerRound": 0,
+      "source": "src/bestiary_data_full.json"
+    }
+  ],
+  "hiddenBonuses": false,
+  "notes": "Exact public bestiary records; no Director-only mods.",
+  "hash": "ae5f16794d0348b3fa4c8d0224eb7924db0e85b8b12847c2df0ab71d2a138b6a"
+}

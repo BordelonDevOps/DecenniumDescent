@@ -1,0 +1,53 @@
+{
+  "pack": "01-combat-class-balance",
+  "scenarioId": "CMB-L15-CONTROL",
+  "agentId": "director",
+  "seed": "agg-10-seeds",
+  "observations": [
+    "Ran elite enemies at listed difficulty Severe for objective: Attempt full-turn denial chains.",
+    "Budget model (4PC base adjusted): ~180 Threat Points before objective/hazard steps.",
+    "Observed win_rate=1.0, objective_rate=1.0, avg_rounds=3.0, KO/seed=0.0.",
+    "Did not alter enemy HP/damage mid-run to force outcomes; Tenacity and summon caps applied as rulings when triggered.",
+    "Difficulty vs result: diverged \u2014 budget may need recalibration."
+  ],
+  "metrics": {
+    "iterations": 10,
+    "win_rate": 1.0,
+    "objective_rate": 1.0,
+    "avg_rounds": 3.0,
+    "avg_party_damage": 460.99,
+    "avg_enemy_damage": 70.46,
+    "avg_healing": 12.63,
+    "avg_prevented": 14.86,
+    "avg_control_applied": 7.4,
+    "avg_full_turns_denied": 0.4,
+    "max_summons_peak": 4,
+    "summons_illegal_rate": 1.0,
+    "extra_action_stack_rate": 0.0,
+    "avg_tenacity_triggers": 4.0,
+    "avg_knockouts": 0.0,
+    "avg_wounds": 0.0,
+    "avg_rp_spent": 20.5,
+    "avg_decision_steps": 3.0,
+    "avg_lookups": 3.85,
+    "deadlock_seeds": 0,
+    "retreat_success_rate": null,
+    "party_size": 4,
+    "stated_difficulty": "Severe",
+    "modeled_budget_tp": 180.0
+  },
+  "rulesQuestions": [
+    "Mirrorsage copy release + Charm Bind companion: draft ceiling 1 copy/round vs observed desire to release + companion act \u2014 confirm both count toward action/summon caps.",
+    "Wizard Dual Cast (class-details L9) vs 'no more than one additional full Action' \u2014 is Dual Cast a second Action or a single Action with two spells?",
+    "Wizard Necromancer permanent undead (Core Systems Data) vs Gameplay Loop 2-summon command cap \u2014 unresolved layering."
+  ],
+  "exploits": [
+    "Mirrorsage hypothesis: Mirrorbind release + Reflective Companion action approximates a second independent actor beyond 2-summon intent when Echo already active.",
+    "Wizard attempted 4 independent combat units; GAMEPLAY_LOOP_CANON summon cap is 2 (excess should collapse to swarm/unit block)."
+  ],
+  "recommendations": [
+    "Record budget outcomes in BALANCE ledger; revise Threat Point table only with multi-scenario evidence.",
+    "Publish Director ruling sheet for summon-cap vs undead/deployables/reflections."
+  ],
+  "confidence": "high"
+}

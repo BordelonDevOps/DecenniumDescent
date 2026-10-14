@@ -1,0 +1,36 @@
+{
+  "pack": "12-cargo-extraction-risk",
+  "scenarioId": "CARGO-ATTENTION",
+  "runId": "CARGO-ATTENTION-agg-L15-P6-E5",
+  "seed": 2970852,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 5000,
+    "level": 15,
+    "party": 6,
+    "extractionClass": 5,
+    "policy": "aggressive",
+    "mapping": "Sketched",
+    "havenRate": 1.0,
+    "meanRetainedLoadFrac": 0.4886,
+    "medianRetainedLoadFrac": 0.0,
+    "cargoLossRate": 0.5114,
+    "meanExtractionFailCount": 0.52,
+    "meanCasualties": 0.345,
+    "meanTrueProfit": 921.61,
+    "medianTrueProfit": -54.0,
+    "profitP10": -158.0,
+    "profitP90": 2024.64
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/CARGO-ATTENTION/agg-L15-P6-E5.json"
+}

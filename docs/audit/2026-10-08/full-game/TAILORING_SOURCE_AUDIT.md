@@ -1,0 +1,20 @@
+# Tailoring source audit — internal preparation
+
+Contains restricted and Director-only formula evidence. This is a source audit, not a reviewed gameplay supplement or a public export.
+
+All 43 original records (546–584, 680–683) are retained intact: 29 public, four restricted and ten Director-only. Every public effect matches its actual V5 paragraph. The source has five containers and 38 garments across nine families. Fourteen checks pass; all 42 protected current source/rule files are unchanged. Nothing has been sent to GPT or approved for this new operational pass.
+
+## Questions requiring joint review
+
+- Complete Bag bodies need finite physical capacity, volume, closure, price, weight, structure and fit. Source relief is 10/30/40/50 lb; it must interact explicitly with Leatherworking, printed Inventory Load, nesting, suppression, breakage and melding. Leatherworking’s pending conference is a dependency, not established authority.
+- Define exact social, stealth and environmental check eligibility for each garment family, actor and task. No source says universal skill, saving-throw, attack, AC, Speed or environmental-immunity bonus. Establish combination with other garments and Leatherworking on the same check.
+- Define one complete output body and actual benefit slots for Cloak, Gloves pair, Hat, Garment, Robe, Cord, Veil and Mantle. Gloves interact with Blacksmithing’s reviewed Gauntlets slot; Hats with the Helm slot. Clothing, coats, robes, cloaks and armor require explicit layer/slot compatibility rather than unlimited worn bonuses.
+- Recipe-680 is named Climbing Cord but its current effect type is garment and its printed benefit is a related social/stealth/environmental check bonus. A rope length, carrying capacity, harness function, climbing proficiency or new action cannot be supplied solely by its name. Resolve that physical-use binding explicitly.
+- Recipe-681’s Veilcloth needs a concrete wearable veil profile. Recipe-682’s Shadow Cloak grants no invisibility, darkness or acid resistance. Recipe-683’s Living Mantle grants poison-damage resistance, not immunity to Poisoned or donor abilities.
+- Seven garments have printed resistance, including one bludgeoning resistance. Give actual-wearing, functional, suppression and meld predicates without inventing an AC bonus, damage scope limitation or automatic climate immunity.
+- Tiny component bills do not automatically fund multiple complete bodies. Specify supplemental bodies or sufficient separately quantified stock, ordered maximum-yield reserves, current HP snapshot, legal replacements, flaws, durability and exact return/recovery at every outcome. Preserve every ingredient occurrence.
+- The 190 component occurrences comprise 165 consumed inputs and 25 nonconsumed tools (Needle, Scissors and Measuring tools). Preserve every exact tool occurrence, source tier and price, including tier-10 54,000-gp tool references. Reuse is not duplication, consumption or ingredient recovery. Resolve how these source tool rows relate to required Needles/Shears and the kit/station without silently substituting a cheap ordinary tool for a specified profile. No source catalyst exists, so Masterwork cannot return an ingredient by relabeling it.
+- All fieldCraftable flags are false; contradictory field timeMode labels remain preserved. Recipe-584 has null hours and a one-year label; any 1,920-hour overlay must be separately identified under the reviewed framework. Confirm artisan Forge Dwarf work/phase effects without extending them to repair.
+- Establish trained repair/reconstruction, recoverable-body conditions, finite materials and prices, failure and suppression behavior. Preserve source batch reference, divide by source Q once, then separately account for actual supplemental bodies. Titles do not grant equipment grade or artifact classification.
+
+[Complete source, paragraph bindings and audit evidence](TAILORING_SOURCE_PREPARATION.json). Original legacy names/effects, source statuses, needsReview flags, access and optional guidance remain unchanged. No source deletion, runtime change, approval or cosmology review occurred.

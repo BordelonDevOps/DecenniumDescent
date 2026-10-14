@@ -1,0 +1,59 @@
+{
+  "id": "TC-RECYCLING-01",
+  "status": "verified-cross-guide-contradiction-prepared-unsent",
+  "scope": "One eligibility predicate; no current operational text changed and no wholesale reopening of fulfilled recipe/device gates.",
+  "currentClassCard": {
+    "id": "tinker.hero.techsmith.efficient-recycling",
+    "name": "Efficient Recycling",
+    "className": "Tinker",
+    "band": "Hero",
+    "path": "Techsmith",
+    "sourceKind": "passive",
+    "minimumClassLevel": 10,
+    "acquisition": "selection",
+    "activation": "Triggered",
+    "cost": "One destroyed device remains",
+    "rangeAndTarget": "Your destroyed device within reach",
+    "duration": "After combat 1 minute",
+    "frequency": "1/short rest",
+    "effect": "Recover 1 RP spent on deploying it, never more than its actual paid cost. Deliberate sacrifice or copy does not qualify. Consume usable debris; no repeated salvage from same object.",
+    "source": {
+      "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+      "line": 4631,
+      "originalText": "Efficient Recycling: Recover components from destroyed devices to create new ones."
+    },
+    "designStatus": "provisional-playtest",
+    "spellRank": null
+  },
+  "olderReviewedLifecycleRow": "| Efficient Recycling | Your destroyed non-copy device; not deliberate sacrifice; debris within reach, after combat for one minute, 1/short rest. Refund at most min(1 RP, actual deployment RP). Enemy cause is **not required**. |",
+  "laterReviewedCraftingParagraph": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device, after its genuine enemy destruction and the feature's real one-minute/once-per-short-rest salvage procedure. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+  "laterSourceVerdictTD13": "KEEP actual enemy destruction, your own device, one minute after combat, once per short rest, consume its usable debris and return at most1RP actually paid to **deploy that same device**. Crafting GP, ingredients, dawn charges, service packs, encoding, field repairs, Dissonance routing and later Overcharge RP are not deployment RP. These43 crafted devices have no innate RP deployment cost, so they create **zero refundable deployment RP** through this card. Do not consume a valuable wreck merely by falsely asserting that its price is RP; admission must identify an actual eligible prior paid deployment. Deliberate sacrifice, copied objects and repeated debris claims do not qualify. No unspecified material salvage percentage is added by the class's legacy name.",
+  "existingReferenceMethod": "def recycling(self,ident,wallet,*,use_key):\n        e,d=self.material(ident)\n        # Exact source excludes sacrifice/copy, but does not require enemy cause.\n        if d.deliberate_sacrifice or d.copied_object or d.no_own_destruction_chain or 'noResourceGeneration' in d.flags:\n            raise SpellRuleError('Recycling source/branch excludes this debris')\n        wallet.validate(0,None,identity(use_key))\n        self.consume_material(ident,'recycling')\n        wallet.pay(0,None,use_key)\n        refund=min(1,e.paid_deployment_rp);wallet.rp+=refund\n        return refund",
+  "existingRegressionAssertion": "w=Wallet(0);check('Friendly/accidental destruction can recycle',b.recycling('e',w,use_key='recycle/sr1'),1)",
+  "existingRegressionRerunHere": false,
+  "evidenceFileHashes": {
+    "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json": "f087cc9250f1864e60209fb13bff86800d45b7238dc09e8eac2dbf2272b09c1d",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_PLAYTEST.md": "3211acc70441de0a2b59221efd57c9a6ff74155e9afcd9a4b5458bb0a2644a73",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/ADVANCED_CRAFT_CANDIDATE_GUIDE.md": "6986ed6bee0e88a1f5308bba534ebb0c2538d21c9ee3fc61e7c462246ac2fd60",
+    "docs/audit/2026-10-08/full-game/GPT_ADVANCED_167_SOURCE_AUTHORING_VERDICT.md": "48f885becd03e4a99ba8d6243ce286c1e1e88cfefc776af9ff89a9182c79c8e0",
+    "DescentReviewChanges/ReviewBible/tools/device_lifecycle_playtest_rules.py": "f474ef83e12066aab4325a275e2ae6113f7dee0d446f0c79e25141130f71c451",
+    "DescentReviewChanges/ReviewBible/tools/validate_device_lifecycle_playtests.py": "2fd0aff6b03863607767ee48f6c98d6842509c014927f96fa23fced99e37beb6",
+    "docs/audit/2026-10-08/full-game/GPT_DEVICE_LIFECYCLE_FINAL_CLOSURE.md": "99fba6bddb45420d12f55f46847d01f6fd3d59c89fbbc5c68b3e369555c0ce45",
+    "docs/audit/2026-10-08/full-game/GPT_DEVICE_LIFECYCLE_FINAL_FINDINGS.md": "8ef9db5bfb6b2a866f3173b749d4d2c99a91c540192473d4dc89189e43f070bf",
+    "docs/audit/2026-10-08/full-game/GPT_DEVICE_LIFECYCLE_BOUNDARIES.md": "43fbcb47c90a274a2782de794f2011c661665c0f698c066d4b834b1973208ee4",
+    "docs/audit/2026-10-08/full-game/ADVANCED_167_EXACT_PROMOTION_RECEIPT.json": "d816e98927ad83a1df7e306925a483e3909fdebad0ae84100e9d58d3e5ae9a25"
+  },
+  "question": "The approved class card/lifecycle says enemy cause is not required, while later TD-13 and the crafting guide say it is. Was a new narrowing intended? Please explicitly settle the single predicate and give exact correction/erratum wording for every affected current guide/status, preserving historical verdicts and all unrelated fulfilled scopes.",
+  "preferredProposedResolution": "Preserve the explicit reviewed class/lifecycle predicate; correct the later added enemy qualification. This is a proposal awaiting GPT agreement, not applied authority.",
+  "proposedFullCurrentGuideReplacement": "Efficient Recycling refunds at most one RP actually paid to deploy the particular owned device. Enemy cause is not required. Its actual card and lifecycle rules still exclude deliberate sacrifice, copied devices, spent debris and prohibited resource-generation branches. After combat, use its real one-minute salvage procedure and once-per-short-rest allowance, consuming that device’s qualifying usable debris. GP construction, later repair RP and activation RP are not deployment costs: an ordinary crafted deployment paid0RP, so no refund is available from it. A quoted recipe value does not create paid RP.",
+  "requiredBoundaryExpectations": [
+    "Owned eligible paid deployment destroyed accidentally by a friendly source, no deliberate sacrifice/copy/noResourceGeneration and unused debris: resolve whether its one-minute postcombat Recycling can refund min(1,actual deployment RP).",
+    "Deliberate sacrifice remains excluded regardless of enemy participation; copied objects and forbidden resource-generation branches remain excluded.",
+    "A recipe-596 body paid0RP to deploy: return0 from Recycling, never convert construction GP or later repair RP into a deployment refund.",
+    "A legal single debris consumer spends the actual original debris; no second Recycling, Scrapling or Snap reconstruction can consume it again.",
+    "Enemy-destruction and enemy-hit requirements of Scrap Salvage, Scrap Reaper and Volatile remain their own distinct predicates; a Recycling ruling does not erase them."
+  ],
+  "newRuleApplied": false,
+  "sourceInformationDeleted": 0,
+  "submittedToGPT": false
+}

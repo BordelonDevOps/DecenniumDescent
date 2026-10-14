@@ -1,0 +1,118 @@
+{
+  "id": "EX-W13",
+  "schemaVersion": "EX58-boundary-record-v1",
+  "status": "authored synthetic expectation; exact review pending",
+  "audience": "public synthetic example",
+  "title": "Carried movement is not Dragoon self-motion",
+  "questionIds": [
+    "TR-03",
+    "TR-04",
+    "TR-05",
+    "TR-06"
+  ],
+  "contractIds": [
+    "EC-02",
+    "EC-07",
+    "EC-08",
+    "EC-14"
+  ],
+  "sourceBinding": {
+    "path": "docs/audit/2026-10-08/full-game/ex58-final-gpt-verdict/EX58_WORKED_SEQUENCES.json",
+    "bytes": 73808,
+    "sha256": "f668c9aff1c836f61e5766db3eed49d62ba2f1a6d638959157e5551223aa2c80",
+    "pointer": "/additionalBoundaries/12"
+  },
+  "actualSyntheticPremises": "A level-8 Dragoon has genuinely acquired Featherstep and starts this fixture at 7/7 RP. A level-3 Mage ally starts at 8/8 RP and pays the actual 3 RP to cast Swiftness, leaving 5/8 RP, then continues holding its concentration. Swiftness legally raises the Dragoon’s walking Speed from 30 to 40 for its minute. On the Dragoon’s later own turn, Featherstep’s normal 2 RP is paid from 7 RP, leaving 5/7 RP. The two actors retain their own concentration and resource histories. No pending feat or unstated increase to either RP maximum is used.",
+  "records": {
+    "ongoingEffect": {
+      "spellId": "swiftness",
+      "sourceCardIndex": 71,
+      "caster": "Mage ally",
+      "classLevel": 3,
+      "castAtSeconds": 0,
+      "expiresAtSeconds": 60,
+      "ActionSpent": true,
+      "RPBefore": 8,
+      "RPAfter": 5,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 1,
+      "components": "actual voice, manipulating hand and held legal focus",
+      "willingTarget": "Dragoon",
+      "initialDistanceFt": 10,
+      "concentrationHeld": true
+    },
+    "carriedEvent": {
+      "atSeconds": 6,
+      "carrier": "horse",
+      "distanceFt": 20,
+      "selfPoweredFt": 0,
+      "MomentumAdded": 0,
+      "DissonanceDiscount": 0
+    },
+    "seatEventAlternative": {
+      "id": "one-forced-prone-root",
+      "labels": [
+        "forced displacement",
+        "mount Prone"
+      ],
+      "DEXSave": {
+        "actor": "Dragoon",
+        "nativeRoute": "binary save",
+        "natural": 8,
+        "modifier": 2,
+        "DC": 10,
+        "total": 10,
+        "result": "success"
+      },
+      "checks": 1,
+      "actualSupportAfterSuccess": "real fitting saddle and ground; success does not hold rider in empty air"
+    },
+    "ownTurn": {
+      "atSeconds": 12,
+      "walkingSpeedFt": 40,
+      "dismountCostFt": 20,
+      "actualSelfPoweredPathFt": 20,
+      "remainingMovementFt": 0,
+      "MomentumBefore": 0,
+      "MomentumFromMovement": 1,
+      "MomentumAfter": 1,
+      "weaponHit": false,
+      "Action": "Featherstep on willing self",
+      "spellRank": 1,
+      "classLevel": 8,
+      "requiredMinimumClassLevel": 3,
+      "STRModifier": 4,
+      "PB": 3,
+      "DissonanceLimit": 9,
+      "RPBefore": 7,
+      "RPPrice": 2,
+      "RPAfter": 5,
+      "previousSpellName": "a different identity; Refrain0",
+      "DissonanceBefore": 2,
+      "baseGain": 1,
+      "movementReduction": 1,
+      "finalGain": 0,
+      "DissonanceAfter": 2,
+      "components": "usable voice, legal held focus, free manipulating hand after dismount; no weapon attack also claimed",
+      "newConcentration": "Dragoon holds Featherstep; ally independently retains Swiftness",
+      "targetMassWithGearLb": 170,
+      "actualEffect": "only the full Featherstep card; no empty-gap flight or added Speed"
+    },
+    "teleportComparison": {
+      "actualPositionChangedFt": 20,
+      "selfPoweredPathFt": 0,
+      "MomentumFromDistance": 0,
+      "newMovementDiscount": 0
+    }
+  },
+  "expectedOutcomes": {
+    "carried20Momentum": 0,
+    "carried20Discount": 0,
+    "own20Momentum": 1,
+    "own20DissonanceReduction": 1,
+    "RPDiscount": 0
+  },
+  "readerExplanation": "The horse’s 20 feet change position only. Later, real Swiftness leaves exactly 20 feet after the Dragoon pays a 20-foot dismount cost. Walking those 20 feet meets the Momentum threshold and the new narrow Dissonance bridge before a legal Featherstep Action. Its normal 2 RP is still paid.",
+  "evidenceClass": "authored expectation; named source and arithmetic checks separately executed",
+  "worldAuthentication": "All named people, sites and permissions are synthetic premises, not new canonical facts."
+}

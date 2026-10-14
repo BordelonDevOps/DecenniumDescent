@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decennium Descent review map</title>
+<style>
+:root { color-scheme: light dark; --bg: #f8f6f0; --fg: #222d32; --muted: #52626a; --line: #ccd1cc; --surface: #ffffff; --accent: #0b6663; --tint: #e0efeb; }
+@media (prefers-color-scheme: dark) { :root { --bg: #151e22; --fg: #e8efea; --muted: #b2c1c4; --line: #42525a; --surface: #1d2a30; --accent: #8cd6c2; --tint: #264c45; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, sans-serif; }
+main { max-width: 1080px; margin: auto; padding: 36px 24px 64px; }
+h1 { margin: 0 0 8px; font-size: clamp(28px, 5vw, 42px); line-height: 1.15; }
+h2 { margin: 28px 0 12px; font-size: 22px; }
+h3 { margin: 20px 0 8px; font-size: 17px; }
+p { margin: 8px 0 14px; }
+a { color: var(--accent); text-underline-offset: 3px; overflow-wrap: anywhere; }
+small, .muted { color: var(--muted); }
+.intro { max-width: 820px; }
+.quicklinks { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 0; list-style: none; }
+.sequence { padding: 14px 18px; border-left: 4px solid var(--accent); background: var(--tint); }
+.sequence p { margin: 0; }
+.controls { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin: 16px 0 8px; }
+label { display: grid; gap: 5px; color: var(--muted); font-size: 14px; }
+input, select, button { font: inherit; color: var(--fg); background: var(--surface); border: 1px solid var(--line); padding: 10px 12px; border-radius: 6px; min-width: 0; width: 100%; }
+button { width: auto; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.results { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.results p { margin: 8px 0; }
+.area { border-bottom: 1px solid var(--line); }
+.area > summary { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding: 16px 0; cursor: pointer; list-style: none; }
+.area > summary::before { content: "+"; font-weight: 600; color: var(--accent); }
+.area[open] > summary::before { content: "−"; }
+.id { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; }
+.name { font-size: 18px; font-weight: 600; flex: 1; }
+.scope { color: var(--muted); font-size: 13px; }
+.area-body { padding: 0 0 22px 26px; }
+.area-body ul { padding-left: 22px; }
+.area-body li { margin-bottom: 8px; overflow-wrap: anywhere; }
+.references { margin-top: 16px; }
+.references summary { cursor: pointer; color: var(--accent); }
+.references li { margin-bottom: 5px; }
+.file-path { display: block; font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
+.note { font-size: 14px; color: var(--muted); }
+footer { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 18px; font-size: 13px; color: var(--muted); }
+[hidden] { display: none !important; }
+@media (max-width: 640px) { main { padding: 24px 16px 40px; } .controls { grid-template-columns: 1fr; } .name { min-width: 65%; } .scope { padding-left: 24px; width: 100%; } .area-body { padding-left: 0; } }
+@media print { .controls, button { display: none; } main { padding: 0; } a { color: inherit; } }
+</style>
+</head>
+<body><main>
+<header>
+<p class="muted">Owner and Director workspace</p>
+<h1>Decennium Descent review map</h1>
+<p class="intro">Find the current game drafts, their source material and the decisions still open. This map includes Director material. It is a dated snapshot of the development ledger; individual reviewed rules do not mean an entire game area is finished.</p>
+<p id="snapshot" class="note"></p>
+</header>
+<section aria-labelledby="reading-title"><h2 id="reading-title">Open the game</h2><ul id="featured" class="quicklinks"></ul></section>
+<section aria-labelledby="position-title">
+<h2 id="position-title">Current position</h2>
+<p id="position"></p>
+<p>All nine teaching artifacts, including the character sheet and class resource reference, have completed authored presentation review. The exact teaching corrections, Efficient Recycling reconciliation and recharge wording addendum are applied. Calibration Review Part 2 is now reviewing 58 expedition, transport, social and reputation questions from 304 complete files. One feat index now separates the 8 reviewed feats from all 327 pending entries. Of those pending entries, 111 have complete proposed procedures and 228 worked examples; those proposals await joint review.</p>
+<ul id="pending" class="quicklinks"></ul>
+<div class="sequence"><p><strong>Delivery order:</strong> finish the authored game and joint flow review → push to GitHub → verify the remote commit → carefully review cosmology. Human teaching, balance and campaign playtests remain separate.</p></div>
+</section>
+<section aria-labelledby="areas-title">
+<h2 id="areas-title">Find a game area</h2>
+<div class="controls">
+<label>Search areas, rules or open issues<input id="search" type="search" placeholder="Try Paladin, crafting, reputation or DD-23"></label>
+<label>Workstream<select id="group"><option value="">All workstreams</option></select></label>
+<label>Completion requirement<select id="gate"><option value="">All requirements</option><option value="authored-candidate">Authored game</option><option value="human-gate">Human playtesting</option><option value="release-gate">Publication</option></select></label>
+</div>
+<div class="results"><p id="result-count" role="status" aria-live="polite"></p><button type="button" id="clear">Clear filters</button></div>
+<p class="note">Open a row for its exact acceptance requirement, completed scopes, remaining decisions and source links. “Open” is the ledger’s overall closure state, not a measure of how much writing exists.</p>
+<div id="areas"></div><p id="empty" hidden>No matching area. Try a broader term or clear the filters.</p>
+</section>
+<footer><p>This page is generated from the existing coverage ledger and does not change rules or review status. Historical files remain at their original paths. Files open from the same game folder; keep this page at its root.</p><p id="ledger-link"></p><noscript>Enable JavaScript to use the search and area list, or open DescentReviewChanges/ReviewBible/docs/mechanics/GAME_DEVELOPMENT_COVERAGE.md.</noscript></footer>
+</main>
+<script id="review-data" type="application/json">__REVIEW_DATA__</script>
+<script>
+(() => {
+  'use strict';
+  const data = JSON.parse(document.getElementById('review-data').textContent);
+  const byId = id => document.getElementById(id);
+  const node = (tag, text, cls) => { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (cls) e.className = cls; return e; };
+  const link = ref => { const a = node('a', ref.label); a.href = ref.url; return a; };
+  const addLinks = (id, refs) => refs.forEach(ref => { const li = node('li'); li.append(link(ref)); byId(id).append(li); });
+  byId('snapshot').textContent = 'Snapshot: ' + new Date(data.generatedAtUtc).toLocaleString() + '. Sources and files are preserved in C:\\Github\\DecenniumDescent.';
+  byId('position').textContent = data.counts.spellsReviewed + ' ordinary spells have reviewed authored procedures; ' + data.counts.spellsPending + ' remain pending. All 17 class families and their Base, Arch and Hero progressions have drafts. The ledger tracks ' + data.counts.aspects + ' game areas; ' + data.counts.closed + ' currently meets all of its closure criteria.';
+  addLinks('featured', data.featured); addLinks('pending', data.pending);
+  byId('ledger-link').append(link({...data.ledger, label:'Full machine-readable coverage ledger'}));
+  const groups = [...new Set(data.areas.map(a => a.group))];
+  groups.forEach(g => { const o = node('option', g); o.value = g; byId('group').append(o); });
+  const names = {draftEvidence:'Current drafts and records', sourceEvidence:'Preserved sources', reviewEvidence:'GPT discussions and verdicts', validationEvidence:'Validation and fulfillment records', humanEvidence:'Human playtest evidence'};
+  const gates = {'authored-candidate':'Authored game', 'human-gate':'Human playtesting', 'release-gate':'Publication'};
+  const rows = data.areas.map(area => {
+    const details = node('details', undefined, 'area'); details.id = area.id;
+    const summary = node('summary');
+    summary.append(node('span', area.id, 'id'), node('span', area.domain, 'name'), node('span', (area.closure === 'closed' ? 'Closed' : 'Open') + ' · ' + gates[area.completionClass], 'scope'));
+    const body = node('div', undefined, 'area-body');
+    body.append(node('p', area.requiredCoverage), node('h3','Acceptance requirement'), node('p', area.acceptanceGate));
+    body.append(node('p', 'Recorded status: ' + area.status, 'note'));
+    [['Completed scopes',area.completedScopes],['Remaining decisions',area.openIssues]].forEach(([title,items]) => {
+      if (!items.length) return;
+      body.append(node('h3',title)); const ul = node('ul'); items.forEach(t => ul.append(node('li', t))); body.append(ul);
+    });
+    Object.entries(names).forEach(([key,title]) => {
+      const refs=area.references[key]; if (!refs.length) return;
+      const panel=node('details',undefined,'references'); panel.append(node('summary',title+' ('+refs.length+')'));
+      const ul=node('ul'); refs.forEach(ref => { const li=node('li'); li.append(link(ref),node('span',ref.path,'file-path')); ul.append(li); }); panel.append(ul); body.append(panel);
+    });
+    details.append(summary,body); byId('areas').append(details);
+    const searchText=[area.id,area.domain,area.requiredCoverage,area.acceptanceGate,...area.completedScopes,...area.openIssues].join(' ').toLowerCase();
+    return {area,details,searchText};
+  });
+  function filter() {
+    const words=byId('search').value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    const group=byId('group').value, gate=byId('gate').value;
+    let count=0;
+    rows.forEach(({area,details,searchText}) => { const show=(!group||area.group===group)&&(!gate||area.completionClass===gate)&&words.every(w=>searchText.includes(w)); details.hidden=!show; if(show)count++; });
+    byId('result-count').textContent=count+' of '+rows.length+' areas'; byId('empty').hidden=count!==0;
+  }
+  ['search','group','gate'].forEach(id=>byId(id).addEventListener(id==='search'?'input':'change',filter));
+  byId('clear').addEventListener('click',()=>{ ['search','group','gate'].forEach(id=>byId(id).value=''); filter(); byId('search').focus(); });
+  function revealHash(){ const id=decodeURIComponent(location.hash.slice(1)); const row=rows.find(r=>r.area.id===id); if(row){row.details.open=true; row.details.scrollIntoView({block:'start'});} }
+  window.addEventListener('hashchange',revealHash); filter(); revealHash();
+})();
+</script>
+</body></html>

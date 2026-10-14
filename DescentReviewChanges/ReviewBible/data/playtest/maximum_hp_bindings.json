@@ -1,0 +1,1742 @@
+{
+  "status": "REVIEWED / reference-VALIDATED; bounded interface",
+  "scope": "Selected58-source maximumHP/threshold interface. Includes guards/exclusions and prior reviewed percentage healing; no complete feat/companion/character build promotion.",
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_MAXIMUM_HP_FINAL_CLOSURE.md",
+  "bindings": [
+    {
+      "bindingId": "cleric.engine[7]",
+      "sourceKind": "class-engine",
+      "sourcePath": "data/public/class_playtests/cleric.json",
+      "sourceId": 7,
+      "sourceSha256": "bb84e1b0f1d02ca1f307edee719b2e66036799f2367b1b93511681a7f95dd455",
+      "sourceProcedure": {
+        "text": "Healing cannot exceed maximum HP, does not remove Wounds, and does not restore a dead creature unless a card explicitly says it resurrects. No Cleric feature provides unlimited permanent HP or resource restoration outside encounters. Temporary HP does not stack with itself; use the higher value. Resurrection and corpse-based effects have explicit use limits and cannot generate repeatable corpses, XP, loot or Conviction."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "GUARD",
+      "operationalOverrides": [
+        "Healing/max-HP ceiling guard; no modifier.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "cleric.arch.anointed-guardian",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/cleric.json",
+      "sourceId": "cleric.arch.anointed-guardian",
+      "sourceSha256": "27c6e65cd16abe41a61a71f92375691fce8d8a5255f3d238b1ab8d44699d1ac5",
+      "sourceProcedure": {
+        "name": "Anointed Guardian",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "First ally within 30 feet to fall to one-quarter maximum HP or less",
+        "duration": "2 rounds",
+        "frequency": "Once per encounter",
+        "effect": "Anointed Guardian. Tags: protection, bishop. The first qualifying ally in an encounter gains a ward for 2 rounds. The first time during each round that ally takes damage, reduce that damage by PB + M, minimum 0. The ward does not prevent conditions attached to an attack unless the damage reduction itself invalidates them under another rule.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_CROSSING",
+      "operationalOverrides": [
+        "First genuine fall to ≤quarter; max-only change does not trigger.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "cleric.hero.saint.aura-of-grace",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/cleric.json",
+      "sourceId": "cleric.hero.saint.aura-of-grace",
+      "sourceSha256": "7dff7e8271aba866c1b596528fe2e7d1e3f9a1558eeec233922585461bcc9854",
+      "sourceProcedure": {
+        "name": "Aura of Grace",
+        "activation": "Triggered and passive",
+        "cost": "1 RP per healing pulse",
+        "rangeAndTarget": "Living allies within 15 feet",
+        "duration": "Passive during real encounters",
+        "frequency": "Healing once/own regular turn; critical reduction once/ally/round",
+        "effect": "Aura of Grace. At the start of your regular turn during a real encounter, you may pay 1 RP to heal S HP to up to 3 living allies within 15 ft below half maximum HP. You must be conscious. Separately, once per ally per round when an ally in the aura suffers a critical hit, reduce its added critical damage by one damage die, minimum 0 extra dice. No unlimited free healing.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_HEAL_ELIGIBILITY",
+      "operationalOverrides": [
+        "Below-half checked at pulse target selection.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "cleric.hero.saint.divine-rebirth",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/cleric.json",
+      "sourceId": "cleric.hero.saint.divine-rebirth",
+      "sourceSha256": "0911a56a90621bfce24642033cfd99929553c077fa641efacc48d90d4b94e15a",
+      "sourceProcedure": {
+        "name": "Divine Rebirth",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "One ally revived by your Cleric feature",
+        "duration": "Instantaneous plus temporary HP for 1 minute",
+        "frequency": "1/long rest",
+        "effect": "Divine Rebirth. Tags: saint, resurrection. When one of your Cleric features returns an ally from death, you may use Divine Rebirth. That ally returns with half its maximum HP instead of the feature's normal returned HP and gains S + M temporary HP for 1 minute. It removes no Wounds and cannot affect a creature that was not actually dead.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_RESURRECTION_HP",
+      "operationalOverrides": [
+        "Half effective max at return; reviewed viable-return min1 applies.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "cleric.hero.saint.merciful-sacrament",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/cleric.json",
+      "sourceId": "cleric.hero.saint.merciful-sacrament",
+      "sourceSha256": "1839de6107b950771344a8a77e0c9c45ad81b114131b0969eafab0335a14c466",
+      "sourceProcedure": {
+        "name": "Merciful Sacrament",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Your Sacrament",
+        "duration": "For that activation",
+        "frequency": "1/short rest",
+        "effect": "Merciful Sacrament. Tags: saint, sacrament. When you start Sacrament and at least one living ally inside its initial zone is at or below one-quarter maximum HP, you may reduce that Sacrament's Conviction cost to 0. Its RP cost and all other requirements remain. Because no Conviction is spent, this waived cost does not vent Dissonance.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_COST_GATE",
+      "operationalOverrides": [
+        "Initial-zone ally ≤quarter snapshot when Sacrament starts.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "cleric.hero.saint.unyielding-light",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/cleric.json",
+      "sourceId": "cleric.hero.saint.unyielding-light",
+      "sourceSha256": "2b13f1c09c2c7fba28eb3ac046a34ff52f8a829eafac020aa33b762a96d4236d",
+      "sourceProcedure": {
+        "name": "Unyielding Light",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "Up to six living party members within 30 feet, including you",
+        "duration": "Instantaneous",
+        "frequency": "1/long rest",
+        "effect": "Unyielding Light. Tags: saint, emergency, healing. When one damage event would leave every conscious living party member within 30 feet at 0 HP, resolve that damage, then before ordinary death-save progression each qualifying living creature at 0 HP regains floor(maximum HP/3), minimum 1. It cannot revive a creature killed outright and removes no Wounds. This one emergency trigger may resolve even if that event incapacitates you, provided you remain alive; it grants no other actions while incapacitated.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_ZERO_HP_RECOVERY",
+      "operationalOverrides": [
+        "`max(1,floor(max/3))`.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "cleric.hero.saint.mass-healing-light",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/cleric.json",
+      "sourceId": "cleric.hero.saint.mass-healing-light",
+      "sourceSha256": "dbb502b5ecb5d64d0973a9df82f770cdb8af28300d09a7f6f978d3fef13c2009",
+      "sourceProcedure": {
+        "name": "Mass Healing Light",
+        "activation": "Action",
+        "cost": "5 RP",
+        "rangeAndTarget": "Up to six living allies within 30 feet",
+        "duration": "Instantaneous",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Mass Healing Light. Tags: saint, healing. Roll S d8 + M once. Each target regains that amount. A target below half maximum HP when chosen regains an additional 1d8 HP. Roll that bonus once and apply it to all qualifying targets. This cannot revive the dead or remove Wounds.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_HEAL_BONUS",
+      "operationalOverrides": [
+        "Below-half snapshot when target chosen.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "cleric.hero.cultist.corrupt-divinity",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/cleric.json",
+      "sourceId": "cleric.hero.cultist.corrupt-divinity",
+      "sourceSha256": "b28343e6f696458ef1e0ca49d5529644e610a9603e84b09db58e597f2157e258",
+      "sourceProcedure": {
+        "name": "Corrupt Divinity",
+        "activation": "Action",
+        "cost": "4 RP",
+        "rangeAndTarget": "One enemy within 60 feet",
+        "duration": "Maximum 2 rounds",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Corrupt Divinity. Tags: cultist, debuff, control. The target makes a Wisdom save. On failure it takes -1 on attack rolls and saving throws. It repeats the save at the end of each turn, ending the effect on success. If a non-player NPC at or below one-quarter maximum HP fails the initial save by 10 or more, it is also Charmed by you until the end of its next turn. This never permanently converts allegiance, changes beliefs or overrides a player character's agency.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_CONTROL",
+      "operationalOverrides": [
+        "NPC ≤quarter checked at initial resolution.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "dragoon.hero.dragon-guardian.wyrmhide",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/dragoon.json",
+      "sourceId": "dragoon.hero.dragon-guardian.wyrmhide",
+      "sourceSha256": "f514ad790b1d4e61a1120eaa22c47fb6bfaab9218c5c4ef84af5c2a503898d7d",
+      "sourceProcedure": {
+        "name": "Wyrmhide",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self while above half maximum HP",
+        "duration": "While threshold met",
+        "frequency": "Continuous",
+        "effect": "Reduce each damage instance by 2 and gain advantage on CON saves against Bleed, Burn and Poisoned. No blanket condition immunity; effects already present persist and ordinary nonstacking reduction applies.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "CONTINUOUS_THRESHOLD",
+      "operationalOverrides": [
+        "Above-half predicate recomputes with effective max.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "mage.hero.lich.flesh-to-ash",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/mage.json",
+      "sourceId": "mage.hero.lich.flesh-to-ash",
+      "sourceSha256": "e6eb8ad0d964f777becfb64a89c2f8e3b5c3a23a72106c61afecf2386623c243",
+      "sourceProcedure": {
+        "name": "Flesh to Ash",
+        "activation": "Action",
+        "cost": "5 RP",
+        "rangeAndTarget": "15-foot-radius sphere centered at a point within 60 feet",
+        "duration": "Instantaneous",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Flesh to Ash. Tags: mage-spell, lich, necrotic, damage. Creatures of your choice in the area make Constitution saves. A target at half maximum HP or more takes S d8 necrotic on failure, half on success. A target below half maximum HP instead takes 2 S d8 necrotic on failure, half on success. Determine the threshold before rolling damage.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_DAMAGE",
+      "operationalOverrides": [
+        "Explicit pre-damage half snapshot.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "mage.hero.lich.soulbound-ritual",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/mage.json",
+      "sourceId": "mage.hero.lich.soulbound-ritual",
+      "sourceSha256": "402e1f7d3575a535865294094b40a0e028c23dff18e64dadc511f20340bc7b0a",
+      "sourceProcedure": {
+        "name": "Soulbound Ritual",
+        "activation": "Action",
+        "cost": "5 RP",
+        "rangeAndTarget": "One of your destroyed bound elite undead companions within 30 feet or its inert binding token",
+        "duration": "Instantaneous",
+        "frequency": "1/long rest",
+        "effect": "Soulbound Ritual. Tags: mage-spell, lich, companion, resurrection. Return one destroyed Boneflayer, Dreadblade or Wraithbound to an unoccupied space within 30 feet at half its maximum HP. It gains S+M temporary HP for 1 minute. The returned companion remains subject to the shared Companion Command limit and cannot create a corpse, XP, loot or resource event if destroyed again.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_COMPANION_RECONSTRUCTION",
+      "operationalOverrides": [
+        "Returns companion at half effective max; wider companion lifecycle open.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "monk.engine[9]",
+      "sourceKind": "class-engine",
+      "sourcePath": "data/public/class_playtests/monk.json",
+      "sourceId": 9,
+      "sourceSha256": "e3923490d9849612190a0954ff0749b6e2517862bdfb1c2d7b5dbdfcff1e2eb7",
+      "sourceProcedure": {
+        "text": "Temporary maximum-HP reductions caused by Monk features do not stack on the same creature; use the largest reduction from your Monk features. Maximum HP cannot be reduced below 1. Unless a card specifies an earlier end, the reduction lasts until the creature completes a short or long rest. Restoring maximum HP does not restore current HP. These effects are temporary combat trauma, not unstated permanent injuries."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_REDUCTION_ENGINE",
+      "operationalOverrides": [
+        "Global strongest operative Monk trauma; separate records/clocks.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "monk.engine[16]",
+      "sourceKind": "class-engine",
+      "sourcePath": "data/public/class_playtests/monk.json",
+      "sourceId": 16,
+      "sourceSha256": "35f0120ff484cecb5d18360f6532891d2de393ba4d2b5e03a9961b7e2ab07a44",
+      "sourceProcedure": {
+        "text": "Healing from Monk cards cannot exceed maximum HP, restore the dead or remove Wounds unless explicitly stated. Permanent HP recovery and Ki generation cannot be farmed outside encounters. Resurrection effects are explicitly limited-use. No Monk card can instantly kill a target merely because a descriptive source used language such as Death Touch; death continues to follow the game's ordinary damage and dying rules."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "GUARD",
+      "operationalOverrides": [
+        "Healing/death guard only.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "monk.hero.iron-fist-master.ribcrusher-strike",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/monk.json",
+      "sourceId": "monk.hero.iron-fist-master.ribcrusher-strike",
+      "sourceSha256": "11eb73eb0d8587fb3a965d0b24386deb32cde0270d51810eec36cd841fdcc077",
+      "sourceProcedure": {
+        "name": "Ribcrusher Strike",
+        "activation": "Triggered",
+        "cost": "2 Ki",
+        "rangeAndTarget": "One creature hit by your unarmed strike",
+        "duration": "Until target completes a short or long rest",
+        "frequency": "Once per target per encounter",
+        "effect": "Ribcrusher Strike. Tags: hero, iron-fist, attack, max-hp. After an unarmed strike hits, spend 2 Ki. The target makes a Constitution save. On failure reduce its maximum HP by S+M, minimum maximum HP 1. This reduction follows the common non-stacking maximum-HP rule and is restored after a completed short or long rest without restoring current HP.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_REDUCTION",
+      "operationalOverrides": [
+        "−(S+M), after attack damage, until completed rest.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "monk.hero.iron-fist-master.bone-breaking-strike",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/monk.json",
+      "sourceId": "monk.hero.iron-fist-master.bone-breaking-strike",
+      "sourceSha256": "be603265c88626d789efc7c940a4151d6201a7dd4548f0d8dd7b516afed85fc8",
+      "sourceProcedure": {
+        "name": "Bone-Breaking Strike",
+        "activation": "Action",
+        "cost": "2 Ki",
+        "rangeAndTarget": "One creature within unarmed reach",
+        "duration": "Until target completes a short or long rest",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Bone-Breaking Strike. Tags: hero, iron-fist, attack, max-hp. Make one unarmed strike. On a hit, the target makes a Constitution save. On failure reduce its maximum HP by 2 S+M under the common non-stacking maximum-HP rule. This creates no persistent broken-limb injury; the maximum returns after a completed short or long rest without restoring current HP.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_REDUCTION",
+      "operationalOverrides": [
+        "−(2S+M), after attack damage.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "monk.hero.way-of-shadow.deathless-silence",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/monk.json",
+      "sourceId": "monk.hero.way-of-shadow.deathless-silence",
+      "sourceSha256": "a23f961c0455ab3ceeaf270e1f5493914a4d5c257841e084367c9bfc8cd7d1dd",
+      "sourceProcedure": {
+        "name": "Deathless Silence",
+        "activation": "Action",
+        "cost": "5 Ki + 5 RP",
+        "rangeAndTarget": "Up to three enemies you can perceive within 60 feet",
+        "duration": "Until start of your next regular turn; max-HP reduction until rest",
+        "frequency": "1/long rest; automatic Hero Final",
+        "effect": "Final — Deathless Silence. Tags: hero, shadow, final, teleportation, max-hp, weave. Until the start of your next regular turn you cannot be targeted by opportunity attacks or Reactions. Teleport adjacent to up to three different chosen enemies in sequence and make one unarmed strike against each. On each hit, the target makes a Constitution save. Failure reduces its maximum HP by 4 S+M under the common non-stacking rule and suppresses one non-core defensive passive it possesses until the end of its next turn; the Director identifies an applicable visible passive before the save. This does not disable core class engines, legendary rules or creature type traits.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_REDUCTION + OTHER",
+      "operationalOverrides": [
+        "−(4S+M); defensive-passive suppression has separate shorter clock.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "monk.hero.way-of-shadow.death-touch",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/monk.json",
+      "sourceId": "monk.hero.way-of-shadow.death-touch",
+      "sourceSha256": "a3a0f7f23883eb6888e379b73620f29e0f12f9945c1d6a4afd376038a342e8ea",
+      "sourceProcedure": {
+        "name": "Death Touch",
+        "activation": "Action",
+        "cost": "5 Ki",
+        "rangeAndTarget": "One creature within unarmed reach",
+        "duration": "Instantaneous",
+        "frequency": "1/long rest",
+        "effect": "Death Touch. Tags: hero, shadow, attack, finisher. Make one unarmed strike. On a hit add 3 S d8 necrotic damage. If the target began the strike at or below one-quarter maximum HP, it also makes a Constitution save; on failure add another 2 S d8 necrotic damage. This never causes automatic death, bypasses no ordinary dying rules and creates no permanent injury beyond the damage actually dealt.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_DAMAGE",
+      "operationalOverrides": [
+        "≤quarter snapshot at strike start.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.engine[13]",
+      "sourceKind": "class-engine",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": 13,
+      "sourceSha256": "915b1cf2d9327231bf75308605d2e2b72abdce2ce052fdecef493dea663af705",
+      "sourceProcedure": {
+        "text": "Healing from Oracle features cannot exceed maximum HP, resurrect the dead or remove Wounds unless a feature explicitly says so. Temporary HP never stack. Encounter-only regeneration and drain cannot be farmed outside meaningful combat. Corpse effects create no XP, loot, RC or repeatable corpse resources unless expressly stated."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "GUARD",
+      "operationalOverrides": [
+        "Healing/max ceiling only.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.spiral-touched.spiral-touched-boon-iii",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.spiral-touched.spiral-touched-boon-iii",
+      "sourceSha256": "a6358be2e17db52d461c11e2df79d972481dba2c95ebd29ecd7c31a02987d377",
+      "sourceProcedure": {
+        "name": "Spiral-Touched — Boon III",
+        "activation": "Triggered at 0 HP",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Until start of next regular turn",
+        "frequency": "1/long rest",
+        "effect": "1/long rest when damage would reduce you to 0 HP without killing you outright, instead regain floor(max HP/4), minimum 1, and phase out until the start of your next regular turn; while phased you cannot be targeted, affect other creatures or activate Revelations.",
+        "prerequisite": "Oracle 10; selected Curse:Spiral-Touched"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_DIRECT_RECOVERY",
+      "operationalOverrides": [
+        "Quarter effective max, source min1.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.wound-eater.wound-eater-boon-iii",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.wound-eater.wound-eater-boon-iii",
+      "sourceSha256": "d872f36ef75cc9ff431e85c49d7cbfe85cf4b41721c46042c12d9e8af47fea5b",
+      "sourceProcedure": {
+        "name": "Wound Eater — Boon III",
+        "activation": "Action",
+        "cost": "0",
+        "rangeAndTarget": "One dying hostile living creature touched",
+        "duration": "Instantaneous",
+        "frequency": "1/short rest; no staged/summoned targets",
+        "effect": "1/short rest as an Action touch one dying hostile living creature at 0 HP; that creature dies and you regain HP equal to one-quarter your maximum HP rounded down. It cannot trigger from summoned, trivial or staged creatures and removes no Wounds.",
+        "prerequisite": "Oracle 10; selected Curse:Wound Eater"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_HEAL",
+      "operationalOverrides": [
+        "`floor(selfMax/4)`; no min1.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.wound-eater.wound-eater-boon-v",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.wound-eater.wound-eater-boon-v",
+      "sourceSha256": "76d3f99606a9bb0c358f108d5dba7577ecaa8580e0aef97ef94b235e8dbb4811",
+      "sourceProcedure": {
+        "name": "Wound Eater — Boon V",
+        "activation": "Action",
+        "cost": "0",
+        "rangeAndTarget": "Up to three living enemies within 20 feet",
+        "duration": "Instantaneous",
+        "frequency": "1/long rest",
+        "effect": "1/long rest as an Action, up to three meaningful living enemies within 20 feet lose HP equal to the lesser of one-quarter their maximum HP or Oracle level+M; you regain half the total actual HP lost, capped at one-half your maximum HP. Allies, constructs, undead, trivial creatures and summons are unaffected.",
+        "prerequisite": "Oracle 20; selected Curse:Wound Eater"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_HP_LOSS + HEAL_CAP",
+      "operationalOverrides": [
+        "Target quarter-max loss; self half-max recovery cap.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.burning-blood.burning-blood-boon-iv",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.burning-blood.burning-blood-boon-iv",
+      "sourceSha256": "eaa7b943b6aa64f2d9052ff86f01a0ef136baa2ad2fccd5fe895fe14f29233c7",
+      "sourceProcedure": {
+        "name": "Burning Blood — Boon IV",
+        "activation": "Triggered on first falling below half HP",
+        "cost": "0",
+        "rangeAndTarget": "Up to three enemies within 15 feet",
+        "duration": "Instantaneous",
+        "frequency": "1/short rest",
+        "effect": "once per short rest when you first fall below half maximum HP, erupt in a 15-foot fire burst. Enemies make Dexterity saves, taking 2 S d6 fire on failure or half on success; you take no damage from this flare.",
+        "prerequisite": "Oracle 15; selected Curse:Burning Blood"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_CROSSING",
+      "operationalOverrides": [
+        "Genuine first fall strictly below half.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.false-life.false-life-boon-v",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.false-life.false-life-boon-v",
+      "sourceSha256": "aca1096e9676527d4009472fd552ae219dc3cf6a5196f4ac4ad30a5c7e064b0b",
+      "sourceProcedure": {
+        "name": "False Life — Boon V",
+        "activation": "Triggered at 0 HP",
+        "cost": "0",
+        "rangeAndTarget": "Self; undead within 15 feet",
+        "duration": "Rise next turn; immunity two rounds",
+        "frequency": "1/long rest",
+        "effect": "1/long rest when you are at 0 HP but not destroyed outright, appear dead until the start of your next regular turn. During that interval you are incapacitated. At the start of your next turn rise with floor(max HP/4), minimum 1, and gain necrotic immunity for 2 rounds. Undead within 15 feet treat you as non-hostile until you damage, control or overtly oppose them. Divination during the apparent-death interval returns one false but plausible state-description you choose; it cannot fabricate events outside your own condition.",
+        "prerequisite": "Oracle 20; selected Curse:False Life"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_DELAYED_RECOVERY",
+      "operationalOverrides": [
+        "Quarter effective max at due start, min1.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.bones.death-s-threshold",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.bones.death-s-threshold",
+      "sourceSha256": "7e8778eca9a8b8ee70ff366b67e6fd5f43aa3b5aae72cc6d5815df0f86e4abff",
+      "sourceProcedure": {
+        "name": "Death's Threshold",
+        "activation": "Passive",
+        "cost": "0 RC",
+        "rangeAndTarget": "Self; undead enemies within 3 tiles",
+        "duration": "Until healed above half maximum HP",
+        "frequency": "1/short rest",
+        "effect": "The first time after a short rest that you fall to one-quarter maximum HP or less, activate Death's Threshold. Until you are healed above half maximum HP, reduce the first necrotic damage and first nonmagical weapon damage you take each round by S and gain +1 to your Revelation save DC. Undead enemies within 3 tiles take -1 on their first attack roll against you each round. The effect then ends and cannot reactivate until after another short rest.",
+        "prerequisite": "Oracle 6; Mystery: Bones; selected Tier II Revelation"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_CROSSING + HEALED_EXIT",
+      "operationalOverrides": [
+        "Trigger by genuine fall ≤quarter; exit requires actual heal to >half.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.bones.ledger-unbound",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.bones.ledger-unbound",
+      "sourceSha256": "ef4172a86bb7ab4929f1689d7d0ae148634a6fc06e32b00d1d601ef71bea270f",
+      "sourceProcedure": {
+        "name": "Ledger Unbound",
+        "activation": "Action",
+        "cost": "0 RC",
+        "rangeAndTarget": "Enemies and up to 3 eligible corpses within 5 tiles",
+        "duration": "Damage instantaneous; bone servants 3 rounds",
+        "frequency": "1/long rest",
+        "effect": "Choose up to three enemies in range. Roll 4 S d8+M once; each target takes necrotic damage equal to the lesser of that roll or one-quarter its maximum HP, with a Constitution save for half. This blast cannot reduce HP below 1. Raise up to three nonsummoned corpses as 1-HP bone servants for three rounds. Once per round spend your shared companion Bonus Action to move and attack with ONE servant using your Revelation attack bonus for 1d8+S necrotic damage. Alternatively, your Reaction may sacrifice one servant to intercept a single-target attack against you; no attack is made by that servant that round. Servants grant no XP, loot, harvestable corpses or RC. For three rounds, up to three undead you already control add S damage to their one shared commanded attack and reduce the first damage they take each round by 1. No extra creature turns or command budgets are created.",
+        "prerequisite": "Oracle 20; Mystery: Bones"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_DAMAGE_CAP",
+      "operationalOverrides": [
+        "Damage ≤floor(targetMax/4), then save; cannot reduce below1.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.flame.crown-restored",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.flame.crown-restored",
+      "sourceSha256": "354e4fb2b53a1b46b121c1edc36df4e364f0dbf66931fa7bdb453e68d6f3ab8f",
+      "sourceProcedure": {
+        "name": "Crown Restored",
+        "activation": "Bonus Action",
+        "cost": "0 RC",
+        "rangeAndTarget": "Self and allies within 5 tiles",
+        "duration": "3 rounds",
+        "frequency": "1/long rest",
+        "effect": "Manifest the Crown for 3 rounds. Once on each of your turns add 2 fire damage to one damaging attack or Revelation. At the start of each living ally's turn within 5 tiles, including yours, that ally regains 1d6 HP, at most three pulses per creature from this Final and never above maximum HP. Once per round you may activate one known Tier I Flame Revelation for 0 RC using its normal action type. Free Revelations cannot recursively restore additional RC beyond the normal once-per-round Prophecy Trigger cap.",
+        "prerequisite": "Oracle 20; Mystery: Flame"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "GUARD",
+      "operationalOverrides": [
+        "Healing capped by ordinary maximum; no max modifier.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.life.verdant-pulse",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.life.verdant-pulse",
+      "sourceSha256": "feb0f82538549fb2d540cfa9a68b89f517d4f1138b44ade546065fc7300c24f9",
+      "sourceProcedure": {
+        "name": "Verdant Pulse",
+        "activation": "Passive and Reaction",
+        "cost": "0 RC",
+        "rangeAndTarget": "Allies you heal; emergency ally within 4 tiles",
+        "duration": "Buff until end of ally's next turn; emergency instantaneous",
+        "frequency": "Buff once per ally per short rest; emergency 1/encounter",
+        "effect": "When one of your paid or finite Oracle effects restores HP to an ally who was below half maximum HP, that ally reduces the first damage it takes before the end of its next turn by S and adds 1 HP to one later finite healing effect during that period. Separately, once per encounter when a living ally within 4 tiles would be reduced to 0 HP without instant death, use your Reaction to leave it at 1 HP instead and end Frightened or Poisoned on it.",
+        "prerequisite": "Oracle 6; Mystery: Life; selected Tier II Revelation"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_HEAL_RIDER + FLOOR",
+      "operationalOverrides": [
+        "“was below half” uses pre-heal state; emergency floor separate.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.time.echo-strike",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.time.echo-strike",
+      "sourceSha256": "eb631339bca8a9fbada16f055ce6bb3a6ab1703132bbeef0477fd0fae77b34f0",
+      "sourceProcedure": {
+        "name": "Echo Strike",
+        "activation": "Reaction",
+        "cost": "1 RC",
+        "rangeAndTarget": "Same target just hit by your weapon or touch attack",
+        "duration": "Instantaneous",
+        "frequency": "At most once per round",
+        "effect": "Immediately after your weapon or touch attack hits, spend 1 RC. Copy half the triggering attack's unmodified rolled damage dice total, rounded down, minimum 1, as damage of the same type to the same target. The echo is not another attack, cannot critically hit and copies no flat modifiers, conditions, resource gains or proc triggers. If this copied damage leaves the target below half maximum HP, regain 1 RC after resolution, at most once per round and never above maximum.",
+        "prerequisite": "Oracle 3; Mystery: Time; selected Tier I Revelation"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "POST_DAMAGE_THRESHOLD",
+      "operationalOverrides": [
+        "RC check after echo damage using then-effective max.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "oracle.supplement.time.rewind-wound",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/oracle.json",
+      "sourceId": "oracle.supplement.time.rewind-wound",
+      "sourceSha256": "eb01bdc7533669a80e0862bf3130c342b3b8c9c3f4199f8925953086e6bc898c",
+      "sourceProcedure": {
+        "name": "Rewind Wound",
+        "activation": "Action",
+        "cost": "2 RC",
+        "rangeAndTarget": "One living ally you touch",
+        "duration": "Healing instantaneous; protection until start of your next turn",
+        "frequency": "At will while RC remains; same damage event can be rewound once",
+        "effect": "Reference the most recent single damage event the target suffered since the start of its previous regular turn and restore HP equal to that event's actual HP damage, maximum Oracle level+M. If that exact event directly imposed one condition with a finite duration, remove that condition if it is still present and is not a Wound, curse, death state or permanent transformation. The ally reduces the first damage it takes before your next turn by 1 and gains +2 initiative for the current round. If the recorded damage had reduced it below half maximum HP, regain 1 RC after resolution, at most once per round. Rewind does not undo attacks, spent resources, movement, deaths of other creatures or proc effects.",
+        "prerequisite": "Oracle 6; Mystery: Time; selected Tier II Revelation"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "HISTORICAL_THRESHOLD",
+      "operationalOverrides": [
+        "Uses maximum snapshot stored with referenced damage event.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "paladin.supplement.oath-of-mercy.merciful-smite",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/paladin.json",
+      "sourceId": "paladin.supplement.oath-of-mercy.merciful-smite",
+      "sourceSha256": "bb24ea1355d04db34e882d50cc5ebadd7b6da097442a0c2813d9e39b6cc5421c",
+      "sourceProcedure": {
+        "name": "Merciful Smite",
+        "activation": "Triggered",
+        "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+        "rangeAndTarget": "Creature hit by your melee weapon attack; up to 3 living allies within 10 feet of you",
+        "duration": "Instantaneous",
+        "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+        "effect": "Your Oath Smite deals radiant damage instead of adding a second Smite packet. After the Smite damage resolves, create a healing pool equal to half the actual radiant Smite damage dealt, rounded down, maximum S+M. Divide that pool among up to 3 living allies within 10 feet. Healing cannot exceed maximum HP, remove Wounds or trigger additional Smite or healing-copy effects.",
+        "prerequisite": "Paladin 3; Oath of Mercy"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "DAMAGE_DERIVED_HEAL",
+      "operationalOverrides": [
+        "No max modifier; healing maximum guard only.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "paladin.supplement.oath-of-mercy.blessing-of-the-meek",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/paladin.json",
+      "sourceId": "paladin.supplement.oath-of-mercy.blessing-of-the-meek",
+      "sourceSha256": "de83f7216e4f442bf324e7e9650e69091077d79b1be79d0753257dfbce13cde4",
+      "sourceProcedure": {
+        "name": "Blessing of the Meek",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One living ally within 30 feet",
+        "duration": "Healing instantaneous; AC bonus until start of your next regular turn",
+        "frequency": "At will while RP remains",
+        "effect": "The target regains 2d6+M HP. If it was below half maximum HP before this healing, it also gains +2 AC until the start of your next regular turn. This spell cannot resurrect, remove Wounds or generate additional healing triggers beyond ordinary once-per-effect rules.",
+        "prerequisite": "Paladin 3; Oath of Mercy"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_HEAL_RIDER",
+      "operationalOverrides": [
+        "Below-half checked before healing.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "paladin.supplement.oath-of-mercy.channel-life",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/paladin.json",
+      "sourceId": "paladin.supplement.oath-of-mercy.channel-life",
+      "sourceSha256": "791e5b9a6f7de5962bffa02d02d406a4eba8aedc125391595cd002581a5f6610",
+      "sourceProcedure": {
+        "name": "Channel Life",
+        "activation": "Action",
+        "cost": "5 RP",
+        "rangeAndTarget": "Self and one living ally within 30 feet",
+        "duration": "Instantaneous",
+        "frequency": "At will while RP remains",
+        "effect": "Choose X from 1 to Paladin level+M, limited so your current HP remains at least 1. Lose X HP; this loss cannot be reduced, redirected or prevented. The target regains X HP. This is a direct transfer, cannot exceed the target's maximum HP and cannot remove Wounds or create excess temporary HP.",
+        "prerequisite": "Paladin 9; Oath of Mercy"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "GUARD / DIRECT_HP_LOSS",
+      "operationalOverrides": [
+        "No max modifier; donor/current-max legality only.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "paladin.supplement.oath-of-vengeance.final-verdict",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/paladin.json",
+      "sourceId": "paladin.supplement.oath-of-vengeance.final-verdict",
+      "sourceSha256": "588a235ef97e9f2d39ca847326623ea090b05676da713f90f447f75361e5582d",
+      "sourceProcedure": {
+        "name": "Final Verdict",
+        "activation": "Action",
+        "cost": "10 RP",
+        "rangeAndTarget": "One creature marked by you within 30 feet and at or below half maximum HP",
+        "duration": "Instantaneous or empowerment until end of your next regular turn",
+        "frequency": "At will while RP remains",
+        "effect": "The marked target makes a Constitution save, taking 4 S d8 radiant damage on failure or half on success. On failure it also cannot regain HP until the end of its next turn. If that damage reduces it to 0 HP, use ordinary Downed/death rules; there is no percentage-HP execution. On success your next Smite against it before the end of your next turn uses maximum damage dice. This bounded damage replaces the source draft’s automatic reduction to 0 HP.",
+        "prerequisite": "Paladin 17; Oath of Vengeance"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_TARGET_GATE",
+      "operationalOverrides": [
+        "Must be ≤half at activation.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "paladin.supplement.oathbreaker-oath-of-vengeance.death-touch-malicious-execution",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/paladin.json",
+      "sourceId": "paladin.supplement.oathbreaker-oath-of-vengeance.death-touch-malicious-execution",
+      "sourceSha256": "42295f38a12b89d74114739244ddfb5ba9e19a6f750356f0cf42fbbdfaf16740",
+      "sourceProcedure": {
+        "name": "Death Touch — Malicious Execution",
+        "activation": "Action",
+        "cost": "Declare and spend 1 through 2 S+M points from current Lay on Hands pool, even on miss",
+        "rangeAndTarget": "One creature within melee reach",
+        "duration": "Instantaneous",
+        "frequency": "At will while Lay on Hands points remain; rider once per turn",
+        "effect": "Make a melee divine attack using PB+Charisma. On hit deal necrotic damage equal to the declared Lay on Hands points. If the target was already at or below half maximum HP, it makes a Constitution save; on failure add S d6 necrotic damage. This rider never automatically executes or bypasses normal death rules.",
+        "prerequisite": "Paladin 3; Oathbreaker — Oath of Vengeance"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_DAMAGE",
+      "operationalOverrides": [
+        "“already” ≤half before rider damage.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "paladin.supplement.oathbreaker-oath-of-vengeance.fearbrand",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/paladin.json",
+      "sourceId": "paladin.supplement.oathbreaker-oath-of-vengeance.fearbrand",
+      "sourceSha256": "ecff141c9410cecd56ebbdaabcdb43dd1d6b686aa823a6b17afda3efc4307953",
+      "sourceProcedure": {
+        "name": "Fearbrand",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Up to 3 enemies in your Oath aura",
+        "duration": "Damage instantaneous; Frightened until end of next turn",
+        "frequency": "1/short rest; replaces Signature Power use",
+        "effect": "Each target makes a Wisdom save. On failure it takes 2 S d6 psychic damage and is Frightened until the end of its next turn; on success it takes half damage and is not Frightened. A target already below half maximum HP takes one additional d6 psychic damage. This creates no execution effect.",
+        "prerequisite": "Paladin 11; Oathbreaker — Oath of Vengeance"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_DAMAGE",
+      "operationalOverrides": [
+        "Below-half bonus assessed before its damage.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "paladin.supplement.oath-of-the-martyr-king.crown-undying",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/paladin.json",
+      "sourceId": "paladin.supplement.oath-of-the-martyr-king.crown-undying",
+      "sourceSha256": "f8de6f3fe586c6b30d10bbdd31c93e0976aa46dfb3631afbbcbebe8ebe1d0b1d",
+      "sourceProcedure": {
+        "name": "Crown Undying",
+        "activation": "Bonus Action",
+        "cost": "0 RP",
+        "rangeAndTarget": "Up to three selected allies in your aura",
+        "duration": "Three rounds; no concentration",
+        "frequency": "1/long rest",
+        "effect": "For three rounds apply Crown of Embers protection without consuming its short-rest use. Selected allies reduce their first damage each round by S and gain +1 on saves; this save bonus does not stack with Aura of the Crown. You may redirect from up to two selected allies each round, at most Paladin level+M damage total per round, without a Reaction. Original-target defenses apply once; redirected damage cannot be reduced again. Each protected ally then heals half the damage you actually absorbed for it, rounded down, maximum S+M per ally per round. This is a finite Final healing exception, cannot heal you, cannot exceed maximum HP, and cannot trigger another redirection or heal-copy chain. It does not reset the daily Lay on Hands pool.",
+        "prerequisite": "Paladin 20; Oath of the Martyr King"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "GUARD",
+      "operationalOverrides": [
+        "Heal cannot exceed max; no max modifier.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "shaman.hero.bloodcaller.talon-strike",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/shaman.json",
+      "sourceId": "shaman.hero.bloodcaller.talon-strike",
+      "sourceSha256": "6d8b5fb22ca3318d686cd4cb983113cde306f655db9875a58b62287826e71029",
+      "sourceProcedure": {
+        "name": "Talon Strike",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One enemy in claw reach",
+        "duration": "Instant; reduction until end next turn",
+        "frequency": "Recharge 2",
+        "effect": "Make one claw attack; hit adds S d6 necrotic and reduces the next healing it receives by M, minimum 0. Applies once and ends. No arbitrary percent stacking or permanent maximum-HP reduction.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "EXCLUSION",
+      "operationalOverrides": [
+        "Explicitly no permanent/max-HP reduction.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "tinker.hero.artificer.repair-pulse",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/tinker.json",
+      "sourceId": "tinker.hero.artificer.repair-pulse",
+      "sourceSha256": "bfea8b20493f349c4de02c639c7acb4842d61e734d7798ddad412422bfb81593",
+      "sourceProcedure": {
+        "name": "Repair Pulse",
+        "activation": "Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "Upto 3 friendly devices within 30 ft",
+        "duration": "Instant; AC until start next turn",
+        "frequency": "1/short rest",
+        "effect": "Restore each half its maximum HP rounded down and+1 AC. Functional devices only; no construct resurrection, organic HP, resource or use resets.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_DEVICE_REPAIR",
+      "operationalOverrides": [
+        "Functional device restores floor(max/2).",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "tinker.hero.techsmith.snap-rebuild",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/tinker.json",
+      "sourceId": "tinker.hero.techsmith.snap-rebuild",
+      "sourceSha256": "0a8d445d6a86fd84b5dc4587562eb1eab093cd81ae114f10be850ad8f512cd11",
+      "sourceProcedure": {
+        "name": "Snap Rebuild",
+        "activation": "Bonus Action",
+        "cost": "2 RP; 1 encounter use",
+        "rangeAndTarget": "One destroyed device/drone within 15 ft",
+        "duration": "Remaining original duration",
+        "frequency": "1/encounter",
+        "effect": "Restore half its maximum HP. Uses original slot and original expiry; expired devices ineligible. Does not reset limited uses, modules, Overdrive, destruction triggers or bomb stock.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_DEVICE_RECONSTRUCTION",
+      "operationalOverrides": [
+        "Destroyed device restored to floor(max/2); device lifecycle handles viability.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.engine[8]",
+      "sourceKind": "class-engine",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": 8,
+      "sourceSha256": "99a5efcfe2e2e606bb3782c034b79441119d5183396c4bf53787d8ffc58fae4a",
+      "sourceProcedure": {
+        "text": "BRUTALITY PROGRESS. Begin each real encounter with Brutality Progress 0 and BT 0. Add actual damage you personally deal to meaningful hostile creatures to Brutality Progress, but a single damage event contributes no more than one-quarter of your maximum HP. Crossing cumulative thresholds equal to 25%, 50% and 75% of your maximum HP grants 1 BT each, subject to the BT cap. Crossing 100% triggers Transcendent as described below but does not create a fourth stored BT unless Stack Overflow or another feature raises the cap."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "PERCENT_THRESHOLD_RESOURCE_ENGINE",
+      "operationalOverrides": [
+        "Brutality contribution/thresholds use reviewed max-HP snapshots; unchanged.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.engine[15]",
+      "sourceKind": "class-engine",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": 15,
+      "sourceSha256": "131241182dc02a463a2ac51c44a39e0d15e63ccfa46eeb436bc8763593d8e312",
+      "sourceProcedure": {
+        "text": "HEALING AND REGENERATION. Warrior healing cannot exceed maximum HP, restore the dead or remove Wounds unless a card explicitly says otherwise. Regeneration and repeated healing effects operate only during real encounters unless their card explicitly permits downtime healing. No corpse, summoned creature, trivial enemy or friendly target can be used to create infinite healing, serum doses or BT."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "GUARD",
+      "operationalOverrides": [
+        "Warrior healing maximum/death guard.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.base.brutality-sense",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": "warrior.base.brutality-sense",
+      "sourceSha256": "1e9c30e1f682ae0ef2c634631e163656321ce1f52ce9666e01fa06e6e23b6193",
+      "sourceProcedure": {
+        "name": "Brutality Sense",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Hostile creatures you can perceive within 60 feet",
+        "duration": "While condition remains true",
+        "frequency": "Always",
+        "effect": "Brutality Sense. You know when a visible hostile creature is at or below one-quarter of its maximum HP; it is Vulnerable for your Warrior features that specifically reference a marked vulnerable target. This does not reveal its exact HP or hidden resistances.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "CONTINUOUS_THRESHOLD",
+      "operationalOverrides": [
+        "Visible hostile ≤quarter recalculates continuously.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.hero.ironskin.regenerative-mutation",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": "warrior.hero.ironskin.regenerative-mutation",
+      "sourceSha256": "9dcfe6b7b149360e470c0d7940937b13c7bbdc4f696999b93710257158818fd1",
+      "sourceProcedure": {
+        "name": "Regenerative Mutation",
+        "activation": "Passive",
+        "cost": "Spend healing amount from Mutation Recovery Reserve",
+        "rangeAndTarget": "Self",
+        "duration": "While at least one mutation is active in a real encounter",
+        "frequency": "Once at the start of each regular turn",
+        "effect": "Regenerative Mutation. At the start of your regular turn during a real encounter, if at least one mutation is active and you are below maximum HP, regain S+M HP. This regeneration functions only during a real encounter, cannot restore the dead or remove Wounds, and cannot be increased by remaining in initiative without meaningful opposition. Each HP actually restored spends 1 Mutation Recovery Reserve; heal only up to remaining reserve.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "CONTINUOUS_BELOW_MAX_HEAL",
+      "operationalOverrides": [
+        "Eligible while current HP < effective max.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.hero.dreadspawn.pain-empowerment",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": "warrior.hero.dreadspawn.pain-empowerment",
+      "sourceSha256": "2b76787a8cddab4ebacdbf316a7c566f95cc8e0607dcc02cafc57f0dc09741ab",
+      "sourceProcedure": {
+        "name": "Pain Empowerment",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "While below maximum HP",
+        "frequency": "Always",
+        "effect": "Pain Empowerment. For every full 10% of your maximum HP currently missing, add +1 damage to one weapon or natural-weapon damage roll on each of your turns, maximum +5. Determine the bonus immediately before the chosen damage roll. Healing can reduce the bonus during the encounter. It does not increase mutation retaliation, ongoing damage or area effects.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "CONTINUOUS_PERCENT_MISSING",
+      "operationalOverrides": [
+        "Exact full 10% bands from current effective max.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.supplement.flesh-warden",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": "warrior.supplement.flesh-warden",
+      "sourceSha256": "6ebfcac9c52f7d99711196a075bf63622082e7a932f2ae4086949c4656a23886",
+      "sourceProcedure": {
+        "name": "Flesh Warden",
+        "activation": "Passive while equipped",
+        "cost": "One mutation slot",
+        "rangeAndTarget": "Self",
+        "duration": "While equipped",
+        "frequency": "Mutation",
+        "effect": "Increase maximum HP by 2 per Warrior level while equipped. Equipping raises maximum only, never current HP. Unequipping clamps current HP to the reduced maximum if necessary; it does not subtract another amount from current HP. Repeated swaps cannot heal.",
+        "prerequisite": "Warrior 1; Basic Vital"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS",
+      "operationalOverrides": [
+        "+2×Warrior level while equipped; capacity only.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.supplement.adrenal-floodgate",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": "warrior.supplement.adrenal-floodgate",
+      "sourceSha256": "00458063b06700533ef4cd58b5d045311c1a0fe9b663fa20f0fa7fc7414a5c3d",
+      "sourceProcedure": {
+        "name": "Adrenal Floodgate",
+        "activation": "Triggered while active",
+        "cost": "One mutation slot; serum activation",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "1/encounter",
+        "effect": "When you first fall to one-quarter maximum HP or less, regain 2d8 HP and end either Frightened, Poisoned or Staggered on yourself.",
+        "prerequisite": "Warrior 6; Advanced Vital"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_CROSSING",
+      "operationalOverrides": [
+        "First genuine fall to ≤quarter.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.supplement.mythic-carapace",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": "warrior.supplement.mythic-carapace",
+      "sourceSha256": "9af81b1909628a95c3cc716c883ed8c38e2cf4b847cf8f43b43ca43e5bb67dbc",
+      "sourceProcedure": {
+        "name": "Mythic Carapace",
+        "activation": "Passive while active",
+        "cost": "One mutation slot; serum activation",
+        "rangeAndTarget": "Self",
+        "duration": "Until encounter ends, mutation ends or you fall below one-quarter maximum HP",
+        "frequency": "Apex mutation",
+        "effect": "Gain DR 3 against all damage and immunity to Bleed, Poisoned and Burn-style ongoing fire effects. Once per encounter when one hit deals more than 20 actual damage after mitigation, gain 1 BT and refresh the remaining duration of your other active mutations to 3 rounds. It grants no serum-profile refresh.",
+        "prerequisite": "Warrior 15; Apex Vital; maximum one Apex equipped"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "CONTINUOUS_DURATION_THRESHOLD",
+      "operationalOverrides": [
+        "NEW: ends whenever state is strictly below quarter; >20 actual-damage rider separate.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "warrior.supplement.butcherform-chassis",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/warrior.json",
+      "sourceId": "warrior.supplement.butcherform-chassis",
+      "sourceSha256": "623cde33b8f868af96dbfed52d286fbc5b263603e9c44ddfff41ab6b2c0efe59",
+      "sourceProcedure": {
+        "name": "Butcherform Chassis",
+        "activation": "Passive while active",
+        "cost": "One mutation slot; serum activation",
+        "rangeAndTarget": "Self",
+        "duration": "3 rounds or until below one-quarter maximum HP",
+        "frequency": "Apex mutation",
+        "effect": "When you take the ordinary Attack action, make one additional melee attack beyond other Extra Attack effects, respecting the one-additional-full-Action guard because this is part of the same Action. Your melee criticals add one extra weapon damage die beyond normal critical dice, not triple total damage. Once per round when you personally kill a meaningful hostile with a melee attack, restore one consumed prepared serum dose, never above reserve capacity.",
+        "prerequisite": "Warrior 15; Apex Combat; maximum one Apex equipped"
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "CONTINUOUS_DURATION_THRESHOLD",
+      "operationalOverrides": [
+        "NEW: ends whenever state is strictly below quarter.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "wizard.engine[10]",
+      "sourceKind": "class-engine",
+      "sourcePath": "data/public/class_playtests/wizard.json",
+      "sourceId": 10,
+      "sourceSha256": "673521960e487b21772372733af6aaa0c478c7f3308b6a58607a3c5ac2d83f99",
+      "sourceProcedure": {
+        "text": "ABJURATION, provisional completion for the omitted eighth row: once per round after you cast an Abjuration spell, gain temporary HP equal to PB until the start of your next regular turn. CONJURATION: creatures summoned by your Wizard spells gain +1 maximum HP per Wizard level. DIVINATION: once per long rest reroll one failed saving throw and use the new result. ENCHANTMENT: when a creature fails its initial save against one of your Enchantment spells, a printed control duration of at least 1 round may last one additional round, but every normally allowed repeat save still occurs. EVOCATION: when casting an area Evocation spell, exclude one creature from its initial damaging area; that creature automatically succeeds and takes no damage if success normally halves damage. ILLUSION: gain +2 on concentration saves made to maintain Illusion spells. NECROMANCY: once per turn during a real encounter when a hostile non-summoned creature dies from your Necromancy spell, gain 1 temporary HP; it is not permanent healing. TRANSMUTATION: after casting a Transmutation spell, gain +5 feet Speed until the end of that turn."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS + EXCLUSIONS",
+      "operationalOverrides": [
+        "Conjuration +L to Wizard-summoned creatures; other school clauses separate.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "wizard.engine[24]",
+      "sourceKind": "class-engine",
+      "sourcePath": "data/public/class_playtests/wizard.json",
+      "sourceId": 24,
+      "sourceSha256": "95c82d28fd1e7975539e00e8550204b4923426cf2050dd14ac56e39197f705b1",
+      "sourceProcedure": {
+        "text": "Flesh Ascendant's bonus applies after the listed base statistics: every undead creature you control gains +2 maximum HP per Wizard level. If at least two of your undead creatures are active, each gains +1 AC and +1 on saving throws. This does not increase the standard-minion or elite-pet caps."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS_ENGINE",
+      "operationalOverrides": [
+        "Flesh Ascendant +2L after listed base; same modifier identity as card.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "wizard.hero.necromancer.flesh-ascendant",
+      "sourceKind": "class-card",
+      "sourcePath": "data/public/class_playtests/wizard.json",
+      "sourceId": "wizard.hero.necromancer.flesh-ascendant",
+      "sourceSha256": "d42c2937345d5ef23acd97375f6751ada7f9ba7b83ebe12212078d603257e37b",
+      "sourceProcedure": {
+        "name": "Flesh Ascendant",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Undead creatures you control",
+        "duration": "Permanent while active",
+        "frequency": "Always",
+        "effect": "Flesh Ascendant. Tags: hero, necromancer, passive, undead. Each undead creature you control gains +2 maximum HP per Wizard class level. While at least two of your undead creatures are active, each also gains +1 AC and +1 on saving throws. These bonuses apply after the common standard-minion and elite-pet statistics and do not increase companion caps or command frequency.",
+        "prerequisite": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS",
+      "operationalOverrides": [
+        "Same Flesh Ascendant bonus as engine[24], not cumulative with it.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "feat:exploit_weakness",
+      "sourceKind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "exploit_weakness",
+      "sourceSha256": "95ea910b9634b6361c12f2d3f6008aeecbc0d2e0872119df1dc0f7ed60addc76",
+      "sourceProcedure": {
+        "name": "Exploit Weakness",
+        "description": "At level 7, a combatant seeks wounded enemies for the listed critical chance.",
+        "prerequisite": "Level 7",
+        "effect": "Your weapon attacks score a critical hit on a roll of 19–20 against creatures below half their hit point maximum.",
+        "legacyEffect": "+15% crit on wounded enemies",
+        "status": "provisional-complete",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "THRESHOLD_ATTACK",
+      "operationalOverrides": [
+        "19–20 crit range only while target strictly below half.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "feat:familiar_bond",
+      "sourceKind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "familiar_bond",
+      "sourceSha256": "bea9d7f867e8c31c4b4e5d07a8db262037fbfa3cdc4843d136e120322d685114",
+      "sourceProcedure": {
+        "name": "Familiar Bond",
+        "description": "Your bond with your familiar is stronger.",
+        "prerequisite": "Ability to cast find familiar",
+        "effect": "Your familiar gains hit points equal to your level and can attack using your spell attack bonus.",
+        "legacyEffect": null,
+        "status": null,
+        "source": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS_PROVISIONAL",
+      "operationalOverrides": [
+        "NEW: familiar +owner level max HP; creation starts with boosted max/current, later growth capacity only.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "feat:tenacity",
+      "sourceKind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "tenacity",
+      "sourceSha256": "5f3e13d83dd42dca3d5fac9ba4fa2e707884921e38b07f80e230d3f013aae461",
+      "sourceProcedure": {
+        "name": "Tenacity",
+        "description": "Level 4 supports the listed +1 HP per level.",
+        "prerequisite": "Level 4",
+        "effect": "Your hit point maximum increases by 1 for each character level, including levels already gained.",
+        "legacyEffect": "+1 HP per level",
+        "status": "provisional-complete",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS_DYNAMIC",
+      "operationalOverrides": [
+        "+1 per current character level.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "feat:tough",
+      "sourceKind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "tough",
+      "sourceSha256": "525ce21adb774fad8a95a76be8358bf3e37fa8a2649aa2ccecb6c2009cbf45bc",
+      "sourceProcedure": {
+        "name": "Tough",
+        "description": "Your hit point maximum increases.",
+        "prerequisite": "None",
+        "effect": "Your hit point maximum increases by an amount equal to twice your level when you gain this feat.",
+        "legacyEffect": null,
+        "status": null,
+        "source": null
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS_SNAPSHOT",
+      "operationalOverrides": [
+        "+2×level at feat acquisition; no inferred future growth.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "feat:tough_as_nails",
+      "sourceKind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "tough_as_nails",
+      "sourceSha256": "148868a5e7c860c3f3569c6f3fcade2a1f323ddca3d9cb35609511fce3ed0d86",
+      "sourceProcedure": {
+        "name": "Tough as Nails",
+        "description": "Level 5 supports the listed +10% maximum HP.",
+        "prerequisite": "Level 5",
+        "effect": "Your hit point maximum increases by 2 per character level when you take this feat, and by 2 whenever you gain a level thereafter.",
+        "legacyEffect": "+10% max HP",
+        "status": "provisional-complete",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS_DYNAMIC",
+      "operationalOverrides": [
+        "+2 per current level with explicit later-level growth.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "feat:dark_fortitude",
+      "sourceKind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "dark_fortitude",
+      "sourceSha256": "852eee532dee1859120104bb0d8f83f5458baa418d3a224d02d255a0e7d7890a",
+      "sourceProcedure": {
+        "name": "Dark Fortitude",
+        "description": "Grave-cold and poison have tried to claim you. They learned your name and backed away. Prestige lineage: Gravetouched. completed from the existing development record.)",
+        "prerequisite": "Constitution 15+",
+        "effect": "You have advantage on saving throws against poison and disease. Your hit point maximum increases by 2 per character level. When you take necrotic damage, you can use your reaction to reduce that instance by half (once per short rest). While below half your hit point maximum, you have resistance to poison damage.",
+        "legacyEffect": "You have advantage on saving throws against poison and disease. Your hit point maximum increases by 2 per character level. When you take necrotic damage, you can use your reaction to reduce that instance by half (once per short rest). While below half your hit point maximum, you have resistance to poison damage.",
+        "status": "provisional-complete",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "MAX_HP_BONUS_DYNAMIC + CONTINUOUS_THRESHOLD",
+      "operationalOverrides": [
+        "+2/current level; poison resistance while strictly below half.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    },
+    {
+      "bindingId": "feat:life_drinker",
+      "sourceKind": "feat",
+      "sourcePath": "src/data/feats.js",
+      "sourceId": "life_drinker",
+      "sourceSha256": "9823f4d451eb12aa8054ad4dd9446cf99d3a7270090e9d9387906b259df516ca",
+      "sourceProcedure": {
+        "name": "Life Drinker",
+        "description": "Every wound you open is a cup. You drink and stand taller. Prestige lineage: Bloodbound. completed from the existing development record.)",
+        "prerequisite": "Dark Affinity or Hemocraft",
+        "effect": "When you score a critical hit with a melee attack, you regain hit points equal to half the damage dealt. When you reduce a hostile creature to 0 hit points with a melee attack, you regain hit points equal to your character level. While you are below half your hit point maximum, your melee weapon attacks deal +1d4 necrotic damage against creatures that have blood.",
+        "legacyEffect": "When you score a critical hit with a melee attack, you regain hit points equal to half the damage dealt. When you reduce a hostile creature to 0 hit points with a melee attack, you regain hit points equal to your character level. While you are below half your hit point maximum, your melee weapon attacks deal +1d4 necrotic damage against creatures that have blood.",
+        "status": "provisional-complete",
+        "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required."
+      },
+      "status": "REVIEWED / reference-VALIDATED: supplied maximum-HP/threshold role only",
+      "classification": "HEALING + CONTINUOUS_THRESHOLD",
+      "operationalOverrides": [
+        "Crit/kill healing plus +1d4 necrotic while strictly below half.",
+        "Final MAXIMUM_HP_PLAYTEST.md controls over first proposals: global strongest Monk trauma; independent Deathless clocks; strict first-fall crossings; Rewind historical damage can begin already below half; Wizard pair adds under explicit new exception; Tough acquisition snapshot retained."
+      ],
+      "reviewEvidence": [
+        "GPT_MAXIMUM_HP_FIRST_REVIEW_PARTIAL.md",
+        "GPT_MAXIMUM_HP_BOUNDARIES.md",
+        "GPT_MAXIMUM_HP_FINAL_CLOSURE.md"
+      ],
+      "openIssues": [
+        "Wider source mechanics, ownership/eligibility lifecycle, full advancement/feat system and unsupplied modifiers remain open. Engine/card Flesh Ascendant aliases must share one runtime effect identity."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Implemented the first 27 source-qualified draft definitions with 43 exact card/engine references. All references validate against current normalized sources. The registry remains IN_PROGRESS. Forty-two meaningful interface checks now pass for ownership, family arbitration, event snapshots, Doomed expiry and blocked HP recovery.
+
+One correction to your last worked examples: 30/100 HP does NOT qualify as at or below one quarter. The agreed formula 4*HP<=maxHP is correct; my tests explicitly cover25=true,26=false,30=false. The raw review is preserved with this erratum.
+
+I implemented your Bleed arbitration: one damaging stack group per identical target timing marker, highest expected unmitigated group damage then earliest; losing groups consume their due ticks. Permitted two-instance Crimson groups stay intact. Other timing markers remain separate. Technical engine identity and ordinary possessive ownership are separately tested; your correction to Thief's ownership scope is adopted.
+
+Before completing the remaining Burn bindings, please settle whether the same global same-marker arbitration applies to family.ongoing-fire. I propose YES for creature-attached Burn-style periodic records explicitly assigned that family, with existing source-group caps; it must NOT sweep in every fire area/hazard or direct fire hit. An unnamed attached periodic fire rider needs an explicit registry classification; its damage type alone is insufficient. Mythic Carapace's immunity to Burn-style ongoing fire then uses that family tag, while ordinary fire damage remains subject to its actual defenses. This prevents namespacing Burn from creating the stacking loophole we just closed for Bleed.
+
+Also verify that a legal magical healing attempt with positive potential can still trigger Bleed's ending procedure while Decay blocks actual HP gain, as already agreed for fullHP/Corrupted; Shaman Blood Curse gets its printed save instead of automatic ending. Decay prevents regainedHP, not separately printed condition removal. A source explicitly ending a condition should still operate unless its own wording requires actual HP gained.
+
+I will continue building the remaining bindings and their exact cure/stack metadata, then send the complete registry for adversarial review.

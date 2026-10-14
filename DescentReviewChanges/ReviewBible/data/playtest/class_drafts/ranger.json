@@ -1,0 +1,524 @@
+{
+  "class": "Ranger",
+  "engine": [
+    "Dexterity governs weapons; Wisdom governs primal technique DC/M. This draft uses the detailed book's d8 Hit Die; older runtime d10 remains preserved as a conflicting alternative. At1 gain Track Target engine: Bonus Action mark one perceived enemy within90ft for1 minute, no RP, one quarry at a time; new mark replaces old. Once/own turn a weapon hit against quarry adds S damage. Mark does not reveal creatures through total cover. Track Target selection is an upgrade, not a second unlock tax.",
+    "Weapon Synergy tracks last successful direct weapon hit on your own turns. Changing melee→ranged grants+1 to that ranged attack roll if it is your first attack of the turn; changing ranged→melee makes the hit apply Bleed1d4 on target's next2 turns. Once/turn synergy; DoTs, copies, companions, forced attacks and misses do not advance it. At5 ordinary Attack Action makes two attacks; techniques use only printed counts. You may draw/stow one weapon as normal object interaction; Dual Style later improves this.",
+    "Elemental Attunement is defensive; Elemental Imbue is the separate Pathfinder feature gated6. Imbue Bonus Action2RP, one element for3 of your turns; once/turn a weapon hit adds1d4 of chosen element plus fire:Burn1d4 next target turn, cold:Speed-10ft until end next turn, poison:CON save or-1attack rolls until end next turn. Nonstacking; DoTs never build Hit Chain. Switching element pays again.",
+    "Druidic Arrow Combo starts at Ranger11, not at Base1. Each direct successful weapon hit adds1 Hit Chain, maximum2 gained per regular turn and cap3. Completing3 primes one Arrow until end next turn; using it consumes the chain, even on miss. Efficient Killer lowers threshold2. Chain starts/ends encounters0, cannot be stocked against allies/captives/summons and is cleared by incapacitation. The Arrow is one Action with a ranged weapon attack or the stated save, costs0RP when primed, and is a magical class technique rather than an ordinary spell cast. At most one Arrow per round; it cannot advance its own chain. It requires a wielded bow and ammunition. Ordinary attack/damage riders apply once as printed, never another free arrow.",
+    "All Rangers learn five bounded Arrows at11. Emberroot requires the previous3 successful weapon hits carried fire imbue: ranged attack, weapon+S d6 fire on hit; up to2 others within5ft take S fire, and primary target Burns1d4 next turn. Glacial Thorn requires2 ranged+1melee among those3 hits: ranged attack weapon+S d6 cold; on hit STR save or Speed0 until end next turn. Venomlash requires poisoned/blighted terrain at you or target: ranged attack weapon+S d6 poison; on hit CON save or-1damage on its next attack. Spirit Fang requires quarry: ranged attack at advantage, weapon+S d6 force; ignores resistance but not immunity on the added force only. Cleansing Grove requires natural terrain at you or target: up to3 living allies within10ft of a point within60ft each end Frightened or Poisoned; no attack or damage.",
+    "Chosen Hero grants a sixth Arrow at11. Warder Nature's Wrath: ranged attack weapon+S d6 piercing; up to2 allies within10ft gain M temporary HP (finite mitigation, not repeatable real healing). Stalker Phantom: two ranged attacks against different aligned targets within60ft, each weapon damage, no extra dice; one Arrow activation. Outrider Corruption: place10ft-radius zone within60ft, concentration until start next turn; up to3 enemies entering/starting there take S d4 necrotic once each, CON half. Arrow copies cannot generate extra attacks, resources or permanent terrain changes.",
+    "A successful direct weapon hit between ordinary spell casts clears Refrain and gives the next ordinary spell before end next turn1 less Dissonance, minimum0. The benefit is single-use/nonstacking; it reduces neither RP nor both base and repeat separately. Ordinary spells use Ranger rank gates and the shared test magic configuration.",
+    "Base choices1–2, Pathfinder Arch3–9, and chosen Warder/Stalker/Outrider Hero10–20 are distinct stages. No source Arch capstone/Finale exists: level9 receives its normal eligible choice, while20 automatically improves your Hero Arrow once/long rest (new capstone below). Do not acquire a Hero by spending Base choices. Beast Companion is one permanent bond; it must be a willing/tamed noncorrupted beast with INT<7 and CR no greater than your class level. Its combat profile uses the bounded companion below rather than importing a full CR20 monster.",
+    "If a primed Arrow expires unused, the prime ends and Hit Chain resets to 0. This applies equally to Efficient Killer’s threshold of two. Efficient Killer itself requires Ranger 11, when Hit Chain exists."
+  ],
+  "workedExample": [
+    "Ranger11, DEX18, WIS16, PB4, S3, M3, RP18. Track quarry with Bonus Action; no RP spent. Start Hit Chain0.",
+    "Turn1 normal Attack Action has2 attacks; both hit quarry, chain0→2. Apply quarry bonus3 once, not twice. No Arrow until next qualifying hit.",
+    "Turn2 first weapon attack hits, chain2→3 and primes Arrow. You already spent your Action on Attack, so cannot freely add an Arrow. An extra Action from an ally would use the shared cap, but none is assumed.",
+    "Turn3 use Spirit Fang Arrow as Action, consume chain3→0, pay0RP. On hit weapon+3d6force; advantage does not double damage. The Arrow cannot rebuild its own chain.",
+    "Turn4 cast an ordinary rank1 spell after the previous direct weapon hit between casts. Pay2RP, RP18→16 plus any pre-existing strain surcharge. Its base1D is reduced by1 to0; the one-use cadence benefit ends.",
+    "On encounter end unused chain and mark expire. RP does not refill. Natural-terrain healing and companions still need their printed finite costs."
+  ],
+  "balanceQuestions": [
+    "Can switching weapons remain worthwhile without eclipsing focused styles?",
+    "Does the level11 Arrow timing feel rewarding without free attacks?",
+    "Are permanent companions useful while respecting a shared command budget?"
+  ],
+  "cards": [
+    [
+      3841,
+      1,
+      "Ritual",
+      "0; 1 hour during rest",
+      "One bow or pair of blades touched",
+      "Until rebonded",
+      "One bond",
+      "Bond weapons. Bonus Action summons one bonded weapon to your hand from within30ft if not held by another creature and no total cover. Cannot disarm someone or cross planar boundaries; bond no additional items."
+    ],
+    [
+      3842,
+      1,
+      "Passive",
+      "0",
+      "Your quarry",
+      "While marked",
+      "Continuous",
+      "You have advantage on Survival checks to follow its physical tracks for1 hour after the mark ends. While it is marked, once/turn your first hit also ignores2 points of nonmagical flat damage reduction. Does not pierce immunity or reveal through cover."
+    ],
+    [
+      3843,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Advantage on Survival checks in natural terrain; ignore nonmagical difficult terrain caused by vegetation, loose earth, mud or snow. Magical terrain, climbing and hazards still require their own rules."
+    ],
+    [
+      3844,
+      1,
+      "Passive",
+      "0",
+      "Self in natural terrain",
+      "While known",
+      "Continuous",
+      "Gain+2 Perception and passive Perception. You still need a sense that can detect the target; this does not reveal invisible creatures automatically or read tracks through solid stone."
+    ],
+    [
+      3845,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "Choice on learning",
+      "Continuous",
+      "Choose one: Precision adds1 to first ranged attack each turn against quarry; Momentum gives+5ft Speed after switching weapon mode; Wild Hunt gives advantage on Survival to follow injured creatures and+1initiative. Choices do not stack; no general retraining."
+    ],
+    [
+      3848,
+      1,
+      "Bonus Action",
+      "1 short-rest use",
+      "One enemy in bow range",
+      "Instant",
+      "1/short rest",
+      "Make one ranged weapon attack, dealing weapon die only without ability damage modifier. Does not trigger Extra Attack or another Quick Shot; may gain one Hit Chain point at11 within the turn cap."
+    ],
+    [
+      3849,
+      1,
+      "Action",
+      "0",
+      "One or2 enemies in melee reach; two light weapons wielded",
+      "Instant",
+      "Recharge2",
+      "Make one attack with each weapon. Add ability modifier to first hit only. These are the full attacks for this Action; do not add ordinary Extra Attack. Hit Chain gains at11 cap2 per turn."
+    ],
+    [
+      3850,
+      1,
+      "Action",
+      "1RP",
+      "Natural terrain within15ft",
+      "1 minute",
+      "Recharge3",
+      "Gain advantage on one Perception/Survival check to find tracks, hidden natural creatures or signs of passage. It reveals evidence on success, not automatically creatures through total cover, incorporeal beings or thoughts."
+    ],
+    [
+      3851,
+      1,
+      "Bonus Action",
+      "0",
+      "Self",
+      "Immediate movement",
+      "Recharge2",
+      "Move up to half Speed without provoking opportunity attacks. Supplied movement does not increase remaining normal movement. Requires an unblocked route; no teleport or escape from restraints."
+    ],
+    [
+      3852,
+      1,
+      "Bonus Action",
+      "1RP",
+      "Self",
+      "Concentration, 1 minute",
+      "Recharge3",
+      "Choose fire/cold/poison. Gain resistance to that damage and sense an exposed source of it within15ft. Does not infuse weapons, detect through total cover or identify exact poison recipes."
+    ],
+    [
+      3858,
+      3,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Ignore movement cost increases from difficult terrain, including magical terrain. You still suffer its separate damage, restraints and hazards, and cannot cross impassable walls or surfaces without movement capability."
+    ],
+    [
+      3859,
+      3,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Gain+2 Stealth and Perception. It does not stack with Keen Senses on Perception; use+2 total from these class features. Advantage from another feature is separate."
+    ],
+    [
+      3860,
+      3,
+      "Passive",
+      "0",
+      "Self after switching melee/ranged weapon mode",
+      "Until start next turn",
+      "Once/own turn",
+      "Gain+1AC after making an attack with the new mode. Drawing/stowing alone is insufficient. Further switches refresh neither extra AC nor actions."
+    ],
+    [
+      3861,
+      7,
+      "Passive",
+      "0",
+      "Self",
+      "While conscious",
+      "Continuous",
+      "You cannot be surprised by a creature you can perceive. Gain advantage on saves against scrying; on success learn someone attempted it but not identity/location. No blanket immunity to divination."
+    ],
+    [
+      3862,
+      5,
+      "Passive",
+      "0",
+      "Self",
+      "Own turn",
+      "Once/turn",
+      "Draw/stow a bow and up to2 light melee weapons as one free exchange on your turn. This replaces normal object interaction for those weapons and cannot manipulate unrelated items or grant attacks."
+    ],
+    [
+      3863,
+      6,
+      "Bonus Action",
+      "2RP",
+      "Wielded weapons",
+      "3 of your turns",
+      "Recharge3",
+      "Use the engine's fire/cold/poison Imbue: once/turn add1d4 and its bounded elemental rider to a weapon hit. Switching element pays again. It does not stack multiple imbues or multiply DoTs."
+    ],
+    [
+      3866,
+      3,
+      "Action",
+      "1RP",
+      "One fixed visible point within30ft",
+      "24 hours",
+      "One location mark",
+      "Know direction and rough distance to the point within10 miles on same plane. A new mark replaces old. It does not create teleportation, observe occupants or reveal a path through barriers."
+    ],
+    [
+      3867,
+      3,
+      "Bonus Action",
+      "0",
+      "Self in natural cover",
+      "Until you move or attack",
+      "Recharge2",
+      "Take Hide with advantage if foliage, rock or other natural cover can conceal you. Being stationary in open view does not qualify. Does not grant invisibility or hide your allies."
+    ],
+    [
+      3868,
+      3,
+      "Action",
+      "0",
+      "Visible terrain within60ft",
+      "Instant information",
+      "Recharge2",
+      "Learn up to2 observable tactical facts: difficult ground, unstable footing, tracks or usable cover. Director states facts supported by senses; hidden magical traps still need normal checks. Next ally following your identified safe route gains+5ft movement once."
+    ],
+    [
+      3869,
+      5,
+      "Bonus Action",
+      "1RP",
+      "Self in natural terrain",
+      "This turn",
+      "Recharge3",
+      "Take Dash, gaining movement equal to Speed; ignore opportunity attacks from your quarry during this movement only. No free attacks, flight, wall traversal or doubled daily travel rate."
+    ],
+    [
+      3870,
+      9,
+      "Bonus Action",
+      "2RP",
+      "Your quarry within90ft",
+      "1 minute",
+      "Recharge3",
+      "Upgrade current mark: first direct weapon hit per turn adds1d6 rather than the engine's flat S; choose the higher, not both. Know quarry direction while within90ft unless blocked by total cover. Requires concentration; ordinary mark remains if this upgrade ends."
+    ],
+    [
+      3879,
+      10,
+      "Triggered",
+      "1RP",
+      "Self in natural terrain",
+      "Start of your regular turn",
+      "Once/turn",
+      "You may pay1RP to regain2HP. Does not trigger when Downed or incapacitated, cannot exceed maximum and never counts as another healing spell. Replaces unlimited passive regeneration with a finite cost."
+    ],
+    [
+      3880,
+      10,
+      "Passive",
+      "0",
+      "Natural beasts within30ft that hear you",
+      "While communicating",
+      "Continuous",
+      "Communicate simple emotions/directions. They are not automatically friendly or controlled, cannot answer beyond their experience, and may need normal Animal Handling. No language-based compulsion or extra companion slot."
+    ],
+    [
+      3881,
+      10,
+      "Ritual",
+      "1RP; 10 minutes",
+      "Natural area within300ft",
+      "Instant information",
+      "1/short rest",
+      "Learn direction of one substantial recent fire, poisoning or unnatural blight in the area. Does not locate arbitrary enemies or identify culprits. A protected or planar-hidden effect may remain undetected."
+    ],
+    [
+      3882,
+      10,
+      "Passive",
+      "0",
+      "One other ally healed by your paid spell/item",
+      "Instant",
+      "Once/turn",
+      "Add M HP to actual healing. Do not multiply potion dice or duplicate consumed items; cannot apply to regeneration, companions' healing, copies or another Ranger's same bonus."
+    ],
+    [
+      3885,
+      10,
+      "Action",
+      "3RP",
+      "Up to3 enemies in10ft-radius ground area within60ft",
+      "Concentration, 3 of your turns",
+      "Recharge3",
+      "STR save or Speed0. Each affected target repeats save at end of each turn and may use Action to attempt escape using STR(Athletics) against classDC. Flying creatures not touching ground are unaffected."
+    ],
+    [
+      3886,
+      10,
+      "Action",
+      "4RP",
+      "Fixed10ft-radius natural-ground zone within30ft;3 allies/pulse",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "On start heal1d8+M per chosen living ally; on next2 turns Bonus Action+1RP repeats pulse. Maximum3 pulses; no passive additional entry healing and no Wound removal."
+    ],
+    [
+      3887,
+      12,
+      "Bonus Action",
+      "3RP",
+      "Empty space adjacent to injured ally within30ft",
+      "Instant; pressure until start next turn",
+      "Recharge3",
+      "Teleport to visible legal space. Up to2 adjacent enemies make WIS save; failure gives disadvantage on next attack against someone other than you. No forced targeting, movement or whole-Action loss."
+    ],
+    [
+      3888,
+      14,
+      "Action",
+      "3RP",
+      "One willing ally within30ft",
+      "Concentration, 3 of your turns",
+      "Recharge3",
+      "Ally gains+10ft Speed and S d6+M temporary HP on start. While effect lasts it has advantage on saves against forced movement. Temporary HP are not refreshed each turn."
+    ],
+    [
+      3889,
+      16,
+      "Ritual",
+      "4RP; 1 hour with a willing/tamed eligible beast",
+      "One beast touched",
+      "Bond persists; one companion",
+      "1/long rest",
+      "Bond eligible beast using standard companion stats plus Wisdom modifier HP; preserve one movement mode up to40ft and keen-sense advantage. Bonus Action command gives one attack, no imported boss powers. Injury persists; heal normally. Death requires a new bond after long rest, not free resummoning."
+    ],
+    [
+      3895,
+      10,
+      "Passive",
+      "0",
+      "Self after ranged attack",
+      "Until start next turn",
+      "Once/turn",
+      "Gain+1AC against the next ranged attack targeting you. Benefit ends after that attack, hit or miss. Multiple shots do not create multiple dodge charges."
+    ],
+    [
+      3896,
+      10,
+      "Passive",
+      "0",
+      "Self at normal walking speed",
+      "While moving",
+      "Continuous",
+      "Leave no mundane footprints and make no ordinary footstep sound. You still need cover and Stealth to hide; speech, equipment noise, scent, tremorsense and magical tracking remain possible."
+    ],
+    [
+      3897,
+      10,
+      "Passive",
+      "0",
+      "Your quarry within normal sight",
+      "While marked",
+      "Continuous",
+      "If quarry attempts to Hide while visible to you, you know its position until it gains total cover or leaves your sight. Does not negate invisibility, darkness or planar travel without an appropriate sense."
+    ],
+    [
+      3898,
+      11,
+      "Passive",
+      "0",
+      "Your Hit Chain after class11 unlock",
+      "While known",
+      "Continuous",
+      "Arrow threshold becomes2 successful direct weapon hits instead of3; gain cap remains2/turn. The source of an Arrow's combo prerequisite still needs its stated history; Emberroot/Glacial may require3 hits even though chain is primed at2."
+    ],
+    [
+      3901,
+      10,
+      "Bonus Action",
+      "2RP",
+      "Self in natural cover or dim light",
+      "Until end next turn or attack/cast",
+      "Recharge3",
+      "Become invisible; ends immediately after your first attack roll or spell cast, hit or miss. No automatic surprise. Taking damage does not itself end it, but ordinary senses can locate you."
+    ],
+    [
+      3902,
+      10,
+      "Action",
+      "3RP",
+      "Up to3 distinct enemies in bow range",
+      "Instant",
+      "Recharge3",
+      "Make3 bow attacks, each weapon die without ability damage modifier. Ignore half cover, not armor or total cover. Quarry/riders once per their limits; chain gains at most2. This is not three full Attack Actions."
+    ],
+    [
+      3903,
+      12,
+      "Action",
+      "3RP",
+      "One enemy in bow range",
+      "Instant; shield suppression until end next turn",
+      "Recharge3",
+      "One bow attack; hit adds S d6 piercing. Target makes STR save or loses its shield's AC bonus until end next turn. One visible rank1–3 magical defense can instead be suppressed after a WIS save failure; never permanently destroys gear or dispels everything."
+    ],
+    [
+      3904,
+      14,
+      "Action",
+      "2RP",
+      "One enemy in melee reach",
+      "Instant",
+      "Recharge3",
+      "One melee weapon attack with+2 to hit; on hit add S d6 force. Only added force ignores resistance, not immunity. Does not remove natural armor, all AC or legendary defenses."
+    ],
+    [
+      3905,
+      16,
+      "Bonus Action",
+      "4RP; 1 short-rest use",
+      "Self; visible destination within30ft",
+      "Until start next turn or attack/cast",
+      "1/short rest",
+      "Teleport to unoccupied visible space and become invisible until the stated end. Cannot pass a ward that blocks teleportation, escape a dimensional prison or retain invisibility after attacking."
+    ],
+    [
+      3911,
+      10,
+      "Triggered",
+      "1 short-rest use",
+      "Self after directly reducing quarry to0",
+      "Your next regular turn",
+      "1/short rest",
+      "Gain one extra full Action next turn within the shared cap. It cannot grant another Action or trigger another Predator's Grin. Allies, summons, helpless creatures and ongoing copied damage do not qualify."
+    ],
+    [
+      3912,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Immune to Poisoned and nonmagical disease; gain poison resistance. This deliberately replaces blanket immunity to every poison/disease source. Existing magical diseases require their own treatment."
+    ],
+    [
+      3913,
+      10,
+      "Passive",
+      "0",
+      "Your Elemental Imbue",
+      "Up to6 of your turns",
+      "Once/turn spread",
+      "Imbue lasts6 turns instead of3. On a weapon critical, one other enemy within5ft takes1d4 of imbue type. No additional condition, Hit Chain or recursive critical effects on that secondary damage."
+    ],
+    [
+      3914,
+      10,
+      "Passive",
+      "0",
+      "Primary target of your Arrow on blighted ground",
+      "Until end target's next turn",
+      "Once/Arrow",
+      "On hit target makes CON save or the next HP healing it receives is reduced by M, minimum0. This is temporary Blight, not permanent campaign Corruption; multiple applications do not stack."
+    ],
+    [
+      3917,
+      10,
+      "Action",
+      "3RP",
+      "Up to3 enemies in10ft-radius area within60ft",
+      "Instant; Poisoned until end next turn",
+      "Recharge3",
+      "CON save: S d8 poison, half on success; failure Poisoned until end next turn. No permanent Corruption gain, contagious disease or poison harvesting. This is a paid technique and does not build Hit Chain."
+    ],
+    [
+      3918,
+      10,
+      "Action",
+      "3RP",
+      "One enemy standing on ground within60ft",
+      "Concentration, 3 of your turns",
+      "Recharge3",
+      "CON save or tethered: first time it voluntarily moves at least5ft each turn, takes S d4 necrotic. Repeat save at turn end ends tether. Forced movement causes no damage; maximum1tick/turn, no whole-turn loss."
+    ],
+    [
+      3919,
+      12,
+      "Action",
+      "4RP",
+      "Fixed15ft-radius ground area within60ft",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Create temporary blighted difficult terrain. On start and first entry/start of turn, up to3 enemies take S d4 necrotic, CON half, maximumonce/creature/round. Ground returns unchanged afterward; no permanent ecological corruption or resource farming."
+    ],
+    [
+      3920,
+      14,
+      "Action",
+      "3RP",
+      "One enemy in bow range",
+      "Instant; until end target's next turn",
+      "Recharge3",
+      "Bow attack; hit adds S d6 necrotic and target makes CON save. Failure halves the next HP healing it receives before expiry, rounding down. No stacking with another reduction to create negative healing."
+    ],
+    [
+      3921,
+      16,
+      "Bonus Action",
+      "5RP; 1 long-rest use",
+      "Self; direct weapon targets",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "Your first weapon hit each turn adds1d6 poison; target CON save or Poisoned until end next turn. You lose M real HP on activation, cannot fall below1. The controlled effect is not a transmissible permanent disease and creates no free toxins."
+    ]
+  ],
+  "extraCards": [
+    {
+      "name": "Master of the Hunt — new Hero capstone",
+      "level": 20,
+      "activation": "Triggered",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "One legal chosen Hero Arrow",
+      "duration": "That Arrow",
+      "frequency": "1/long rest",
+      "effect": "New playtest Hero capstone. Once per long rest when using your Hero Arrow, pay its normal Hit Chain/action requirements, then enhance only that activation: Warder grants2M temporary HP instead of M; Stalker adds S d6 piercing to one of its two hits; Outrider adds S d4 necrotic to one target on its single pulse. No extra Arrow, Hit Chain, action or copied proc.",
+      "acquisition": "automatic",
+      "band": "Hero"
+    }
+  ],
+  "reviewStatus": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

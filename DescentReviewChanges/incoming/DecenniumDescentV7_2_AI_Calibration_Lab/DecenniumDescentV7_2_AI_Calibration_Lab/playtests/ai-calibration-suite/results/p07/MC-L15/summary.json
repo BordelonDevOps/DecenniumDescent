@@ -1,0 +1,246 @@
+{
+  "pack": "07-statistical-combat-calibration",
+  "scenarioId": "MC-L15",
+  "runId": "MC-L15-70700",
+  "seed": 70700,
+  "sourceHash": "6db62c7f6cf4ad5e4cb940ba2f4fdb373d94dc327a6d990b238c59e9e1f29797",
+  "fixtureHash": "826c6271688cfd0855a5b87481a030007f9890ec5f3c411e3fc416db35fe87af",
+  "evidenceLevel": "A",
+  "outcome": "WARN",
+  "metrics": {
+    "cells": [
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6844,
+        "meanDowned": 0.02,
+        "meanRounds": 5.673,
+        "meanHitRate": 0.571,
+        "meanHealing": 57.29,
+        "meanDamageDealt": 197.35,
+        "meanRpSpent": 3.2,
+        "wipeRate": 0.0,
+        "budget": 90.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "hard",
+        "runs": 1000,
+        "winRate": 0.898,
+        "winRateCI95": [
+          0.8792,
+          0.9168
+        ],
+        "meanHpPct": 0.3264,
+        "meanDowned": 0.995,
+        "meanRounds": 9.337,
+        "meanHitRate": 0.6317,
+        "meanHealing": 153.2,
+        "meanDamageDealt": 337.19,
+        "meanRpSpent": 7.37,
+        "wipeRate": 0.102,
+        "budget": 130.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "severe",
+        "runs": 1000,
+        "winRate": 0.001,
+        "winRateCI95": [
+          -0.001,
+          0.003
+        ],
+        "meanHpPct": 0.0001,
+        "meanDowned": 3.999,
+        "meanRounds": 9.158,
+        "meanHitRate": 0.6104,
+        "meanHealing": 144.33,
+        "meanDamageDealt": 265.0,
+        "meanRpSpent": 6.87,
+        "wipeRate": 0.999,
+        "budget": 180.0
+      },
+      {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "catastrophic",
+        "runs": 1000,
+        "winRate": 0.009,
+        "winRateCI95": [
+          0.0031,
+          0.0149
+        ],
+        "meanHpPct": 0.0015,
+        "meanDowned": 3.977,
+        "meanRounds": 9.876,
+        "meanHitRate": 0.5516,
+        "meanHealing": 153.9,
+        "meanDamageDealt": 221.96,
+        "meanRpSpent": 7.28,
+        "wipeRate": 0.991,
+        "budget": 240.0
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6352,
+        "meanDowned": 0.072,
+        "meanRounds": 6.471,
+        "meanHitRate": 0.6062,
+        "meanHealing": 84.59,
+        "meanDamageDealt": 458.84,
+        "meanRpSpent": 5.13,
+        "wipeRate": 0.0,
+        "budget": 125.99999999999999
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "hard",
+        "runs": 1000,
+        "winRate": 0.995,
+        "winRateCI95": [
+          0.9906,
+          0.9994
+        ],
+        "meanHpPct": 0.495,
+        "meanDowned": 0.4,
+        "meanRounds": 8.084,
+        "meanHitRate": 0.5591,
+        "meanHealing": 132.25,
+        "meanDamageDealt": 483.13,
+        "meanRpSpent": 7.43,
+        "wipeRate": 0.005,
+        "budget": 182.0
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "severe",
+        "runs": 1000,
+        "winRate": 0.836,
+        "winRateCI95": [
+          0.813,
+          0.859
+        ],
+        "meanHpPct": 0.2572,
+        "meanDowned": 2.114,
+        "meanRounds": 10.218,
+        "meanHitRate": 0.5304,
+        "meanHealing": 167.12,
+        "meanDamageDealt": 512.08,
+        "meanRpSpent": 9.34,
+        "wipeRate": 0.164,
+        "budget": 251.99999999999997
+      },
+      {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "catastrophic",
+        "runs": 1000,
+        "winRate": 0.026,
+        "winRateCI95": [
+          0.0161,
+          0.0359
+        ],
+        "meanHpPct": 0.0042,
+        "meanDowned": 5.909,
+        "meanRounds": 9.424,
+        "meanHitRate": 0.521,
+        "meanHealing": 142.79,
+        "meanDamageDealt": 340.67,
+        "meanRpSpent": 7.86,
+        "wipeRate": 0.974,
+        "budget": 336.0
+      }
+    ],
+    "cellCount": 8,
+    "runsPerCell": 1000,
+    "objective": "high-level control and durability"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "suspected",
+      "type": "band_collapse",
+      "level": 15,
+      "partySize": 4,
+      "pair": [
+        "severe",
+        "catastrophic"
+      ],
+      "winRates": [
+        0.001,
+        0.009
+      ],
+      "detail": "Adjacent difficulty bands have overlapping outcomes (<5pp separation)."
+    },
+    {
+      "severity": "suspected",
+      "type": "standard_off_band",
+      "cell": {
+        "level": 15,
+        "partySize": 4,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6844,
+        "meanDowned": 0.02,
+        "meanRounds": 5.673,
+        "meanHitRate": 0.571,
+        "meanHealing": 57.29,
+        "meanDamageDealt": 197.35,
+        "meanRpSpent": 3.2,
+        "wipeRate": 0.0,
+        "budget": 90.0
+      },
+      "detail": "Standard win rate outside 55\u201392% chassis expectation window."
+    },
+    {
+      "severity": "suspected",
+      "type": "standard_off_band",
+      "cell": {
+        "level": 15,
+        "partySize": 6,
+        "difficulty": "standard",
+        "runs": 1000,
+        "winRate": 1.0,
+        "winRateCI95": [
+          1.0,
+          1.0
+        ],
+        "meanHpPct": 0.6352,
+        "meanDowned": 0.072,
+        "meanRounds": 6.471,
+        "meanHitRate": 0.6062,
+        "meanHealing": 84.59,
+        "meanDamageDealt": 458.84,
+        "meanRpSpent": 5.13,
+        "wipeRate": 0.0,
+        "budget": 125.99999999999999
+      },
+      "detail": "Standard win rate outside 55\u201392% chassis expectation window."
+    }
+  ],
+  "rawEvidencePath": "results/07-statistical-combat-calibration/MC-L15/"
+}

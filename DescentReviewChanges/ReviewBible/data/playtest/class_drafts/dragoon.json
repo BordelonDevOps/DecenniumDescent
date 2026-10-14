@@ -1,0 +1,547 @@
+{
+  "class": "Dragoon",
+  "engine": [
+    "Strength is the class ability. Momentum starts/ends encounters at0; cap5, rising to7 with Momentum Overflow or automatically at class9. On each regular turn, moving at least15ft under your own power grants1 Momentum, and damaging an enemy with a weapon attack grants1 more. These are the only default gains; all gains/refunds together cap2 per round. Forced movement, teleportation, movement in place, allies and summons cannot farm Momentum. Movement counts actual path traveled toward a tactical destination; one threshold per turn.",
+    "A leap technique moves you through an unobstructed arc to a visible unoccupied landing space within its range, adjacent to its target when attacking. Land during the same activation. It spends movement equal to horizontal distance, unless the card expressly supplies additional movement. A leap never gives flight, indefinite airborne immunity or free attacks. You cannot leap through ceilings/walls; vertical height is at most half the printed horizontal range. Safe technique landings do not cause self-fall damage; interrupted/falling travel follows ordinary falling rules. No bonus damage is earned by repeatedly dropping from a ledge.",
+    "All attack cards use a wielded polearm unless they explicitly describe a non-weapon save effect. A technique is its own Action, not an Attack Action plus free technique. At class5 your ordinary Attack Action makes two attacks, at most two even when multiclass features overlap; each technique still gives only printed attacks. This automatic Extra Attack is a new explicit advancement specification for the pilot.",
+    "Armor bypass means the exact printed attack bonus or resistance exception, never subtracting a percentage of the target's whole AC. Critical ranges do not stack. A Dragoon can use only one free/Bonus Action leap granted by class features per round; it cannot trigger another free leap. Extra full Actions share the suite-wide cap. Reaction intercepts require a legal path and destination and do not rewind resolved damage.",
+    "Spending Momentum pays before resolution; a hit refund cannot pay its own activation. Burn means1d4 fire at start of target's next2 turns, nonstacking. Bleed means1d4 physical at start of next2 turns; an Action with a healer's kit ends it. DoTs give no Momentum or critical triggers. Hard denial uses the shared once-per-target/encounter guard.",
+    "When casting an ordinary spell after moving at least20ft this turn, reduce that cast's Dissonance gain by1, minimum0; no automatic RP discount. Dragoon techniques are martial unless their card specifies elemental magic. Use CoreV2 RP and the Dragoon rank gates for separate spellcasting.",
+    "Use scheduled Base/Arch/Hero choices. Skybound Assault, Momentum Engine and related passives improve the automatic engine rather than unlock basic movement or generation. Lancer's Apex is automatic9; at10 choose Dragon Guardian, Drake Rider or Dragon Tyrant. The corresponding Final Flight is automatic20. Apex Assault is an active technique despite its source passive heading."
+  ],
+  "workedExample": [
+    "Dragoon5, STR16, PB3, S2, M3; start Momentum0. Know Dragon Leap, Momentum Surge, Wyvern's Guard and Draconic Roar at1; Momentum Engine and Draconic Discipline at2; Dragonflight and Momentum Overflow at3. Capacity7.",
+    "Turn1: Dragon Leap spends0 Momentum and moves20ft of Speed30. Weapon attack hits: movement+hit each gain1, ending2. It rolls weapon damage+2d6. Land immediately.",
+    "Turn2: Bonus Action Momentum Surge spends2, balance0, increases movement. Move20ft and use ordinary Attack Action: first successful hit and movement return2 total, even if both attacks hit. End2.",
+    "Turn3: Dragonflight costs2, balance0. It supplies movement up to60ft as part of the Action; hit and movement regain2 within the common cap. End2; no additional normal Attack Action.",
+    "Turn4: if knocked prone, use Aerial Recovery only if known and your Reaction is available. Its1 Momentum still counts toward the round gain cap. A second refund cannot exceed2 total gains.",
+    "End encounter: Momentum0. RP, per-rest uses and other party resources do not refill."
+  ],
+  "balanceQuestions": [
+    "Does Momentum stay available without trivial back-and-forth movement?",
+    "Do Guardian intercepts compete fairly for Reactions?",
+    "Are Tyrant area attacks and Rider extra Actions bounded at high level?"
+  ],
+  "cards": [
+    [
+      2277,
+      1,
+      "Passive",
+      "0",
+      "One target hit by your leap",
+      "Instant",
+      "Once/own turn",
+      "After a leap moves at least15ft and its attack hits, add S damage. Its hit grants ordinary Momentum, not an extra point. This benefit cannot trigger from forced movement or a leap granted by this same feature."
+    ],
+    [
+      2278,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Gain advantage on saves against being knocked Prone or forcibly moved. It does not protect against Stunned, spell damage or grappling unless the save also imposes one of those named effects."
+    ],
+    [
+      2279,
+      1,
+      "Passive",
+      "0",
+      "Self",
+      "This turn",
+      "Once/own turn",
+      "After your first15ft of voluntary movement generates Momentum, ignore the next5ft of nonmagical difficult terrain this turn. The movement threshold itself is automatic class engine; this feature does not create another gain trigger."
+    ],
+    [
+      2280,
+      1,
+      "Passive",
+      "0",
+      "Polearm weapon attacks",
+      "While known",
+      "Continuous",
+      "Increase your wielded polearm's reach by5ft, maximum15ft. Once/own turn a natural19 polearm attack that hits critically hits. It does not extend the range of other abilities or stack with another critical-range expansion."
+    ],
+    [
+      2281,
+      1,
+      "Reaction",
+      "0",
+      "Self during an actual leap",
+      "This damage instance",
+      "Once/round",
+      "When a ranged attack hits you during your leap movement, halve its damage. You must spend the Reaction before damage resolves. Remaining airborne between turns cannot be declared to keep this protection active."
+    ],
+    [
+      2284,
+      1,
+      "Action",
+      "0",
+      "One polearm enemy at landing point within30ft",
+      "Instant",
+      "Recharge2",
+      "Leap, spending normal movement, then make one polearm attack. On hit add S d6 weapon-type damage. Legal movement and a hit may each grant1 Momentum under the common cap. Land immediately; height never adds unbounded damage."
+    ],
+    [
+      2285,
+      1,
+      "Action",
+      "1 Momentum",
+      "One enemy in polearm reach",
+      "Instant",
+      "Recharge2",
+      "Make one polearm attack with+2 to the attack roll. On hit add S d4 weapon damage. This is the complete armor-piercing benefit; no percentage of AC is removed and critical range is unchanged."
+    ],
+    [
+      2286,
+      1,
+      "Bonus Action",
+      "1 Momentum",
+      "Self",
+      "Until start next turn",
+      "Recharge2",
+      "The next attack that damages you has damage reduced by S d6+M, minimum0; then the guard ends. Roll the reduction only when damage occurs. This reduction cannot heal or reflect damage."
+    ],
+    [
+      2287,
+      1,
+      "Bonus Action",
+      "2 Momentum",
+      "Self",
+      "Until end current turn",
+      "Recharge2",
+      "Gain+15ft Speed and+1 on your next polearm attack this turn. Spend before moving; movement may then generate normal Momentum. Grants no attack, extra Action, Bonus Action or Reaction."
+    ],
+    [
+      2288,
+      1,
+      "Action",
+      "1 Momentum",
+      "Up to3 enemies and3 allies within15ft that hear you",
+      "Until end your next turn",
+      "Recharge3",
+      "Enemies make WIS saves; failure Frightened of you. Chosen allies gain advantage on their next save against Frightened before duration ends. A creature may repeat the WIS save at its turn end, ending fear on success."
+    ],
+    [
+      2294,
+      3,
+      "Passive",
+      "1 Momentum",
+      "Up to2 enemies within5ft of your leap landing",
+      "Instant",
+      "Once/own turn",
+      "After your leap attack hits, optionally pay1; each selected adjacent enemy makes STR save or falls Prone. No additional weapon damage or Momentum gain. Landing on an occupied space is not permitted."
+    ],
+    [
+      2295,
+      3,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Momentum cap becomes7 early; cap becomes7 for all Dragoons at9. When starting a weapon technique with6 or7 Momentum, its first hit adds1d6 damage before costs are deducted. Once/own turn, not per point above5; no stored overflow beyond7."
+    ],
+    [
+      2296,
+      3,
+      "Bonus Action",
+      "1 Momentum",
+      "Self; next polearm attack",
+      "Until end current turn",
+      "Recharge3",
+      "Your next polearm attack gains+2 to hit and ignores resistance to its weapon damage type. Immunity remains. It does not ignore shields, natural armor, cover or arbitrary halves of AC."
+    ],
+    [
+      2297,
+      3,
+      "Passive",
+      "0",
+      "Self",
+      "Until start next turn",
+      "Once/own turn",
+      "After moving15ft voluntarily, gain+1AC. If you critically hit with a polearm that turn, add1d6 weapon damage once. The added die does not double itself or create further critical triggers."
+    ],
+    [
+      2298,
+      5,
+      "Passive",
+      "0",
+      "Self after a damaging leap hit",
+      "Instant",
+      "Once/round",
+      "Regain1 Momentum within the total2-per-round gain cap, and shorten one OTHER positive leap cooldown by1. Shortening uses that ability's reset allowance. No free leap or Action follows."
+    ],
+    [
+      2299,
+      7,
+      "Action",
+      "All Momentum, minimum3",
+      "One enemy in polearm reach after leap up to30ft",
+      "Instant",
+      "Recharge4",
+      "Spend K Momentum and leap using normal movement. Make one polearm attack; on hit add min(K,5)d6 weapon damage. On a miss no bonus damage; expenditure remains. Gains from this activation cannot exceed the common cap."
+    ],
+    [
+      2300,
+      9,
+      "Triggered",
+      "All Momentum at current maximum; 1 short-rest use",
+      "Self; one known non-Finale leap",
+      "This activation",
+      "1/short rest",
+      "Before paying the leap's Momentum cost, spend all maximum Momentum instead and use that leap as a Bonus Action, still paying other costs. It cannot trigger another free leap. Damage and hit generation use ordinary caps; this grants no extra Bonus Action."
+    ],
+    [
+      2303,
+      3,
+      "Action",
+      "2 Momentum",
+      "One enemy adjacent to landing within60ft",
+      "Instant",
+      "Recharge3",
+      "Leap up to60ft as additional movement supplied by this Action. Make one polearm attack on landing; on hit add(S+1)d6 weapon damage. No damage scaling from distance/height and no remaining flight."
+    ],
+    [
+      2304,
+      3,
+      "Action",
+      "2 Momentum",
+      "Up to3 distinct enemies in polearm reach",
+      "Instant",
+      "Recharge3",
+      "Make one polearm attack against each. No target is attacked twice. Hit-based Momentum can be gained only once this turn regardless of number of hits; movement and refund caps still apply."
+    ],
+    [
+      2305,
+      5,
+      "Bonus Action",
+      "All Momentum, minimum2",
+      "Self",
+      "Until end current turn",
+      "Recharge3",
+      "Spend K Momentum. Next polearm hit this turn adds min(K,4)d6 weapon damage. If the next attack misses the effect ends. It does not widen critical range or multiply another added damage package."
+    ],
+    [
+      2306,
+      3,
+      "Reaction",
+      "0",
+      "Self just knocked Prone or pushed",
+      "Instant",
+      "Recharge2",
+      "After the triggering displacement resolves, stand from Prone without movement cost and move5ft to an unoccupied space without provoking opportunity attacks. Gain1 Momentum within the round cap. Cannot prevent falling without a legal landing."
+    ],
+    [
+      2307,
+      7,
+      "Bonus Action",
+      "1 Momentum",
+      "One visible enemy within60ft",
+      "Until end next turn",
+      "Recharge3",
+      "Study it: your first polearm attack against it has advantage, and you learn one of its visible damage resistances if any. No automatic critical, secret full stat block or ability to attack through cover."
+    ],
+    [
+      2316,
+      10,
+      "Reaction",
+      "2 Momentum",
+      "Ally within15ft targeted by an attack",
+      "One attack",
+      "Recharge2",
+      "Before the attack roll, leap to an empty space adjacent to ally using this supplied movement. Become the target if the attack can reach you; resolve against your AC. Cannot be used if restrained or no path. Counts as your one intercept reaction."
+    ],
+    [
+      2317,
+      10,
+      "Passive",
+      "0",
+      "Self while above half maximum HP",
+      "While threshold met",
+      "Continuous",
+      "Reduce each damage instance by2 and gain advantage on CON saves against Bleed, Burn and Poisoned. No blanket condition immunity; effects already present persist and ordinary nonstacking reduction applies."
+    ],
+    [
+      2318,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "Until start next turn",
+      "Once/own turn",
+      "After spending at least1 Momentum, gain temporary HP equal to amount spent+M, maximum10. Later expenditure replaces with the higher remaining value; no real HP restoration."
+    ],
+    [
+      2319,
+      10,
+      "Reaction",
+      "1 Momentum",
+      "Melee attacker in polearm reach that misses you while at maximum Momentum",
+      "Instant",
+      "Once/round",
+      "Make one polearm attack. Pay Momentum after checking the maximum prerequisite. This counter grants no Momentum and cannot trigger another counter or leap. It consumes your ordinary Reaction."
+    ],
+    [
+      2320,
+      20,
+      "Action",
+      "5 Momentum; 1 long-rest use",
+      "Leap within30ft; up to6 allies within15ft of landing",
+      "Instant; protection until start next turn",
+      "1/long rest",
+      "Land in empty space. Chosen allies gain4d8+M temporary HP and may end Frightened or Poisoned. They gain resistance to the next damage instance before your next turn. No healing, resurrection or removal of Wounds."
+    ],
+    [
+      2323,
+      10,
+      "Reaction",
+      "2 Momentum",
+      "Ally within30ft being hit by an attack",
+      "One attack",
+      "Recharge3",
+      "Leap adjacent before damage, becoming the target of that already successful hit; halve damage to you after normal mitigation. No new roll against your AC. Requires legal path/landing. You cannot also use Aegis Leap on the same attack."
+    ],
+    [
+      2324,
+      10,
+      "Action",
+      "3 Momentum",
+      "Self and up to3 allies within10ft",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Project a ward: chosen creatures while within10ft reduce damage by S, minimum0. The reduction does not stack with Wyrmhide or another flat class reduction. No passive healing or extra Actions."
+    ],
+    [
+      2325,
+      12,
+      "Bonus Action",
+      "3 Momentum",
+      "Self",
+      "Until end next turn",
+      "Recharge4",
+      "Gain resistance to bludgeoning, piercing and slashing and advantage on saves against Poisoned, Frightened and Stunned. This is not immunity; existing conditions still require their ordinary removal."
+    ],
+    [
+      2326,
+      14,
+      "Action",
+      "All Momentum, minimum3",
+      "Up to4 allies within15ft",
+      "Temporary HP1 minute",
+      "Recharge4",
+      "Spend K Momentum. Each gains K+S d6 temporary HP, using one shared dice roll. These HP do not stack with other shields and no unspent Momentum remains. This is not concentration."
+    ],
+    [
+      2327,
+      16,
+      "Action",
+      "4 Momentum; 1 long-rest use",
+      "Fixed15ft-radius zone centered within30ft; up to6 allies",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "Chosen allies inside reduce damage by5 and have advantage against Frightened/Charmed. On start and each of your next2 turns, Bonus Action lets one ally inside repeat one save against a present Frightened, Charmed or Poisoned effect. No automatic mass cleanse each turn."
+    ],
+    [
+      2333,
+      10,
+      "Passive",
+      "0",
+      "One creature hit by your leap",
+      "Until end next turn",
+      "Once/own turn",
+      "Mark that creature; your first subsequent direct polearm hit adds S damage. A new mark replaces old. No extra damage to the triggering leap, DoTs or copies; it is not a spell mark."
+    ],
+    [
+      2334,
+      10,
+      "Bonus Action",
+      "1 Momentum",
+      "Wielded polearm",
+      "3 of your turns",
+      "Recharge3",
+      "Choose fire, cold or lightning. Once/own turn one polearm hit adds1d6 chosen damage. Switching requires a new activation and full cost. Does not stack with Elemental Lance's bonus; use stronger."
+    ],
+    [
+      2335,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Once/round shortening",
+      "Increase leap range by10ft, not vertical ceiling penetration or flight. After a successful leap hit, shorten one OTHER positive leap cooldown by1 using its reset allowance. Does not combine with Wyvern's Flow on the same counter in a round."
+    ],
+    [
+      2336,
+      14,
+      "Triggered",
+      "3 additional Momentum; 1 short-rest use",
+      "Self after spending at least3 Momentum on a technique this turn",
+      "Next regular turn only",
+      "1/short rest",
+      "Pay3 additional Momentum now to gain one extra full Action on your next turn. Shared cap applies; it cannot grant another Action or another Momentum Tempo. Triggering technique must have been paid without this additional cost. No queued actions."
+    ],
+    [
+      2337,
+      20,
+      "Action",
+      "5 Momentum; 1 long-rest use",
+      "Leap up to60ft; up to6 enemies within15ft of landing",
+      "Instant",
+      "1/long rest",
+      "Choose fire/cold/lightning. DEX save:6d8 chosen damage, half on success. On failure fire applies Burn, cold reduces Speed10ft until end next turn, lightning prevents Reactions until then. Land in legal empty space; no additional weapon attack."
+    ],
+    [
+      2340,
+      10,
+      "Bonus Action",
+      "2 Momentum",
+      "Your polearm",
+      "3 of your turns",
+      "Recharge3",
+      "Choose fire/cold/lightning. Once/own turn a hit adds S d4 damage; fire adds1 damage, cold reduces target Speed5ft until end next turn, lightning denies opportunity attacks until start its next turn. Nonstacking with Spearcraft; one element rider/turn."
+    ],
+    [
+      2341,
+      10,
+      "Bonus Action",
+      "2 Momentum",
+      "Self",
+      "This turn",
+      "Recharge3",
+      "Gain+20ft Speed and may replace10ft of normal movement with a leap of10ft horizontally/5ft vertically. This is movement only, not another leap attack or technique. No new Action or attack is granted."
+    ],
+    [
+      2342,
+      12,
+      "Action",
+      "3 Momentum",
+      "Up to2 enemies adjacent to legal landings within30ft",
+      "Instant",
+      "Recharge3",
+      "Leap to first target, attack once, then leap up to15ft to second and attack once. All movement supplied by Action; two attacks maximum even with Extra Attack. Add1d6 to each hit. Only one hit-generated Momentum per turn."
+    ],
+    [
+      2343,
+      14,
+      "Bonus Action",
+      "3 Momentum",
+      "Self",
+      "Concentration, 3 of your turns",
+      "Recharge4",
+      "Choose fire/cold/lightning: gain resistance to that type and may convert normal polearm weapon damage to it. This adds no damage and cannot combine with another resistance multiplicatively. Choice fixed for duration."
+    ],
+    [
+      2344,
+      16,
+      "Action",
+      "4 Momentum; 1 long-rest use",
+      "Moving10ft aura; up to3 enemies per pulse",
+      "Concentration, 3 of your turns",
+      "1/long rest",
+      "Choose element. Start and on each of next2 turns, Bonus Action pulses S d6 damage, DEX half. During duration Speed+10ft. No free weapon attacks or Momentum from pulse damage; maximum3 pulses."
+    ],
+    [
+      2350,
+      10,
+      "Passive",
+      "1 Momentum",
+      "Up to2 enemies within5ft of your leap landing",
+      "Until end target's next turn",
+      "Once/own turn",
+      "After a leap hit pay1. Targets make WIS save; on failure Frightened and-1AC. Save repeated at each turn end ends both. This neither stacks AC penalties nor affects enemies beyond the printed area."
+    ],
+    [
+      2351,
+      10,
+      "Triggered",
+      "0",
+      "Self on polearm critical or hostile kill",
+      "Instant",
+      "Once/round",
+      "Gain2 Momentum, still within total2-per-round gain cap. A critical kill is one trigger, not two. DoTs, copies, allies, summons and helpless creatures cannot trigger it."
+    ],
+    [
+      2352,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "Until end next turn",
+      "Once/own turn",
+      "After spending Momentum, your next direct polearm hit adds damage equal to points spent, maximum5. Further spending replaces rather than adds this bonus. It is flat damage and grants no resource refund."
+    ],
+    [
+      2353,
+      10,
+      "Passive",
+      "0",
+      "Self",
+      "While known",
+      "Continuous",
+      "Increase leap vertical clearance allowance by10ft, never through solid obstacles. Once/own turn a natural19 polearm hit critically hits; use the broadest critical range rather than stacking. It does not let you remain flying."
+    ],
+    [
+      2354,
+      20,
+      "Action",
+      "5 Momentum; 1 long-rest use",
+      "Leap up to60ft; up to6 enemies within15ft",
+      "Instant; conditions as stated",
+      "1/long rest",
+      "STR save:6d8 bludgeoning, half on success. Failure knocks Prone and applies one Bleed and Burn. Failure by10 also Stuns until end target's next turn, subject to denial cap. Ground becomes difficult terrain for1 minute; no destruction of structural supports."
+    ],
+    [
+      2357,
+      10,
+      "Action",
+      "2 Momentum",
+      "One enemy in polearm reach",
+      "Instant; pin until end next turn",
+      "Recharge3",
+      "Weapon attack; hit adds S d6 piercing. A hit creature no more than one size larger makes STR save or is Restrained and Bleeding. It may use Action STR(Athletics) or DEX(Acrobatics) versus classDC to end restraint. You must stay in reach to maintain pin."
+    ],
+    [
+      2358,
+      10,
+      "Action",
+      "2 Momentum",
+      "Up to3 enemies within30ft that hear you",
+      "Until end your next turn",
+      "Recharge3",
+      "WIS save or Frightened; each repeats save at its turn end. On failure by10 it must use up to10ft of its next normal movement away from you by a safe route, not a full Action or hazardous compulsory movement."
+    ],
+    [
+      2359,
+      12,
+      "Bonus Action",
+      "3 Momentum",
+      "Self",
+      "3 of your turns",
+      "Recharge4",
+      "Once/own turn your first polearm hit adds S d6 damage. Gain+10ft Speed but suffer-1AC. No extra attacks, Actions, crit range or scaling from an unbounded resource count."
+    ],
+    [
+      2360,
+      14,
+      "Action",
+      "3 Momentum",
+      "Up to4 enemies in10ft radius centered within polearm reach",
+      "Instant; terrain1 minute",
+      "Recharge4",
+      "STR save: (S+1)d6 bludgeoning, half on success; failure Prone. Ground becomes difficult terrain, excluding reinforced structures and magical floors. This creates neither a pit nor free falling damage."
+    ],
+    [
+      2361,
+      16,
+      "Bonus Action",
+      "4 Momentum; 1 long-rest use",
+      "Self",
+      "3 of your turns",
+      "1/long rest",
+      "Your first leap technique each turn costs1 less Momentum, minimum1, and its first hit adds1d8 damage. Once during duration convert one non-Finale Action leap to Bonus Action, paying costs; consumes your one free/Bonus Action leap allowance and grants no extra Action."
+    ]
+  ]
+}

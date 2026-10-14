@@ -1,0 +1,1922 @@
+{
+  "reviewId": "FEAT327-SOURCE-2026-10-11",
+  "conflicts": [
+    {
+      "id": "CONFLICT-counterspell_adept",
+      "original": {
+        "featId": "counterspell_adept",
+        "description": "At level 6, practiced countering receives the listed +4 bonus on interrupt checks.",
+        "effect": "Gain a +2 bonus to checks made to counter or interrupt a spell. If your system uses a save DC instead, increase your counterspell DC by 1.",
+        "legacyEffect": "+4 to interrupt checks",
+        "disposition": "pending joint full-clause review; no field silently overwritten"
+      },
+      "decision": "SELECT_CURRENT_EFFECT; PRESERVE_DESCRIPTION_AND_LEGACY_AS_HISTORY",
+      "completeResolution": "Select current+2 interrupt checks and conditional+1 counter-save DC over legacy+4. Ordinary Counterspell is its actual task; no saving throw is invented.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: counterspell_adept"
+    },
+    {
+      "id": "CONFLICT-runic_shield",
+      "original": {
+        "featId": "runic_shield",
+        "description": "Wisdom 14+ supports the listed absorption of the first 50 spell damage per combat.",
+        "effect": "At the start of combat, gain a runic ward with 15 hit points. The ward absorbs spell damage first and vanishes when depleted. It refreshes after a short rest.",
+        "legacyEffect": "Absorbs first 50 spell damage per combat",
+        "disposition": "pending joint full-clause review; no field silently overwritten"
+      },
+      "decision": "SELECT_CURRENT_EFFECT; PRESERVE_DESCRIPTION_AND_LEGACY_AS_HISTORY",
+      "completeResolution": "Select15 ward HP over legacy50, armed once by an actual beneficial rest and consumed across later encounters until refreshed; no encounter-entry refill farming.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: runic_shield"
+    },
+    {
+      "id": "CONFLICT-mystic_focus",
+      "original": {
+        "featId": "mystic_focus",
+        "description": "At level 6, focused spellwork receives the feat's listed +2 spell penetration.",
+        "effect": "Gain +1 to spell attack rolls and to checks made to overcome magical resistance.",
+        "legacyEffect": "+2 spell penetration",
+        "disposition": "pending joint full-clause review; no field silently overwritten"
+      },
+      "decision": "SELECT_CURRENT_EFFECT; PRESERVE_DESCRIPTION_AND_LEGACY_AS_HISTORY",
+      "completeResolution": "Select current+1 spell attacks/real resistance checks over legacy+2 penetration; distinct feat bonuses add, but absent checks are not created.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: mystic_focus"
+    },
+    {
+      "id": "CONFLICT-overchannel",
+      "original": {
+        "featId": "overchannel",
+        "description": "At level 10, an overchanneled spell takes the listed backlash to boost its damage by 25%.",
+        "effect": "Once per long rest, add one additional damage die per spell tier to a damaging spell. After it resolves, take force damage equal to twice the spell tier; this damage cannot be reduced.",
+        "legacyEffect": "Boost spell damage by 25%, take backlash",
+        "disposition": "pending joint full-clause review; no field silently overwritten"
+      },
+      "decision": "SELECT_CURRENT_EFFECT; PRESERVE_DESCRIPTION_AND_LEGACY_AS_HISTORY",
+      "completeResolution": "Select current one native damage die per rank and2×rank unreducible post-attempt force backlash over legacy25%; actual Temp HP can absorb this distinct backlash.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: overchannel"
+    },
+    {
+      "id": "CONFLICT-lingering_magic",
+      "original": {
+        "featId": "lingering_magic",
+        "description": "Wisdom 13+ sustains spell effects for the listed 20% longer duration.",
+        "effect": "When you cast a spell with a duration of at least 1 round and no concentration, extend its duration by 1 round. Once per spell.",
+        "legacyEffect": "Spell effects last 20% longer",
+        "disposition": "pending joint full-clause review; no field silently overwritten"
+      },
+      "decision": "SELECT_CURRENT_EFFECT; PRESERVE_DESCRIPTION_AND_LEGACY_AS_HISTORY",
+      "completeResolution": "Select current one-round extension over legacy20%, retaining non-concentration and actual independent endpoints; it creates no additional fixed-count pulses.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: lingering_magic"
+    },
+    {
+      "id": "CONFLICT-protective_casting",
+      "original": {
+        "featId": "protective_casting",
+        "description": "At level 6, casting grants the listed +10% AC for 5 seconds.",
+        "effect": "After casting a ranked spell, gain +1 AC until the start of your next turn.",
+        "legacyEffect": "+10% AC for 5s after casting",
+        "disposition": "pending joint full-clause review; no field silently overwritten"
+      },
+      "decision": "SELECT_CURRENT_EFFECT; PRESERVE_DESCRIPTION_AND_LEGACY_AS_HISTORY",
+      "completeResolution": "Select current ranked-cast+1AC until next start over legacy10%/five seconds; completed failed-target casts qualify, countered casts do not, and distinct flat feats add.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: protective_casting"
+    },
+    {
+      "id": "CONFLICT-spell_deflection",
+      "original": {
+        "featId": "spell_deflection",
+        "description": "Intelligence 16+ supports the listed 10% chance to redirect hostile spell.",
+        "effect": "Once per long rest, when targeted by a single-target hostile spell, roll a d20. On 16 or higher, redirect it to another legal target within its original range; otherwise gain advantage on the saving throw.",
+        "legacyEffect": "10% chance to redirect hostile spell",
+        "disposition": "pending joint full-clause review; no field silently overwritten"
+      },
+      "decision": "SELECT_CURRENT_EFFECT; PRESERVE_DESCRIPTION_AND_LEGACY_AS_HISTORY",
+      "completeResolution": "Select one-LR unmodified d20≥16 redirection over legacy10%; actual sole-target eligibility, paid Reaction and fallback saving advantage create no new save.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: spell_deflection"
+    },
+    {
+      "id": "CONFLICT-twin_cast",
+      "original": {
+        "featId": "twin_cast",
+        "description": "Level 8 supports the listed 5% chance to auto-cast a spell twice.",
+        "effect": "Once per long rest, after casting a single-target spell of Tier 1–3, target a second legal creature within range without paying additional RP.",
+        "legacyEffect": "5% chance to auto-cast spell twice",
+        "disposition": "pending joint full-clause review; no field silently overwritten"
+      },
+      "decision": "SELECT_CURRENT_EFFECT; PRESERVE_DESCRIPTION_AND_LEGACY_AS_HISTORY",
+      "completeResolution": "Select one LR-bounded second legal target for rank1–3 over legacy5% repeated cast; native secondary result only, no extra cast/history/concentration or production.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: twin_cast"
+    },
+    {
+      "id": "CONFLICT-acrobatic_mastery",
+      "original": {
+        "featId": "acrobatic_mastery",
+        "description": "Disciplined balance turns a failed Acrobatics attempt into a practiced recovery.",
+        "effect": "When you fail a Dexterity (Acrobatics) check, reroll it. You must use the new result. You regain this use after a long rest.",
+        "legacyEffect": "Reroll failed Acrobatics check once per day"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep complete-procedure reroll before committed consequences; fixed-DC degrees and opposed-total loss remain different. LR is beneficial owner rest, not a daily reset.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: acrobatic_mastery"
+    },
+    {
+      "id": "CONFLICT-battlefield_tactician",
+      "original": {
+        "featId": "battlefield_tactician",
+        "description": "Soldierly analysis lends a practiced edge to every tactics roll.",
+        "effect": "+2 bonus to tactics rolls.",
+        "legacyEffect": "+2 bonus to tactics rolls"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt the explicit Soldier-class acquisition bridge and existing-skill concrete planning predicates; no attack/DC/command gain.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: battlefield_tactician"
+    },
+    {
+      "id": "CONFLICT-beast_whisperer",
+      "original": {
+        "featId": "beast_whisperer",
+        "description": "Steady rapport with animals keeps a handling attempt from becoming a critical failure.",
+        "effect": "When you roll a natural 1 on an Animal Handling check, treat the die as a 2. You can communicate simple emotional intent to beasts through posture and sound.",
+        "legacyEffect": "Handle animal checks never fail critically"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep effective 1-to-2 face replacement with raw history, including rerolls; current effect does not promise immunity to critical failure by margin.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: beast_whisperer"
+    },
+    {
+      "id": "CONFLICT-climb_anywhere",
+      "original": {
+        "featId": "climb_anywhere",
+        "description": "Practiced athletics removes the listed check penalty when scaling vertical surfaces.",
+        "effect": "You gain a climbing speed equal to your walking speed on surfaces with handholds. Climbing sheer or inverted surfaces still requires a check, but you do not suffer disadvantage solely because of the angle.",
+        "legacyEffect": "No check penalty on vertical surfaces"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep current walking-Speed derived climb with real holds/support and shared movement expenditure. Inherited penalties apply once, not twice.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: climb_anywhere"
+    },
+    {
+      "id": "CONFLICT-cold_reader",
+      "original": {
+        "featId": "cold_reader",
+        "description": "Careful insight and presence let the character read the listed surface thoughts in dialogue.",
+        "effect": "After observing a creature speak for 1 minute, make an Insight check contested by its Deception. On a success, learn one surface motive, emotional pressure, or conversational goal; this is not telepathy.",
+        "legacyEffect": "Read surface thoughts during dialogue"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep continuous actual speaking observation, understood interpreted channel, opposed tie, one evidence-supported motive and changed-evidence retries under completed LAX/EX58.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: cold_reader"
+    },
+    {
+      "id": "CONFLICT-cultural_expert",
+      "original": {
+        "featId": "cultural_expert",
+        "description": "Studied history or lore receives the listed +2 bonus on related knowledge checks.",
+        "effect": "Choose History, Religion, or a culture-specific Lore skill. Gain proficiency; if already proficient, add double your proficiency bonus to checks concerning cultures, customs, and historical context.",
+        "legacyEffect": "Gain +2 on all knowledge checks involving history or lore"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt per-acquisition training snapshot and bounded History specialization; no new generic Lore skill or invented culture.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: cultural_expert"
+    },
+    {
+      "id": "CONFLICT-disguise_expert",
+      "original": {
+        "featId": "disguise_expert",
+        "description": "Practiced deception adds the listed +5 when the character is disguised.",
+        "effect": "While wearing a prepared disguise, add +2 to Deception checks made to maintain the assumed identity. Creating a convincing disguise requires appropriate materials and 10 minutes.",
+        "legacyEffect": "Add +5 to deception when disguised"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep ten-minute physical preparation and wearer-owned bonus with actual attire-family eligibility; no new size, voice or credentials.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: disguise_expert"
+    },
+    {
+      "id": "CONFLICT-dungeon_cartographer",
+      "original": {
+        "featId": "dungeon_cartographer",
+        "description": "An experienced explorer builds a map while moving through a dungeon.",
+        "effect": "You can create reliable maps while traveling at a normal pace. After mapping an area for 10 minutes, you and allies using the map gain advantage on checks to retrace that route until the dungeon reshapes it.",
+        "legacyEffect": "Create map as you explore"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep ten observable accumulated mapping minutes and source-granted normal-pace concurrent mapping only; use completed EX58 pace and changed-segment history.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: dungeon_cartographer"
+    },
+    {
+      "id": "CONFLICT-field_surgeon",
+      "original": {
+        "featId": "field_surgeon",
+        "description": "A Wisdom-trained medic uses Medicine to stabilize an ally at 1 HP.",
+        "effect": "When you successfully stabilize a dying creature with Medicine or a healer’s kit, it regains 1 hit point. A creature can benefit from this feat once per long rest.",
+        "legacyEffect": "Stabilize ally with 1 HP using Medicine"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt direct 1-HP recovery after genuine stabilization and shared recipient LR-offer lock; keep broad recovery blockers, independent Field Medic and existing bodily consequences.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: field_surgeon"
+    },
+    {
+      "id": "CONFLICT-forensic_investigator",
+      "original": {
+        "featId": "forensic_investigator",
+        "description": "Investigative training reveals the listed hidden clues from a scene.",
+        "effect": "When examining a scene for at least 10 minutes, the Director must reveal one additional physical clue that could reasonably be discovered there on a successful Investigation check.",
+        "legacyEffect": "Gain hidden clues from scene"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep real ten-minute examination and finite additional clue; no clue is invented by a successful check or second owner.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: forensic_investigator"
+    },
+    {
+      "id": "CONFLICT-intuitive_reflex",
+      "original": {
+        "featId": "intuitive_reflex",
+        "description": "Dexterity 14+ lends the listed initiative bonus to an intuitive reflex.",
+        "effect": "Gain +2 to initiative rolls.",
+        "legacyEffect": "+2 bonus to Initiative"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep +2 per new initiative roll; replace future stacking reference by this conference common convention; no PB or initiative reordering.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: intuitive_reflex"
+    },
+    {
+      "id": "CONFLICT-librarian_s_eye",
+      "original": {
+        "featId": "librarian_s_eye",
+        "description": "Intelligence 15+ supports recalling read text with the listed +5 recall bonus.",
+        "effect": "You can accurately recall the substance of text you have read. Gain +2 on checks to quote, locate, or compare previously studied written material.",
+        "legacyEffect": "Recall any read text with +5 recall bonus"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep understood substance and +2 actual quote/locate/compare task, not inactive +5/verbatim omniscience.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: librarian_s_eye"
+    },
+    {
+      "id": "CONFLICT-lock_savant",
+      "original": {
+        "featId": "lock_savant",
+        "description": "Dexterity 15+ and Thievery 5+ provide the listed success increase on complex locks.",
+        "effect": "Gain +2 on checks to open complex locks. A failed attempt does not trigger the lock’s trap unless you fail by 5 or more.",
+        "legacyEffect": "+15% success on complex locks"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep complex-lock +2 and numerical failure-by-five protection only for failure-triggered traps; ordinary lock Action/DC15 remains the governing baseline.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: lock_savant"
+    },
+    {
+      "id": "CONFLICT-master_tracker",
+      "original": {
+        "featId": "master_tracker",
+        "description": "Survival 4+ and Wisdom 13+ support the listed tracking with +10 accuracy.",
+        "effect": "Gain +2 on Survival checks to track. You can track at a normal travel pace and identify the approximate number, size, and age of tracks on a successful check.",
+        "legacyEffect": "Track creatures with +10 accuracy"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep +2 and normal-pace tracking with real evidence; compatibility alias is one identity, not another grant.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: master_tracker"
+    },
+    {
+      "id": "CONFLICT-rogue_s_escape",
+      "original": {
+        "featId": "rogue_s_escape",
+        "description": "Dexterity 15+ at level 7 supports the listed one automatic Escape Artist success each day.",
+        "effect": "Once per long rest, when restrained or grappled, you may automatically succeed on the check or save to escape.",
+        "legacyEffect": "Auto succeed 1 Escape Artist roll/day"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep pre-roll ordinary success on one already-authorized escape; pay original Action and LR allowance, no new escape, teleport or critical benefit.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: rogue_s_escape"
+    },
+    {
+      "id": "CONFLICT-runic_scholar",
+      "original": {
+        "featId": "runic_scholar",
+        "description": "Arcana 5+ and Intelligence 14+ support the listed instant identification of magical symbols.",
+        "effect": "After studying a magical symbol for 1 minute, identify its school, activation method, and whether it is harmful without triggering it, unless it is protected by mythic concealment.",
+        "legacyEffect": "Identify magical symbols instantly"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt one-minute noncontact examination protection only against study-caused triggers; independent triggers/mythic concealment and surrounding text remain separate.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: runic_scholar"
+    },
+    {
+      "id": "CONFLICT-silent_movement",
+      "original": {
+        "featId": "silent_movement",
+        "description": "Stealth 4+ supports the listed no-penalty movement through difficult terrain.",
+        "effect": "Nonmagical difficult terrain does not impose disadvantage on your Stealth checks, and moving at half speed allows you to remain silent across ordinary debris.",
+        "legacyEffect": "No penalty when moving through difficult terrain"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt predeclared half-Speed turn/traverse with ordinary terrain cost and only careful debris-footfall silence, not full sound/visual stealth.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: silent_movement"
+    },
+    {
+      "id": "CONFLICT-silver_tongue",
+      "original": {
+        "featId": "silver_tongue",
+        "description": "Charisma 14+ supports the listed +5 to persuasion when speaking diplomatically.",
+        "effect": "Gain +2 on Persuasion checks made through formal diplomacy, negotiation, or mediation.",
+        "legacyEffect": "+5 to persuasion when speaking diplomatically"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep +2 purposeful formal Persuasion and actual understood channel; apply completed EX58 social agency, time and no automatic economic award.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: silver_tongue"
+    },
+    {
+      "id": "CONFLICT-spell_scribe",
+      "original": {
+        "featId": "spell_scribe",
+        "description": "Arcana 4+ and Intelligence 14+ support the listed faster, reduced-cost scroll copying.",
+        "effect": "Copying a spell or scroll takes half the normal active time and costs 25 percent fewer mundane materials. Rare inks and unique components are unchanged.",
+        "legacyEffect": "Copy scrolls faster and at reduced cost"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep authorized spell/scroll-copy scope and strongest separate time/material reductions, precise rounding, rare/unique exclusions; completed Scribing is not universal scroll duplication.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: spell_scribe"
+    },
+    {
+      "id": "CONFLICT-steady_hands",
+      "original": {
+        "featId": "steady_hands",
+        "description": "Dexterity 14+ supports the listed removal of disadvantage from Sleight of Hand checks.",
+        "effect": "You ignore disadvantage on Sleight of Hand checks caused by motion, poor footing, or minor injury.",
+        "legacyEffect": "Ignore disadvantage on Sleight of Hand checks"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep cause-specific disadvantage removal; existing numeric Injury penalties are not removed.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: steady_hands"
+    },
+    {
+      "id": "CONFLICT-trap_sense",
+      "original": {
+        "featId": "trap_sense",
+        "description": "Perception 4+ and Level 5 support the listed passive trap detection.",
+        "effect": "You may notice traps with passive Perception even while moving at a normal pace, and gain +2 on saves against traps you can see.",
+        "legacyEffect": "Detect traps passively"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep actual passive Perception at normal pace and +2 save only with current trap sight; no invented passive ±5, detection clue or trap profile.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: trap_sense"
+    },
+    {
+      "id": "CONFLICT-unshakeable",
+      "original": {
+        "featId": "unshakeable",
+        "description": "Wisdom 14+ supports the listed +2 to Intimidation resistance.",
+        "effect": "Gain +2 on saves and contested checks against intimidation, coercion, and fear.",
+        "legacyEffect": "+2 to Intimidation resistance"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep literal saves/contests against coercion/intimidation/fear; no fixed-DC task bonus or new social saving throw.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: unshakeable"
+    },
+    {
+      "id": "CONFLICT-wilderness_chef",
+      "original": {
+        "featId": "wilderness_chef",
+        "description": "Nature 4+ and Wisdom 13+ support the listed forage bonus effects.",
+        "effect": "Forage creates +2 bonus effects.",
+        "legacyEffect": "Forage creates +10% bonus effects"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt explicitly NEW two finite riders, thirty-minute preparation, real safe forage portions, six-hour protection and one-hour +1 foodborne-save entitlement; no extra food or same-portion recipe stacking.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: wilderness_chef"
+    },
+    {
+      "id": "CONFLICT-anatomy_lore",
+      "original": {
+        "featId": "anatomy_lore",
+        "description": "You have studied the weak joints, organs, and pressure points of giants, ogres, and other colossal foes common to Aethel's wilds. Prestige lineage: Giant Killer. completed from the existing development record.)",
+        "effect": "As a bonus action, you can identify one weak point on a Large or larger creature you can see. Your next attack against that creature deals +50% damage if it hits, or you gain advantage on the attack if the target is Huge or larger. Once per short rest, when you hit a colossal foe with this advantage, you may force it to succeed on a Strength save or have its speed halved until the end of your next turn.",
+        "legacyEffect": "As a bonus action, you can identify one weak point on a Large or larger creature you can see. Your next attack against that creature deals +50% damage if it hits, or you gain advantage on the attack if the target is Huge or larger. Once per short rest, when you hit a colossal foe with this advantage, you may force it to succeed on a Strength save or have its speed halved until the end of your next turn."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Preserve source next-attack scope including spell attacks, remove invented weapon-only exclusion and percentage monopoly; retain real anatomy, one mark, Huge choice and the paid slow.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: anatomy_lore"
+    },
+    {
+      "id": "CONFLICT-beast_lore",
+      "original": {
+        "featId": "beast_lore",
+        "description": "Tracks, calls, and temperaments— you read the wild the way scholars read ledgers. Prestige lineage: Beastmaster. completed from the existing development record.)",
+        "effect": "You have advantage on Animal Handling and Survival checks involving beasts. You can identify a beast's diet, temperament, and combat habits with a successful Survival check, granting allies +2 to hit that creature for 1 minute. Once per short rest, you may call a beast within 300 feet with a DC 15 Survival check; on success, a non-hostile beast of CR 1 or lower approaches and performs one simple task you describe (track, carry, or distract for 1 minute).",
+        "legacyEffect": "You have advantage on Animal Handling and Survival checks involving beasts. You can identify a beast's diet, temperament, and combat habits with a successful Survival check, granting allies +2 to hit that creature for 1 minute. Once per short rest, you may call a beast within 300 feet with a DC 15 Survival check; on success, a non-hostile beast of CR 1 or lower approaches and performs one simple task you describe (track, carry, or distract for 1 minute)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt bounded Action/DC/briefing/call completions with real beast, route and finite task; source allies includes eligible self and no second companion budget.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: beast_lore"
+    },
+    {
+      "id": "CONFLICT-wilderness_walker",
+      "original": {
+        "featId": "wilderness_walker",
+        "description": "Survival 4+ supports the listed freedom from terrain movement penalties.",
+        "effect": "No movement penalty in terrain.",
+        "legacyEffect": "No movement penalty in terrain"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt explicit personal terrain-only movement protection, including magical terrain-only costs, not resulting conditions, crawl/squeeze, burden, mount movement or unsupported modes.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: wilderness_walker"
+    },
+    {
+      "id": "CONFLICT-mental_fortress",
+      "original": {
+        "featId": "mental_fortress",
+        "description": "At level 6, a disciplined mind receives the feat's listed once-per-rest immunity to fear effects.",
+        "effect": "Once per short rest, when you fail a saving throw against fear, reroll it and use the new result.",
+        "legacyEffect": "Immune to fear effects once per rest"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Choose current failed-fear-save reroll, not archivedimmunity; finite beneficialSR, whole roll replacement and actual fear predicate.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: mental_fortress"
+    },
+    {
+      "id": "CONFLICT-quick_recovery",
+      "original": {
+        "featId": "quick_recovery",
+        "description": "Constitution 12+ supports the listed +50% HP regeneration outside combat.",
+        "effect": "When you spend Hit Dice during a short rest, add your proficiency bonus to the total hit points restored.",
+        "legacyEffect": "+50% HP regen out of combat"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Choose currentPB once per real short-rest HitDice episode, atfirstactualdie, not legacyregeneration; blockers/excess do not bank it.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: quick_recovery"
+    },
+    {
+      "id": "CONFLICT-resilient_mind",
+      "original": {
+        "featId": "resilient_mind",
+        "description": "Wisdom 14+ supports the listed +2 to concentration checks.",
+        "effect": "Gain +2 to Constitution saving throws made to maintain concentration and +1 to Wisdom saves against mental effects.",
+        "legacyEffect": "+2 to concentration checks"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep distinctCON-concentration+2 andWIS-mental+1 predicates, notgenericchecks; combine distinctfeats onlyunderfinalconvention.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: resilient_mind"
+    },
+    {
+      "id": "CONFLICT-stubborn_resolve",
+      "original": {
+        "featId": "stubborn_resolve",
+        "description": "Constitution 15+ supports the listed resistance to one death effect per day.",
+        "effect": "Once per long rest, when you fail a saving throw against an effect that would kill you outright, reroll the save and use the new result.",
+        "legacyEffect": "Can resist 1 death effect per day"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt failed direct-death-save reroll includingfatalWounds, notordinarylethaldamage/deathsaves/no-save death; noactualdeathrewind.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: stubborn_resolve"
+    },
+    {
+      "id": "CONFLICT-tenacity",
+      "original": {
+        "featId": "tenacity",
+        "description": "Level 4 supports the listed +1 HP per level.",
+        "effect": "Your hit point maximum increases by 1 for each character level, including levels already gained.",
+        "legacyEffect": "+1 HP per level"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep already-reviewed currenttotallevelHP coefficient, distinct identityand capacity-only/clamp behavior; addonlynonrepeatablefullfeat acquisition.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: tenacity"
+    },
+    {
+      "id": "CONFLICT-tough_as_nails",
+      "original": {
+        "featId": "tough_as_nails",
+        "description": "Level 5 supports the listed +10% maximum HP.",
+        "effect": "Your hit point maximum increases by 2 per character level when you take this feat, and by 2 whenever you gain a level thereafter.",
+        "legacyEffect": "+10% max HP"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep reviewed2perattainedlevel withreplay-safeactuallevelloss/restoration, notlegacy10%.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: tough_as_nails"
+    },
+    {
+      "id": "CONFLICT-cursebound_flesh",
+      "original": {
+        "featId": "cursebound_flesh",
+        "description": "The moon's bite runs in your veins. Your body has learned to endure what would break mortal flesh. Prestige lineage: Mooncursed. completed from the existing development record.)",
+        "effect": "While transformed or under a lycanthropic curse, you have resistance to nonmagical slashing damage and reduce damage from silver weapons by half. You have advantage on saves to resist involuntary transformation. Once per long rest, when you would drop to 0 hit points while transformed, you may instead drop to 1 hit point and remain transformed until the end of your next turn.",
+        "legacyEffect": "While transformed or under a lycanthropic curse, you have resistance to nonmagical slashing damage and reduce damage from silver weapons by half. You have advantage on saves to resist involuntary transformation. Once per long rest, when you would drop to 0 hit points while transformed, you may instead drop to 1 hit point and remain transformed until the end of your next turn."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt actualform/curse gating, onefamilyhalvingofsilvernonmagicalslashing, sourcefloorwithInstantDeath/fatalWound boundsandonlyordinaryendpoint extension.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: cursebound_flesh"
+    },
+    {
+      "id": "CONFLICT-dark_fortitude",
+      "original": {
+        "featId": "dark_fortitude",
+        "description": "Grave-cold and poison have tried to claim you. They learned your name and backed away. Prestige lineage: Gravetouched. completed from the existing development record.)",
+        "effect": "You have advantage on saving throws against poison and disease. Your hit point maximum increases by 2 per character level. When you take necrotic damage, you can use your reaction to reduce that instance by half (once per short rest). While below half your hit point maximum, you have resistance to poison damage.",
+        "legacyEffect": "You have advantage on saving throws against poison and disease. Your hit point maximum increases by 2 per character level. When you take necrotic damage, you can use your reaction to reduce that instance by half (once per short rest). While below half your hit point maximum, you have resistance to poison damage."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keepreviewed2currentlevelHP/strictbelowhalf threshold; adopt paidReactivehalfonlyremainingnecrotic afterpassivedefensesbeforetempHP, norefund/resource.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: dark_fortitude"
+    },
+    {
+      "id": "CONFLICT-undying_flesh",
+      "original": {
+        "featId": "undying_flesh",
+        "description": "Death tried to keep you. Your flesh negotiated a reprieve. Prestige lineage: Gravetouched. completed from the existing development record.)",
+        "effect": "You have resistance to necrotic and poison damage. Once per long rest, when you are reduced to 0 hit points but not killed outright, you rise at 1 hit point at the start of your next turn with temporary necrotic bonuses (+2 damage for 1 minute).",
+        "legacyEffect": "You have resistance to necrotic and poison damage. Once per long rest, when you are reduced to 0 hit points but not killed outright, you rise at 1 hit point at the start of your next turn with temporary necrotic bonuses (+2 damage for 1 minute)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Complete the delayed passive choice at living0HP, explicitly bypassing only the incapacity caused by this triggering drop; preserve death, blockers, episode and actual recovery-rider conditions.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: undying_flesh"
+    },
+    {
+      "id": "CONFLICT-diligent_researcher",
+      "original": {
+        "featId": "diligent_researcher",
+        "description": "An Intelligence-trained researcher completes the listed library research in half the time.",
+        "effect": "When using a library, archive, or research facility, complete ordinary research in half the usual active time. This does not bypass access, language, or material requirements.",
+        "legacyEffect": "Halve research time in libraries"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain half actual library research time, not copying/training, and strongest same-process factor with real evidence and access.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: diligent_researcher"
+    },
+    {
+      "id": "CONFLICT-herbalist",
+      "original": {
+        "featId": "herbalist",
+        "description": "Nature-trained herbalists with Wisdom 13+ craft the listed advanced healing salves.",
+        "effect": "Gain proficiency with an herbalism kit. During a long rest with supplies, create one healing salve that restores 1d6 + proficiency bonus hit points; unused salves spoil after 24 hours.",
+        "legacyEffect": "Craft advanced healing salves"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain one real herb remedy during a permitted beneficial-LR light activity with inputs, recipient access and24h expiry; no rest or stock duplication.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: herbalist"
+    },
+    {
+      "id": "CONFLICT-jack_of_all_trades",
+      "original": {
+        "featId": "jack_of_all_trades",
+        "description": "Intelligence 12+ opens the listed two untrained skill slots.",
+        "effect": "Choose two skills in which you lack proficiency. Add half your proficiency bonus, rounded down, to checks using those skills.",
+        "legacyEffect": "Gain 2 untrained skill slots"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain two permanent missing-skill choices with halfPB replacing absent proficiency, not two Expertise grants or all tools.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: jack_of_all_trades"
+    },
+    {
+      "id": "CONFLICT-merchant_s_guile",
+      "original": {
+        "featId": "merchant_s_guile",
+        "description": "Charisma 13+ supports the feat's listed ten-percent improvement to trade prices.",
+        "effect": "When buying or selling ordinary goods, improve the final negotiated price by up to 10 percent after a successful Persuasion, Deception, or relevant Profession check. This cannot override monopolies or fixed guild tariffs.",
+        "legacyEffect": "+10% better prices on trade"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain predeclared attainable mundane bargain and10% maximum; FEX03 binds the10min subtask within unchanged disposition/settlement work.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: merchant_s_guile"
+    },
+    {
+      "id": "CONFLICT-polyglot",
+      "original": {
+        "featId": "polyglot",
+        "description": "An Intelligence 14+ linguist gains the feat's listed three bonus spoken, read, and written languages.",
+        "effect": "Learn three languages of your choice and gain advantage on checks to identify unfamiliar dialects or scripts related to them.",
+        "legacyEffect": "Speak, read, and write 3 bonus languages"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain three actual languages and their bounded dialect/script recognition; identification is not translation or universal fluency.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: polyglot"
+    },
+    {
+      "id": "CONFLICT-quick_learner",
+      "original": {
+        "featId": "quick_learner",
+        "description": "Intelligence 14+ supports instantly learning one language, tool, or lore.",
+        "effect": "After 30 days of downtime training, learn one language or tool proficiency. You may use this feat only once for each category.",
+        "legacyEffect": "Learn one language, tool, or lore instantly"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain NEW two lifetime-category30day/120active-hour projects; no compression of the calendar, free teacher or triple work Watch.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: quick_learner"
+    },
+    {
+      "id": "CONFLICT-tinker_adept",
+      "original": {
+        "featId": "tinker_adept",
+        "description": "Tinkering 5+ supports the listed +5 to complex mechanical repairs.",
+        "effect": "Gain +2 on checks to repair complex mechanisms. Repairs completed during a short rest restore additional durability equal to your proficiency bonus.",
+        "legacyEffect": "+5 to complex mechanical repairs"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain explicitly NEW <=30min actual repair/light-activity exception inside a beneficial Short Rest; existing long repair/service/charge rules are unchanged.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: tinker_adept"
+    },
+    {
+      "id": "CONFLICT-versatile_artisan",
+      "original": {
+        "featId": "versatile_artisan",
+        "description": "Tool Proficiency supports the listed crafting from one additional discipline.",
+        "effect": "Craft items from one additional discipline.",
+        "legacyEffect": "Craft items from one additional discipline"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain one real missing primary credential from16 disciplines at level1, including nonartisan disciplines; no borrowed skill levels.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: versatile_artisan"
+    },
+    {
+      "id": "CONFLICT-combat_engineering",
+      "original": {
+        "featId": "combat_engineering",
+        "description": "Walls, choke points, and kill-zones—you treat battlefields as structures waiting to be built or broken. Prestige lineage: Sapper. completed from the existing development record.)",
+        "effect": "You can construct field fortifications, barricades, or emplaced cover in half the normal time; emplaced cover grants +2 AC (instead of +1) to allies behind it. You gain +2 to Engineering checks involving siege devices, bridges, and structural weak points. Once per short rest, you may designate a 10-foot choke point as a kill-zone for 1 minute: the first hostile creature entering it must succeed on a Dexterity save or take 2d6 damage (type chosen when built — piercing, fire, or bludgeoning) and have speed halved until the end of its turn.",
+        "legacyEffect": "You can construct field fortifications, barricades, or emplaced cover in half the normal time; emplaced cover grants +2 AC (instead of +1) to allies behind it. You gain +2 to Engineering checks involving siege devices, bridges, and structural weak points. Once per short rest, you may designate a 10-foot choke point as a kill-zone for 1 minute: the first hostile creature entering it must succeed on a Dexterity save or take 2d6 damage (type chosen when built — piercing, fire, or bludgeoning) and have speed halved until the end of its turn."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain full finite barricade and supervised kill-zone procedures, source+2 normalized to existing half cover, no compound time/output/XP.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: combat_engineering"
+    },
+    {
+      "id": "CONFLICT-core_infusion",
+      "original": {
+        "featId": "core_infusion",
+        "description": "You drive elemental or arcane cores into steel and stone until the metal remembers how to burn, freeze, or sing. Prestige lineage: Forge Master. completed from the existing development record.)",
+        "effect": "When you finish a long rest, you may infuse one weapon or armor you crafted with a minor property (e.g., +1 fire damage, +1 AC, or resistance to one energy type) for 24 hours. Relic-tier work requires a forge and rare materials. While wearing or wielding an item you infused, you gain +2 to Craft (Blacksmith) checks to repair it, and once per short rest you may re-roll one failed Craft check on that item.",
+        "legacyEffect": "When you finish a long rest, you may infuse one weapon or armor you crafted with a minor property (e.g., +1 fire damage, +1 AC, or resistance to one energy type) for 24 hours. Relic-tier work requires a forge and rare materials. While wearing or wielding an item you infused, you gain +2 to Craft (Blacksmith) checks to repair it, and once per short rest you may re-roll one failed Craft check on that item."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain closed minor-property menu, personal manufacture provenance and one active owner/body imprint; worn/held repair access is an actual additional predicate.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: core_infusion"
+    },
+    {
+      "id": "CONFLICT-hardened_grip",
+      "original": {
+        "featId": "hardened_grip",
+        "description": "Forge heat and battle strain forged your hands into vices. Your weapon stays until you decide otherwise. Prestige lineage: Forge Master. completed from the existing development record.)",
+        "effect": "You cannot be disarmed while conscious — a successful disarm attempt instead deals 1d4 bludgeoning to the attacker. You gain +2 to Craft (Blacksmith) checks and can wield weapons one size category larger without the normal penalty. Once per short rest, as a bonus action, you may lock your grip: until the start of your next turn, opportunity attacks against you have disadvantage and your next melee hit deals +1d6 damage if you have not moved more than 5 feet since locking.",
+        "legacyEffect": "You cannot be disarmed while conscious — a successful disarm attempt instead deals 1d4 bludgeoning to the attacker. You gain +2 to Craft (Blacksmith) checks and can wield weapons one size category larger without the normal penalty. Once per short rest, as a bonus action, you may lock your grip: until the start of your next turn, opportunity attacks against you have disadvantage and your next melee hit deals +1d6 damage if you have not moved more than 5 feet since locking."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain conscious legal weapon no-disarm replacement, exact nonrecursive retaliation, one-category handling and paid grip-lock timing.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: hardened_grip"
+    },
+    {
+      "id": "CONFLICT-master_smithing",
+      "original": {
+        "featId": "master_smithing",
+        "description": "Kings queue for your steel. You measure temper, fold, and spell-work in the same breath. Prestige lineage: Forge Master. completed from the existing development record.)",
+        "effect": "You can craft masterwork weapons and armor and work toward relic-tier items with appropriate materials and a forge access. Armor you craft reduces armor check penalty by 1 and may include one minor property (e.g., fire resistance 5, silent movement, or +1 to a saving throw) chosen at completion. Weapons you craft gain +1 to damage rolls; once per week you may temper one weapon you personally forged, granting it a named masterwork trait (flaming edge, returning throw, or spell-holding groove) that lasts until the weapon is broken or reforged.",
+        "legacyEffect": "You can craft masterwork weapons and armor and work toward relic-tier items with appropriate materials and a forge access. Armor you craft reduces armor check penalty by 1 and may include one minor property (e.g., fire resistance 5, silent movement, or +1 to a saving throw) chosen at completion. Weapons you craft gain +1 to damage rolls; once per week you may temper one weapon you personally forged, granting it a named masterwork trait (flaming edge, returning throw, or spell-holding groove) that lasts until the weapon is broken or reforged."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain bounded personal workmanship and three complete weekly-temper traits; historical relic permission remains dependent on its actual design.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: master_smithing"
+    },
+    {
+      "id": "CONFLICT-siege_savant",
+      "original": {
+        "featId": "siege_savant",
+        "description": "You read walls like books—knowing which stone sighs before it falls. Prestige lineage: Sapper. completed from the existing development record.)",
+        "effect": "You deal +20% damage to constructs, fortifications, and siege engines. Explosives you deploy have +5 feet radius and ignore half cover on the detonation save. You can identify structural weak points with a successful Engineering check, granting allies advantage on the next attack against that structure or construct. Once per short rest, you may collapse a 5-foot section of mundane wall or barricade you have studied for 1 round, creating difficult terrain and granting allies half cover behind the rubble until cleared.",
+        "legacyEffect": "You deal +20% damage to constructs, fortifications, and siege engines. Explosives you deploy have +5 feet radius and ignore half cover on the detonation save. You can identify structural weak points with a successful Engineering check, granting allies advantage on the next attack against that structure or construct. Once per short rest, you may collapse a 5-foot section of mundane wall or barricade you have studied for 1 round, creating difficult terrain and granting allies half cover behind the rubble until cleared."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain literal broad eligible source event, existing actual target authorization, proportional20% arithmetic, finite diagnostic/collapse procedures.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: siege_savant"
+    },
+    {
+      "id": "CONFLICT-trapsetter",
+      "original": {
+        "featId": "trapsetter",
+        "description": "Tripwire, caltrop, and charge—the ground remembers your name and bites when asked. Prestige lineage: Sapper. completed from the existing development record.)",
+        "effect": "You can set a mechanical trap as a bonus action (once per short rest per trap type: snare, caltrop field, or spring-loaded charge). Traps may stun, burn, or slow on a failed save (DC 8 + proficiency + Intelligence modifier). You gain advantage on checks to spot hidden traps and tunnels within 30 feet. When a creature triggers a trap you placed, you may use your reaction to move up to half your speed without provoking opportunity attacks from that creature, repositioning behind cover or into a prepared kill-zone.",
+        "legacyEffect": "You can set a mechanical trap as a bonus action (once per short rest per trap type: snare, caltrop field, or spring-loaded charge). Traps may stun, burn, or slow on a failed save (DC 8 + proficiency + Intelligence modifier). You gain advantage on checks to spot hidden traps and tunnels within 30 feet. When a creature triggers a trap you placed, you may use your reaction to move up to half your speed without provoking opportunity attacks from that creature, repositioning behind cover or into a prepared kill-zone."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Restore persistent ordinary caltrop hazard and physical disarm; retain finite prepared snare/charge, setup budgets and source-scoped reaction movement without remote deletion or recycled hard denial.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: trapsetter"
+    },
+    {
+      "id": "CONFLICT-armor_crusher",
+      "original": {
+        "featId": "armor_crusher",
+        "description": "Repeated, well-placed blows find the seams in an enemy's armor and press the advantage.",
+        "effect": "Once per turn when you deal bludgeoning, piercing, or slashing damage, reduce the target’s AC by 1 until the start of your next turn. This does not stack with itself.",
+        "legacyEffect": "Ignore 10% enemy armor"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-01 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Creature-wide scope, direct-event eligibility, single identity family across owners, and expiry arbitration.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: armor_crusher"
+    },
+    {
+      "id": "CONFLICT-battlefield_commander",
+      "original": {
+        "featId": "battlefield_commander",
+        "description": "A commanding voice directs three nearby allies into more favorable positions when the line must shift.",
+        "effect": "As an action, choose up to three willing allies within 30 feet who can hear you. Each may use its reaction to move up to half its speed without provoking opportunity attacks. You regain this use after a short rest.",
+        "legacyEffect": "Reposition 3 allies within 30ft"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep actual source ally wording including self, with original target/sensory/budget conditions; no generalized automatic self-target for inherently two-person effects.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: battlefield_commander"
+    },
+    {
+      "id": "CONFLICT-berserker_rage",
+      "original": {
+        "featId": "berserker_rage",
+        "description": "A powerful fighter accepts a brief loss of defense to drive a ten-second burst of damage.",
+        "effect": "As a bonus action, enter a rage for 2 rounds. Your weapon attacks deal one additional weapon damage die, but your AC is reduced by 2. You regain this use after a short rest.",
+        "legacyEffect": "+25% damage for 10s, -10% AC"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-03 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Exact self-buff clock, all weapon scope, die selection, incapacitation endpoint and explicit distinction between operational rage and acquisition gate.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: berserker_rage"
+    },
+    {
+      "id": "CONFLICT-bleeding_edge",
+      "original": {
+        "featId": "bleeding_edge",
+        "description": "A precise melee critical opens a wound that carries the feat's listed bleed effect.",
+        "effect": "When you score a critical hit with a melee weapon, the target bleeds for 1d4 damage at the start of each of its turns for 3 rounds. A creature can use an action to stop the bleeding with a successful Medicine check against DC 10 + your proficiency bonus.",
+        "legacyEffect": "Adds bleed effect on crit"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-04 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Registered family/type/three-start clock, refresh, body gate and ordinary magical-healing endpoint.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: bleeding_edge"
+    },
+    {
+      "id": "CONFLICT-brace_for_impact",
+      "original": {
+        "featId": "brace_for_impact",
+        "description": "A resilient combatant who holds position braces for the listed damage resistance.",
+        "effect": "If you have not moved since the start of your turn, use a reaction when you take damage to reduce it by your proficiency bonus + Constitution modifier.",
+        "legacyEffect": "+20% damage resistance if stationary"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-05 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Displacement receipt, whole-event post-defense timing, nonnegative reduction and stable split allocation.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: brace_for_impact"
+    },
+    {
+      "id": "CONFLICT-break_line",
+      "original": {
+        "featId": "break_line",
+        "description": "An agile veteran slips through the enemy's frontline zone without treating it as an obstacle.",
+        "effect": "Once per turn, you may move through the space of one hostile creature no more than one size larger than you. That creature may make an opportunity attack; on a miss, you complete the movement.",
+        "legacyEffect": "Ignore enemy frontline zone"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-06 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Pre-entry special opportunity trigger, declined/unavailable success, hit stops passage, full-footprint route and committed step cost.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: break_line"
+    },
+    {
+      "id": "CONFLICT-bull_rush",
+      "original": {
+        "featId": "bull_rush",
+        "description": "A strong combatant drives into a target, forcing the listed short displacement and knockdown.",
+        "effect": "When you hit with a melee attack after moving at least 10 feet straight toward the target, force it to make a Strength save (DC 8 + proficiency bonus + Strength modifier) or be pushed 5 feet and knocked prone. Once per turn.",
+        "legacyEffect": "Knock target prone and move them 5ft"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-07 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Continuous approach and turn scope, all melee attacks, no imported size ceiling, independent push/Prone.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: bull_rush"
+    },
+    {
+      "id": "CONFLICT-cleaving_momentum",
+      "original": {
+        "featId": "cleaving_momentum",
+        "description": "A heavy two-handed finishing blow carries its momentum into the listed follow-up attack.",
+        "effect": "When you reduce a hostile creature to 0 hit points with a melee weapon, make one melee weapon attack against another creature within reach as a bonus action.",
+        "legacyEffect": "Free follow-up attack on kill"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-08 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Two-hand operating restriction, positive-to-zero event and same-own-turn Bonus Action window.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: cleaving_momentum"
+    },
+    {
+      "id": "CONFLICT-close_quarters_combat",
+      "original": {
+        "featId": "close_quarters_combat",
+        "description": "Quick control of a cramped melee keeps a ranged attack from drawing the listed opportunity attack.",
+        "effect": "Making a ranged attack while a hostile creature is within 5 feet does not impose disadvantage, and the attack does not provoke an opportunity attack.",
+        "legacyEffect": "No AoO when using ranged in melee"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-09 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. All ranged attack scope and narrow attack-trigger immunity without inventing a general penalty.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: close_quarters_combat"
+    },
+    {
+      "id": "CONFLICT-combat_intuition",
+      "original": {
+        "featId": "combat_intuition",
+        "description": "Alert instincts give a combatant the listed chance to evade an opponent's opening attack.",
+        "effect": "You cannot be surprised while conscious. During the first round of combat, gain +1 AC.",
+        "legacyEffect": "+10% chance to dodge opening attack"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-10 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Conscious suppression of existing surprise, encounter-wide round identity and ordinary resource preservation.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: combat_intuition"
+    },
+    {
+      "id": "CONFLICT-combat_slide",
+      "original": {
+        "featId": "combat_slide",
+        "description": "An agile fighter shifts five feet and attacks as part of the same listed action.",
+        "effect": "Once on your turn, move 5 feet before or after a weapon attack without provoking an opportunity attack from the target of that attack.",
+        "legacyEffect": "Move 5ft and attack as one action"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-11 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Separate5-point budget, reservation before attack, target-only immunity and interruption commitment.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: combat_slide"
+    },
+    {
+      "id": "CONFLICT-crippling_strike",
+      "original": {
+        "featId": "crippling_strike",
+        "description": "A Dexterity-trained melee combatant applies the listed movement reduction to an enemy.",
+        "effect": "Once per turn when you hit with a finesse or melee weapon, reduce the target’s speed by 10 feet until the start of your next turn.",
+        "legacyEffect": "Reduces enemy movement by 50%"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-12 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Literal weapon-class OR property scope, all Speed modes, one family and modifier ordering.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: crippling_strike"
+    },
+    {
+      "id": "CONFLICT-disarming_blow",
+      "original": {
+        "featId": "disarming_blow",
+        "description": "A Strength-trained melee combatant gains the listed chance to knock away a weapon.",
+        "effect": "When you hit a creature holding an object, forgo one damage die to force a Strength or Dexterity save (target’s choice) against DC 8 + proficiency bonus + your attack ability modifier. On a failure, it drops one held object.",
+        "legacyEffect": "Chance to knock weapon out"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-14 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Melee-weapon scope; pre-critical base-die payment and save order; actual held-object drop geometry.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: disarming_blow"
+    },
+    {
+      "id": "CONFLICT-double_tap",
+      "original": {
+        "featId": "double_tap",
+        "description": "Practiced ranged technique fires two shots in quick succession.",
+        "effect": "When you take the Attack action with a ranged weapon, make one additional attack as a bonus action. This attack does not add your ability modifier to damage unless another feature allows it.",
+        "legacyEffect": "Fire two shots in quick succession"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-15 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Ranged-weapon classification, positive-only omission, explicit restoring feature, same-turn use.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: double_tap"
+    },
+    {
+      "id": "CONFLICT-draw_cut",
+      "original": {
+        "featId": "draw_cut",
+        "description": "Quick blade work increases damage when a weapon is unsheathed.",
+        "effect": "Once per encounter, when you draw a sheathed melee weapon as part of an attack, add one weapon damage die on a hit.",
+        "legacyEffect": "+25% damage when unsheathing blade"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-16 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Declaration spends on miss, actual sheath and ordinary interaction cost, explicit encounter boundary.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: draw_cut"
+    },
+    {
+      "id": "CONFLICT-exploit_weakness",
+      "original": {
+        "featId": "exploit_weakness",
+        "description": "At level 7, a combatant seeks wounded enemies for the listed critical chance.",
+        "effect": "Your weapon attacks score a critical hit on a roll of 19–20 against creatures below half their hit point maximum.",
+        "legacyEffect": "+15% crit on wounded enemies"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-17 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Pre-damage actual-state snapshot and private adjudication; retained reviewed nonstacking critical-range rule.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: exploit_weakness"
+    },
+    {
+      "id": "CONFLICT-lunge",
+      "original": {
+        "featId": "lunge",
+        "description": "Strength and weapon training extend the reach of the feat's listed melee attacks.",
+        "effect": "Once on your turn, increase your reach by 5 feet for one melee weapon attack.",
+        "legacyEffect": "Melee attacks gain +5ft range"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-20 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Attack-scoped pre-target declaration, spent-on-miss and no persistent reach.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: lunge"
+    },
+    {
+      "id": "CONFLICT-overrun",
+      "original": {
+        "featId": "overrun",
+        "description": "With Strength 15+, you press through movement by pushing enemies aside as the feat lists.",
+        "effect": "When you Dash, you may move through spaces occupied by creatures no more than one size larger. Each may make a Strength save against DC 8 + proficiency bonus + Strength modifier or be pushed 5 feet aside.",
+        "legacyEffect": "Push enemies aside while moving"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-21 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Once-per-creature challenge, ally voluntary failure exception, side-destination requirement and blocked-passage consequence.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: overrun"
+    },
+    {
+      "id": "CONFLICT-precise_shot",
+      "original": {
+        "featId": "precise_shot",
+        "description": "Dexterity 14+ supports a ranged attack into melee without the feat's listed penalty.",
+        "effect": "Your ranged attacks ignore the disadvantage normally imposed by an ally being adjacent to the target.",
+        "legacyEffect": "No penalty for ranged into melee"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-23 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Explicit allied-body half-cover overlay because the named original disadvantage is absent; no new global penalty.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: precise_shot"
+    },
+    {
+      "id": "CONFLICT-precision_throw",
+      "original": {
+        "featId": "precision_throw",
+        "description": "Dexterity 13+ supports thrown weapons gaining the listed +10% accuracy.",
+        "effect": "Gain +1 to attack rolls with thrown weapons and double their normal range.",
+        "legacyEffect": "Thrown weapons gain +10% accuracy"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-24 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Property/use distinction, normal-range cap and separate feat attack-bonus families.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: precision_throw"
+    },
+    {
+      "id": "CONFLICT-punishing_blow",
+      "original": {
+        "featId": "punishing_blow",
+        "description": "Strength 13+ supports the listed +10% bonus against a stunned enemy.",
+        "effect": "Once per turn, deal additional damage equal to your proficiency bonus to a stunned or prone enemy.",
+        "legacyEffect": "+10% bonus if enemy is stunned"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-25 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Direct-attack completion, pre-damage existing condition, flat single component and broad actual attack scope.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: punishing_blow"
+    },
+    {
+      "id": "CONFLICT-reckless_swing",
+      "original": {
+        "featId": "reckless_swing",
+        "description": "Strength 15+ supports the listed +50% damage with -10% defense.",
+        "effect": "Before making a melee weapon attack, choose to attack recklessly. Gain advantage on the attack and add one weapon damage die on a hit; attacks against you have advantage until the start of your next turn.",
+        "legacyEffect": "+50% damage, but -10% to defense"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-26 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Per-attack availability, vulnerability even on miss/cancellation, exact next-start persistence.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: reckless_swing"
+    },
+    {
+      "id": "CONFLICT-savage_momentum",
+      "original": {
+        "featId": "savage_momentum",
+        "description": "Strength 14+ and melee training support the listed +5% damage per consecutive hit.",
+        "effect": "Once per turn, after hitting the same creature with consecutive melee attacks, add +1 damage for each prior consecutive hit, to a maximum equal to your proficiency bonus. The chain ends when you miss or change targets.",
+        "legacyEffect": "+5% dmg per consecutive hit"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-28 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Persistent encounter chain, ranged-attack break, state versus bonus budget and zero-prior-hit rule.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: savage_momentum"
+    },
+    {
+      "id": "CONFLICT-shattering_smash",
+      "original": {
+        "featId": "shattering_smash",
+        "description": "Strength 16+ supports the listed ability to break an enemy shield or block.",
+        "effect": "When you hit a creature using a shield or maintaining a physical block, forgo one damage die to force a Strength save. On a failure, its shield bonus or block benefit is suppressed until the start of its next turn.",
+        "legacyEffect": "Break enemy shield or block"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-29 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Melee scope, missing save DC, pre-critical payment and entire chosen shield AC contribution with dependency suppression.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: shattering_smash"
+    },
+    {
+      "id": "CONFLICT-shield_bash",
+      "original": {
+        "featId": "shield_bash",
+        "description": "Strength 13+ supports the listed shield stun against an enemy.",
+        "effect": "After taking the Attack action while wielding a shield, make a shield bash as a bonus action. On a hit, deal 1d4 + Strength bludgeoning damage; once per short rest, force a Constitution save or stun the target until the start of its next turn.",
+        "legacyEffect": "Stun enemy with shield"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-30 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Actual shield proficiency attack bridge,5ft/STR/DC, hit-stage stun payment and shared hard-denial cap.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: shield_bash"
+    },
+    {
+      "id": "CONFLICT-shield_expert",
+      "original": {
+        "featId": "shield_expert",
+        "description": "Shield Proficiency supports the listed +2 AC and +10% block chance.",
+        "effect": "Gain +1 AC while wielding a shield. When a Dexterity save would deal half damage, use your reaction to take no damage on a success while your shield can interpose.",
+        "legacyEffect": "+2 AC and +10% block chance"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-31 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. AC dependence and successful-save timing; concrete interposition scope without universal area immunity.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: shield_expert"
+    },
+    {
+      "id": "CONFLICT-sure_shot",
+      "original": {
+        "featId": "sure_shot",
+        "description": "Dexterity 14+ and Ranged Proficiency support the listed armor ignore on ranged attacks.",
+        "effect": "Your ranged weapon attacks ignore 2 points of AC granted by armor or cover. This does not ignore magical barriers.",
+        "legacyEffect": "Ranged attacks ignore 25% armor"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-32 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Explicit suit-baseline attribution, combined2-point budget, exclusion of shield/natural/enchanted contribution and range classification.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: sure_shot"
+    },
+    {
+      "id": "CONFLICT-tactical_flanker",
+      "original": {
+        "featId": "tactical_flanker",
+        "description": "Intelligence 12+ and Melee support the listed ally damage while flanking with you.",
+        "effect": "Once per turn when you and an ally flank a creature, one of you adds 1d6 damage to a successful melee attack against it.",
+        "legacyEffect": "Allies gain +1d6 dmg when flanking with you"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-33 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Opposite-side geometry, active coordination, owner-funded allied hit and one family die per attack.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: tactical_flanker"
+    },
+    {
+      "id": "CONFLICT-target_mark",
+      "original": {
+        "featId": "target_mark",
+        "description": "Wisdom 14+ and Ranged support the listed mark that increases damage taken by the target.",
+        "effect": "As a bonus action, mark a creature you can see within weapon range for 1 minute. The first attack by each ally against it gains +1 to hit. You may maintain only one mark and regain this use after a short rest.",
+        "legacyEffect": "Mark target to take 10% more dmg"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep actual source ally wording including self, with original target/sensory/budget conditions; no generalized automatic self-target for inherently two-person effects.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: target_mark"
+    },
+    {
+      "id": "CONFLICT-unstoppable_force",
+      "original": {
+        "featId": "unstoppable_force",
+        "description": "Strength 14+ and Level 8 support the listed +10% knockback chance.",
+        "effect": "When you push or knock a creature, increase the distance by 5 feet. Once per turn, a creature that fails the save by 5 or more is also knocked prone.",
+        "legacyEffect": "+10% knockback chance"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-35 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Positive outward displacement predicate, once-per-event extension and literal saved failure margin.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: unstoppable_force"
+    },
+    {
+      "id": "CONFLICT-volley",
+      "original": {
+        "featId": "volley",
+        "description": "Level 8 supports the listed rain of arrows in a small area.",
+        "effect": "Rain arrows in small area.",
+        "legacyEffect": "Rain arrows in small area"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-36 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Entire bow/Action/SR/PB-target/10ft-radius/normal-range/individual-attacks/committed-ammunition completion.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: volley"
+    },
+    {
+      "id": "CONFLICT-weapon_finesse",
+      "original": {
+        "featId": "weapon_finesse",
+        "description": "Dexterity 15+ supports using Dexterity for melee attack rolls.",
+        "effect": "Use Dexterity for melee attack rolls.",
+        "legacyEffect": "Use Dexterity for melee attack rolls"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-37 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. STR melee attack-only substitution, natural/unarmed inclusion and no Finesse-property or casting-stat grant.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: weapon_finesse"
+    },
+    {
+      "id": "CONFLICT-weapon_mastery",
+      "original": {
+        "featId": "weapon_mastery",
+        "description": "Proficient, Level 6 supports the listed +1 crit range with a chosen weapon.",
+        "effect": "+1 crit range with chosen weapon.",
+        "legacyEffect": "+1 crit range with chosen weapon"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-38 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Permanent weapon-type selection,19–20 standalone range and no additive critical stacking.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: weapon_mastery"
+    },
+    {
+      "id": "CONFLICT-whip_control",
+      "original": {
+        "featId": "whip_control",
+        "description": "Dexterity 15+ and Whip support the listed disarm or trip with a whip.",
+        "effect": "Disarm or trip with whip.",
+        "legacyEffect": "Disarm or trip with whip"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-39 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Attack replacement, opposed weapon check, no damage, trip size cap and exact drop geometry.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: whip_control"
+    },
+    {
+      "id": "CONFLICT-whirlwind_striker",
+      "original": {
+        "featId": "whirlwind_striker",
+        "description": "Level 10 supports the listed +5% evasion and +10% cleave when surrounded.",
+        "effect": "+5% evasion and +10% cleave when surrounded.",
+        "legacyEffect": "+5% evasion and +10% cleave when surrounded"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-40 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Explicit+5% evasion→+1AC conversion, opposite-hostile geometry and finite10% derived cleave rather than imported class ability.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: whirlwind_striker"
+    },
+    {
+      "id": "CONFLICT-eldritch_combat",
+      "original": {
+        "featId": "eldritch_combat",
+        "description": "Your strikes carry whispers from beyond the veil—steel and sigil in a single motion. Prestige lineage: Hexblade. completed from the existing development record.)",
+        "effect": "When you take the Attack action, you can cast a cantrip or 1st-level spell with a range of touch or self as part of the same action without provoking opportunity attacks. The spell must target the same creature you hit or yourself. Once per short rest, when you hit with a melee weapon attack, you may cast a touch-range spell as a free action on that target even if you did not take the full Attack action.",
+        "legacyEffect": "When you take the Attack action, you can cast a cantrip or 1st-level spell with a range of touch or self as part of the same action without provoking opportunity attacks. The spell must target the same creature you hit or yourself. Once per short rest, when you hit with a melee weapon attack, you may cast a touch-range spell as a free action on that target even if you did not take the full Attack action."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-41 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Rank translation, Action-time only, one-self/one-touch recipient, timing, shared one embedded cast per actual turn and paid independent casting.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: eldritch_combat"
+    },
+    {
+      "id": "CONFLICT-favored_enemy_dragon",
+      "original": {
+        "featId": "favored_enemy_dragon",
+        "description": "You have studied scaled tyrants—their breath, their pride, the tell before the roar. Prestige lineage: Wyrmslayer. completed from the existing development record.)",
+        "effect": "You deal +2 damage to dragons and dragonkin. You have advantage on Survival and Lore checks to identify dragon ancestry, breath type, and lair habits. When you succeed on such a check against a dragon you can see, you and allies within 30 feet gain +1 to saving throws against that dragon's breath weapon until the end of the encounter. You cannot be frightened by a dragon's presence for more than 1 round, and once per short rest you may ignore difficult terrain caused by a dragon's lair hazards (molten glass, acidic pools, or shattered stone) while pursuing that wyrm.",
+        "legacyEffect": "You deal +2 damage to dragons and dragonkin. You have advantage on Survival and Lore checks to identify dragon ancestry, breath type, and lair habits. When you succeed on such a check against a dragon you can see, you and allies within 30 feet gain +1 to saving throws against that dragon's breath weapon until the end of the encounter. You cannot be frightened by a dragon's presence for more than 1 round, and once per short rest you may ignore difficult terrain caused by a dragon's lair hazards (molten glass, acidic pools, or shattered stone) while pursuing that wyrm."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-42 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Literal tags, own-event+2, Nature/Lore bridge, finite observationDC/time/briefing, one-round presence fear and one-turn terrain use.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: favored_enemy_dragon"
+    },
+    {
+      "id": "CONFLICT-frenzied_rage",
+      "original": {
+        "featId": "frenzied_rage",
+        "description": "Rage becomes avalanche—each kill feeds the next swing until the world is only red and thunder. Prestige lineage: Berserker. completed from the existing development record.)",
+        "effect": "While raging, you deal +3 damage with melee weapon attacks (instead of +2). When you reduce a creature to 0 hit points with a melee attack, you can make one additional melee attack or extend your rage duration by 1 round. Once per rage, you can charge through enemies, dazing those you pass.",
+        "legacyEffect": "While raging, you deal +3 damage with melee weapon attacks (instead of +2). When you reduce a creature to 0 hit points with a melee attack, you can make one additional melee attack or extend your rage duration by 1 round. Once per rage, you can charge through enemies, dazing those you pass."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-43 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Explicit rage-source distinction, replacement damage, hostile reward gate, once-turn extra attack/extension choice, three-extension cap and full BA charge procedure.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: frenzied_rage"
+    },
+    {
+      "id": "CONFLICT-giant_slayer",
+      "original": {
+        "featId": "giant_slayer",
+        "description": "Colossi fall when the small learn where the giant bleeds. Prestige lineage: Giant Killer. completed from the existing development record.)",
+        "effect": "You deal +20% damage against Large or larger creatures. Once per short rest, when you hit a Huge or larger creature with a melee attack, you can cripple its movement, reducing speed by half until the end of its next turn. When a colossal foe (Huge or larger) misses you with a melee attack, you may use your reaction to step into its reach and strike a tendon or joint: the attacker takes 1d6 damage and has disadvantage on its next attack against you before the end of its next turn.",
+        "legacyEffect": "You deal +20% damage against Large or larger creatures. Once per short rest, when you hit a Huge or larger creature with a melee attack, you can cripple its movement, reducing speed by half until the end of its next turn. When a colossal foe (Huge or larger) misses you with a melee attack, you may use your reaction to step into its reach and strike a tendon or joint: the attacker takes 1d6 damage and has disadvantage on its next attack against you before the end of its next turn."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-44 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Broad percent event scope, no-save cripple, complete5ft reaction step/own-reach/direct-damage contract and no recursion.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: giant_slayer"
+    },
+    {
+      "id": "CONFLICT-life_drinker",
+      "original": {
+        "featId": "life_drinker",
+        "description": "Every wound you open is a cup. You drink and stand taller. Prestige lineage: Bloodbound. completed from the existing development record.)",
+        "effect": "When you score a critical hit with a melee attack, you regain hit points equal to half the damage dealt. When you reduce a hostile creature to 0 hit points with a melee attack, you regain hit points equal to your character level. While you are below half your hit point maximum, your melee weapon attacks deal +1d4 necrotic damage against creatures that have blood.",
+        "legacyEffect": "When you score a critical hit with a melee attack, you regain hit points equal to half the damage dealt. When you reduce a hostile creature to 0 hit points with a melee attack, you regain hit points equal to your character level. While you are below half your hit point maximum, your melee weapon attacks deal +1d4 necrotic damage against creatures that have blood."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-45 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Finite2×level LR reserve, current reviewed temp-inclusive numeric drain metric, meaningful-hostile reward gate, ordered same-hit heals and no secondary conversion; blood/threshold snapshot.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: life_drinker"
+    },
+    {
+      "id": "CONFLICT-precision_strike",
+      "original": {
+        "featId": "precision_strike",
+        "description": "One opening. One breath. One strike where the giant's armor forgot to cover bone. Prestige lineage: Giant Killer. completed from the existing development record.)",
+        "effect": "Once per turn when you make a weapon attack, you may take –2 to the attack roll to deal +50% damage on a hit. Against a restrained, grappled, or identified weak point (via Anatomy Lore), you may instead treat a hit as a critical hit once per short rest.",
+        "legacyEffect": "Once per turn when you make a weapon attack, you may take –2 to the attack roll to deal +50% damage on a hit. Against a restrained, grappled, or identified weak point (via Anatomy Lore), you may instead treat a hit as a critical hit once per short rest."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the full CF-46 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Pre-roll mode and SR declaration, replacement of both penalty and percent, own Anatomy Lore record, miss spending and noncompounding interactions.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: precision_strike"
+    },
+    {
+      "id": "CONFLICT-slayer_s_resolve",
+      "original": {
+        "featId": "slayer_s_resolve",
+        "description": "You have buried friends under dragonfire. Their memory is armor the wyrms cannot melt. Prestige lineage: Wyrmslayer. completed from the existing development record.)",
+        "effect": "You are immune to the Frightful Presence of dragons. Allies within 30 feet of you have advantage on saving throws against fear effects while you are conscious. You gain +2 AC against attacks made by dragons. Once per short rest, when a dragon you can see targets you with a breath weapon or melee attack, you may use your reaction to impose disadvantage on that attack or force a new breath save at advantage for yourself only.",
+        "legacyEffect": "You are immune to the Frightful Presence of dragons. Allies within 30 feet of you have advantage on saving throws against fear effects while you are conscious. You gain +2 AC against attacks made by dragons. Once per short rest, when a dragon you can see targets you with a breath weapon or melee attack, you may use your reaction to impose disadvantage on that attack or force a new breath save at advantage for yourself only."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep actual source ally wording including self, with original target/sensory/budget conditions; also restore ranged breath-weapon attack rolls.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: slayer_s_resolve"
+    },
+    {
+      "id": "CONFLICT-battle_awareness",
+      "original": {
+        "featId": "battle_awareness",
+        "description": "A combatant reads pressure at the flank and shifts clear before an opening becomes a strike.",
+        "effect": "Enemies do not gain advantage merely for flanking you, and you gain +1 AC against opportunity attacks.",
+        "legacyEffect": "+10% evasion vs flanking"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the complete GC-05 proposal as explicitly NEW where supplied; Compatibility protection for absent universal flanking advantage; attack-specific AC window. Apply the final shared cadence, actual-action, proficiency, stacking and causal-root decisions; no class or equipment profile is imported by name.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: battle_awareness"
+    },
+    {
+      "id": "CONFLICT-danger_sense",
+      "original": {
+        "featId": "danger_sense",
+        "description": "At level 3, alert awareness grants the listed initiative bonus and easier trap detection.",
+        "effect": "Gain +2 to initiative and advantage on Perception checks made to notice traps or immediate ambush signs.",
+        "legacyEffect": "+4 to initiative, detect traps easier"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the complete GC-19 proposal as explicitly NEW where supplied; Explicit current+2 versus preserved legacy+4 and evidence-bound active Perception. Apply the final shared cadence, actual-action, proficiency, stacking and causal-root decisions; no class or equipment profile is imported by name.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: danger_sense"
+    },
+    {
+      "id": "CONFLICT-fleet_of_foot",
+      "original": {
+        "featId": "fleet_of_foot",
+        "description": "An agile character gains the listed movement-speed increase.",
+        "effect": "Increase your walking speed by 10 feet.",
+        "legacyEffect": "+10% movement speed"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the complete GC-28 proposal as explicitly NEW where supplied; Explicit Agility→DEX and current+10ft versus legacypercent, walking-only derivation. Apply the final shared cadence, actual-action, proficiency, stacking and causal-root decisions; no class or equipment profile is imported by name.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: fleet_of_foot"
+    },
+    {
+      "id": "CONFLICT-inspiring_presence",
+      "original": {
+        "featId": "inspiring_presence",
+        "description": "After a critical hit, Charisma 14+ inspires allies with the listed damage increase for 10 seconds.",
+        "effect": "When you score a critical hit, allies within 30 feet who can see or hear you gain +1 to attack rolls until the start of your next turn.",
+        "legacyEffect": "+5% ally damage for 10s after crit"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep actual source ally wording including self, with original target/sensory/budget conditions; no generalized automatic self-target for inherently two-person effects.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: inspiring_presence"
+    },
+    {
+      "id": "CONFLICT-natural_leader",
+      "original": {
+        "featId": "natural_leader",
+        "description": "A Charisma 13+ leader steadies nearby allies with the feat's listed +1 morale.",
+        "effect": "Allies within 10 feet who can hear you gain +1 on morale and fear saves while you are conscious.",
+        "legacyEffect": "+1 morale to nearby allies"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep actual source ally wording including self, with original target/sensory/budget conditions; no generalized automatic self-target for inherently two-person effects.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: natural_leader"
+    },
+    {
+      "id": "CONFLICT-night_hunter",
+      "original": {
+        "featId": "night_hunter",
+        "description": "A watchful hunter with Wisdom 12+ gains or extends darkvision as the feat lists.",
+        "effect": "Gain darkvision to 60 feet. If you already have darkvision, increase its range by 30 feet.",
+        "legacyEffect": "Gain darkvision or extend it"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the complete GC-42 proposal as explicitly NEW where supplied; Fixed acquisition mode, dynamic underlying-range extension and ordinary visual limits. Apply the final shared cadence, actual-action, proficiency, stacking and causal-root decisions; no class or equipment profile is imported by name.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: night_hunter"
+    },
+    {
+      "id": "CONFLICT-tactical_insight",
+      "original": {
+        "featId": "tactical_insight",
+        "description": "Intelligence 13+ supports the listed reveal of hidden enemy information.",
+        "effect": "As a bonus action, make an Investigation or Insight check against DC 10 + the target’s challenge rating. On a success, learn its current HP band, highest save, or lowest save. Once per target.",
+        "legacyEffect": "Reveal hidden enemy info"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the complete GC-52 proposal as explicitly NEW where supplied; 60ft/perception, roundedDC/default, preselected information, precise bands/ties and per-targetLR attempt ledger. Apply the final shared cadence, actual-action, proficiency, stacking and causal-root decisions; no class or equipment profile is imported by name.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: tactical_insight"
+    },
+    {
+      "id": "CONFLICT-versatile_grip",
+      "original": {
+        "featId": "versatile_grip",
+        "description": "Dexterity 12+ supports the listed use of a non-proficient weapon at 80% effectiveness.",
+        "effect": "Use non-proficient weapon at 80% effectiveness.",
+        "legacyEffect": "Use non-proficient weapon at 80% effectiveness"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Retain the complete GC-54 proposal as explicitly NEW where supplied; Explicit NEW80%-of-PB attack allowance rather than undefined effectiveness; no proficiency credential. Apply the final shared cadence, actual-action, proficiency, stacking and causal-root decisions; no class or equipment profile is imported by name.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: versatile_grip"
+    },
+    {
+      "id": "CONFLICT-companion_training",
+      "original": {
+        "featId": "companion_training",
+        "description": "Your beasts do not merely follow—they fight as extensions of your will across Aethel's wild tiers, answering whistle and gesture like soldiers who never learned fear. Prestige lineage: Beastmaster. completed from the existing development record.)",
+        "effect": "Beast companions you command gain +2 to attack and damage rolls and inherit your Survival proficiency for tracking. As a bonus action, command one companion to attack, dash, disengage, or help; at level 10+, you may issue the same command to two companions that can hear you. When a companion reduces a foe to 0 HP, you gain advantage on your next attack against a creature within 30 feet before the end of your next turn.",
+        "legacyEffect": "Beast companions you command gain +2 to attack and damage rolls and inherit your Survival proficiency for tracking. As a bonus action, command one companion to attack, dash, disengage, or help; at level 10+, you may issue the same command to two companions that can hear you. When a companion reduces a foe to 0 HP, you gain advantage on your next attack against a creature within 30 feet before the end of your next turn."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt the bounded proposal with the completed EX58 controller/phase/physical-history interface; no future transport dependency or extra animal turn.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: companion_training"
+    },
+    {
+      "id": "CONFLICT-primal_instinct",
+      "original": {
+        "featId": "primal_instinct",
+        "description": "The beast inside listens before the mind does. You trust that older voice. Prestige lineage: Mooncursed. completed from the existing development record.)",
+        "effect": "You have advantage on Wisdom (Perception) checks relying on hearing or smell. You cannot be surprised while conscious. You can track creatures across difficult terrain without penalty. Under moonlight or while transformed, you gain +2 to initiative and once per short rest you may howl or roar as a free action: allies within 30 feet who can hear you gain advantage on their next attack against a creature you are tracking or have damaged this encounter.",
+        "legacyEffect": "You have advantage on Wisdom (Perception) checks relying on hearing or smell. You cannot be surprised while conscious. You can track creatures across difficult terrain without penalty. Under moonlight or while transformed, you gain +2 to initiative and once per short rest you may howl or roar as a free action: allies within 30 feet who can hear you gain advantage on their next attack against a creature you are tracking or have damaged this encounter."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep actual source ally wording including self, with original target/sensory/budget conditions; no generalized automatic self-target for inherently two-person effects.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: primal_instinct"
+    },
+    {
+      "id": "CONFLICT-arcane_armor",
+      "original": {
+        "featId": "arcane_armor",
+        "description": "A caster reinforces their defenses with a brief arcane ward while shaping a spell.",
+        "effect": "While you are casting or concentrating on a spell, gain a +1 bonus to AC and saving throws against reactions triggered by that casting.",
+        "legacyEffect": "+5% resistance while casting"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt the narrow grammatical scope on both AC and saves: only casting-triggered Reactions, not all attacks during concentration; keep+1, not legacy percentage resistance.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: arcane_armor"
+    },
+    {
+      "id": "CONFLICT-arcane_flexibility",
+      "original": {
+        "featId": "arcane_flexibility",
+        "description": "Careful preparation leaves room to exchange one readied spell when the party rests.",
+        "effect": "When you finish a short rest, exchange one prepared spell for another spell of the same tier that your class can prepare.",
+        "legacyEffect": "Swap one prepared spell per rest"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep one actual same-rank owned repertoire substitution at a beneficial short rest; no class-list union, free knowledge or duplicate selection.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: arcane_flexibility"
+    },
+    {
+      "id": "CONFLICT-arcane_pulse",
+      "original": {
+        "featId": "arcane_pulse",
+        "description": "Condensed force erupts around the caster, driving nearby foes away from the blast.",
+        "effect": "As an action, spend 3 RP to release force in a 10-foot radius. Creatures of your choice make a Strength save against your spell save DC, taking 3d6 force damage and being pushed 10 feet on a failure, or half damage without the push on a success.",
+        "legacyEffect": "AoE force blast knocks back enemies"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt3RP Action, own10ft radius and3d6force/STR push resolution as NEW; actual RP capacity required, no Warrior pool invented.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: arcane_pulse"
+    },
+    {
+      "id": "CONFLICT-arcane_recall",
+      "original": {
+        "featId": "arcane_recall",
+        "description": "Practiced recall recovers a spent spell through a deliberate return to its familiar pattern.",
+        "effect": "After casting a ranked spell, recover RP equal to that spell’s tier, to a maximum of 5 RP. You regain this use after a long rest.",
+        "legacyEffect": "Regain used spell once per day"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep one bounded return after a completed ranked cast with actual unrefunded payment/headroom, not rank-based free RP from a waived cast.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: arcane_recall"
+    },
+    {
+      "id": "CONFLICT-arcane_transfusion",
+      "original": {
+        "featId": "arcane_transfusion",
+        "description": "The caster trades endurance for magical reserve, drawing power from their own vitality.",
+        "effect": "As a bonus action, take necrotic damage equal to twice the RP restored; this damage cannot be reduced. Restore up to your proficiency bonus in RP. You regain this use after a long rest.",
+        "legacyEffect": "Convert HP to mana at 2:1"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt explicit normal-HP-funded necrotic damage cost, leaving at least1 before Wound consequences; it is not Temp HP or a refundable resource loop.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: arcane_transfusion"
+    },
+    {
+      "id": "CONFLICT-blood_magic",
+      "original": {
+        "featId": "blood_magic",
+        "description": "An experienced caster draws on their own vitality to boost a spell.",
+        "effect": "When casting a spell, you may take necrotic damage equal to twice the spell tier to increase its save DC by 1 or add one damage die. This damage cannot be reduced. Once used, you cannot use this feat again until a short rest.",
+        "legacyEffect": "Boost spell using own HP"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt normal-HP-funded typed damage cost and one DC/die option, preserving real Wound/concentration consequences; not the already reviewed Blood Ritual.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: blood_magic"
+    },
+    {
+      "id": "CONFLICT-channeled_flow",
+      "original": {
+        "featId": "channeled_flow",
+        "description": "Sustained focus carries a channel spell beyond its usual duration.",
+        "effect": "When a spell requires you to spend an action on later turns to maintain it, you may maintain it once as a bonus action instead. You regain this use after a short rest.",
+        "legacyEffect": "Extend channel spells by 50%"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep conversion of one genuinely required upkeep Action only, with original maintenance costs and concentration; no conversion of initial casting or optional attacks.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: channeled_flow"
+    },
+    {
+      "id": "CONFLICT-concentrated_will",
+      "original": {
+        "featId": "concentrated_will",
+        "description": "At level 5, sustained focus receives the listed +2 bonus on concentration checks.",
+        "effect": "Gain a +2 bonus to Constitution saving throws made to maintain concentration.",
+        "legacyEffect": "+2 to concentration checks"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep+2 on actual concentration Constitution saves, including qualifying nonspell concentration; distinct applicable feat bonuses add, no generic Wound/save bonus.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: concentrated_will"
+    },
+    {
+      "id": "CONFLICT-dispel_precision",
+      "original": {
+        "featId": "dispel_precision",
+        "description": "Precise arcane study improves the chance to remove the intended effect.",
+        "effect": "When dispelling an effect from a target affected by multiple spells, choose the effect you attempt to end rather than determining it randomly. Gain +1 on the dispel check.",
+        "legacyEffect": "+20% chance to remove intended effect"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep+1 only where a genuine dispelling check exists; current ordinary Dispel Magic has no check. Preserve exact selected-effect/multieffect scope.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: dispel_precision"
+    },
+    {
+      "id": "CONFLICT-echo_spell",
+      "original": {
+        "featId": "echo_spell",
+        "description": "A prepared casting leaves an echo to repeat its effect next round at half power.",
+        "effect": "After casting a spell of Tier 1–3, you may create an echo. At the start of your next turn, repeat one numerical effect at half value without spending RP or changing targets. You regain this use after a long rest.",
+        "legacyEffect": "Repeat spell effect next round at half power"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt one bounded delayed half-native secondary result, not a cast, resource refund, extra body or general duplicated spell; recheck genuine original targets and expiry.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: echo_spell"
+    },
+    {
+      "id": "CONFLICT-efficient_caster",
+      "original": {
+        "featId": "efficient_caster",
+        "description": "Measured spellwork lowers the RP cost of every spell.",
+        "effect": "Once per round when you cast a ranked spell, reduce its RP cost by 1 (minimum 1). After using this feat a number of times equal to your proficiency bonus, regain all uses after a long rest.",
+        "legacyEffect": "-10% mana cost to all spells"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep finite PB uses, actual price stage and minimum1; no discount on a genuinely free cast or conversion of an independent cost into a free waiver.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: efficient_caster"
+    },
+    {
+      "id": "CONFLICT-energy_sink",
+      "original": {
+        "featId": "energy_sink",
+        "description": "Hard-won magical resilience restores RP after a spell strikes.",
+        "effect": "When you succeed on a saving throw against a spell or take no damage from it, use your reaction to recover 1 RP. You can do so a number of times equal to your proficiency bonus per long rest.",
+        "legacyEffect": "Restore mana when hit by spells"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep Reaction to an original hostile spell event with actual source conditions; actual Temp HP damage counts, and all source-specific no-resource flags remain.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: energy_sink"
+    },
+    {
+      "id": "CONFLICT-ether_anchor",
+      "original": {
+        "featId": "ether_anchor",
+        "description": "At level 12, an anchored presence resists banishment effects.",
+        "effect": "You have advantage on saving throws against banishment, forced teleportation, and planar displacement. Once per long rest, you may choose to succeed on one such save.",
+        "legacyEffect": "Immune to banishment effects"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep existing forced-teleport/banishment saves and one post-failure autosuccess; no save or general relocation immunity is created.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: ether_anchor"
+    },
+    {
+      "id": "CONFLICT-flash_cast",
+      "original": {
+        "featId": "flash_cast",
+        "description": "Quick spellwork grants the listed one instant-cast spell per day.",
+        "effect": "Once per long rest, cast a spell with a normal casting time of one action as a bonus action. You cannot cast another ranked spell during the same turn.",
+        "legacyEffect": "1 instant-cast spell per day"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt one Action-to-BA conversion and the whole-actual-turn ranked-spell restriction, including earlier casts and later Reactions; no second Action grant.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: flash_cast"
+    },
+    {
+      "id": "CONFLICT-foresight_surge",
+      "original": {
+        "featId": "foresight_surge",
+        "description": "After casting divination, foresight grants the listed initiative increase.",
+        "effect": "After you cast a divination spell, gain +2 initiative for the next hour. If initiative is already rolled, move up one place in the order at the start of the next round.",
+        "legacyEffect": "+10 initiative after casting divination"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt+2 initiative and one bounded next-round baseline ordering advance; integrate actual Future Echo permutation restoration without removing incapacitated actors or granting turns.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: foresight_surge"
+    },
+    {
+      "id": "CONFLICT-illusionist_s_trick",
+      "original": {
+        "featId": "illusionist_s_trick",
+        "description": "Charisma 14+ gives an illusion the listed extra hit before it vanishes.",
+        "effect": "The first time an illusory creature or object you create would be ended by an attack or interaction, it persists until the end of the current turn, allowing observers to make the normal investigation save afterward.",
+        "legacyEffect": "Illusions take 1 extra hit before vanishing"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep narrow delay of a genuine interaction-caused illusion ending only; disbelief, visible contradictions, concentration loss and independent expiry remain.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: illusionist_s_trick"
+    },
+    {
+      "id": "CONFLICT-magical_fortitude",
+      "original": {
+        "featId": "magical_fortitude",
+        "description": "A Constitution-trained caster or defender gains the listed +2 protection on saves against spells.",
+        "effect": "Gain +2 to saving throws against spells.",
+        "legacyEffect": "+2 saves vs spells"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep+2 actual saves against direct spell effects, including source repeats; adopt distinct-flat-feat addition without extending it to indirect Wound or concentration saves.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: magical_fortitude"
+    },
+    {
+      "id": "CONFLICT-mana_burn",
+      "original": {
+        "featId": "mana_burn",
+        "description": "Intelligence-trained offensive spellwork carries the feat's listed drain against an enemy's RP.",
+        "effect": "When a creature fails a save against your damaging spell, it loses 1 RP if it has an RP pool. A creature can lose RP this way only once per round.",
+        "legacyEffect": "Offensive spells drain enemy mana"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep at most1 actual RP lost per target/numbered round on the relevant failed damaging-spell save; no RC/slot conversion, RP creation or transfer.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: mana_burn"
+    },
+    {
+      "id": "CONFLICT-mental_buffer",
+      "original": {
+        "featId": "mental_buffer",
+        "description": "Wisdom 15+ supports the feat's listed once-per-day defense against confusion.",
+        "effect": "Once per long rest, when you would become confused, dominated, or unable to distinguish allies from enemies, ignore that condition until the end of your next turn.",
+        "legacyEffect": "Negate confusion once per day"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt one bounded delayed application interval for supported confusion/misidentification control; no arbitrary condition cure or replay of suppressed pulses.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: mental_buffer"
+    },
+    {
+      "id": "CONFLICT-mirror_cast",
+      "original": {
+        "featId": "mirror_cast",
+        "description": "Intelligence 16+ permits the feat's listed once-per-day spell cast from a reflection.",
+        "effect": "Once per long rest, cast a spell as though originating from a reflective surface you can see within 60 feet. Range and line of effect are measured from that surface.",
+        "legacyEffect": "Cast spell from reflection (once per day)"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt finite real mirror-origin redirection with actual visibility, line of effect and caster targeting; no remote Touch, mirror-created sight or continuing tether.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: mirror_cast"
+    },
+    {
+      "id": "CONFLICT-mystic_recoil",
+      "original": {
+        "featId": "mystic_recoil",
+        "description": "When a spell fails at level 7, mystic recoil leaves you ready to take the feat's listed extra action next turn.",
+        "effect": "Once per short rest, when a spell you cast is countered or all its targets succeed on their saves, gain one additional bonus action on your next turn. This bonus action cannot cast a ranked spell.",
+        "legacyEffect": "If spell fails, gain +1 action next turn"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt extra bounded non-ranked-spell BA only after actual countering or all initial recipients genuinely saving; no empty-set trigger or extra full Action.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: mystic_recoil"
+    },
+    {
+      "id": "CONFLICT-planar_knowledge",
+      "original": {
+        "featId": "planar_knowledge",
+        "description": "Intelligence 14+ supports recognizing an enemy's resistances in the middle of a fight.",
+        "effect": "As a bonus action, make an Arcana check against DC 10 + the creature’s challenge rating. On a success, learn one resistance, immunity, vulnerability, or planar trait. Once per creature.",
+        "legacyEffect": "Know enemy resistances mid-fight"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep bounded observable ordinary defensive information and explicit no-cosmology scope; NEW DC15 fallback for otherwise eligible genuinely unrated creatures, never invented CR.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: planar_knowledge"
+    },
+    {
+      "id": "CONFLICT-quick_ritualist",
+      "original": {
+        "featId": "quick_ritualist",
+        "description": "Wisdom 14+ supports halving the listed ritual casting time.",
+        "effect": "Halve the additional casting time required to cast a spell as a ritual, to a minimum of 5 minutes.",
+        "legacyEffect": "Ritual casting time halved"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt half the added ritual labor, not base cast time, with a non-worsening five-minute floor and explicit composition with Ritual Channeler.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: quick_ritualist"
+    },
+    {
+      "id": "CONFLICT-ritual_channeler",
+      "original": {
+        "featId": "ritual_channeler",
+        "description": "Intelligence 14+ supports the listed 25% faster group rituals.",
+        "effect": "When participating in a group ritual, reduce its required active casting time by 25 percent and count as two ordinary assistants.",
+        "legacyEffect": "Group rituals 25% faster"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt one25% group-labor reduction and double ordinary assistant contribution only for the actual assistant role; no extra physical bodies, fabricated check or per-helper compounding.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: ritual_channeler"
+    },
+    {
+      "id": "CONFLICT-silent_casting",
+      "original": {
+        "featId": "silent_casting",
+        "description": "Level 7 supports the listed casting without a verbal component.",
+        "effect": "You may cast a spell without its verbal component by increasing its RP cost by 1. This cannot bypass components with a stated magical command word.",
+        "legacyEffect": "Cast without verbal component"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep+1 real independent RP to remove V only; no removal of F/S, actual command channels or source-required spoken effects.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: silent_casting"
+    },
+    {
+      "id": "CONFLICT-spell_reservoir",
+      "original": {
+        "featId": "spell_reservoir",
+        "description": "Intelligence 14+ supports the listed gain of 1 additional ranked-spell recovery per day.",
+        "effect": "Once per long rest after finishing a short rest, recover RP equal to your proficiency bonus.",
+        "legacyEffect": "Gain 1 additional spell slot per day"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep one LR-bounded recovery at a genuine beneficial short-rest completion, capped by actual PB and headroom; no old-rest trigger banking.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: spell_reservoir"
+    },
+    {
+      "id": "CONFLICT-spellweave",
+      "original": {
+        "featId": "spellweave",
+        "description": "Wisdom 14+ supports the listed stacking of minor buffs onto the next spell.",
+        "effect": "When you cast a spell that grants a minor buff, you may hold that buff until the end of your next turn and apply it to the next spell you cast instead. Only one buff may be held.",
+        "legacyEffect": "Stack minor buffs onto next spell"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt the closed Guidance/Resistance/True Strike transfer table using the actual current non-concentration payloads; one real held buff, no invented check/save or generic Insight exchange.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: spellweave"
+    },
+    {
+      "id": "CONFLICT-still_casting",
+      "original": {
+        "featId": "still_casting",
+        "description": "Level 7 supports the listed casting without somatic gestures.",
+        "effect": "You may cast a spell without its somatic component by increasing its RP cost by 1. This does not function while fully restrained.",
+        "legacyEffect": "Cast without somatic gestures"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep+1 real independent RP to remove S only with genuine remaining component access; no assumption every restraint disables hands or focus, and no V waiver.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: still_casting"
+    },
+    {
+      "id": "CONFLICT-temporal_flux",
+      "original": {
+        "featId": "temporal_flux",
+        "description": "Level 8 supports the listed slowing of enemies hit by time spells.",
+        "effect": "When a creature fails a save against one of your time-tagged spells, reduce its speed by 10 feet and prevent reactions until the start of its next turn.",
+        "legacyEffect": "Slow all enemies hit by time spells"
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt feat-only Time membership for Slow/Haste/Future Echo, but require an actual failed save; no Save appears on the save-less comparison cards.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: temporal_flux"
+    },
+    {
+      "id": "CONFLICT-arcane_adaptation",
+      "original": {
+        "featId": "arcane_adaptation",
+        "description": "Your magic bends to mirror what strikes you, letting you reshape your defenses after every reflected blow. Prestige lineage: Echomancer. completed from the existing development record.)",
+        "effect": "When you successfully reflect or copy a spell or supernatural ability, you gain resistance to that damage type until the end of your next turn. Once per short rest, you may treat a copied effect as if you had always known it for 2 rounds.",
+        "legacyEffect": "When you successfully reflect or copy a spell or supernatural ability, you gain resistance to that damage type until the end of your next turn. Once per short rest, you may treat a copied effect as if you had always known it for 2 rounds."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt bounded witnessed-type resistance and temporary access to one supported paid copy profile; no Mirrorsage archive, rank ceiling or release allowance is duplicated.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: arcane_adaptation"
+    },
+    {
+      "id": "CONFLICT-arcane_calculus",
+      "original": {
+        "featId": "arcane_calculus",
+        "description": "You solve combat like an equation—measuring intervals, vectors, and the precise moment a spell must land. Prestige lineage: Chronomancer. completed from the existing development record.)",
+        "effect": "You gain +2 to initiative while concentrating on a spell. Once per short rest, you may store one prepared spell's timing: cast it on a later turn without using an action, as if you had readied it mathematically. When you cast a stored spell this way, one creature of your choice within 30 feet must succeed on a Dexterity save or take force damage equal to your spellcasting modifier (minimum 1).",
+        "legacyEffect": "You gain +2 to initiative while concentrating on a spell. Once per short rest, you may store one prepared spell's timing: cast it on a later turn without using an action, as if you had readied it mathematically. When you cast a stored spell this way, one creature of your choice within 30 feet must succeed on a Dexterity save or take force damage equal to your spellcasting modifier (minimum 1)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt the explicit next-own-regular-turn non-Action Ready release extension, maintaining one Ready/concentration slot, original price/history and shared free-release cap.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: arcane_calculus"
+    },
+    {
+      "id": "CONFLICT-arcane_momentum",
+      "original": {
+        "featId": "arcane_momentum",
+        "description": "Each sword stroke feeds your spellcraft. In Aethel's battlefields, steel and sigil are one rhythm. Prestige lineage: Battlemage. completed from the existing development record.)",
+        "effect": "When you hit with a melee weapon attack, gain 1 Momentum stack (max 3). Spend 1 stack to reduce the casting time of your next spell by one step, or spend all stacks to add +10% force damage per stack to a spell you cast before the end of your turn.",
+        "legacyEffect": "When you hit with a melee weapon attack, gain 1 Momentum stack (max 3). Spend 1 stack to reduce the casting time of your next spell by one step, or spend all stacks to add +10% force damage per stack to a spell you cast before the end of your turn."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt separate finite3-stack melee momentum, not Dragoon Momentum; spend on one legal Action conversion or separately floored native damage rider, never both.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: arcane_momentum"
+    },
+    {
+      "id": "CONFLICT-conjure_flora",
+      "original": {
+        "featId": "conjure_flora",
+        "description": "Seeds answer your call, rooting as guardians, lashing as spears, blooming as verdict. Prestige lineage: Verdant Animist. completed from the existing development record.)",
+        "effect": "Once per short rest, you conjure one immobile plant spirit (seedling) within 30 feet for 1 minute. It can lash for thorn damage, release spores, or entangle a 10-foot square. You may maintain one additional seedling at level 10+. As a bonus action, you may command all active seedlings to lash one creature within 10 feet of any seedling for 1d6 piercing damage (save for half).",
+        "legacyEffect": "Once per short rest, you conjure one immobile plant spirit (seedling) within 30 feet for 1 minute. It can lash for thorn damage, release spores, or entangle a 10-foot square. You may maintain one additional seedling at level 10+. As a bonus action, you may command all active seedlings to lash one creature within 10 feet of any seedling for 1d6 piercing damage (save for half)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt three closed finite plant profiles with actual attached command phases and capacity/creation entitlements; no anonymous autonomous attack, corpse, harvest or class minion grant.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: conjure_flora"
+    },
+    {
+      "id": "CONFLICT-curse_channeling",
+      "original": {
+        "featId": "curse_channeling",
+        "description": "Doom flows through your blade like ink through water—every cut writes a sentence the target cannot unread. Prestige lineage: Hexblade. completed from the existing development record.)",
+        "effect": "When you hit a creature with a weapon attack, you can apply a Hex Mark. Marked creatures take +1d6 necrotic damage the next time they are hit before the start of your next turn. You can maintain one mark at a time; at level 10+, two. When a marked creature drops to 0 hit points, you regain 1d6 hit points or gain advantage on your next attack before the end of your next turn (your choice).",
+        "legacyEffect": "When you hit a creature with a weapon attack, you can apply a Hex Mark. Marked creatures take +1d6 necrotic damage the next time they are hit before the start of your next turn. You can maintain one mark at a time; at level 10+, two. When a marked creature drops to 0 hit points, you regain 1d6 hit points or gain advantage on your next attack before the end of your next turn (your choice)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep owned finite mark, later distinct hit rider and bounded actual positive-to-zero reward; actual death is not required and copying/refreshing cannot duplicate entitlements.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: curse_channeling"
+    },
+    {
+      "id": "CONFLICT-curse_weaving",
+      "original": {
+        "featId": "curse_weaving",
+        "description": "You knot malice into syllables, letting debuffs compound like threads pulled tight. Prestige lineage: Warlock. completed from the existing development record.)",
+        "effect": "When you cast a spell that forces a saving throw, you may weave a curse: on a failed save, the target suffers an additional escalating debuff each round (–1 to attacks, then –1 to saves, then disadvantage on concentration) until they succeed on a save at the end of their turn.",
+        "legacyEffect": "When you cast a spell that forces a saving throw, you may weave a curse: on a failed save, the target suffers an additional escalating debuff each round (–1 to attacks, then –1 to saves, then disadvantage on concentration) until they succeed on a save at the end of their turn."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt explicit staged curse clocks and saves; same target/source refresh preserves stage and one magnitude, no reset farming or automatic parent spell promotion.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: curse_weaving"
+    },
+    {
+      "id": "CONFLICT-dark_affinity",
+      "original": {
+        "featId": "dark_affinity",
+        "description": "Shadow clings to you willingly. The night recognizes its own. Prestige lineage: Bloodbound. completed from the existing development record.)",
+        "effect": "You have resistance to necrotic damage, darkvision out to 60 feet (or +30 feet if you already have it), and advantage on saving throws against charm effects from undead creatures. While in dim light or darkness, you have advantage on Stealth checks and once per short rest you may step into shadow as a bonus action, teleporting up to 15 feet to an unoccupied space you can see that is also in dim light or darkness.",
+        "legacyEffect": "You have resistance to necrotic damage, darkvision out to 60 feet (or +30 feet if you already have it), and advantage on saving throws against charm effects from undead creatures. While in dim light or darkness, you have advantage on Stealth checks and once per short rest you may step into shadow as a bonus action, teleporting up to 15 feet to an unoccupied space you can see that is also in dim light or darkness."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt necrotic resistance, actual Undead charm-save predicate and real dim-light step; correct darkvision to a fixed acquisition branch rather than a dynamic free fallback.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: dark_affinity"
+    },
+    {
+      "id": "CONFLICT-dark_binding",
+      "original": {
+        "featId": "dark_binding",
+        "description": "You and your cursed weapon share one hunger. Neither leaves the other's grasp easily. Prestige lineage: Hexblade. completed from the existing development record.)",
+        "effect": "You bind to one cursed weapon over a blood ritual (1 hour). While bound, the weapon cannot be disarmed against your will and deals an additional 1d4 necrotic damage on hit. If the weapon is destroyed, you take 2d10 psychic damage and cannot rebind until you complete a new ritual.",
+        "legacyEffect": "You bind to one cursed weapon over a blood ritual (1 hour). While bound, the weapon cannot be disarmed against your will and deals an additional 1d4 necrotic damage on hit. If the weapon is destroyed, you take 2d10 psychic damage and cannot rebind until you complete a new ritual."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt finite real weapon ritual/bond and destruction consequence with continuing body/custody; not possession of a free cursed weapon, soul lore or refillable RP.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: dark_binding"
+    },
+    {
+      "id": "CONFLICT-eldritch_echo",
+      "original": {
+        "featId": "eldritch_echo",
+        "description": "Your patron's voice returns through you, repeating power that was never meant for mortal throats. Prestige lineage: Warlock. completed from the existing development record.)",
+        "effect": "You gain Eldritch Blast as a known cantrip if you do not already have it; it scales with your level. Once per short rest, when a creature within 60 feet casts a spell, you may echo a simplified version of that spell on your next turn (DM adjudicates equivalent level, usually half the original).",
+        "legacyEffect": "You gain Eldritch Blast as a known cantrip if you do not already have it; it scales with your level. Once per short rest, when a creature within 60 feet casts a spell, you may echo a simplified version of that spell on your next turn (DM adjudicates equivalent level, usually half the original)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt the separate feat-only CHA Eldritch Blast plus one bounded captured profile; release is an actual paid feat-copy cast, not an ordinary spell grant or free class Echo.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: eldritch_echo"
+    },
+    {
+      "id": "CONFLICT-forbidden_pact",
+      "original": {
+        "featId": "forbidden_pact",
+        "description": "You signed in blood and silence. Something old signed back. Prestige lineage: Warlock. completed from the existing development record.)",
+        "effect": "You forge a soul pact with an entity beyond the known planes. You gain Eldritch Blast and one pact sigil (e.g., shadowstep, hex bonus, or energy resistance) chosen with your DM. Once per encounter, you may spend hit points equal to twice the spell's level instead of a ranked-spell recovery.",
+        "legacyEffect": "You forge a soul pact with an entity beyond the known planes. You gain Eldritch Blast and one pact sigil (e.g., shadowstep, hex bonus, or energy resistance) chosen with your DM. Once per encounter, you may spend hit points equal to twice the spell's level instead of a spell slot."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt one of three closed sigils and the distinct normal-HP sacrifice substitution; sacrifice is a state payment, not Arcane Transfusion damage, and creates no patron/class ontology.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: forbidden_pact"
+    },
+    {
+      "id": "CONFLICT-hemocraft",
+      "original": {
+        "featId": "hemocraft",
+        "description": "Blood is ink, blade is quill—you write power in crimson script across flesh and air. Prestige lineage: Bloodbound. completed from the existing development record.)",
+        "effect": "When you score a critical hit with a melee attack, the target gains a Bleed stack (1d4 ongoing damage at the start of its turns). You can consume one Bleed stack from a creature within 30 feet to heal 1d8 hit points or deal 1d8 necrotic damage to that creature.",
+        "legacyEffect": "When you score a critical hit with a melee attack, the target gains a Bleed stack (1d4 ongoing damage at the start of its turns). You can consume one Bleed stack from a creature within 30 feet to heal 1d8 hit points or deal 1d8 necrotic damage to that creature."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt finite3-record Bleed handling, one consumption per round and2×level healing reserve starting0 until a beneficial LR; no healing from cured/foreign/staged records.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: hemocraft"
+    },
+    {
+      "id": "CONFLICT-lightning_affinity",
+      "original": {
+        "featId": "lightning_affinity",
+        "description": "Storm-blood runs quiet in you until the sky asks it to speak. Prestige lineage: Storm Lord. completed from the existing development record.)",
+        "effect": "You have resistance to lightning damage. Your lightning spells deal +1 damage per die and ignore half cover when the target is outdoors or under open sky. You have advantage on saving throws against electrical and paralyzing effects. When you take lightning damage, you can use your reaction to store the excess (after resistance) as Storm Charge (max 2); spend 1 charge to add 1d6 lightning to your next spell or weapon attack before the end of your next turn.",
+        "legacyEffect": "You have resistance to lightning damage. Your lightning spells deal +1 damage per die and ignore half cover when the target is outdoors or under open sky. You have advantage on saving throws against electrical and paralyzing effects. When you take lightning damage, you can use your reaction to store the excess (after resistance) as Storm Charge (max 2); spend 1 charge to add 1d6 lightning to your next spell or weapon attack before the end of your next turn."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt native lightning-die+1, actual half-cover scope and two separately expiring charges; respect source no-resource flags and do not refresh old charges at capacity.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: lightning_affinity"
+    },
+    {
+      "id": "CONFLICT-mimicry",
+      "original": {
+        "featId": "mimicry",
+        "description": "See it once, steal its thunder—your mirror learns faster than pride allows. Prestige lineage: Echomancer. completed from the existing development record.)",
+        "effect": "When you witness a spell or monster ability used against you or within 30 feet, you can mimic a simplified version once before your next short rest. The mimicked effect lasts up to 2 rounds and is usually at half potency (DM adjudicates).",
+        "legacyEffect": "When you witness a spell or monster ability used against you or within 30 feet, you can mimic a simplified version once before your next short rest. The mimicked effect lasts up to 2 rounds and is usually at half potency (DM adjudicates)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt actual observed/targeted capture into a finite profile and paid feat-copy cast; preserve rank, RP, visibility and once-rest limits without copying class engines or unknown powers.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: mimicry"
+    },
+    {
+      "id": "CONFLICT-quickened_thought",
+      "original": {
+        "featId": "quickened_thought",
+        "description": "Your mind outpaces the tick of Aethel's clocks—ideas arrive finished in the Temporal Tower's shadow, as if tomorrow's spell were already written in today's breath. Prestige lineage: Chronomancer. completed from the existing development record.)",
+        "effect": "You gain +2 to initiative and advantage on concentration saves while holding a readied spell. Once per short rest, you may cast a spell of 2nd level or lower as a bonus action; if you do, you cannot take a reaction until the start of your next turn. When you roll initiative, you may bank one cantrip cast—release it on any later turn in the encounter without spending an action.",
+        "legacyEffect": "You gain +2 to initiative and advantage on concentration saves while holding a readied spell. Once per short rest, you may cast a spell of 2nd level or lower as a bonus action; if you do, you cannot take a reaction until the start of your next turn. When you roll initiative, you may bank one cantrip cast—release it on any later turn in the encounter without spending an action."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep the source later-any-turn banked cantrip release rather than own-turn-only; it is between events, concentration-bound and shared-cap, not a free interrupt or extra turn.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: quickened_thought"
+    },
+    {
+      "id": "CONFLICT-spell_reflection",
+      "original": {
+        "featId": "spell_reflection",
+        "description": "What was sent returns wearing your sigil—mirrors do not forgive. Prestige lineage: Echomancer. completed from the existing development record.)",
+        "effect": "Once per short rest, when you are targeted by a single-target spell, you may reflect it back at the caster as an immediate reaction (they make saving throws as if they had cast it on themselves). When you take spell damage, the attacker takes psychic damage equal to half the damage you received (once per round).",
+        "legacyEffect": "Once per short rest, when you are targeted by a single-target spell, you may reflect it back at the caster as an immediate reaction (they make saving throws as if they had cast it on themselves). When you take spell damage, the attacker takes psychic damage equal to half the damage you received (once per round)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Keep original caster ownership on redirection and bounded actual spell-damage reflection; no reflected copy, recursive retaliation, free spell or resource farming.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: spell_reflection"
+    },
+    {
+      "id": "CONFLICT-stormcaller",
+      "original": {
+        "featId": "stormcaller",
+        "description": "You whistle up weather like a shepherd calls dogs—clouds come hungry. Prestige lineage: Storm Lord. completed from the existing development record.)",
+        "effect": "You can create a 15-foot Static Field as an action (once per short rest): creatures entering or starting their turn there take 1d6 lightning damage and have disadvantage on Dexterity saves until they leave the field. Once per short rest, you may Stormstep up to 30 feet to a target you can see, dealing 1d8 thunder damage to adjacent creatures and leaving a crackling afterimage that grants you half cover until the start of your next turn. While outdoors during a storm, your Static Field radius increases to 20 feet and lightning spells you cast ignore the first instance of half cover between you and the target.",
+        "legacyEffect": "You can create a 15-foot Static Field as an action (once per short rest): creatures entering or starting their turn there take 1d6 lightning damage and have disadvantage on Dexterity saves until they leave the field. Once per short rest, you may Stormstep up to 30 feet to a target you can see, dealing 1d8 thunder damage to adjacent creatures and leaving a crackling afterimage that grants you half cover until the start of your next turn. While outdoors during a storm, your Static Field radius increases to 20 feet and lightning spells you cast ignore the first instance of half cover between you and the target."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt finite static field/Stormstep nonspell techniques with actual owned casting route and Nature-or-real-Spellcraft prerequisite; explicitly fix20ft storm radius at creation.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: stormcaller"
+    },
+    {
+      "id": "CONFLICT-temporal_theory",
+      "original": {
+        "featId": "temporal_theory",
+        "description": "Time is not a river—it is a ledger. You have learned to borrow from tomorrow and repay in fatigue. Prestige lineage: Chronomancer. completed from the existing development record.)",
+        "effect": "At the end of your turn, you may bank one unused action (move, object interaction, or bonus action if available), storing up to 2 banked actions. Spend banked actions on later turns. After spending 2 banked actions in one encounter, you gain one level of fatigue when combat ends.",
+        "legacyEffect": "At the end of your turn, you may bank one unused action (move, object interaction, or bonus action if available), storing up to 2 banked actions. Spend banked actions on later turns. After spending 2 banked actions in one encounter, you gain one level of fatigue when combat ends."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt two recorded unused native-budget tokens and one end-encounter Exhaustion cost after spending two; no generated budget rebanking, erased spent movement or Strain alias.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: temporal_theory"
+    },
+    {
+      "id": "CONFLICT-trapcasting",
+      "original": {
+        "featId": "trapcasting",
+        "description": "Roots, thorns, and spore-mines—you sow violence that waits patiently to bloom. Prestige lineage: Verdant Animist. completed from the existing development record.)",
+        "effect": "Your conjured flora count as magical traps. Enemies moving through a seedling's square must succeed on a Dexterity save or suffer its effect (damage, restraint, or poison). You can detonate one seedling as a bonus action for a Bloom Burst (10-foot area, 2d6 damage, type chosen at conjuring).",
+        "legacyEffect": "Your conjured flora count as magical traps. Enemies moving through a seedling's square must succeed on a Dexterity save or suffer its effect (damage, restraint, or poison). You can detonate one seedling as a bonus action for a Bloom Burst (10-foot AoE, 2d6 damage, type chosen at conjuring)."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt entry-trigger/burst exceptions explicitly spending the same one owner-round offensive-companion allowance as ordinary plant commands; no simultaneous free offense or recreated plants.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: trapcasting"
+    },
+    {
+      "id": "CONFLICT-verdant_bond",
+      "original": {
+        "featId": "verdant_bond",
+        "description": "The green speaks to you in sap and silence. You answer with growth. Prestige lineage: Verdant Animist. completed from the existing development record.)",
+        "effect": "You can communicate simple ideas to plants within 60 feet and sense coarse emotions from rooted life (fear, hunger, dormancy). While you have at least one conjured flora active, you gain +1 to spell save DC and attack rolls for nature spells, and difficult terrain from nonmagical plants does not cost you extra movement. You have advantage on Nature checks in wilderness terrain. Once per long rest, you may ask a stand of plants to hold a memory for 24 hours—a whispered name, direction, or warning that replays when an ally you designate passes within 10 feet.",
+        "legacyEffect": "You can communicate simple ideas to plants within 60 feet and sense coarse emotions from rooted life (fear, hunger, dormancy). While you have at least one conjured flora active, you gain +1 to spell save DC and attack rolls for nature spells, and difficult terrain from nonmagical plants does not cost you extra movement. You have advantage on Nature checks in wilderness terrain. Once per long rest, you may ask a stand of plants to hold a memory for 24 hours—a whispered name, direction, or warning that replays when an ally you designate passes within 10 feet."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt actual plant-linked Druid/Ranger/Shaman route bonus and one finite real audible message; include owner as an eligible ally, preserve LAX evidence and original spell access.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: verdant_bond"
+    },
+    {
+      "id": "CONFLICT-voltyros_pact",
+      "original": {
+        "featId": "voltyros_pact",
+        "description": "You bargained with the Plane of Storms itself—Voltyros marks you with copper taste and crown-light. Prestige lineage: Storm Lord. completed from the existing development record.)",
+        "effect": "Your lightning spells chain to one additional target within 15 feet for half damage. While you remain stationary for a full round, you gain resistance to all damage until the start of your next turn and +2 to spell damage (Eye of the Tempest). Once per long rest, you may call a stormform burst: 30-foot line of lightning for 4d6 damage.",
+        "legacyEffect": "Your lightning spells chain to one additional target within 15 feet for half damage. While you remain stationary for a full round, you gain resistance to all damage until the start of your next turn and +2 to spell damage (Eye of the Tempest). Once per long rest, you may call a stormform burst: 30-foot line of lightning for 4d6 damage."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt bounded one additional lightning recipient, actual stationary Eye interval and separate finite line; keep the printed+2 personal spell scope, no weather, RP or plane-origin grant.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: voltyros_pact"
+    },
+    {
+      "id": "CONFLICT-wounding_magic",
+      "original": {
+        "featId": "wounding_magic",
+        "description": "Your spells leave wounds that resist closure—pain that outlasts the casting. Prestige lineage: Soulrender. completed from the existing development record.)",
+        "effect": "When you deal damage with a spell, you may leave an Agony wound: the target takes 1d4 necrotic damage at the start of each of its turns for 3 rounds (save ends). Wounded targets have disadvantage on Constitution saves to regain hit points and on saves against resurrection effects.",
+        "legacyEffect": "When you deal damage with a spell, you may leave an Agony wound: the target takes 1d4 necrotic damage at the start of each of its turns for 3 rounds (save ends). Wounded targets have disadvantage on Constitution saves to regain hit points and on saves against resurrection effects."
+      },
+      "decision": "KEEP_SEPARATE_ORIGINALS; USE_FINAL_EXPLICIT_PROCEDURE",
+      "completeResolution": "Adopt separate three-tick spell Agony with exact immunity/cure/deadline metadata, not Core Wounds, extra spell casts or an invented healing saving throw.",
+      "replacementProcedureRef": "FEAT_327_AUTHORING_REGISTER.json: wounding_magic"
+    }
+  ],
+  "scope": "Every original description/effect and legacy clause also remains in each full per-ID source object. An identical legacyEffect is preserved, not invented as a conflict."
+}

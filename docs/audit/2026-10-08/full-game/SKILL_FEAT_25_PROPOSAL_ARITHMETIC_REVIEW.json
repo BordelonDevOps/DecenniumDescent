@@ -1,0 +1,182 @@
+{
+  "status": "Existing Core and proposed numeric examples checked; no feat operational approval",
+  "recordedAtUtc": "2026-10-11T12:33:47.831775+00:00",
+  "checks": 13,
+  "failures": 0,
+  "existingCoreQueries": 7,
+  "plainArithmeticCalculations": 6,
+  "fullFeatRuntimeCases": 0,
+  "cases": [
+    {
+      "id": "SF-01-original",
+      "actual": {
+        "total": 6,
+        "degree": "failure",
+        "success": false
+      },
+      "expected": {
+        "total": 6,
+        "degree": "failure",
+        "success": false
+      },
+      "scope": "Existing Core helper; not feat-use/recovery implementation",
+      "pass": true
+    },
+    {
+      "id": "SF-01-replacement",
+      "actual": {
+        "total": 4,
+        "degree": "critical-failure",
+        "success": false
+      },
+      "expected": {
+        "total": 4,
+        "degree": "critical-failure",
+        "success": false
+      },
+      "scope": "Existing Core helper after proposed full reroll",
+      "pass": true
+    },
+    {
+      "id": "SF-01-advantage-original",
+      "actual": {
+        "total": 7,
+        "degree": "failure",
+        "success": false
+      },
+      "expected": {
+        "total": 7,
+        "degree": "failure",
+        "success": false
+      },
+      "scope": "Ordinary selected die; no feat resource implementation",
+      "pass": true
+    },
+    {
+      "id": "SF-01-advantage-replacement",
+      "actual": {
+        "total": 11,
+        "degree": "failure",
+        "success": false
+      },
+      "expected": {
+        "total": 11,
+        "degree": "failure",
+        "success": false
+      },
+      "scope": "Ordinary selected die; proposed replacing both dice remains unapproved",
+      "pass": true
+    },
+    {
+      "id": "SF-03-margin",
+      "actual": {
+        "total": 4,
+        "degree": "critical-failure",
+        "success": false
+      },
+      "expected": {
+        "total": 4,
+        "degree": "critical-failure",
+        "success": false
+      },
+      "scope": "Existing Core on proposed effective die, not complete replacement runtime",
+      "pass": true
+    },
+    {
+      "id": "SF-05-tie",
+      "actual": {
+        "actorTotal": 16,
+        "defenderTotal": 16,
+        "changesState": false
+      },
+      "expected": {
+        "actorTotal": 16,
+        "defenderTotal": 16,
+        "changesState": false
+      },
+      "scope": "Existing Core opposed tie",
+      "pass": true
+    },
+    {
+      "id": "SF-13-natural-margin",
+      "actual": {
+        "total": 16,
+        "degree": "critical-failure",
+        "success": false
+      },
+      "expected": {
+        "total": 16,
+        "degree": "critical-failure",
+        "success": false
+      },
+      "scope": "Existing Core degree; separate numerical deficit is 2",
+      "pass": true
+    },
+    {
+      "id": "SF-11-initiative",
+      "actual": 16,
+      "expected": 16,
+      "scope": "Plain arithmetic only",
+      "pass": true
+    },
+    {
+      "id": "SF-17-silent-difficult-distance",
+      "actual": "15/2",
+      "expected": "15/2",
+      "scope": "Plain movement arithmetic; no actor/scheduler implementation",
+      "pass": true
+    },
+    {
+      "id": "SF-19-time-and-mundane",
+      "actual": [
+        60,
+        30,
+        10
+      ],
+      "expected": [
+        60,
+        30,
+        10
+      ],
+      "scope": "Plain arithmetic on hypothetical declared mundane/rare bill",
+      "pass": true
+    },
+    {
+      "id": "SF-19-indivisible-inputs",
+      "actual": [
+        3,
+        1
+      ],
+      "expected": [
+        3,
+        1
+      ],
+      "scope": "Plain rounding; eligibility and materials are proposed",
+      "pass": true
+    },
+    {
+      "id": "SF-24-attack-base",
+      "actual": [
+        10,
+        5
+      ],
+      "expected": [
+        10,
+        5
+      ],
+      "scope": "Plain proposed-base arithmetic; not approved attack/damage integration",
+      "pass": true
+    },
+    {
+      "id": "SF-25-CR-DC",
+      "actual": 11,
+      "expected": 11,
+      "scope": "Plain proposed-DC arithmetic; not a creature stat/profile approval",
+      "pass": true
+    }
+  ],
+  "correction": "SF-01 first example changed natural 2 to natural 3: 2+3 versus DC15 would already be Critical Failure. Initial draft retained under skill-feats-before-proposal-arithmetic-correction.",
+  "currentManuscriptSha256": "69f5611eabbb9dda44f5bad5b098782b60fa47571119a0623adb805a47ab1370",
+  "coreHelperSha256": "a162117cf2c0c96a77ef5e594ce7247593930c57e6223fc7291ab12fc45c8d7d",
+  "scope": "The remaining fictional adjudications are authored review cases. Costs, targeting, actor history, bonus families and new rules are not executed or approved by these checks."
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "command": "C:\\Python\\python.exe tools/validate_magic_system.py",
+    "returncode": 0,
+    "stdout": "PASS spells=848 placements=936 varied_acquisition=619 classes=17\n",
+    "stderr": ""
+  },
+  {
+    "command": "node --no-warnings tools/validate_class_abilities.mjs",
+    "returncode": 0,
+    "stdout": "PASS classes=17 core=17 feats=335 oaths=10 mysteries=10 curses=10\n",
+    "stderr": ""
+  },
+  {
+    "command": "C:\\Python\\python.exe tools/validate_public_canon.py",
+    "returncode": 1,
+    "stdout": "FAIL public-canon-boundary\nfloor-encounters.json invalid: 'charmap' codec can't decode byte 0x9d in position 1373: character maps to <undefined>\nbestiary_data_full.json invalid: 'charmap' codec can't decode byte 0x9d in position 170921: character maps to <undefined>\n",
+    "stderr": ""
+  },
+  {
+    "command": "C:\\Python\\python.exe tools/validate_gameplay_loop.py",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Github\\Descent assets\\DecenniumDescent-main\\DescentReviewChanges\\incoming\\DecenniumDescentV7_1_AI_Playtest_Lab\\DecenniumDescentV7_1_AI_Playtest_Lab\\tools\\validate_gameplay_loop.py\", line 76, in <module>\n    print(\"Gameplay loop validation: PASS � complete preparation \\u2192 descent \\u2192 extraction \\u2192 Haven \\u2192 seasonal loop\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Python\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\u2192' in position 54: character maps to <undefined>\n"
+  },
+  {
+    "command": "C:\\Python\\python.exe playtests/ai-mega-suite/tools/preflight.py",
+    "returncode": 0,
+    "stdout": "{\n  \"suite\": \"Decennium Descent V7.1 AI Playtest Lab\",\n  \"packs\": [\n    \"00-baseline-simulations\",\n    \"00-static-validators\",\n    \"01-combat-class-balance\",\n    \"02-expedition-extraction\",\n    \"03-haven-economy-social\",\n    \"04-seasonal-decennial-persistence\",\n    \"05-readability-speed-onboarding\",\n    \"06-dice-level-combat-validation\",\n    \"07-statistical-combat-calibration\",\n    \"08-encounter-budget-calibration\",\n    \"09-feat-spell-ability-interactions\",\n    \"10-progression-multiclass-exploit\",\n    \"11-expedition-attrition-monte-carlo\",\n    \"12-cargo-extraction-risk\",\n    \"13-haven-economy-stress\",\n    \"14-seasonal-cycle-simulation\",\n    \"15-boss-control-pvp\",\n    \"16-rules-fuzz-property-tests\",\n    \"17-gm-readiness-usability\",\n    \"18-regression-release-gate\"\n  ],\n  \"playerProfiles\": 68,\n  \"sourceHashes\": \"source-hashes.json\",\n  \"status\": \"PASS\",\n  \"errors\": []\n}\n",
+    "stderr": ""
+  }
+]

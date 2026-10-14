@@ -28,9 +28,10 @@ def extract_full_bestiary():
                 'alignment': str(row.get('Alignment', '')),
                 'tags': str(row.get('Tags', '')),
                 'zoneFound': str(row.get('Zone Found', '')),
-                # Since AC, HP, Speed, and ability scores aren't in the Excel, we'll calculate them
-                'armorClass': 10,  # Will be calculated based on CR
-                'hitPoints': 1,    # Will be calculated based on CR
+                # DEPRECATED: extract_full_bestiary.py used to hardcode AC 10 / HP 1 here.
+                # Use scripts/ingest_bestiary_from_excel.py instead — see docs/mechanics/BESTIARY_INGEST.md
+                'armorClass': 10,  # DO NOT USE — stale placeholder
+                'hitPoints': 1,    # DO NOT USE — stale placeholder
                 'speed': '30 ft.', # Default speed
                 'abilities': {
                     'strength': 10,

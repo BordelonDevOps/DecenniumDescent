@@ -1,0 +1,1370 @@
+{
+  "meta": {
+    "id": "t6-10-encounter-toolkit",
+    "title": "Tier 6–10 Encounter Operational Toolkit",
+    "stamped": "2026-07-31",
+    "status": "director-ops draft — EV/threat budgets; not an XP economy; T6–10 floors remain draft-mapped in floor-encounters",
+    "sources": [
+      "docs/manuals/The_Directors_Crucible_Complete_Director_Edition.docx (Ch 15 EV, Ch 16 eight-actor, Ch 29 workflow, Part IX Ch 63–68 T6–10 ops, Old God Interstice Ch 65)",
+      "src/data/floor-encounters.json (T6–10 draft zones, havens, POIs, live Guardian bosses)",
+      "docs/mechanics/BESTIARY_LORE_PASS_2026-07-30.md + src/bestiary_data_full.json (Guardian CR/Type only — combat blocks may still be draft)",
+      "docs/mechanics/XP_ADVANCEMENT_CANON.md (awards BLOCKED)",
+      "docs/manuals/Instruments_of_the_Weave.md (T6–10 d8 pressure tables)",
+      "docs/mechanics/T1_5_ENCOUNTERS_2026-07-31.md (pattern predecessor)"
+    ],
+    "canonLocks": {
+      "openingHours": 2400,
+      "hornPoNRHours": 1200,
+      "expeditionMax": 12,
+      "umbrinNotDrow": true,
+      "noSwtor": true,
+      "gateGuardianLiveNamesOnly": true,
+      "oldGodIntersticeNotGateGuardian": true,
+      "civilizationLineEndsAtTier6": true
+    },
+    "xpStance": "XP award rules remain BLOCKED (thresholds exist; CR→XP / encounter XP budgets are not canon). This toolkit uses bible EV / incoming-pressure bands and the eight-actor rule only. Milestone / narrative advancement assumed. Do not invent a second XP economy."
+  },
+  "tierFloorMap": [
+    {
+      "tier": 6,
+      "floors": [
+        51,
+        60
+      ],
+      "floorsLabel": "51–60",
+      "zone": "Crossroads of the Shattered Thread",
+      "guardian": "Lumen of the Shattered Thread",
+      "gate": "Lumen Gate (end Floor 60)",
+      "difficulty": "Adept",
+      "mapped": false,
+      "note": "Last depth where stable small civilizations remain normal (bible Ch 31 / Ch 63)."
+    },
+    {
+      "tier": 7,
+      "floors": [
+        61,
+        70
+      ],
+      "floorsLabel": "61–70",
+      "zone": "Pactbound Arena",
+      "guardian": "Xarog, the Pactbound Furnace",
+      "gate": "Furnace Gate (end Floor 70)",
+      "difficulty": "Veteran",
+      "mapped": false,
+      "note": "Old God Interstice sits after Xarog / before Eirfax — not a Gate Guardian."
+    },
+    {
+      "tier": 8,
+      "floors": [
+        71,
+        80
+      ],
+      "floorsLabel": "71–80",
+      "zone": "Duskshard Pools",
+      "guardian": "Eirfax, the Dusk Crowned",
+      "gate": "Crown Gate (end Floor 80)",
+      "difficulty": "Elite",
+      "mapped": false
+    },
+    {
+      "tier": 9,
+      "floors": [
+        81,
+        90
+      ],
+      "floorsLabel": "81–90",
+      "zone": "Veiled Iron Spiral",
+      "guardian": "Threxus, the Iron Spiral",
+      "gate": "Spiral Gate (end Floor 90)",
+      "difficulty": "Mythic",
+      "mapped": false
+    },
+    {
+      "tier": 10,
+      "floors": [
+        91,
+        100
+      ],
+      "floorsLabel": "91–100",
+      "zone": "Silencebound Void",
+      "guardian": "The Marquis of Silence",
+      "gate": "Marquis Gate (end Floor 100)",
+      "difficulty": "Legendary",
+      "mapped": false
+    }
+  ],
+  "budgetGuidance": {
+    "method": "Combat as Expected Value (Director bible Ch 15)",
+    "formulas": {
+      "roundsToResolve": "foeTotalHP ÷ partyDamagePerRound",
+      "incomingPressure": "(foeDamagePerRound × numberOfFoes) × roundsToResolve",
+      "hitAssumption": "Assume ~2/3 of foe attacks/saves land unless accuracy or defenses say otherwise (Ch 29)"
+    },
+    "pressureBands": [
+      {
+        "band": "Routine",
+        "incomingPressurePctOfPartyHP": "<20%",
+        "directorReading": "Use only if it teaches, reveals, or spends a meaningful non-HP resource"
+      },
+      {
+        "band": "Standard",
+        "incomingPressurePctOfPartyHP": "20–40%",
+        "directorReading": "Win with visible cost if engaged honestly"
+      },
+      {
+        "band": "Hard",
+        "incomingPressurePctOfPartyHP": "40–65%",
+        "directorReading": "Poor opening / failed objective can drop characters; retreat must remain possible"
+      },
+      {
+        "band": "Severe",
+        "incomingPressurePctOfPartyHP": "65–90%",
+        "directorReading": "Telegraph clearly; terrain, prep, or objective leverage required"
+      },
+      {
+        "band": "Catastrophic",
+        "incomingPressurePctOfPartyHP": ">90%",
+        "directorReading": "Only if party knowingly chose risk, has exits, or fight is not meant to be won by damage alone"
+      }
+    ],
+    "rolePressure": "Add one pressure step if two or more apply without a known counter: reliable stun/paralysis, forced movement into severe hazards, flight vs melee-heavy party, invisibility without detection, meaningful foe healing, protected independent objective. Remove one step for surprise, strong chokepoint, researched vulnerability, or participating allies.",
+    "eightActorRule": {
+      "maxDetailedInitiativeActors": 8,
+      "abstractWith": [
+        "reinforcementClocks",
+        "moraleTracks",
+        "offMapObjectives"
+      ],
+      "waves": "Prepare total opposition; reveal only perceptible actors first. Later waves need a visible trigger. Never add waves solely because the first group died quickly."
+    },
+    "expeditionSeatNote": "Full Expedition max 12 (RAW). Detailed combat usually runs the Combat team (~4) plus a few allies/foes under the eight-actor cap; other seats resolve via clocks/checks.",
+    "suggestedDetailedActorCountsByJob": {
+      "Teaching": "2–4 detailed foes (+ hazard as non-actor)",
+      "Taxing": "3–6 detailed foes or 1 brute + 2–3 skirmishers",
+      "Revealing": "1–3 foes; prioritize behavior/terrain over HP",
+      "Choosing": "2–5 foes or split fronts via off-map objective",
+      "ClimacticSeal": "Guardian + 0–2 arena features as detailed actors; extra pressure via plates/phases/waves under eight-actor",
+      "HavenSiege": "≤8 detailed; reinforce with clocks/morale",
+      "Interstice": "Prefer identity/memory/route pressure over raw damage; ≤8 detailed if any combat forms"
+    },
+    "tierThreatNotes": [
+      {
+        "tier": 6,
+        "defaultBand": "Hard",
+        "notes": "Route / witness / anchor politics are primary tax. Civilization rivalry can substitute for HP fights. Seal = Hard→Severe with path-choice Recognition."
+      },
+      {
+        "tier": 7,
+        "defaultBand": "Hard→Severe",
+        "notes": "Every fight carries a term. Winning combat while losing the stated claim is valid. Seal leaves ≥1 binding term for Tier 8. Interstice after Gate is not XP."
+      },
+      {
+        "tier": 8,
+        "defaultBand": "Severe",
+        "notes": "Delayed identity / reflection leverage. Settlements are exceptional. Seal tests which version of the Expedition deserves continuity."
+      },
+      {
+        "tier": 9,
+        "defaultBand": "Severe",
+        "notes": "False progress + compression. Circular strategies strengthen Threxus. Use transformation anchors, not distance marks."
+      },
+      {
+        "tier": 10,
+        "defaultBand": "Severe→Catastrophic",
+        "notes": "Anti-resonance + stillness offer. Marquis may be defeated, replaced, persuaded, bound, or transformed — not a pure HP wall. Silent Ones: never name aloud."
+      }
+    ]
+  },
+  "gateGuardiansT6to10": [
+    {
+      "tier": 6,
+      "name": "Lumen of the Shattered Thread",
+      "type": "Elemental",
+      "size": "Large",
+      "challengeRating": "22",
+      "xpField": 41000,
+      "xpFieldNote": "Bestiary xp field present; NOT a canon award until XP_ADVANCEMENT_CANON resolves",
+      "alignment": "Chaotic Neutral",
+      "zoneFound": "Crossroads of the Shattered Thread",
+      "sealFloor": 60,
+      "tags": "Gate Guardian",
+      "combatDraft": true
+    },
+    {
+      "tier": 7,
+      "name": "Xarog, the Pactbound Furnace",
+      "type": "Fiend",
+      "size": "Huge",
+      "challengeRating": "24",
+      "xpField": 62000,
+      "xpFieldNote": "Bestiary xp field present; NOT a canon award",
+      "alignment": "Lawful Evil",
+      "zoneFound": "Pactbound Arena",
+      "sealFloor": 70,
+      "tags": "Gate Guardian",
+      "combatDraft": true
+    },
+    {
+      "tier": 8,
+      "name": "Eirfax, the Dusk Crowned",
+      "type": "Fey",
+      "size": "Medium",
+      "challengeRating": "26",
+      "xpField": 90000,
+      "xpFieldNote": "Bestiary xp field present; NOT a canon award",
+      "alignment": "Neutral Evil",
+      "zoneFound": "Duskshard Pools",
+      "sealFloor": 80,
+      "tags": "Gate Guardian",
+      "combatDraft": true
+    },
+    {
+      "tier": 9,
+      "name": "Threxus, the Iron Spiral",
+      "type": "Construct",
+      "size": "Gargantuan",
+      "challengeRating": "28",
+      "xpField": 120000,
+      "xpFieldNote": "Bestiary xp field present; NOT a canon award",
+      "alignment": "Lawful Neutral",
+      "zoneFound": "Veiled Iron Spiral",
+      "sealFloor": 90,
+      "tags": "Gate Guardian",
+      "combatDraft": true
+    },
+    {
+      "tier": 10,
+      "name": "The Marquis of Silence",
+      "type": "Fiend",
+      "size": "Huge",
+      "challengeRating": "30",
+      "xpField": 155000,
+      "xpFieldNote": "Bestiary xp field present; NOT a canon award",
+      "alignment": "Chaotic Evil",
+      "zoneFound": "Silencebound Void",
+      "sealFloor": 100,
+      "tags": "Gate Guardian",
+      "combatDraft": true
+    }
+  ],
+  "oldGodInterstice": {
+    "placement": "Between Tier 7 (after Furnace Gate / Xarog) and Tier 8 (before Duskshard Pools / Eirfax)",
+    "isGateGuardian": false,
+    "bibleChapter": "Director bible Ch 65 — Operating the Old God Interstice",
+    "pressure": "Identity, memory, and route pressure over raw damage",
+    "note": "Not an eleventh tier, not a Gate Guardian, not ordinary floor content. Do not put Old God on the live Guardian roster. Live roster only: Lumen, Xarog, Eirfax, Threxus, Marquis (plus T1–5)."
+  },
+  "bestiaryCaveat": "Trash/zone fauna in bestiary_data_full.json often has sandbox Type/CR/zoneFound mismatches. Rosters prefer lore-scrubbed names that exist post BESTIARY_LORE_PASS and state intendedCrBand for EV planning. When excel CR is absurd, use bible Ch 17 reskin from a same-band template. Never use SWTOR names. Prefer Umbrin over any residual Drow labels. Do not rewrite bestiary combat stats from this toolkit.",
+  "inventoryExisting": {
+    "floorEncountersJson": {
+      "path": "src/data/floor-encounters.json",
+      "has": "T6–10 draft zones (mapped:false), havens, POIs, live Guardian bosses; T1–5 mapped"
+    },
+    "directorOpsT6to10": {
+      "path": "Director bible Part IX Ch 63–68 (+ Ch 65 Interstice)",
+      "has": "Tier purposes, core pressures, revelation ceilings, gate prep, sample floor seeds"
+    },
+    "t1to5Toolkit": {
+      "path": "src/data/t1-5-encounter-toolkit.json",
+      "has": "Shipped pattern this file mirrors"
+    },
+    "instrumentsPressure": {
+      "path": "docs/manuals/Instruments_of_the_Weave.md Part X",
+      "has": "d8 compressed pressure tables T6–10"
+    },
+    "monstersLibrary": {
+      "path": "src/components/MonstersLibrary.tsx + src/bestiary_data_full.json",
+      "has": "Gate Guardians T6–10 tagged with lore-pass CR; trash combat often draft/sandbox"
+    }
+  },
+  "tiers": [
+    {
+      "tier": 6,
+      "zone": "Crossroads of the Shattered Thread",
+      "floors": "51–60",
+      "guardian": "Lumen of the Shattered Thread",
+      "corePressures": [
+        "Route instability / Path Recall",
+        "Causal disagreement between truthful accounts",
+        "Political navigation of floor civilizations (last normal depth)",
+        "Separation into neighboring non-identical nodes",
+        "Weave-Snap / Lantern Doubt"
+      ],
+      "opsChapter": {
+        "status": "Director bible Ch 63 operational guidance (not room-by-room keys)",
+        "sampleSeed": "The City of Two Afternoons — dual treaty histories on same streets",
+        "gatePrep": "Lumen tests choosing one path without denying paths not taken; outcome-echoes / shared-crossing recognition"
+      },
+      "faunaRoles": [
+        "thread-wraith echoes",
+        "civic enforcers / route auditors",
+        "weave-static scavengers",
+        "rival cartographers"
+      ],
+      "sampleRosters": [
+        {
+          "id": "t6-crossroads-tax",
+          "title": "Shattered Crossroads Stir (F51)",
+          "job": "Teaching",
+          "targetPressureBand": "Hard",
+          "detailedActors": [
+            {
+              "displayName": "Thread Wraith",
+              "count": 2,
+              "role": "skirmisher/controller",
+              "bestiaryName": "Allip",
+              "bestiaryCr": "5",
+              "intendedCrBand": "8–10",
+              "sandboxCr": true,
+              "note": "Display as Weave-echo; excel CR often sandbox — scale to deep-tier band"
+            },
+            {
+              "displayName": "Lantern Doubt Will-o'",
+              "count": 2,
+              "role": "skirmisher",
+              "bestiaryName": "Will-o-wisp",
+              "bestiaryCr": "7",
+              "intendedCrBand": "5–7",
+              "sandboxCr": true,
+              "note": "False-path lure; Ch 17 reskin if CR absurd"
+            }
+          ],
+          "abstractSupport": [
+            "Path Recall clock: looking back → route rewrite in 1–2 rounds"
+          ],
+          "levers": {
+            "player": "Declare anchor statement (who/from where/carrying what) to stabilize fight space",
+            "director": "One wraith phases out if party accepts a rival map condition",
+            "exit": "Threadbare Camp approach corridor (F53 rumor)"
+          },
+          "notes": "Teach that maps need anchors. Keep ≤4 detailed for Combat team of 4."
+        },
+        {
+          "id": "t6-civic-extraction",
+          "title": "Academic Faction Extraction (F55 Lumen's Cross)",
+          "job": "Choosing",
+          "targetPressureBand": "Hard→Severe",
+          "detailedActors": [
+            {
+              "displayName": "Void Broker negotiator",
+              "count": 1,
+              "role": "controller",
+              "bestiaryName": "Void Broker",
+              "bestiaryCr": "6",
+              "intendedCrBand": "10–12",
+              "sandboxCr": true
+            },
+            {
+              "displayName": "Umbrin Shadowblade escort",
+              "count": 2,
+              "role": "skirmisher",
+              "bestiaryName": "Umbrin Shadowblade",
+              "bestiaryCr": "7",
+              "intendedCrBand": "8–10",
+              "note": "Umbrin demonym — never Drow"
+            },
+            {
+              "displayName": "Shield Guardian parcel-guard",
+              "count": 1,
+              "role": "brute",
+              "bestiaryName": "Shield Guardian",
+              "bestiaryCr": "6",
+              "intendedCrBand": "10–12",
+              "sandboxCr": true
+            }
+          ],
+          "abstractSupport": [
+            "Off-map: Research seat translates rival civilization's map conditions",
+            "Morale: escorts withdraw if broker gets the thread sample"
+          ],
+          "levers": {
+            "player": "Sell sample / steal / forge shared crossing rights",
+            "director": "Two civilizations remember different winners unless witnesses agree",
+            "exit": "Quiet Deep Thread-Well rumor route (unmapped — costly)"
+          },
+          "notes": "Political win can skip combat. ≤8 detailed."
+        },
+        {
+          "id": "t6-lumen-seal",
+          "title": "Lumen Gate — Lumen of the Shattered Thread (F60)",
+          "job": "Climactic",
+          "targetPressureBand": "Hard→Severe",
+          "detailedActors": [
+            {
+              "displayName": "Lumen of the Shattered Thread",
+              "count": 1,
+              "role": "seal/guardian",
+              "bestiaryName": "Lumen of the Shattered Thread",
+              "bestiaryCr": "22",
+              "intendedCrBand": "22"
+            },
+            {
+              "displayName": "Outcome-Echo (arena feature)",
+              "count": 2,
+              "role": "hazard-actor",
+              "note": "Count toward eight-actor only if they act each round; else terrain/Recognition lever"
+            }
+          ],
+          "abstractSupport": [
+            "Recognition: choose one path without denying others",
+            "Civilization witness clock — need ≥1 culture to recognize shared crossing"
+          ],
+          "levers": {
+            "player": "Sacrifice a possible future / bind shared crossing",
+            "director": "Do not silent-fudge; echoes punish contradictory denial",
+            "exit": "Yield to Threadbare Camp if seal condition unmet — civilization line still open"
+          },
+          "notes": "Elemental / Large / CR 22 / CN — Gate Guardian. Past Lumen Gate, stable civilization ends."
+        }
+      ],
+      "encounterCards": [
+        {
+          "id": "t6-f51-crossroads",
+          "floors": "51",
+          "title": "Shattered Crossroads",
+          "job": "Teaching",
+          "targetBand": "Hard",
+          "site": "Shattered Crossroads",
+          "summary": "Footprints fade; half-real pathways. First deep route-discipline fight.",
+          "detailedActorBudget": "3–5",
+          "rosterRef": "t6-crossroads-tax",
+          "hazard": "Path Recall"
+        },
+        {
+          "id": "t6-f52-thread-fork",
+          "floors": "52",
+          "title": "Thread-Fork Galleries",
+          "job": "Taxing",
+          "targetBand": "Hard",
+          "site": "Thread-Fork Galleries",
+          "summary": "Corridors split/rejoin; party may occupy neighboring nodes.",
+          "detailedActorBudget": "3–6",
+          "hazard": "Separation — Support/Research seats off-map"
+        },
+        {
+          "id": "t6-f53-haven",
+          "floors": "53",
+          "title": "Threadbare Camp Politics",
+          "job": "Choosing",
+          "targetBand": "Standard (social)→Hard",
+          "site": "Threadbare Camp",
+          "summary": "Last-tier haven rumor; crossing rights vs hospitality.",
+          "detailedActorBudget": "0–4"
+        },
+        {
+          "id": "t6-f55-lumens-cross",
+          "floors": "55",
+          "title": "Lumen's Cross Junction",
+          "job": "Choosing",
+          "targetBand": "Hard→Severe",
+          "site": "Lumen's Cross",
+          "summary": "All paths seem to arrive at once; academic extraction / rival cartographers.",
+          "detailedActorBudget": "4–6",
+          "rosterRef": "t6-civic-extraction"
+        },
+        {
+          "id": "t6-f56-two-afternoons",
+          "floors": "56",
+          "title": "City of Two Afternoons",
+          "job": "Revealing",
+          "targetBand": "Hard",
+          "site": "Ch 63 sample seed",
+          "summary": "Dual treaty histories; witnesses affect both versions.",
+          "detailedActorBudget": "2–5",
+          "hazard": "Causal disagreement as EV (non-HP) tax"
+        },
+        {
+          "id": "t6-f58-weave-snap",
+          "floors": "58",
+          "title": "Weave-Snap Shear",
+          "job": "Taxing",
+          "targetBand": "Severe",
+          "site": "Deep Thread-Fork",
+          "summary": "Brief planar shear; disorientation before seal approach.",
+          "detailedActorBudget": "3–5",
+          "hazard": "Weave-Snap"
+        },
+        {
+          "id": "t6-f60-seal",
+          "floors": "60",
+          "title": "Lumen Gate + Lumen",
+          "job": "Climactic",
+          "targetBand": "Hard→Severe",
+          "site": "Lumen Gate",
+          "rosterRef": "t6-lumen-seal",
+          "detailedActorBudget": "1–3"
+        }
+      ]
+    },
+    {
+      "tier": 7,
+      "zone": "Pactbound Arena",
+      "floors": "61–70",
+      "guardian": "Xarog, the Pactbound Furnace",
+      "corePressures": [
+        "Oath accumulation (leverage / fuel / restriction)",
+        "Audience / witnessed terms",
+        "Escalating stakes after victories",
+        "Identity as office (titles > personal names)",
+        "Pact Rewrite / Blood-Tally / Arena Echo"
+      ],
+      "opsChapter": {
+        "status": "Director bible Ch 64 operational guidance",
+        "sampleSeed": "The Empty Grandstand — applause of erased Expeditions",
+        "gatePrep": "Xarog burns false/impossible/contradictory obligations; passage leaves ≥1 binding term that matters in Tier 8",
+        "intersticeAfter": "Ch 65 Old God Interstice — not a Gate Guardian"
+      },
+      "faunaRoles": [
+        "arena challengers under stated terms",
+        "pact-devil observers",
+        "oath-echo remnants",
+        "furnace auditors"
+      ],
+      "sampleRosters": [
+        {
+          "id": "t7-coliseum-open",
+          "title": "Pactbound Coliseum Opening Bout (F61)",
+          "job": "Teaching",
+          "targetPressureBand": "Hard",
+          "detailedActors": [
+            {
+              "displayName": "Pact Devil (White Court) adjudicator",
+              "count": 1,
+              "role": "controller",
+              "bestiaryName": "Pact Devil (White Court)",
+              "bestiaryCr": "7",
+              "intendedCrBand": "12–14",
+              "sandboxCr": true,
+              "note": "Witness / term enforcer — not necessarily a damage race"
+            },
+            {
+              "displayName": "Barbed Devil challenger",
+              "count": 2,
+              "role": "brute",
+              "bestiaryName": "Barbed Devil",
+              "bestiaryCr": "10",
+              "intendedCrBand": "12–14",
+              "sandboxCr": true
+            }
+          ],
+          "abstractSupport": [
+            "Crowd favor clock as morale/rep swing (Instruments d8)"
+          ],
+          "levers": {
+            "player": "Win the stated contest objective, not just HP",
+            "director": "Write the term before initiative; both sides may exploit wording",
+            "exit": "Refuse challenge publicly — costs favor, keeps oath clean"
+          },
+          "notes": "Contest + term. Keep ≤4 detailed."
+        },
+        {
+          "id": "t7-empty-grandstand",
+          "title": "Empty Grandstand Claim (F65–67)",
+          "job": "Choosing",
+          "targetPressureBand": "Severe",
+          "detailedActors": [
+            {
+              "displayName": "Arena Echo (erased Expedition)",
+              "count": 3,
+              "role": "skirmisher",
+              "bestiaryName": "Fracture-Kin Shadow Demon",
+              "bestiaryCr": "11",
+              "intendedCrBand": "12–15",
+              "sandboxCr": true,
+              "note": "Scrubbed Fracture-Kin name; applause transfers unfinished claim"
+            },
+            {
+              "displayName": "Chain Devil binder",
+              "count": 1,
+              "role": "controller",
+              "bestiaryName": "Chain Devil",
+              "bestiaryCr": "10",
+              "intendedCrBand": "14–16",
+              "sandboxCr": true
+            }
+          ],
+          "abstractSupport": [
+            "Accepting acclaim = power + inherited unfinished Pact claim"
+          ],
+          "levers": {
+            "player": "Accept / refuse / renegotiate whose claim you inherit",
+            "director": "Power without term clarity becomes Xarog fuel later",
+            "exit": "Oathbreaker's Nook (F64) if fight abandoned mid-term"
+          },
+          "notes": "Ch 64 sample seed pressure. ≤8 detailed."
+        },
+        {
+          "id": "t7-xarog-seal",
+          "title": "Furnace Gate — Xarog, the Pactbound Furnace (F70)",
+          "job": "Climactic",
+          "targetPressureBand": "Severe",
+          "detailedActors": [
+            {
+              "displayName": "Xarog, the Pactbound Furnace",
+              "count": 1,
+              "role": "seal/guardian",
+              "bestiaryName": "Xarog, the Pactbound Furnace",
+              "bestiaryCr": "24",
+              "intendedCrBand": "24"
+            },
+            {
+              "displayName": "Oath Plate (arena feature)",
+              "count": 1,
+              "role": "hazard-actor",
+              "note": "Burns contradictory obligations; treat as terrain unless acting each round"
+            }
+          ],
+          "abstractSupport": [
+            "Inventory of party promises as off-map track",
+            "One binding term must survive into Tier 8"
+          ],
+          "levers": {
+            "player": "Choose which promises become permanent",
+            "director": "False/impossible oaths feed the Furnace — do not invent silent XP",
+            "exit": "Yield with unfinished claim — Arena remembers wording"
+          },
+          "notes": "Fiend / Huge / CR 24 / LE — Gate Guardian. Interstice may follow; not automatic."
+        },
+        {
+          "id": "t7-interstice-room",
+          "title": "Old God Interstice — Room With One History (post-F70)",
+          "job": "Interstice",
+          "targetPressureBand": "Severe (identity/memory; not HP)",
+          "detailedActors": [
+            {
+              "displayName": "History Collapse (arena feature)",
+              "count": 1,
+              "role": "hazard-actor",
+              "note": "Not a Gate Guardian. Prefer seat checks over monster stats."
+            },
+            {
+              "displayName": "Difference Warden echo",
+              "count": 2,
+              "role": "controller",
+              "bestiaryName": "Voidmind",
+              "bestiaryCr": "11",
+              "intendedCrBand": "14–16",
+              "sandboxCr": true,
+              "note": "Optional combat form if table needs initiative — scrubbed aberration"
+            }
+          ],
+          "abstractSupport": [
+            "Three layers: perceptible / operational / interpretive",
+            "Record what certainty each PC lost and what difference they refuse to surrender"
+          ],
+          "levers": {
+            "player": "Preserve contradictory truths; carry one another's memories",
+            "director": "Keep ≥2 plausible readings of the Old God alive",
+            "exit": "Crossing creates campaign language for Tier 8 — not a seal unlock alone"
+          },
+          "notes": "Ch 65. NOT on Guardian roster. No silent cosmology dump."
+        }
+      ],
+      "encounterCards": [
+        {
+          "id": "t7-f61-coliseum",
+          "floors": "61",
+          "title": "Pactbound Coliseum",
+          "job": "Teaching",
+          "targetBand": "Hard",
+          "site": "Pactbound Coliseum",
+          "summary": "Contest + term on day one. Audience validates wording.",
+          "detailedActorBudget": "3–4",
+          "rosterRef": "t7-coliseum-open"
+        },
+        {
+          "id": "t7-f63-oath-post",
+          "floors": "63",
+          "title": "Oath-Post Ring",
+          "job": "Revealing",
+          "targetBand": "Hard",
+          "site": "Oath-Post Ring",
+          "summary": "Verbal bargains bind before blood; write terms down.",
+          "detailedActorBudget": "1–3",
+          "hazard": "Pact Rewrite"
+        },
+        {
+          "id": "t7-f64-haven",
+          "floors": "64",
+          "title": "Oathbreaker's Nook",
+          "job": "Choosing",
+          "targetBand": "Routine (social)→Hard",
+          "site": "Oathbreaker's Nook",
+          "summary": "Broken pact-runes briefly repel rewrites; speak carefully.",
+          "detailedActorBudget": "0–3"
+        },
+        {
+          "id": "t7-f66-grandstand",
+          "floors": "66",
+          "title": "Empty Grandstand",
+          "job": "Choosing",
+          "targetBand": "Severe",
+          "site": "Ch 64 sample seed",
+          "rosterRef": "t7-empty-grandstand",
+          "detailedActorBudget": "4–5"
+        },
+        {
+          "id": "t7-f68-furnace-tier",
+          "floors": "68",
+          "title": "Furnace Tier Heat Audit",
+          "job": "Taxing",
+          "targetBand": "Hard→Severe",
+          "site": "Furnace Tier",
+          "summary": "Heat pools; auditor challenges unfinished claims.",
+          "detailedActorBudget": "3–6",
+          "hazard": "Blood-Tally rumor — presentation, confirm at table"
+        },
+        {
+          "id": "t7-f70-seal",
+          "floors": "70",
+          "title": "Furnace Gate + Xarog",
+          "job": "Climactic",
+          "targetBand": "Severe",
+          "site": "Furnace Gate",
+          "rosterRef": "t7-xarog-seal",
+          "detailedActorBudget": "1–2"
+        },
+        {
+          "id": "t7-interstice",
+          "floors": "70→71",
+          "title": "Old God Interstice",
+          "job": "Interstice",
+          "targetBand": "Severe (non-HP)",
+          "site": "Ch 65",
+          "summary": "Campaign-scale threshold; not Tier 7.5; not a Gate Guardian.",
+          "detailedActorBudget": "0–3",
+          "rosterRef": "t7-interstice-room",
+          "hazard": "Identity / memory / route pressure"
+        }
+      ]
+    },
+    {
+      "tier": 8,
+      "zone": "Duskshard Pools",
+      "floors": "71–80",
+      "guardian": "Eirfax, the Dusk Crowned",
+      "corePressures": [
+        "Delayed consequence via reflections",
+        "Identity drift across surfaces",
+        "Cooling light / dusk residue",
+        "Uncertain succession (which self continues)",
+        "Dusk Inversion / Shard-Sink / Prayer Rust"
+      ],
+      "opsChapter": {
+        "status": "Director bible Ch 66 operational guidance",
+        "sampleSeed": "The Camp That Returned First — exhausted future selves",
+        "gatePrep": "Eirfax tests which version of the Expedition deserves continuity; choose identity without erasing alternatives"
+      },
+      "faunaRoles": [
+        "reflection doubles",
+        "dusk-crown cult remnants",
+        "pool claimers",
+        "grief-bound stalkers"
+      ],
+      "sampleRosters": [
+        {
+          "id": "t8-basins-open",
+          "title": "Duskshard Basins Crossing (F71)",
+          "job": "Teaching",
+          "targetPressureBand": "Hard→Severe",
+          "detailedActors": [
+            {
+              "displayName": "Slithering Tracker (pool claim)",
+              "count": 2,
+              "role": "skirmisher",
+              "bestiaryName": "Slithering Tracker",
+              "bestiaryCr": "9",
+              "intendedCrBand": "10–12",
+              "sandboxCr": true
+            },
+            {
+              "displayName": "Reflection double (lagged intention)",
+              "count": 2,
+              "role": "skirmisher",
+              "bestiaryName": "Allip",
+              "bestiaryCr": "5",
+              "intendedCrBand": "10–12",
+              "sandboxCr": true,
+              "note": "Establish what the surface reflects before it lies"
+            }
+          ],
+          "abstractSupport": [
+            "Dusk Inversion clock mid-fight"
+          ],
+          "levers": {
+            "player": "Learn which pool shows intention vs last action vs rejected choice",
+            "director": "Arbitrary deceptive mirrors are banned — teach rules first",
+            "exit": "Twilight Shelf (F74) if inversion unresolved"
+          },
+          "notes": "Keep ≤4 detailed. Reflections lag — delayed EV."
+        },
+        {
+          "id": "t8-camp-returned",
+          "title": "Camp That Returned First (F75–77)",
+          "job": "Choosing",
+          "targetPressureBand": "Severe",
+          "detailedActors": [
+            {
+              "displayName": "Exhausted future self (PC double)",
+              "count": 2,
+              "role": "brute/controller",
+              "bestiaryName": "Deathlock",
+              "bestiaryCr": "12",
+              "intendedCrBand": "14–16",
+              "sandboxCr": true,
+              "note": "Use as shell for future-PC — scrubbed undead template; sandbox CR"
+            },
+            {
+              "displayName": "Yeth Hound grief-bind",
+              "count": 2,
+              "role": "skirmisher",
+              "bestiaryName": "Yeth Hound",
+              "bestiaryCr": "10",
+              "intendedCrBand": "11–13",
+              "sandboxCr": true
+            }
+          ],
+          "abstractSupport": [
+            "Helping them may create the future they warn against",
+            "One carries a relic the party has not yet found — off-map Research check"
+          ],
+          "levers": {
+            "player": "Aid / quarantine / harvest relic / refuse recognition",
+            "director": "Equipment can be real; do not auto-kill doubles for XP",
+            "exit": "Crown-Shard Shelf dry ledge"
+          },
+          "notes": "Ch 66 sample seed. ≤8 detailed."
+        },
+        {
+          "id": "t8-eirfax-seal",
+          "title": "Crown Gate — Eirfax, the Dusk Crowned (F80)",
+          "job": "Climactic",
+          "targetPressureBand": "Severe→Catastrophic",
+          "detailedActors": [
+            {
+              "displayName": "Eirfax, the Dusk Crowned",
+              "count": 1,
+              "role": "seal/guardian",
+              "bestiaryName": "Eirfax, the Dusk Crowned",
+              "bestiaryCr": "26",
+              "intendedCrBand": "26"
+            },
+            {
+              "displayName": "Crown Reflection (arena feature)",
+              "count": 1,
+              "role": "hazard-actor",
+              "note": "Offers to remove regret / duplicate success / abandon Interstice burden"
+            }
+          ],
+          "abstractSupport": [
+            "Continuity vote across seats — not damage alone"
+          ],
+          "levers": {
+            "player": "Choose which version continues without erasing alternatives",
+            "director": "Crown silhouette clearer in water than air — stage accordingly",
+            "exit": "Refuse crown bargain — costs continuity leverage later"
+          },
+          "notes": "Fey / Medium / CR 26 / NE — Gate Guardian."
+        }
+      ],
+      "encounterCards": [
+        {
+          "id": "t8-f71-basins",
+          "floors": "71",
+          "title": "Duskshard Basins",
+          "job": "Teaching",
+          "targetBand": "Hard→Severe",
+          "site": "Duskshard Basins",
+          "rosterRef": "t8-basins-open",
+          "detailedActorBudget": "3–5",
+          "hazard": "Shard-Sink"
+        },
+        {
+          "id": "t8-f72-obsidian",
+          "floors": "72",
+          "title": "Obsidian Mirror Bank",
+          "job": "Revealing",
+          "targetBand": "Hard",
+          "site": "Obsidian Mirror Bank",
+          "summary": "Survivor poetry ties to Veyr-Obsid rites — unmapped link; reflections linger.",
+          "detailedActorBudget": "2–4"
+        },
+        {
+          "id": "t8-f74-haven",
+          "floors": "74",
+          "title": "Twilight Shelf",
+          "job": "Choosing",
+          "targetBand": "Routine (rest)→Hard",
+          "site": "Twilight Shelf",
+          "summary": "Exceptional dry ledge; light/hush trade slowly.",
+          "detailedActorBudget": "0–3"
+        },
+        {
+          "id": "t8-f76-camp",
+          "floors": "76",
+          "title": "Camp That Returned First",
+          "job": "Choosing",
+          "targetBand": "Severe",
+          "site": "Ch 66 sample seed",
+          "rosterRef": "t8-camp-returned",
+          "detailedActorBudget": "4–5"
+        },
+        {
+          "id": "t8-f78-crown-cult",
+          "floors": "78",
+          "title": "Crown Cult Procession",
+          "job": "Taxing",
+          "targetBand": "Severe",
+          "site": "Twilight Verge",
+          "summary": "Instruments d8 omen pressure; liturgical hush.",
+          "detailedActorBudget": "3–6",
+          "hazard": "Prayer Rust (presentation)"
+        },
+        {
+          "id": "t8-f79-inversion",
+          "floors": "79",
+          "title": "Dusk Inversion Approach",
+          "job": "Taxing",
+          "targetBand": "Severe",
+          "site": "Deep basin approach",
+          "summary": "Light/shadow swap; seal silhouette clearer below.",
+          "detailedActorBudget": "2–4"
+        },
+        {
+          "id": "t8-f80-seal",
+          "floors": "80",
+          "title": "Crown Gate + Eirfax",
+          "job": "Climactic",
+          "targetBand": "Severe→Catastrophic",
+          "site": "Crown Gate",
+          "rosterRef": "t8-eirfax-seal",
+          "detailedActorBudget": "1–2"
+        }
+      ]
+    },
+    {
+      "tier": 9,
+      "zone": "Veiled Iron Spiral",
+      "floors": "81–90",
+      "guardian": "Threxus, the Iron Spiral",
+      "corePressures": [
+        "False progress (descend / circle / return unclear)",
+        "Compression of time, space, supply, history",
+        "Concealment of routes / scale / pursuers",
+        "Endurance of purpose when milestones vanish",
+        "Coil Tighten / Rail-Vanish / Shadow Trade"
+      ],
+      "opsChapter": {
+        "status": "Director bible Ch 67 operational guidance",
+        "sampleSeed": "The Siege on Every Turn — same attackers at different prep moments",
+        "gatePrep": "Threxus tests defining progress without distance; circular strategy strengthens Guardian",
+        "nameCollision": "Do not confuse zone/Guardian with Turning Spiral patron theology — live name is Threxus"
+      },
+      "faunaRoles": [
+        "iron hunters on repeated routes",
+        "compressed swarms",
+        "timeline-split pursuers",
+        "rivet-tunnel constructs"
+      ],
+      "sampleRosters": [
+        {
+          "id": "t9-helix-open",
+          "title": "Veiled Helix First Coil (F81)",
+          "job": "Teaching",
+          "targetPressureBand": "Severe",
+          "detailedActors": [
+            {
+              "displayName": "Helmed Horror rail-hunter",
+              "count": 2,
+              "role": "brute",
+              "bestiaryName": "Helmed Horror",
+              "bestiaryCr": "11",
+              "intendedCrBand": "14–16",
+              "sandboxCr": true,
+              "note": "Attacks only on repeated routes if party circles"
+            },
+            {
+              "displayName": "Iron Cobra rivet-scout",
+              "count": 2,
+              "role": "skirmisher",
+              "bestiaryName": "Iron Cobra",
+              "bestiaryCr": "7",
+              "intendedCrBand": "10–12",
+              "sandboxCr": true
+            }
+          ],
+          "abstractSupport": [
+            "Rail-Vanish: path behind disappears — map transformation, not turns"
+          ],
+          "levers": {
+            "player": "Leave material/wound/oath anchors that survive compression",
+            "director": "Identical corridors differ by what they change in carried objects",
+            "exit": "Iron Rest landing (F84) if coil recognized as repeat"
+          },
+          "notes": "Keep ≤4 detailed. Circular kite strengthens later Threxus."
+        },
+        {
+          "id": "t9-siege-every-turn",
+          "title": "Siege on Every Turn (F85–87)",
+          "job": "HavenSiege",
+          "targetPressureBand": "Severe",
+          "detailedActors": [
+            {
+              "displayName": "Siege force (early prep)",
+              "count": 2,
+              "role": "skirmisher",
+              "bestiaryName": "Shield Guardian",
+              "bestiaryCr": "6",
+              "intendedCrBand": "14–16",
+              "sandboxCr": true
+            },
+            {
+              "displayName": "Siege force (mid prep)",
+              "count": 2,
+              "role": "brute",
+              "bestiaryName": "Hellfire Engine",
+              "bestiaryCr": "7",
+              "intendedCrBand": "16–18",
+              "sandboxCr": true,
+              "note": "Same force, later moment — sandbox CR; Ch 17 scale"
+            },
+            {
+              "displayName": "Haven speaker (ally)",
+              "count": 1,
+              "role": "ally",
+              "note": "Remembers only most recent version — off-map unless acting"
+            }
+          ],
+          "abstractSupport": [
+            "Defending one turn changes the next",
+            "Evidence-that-survives-compression as victory condition"
+          ],
+          "levers": {
+            "player": "Create records the compression cannot erase",
+            "director": "Do not add waves only because first group died quickly",
+            "exit": "Murkish Rivet-Tunnels — costly, may skip a coil"
+          },
+          "notes": "Ch 67 sample seed. ≤8 detailed including optional ally."
+        },
+        {
+          "id": "t9-threxus-seal",
+          "title": "Spiral Gate — Threxus, the Iron Spiral (F90)",
+          "job": "Climactic",
+          "targetPressureBand": "Severe→Catastrophic",
+          "detailedActors": [
+            {
+              "displayName": "Threxus, the Iron Spiral",
+              "count": 1,
+              "role": "seal/guardian",
+              "bestiaryName": "Threxus, the Iron Spiral",
+              "bestiaryCr": "28",
+              "intendedCrBand": "28"
+            },
+            {
+              "displayName": "Compression Coil (arena feature)",
+              "count": 1,
+              "role": "hazard-actor",
+              "note": "Strengthens if party only circles; demonstrate irrepeatable change"
+            }
+          ],
+          "abstractSupport": [
+            "Prove changes caused, people preserved, truths carried, choices that cannot repeat"
+          ],
+          "levers": {
+            "player": "Define progress without distance marks",
+            "director": "Purely circular strategies empower Threxus",
+            "exit": "Iron Rest — temporary only; Gate demands demonstration"
+          },
+          "notes": "Construct / Gargantuan / CR 28 / LN — Gate Guardian."
+        }
+      ],
+      "encounterCards": [
+        {
+          "id": "t9-f81-helix",
+          "floors": "81",
+          "title": "Veiled Helix",
+          "job": "Teaching",
+          "targetBand": "Severe",
+          "site": "Veiled Helix",
+          "rosterRef": "t9-helix-open",
+          "detailedActorBudget": "3–5",
+          "hazard": "Coil Tighten"
+        },
+        {
+          "id": "t9-f82-veil-coil",
+          "floors": "82",
+          "title": "Veiled Coil Shadow Trade",
+          "job": "Taxing",
+          "targetBand": "Severe",
+          "site": "Veiled Coil",
+          "summary": "Iron rail and dark swap beyond lantern reach.",
+          "detailedActorBudget": "3–6",
+          "hazard": "Shadow Trade"
+        },
+        {
+          "id": "t9-f84-haven",
+          "floors": "84",
+          "title": "Iron Rest",
+          "job": "Choosing",
+          "targetBand": "Routine (rest)→Hard",
+          "site": "Iron Rest",
+          "summary": "Narrow landing; Weave tightening eases briefly.",
+          "detailedActorBudget": "0–3"
+        },
+        {
+          "id": "t9-f86-siege",
+          "floors": "86",
+          "title": "Siege on Every Turn",
+          "job": "HavenSiege",
+          "targetBand": "Severe",
+          "site": "Ch 67 sample seed",
+          "rosterRef": "t9-siege-every-turn",
+          "detailedActorBudget": "4–6"
+        },
+        {
+          "id": "t9-f88-rivet",
+          "floors": "88",
+          "title": "Murkish Rivet-Tunnels",
+          "job": "Revealing",
+          "targetBand": "Hard→Severe",
+          "site": "Murkish Rivet-Tunnels",
+          "summary": "Side passages; The Murk iron-guild slang ≠ Umbrin faction lore.",
+          "detailedActorBudget": "2–5"
+        },
+        {
+          "id": "t9-f89-echo",
+          "floors": "89",
+          "title": "Threxus Echo Approach",
+          "job": "Taxing",
+          "targetBand": "Severe",
+          "site": "Spiral approach",
+          "summary": "Instruments d8 Threxus echo; false progress peaks.",
+          "detailedActorBudget": "2–4"
+        },
+        {
+          "id": "t9-f90-seal",
+          "floors": "90",
+          "title": "Spiral Gate + Threxus",
+          "job": "Climactic",
+          "targetBand": "Severe→Catastrophic",
+          "site": "Spiral Gate",
+          "rosterRef": "t9-threxus-seal",
+          "detailedActorBudget": "1–2"
+        }
+      ]
+    },
+    {
+      "tier": 10,
+      "zone": "Silencebound Void",
+      "floors": "91–100",
+      "guardian": "The Marquis of Silence",
+      "corePressures": [
+        "Sound Theft / anti-resonance",
+        "Void Lean toward unseen center",
+        "Unasked questions louder than voices",
+        "Attractive stillness offer (end of loss/contradiction)",
+        "Preserve difference without romanticizing endless suffering"
+      ],
+      "opsChapter": {
+        "status": "Director bible Ch 68 operational guidance",
+        "sampleSeed": "Marquis confrontation — defeat / replace / persuade / bind / transform",
+        "gatePrep": "Marquis understands exhaustion; offer of genuine rest. Victory reframes Opening/Heartcell relationship — not a treasure chest ending.",
+        "silentOnes": "Never name Silent Ones aloud — Director note only (Instruments d8)"
+      },
+      "faunaRoles": [
+        "hush-threshold sentinels",
+        "anti-resonance wraiths",
+        "memory-thieves",
+        "void-lean brutes"
+      ],
+      "sampleRosters": [
+        {
+          "id": "t10-hush-threshold",
+          "title": "Hush Threshold Crossing (F91)",
+          "job": "Teaching",
+          "targetPressureBand": "Severe",
+          "detailedActors": [
+            {
+              "displayName": "Sound-Theft Wraith",
+              "count": 2,
+              "role": "controller",
+              "bestiaryName": "Bodak",
+              "bestiaryCr": "9",
+              "intendedCrBand": "14–16",
+              "sandboxCr": true,
+              "note": "Verbal spell risk; last reply never arrives"
+            },
+            {
+              "displayName": "Void Lean brute",
+              "count": 2,
+              "role": "brute",
+              "bestiaryName": "Nightwalker",
+              "bestiaryCr": "12",
+              "intendedCrBand": "16–18",
+              "sandboxCr": true,
+              "note": "Excel CR/type often sandbox — scale; gravity toward unseen center"
+            }
+          ],
+          "abstractSupport": [
+            "Communication fail waves as seat checks, not only HP"
+          ],
+          "levers": {
+            "player": "Nonverbal coordination; prepared signals from earlier tiers",
+            "director": "Thin sound gradually — teach before total hush",
+            "exit": "Last Whisper (F93) while echo still survives"
+          },
+          "notes": "Keep ≤4 detailed. Silence is the tax."
+        },
+        {
+          "id": "t10-last-choir",
+          "title": "Last Choir Echo Defense (F94–96)",
+          "job": "Taxing",
+          "targetPressureBand": "Severe",
+          "detailedActors": [
+            {
+              "displayName": "Anti-Resonance Zone (feature)",
+              "count": 1,
+              "role": "hazard-actor",
+              "note": "Treat as terrain unless it acts; Resonance cost spike"
+            },
+            {
+              "displayName": "Voidmind echo-eater",
+              "count": 2,
+              "role": "controller",
+              "bestiaryName": "Voidmind",
+              "bestiaryCr": "11",
+              "intendedCrBand": "15–17",
+              "sandboxCr": true
+            },
+            {
+              "displayName": "Fracture-Kin Shadow Demon hush-blade",
+              "count": 2,
+              "role": "skirmisher",
+              "bestiaryName": "Fracture-Kin Shadow Demon",
+              "bestiaryCr": "11",
+              "intendedCrBand": "14–16",
+              "sandboxCr": true,
+              "note": "Lore-scrubbed Fracture-Kin name — not SWTOR"
+            }
+          ],
+          "abstractSupport": [
+            "Memory loss clock — lose map detail on failed Support"
+          ],
+          "levers": {
+            "player": "Spend earlier-tier anchors (oaths, songs, path-claims) as fuel",
+            "director": "Do not monologue full Matrix; reveal through operation",
+            "exit": "Quiet Deep Antechamber rumor — unfinished on purpose"
+          },
+          "notes": "≤8 detailed. Preserve difference as objective."
+        },
+        {
+          "id": "t10-marquis-seal",
+          "title": "Marquis Gate — The Marquis of Silence (F100)",
+          "job": "Climactic",
+          "targetPressureBand": "Catastrophic (chosen risk / exits / non-damage win allowed)",
+          "detailedActors": [
+            {
+              "displayName": "The Marquis of Silence",
+              "count": 1,
+              "role": "seal/guardian",
+              "bestiaryName": "The Marquis of Silence",
+              "bestiaryCr": "30",
+              "intendedCrBand": "30"
+            },
+            {
+              "displayName": "Stillness Offer (arena feature)",
+              "count": 1,
+              "role": "hazard-actor",
+              "note": "Genuine rest offer — attractive, not cartoon evil. Count only if acting."
+            }
+          ],
+          "abstractSupport": [
+            "Victory modes: defeat / replace / persuade / bind / transform",
+            "Personal consequences for each PC from earlier Interstice answers"
+          ],
+          "levers": {
+            "player": "Preserve difference without endless suffering romance",
+            "director": "Floor 100 must force an answer — not loot silence",
+            "exit": "Honorable campaign end before F100 remains valid if table chose it openly"
+          },
+          "notes": "Fiend / Huge / CR 30 / CE — Gate Guardian. xpField metadata only."
+        }
+      ],
+      "encounterCards": [
+        {
+          "id": "t10-f91-hush",
+          "floors": "91",
+          "title": "Hush Threshold",
+          "job": "Teaching",
+          "targetBand": "Severe",
+          "site": "Hush Threshold",
+          "rosterRef": "t10-hush-threshold",
+          "detailedActorBudget": "3–5",
+          "hazard": "Sound Theft"
+        },
+        {
+          "id": "t10-f93-haven",
+          "floors": "93",
+          "title": "Last Whisper",
+          "job": "Choosing",
+          "targetBand": "Routine (social)→Hard",
+          "site": "Last Whisper",
+          "summary": "Final place any echo survives; whispered names linger one breath.",
+          "detailedActorBudget": "0–3"
+        },
+        {
+          "id": "t10-f94-choir",
+          "floors": "94",
+          "title": "Last Choir Echo",
+          "job": "Taxing",
+          "targetBand": "Severe",
+          "site": "Last Choir Echo",
+          "rosterRef": "t10-last-choir",
+          "detailedActorBudget": "4–6"
+        },
+        {
+          "id": "t10-f96-void-lean",
+          "floors": "96",
+          "title": "Void Lean Deep",
+          "job": "Taxing",
+          "targetBand": "Severe→Catastrophic",
+          "site": "Silencebound deep",
+          "summary": "Gravity toward unseen center; stillness unfinished.",
+          "detailedActorBudget": "2–5",
+          "hazard": "Void Lean"
+        },
+        {
+          "id": "t10-f98-unasked",
+          "floors": "98",
+          "title": "Unasked Question Gallery",
+          "job": "Revealing",
+          "targetBand": "Hard→Severe",
+          "site": "Quiet Deep Antechamber approach",
+          "summary": "Unspoken thoughts louder than voices — dread as EV, confirm mechanics at table.",
+          "detailedActorBudget": "1–3",
+          "hazard": "Unasked Question"
+        },
+        {
+          "id": "t10-f99-gate-hum",
+          "floors": "99",
+          "title": "Marquis Gate Hum",
+          "job": "Revealing",
+          "targetBand": "Severe",
+          "site": "Approach to Marquis Gate",
+          "summary": "Instruments d8 omen; absolute still can free one gate-clock tick.",
+          "detailedActorBudget": "1–3"
+        },
+        {
+          "id": "t10-f100-seal",
+          "floors": "100",
+          "title": "Marquis Gate + The Marquis of Silence",
+          "job": "Climactic",
+          "targetBand": "Catastrophic",
+          "site": "Marquis Gate",
+          "rosterRef": "t10-marquis-seal",
+          "detailedActorBudget": "1–2"
+        }
+      ]
+    }
+  ]
+}

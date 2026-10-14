@@ -1,0 +1,28 @@
+{
+  "pack": "19-sensitivity-edge-cases",
+  "scenarioId": "EDGE-REST-DEBT-INTERRUPT",
+  "runId": "2026-08-06T151746Z-EDGE-REST-DEBT-INTERRUPT-result-integrity-auditor",
+  "seed": 78039,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": "62c295204b5d8210cebd411ee09d25541bafd4cbade0c27635565a1365a87a7e",
+  "evidenceLevel": "A",
+  "outcome": "PASS",
+  "metrics": {
+    "fixture": {
+      "restDebt": "interrupted",
+      "note": "Interrupted Rest creates Rest Debt then countdown"
+    },
+    "agentRole": "result-integrity-auditor",
+    "seed": 78039
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "Interrupted Rest creates Rest Debt with two-Watch countdown; UI restDebtDueIn matches canon.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 | ExpeditionTracker.tsx"
+    }
+  ],
+  "rawEvidencePath": "results/raw/EDGE-REST-DEBT-INTERRUPT/result-integrity-auditor.json",
+  "agentId": "result-integrity-auditor"
+}

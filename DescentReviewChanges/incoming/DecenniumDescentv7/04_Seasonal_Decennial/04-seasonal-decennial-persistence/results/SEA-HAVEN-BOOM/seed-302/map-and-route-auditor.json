@@ -1,0 +1,65 @@
+{
+  "pack": "04-seasonal-decennial-persistence",
+  "scenarioId": "SEA-HAVEN-BOOM",
+  "agentId": "map-and-route-auditor",
+  "seed": 302,
+  "observations": [
+    "Chamber map fidelity by Opening: [0.75, 0.56, 0.29] (replenishment / geography shifts).",
+    "Secured-route principle value: [0.72, 0.67, 0.62] (persists, not every chamber).",
+    "Old maps helped trunk navigation but failed on replenished side chambers \u2014 exploration remained non-trivial when fidelity <0.5."
+  ],
+  "metrics": {
+    "wealthTrajectory": [
+      55,
+      75,
+      87
+    ],
+    "mapChamberFidelity": [
+      0.75,
+      0.56,
+      0.29
+    ],
+    "securedPrincipleValue": [
+      0.72,
+      0.67,
+      0.62
+    ],
+    "newPlayerAccess": [
+      0.65,
+      0.65,
+      0.45
+    ],
+    "anyExplorationTrivial": false,
+    "runawayWealthRisk": false,
+    "gepAlwaysCausedByPriorRecord": true,
+    "publicCanonLeaks": [],
+    "cyclesRun": 3,
+    "stress": false,
+    "finalDistricts": {
+      "Gateward Caravan Yards": "strengthened",
+      "Makers' Quarter": "strengthened"
+    },
+    "finalDepthPublic": "Haven",
+    "seed": 302,
+    "sourceGaps": [
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md (not on main; used GAMEPLAY_LOOP_BIBLE_v1_EXTRACT.txt \u00a720 as pending-review stand-in)",
+      "docs/mechanics/DESIGN_DOCTRINE.md (not on main; doctrine text present in bible extract header)",
+      "docs/director-only/continuity/ (not on main tree; used ReviewBible/docs/director-only/continuity/ + MM CANON_BOUNDARY.md)"
+    ],
+    "authorityNote": "Gameplay Loop Bible v1 extract \u00a720 + haven.json + dungeon-mechanics.json cycle; Director boundary from CANON_BOUNDARY / LEVEL_97 dual-layer. No silent canon edits.",
+    "cycleLedger": [
+      "Opening 1: depth=Haven; wealth=55; mapFidelity=0.75; principle=0.72; GEP={G:rockfall seals an unsecured shortcut whi...}",
+      "Opening 2: depth=Haven; wealth=75; mapFidelity=0.56; principle=0.67; GEP={G:rockfall seals an unsecured shortcut whi...}",
+      "Opening 3: depth=Haven; wealth=87; mapFidelity=0.29; principle=0.62; GEP={G:subsidence collapses a previously mapped...}"
+    ],
+    "priorMattersWithoutTrivialExploration": true
+  },
+  "rulesQuestions": [
+    "Bible says secured route principles persist but not every chamber \u2014 no Mapping-step reset procedure after ten years."
+  ],
+  "exploits": [],
+  "recommendations": [
+    "On Cycle advance: keep Secured tag on trunk; reset Mapping progress on unsecured spurs; apply one Geography change to at least one prior shortcut."
+  ],
+  "confidence": "high"
+}

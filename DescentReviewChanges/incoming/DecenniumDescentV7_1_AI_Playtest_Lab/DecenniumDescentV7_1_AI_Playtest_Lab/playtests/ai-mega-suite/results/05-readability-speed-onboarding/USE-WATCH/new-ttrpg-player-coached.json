@@ -1,0 +1,50 @@
+{
+  "pack": "05-readability-speed-onboarding",
+  "scenarioId": "USE-WATCH",
+  "agentId": "new-ttrpg-player-coached",
+  "seed": 51739,
+  "runId": "2026-08-06T122200Z-USE-WATCH-new-ttrpg-player-coached",
+  "observations": [
+    "Task: Resolve three Watches including one Pressure complication",
+    "Run: coached; facilitator gave one-page quick reference.",
+    "Cited: docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches; docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications.",
+    "Persona friction terms: Pressure, Extraction Class, Load.",
+    "Observed ExpeditionTracker Rest debt /3 label while reading Rest Debt in GAMEPLAY_LOOP_CANON §5."
+  ],
+  "metrics": {
+    "coachedRun": true,
+    "decisionSteps": 13,
+    "ruleLookups": 5,
+    "invalidActionsAttempted": 0,
+    "misreadTerms": [
+      "Pressure"
+    ],
+    "minutesEstimateProxy": 16.5,
+    "canStateFullLoop": null,
+    "conceptUnderstood": {
+      "Pressure": true
+    },
+    "citationsUsed": [
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Opening clock and Watches",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §7 Pressure and complications",
+      "docs/mechanics/GAMEPLAY_LOOP_CANON.md §8 Team activities",
+      "src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    ],
+    "evidenceLevel": "B",
+    "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014",
+    "rulesHaltCount": 0
+  },
+  "rulesQuestions": [
+    "ExpeditionTracker Rest debt shows /3 while canon Rest Debt is 'within next two Watches' — which governs?",
+    "Does every member need an activity even on Rest Watch?"
+  ],
+  "exploits": [],
+  "recommendations": [
+    "Align ExpeditionTracker Rest-debt UI copy with GAMEPLAY_LOOP_CANON §5 wording.",
+    "Add a Watch sheet: team activity + Pressure d6 + Supply tick."
+  ],
+  "confidence": "medium",
+  "sourceHash": "e2a9735ddb1720c744207b5339a8aa349a43162a1ef3af691db07ab8b1b68014",
+  "evidenceLevel": "B",
+  "rulesHalts": []
+}

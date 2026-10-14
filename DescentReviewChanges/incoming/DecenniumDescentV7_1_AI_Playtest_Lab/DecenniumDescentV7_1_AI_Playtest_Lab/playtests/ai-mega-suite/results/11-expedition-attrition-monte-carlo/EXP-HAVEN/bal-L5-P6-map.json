@@ -1,0 +1,88 @@
+{
+  "pack": "11-expedition-attrition-monte-carlo",
+  "scenarioId": "EXP-HAVEN",
+  "runId": "EXP-HAVEN-bal-L5-P6-map",
+  "seed": 3299876,
+  "sourceHash": "2f3167ff71e5c9ad99278e3d72bce48298bb71b3b9d623e430eea2851bd76ab8",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "aggregated_monte_carlo",
+  "metrics": {
+    "n": 2000,
+    "havenRate": 1.0,
+    "objectiveRate": 0.9805,
+    "wipeRate": 0.0,
+    "abortRate": 0.0195,
+    "sealedRate": 0.0,
+    "meanPeakPressure": 0.406,
+    "meanWatches": 4.991,
+    "meanHours": 42.42,
+    "meanTrueProfit": 89.81,
+    "medianTrueProfit": 78.92,
+    "profitLossRate": 0.205,
+    "meanCargoRetainedLoad": 7.617,
+    "meanExtractionFailRate": 0.311,
+    "meanRestDebtEvents": 0,
+    "meanDeaths": 0,
+    "level": 5,
+    "party": 6,
+    "mapping": "Mapped",
+    "policy": "balanced",
+    "objective": "reach Haven and settle",
+    "requestedRuns": 2000
+  },
+  "rulesHalts": [
+    {
+      "code": "EXTRACTION-CARGO-DC-MODS",
+      "note": "extraction.test cites 'cargo modifiers' without numeric schedule in Gameplay Loop JSON; sim uses +EC to DC as chassis proxy."
+    }
+  ],
+  "findings": [],
+  "rawEvidencePath": "results/EXP-HAVEN/bal-L5-P6-map.json",
+  "sampleLedger": [
+    {
+      "watch": 1,
+      "hour": 8,
+      "progress": 2,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 6,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 2,
+      "hour": 16,
+      "progress": 4,
+      "pressure": 0,
+      "supply": 15.0,
+      "load": 10,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 3,
+      "hour": 24,
+      "progress": 6,
+      "pressure": 2,
+      "supply": 15.0,
+      "load": 15,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    },
+    {
+      "watch": 4,
+      "hour": 32,
+      "progress": 8,
+      "pressure": 2,
+      "supply": 11.0,
+      "load": 15,
+      "mapping": "Mapped",
+      "alive": 6,
+      "extracting": false
+    }
+  ]
+}

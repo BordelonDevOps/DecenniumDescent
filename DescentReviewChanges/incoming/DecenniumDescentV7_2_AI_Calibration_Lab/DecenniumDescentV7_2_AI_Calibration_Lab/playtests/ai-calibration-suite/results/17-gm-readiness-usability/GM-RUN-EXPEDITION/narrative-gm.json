@@ -1,0 +1,29 @@
+{
+  "pack": "17-gm-readiness-usability",
+  "scenarioId": "GM-RUN-EXPEDITION",
+  "runId": "2026-08-06T151746Z-GM-RUN-EXPEDITION-narrative-gm",
+  "seed": 74018,
+  "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+  "fixtureHash": null,
+  "evidenceLevel": "B",
+  "outcome": "day_resolved",
+  "metrics": {
+    "lookups": 3,
+    "prepMinutesProxy": 0,
+    "couldRunWithoutInvention": true,
+    "watchesResolved": 3,
+    "pressureRolls": 2,
+    "sourceHash": "76480bf736ca9f94f4e66977fa3052f75bac75c6540f2c681f9eb3491e2ad435",
+    "objective": "run one full day"
+  },
+  "rulesHalts": [],
+  "findings": [
+    {
+      "severity": "observed",
+      "summary": "V7.2 ExpeditionTracker uses restDebtDueIn two-Watch countdown matching GAMEPLAY_LOOP_CANON §5; legacy watchesWithoutRest migrates on load.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Rest Debt / Strain | src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    }
+  ],
+  "rawEvidencePath": "results/GM-RUN-EXPEDITION/narrative-gm.json",
+  "agentId": "narrative-gm"
+}

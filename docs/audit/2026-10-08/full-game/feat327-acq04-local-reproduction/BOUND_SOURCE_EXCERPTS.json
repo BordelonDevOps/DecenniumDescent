@@ -1,0 +1,1139 @@
+{
+  "archiveSha256": "39a46840356dbcff9330324eb5cc42e6aa0de7dee99547e239297407394bfaf5",
+  "references": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "sha256": "8292328de7f248f35ccb3034733735a0e15b7d3dc374fb752e1d0ed0c6a663a1",
+      "pointer": "/records/310",
+      "value": {
+        "id": "frenzied_rage",
+        "name": "Frenzied Rage",
+        "originalObject": {
+          "id": "frenzied_rage",
+          "name": "Frenzied Rage",
+          "description": "Rage becomes avalanche—each kill feeds the next swing until the world is only red and thunder. Prestige lineage: Berserker. completed from the existing development record.)",
+          "prerequisite": "Constitution 15+, Berserker feat or class rage ability",
+          "effect": "While raging, you deal +3 damage with melee weapon attacks (instead of +2). When you reduce a creature to 0 hit points with a melee attack, you can make one additional melee attack or extend your rage duration by 1 round. Once per rage, you can charge through enemies, dazing those you pass.",
+          "type": "Combat",
+          "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+          "legacyEffect": "While raging, you deal +3 damage with melee weapon attacks (instead of +2). When you reduce a creature to 0 hit points with a melee attack, you can make one additional melee attack or extend your rage duration by 1 round. Once per rage, you can charge through enemies, dazing those you pass.",
+          "status": "provisional-complete",
+          "balanceReview": true,
+          "draft": false,
+          "deprecated": false,
+          "needsReview": true
+        },
+        "printedPrerequisitePresent": true,
+        "printedPrerequisite": "Constitution 15+, Berserker feat or class rage ability",
+        "candidatePointer": "/feats/310",
+        "requirements": {
+          "kind": "all",
+          "requirements": [
+            {
+              "kind": "permanentAbility",
+              "ability": "CON",
+              "minimum": 15
+            },
+            {
+              "kind": "any",
+              "requirements": [
+                {
+                  "kind": "ownedFeat",
+                  "id": "berserker"
+                },
+                {
+                  "kind": "actualEstablishedReceipt",
+                  "receipt": "actual acquired class rage ability",
+                  "doesNotCreateSource": true
+                }
+              ]
+            }
+          ]
+        },
+        "additionalUniversalAcquisitionGate": "One actual unspent class-scheduled ASI/feat opportunity or separately authorized feat grant; prerequisite success never creates a choice.",
+        "actualClassScheduleRequired": true,
+        "candidateSelectionEnabled": false,
+        "acquisitionDoesNotGrantUseWithoutOngoingPredicates": true,
+        "completeOperativeProcedure": "Acquire with CON15 and the actual Berserker feat or an actual class feature expressly granting a rage state. No name-only qualification from Berserker Brew, Mooncursed, a prestige lineage or a damage buff. While in an actual acquired Berserker rage, replace its+2 melee bonus with+3 on melee weapon attacks; for any other qualifying rage lacking that+2, NEW grant+3flat melee-weapon damage as this feat's own family, without replacing separately rolled dice. Do not add+3 on top of the same Berserker+2. Berserker Rage CF-03 is an operating rage once this feat was legally acquired by its printed prerequisite, but not an acquisition substitute. Once per turn after your melee attack reduces an independent meaningful hostile from positiveHP to0, choose EITHER one immediate additional melee attack (NEW only on your own turn) OR extend that same currently active rage's time endpoint by one original6second round. Extra attack requires real reach/target/weapon/capability and creates no Action/BA; shared causal limits prevent drop-trigger attack chains. NEW at most three time extensions per single rage use; non-time endings such as incapacitation or missing upkeep remain. Once per rage, on your turn spend BA to charge along a declared straight legal route with a separate current walking-Speed movement-cost budget, through at most three hostile creatures no more than one size larger. Recheck a complete legal unoccupied endpoint before starting, pay occupied-space difficult cost and normal hazards/opportunity attacks. Each crossed creature once makesCON save DC8+PB+STR; failure applies Dazed until its next future original regular end. No damage/Prone/push is implied. If the route is interrupted, stop in the last legal space; already crossed targets remain affected and use stays spent. It cannot force passage when there is no legal complete crossing route.",
+        "requirementsStatus": "Source-derived finite validation contract; actual positive/negative actor histories still require testing.",
+        "boundaryCasesValidated": false,
+        "repeats": {
+          "policy": "nonrepeatable",
+          "permanentChoice": true
+        },
+        "sourceDecision": "Retain the full CF-43 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Explicit rage-source distinction, replacement damage, hostile reward gate, once-turn extra attack/extension choice, three-extension cap and full BA charge procedure.",
+        "requiresLegacyOrContextReceiptWithoutCreatingIt": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "sha256": "8292328de7f248f35ccb3034733735a0e15b7d3dc374fb752e1d0ed0c6a663a1",
+      "pointer": "/records/92",
+      "value": {
+        "id": "divine_favor",
+        "name": "Divine Favor",
+        "originalObject": {
+          "id": "divine_favor",
+          "name": "Divine Favor",
+          "description": "You have earned the favor of a deity.",
+          "prerequisite": "Charisma 15+, worship a deity",
+          "effect": "Once per long rest, you can call upon divine aid to automatically succeed on one saving throw or ability check.",
+          "type": "Magic",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": false
+        },
+        "printedPrerequisitePresent": true,
+        "printedPrerequisite": "Charisma 15+, worship a deity",
+        "candidatePointer": "/feats/92",
+        "requirements": {
+          "kind": "all",
+          "requirements": [
+            {
+              "kind": "permanentAbility",
+              "ability": "CHA",
+              "minimum": 15
+            },
+            {
+              "kind": "actualEstablishedReceipt",
+              "receipt": "already-established deity worship",
+              "doesNotCreateSource": true
+            }
+          ]
+        },
+        "additionalUniversalAcquisitionGate": "One actual unspent class-scheduled ASI/feat opportunity or separately authorized feat grant; prerequisite success never creates a choice.",
+        "actualClassScheduleRequired": true,
+        "candidateSelectionEnabled": false,
+        "acquisitionDoesNotGrantUseWithoutOngoingPredicates": true,
+        "completeOperativeProcedure": "Retain CHA15 and an actual already established worship-of-a-deity credential without selecting a new deity or interpreting doctrine here. NEW once per beneficial Long Rest, after your own actual saving throw or ability check is called for, or after its result is known but before its consequences commit, declare this feat to replace that one outcome with ordinary Success. No Action, component or new roll is required; it can protect a living incapacitated creature making an actual save, including a death save. It cannot act after death or reverse committed harm. Fixed-DC task outcome becomes Success, not Critical Success; saves become successful without a natural face or a success-by-margin value. A death save gains one ordinary success, not natural20healing. For a genuinely authorized crafting completion check, this means Standard success in that craft procedure, retaining all work/material/access requirements and any independently reviewed quality adjustment.\n\nFor your side of an actual opposed ability check, NEW it wins against an ordinary rolled opponent regardless of total. If both sides commit an explicit automatic-success effect to the same opposition, resolve their incompatible claims by preserving the existing state, as with the Core initiating-tie rule; no retroactive transfer of an already resolved result. This declared conflict rule needs joint review. The feat does not create an ability check when none is allowed, overcome physical impossibility, convert an attack into a check, grant NPC consent outside a legitimately established social success outcome, or grant knowledge unavailable to the legal task. Only one check/save is affected; another save from the same damage event remains separate. Other outcome-triggered rules see ordinary Success, no natural20/1 and no invented numerical margin.",
+        "requirementsStatus": "Source-derived finite validation contract; actual positive/negative actor histories still require testing.",
+        "boundaryCasesValidated": false,
+        "repeats": {
+          "policy": "nonrepeatable",
+          "permanentChoice": true
+        },
+        "sourceDecision": "Retain the MF-06 complete grant/procedure and boundaries. After-result/preconsequence window; ordinary success/death-save/craft interpretation; explicit dual-auto-success opposition boundary. Final named supplementary menus and shared spellcasting rules are part of this source decision; no pending payload or class is promoted.",
+        "requiresLegacyOrContextReceiptWithoutCreatingIt": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "sha256": "8292328de7f248f35ccb3034733735a0e15b7d3dc374fb752e1d0ed0c6a663a1",
+      "pointer": "/records/104",
+      "value": {
+        "id": "elemental_body",
+        "name": "Elemental Body",
+        "originalObject": {
+          "id": "elemental_body",
+          "name": "Elemental Body",
+          "description": "Your body has been infused with elemental energy.",
+          "prerequisite": "Constitution 15+, exposure to elemental plane",
+          "effect": "Choose an element. You gain resistance to that damage type and your unarmed strikes deal that damage type.",
+          "type": "General",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": false
+        },
+        "printedPrerequisitePresent": true,
+        "printedPrerequisite": "Constitution 15+, exposure to elemental plane",
+        "candidatePointer": "/feats/104",
+        "requirements": {
+          "kind": "all",
+          "requirements": [
+            {
+              "kind": "permanentAbility",
+              "ability": "CON",
+              "minimum": 15
+            },
+            {
+              "kind": "actualEstablishedReceipt",
+              "receipt": "actual recorded elemental-plane exposure; literal only, no new cosmology",
+              "doesNotCreateSource": true
+            }
+          ]
+        },
+        "additionalUniversalAcquisitionGate": "One actual unspent class-scheduled ASI/feat opportunity or separately authorized feat grant; prerequisite success never creates a choice.",
+        "actualClassScheduleRequired": true,
+        "candidateSelectionEnabled": false,
+        "acquisitionDoesNotGrantUseWithoutOngoingPredicates": true,
+        "completeOperativeProcedure": "Require Constitution 15 and an actual recorded source event satisfying the printed exposure-to-an-elemental-plane prerequisite. This record is a literal eligibility receipt, not permission to invent a plane or reinterpret an origin. NEW finite mechanical choice at acquisition: select acid, cold, fire, lightning or thunder as the feat's one permanent damage type; this menu is proposed, not a recovered elemental taxonomy. Gain resistance to that type. Your actual unarmed strikes replace their ordinary base damage type with the selected type; they do not add a second packet, new dice or another ability modifier. Other separately sourced riders keep their own types. Use actual unarmed attack proficiency, ability, action economy and body legality. A natural weapon is not automatically an unarmed strike unless its source says so. No creature-type change, anatomy, emitted aura, elemental immunity or automatic environmental protection is granted. A new type choice requires an explicit later retraining source; none is created here.",
+        "requirementsStatus": "Source-derived finite validation contract; actual positive/negative actor histories still require testing.",
+        "boundaryCasesValidated": false,
+        "repeats": {
+          "policy": "nonrepeatable",
+          "permanentChoice": true
+        },
+        "sourceDecision": "Adopt explicitly NEW acid/cold/fire/lightning/thunder menu and unarmed base-type replacement; exposure prerequisite remains literal receipt only, no invented plane.",
+        "requiresLegacyOrContextReceiptWithoutCreatingIt": true
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "sha256": "8292328de7f248f35ccb3034733735a0e15b7d3dc374fb752e1d0ed0c6a663a1",
+      "pointer": "/records/94",
+      "value": {
+        "id": "dragon_blood",
+        "name": "Dragon Blood",
+        "originalObject": {
+          "id": "dragon_blood",
+          "name": "Dragon Blood",
+          "description": "Draconic blood flows through your veins.",
+          "prerequisite": "Dragonborn or sorcerer with draconic bloodline",
+          "effect": "You gain resistance to your draconic ancestry's damage type and can speak, read, and write Draconic.",
+          "type": "General",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": false
+        },
+        "printedPrerequisitePresent": true,
+        "printedPrerequisite": "Dragonborn or sorcerer with draconic bloodline",
+        "candidatePointer": "/feats/94",
+        "requirements": {
+          "kind": "all",
+          "requirements": [
+            {
+              "kind": "any",
+              "requirements": [
+                {
+                  "kind": "actualLineageReceipt",
+                  "lineage": "Dragonborn",
+                  "noSilentAlias": true
+                },
+                {
+                  "kind": "all",
+                  "requirements": [
+                    {
+                      "kind": "classLevel",
+                      "className": "Sorcerer",
+                      "minimum": 1
+                    },
+                    {
+                      "kind": "actualEstablishedReceipt",
+                      "receipt": "draconic bloodline with one recorded ancestry damage type",
+                      "doesNotCreateSource": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "actualEstablishedReceipt",
+              "receipt": "one recorded actual draconic ancestry damage type for the qualifying lineage source",
+              "doesNotCreateSource": true
+            }
+          ]
+        },
+        "additionalUniversalAcquisitionGate": "One actual unspent class-scheduled ASI/feat opportunity or separately authorized feat grant; prerequisite success never creates a choice.",
+        "actualClassScheduleRequired": true,
+        "candidateSelectionEnabled": false,
+        "acquisitionDoesNotGrantUseWithoutOngoingPredicates": true,
+        "completeOperativeProcedure": "Preserve the printed prerequisite exactly: Dragonborn, or a Sorcerer with an actual draconic bloodline. Neither name is silently replaced by Drakari or Mage. NEW mechanical eligibility record: identify an actual controlling character/lineage source that expressly establishes one of those prerequisites and its one draconic ancestry damage type. Without that evidence the feat is not selectable in the current candidate; the name alone is not a lineage grant. Once legitimately acquired, gain resistance to that recorded actual damage type and the source's ability to speak, read and write Draconic under the reviewed language procedure. The language grant does not supply writing tools, hands or current speech when an independent condition prevents it. Existing resistance does not stack, and an existing language grant does not produce a substitute language or feat. No bloodline, species origin, dragon allegiance or cosmology is authored here. Resolve any proposed legacy-name alias in the actual source conference before opening eligibility.",
+        "requirementsStatus": "Source-derived finite validation contract; actual positive/negative actor histories still require testing.",
+        "boundaryCasesValidated": false,
+        "repeats": {
+          "policy": "nonrepeatable",
+          "permanentChoice": true
+        },
+        "sourceDecision": "Preserve exact unmatched Dragonborn/Sorcerer bloodline prerequisite and source-bound damage type; no Drakari/Mage alias invented. Procedure complete but source-qualified eligibility remains unavailable without real receipt.",
+        "requiresLegacyOrContextReceiptWithoutCreatingIt": true,
+        "normalizationCorrection": "Carry the existing final Dragon Blood procedure’s recorded damage-type requirement on both branches. No source rule changed."
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "sha256": "8292328de7f248f35ccb3034733735a0e15b7d3dc374fb752e1d0ed0c6a663a1",
+      "pointer": "/records/32",
+      "value": {
+        "id": "berserker",
+        "name": "Berserker",
+        "originalObject": {
+          "id": "berserker",
+          "name": "Berserker",
+          "description": "You can enter a battle rage.",
+          "prerequisite": "Constitution 15+",
+          "effect": "Once per long rest, you can rage for 1 minute, gaining +2 damage on melee attacks and resistance to physical damage.",
+          "type": "General",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": false
+        },
+        "printedPrerequisitePresent": true,
+        "printedPrerequisite": "Constitution 15+",
+        "candidatePointer": "/feats/32",
+        "requirements": {
+          "kind": "permanentAbility",
+          "ability": "CON",
+          "minimum": 15
+        },
+        "additionalUniversalAcquisitionGate": "One actual unspent class-scheduled ASI/feat opportunity or separately authorized feat grant; prerequisite success never creates a choice.",
+        "actualClassScheduleRequired": true,
+        "candidateSelectionEnabled": false,
+        "acquisitionDoesNotGrantUseWithoutOngoingPredicates": true,
+        "completeOperativeProcedure": "NEW: as a Bonus Action, spend the feat's one long-rest use to enter this feat rage for one elapsed minute. Gain resistance to bludgeoning, piercing and slashing damage, whether magical or nonmagical, and add 2 damage on each actual successful melee attack you own. The melee scope includes weapon, unarmed, natural and melee spell attacks; it is not limited to weapons. Add the flat 2 once to the attack's primary damage type before target defenses; it is not doubled by a critical hit and is not a separate hit, copied damage or spellcasting trigger. NEW: the rage ends early if you voluntarily end it as a Bonus Action or become Incapacitated. It does not require attacking or taking damage to continue, prohibit spellcasting/concentration, extend through repeated attacks, or grant unstated class rage features. Another real rage may coexist under its own rules, but same-scope resistance does not stack and bonuses obey their actual families; this feat's flat rider cannot be counted twice under aliases. A completed rest restores the use, not an encounter declaration.",
+        "requirementsStatus": "Source-derived finite validation contract; actual positive/negative actor histories still require testing.",
+        "boundaryCasesValidated": false,
+        "repeats": {
+          "policy": "nonrepeatable",
+          "permanentChoice": true
+        },
+        "sourceDecision": "Adopt finite BA one-minute rage and end/incapacity rule, all own melee-attack+2 and B/P/S resistance; no imported class rage benefits or spell prohibition.",
+        "requiresLegacyOrContextReceiptWithoutCreatingIt": false
+      }
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "sha256": "8292328de7f248f35ccb3034733735a0e15b7d3dc374fb752e1d0ed0c6a663a1",
+      "pointer": "/records/33",
+      "value": {
+        "id": "berserker_rage",
+        "name": "Berserker Rage",
+        "originalObject": {
+          "id": "berserker_rage",
+          "name": "Berserker Rage",
+          "description": "A powerful fighter accepts a brief loss of defense to drive a ten-second burst of damage.",
+          "prerequisite": "Strength 16+, Level 9",
+          "effect": "As a bonus action, enter a rage for 2 rounds. Your weapon attacks deal one additional weapon damage die, but your AC is reduced by 2. You regain this use after a short rest.",
+          "type": "Combat",
+          "legacyEffect": "+25% damage for 10s, -10% AC",
+          "status": "provisional-complete",
+          "balanceReview": true,
+          "source": "Completed from the existing feat draft corpus on 2026-08-05; playable wording supplied, final balance pass still required.",
+          "draft": false,
+          "deprecated": false,
+          "needsReview": true
+        },
+        "printedPrerequisitePresent": true,
+        "printedPrerequisite": "Strength 16+, Level 9",
+        "candidatePointer": "/feats/33",
+        "requirements": {
+          "kind": "all",
+          "requirements": [
+            {
+              "kind": "permanentAbility",
+              "ability": "STR",
+              "minimum": 16
+            },
+            {
+              "kind": "totalCharacterLevel",
+              "minimum": 9
+            }
+          ]
+        },
+        "additionalUniversalAcquisitionGate": "One actual unspent class-scheduled ASI/feat opportunity or separately authorized feat grant; prerequisite success never creates a choice.",
+        "actualClassScheduleRequired": true,
+        "candidateSelectionEnabled": false,
+        "acquisitionDoesNotGrantUseWithoutOngoingPredicates": true,
+        "completeOperativeProcedure": "Bonus Action, once per short rest: enter this distinct feat rage through your second future original regular-start marker; outside initiative12elapsed seconds. Each qualifying weapon attack hit during it adds one base weapon damage die, doubled as part of a critical. Melee and ranged weapon attacks qualify because the current effect says weapon attacks; unarmed attacks do not, and natural attacks require an actual weapon profile. Apply its −2 AC continuously. Repeated same identity cannot stack; independently active Aggressive stance's −2 AC also applies. NEW the rage ends early if you become Incapacitated. This is a rage for Frenzied Rage's operating trigger, but acquiring this feat alone does not satisfy Frenzied Rage's separately printed Berserker-feat-or-class-rage prerequisite. It supplies no +2 rage damage to replace and no resistance or spell ban.",
+        "requirementsStatus": "Source-derived finite validation contract; actual positive/negative actor histories still require testing.",
+        "boundaryCasesValidated": false,
+        "repeats": {
+          "policy": "nonrepeatable",
+          "permanentChoice": true
+        },
+        "sourceDecision": "Retain the full CF-03 completion and its two boundaries, subject to the named common cadence, targeting, stacking and causal-root corrections. Exact self-buff clock, all weapon scope, die selection, incapacitation endpoint and explicit distinction between operational rage and acquisition gate.",
+        "requiresLegacyOrContextReceiptWithoutCreatingIt": false
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89",
+      "pointer": "/cards/56",
+      "value": {
+        "id": "cleric.hero.cultist.zealot-s-fervor",
+        "name": "Zealot's Fervor",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Cultist",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 Conviction",
+        "rangeAndTarget": "Self",
+        "duration": "3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Zealot's Fervor. Tags: cultist, stance. For 3 rounds, once on each of your turns add S to one damage roll from a Cleric feature and S to one HP-healing roll from a Cleric feature. While the Fervor lasts, your AC is reduced by 1. The Conviction expenditure is not a Rite or Invocation and therefore does not vent Dissonance by itself.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2058,
+          "originalText": "Zealot's Fervor: Enter a state of religious frenzy, increasing your damage output and healing power at the cost of defense."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+      "sha256": "bfcd0ff392035e48bdef27da630b911b96ce85ba036de5de622cdc2427a47a33",
+      "pointer": "/cards/42",
+      "value": {
+        "id": "crimson-agent.hero.thirstborn.blood-frenzy",
+        "name": "Blood Frenzy",
+        "className": "Crimson Agent",
+        "band": "Hero",
+        "path": "Thirstborn",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "While hostile Bleeds persist",
+        "frequency": "Continuous",
+        "effect": "Add 1 to direct weapon damage per hostile creature bearing your Bleed, maximum 3. Applies once per hit, not per Bleed instance. Secondary Bleed, copies and explosions gain no bonus.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2199,
+          "originalText": "Blood Frenzy: +5% damage per enemy actively bleeding (max +25%)."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+      "sha256": "bfcd0ff392035e48bdef27da630b911b96ce85ba036de5de622cdc2427a47a33",
+      "pointer": "/cards/48",
+      "value": {
+        "id": "crimson-agent.hero.thirstborn.veinweave-blood-frenzy",
+        "name": "Veinweave: Blood Frenzy",
+        "className": "Crimson Agent",
+        "band": "Hero",
+        "path": "Thirstborn",
+        "sourceKind": "active",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "3 BG",
+        "rangeAndTarget": "Self",
+        "duration": "Concentration, 3 of your turns",
+        "frequency": "Recharge 4",
+        "effect": "Start Blood Frenzy Veinweave: once on your turn add S d6 to one weapon hit; gain+10 ft Speed and suffer-2 AC. No extra attacks, Actions or critical range. Ending early removes both benefit and penalty.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2207,
+          "originalText": "Veinweave: Blood Frenzy: Consume 3 Blood Gauge points to enter a frenzied state, increasing damage and attack speed but reducing defense."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f",
+      "pointer": "/cards/27",
+      "value": {
+        "id": "druid.hero.moon.mooncursed",
+        "name": "Mooncursed",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Moon",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action bite or Howl",
+        "cost": "One shift; Howl 1 Form Surge",
+        "rangeAndTarget": "Moon Hero; bite 5 ft/Howl 30 ft",
+        "duration": "While in Mooncursed",
+        "frequency": "Howl 1/shift and finite reserve",
+        "effect": "Resistance to nonmagical physical damage except silver; other types unchanged. Bite 2d6+WIS piercing, +1d8 once/turn under real full moon. Howl Action choose up to 3 allies gain 2d8 temp HP total roll, or 3 enemies WIS save or Frightened through end next turn. Temp HP draws from Buffer Reserve per recipient.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2703,
+          "originalText": "Mooncursed\nLycanthropic Resilience: You have resistance to all damage except silver\nLunar Rage: During a full moon, your attacks deal an additional 1d8 damage\nHowl of the Wild: As an action, you can emit a howl that inspires allies or terrifies enemies. Choose one effect: allies within 30 ft. gain 2d8 temporary hit points, or enemies within 30 ft. must make a Wisdom saving throw or be frightened for 1 minute."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f",
+      "pointer": "/cards/4",
+      "value": {
+        "id": "druid.base.bear-form-tank",
+        "name": "Bear Form (Tank)",
+        "className": "Druid",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Action attack; passive form traits",
+        "cost": "One shift; buffer drawn from reserve",
+        "rangeAndTarget": "Self; claw 5 ft",
+        "duration": "While in Bear",
+        "frequency": "One claw/Action",
+        "effect": "Gain up to 20 temporary HP from reserve; AC max(normal, 14). Claw 2d6 slashing+WIS+1. Buffer disappears on reversion and cannot be refilled through free shifting.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2455,
+          "originalText": "Bear Form (Tank)\n+20 HP temporary buffer\nAC set to 14 (unless your normal AC is higher)\nClaw: 2d6 slashing damage\nRage-like trait: Deal +1 damage per attack"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+      "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09",
+      "pointer": "/cards/35",
+      "value": {
+        "id": "paladin.supplement.oath-of-vengeance.vengeful-smite",
+        "name": "Vengeful Smite",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of Vengeance",
+        "sourceKind": "oathSmite",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Triggered",
+        "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+        "rangeAndTarget": "Creature hit by your melee weapon attack",
+        "duration": "Vengeance Mark until end of your next regular turn",
+        "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+        "effect": "Choose radiant or necrotic when you Smite; the entire Smite packet uses that type. After damage, apply Vengeance Mark until the end of your next regular turn. If the creature was already marked by you when this Smite began, add S flat damage to the Smite once. Applying a new mark refreshes but never stacks it.",
+        "prerequisite": "Paladin 3; Oath of Vengeance",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[1].smiteType",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[1].smiteType",
+              "value": "Necrotic or radiant — bonus damage vs marked foes; applies Vengeance Mark"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "conductClauses": [
+          "Pursue sworn enemies until justice is served or they surrender; let no convenience excuse a broken charge",
+          "Do not abandon allies to feed a private vendetta, for judgment that leaves the faithful behind is only rage",
+          "Accept the surrender of those who genuinely repent, and hold them to the peace they have asked for"
+        ],
+        "oathId": "vengeance",
+        "oathName": "Oath of Vengeance",
+        "oathbreakerName": "Malice",
+        "displayPath": "Oath of Vengeance"
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+      "pointer": "/cards/71",
+      "value": {
+        "id": "warrior.supplement.berserker-brew",
+        "name": "Berserker Brew",
+        "className": "Warrior",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "serumProfile",
+        "minimumClassLevel": 1,
+        "acquisition": "supplement",
+        "activation": "Via Serum Injection",
+        "cost": "Dose consumption and normal Strain",
+        "rangeAndTarget": "Injected creature",
+        "duration": "3 rounds",
+        "frequency": "Per prepared dose",
+        "effect": "You are immune to Frightened and once on each of your turns add 2 S damage to one melee weapon or natural-weapon hit. Side effect: -1 AC and you cannot voluntarily take Dodge or Disengage. Serum Tolerance suppresses the side effect but not the once-per-turn damage cap.",
+        "prerequisite": "Prepared serum dose",
+        "source": {
+          "line": 5058,
+          "reference": null,
+          "originalText": "| Berserker Brew | +40% Damage | Fear Immunity | 3 rounds | Temporary Madness |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "pointer": "/classes/15",
+      "value": {
+        "class": "Warrior",
+        "slug": "warrior",
+        "hitDie": 12,
+        "fixedLaterLevelHpBase": 7,
+        "savingThrowProficiencies": [
+          "STR",
+          "CON"
+        ],
+        "weaveTier": "none",
+        "armor": "Medium; Heavy",
+        "weapons": "Martial weapons",
+        "tools": "None",
+        "skillChoices": 2,
+        "skillOptions": [
+          "Animal Handling",
+          "Athletics",
+          "Intimidation",
+          "Nature",
+          "Perception",
+          "Survival"
+        ],
+        "startingWealth": {
+          "diceCount": 2,
+          "dieSides": 4,
+          "multiplierGp": 10
+        },
+        "multiclassPrerequisites": {
+          "STR": 13,
+          "CON": 13
+        },
+        "multiclassProficiencies": "Light armor; medium armor; shields; simple weapons; martial weapons",
+        "rpByClassLevel": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "asiClassLevels": [
+          4,
+          8,
+          12,
+          16,
+          19
+        ],
+        "classCandidatePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+        "classCandidateSha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+        "sourceChassisLines": [
+          4775,
+          4776,
+          4777,
+          4778
+        ],
+        "sourceComparison": "docs/audit/2026-10-08/full-game/CHARACTER_FOUNDATION_SOURCE_EVIDENCE.json"
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/ancestry_background_candidate.json",
+      "sha256": "d8e728a1c5b9d28b7e42a035aedf99c295f7d90aa69ddae5a46f2f76959aadfb",
+      "pointer": "/ancestries/2",
+      "value": {
+        "id": "drakari",
+        "name": "Drakari",
+        "abilityBonuses": {
+          "STR": 2,
+          "CHA": 1
+        },
+        "traits": [
+          {
+            "name": "Ability Score Increase",
+            "sourceLine": 479,
+            "text": "Your Strength score increases by 2, and your Charisma score increases by 1.",
+            "id": "drakari--ability-score-increase",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Size",
+            "sourceLine": 485,
+            "text": "Drakari are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.",
+            "id": "drakari--size",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Speed",
+            "sourceLine": 487,
+            "text": "Your base walking speed is 30 feet.",
+            "id": "drakari--speed",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Draconic Ancestry",
+            "sourceLine": 489,
+            "text": "You have draconic ancestry. Your breath weapon and damage resistance are determined by your Drakari variant.",
+            "id": "drakari--draconic-ancestry",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Breath Weapon",
+            "sourceLine": 491,
+            "text": "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation. When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level. After you use your breath weapon, you can't use it again until you complete a short or long rest.",
+            "id": "drakari--breath-weapon",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Damage Resistance",
+            "sourceLine": 493,
+            "text": "You have resistance to the damage type associated with your draconic ancestry.",
+            "id": "drakari--damage-resistance",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          },
+          {
+            "name": "Languages",
+            "sourceLine": 495,
+            "text": "You can speak, read, and write Common and Draconic.",
+            "id": "drakari--languages",
+            "status": "original-source-preserved; apply-reviewed-integration-guide"
+          }
+        ],
+        "variants": [
+          {
+            "id": "flame-drakari",
+            "name": "Flame Drakari",
+            "abilityBonuses": {},
+            "combinedAbilityBonuses": {
+              "STR": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Draconic Ancestry",
+                "sourceLine": 505,
+                "text": "Your breath weapon is a 15-foot cone of fire. Creatures in the area must make a Dexterity saving throw. You have resistance to fire damage.",
+                "id": "flame-drakari--draconic-ancestry",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Fire Affinity",
+                "sourceLine": 507,
+                "text": "You know the produce flame cantrip. Once you reach 3rd level, you can cast the burning hands spell once per day. Constitution is your spellcasting ability for these spells.",
+                "id": "flame-drakari--fire-affinity",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Heat Endurance",
+                "sourceLine": 509,
+                "text": "You are naturally adapted to hot climates, as described by the environmental rules in Chapter 5.",
+                "id": "flame-drakari--heat-endurance",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "frost-drakari",
+            "name": "Frost Drakari",
+            "abilityBonuses": {},
+            "combinedAbilityBonuses": {
+              "STR": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Draconic Ancestry",
+                "sourceLine": 515,
+                "text": "Your breath weapon is a 15-foot cone of cold. Creatures in the area must make a Constitution saving throw. You have resistance to cold damage.",
+                "id": "frost-drakari--draconic-ancestry",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Ice Affinity",
+                "sourceLine": 517,
+                "text": "You know the ray of frost cantrip. Once you reach 3rd level, you can cast the ice knife spell once per day. Constitution is your spellcasting ability for these spells.",
+                "id": "frost-drakari--ice-affinity",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Cold Endurance",
+                "sourceLine": 519,
+                "text": "You are naturally adapted to cold climates, as described by the environmental rules in Chapter 5.",
+                "id": "frost-drakari--cold-endurance",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "storm-drakari",
+            "name": "Storm Drakari",
+            "abilityBonuses": {},
+            "combinedAbilityBonuses": {
+              "STR": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Draconic Ancestry",
+                "sourceLine": 525,
+                "text": "Your breath weapon is a 5-foot-wide, 30-foot line of lightning. Creatures in the area must make a Dexterity saving throw. You have resistance to lightning damage.",
+                "id": "storm-drakari--draconic-ancestry",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Lightning Affinity",
+                "sourceLine": 527,
+                "text": "You know the shocking grasp cantrip. Once you reach 3rd level, you can cast the thunderwave spell once per day. Constitution is your spellcasting ability for these spells.",
+                "id": "storm-drakari--lightning-affinity",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Speed Burst",
+                "sourceLine": 529,
+                "text": "As a bonus action, you can propel yourself with a surge of electrical energy. Your walking speed increases by 10 feet until the end of your turn. Once you use this trait, you can't use it again until you finish a short or long rest.",
+                "id": "storm-drakari--speed-burst",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "stone-drakari",
+            "name": "Stone Drakari",
+            "abilityBonuses": {},
+            "combinedAbilityBonuses": {
+              "STR": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Draconic Ancestry",
+                "sourceLine": 535,
+                "text": "Your breath weapon is a 5-foot-wide, 30-foot line of acid. Creatures in the area must make a Dexterity saving throw. You have resistance to acid damage.",
+                "id": "stone-drakari--draconic-ancestry",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Earth Affinity",
+                "sourceLine": 537,
+                "text": "You know the mold earth cantrip. Once you reach 3rd level, you can cast the earth tremor spell once per day. Constitution is your spellcasting ability for these spells.",
+                "id": "stone-drakari--earth-affinity",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Stone Resilience",
+                "sourceLine": 539,
+                "text": "Your AC increases by 1 when you're not wearing armor.",
+                "id": "stone-drakari--stone-resilience",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "gale-drakari",
+            "name": "Gale Drakari",
+            "abilityBonuses": {},
+            "combinedAbilityBonuses": {
+              "STR": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Draconic Ancestry",
+                "sourceLine": 545,
+                "text": "Your breath weapon is a 15-foot cone of poisonous gas. Creatures in the area must make a Constitution saving throw. You have resistance to poison damage.",
+                "id": "gale-drakari--draconic-ancestry",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Air Affinity",
+                "sourceLine": 547,
+                "text": "You know the gust cantrip. Once you reach 3rd level, you can cast the feather fall spell once per day. Constitution is your spellcasting ability for these spells.",
+                "id": "gale-drakari--air-affinity",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Wind Step",
+                "sourceLine": 549,
+                "text": "When you take the Dash action, difficult terrain doesn't cost you extra movement for that turn.",
+                "id": "gale-drakari--wind-step",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          },
+          {
+            "id": "wave-drakari",
+            "name": "Wave Drakari",
+            "abilityBonuses": {},
+            "combinedAbilityBonuses": {
+              "STR": 2,
+              "CHA": 1
+            },
+            "traits": [
+              {
+                "name": "Draconic Ancestry",
+                "sourceLine": 555,
+                "text": "Your breath weapon is a 5-foot-wide, 30-foot line of lightning. Creatures in the area must make a Dexterity saving throw. You have resistance to lightning damage.",
+                "id": "wave-drakari--draconic-ancestry",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Water Affinity",
+                "sourceLine": 557,
+                "text": "You know the shape water cantrip. Once you reach 3rd level, you can cast the create or destroy water spell once per day. Constitution is your spellcasting ability for these spells.",
+                "id": "wave-drakari--water-affinity",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Amphibious",
+                "sourceLine": 559,
+                "text": "You can breathe air and water.",
+                "id": "wave-drakari--amphibious",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              },
+              {
+                "name": "Swimmer",
+                "sourceLine": 561,
+                "text": "You have a swimming speed of 30 feet.",
+                "id": "wave-drakari--swimmer",
+                "status": "original-source-preserved; apply-reviewed-integration-guide"
+              }
+            ]
+          }
+        ],
+        "size": "Medium",
+        "baseWalkFeet": 30
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "sha256": "b5a29a63b0e23a86493af67983dfb0dabb13a999b97e6da2f04c31fe6d4fe64d",
+      "pointer": "/rules/0",
+      "value": {
+        "id": "FS-01",
+        "title": "Authority, identity and acquisition",
+        "disposition": "ADOPT EXPLICIT NEW COMPLETION",
+        "wording": "These are source/proposal-authoring directions for 327 exact existing IDs, not approval of assembled operational cards. Preserve all 335 originals, eight already-reviewed full feats, every description/effect/legacy alternative, original questions, absent/null distinctions and prior labels. A real class-scheduled feat/ASI opportunity pays for a grant; merely reaching a total level, possessing an item, meeting prerequisites or reading this register gives no selection. Unqualified Level means total character level; named Warrior or other class gates use that class level. Check printed permanent ability, actual feat ownership and credential prerequisites at acquisition. A half-feat ability increase is capped at 20, contributes zero rather than reducing a higher score, and does not grant another selection. The pure ASI option requires its full legal allocation. Numerical skill prerequisites require actual proficiency and permanent governing ability modifier plus the applicable normal PB or replacing Expertise contribution, excluding equipment, temporary modifiers, situational feats, Help and advantage. Preserve the acquisition snapshot. Later prerequisite loss does not erase a grant; ongoing equipped/active/body requirements can disable its use.\nNEW nonrepeatability: each identity is acquired once, except the explicitly repeatable ASI, Armor Proficiency for a distinct missing tier, Resilient for a different save, and Weapon Focus for a different actual weapon type. Elemental Affinity/Adept, Spell Focus and other chosen-type feats do not gain unprinted repeatability. One same-named source represented in two catalogs is not two selections. The twelve explicitly mapped Warrior mutation-feat pairs are one paid identity; their actual class gates and active-mutation conditions control as stated in HM rows. Other shared names do NOT merge class, ancestry, item, feat, ordinary-spell or supplement permissions.\n\nWarrior mutation-feat acquisition uses the equipped-loadout rules in the Warrior engine as corrected by FEAT327-ACQ-02: at most two equipped Advanced mutations per actual tree and at most one equipped Apex mutation across all trees, within the actual unlocked total slots. Dormant equipped mutations count toward those ceilings. Evaluate each feat's equipped and active prerequisites only at the acquisition or use-time checkpoints that its exact procedure specifies. A temporary all-equipped activation does not supply an equipped prerequisite, slot, mutation, class level or feat opportunity. Preserve each feat's acquisition snapshot and existing ongoing operating conditions.",
+        "basis": [
+          "All nine sharedProposal objects",
+          "CHARACTER_CREATION_PLAYTEST.md",
+          "MAXIMUM_HP_PLAYTEST.md",
+          "heritage_mutation/originalWarriorCounterpartPairs"
+        ],
+        "exactCardApproval": false
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "sha256": "b5a29a63b0e23a86493af67983dfb0dabb13a999b97e6da2f04c31fe6d4fe64d",
+      "pointer": "/rules/1",
+      "value": {
+        "id": "FS-02",
+        "title": "Credentials, training snapshots and real study",
+        "disposition": "ADOPT EXPLICIT NEW COMPLETION",
+        "wording": "Use actual current credentials, one proficiency contribution and the feat's selected branch. Thievery is the bounded thieves'-tools/DEX acquisition bridge, not a new universal skill. Mechanical Disable Device means an actual Engineering or thieves'-tools disarm interface; it does not authorize magical disarming. Knowledge (Monstrous Humanoids) remains an existing valid legacy credential; proficient INT(Nature) for that bounded anatomy is the NEW alternative bridge, with printed Survival still valid. Culture Lore may be an actual bounded credential or the explicitly selected History specialization. Agility means the stated Dexterity option, not another ability. Spellcraft is not silently aliased to Arcana; an actual legacy credential receipt is required where it is printed as a prerequisite, unless another printed alternative qualifies. Half-elf, Half-orc, Dragonborn, Sorcerer and Warlock labels are not silently turned into present ancestry/class identities. Existing genuinely authorized legacy grants remain evidenced; no new builder option follows.\n\n**Weapon prerequisite bridge.** Apply this bridge only to an actual printed feat prerequisite, subject to any more specific acquisition direction in that feat’s final procedure. Where a prerequisite names a weapon or weapon type, require actual proficiency with that named current weapon profile/type. A generic Melee or Melee Proficiency prerequisite requires actual proficiency with at least one current melee-weapon profile; Ranged or Ranged Proficiency requires actual proficiency with at least one current ranged-weapon profile. Use the weapon profile’s actual classification, not merely the attack’s melee or ranged delivery: throwing a melee-class weapon does not by itself satisfy Ranged acquisition, and making a ranged spell attack supplies no weapon proficiency. An otherwise generic martial-weapon proficiency prerequisite requires proficiency with at least one actual martial-weapon profile, not all martial weapons; an explicitly stricter per-feat prerequisite remains stricter. Two-Handed or 2H Weapon acquisition requires actual proficiency with a weapon whose current profile possesses the Two-Handed property; proficiency with a Versatile-only weapon held in two hands does not satisfy that gate. Record the qualifying proficiency grant and weapon profile/type in the acquisition snapshot. These are acquisition credentials: they neither supply an item or proficiency nor make an otherwise unproficient attack proficient. They do not impose a new requirement to use the acquisition-qualifying weapon for every later feat event. Actual use-time weapon, proficiency where expressly required, grip, body, range, ammunition, action and other predicates remain those of the exact feat and governing procedure. All other printed ability, level, prerequisite-feat, class-access and earned-opportunity requirements remain mandatory. Class, feat, ancestry and item grants with similar names otherwise remain separate permissions.\nCasting-prerequisite snapshot bridge — FEAT327-ACQ-03. NEW acquisition completion. Apply this bridge only to an actual feat acquisition prerequisite or its expressly required acquisition selection, subject to a more specific acquisition rule in that feat’s final procedure. A casting prerequisite requires a source-qualified personal spellcasting entitlement already acquired by the character and still retained at the acquisition snapshot. Record the actual grant, exact spell identity and source version, casting route, relevant class/rank gates, and the repertoire or preparation evidence that makes that route available. Class-level capacity, an RP or RC pool, a spell merely appearing on a permitted list, ownership of a spellbook or scroll, item-enabled casting, an unacquired class feature, and the prospective benefit of the feat being acquired do not by themselves supply this entitlement.\n\nRetained entitlement versus immediate casting legality. A retained personal grant does not lose its acquisition credential merely because its renewable charge is currently empty, RP is insufficient, components or a suitable casting hand/voice are unavailable, the character is unconscious, or an existing temporary prohibition or suppression prevents casting. Ignore those immediate-use impediments only when evaluating this casting credential. Do not refill a resource, restore components, lift a prohibition, perform a cast, or establish that the feat-selection transaction itself is otherwise lawful. Actual casting still requires every current action, component, body, target, range, payment, concentration, strain and source-specific condition. An expressly ongoing or currently-active prerequisite in a particular feat remains an ongoing or currently-active prerequisite.\n\nQualifying repertoire and preparation. For a known-spell route, require the exact spell actually learned or personally granted, with its applicable source gates satisfied. For an ordinary prepared route, require the spell actually prepared at the snapshot, an actually acquired always-prepared grant, or another already-established source exception that authorizes casting it without ordinary preparation. An unprepared spellbook entry and the ability to prepare or substitute it later are insufficient for that spell’s credential. A future study period, rest, substitution, level-up selection or other repertoire change cannot be anticipated. A ritual route qualifies when the character actually possesses its ritual-casting permission and the particular spell meets that permission’s exact book, tag, rank and other repertoire requirements; no ritual need already have been cast. Do not extend one spell’s ritual overlay to another spell. Loss of a required repertoire source follows the actual class procedure: Wizard’s surviving prepared matrices remain available under its spellbook-loss rule, while an unprepared lost-book entry is not made available by merely planning its reconstruction.\n\nGeneric and specific predicates. “Spellcasting ability,” “Actual personal spellcasting ability,” and “Ability to cast at least one spell” require at least one qualifying personal spell route under this bridge; a qualifying rank-0 spell is sufficient. “Ability to cast cantrips” requires a qualifying rank-0 route. A named-spell prerequisite requires the exact required spell identity and permitted source version, not a similarly named class technique or item effect. A school prerequisite requires an actual matching school on the qualifying route. A rank prerequisite uses the spell rank actually supplied by that route and the final normalized predicate’s existing exact-rank or minimum-rank comparison, not total character level, maximum possible class rank, available RP, damage, or a higher price paid for a lower-rank spell. Where one predicate combines identity, school, rank or route restrictions, one qualifying route must satisfy that complete predicate; do not combine different routes’ most favorable fields. Distinct alternatives retain their existing AND/OR structure.\n\nRemoval, replacement and expiry. Reevaluate the retained grant and repertoire for every new feat acquisition. An actually removed, expired or lawfully retrained-away grant cannot support a new acquisition unless another independently qualifying route exists. Replacing a prepared matrix removes that ordinary prepared route for later snapshots unless another valid route to the spell remains. Temporary suppression or renewable depletion is not removal. Exhausting a genuinely nonrenewable permission follows its actual source: if the permission terminates, it no longer supplies a retained route. Under FS-01, a previously acquired feat keeps its original acquisition snapshot; later prerequisite loss does not erase that historical acquisition or waive any of the feat’s actual ongoing operating conditions.\n\nUnassigned schools and required school choices. Preserve each source spell’s actual school value, explicit null or absent field. An absent, null or unassigned school is not Universal, Enchantment, Evocation, a wildcard, or a school inferred from damage type or a grant’s name. A school-unassigned personal rank-0 grant can satisfy generic spellcasting and cantrip predicates, but cannot itself satisfy a school-specific predicate. Supplementary Spell Focus additionally requires its mandatory permanent selection of an actual school supported by at least one qualifying acquired spell route at that same snapshot. Satisfying its generic spellcasting prerequisite without a supported school choice is insufficient to complete its acquisition. Another genuine route may support that choice. Subsequent loss or suppression of the supporting route does not reselect the school or erase the original acquisition; later benefits still require actual eligible casts through that fixed school.\n\nAuthored-candidate evidence versus runtime selection. For authored-candidate qualification, use the exact complete controlling authored spell procedure and its actual source-access binding, supported by the applicable review and fulfillment chain. A preserved earlier blocked catalog snapshot does not override an explicitly reviewed, version-linked operational descendant merely because the original remains unchanged. A separate selectionEnabled:false or disabled runtime adapter does not by itself invalidate that authored evidence. Neither a favorable label nor the existence of a reviewed spell supplies the character’s personal grant or repertoire history. Genuinely unfinished, null, unsupported or operationally unavailable payloads remain unavailable as positive casting witnesses. Preserve original statuses and live selection flags; this acquisition bridge neither enables runtime selection nor promotes another card.\n\nSnapshot and payment. Preserve the exact prerequisite text and record the qualifying grant, spell/source/mode, actual school-field state and rank, repertoire/preparation or ritual basis, applicable class gates, controlling authored-procedure reference, and acquisition time. Temporary use blocks may be recorded separately but are not treated as grant removal. Missing grant, preparation, source-version or required-school evidence leaves that predicate unestablished rather than assumed true. Check all other printed ability, level, ownership, credential and earned-opportunity requirements independently. The feat’s own prospective spell grant cannot bootstrap its prerequisite, and one paid opportunity cannot fund two acquisitions.\n\nFor the six exploration training entries, snapshot each named skill separately at acquisition: grant proficiency if absent; grant the explicitly printed replacing Expertise only if already proficient. An acquired proficiency does not become Expertise merely because proficiency is later acquired elsewhere. If a fixed grant lacks that branch, duplication yields no replacement skill or Expertise. Skill Expert and Prodigy's ordered explicit selections use their own rules. Study, tutoring, language learning, formula research, copying and crafting are different tasks; a bonus or time discount on one does not migrate to another. Apply the actual minimum phase, calendar, rest and physical requirements.",
+        "basis": [
+          "skill/sharedProposal",
+          "general_exploration training entries",
+          "TEX and LAX governing files",
+          "CRAFTING_TRADE_REFERENCE.md"
+        ],
+        "exactCardApproval": false
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "sha256": "b5a29a63b0e23a86493af67983dfb0dabb13a999b97e6da2f04c31fe6d4fe64d",
+      "pointer": "/rules/8",
+      "value": {
+        "id": "FS-09",
+        "title": "Feat-only grants, schools and casting prices",
+        "disposition": "ADOPT EXPLICIT NEW COMPLETION",
+        "wording": "ADOPT the supplied bounded feat-casting route as NEW. Choose and record the exact curriculum where applicable, spell identity and source version, grant rank and permanent casting ability at acquisition from the allowed source-linked list. Preserve the source’s actual school value, explicit null or absent school field; recording source identity does not authorize assigning a missing school. Apply FEAT327-ACQ-03 to casting-prerequisite snapshots and required school selections. Preserve every curriculum’s exact permitted spell, class placement, mode and casting ability; this clarification does not enlarge a curriculum or waive a required source-linked choice. It gives only that feat's repertoire/charge, no ordinary class levels, rank progression, RP pool, prepared positions or class engine. Generic and named Magic Initiate for the same curriculum share one acquisition entitlement; a different name cannot give duplicate charges for that same grant. Actual source-specific versions/modes/components/range remain; no lowest-price or school-union shortcut. Named Sorcerer/Warlock curricula are limited feat lists, not newly created classes. When a granted payload explicitly scales by casting class level, NEW feat route uses total character level only for that payload's printed scaling; it invents no scaling otherwise.\nA finite 'cast without RP' grant waives its normal rank/ordinary price and price-derived Dissonance surcharge only, not an explicitly consumed independent RP payment such as Resonance Shield's 1 RP, Silent/Still surcharge, material, maintenance, blood cost or charge. The feat route uses actual total PB and its specified ability, DC8+PB+ability, attackPB+ability. With no acquired class casting-engine override for that feat route, NEW base Dissonance is0 for rank0,1 for ranks1–5 and2 for ranks6–9; use ordinary Refrain and Limit=max(4,2PB+casting modifier), including the governed ranked-block threshold and component/interruption rules. Being a Wizard does not make an independently acquired feat charge a prepared Wizard matrix.\nFor ordinary priced spells, apply actual existing discounts, Dissonance-price addition, source independent additions, armor and final source multipliers in their reviewed order; apply Efficient Caster only at its stated stage to an actual price of at least2 and never below1 at that stage. Heighten substitutes only the proper ordinary class route's higher base rank-price, not the identity/rank of the resulting spell or a fictitious price for a free charge. Silent and Still each add1 real independent RP when used; they do not pay themselves from a zero-capacity pool. Keep source-specific minimum prices and no-refund rules.",
+        "basis": [
+          "magic_core/sharedProposal",
+          "magicInitiateCurricula",
+          "SPELL_INTEGRATION_RULES.md",
+          "CLASS_PLAYTEST_RULES.md",
+          "current Resonance Shield record"
+        ],
+        "exactCardApproval": false
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "sha256": "b5a29a63b0e23a86493af67983dfb0dabb13a999b97e6da2f04c31fe6d4fe64d",
+      "pointer": "/rules/15",
+      "value": {
+        "id": "FS-16",
+        "title": "Private data, deferred payloads and exact-candidate gate",
+        "disposition": "ADOPT EXPLICIT NEW COMPLETION",
+        "wording": "The two original feats astral_projection and planar_binding retain complete literal sources and finite grant wrappers, but their cosmology-dependent spell payloads remain null/unavailable. Do not invent planes, patrons, soul currency, Voice or hidden meanings for any feat. Other named references can be operational receipts without receiving a cosmology interpretation. Spell Focus, feat-only Eldritch Blast, Detect Thoughts' proposed feat-only profile and the closed animal/gadget/maneuver/copy/flora tables are explicitly NEW supplements, not silently inserted original catalog records. Preserve all comparison class/feat/spell statuses.\nSource directions authorize assembling the complete exact candidate: all327 identities, with325 complete supported procedures and two explicit unavailable wrappers, full public/internal envelopes, originals/question maps, this convention set, complete supplements and corrected660examples. The separate exact review remains required before any whole-feat promotion; this source verdict grants no conditional promotion merely for passing static tests. Genuine actual anatomy, actor ownership, source acquisition, required teacher/provider, safe handling, real material, known spell and lawful world access remain use-time predicates. An unsupported particular operation stays unavailable without reopening this completed source conference. Runtime implementation, human teaching/balance, remaining catalogs, DD01 and whole-game flow are separate. Final joint whole-game agreement precedes the already-authorized push; verified remote commit precedes careful cosmology. No extra owner-confirmation gate is introduced.",
+        "basis": [
+          "README_FEAT_AUTHORED_V3.md",
+          "FEX-14/15",
+          "fulfilled gate receipts",
+          "original request"
+        ],
+        "exactCardApproval": false
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "sha256": "59635b07655f06f4d3fab872b2665638a683702ad89a5322fe2df426fcd96146",
+      "pointer": "/groups/3/value/Sorcerer",
+      "value": {
+        "featCastingAbility": "CHA",
+        "rank0Choices": 6,
+        "rank1Choices": 6,
+        "selection": "Permanently choose two distinct rank0 spells and one rank1 spell at acquisition. Current unreviewed payloads remain unavailable pending their own exact approval.",
+        "ordinaryMinimumClassLevelsArePreservedButNotFeatAcquisitionTax": true,
+        "choices": [
+          {
+            "id": "sparkbolt",
+            "name": "Sparkbolt",
+            "rank": 0,
+            "school": "Evocation",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Evocation",
+              "baseRpCost": 0
+            }
+          },
+          {
+            "id": "ray-of-frost",
+            "name": "Ray of Frost",
+            "rank": 0,
+            "school": "Evocation",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Evocation",
+              "baseRpCost": 0
+            }
+          },
+          {
+            "id": "shocking-grasp",
+            "name": "Shocking Grasp",
+            "rank": 0,
+            "school": "Evocation",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Evocation",
+              "baseRpCost": 0
+            }
+          },
+          {
+            "id": "acid-splash",
+            "name": "Acid Splash",
+            "rank": 0,
+            "school": "Evocation",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Evocation",
+              "baseRpCost": 0
+            }
+          },
+          {
+            "id": "prestidigitation",
+            "name": "Prestidigitation",
+            "rank": 0,
+            "school": "Universal",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Universal",
+              "baseRpCost": 0
+            }
+          },
+          {
+            "id": "arcane-ward",
+            "name": "Arcane Ward",
+            "rank": 0,
+            "school": "Abjuration",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 0
+            }
+          },
+          {
+            "id": "shield",
+            "name": "Shield",
+            "rank": 1,
+            "school": "Abjuration",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            }
+          },
+          {
+            "id": "elemental-bolt",
+            "name": "Elemental Bolt",
+            "rank": 1,
+            "school": "Conjuration",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            }
+          },
+          {
+            "id": "burning-sands",
+            "name": "Burning Sands",
+            "rank": 1,
+            "school": "Conjuration",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            }
+          },
+          {
+            "id": "flame-armor",
+            "name": "Flame Armor",
+            "rank": 1,
+            "school": "Conjuration",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Conjuration",
+              "baseRpCost": 2
+            }
+          },
+          {
+            "id": "feather-fall",
+            "name": "Feather Fall",
+            "rank": 1,
+            "school": "Universal",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Universal",
+              "baseRpCost": 2
+            }
+          },
+          {
+            "id": "magic-thread",
+            "name": "Magic Thread",
+            "rank": 1,
+            "school": "Universal",
+            "sourceClass": "Mage",
+            "fullOriginalClassAccessRow": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Universal",
+              "baseRpCost": 2
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

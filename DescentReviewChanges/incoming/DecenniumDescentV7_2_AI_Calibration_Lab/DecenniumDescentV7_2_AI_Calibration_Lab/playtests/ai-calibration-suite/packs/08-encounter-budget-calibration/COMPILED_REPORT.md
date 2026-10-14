@@ -1,0 +1,286 @@
+# Encounter Budget Calibration — Compiled Report
+
+Raw JSON results: 10
+Unreadable skipped: 0
+
+## Scenario coverage
+
+- **BUDGET-AMBUSH:** 1 results; evidence A; outcome FAIL
+- **BUDGET-CARGO:** 1 results; evidence A; outcome WARN
+- **BUDGET-CROSS:** 1 results; evidence A; outcome WARN
+- **BUDGET-ESCORT:** 1 results; evidence A; outcome FAIL
+- **BUDGET-HAZARD:** 1 results; evidence A; outcome WARN
+- **BUDGET-RETREAT:** 2 results; evidence A; outcome WARN
+- **PACK08-ROLLUP:** 3 results; evidence A; outcome FAIL
+
+## Rules halts
+
+Total: 58
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels catastrophic for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels catastrophic for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels catastrophic for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-CARGO; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-ESCORT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-HAZARD; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels standard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels hard for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-AMBUSH; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels catastrophic for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels severe for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+- {'code': 'RULES_HALT', 'topic': 'encounterMath.objectiveStep', 'detail': 'GAMEPLAY_LOOP_CANON: objectives/terrain/surprise/hazards each increase effective difficulty by one step unless already included in creature levels. Scenario matrix labels catastrophic for BUDGET-RETREAT; sim uses creature budget at labeled band and adds objective mechanics separately (risk of double-count or under-count).'}
+
+## Findings
+
+Total: 278
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] party_size_scaling_unstable
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] party_size_scaling_unstable
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+- [confirmed] budget_collapse_across_band
+- [suspected] budget_band_nondistinct
+- [suspected] budget_band_nondistinct
+
+## Wave summary
+
+Objective-conditioned budgets (kill/cargo/escort/hazard/ambush/retreat).
+Ambush / escort / objective stacking produce RULES_HALT and soft-band findings.
+No silent rulebook edits.

@@ -1,0 +1,36 @@
+{
+  "pack": "17-gm-readiness-usability",
+  "scenarioId": "GM-RUN-EXPEDITION",
+  "runId": "2026-08-06T122200Z-GM-RUN-EXPEDITION-accessibility-observer",
+  "seed": 53719,
+  "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+  "fixtureHash": null,
+  "evidenceLevel": "B",
+  "outcome": "day_resolved_with_halt",
+  "metrics": {
+    "lookups": 3,
+    "prepMinutesProxy": 0,
+    "couldRunWithoutInvention": true,
+    "watchesResolved": 3,
+    "pressureRolls": 2,
+    "sourceHash": "b7e105434ece2dd6fcda3be80767f89ea6f718650a5553caeab2e9b74c29f3c0",
+    "objective": "run one full day"
+  },
+  "rulesHalts": [
+    {
+      "id": "RH-17-REST-DEBT-UI",
+      "prompt": "Which Rest Debt clock is authoritative during live play?",
+      "status": "RULES_HALT",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Rest Debt / Strain"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "defect",
+      "summary": "Rest Debt prose vs ExpeditionTracker /3 label creates Director hesitation mid-Watch.",
+      "citation": "docs/mechanics/GAMEPLAY_LOOP_CANON.md §5 Rest Debt / Strain | src/components/ExpeditionTracker.tsx (Opening/Pressure/Convoy cards; Resolve Watch)"
+    }
+  ],
+  "rawEvidencePath": "results/GM-RUN-EXPEDITION/accessibility-observer.json",
+  "agentId": "accessibility-observer"
+}

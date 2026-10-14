@@ -1,0 +1,2670 @@
+{
+  "pack": "09-feat-spell-ability-interactions",
+  "scenarioId": "TRIPLE-TARGETED",
+  "runId": "triples-500",
+  "seed": 9002,
+  "sourceHash": "5a22b204af4c5cacf130bffbb17a9a5059857d957fa80b6821d63642a8c1a088",
+  "fixtureHash": null,
+  "evidenceLevel": "A",
+  "outcome": "reviewed",
+  "metrics": {
+    "triples": 500,
+    "flagged": 95
+  },
+  "rulesHalts": [
+    {
+      "code": "RULES_HALT",
+      "detail": "Cooldown resets cannot reset the same ability more than once per round \u2014 verify any reset+extra_action triple against GAMEPLAY_LOOP_CANON."
+    }
+  ],
+  "findings": [
+    {
+      "type": "topTriples",
+      "items": [
+        {
+          "names": [
+            "Echo Spell",
+            "Lightning Affinity",
+            "Elemental Convergence"
+          ],
+          "score": 46,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Control Weather",
+            "Eternal Anvil",
+            "Echo Spell"
+          ],
+          "score": 45,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Empowered Summoning",
+            "Echo Spell",
+            "Wounding Magic"
+          ],
+          "score": 44,
+          "flags": [],
+          "tags": [
+            "actor",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Echo Spell",
+            "Fear",
+            "Arcane Resonance"
+          ],
+          "score": 44,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Terrifying Gaze",
+            "Wounding Magic",
+            "Echo Spell"
+          ],
+          "score": 43,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Echo Spell",
+            "Terrifying Gaze",
+            "Companion Training"
+          ],
+          "score": 42,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Hemocraft",
+            "Lightning Affinity",
+            "Eviscerator Protocol"
+          ],
+          "score": 41,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control",
+            "crit",
+            "reaction",
+            "stacking",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Overwhelming Grief",
+            "Spell Echo Chamber",
+            "Mystic Recoil"
+          ],
+          "score": 41,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "extra_action",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Efficient Caster",
+            "Arcane Resonance",
+            "Arcane Recall"
+          ],
+          "score": 41,
+          "flags": [],
+          "tags": [
+            "actor",
+            "reset",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Elemental Convergence",
+            "Planar Army",
+            "Haste"
+          ],
+          "score": 40,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Mirror Image",
+            "Battlefield Commander",
+            "Mystic Recoil"
+          ],
+          "score": 40,
+          "flags": [
+            "potential_action_reset_loop",
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "extra_action",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Echo Spell",
+            "Summon Minor Weapon",
+            "Empowered Summoning"
+          ],
+          "score": 40,
+          "flags": [],
+          "tags": [
+            "actor",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Mental Buffer",
+            "Runic Shield",
+            "Summon Elemental Avatar"
+          ],
+          "score": 40,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Mystic Recoil",
+            "Dominate Monster",
+            "Empowered Summoning"
+          ],
+          "score": 40,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "extra_action",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Voltaic Detonation",
+            "Echo Spell",
+            "Summon Weaponry Satchel"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Shield Bash",
+            "Life Drinker",
+            "Faction Army"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Target Mark",
+            "Empowered Summoning",
+            "Control Water"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Mass Dominate",
+            "Haste",
+            "Familiar Bond"
+          ],
+          "score": 39,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Cantrip Echo",
+            "Mass Mesmerize",
+            "Life Drinker"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Time Echo",
+            "Haste",
+            "Paralyzing Presence"
+          ],
+          "score": 39,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Eternal Anvil",
+            "Summon Greater Earth Pet",
+            "Empowered Summoning"
+          ],
+          "score": 39,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Fear",
+            "Summon Familiar",
+            "Haste"
+          ],
+          "score": 39,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Echo Spell",
+            "Reality Rewrite",
+            "Curse Channeling"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Close Quarters Combat",
+            "Echo Spell",
+            "Fate Echo"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Whip Control",
+            "Target Mark",
+            "Companion Training"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Eternal Anvil",
+            "Time Echo",
+            "Dominate Beast"
+          ],
+          "score": 38,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Dark Affinity",
+            "Mental Buffer",
+            "Chill Touch"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Arcane Resonance",
+            "Anacite Drone / Deployables",
+            "Inspiring Leader"
+          ],
+          "score": 38,
+          "flags": [],
+          "tags": [
+            "actor",
+            "reset",
+            "survivability",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Target Mark",
+            "Dark Affinity",
+            "Efficient Caster"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Lasting Control",
+            "Eternal Anvil",
+            "Summon Elemental Avatar"
+          ],
+          "score": 38,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Acrobatic Mastery",
+            "Trapsetter",
+            "Summon Archlich Shade"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Hemocraft",
+            "Mimicry",
+            "Dominate Beast"
+          ],
+          "score": 38,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control",
+            "crit",
+            "stacking",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Lifeleech",
+            "Dark Affinity",
+            "Berserker Rage"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Arcane Resonance",
+            "Silent Echo",
+            "Punishing Blow"
+          ],
+          "score": 37,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Favored Enemy (Dragon)",
+            "Trapsetter",
+            "Summon Greater Water Pet"
+          ],
+          "score": 37,
+          "flags": [],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reaction",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Dire Charm",
+            "Battlefield Commander",
+            "Lightning Affinity"
+          ],
+          "score": 37,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reaction",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Wounding Magic",
+            "Fey Ancestry",
+            "Summon Fire Pet"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Terrifying Gaze",
+            "Field Surgeon",
+            "Chill Touch"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Spell Echo Chamber",
+            "Dominate Beast",
+            "Favored Enemy (Dragon)"
+          ],
+          "score": 36,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control",
+            "survivability",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Great Weapon Master",
+            "Arcane Recall",
+            "Summon Weaponry Satchel"
+          ],
+          "score": 36,
+          "flags": [],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Lifeleech",
+            "Faction Paragon",
+            "Echo Spell"
+          ],
+          "score": 36,
+          "flags": [],
+          "tags": [
+            "actor",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Echo Spell",
+            "Time Echo",
+            "Faction Ally"
+          ],
+          "score": 36,
+          "flags": [],
+          "tags": [
+            "actor",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Life Drinker",
+            "Illusory Dragon",
+            "Faction Paragon"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Time Echo",
+            "Overwhelming Presence",
+            "Mystic Recoil"
+          ],
+          "score": 36,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Soul Reflection",
+            "Summon Greater Earth Pet",
+            "Echo Spell"
+          ],
+          "score": 36,
+          "flags": [],
+          "tags": [
+            "actor",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Dominate Legion",
+            "Astral Projection",
+            "Wounding Magic"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Elemental Convergence",
+            "Empowered Summoning",
+            "Target Mark"
+          ],
+          "score": 36,
+          "flags": [],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Faction Champion",
+            "Field Surgeon",
+            "Perfect Mesmerize"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Hold Monster",
+            "Efficient Caster",
+            "Empowered Summoning"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Life Drinker",
+            "Summon Spectral Steed",
+            "Control Weather"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Phantom Cataclysm",
+            "Wounding Magic",
+            "Planar Ally (Minor)"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Mirror Cast",
+            "Absolute Domination",
+            "Life Drinker"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Faction Army",
+            "Arcane Implosion",
+            "Runic Shield"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Runic Shield",
+            "Alignment Shield",
+            "Veil of Terror"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Target Mark",
+            "Arcane Echo",
+            "Juggernaut's Core"
+          ],
+          "score": 36,
+          "flags": [],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "crit",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Channeled Flow",
+            "Arcane Resonance",
+            "Dominate Legion"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Target Mark",
+            "Summon Elemental Avatar",
+            "Planar Ally (Minor)"
+          ],
+          "score": 36,
+          "flags": [],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Berserker Rage",
+            "Trapsetter",
+            "Puppetmaster's Realm"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Elemental Apocalypse",
+            "Field Surgeon",
+            "Charm Person"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Ghoul Touch",
+            "Wounding Magic",
+            "Summon Greater Earth Pet"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Psychic Scream",
+            "Faction Messenger",
+            "Mystic Recoil"
+          ],
+          "score": 36,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Illusory Dragon",
+            "Battlefield Commander",
+            "Planar Summons (Greater)"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Battlefield Commander",
+            "Charm Person",
+            "Planar Summons (Lesser)"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Battlefield Commander",
+            "Silent Echo",
+            "Arcane Implosion"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Cause Fear",
+            "Channeled Flow",
+            "Eviscerator Protocol"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Faction Charm",
+            "Arcane Transfusion",
+            "Summon Spectral Steed"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Battlefield Commander",
+            "Spectral Army",
+            "Plague of Undeath"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Durable",
+            "Instant Summons",
+            "Hemocraft"
+          ],
+          "score": 35,
+          "flags": [],
+          "tags": [
+            "actor",
+            "crit",
+            "reset",
+            "stacking",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Familiar Bond",
+            "Dominate Greater Beast",
+            "Target Mark"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Dark Affinity",
+            "Eviscerator Protocol",
+            "Elemental Apocalypse"
+          ],
+          "score": 35,
+          "flags": [],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Hypnotic Pattern",
+            "Runic Shield",
+            "Channeled Flow"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Spectral Army",
+            "Frozen Tomb",
+            "Target Mark"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Puppet Strings",
+            "Wounding Magic",
+            "Ghoul Touch"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Chill Touch",
+            "Curse Channeling",
+            "Hemocraft"
+          ],
+          "score": 35,
+          "flags": [],
+          "tags": [
+            "crit",
+            "reset",
+            "stacking",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Eternal Anvil",
+            "Planar Summons (Greater)",
+            "Find Familiar"
+          ],
+          "score": 35,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control"
+          ]
+        },
+        {
+          "names": [
+            "Cantrip Echo",
+            "Eldritch Echo",
+            "Puppet Strings"
+          ],
+          "score": 35,
+          "flags": [],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Dark Fortitude",
+            "Elemental Banishment",
+            "Dark Affinity"
+          ],
+          "score": 35,
+          "flags": [],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reaction",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Channeled Flow",
+            "Echo Slots / Mirrorbind",
+            "Perfect Mesmerize"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Summon Familiar",
+            "Eviscerator Protocol",
+            "Eternal Anvil"
+          ],
+          "score": 35,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control"
+          ]
+        },
+        {
+          "names": [
+            "Eternal Anvil",
+            "Mystic Gate",
+            "Planar Summons (Greater)"
+          ],
+          "score": 35,
+          "flags": [],
+          "tags": [
+            "actor",
+            "control"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "flaggedTriples",
+      "items": [
+        {
+          "names": [
+            "Echo Spell",
+            "Lightning Affinity",
+            "Elemental Convergence"
+          ],
+          "score": 46,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Control Weather",
+            "Eternal Anvil",
+            "Echo Spell"
+          ],
+          "score": 45,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Echo Spell",
+            "Fear",
+            "Arcane Resonance"
+          ],
+          "score": 44,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Terrifying Gaze",
+            "Wounding Magic",
+            "Echo Spell"
+          ],
+          "score": 43,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Echo Spell",
+            "Terrifying Gaze",
+            "Companion Training"
+          ],
+          "score": 42,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Overwhelming Grief",
+            "Spell Echo Chamber",
+            "Mystic Recoil"
+          ],
+          "score": 41,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "extra_action",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Elemental Convergence",
+            "Planar Army",
+            "Haste"
+          ],
+          "score": 40,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Mirror Image",
+            "Battlefield Commander",
+            "Mystic Recoil"
+          ],
+          "score": 40,
+          "flags": [
+            "potential_action_reset_loop",
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "extra_action",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Mental Buffer",
+            "Runic Shield",
+            "Summon Elemental Avatar"
+          ],
+          "score": 40,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Mystic Recoil",
+            "Dominate Monster",
+            "Empowered Summoning"
+          ],
+          "score": 40,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "extra_action",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Voltaic Detonation",
+            "Echo Spell",
+            "Summon Weaponry Satchel"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Shield Bash",
+            "Life Drinker",
+            "Faction Army"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Target Mark",
+            "Empowered Summoning",
+            "Control Water"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Mass Dominate",
+            "Haste",
+            "Familiar Bond"
+          ],
+          "score": 39,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Cantrip Echo",
+            "Mass Mesmerize",
+            "Life Drinker"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Time Echo",
+            "Haste",
+            "Paralyzing Presence"
+          ],
+          "score": 39,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Fear",
+            "Summon Familiar",
+            "Haste"
+          ],
+          "score": 39,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Echo Spell",
+            "Reality Rewrite",
+            "Curse Channeling"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Close Quarters Combat",
+            "Echo Spell",
+            "Fate Echo"
+          ],
+          "score": 39,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Whip Control",
+            "Target Mark",
+            "Companion Training"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Dark Affinity",
+            "Mental Buffer",
+            "Chill Touch"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Target Mark",
+            "Dark Affinity",
+            "Efficient Caster"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Acrobatic Mastery",
+            "Trapsetter",
+            "Summon Archlich Shade"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Lifeleech",
+            "Dark Affinity",
+            "Berserker Rage"
+          ],
+          "score": 38,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Arcane Resonance",
+            "Silent Echo",
+            "Punishing Blow"
+          ],
+          "score": 37,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Dire Charm",
+            "Battlefield Commander",
+            "Lightning Affinity"
+          ],
+          "score": 37,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reaction",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Wounding Magic",
+            "Fey Ancestry",
+            "Summon Fire Pet"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Terrifying Gaze",
+            "Field Surgeon",
+            "Chill Touch"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Life Drinker",
+            "Illusory Dragon",
+            "Faction Paragon"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Time Echo",
+            "Overwhelming Presence",
+            "Mystic Recoil"
+          ],
+          "score": 36,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Dominate Legion",
+            "Astral Projection",
+            "Wounding Magic"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Faction Champion",
+            "Field Surgeon",
+            "Perfect Mesmerize"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Hold Monster",
+            "Efficient Caster",
+            "Empowered Summoning"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Life Drinker",
+            "Summon Spectral Steed",
+            "Control Weather"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Phantom Cataclysm",
+            "Wounding Magic",
+            "Planar Ally (Minor)"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Mirror Cast",
+            "Absolute Domination",
+            "Life Drinker"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Faction Army",
+            "Arcane Implosion",
+            "Runic Shield"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Runic Shield",
+            "Alignment Shield",
+            "Veil of Terror"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Channeled Flow",
+            "Arcane Resonance",
+            "Dominate Legion"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Berserker Rage",
+            "Trapsetter",
+            "Puppetmaster's Realm"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Elemental Apocalypse",
+            "Field Surgeon",
+            "Charm Person"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Ghoul Touch",
+            "Wounding Magic",
+            "Summon Greater Earth Pet"
+          ],
+          "score": 36,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Psychic Scream",
+            "Faction Messenger",
+            "Mystic Recoil"
+          ],
+          "score": 36,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Illusory Dragon",
+            "Battlefield Commander",
+            "Planar Summons (Greater)"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Battlefield Commander",
+            "Charm Person",
+            "Planar Summons (Lesser)"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Battlefield Commander",
+            "Silent Echo",
+            "Arcane Implosion"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Cause Fear",
+            "Channeled Flow",
+            "Eviscerator Protocol"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Faction Charm",
+            "Arcane Transfusion",
+            "Summon Spectral Steed"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Battlefield Commander",
+            "Spectral Army",
+            "Plague of Undeath"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reaction",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Familiar Bond",
+            "Dominate Greater Beast",
+            "Target Mark"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Hypnotic Pattern",
+            "Runic Shield",
+            "Channeled Flow"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Spectral Army",
+            "Frozen Tomb",
+            "Target Mark"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Puppet Strings",
+            "Wounding Magic",
+            "Ghoul Touch"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Channeled Flow",
+            "Echo Slots / Mirrorbind",
+            "Perfect Mesmerize"
+          ],
+          "score": 35,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Vision of Ruin",
+            "Chill Touch",
+            "Shield Bash"
+          ],
+          "score": 34,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Efficient Caster",
+            "Lightning Affinity",
+            "Mesmerize"
+          ],
+          "score": 34,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reaction",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Fate Echo",
+            "Mystic Recoil",
+            "Summon Herald of the Planes"
+          ],
+          "score": 33,
+          "flags": [
+            "actor_plus_extra_action"
+          ],
+          "tags": [
+            "actor",
+            "bonus_action",
+            "extra_action"
+          ]
+        },
+        {
+          "names": [
+            "Hold Monster",
+            "Juggernaut's Core",
+            "Chill Touch"
+          ],
+          "score": 33,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "crit",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Lasting Control",
+            "Durable",
+            "Summon Fire Pet"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Instant Summons",
+            "Mind Collapse",
+            "Efficient Caster"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Acrobatic Mastery",
+            "Wounding Magic",
+            "Mass Dominate"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Overwhelming Grief",
+            "Chill Touch",
+            "Field Medic"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Berserker Rage",
+            "Lasting Control",
+            "Juggernaut's Core"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "crit",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Instant Summons",
+            "Durable",
+            "Dire Charm"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Illusory Dragon",
+            "Cast Echo",
+            "Curse Channeling"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Field of Endless Dead",
+            "Durable",
+            "Elemental Banishment"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Hideous Laughter",
+            "Summon Minor Weapon",
+            "Efficient Caster"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Mass Dominate",
+            "Wounding Magic",
+            "Field Medic"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Fey Ancestry",
+            "Faction Paragon",
+            "Durable"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Necrotic Affinity",
+            "Wail of the Damned",
+            "Runic Shield"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reaction",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Acrobatic Mastery",
+            "Charm Monster",
+            "Astral Projection"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Durable",
+            "Chill Touch",
+            "Control Flames"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reset",
+            "survivability"
+          ]
+        },
+        {
+          "names": [
+            "Summon Lesser Skeleton",
+            "Mental Buffer",
+            "Acrobatic Mastery"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Dire Charm",
+            "Arcane Resonance",
+            "Cause Fear"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reset",
+            "weave"
+          ]
+        },
+        {
+          "names": [
+            "Curse Channeling",
+            "Summon Tool",
+            "Mass Charm"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Curse Channeling",
+            "Summon Greater Fire Pet",
+            "Charm Person"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Psychic Scream",
+            "Mimicry",
+            "Durable"
+          ],
+          "score": 32,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "actor",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Target Mark",
+            "Mass Charm",
+            "Durable"
+          ],
+          "score": 31,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "bonus_action",
+            "control",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Life Drinker",
+            "Absolute Domination",
+            "Plague of Undeath"
+          ],
+          "score": 31,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "crit",
+            "reset"
+          ]
+        },
+        {
+          "names": [
+            "Overwhelming Presence",
+            "Runic Shield",
+            "Reality Rewrite"
+          ],
+          "score": 31,
+          "flags": [
+            "control_refresh_risk"
+          ],
+          "tags": [
+            "control",
+            "reset",
+            "survivability"
+          ]
+        }
+      ]
+    }
+  ],
+  "rawEvidencePath": "results/TRIPLE-TARGETED/triples-500.json"
+}

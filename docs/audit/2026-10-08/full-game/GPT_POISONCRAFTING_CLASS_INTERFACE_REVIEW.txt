@@ -1,0 +1,117 @@
+**Verdict: APPROVE as a shared Poisoncrafting ↔ Thief integration overlay.** No class-card rewrite is required. These bindings can be included directly in the upcoming 41-card exact manuscript review.
+
+1. **Prepared-dose abilities remain class-only.** Apply Poison, Double Poison, Vein Cutter, and Toxic Shiv operate only on the Thief engine's **prepared doses**. They do not accept a purchased/crafted recipe-359–395/660–663 dose as a substitute.
+
+   The current reviewed operational cards control here. In particular, Toxic Shiv's preserved older source phrase "any poison from your inventory" does **not** reopen its reviewed card, which now expressly says "known prepared poison" and spends a prepared dose.
+
+   Therefore crafted recipes do **not** inherit:
+   - Thief DC;
+   - one-weapon/two-projectile delivery;
+   - the two-attempt coating clock;
+   - Apply Poison's Bonus Action;
+   - Double Poison;
+   - class-preparation replenishment;
+   - the Thief two-ongoing-recipe ceiling;
+   - or any conversion into renewable class stock.
+
+   **Exotic Toxins** likewise creates/replaces a known **Thief class poison profile** through its specimen/research procedure. "Recipe" in that class engine does not mean a Crafting V4 formula ID. It grants no Poisoncrafting formula, crafted inventory unit, formula discovery, or unlimited output from the 41-item catalog.
+
+2. **Venom Master does bridge to legitimate crafted injury-poison exposures, with one correction to the proposed immunity boundary.** The Venom Master character must be the creature making the qualifying critical weapon hit. The poisoned weapon may carry either a Thief prepared coating or a legally deployed crafted **injury poison**.
+
+   For a crafted poison, resolve in this order:
+
+   **critical weapon hit → legal injury exposure → initial poison save → if that save actually fails, Venom Master may trigger once/round → apply its separate -1 saves rider.**
+
+   Venom Master never modifies the save that triggered it.
+
+   It does not trigger from:
+   - a miss or other event that never creates a legal injury exposure;
+   - an initial poison save that succeeds;
+   - repeat end-turn poison saves;
+   - poison periodic damage;
+   - contact poison merely carried on an object;
+   - an inhaled burst;
+   - copied attacks;
+   - or an application prevented wholesale by explicit **poison-effect/toxin immunity**.
+
+   **Important:** damage-type immunity alone does **not** prevent Venom Master. Condition immunity alone does **not** prevent it either. If a legitimate poison exposure occurred, its initial poison save was actually rolled and failed, the trigger condition is met even if acid/fire/poison/etc. damage was subsequently immune or the recipe's Poisoned/Stunned/etc. condition was immune. Even if separate component immunities happen to prevent both printed recipe components, the failed poison save remains a failed poison save.
+
+   Blanket poison-effect/toxin immunity is different: it prevents the covered application itself, so it supplies no valid failed poison save for Venom Master. An unnecessary die rolled before recognizing that immunity cannot activate the feature.
+
+   **NEW integration:** Venom Master does **not** require the critical wielder to equal the crafted poison's `poisonOwnerKey`. The card's reviewed operational trigger is a critical hit with a poisoned weapon, not "a poison you personally coated." Thus a Venom Master may critically hit with a weapon another creature coated and trigger the class rider if the resulting poison save fails. The crafted poison nevertheless keeps its original coating actor as `poisonOwnerKey`; ownership, refresh grouping and any hard-denial attribution do not transfer to the Thief. Venom Master's own -1-save rider is owned by the Venom Master character.
+
+   Current contact-poison rules do not make an ordinary weapon hit automatically deliver contact poison, so the present 41-card integration effectively bridges Venom Master to **injury delivery**, not contact or inhaled delivery.
+
+3. **Sneak Attack and Vile Tactics use the actual active condition state.** Your proposal is correct.
+
+   For **Sneak Attack**, crafted Poisoned qualifies as **"your Poisoned"** only when:
+   - the target currently has an active applicable Core **Poisoned** record;
+   - that record came from the crafted recipe;
+   - and its `poisonOwnerKey` is the Thief character using Sneak Attack.
+
+   That means a Thief who legally coated a weapon/ammunition can own the resulting Poisoned record even if another creature ultimately delivered the hit. A Poisoned record owned by someone else is not "your Poisoned."
+
+   For **Vile Tactics**, ownership is not required. Any currently active qualifying Bleeding, Poisoned, or Crippled condition satisfies its reviewed target predicate.
+
+   In both cases:
+   - Confused, Burning, Frightened, Slowed, Weakened, Stunned, or merely taking poison-type damage does not count as Poisoned.
+   - Recipe name/tag/damage type creates no shortcut.
+   - Suppressed or immunity-inactive condition records do not satisfy these active-condition hooks.
+   - The qualifying condition must already exist when the weapon hit's eligibility is determined.
+   - A Poisoned/Bleed/etc. rider created by that same hit **afterward** cannot retroactively qualify Sneak Attack or Vile Tactics on that hit.
+   - Poison ticks, repeat-save events, standalone poison damage, companions and copied attacks do not create extra Sneak Attack or Vile Tactics events.
+
+   This leaves the already-reviewed Vile Tactics predicate as **Bleeding/Poisoned/Crippled**; its older preserved source wording mentioning Frightened is not being reopened here.
+
+4. **Toxin Sense gets a perceptibility boundary, not universal magical opacity.** Your proposed direction is correct.
+
+   **NEW integration:**
+   - `Passive recognition`: the poison must actually be **exposed and perceptible** within 5 feet. If sight or smell gives real evidence of an exposed compound/coating, Toxin Sense can recognize that poison is present.
+   - `Sealed container`: the unseen interior of a closed/sealed vial is not an "exposed fictional poison" and receives no generic passive detection through the container.
+   - `Magical nonspell status`: being magical does **not by itself** make a crafted poison undetectable. "Magical substances may evade detection" requires an actual concealment, masking, identification-blocking, or perceptibility circumstance; it is not a blanket immunity to Toxin Sense.
+   - `Active identification`: Action + kit + DC 12 INT+PB can identify an exposed/perceptible poison or a legally accessed sample. A sealed poison normally must first be legally opened/accessed unless some other actual evidence exposes it.
+
+   Passive recognition gives only **"this is poison / poison is present."** It does not reveal DC, tier, crafter, component list, donor, source monster, hidden formula access, discovery route, economy, Director lore, or restricted information.
+
+   A successful active identification identifies the **operational game recipe** responsible for the substance and therefore its combat-facing identity. It does not grant the crafting formula or formula access and does not expose hidden ingredients, provenance or Director lore. Restricted/Director-only formula knowledge remains restricted even if a character learns what poison they physically encountered.
+
+   Ordinary sensory limitations still control. A creature unable to see the evidence and unable to smell it does not receive fictional supernatural radar from Toxin Sense.
+
+5. **The already-in-progress target turn does not count as marker one.** This should follow the reviewed hostile-duration timing convention rather than letting application timing shorten a poison by nearly a full round.
+
+   **NEW exact timing binding:**
+   - If poison application occurs **before the target's next regular turn begins**, that upcoming regular turn's end is marker 1.
+   - If application occurs **during the target's already-in-progress regular turn**, that turn's end is excluded. Marker 1 is the end of its **next** regular turn.
+   - If application occurs after its regular turn has ended, the next regular target-turn end is marker 1.
+
+   Standard one-minute poison therefore uses markers 1–10. Singleton Flawed uses markers 1–5. The chosen virtual marker sequence/end remains attached to the effect through initiative-order changes. Extra turns never supply poison repeat saves or consume poison-duration markers.
+
+   For all ordinary poison conditions, the **final marker still receives the printed repeat CON save before expiry cleanup**, even though failure simply means the record then expires immediately.
+
+   For poison-created **Burning**, the established end-marker order is:
+
+   **ongoing-fire tick/arbitration → Burning DEX save only if future Burning damage remains → poison repeat CON save if the poison-created Burning record still exists → expiry cleanup.**
+
+   Consequently, on the final marker:
+   - the final Burning tick is due;
+   - there is **no DEX ending save**, because no future damage marker remains after that tick;
+   - the source-required final repeat **CON save still occurs**;
+   - then the record expires if it survived that CON save.
+
+   If an earlier DEX save, extinguish Action, immersion, cure, immunity-based removal, or other legal endpoint already ended that poison-created Burning record, there is no subsequent poison CON save because no ongoing component remains.
+
+### Shared overlay to add
+
+The upcoming Poisoncrafting manuscript can include one bounded integration section equivalent to:
+
+> **Thief integration — NEW.** Thief prepared poisons and crafted Poisoncrafting inventory are separate resource systems. Features expressly spending a prepared dose operate only on the Thief class preparation engine unless they explicitly name ordinary crafted inventory. Crafted poisons retain their own delivery, inventory, DC, ownership, duration, quality and refresh rules.
+>
+> Venom Master may trigger from a critical weapon hit made by the Venom Master character when that hit legally causes an injury-poison exposure and its initial poison save fails. The coating actor need not be the Venom Master; crafted poison ownership does not transfer. Component-specific damage or condition immunity does not erase a failed poison save, while explicit immunity preventing the entire poison-effect application prevents the trigger.
+>
+> Thief predicates requiring `your Poisoned` use the active Poisoned application's recorded `poisonOwnerKey`. Predicates naming Poisoned without ownership accept any active qualifying Poisoned record. Conditions created after a hit do not retroactively qualify that hit.
+>
+> Toxin Sense passively recognizes only perceptible exposed poison. Magical status alone does not defeat it, and sealed interiors are not generically scanned. Its Action identification procedure can identify an accessible operational recipe but grants no crafting formula, hidden provenance or Director information.
+>
+> Poison duration markers exclude a target turn already in progress at application. Standard records use ten future regular target-end markers; singleton Flawed records use five. Extra turns never advance them. Final poison repeat saves resolve before expiry. Poison-created Burning receives no generic DEX save after its final scheduled fire tick because no future damage remains, but its source-required final poison CON save still resolves before expiry.
+
+With those bindings, there is **no remaining Thief-interface blocker** to authoring the 41 Poisoncrafting cards. These decisions can be reviewed together with the complete exact manuscript; they do not require another general source conference first. Current class cards, class resource budgets, Cooking/Herbalism/Alchemy rules, human balance, runtime parity, remaining recipes, Git delivery, and post-push cosmology remain untouched.

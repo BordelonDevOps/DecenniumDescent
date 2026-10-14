@@ -1,0 +1,50 @@
+{
+  "scenarioId": "string",
+  "seed": "integer",
+  "rounds": "integer",
+  "outcome": "victory|retreat|defeat|timeout",
+  "objectiveCompleted": "boolean",
+  "roundLog": [
+    {
+      "round": "integer",
+      "turns": [
+        {
+          "actor": "string",
+          "rolls": [
+            {
+              "die": "d20|damage die",
+              "faces": [
+                "integer"
+              ],
+              "modifier": "integer",
+              "total": "integer",
+              "purpose": "string"
+            }
+          ],
+          "action": "string",
+          "bonusAction": "string|null",
+          "reaction": "string|null",
+          "movementFeet": "integer",
+          "additionalActionSlotUsed": "boolean",
+          "resourcesBefore": "object",
+          "resourcesAfter": "object",
+          "damageDealt": "integer",
+          "healing": "integer",
+          "damagePrevented": "integer",
+          "conditionsApplied": [
+            "string"
+          ],
+          "actorsControlled": "integer"
+        }
+      ]
+    }
+  ],
+  "rulings": [
+    "string"
+  ],
+  "illegalAttempts": [
+    "string"
+  ],
+  "rulesLookups": "integer",
+  "sourceHashes": "object"
+}

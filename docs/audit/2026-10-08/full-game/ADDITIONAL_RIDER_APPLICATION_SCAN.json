@@ -1,0 +1,1424 @@
+[
+  {
+    "term": "Conviction",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.base.conviction-pool",
+    "effect": "Conviction Pool. Tags: conviction, passive. Increase your Conviction maximum by 2. This changes only the maximum; it does not immediately restore spent Conviction when acquired during play. A long rest restores Conviction to the new maximum."
+  },
+  {
+    "term": "Consecrate",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.base.consecrated-ground",
+    "effect": "Consecrated Ground. Tags: rite, healing, passive. Whenever one of your healing Rites restores HP to a living creature standing in terrain created by your Consecrate feature, that creature regains S additional HP. Apply this once per creature per Rite pulse; it is flat healing and is not itself another healing trigger."
+  },
+  {
+    "term": "Divine Smite",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.base.judging-light",
+    "effect": "Judging Light. Tags: smite, passive. When your Divine Smite damages a creature currently affected by a Cursed or Weakened condition, add S d4 radiant damage to that Smite. Roll these dice once as part of the Smite; they do not create a second hit or trigger."
+  },
+  {
+    "term": "Rites",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.base.radiance.radiance",
+    "effect": "Invocation Path — Radiance. Tags: invocation, radiance, healing. Once on each of your turns when one of your Rites restores HP to at least one living creature, choose one creature healed by that Rite. It regains S additional HP and may immediately end either Frightened or Poisoned on itself."
+  },
+  {
+    "term": "Divine Smite",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.base.judgment.judgment",
+    "effect": "Invocation Path — Judgment. Tags: invocation, judgment, smite. When your Divine Smite deals damage to a creature, mark it Judged for 2 rounds. A Judged creature has -1 AC. Further applications refresh the duration but do not increase the AC penalty."
+  },
+  {
+    "term": "Smite",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.base.flame.flame",
+    "effect": "Invocation Path — Flame. Tags: invocation, flame. Immediately after your Smite or Rite damages a creature, you may spend 1 Conviction. The target ignites and takes 1d6 fire damage at the start of each of its next 2 turns. Reapplying Flame refreshes the duration; the burning damage does not stack."
+  },
+  {
+    "term": "Rite",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.arch.aura-of-faith",
+    "effect": "Aura of Faith. Tags: aura, bishop. Allies in the aura gain +1 on saving throws. Whenever your Rite restores HP to an ally in the aura, that ally also regains 1 additional HP. Multiple Aura of Faith bonuses do not stack."
+  },
+  {
+    "term": "Cleric",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.arch.sanctified-reprisal",
+    "effect": "Sanctified Reprisal. Tags: healing, smite, bishop. After one of your Cleric features restores HP to a living creature, empower your next Divine Smite before the end of your next regular turn. On a hit it deals S d4 additional radiant damage. If the target is Undead, it must also make a Constitution save; failure Stuns it until the end of its next turn."
+  },
+  {
+    "term": "Undead",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.arch.sanctified-reprisal",
+    "effect": "Sanctified Reprisal. Tags: healing, smite, bishop. After one of your Cleric features restores HP to a living creature, empower your next Divine Smite before the end of your next regular turn. On a hit it deals S d4 additional radiant damage. If the target is Undead, it must also make a Constitution save; failure Stuns it until the end of its next turn."
+  },
+  {
+    "term": "Judged",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.arch.divine-invocation",
+    "effect": "Divine Invocation. Tags: invocation, bishop. Use only your selected Invocation Path. Radiance: up to 3 allies within 30 feet each regain S d8+M HP; one may end Frightened or Poisoned. Judgment: one enemy within 60 feet makes a Wisdom save, taking (S+1)d8 radiant on failure or half on success; failure also applies Judged for 2 rounds. Renewal: up to 2 allies within 30 feet each regain S d8+M HP and 5 Stamina. Flame: creatures in a 15-foot cone make Dexterity saves, taking (S+1)d8 fire on failure or half on success; failed targets also take 1d6 fire at the start of their next turn. Veil: up to 3 allies within 30 feet can see invisible/ethereal creatures within 30 feet and gain advantage on saves against illusions for 3 rounds. Echoes: choose one eligible Smite or Rite you resolved this turn or previous regular turn and one original target within 30 feet; repeat 50% of its immediate unmodified rolled damage or healing dice, rounded down once, minimum 1 for a positive source, with no copied conditions, resources or triggers."
+  },
+  {
+    "term": "Cleric",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.saint.divine-rebirth",
+    "effect": "Divine Rebirth. Tags: saint, resurrection. When one of your Cleric features returns an ally from death, you may use Divine Rebirth. That ally returns with half its maximum HP instead of the feature's normal returned HP and gains S + M temporary HP for 1 minute. It removes no Wounds and cannot affect a creature that was not actually dead."
+  },
+  {
+    "term": "Wisdom",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.priest.words-of-equilibrium",
+    "effect": "Words of Equilibrium. Tags: priest, scaling. For numeric Cleric technique healing and damage that would add your Wisdom modifier, use the higher of your Intelligence or Wisdom modifier instead. M becomes max(1, that higher modifier) for those numeric effects. This does not change Cleric attack rolls or save DCs unless another rule explicitly says so."
+  },
+  {
+    "term": "Intelligence",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.priest.words-of-equilibrium",
+    "effect": "Words of Equilibrium. Tags: priest, scaling. For numeric Cleric technique healing and damage that would add your Wisdom modifier, use the higher of your Intelligence or Wisdom modifier instead. M becomes max(1, that higher modifier) for those numeric effects. This does not change Cleric attack rolls or save DCs unless another rule explicitly says so."
+  },
+  {
+    "term": "Cleric",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.priest.doctrine-shield",
+    "effect": "Doctrine Shield. Tags: priest, conviction, cleanse. During a real encounter, when one of your Cleric features successfully removes Charmed, Frightened, Poisoned or another explicitly removable condition from a living creature, gain 1 Conviction. Removing multiple conditions in the same event still grants only 1 Conviction."
+  },
+  {
+    "term": "Silenced",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.priest.word-of-binding",
+    "effect": "Final Miracle — Word of Binding. Tags: priest, finale, control, rite. Each target makes a Wisdom save. On failure it is Silenced and its Speed becomes 0. At the end of each of its turns it repeats the save, ending both effects on success. While a target remains bound, the first instance of divine or radiant damage it takes each round gains S d6 additional radiant damage. The Conviction expenditure can vent Dissonance once."
+  },
+  {
+    "term": "Cleric",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.priest.divine-judgment",
+    "effect": "Divine Judgment. Tags: priest, judgment. The target makes a Wisdom save; success ends the attempt. On failure it is marked. The first time on each of its turns that it deals damage to another creature, it takes radiant damage equal to half that actual damage rounded down, minimum 1, maximum your Cleric level. It repeats the Wisdom save at the end of each turn, ending the mark on success."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.priest.ritual-of-cleansing",
+    "effect": "Ritual of Cleansing. Tags: priest, rite, cleanse. Each ally may end one of Charmed, Frightened or Poisoned. For each distinct condition actually removed, choose one enemy within 15 feet; each chosen enemy makes a Wisdom save. On failure it becomes Frightened of you until the end of its next turn. One enemy can be chosen only once per use."
+  },
+  {
+    "term": "Cleric",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.priest.cosmic-equilibrium",
+    "effect": "Cosmic Equilibrium. Tags: priest, zone, healing, radiant. Once per round, when a living ally in the zone receives healing beyond its missing HP, redirect up to S+M of that excess as radiant damage to one enemy in the zone. Separately, once per round when an enemy in the zone takes radiant damage from one of your Cleric features, one ally in the zone regains up to S+M HP, not exceeding half the actual radiant damage dealt. These two conversions cannot trigger each other."
+  },
+  {
+    "term": "Rites",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.cultist.sanguine-rite",
+    "effect": "Sanguine Rite. Tags: cultist, rite, healing. When one of your Rites deals damage to at least one enemy, choose one living ally within 30 feet. That ally regains HP equal to half the actual damage dealt to one chosen damaged enemy, rounded down, maximum S+M HP. This healing cannot trigger Sanguine Rite again."
+  },
+  {
+    "term": "Sacrament",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.cultist.blasphemous-tongue",
+    "effect": "Blasphemous Tongue. Tags: cultist, sacrament, doomed. At each pulse of your Sacrament, each enemy affected by that pulse makes a Wisdom save. On failure it becomes Doomed until the next pulse. While Doomed, HP healing it receives is reduced by S+M, minimum 0, and each positive timed buff on it counts down one additional round at the end of its turn. Repeated failures refresh rather than stack."
+  },
+  {
+    "term": "Doomed",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.cultist.blasphemous-tongue",
+    "effect": "Blasphemous Tongue. Tags: cultist, sacrament, doomed. At each pulse of your Sacrament, each enemy affected by that pulse makes a Wisdom save. On failure it becomes Doomed until the next pulse. While Doomed, HP healing it receives is reduced by S+M, minimum 0, and each positive timed buff on it counts down one additional round at the end of its turn. Repeated failures refresh rather than stack."
+  },
+  {
+    "term": "Cleric",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.cultist.dark-conviction",
+    "effect": "Dark Conviction. Tags: cultist, conviction. During a real encounter, when a hostile non-summoned creature that meaningfully threatened the party dies after taking damage from one of your Cleric features since the start of your current turn, gain 1 Conviction. Friendly creatures, summoned creatures, trivial staged creatures and repeated corpse destruction never qualify."
+  },
+  {
+    "term": "Cleric",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.cultist.rite-of-the-crimson-choir",
+    "effect": "Final Miracle — Rite of the Crimson Choir. Tags: cultist, finale, summon, rite. Summon four spectral fanatics. Each has AC 14, 10 HP, Speed 30 feet and cannot take Reactions. Spend one Bonus Action on your regular turn to command the Choir; this explicitly priced Finale permits up to four surviving fanatics to each move up to its Speed and make one melee spell-like attack using your Cleric technique attack bonus against an enemy within 5 feet; on hit it deals 1d6+S necrotic damage and you regain 1 HP, maximum 4 HP per round from the Choir. When a fanatic reaches 0 HP, when concentration ends or after the third round, it explodes; enemies within 5 feet make Dexterity saves, taking 1d6 necrotic on failure or half on success. Fanatics grant no XP, loot, corpse, resurrection target or Conviction. The Conviction expenditure can vent Dissonance once."
+  },
+  {
+    "term": "Cleric",
+    "source": "data/public/class_playtests/cleric.json",
+    "record": "cleric.hero.cultist.ritual-of-undeath",
+    "effect": "Ritual of Undeath. Tags: cultist, undead, rite. Choose one mode. Corpse Servant: one humanoid corpse dead no more than 1 minute rises for 3 rounds as a temporary thrall with AC 13, 10 HP, Speed 30 feet and one attack only when you spend your shared companion Bonus Action command using your Cleric technique attack bonus; on hit it deals S d6 necrotic. The thrall disappears at 0 HP or when duration ends and grants no XP, loot, new corpse, Conviction or resurrection target. Death Ward: one living ally is marked for 1 minute; the first time it would die during that duration, it instead remains at 1 HP and counts as both humanoid and undead until the end of its next turn. Neither mode removes Wounds. The Conviction expenditure can vent Dissonance once."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.base.arterial-cut",
+    "effect": "A critical weapon hit applies your Bleed. If it already has your Bleed, extend one instance by 2 ticks, maximum 5 ticks remaining. This damage never generates further BG."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.base.arterial-cut",
+    "effect": "A critical weapon hit applies your Bleed. If it already has your Bleed, extend one instance by 2 ticks, maximum 5 ticks remaining. This damage never generates further BG."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.base.blood-tithe",
+    "effect": "Regain HP equal to M+class level after a creature bearing your Bleed dies. It must have been an active hostile combatant; no ally, summon, captive or corpse farming."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.base.hemorrhage-slash",
+    "effect": "Make one weapon attack. On hit add S d6 damage of the weapon type and apply Bleed. The usual once/turn hit trigger grants 1 BG; this card grants no separate BG."
+  },
+  {
+    "term": "Blood Mark",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.base.blood-mark",
+    "effect": "Apply your Blood Mark. Replaces your previous mark without detonating it. The mark enables Rupture and printed mark interactions; it deals no automatic damage and does not grant vision."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.arch.rupture-trigger",
+    "effect": "After Rupture damages its marked target, choose up to 2 other living enemies nearby. Each makes CON save; on failure apply one Bleed. These applications do not trigger Rupture again or grant BG."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.arch.bloodbound-edge",
+    "effect": "End up to 2 of your Bleed instances per target. Each takes 1d4 per remaining tick, maximum S d4 per creature, ignoring resistance but respecting immunity. This replaces their future ticks and grants no BG, healing or kill-trigger benefit."
+  },
+  {
+    "term": "Bloodbond",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.bloodweaver.veinlock-tether",
+    "effect": "While your Bloodbond or Vitality Link is active, redirect up to S+M damage to yourself before mitigation. This is an alternative to Bloodbond's quarter-sharing reaction, not an additional redirection. Redirected damage cannot be redirected again."
+  },
+  {
+    "term": "Bleeds",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.bloodweaver.crimson-pact",
+    "effect": "End your Bleeds on chosen enemies; each makes CON save against 4d8 necrotic, half on success. Each chosen ally regains 4d8+M HP and gains 10 temporary HP. Use one shared roll per damage/healing effect; healing does not multiply by enemies or remaining ticks."
+  },
+  {
+    "term": "Blackout Agent",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.shadow-operative.blackout-agent",
+    "effect": "Attacker makes CON save; failure Blinded. Requires it can see you. Each creature becomes immune to your Blackout Agent until encounter end after resolving this save, preventing repeated blind-lock."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.thirstborn.blood-frenzy",
+    "effect": "Add 1 to direct weapon damage per hostile creature bearing your Bleed, maximum 3. Applies once per hit, not per Bleed instance. Secondary Bleed, copies and explosions gain no bonus."
+  },
+  {
+    "term": "Bleeds",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.thirstborn.hemorrhagic-plague",
+    "effect": "After one of your Bleeds ticks, pay 1 BG; new target makes CON save. Failure applies one Bleed. A spread instance cannot spread again. This grants no BG and does not duplicate marks or immediate damage."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.thirstborn.hemorrhagic-plague",
+    "effect": "After one of your Bleeds ticks, pay 1 BG; new target makes CON save. Failure applies one Bleed. A spread instance cannot spread again. This grants no BG and does not duplicate marks or immediate damage."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.thirstborn.pain-to-power-conduction",
+    "effect": "End one active Veinweave. Chosen enemy makes CON save: failure takes S d4 necrotic and Bleed; success takes half immediate damage only. On failure by 10 it is Frightened until end next turn. No resource refund."
+  },
+  {
+    "term": "Bleeds",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.thirstborn.veinburst-requiem",
+    "effect": "Spend K BG and end your Bleeds on targets. CON save: (S+K)d8 necrotic, half on success. A target failing by 10 with remaining HP no greater than your class level falls to 0; ordinary death rules follow. No percentage-based automatic boss execution or BG refund."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.thirstborn.exsanguinate",
+    "effect": "CON save: (S+1)d8 necrotic, half on success; add 1d8 if it has your Bleed. If it fails and actually takes damage, regain 1 BG within the common gain cap. The refund cannot pay activation costs retroactively."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/crimson-agent.json",
+    "record": "crimson-agent.hero.thirstborn.bloodstorm",
+    "effect": "On start and each later paid pulse, targets make CON saves: S d6 necrotic, half on success; failure applies one Bleed. Maintenance costs Bonus Action+1 RP. Maximum 3 pulses. Once/turn your direct weapon attack against a creature in the storm adds 1 damage; storm/bleed damage gives no BG."
+  },
+  {
+    "term": "Burn",
+    "source": "data/public/class_playtests/dragoon.json",
+    "record": "dragoon.hero.drake-rider.drakestorm-dive",
+    "effect": "Choose fire/cold/lightning. DEX save:6d8 chosen damage, half on success. On failure fire applies Burn, cold reduces Speed 10 ft until end next turn, lightning prevents Reactions until then. Land in legal empty space; no additional weapon attack."
+  },
+  {
+    "term": "Speed",
+    "source": "data/public/class_playtests/dragoon.json",
+    "record": "dragoon.hero.drake-rider.elemental-lance",
+    "effect": "Choose fire/cold/lightning. Once/own turn a hit adds S d4 damage; fire adds 1 damage, cold reduces target Speed 5 ft until end next turn, lightning denies opportunity attacks until start its next turn. Nonstacking with Spearcraft; one element rider/turn."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/dragoon.json",
+    "record": "dragoon.hero.dragon-tyrant.sovereign-descent",
+    "effect": "STR save:6d8 bludgeoning, half on success. Failure knocks Prone and applies one Bleed and Burn. Failure by 10 also Stuns until end target's next turn, subject to denial cap. Ground becomes difficult terrain for 1 minute; no destruction of structural supports."
+  },
+  {
+    "term": "Restrained",
+    "source": "data/public/class_playtests/dragoon.json",
+    "record": "dragoon.hero.dragon-tyrant.tyrant-s-impale",
+    "effect": "Weapon attack; hit adds S d6 piercing. A hit creature no more than one size larger makes STR save or is Restrained and Bleeding. It may use Action STR(Athletics) or DEX(Acrobatics) versus class DC to end restraint. You must stay in reach to maintain pin."
+  },
+  {
+    "term": "Mage",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.base.spellcasting",
+    "effect": "Spellcasting. Tags: core, spellcasting. You automatically gain Mage spellcasting and access to the Mage repertoire permitted by your separately reconciled spell progression, including Evocation Tier I at the level specified by Core Systems. Use Intelligence for Mage spell attacks and save DCs. This feature is never purchased with a class-feature choice."
+  },
+  {
+    "term": "Focus",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.base.elemental-affinity",
+    "effect": "Elemental Affinity. Tags: passive, elemental. Gain resistance to the damage type of your current Elemental Focus: fire for Fire, cold for Cold or lightning for Lightning. If Elemental Pivot temporarily changes your Focus, this resistance changes with it and returns to your original element when the Pivot ends."
+  },
+  {
+    "term": "Focus",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.arch.elemental-mastery",
+    "effect": "Elemental Mastery. Tags: arcanist, focus. Improve the secondary effect of your current Focus. Fire Burns from your Focus cards last one additional turn but never stack. Cold Focus Speed reductions increase by another 5 feet, minimum 0. Lightning Focus's once-per-turn secondary arc increases from S flat lightning damage to S d4 lightning damage. Pivoted Focus uses the corresponding upgraded rider."
+  },
+  {
+    "term": "Focus Burn",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.arch.elemental-surge",
+    "effect": "Elemental Surge. Tags: mage-spell, arcanist, elemental, focus, damage. Make a Mage spell attack. On a hit deal (S+1)d8 + M damage of your current Focus. Fire also applies the Focus Burn; Cold applies the Focus Speed reduction; Lightning applies the Focus secondary arc. This is Focus-eligible and can occupy one slot in a Nuke Chain."
+  },
+  {
+    "term": "Focus Speed",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.arch.elemental-surge",
+    "effect": "Elemental Surge. Tags: mage-spell, arcanist, elemental, focus, damage. Make a Mage spell attack. On a hit deal (S+1)d8 + M damage of your current Focus. Fire also applies the Focus Burn; Cold applies the Focus Speed reduction; Lightning applies the Focus secondary arc. This is Focus-eligible and can occupy one slot in a Nuke Chain."
+  },
+  {
+    "term": "Focus",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.arch.elemental-surge",
+    "effect": "Elemental Surge. Tags: mage-spell, arcanist, elemental, focus, damage. Make a Mage spell attack. On a hit deal (S+1)d8 + M damage of your current Focus. Fire also applies the Focus Burn; Cold applies the Focus Speed reduction; Lightning applies the Focus secondary arc. This is Focus-eligible and can occupy one slot in a Nuke Chain."
+  },
+  {
+    "term": "Focus-eligible",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.arch.elemental-surge",
+    "effect": "Elemental Surge. Tags: mage-spell, arcanist, elemental, focus, damage. Make a Mage spell attack. On a hit deal (S+1)d8 + M damage of your current Focus. Fire also applies the Focus Burn; Cold applies the Focus Speed reduction; Lightning applies the Focus secondary arc. This is Focus-eligible and can occupy one slot in a Nuke Chain."
+  },
+  {
+    "term": "Blinded",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.hero.archmage.celestial-comet",
+    "effect": "Celestial Comet. Tags: mage-spell, archmage, radiant, arcane, damage. Creatures of your choice in the area make Dexterity saves, taking (S+2)d8 radiant damage on failure or half on success. A creature that fails by 10 or more is Blinded until the end of its next turn. Celestial Comet is non-Focus elemental magic and clears an active Nuke Chain."
+  },
+  {
+    "term": "Mage",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.hero.archmage.empowered-link",
+    "effect": "Empowered Link. Tags: archmage, buff. When one of your Mage cards grants you temporary HP, a Speed bonus or a numeric attack/save bonus, choose up to M allies within 25 feet. They gain the same non-resource benefit at half its numeric amount rounded down, minimum 1 where applicable. It never shares Actions, RP, Focus, concentration, invisibility, summons or class resources. Resistance is not a numeric bonus and is not shared by this card."
+  },
+  {
+    "term": "Mage",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.hero.archmage.spell-sharing",
+    "effect": "Spell Sharing. Tags: archmage, spell-sharing. Choose one Base or Arch Mage spell card you know with an Action activation and printed base RP cost 4 or less. Pay both costs now. The ally may cast that card once before the end of its next turn without paying RP, using your Mage spell attack and DC. It cannot share summons, Counterspell, Hero cards, finishers, Resonance Surge or another Spell Sharing."
+  },
+  {
+    "term": "Dissonance",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.hero.archmage.resonance-transfusion",
+    "effect": "Resonance Transfusion. Tags: archmage, resonance. Choose X from 1 to S+M, limited by your current RP. Lose X RP and the target restores X RP, never above its own maximum. This is a transfer, not generation. It cannot target yourself, cannot be amplified, Echoed or converted into HP, and neither side gains Dissonance from the transfer itself. The recipient is another creature; same-pool transfers and circular refund chains cannot increase total RP."
+  },
+  {
+    "term": "Lightning Mage",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.hero.elementalist.voltaic-pulse",
+    "effect": "Voltaic Pulse. Tags: elementalist, lightning, control. After your Lightning Mage spell damages a creature, spend 1 RP to arc S d4 lightning damage to one different enemy within 15 feet. That enemy makes a Constitution save; on failure it also loses its Reaction until the start of its next turn. This is not another spell cast and grants no Nuke Chain credit."
+  },
+  {
+    "term": "Focus-eligible",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.hero.elementalist.elemental-supremacy",
+    "effect": "Elemental Supremacy. Tags: elementalist, focus, vulnerability. Once on each of your turns when a Mage spell deals a damage type to which its target is vulnerable, add S damage of that type after vulnerability is applied. Additionally, when a hostile non-summoned creature that meaningfully threatened the party dies from one of your Focus-eligible spells, you may reset your current Focus finisher's positive recharge counter to 0, subject to the universal reset limit."
+  },
+  {
+    "term": "Mage",
+    "source": "data/public/class_playtests/mage.json",
+    "record": "mage.hero.lich.soul-reservoir",
+    "effect": "Soul Reservoir. Tags: lich, resonance, damage-over-time. During a real encounter, when a hostile creature takes damage from a damage-over-time effect created by one of your Mage spells, restore 1 RP, never above maximum. The same damage event cannot restore more than 1 RP. Damage to allies, summons, trivial creatures or your own companions does not qualify."
+  },
+  {
+    "term": "Reflective Companion",
+    "source": "data/public/class_playtests/mirrorsage.json",
+    "record": "mirrorsage.base.charm-creature",
+    "effect": "WIS save or become Reflective Companion under engine restrictions. It repeats save at turn end and when harmed by your side. Replaces Mirror Beast; on end original disposition returns. Requires no suicidal orders; cannot force beliefs or permanently enslave."
+  },
+  {
+    "term": "Mirrorbind",
+    "source": "data/public/class_playtests/mirrorsage.json",
+    "record": "mirrorsage.arch.mirror-dimension",
+    "effect": "On entry activation and each of next 2 turns with Bonus Action maintenance, selected enemies make WIS save; failure gives disadvantage on next attack before your next turn. Inside, your Mirrorbind range extends 30 ft. No additional capture attempts/releases or pocket escape route."
+  },
+  {
+    "term": "Echo",
+    "source": "data/public/class_playtests/mirrorsage.json",
+    "record": "mirrorsage.hero.mirror-mage.reality-fracture",
+    "effect": "While you stand inside, once/turn add 1d6 to one Echo damage/healing amount or impose-1 on one target's Echo save. Choose before resolving. No free releases, random recasts, resource refunds or extra targets."
+  },
+  {
+    "term": "Stunned",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.base.stunning-strike",
+    "effect": "Stunning Strike. Tags: base, active, attack, control. Make one unarmed strike. On a hit the target makes a Constitution save. On failure it is Stunned until the end of its next turn, subject to the common Monk Stun Guard. On success it suffers only the strike's normal damage. A creature already marked by your Stun Guard instead loses its Reaction on a failed save."
+  },
+  {
+    "term": "Stun Guard",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.base.stunning-strike",
+    "effect": "Stunning Strike. Tags: base, active, attack, control. Make one unarmed strike. On a hit the target makes a Constitution save. On failure it is Stunned until the end of its next turn, subject to the common Monk Stun Guard. On success it suffers only the strike's normal damage. A creature already marked by your Stun Guard instead loses its Reaction on a failed save."
+  },
+  {
+    "term": "Stunned",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.arch.combo-step",
+    "effect": "Combo Step. Tags: arch, passive, combo, control. When you hit the same creature during one round with three different named Monk attack techniques, it makes a Constitution save after the third hit. On failure it is Stunned until the end of its next turn, subject to the Stun Guard. Ordinary repeated unarmed strikes with no distinct technique names do not satisfy the three-technique requirement."
+  },
+  {
+    "term": "Action",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.arch.breath-of-focus",
+    "effect": "Breath of Focus. Tags: arch, passive-upgrade, ki. Use your Action and make no attack as part of this feature. Gain 1 Ki, subject to the own-turn gain ceiling. This represents deliberately surrendering offense to center yourself and cannot generate Ki outside a real encounter, during a rest, or by repeatedly entering initiative without opposition."
+  },
+  {
+    "term": "Staggered",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.arch.tortoise.echoing-guard",
+    "effect": "Echoing Guard. Tags: arch, tortoise, discipline, defense. When an attack misses you, or one of your defensive techniques reduces the triggering attack to 0 damage, the attacker becomes Staggered: -1 to attack rolls and -5 feet Speed until the end of its next turn. Reapplication refreshes but does not stack."
+  },
+  {
+    "term": "Arch-discipline",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.arch.tortoise.final-form-bastion-of-breath",
+    "effect": "Final Form — Bastion of Breath. Tags: arch, tortoise, final-form, defense, weave. Spend all 5 Ki. Until the start of your next regular turn you are immune to damage, though conditions that do not require damage may still affect you. Each enemy that hits you during this period makes a Constitution save; failure would Stun it, subject to the Stun Guard. At the start of your next turn, creatures of your choice within 15 feet make Strength saves, taking 2 S d8 force damage and being pushed 10 feet on failure, half damage and no push on success. This is the Arch-discipline exception and does not replace your later Hero path."
+  },
+  {
+    "term": "Speed",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.hero.enlightened-master.tranquil-lotus-step",
+    "effect": "Tranquil Lotus Step. Tags: hero, enlightened, support, cleanse. Move up to your Speed toward a willing ally without provoking opportunity attacks. If you finish within 5 feet, choose Charmed, Frightened or Poisoned currently affecting that ally; end it on the ally and apply that same condition to yourself until the end of your next regular turn if you are not immune. The ally gains +S HP the next time it receives healing before then."
+  },
+  {
+    "term": "Shadow Rot",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.hero.way-of-shadow.nerve-fade-technique",
+    "effect": "Nerve Fade Technique. Tags: hero, shadow, shadow-rot. After an unarmed strike damages a creature, spend 1 Ki to apply one Shadow Rot stack, maximum 2. At the start of the target's turn each stack deals 1d4 psychic damage. At one stack it has -1 on its first saving throw that turn; at two stacks it has -1 on all saving throws that turn. At the end of each turn it makes a Wisdom save, removing all stacks on success."
+  },
+  {
+    "term": "Invisible",
+    "source": "data/public/class_playtests/monk.json",
+    "record": "monk.hero.way-of-shadow.shadow-step",
+    "effect": "Shadow Step. Tags: hero, shadow, teleportation, weave. Teleport up to 30 feet to an unoccupied space you perceive. You become Invisible until you make an attack, deal damage, force a saving throw, start another technique or the duration ends. This movement provokes no opportunity attacks. As a minor Weave technique, the common extra-Ki payment may prevent its 1 Dissonance."
+  },
+  {
+    "term": "Prophecy Trigger",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shared.mystery",
+    "effect": "Choose exactly one Mystery: Ancestor, Battle, Bones, Cataclysm, Dream, Flame, Life, Shadow, Stars or Time. It determines your Prophecy Trigger, level-1 Mystery identity, Revelation choices, Mystic Insight, Revelation Mastery options, Prophetic Surge variant and Final Revelation. The Mystery cards below define those features."
+  },
+  {
+    "term": "Revelation",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shared.curse-manifestation",
+    "effect": "Intensify your chosen Curse. For 3 rounds gain +1 on Revelation attack rolls and +1 to your Revelation save DC. For the same duration take -1 AC and -1 on your own saving throws. Any part of the selected Curse that can normally be voluntarily suppressed cannot be suppressed while Manifestation lasts."
+  },
+  {
+    "term": "Manifestation",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shared.curse-manifestation",
+    "effect": "Intensify your chosen Curse. For 3 rounds gain +1 on Revelation attack rolls and +1 to your Revelation save DC. For the same duration take -1 AC and -1 on your own saving throws. Any part of the selected Curse that can normally be voluntarily suppressed cannot be suppressed while Manifestation lasts."
+  },
+  {
+    "term": "Oracle Curse",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shared.oracle-s-burden",
+    "effect": "Your selected Curse is recognized as an intrinsic Oracle class condition rather than an ordinary removable curse. Remove Curse, cleansing, resurrection and similar generic effects cannot remove or suspend it. Only a feature that explicitly names your Oracle Curse can suppress, transform or replace one of its effects."
+  },
+  {
+    "term": "Arch-stage Mystery",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shared.tier-iii-revelation",
+    "effect": "Gain your selected Mystery's fixed Tier III Revelation. It normally costs 3 RC unless its Mystery card explicitly states otherwise. This is the Arch-stage Mystery capstone and is not selected from another Mystery."
+  },
+  {
+    "term": "Charisma",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shared.revelation-charge-cap-vii",
+    "effect": "Your RC maximum becomes 7. When a real encounter begins, if your current RC is below max(3, your Charisma modifier), raise current RC to that value, capped at 7. If current RC is already higher, keep it. Staged initiative, willing sparring and trivial encounters cannot trigger this floor."
+  },
+  {
+    "term": "Bonus Action",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.curse.spiral-touched",
+    "effect": "LIMITATIONS: your temporal dislocation is obvious in conversation. Once per real encounter, at the start of each of your regular turns until this occurs, roll d20; on 1 you lose your Bonus Action and Reaction for that turn as you desynchronize, but retain Action and movement. You have disadvantage on ability checks requiring more than 10 uninterrupted minutes of mundane concentration."
+  },
+  {
+    "term": "Revelation",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.soul-cracked.soul-cracked-boon-iii",
+    "effect": "1/long rest when another creature would Charm or dominate you, negate that effect against you and force the source to make a Wisdom save against your Revelation DC; on failure it becomes Charmed by you until the end of its next turn, with no belief or permanent allegiance change."
+  },
+  {
+    "term": "Charmed",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.soul-cracked.soul-cracked-boon-iii",
+    "effect": "1/long rest when another creature would Charm or dominate you, negate that effect against you and force the source to make a Wisdom save against your Revelation DC; on failure it becomes Charmed by you until the end of its next turn, with no belief or permanent allegiance change."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.haunted.haunted-boon-iv",
+    "effect": "1/long rest as an Action, enemies of your choice within 15 feet make Wisdom saves; failure causes Dread for up to 2 rounds, giving -1 on attack rolls and saving throws. Affected creatures repeat the save at the end of each turn, ending Dread on success."
+  },
+  {
+    "term": "Revelation",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.curse.false-life",
+    "effect": "LIMITATIONS: divination treats you as undead unless it specifically pierces Oracle curses. Before a healing spell from another creature restores HP to you, its caster may make Wisdom (Insight) against your Revelation save DC. On success healing works normally. On failure roll d2; on 1 the spell restores 0 HP to you but still expends its normal costs. Non-spell healing is unaffected. Social hesitation from life-focused clergy remains narrative unless the scene calls for an ordinary reaction check."
+  },
+  {
+    "term": "Speed",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.false-life.false-life-boon-iii",
+    "effect": "1/long rest when reduced to 0 HP without instant death, remain conscious until the end of your next regular turn. During that turn choose either move up to your Speed, speak normally or activate one Revelation; you cannot do more than one of those options. If still at 0 afterward, become unconscious normally."
+  },
+  {
+    "term": "Speed",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shattered-mind.shattered-mind-boon-i",
+    "effect": "once per encounter choose one: move up to your Speed as a Bonus Action without provoking opportunity attacks; or activate one known Tier I Revelation using a Bonus Action instead of its normal Action. If you use the Revelation option, you cannot also take a full Action that turn."
+  },
+  {
+    "term": "Revelations",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shattered-mind.shattered-mind-boon-iii",
+    "effect": "once per encounter when beginning a second sustained Revelation while one of your Revelations is already active, maintain both until the end of your next regular turn. Pay the second Revelation's normal RC cost but no additional special maintenance charge; normal concentration saves threaten both. At the end of the extension choose one sustained effect to end; starting a third ends the previous two immediately."
+  },
+  {
+    "term": "Mystery",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.curse.consumed",
+    "effect": "LIMITATIONS: your body increasingly displays your Mystery and imposes -2 on checks made specifically to disguise or conceal those supernatural alterations without magical assistance. Significant body changes require armor and fitted gear to be refitted during ordinary downtime at the Director's normal maintenance cost; this never destroys attuned equipment. THEME DAMAGE TYPE for this pilot: Ancestor psychic, Battle force, Bones necrotic, Cataclysm thunder, Dream psychic, Flame fire, Life radiant, Shadow psychic, Stars radiant, Time force."
+  },
+  {
+    "term": "Mystery",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.consumed.consumed-boon-i",
+    "effect": "reduce the first instance of your Mystery theme damage you take each round by PB. Once per long rest suppress visible transformation for 1 hour, though divination still detects your Mystery."
+  },
+  {
+    "term": "Mystery",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.consumed.consumed-boon-i",
+    "effect": "reduce the first instance of your Mystery theme damage you take each round by PB. Once per long rest suppress visible transformation for 1 hour, though divination still detects your Mystery."
+  },
+  {
+    "term": "Mystery",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.consumed.consumed-boon-iv",
+    "effect": "ignore nonmagical difficult terrain explicitly associated with your Mystery's theme. Allies moving within 5 feet behind you during the same round may treat those spaces as normal terrain until the start of your next turn."
+  },
+  {
+    "term": "Mystery",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.consumed.consumed-boon-v",
+    "effect": "1/long rest as a Bonus Action fully embody your Mystery for 3 rounds. Gain immunity to the theme damage type, +2 on Revelation attack rolls and Revelation save DC, and add S to one Revelation damage or healing roll each turn. Allies within 10 feet gain +1 AC. Visible transformation cannot be suppressed during this embodiment."
+  },
+  {
+    "term": "Oracle",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.ancestor.ancestor-prophecy-trigger",
+    "effect": "When an ally benefits from one of your Oracle features and then lands a critical hit before the end of its next turn, regain 1 RC, never above your maximum. One critical event restores at most 1 RC and copied attacks or staged targets do not qualify."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.ancestor.ancestral-guardian",
+    "effect": "A spectral guardian accompanies you. Gain +1 AC against the first attack targeting you each round and +1 on saves against charm, fear and other mind-affecting control. Once per long rest when an ally within 3 tiles is targeted by a single-target attack, use your Reaction before the roll; the guardian becomes the target instead and the attack automatically hits the guardian harmlessly, then the guardian vanishes until your next long rest. The interception cannot stop area effects."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.ancestor.echo-voice",
+    "effect": "You may communicate telepathically with willing allies within 5 tiles. When one such ally fails an attack roll, saving throw or ability check, use your Reaction and spend 1 RC before another roll is made. That ally rerolls the failed roll with +2 and must use the new result. The reroll cannot itself trigger another Echo Voice."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.ancestor.ghost-chant",
+    "effect": "Each target makes a Wisdom save. On failure it suffers Dread: -1 on attack rolls and saving throws until the end of its next turn. At the end of that turn it repeats the save, ending Dread on success; failure extends Dread one final round. This is fear-based and a creature immune to fear is immune."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.battle.divine-fury",
+    "effect": "For 2 rounds, once on each of your turns when a weapon or touch attack hits, add damage equal to half its unmodified base damage dice total, rounded down, minimum 1. Your attacks ignore 1 point of flat DR. When you critically hit, the target makes a Wisdom save; on failure it is Frightened until the end of its next turn. Once during each of your turns while Fury lasts, after your first weapon or touch attack hits, you may make one additional weapon or touch attack as a Bonus Action if you have not already used a Bonus Action that turn; this is not an extra full Action."
+  },
+  {
+    "term": "Fury",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.battle.divine-fury",
+    "effect": "For 2 rounds, once on each of your turns when a weapon or touch attack hits, add damage equal to half its unmodified base damage dice total, rounded down, minimum 1. Your attacks ignore 1 point of flat DR. When you critically hit, the target makes a Wisdom save; on failure it is Frightened until the end of its next turn. Once during each of your turns while Fury lasts, after your first weapon or touch attack hits, you may make one additional weapon or touch attack as a Bonus Action if you have not already used a Bonus Action that turn; this is not an extra full Action."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.battle.relentless-strike",
+    "effect": "When you miss with a weapon or touch attack, gain +1 on your next such attack roll before the end of your next regular turn. If that empowered attack hits, add S damage. A second miss does not increase the bonus. When you score a critical hit, regain 1 RC at most once per round and the target makes a Wisdom save; on failure it is Frightened until the end of its next turn."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.battle.battle-seer-s-eye",
+    "effect": "Gain advantage on Perception and initiative rolls. Once per long rest when a visible enemy declares an attack against you or an ally within 5 tiles, use your Reaction before the roll; you and one ally within 5 tiles gain +2 AC against that enemy's next attack before the end of its current turn."
+  },
+  {
+    "term": "Oracle",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.ledger-s-command",
+    "effect": "Each target makes a Wisdom save if hostile or unwilling; willing undead may waive it. On failure you command it for 2 rounds. Once per round as a Bonus Action, command one controlled undead to move up to its Speed and make one ordinary attack, using its own statistics; this obeys the universal one-extra-action limit and all controlled undead share that single Bonus Action command. Controlled undead reduce their first damage each round by 1. Once during the command, one controlled expendable undead may intercept a single-target attack against you and be reduced to 0 HP after absorbing it. This feature creates no corpse, loot or RC farm. Eligible targets are nonlegendary undead of challenge rating no greater than half your Oracle level (round down), with Wisdom saves initially and at each turn end. Commanding uses your shared companion Bonus Action; only one commanded undead makes one attack per round, capped at S d8+M damage with no monster multiattack, recharge or spell resources. Commanding a hostile undead to spend its Action consumes its one hard-denial allowance; later control can only deny Reactions and reduce Speed to 0 on a failed save, never command another Action."
+  },
+  {
+    "term": "Decay",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.rotting-touch",
+    "effect": "Make a Revelation attack. On hit the target makes a Constitution save. On failure it gains Decay for up to 3 rounds: attacks against it add S damage once per attacker per turn, it takes -1 on saving throws and cannot regain HP. At the end of each turn it repeats the save, ending Decay on success. Corpses within 2 tiles of a Decayed creature cannot be raised while Decay persists. If the target is undead, it also takes 2d6 necrotic damage on the initial hit and you regain half the actual damage dealt, capped at S+M HP. At most three allied hits per round receive the vulnerability rider; it is additional flat damage, not multiplication of an entire attack."
+  },
+  {
+    "term": "Decay",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.rotting-touch",
+    "effect": "Make a Revelation attack. On hit the target makes a Constitution save. On failure it gains Decay for up to 3 rounds: attacks against it add S damage once per attacker per turn, it takes -1 on saving throws and cannot regain HP. At the end of each turn it repeats the save, ending Decay on success. Corpses within 2 tiles of a Decayed creature cannot be raised while Decay persists. If the target is undead, it also takes 2d6 necrotic damage on the initial hit and you regain half the actual damage dealt, capped at S+M HP. At most three allied hits per round receive the vulnerability rider; it is additional flat damage, not multiplication of an entire attack."
+  },
+  {
+    "term": "Revelation",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.death-s-threshold",
+    "effect": "The first time after a short rest that you fall to one-quarter maximum HP or less, activate Death's Threshold. Until you are healed above half maximum HP, reduce the first necrotic damage and first nonmagical weapon damage you take each round by S and gain +1 to your Revelation save DC. Undead enemies within 3 tiles take -1 on their first attack roll against you each round. The effect then ends and cannot reactivate until after another short rest."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.unfinished-chorus",
+    "effect": "For 2 rounds, enemies within 4 tiles suffer Dread: -1 on attack rolls and saving throws. Once on each of your turns choose one living enemy in range; it takes 1d6 necrotic damage and you either regain half the actual damage dealt, rounded down, or one living ally within 3 tiles of you regains that amount, maximum S+M HP. Undead you control add S damage to one attack each turn and reduce first damage each round by 1. Corpses in the area cannot be raised while the Chorus lasts. Afterward you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet. Choose up to three enemies and three allies. Enemies make Wisdom saves on entry and at the end of each turn, ending their debuff on success. The drain allows a Constitution save for half damage; healing is capped at S+M total per pulse. Concentration and pulse upkeep apply."
+  },
+  {
+    "term": "Chorus",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.unfinished-chorus",
+    "effect": "For 2 rounds, enemies within 4 tiles suffer Dread: -1 on attack rolls and saving throws. Once on each of your turns choose one living enemy in range; it takes 1d6 necrotic damage and you either regain half the actual damage dealt, rounded down, or one living ally within 3 tiles of you regains that amount, maximum S+M HP. Undead you control add S damage to one attack each turn and reduce first damage each round by 1. Corpses in the area cannot be raised while the Chorus lasts. Afterward you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet. Choose up to three enemies and three allies. Enemies make Wisdom saves on entry and at the end of each turn, ending their debuff on success. The drain allows a Constitution save for half damage; healing is capped at S+M total per pulse. Concentration and pulse upkeep apply."
+  },
+  {
+    "term": "Pale Ledger",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.ledger-s-memory",
+    "effect": "Gain advantage on checks to identify undead, poison and disease. Once per long rest, touch one corpse and learn its identity if the Pale Ledger could reasonably know it, its approximate time of death and the direct physical or magical cause of death. This does not reveal the killer's identity unless the corpse or supernatural Ledger actually knows it."
+  },
+  {
+    "term": "Revelation",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.ledger-unbound",
+    "effect": "Choose up to three enemies in range. Roll 4 S d8+M once; each target takes necrotic damage equal to the lesser of that roll or one-quarter its maximum HP, with a Constitution save for half. This blast cannot reduce HP below 1. Raise up to three nonsummoned corpses as 1-HP bone servants for three rounds. Once per round spend your shared companion Bonus Action to move and attack with ONE servant using your Revelation attack bonus for 1d8+S necrotic damage. Alternatively, your Reaction may sacrifice one servant to intercept a single-target attack against you; no attack is made by that servant that round. Servants grant no XP, loot, harvestable corpses or RC. For three rounds, up to three undead you already control add S damage to their one shared commanded attack and reduce the first damage they take each round by 1. No extra creature turns or command budgets are created."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.bones.ledger-unbound",
+    "effect": "Choose up to three enemies in range. Roll 4 S d8+M once; each target takes necrotic damage equal to the lesser of that roll or one-quarter its maximum HP, with a Constitution save for half. This blast cannot reduce HP below 1. Raise up to three nonsummoned corpses as 1-HP bone servants for three rounds. Once per round spend your shared companion Bonus Action to move and attack with ONE servant using your Revelation attack bonus for 1d8+S necrotic damage. Alternatively, your Reaction may sacrifice one servant to intercept a single-target attack against you; no attack is made by that servant that round. Servants grant no XP, loot, harvestable corpses or RC. For three rounds, up to three undead you already control add S damage to their one shared commanded attack and reduce the first damage they take each round by 1. No extra creature turns or command budgets are created."
+  },
+  {
+    "term": "Revelations",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.cataclysm.cataclysm-prophecy-trigger",
+    "effect": "When one of your Revelations deals damage to at least two meaningful hostile creatures as part of the same area effect, regain 1 RC, never above maximum. Repeated pulses of the same Revelation can trigger this at most once per round."
+  },
+  {
+    "term": "Storm Crown",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.cataclysm.storm-crown",
+    "effect": "Choose lightning or thunder when activated. At the start of each of your regular turns while Storm Crown persists, enemies within 3 tiles make Dexterity saves, taking 2d6 damage of the chosen type on failure or half on success. A creature failing the save takes -1 on its first attack roll that turn. Allies in the aura reduce the first ranged-attack damage they take each round by 1 and have advantage on saves against weather-based Prone effects."
+  },
+  {
+    "term": "Cataclysm Revelations",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.cataclysm.seal-s-fracture",
+    "effect": "Choose Earthquake, Storm or Fire. The zone becomes difficult terrain. At activation and at the start of your next regular turn, enemies in the zone make Dexterity saves, taking 2d6 damage on failure or half on success: bludgeoning for Earthquake, lightning for Storm, fire for Fire. Until the zone ends, enemies inside take -1 on saving throws against your Cataclysm Revelations; allies inside reduce first damage each round by 1 and cannot be knocked Prone by this zone. Difficult terrain expands 1 tile outward after the second pulse but deals no extra damage there. Structures may crack at Director discretion. When the effect ends you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet."
+  },
+  {
+    "term": "Cataclysm Revelations",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.cataclysm.cataclysm-prophecy",
+    "effect": "Activate one known Cataclysm Revelation for 0 RC. Before the encounter ends, the next damaging area effect created by one of your Cataclysm Revelations adds one extra die matching its primary damage die to one shared damage roll. Creatures failing that effect's normal save also make a Strength save; failure knocks them Prone. Structures may crack at Director discretion but are not automatically destroyed."
+  },
+  {
+    "term": "Dream Revelations",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.dream-prophecy-trigger",
+    "effect": "When one of your Dream Revelations successfully imposes a condition or creates an illusion that a meaningful hostile creature fails a save against, regain 1 RC, never above maximum. Multiple targets failing the same Revelation restore only 1 RC."
+  },
+  {
+    "term": "Invisible",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.dreamer-s-veil",
+    "effect": "Gain +1 on saves against Charm and Illusion effects and advantage on saves against magical sleep. Once per long rest as an Action, choose one willing ally within 3 tiles; it becomes Invisible until it attacks, deals damage, forces a saving throw or 2 rounds pass. The first damaging attack it lands while still benefiting from concealment adds S d6 psychic damage. The bonus occurs once per use."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.nightmare-lash",
+    "effect": "The target makes a Wisdom save, taking 2d8+M psychic damage on failure or half on success. On failure it also suffers Dread: -1 on attack rolls and saving throws and no Reactions until the end of its next turn. It repeats the save then; failure extends the attack/save penalty one final round, but Reaction loss lasts only the first round. If the target was already Frightened or suffering Dread before the cast, add one extra d8 psychic damage and, after resolution, regain 1 RC at most once per round."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.unreality",
+    "effect": "Once per round when an enemy attack roll would hit you, roll d4; on 4 the attack instead hits an illusory echo and misses. Separately, once per short rest when an attack would deal damage to you, use your Reaction before damage to make that attack miss and teleport to an unoccupied space 1 tile away that you can perceive. The attacker then makes a Wisdom save; on failure it suffers Dread (-1 attack and save) until the end of its next turn."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.unreality",
+    "effect": "Once per round when an enemy attack roll would hit you, roll d4; on 4 the attack instead hits an illusory echo and misses. Separately, once per short rest when an attack would deal damage to you, use your Reaction before damage to make that attack miss and teleport to an unoccupied space 1 tile away that you can perceive. The attacker then makes a Wisdom save; on failure it suffers Dread (-1 attack and save) until the end of its next turn."
+  },
+  {
+    "term": "Dream",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.threshold-collapse",
+    "effect": "For 2 rounds, enemies in the aura take -1 on attack rolls and cannot gain advantage solely from flanking. Allies in the aura gain +1 on saves against Charm and Fear. Once per round at the start of one enemy's turn in the aura, choose that enemy; it makes a Wisdom save. On failure choose one ally in the aura: that enemy treats the chosen ally as visually absent until the start of its next turn and cannot target that ally with attacks requiring sight, though area effects remain legal. When a hostile creature makes the first save to disbelieve one of your Dream illusions inside the aura, success requires a second Wisdom save; failing either means it remains deceived for that illusion's normal duration."
+  },
+  {
+    "term": "Dream",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.dream-revelation-mastery",
+    "effect": "Choose one mastery for a Revelation you know. Enhanced Mirage: create two duplicates; each can absorb one failed-targeting attack and both share the same 2-round duration. Enhanced Shared Dream: affect up to 3 allies plus yourself. Enhanced Threshold Collapse: enemies inside the aura cannot take Reactions while they are currently deceived by one of your Dream illusions or while suffering Dread from you."
+  },
+  {
+    "term": "Invisible",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.dream-prophecy",
+    "effect": "Activate one known Dream Revelation for 0 RC. After it resolves, become Invisible until you attack, deal damage, force a saving throw or the end of your next regular turn. The first damaging attack you land from that concealment adds S d6 psychic damage and causes the target to make a Wisdom save; on failure it suffers Dread (-1 attack and save) until the end of its next turn. During the same interval, when a creature succeeds on its first save to disbelieve one illusion you create, require a second Wisdom save; it must succeed on both to disbelieve."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.dream.dream-prophecy",
+    "effect": "Activate one known Dream Revelation for 0 RC. After it resolves, become Invisible until you attack, deal damage, force a saving throw or the end of your next regular turn. The first damaging attack you land from that concealment adds S d6 psychic damage and causes the target to make a Wisdom save; on failure it suffers Dread (-1 attack and save) until the end of its next turn. During the same interval, when a creature succeeds on its first save to disbelieve one illusion you create, require a second Wisdom save; it must succeed on both to disbelieve."
+  },
+  {
+    "term": "Revelations",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.flame.flame-prophecy-trigger",
+    "effect": "When one of your Revelations restores HP to a living ally or deals fire damage to a meaningful hostile creature, regain 1 RC, never above maximum. One Revelation use can restore at most 1 RC even if it both heals and burns or affects multiple targets."
+  },
+  {
+    "term": "Flame Revelations",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.flame.first-flame-convergence",
+    "effect": "For 2 rounds, once on each of your turns when a Flame Revelation deals fire damage, add one extra die matching that Revelation's primary damage die to one damage roll. Once per turn when one of your Flame Revelations damages a meaningful hostile creature, one living ally within 4 tiles regains 1d6 HP. Allies within 4 tiles are immune to Frightened. Once per turn when this effect heals an ally, that ally reduces the first damage it takes before your next turn by 1. Zealot's Renewal deals no backlash while Convergence lasts."
+  },
+  {
+    "term": "Convergence",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.flame.first-flame-convergence",
+    "effect": "For 2 rounds, once on each of your turns when a Flame Revelation deals fire damage, add one extra die matching that Revelation's primary damage die to one damage roll. Once per turn when one of your Flame Revelations damages a meaningful hostile creature, one living ally within 4 tiles regains 1d6 HP. Allies within 4 tiles are immune to Frightened. Once per turn when this effect heals an ally, that ally reduces the first damage it takes before your next turn by 1. Zealot's Renewal deals no backlash while Convergence lasts."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.life.life-linked",
+    "effect": "Link yourself to the ally. Once per round when it takes damage, you may use your Reaction to transfer up to half that actual damage rounded down to yourself. Transferred damage keeps its type and cannot be redirected again. The ally reduces the first necrotic damage it takes each round by S. Once per round when one of your paid or finite Oracle effects restores HP to the linked ally, it regains an additional 1d4 HP. The link ends if you are more than 5 tiles apart. Apply mitigation to the original damage once before splitting. The transferred portion cannot be mitigated again and cannot generate recovery or retaliation triggers."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.life.verdant-pulse",
+    "effect": "When one of your paid or finite Oracle effects restores HP to an ally who was below half maximum HP, that ally reduces the first damage it takes before the end of its next turn by S and adds 1 HP to one later finite healing effect during that period. Separately, once per encounter when a living ally within 4 tiles would be reduced to 0 HP without instant death, use your Reaction to leave it at 1 HP instead and end Frightened or Poisoned on it."
+  },
+  {
+    "term": "Oracle",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.shadow-prophecy-trigger",
+    "effect": "When you damage a meaningful hostile creature that cannot see you or is currently Frightened or suffering Dread from your Oracle feature, regain 1 RC, never above maximum. Multiple qualifying hits during the same round restore only 1 RC."
+  },
+  {
+    "term": "Invisible",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.umbral-cloak",
+    "effect": "Gain +2 on Stealth checks in dim light or darkness and reduce the first psychic damage you take each round by 1. Once per short rest become Invisible until you attack, deal damage, force a saving throw or 2 rounds pass. The first damaging attack you land while benefiting from that concealment adds S d6 psychic damage, once per use."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.psychic-lash",
+    "effect": "Make a Revelation attack. On hit deal 1d8+M psychic damage. If the target could not see you when the attack began, add one extra d8 psychic damage; it also makes a Wisdom save. On failure it suffers Dread (-1 on attack rolls and saving throws) and cannot take Reactions until the end of its next turn."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.fear-s-whisper",
+    "effect": "The target makes a Wisdom save. On failure it is Frightened of you until the end of its next turn, cannot willingly move closer to you and loses Reactions for that first round. Allies gain +1 on attack rolls against it while this Frightened condition lasts. At the end of its turn it repeats the save, ending the condition on success; failure extends it one final round without extending Reaction loss."
+  },
+  {
+    "term": "Fear",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.night-s-embrace",
+    "effect": "Allies in the zone gain concealment and reduce the first damage they take each round by 1. Enemies in the zone take -1 on attack rolls and -1 on saves against your Fear/Dread effects. The first damaging attack you make from inside the zone each round while concealed adds S d6 psychic damage. When an enemy first enters the zone during a round, it makes a Wisdom save; on failure it loses Reactions until the end of that turn."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.mind-spike",
+    "effect": "The target makes a Wisdom save, taking 2d8+M psychic damage on failure or half on success. On failure it cannot take Reactions until the end of its next turn and suffers Dread (-1 attacks and saves). It repeats the save at the end of that turn; failure extends Dread one final round but not Reaction loss. If already Frightened or Dreaded before the cast, add one extra d8 psychic damage and regain 1 RC after resolution, at most once per round."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.silent-hunter",
+    "effect": "The first damaging attack you hit with during an encounter while concealed from its target adds S d6 psychic damage; the target makes a Wisdom save and suffers Dread (-1 attacks and saves) until the end of its next turn on failure. Separately, once per round after you activate a Revelation while concealed, move 1 tile without provoking opportunity attacks and gain +1 on your next attack roll before the end of the current turn."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.hush-descends",
+    "effect": "For 2 rounds sound is suppressed in the aura. Hostile creatures cannot use abilities that explicitly require audible speech or verbal spell components and suffer Dread (-1 on attack rolls and saves). You and allies gain +1 on attack rolls made while concealed. At the start of each enemy's turn in the aura it makes a Wisdom save; on failure it would lose its Action to nameless dread, subject to the Oracle hard-control guard. Once per round, the first psychic Revelation you activate while inside the aura costs 1 less RC, minimum 0; a 0-RC activation cannot independently generate recursive resource refunds."
+  },
+  {
+    "term": "Invisible",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.shadow-prophecy",
+    "effect": "Activate one known Shadow Revelation for 0 RC. After it resolves, become Invisible until you attack, deal damage, force a saving throw or the end of your next regular turn. The first damaging attack you land from that concealment adds S d6 psychic damage and forces a Wisdom save; failure inflicts Dread (-1 attacks and saves) until the end of the target's next turn."
+  },
+  {
+    "term": "Dread",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.shadow.shadow-prophecy",
+    "effect": "Activate one known Shadow Revelation for 0 RC. After it resolves, become Invisible until you attack, deal damage, force a saving throw or the end of your next regular turn. The first damaging attack you land from that concealment adds S d6 psychic damage and forces a Wisdom save; failure inflicts Dread (-1 attacks and saves) until the end of the target's next turn."
+  },
+  {
+    "term": "Revelation",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.stars.starlight-mantle",
+    "effect": "While under open sky at night or in visible starlight, gain +1 on ranged attack rolls and +1 to your Revelation save DC. Reduce the first radiant damage you take each round by 1. Once per long rest create starlight in a 4-tile radius for 2 rounds. Invisible and ethereal creatures in the light are revealed to you unless protected by stronger supernatural concealment. Allies in the light gain +2 on their next attack roll during the effect."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.stars.concord-alignment",
+    "effect": "For 2 rounds allies within 5 tiles gain +1 on attack rolls and advantage on saves against Charm and Fear. Once per turn when an ally within range fails an attack roll or saving throw, use your Reaction to let that ally reroll it and use the new result; only one reroll can be granted per round. During Alignment, Guiding Bolt and Constellation Mark ranges increase by 1 tile. No roll can be rerolled more than once by Oracle features."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.stars.concord-unveiled",
+    "effect": "For 3 rounds you cannot be Surprised and gain +2 AC against the first attack made against you each round. Your Stars Revelations cost 1 less RC, minimum 0. Once per round when one ally within 6 tiles fails a saving throw, you may use your Reaction to turn that failed save into a success. This cannot convert a natural result into a critical success, override immunity requirements or trigger another save-copy/resource-refund chain."
+  },
+  {
+    "term": "Time Revelations",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.time.time-prophecy-trigger",
+    "effect": "When one of your Time Revelations meaningfully changes a creature's initiative position or grants an ally a reroll and that reroll is used, regain 1 RC, never above maximum. Multiple qualifying creatures or rerolls in the same round restore only 1 RC."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.time.spiral-echo",
+    "effect": "Gain +2 initiative. Once initiative order is established, hostile effects cannot move your initiative slot later unless they explicitly overcome temporal immunity. Once per short rest when an attack, spell or condition effect would resolve solely against you, use your Reaction to delay its resolution until the start of your next regular turn. Record the original attack roll, save DC, damage roll and effect exactly; no resources are refunded and the source need not remain present. At the start of your next turn, before actions, resolve the recorded effect against you using the recorded values, then you may move 1 tile without provoking. Delaying creates no copy or additional proc."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.time.paradox-skin",
+    "effect": "Once per round when an attack would hit you, roll d10; on 1 the attack instead hits a temporal echo and misses. You have advantage on saves against magical aging, Slow and explicitly time-based control. Once per short rest when an ally within 3 tiles fails a save against an aging, Slow or explicitly time-based effect, use your Reaction to let it reroll with +2 and use the new result."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/oracle.json",
+    "record": "oracle.supplement.time.spiral-convergence",
+    "effect": "For 2 rounds, once per round when an ally within 5 tiles fails an attack roll, saving throw or ability check, use your Reaction to let that ally reroll and use the new result; this changes only the roll and does not refund resources, Actions, damage or proc triggers from events already resolved. Once on each of your regular turns you gain one additional full Action usable only to activate a Revelation or Dash/Move, subject to the universal extra-Action cap. An ally whose roll you rewind reduces the first damage it takes before your next turn by 1. If an enemy directly benefited from the original failed roll, it makes a Wisdom save; on failure it loses its Reaction until the end of its next turn. After Convergence ends you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet."
+  },
+  {
+    "term": "Oath",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.hero.signature-power-level-11",
+    "effect": "Automatically gain only your Oath's Signature, or corresponding inverted Signature if Oathbreaker. This unlock cannot be spent early as a Base/Arch selection. Rest references mean short rest unless card expressly long rest."
+  },
+  {
+    "term": "Oathbreaker",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.hero.signature-power-level-11",
+    "effect": "Automatically gain only your Oath's Signature, or corresponding inverted Signature if Oathbreaker. This unlock cannot be spent early as a Base/Arch selection. Rest references mean short rest unless card expressly long rest."
+  },
+  {
+    "term": "Oath",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.hero.final-oath-gift-level-20",
+    "effect": "Gain only your Oath's Final Gift. Oathbreaker instead gains Black Manifestation below. Do not grant all ten gifts, restore use by switching Oaths, or combine with another Final from different class level."
+  },
+  {
+    "term": "Black Manifestation",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.hero.final-oath-gift-level-20",
+    "effect": "Gain only your Oath's Final Gift. Oathbreaker instead gains Black Manifestation below. Do not grant all ten gifts, restore use by switching Oaths, or combine with another Final from different class level."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oathbreaker-shared.last-reproach",
+    "effect": "New rank 5 Forbidden spell. Enemy WIS save for 3 S d8 necrotic, half success; ally regains S d8 HP after triggering damage. Does not revive dead or undo conditions. Uses ordinary spell strain and your Reaction."
+  },
+  {
+    "term": "Vengeance Mark",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-vengeance.vengeful-smite",
+    "effect": "Choose radiant or necrotic when you Smite; the entire Smite packet uses that type. After damage, apply Vengeance Mark until the end of your next regular turn. If the creature was already marked by you when this Smite began, add S flat damage to the Smite once. Applying a new mark refreshes but never stacks it."
+  },
+  {
+    "term": "Vengeance-marked",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-vengeance.mark-of-retribution",
+    "effect": "The target makes a Wisdom save. On failure it becomes Vengeance-marked. Your next Smite against it before the mark ends adds 1d8 damage of the Smite's chosen type. You have advantage on opportunity attacks against it while the mark persists."
+  },
+  {
+    "term": "Oath",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-vengeance.no-escape",
+    "effect": "While affected, a marked creature cannot voluntarily teleport, become invisible or enter extradimensional travel. If it willingly moves out of your Oath aura, opportunity attacks against it have advantage until the end of its next turn. This spell does not prevent ordinary movement, forced movement or planar effects explicitly stronger than the ward."
+  },
+  {
+    "term": "Lay",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-vengeance.verdict-absolute",
+    "effect": "For 3 rounds, your current Judgment Brand cannot be removed by an ordinary save or concealment effect. Smites against the branded target use maximum Smite dice, and it cannot voluntarily teleport or become invisible. If the branded target reaches 0 HP during the effect, restore your Lay on Hands pool to its normal maximum once, then up to three hostile creatures in your aura that witnessed the defeat make Wisdom saves; on failure they are Frightened until the end of their next turn. The Lay on Hands refill requires a meaningful nonsummoned hostile defeated in a real encounter; staged or willing sacrifices do not qualify."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-vengeance.verdict-absolute",
+    "effect": "For 3 rounds, your current Judgment Brand cannot be removed by an ordinary save or concealment effect. Smites against the branded target use maximum Smite dice, and it cannot voluntarily teleport or become invisible. If the branded target reaches 0 HP during the effect, restore your Lay on Hands pool to its normal maximum once, then up to three hostile creatures in your aura that witnessed the defeat make Wisdom saves; on failure they are Frightened until the end of their next turn. The Lay on Hands refill requires a meaningful nonsummoned hostile defeated in a real encounter; staged or willing sacrifices do not qualify."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oathbreaker-oath-of-vengeance.fearbrand",
+    "effect": "Each target makes a Wisdom save. On failure it takes 2 S d6 psychic damage and is Frightened until the end of its next turn; on success it takes half damage and is not Frightened. A target already below half maximum HP takes one additional d6 psychic damage. This creates no execution effect."
+  },
+  {
+    "term": "Aura",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-dominion.dominion-smite",
+    "effect": "Choose radiant or psychic; the entire Smite packet uses that type. After damage, the target makes a Charisma save. On failure it cannot knowingly speak a false statement until the end of its next turn, though it may remain silent, refuse to answer or speak evasively. If it knowingly lied while inside your Aura of Authority earlier this encounter, it also takes -1 on saving throws until the end of its next turn."
+  },
+  {
+    "term": "Restrained",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-dominion.binding-word",
+    "effect": "The target makes a Charisma save. On failure it is Restrained until the end of its next turn. At the end of that turn it repeats the save; failure extends Restrained one final round, success ends it. A creature unable to hear the Word is unaffected."
+  },
+  {
+    "term": "Aura",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-dominion.law-s-weight",
+    "effect": "A hostile creature is considered a source-qualified law breaker only if it knowingly lied while inside your Aura of Authority earlier this encounter. When such a creature enters or starts its turn in the zone, it makes a Charisma save. On failure its Speed is halved, AC is reduced by 2 and it cannot benefit from Dash or Haste-like extra movement until the start of its next turn. It saves again each turn while affected."
+  },
+  {
+    "term": "Charmed",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-dominion.decree-of-submission",
+    "effect": "Choose Sub mission or Dread. The target makes a Wisdom save; a source-qualified law breaker has disadvantage on the initial save. Sub mission: on failure the target is Charmed by you and you state one simple command from Approach, Retreat, Drop, Kneel, Halt or Release. On its first affected turn it follows that command in the safest reasonable way using no more than movement and one ordinary Action, then repeats the save at turn end. Dread: on failure it is Frightened of you and cannot willingly approach you, repeating the save at the end of each turn. Either mode ends on a successful repeat save. Player-controlled targets retain target choice, may never be commanded to self-harm, and cannot be forced to change beliefs or permanent allegiance. Spending that Action uses the hard-denial allowance. On later turns the effect only imposes Charmed and, on a failed repeat save, no Reactions and half Speed until the next turn; it cannot command another Action."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-dominion.decree-of-submission",
+    "effect": "Choose Sub mission or Dread. The target makes a Wisdom save; a source-qualified law breaker has disadvantage on the initial save. Sub mission: on failure the target is Charmed by you and you state one simple command from Approach, Retreat, Drop, Kneel, Halt or Release. On its first affected turn it follows that command in the safest reasonable way using no more than movement and one ordinary Action, then repeats the save at turn end. Dread: on failure it is Frightened of you and cannot willingly approach you, repeating the save at the end of each turn. Either mode ends on a successful repeat save. Player-controlled targets retain target choice, may never be commanded to self-harm, and cannot be forced to change beliefs or permanent allegiance. Spending that Action uses the hard-denial allowance. On later turns the effect only imposes Charmed and, on a failed repeat save, no Reactions and half Speed until the next turn; it cannot command another Action."
+  },
+  {
+    "term": "Oath",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-ancients.thorn-crown",
+    "effect": "Trigger after a hostile creature causes you to fail a save and gain a finite-duration condition. The source immediately makes the same type of saving throw against your Oath DC. On failure it suffers the same named condition until the end of its next turn, subject to the universal hard-denial guard. Your original condition is not removed unless another feature removes it. Thorn Crown cannot reflect damage, death, curses, Wounds, resource loss or permanent transformations."
+  },
+  {
+    "term": "Smite",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-ancients.roots-of-memory",
+    "effect": "Trigger after your Smite resolves. Each chosen target makes a Strength save. On failure it is Restrained until the end of its next turn. A fey, elemental or creature directly bound to an ancient magical site has disadvantage on this save. If at least one such creature fails, you learn one truthful broad fact about its origin category, such as native plane, elemental affinity, fey court or connection to the local ancient site."
+  },
+  {
+    "term": "Restrained",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-ancients.roots-of-memory",
+    "effect": "Trigger after your Smite resolves. Each chosen target makes a Strength save. On failure it is Restrained until the end of its next turn. A fey, elemental or creature directly bound to an ancient magical site has disadvantage on this save. If at least one such creature fails, you learn one truthful broad fact about its origin category, such as native plane, elemental affinity, fey court or connection to the local ancient site."
+  },
+  {
+    "term": "Ancients Smite",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-ancients.primal-ward",
+    "effect": "Choose cold, fire, lightning or thunder. Selected allies gain resistance to that damage type while in your aura and while this spell lasts. During the Ward, fey and elementals have disadvantage on saving throws caused directly by your Ancients Smite rider or Oath of the Ancients techniques. This does not impose disadvantage on unrelated spells or attacks."
+  },
+  {
+    "term": "Ancients Smite",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-ancients.primordial-crown",
+    "effect": "For 3 rounds Thorn Crown can trigger once per round without consuming its short-rest use or paying RP. When your Ancients Smite critical-hit root successfully affects a creature, choose one adjacent hostile creature; it makes the same Strength save and becomes rooted on failure, at most one spread target per critical. A selected allied target has advantage on saves against Charmed. A selected hostile fey or elemental makes a Wisdom save at the start of each turn; on failure it cannot attack allies other than you until the start of its next turn, though it may take other actions. The same creature remains subject to the universal denial cap."
+  },
+  {
+    "term": "Silenced",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-silence.wordless-ward",
+    "effect": "Grant the ally +2 AC against the triggering attack and reduce the first damage it takes before the start of your next turn by S+M, minimum 0. Word less Ward requires no speech or verbal component and therefore functions while Silenced. It remains an ordinary spell for Dissonance and Counterspell interactions."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-chain.linked-ward",
+    "effect": "Mark one willing ally. Once per round when it takes damage, use your Reaction to redirect up to 2 times your actual Charisma modifier, minimum 2, of that damage to yourself. Redirected damage keeps its type and cannot be redirected again. If this redirected damage reduces you to 0 HP, the ally gains temporary HP equal to the amount you actually absorbed, maximum Paladin level+M."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-chain.chain-of-duty",
+    "effect": "Mark the ally. If it is reduced to 0 HP while within 60 feet and on the same plane, you may use your Reaction to teleport to an unoccupied space adjacent to it. This teleport prevents no damage and does not heal either creature. The spell then ends."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-chain.unbreakable-bond",
+    "effect": "The ally is immune to Charmed and Frightened and cannot be compelled to take an action by magical control while the spell lasts. Once per round when the ally would fail a save against a mind-control effect not already prevented by this spell’s immunities, you may use your Reaction to become the target of that effect instead if it could legally affect you. You make no replacement save; resolve the failed-save effect against you."
+  },
+  {
+    "term": "Paladin",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-chain.final-stand",
+    "effect": "Until the start of your next turn, all damage that would be dealt to the chosen ally is redirected to you instead. The redirected damage retains type, cannot be redirected again and cannot be mitigated again after the original target’s defenses apply once. If redirected damage reduces you to 0 HP, the ally immediately gains temporary HP equal to your Paladin level and resistance to all damage until the end of its next turn. This effect ends if you die outright."
+  },
+  {
+    "term": "Grief Mark",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-grief.mourning-smite",
+    "effect": "Choose radiant or necrotic; the entire Smite packet uses that type. If the target personally reduced one of your allies to 0 HP earlier this encounter, add 1d8 damage of the chosen Smite type. Such a target also gains Grief Mark until the end of its next turn, taking -1 on attack rolls. The mark refreshes but does not stack."
+  },
+  {
+    "term": "Turned",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-grief.last-rites",
+    "effect": "Stabilize the living target if at 0 HP. For 1 hour it gains +2 on death saves and necrotic resistance. Each hostile undead within 10 feet makes a Wisdom save; on failure it is Turned until the end of its next turn, meaning it must use its movement to move away by the safest route and cannot willingly move closer. This does not destroy or permanently repel undead."
+  },
+  {
+    "term": "Grief",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oathbreaker-oath-of-grief.death-touch-gravetongue",
+    "effect": "Make a melee divine attack using PB+Charisma. On hit deal necrotic damage equal to the declared points. The target makes a Wisdom save; on failure it suffers Grief until the end of its next turn, taking -1 on attack rolls and saving throws against Fear. This is not a full-turn denial."
+  },
+  {
+    "term": "Grappled",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-chains-broken.liberating-smite",
+    "effect": "Choose force or radiant; the entire Smite packet uses that type. If the target is currently grappling or restraining another creature, one grapple or restraint it is maintaining ends after damage. If the target itself is Grappled or Restrained, those conditions are suppressed until the end of its next turn, after which a still-valid source may resume them. Against a Director-identified oppressor actively enforcing captivity or coercion in the scene, add S flat damage once."
+  },
+  {
+    "term": "Grappled",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-chains-broken.unbound-host",
+    "effect": "Selected allies cannot become Grappled or Restrained by non-artifact effects and are immune to magical effects whose sole function is binding them in place. Whenever an affected ally ends an existing grapple or restraint as the spell begins or later breaks free from one resumed after suppression, it gains +10 feet Speed until the end of its next turn."
+  },
+  {
+    "term": "Charmed",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oathbreaker-oath-of-chains-broken.death-touch-unbound-flame",
+    "effect": "Make a melee divine attack using PB+Charisma. On hit deal fire damage equal to the declared points. The target makes a Wisdom save; on failure it is Charmed by you until the end of its next turn. While Charmed this way it cannot make opportunity attacks against you, but you gain no command authority and it retains control of all Actions and targets."
+  },
+  {
+    "term": "Reaction",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-martyr-king.aura-of-the-crown",
+    "effect": "Selected allies gain +1 on saving throws. Once per round when one selected ally takes damage, you may use your Reaction after that target applies its defenses once to redirect up to M of its remaining damage to yourself. The transferred amount cannot be reduced, reflected, redirected again or generate resources. This consumes the shared Paladin redirection allowance."
+  },
+  {
+    "term": "Paladin",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-martyr-king.last-king-s-gift",
+    "effect": "When damage would reduce the ally to 0 HP without killing it outright, it instead remains at 1 HP and gains temporary HP equal to your Paladin level after the triggering damage resolves. This does not reverse a completed death, remove Wounds or replenish any resource."
+  },
+  {
+    "term": "Crown",
+    "source": "data/public/class_playtests/paladin.json",
+    "record": "paladin.supplement.oath-of-the-martyr-king.crown-undying",
+    "effect": "For three rounds apply Crown of Embers protection without consuming its short-rest use. Selected allies reduce their first damage each round by S and gain +1 on saves; this save bonus does not stack with Aura of the Crown. You may redirect from up to two selected allies each round, at most Paladin level+M damage total per round, without a Reaction. Original-target defenses apply once; redirected damage cannot be reduced again. Each protected ally then heals half the damage you actually absorbed for it, rounded down, maximum S+M per ally per round. This is a finite Final healing exception, cannot heal you, cannot exceed maximum HP, and cannot trigger another redirection or heal-copy chain. It does not reset the daily Lay on Hands pool."
+  },
+  {
+    "term": "Hit Chain",
+    "source": "data/public/class_playtests/ranger.json",
+    "record": "ranger.base.quick-shot",
+    "effect": "Make one ranged weapon attack, dealing weapon die only without ability damage modifier. Does not trigger Extra Attack or another Quick Shot; may gain one Hit Chain point at 11 within the turn cap."
+  },
+  {
+    "term": "Hero Arrow",
+    "source": "data/public/class_playtests/ranger.json",
+    "record": "ranger.supplement.master-of-the-hunt-new-hero-capstone",
+    "effect": "New playtest Hero capstone. Once per long rest when using your Hero Arrow, pay its normal Hit Chain/action requirements, then enhance only that activation: Warder grants 2 M temporary HP instead of M; Stalker adds S d6 piercing to one of its two hits; Outrider adds S d4 necrotic to one target on its single pulse. No extra Arrow, Hit Chain, action or copied proc."
+  },
+  {
+    "term": "Speed-",
+    "source": "data/public/class_playtests/shaman.json",
+    "record": "shaman.hero.theurgist.elemental-chorus",
+    "effect": "Summon a single Chorus package: four visible spirits share HP 4 L, AC 12+PB, immobile. Bonus Action command pulses up to 3 enemies: DEX save S d6 chosen affinity damage half; one failed target Speed-10 ft until end next turn. Four spirits do not make four separate attacks."
+  },
+  {
+    "term": "Downed",
+    "source": "data/public/class_playtests/shaman.json",
+    "record": "shaman.hero.bloodcaller.blood-feast",
+    "effect": "Pay 1 RP to regain M HP. Bleeding allies, summons or staged captives cannot qualify. No healing while Downed; secondary heal creates no damage/resource triggers."
+  },
+  {
+    "term": "Bonus Action",
+    "source": "data/public/class_playtests/soldier.json",
+    "record": "soldier.hero.artillerist.turret-deployment",
+    "effect": "Deploy 2 turrets, each AC 12+PB and HP 2 L, immobile, range 60 ft. On your Bonus Action command ONE turret to attack using PB+DEX for 1d6+M piercing. Both share that single command/attack budget with other companions; no autonomous shots. Reclaimed after use, no resale."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/soldier.json",
+    "record": "soldier.hero.tyrant.intimidating-presence",
+    "effect": "They take-1 on saves against your Frightened effects. Never alters immunity or stacks multiple Tyrant penalties."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/thief.json",
+    "record": "thief.arch.shadow-stab",
+    "effect": "After crit, move through target to adjacent empty space within 10 ft without opportunity attacks; apply Bleed 1d4 next 2 target turns. Movement requires open route, is not teleport and does not add another attack."
+  },
+  {
+    "term": "Sneak Attack",
+    "source": "data/public/class_playtests/thief.json",
+    "record": "thief.hero.shadowblade.death-blossom",
+    "effect": "Make one weapon attack against each; apply Sneak Attack only to ONE qualifying hit. Source minimum 17 retained. Other per-turn damage riders retain caps; no extra Attack Action."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/thief.json",
+    "record": "thief.hero.blackguard.prolonged-suffering",
+    "effect": "When you apply Bleed with base 2-turn duration it lasts 4 turns instead. Never doubles dice or stacks with another extension; subsequent refresh sets to 4, not adds 4."
+  },
+  {
+    "term": "Invisible",
+    "source": "data/public/class_playtests/thief.json",
+    "record": "thief.hero.blackguard.unseen-hand",
+    "effect": "After taking an Action while Invisible gain one extra Action to make one weapon attack or use a nonmagical Thief skill. Attacking ends invisibility normally. No second Sneak Attack, second extra Action, Bonus Action, Reaction or self-reset."
+  },
+  {
+    "term": "Bonus Action",
+    "source": "data/public/class_playtests/tinker.json",
+    "record": "tinker.arch.enhanced-drone-control",
+    "effect": "Gain+1 attack roll and can follow simple move/dodge commands while within 120 ft. Attacks still require your Bonus Action and line of effect; no independent turn."
+  },
+  {
+    "term": "Vulnerable",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.base.brutality-sense",
+    "effect": "Brutality Sense. You know when a visible hostile creature is at or below one-quarter of its maximum HP; it is Vulnerable for your Warrior features that specifically reference a marked vulnerable target. This does not reveal its exact HP or hidden resistances."
+  },
+  {
+    "term": "Warrior",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.base.brutality-sense",
+    "effect": "Brutality Sense. You know when a visible hostile creature is at or below one-quarter of its maximum HP; it is Vulnerable for your Warrior features that specifically reference a marked vulnerable target. This does not reveal its exact HP or hidden resistances."
+  },
+  {
+    "term": "Staggered",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.base.brutal-strike",
+    "effect": "Brutal Strike. Make one melee weapon attack using its normal ability. On hit add S d6 damage of the weapon's type. The target makes a Constitution save; on failure it is Staggered, taking -1 on attack rolls and -5 feet Speed until the end of its next turn. This is not a full-turn denial."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.base.intimidating-presence",
+    "effect": "Intimidating Presence. Each target makes a Wisdom save. On failure it is Frightened of you until the end of its next turn, then repeats the save. A second failure extends the fear one final round. A creature that succeeds becomes immune to this use. This never forces surrender; NPC surrender remains a Director decision."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.arch.intimidating-transformation",
+    "effect": "Intimidating Transformation. Each target makes a Wisdom save. On failure it is Frightened of you until the end of its next turn and then repeats the save. On a failure by 10 or more, it would instead be Stunned until the end of its next turn, subject to the Warrior hard-control guard. A target succeeding on the initial save is immune to this use. The transformation does not force surrender or belief changes."
+  },
+  {
+    "term": "Warrior",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.hero.wardborn.controlled-transformation",
+    "effect": "Controlled Transformation. You can suppress obvious cosmetic signs of dormant mutations and reduce visible manifestations of active mutations enough to pass as merely scarred or unusually built while fully clothed. You gain advantage on checks to conceal your Warrior mutations from casual visual inspection. This never suppresses mechanical mutation effects, defeats magical detection or conceals transformations whose cards explicitly make you Large, monstrous or otherwise impossible to hide."
+  },
+  {
+    "term": "Speed",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.hero.ironskin.cellular-reconstruction",
+    "effect": "Cellular Reconstruction. Enter stasis until the start of your next regular turn: your Speed becomes 0, you cannot take Actions, Bonus Actions or Reactions, and attacks against you have advantage. At the start of your next turn regain 3d8 + M HP and end Poisoned plus one mundane or magical disease that does not explicitly require a special cure. This removes no Wounds and cannot function while dead."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.hero.dreadspawn.horrific-appearance",
+    "effect": "Horrific Appearance. Whenever you activate a mutation, each qualifying enemy within 15 feet makes a Wisdom save. On failure it is Frightened of you until the end of its next turn. A creature already Frightened by this feature is not forced to save again until that instance ends. This never forces surrender or changes beliefs."
+  },
+  {
+    "term": "Speed",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.hero.dreadspawn.abomination-ascendant",
+    "effect": "Final Form – Abomination Ascendant. For 3 rounds your melee reach increases by 5 feet, your Speed increases by 10 feet and you gain a natural Claw attack dealing 2d8 + M slashing damage. At the start of each enemy's turn within 30 feet that can see you, it makes a Wisdom save; on failure it is Frightened until the end of that turn. The hard-control guard still applies to any other denial effect you use. This transformation grants no free attacks or additional Actions."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.hero.dreadspawn.abomination-ascendant",
+    "effect": "Final Form – Abomination Ascendant. For 3 rounds your melee reach increases by 5 feet, your Speed increases by 10 feet and you gain a natural Claw attack dealing 2d8 + M slashing damage. At the start of each enemy's turn within 30 feet that can see you, it makes a Wisdom save; on failure it is Frightened until the end of that turn. The hard-control guard still applies to any other denial effect you use. This transformation grants no free attacks or additional Actions."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.hero.dreadspawn.apex-aberration-1-day",
+    "effect": "Apex Aberration. For 2 rounds increase Strength by 4, maximum 24 from this feature. You are immune to the effects and damage of hostile rank-3-or-lower spells, but not higher-rank spells, non-spell magical abilities or friendly spells you choose to accept. Whenever your weapon or natural attack hits, the target makes a Wisdom save; on failure it is Frightened until the end of its next turn. This activation is illegal if +2 Strain would exceed the cap."
+  },
+  {
+    "term": "Frightened",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.hero.dreadspawn.horrific-mutation",
+    "effect": "Horrific Mutation. Each target makes a Wisdom save. On failure it is Frightened until the end of its next turn and then repeats the save. On a failure by 10 or more, it would be Stunned until the end of its next turn, subject to the Warrior hard-control guard. A successful initial save grants immunity to this use. This transformation does not compel surrender or obedience."
+  },
+  {
+    "term": "Poisoned",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.hero.dreadspawn.toxic-secretion",
+    "effect": "Toxic Secretion. For 3 rounds, once on each of your turns when a melee weapon or natural attack hits, add S d4 poison damage. The target then makes a Constitution save; on failure it is Poisoned until the end of its next turn. Repeated applications refresh rather than stack. Poison immunity prevents both the condition and poison damage as normal."
+  },
+  {
+    "term": "Bleed",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.splinter-bone-fangs",
+    "effect": "A melee critical applies Bleed. The target takes 1d4 physical damage at the start of each of its next 2 turns. Reapplication refreshes rather than stacks."
+  },
+  {
+    "term": "Warrior",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.echo-knuckles",
+    "effect": "After you hit with a melee attack, make one offhand slam against the same target using your Warrior technique attack. On hit deal 1d8+M bludgeoning damage. This is a free attack, cannot trigger Echo Knuckles again and cannot grant another free attack."
+  },
+  {
+    "term": "Weakened",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.warpgrip-talons",
+    "effect": "A melee critical applies Weakened for 2 rounds. While Weakened, the target deals 1 less damage with each weapon or natural-weapon hit, minimum 0. Reapplication refreshes rather than stacks."
+  },
+  {
+    "term": "Silenced",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.throat-split-maw",
+    "effect": "You gain a bite attack dealing 1d8+M piercing damage. When the bite hits a creature capable of casting spells, it makes a Constitution save; on failure it is Silenced until the end of its next turn."
+  },
+  {
+    "term": "Shaken",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.carrion-signal-gland",
+    "effect": "The attacker makes a Wisdom save. On failure it becomes Shaken, taking -1 on attack rolls until the end of its next turn."
+  },
+  {
+    "term": "Disoriented",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.wailing-eye-cluster",
+    "effect": "Enemies make Wisdom saves. On failure they become Disoriented: at the start of their next turn they cannot take Reactions and their first 5 feet of movement must be in a random legal horizontal direction determined by the Director. They otherwise keep their normal Action and movement."
+  },
+  {
+    "term": "Speed",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.hypermutation-spike",
+    "effect": "When Butcherform Chassis activates, extend its maximum duration from 3 rounds to 5. During that activation you are immune to Stunned and your Speed cannot be reduced below half its normal value."
+  },
+  {
+    "term": "Aberrant",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.distorted-dominance",
+    "effect": "When a creature fails a save against your Aberrant mutation, it loses its Reaction until the end of its next turn. This provisional normalization replaces the source's undefined loss of an action and does not fully deny the target's turn."
+  },
+  {
+    "term": "Warrior",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.terror-engine",
+    "effect": "While at least two hostile creatures within 30 feet are currently Shaken, Frightened or Disoriented by your Warrior features, reduce the first damage you take each round by 2."
+  },
+  {
+    "term": "Silenced",
+    "source": "data/public/class_playtests/warrior.json",
+    "record": "warrior.supplement.synaptic-rot",
+    "effect": "When the target fails the qualifying save, it is Silenced until the end of its next turn. This does not prevent non-spell abilities."
+  },
+  {
+    "term": "Wizard",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.base.arcane-recovery",
+    "effect": "Arcane Recovery. Tags: base, passive, resonance. Once between long rests when you complete a short rest, restore RP equal to half your Wizard class level rounded up, never above your normal maximum. This is RP recovery, not a second pool, and cannot trigger spell-cast, Refrain or Dissonance effects."
+  },
+  {
+    "term": "Wizard",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.base.spellbook-study",
+    "effect": "Spellbook Study. Tags: base, active, matrix, ritual. Replace one currently prepared matrix with one legal spell recorded in your spellbook. The replacement must be within your Wizard rank limit. This is the normal midday substitution permission; it does not alter the spellbook, create another prepared-matrix position or reset first-cast/Refrain history for an underlying matrix family already cast this encounter."
+  },
+  {
+    "term": "Arcanist",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.arch.arcane-tradition",
+    "effect": "Arcane Tradition. Tags: arch, school, automatic. Your level-1 Arcane School becomes your Arcanist tradition; do not choose a second school. Prepare one additional matrix from that same school each day without counting it against your normal prepared-matrix maximum. It otherwise obeys all ordinary rank, spellbook, Dissonance and duplicate-family rules."
+  },
+  {
+    "term": "Wizard",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.arch.arcane-lock",
+    "effect": "Arcane Lock. Tags: arch, active, wizard-spell, abjuration. Magically seal the target. Opening it without your permission requires a Strength check or thieves'/arcane-tool check against your Wizard spell DC. Dispel Magic can end the lock. You can designate up to M creatures who can bypass it. This does not make the object physically indestructible."
+  },
+  {
+    "term": "Charmed",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.spellbinder.sigil-authority",
+    "effect": "Sigil Authority. Tags: hero, spellbinder, passive. Gain +1 on Counterspell and Dispel Magic ability checks. When a creature is Charmed, Frightened, Paralyzed, Restrained or Stunned by a source other than the spell you are currently casting, your Spellbinder spells that force it to save use a Wizard spell DC 2 higher. This increase never applies retroactively to the condition that enabled it."
+  },
+  {
+    "term": "Spellbinder",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.spellbinder.sigil-authority",
+    "effect": "Sigil Authority. Tags: hero, spellbinder, passive. Gain +1 on Counterspell and Dispel Magic ability checks. When a creature is Charmed, Frightened, Paralyzed, Restrained or Stunned by a source other than the spell you are currently casting, your Spellbinder spells that force it to save use a Wizard spell DC 2 higher. This increase never applies retroactively to the condition that enabled it."
+  },
+  {
+    "term": "Action",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.spellbinder.matrix-sharing",
+    "effect": "Matrix Sharing. Tags: hero, spellbinder, passive-upgrade, matrix. Choose one prepared Wizard spell of rank 3 or lower with an Action casting time. Pay both costs now. The ally may cast that spell once before the end of its next turn without paying RP, using your spell attack and DC. The shared spell cannot summon creatures, create additional Actions, use Overcast, be Shared again or bypass concentration limits. Granting this permission takes your Action; the ally spends its own normal Action to cast. The ally owns concentration and strain for the cast, and it does not update your matrix-family history or grant you cast-trigger resources."
+  },
+  {
+    "term": "Wizard",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.spellbinder.arcane-memory",
+    "effect": "Arcane Memory. Tags: hero, spellbinder, passive-upgrade, spellbook. Cast one legal-rank Wizard spell that you previously prepared and have recorded in your campaign memory log, even if it is not currently prepared or its spellbook entry is unavailable. Pay the normal RP cost and obey casting time, concentration and all ordinary restrictions. This grants no spell above your Wizard rank limit."
+  },
+  {
+    "term": "Restrained",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.spellbinder.runic-snare",
+    "effect": "Runic Snare. Tags: hero, spellbinder, wizard-spell, glyph, control. Place a visible-to-you glyph. The first hostile creature entering the square makes a Dexterity save. Failure deals S d6 force damage, causes Restrained until the end of its next turn and makes it drop one non-attuned held item of its choice. Success takes half damage with no restraint or drop. A Restrained target may repeat a Strength save at the end of its turn."
+  },
+  {
+    "term": "Counterspell",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.spellbinder.counterpulse",
+    "effect": "Counterpulse. Tags: hero, spellbinder, counter, control. Immediately after your Counterspell succeeds, spend 1 RP. The countered caster is Silenced until the end of its next turn. This is part of the successful counter event rather than another spell cast and cannot trigger another Counterpulse."
+  },
+  {
+    "term": "Silenced",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.spellbinder.counterpulse",
+    "effect": "Counterpulse. Tags: hero, spellbinder, counter, control. Immediately after your Counterspell succeeds, spend 1 RP. The countered caster is Silenced until the end of its next turn. This is part of the successful counter event rather than another spell cast and cannot trigger another Counterpulse."
+  },
+  {
+    "term": "Elemental Affinity",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.elementalist.core-sync",
+    "effect": "Core Sync. Tags: hero, elementalist, passive, elemental. Rank-1 and rank-2 Wizard spells whose primary damage type matches your current Elemental Affinity cost 1 less RP, minimum 1. Once per long rest as a Bonus Action you may change your Elemental Affinity to Fire, Cold, Lightning or Earth; changing it does not alter currently active spell effects."
+  },
+  {
+    "term": "Wizard",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.mind-matrix",
+    "effect": "Mind Matrix. Tags: hero, necromancer, passive, enchantment. Increase your Wizard save DC by 2 for Enchantment spells. This stacks with your level-1 school bonus only if Enchantment is your Arcane School. It does not increase DCs for non-spell class techniques merely because they influence a creature's mind."
+  },
+  {
+    "term": "Enchantment",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.mind-matrix",
+    "effect": "Mind Matrix. Tags: hero, necromancer, passive, enchantment. Increase your Wizard save DC by 2 for Enchantment spells. This stacks with your level-1 school bonus only if Enchantment is your Arcane School. It does not increase DCs for non-spell class techniques merely because they influence a creature's mind."
+  },
+  {
+    "term": "Arcane School",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.mind-matrix",
+    "effect": "Mind Matrix. Tags: hero, necromancer, passive, enchantment. Increase your Wizard save DC by 2 for Enchantment spells. This stacks with your level-1 school bonus only if Enchantment is your Arcane School. It does not increase DCs for non-spell class techniques merely because they influence a creature's mind."
+  },
+  {
+    "term": "Wizard",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.will-domination",
+    "effect": "Will Domination. Tags: hero, necromancer, passive, control. When a creature's total on a saving throw against your Wizard spell is at least 5 below the DC, it is Stunned until the end of its next turn. After this successfully Stuns that creature once in the encounter, later qualifying failures instead remove its Reaction until the end of its next turn. This uses the shared source-character/target hard-denial mark across all your features, not a separate allowance per spell."
+  },
+  {
+    "term": "Stunned",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.will-domination",
+    "effect": "Will Domination. Tags: hero, necromancer, passive, control. When a creature's total on a saving throw against your Wizard spell is at least 5 below the DC, it is Stunned until the end of its next turn. After this successfully Stuns that creature once in the encounter, later qualifying failures instead remove its Reaction until the end of its next turn. This uses the shared source-character/target hard-denial mark across all your features, not a separate allowance per spell."
+  },
+  {
+    "term": "Wizard",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.arcane-leech",
+    "effect": "Arcane Leech. Tags: hero, necromancer, passive. When at least one hostile creature fails a saving throw against one of your Wizard spells, gain temporary HP equal to S+M. Multiple failed targets from the same spell do not multiply the amount. This does not drain actual HP, generate RP or trigger from your companions' abilities."
+  },
+  {
+    "term": "Wizard",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.binding-sigil",
+    "effect": "Binding Sigil. Tags: hero, necromancer, passive, mark. After one creature takes damage from or fails a save against your Wizard spell, you may mark it. Until the end of your next regular turn you have advantage on Wizard spell attacks against that creature. Marking another creature ends the previous mark. Echoes, companions and environmental damage cannot apply it."
+  },
+  {
+    "term": "Goblin Thrall",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.corpse-harvest",
+    "effect": "Corpse Harvest. Tags: hero, necromancer, wizard-spell, undead, summon. Raise the corpse as a Skeleton or Zombie using the common standard-undead statistics; a goblinoid corpse may instead become a Goblin Thrall. The corpse is consumed into that minion state. The creature obeys the shared Bonus Action Companion Command rule. Creating a fourth standard minion requires dismissing one existing standard minion first."
+  },
+  {
+    "term": "Charmed",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.mental-binding",
+    "effect": "Mental Binding. Tags: hero, necromancer, wizard-spell, enchantment, control, concentration. Target WIS save; failure becomes Charmed for at most 3 rounds, repeat save at end each turn and on damage. On its first affected turn only, choose Approach, Retreat, Drop, Kneel or Strike; target uses up to half Speed, one object interaction or one ordinary weapon attack as appropriate, consuming its normal Action only if an attack is made. This command replaces at most one normal Action/turn and uses the shared hard-denial mark. Later turns retain normal actions, but while Charmed it cannot willingly attack you. No self-harm, compelled beliefs, resource expenditure or permanent allegiance. The player chooses the safest legal interpretation for a PC."
+  },
+  {
+    "term": "Charmed",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.mental-binding",
+    "effect": "Mental Binding. Tags: hero, necromancer, wizard-spell, enchantment, control, concentration. Target WIS save; failure becomes Charmed for at most 3 rounds, repeat save at end each turn and on damage. On its first affected turn only, choose Approach, Retreat, Drop, Kneel or Strike; target uses up to half Speed, one object interaction or one ordinary weapon attack as appropriate, consuming its normal Action only if an attack is made. This command replaces at most one normal Action/turn and uses the shared hard-denial mark. Later turns retain normal actions, but while Charmed it cannot willingly attack you. No self-harm, compelled beliefs, resource expenditure or permanent allegiance. The player chooses the safest legal interpretation for a PC."
+  },
+  {
+    "term": "Charmed",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.arcane-domination",
+    "effect": "Arcane Domination. Tags: hero, necromancer, wizard-spell, enchantment, control, concentration. Target WIS save; failure Charmed for 1 minute, repeat at end each turn and on damage. Once during this effect, spend Bonus Action to command its NEXT normal turn: Move up to Speed and either Dodge, Disengage or make one ordinary weapon attack, replacing its normal Action and using the shared hard-denial mark. It gains no extra turn or attack; later turns retain normal actions while Charmed, with no Reactions until effect ends. A PC chooses its legal attack target and reasonable route. No self-harm, forced spell/resource expenditure, belief change or permanent control."
+  },
+  {
+    "term": "Speed",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.hero.necromancer.mind-prison",
+    "effect": "Mind Prison. Tags: hero, necromancer, final-theorem, enchantment, illusion, control, concentration. Target WIS save; failure Incapacitated until end of its NEXT normal turn, using the shared hard-denial mark. During that one turn you may spend a Bonus Action on your turn to specify one replacement behavior: target moves up to half Speed and either Dodges or makes one ordinary weapon attack instead of its lost Action; a PC chooses its own attack target and route. After that first affected turn, no further Action denial or compelled attack occurs: while concentration continues, target Speed is halved and it cannot take Reactions. It repeats WIS save at end each turn and on damage, ending on success. Maximum 3 rounds. No forced self-harm, spell expenditure, transfer of equipment, confession, belief change or permanent allegiance."
+  },
+  {
+    "term": "Arcane School",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.supplement.arcane-ward",
+    "effect": "Source progression line 5187. After preparing spells, choose one of acid, cold, fire, force, lightning, necrotic, psychic, radiant or thunder that is dealt by at least one prepared spell of your Arcane School. Gain resistance to that damage type until your next long rest. If none of your prepared school spells deals a damage type, choose force. This is provisional completion of the source's ambiguous 'chosen school's element' wording."
+  },
+  {
+    "term": "Counterspell",
+    "source": "data/public/class_playtests/wizard.json",
+    "record": "wizard.supplement.arcane-feedback",
+    "effect": "Source progression line 5191, converted from historical slot wording to RP. After your Counterspell successfully negates a spell, restore 1 RP, never above your normal maximum. A counter produced by a companion, reflected spell or copied Counterspell does not trigger this feature."
+  }
+]

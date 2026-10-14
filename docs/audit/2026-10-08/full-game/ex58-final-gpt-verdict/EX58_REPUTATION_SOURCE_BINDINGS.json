@@ -1,0 +1,1753 @@
+{
+  "reviewId": "EX58-SOURCE-2026-10-11",
+  "audience": "internal source comparison; not an unrestricted public faction dossier",
+  "standingPolicy": "standing-v1",
+  "backgrounds": [
+    {
+      "backgroundId": "aethel-city-guard-veteran",
+      "name": "Aethel City Guard Veteran",
+      "fullFeatureSource": "Watchman's Eye: You are adept at noticing suspicious behavior and navigating urban environments. You gain advantage on Wisdom (Perception) checks made to spot trouble within city limits and on checks made to navigate or find locations within Aethel. Your time in the Guard grants you Neutral starting Reputation with Aethel authorities and Liked starting Reputation among the city's common folk.",
+      "sourceBinding": [
+        {
+          "line": 5686,
+          "text": "Skill Proficiencies: Athletics, Insight"
+        },
+        {
+          "line": 5687,
+          "text": "Tool Proficiencies: One type of gaming set, Vehicles (Land)"
+        },
+        {
+          "line": 5688,
+          "text": "Equipment: A piece of your old uniform (e.g., a dented helmet or worn insignia), a map of Aethel's main districts, a set of common clothes, manacles, and a belt pouch containing 10 gp."
+        },
+        {
+          "line": 5689,
+          "text": "Feature: Watchman's Eye: You are adept at noticing suspicious behavior and navigating urban environments. You gain advantage on Wisdom (Perception) checks made to spot trouble within city limits and on checks made to navigate or find locations within Aethel. Your time in the Guard grants you Neutral starting Reputation with Aethel authorities and Liked starting Reputation among the city's common folk."
+        }
+      ],
+      "originalRuntimeMap": {
+        "aethel-authorities": 0,
+        "common-folk": 1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "Aethel authorities",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "aethel-authorities"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "the city common folk who know this service",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "common-folk"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "rift-scarred-survivor",
+      "name": "Rift Scarred Survivor",
+      "fullFeatureSource": "Planar Sense: Your exposure to other realities grants you advantage on saving throws against being frightened or charmed by aberrations, celestials, elementals, fey, or fiends. Additionally, you have Neutral starting Reputation with scholars of the planes but Disliked starting Reputation with mundane authorities who distrust Rift survivors.",
+      "sourceBinding": [
+        {
+          "line": 5725,
+          "text": "Skill Proficiencies: Survival, Arcana"
+        },
+        {
+          "line": 5726,
+          "text": "Languages: One Exotic language (Abyssal, Celestial, Primordial, or Deep Cant, reflecting the Rift's nature)"
+        },
+        {
+          "line": 5727,
+          "text": "Equipment: A strange trinket from the other side (e.g., a shard of obsidian that hums faintly, a feather that never gets dirty), a tattered map of a place that doesn't exist on Aethel, a set of traveler's clothes, an amulet to ward off bad luck, and 5 gp."
+        },
+        {
+          "line": 5728,
+          "text": "Feature: Planar Sense: Your exposure to other realities grants you advantage on saving throws against being frightened or charmed by aberrations, celestials, elementals, fey, or fiends. Additionally, you have Neutral starting Reputation with scholars of the planes but Disliked starting Reputation with mundane authorities who distrust Rift survivors."
+        }
+      ],
+      "originalRuntimeMap": {
+        "planar-scholars": 0,
+        "mundane-authorities": -1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "scholars of the planes",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "planar-scholars"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "mundane authorities who distrust Rift survivors",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "mundane-authorities"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "disgraced-noble-scion",
+      "name": "Disgraced Noble Scion",
+      "fullFeatureSource": "Lingering Influence: Though disgraced, some still recognize your family name or former status. Once per week, you can attempt to leverage your past connections to gain an audience with a minor official, secure information, or receive temporary lodging, though this may attract unwanted attention or reinforce your Disliked starting Reputation among the established nobility. You have Neutral starting Reputation with the underworld or revolutionary groups who oppose the nobility.",
+      "sourceBinding": [
+        {
+          "line": 5764,
+          "text": "Skill Proficiencies: History, Persuasion"
+        },
+        {
+          "line": 5765,
+          "text": "Tool Proficiencies: One type of gaming set"
+        },
+        {
+          "line": 5766,
+          "text": "Languages: One of your choice"
+        },
+        {
+          "line": 5767,
+          "text": "Equipment: A set of fine clothes (perhaps slightly worn), a signet ring bearing a tarnished or altered family crest, a letter detailing your disgrace (or a forged letter proclaiming your innocence), and a purse containing 25 gp (perhaps the last of your inheritance)."
+        },
+        {
+          "line": 5768,
+          "text": "Feature: Lingering Influence: Though disgraced, some still recognize your family name or former status. Once per week, you can attempt to leverage your past connections to gain an audience with a minor official, secure information, or receive temporary lodging, though this may attract unwanted attention or reinforce your Disliked starting Reputation among the established nobility. You have Neutral starting Reputation with the underworld or revolutionary groups who oppose the nobility."
+        }
+      ],
+      "originalRuntimeMap": {
+        "established-nobility": -1,
+        "underworld": 0
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "established nobility recognizing the disgrace",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "established-nobility"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "underworld or revolutionary groups opposing that nobility",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "underworld"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "wildling-herbalist",
+      "name": "Wildling Herbalist",
+      "fullFeatureSource": "Natural Remedy: You can identify most mundane and magical plants with ease and know their potential uses. During a long rest, you can gather natural components (if available in the environment) to create one Potion of Healing (basic) or an antitoxin without expending gold. This knowledge grants you Liked starting Reputation with Druidic circles and isolated wildling communities, but Disliked starting Reputation with alchemists guilds who see you as competition.",
+      "sourceBinding": [
+        {
+          "line": 5804,
+          "text": "Skill Proficiencies: Nature, Medicine"
+        },
+        {
+          "line": 5805,
+          "text": "Tool Proficiencies: Herbalism kit"
+        },
+        {
+          "line": 5806,
+          "text": "Languages: Sylvan or Primordial (choose one)"
+        },
+        {
+          "line": 5807,
+          "text": "Equipment: An herbalism kit, a staff carved with natural symbols, a collection of dried herbs and rare flowers, a set of common clothes made from animal hides, and a belt pouch containing 5 gp."
+        },
+        {
+          "line": 5808,
+          "text": "Feature: Natural Remedy: You can identify most mundane and magical plants with ease and know their potential uses. During a long rest, you can gather natural components (if available in the environment) to create one Potion of Healing (basic) or an antitoxin without expending gold. This knowledge grants you Liked starting Reputation with Druidic circles and isolated wildling communities, but Disliked starting Reputation with alchemists guilds who see you as competition."
+        }
+      ],
+      "originalRuntimeMap": {
+        "druidic-circles": 1,
+        "wildling-communities": 1,
+        "alchemists-guilds": -1,
+        "nature-circles": 1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "actual Druidic circles",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "druidic-circles"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "isolated wildling communities",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "wildling-communities"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "alchemists guilds seeing the character as competition",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "alchemists-guilds"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "guild-artisan-dropout",
+      "name": "Guild Artisan Dropout",
+      "fullFeatureSource": "Trade Secret: You retain knowledge of your former craft and the business practices of guilds. You can identify quality craftsmanship in items related to your former trade, potentially spotting fakes or assessing true value. You also know how to navigate guild bureaucracy or find contacts within the artisan community, though your departure means you have Disliked starting Reputation with your former guild but Neutral starting Reputation with rival guilds or independent artisans.",
+      "sourceBinding": [
+        {
+          "line": 5844,
+          "text": "Skill Proficiencies: Insight, Persuasion"
+        },
+        {
+          "line": 5845,
+          "text": "Tool Proficiencies: One type of artisan's tools"
+        },
+        {
+          "line": 5846,
+          "text": "Languages: One of your choice"
+        },
+        {
+          "line": 5847,
+          "text": "Equipment: A set of artisan's tools you managed to keep, a sample of your best work (now perhaps used for mundane tasks), a letter of resignation (or expulsion) from your guild, a set of traveler's clothes, and a belt pouch containing 15 gp."
+        },
+        {
+          "line": 5848,
+          "text": "Feature: Trade Secret: You retain knowledge of your former craft and the business practices of guilds. You can identify quality craftsmanship in items related to your former trade, potentially spotting fakes or assessing true value. You also know how to navigate guild bureaucracy or find contacts within the artisan community, though your departure means you have Disliked starting Reputation with your former guild but Neutral starting Reputation with rival guilds or independent artisans."
+        }
+      ],
+      "originalRuntimeMap": {
+        "artisan-guilds": -1,
+        "rival-guilds": 0
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "the actual former guild",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "artisan-guilds"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "rival guilds or independent artisans",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "rival-guilds"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "seeker-of-the-lost-pantheon",
+      "name": "Seeker of the Lost Pantheon",
+      "fullFeatureSource": "Whispers of the Past: Your research into forgotten lore gives you occasional insights. When encountering ancient ruins, symbols, or texts related to Aethel's history (pre-dating the current dominant faiths), you have advantage on Intelligence checks (History, Religion, Arcana) to decipher their meaning or context. Your quest grants you Neutral starting Reputation with mainstream religious orders (who may view you with suspicion) but Liked starting Reputation with fringe historians, hidden cults, or communities that secretly maintain old traditions.",
+      "sourceBinding": [
+        {
+          "line": 5884,
+          "text": "Skill Proficiencies: Religion, History"
+        },
+        {
+          "line": 5885,
+          "text": "Tool Proficiencies: Calligrapher's supplies or Cartographer's tools (choose one)"
+        },
+        {
+          "line": 5886,
+          "text": "Languages: Two of your choice (often ancient or obscure ones)"
+        },
+        {
+          "line": 5887,
+          "text": "Equipment: A rubbing from an ancient tablet, a book of fragmented myths, a holy symbol of a forgotten deity (perhaps self-made), a set of common clothes, incense, and 10 gp."
+        },
+        {
+          "line": 5888,
+          "text": "Feature: Whispers of the Past: Your research into forgotten lore gives you occasional insights. When encountering ancient ruins, symbols, or texts related to Aethel's history (pre-dating the current dominant faiths), you have advantage on Intelligence checks (History, Religion, Arcana) to decipher their meaning or context. Your quest grants you Neutral starting Reputation with mainstream religious orders (who may view you with suspicion) but Liked starting Reputation with fringe historians, hidden cults, or communities that secretly maintain old traditions."
+        }
+      ],
+      "originalRuntimeMap": {
+        "mainstream-faith": 0,
+        "fringe-historians": 1,
+        "religious-orders": 0
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "mainstream religious orders",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "mainstream-faith"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "fringe historians, hidden cults or communities maintaining those old traditions",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "fringe-historians"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "marked-fugitive",
+      "name": "Marked Fugitive",
+      "fullFeatureSource": "Echo of the Stolen: You carry a fragment of forbidden power. Once per long rest, you may replicate a 1st-level spell you've seen cast (must have been cast within the last hour, and you must have line of sight when it was cast). It uses your Charisma and can only be used if it fits your class spell list or mystery. After using this, your brand glows faintly, potentially alerting your pursuers. This power grants you Liked starting Reputation with underground resistance movements but Hated starting Reputation with the faction you stole from.",
+      "sourceBinding": [
+        {
+          "line": 5925,
+          "text": "Skill Proficiencies: Stealth, Arcana"
+        },
+        {
+          "line": 5926,
+          "text": "Tool Proficiencies: Thieves' Tools"
+        },
+        {
+          "line": 5927,
+          "text": "Languages: One obscure or factional language (e.g., Celestial, Infernal, Forgotten Script)"
+        },
+        {
+          "line": 5928,
+          "text": "Equipment: Broken manacle, false identity papers, hidden mark or scar, 10 gp in mixed coin"
+        },
+        {
+          "line": 5929,
+          "text": "Feature: Echo of the Stolen: You carry a fragment of forbidden power. Once per long rest, you may replicate a 1st-level spell you've seen cast (must have been cast within the last hour, and you must have line of sight when it was cast). It uses your Charisma and can only be used if it fits your class spell list or mystery. After using this, your brand glows faintly, potentially alerting your pursuers. This power grants you Liked starting Reputation with underground resistance movements but Hated starting Reputation with the faction you stole from."
+        }
+      ],
+      "originalRuntimeMap": {
+        "underground-resistance": 1,
+        "marked-pursuers": -2
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "underground resistance movements",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "underground-resistance"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "the actual faction stolen from",
+          "sourceBand": "Hated",
+          "newInitialScore": -2,
+          "candidateRegistryReferences": [
+            "marked-pursuers"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "expedition-cartographer",
+      "name": "Expedition Cartographer",
+      "fullFeatureSource": "Trailblazer: You have an excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features you've seen or studied. When in wilderness environments, you can identify the safest route forward, potential hazards, and prime camping locations. Your professional reputation grants you Liked starting Reputation with merchant guilds and explorers' societies but Neutral starting Reputation with indigenous tribes wary of outsiders mapping their territories.",
+      "sourceBinding": [
+        {
+          "line": 5965,
+          "text": "Skill Proficiencies: Survival, Investigation"
+        },
+        {
+          "line": 5966,
+          "text": "Tool Proficiencies: Cartographer's tools, Navigator's tools"
+        },
+        {
+          "line": 5967,
+          "text": "Equipment: A set of cartographer's tools, several blank parchments, a collection of partially completed maps, a compass, a set of traveler's clothes, and a belt pouch containing 10 gp."
+        },
+        {
+          "line": 5968,
+          "text": "Feature: Trailblazer: You have an excellent memory for maps and geography. You can always recall the general layout of terrain, settlements, and other features you've seen or studied. When in wilderness environments, you can identify the safest route forward, potential hazards, and prime camping locations. Your professional reputation grants you Liked starting Reputation with merchant guilds and explorers' societies but Neutral starting Reputation with indigenous tribes wary of outsiders mapping their territories."
+        }
+      ],
+      "originalRuntimeMap": {
+        "merchant-guilds": 1,
+        "explorers-societies": 1,
+        "indigenous-tribes": 0
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "merchant guilds",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "merchant-guilds"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "explorers societies",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "explorers-societies"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "indigenous tribes wary of outsider mapping",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "indigenous-tribes"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "arcane-academy-dropout",
+      "name": "Arcane Academy Dropout",
+      "fullFeatureSource": "Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking.",
+      "sourceBinding": [
+        {
+          "line": 6004,
+          "text": "Skill Proficiencies: Arcana, History"
+        },
+        {
+          "line": 6005,
+          "text": "Languages: Two of your choice"
+        },
+        {
+          "line": 6006,
+          "text": "Equipment: A spellbook or arcane focus (perhaps damaged or modified), a letter of expulsion or resignation, a set of common clothes, a student's robe, and a pouch containing 10 gp."
+        },
+        {
+          "line": 6007,
+          "text": "Feature: Theoretical Knowledge: Despite your incomplete education, you retain substantial theoretical knowledge. You have advantage on Intelligence (Arcana) checks related to identifying magical effects, traditions, or items, even if you can't replicate them yourself. Your academic background grants you Disliked starting Reputation with formal arcane institutions but Neutral starting Reputation with independent mages and magical researchers who value unorthodox thinking."
+        }
+      ],
+      "originalRuntimeMap": {
+        "arcane-institutions": -1,
+        "independent-mages": 0,
+        "academic-factions": -1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "formal arcane institutions",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "arcane-institutions"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "independent mages and magical researchers valuing unorthodoxy",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "independent-mages"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "cult-escapee",
+      "name": "Cult Escapee",
+      "fullFeatureSource": "Dark Insights: Your exposure to forbidden rituals and entities grants you advantage on Intelligence (Religion) checks related to dark cults, eldritch entities, or occult practices. You can also recognize cult symbols, coded language, and recruitment tactics. Your past grants you Hated starting Reputation with your former cult and Disliked starting Reputation with religious authorities who may suspect your past, but Liked starting Reputation with groups that actively oppose cults.",
+      "sourceBinding": [
+        {
+          "line": 6043,
+          "text": "Skill Proficiencies: Religion, Deception"
+        },
+        {
+          "line": 6044,
+          "text": "Tool Proficiencies: Disguise kit"
+        },
+        {
+          "line": 6045,
+          "text": "Languages: One exotic language (often Abyssal, Infernal, or Deep Cant)"
+        },
+        {
+          "line": 6046,
+          "text": "Equipment: A cult symbol (defaced or hidden), a disguise kit, a journal containing cult teachings (perhaps with your own critical notes), a set of common clothes, and a pouch containing 5 gp."
+        },
+        {
+          "line": 6047,
+          "text": "Feature: Dark Insights: Your exposure to forbidden rituals and entities grants you advantage on Intelligence (Religion) checks related to dark cults, eldritch entities, or occult practices. You can also recognize cult symbols, coded language, and recruitment tactics. Your past grants you Hated starting Reputation with your former cult and Disliked starting Reputation with religious authorities who may suspect your past, but Liked starting Reputation with groups that actively oppose cults."
+        }
+      ],
+      "originalRuntimeMap": {
+        "dark-cults": -2,
+        "anti-cult-groups": 1,
+        "religious-orders": 1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "the actual former cult",
+          "sourceBand": "Hated",
+          "newInitialScore": -2,
+          "candidateRegistryReferences": [
+            "dark-cults"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "religious authorities suspicious of the actual past",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "religious-orders"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "groups actively opposing cults",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "anti-cult-groups"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Cult Escapee runtime religious-orders:+1 conflicts with complete Disliked source; RP-A03 precise initialization correction.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "planar-merchant",
+      "name": "Planar Merchant",
+      "fullFeatureSource": "Planar Connections: You maintain a network of extraplanar contacts. Once per week, you can attempt to acquire a rare item with planar origins or properties (subject to Director approval and appropriate costs), or gain information about planar phenomena or entities. Your business dealings grant you Liked starting Reputation with planar trading guilds but Disliked starting Reputation with planar customs authorities who suspect you of smuggling.",
+      "sourceBinding": [
+        {
+          "line": 6084,
+          "text": "Skill Proficiencies: Persuasion, Arcana"
+        },
+        {
+          "line": 6085,
+          "text": "Tool Proficiencies: One type of artisan's tools or gaming set"
+        },
+        {
+          "line": 6086,
+          "text": "Languages: Two of your choice"
+        },
+        {
+          "line": 6087,
+          "text": "Equipment: A small trinket from another plane (a coin, gem, or curiosity), a ledger of contacts and transactions, a set of fine clothes, merchant's scales, and a pouch containing 20 gp."
+        },
+        {
+          "line": 6088,
+          "text": "Feature: Planar Connections: You maintain a network of extraplanar contacts. Once per week, you can attempt to acquire a rare item with planar origins or properties (subject to Director approval and appropriate costs), or gain information about planar phenomena or entities. Your business dealings grant you Liked starting Reputation with planar trading guilds but Disliked starting Reputation with planar customs authorities who suspect you of smuggling."
+        }
+      ],
+      "originalRuntimeMap": {
+        "planar-trading-guilds": 1,
+        "planar-customs": -1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "planar trading guilds",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "planar-trading-guilds"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "planar customs authorities suspecting smuggling",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "planar-customs"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "battlefield-medic",
+      "name": "Battlefield Medic",
+      "fullFeatureSource": "Trauma Response: Your battlefield experience has honed your emergency medical skills. When you use a healer's kit to stabilize a dying creature, they regain 1 hit point immediately. Additionally, you can identify the nature and severity of injuries at a glance. Your service grants you Liked starting Reputation with veterans of the conflict you served in but Neutral starting Reputation with those who fought on the opposing side.",
+      "sourceBinding": [
+        {
+          "line": 6124,
+          "text": "Skill Proficiencies: Medicine, Insight"
+        },
+        {
+          "line": 6125,
+          "text": "Tool Proficiencies: Healer's kit, Herbalism kit"
+        },
+        {
+          "line": 6126,
+          "text": "Equipment: A healer's kit, a bloodstained bandana or token from your service, a journal containing medical notes and sketches, a set of common clothes, and a pouch containing 10 gp."
+        },
+        {
+          "line": 6127,
+          "text": "Feature: Trauma Response: Your battlefield experience has honed your emergency medical skills. When you use a healer's kit to stabilize a dying creature, they regain 1 hit point immediately. Additionally, you can identify the nature and severity of injuries at a glance. Your service grants you Liked starting Reputation with veterans of the conflict you served in but Neutral starting Reputation with those who fought on the opposing side."
+        }
+      ],
+      "originalRuntimeMap": {
+        "war-veterans": 1,
+        "opposing-forces": 0
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "veterans of the actual conflict served",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "war-veterans"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "those who fought on its opposing side",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "opposing-forces"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "dimensional-refugee",
+      "name": "Dimensional Refugee",
+      "fullFeatureSource": "Otherworldly Perspective: Your unique background gives you insights others lack. You have advantage on Intelligence checks related to identifying extraplanar phenomena, and your different perspective sometimes allows you to suggest unconventional solutions to problems. Your alien nature grants you Neutral starting Reputation with most Aethel natives but Liked starting Reputation with scholars of the multiverse and others with planar experience.",
+      "sourceBinding": [
+        {
+          "line": 6163,
+          "text": "Skill Proficiencies: Survival, History (of your original world)"
+        },
+        {
+          "line": 6164,
+          "text": "Languages: Two of your choice"
+        },
+        {
+          "line": 6165,
+          "text": "Equipment: A strange device or artifact from your home world (possibly non-functional in Aethel), clothing of unusual design or material, a journal where you record differences between worlds, and a pouch containing 5 gp."
+        },
+        {
+          "line": 6166,
+          "text": "Feature: Otherworldly Perspective: Your unique background gives you insights others lack. You have advantage on Intelligence checks related to identifying extraplanar phenomena, and your different perspective sometimes allows you to suggest unconventional solutions to problems. Your alien nature grants you Neutral starting Reputation with most Aethel natives but Liked starting Reputation with scholars of the multiverse and others with planar experience."
+        }
+      ],
+      "originalRuntimeMap": {
+        "common-folk": 0,
+        "planar-scholars": 1,
+        "academic-factions": 0
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "most actual Aethel natives",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "common-folk"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "multiverse scholars and others with planar experience",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "planar-scholars"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "relic-hunter",
+      "name": "Relic Hunter",
+      "fullFeatureSource": "Relic Lore: You can accurately identify the culture, approximate age, and potential significance of ancient artifacts with a successful Intelligence (History) check. You also have a network of contacts interested in buying, selling, or studying such items. Your profession grants you Liked starting Reputation with museums and collectors but Disliked starting Reputation with indigenous peoples or religious orders who view your work as desecration.",
+      "sourceBinding": [
+        {
+          "line": 6202,
+          "text": "Skill Proficiencies: History, Investigation"
+        },
+        {
+          "line": 6203,
+          "text": "Tool Proficiencies: Cartographer's tools or Thieves' tools (choose one)"
+        },
+        {
+          "line": 6204,
+          "text": "Languages: One of your choice"
+        },
+        {
+          "line": 6205,
+          "text": "Equipment: A small, authentic relic (perhaps your first find), a reference book on ancient civilizations, a magnifying glass, a set of traveler's clothes, and a pouch containing 15 gp."
+        },
+        {
+          "line": 6206,
+          "text": "Feature: Relic Lore: You can accurately identify the culture, approximate age, and potential significance of ancient artifacts with a successful Intelligence (History) check. You also have a network of contacts interested in buying, selling, or studying such items. Your profession grants you Liked starting Reputation with museums and collectors but Disliked starting Reputation with indigenous peoples or religious orders who view your work as desecration."
+        }
+      ],
+      "originalRuntimeMap": {
+        "museums-collectors": 1,
+        "indigenous-peoples": -1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "museums and collectors",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "museums-collectors"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "indigenous peoples who view the work as desecration",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "indigenous-peoples"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "religious orders who view the work as desecration",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "corruption-survivor",
+      "name": "Corruption Survivor",
+      "fullFeatureSource": "Corruption Sense: You can sense strong sources of corruption (undead, fiends, or cursed objects) within 60 feet, though you cannot pinpoint their exact location without further investigation. You have advantage on saving throws against diseases and the corrupting effects of undead or fiends. Your experience grants you Liked starting Reputation with cleansing orders and purification cults but Disliked starting Reputation with those who study or harness corruption.",
+      "sourceBinding": [
+        {
+          "line": 6242,
+          "text": "Skill Proficiencies: Religion, Insight"
+        },
+        {
+          "line": 6243,
+          "text": "Tool Proficiencies: Herbalism kit"
+        },
+        {
+          "line": 6244,
+          "text": "Languages: One exotic language (often Abyssal, Infernal, or Deep Cant)"
+        },
+        {
+          "line": 6245,
+          "text": "Equipment: A holy symbol or protective charm, a vial of purified water, a journal documenting your experience and recovery, a set of common clothes, and a pouch containing 10 gp."
+        },
+        {
+          "line": 6246,
+          "text": "Feature: Corruption Sense: You can sense strong sources of corruption (undead, fiends, or cursed objects) within 60 feet, though you cannot pinpoint their exact location without further investigation. You have advantage on saving throws against diseases and the corrupting effects of undead or fiends. Your experience grants you Liked starting Reputation with cleansing orders and purification cults but Disliked starting Reputation with those who study or harness corruption."
+        }
+      ],
+      "originalRuntimeMap": {
+        "cleansing-orders": 1,
+        "corruption-scholars": -1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "cleansing orders and purification cults",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "cleansing-orders"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "those who study or harness corruption",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "corruption-scholars"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "frontier-settler",
+      "name": "Frontier Settler",
+      "fullFeatureSource": "Frontier Adaptability: You excel at making do with limited resources. You can improvise tools and basic equipment from available materials, create adequate shelter in wilderness environments, and identify safe food and water sources in natural settings. Your frontier background grants you Liked starting Reputation with other frontier communities and traders but Neutral starting Reputation with urban elites who may view you as uncultured.",
+      "sourceBinding": [
+        {
+          "line": 6282,
+          "text": "Skill Proficiencies: Survival, Animal Handling"
+        },
+        {
+          "line": 6283,
+          "text": "Tool Proficiencies: One type of artisan's tools, vehicles (land)"
+        },
+        {
+          "line": 6284,
+          "text": "Equipment: A handmade tool or weapon from your settlement, a map of the frontier region you lived in, a small token from a community member, a set of common clothes, and a pouch containing 10 gp."
+        },
+        {
+          "line": 6285,
+          "text": "Feature: Frontier Adaptability: You excel at making do with limited resources. You can improvise tools and basic equipment from available materials, create adequate shelter in wilderness environments, and identify safe food and water sources in natural settings. Your frontier background grants you Liked starting Reputation with other frontier communities and traders but Neutral starting Reputation with urban elites who may view you as uncultured."
+        }
+      ],
+      "originalRuntimeMap": {
+        "frontier-communities": 1,
+        "urban-elites": 0,
+        "nature-circles": 0
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "other frontier communities",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "frontier-communities"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "actual frontier traders",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "urban elites",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "urban-elites"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "prophecy-bearer",
+      "name": "Prophecy Bearer",
+      "fullFeatureSource": "Fated Path: When you attempt a task directly related to fulfilling your prophecy, you can gain advantage on one ability check, saving throw, or attack roll. Once you use this feature, you cannot use it again until you complete a long rest. Your prophesied status grants you Liked starting Reputation with those who believe in your destiny but Disliked starting Reputation with those who fear or oppose what you're foretold to do.",
+      "sourceBinding": [
+        {
+          "line": 6321,
+          "text": "Skill Proficiencies: Religion, History"
+        },
+        {
+          "line": 6322,
+          "text": "Languages: Two of your choice"
+        },
+        {
+          "line": 6323,
+          "text": "Equipment: A copy or fragment of the prophecy concerning you, a distinctive birthmark or physical feature mentioned in the prophecy, a symbolic item related to your foretold destiny, a set of traveler's clothes, and a pouch containing 15 gp."
+        },
+        {
+          "line": 6324,
+          "text": "Feature: Fated Path: When you attempt a task directly related to fulfilling your prophecy, you can gain advantage on one ability check, saving throw, or attack roll. Once you use this feature, you cannot use it again until you complete a long rest. Your prophesied status grants you Liked starting Reputation with those who believe in your destiny but Disliked starting Reputation with those who fear or oppose what you're foretold to do."
+        }
+      ],
+      "originalRuntimeMap": {
+        "prophecy-believers": 1,
+        "prophecy-fearful": -1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "those who actually believe in this destiny",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "prophecy-believers"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "those who actually fear or oppose this foretold deed",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "prophecy-fearful"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "underworld-escapee",
+      "name": "Underworld Escapee",
+      "fullFeatureSource": "Criminal Network: Despite leaving that life behind, you maintain knowledge of how the underworld operates. You can identify criminal operations, recognize gang symbols and territories, and know where to find black markets in settlements of significant size. Your background grants you Disliked starting Reputation with law enforcement and Hated starting Reputation with your former criminal associates, but Neutral starting Reputation with other reformed criminals.",
+      "sourceBinding": [
+        {
+          "line": 6360,
+          "text": "Skill Proficiencies: Stealth, Deception"
+        },
+        {
+          "line": 6361,
+          "text": "Tool Proficiencies: Thieves' tools, one gaming set"
+        },
+        {
+          "line": 6362,
+          "text": "Equipment: A memento of your criminal past (modified to hide its true nature), a disguise kit, a set of common clothes, a hooded cloak, and a pouch containing 10 gp."
+        },
+        {
+          "line": 6363,
+          "text": "Feature: Criminal Network: Despite leaving that life behind, you maintain knowledge of how the underworld operates. You can identify criminal operations, recognize gang symbols and territories, and know where to find black markets in settlements of significant size. Your background grants you Disliked starting Reputation with law enforcement and Hated starting Reputation with your former criminal associates, but Neutral starting Reputation with other reformed criminals."
+        }
+      ],
+      "originalRuntimeMap": {
+        "law-enforcement": -1,
+        "underworld": -2,
+        "reformed-criminals": 0
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "law enforcement",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "law-enforcement"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "actual former criminal associates",
+          "sourceBand": "Hated",
+          "newInitialScore": -2,
+          "candidateRegistryReferences": [
+            "underworld"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "other reformed criminals",
+          "sourceBand": "Neutral",
+          "newInitialScore": 0,
+          "candidateRegistryReferences": [
+            "reformed-criminals"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "elemental-touched",
+      "name": "Elemental Touched",
+      "fullFeatureSource": "Elemental Affinity: You can communicate with elemental creatures of your affiliated type and have resistance to one type of damage associated with your element (fire for fire, cold for water, lightning for air, or acid for earth). Your elemental nature grants you Liked starting Reputation with elemental cultists of your affiliated element but Disliked starting Reputation with those aligned with opposing elements.",
+      "sourceBinding": [
+        {
+          "line": 6399,
+          "text": "Skill Proficiencies: Arcana, Nature"
+        },
+        {
+          "line": 6400,
+          "text": "Languages: Primordial (you can choose Auran, Aquan, Ignan, or Terran dialect based on your elemental affinity)"
+        },
+        {
+          "line": 6401,
+          "text": "Equipment: A focus item attuned to your element (a coal ember, vial of pure water, stone from a sacred mountain, or feather from a great height), clothing with motifs of your element, a journal documenting the manifestations of your power, and a pouch containing 10 gp."
+        },
+        {
+          "line": 6402,
+          "text": "Feature: Elemental Affinity: You can communicate with elemental creatures of your affiliated type and have resistance to one type of damage associated with your element (fire for fire, cold for water, lightning for air, or acid for earth). Your elemental nature grants you Liked starting Reputation with elemental cultists of your affiliated element but Disliked starting Reputation with those aligned with opposing elements."
+        }
+      ],
+      "originalRuntimeMap": {
+        "elemental-cultists": 1,
+        "opposing-elemental": -1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "source-described cultists of the actual affiliated element",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "elemental-cultists"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "source-described actual opposing groups; no opposition chart inferred",
+          "sourceBand": "Disliked",
+          "newInitialScore": -1,
+          "candidateRegistryReferences": [
+            "opposing-elemental"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    },
+    {
+      "backgroundId": "celestial-emissary",
+      "name": "Celestial Emissary",
+      "fullFeatureSource": "Divine Insight: Once per long rest, you can enter a brief trance to receive guidance on a specific question or situation. The Director provides a cryptic but truthful answer, vision, or omen related to your query. Your celestial connection grants you Liked starting Reputation with temples and religious orders aligned with good deities but Hated starting Reputation with fiendish cults and evil organizations.",
+      "sourceBinding": [
+        {
+          "line": 6438,
+          "text": "Skill Proficiencies: Religion, Persuasion"
+        },
+        {
+          "line": 6439,
+          "text": "Languages: Celestial"
+        },
+        {
+          "line": 6440,
+          "text": "Equipment: A holy symbol or celestial token, a set of ceremonial clothes, a small reliquary containing a minor celestial blessing (emits dim light in darkness), a journal of visions or instructions, and a pouch containing 15 gp."
+        },
+        {
+          "line": 6441,
+          "text": "Feature: Divine Insight: Once per long rest, you can enter a brief trance to receive guidance on a specific question or situation. The Director provides a cryptic but truthful answer, vision, or omen related to your query. Your celestial connection grants you Liked starting Reputation with temples and religious orders aligned with good deities but Hated starting Reputation with fiendish cults and evil organizations."
+        }
+      ],
+      "originalRuntimeMap": {
+        "good-temples": 1,
+        "fiendish-cults": -2,
+        "religious-orders": 1
+      },
+      "newStartingGrantRules": [
+        {
+          "actualRelationshipRequired": "source-described actual temples/orders aligned with good deities; meaning not inferred here",
+          "sourceBand": "Liked",
+          "newInitialScore": 1,
+          "candidateRegistryReferences": [
+            "good-temples"
+          ],
+          "automaticCategoryGrant": false
+        },
+        {
+          "actualRelationshipRequired": "source-described actual fiendish cults/evil organizations; meaning not inferred here",
+          "sourceBand": "Hated",
+          "newInitialScore": -2,
+          "candidateRegistryReferences": [
+            "fiendish-cults"
+          ],
+          "automaticCategoryGrant": false
+        }
+      ],
+      "correction": "Keep complete source scope; abbreviated extra/omitted runtime keys interpreted under RP-A03, never deleted from saved originals.",
+      "sameInstitutionDuplicatePolicy": "one actual relationship/grant, not two bonuses because a broad category and narrower institution both match",
+      "cosmology": "literal source receipts only",
+      "newOtherBackgroundFeaturesApproved": false
+    }
+  ],
+  "fullOriginalFactionRecords": [
+    {
+      "id": "academic-factions",
+      "name": "Academic Factions",
+      "category": "Resonance track",
+      "resonanceTrack": true,
+      "description": "Scholars, archivists, and plane-touched academies that gate rare lore."
+    },
+    {
+      "id": "religious-orders",
+      "name": "Religious Orders",
+      "category": "Resonance track",
+      "resonanceTrack": true,
+      "description": "Temples and choir-backed orders whose favor steadies divine Weave work."
+    },
+    {
+      "id": "arcane-guilds",
+      "name": "Arcane Guilds",
+      "category": "Resonance track",
+      "resonanceTrack": true,
+      "description": "Registered mage houses and guild halls that regulate arcane commerce."
+    },
+    {
+      "id": "nature-circles",
+      "name": "Nature Circles",
+      "category": "Resonance track",
+      "resonanceTrack": true,
+      "description": "Druidic circles and wildling pacts tied to primal Weave regeneration."
+    },
+    {
+      "id": "aethel-authorities",
+      "name": "Aethel Authorities",
+      "category": "Civic",
+      "description": "City Guard, magistrates, and crown agents along the Shardspire routes."
+    },
+    {
+      "id": "common-folk",
+      "name": "Common Folk",
+      "category": "Civic",
+      "description": "Market workers, refugees, and neighborhood folk who remember who helped them."
+    },
+    {
+      "id": "arcane-institutions",
+      "name": "Formal Arcane Institutions",
+      "category": "Arcane",
+      "description": "Academies and licensed colleges that credential spellwrights."
+    },
+    {
+      "id": "independent-mages",
+      "name": "Independent Mages",
+      "category": "Arcane",
+      "description": "Unregistered casters, hedge mages, and free scholars outside guild rolls."
+    },
+    {
+      "id": "war-veterans",
+      "name": "War Veterans",
+      "category": "Military",
+      "description": "Survivors of Aethel's border wars and expeditionary companies."
+    },
+    {
+      "id": "opposing-forces",
+      "name": "Opposing Forces",
+      "category": "Military",
+      "description": "Enemy banners and mercenary bands from conflicts you once fought."
+    },
+    {
+      "id": "cleansing-orders",
+      "name": "Cleansing Orders",
+      "category": "Faith",
+      "description": "Orders that hunt corruption, rift bleed, and spiral-touched blight."
+    },
+    {
+      "id": "corruption-scholars",
+      "name": "Corruption Scholars",
+      "category": "Arcane",
+      "description": "Researchers who study taint for power — tolerated only in whispers.",
+      "draft": true
+    },
+    {
+      "id": "dark-cults",
+      "name": "Dark Cults",
+      "category": "Underworld",
+      "description": "Secretive cult cells, former patrons, and spiral cult remnants."
+    },
+    {
+      "id": "anti-cult-groups",
+      "name": "Anti-Cult Alliances",
+      "category": "Faith",
+      "description": "Inquisitors, vigilantes, and lay networks that break cult chains."
+    },
+    {
+      "id": "planar-scholars",
+      "name": "Planar Scholars",
+      "category": "Planar",
+      "description": "Multiverse archivists and rift cartographers who trade in crossing-lore."
+    },
+    {
+      "id": "mundane-authorities",
+      "name": "Mundane Authorities",
+      "category": "Civic",
+      "description": "Skeptical officials who distrust rift-scarred or planar-touched folk."
+    },
+    {
+      "id": "established-nobility",
+      "name": "Established Nobility",
+      "category": "Civic",
+      "description": "Old houses, courtiers, and scandal-watchers along the ascent routes."
+    },
+    {
+      "id": "underworld",
+      "name": "Underworld",
+      "category": "Underworld",
+      "description": "Smugglers, syndicates, and revolutionary cells beneath Aethel's streets."
+    },
+    {
+      "id": "druidic-circles",
+      "name": "Druidic Circles",
+      "category": "Wild",
+      "description": "Circle groves and oath-bound wardens of the wild margins."
+    },
+    {
+      "id": "wildling-communities",
+      "name": "Wildling Communities",
+      "category": "Wild",
+      "description": "Isolated camps and fringe villages that trust the land over crowns."
+    },
+    {
+      "id": "alchemists-guilds",
+      "name": "Alchemists Guilds",
+      "category": "Trade",
+      "description": "Guild distilleries and apothecary chains that guard recipe monopolies."
+    },
+    {
+      "id": "artisan-guilds",
+      "name": "Artisan Guilds",
+      "category": "Trade",
+      "description": "Craft houses you trained under — or fled from."
+    },
+    {
+      "id": "rival-guilds",
+      "name": "Rival Guilds & Independents",
+      "category": "Trade",
+      "description": "Competing craft leagues and unguilded masters."
+    },
+    {
+      "id": "mainstream-faith",
+      "name": "Mainstream Religious Orders",
+      "category": "Faith",
+      "description": "Dominant temple hierarchies wary of fringe history and old pantheon talk."
+    },
+    {
+      "id": "fringe-historians",
+      "name": "Fringe Historians",
+      "category": "Lore",
+      "description": "Hidden archivists, old-tradition keepers, and lost-pantheon seekers."
+    },
+    {
+      "id": "underground-resistance",
+      "name": "Underground Resistance",
+      "category": "Underworld",
+      "description": "Cells that shelter fugitives and stolen relics from tyrannical powers."
+    },
+    {
+      "id": "marked-pursuers",
+      "name": "Marked Pursuers",
+      "category": "Underworld",
+      "description": "The faction or order hunting what you stole — name varies by story.",
+      "draft": true
+    },
+    {
+      "id": "merchant-guilds",
+      "name": "Merchant Guilds",
+      "category": "Trade",
+      "description": "Caravan masters and trade-company factors who fund expeditions."
+    },
+    {
+      "id": "explorers-societies",
+      "name": "Explorers Societies",
+      "category": "Lore",
+      "description": "Societies that publish maps, fund delves, and argue over first claims."
+    },
+    {
+      "id": "indigenous-tribes",
+      "name": "Indigenous Tribes",
+      "category": "Wild",
+      "description": "Peoples whose lands are mapped, mined, or crossed without invitation."
+    },
+    {
+      "id": "planar-trading-guilds",
+      "name": "Planar Trading Guilds",
+      "category": "Planar",
+      "description": "Cross-plane merchants who broker relics and passage contracts."
+    },
+    {
+      "id": "planar-customs",
+      "name": "Planar Customs Authorities",
+      "category": "Planar",
+      "description": "Inspectors who suspect smuggling through rift gates and echo ports."
+    },
+    {
+      "id": "museums-collectors",
+      "name": "Museums & Collectors",
+      "category": "Lore",
+      "description": "Curators and private buyers hungry for relic provenance."
+    },
+    {
+      "id": "indigenous-peoples",
+      "name": "Indigenous Peoples",
+      "category": "Wild",
+      "description": "Communities whose sacred sites are looted by relic hunters.",
+      "draft": true
+    },
+    {
+      "id": "frontier-communities",
+      "name": "Frontier Communities",
+      "category": "Wild",
+      "description": "Settlements on the edge of mapped Aethel that trade grit for protection."
+    },
+    {
+      "id": "urban-elites",
+      "name": "Urban Elites",
+      "category": "Civic",
+      "description": "Capital patrons who fund expeditions but disdain frontier hardship.",
+      "draft": true
+    },
+    {
+      "id": "law-enforcement",
+      "name": "Law Enforcement",
+      "category": "Civic",
+      "description": "Watch captains and bounty boards with long memories."
+    },
+    {
+      "id": "reformed-criminals",
+      "name": "Reformed Criminals",
+      "category": "Underworld",
+      "description": "Former syndicate members trying to walk a straighter path.",
+      "draft": true
+    },
+    {
+      "id": "elemental-cultists",
+      "name": "Elemental Cultists",
+      "category": "Planar",
+      "description": "Cults that venerate a single elemental thread of the Weave.",
+      "draft": true
+    },
+    {
+      "id": "opposing-elemental",
+      "name": "Opposing Elemental Factions",
+      "category": "Planar",
+      "description": "Rival element cults and primordial zealots.",
+      "draft": true
+    },
+    {
+      "id": "good-temples",
+      "name": "Good-Aligned Temples",
+      "category": "Faith",
+      "description": "Temples and choir-backed charities that recognize celestial emissaries."
+    },
+    {
+      "id": "fiendish-cults",
+      "name": "Fiendish Cults",
+      "category": "Underworld",
+      "description": "Infernal and abyssal cells that hunt celestial agents."
+    },
+    {
+      "id": "prophecy-believers",
+      "name": "Believers in Prophecy",
+      "category": "Lore",
+      "description": "Communities that see your fate written in the Tenfold cycles.",
+      "draft": true
+    },
+    {
+      "id": "prophecy-fearful",
+      "name": "Prophecy-Fearful",
+      "category": "Lore",
+      "description": "Authorities and cults that dread what your foretold path may unleash.",
+      "draft": true
+    }
+  ],
+  "counts": {
+    "backgrounds": 20,
+    "factions": 44,
+    "draft": 9,
+    "resonanceTrack": 4
+  },
+  "rawSourceProbes": [
+    {
+      "id": "RP-P01",
+      "description": "Normalization omits an unrecognized campaign faction key",
+      "input": {
+        "war-veterans": 2,
+        "campaign-local-guild": 5
+      },
+      "actual": {
+        "war-veterans": 2
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 2
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P02",
+      "description": "Normalization clamps source Loop endpoint scores to the runtime range",
+      "input": {
+        "war-veterans": 5,
+        "opposing-forces": -5
+      },
+      "actual": {
+        "war-veterans": 3,
+        "opposing-forces": -3
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 3,
+        "opposing-forces": -3
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P03",
+      "description": "Normalization rounds a numeric string",
+      "input": {
+        "war-veterans": "1.7"
+      },
+      "actual": {
+        "war-veterans": 2
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 2
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P04",
+      "description": "Normalization replaces a malformed score with neutral",
+      "input": {
+        "war-veterans": "unresolved"
+      },
+      "actual": {
+        "war-veterans": 0
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 0
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P05",
+      "description": "Background reapplication overwrites later standing and drops unknown keys",
+      "input": {
+        "war-veterans": 3,
+        "opposing-forces": -2,
+        "campaign-local-guild": 2
+      },
+      "actual": {
+        "war-veterans": 1,
+        "opposing-forces": 0
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 1,
+        "opposing-forces": 0
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P06",
+      "description": "Setter admits unknown key for one return value",
+      "input": {},
+      "actual": {
+        "campaign-local-guild": 2
+      },
+      "expectedCurrentImplementation": {
+        "campaign-local-guild": 2
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P07",
+      "description": "The same setter result loses that key on later normalization",
+      "input": {},
+      "actual": {},
+      "expectedCurrentImplementation": {},
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P08",
+      "description": "Adjuster also admits an unknown key which later normalization drops",
+      "input": {},
+      "actual": {},
+      "expectedCurrentImplementation": {},
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P09",
+      "description": "Absent and explicit zero retain different normalized map shapes",
+      "input": {},
+      "actual": {
+        "absent": {},
+        "zero": {
+          "war-veterans": 0
+        }
+      },
+      "expectedCurrentImplementation": {
+        "absent": {},
+        "zero": {
+          "war-veterans": 0
+        }
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P10",
+      "description": "Compact entries omit an explicit neutral score",
+      "input": {
+        "war-veterans": 0
+      },
+      "actual": [],
+      "expectedCurrentImplementation": [],
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P11",
+      "description": "Qualitative label roundtrip loses the distinct value +3",
+      "input": {
+        "score": 3
+      },
+      "actual": 2,
+      "expectedCurrentImplementation": 2,
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    },
+    {
+      "id": "RP-P12",
+      "description": "Unknown background keeps known normalized standing but drops unknown faction keys",
+      "input": {
+        "war-veterans": 2,
+        "campaign-local-guild": 1
+      },
+      "actual": {
+        "war-veterans": 2
+      },
+      "expectedCurrentImplementation": {
+        "war-veterans": 2
+      },
+      "currentBehaviorReproduced": true,
+      "syntheticInputObjectUnchanged": true,
+      "ruleAcceptance": false
+    }
+  ],
+  "probeStatus": "source-reported historical helper behavior, not rerun as runtime in this conference",
+  "realSavesReadOrChanged": false,
+  "probeFinalDispositions": [
+    {
+      "id": "RP-P01",
+      "finalDisposition": "Reject unknown-key deletion. Preserve campaign-local-guild raw5/version/absence distinctions; resolve institution and policy before a numeric mechanical use.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P02",
+      "finalDisposition": "Reject automatic clamping of either endpoint. Preserve raw+5/−5. Only recorded named Loop interpretation may derive+3/−3 while retaining all raw meanings; unversioned values remain unresolved.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P03",
+      "finalDisposition": "Reject Number/round coercion: preserve string1.7 as a string and unresolved for integer standing. No automatic+2.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P04",
+      "finalDisposition": "Reject replacement of malformed unresolved with0; keep raw string and explicit unresolved state.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P05",
+      "finalDisposition": "Reject background overwrite and unknown-key loss. Applying an already applied background is idempotent; preserve3/−2/unknown2 and earned history. A documented initialization correction changes its contribution and replays earned events, not the final score directly.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P06",
+      "finalDisposition": "Preserve the new unknown key and value in raw/history; a setter return alone does not establish institution permission/version. No later silent drop.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P07",
+      "finalDisposition": "Reject subsequent normalization loss of the same key. Preserve its input/operation/output lineage, including the earlier setter record.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P08",
+      "finalDisposition": "Reject adjuster/normalizer roundtrip loss. Adjustment needs actual valid source binding and expected version; unknown raw key survives even when mechanical update is refused.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P09",
+      "finalDisposition": "KEEP distinct shapes for absent and explicit zero. Current display must also distinguish Unrecorded from recorded Neutral; neither grants unwritten history.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P10",
+      "finalDisposition": "Compact display may omit a neutral row as a view only; preserve source zero and provide a complete history view. Compact entries are never a replacement persistence object.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P11",
+      "finalDisposition": "Reject label roundtrip3→2. Honored display retains source3. Old label-only Honored has ambiguous{2,3}; fresh initialization uses2 only under the named new-start procedure.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    },
+    {
+      "id": "RP-P12",
+      "finalDisposition": "An unknown background cannot normalize/drop any existing standing. Retain known2 and unknown1 unchanged; flag only the absent initialization binding for that background.",
+      "authority": [
+        "RP-A01",
+        "RP-A02",
+        "RP-A03",
+        "RP-A04",
+        "RP-A05",
+        "RP-A06"
+      ],
+      "evidence": "Authored response to the complete supplied synthetic source probe; not an executed JavaScript adapter or access to real saves."
+    }
+  ]
+}

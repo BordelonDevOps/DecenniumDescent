@@ -1,0 +1,846 @@
+{
+  "status": "source extraction only; no operative recipe approval",
+  "families": {
+    "damage-resistance": 10,
+    "poison-save-advantage": 5,
+    "athletics-bonus": 4,
+    "poison-disease-save-advantage": 5,
+    "rp-recovery": 2,
+    "movement-speed": 3,
+    "constitution-save-bonus": 3,
+    "first-charm-fear-save": 1,
+    "prone-defense-advantage": 6,
+    "swim-speed": 4,
+    "stealth-bonus": 1
+  },
+  "sourceEffectsComplete": true,
+  "rows": [
+    {
+      "recipeId": "recipe-81",
+      "sourceEffect": "After a 10-minute meal, gain 4 temporary hit points and resistance to acid damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Acid",
+        "tier": 2,
+        "temporaryHP": 4,
+        "duration": "until next long rest",
+        "secondaryTag": "Acid"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 4,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "acid",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-82",
+      "sourceEffect": "After a 10-minute meal, gain 4 temporary hit points and advantage on saves against poison for 4 hours. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Poison",
+        "tier": 2,
+        "temporaryHP": 4,
+        "duration": "until next long rest",
+        "secondaryTag": "Poison"
+      },
+      "sourceKind": "poison-save-advantage",
+      "sourceTemporaryHP": 4,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 4
+    },
+    {
+      "recipeId": "recipe-83",
+      "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and +1 to Athletics checks. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Strength",
+        "tier": 1,
+        "temporaryHP": 3,
+        "duration": "until next long rest",
+        "secondaryTag": "Strength"
+      },
+      "sourceKind": "athletics-bonus",
+      "sourceTemporaryHP": 3,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonus": 1,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-84",
+      "sourceEffect": "After a 10-minute meal, gain 5 temporary hit points and advantage on saves against poison and disease. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Flora",
+        "tier": 3,
+        "temporaryHP": 5,
+        "duration": "until next long rest",
+        "secondaryTag": "Flora"
+      },
+      "sourceKind": "poison-disease-save-advantage",
+      "sourceTemporaryHP": 5,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-85",
+      "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and resistance to fire damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Fire",
+        "tier": 1,
+        "temporaryHP": 3,
+        "duration": "until next long rest",
+        "secondaryTag": "Fire"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 3,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "fire",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-86",
+      "sourceEffect": "After a 10-minute meal, gain 4 temporary hit points and resistance to fire damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Fire",
+        "tier": 2,
+        "temporaryHP": 4,
+        "duration": "until next long rest",
+        "secondaryTag": "Fire"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 4,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "fire",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-87",
+      "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and resistance to lightning damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Lightning",
+        "tier": 1,
+        "temporaryHP": 3,
+        "duration": "until next long rest",
+        "secondaryTag": "Lightning"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 3,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "lightning",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-88",
+      "sourceEffect": "After a 10-minute meal, gain 4 temporary hit points and restore 1 Resonance Point(s). A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Arcane",
+        "tier": 2,
+        "temporaryHP": 4,
+        "duration": "until next long rest",
+        "secondaryTag": "Arcane"
+      },
+      "sourceKind": "rp-recovery",
+      "sourceTemporaryHP": 4,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "rpRestored": 1,
+      "sourceRestLimit": null
+    },
+    {
+      "recipeId": "recipe-89",
+      "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and +10 feet movement speed for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Air",
+        "tier": 1,
+        "temporaryHP": 3,
+        "duration": "until next long rest",
+        "secondaryTag": "Air"
+      },
+      "sourceKind": "movement-speed",
+      "sourceTemporaryHP": 3,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonusFeet": 10,
+      "explicitRiderHours": 1,
+      "sourceModeScope": "movement speed; needs interpretation"
+    },
+    {
+      "recipeId": "recipe-90",
+      "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and +1 to Constitution saves. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Vitality",
+        "tier": 1,
+        "temporaryHP": 3,
+        "duration": "until next long rest",
+        "secondaryTag": "Vitality"
+      },
+      "sourceKind": "constitution-save-bonus",
+      "sourceTemporaryHP": 3,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonus": 1,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-91",
+      "sourceEffect": "After a 10-minute meal, gain 5 temporary hit points and +10 feet movement speed for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Air",
+        "tier": 3,
+        "temporaryHP": 5,
+        "duration": "until next long rest",
+        "secondaryTag": "Air"
+      },
+      "sourceKind": "movement-speed",
+      "sourceTemporaryHP": 5,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonusFeet": 10,
+      "explicitRiderHours": 1,
+      "sourceModeScope": "movement speed; needs interpretation"
+    },
+    {
+      "recipeId": "recipe-92",
+      "sourceEffect": "After a 10-minute meal, gain 4 temporary hit points and resistance to lightning damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Lightning",
+        "tier": 2,
+        "temporaryHP": 4,
+        "duration": "until next long rest",
+        "secondaryTag": "Lightning"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 4,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "lightning",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-93",
+      "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and resistance to fire damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Fire",
+        "tier": 1,
+        "temporaryHP": 3,
+        "duration": "until next long rest",
+        "secondaryTag": "Fire"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 3,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "fire",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-94",
+      "sourceEffect": "After a 10-minute meal, gain 4 temporary hit points and +1 to Athletics checks. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Strength",
+        "tier": 2,
+        "temporaryHP": 4,
+        "duration": "until next long rest",
+        "secondaryTag": "Strength"
+      },
+      "sourceKind": "athletics-bonus",
+      "sourceTemporaryHP": 4,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonus": 1,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-95",
+      "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and advantage on the first save against charm or fear. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Psychic",
+        "tier": 1,
+        "temporaryHP": 3,
+        "duration": "until next long rest",
+        "secondaryTag": "Psychic"
+      },
+      "sourceKind": "first-charm-fear-save",
+      "sourceTemporaryHP": 3,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "uses": 1,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-96",
+      "sourceEffect": "After a 10-minute meal, gain 8 temporary hit points and advantage on saves against poison and disease. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Flora",
+        "tier": 4,
+        "temporaryHP": 8,
+        "duration": "until next long rest",
+        "secondaryTag": "Flora"
+      },
+      "sourceKind": "poison-disease-save-advantage",
+      "sourceTemporaryHP": 8,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-97",
+      "sourceEffect": "After a 10-minute meal, gain 8 temporary hit points and advantage on saves against poison and disease. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Flora",
+        "tier": 4,
+        "temporaryHP": 8,
+        "duration": "until next long rest",
+        "secondaryTag": "Flora"
+      },
+      "sourceKind": "poison-disease-save-advantage",
+      "sourceTemporaryHP": 8,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-98",
+      "sourceEffect": "After a 10-minute meal, gain 9 temporary hit points and advantage against being knocked prone for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Earth",
+        "tier": 5,
+        "temporaryHP": 9,
+        "duration": "until next long rest",
+        "secondaryTag": "Earth"
+      },
+      "sourceKind": "prone-defense-advantage",
+      "sourceTemporaryHP": 9,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-99",
+      "sourceEffect": "After a 10-minute meal, gain 7 temporary hit points and advantage on saves against poison and disease. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Flora",
+        "tier": 3,
+        "temporaryHP": 7,
+        "duration": "until next long rest",
+        "secondaryTag": "Flora"
+      },
+      "sourceKind": "poison-disease-save-advantage",
+      "sourceTemporaryHP": 7,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-100",
+      "sourceEffect": "After a 10-minute meal, gain 8 temporary hit points and advantage on saves against poison for 4 hours. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Poison",
+        "tier": 4,
+        "temporaryHP": 8,
+        "duration": "until next long rest",
+        "secondaryTag": "Poison"
+      },
+      "sourceKind": "poison-save-advantage",
+      "sourceTemporaryHP": 8,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 4
+    },
+    {
+      "recipeId": "recipe-101",
+      "sourceEffect": "After a 10-minute meal, gain 8 temporary hit points and advantage against being knocked prone for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Earth",
+        "tier": 4,
+        "temporaryHP": 8,
+        "duration": "until next long rest",
+        "secondaryTag": "Earth"
+      },
+      "sourceKind": "prone-defense-advantage",
+      "sourceTemporaryHP": 8,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-102",
+      "sourceEffect": "After a 10-minute meal, gain 9 temporary hit points and advantage on saves against poison for 4 hours. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Poison",
+        "tier": 5,
+        "temporaryHP": 9,
+        "duration": "until next long rest",
+        "secondaryTag": "Poison"
+      },
+      "sourceKind": "poison-save-advantage",
+      "sourceTemporaryHP": 9,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 4
+    },
+    {
+      "recipeId": "recipe-103",
+      "sourceEffect": "After a 10-minute meal, gain 8 temporary hit points and restore 1 Resonance Point(s). A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Arcane",
+        "tier": 4,
+        "temporaryHP": 8,
+        "duration": "until next long rest",
+        "secondaryTag": "Arcane"
+      },
+      "sourceKind": "rp-recovery",
+      "sourceTemporaryHP": 8,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "rpRestored": 1,
+      "sourceRestLimit": null
+    },
+    {
+      "recipeId": "recipe-104",
+      "sourceEffect": "After a 10-minute meal, gain 9 temporary hit points and a swimming speed equal to walking speed for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Water",
+        "tier": 5,
+        "temporaryHP": 9,
+        "duration": "until next long rest",
+        "secondaryTag": "Water"
+      },
+      "sourceKind": "swim-speed",
+      "sourceTemporaryHP": 9,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1,
+      "relationship": "equal to walking speed"
+    },
+    {
+      "recipeId": "recipe-105",
+      "sourceEffect": "After a 10-minute meal, gain 7 temporary hit points and a swimming speed equal to walking speed for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Water",
+        "tier": 3,
+        "temporaryHP": 7,
+        "duration": "until next long rest",
+        "secondaryTag": "Water"
+      },
+      "sourceKind": "swim-speed",
+      "sourceTemporaryHP": 7,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1,
+      "relationship": "equal to walking speed"
+    },
+    {
+      "recipeId": "recipe-106",
+      "sourceEffect": "After a 10-minute meal, gain 11 temporary hit points and resistance to necrotic damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Unholy",
+        "tier": 5,
+        "temporaryHP": 11,
+        "duration": "until next long rest",
+        "secondaryTag": "Unholy"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 11,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "necrotic",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-107",
+      "sourceEffect": "After a 10-minute meal, gain 11 temporary hit points and a swimming speed equal to walking speed for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Water",
+        "tier": 5,
+        "temporaryHP": 11,
+        "duration": "until next long rest",
+        "secondaryTag": "Water"
+      },
+      "sourceKind": "swim-speed",
+      "sourceTemporaryHP": 11,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1,
+      "relationship": "equal to walking speed"
+    },
+    {
+      "recipeId": "recipe-108",
+      "sourceEffect": "After a 10-minute meal, gain 14 temporary hit points and advantage against being knocked prone for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Earth",
+        "tier": 8,
+        "temporaryHP": 14,
+        "duration": "until next long rest",
+        "secondaryTag": "Earth"
+      },
+      "sourceKind": "prone-defense-advantage",
+      "sourceTemporaryHP": 14,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-109",
+      "sourceEffect": "After a 10-minute meal, gain 14 temporary hit points and +2 to Constitution saves. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Vitality",
+        "tier": 8,
+        "temporaryHP": 14,
+        "duration": "until next long rest",
+        "secondaryTag": "Vitality"
+      },
+      "sourceKind": "constitution-save-bonus",
+      "sourceTemporaryHP": 14,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonus": 2,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-110",
+      "sourceEffect": "After a 10-minute meal, gain 12 temporary hit points and resistance to acid damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Acid",
+        "tier": 6,
+        "temporaryHP": 12,
+        "duration": "until next long rest",
+        "secondaryTag": "Acid"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 12,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "acid",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-111",
+      "sourceEffect": "After a 10-minute meal, gain 12 temporary hit points and a swimming speed equal to walking speed for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Water",
+        "tier": 6,
+        "temporaryHP": 12,
+        "duration": "until next long rest",
+        "secondaryTag": "Water"
+      },
+      "sourceKind": "swim-speed",
+      "sourceTemporaryHP": 12,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1,
+      "relationship": "equal to walking speed"
+    },
+    {
+      "recipeId": "recipe-112",
+      "sourceEffect": "After a 10-minute meal, gain 13 temporary hit points and advantage against being knocked prone for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Earth",
+        "tier": 7,
+        "temporaryHP": 13,
+        "duration": "until next long rest",
+        "secondaryTag": "Earth"
+      },
+      "sourceKind": "prone-defense-advantage",
+      "sourceTemporaryHP": 13,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-113",
+      "sourceEffect": "After a 10-minute meal, gain 17 temporary hit points and advantage against being knocked prone for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Earth",
+        "tier": 9,
+        "temporaryHP": 17,
+        "duration": "until next long rest",
+        "secondaryTag": "Earth"
+      },
+      "sourceKind": "prone-defense-advantage",
+      "sourceTemporaryHP": 17,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-114",
+      "sourceEffect": "After a 10-minute meal, gain 16 temporary hit points and resistance to cold damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Cold",
+        "tier": 8,
+        "temporaryHP": 16,
+        "duration": "until next long rest",
+        "secondaryTag": "Cold"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 16,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "cold",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-115",
+      "sourceEffect": "After a 10-minute meal, gain 17 temporary hit points and +2 to Stealth checks. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Stealth",
+        "tier": 9,
+        "temporaryHP": 17,
+        "duration": "until next long rest",
+        "secondaryTag": "Stealth"
+      },
+      "sourceKind": "stealth-bonus",
+      "sourceTemporaryHP": 17,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonus": 2,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-116",
+      "sourceEffect": "After a 10-minute meal, gain 17 temporary hit points and advantage on saves against poison for 4 hours. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Poison",
+        "tier": 9,
+        "temporaryHP": 17,
+        "duration": "until next long rest",
+        "secondaryTag": "Poison"
+      },
+      "sourceKind": "poison-save-advantage",
+      "sourceTemporaryHP": 17,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 4
+    },
+    {
+      "recipeId": "recipe-117",
+      "sourceEffect": "After a 10-minute meal, gain 19 temporary hit points and +10 feet movement speed for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Air",
+        "tier": 9,
+        "temporaryHP": 19,
+        "duration": "until next long rest",
+        "secondaryTag": "Air"
+      },
+      "sourceKind": "movement-speed",
+      "sourceTemporaryHP": 19,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonusFeet": 10,
+      "explicitRiderHours": 1,
+      "sourceModeScope": "movement speed; needs interpretation"
+    },
+    {
+      "recipeId": "recipe-118",
+      "sourceEffect": "After a 10-minute meal, gain 19 temporary hit points and +3 to Athletics checks. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Strength",
+        "tier": 9,
+        "temporaryHP": 19,
+        "duration": "until next long rest",
+        "secondaryTag": "Strength"
+      },
+      "sourceKind": "athletics-bonus",
+      "sourceTemporaryHP": 19,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "bonus": 3,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-119",
+      "sourceEffect": "After a 10-minute meal, gain 20 temporary hit points and resistance to necrotic damage for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Unholy",
+        "tier": 10,
+        "temporaryHP": 20,
+        "duration": "until next long rest",
+        "secondaryTag": "Unholy"
+      },
+      "sourceKind": "damage-resistance",
+      "sourceTemporaryHP": 20,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "damageType": "necrotic",
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-120",
+      "sourceEffect": "After a 10-minute meal, gain 22 temporary hit points and advantage against being knocked prone for 1 hour. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Earth",
+        "tier": 10,
+        "temporaryHP": 22,
+        "duration": "until next long rest",
+        "secondaryTag": "Earth"
+      },
+      "sourceKind": "prone-defense-advantage",
+      "sourceTemporaryHP": 22,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": 1
+    },
+    {
+      "recipeId": "recipe-632",
+      "sourceEffect": "After a 10-minute meal, gain 7 temporary hit points and +1 to Athletics checks. Because it combines multiple parts of one creature or ecology, a critical success also grants one temporary trait associated with the source monster. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Strength",
+        "tier": 3,
+        "temporaryHP": 7,
+        "duration": "until next long rest",
+        "secondaryTag": "Strength",
+        "wholeCreatureSynergy": true
+      },
+      "sourceKind": "athletics-bonus",
+      "sourceTemporaryHP": 7,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": true,
+      "sourceFailureHazard": null,
+      "bonus": 1,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-633",
+      "sourceEffect": "After a 10-minute meal, gain 6 temporary hit points and advantage on saves against poison for 8 hours. On a failed crafting check, the meal remains poisonous.",
+      "sourceMechanics": {
+        "type": "meal",
+        "temporaryHP": 6,
+        "saveAdvantage": [
+          "poison"
+        ],
+        "duration": "8 hours",
+        "failureHazard": "poisoned"
+      },
+      "sourceKind": "poison-save-advantage",
+      "sourceTemporaryHP": 6,
+      "sourceParentDuration": "8 hours",
+      "sourceTraitRider": false,
+      "sourceFailureHazard": "poisoned",
+      "explicitRiderHours": 8
+    },
+    {
+      "recipeId": "recipe-634",
+      "sourceEffect": "After a 10-minute meal, gain 22 temporary hit points and +3 to Constitution saves. Because it combines multiple parts of one creature or ecology, a critical success also grants one temporary trait associated with the source monster. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Vitality",
+        "tier": 10,
+        "temporaryHP": 22,
+        "duration": "until next long rest",
+        "secondaryTag": "Vitality",
+        "wholeCreatureSynergy": true
+      },
+      "sourceKind": "constitution-save-bonus",
+      "sourceTemporaryHP": 22,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": true,
+      "sourceFailureHazard": null,
+      "bonus": 3,
+      "explicitRiderHours": null
+    },
+    {
+      "recipeId": "recipe-635",
+      "sourceEffect": "After a 10-minute meal, gain 3 temporary hit points and advantage on saves against poison and disease. Because it combines multiple parts of one creature or ecology, a critical success also grants one temporary trait associated with the source monster. A creature can benefit from one feast at a time.",
+      "sourceMechanics": {
+        "type": "meal",
+        "tag": "Flora",
+        "tier": 1,
+        "temporaryHP": 3,
+        "duration": "until next long rest",
+        "secondaryTag": "Flora",
+        "wholeCreatureSynergy": true
+      },
+      "sourceKind": "poison-disease-save-advantage",
+      "sourceTemporaryHP": 3,
+      "sourceParentDuration": "until next long rest",
+      "sourceTraitRider": true,
+      "sourceFailureHazard": null,
+      "explicitRiderHours": null
+    }
+  ]
+}

@@ -1,0 +1,2501 @@
+{
+  "status": "UNREVIEWED_SOURCE_CANDIDATES",
+  "scope": "80 exact passages:74 remaining original lexical candidates plus6 semantic supplements. Unreviewed lifecycle/guard/tempHP classification; full effects not certified.",
+  "counts": {
+    "cleric": 7,
+    "crimson-agent": 7,
+    "dragoon": 5,
+    "monk": 1,
+    "oracle": 16,
+    "paladin": 19,
+    "soldier": 9,
+    "thief": 3,
+    "warrior": 7
+  },
+  "classRecords": [
+    {
+      "kind": "class-engine",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "engineIndex": 2,
+      "text": "Only explicit features generate Conviction. Sacred Chant, Sermon of Purpose, Doctrine Shield, Dark Conviction and other printed cards are valid generators. A feature cannot generate more Conviction than its text permits, and Conviction can never exceed the current maximum. Summoned creatures, friendly creatures, trivial creatures, repeated corpse manipulation and staged out-of-combat actions cannot be used to farm Conviction.",
+      "textSha256": "cbfb2061209fba5baf96693105bd512b4a664ed690d1b5acebc9e657546abb25"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "engineIndex": 7,
+      "text": "Healing cannot exceed maximum HP, does not remove Wounds, and does not restore a dead creature unless a card explicitly says it resurrects. No Cleric feature provides unlimited permanent HP or resource restoration outside encounters. Temporary HP does not stack with itself; use the higher value. Resurrection and corpse-based effects have explicit use limits and cannot generate repeatable corpses, XP, loot or Conviction.",
+      "textSha256": "bb84e1b0f1d02ca1f307edee719b2e66036799f2367b1b93511681a7f95dd455"
+    },
+    {
+      "kind": "class-card",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "card": {
+        "id": "cleric.hero.saint.divine-rebirth",
+        "name": "Divine Rebirth",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Saint",
+        "sourceKind": "passive",
+        "minimumClassLevel": 12,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "One ally revived by your Cleric feature",
+        "duration": "Instantaneous plus temporary HP for 1 minute",
+        "frequency": "1/long rest",
+        "effect": "Divine Rebirth. Tags: saint, resurrection. When one of your Cleric features returns an ally from death, you may use Divine Rebirth. That ally returns with half its maximum HP instead of the feature's normal returned HP and gains S + M temporary HP for 1 minute. It removes no Wounds and cannot affect a creature that was not actually dead.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2015,
+          "originalText": "Divine Rebirth: On revive, ally returns with 50% HP and a temporary resistance shield."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "0911a56a90621bfce24642033cfd99929553c077fa641efacc48d90d4b94e15a"
+    },
+    {
+      "kind": "class-card",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "card": {
+        "id": "cleric.hero.saint.resurrection",
+        "name": "Resurrection",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Saint",
+        "sourceKind": "active",
+        "minimumClassLevel": 16,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "3 Conviction + 10 RP",
+        "rangeAndTarget": "One allied corpse you touch that died within the previous 1 minute",
+        "duration": "Instantaneous",
+        "frequency": "1/long rest",
+        "effect": "Resurrection. Tags: saint, resurrection, rite. Return the target to life at 1 HP and grant it 2 S + M temporary HP for 1 minute. It gains no removed Wounds and receives no restored expended resources beyond what another rule explicitly provides. A missing vital body prevents the effect. The Conviction expenditure can vent Dissonance once.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2025,
+          "originalText": "Resurrection: Return a fallen ally to life with renewed vigor and temporary divine blessing."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "c30ea74832ad72360d7e3dfff95ca1b7514996ae818b04aa1b59928e93cdf67d"
+    },
+    {
+      "kind": "class-card",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "card": {
+        "id": "cleric.hero.cultist.dark-conviction",
+        "name": "Dark Conviction",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Cultist",
+        "sourceKind": "passive",
+        "minimumClassLevel": 12,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "At most once on each of your turns",
+        "effect": "Dark Conviction. Tags: cultist, conviction. During a real encounter, when a hostile non-summoned creature that meaningfully threatened the party dies after taking damage from one of your Cleric features since the start of your current turn, gain 1 Conviction. Friendly creatures, summoned creatures, trivial staged creatures and repeated corpse destruction never qualify.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2050,
+          "originalText": "Dark Conviction: Killing an enemy grants 1 Conviction instantly."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "a6a14a4223213fb5121a8907f48d0ae8e7c399973bb905f700fcab064424c4b6"
+    },
+    {
+      "kind": "class-card",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "card": {
+        "id": "cleric.hero.cultist.rite-of-the-crimson-choir",
+        "name": "Rite of the Crimson Choir",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Cultist",
+        "sourceKind": "passive",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic",
+        "activation": "Action",
+        "cost": "5 Conviction + 8 RP",
+        "rangeAndTarget": "Four unoccupied spaces within 30 feet",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "1/long rest",
+        "effect": "Final Miracle — Rite of the Crimson Choir. Tags: cultist, finale, summon, rite. Summon four spectral fanatics. Each has AC 14, 10 HP, Speed 30 feet and cannot take Reactions. Spend one Bonus Action on your regular turn to command the Choir; this explicitly priced Finale permits up to four surviving fanatics to each move up to its Speed and make one melee spell-like attack using your Cleric technique attack bonus against an enemy within 5 feet; on hit it deals 1d6+S necrotic damage and you regain 1 HP, maximum 4 HP per round from the Choir. When a fanatic reaches 0 HP, when concentration ends or after the third round, it explodes; enemies within 5 feet make Dexterity saves, taking 1d6 necrotic on failure or half on success. Fanatics grant no XP, loot, corpse, resurrection target or Conviction. The Conviction expenditure can vent Dissonance once.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2052,
+          "originalText": "Final Miracle: Rite of the Crimson Choir: Summon 4 fanatics for 3 turns. Each heals you for 10% of their damage dealt and explodes in death."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "8a0609352a89fd9dee65f38e363372e1dc9bc50876b68e3e90b2e7761ad553bf"
+    },
+    {
+      "kind": "class-card",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "card": {
+        "id": "cleric.hero.cultist.ritual-of-undeath",
+        "name": "Ritual of Undeath",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Cultist",
+        "sourceKind": "active",
+        "minimumClassLevel": 16,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "3 Conviction + 6 RP",
+        "rangeAndTarget": "One eligible corpse within 30 feet or one living ally within 30 feet",
+        "duration": "Mode-dependent",
+        "frequency": "1/long rest",
+        "effect": "Ritual of Undeath. Tags: cultist, undead, rite. Choose one mode. Corpse Servant: one humanoid corpse dead no more than 1 minute rises for 3 rounds as a temporary thrall with AC 13, 10 HP, Speed 30 feet and one attack only when you spend your shared companion Bonus Action command using your Cleric technique attack bonus; on hit it deals S d6 necrotic. The thrall disappears at 0 HP or when duration ends and grants no XP, loot, new corpse, Conviction or resurrection target. Death Ward: one living ally is marked for 1 minute; the first time it would die during that duration, it instead remains at 1 HP and counts as both humanoid and undead until the end of its next turn. Neither mode removes Wounds. The Conviction expenditure can vent Dissonance once.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2059,
+          "originalText": "Ritual of Undeath: Perform a forbidden ritual that can temporarily raise fallen enemies as servants or prevent allies from dying by transforming them into undead-like entities."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "3a49348b309930d66ab43fb15262c7062c7849daca1a4939beb6d27d22f9bea1"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "engineIndex": 0,
+      "text": "Blood Gauge (BG) starts and ends each encounter at 0, capacity 3; Spill Control raises capacity 6 while known. Once on your own regular turn, a weapon attack that damages a hostile living creature grants 1 BG. Hemorrhage Slash uses this same trigger, not an additional one. Explicit critical/kill/refund features can add more, but total BG gained is capped 2 per round. Self-inflicted damage, allies, summons, helpless captives and repeated damage to a corpse never generate BG. Blood is an encounter resource, not a currency carried into rest.",
+      "textSha256": "0934142d35df693c7ff71c6e176f7e1fc234fd1e3e021199f3208f4e670900e7"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "engineIndex": 5,
+      "text": "The healing, execution and denial text below deliberately bounds the source's vague percentage/instant-kill claims. HP sacrificed is direct loss, bypasses temporary HP and defenses, cannot be redirected, and cannot reduce the donor below 1. Only a willing ally can donate. HP sacrifice is never damage for class triggers. No class feature here restores the dead or removes Wounds.",
+      "textSha256": "f0909f1cf6ccaa56c2438dd0a9dd04e6b96640047167d9f79da6298b765de52a"
+    },
+    {
+      "kind": "class-card",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "card": {
+        "id": "crimson-agent.base.blood-tithe",
+        "name": "Blood Tithe",
+        "className": "Crimson Agent",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "1 short-rest use",
+        "rangeAndTarget": "Self after a hostile bleeding creature dies within 30 ft",
+        "duration": "Instant",
+        "frequency": "1/short rest",
+        "effect": "Regain HP equal to M+class level after a creature bearing your Bleed dies. It must have been an active hostile combatant; no ally, summon, captive or corpse farming.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2127,
+          "originalText": "Blood Tithe: Killing a bleeding target restores 10% of max HP."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "1db4f0777a524fb57e9b007e92e46aa430ba568b20c1720ec02fea8d56338cab"
+    },
+    {
+      "kind": "class-card",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "card": {
+        "id": "crimson-agent.arch.veinweave-bloodshield",
+        "name": "Veinweave: Bloodshield",
+        "className": "Crimson Agent",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 BG",
+        "rangeAndTarget": "Self",
+        "duration": "3 of your turns",
+        "frequency": "Recharge 3",
+        "effect": "Start Bloodshield Veinweave. Gain temporary HP equal to class level+M. Once while they remain, use Reaction to reduce damage to yourself by S. No self-damage refund or BG is generated.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2152,
+          "originalText": "Veinweave: Bloodshield: Consume 2 Blood Gauge points to create a protective barrier that absorbs damage equal to 20% of your maximum health."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "18f90a4dcc30731ebb53e002b870307d3449ba64fa35efa8d671b0d96749bff9"
+    },
+    {
+      "kind": "class-card",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "card": {
+        "id": "crimson-agent.hero.bloodweaver.bloodbond",
+        "name": "Bloodbond",
+        "className": "Crimson Agent",
+        "band": "Hero",
+        "path": "Bloodweaver",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One willing ally within 30 ft",
+        "duration": "Concentration, 3 of your turns",
+        "frequency": "Recharge 3",
+        "effect": "Create Bloodbond while both remain within 30 ft. When ally takes damage, you may use Reaction to redirect floor(one-quarter of pre-mitigation damage) to yourself; each recipient applies its own defenses once. Once/round when a paid technique heals you, ally gains M temporary HP. No recursive transfers.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2165,
+          "originalText": "Bloodbond: Link with an ally; share 25% incoming damage and transfer 10% healing to them."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "1113d2b822287bb66bb1759c1d7e674dbcb87534005a9e65e5111bb51b5c1263"
+    },
+    {
+      "kind": "class-card",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "card": {
+        "id": "crimson-agent.hero.bloodweaver.crimson-pact",
+        "name": "Crimson Pact",
+        "className": "Crimson Agent",
+        "band": "Hero",
+        "path": "Bloodweaver",
+        "sourceKind": "passive",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic",
+        "activation": "Action",
+        "cost": "5 BG; 1 long-rest use",
+        "rangeAndTarget": "Up to 3 bleeding enemies and 6 living allies within 30 ft",
+        "duration": "Instant; shields 1 minute",
+        "frequency": "1/long rest",
+        "effect": "End your Bleeds on chosen enemies; each makes CON save against 4d8 necrotic, half on success. Each chosen ally regains 4d8+M HP and gains 10 temporary HP. Use one shared roll per damage/healing effect; healing does not multiply by enemies or remaining ticks.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2169,
+          "originalText": "Final Cut – Crimson Pact: Detonate all enemy Bleeds to heal nearby allies and grant them barriers. (1/day)"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "f3f3244b7c7f173094327ca40c0a8f41ff05495995d8aba5021b3e9792808f92"
+    },
+    {
+      "kind": "class-card",
+      "owner": "crimson-agent",
+      "path": "data/public/class_playtests/crimson-agent.json",
+      "card": {
+        "id": "crimson-agent.hero.thirstborn.crimson-harvest",
+        "name": "Crimson Harvest",
+        "className": "Crimson Agent",
+        "band": "Hero",
+        "path": "Thirstborn",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "2 BG; 1 short-rest use",
+        "rangeAndTarget": "One enemy in weapon reach at half HP or less",
+        "duration": "Instant",
+        "frequency": "1/short rest",
+        "effect": "Make one weapon attack; on hit add S d8 damage. If this reduces it to 0, regain S+M HP and 1 BG within gain cap. No instant kill from a percentage threshold; summoned/allied/helpless creatures yield no recovery.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2209,
+          "originalText": "Crimson Harvest: Execute a heavily wounded target, restoring health and Blood Gauge based on the target's missing health."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "3890667b7605bb482a7334e0dd8fd8266cb60e4849aa7761483acce3d945c7b7"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "dragoon",
+      "path": "data/public/class_playtests/dragoon.json",
+      "engineIndex": 0,
+      "text": "Strength is the class ability. Momentum starts/ends encounters at 0; cap 5, rising to 7 with Momentum Overflow or automatically at class 9. On each regular turn, moving at least 15 ft under your own power grants 1 Momentum, and damaging an enemy with a weapon attack grants 1 more. These are the only default gains; all gains/refunds together cap 2 per round. Forced movement, teleportation, movement in place, allies and summons cannot farm Momentum. Movement counts actual path traveled toward a tactical destination; one threshold per turn.",
+      "textSha256": "2d8c39c0c13d56f33ed04a1580279a4bd5959fb092a7504410f337514652966a"
+    },
+    {
+      "kind": "class-card",
+      "owner": "dragoon",
+      "path": "data/public/class_playtests/dragoon.json",
+      "card": {
+        "id": "dragoon.hero.dragon-guardian.momentum-shield",
+        "name": "Momentum Shield",
+        "className": "Dragoon",
+        "band": "Hero",
+        "path": "Dragon Guardian",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Until start next turn",
+        "frequency": "Once/own turn",
+        "effect": "After spending at least 1 Momentum, gain temporary HP equal to amount spent+M, maximum 10. Later expenditure replaces with the higher remaining value; no real HP restoration.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2318,
+          "originalText": "Momentum Shield: Spending Momentum grants temporary HP."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "f9bdf66ec377854bc44e9dc7124ecc10d0667f946bcb184c46b4c628754ff7f4"
+    },
+    {
+      "kind": "class-card",
+      "owner": "dragoon",
+      "path": "data/public/class_playtests/dragoon.json",
+      "card": {
+        "id": "dragoon.hero.dragon-guardian.bastion-descent",
+        "name": "Bastion Descent",
+        "className": "Dragoon",
+        "band": "Hero",
+        "path": "Dragon Guardian",
+        "sourceKind": "passive",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic",
+        "activation": "Action",
+        "cost": "5 Momentum; 1 long-rest use",
+        "rangeAndTarget": "Leap within 30 ft; up to 6 allies within 15 ft of landing",
+        "duration": "Instant; protection until start next turn",
+        "frequency": "1/long rest",
+        "effect": "Land in empty space. Chosen allies gain 4d8+M temporary HP and may end Frightened or Poisoned. They gain resistance to the next damage instance before your next turn. No healing, resurrection or removal of Wounds.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2320,
+          "originalText": "Final Flight – Bastion Descent: Slam down between allies, cleansing effects and shielding the group."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "e1005686e829ecea6d245c9627f8a22cb38f30ab26ee0c4daa97837ac5e58671"
+    },
+    {
+      "kind": "class-card",
+      "owner": "dragoon",
+      "path": "data/public/class_playtests/dragoon.json",
+      "card": {
+        "id": "dragoon.hero.dragon-guardian.momentum-barrier",
+        "name": "Momentum Barrier",
+        "className": "Dragoon",
+        "band": "Hero",
+        "path": "Dragon Guardian",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "All Momentum, minimum 3",
+        "rangeAndTarget": "Up to 4 allies within 15 ft",
+        "duration": "Temporary HP 1 minute",
+        "frequency": "Recharge 4",
+        "effect": "Spend K Momentum. Each gains K+S d6 temporary HP, using one shared dice roll. These HP do not stack with other shields and no unspent Momentum remains. This is not concentration.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2326,
+          "originalText": "Momentum Barrier: Convert your Momentum into a protective shield that absorbs damage for you and nearby allies."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "bba232d70de27a0bd73b1af5a597edafdce65680e4b0ac56dda07fb43fdd477e"
+    },
+    {
+      "kind": "class-card",
+      "owner": "dragoon",
+      "path": "data/public/class_playtests/dragoon.json",
+      "card": {
+        "id": "dragoon.hero.dragon-tyrant.momentum-feeder",
+        "name": "Momentum Feeder",
+        "className": "Dragoon",
+        "band": "Hero",
+        "path": "Dragon Tyrant",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "Self on polearm critical or hostile kill",
+        "duration": "Instant",
+        "frequency": "Once/round",
+        "effect": "Gain 2 Momentum, still within total 2-per-round gain cap. A critical kill is one trigger, not two. Do Ts, copies, allies, summons and helpless creatures cannot trigger it.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2351,
+          "originalText": "Momentum Feeder: Killing or critting grants +2 Momentum."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "4679c970fa2291c173edaefb7ee8c9b60b3a13cbc522b0770910e3fe9467f6c5"
+    },
+    {
+      "kind": "class-card",
+      "owner": "monk",
+      "path": "data/public/class_playtests/monk.json",
+      "card": {
+        "id": "monk.base.discipline-initiate",
+        "name": "Discipline Initiate",
+        "className": "Monk",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Choose once when acquired",
+        "effect": "Discipline Initiate. Tags: base, discipline. Choose Offense, Tank or Support. Offense technique: once per turn in Tiger after an unarmed hit, spend 1 Ki to deal +S damage and push the target 5 feet if it is no more than one size larger. Tank: unlock the Tortoise Discipline Arch cards under the common gate. Support technique: once per turn in Crane after an unarmed hit, spend 1 Ki to grant one ally within 15 feet S+M temporary HP. The chosen discipline cannot be changed without a future retraining rule.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3237,
+          "originalText": "Discipline Initiate: Choose a discipline (offense, tank, support) and gain 1 technique based on it."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "7f90aa83dfb18e04c794fc159aa0de4c7f7aa01c44694aa2e22d5709210959f0"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "engineIndex": 6,
+      "text": "RC RECOVERY. A completed long rest restores RC to maximum. A completed short rest restores 1 spent RC, never above maximum. Each Mystery has exactly one Prophecy Trigger. During a real encounter, your Prophecy Trigger can restore at most 1 RC per round and never above maximum. Trivial enemies, willing staged targets, summoned sacrifices, repeated corpse abuse, copied damage, copied healing and events generated solely to trigger recovery do not qualify.",
+      "textSha256": "717dd85de2d0cf08acd6cb90398fe94fbdf1ef78d041eda15be83755cffaebd5"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "engineIndex": 13,
+      "text": "Healing from Oracle features cannot exceed maximum HP, resurrect the dead or remove Wounds unless a feature explicitly says so. Temporary HP never stack. Encounter-only regeneration and drain cannot be farmed outside meaningful combat. Corpse effects create no XP, loot, RC or repeatable corpse resources unless expressly stated.",
+      "textSha256": "915b1cf2d9327231bf75308605d2e2b72abdce2ce052fdecef493dea663af705"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.spiral-touched.spiral-touched-boon-v",
+        "name": "Spiral-Touched — Boon V",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Spiral-Touched",
+        "sourceKind": "curseBoon",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for selected Curse",
+        "activation": "Reaction before round 4",
+        "cost": "0",
+        "rangeAndTarget": "Recorded encounter participants",
+        "duration": "Restore recorded encounter-start state",
+        "frequency": "1/long rest",
+        "effect": "1/long rest as a Reaction before the fourth round of the encounter begins, rewind the current encounter to its initiative-start snapshot: restore combatant positions, HP, temporary HP, conditions, RC and per-encounter uses to that snapshot. Short-/long-rest uses, physical consumables and this Time Loop use remain spent. Slain encounter participants return to their snapshot state and no duplicate XP, treasure or consumables are created. Allies retain memory of the previous timeline. Time Loop does not restore RP, Ki, Conviction, Blood Gauge, device stock, healing reserves or any other daily/rest resource; only the named RC and per-encounter states rewind. No loot changes ownership through rewinding. Record the snapshot at initiative; if no complete snapshot exists, this option is unavailable and unspent. It cannot undo a previous encounter or duplicate a per-rest use.",
+        "prerequisite": "Oracle 20; selected Curse:Spiral-Touched",
+        "source": {
+          "line": null,
+          "reference": "CURSES.ORACLE_CURSES[0]; book lines 3527-3554",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "CURSES.ORACLE_CURSES[0]",
+              "value": {
+                "id": "spiral-touched",
+                "name": "Spiral-Touched",
+                "blurb": "Manipulates initiative, gains time-based echoes",
+                "limitations": [
+                  "You sometimes respond to events before they happen, causing confusion in social situations",
+                  "You occasionally experience time differently than others, potentially missing turns in combat (5% chance)",
+                  "You cannot maintain concentration on mundane tasks for extended periods"
+                ],
+                "boons": [
+                  {
+                    "level": 3,
+                    "name": "Curse Boon I",
+                    "description": "See 1 round into the future during initiative (+3 initiative). Once per day, reroll a failed save as you briefly step outside the timestream."
+                  },
+                  {
+                    "level": 5,
+                    "name": "Curse Boon II",
+                    "description": "Spend 1 Revelation Charge to act out of turn once per combat. You gain resistance to time-based magic and aging effects."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Curse Boon III",
+                    "description": "When you would be reduced to 0 HP, you may instead phase out of time for 1 round, becoming untargetable and regaining 25% of your maximum HP. Once per long rest."
+                  },
+                  {
+                    "level": 15,
+                    "name": "Curse Boon IV",
+                    "description": "You exist in multiple timestreams simultaneously, allowing you to make two different actions in a single turn once per combat. Enemies attacking you have a 10% chance to hit your echo instead, causing the attack to miss."
+                  },
+                  {
+                    "level": 20,
+                    "name": "Curse Boon V",
+                    "description": "You gain the ability to create a time loop, resetting an entire combat encounter to its beginning state once per day. All allies retain knowledge of the original timeline, allowing them to make different choices."
+                  }
+                ],
+                "source": "rulebook — Example Curse: Spiral-Touched (only full curse tree in player rulebook)"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "f3eee6bab3405acd7905b87c42e3c6bf6539da20cc12dd0b74ad34d2c1fa68f6"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.wound-eater.wound-eater-boon-iii",
+        "name": "Wound Eater — Boon III",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Wound Eater",
+        "sourceKind": "curseBoon",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic for selected Curse",
+        "activation": "Action",
+        "cost": "0",
+        "rangeAndTarget": "One dying hostile living creature touched",
+        "duration": "Instantaneous",
+        "frequency": "1/short rest; no staged/summoned targets",
+        "effect": "1/short rest as an Action touch one dying hostile living creature at 0 HP; that creature dies and you regain HP equal to one-quarter your maximum HP rounded down. It cannot trigger from summoned, trivial or staged creatures and removes no Wounds.",
+        "prerequisite": "Oracle 10; selected Curse:Wound Eater",
+        "source": {
+          "line": null,
+          "reference": "CURSES.ORACLE_CURSES[1]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "CURSES.ORACLE_CURSES[1]",
+              "value": {
+                "id": "wound-eater",
+                "name": "Wound Eater",
+                "blurb": "Lives by wounds taken from the living, never by an easy cure",
+                "limitations": [
+                  "Natural healing and healing granted by another restore only half their usual amount to you",
+                  "Before each long rest ends, you must drain life from a living foe or gain Exhaustion",
+                  "Your flesh carries a hollow, withered look that makes many mortals recoil at first meeting"
+                ],
+                "boons": [
+                  {
+                    "level": 3,
+                    "name": "Curse Boon I",
+                    "description": "When you hit a living foe with a weapon or touch attack, drain 1d6 HP; you heal for half the amount drained. Undead and constructs are immune."
+                  },
+                  {
+                    "level": 5,
+                    "name": "Curse Boon II",
+                    "description": "When you reduce a living foe to 0 HP, regain 1 Revelation Charge. Resistance to necrotic damage from non-Revelation sources."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Curse Boon III",
+                    "description": "Once per short rest, siphon a dying enemy's remaining HP as a burst heal (up to 25% of your max HP). The Pale Ledger records their final breath."
+                  },
+                  {
+                    "level": 15,
+                    "name": "Curse Boon IV",
+                    "description": "Drain aura: at the start of your turn, living enemies within 2 tiles take necrotic damage; you heal for the total drained. You may suppress this aura in civilized areas."
+                  },
+                  {
+                    "level": 20,
+                    "name": "Curse Boon V",
+                    "description": "Once per day, become a conduit of the unfinished hunger — all living enemies within 4 tiles lose 25% max HP; you heal for half the total. Allies are unaffected."
+                  }
+                ],
+                "draft": true,
+                "source": "Draft — Aethel lore, pending author review"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "d872f36ef75cc9ff431e85c49d7cbfe85cf4b41721c46042c12d9e8af47fea5b"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.wound-eater.wound-eater-boon-v",
+        "name": "Wound Eater — Boon V",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Wound Eater",
+        "sourceKind": "curseBoon",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for selected Curse",
+        "activation": "Action",
+        "cost": "0",
+        "rangeAndTarget": "Up to three living enemies within 20 feet",
+        "duration": "Instantaneous",
+        "frequency": "1/long rest",
+        "effect": "1/long rest as an Action, up to three meaningful living enemies within 20 feet lose HP equal to the lesser of one-quarter their maximum HP or Oracle level+M; you regain half the total actual HP lost, capped at one-half your maximum HP. Allies, constructs, undead, trivial creatures and summons are unaffected.",
+        "prerequisite": "Oracle 20; selected Curse:Wound Eater",
+        "source": {
+          "line": null,
+          "reference": "CURSES.ORACLE_CURSES[1]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "CURSES.ORACLE_CURSES[1]",
+              "value": {
+                "id": "wound-eater",
+                "name": "Wound Eater",
+                "blurb": "Lives by wounds taken from the living, never by an easy cure",
+                "limitations": [
+                  "Natural healing and healing granted by another restore only half their usual amount to you",
+                  "Before each long rest ends, you must drain life from a living foe or gain Exhaustion",
+                  "Your flesh carries a hollow, withered look that makes many mortals recoil at first meeting"
+                ],
+                "boons": [
+                  {
+                    "level": 3,
+                    "name": "Curse Boon I",
+                    "description": "When you hit a living foe with a weapon or touch attack, drain 1d6 HP; you heal for half the amount drained. Undead and constructs are immune."
+                  },
+                  {
+                    "level": 5,
+                    "name": "Curse Boon II",
+                    "description": "When you reduce a living foe to 0 HP, regain 1 Revelation Charge. Resistance to necrotic damage from non-Revelation sources."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Curse Boon III",
+                    "description": "Once per short rest, siphon a dying enemy's remaining HP as a burst heal (up to 25% of your max HP). The Pale Ledger records their final breath."
+                  },
+                  {
+                    "level": 15,
+                    "name": "Curse Boon IV",
+                    "description": "Drain aura: at the start of your turn, living enemies within 2 tiles take necrotic damage; you heal for the total drained. You may suppress this aura in civilized areas."
+                  },
+                  {
+                    "level": 20,
+                    "name": "Curse Boon V",
+                    "description": "Once per day, become a conduit of the unfinished hunger — all living enemies within 4 tiles lose 25% max HP; you heal for half the total. Allies are unaffected."
+                  }
+                ],
+                "draft": true,
+                "source": "Draft — Aethel lore, pending author review"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "76d3f99606a9bb0c358f108d5dba7577ecaa8580e0aef97ef94b235e8dbb4811"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.haunted.haunted-boon-v",
+        "name": "Haunted — Boon V",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Haunted",
+        "sourceKind": "curseBoon",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for selected Curse",
+        "activation": "Action to summon",
+        "cost": "0",
+        "rangeAndTarget": "One spirit scout; one-mile same-plane route limit",
+        "duration": "10 minutes",
+        "frequency": "1/long rest",
+        "effect": "1/long rest summon one spirit scout for 10 minutes. It can travel along a route you have personally traveled on the same plane, up to 1 mile from you, observe with ordinary sight/hearing, speak with willing dead spirits it encounters and deliver one short prophetic message. On return it truthfully reports what it directly observed and may identify one unexpected creature or person's name it actually encountered. It cannot pass sealed planar barriers, read minds or reveal unknowable facts.",
+        "prerequisite": "Oracle 20; selected Curse:Haunted",
+        "source": {
+          "line": null,
+          "reference": "CURSES.ORACLE_CURSES[3]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "CURSES.ORACLE_CURSES[3]",
+              "value": {
+                "id": "haunted",
+                "name": "Haunted",
+                "blurb": "Restless dead attend your steps, offering aid at a social cost",
+                "limitations": [
+                  "Restless spirits draw attention: you suffer −2 to Stealth in haunted places or crowded civilized areas",
+                  "Spirits sometimes speak through you at inopportune moments; social checks may require a Wisdom save",
+                  "You sometimes address people who are not yet present, unsettling those who witness it"
+                ],
+                "boons": [
+                  {
+                    "level": 3,
+                    "name": "Curse Boon I",
+                    "description": "Spectral attendants grant +1 AC against the first attack each round. Once per day, a spirit whispers a warning — you cannot be surprised."
+                  },
+                  {
+                    "level": 5,
+                    "name": "Curse Boon II",
+                    "description": "Once per combat, a bound spirit intercepts a single-target attack against you, absorbing up to 5 + level damage before dissipating. The spirit wails as it fades — the attacker must save or suffer −2 to their next attack as dread clings to them."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Curse Boon III",
+                    "description": "Spirits murmur of danger — you and allies within 3 tiles cannot be surprised while you are conscious. Echoes of the dead grant +2 to Insight checks nearby."
+                  },
+                  {
+                    "level": 15,
+                    "name": "Curse Boon IV",
+                    "description": "Summon a wailing chorus: enemies within 3 tiles suffer Dread (−10% hit chance and saves) for 2 turns. Once per long rest."
+                  },
+                  {
+                    "level": 20,
+                    "name": "Curse Boon V",
+                    "description": "Once per day, bind a hostile or friendly spirit to scout, speak with the dead at a distance, or deliver a prophetic message along a path you have walked. The spirit persists for 10 minutes or until it completes one task; when it returns, it whispers what it saw and one name you did not send it to find."
+                  }
+                ],
+                "draft": true,
+                "source": "Draft — Aethel lore, pending author review"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "a78cdb4a83a3a2fe06797f3ff2a70af2e9e34ecd09cd329d2424371f78b0644b"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.battle.battle-prophecy-trigger",
+        "name": "Battle Prophecy Trigger",
+        "className": "Oracle",
+        "band": "Base",
+        "path": "Battle",
+        "sourceKind": "prophecy-trigger",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic for chosen Mystery",
+        "activation": "Triggered",
+        "cost": "0 RC",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "At most once per round during a real encounter",
+        "effect": "When you or an ally reduces a meaningful hostile creature to 0 HP, regain 1 RC, never above maximum. Summoned, trivial, friendly or repeatedly revived creatures do not qualify.",
+        "prerequisite": "Oracle 1; Mystery: Battle",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[1].prophecyTrigger",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[1].prophecyTrigger",
+              "value": "When you or an ally drops an enemy to 0 HP, regain 1 Revelation Charge"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "75d18b4ec0942414870a4519e988e3793340394c21b7f8b5cdf846538679c5d8"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.bones.bones-prophecy-trigger",
+        "name": "Bones Prophecy Trigger",
+        "className": "Oracle",
+        "band": "Base",
+        "path": "Bones",
+        "sourceKind": "prophecy-trigger",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic for chosen Mystery",
+        "activation": "Triggered",
+        "cost": "0 RC",
+        "rangeAndTarget": "Self; qualifying creature within 5 tiles",
+        "duration": "Instantaneous",
+        "frequency": "At most once per round during a real encounter",
+        "effect": "When an undead creature or meaningful hostile creature at 0 HP within 5 tiles dies, regain 1 RC, never above maximum. Summoned, friendly, trivial or repeatedly revived creatures cannot trigger this recovery.",
+        "prerequisite": "Oracle 1; Mystery: Bones",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[2].prophecyTrigger",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[2].prophecyTrigger",
+              "value": "When an undead creature or a dying foe within 5 tiles perishes, regain 1 Revelation Charge"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "bed997b4dca4f52173fb62c19633c42c565fa351eea1c43db2617ddc68aa55c1"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.bones.ledger-s-command",
+        "name": "Ledger's Command",
+        "className": "Oracle",
+        "band": "Arch",
+        "path": "Bones",
+        "sourceKind": "tier-ii-revelation",
+        "minimumClassLevel": 6,
+        "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+        "activation": "Action",
+        "cost": "2 RC",
+        "rangeAndTarget": "Up to 2 undead within 4 tiles",
+        "duration": "2 rounds",
+        "frequency": "At will while RC remains",
+        "effect": "Each target makes a Wisdom save if hostile or unwilling; willing undead may waive it. On failure you command it for 2 rounds. Once per round as a Bonus Action, command one controlled undead to move up to its Speed and make one ordinary attack, using its own statistics; this obeys the universal one-extra-action limit and all controlled undead share that single Bonus Action command. Controlled undead reduce their first damage each round by 1. Once during the command, one controlled expendable undead may intercept a single-target attack against you and be reduced to 0 HP after absorbing it. This feature creates no corpse, loot or RC farm. Eligible targets are nonlegendary undead of challenge rating no greater than half your Oracle level (round down), with Wisdom saves initially and at each turn end. Commanding uses your shared companion Bonus Action; only one commanded undead makes one attack per round, capped at S d8+M damage with no monster multiattack, recharge or spell resources. Commanding a hostile undead to spend its Action consumes its one hard-denial allowance; later control can only deny Reactions and reduce Speed to 0 on a failed save, never command another Action.",
+        "prerequisite": "Oracle 6; Mystery: Bones; selected Tier II Revelation",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierII[0]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierII[0]",
+              "value": {
+                "name": "Ledger's Command",
+                "charges": 2,
+                "kind": "active",
+                "description": "Spend 2 charges: command up to 2 undead within 4 tiles for 2 rounds — each may attack once per round using your Revelation with +10% damage; commanded undead gain +5% DR and one may intercept the next single-target hit meant for you before crumbling (once per command)."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "409a76be401ca671acce588548c0d1e35f072a339c9b370fedede28cf71b0d69"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.bones.unfinished-chorus",
+        "name": "Unfinished Chorus",
+        "className": "Oracle",
+        "band": "Arch",
+        "path": "Bones",
+        "sourceKind": "tier-iii-revelation",
+        "minimumClassLevel": 9,
+        "acquisition": "automatic for chosen Mystery",
+        "activation": "Action",
+        "cost": "3 RC",
+        "rangeAndTarget": "Enemies, controlled undead and corpses within 4 tiles",
+        "duration": "2 rounds; Revelation backlash 1 round",
+        "frequency": "At will while RC remains",
+        "effect": "For 2 rounds, enemies within 4 tiles suffer Dread: -1 on attack rolls and saving throws. Once on each of your turns choose one living enemy in range; it takes 1d6 necrotic damage and you either regain half the actual damage dealt, rounded down, or one living ally within 3 tiles of you regains that amount, maximum S+M HP. Undead you control add S damage to one attack each turn and reduce first damage each round by 1. Corpses in the area cannot be raised while the Chorus lasts. Afterward you are suffering Revelation backlash until end of your next turn: -1 attacks/saves and Speed -5 feet. Choose up to three enemies and three allies. Enemies make Wisdom saves on entry and at the end of each turn, ending their debuff on success. The drain allows a Constitution save for half damage; healing is capped at S+M total per pulse. Concentration and pulse upkeep apply.",
+        "prerequisite": "Oracle 9; Mystery: Bones",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierIII",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[2].tierIII",
+              "value": {
+                "name": "Unfinished Chorus",
+                "charges": 3,
+                "kind": "active",
+                "description": "Spend 3 charges: for 2 turns, all enemies within 4 tiles suffer Dread (−10% hit/saves) as the Pale Ledger sings their unfinished deaths — once per round drain 1d6 HP from one target (heal half or redirect half to an ally within 3 tiles); undead you control gain +10% damage and +5% DR, and corpses within 4 tiles cannot be raised as undead until the chorus ends. After: Exhausted (−1 action, −10% necrotic resist for 1 round)."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "d0c65305f314bb6bbb3b9245ec88c655a5d4b815b553e84d3cddcca489dfe535"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.bones.bones-revelation-mastery",
+        "name": "Bones Revelation Mastery",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Bones",
+        "sourceKind": "revelation-mastery",
+        "minimumClassLevel": 15,
+        "acquisition": "choose one eligible enhancement at Oracle 15",
+        "activation": "Passive",
+        "cost": "0 RC",
+        "rangeAndTarget": "One eligible known Bones Revelation",
+        "duration": "Permanent",
+        "frequency": "Choose one upgrade at Oracle 15",
+        "effect": "Choose one mastery for a Revelation you know. Enhanced Marrow Drain: a living target hit also has Speed reduced by 1 tile until the end of its next turn. Enhanced Ledger's Command: may target up to 3 undead, but all controlled undead still share one Bonus Action command per round. Enhanced Unfinished Chorus: when its drain resolves, you may always redirect the healing to one ally within 3 tiles of you rather than yourself; its healing cap remains S+M.",
+        "prerequisite": "Oracle 15; Mystery: Bones; Revelation Mastery",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[2].revelationMastery",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[2].revelationMastery",
+              "value": [
+                "Enhanced Marrow Drain: also slows target movement by 1 tile",
+                "Enhanced Ledger's Command: affects 3 undead",
+                "Enhanced Unfinished Chorus: you may redirect drained HP to an ally within 3 tiles"
+              ]
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "14d4537572a0e9d37eb62850c1881097ec9da711640be7b293b0ff0918640577"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.bones.ledger-unbound",
+        "name": "Ledger Unbound",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Bones",
+        "sourceKind": "final-revelation",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for chosen Mystery",
+        "activation": "Action",
+        "cost": "0 RC",
+        "rangeAndTarget": "Enemies and up to 3 eligible corpses within 5 tiles",
+        "duration": "Damage instantaneous; bone servants 3 rounds",
+        "frequency": "1/long rest",
+        "effect": "Choose up to three enemies in range. Roll 4 S d8+M once; each target takes necrotic damage equal to the lesser of that roll or one-quarter its maximum HP, with a Constitution save for half. This blast cannot reduce HP below 1. Raise up to three nonsummoned corpses as 1-HP bone servants for three rounds. Once per round spend your shared companion Bonus Action to move and attack with ONE servant using your Revelation attack bonus for 1d8+S necrotic damage. Alternatively, your Reaction may sacrifice one servant to intercept a single-target attack against you; no attack is made by that servant that round. Servants grant no XP, loot, harvestable corpses or RC. For three rounds, up to three undead you already control add S damage to their one shared commanded attack and reduce the first damage they take each round by 1. No extra creature turns or command budgets are created.",
+        "prerequisite": "Oracle 20; Mystery: Bones",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[2].finalRevelation",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[2].finalRevelation",
+              "value": {
+                "name": "Ledger Unbound",
+                "kind": "active",
+                "description": "Once per day, open the Pale Ledger across the battlefield — all enemies within 5 tiles must save or suffer 25% max HP necrotic damage as unfinished deaths are tallied; you may raise up to 3 fallen corpses as loyal bone servants for 3 rounds (each may attack once per round and intercept one hit meant for you). Undead you control during the effect gain +10% damage and +5% DR."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "ef4172a86bb7ab4929f1689d7d0ae148634a6fc06e32b00d1d601ef71bea270f"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.flame.flame-revelation-mastery",
+        "name": "Flame Revelation Mastery",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Flame",
+        "sourceKind": "revelation-mastery",
+        "minimumClassLevel": 15,
+        "acquisition": "choose one eligible enhancement at Oracle 15",
+        "activation": "Passive",
+        "cost": "0 RC",
+        "rangeAndTarget": "One eligible known Flame Revelation",
+        "duration": "Permanent",
+        "frequency": "Choose one upgrade at Oracle 15",
+        "effect": "Choose one mastery for a Revelation you know. Enhanced Wrathful Brand: its maximum duration becomes 2 rounds. Enhanced Crown's Burn: its healing may target up to three living allies within 4 tiles of the burst center rather than requiring them inside the burst. Enhanced First Flame Convergence: Zealot's Renewal backlash remains suppressed for the full Convergence duration; if already suppressed by the base effect, additionally one ally healed by Zealot's Renewal during Convergence gains S temporary HP.",
+        "prerequisite": "Oracle 15; Mystery: Flame; Revelation Mastery",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[5].revelationMastery",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[5].revelationMastery",
+              "value": [
+                "Enhanced Wrathful Brand: mark lasts 2 rounds",
+                "Enhanced Crown's Burn: allies need not be in burst to receive healing",
+                "Enhanced First Flame Convergence: no backlash on Zealot's Renewal during effect"
+              ]
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "e1fa6ebc49b28e5f65e9a59fb6a36b0f982f9f3653062780e082ed242e1e6232"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.life.overflowing-light",
+        "name": "Overflowing Light",
+        "className": "Oracle",
+        "band": "Arch",
+        "path": "Life",
+        "sourceKind": "tier-i-revelation",
+        "minimumClassLevel": 3,
+        "acquisition": "choose one at Oracle 3",
+        "activation": "Action",
+        "cost": "1 RC",
+        "rangeAndTarget": "One living ally within 4 tiles",
+        "duration": "Healing instantaneous; temporary HP 2 rounds",
+        "frequency": "At will while RC remains",
+        "effect": "The target regains 2d6+M HP. Healing exceeding its maximum becomes temporary HP, maximum 10, lasting 2 rounds. When those temporary HP expire naturally, if at least 1 remains the target may end one of Frightened, Poisoned or Staggered. This cannot resurrect, remove Wounds or convert deliberately wasted healing into more than 10 temporary HP.",
+        "prerequisite": "Oracle 3; Mystery: Life; selected Tier I Revelation",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[6].tierI[0]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[6].tierI[0]",
+              "value": {
+                "name": "Overflowing Light",
+                "charges": 1,
+                "kind": "active",
+                "description": "Spend 1 charge: heal one ally within 4 tiles for 2d6 + your Charisma modifier; excess healing above max HP becomes temporary HP (max 10) for 2 rounds, and if any temp HP remains when it fades the ally ends one minor condition."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "79723edccb03063801846d1d9dbb9c5b945cb4f49a797b55efb410c72042cc33"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.life.life-revelation-mastery",
+        "name": "Life Revelation Mastery",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Life",
+        "sourceKind": "revelation-mastery",
+        "minimumClassLevel": 15,
+        "acquisition": "choose one eligible enhancement at Oracle 15",
+        "activation": "Passive",
+        "cost": "0 RC",
+        "rangeAndTarget": "One eligible known Life Revelation",
+        "duration": "Permanent",
+        "frequency": "Choose one upgrade at Oracle 15",
+        "effect": "Choose one mastery for a Revelation you know. Enhanced Overflowing Light: maximum temporary HP from excess healing becomes 20. Enhanced Garden of Restoration: the first Garden pulse a creature receives may end both Poisoned and one disease that explicitly allows magical curing, rather than only one of those benefits. Enhanced Song of Mending: duration becomes 3 rounds and gains one additional 2d6 healing pulse at the start of your second later regular turn; each ally still receives only one 1-HP death prevention per use.",
+        "prerequisite": "Oracle 15; Mystery: Life; Revelation Mastery",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[6].revelationMastery",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[6].revelationMastery",
+              "value": [
+                "Enhanced Overflowing Light: temp HP max 20",
+                "Enhanced Garden of Restoration: also removes poison/disease on entry",
+                "Enhanced Song of Mending: duration 3 turns"
+              ]
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "f231bdb47b3545daad32777e23dd58122092961abb95c826436a646ab5e62b44"
+    },
+    {
+      "kind": "class-card",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "card": {
+        "id": "oracle.supplement.stars.clarity",
+        "name": "Clarity",
+        "className": "Oracle",
+        "band": "Arch",
+        "path": "Stars",
+        "sourceKind": "tier-i-revelation",
+        "minimumClassLevel": 3,
+        "acquisition": "choose one at Oracle 3",
+        "activation": "Action",
+        "cost": "1 RC",
+        "rangeAndTarget": "One willing ally within 4 tiles; 2-tile reveal radius around target",
+        "duration": "Cleanse instantaneous; save bonus 2 rounds; reveal 1 round",
+        "frequency": "At will while RC remains",
+        "effect": "End one Charmed, Frightened or illusion-based condition on the target. For 2 rounds it gains +1 on saving throws. Until the end of your next regular turn, shapeshifted, invisible and ethereal creatures within 2 tiles of the target are revealed to it unless protected by an effect explicitly defeating supernatural revelation.",
+        "prerequisite": "Oracle 3; Mystery: Stars; selected Tier I Revelation",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierI[2]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[8].tierI[2]",
+              "value": {
+                "name": "Clarity",
+                "charges": 1,
+                "kind": "active",
+                "description": "Spend 1 charge: end charm, illusion, or fear on one ally within 4 tiles; grant +10% saves for 2 rounds and reveal the true form of any shapeshifted or invisible creature within 2 tiles of them for 1 round."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "36a9ac25087a53cd990f1d1bdb33e65922accf6eecb892e46e73309132e964ab"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "engineIndex": 5,
+      "text": "At 17 Aura Surge once/short rest Bonus Action: until start next turn choose up to 3 allies in aura to gain S+M temporary HP and+1 saves. This bounded surge replaces vague doubling of every aura number. At 20 Divine Manifestation makes the aura active upon initiative without an action, radius 30 ft; it ignores ordinary Silence and terrain obstruction between allies but not antimagic explicitly suppressing divine powers, planar barriers or the consciousness rule. Source cannot-be-suppressed language is bounded explicitly. It grants no free Signature, Smite or Revelation spell.",
+      "textSha256": "7a0793ee52e67e3f5300036c3e53a53184aa0e467e9be6f98446ec676fcbdcb6"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.base.divine-strike",
+        "name": "Divine Strike",
+        "className": "Paladin",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "feature",
+        "minimumClassLevel": 1,
+        "acquisition": "automatic",
+        "activation": "Triggered after melee hit",
+        "cost": "1 RP; upgraded option 2 RP from 2",
+        "rangeAndTarget": "One creature you hit",
+        "duration": "Instant",
+        "frequency": "Once/own turn",
+        "effect": "Use engine Divine Strike/Smite dice and later Oath modification. Declare after hit, then pay; normal critical dice rules. Not a spell and produces no Dissonance. Cannot trigger from reflected/copy/companion damage.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3648,
+          "originalText": "Divine Strike: Channel divine energy into your weapon attacks, dealing additional damage."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "28402e4e1ac7a79fc6968cb0706370ac21cafacc4bee2fed2565c0dc39e2a9c6"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.base.bolstering-presence",
+        "name": "Bolstering Presence",
+        "className": "Paladin",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "feature",
+        "minimumClassLevel": 2,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "One short-rest use",
+        "rangeAndTarget": "Up to 3 allies 15 ft who can perceive you",
+        "duration": "Until start next turn",
+        "frequency": "1/short rest",
+        "effect": "Each gains+2 on its next save against Charmed or Frightened and M temporary HP. Use strongest save bonus from same class; does not end existing conditions automatically.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3651,
+          "originalText": "Bolstering Presence: Inspire nearby allies, granting them temporary bonuses to saves against fear and charm effects."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "0199d2f9964e680108371f629271e2c9ba9b71a5e24a8427d0f86936516ec2a0"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.hero.divine-sense",
+        "name": "Divine Sense",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "feature",
+        "minimumClassLevel": 18,
+        "acquisition": "automatic",
+        "activation": "Passive upgrade",
+        "cost": "Normal Divine Sense use",
+        "rangeAndTarget": "Divine Sense targets 60 ft",
+        "duration": "Normal sense duration",
+        "frequency": "Automatic at 18",
+        "effect": "Divine Sense identifies celestial/fiend/undead nature despite ordinary disguise or shapeshift. Still requires clear line of effect; cannot reveal through walls or defeat artifact-specific concealment without its rule.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3707,
+          "originalText": "Divine Sense: Detect Disguised Outsiders (Level 18)\nYour Divine Sense now reveals outsiders (celestials, fiends, etc.) even if they are disguised or shapeshifted."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "e6a93ccf7165d8e801f1a2d3888f24a992b650f989025efa98ace68b2d743361"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oathbreaker-shared.dread-shelter",
+        "name": "Dread Shelter",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oathbreaker shared",
+        "sourceKind": "new forbidden spell",
+        "minimumClassLevel": 5,
+        "acquisition": "automatic for selected Oathbreaker",
+        "activation": "Bonus Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "Self",
+        "duration": "Concentration, 1 minute",
+        "frequency": "At will while RP remains",
+        "effect": "New rank 2 Forbidden spell. Gain 2 S+M temporary HP on casting and 1 flat DR against weapon damage for duration. No recurring temp HP pulse or healing.",
+        "prerequisite": "Paladin 5; selected Oathbreaker inversion",
+        "source": {
+          "line": null,
+          "reference": null,
+          "originalText": "",
+          "status": "explicit-new-playtest-completion"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 2
+      },
+      "sourceObjectSha256": "21aacaa2a10867f745124fcb7d6c76eb33b0c79c19178726cd324df4b92df562"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oathbreaker-shared.black-manifestation",
+        "name": "Black Manifestation",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oathbreaker shared",
+        "sourceKind": "new capstone",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for selected Oathbreaker",
+        "activation": "Bonus Action",
+        "cost": "1 long-rest use",
+        "rangeAndTarget": "Self and up to 3 enemies in aura",
+        "duration": "Until start next turn",
+        "frequency": "1/long rest",
+        "effect": "New Oathbreaker Final: gain 2 S+M temporary HP; chosen enemies WIS save or lose Reactions and Speed-10 ft for duration. Refresh one expended Signature use, then pay its normal Action and other costs when used. No Death Touch pool, RP, extra Action or Final reset.",
+        "prerequisite": "Paladin 20; selected Oathbreaker inversion",
+        "source": {
+          "line": null,
+          "reference": null,
+          "originalText": "",
+          "status": "explicit-new-playtest-completion"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "fa105c2d7a52015f0d3640f7d570072e5e0a5d005d7e818da9bac58bd438247f"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-mercy.channel-life",
+        "name": "Channel Life",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of Mercy",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 9,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "5 RP",
+        "rangeAndTarget": "Self and one living ally within 30 feet",
+        "duration": "Instantaneous",
+        "frequency": "At will while RP remains",
+        "effect": "Choose X from 1 to Paladin level+M, limited so your current HP remains at least 1. Lose X HP; this loss cannot be reduced, redirected or prevented. The target regains X HP. This is a direct transfer, cannot exceed the target's maximum HP and cannot remove Wounds or create excess temporary HP.",
+        "prerequisite": "Paladin 9; Oath of Mercy",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[0].revelationSpells[2]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[0].revelationSpells[2]",
+              "value": {
+                "level": 9,
+                "spell": "Channel Life — transfer HP from self to ally"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 3,
+        "oathId": "mercy",
+        "oathName": "Oath of Mercy",
+        "oathbreakerName": "Cruelty",
+        "displayPath": "Oath of Mercy"
+      },
+      "sourceObjectSha256": "791e5b9a6f7de5962bffa02d02d406a4eba8aedc125391595cd002581a5f6610"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oathbreaker-oath-of-mercy.healing-suppression",
+        "name": "Healing Suppression",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oathbreaker — Oath of Mercy",
+        "sourceKind": "oathbreakerAura",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for corresponding Oathbreaker",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Up to 3 chosen creatures in your Oath aura",
+        "duration": "While conscious and target remains in aura",
+        "frequency": "Choose targets at start of each turn",
+        "effect": "HP healing received by each selected creature is halved, rounded down. Temporary HP, damage prevention and resurrection are not healing for this effect. This suppression cannot reduce healing below 0 or convert prevented healing into damage.",
+        "prerequisite": "Paladin 3; Oathbreaker — Oath of Mercy",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[0].oathbreaker.aura",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[0].oathbreaker.aura",
+              "value": "Healing Suppression — all healing within aura reduced by 50%"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "mercy",
+        "oathName": "Oath of Mercy",
+        "oathbreakerName": "Cruelty",
+        "displayPath": "Cruelty — Oath of Mercy Oathbreaker"
+      },
+      "sourceObjectSha256": "1613079d8c08dac41dc4b7fe98b3dbbf5f4534a28a2d30282e93522bd69fdbde"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-vengeance.verdict-absolute",
+        "name": "Verdict Absolute",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of Vengeance",
+        "sourceKind": "finalOathGift",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Bonus Action",
+        "cost": "0 RP",
+        "rangeAndTarget": "One Judgment Brand target; witnesses in your aura",
+        "duration": "3 rounds",
+        "frequency": "1/long rest",
+        "effect": "For 3 rounds, your current Judgment Brand cannot be removed by an ordinary save or concealment effect. Smites against the branded target use maximum Smite dice, and it cannot voluntarily teleport or become invisible. If the branded target reaches 0 HP during the effect, restore your Lay on Hands pool to its normal maximum once, then up to three hostile creatures in your aura that witnessed the defeat make Wisdom saves; on failure they are Frightened until the end of their next turn. The Lay on Hands refill requires a meaningful nonsummoned hostile defeated in a real encounter; staged or willing sacrifices do not qualify.",
+        "prerequisite": "Paladin 20; Oath of Vengeance",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[1].finalOathGift",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[1].finalOathGift",
+              "value": "Verdict Absolute — once per day, your Judgment Brand cannot be resisted: marked foes suffer max-dice smites, cannot teleport or become invisible, and if reduced to 0 HP you restore your full Lay on Hands pool; unmarked foes who witness the execution must save or become frightened until end of next turn."
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "vengeance",
+        "oathName": "Oath of Vengeance",
+        "oathbreakerName": "Malice",
+        "displayPath": "Oath of Vengeance"
+      },
+      "sourceObjectSha256": "d0a6a7c1d230009b7b4c04c3c7304c7718ba39a097973dd6bf2b40fb849210b9"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-ancients.primordial-surge",
+        "name": "Primordial Surge",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of the Ancients",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 17,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "10 RP",
+        "rangeAndTarget": "Up to 3 chosen creatures in your Oath aura",
+        "duration": "Temporary HP until lost; root until end of target's next turn",
+        "frequency": "At will while RP remains",
+        "effect": "A selected ally gains temporary HP equal to 2 times your actual Charisma modifier, minimum 2. A selected hostile fey or elemental makes a Strength save; on failure roots bind it and its Speed becomes 0 until the end of its next turn. This root does not remove Actions or Reactions. You may mix allied and hostile targets but can select no more than 3 total creatures.",
+        "prerequisite": "Paladin 17; Oath of the Ancients",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[4].revelationSpells[4]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[4].revelationSpells[4]",
+              "value": {
+                "level": 17,
+                "spell": "Primordial Surge — allies in aura gain temp HP equal to 2× CHA mod from land; fey/elementals in aura save or are rooted until end of next turn"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 5,
+        "oathId": "ancients",
+        "oathName": "Oath of the Ancients",
+        "oathbreakerName": "Withering Grove",
+        "displayPath": "Oath of the Ancients"
+      },
+      "sourceObjectSha256": "14e26c2b4a4fbe85d2cdff1f84ac074955bf0280097a5717007f8af91a2fbe89"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.linked-ward",
+        "name": "Linked Ward",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Chain",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One willing ally in your Oath aura",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "At will while RP remains",
+        "effect": "Mark one willing ally. Once per round when it takes damage, use your Reaction to redirect up to 2 times your actual Charisma modifier, minimum 2, of that damage to yourself. Redirected damage keeps its type and cannot be redirected again. If this redirected damage reduces you to 0 HP, the ally gains temporary HP equal to the amount you actually absorbed, maximum Paladin level+M.",
+        "prerequisite": "Paladin 3; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].revelationSpells[0]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].revelationSpells[0]",
+              "value": {
+                "level": 3,
+                "spell": "Linked Ward — mark ally within aura; as reaction when they take damage, redirect up to 2× CHA mod radiant to yourself; if you fall to 0 HP this round, ally gains temp HP equal to damage redirected"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 1,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "e733a4a1f12c01e46fa3b2bd23f1f24f319fbb98dd023f68575687a51eb8fba2"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.final-stand",
+        "name": "Final Stand",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of the Chain",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 17,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "10 RP",
+        "rangeAndTarget": "One willing ally in your Oath aura",
+        "duration": "Until start of your next regular turn",
+        "frequency": "At will while RP remains",
+        "effect": "Until the start of your next turn, all damage that would be dealt to the chosen ally is redirected to you instead. The redirected damage retains type, cannot be redirected again and cannot be mitigated again after the original target’s defenses apply once. If redirected damage reduces you to 0 HP, the ally immediately gains temporary HP equal to your Paladin level and resistance to all damage until the end of its next turn. This effect ends if you die outright.",
+        "prerequisite": "Paladin 17; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].revelationSpells[4]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].revelationSpells[4]",
+              "value": {
+                "level": 17,
+                "spell": "Final Stand — for 1 round, absorb all damage dealt to one chosen ally in aura; if you fall to 0 HP from redirected damage, ally gains temp HP equal to your level and resistance to all damage until end of next turn"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 5,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "a30dfed5eb1e4a23d6db023e47c779202eb684a6a71013dd12ddf7e5cbbf77e0"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-chain.unbroken-covenant",
+        "name": "Unbroken Covenant",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of the Chain",
+        "sourceKind": "finalOathGift",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Bonus Action",
+        "cost": "0 RP",
+        "rangeAndTarget": "Your full Oath aura; up to 3 bonded allies",
+        "duration": "3 rounds",
+        "frequency": "1/long rest",
+        "effect": "For 3 rounds Warden's Lock fills your entire current Oath aura. Choose up to 3 allies there as bonded. Each bonded ally uses your AC if it is higher and cannot be forcibly moved against its will. Whenever you redirect damage from a bonded ally to yourself, that ally gains temporary HP equal to half the actual damage you absorb, rounded down, maximum S+M per event. Temporary HP do not stack. This Final grants no extra Reactions.",
+        "prerequisite": "Paladin 20; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].finalOathGift",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].finalOathGift",
+              "value": "Unbroken Covenant — once per day, Warden's Lock expands to your full aura radius for 3 rounds; bonded allies share your AC, cannot be moved against their will, and when you redirect damage to yourself they gain temp HP equal to half damage absorbed until the lock ends."
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "sourceObjectSha256": "513944a1ffe10dd0f5c74def4fee7a4d1248ee05fa668cceba673d4e1beb9f1c"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-grief.echo-of-the-fallen",
+        "name": "Echo of the Fallen",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of Grief",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 17,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "10 RP",
+        "rangeAndTarget": "One allied creature who died in your aura this encounter; one target within the former ally's normal weapon range or one ally in your aura",
+        "duration": "Until start of your next regular turn",
+        "frequency": "At most once per fallen ally per long rest",
+        "effect": "Manifest the ally's spirit for one round. Choose one mode on cast. Strike: the spirit makes one attack using the deceased ally's last recorded ordinary weapon attack bonus and base weapon damage, with no class-resource riders, extra attacks or proc effects. Guard: one chosen ally in your aura gains +2 AC until the start of your next turn. The spirit is not resurrected, cannot be targeted and disappears afterward. The single spirit strike uses PB+CHA to hit and S d8+M damage of the original weapon type if the recorded profile would exceed either value. It consumes the shared damaging-companion-action budget for that round; no monster or high-level player stat-block duplication.",
+        "prerequisite": "Paladin 17; Oath of Grief",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[7].revelationSpells[4]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[7].revelationSpells[4]",
+              "value": {
+                "level": 17,
+                "spell": "Echo of the Fallen — summon spirit of fallen ally within aura for 1 round; it makes one attack or grants chosen ally +2 AC as reaction"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 5,
+        "oathId": "grief",
+        "oathName": "Oath of Grief",
+        "oathbreakerName": "Gravetongue",
+        "displayPath": "Oath of Grief"
+      },
+      "sourceObjectSha256": "27c9f765ebbd0680287b9c51689a0065caa04ddea514aafb66ba6bd88a1aa0fa"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oathbreaker-oath-of-grief.dirge-of-ruin",
+        "name": "Dirge of Ruin",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oathbreaker — Oath of Grief",
+        "sourceKind": "blasphemousWord",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic for corresponding Oathbreaker",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Up to 3 creatures in your Oath aura",
+        "duration": "Damage instantaneous; healing block until end of next turn",
+        "frequency": "1/short rest; replaces Signature Power use",
+        "effect": "Each target makes a Constitution save, taking 2 S d6 necrotic damage on failure or half on success. A failing target cannot regain HP until the end of its next turn. This does not prevent temporary HP or remove healing already received.",
+        "prerequisite": "Paladin 11; Oathbreaker — Oath of Grief",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[7].oathbreaker.blasphemousWord",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[7].oathbreaker.blasphemousWord",
+              "value": "Dirge of Ruin — necrotic wave that prevents healing"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "grief",
+        "oathName": "Oath of Grief",
+        "oathbreakerName": "Gravetongue",
+        "displayPath": "Gravetongue — Oath of Grief Oathbreaker"
+      },
+      "sourceObjectSha256": "16cc8982591672cdbad5aa34bf755e2c4b8024c032fb29dba978ec14eb4d6407"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-martyr-king.king-s-smite",
+        "name": "King's Smite",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Martyr King",
+        "sourceKind": "oathSmite",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Triggered",
+        "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+        "rangeAndTarget": "Creature hit by your melee weapon attack; one ally in your aura",
+        "duration": "Smite instantaneous; temporary HP until lost; redirection passive while this Oath is active",
+        "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+        "effect": "The Smite deals radiant damage normally. After it resolves, choose one ally in your aura; it gains temporary HP equal to half the actual radiant Smite damage dealt, rounded down, maximum S+M. Separately, once per round when an ally in your aura takes damage, you may redirect up to 5 of that damage to yourself. Apply the original target’s defenses once, then transfer up to 5 of the remaining damage. Transferred damage keeps its type and cannot be reduced again, reflected, redirected again or generate resources.",
+        "prerequisite": "Paladin 3; Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].smiteType",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].smiteType",
+              "value": "Radiant — bonus damage; allies in aura gain temp HP when you smite; you may redirect 5 damage from one ally per round"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "conductClauses": [
+          "Bear the responsibility of command without treating those in your care as a means to your glory",
+          "Set the realm's need above personal gain, and spend your own strength before you spend another's",
+          "Never demand a burden you would not freely take upon yourself"
+        ],
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Oath of the Martyr King"
+      },
+      "sourceObjectSha256": "d477840b93208eb5bca4155cbd47f455ccac24e5625dfdd29affc907abcf4b8c"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-martyr-king.noble-bearing",
+        "name": "Noble Bearing",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Martyr King",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Up to three allies in your aura",
+        "duration": "Concentration; three rounds",
+        "frequency": "While RP remains",
+        "effect": "Selected allies gain +1 on morale checks and saves against Frightened. Once on each of your turns after a paid Smite deals radiant damage, one selected ally gains temporary HP equal to half the actual Smite damage, rounded down, capped at S+M. This replaces, rather than stacks with, the identical King’s Smite temporary HP. Temporary HP never stack.",
+        "prerequisite": "Paladin 3; Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].revelationSpells[0]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].revelationSpells[0]",
+              "value": {
+                "level": 3,
+                "spell": "Noble Bearing — allies within aura +1 to morale saves; when you smite, one chosen ally gains temp HP equal to half radiant dealt"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 1,
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Oath of the Martyr King"
+      },
+      "sourceObjectSha256": "b6840707d8dd17cbd87629512f8f4d5fb07e71b21e147c11c90f42c0bc5a5cf3"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oath-of-the-martyr-king.last-king-s-gift",
+        "name": "Last King’s Gift",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of the Martyr King",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 17,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Reaction before ally falls to 0 HP",
+        "cost": "10 RP",
+        "rangeAndTarget": "One living ally in your aura",
+        "duration": "Instant prevention; temporary HP until lost or encounter end",
+        "frequency": "Once per encounter per ally",
+        "effect": "When damage would reduce the ally to 0 HP without killing it outright, it instead remains at 1 HP and gains temporary HP equal to your Paladin level after the triggering damage resolves. This does not reverse a completed death, remove Wounds or replenish any resource.",
+        "prerequisite": "Paladin 17; Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].revelationSpells[4]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].revelationSpells[4]",
+              "value": {
+                "level": 17,
+                "spell": "Last King's Gift — when ally in aura would drop to 0 HP, they drop to 1 HP instead and gain temp HP equal to your level once per combat per ally"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 5,
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Oath of the Martyr King"
+      },
+      "sourceObjectSha256": "ef3133f57d5da376b3755b09ca86e3140362b0ae00c199b68835114019d4c693"
+    },
+    {
+      "kind": "class-card",
+      "owner": "paladin",
+      "path": "data/public/class_playtests/paladin.json",
+      "card": {
+        "id": "paladin.supplement.oathbreaker-oath-of-the-martyr-king.crownshatter-decree-aura",
+        "name": "Crownshatter Decree Aura",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oathbreaker — Oath of the Martyr King",
+        "sourceKind": "oathbreakerAura",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for corresponding Oathbreaker",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Up to three selected enemies in your aura",
+        "duration": "While conscious and in aura",
+        "frequency": "Each incoming healing event",
+        "effect": "A selected enemy receives HP healing only if it has taken actual damage from a meaningful hostile creature since the start of its previous regular turn. If it has not, that healing restores 0 HP; its source still spends its normal costs. Temporary HP, stabilization and resurrection are not HP healing for this restriction. This aura never creates damage, transfers healing or reverses recovery that already resolved.",
+        "prerequisite": "Paladin 3; Oathbreaker — Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].oathbreaker.aura",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].oathbreaker.aura",
+              "value": "Crownshatter Decree — damage required for healing"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Usurper's Crown — Oath of the Martyr King Oathbreaker"
+      },
+      "sourceObjectSha256": "e4341a3bd789ba5baa4c0bf1817a7a16ec61fc0d98d9ca79101397f9f984f203"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "engineIndex": 2,
+      "text": "At 5 automatically gain Palisade Deployment. Spend one carried barricade kit and an Action to erect a 2-by 1-tile wall in contiguous unoccupied ground within 5 ft. Height 5 ft, AC 12, HP 5+CON modifier minimum 1, immunity psychic/poison; blocks movement and line of sight across its full height but can be climbed using 10 ft movement. One kit/use per encounter, two at 13; a long rest with carpentry tools replenishes 2 kits (carried maximum 2, reusable parts have no resale value). Material is required; no conjuring. At most one intact wall, two at 13. Old wall must be dismantled in 1 minute before replacement beyond cap. Once per encounter an Action repairs a wall for M HP using spare parts; destruction does not refresh uses.",
+      "textSha256": "05a2e9a7525de8b2bc4f52811578dba3d9155699bbc546d38f55c0f8dcb88c42"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.base.quick-deploy",
+        "name": "Quick Deploy",
+        "className": "Soldier",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "1 encounter use",
+        "rangeAndTarget": "One 5 ft square within 5 ft",
+        "duration": "3 rounds or destroyed",
+        "frequency": "1/encounter",
+        "effect": "Place low cover from carried field supplies: AC 12, HP 5, grants half cover and is difficult terrain. It is not a full palisade and does not grant its bonuses. One at a time; no transferable saleable material.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4199,
+          "originalText": "Quick Deploy: Set up a temporary barricade that provides partial cover."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "f26013c69f3eb39848dc4c0ee7f1e2e1a5e2304cabb6f579b31bb92bfe42f259"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.base.rally-point",
+        "name": "Rally Point",
+        "className": "Soldier",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "1 short-rest use",
+        "rangeAndTarget": "Up to 3 allies within 15 ft who hear you",
+        "duration": "Until start next turn",
+        "frequency": "1/short rest",
+        "effect": "Each gains M temporary HP and+1 on the next saving throw before duration ends. Temporary HP follows strongest-only rule and is lost at encounter end.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4202,
+          "originalText": "Rally Point: Designate a location that grants allies who move there a small defensive bonus."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "273e7503147e816f6f8d356bda2838bed8dc29a94c0e23f9d31d0058d8d586fc"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.arch.palisade-deployment",
+        "name": "Palisade Deployment",
+        "className": "Soldier",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 5,
+        "acquisition": "automatic",
+        "activation": "Action",
+        "cost": "One kit; one encounter deployment",
+        "rangeAndTarget": "Adjacent 10-by 5 ft ground",
+        "duration": "Until destroyed/dismantled",
+        "frequency": "1/encounter; 2 at 13",
+        "effect": "Automatic engine, not a selected skill. Build the palisade with the exact statistics, kit and repair rules in the class engine. Source minimum 5 retained.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4211,
+          "originalText": "Palisade Deployment: Deploy a 2x1 barrier that blocks movement and line of sight (level 5)."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "92866fa29a531fe7d16fee6aceaff3187f2157c712daa97ab5419e19466f0695"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.hero.champion.rallying-cry",
+        "name": "Rallying Cry",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": "Champion",
+        "sourceKind": "active",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "1 long-rest use",
+        "rangeAndTarget": "Up to 3 allies within 30 ft who hear you",
+        "duration": "Instant; temp HP to encounter end",
+        "frequency": "1/long rest",
+        "effect": "End Frightened on each and grant S+M temporary HP. Cannot revive, heal real HP or repeatedly refresh from imitation/copies.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4238,
+          "originalText": "Rallying Cry: Remove fear effects from nearby allies and grant temporary hit points."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "5bfb1a71cb4b5b01c09fc3090391670394590c62f63474223b80356fa6459009"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.hero.artillerist.palisade-synergy",
+        "name": "Palisade Synergy",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": "Artillerist",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Your ranged weapon attack while adjacent to palisade",
+        "duration": "One hit",
+        "frequency": "Once/own turn",
+        "effect": "Add S damage. Does not apply to every shot, area save or turret hit, and requires an intact wall you deployed.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4247,
+          "originalText": "Palisade Synergy: Your attacks deal additional damage to enemies adjacent to your palisades."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "5aae7880555aa94bb15ad2ce76ef91ed8e1c7d3b8f5a30bd82fb7a0d08141f4e"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.hero.artillerist.turret-deployment",
+        "name": "Turret Deployment",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": "Artillerist",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "1 short-rest use",
+        "rangeAndTarget": "Up to 2 empty squares within 10 ft",
+        "duration": "3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Deploy 2 turrets, each AC 12+PB and HP 2 L, immobile, range 60 ft. On your Bonus Action command ONE turret to attack using PB+DEX for 1d6+M piercing. Both share that single command/attack budget with other companions; no autonomous shots. Reclaimed after use, no resale.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4254,
+          "originalText": "Turret Deployment: Deploy up to 2 automated turrets that last 3 rounds, firing for 1d6+WIS damage and applying Snare or Disrupt effects."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "3ba596f31f73bc5e9282eb9cc368821618da2deecaede7305e7cd6736c3fa32d"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.hero.artillerist.bubble-of-discipline",
+        "name": "Bubble of Discipline",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": "Artillerist",
+        "sourceKind": "active",
+        "minimumClassLevel": 16,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "1 long-rest use",
+        "rangeAndTarget": "15 ft square centered within 15 ft",
+        "duration": "Until start of your second next turn",
+        "frequency": "1/long rest",
+        "effect": "Deploy dense layered cover. Up to 3 allies inside gain+2 AC against spell attacks and advantage on DEX saves against spells from outside. Once total, Reaction reduce spell damage to one protected ally by 2 S+M. Does not negate a spell, block internal casting or protect each ally independently.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4255,
+          "originalText": "Bubble of Discipline: Create a 3x3 area effect that blocks 1 spell per ally for 2 rounds (once per rest)."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "3f70d03793ae616eaa310411bcb30368aa652d78dc65a74d9a3fe0c6118c46fd"
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.supplement.final-command",
+        "name": "Final Command",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "supplement",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "1 long-rest use",
+        "rangeAndTarget": "Self and up to 3 willing allies within 30 ft who hear you",
+        "duration": "Until start next turn",
+        "frequency": "1/long rest",
+        "effect": "New Hero capstone. Allies may each move 10 ft without opportunity attacks and gain S+M temporary HP. You refresh one expended short-rest Soldier card, excluding Final Command and long-rest features. A refreshed card still costs its activation and ammunition; no extra turn or recursive resets.",
+        "prerequisite": "See class engine and progression.",
+        "source": {
+          "line": null,
+          "reference": null,
+          "originalText": "",
+          "status": "explicit-new-playtest-completion"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "d16ba4d9f1fd5a9b696cbc6cd74e0549d9252768470c5e77a7abe1dc721929d0"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "thief",
+      "path": "data/public/class_playtests/thief.json",
+      "engineIndex": 0,
+      "text": "Dexterity governs weapons and class DC/M. Choose Intelligence or Wisdom for noncombat class tool/sense checks at 1. Hit Die d8; light armor, daggers, shortswords, thrown weapons and hand crossbows; thieves tools and poison kit. Sneak Attack is automatic at 1: once on your regular turn, add ceil(class level/2)d6 to one finesse/ranged weapon hit if you had advantage, an active ally threatens target within 5 ft, or target is suffering your Bleed/Poisoned/Crippled. Disadvantage prevents Sneak Attack even if canceled into a straight roll. A feature can explicitly grant Sneak Attack on a different qualifying hit but never more than once/regular turn. Copies, poison ticks and companions cannot Sneak Attack.",
+      "textSha256": "a5351d054b7591c02249049b8ffa97596d63be6f7520922d11a6856d5ca23920"
+    },
+    {
+      "kind": "class-card",
+      "owner": "thief",
+      "path": "data/public/class_playtests/thief.json",
+      "card": {
+        "id": "thief.base.disable-device",
+        "name": "Disable Device",
+        "className": "Thief",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "Thieves tools",
+        "rangeAndTarget": "One accessible device within reach",
+        "duration": "One attempt",
+        "frequency": "At will; retries need changed approach",
+        "effect": "Make DEX+PB against its stated disarm DC; unknown DC defaults 15 for ordinary trap, 20 complex. Success disarms one accessible mechanism, failure by 5 triggers it. Does not automatically dispel magic.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4380,
+          "originalText": "Disable Device: Disarm non-magical traps, pressure plates, or poison glyphs."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "c8122370668dce9558c61f8eff916a365d6f61cde3c6534d3eaeb87554bc37e6"
+    },
+    {
+      "kind": "class-card",
+      "owner": "thief",
+      "path": "data/public/class_playtests/thief.json",
+      "card": {
+        "id": "thief.hero.arcane-trickster.arcane-theft",
+        "name": "Arcane Theft",
+        "className": "Thief",
+        "band": "Hero",
+        "path": "Arcane Trickster",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "One enemy within 30 ft with observed spell buff",
+        "duration": "Concentration, at most 3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Target WIS save. Failure suppress one eligible temporary rank 1–3 buff for duration and gain only its printed AC bonus (max 2), Speed bonus(max 10 ft), or resistance to one damage type; choose before save. Does not copy actions, spells, resources, summons or capstones. Magical technique 1 D.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4417,
+          "originalText": "Arcane Theft: Steal a beneficial spell effect from a target and apply it to yourself."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "c1bb6bb7fe88bb569ccf738f5f66b9f7e18f57a60d734dd69161632d804cf9e9"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "engineIndex": 10,
+      "text": "BT CAP AND RESET. Default BT cap is 3. Stack Overflow raises it to 4. BT is not automatically spent; only features explicitly saying spend reduce it. Encounter end resets BT and Brutality Progress to 0. BT cannot be generated from friendly attacks, summoned sacrificial creatures, unattended objects, staged sparring or enemies that do not meaningfully threaten the party.",
+      "textSha256": "0420b3ddc1ba81301860e24aa7eef4c586cf61d6411fa498a052eeef16f07ec7"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "engineIndex": 15,
+      "text": "HEALING AND REGENERATION. Warrior healing cannot exceed maximum HP, restore the dead or remove Wounds unless a card explicitly says otherwise. Regeneration and repeated healing effects operate only during real encounters unless their card explicitly permits downtime healing. No corpse, summoned creature, trivial enemy or friendly target can be used to create infinite healing, serum doses or BT.",
+      "textSha256": "131241182dc02a463a2ac51c44a39e0d15e63ccfa46eeb436bc8763593d8e312"
+    },
+    {
+      "kind": "class-card",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "card": {
+        "id": "warrior.base.mutation-surge",
+        "name": "Mutation Surge",
+        "className": "Warrior",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 2,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "+1 Strain",
+        "rangeAndTarget": "One active mutation",
+        "duration": "Until start of your next regular turn",
+        "frequency": "Recharge 2 rounds",
+        "effect": "Mutation Surge. Enhance one active mutation. If it grants AC, DR, attack, save or flat damage, increase one such bonus by 1; if it grants movement or reach, increase it by 5 feet; if it deals mutation damage, add 1d4 to one damage event. A mutation with none of those numeric effects instead grants S temporary HP. The enhancement never changes immunity, target count or duration.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4810,
+          "originalText": "Mutation Surge: Temporarily enhance an active mutation, increasing its effects for 1 round but adding strain to your body."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "b0157a89d1364dc38aec69ad982dd5ef4eb530b2630a96cee75c5c2c2eba94ba"
+    },
+    {
+      "kind": "class-card",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "card": {
+        "id": "warrior.arch.brutality-momentum",
+        "name": "Brutality Momentum",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 9,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "Your Brutal Strike",
+        "duration": "Instantaneous",
+        "frequency": "At most once per round",
+        "effect": "Brutality Momentum. When you personally reduce a creature marked Vulnerable by Brutality Sense to 0 HP with a melee attack, set Brutal Strike's positive round-recharge counter to 0 if it has not already been reset or shortened this round. This restores no Action and cannot refresh a per-rest use. Trivial, summoned or friendly creatures cannot trigger it.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4824,
+          "originalText": "Brutality Momentum: Killing a marked vulnerable target instantly readies your next Brutal Strike."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "4ff3b28f0910503638889962933a6677c614f1ce62c77a52dbe54134d183e8b2"
+    },
+    {
+      "kind": "class-card",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "card": {
+        "id": "warrior.hero.wardborn.aegis-incarnate",
+        "name": "Aegis Incarnate",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": "Wardborn",
+        "sourceKind": "passive",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic",
+        "activation": "Bonus Action",
+        "cost": "0",
+        "rangeAndTarget": "Self and allies within 15 feet",
+        "duration": "3 rounds",
+        "frequency": "1/long rest; automatic Wardborn Final Form",
+        "effect": "Final Form – Aegis Incarnate. For 3 rounds you cannot be forcibly moved or knocked Prone. Whenever an ally within 15 feet takes damage, automatically redirect half that damage rounded down to yourself after the ally's resistance but before its temporary HP; the ally takes the remainder. Redirected damage keeps its type, cannot be reduced again or generate BT, and cannot be redirected again. If taking the redirected damage would kill you outright, the redirection still occurs. This grants no extra Reaction requirement and does not stack with Guardian Tissue on the same damage event.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4851,
+          "originalText": "Final Form – Aegis Incarnate: Transform into a living shield for 3 rounds, becoming immovable and redirecting 50% of all damage dealt to allies within 15 feet to yourself."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "5e223de7f6a979dac5c81bb5b26b2c3796c41100d9cbe813da435aa9cac54c6b"
+    },
+    {
+      "kind": "class-card",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "card": {
+        "id": "warrior.supplement.bone-hardened",
+        "name": "Bone Hardened",
+        "className": "Warrior",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "progression",
+        "minimumClassLevel": 6,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Automatic",
+        "effect": "While you are not Staggered, reduce physical weapon damage you take by 1 after resistance and before temporary HP.",
+        "prerequisite": "Warrior 6",
+        "source": {
+          "line": 4792,
+          "reference": null,
+          "originalText": "| 6 | Bone Hardened: DR +1 while not staggered |",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "1d8ba646c82161e56f920b88ad898d36fea5211c0476b1828f9d0e763e4a20ac"
+    },
+    {
+      "kind": "class-card",
+      "owner": "warrior",
+      "path": "data/public/class_playtests/warrior.json",
+      "card": {
+        "id": "warrior.supplement.hemophage-core",
+        "name": "Hemophage Core",
+        "className": "Warrior",
+        "band": "Hero",
+        "path": null,
+        "sourceKind": "heroMutation",
+        "minimumClassLevel": 10,
+        "acquisition": "supplement",
+        "activation": "Triggered while active",
+        "cost": "One mutation slot; serum activation",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "Once per turn",
+        "effect": "When you personally reduce a meaningful hostile creature to 0 HP with a melee attack, regain 2d6 HP. Summoned, trivial, friendly or repeatedly revived creatures cannot trigger this healing. Each HP actually restored spends 1 Mutation Recovery Reserve; heal no more than remaining reserve.",
+        "prerequisite": "Dreadspawn; Aberrant Mutation Tree; Warrior 10",
+        "source": {
+          "line": 4911,
+          "reference": null,
+          "originalText": "Hemophage Core (heal on kill; absorb 2d6 HP)",
+          "status": "source-derived"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "e472701e8febc1973d6963d6a4d3c78ba1a4aa6d4e1740e3a484c9344b14cbda"
+    },
+    {
+      "kind": "class-engine",
+      "owner": "cleric",
+      "path": "data/public/class_playtests/cleric.json",
+      "engineIndex": 10,
+      "text": "All acquisition gates use Cleric class level, not total character level. Proficiency bonus still follows normal total-character-level rules. A multiclass character cannot use non-Cleric levels to unlock Bishop, Hero, Invocation or Finale features. Divine commands, visions and social abilities can influence actions only to the extent their exact mechanical text states; no Cleric feature can force a player character to adopt, abandon or profess a belief.",
+      "textSha256": "d53fc83ad5fbbf0103ca79cee49447c138ffa1313a0ed889f1418860bf62a91b",
+      "candidateOrigin": "Semantic supplement: exact acquisition, agency, copy or TierII object boundary."
+    },
+    {
+      "kind": "class-engine",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "engineIndex": 19,
+      "text": "PROPHECY AND DIVINATION never force player beliefs, future choices or confessions. Information features can provide truthful clues, likely outcomes, symbolic visions or current facts, but the Director is not required to reveal unknowable future player decisions. Effects that command or compel a player-controlled character preserve the player's choice of targets and prohibit self-harm, permanent allegiance changes and belief alteration.",
+      "textSha256": "702d2aca59c61c017af2b1f4bdbcce3ae217d4e1183d1a941c0c3b60cd7183d5",
+      "candidateOrigin": "Semantic supplement: exact acquisition, agency, copy or TierII object boundary."
+    },
+    {
+      "kind": "class-engine",
+      "owner": "oracle",
+      "path": "data/public/class_playtests/oracle.json",
+      "engineIndex": 29,
+      "text": "Extra attacks and echoed damage use base weapon/spell dice before critical-hit extra dice. A redirected damage event cannot be reduced a second time, reflected again or generate RC. Charmed alone does not grant command of a creature's actions.",
+      "textSha256": "b1f27c6149ea8d930f2b1ac29e2e5a73de9991ef98d53045b5ba8b4f055fde81",
+      "candidateOrigin": "Semantic supplement: exact acquisition, agency, copy or TierII object boundary."
+    },
+    {
+      "kind": "class-engine",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "engineIndex": 3,
+      "text": "Palisade Tier II at 13 doubles wall HP and grants resistance to damage from area effects. Hold Position: while adjacent to your intact wall gain+1 AC and+1 saves. Brace Line: an ally immediately behind you relative to a ranged attacker, with your wall adjacent to both of you, has 2 flat DR against that attacker. These bonuses do not stack with another Soldier wall; strongest flat DR applies. Full cover prevents attacks rather than granting an additional AC bonus.",
+      "textSha256": "a72460e1ac4837d50fce1fab61d7d6b13ad33f35eed27946161684169cff9952",
+      "candidateOrigin": "Semantic supplement: exact acquisition, agency, copy or TierII object boundary."
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.arch.fortify-zone",
+        "name": "Fortify Zone",
+        "className": "Soldier",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 9,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "1 short-rest use",
+        "rangeAndTarget": "Visible 15 ft square within 30 ft",
+        "duration": "3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Designate fortified firing lanes. Ranged attacks against up to 3 allies inside take-2 to hit while you remain conscious within 30 ft. Does not affect saves, melee attacks or attacks from inside zone.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4213,
+          "originalText": "Fortify Zone: Enemies in a 3x3 area take –2 to ranged attacks against your allies (level 9)."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "0938937bdd2ad8e34bc16ade52b53b16b3dc67136d97b1a728c03f4576943f3c",
+      "candidateOrigin": "Semantic supplement: distinguish named protection effect from physical object."
+    },
+    {
+      "kind": "class-card",
+      "owner": "soldier",
+      "path": "data/public/class_playtests/soldier.json",
+      "card": {
+        "id": "soldier.hero.champion.wall-of-aegis",
+        "name": "Wall of Aegis",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": "Champion",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "1 short-rest use",
+        "rangeAndTarget": "Self and up to 3 adjacent allies",
+        "duration": "Until start of your second next turn",
+        "frequency": "1/short rest",
+        "effect": "Gain 2 flat DR against all damage except psychic. Use strongest reduction once per damage packet; does not stack with other flat DR.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4237,
+          "originalText": "Wall of Aegis: Grant all adjacent allies +2 Damage Reduction for 2 rounds."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "sourceObjectSha256": "adc136421f16784f65097aa1e66de05158b5ee1eecff8be57f0fc754cede0563",
+      "candidateOrigin": "Semantic supplement: distinguish named protection effect from physical object."
+    }
+  ],
+  "supportingSources": [],
+  "originalInventoryCandidates": 74,
+  "semanticSupplements": 6
+}
