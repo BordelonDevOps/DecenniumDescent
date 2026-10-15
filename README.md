@@ -1,4 +1,4 @@
-> **Progress snapshot — 15 October 2026:** See [the current snapshot status](SNAPSHOT_STATUS_2026-10-15.md). **419 spells reviewed / 429 pending.** The copy-release source rulings have been received and applied; behavioral validation remains open. The first cosmology source/authority packet has been sent. Earlier status statements below are retained history and may lag this snapshot. Whole-game acceptance remains open.
+> **Latest progress backup — 15 October 2026:** See [the current snapshot status](SNAPSHOT_STATUS_2026-10-15_COSMOLOGY.md). The source/authority and creation/origin cosmology reviews are recorded, with original documents preserved. **419 spells reviewed / 429 pending.** Full cosmology and whole-game review remain open. Earlier status statements below are retained history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 

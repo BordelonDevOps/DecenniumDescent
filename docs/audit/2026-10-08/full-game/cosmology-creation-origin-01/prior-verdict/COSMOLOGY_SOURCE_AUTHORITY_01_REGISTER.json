@@ -1,0 +1,406 @@
+{
+  "reviewId": "COSMOLOGY-SOURCE-AUTHORITY-01",
+  "date": "2026-10-15",
+  "scope": "first careful post-push source/authority conference only",
+  "baselineCommit": "a3f75a0ce577f51bd39153a872ef05ba9e877642",
+  "submissionVerification": {
+    "bytes": 949138,
+    "sha256": "940c53f11ac3757ad1a7fa9b388103494c5d82cd1104aea3ee15ce819f68d68e",
+    "manifestEntries": 40,
+    "manifestVerified": true,
+    "badEntries": []
+  },
+  "authorityModel": [
+    {
+      "tier": 1,
+      "category": "recorded-owner-decision",
+      "rule": "Controls the exact questions the owner answered; preserve wording and supersession notes; unanswered portions remain open.",
+      "sources": [
+        "docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+        "docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md"
+      ],
+      "notes": "Q6 Level-97/endgame became a separately registered canonical Director domain on 2026-08-05. This does not create a general cosmology domain."
+    },
+    {
+      "tier": 2,
+      "category": "registered-domain-authority",
+      "rule": "CANON_MANIFEST owns domain routing. Use only the scopes it actually registers; root placement does not promote a source.",
+      "sources": [
+        "docs/canon/CANON_MANIFEST.json",
+        "docs/canon/REPOSITORY_PROMOTION.md"
+      ],
+      "notes": "Relevant registered domains are locked-baselines and floor-97-old-god-endgame; there is no general cosmology domain."
+    },
+    {
+      "tier": 3,
+      "category": "established-director-truth",
+      "rule": "Director-only syntheses may state objective setting truth where consistent with recorded owner decisions and registered domains; they do not override a higher owner lock.",
+      "sources": [
+        "DescentReviewChanges/ReviewBible/docs/canon/CANON_CORE.md",
+        "DescentReviewChanges/ReviewBible/docs/canon/PLAYER_DIRECTOR_BOUNDARY.md",
+        "docs/mechanics/SILENT_ONES_CANON.md"
+      ]
+    },
+    {
+      "tier": 4,
+      "category": "in-world-belief-or-public-myth",
+      "rule": "May be true, incomplete, mistaken, symbolic, or deliberately limited by audience. Do not literalize belief into Director truth.",
+      "sources": [
+        "docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+        "DescentReviewChanges/ReviewBible/docs/canon/PLAYER_DIRECTOR_BOUNDARY.md"
+      ]
+    },
+    {
+      "tier": 5,
+      "category": "original-unpromoted-source-document",
+      "rule": "Preserved source evidence and wording. Root presence is not automatic canon promotion. Portions become controlling only where later owner/domain authority adopts or explicitly relies on them.",
+      "sources": [
+        "The Cosmology of Decennium Descent.docx",
+        "The Decennium Descent and the Matrix of Oblivion.docx",
+        "The_World_of_Aethel_Lore.docx"
+      ]
+    },
+    {
+      "tier": 6,
+      "category": "historical-summary-or-status-record",
+      "rule": "Evidence of what a prior pass believed/did; useful for chronology, not an independent owner of cosmology facts.",
+      "sources": [
+        "docs/manuals/CONTINUITY_B_COSMOLOGY.md",
+        "docs/mechanics/PLAYERBOOK_DMG_ALIGNMENT_2026-07-31.md",
+        "docs/mechanics/CONTINUITY_SOURCE_OF_TRUTH.md"
+      ]
+    },
+    {
+      "tier": 7,
+      "category": "provisional-runtime-presentation",
+      "rule": "Rendering/data presentation can expose or summarize source material but does not elevate it to objective canon or change audience classification.",
+      "sources": [
+        "src/data/cosmology-lore.json",
+        "src/components/CosmologyViewer.tsx",
+        "src/app/page.tsx"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "COS-A01",
+      "disposition": "CONFIRMED AUTHORITY GAP — no contradiction; do not invent a general cosmology domain",
+      "classification": "authority/register gap",
+      "decision": "Keep domain-specific authority. Owner locks control their answered questions; registered floor-97/locked-baseline domains control those scopes; no file in this packet is promoted to general-cosmology owner merely by root/main placement.",
+      "ownerChoiceRequiredNow": false,
+      "support": [
+        {
+          "path": "docs/canon/CANON_MANIFEST.json",
+          "lines": "5-11,106-117 and domain entries locked-baselines/floor-97-old-god-endgame",
+          "point": "Registry is the single domain-level authority map and has no general cosmology domain."
+        },
+        {
+          "path": "docs/canon/REPOSITORY_PROMOTION.md",
+          "lines": "6,21-31,44-48",
+          "point": "Root drops are not auto-canonical; promotion requires review and owner approval."
+        },
+        {
+          "path": "docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+          "lines": "3-6",
+          "point": "Recorded owner wording is locked; unanswered Q6 stayed open at that time."
+        }
+      ],
+      "dependency": "A later deliberate registry decision may create a general cosmology domain, but this conference must not do so."
+    },
+    {
+      "id": "COS-A02",
+      "disposition": "CONFIRMED SOURCE-COMPLETENESS GAP — preserve placeholder; no replacement history",
+      "classification": "incomplete original source",
+      "decision": "The World of Aethel root DOCX cannot establish Sections I–VI because its own P1 is a placeholder. Its surviving VII+ material is source evidence only and must be checked against later owner/domain authority before use. The runtime itself marks I–VI as an extract gap/draft.",
+      "ownerChoiceRequiredNow": false,
+      "support": [
+        {
+          "path": "The_World_of_Aethel_Lore.docx",
+          "paragraph": 1,
+          "text": "[...Existing Sections I–VI remain unchanged...]",
+          "paragraphSha256": "cf8f1a6b0184dabdbca22188835d93f06c4e522e37cae38ba4a2265f37c33dac"
+        },
+        {
+          "path": "src/data/cosmology-lore.json",
+          "pointer": "/worldSections/0",
+          "point": "I–VI is explicitly labeled a draft extract gap requiring re-ingest."
+        },
+        {
+          "path": "The_World_of_Aethel_Lore.docx",
+          "paragraphs": "3-13,79-88",
+          "point": "The extant document resumes at VII and contains legacy myth/endgame statements, including Binding@97, that cannot silently outrank later Q6 authority."
+        }
+      ],
+      "dependency": "Locate and compare the actual earlier Sections I–VI or their authoritative published counterpart during the history/publication pass."
+    },
+    {
+      "id": "COS-A03",
+      "disposition": "PRESENTATION-BOUNDARY RISK, NOT A COSMOLOGY-FACT CONTRADICTION",
+      "classification": "audience/register mismatch risk",
+      "decision": "The byte-identical unfiltered cosmology JSON is imported by a client component reachable from the current source entrypoint and renders chapter bodies. That is sufficient to flag a source-presentation boundary concern, but not to assert a deployed leak, authentication failure, or certified player build. Do not infer truth from renderability; do not publish or rewrite in this pass.",
+      "ownerChoiceRequiredNow": false,
+      "support": [
+        {
+          "path": "src/data/cosmology-lore.json",
+          "sha256": "1cb25a15c5f5adda5683b84ab303967f4d1472037ccacfe95ad29e5d4e5ab7c7",
+          "point": "Byte-identical to Director-labeled unfiltered counterpart."
+        },
+        {
+          "path": "src/components/CosmologyViewer.tsx",
+          "lines": "8,33-37,360-450",
+          "point": "Imports the JSON, labels only some sections as draft, and renders selected bodies."
+        },
+        {
+          "path": "src/app/page.tsx",
+          "lines": "12,24-45",
+          "point": "CosmologyViewer is reachable through the source entrypoint's my-content tab."
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/canon/PLAYER_DIRECTOR_BOUNDARY.md",
+          "lines": "18-32",
+          "point": "Deep Heartcell/Silent Ones/Matrix truths are Director-only and revelation-gated."
+        }
+      ],
+      "dependency": "Later separate projection audit: map each rendered chapter/glossary/plane row to player-safe, belief, scholarly, revelation-gated, or Director-only classification before any player build is certified."
+    },
+    {
+      "id": "COS-A04",
+      "disposition": "ACTUAL PRESENTATION CONFLICT — owner answer already exists; no new owner choice needed",
+      "classification": "owner-locked belief-vs-runtime-summary conflict",
+      "decision": "Lumina/Umbra must not be presented as literal independent primordial beings in objective canon. The owner locked them as theological abstractions in the folk-religion layer. The original cosmology also describes those names as later labels applied to contrary gestures, while the Matrix calls them opposing principles rather than mortal gods. The unqualified runtime glossary summaries therefore overstate ontology and are subordinate/stale presentation text, not a basis to rewrite the First Choir or folk pantheon.",
+      "ownerChoiceRequiredNow": false,
+      "support": [
+        {
+          "path": "docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+          "lines": "79-93",
+          "point": "Keep Appendix B as mortal folk religion; Lumina/Umbra theological abstractions; do not reconcile literally into Spiral/Choir/Old Ones; First Choir exactly seven."
+        },
+        {
+          "path": "docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+          "lines": "25-36,42-55",
+          "point": "Explicitly says no literal reconciliation; gives exact seven First Choir and hierarchy."
+        },
+        {
+          "path": "The Cosmology of Decennium Descent.docx",
+          "paragraph": 4,
+          "text": "Later viewers would coax the names Lumina and Umbra from contrary primal gestures; neither gesture possessed shape, limb, or mind.",
+          "paragraphSha256": "849cd15b1f6ca043bd7bb7b5978cf888c9232244542c134fce8cbf8530f9968d"
+        },
+        {
+          "path": "The Decennium Descent and the Matrix of Oblivion.docx",
+          "paragraph": 12,
+          "text": "Lumina and Umbra were not originally gods in the mortal sense; they were opposing principles that manifested will.",
+          "paragraphSha256": "87dd08ea083b17845e408d083e168267e42d7dd31da1ea82549739529762c833"
+        },
+        {
+          "path": "src/components/CosmologyViewer.tsx",
+          "lines": "51-59",
+          "point": "Current glossary uses unqualified 'Primordial abyssal depth'/'Primordial radiant counterpart' wording."
+        }
+      ],
+      "dependency": "Any later correction should be a guarded presentation-only change or attribution, preserving original source words and the folk-belief layer."
+    },
+    {
+      "id": "COS-A05",
+      "disposition": "STALE/CONTRADICTORY STATUS NOTE — later records say patch applied; current publication bytes still require separate verification",
+      "classification": "historical status drift, not cosmology contradiction",
+      "decision": "Within APPENDIX_B_FOLK_RELIGION, line 103 ('TODO, not performed') conflicts with its own later status header/section 6 and with the 2026-07-31 patch report. Treat line 103 as stale historical status, not as evidence that the patch is absent. This packet does not contain the actual Player Rulebook bytes, so do not claim current publication cleanliness solely from reports.",
+      "ownerChoiceRequiredNow": false,
+      "support": [
+        {
+          "path": "docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+          "lines": "3,86-103",
+          "point": "Same file says patch applied and later retains a TODO/not-performed table row."
+        },
+        {
+          "path": "docs/mechanics/PLAYERBOOK_DMG_ALIGNMENT_2026-07-31.md",
+          "lines": "28-44,70-74",
+          "point": "Historical patch report records Appendix B as fixed and player-side Q-OV-3 implemented."
+        },
+        {
+          "path": "docs/mechanics/CONTINUITY_SOURCE_OF_TRUTH.md",
+          "lines": "189-195",
+          "point": "Override tracker says player patch applied 2026-07-31."
+        }
+      ],
+      "dependency": "During public-book comparison, hash/read the actual current Player Rulebook Appendix B and living extract before correcting any status/navigation note."
+    },
+    {
+      "id": "COS-A06",
+      "disposition": "PARTIALLY NARROWED; IDENTITY MERGE STILL OPEN",
+      "classification": "intentional unresolved mystery plus overbroad old question wording",
+      "decision": "Do not treat an ordinary political truce or cessation of war as the awakening trigger. The Matrix original explicitly says the dungeon prevents absolute ontological peace, not political peace; later Director material likewise distinguishes true lasting peace from a managed truce. What remains unresolved is the exact operational/metaphysical threshold by which that condition is measured. Separately, Old God ≡ Old Ones ≡ Binding shard ≡ Interstice remains expressly unmerged and must not be inferred.",
+      "ownerChoiceRequiredNow": true,
+      "preciseOwnerChoice": "Only if/when mechanics require it: define the observable/operational condition for 'absolute/true lasting peace' (e.g. a specific resonance-state predicate or leave it narrative/Director-adjudicated). Do NOT ask whether an ordinary political truce counts; existing sources already say it does not. No owner question is needed now for the endgame identity unless a later design step requires choosing among the currently separate identities.",
+      "support": [
+        {
+          "path": "The Decennium Descent and the Matrix of Oblivion.docx",
+          "paragraphs": "4-7,17,44-50",
+          "point": "Explicitly rejects political peace and defines the threat as absolute stillness/elimination of difference."
+        },
+        {
+          "path": "docs/mechanics/SILENT_ONES_CANON.md",
+          "lines": "75-81",
+          "point": "Old open note asks peace trigger threshold; later Q6 entry remains separate."
+        },
+        {
+          "path": "docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md",
+          "lines": "29-36,80-87",
+          "point": "Old God vs Old Ones vs Binding shard vs Interstice identity merge remains forbidden to invent."
+        },
+        {
+          "path": "outside-packet notebook check: The_Directors_Crucible.docx",
+          "point": "Later Director prose says 'true, lasting peace' is the trigger and a managed truce is not an ending. No later explicit owner-chat identity merge was found."
+        }
+      ],
+      "dependency": "Exact peace threshold remains undefined; identity merge G2 remains undefined. Preserve both as separate unresolved fields."
+    }
+  ],
+  "coverage": {
+    "semanticallyReadForThisConference": [
+      {
+        "source": "The Cosmology of Decennium Descent.docx",
+        "paragraphRanges": [
+          "0-19",
+          "58-65",
+          "75-100"
+        ],
+        "reason": "creation/Lumina-Umbra/Spiral/Old Ones/Choir/planes/peace-relevant passages"
+      },
+      {
+        "source": "The Decennium Descent and the Matrix of Oblivion.docx",
+        "paragraphRanges": [
+          "0-55",
+          "138-149",
+          "280-305"
+        ],
+        "reason": "peace definition, Lumina-Umbra, Old Ones, Divine Pact, legacy Old God, resonance/economy"
+      },
+      {
+        "source": "The_World_of_Aethel_Lore.docx",
+        "paragraphRanges": [
+          "0-18",
+          "78-90"
+        ],
+        "reason": "I-VI placeholder, VII myth/history, Binding@97 and timeline"
+      },
+      {
+        "source": "docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+        "lineRanges": [
+          "1-162"
+        ]
+      },
+      {
+        "source": "docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+        "lineRanges": [
+          "1-105"
+        ]
+      },
+      {
+        "source": "docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md",
+        "lineRanges": [
+          "1-109"
+        ]
+      },
+      {
+        "source": "docs/mechanics/CONTINUITY_SOURCE_OF_TRUTH.md",
+        "lineRanges": [
+          "authority/protocol and Q-OV/Q6 sections, including 136-215"
+        ]
+      },
+      {
+        "source": "docs/canon/CANON_MANIFEST.json",
+        "scope": "registry structure plus relevant locked-baselines/floor-97 domains"
+      },
+      {
+        "source": "docs/canon/REPOSITORY_PROMOTION.md",
+        "lineRanges": [
+          "1-48"
+        ]
+      },
+      {
+        "source": "DescentReviewChanges/ReviewBible/docs/canon/CANON_CORE.md",
+        "lineRanges": [
+          "1-38"
+        ]
+      },
+      {
+        "source": "DescentReviewChanges/ReviewBible/docs/canon/PLAYER_DIRECTOR_BOUNDARY.md",
+        "lineRanges": [
+          "1-41"
+        ]
+      },
+      {
+        "source": "src/components/CosmologyViewer.tsx",
+        "lineRanges": [
+          "1-79",
+          "360-450"
+        ]
+      },
+      {
+        "source": "src/app/page.tsx",
+        "lineRanges": [
+          "1-55"
+        ]
+      },
+      {
+        "source": "src/data/cosmology-lore.json",
+        "scope": "metadata, planes, section draft/status metadata, targeted Lumina/Umbra/world-outline fields"
+      }
+    ],
+    "notSemanticallyCompleted": [
+      "The Cosmology of Decennium Descent.docx Chapters VI-XII outside the targeted passages above",
+      "Full plane-by-plane ontology and all plane cross-references",
+      "Soul/death/resurrection doctrine beyond targeted Matrix/project references",
+      "Full historical chronology across player, Director, and original source books",
+      "All divine/class power dependencies and deity-specific class grants",
+      "Full campaign revelation progression beyond the Heartcell/Silent Ones ladder",
+      "Actual current Player Rulebook Appendix B bytes (not present in this packet)",
+      "Any live deployment/authentication/bundle behavior for CosmologyViewer"
+    ]
+  },
+  "nextOrderedComparisonWork": [
+    {
+      "order": 1,
+      "domain": "creation/origin",
+      "work": "Compare Cosmology P0-59, Matrix origin/Pact passages, owner Q1-Q3, CANON_CORE, and public myth. Produce fact/belief/revelation table; preserve two-layer Crucible/Heartcell truth."
+    },
+    {
+      "order": 2,
+      "domain": "gods/pantheons",
+      "work": "Compare First Choir exact seven, Calan'thir/Asmodeus, folk Fifteenfold/cultural/ascended layers, runtime glossary, and Player Rulebook Appendix B. Do not literalize worship masks."
+    },
+    {
+      "order": 3,
+      "domain": "planes",
+      "work": "Compare Cosmology Chapter IV onward, runtime plane list, folk Great Wheel, Rift/background/class references. Separate observed realms from mortal diagrams and gameplay access."
+    },
+    {
+      "order": 4,
+      "domain": "souls/death/resurrection",
+      "work": "Inventory soul ontology, soul coins/contracts, resurrection clauses, death mechanics, soulbinding claims, afterlife/patron references. Distinguish mechanics from theology before any reconciliation."
+    },
+    {
+      "order": 5,
+      "domain": "history",
+      "work": "Recover/locate World of Aethel I-VI; compare VII+ chronology and retired god/gate names against owner Q7 and Q6. Preserve false scholarship/legacy myth where intentionally retained."
+    },
+    {
+      "order": 6,
+      "domain": "divine/class powers",
+      "work": "Map Cleric/Paladin/Shaman/Oracle/etc. power sources and deity/plane prerequisites to the authority layers; do not infer patron/god identity from mechanical grants."
+    },
+    {
+      "order": 7,
+      "domain": "campaign revelations",
+      "work": "Compare public myth, scholarly material, Heartcell ladder, Q6 public ceiling, runtime presentation, and Director content. Define revelation-stage visibility separately from objective truth."
+    }
+  ],
+  "noChanges": {
+    "sourceReplacements": 0,
+    "publicProjection": false,
+    "deletions": 0,
+    "generalCosmologyDomainCreated": false,
+    "cosmologyCompleted": false
+  }
+}
