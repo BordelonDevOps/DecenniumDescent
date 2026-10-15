@@ -1,0 +1,223 @@
+{
+  "status": "observations-and-questions; no resolutions adopted",
+  "findings": [
+    {
+      "id": "COS-A01",
+      "kind": "authority-registration-gap",
+      "evidence": {
+        "registryDomains": {
+          "docs/canon/CANON_MANIFEST.json": [
+            "crafting",
+            "spellcasting",
+            "combat",
+            "gate-tier-scaling",
+            "economy",
+            "monster-manual-public",
+            "monster-manual-director",
+            "floor-97-old-god-endgame",
+            "feats",
+            "role-abilities",
+            "class-identity",
+            "paths",
+            "racial",
+            "locked-baselines"
+          ],
+          "DescentReviewChanges/ReviewBible/docs/canon/CANON_MANIFEST.json": [
+            "crafting",
+            "spellcasting",
+            "combat",
+            "gate-tier-scaling",
+            "economy",
+            "monster-manual-public",
+            "monster-manual-director",
+            "floor-97-old-god-endgame",
+            "feats",
+            "role-abilities",
+            "class-identity",
+            "paths",
+            "racial",
+            "locked-baselines"
+          ]
+        }
+      },
+      "finding": "Neither registry has a dedicated general cosmology domain. Registered locked-baselines and floor-97-old-god-endgame have narrower authorities; root placement is not automatic promotion.",
+      "next": "Confer over domain authority and existing owner locks before assigning a general cosmology owner. No authority is created by this inventory."
+    },
+    {
+      "id": "COS-A02",
+      "kind": "source-completeness-gap",
+      "evidence": {
+        "path": "The_World_of_Aethel_Lore.docx",
+        "paragraphs": [
+          {
+            "part": "word/document.xml",
+            "paragraphIndexZeroBased": 1,
+            "text": "[...Existing Sections I–VI remain unchanged...]",
+            "textSha256": "cf8f1a6b0184dabdbca22188835d93f06c4e522e37cae38ba4a2265f37c33dac"
+          }
+        ]
+      },
+      "finding": "This world-lore document explicitly retains a placeholder for existing sections I–VI. It cannot alone evidence their content or absence.",
+      "next": "Locate the referenced earlier sections and compare existing runtime/other books; do not manufacture replacement history."
+    },
+    {
+      "id": "COS-A03",
+      "kind": "audience-projection-risk",
+      "evidence": {
+        "byteIdenticalPaths": [
+          "src/data/cosmology-lore.json",
+          "DescentReviewChanges/ReviewBible/src/data/cosmology-lore.json",
+          "DescentReviewChanges/ReviewBible/docs/director-only/runtime-source/cosmology-lore-unfiltered.json"
+        ],
+        "import": {
+          "path": "src/components/CosmologyViewer.tsx",
+          "matchingLines": [
+            {
+              "line": 8,
+              "text": "import lore from \"@/data/cosmology-lore.json\";"
+            }
+          ]
+        },
+        "render": {
+          "path": "src/components/CosmologyViewer.tsx",
+          "matchingLines": [
+            {
+              "line": 415,
+              "text": "                    <p className=\"whitespace-pre-wrap\">{activeSongSection.body}</p>"
+            }
+          ]
+        },
+        "entryImport": {
+          "path": "src/app/page.tsx",
+          "matchingLines": [
+            {
+              "line": 12,
+              "text": "import CosmologyViewer from \"@/components/CosmologyViewer\";"
+            }
+          ]
+        },
+        "entryRender": {
+          "path": "src/app/page.tsx",
+          "matchingLines": [
+            {
+              "line": 43,
+              "text": "        return <CosmologyViewer />;"
+            }
+          ]
+        },
+        "boundary": {
+          "path": "DescentReviewChanges/ReviewBible/docs/canon/PLAYER_DIRECTOR_BOUNDARY.md",
+          "matchingLines": [
+            {
+              "line": 18,
+              "text": "## Director-Only Truth"
+            }
+          ]
+        }
+      },
+      "finding": "The root and review-build runtime JSON are byte-identical to the Director-labeled unfiltered copy. The client component imports the data and renders selected chapter bodies through the entrypoint.",
+      "limits": "Static source evidence only. No live deployment, user authentication, compiled bundle or actual player disclosure is asserted. Developer/owner tooling does not become a certified player export.",
+      "next": "Compare exact chapter passages against knowledge/revelation rules before preparing a separate player projection."
+    },
+    {
+      "id": "COS-A04",
+      "kind": "candidate-theology-versus-fact-presentation-conflict",
+      "evidence": [
+        {
+          "path": "docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+          "matchingLines": [
+            {
+              "line": 81,
+              "text": "> **Keep, but as mortal folk religion — not objective canon.** Do NOT reconcile literally into Spiral/Choir/Old Ones. Rename toward \"Faiths and Cosmologies of Aethel\" with disclaimer. Fifteenfold Pantheon as worship masks; First Choir stays exactly 7; Lumina/Umbra as theological abstractions; Great Wheel as mortal diagram; Blood War rewritten per owner's sequence; player know / not-know lists; final hierarchy:"
+            }
+          ]
+        },
+        {
+          "path": "docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+          "matchingLines": [
+            {
+              "line": 34,
+              "text": "| **Lumina/Umbra as theological abstractions** | Appendix B's \"Lumina, the Radiant Consciousness\" and \"Umbra, the Abyssal Depth\" stay in the folk-religion text as the mortal creation-myth's first principles — but are now labeled as **theological abstractions mortal theologians reasoned their way to**, not literal primordial beings with independent existence in the real cosmology. | Does not touch the real First Song's Calan'thir/Spiral material |"
+            }
+          ]
+        },
+        {
+          "path": "src/components/CosmologyViewer.tsx",
+          "matchingLines": [
+            {
+              "line": 53,
+              "text": "      \"Primordial abyssal depth paired with Lumina at creation; source of the Obsidian Thread. Umbrin derive their demonym from Umbra — not the same as Umbrin PCs.\","
+            }
+          ]
+        },
+        {
+          "path": "src/components/CosmologyViewer.tsx",
+          "matchingLines": [
+            {
+              "line": 58,
+              "text": "      \"Primordial radiant counterpart to Umbra; ordered light and song. Calan'thir's Spiral calibration aligns with bounded Lumina.\","
+            }
+          ]
+        }
+      ],
+      "finding": "The recorded folk-religion treatment explicitly uses theological abstractions, while two component glossary summaries speak in an unqualified primordial register.",
+      "next": "Ask whether the glossary is intended as attributed in-world belief; keep both source passages and do not silently reconcile literal cosmology."
+    },
+    {
+      "id": "COS-A05",
+      "kind": "conflicting-historical-status-notes",
+      "evidence": [
+        {
+          "path": "docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+          "matchingLines": [
+            {
+              "line": 3,
+              "text": "**Status:** **Owner-locked direction** (2026-07-30, round 2) — **player rulebook patch applied 2026-07-31** (see [`PLAYERBOOK_DMG_ALIGNMENT_2026-07-31.md`](./PLAYERBOOK_DMG_ALIGNMENT_2026-07-31.md)). Hierarchy and know/don't-know lists below remain the brief."
+            },
+            {
+              "line": 86,
+              "text": "## 6. Rulebook patch — **applied 2026-07-31**"
+            }
+          ]
+        },
+        {
+          "path": "docs/mechanics/APPENDIX_B_FOLK_RELIGION.md",
+          "matchingLines": [
+            {
+              "line": 103,
+              "text": "| `rulebook_output.txt` (repo root) | Source file — Appendix B patch is TODO, not performed |"
+            }
+          ]
+        }
+      ],
+      "finding": "The same document records the rulebook patch as applied and later repeats a TODO/not-performed status. These cannot independently prove current publication state.",
+      "next": "Compare the actual rulebook and patch report before correcting navigation/status. This is not a finding that the patch is absent."
+    },
+    {
+      "id": "COS-A06",
+      "kind": "unresolved-authorial-dependency",
+      "evidence": [
+        {
+          "path": "docs/mechanics/SILENT_ONES_CANON.md",
+          "matchingLines": [
+            {
+              "line": 80,
+              "text": "4. **Peace trigger** — What counts as \"the world knows peace\" (political truce vs cosmic resonance below threshold)? **Still open** — not addressed in round 2."
+            }
+          ]
+        },
+        {
+          "path": "docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md",
+          "matchingLines": [
+            {
+              "line": 85,
+              "text": "| G2 | Identity merge (Old God vs Old Ones vs Binding shard vs Interstice being) — **do not invent** |"
+            }
+          ]
+        }
+      ],
+      "finding": "Recorded source notes leave the peace trigger and some endgame identity relations unresolved; the owner lock prohibits inventing those links.",
+      "next": "Check actual notebook/other authoritative evidence for a later owner answer, otherwise isolate exact choices for the owner. No numerical threshold, identity collapse or replacement cosmology is adopted."
+    }
+  ]
+}

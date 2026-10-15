@@ -24436,58 +24436,69 @@
           "capture": "Capture only one directly witnessed resolved component that actually expresses one profile below. Record canonical source/event, actual original spell rank or pre-encounter monster effective rank, native magnitude before external bonuses/defenses, selected type/profile and qualifying own casting route. For monster abilities without a spell rank, use max(1, min(9, ceil(actualCR/2))); missing CR needs a rating assigned before the encounter, never a favorable after-the-fact guess. No unique/legendary/boss feature without an independently reviewed exception; no copying copies, class engines, actions, resources, permanent changes, resurrection, creation, items or protected information. An unsupported role is ineligible, not a blank Director permission.",
           "rankAndPayment": "For original rank 0, q=0; otherwise q=max(1, floor(originalRank/2)). The chosen actual owned spellcasting route must independently support learning q; merely owning a pool or feat prerequisite does not. Use that route’s real ability for attack/DC and spell components V/S, normal rank price 0/2/3/5/7/10/13/17/21/26 plus actual adjustments. It grants a temporary feat-copy route only, never the original full spell. Spellcasting time is oneAction. At release pay/cast/history/interrupt once, with copy-provenance flags disabling copy/resource/class-proc chains. An explicit source such as Mirrorsage retains its own actual profile/rank/payment instead of being silently converted. FINAL FS-08: these releases are paid feat-copy casts with actual RP/components/history, not ordinary knowledge grants. Boon uses one feat-copy-boon family; its repeated copies do not add, while genuinely distinct eligible ordinary feat bonuses use FS-03.",
           "numericBound": "For numeric damage/heal/ward select one witnessed native component/type and record its rolled or fixed magnitude B before external bonuses, saves, defenses and recipient caps. If that magnitude was hidden, the Director records it privately; no free identification is given. At feat-copy release roll (q+1)d6, then bound the native numeric result to min(roll, floor(B/2)). No copied critical multiplier, external damage/heal modifier, converted excess or extra recipients. Actual recipient defenses and healing limits still apply. A zero ceiling cannot produce a numeric benefit. This is an explicit NEW meaning of half potency, not an assertion about original undefined wording.",
-          "lifecycle": "At most one feat-copy release per owner per numbered round across Eldritch Echo, Mimicry and adapted copies. A Mirrorsage owner also spends its existing shared release allowance; an unowned Mirrorsage engine is not granted. Strike/Burst/Mend are immediate. Ward/Hindrance/Boon/Step use their stated maximum two-interval duration; source-specific shorter hold deadlines still govern. Only one pending feat-copy record across Eldritch Echo/Mimicry; before a new capture choose whether to replace the old, losing its paid capture/use without refund. Adaptation may retain permission but creates no second release allowance. No copied effect grants extra Action/BA/Reaction, persistent body, loot, learning or concentration capacity.",
+          "lifecycle": "At most one feat-copy release per owner per numbered round across Eldritch Echo, Mimicry and adapted copies. A Mirrorsage owner also spends its existing shared release allowance; an unowned Mirrorsage engine is not granted. Strike/Burst/Mend/Step are immediate. Ward/Hindrance/Boon use their stated maximum two-interval duration; source-specific shorter hold deadlines still govern. Only one pending feat-copy record across Eldritch Echo/Mimicry; before a new capture choose whether to replace the old, losing its paid capture/use without refund. Adaptation may retain permission but creates no second release allowance. No copied effect grants extra Action/BA/Reaction, persistent body, loot, learning or concentration capacity.",
           "profiles": [
             {
               "id": "strike",
               "role": "Direct single-target damage",
               "activation": "Action",
               "range": "60 ft, one perceived creature with line of effect",
-              "resolution": "Actual own casting ability+PB spell attack; on hit bounded numeric damage of one observed native type. No added critical dice. No original riders. Instant."
+              "resolution": "Actual own casting ability+PB spell attack; on hit bounded numeric damage of one observed native type. No added critical dice. No original riders. Instant.",
+              "concentrationRequired": false
             },
             {
               "id": "burst",
               "role": "Area damage",
               "activation": "Action",
               "range": "Point within 30 ft;10 ft radius, at most 3 originally declared perceived creatures in area with line of effect",
-              "resolution": "DEX save vs own DC for bounded numeric observed-type damage, half on success; one shared roll. No original riders. Instant."
+              "resolution": "DEX save vs own DC for bounded numeric observed-type damage, half on success; one shared roll. No original riders. Instant.",
+              "concentrationRequired": false
             },
             {
               "id": "mend",
               "role": "Actual normal HP healing",
               "activation": "Action",
               "range": "30 ft one perceived willing living creature with line of effect",
-              "resolution": "Restore bounded numeric HP under actual prohibitions/maximum/Critical caps. No reviving, healing dice add-ons, Wound cure, heal-copy/resource trigger or excess conversion. Instant."
+              "resolution": "Restore bounded numeric HP under actual prohibitions/maximum/Critical caps. No reviving, healing dice add-ons, Wound cure, heal-copy/resource trigger or excess conversion. Instant.",
+              "concentrationRequired": false
             },
             {
               "id": "ward",
               "role": "Temporary HP",
               "activation": "Action",
               "range": "30 ft one perceived willing living creature with line of effect",
-              "resolution": "Offer bounded numerictemp HP into the actual single grant ledger, ending at the source’s second future regular start. Rejected offer wastes the copy. No linked riders."
+              "resolution": "Offer bounded numerictemp HP into the actual single grant ledger, ending at the source’s second future regular start. Rejected offer wastes the copy. No linked riders.",
+              "concentrationRequired": true
             },
             {
               "id": "hindrance",
               "role": "Actual slow or action/reaction control",
               "activation": "Action",
               "range": "30 ft one perceived creature with line of effect",
-              "resolution": "WIS save vs own DC or Speed−10 ft and no new Reactions until its next future regular end, never later than the source’s second future regular start. Strongest slow arbitration; no wholeAction/turn denial, repeated save or original hard-control rider."
+              "resolution": "WIS save vs own DC or Speed−10 ft and no new Reactions until its next future regular end, never later than the source’s second future regular start. Strongest slow arbitration; no wholeAction/turn denial, repeated save or original hard-control rider.",
+              "concentrationRequired": true
             },
             {
               "id": "boon",
               "role": "A source actually granting a positive attack, save or AC modifier",
               "activation": "Action",
               "range": "30 ft one perceived willing creature with line of effect",
-              "resolution": "Choose one statistic actually benefited by the witnessed source: +1 AC OR+1 to one next actual attack roll OR+1 to one next actual save, through source’s next future regular end. Strongest feat-copy-boon-family arbitration; no new roll or cloned concentration."
+              "resolution": "Choose one statistic actually benefited by the witnessed source: +1 AC OR+1 to one next actual attack roll OR+1 to one next actual save, through source’s next future regular end. Strongest feat-copy-boon-family arbitration; no new roll or cloned concentration.",
+              "concentrationRequired": true
             },
             {
               "id": "step",
               "role": "Actual short personal movement/teleport",
               "activation": "Action",
               "range": "Self to visible unoccupied fitting space within min(15 ft, floor(observed distance/2))",
-              "resolution": "If original component was teleport, teleport with actual line of effect and ordinary teleport restrictions; otherwise move that distance over an actual legal path paying terrain and provoking normally. No passenger, planar travel, new locomotion mode or movement into an unseen space. Instant."
+              "resolution": "If original component was teleport, teleport with actual line of effect and ordinary teleport restrictions; otherwise move that distance over an actual legal path paying terrain and provoking normally. No passenger, planar travel, new locomotion mode or movement into an unseen space. Instant.",
+              "concentrationRequired": false
             }
-          ]
+          ],
+          "castFamilyKeyContract": "NEW feat-copy chronological identity. Every paid feat-copy cast records `castFamilyKey = feat-copy::<canonicalSourceEffectId>`. `canonicalSourceEffectId` is the stable identity of the actually witnessed underlying spell/effect from which the bounded profile was captured; for a source-qualified monster ability use that ability's stable source identity. Changing the capture event, owner, Eldritch Echo/Mimicry/Arcane Adaptation permission, bounded profile, selected damage/type component, q, or qualifying casting-ability route does not create a new family. Copies sharing that key use the ordinary chronological Refrain history together. An ordinary cast of the underlying spell uses its ordinary spell family and does not share the feat-copy family; Mirrorsage Echo Release likewise keeps its own class family. A missing stable underlying source identity is ineligible for release rather than being assigned a favorable new key. This key grants no ordinary spell knowledge or access.",
+          "concentrationRules": "NEW feat-copy concentration tags. Strike: no. Burst: no. Mend: no. Ward: yes. Hindrance: yes. Boon: yes. Step: no; its movement/teleport resolves instantaneously. A concentration-required copy establishes the releaser's one concentration burden during casting commitment under the ordinary sequence, ending an incompatible existing concentration before the counter window. If that cast is later countered, prior concentration remains ended and no copied lasting effect remains. Loss of concentration ends the Ward/Hindrance/Boon copied effect immediately; their printed earlier deadlines still cap duration. Immediate profiles establish no new concentration burden. Ready is separate: preparation already occupies concentration. On release, an immediate profile resolves and that Ready concentration ends with the released spell; a concentration-required Ward/Hindrance/Boon continues on that same one concentration burden, never a second slot. No witnessed original concentration tag is inherited or used to change these seven profile tags.",
+          "strainEngineRef": "FS-09/CRS-03",
+          "strainEngineRules": "COPY-ROUTE STRAIN SCOPE. A paid feat-copy cast under FS-08 is an independent feat-casting route for strain purposes. Use FS-09 exactly: base Dissonance 0 for q/rank 0, 1 for ranks 1-5, and 2 for ranks 6-9; apply ordinary same-family Refrain using CRS-01; and use `Limit = max(4, 2*PB + casting modifier)` for that copy route, including its existing surcharge/block thresholds. The owned route chosen to qualify the copy supplies only the permitted casting ability, rank ceiling and other expressly required source credentials; it does not import that class engine's protected Dissonance reduction, routing, vent, prepared-matrix treatment or proc chain into the feat-copy cast. In particular a Wizard-qualified copy is not a prepared matrix, a Shaman-qualified copy is not an ordinary Shaman spell for the totem vent, and a Mirrorsage-qualified copy is not class Echo Release. The ordinary `max(4, 2 + PB + max(0, modifier))` Limit in SPELL_INTEGRATION_RULES remains controlling for ordinary class spells within its existing scope and is not globally changed here. If the only qualifying route is the feat-only Eldritch Blast grant, it supplies CHA and only its actual rank-0 ceiling; it does not change the copy engine or Limit, create a Warlock/class engine, or qualify a ranked q>0 copy."
         },
         "eldritchBlast": {
           "id": "feat-supplement.eldritch-blast",
