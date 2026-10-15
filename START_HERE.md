@@ -1,4 +1,4 @@
-> **Latest progress backup — 15 October 2026:** See [the current snapshot status](SNAPSHOT_STATUS_2026-10-15_COSMOLOGY.md). The source/authority and creation/origin cosmology reviews are recorded, with original documents preserved. **419 spells reviewed / 429 pending.** Full cosmology and whole-game review remain open. Earlier status statements below are retained history.
+> **Latest progress backup — 15 October 2026:** See [the current snapshot status](SNAPSHOT_STATUS_2026-10-15_PANTHEONS.md). Includes the gods/pantheons submission, local source comparisons, epilogue inventory and Matrix formula source check. The saved GPT verdict is still pending. **419 spells reviewed / 429 pending.** Full cosmology and whole-game approval remain open. Earlier status text below is retained history.
 
 # Decennium Descent — start here
 
