@@ -1,0 +1,453 @@
+{
+  "id": "AC4-EXACT-CASE-PATCH-03",
+  "recordedAtUtc": "2026-10-16T07:27:57.524925+00:00",
+  "status": "UNSUBMITTED exact example-only repair for actual joint approval",
+  "priorActualReturn": {
+    "path": "docs/audit/2026-10-08/full-game/DD_AC4_Corrections_02_Return.zip",
+    "bytes": 66379,
+    "sha256": "e3fb107f1138085681d9f8035ab559968d42becd25ab528f22178c6aa64853cc"
+  },
+  "sourceCheck": {
+    "path": "docs/audit/2026-10-08/full-game/AC4_CORRECTIONS_02_RETURN_SOURCE_CHECK.json",
+    "bytes": 31655,
+    "sha256": "7f413a5cda8094874eeec1d7f85acc63e373a0cda18663f56520320c5c17de3f"
+  },
+  "independentSemanticAssessment": "All corrected15 procedures/shared interfaces and complete Envoy profile read against prior return and sources. C01..C08 rule changes are coherent as scoped provisional authorship. X08 and X09 contain source-example errors; X01 is restored to a concrete current Acid Arrow example. No model/profile/chapter rule text changes are proposed here.",
+  "changes": [
+    {
+      "id": "AC4-X01",
+      "pointer": "/cases/30/currentAdjudication",
+      "old": "Initial state: caster A has no Veil when A commits an eligible rank-3 damaging spell against protected B; B has Spell Shield and a Reaction. The source spell does not create its damage root until its ordinary damage-resolution checkpoint. B reflects before that checkpoint. Spell Shield creates no replacement root and does not move the checkpoint. A remains caster/dealer. A's Veil state is unchanged (none) through the real root checkpoint, so the root is ordinary lethal-capable damage; B's Veil state is irrelevant. Boundary variant: if an independently legal event gives A a Veil before the original root checkpoint, that newly created original root is `nullNonlethal=true`; if A gains the Veil only after the root checkpoint, the already-created root keeps its ordinary flag. If the source spell had created its root before reflection, its existing flag would simply be preserved.",
+      "replacement": "Exact comparison: Wizard A (class7, PB3, INT+4, spell attack+7, current RP20, current HP8/max30, AC12, no tempHP or acid defense) has ordinary Acid Arrow legally prepared and remains under unsuppressed Null Veil throughout this fixture. B, 20ft away with line of effect, has one active Spell Shield and a Reaction; return range30ft and targeting are legal. A commits rank2 Acid Arrow, pays its base3RP (RP20 to17; no extra price modifiers), and applies its actual casting hooks. After the legal interruption window B spends its Reaction and the shield to redirect the same pending spell. Spell Shield creates no replacement damage root and does not advance the original spell's real root checkpoint. A remains caster/dealer. The returned ranged attack rolls12+7=19 against A's AC12 and hits; initial4d4=10 acid. At the original damage-root creation checkpoint A is Veiled, so that actual root is nullNonlethal. With no defenses/tempHP, A reaches Stable0 rather than damage-caused death/Wounds; establish the ordinary one Stable recovery deadline. The same continuing A identity receives Acid Arrow's finite2d4 delayed rider, due at A's first future regular END excluding the current turn. When that rider deals5 acid at its proper marker, it inherits the original root flag and leaves already-Stable0 A with the same recovery deadline, even if Veil has ended after root creation. No second cast, payment, reflection, target or root is created by Shield. Boundary comparison at the existing root checkpoint: with an un-Veiled original dealer at creation, that root is ordinary; later Veil gain cannot rewrite it. If an independently completed lawful event changes Veil before actual root creation, use the then-current dealer state. This comparison grants no new event window and does not equate cast commitment with root creation."
+    },
+    {
+      "id": "AC4-X08",
+      "pointer": "/cases/37/currentAdjudication",
+      "old": "Field is active. A casts an ordinary rank-4 7-RP spell: mandatory field extra +2 produces 9 before final Resonance Influence; with Ease -1 final price is 8. B is a Winterfang Druid 14 using the actual Master of Winter source permission to cast its bounded winter control-weather spell once without expending Resonance Points. That source waiver zeroes the ordinary RP payment, but the AC4 field mandatory extra is then +2; with no broader waiver B must pay 2 RP in addition to consuming the once/long-rest use, or cannot commit. C is a Wizard 2 using actual Ritual Casting: a ritual spell's source price is 0 RP unless it explicitly consumes RP; if a legal ritual's resolution/casting point occurs while this field applies, the field's mandatory +2 is still evaluated before final Influence, though the ritual's own 10-minute time and encounter prohibition remain real. D has no RP pool and therefore cannot commit a spell route whose final mandatory field price is positive. Ranger Druidic Arrow remains a magical class technique, not an ordinary spell, so the field adds no RP. Oracle Revelation Charges remain nonspell class power and are outside.",
+      "replacement": "Exact waiver comparison: Wizard20 W has Grand Reservoir available (one/long rest), RP10, and Greater Warding recorded in its spellbook at its legal Wizard rank4/base7RP. W is inside one active Dampening Field at actual legal cast commitment, with final Resonance Influence Ease and no strain surcharge, consumed material or other price modifier. W uses Grand Reservoir for that legal Action cast: its exact source waives only base7RP, leaving ordinary price0; the field adds mandatory2RP; final Ease subtracts1, producing final1RP. W commits its Action, Grand Reservoir use and1RP (10 to9), then applies actual casting/concentration/strain hooks; no prohibited Overcast/Fusion/Dual Cast/refund combination is used. A normal unwaived rank4/base7 cast in the same conditions costs7+2-1=8RP. Ritual comparison: Wizard Ritual Casting only applies to an actually eligible Ritual-tagged spell and keeps its extra at-least10-minute time, no-encounter completion and exact no-normal-Dissonance rule; field eligibility is evaluated at actual legal CAST COMMITMENT, never newly at ritual resolution or an ongoing pulse. A field that begins only after that commitment adds no retroactive price. A genuine charge-only/free spell activation, if independently available under its own source, still acquires the scoped2RP payment plus its real charge/use; this example grants no item or spell access. A no-RP-pool actor cannot pay a positive final price. Actual Cleric Healing Rite is a class technique (Action2RP), not automatically an ordinary/class spell, so merely spending RP does not incur the field surcharge. Master of Winter's current authored bounded weather invocation replaces the undefined historical free high-rank Control Weather permission; it is not used here as evidence that the character casts the ordinary Control Weather spell for free."
+    },
+    {
+      "id": "AC4-X09",
+      "pointer": "/cases/38/currentAdjudication",
+      "old": "Exact comparison: owner O previously paid the legal Summon Spectral Steed cast and is maintaining its original one-minute concentration; the Large steed is carrying one willing Medium rider whose effective body+gear is 180 lb and 5 Load, within the 350-lb/12-Load caps. O begins its turn with the steed within60 ft and perceptive. O spends the required Bonus Action command for Planar Crossing toward a specific known site on another plane. The steed acts immediately after O and spends its Action; its one crossing attempt is consumed when the attempt starts. Unknown to O, a separately maintained Dimensional Anchor already covers the destination footprint. At resolution the endpoint is illegal, so steed+rider+permitted gear remain atomically at origin. The Action, command and one crossing attempt are not refunded; no hidden reason/coordinates are revealed; the steed's original concentration clock continues. No mid-resolution cast, free interrupt or cross-plane trigger perception is invented. Control: same-plane teleport endpoints both outside an Anchor are not blocked merely because an imaginary straight line crosses the sphere.",
+      "replacement": "Exact comparison: Wizard7 owner O previously legally cast Summon Spectral Steed (rank3/base5RP, with no price modifiers; RP20 to15) and maintains its original one-minute concentration, with24seconds remaining. The Large steed carries one willing Medium rider: effective body160lb/6Load plus real noncreature gear20lb/2Load =180lb/8Load, within both350lb/12Load caps. At8Load it is Burdened, so walking Speed60 becomes50ft with the actual burden penalties; this does not add or remove a Planar Crossing use. Mounting and current rider position were already legally established. O starts its regular turn with the steed30ft away and able to perceive O. O spends the one shared Bonus Action command for Planar Crossing to a specific personally known site on another plane. In its attached phase immediately after O's regular turn, the steed spends its Action and its one remaining crossing attempt (1 to0) at attempt start. Unknown to O, another caster's already-active Dimensional Anchor covers the destination footprint. At resolution that endpoint is blocked, so the whole steed+rider+permitted-gear transaction remains at origin; original rider position and real cargo are preserved. Command, Action, crossing use and previous cast price are not refunded; no hidden reason or coordinates are revealed. The original concentration deadline continues. There is no mid-resolution cast, free interrupt or cross-plane perception. Control: an otherwise legal same-plane teleport with both endpoints outside an Anchor is not blocked merely because an imaginary straight line crosses its sphere."
+    }
+  ],
+  "unchangedCandidateFiles": [
+    "DIRECTOR_REVIEW.md",
+    "PLAYER_CHAPTER.md",
+    "REGISTER.json",
+    "SOURCE_HASHES.json",
+    "SPELLS_MODEL.json",
+    "VERDICT.md"
+  ],
+  "acceptedArtifactsRequested": [
+    {
+      "name": "CASEBOOK.json",
+      "path": "docs/audit/2026-10-08/full-game/ac4-exact-case-patch-03/candidate/CASEBOOK.json",
+      "bytes": 35394,
+      "sha256": "d267d3d0dfc271c31538fcd21fb5ec85fc523b578fa419fbccc6694dfaf2a0b1"
+    },
+    {
+      "name": "DIRECTOR_REVIEW.md",
+      "path": "docs/audit/2026-10-08/full-game/ac4-exact-case-patch-03/candidate/DIRECTOR_REVIEW.md",
+      "bytes": 23326,
+      "sha256": "30f1f19f9b389a341bd8685774d438ee0909ef27f480fc37b9114de9b8955b8d"
+    },
+    {
+      "name": "EVIDENCE_MANIFEST.json",
+      "path": "docs/audit/2026-10-08/full-game/ac4-exact-case-patch-03/candidate/EVIDENCE_MANIFEST.json",
+      "bytes": 1382,
+      "sha256": "550f4de1c484b720d5fc81bad878f414e6de561780e573502017114e5dc7afde"
+    },
+    {
+      "name": "PLAYER_CHAPTER.md",
+      "path": "docs/audit/2026-10-08/full-game/ac4-exact-case-patch-03/candidate/PLAYER_CHAPTER.md",
+      "bytes": 44927,
+      "sha256": "162266a146c39d41b4a9806bb626328bc96c883fb9b9685fa9bdd432ba745ffc"
+    },
+    {
+      "name": "REGISTER.json",
+      "path": "docs/audit/2026-10-08/full-game/ac4-exact-case-patch-03/candidate/REGISTER.json",
+      "bytes": 11263,
+      "sha256": "64fa7b05e6d0b2fb26cbfae7df25d54bd6d4e3a3d1812c230729b917c9197ef9"
+    },
+    {
+      "name": "SOURCE_HASHES.json",
+      "path": "docs/audit/2026-10-08/full-game/ac4-exact-case-patch-03/candidate/SOURCE_HASHES.json",
+      "bytes": 15142,
+      "sha256": "4bb9869cc44c3b193d26bbb188f551b4efbd6303fd0314b70f84af7f9ddf1533"
+    },
+    {
+      "name": "SPELLS_MODEL.json",
+      "path": "docs/audit/2026-10-08/full-game/ac4-exact-case-patch-03/candidate/SPELLS_MODEL.json",
+      "bytes": 144067,
+      "sha256": "dc44dfa02289bf0b1f016f01fc9d79cd3a75c913c9e8e8e984e2299ea7c9ed39"
+    },
+    {
+      "name": "VERDICT.md",
+      "path": "docs/audit/2026-10-08/full-game/ac4-exact-case-patch-03/candidate/VERDICT.md",
+      "bytes": 1101,
+      "sha256": "9d0645f0e62a642db48970f9a160a9f270df980a9f6f6917d374c147514bce51"
+    }
+  ],
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/class_spell_progression.csv",
+      "bytes": 660,
+      "sha256": "5dd972dcfdd1b221c8eaf6139ce341edf7822488032a99adb5fea92f80650d5f"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/class_spell_school_mapping.csv",
+      "bytes": 533,
+      "sha256": "ec5609afa7a1d70b7dbf342444f0b94ddde319ac384edaaffabf202de74529ba"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_campaign_arcs_reviewed_01.json",
+      "bytes": 178357,
+      "sha256": "93c2170e69727bfb676a2d86c24c5290413398008dae030e4eb9269d7727b1c3"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_character_reviewed_01.json",
+      "bytes": 136687,
+      "sha256": "a9f67e0248304edd417d56284481548412eb60df01069857bc435f148b49bfbf"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+      "bytes": 177697,
+      "sha256": "a7dea4b5b69412992eb5054140815f49642e7e12346616843b2623557d7eaed4"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/abjuration_conjuration_rank4.json",
+      "bytes": 1971483,
+      "sha256": "f333312ecc7773b079f8efd7264f294b59e0787df3f1f2fd21c64eae21466da5"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/bestiary_public_source_candidate.json",
+      "bytes": 328874,
+      "sha256": "a9c86af89b900b1c5426757d3eb31d4992cf2b66bbbd2c3d465abab29d4c2af1"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_sources/catalog.json",
+      "bytes": 1302682,
+      "sha256": "92b7b6e7da54616a3fce2df59b729416eed8bd17aa230ab013d3f0ae4c8bd8aa"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "bytes": 81863,
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+      "bytes": 64641,
+      "sha256": "bfcd0ff392035e48bdef27da630b911b96ce85ba036de5de622cdc2427a47a33"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/dragoon.json",
+      "bytes": 62883,
+      "sha256": "b55a59ae743bc1b8ed0d5832eb40453f438bc9c9f4a69aef87f3e19048e0fb0e"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "bytes": 88119,
+      "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "bytes": 80394,
+      "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/manifest.json",
+      "bytes": 4608,
+      "sha256": "41c044ad787394f0b52a0bf8ec7bb7f4a923c7cbec9a553423fa78c64947c20d"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+      "bytes": 61768,
+      "sha256": "9179729dd39e0a81f4f6d78b9fbb0c7fb296fb5d418aaa238d7ff6aa02b2bd3a"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "bytes": 82831,
+      "sha256": "18a8bac9168cb4c87c641b4f2e792d31ed5ae2ae56240b3fbeced9f6ada74fc9"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "bytes": 526843,
+      "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+      "bytes": 267843,
+      "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+      "bytes": 67283,
+      "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+      "bytes": 59934,
+      "sha256": "c88fcad8c14734cc852a95aee7b3686fd64ea2a8cfb9d014f4297b7efec94a62"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "bytes": 56702,
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+      "bytes": 59012,
+      "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+      "bytes": 59506,
+      "sha256": "f087cc9250f1864e60209fb13bff86800d45b7238dc09e8eac2dbf2272b09c1d"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "bytes": 156208,
+      "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "bytes": 110219,
+      "sha256": "b514ef61a468d5d9b19031811f98860f1a61324b4626df601d2748dcb46ce6a6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "bytes": 434692,
+      "sha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+      "bytes": 139535,
+      "sha256": "8716ab08694886bfe4938d513ce27d1f07e666696e7a43e41ef4fbadc9439379"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "bytes": 329450,
+      "sha256": "dbe64ed1c29f8a74e10266c86068a748ee8cb8adcc18332389ef9628642cc0c4"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "bytes": 1664654,
+      "sha256": "506393b1131e3ed099effbe55b05d6b00a5193e503b02f065a5f84751a2955fe"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5059945,
+      "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/director-only/cosmology/PLANES_REVIEWED_01.md",
+      "bytes": 10216,
+      "sha256": "ebb3edf00f1a8e715ca19b72e81f2124efeea673cd47e0df3514356248efedf1"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "bytes": 23684,
+      "sha256": "c9e3bd7d7a8a2192fad43964d7170275bd0819d3b2a66b01b4ad34591ce33974"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "bytes": 22726,
+      "sha256": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "bytes": 20258,
+      "sha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "bytes": 17321,
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "bytes": 30409,
+      "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "bytes": 62017,
+      "sha256": "6f6278430d48d0c74dc8e3b928b01dea3cc97d5e45226b128a405ab37b1e7148"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+      "bytes": 28382,
+      "sha256": "f2c6263c7385d4a1487c0563227f537ea64e80da48fb8f3cd2255935a415e1f2"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "bytes": 15877,
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_PLAYTEST.md",
+      "bytes": 56672,
+      "sha256": "d47de48e9b6a1b475da0262c22a2f3ca6e3d966b0bceef5ff64e28a2e158742e"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CHARACTER_PLAYTEST.md",
+      "bytes": 28631,
+      "sha256": "c42169fe67f99952c052452875c58f1ecbb37a4fbf1d1c8f76d9193e7a62a78a"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "bytes": 59409,
+      "sha256": "de147857b37ddf3e5632b067023e5863214e4c64bcee9d7a4f1190ab59beae83"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "bytes": 42906,
+      "sha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "bytes": 20087,
+      "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "bytes": 13112,
+      "sha256": "b298415146cba6453ec33f1310b4b668ac74e0e2d2681a08e077852c065d56e1"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_PLAYTEST.md",
+      "bytes": 19547,
+      "sha256": "3211acc70441de0a2b59221efd57c9a6ff74155e9afcd9a4b5458bb0a2644a73"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+      "bytes": 11384,
+      "sha256": "41fcec6aa881d92da01051aa3fa62f0a4e301ac0e37e0561b7f938c29789c346"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "bytes": 28416,
+      "sha256": "406c68622102b444c6afb005e2d50cfd75171fe8d90db36a06d02df2d67bf27d"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md",
+      "bytes": 910773,
+      "sha256": "6ebf9e6644d5510cacda7e16f8ffddc88cdd314a7dd10094aa1037fd1fb4a83a"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "bytes": 307717,
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+      "bytes": 3089,
+      "sha256": "9471c767d64eac8b484786405654a8821a290a649900ade9ddd0f7377e9ba0c4"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "bytes": 23410,
+      "sha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_PULSE_PLAYTEST.md",
+      "bytes": 15325,
+      "sha256": "ed19581ac03e9c8f0cc984e43e6f3a7b8b402024507d17cded00be1f4203abb0"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/REMAINING_LIFECYCLE_PLAYTEST.md",
+      "bytes": 23309,
+      "sha256": "2d590fe13b20d9f370cdea04479ba07e3aeb8970fdabced254fdab8cd797e9d3"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "bytes": 50379,
+      "sha256": "b7955c4204f5663f0461728351e30f2e6129aed33d59805b65966472fe4b90aa"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "bytes": 14612,
+      "sha256": "32ca16894c29ba2906f8d510ef9781951bc8780e4a91ee84671f250f4de62b5f"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/spells/candidates/DI7_SHAMAN_CASTING_INTERFACE.md",
+      "bytes": 2720,
+      "sha256": "afb8950787039cf0d9b2f73fa4c6f957440adfbd1b0198deb70d78ffc21f840d"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/spells/candidates/DIVINATION_RANK7_EXACT_01.md",
+      "bytes": 66618,
+      "sha256": "bb8bf6bdb98e577f18e82436266e3f8f51e5bd5955d78b9af161f2a26a3d5098"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/spells/proposals/ABJURATION_CONJURATION_RANK4.md",
+      "bytes": 119365,
+      "sha256": "ab66c7961e5de4b709a4347639937a99436227311e48429ada993ccb9866bc54"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "bytes": 1545514,
+      "sha256": "59975de56ec4ed296ceeda0a1f428d43016a93d874cbbb00138c0d760a3b2707"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/data/spells.js",
+      "bytes": 1252459,
+      "sha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/build_abjuration_conjuration_rank4_operating_proposal.py",
+      "bytes": 46320,
+      "sha256": "9a25b946e6b975285b8ae29da6d4bfd0db419e3a913294e25fe9e1c2f8692d34"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/prepare_ac4_current_review_01.py",
+      "bytes": 19750,
+      "sha256": "b94e55e19e2e84a26a96ff86a6188bcfdae116c26d7484bbf374500fc7470b19"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/ABJURATION_CONJURATION_RANK4_SOURCE_PREPARATION.json",
+      "bytes": 720310,
+      "sha256": "09617fcec15c1f184ec860b76bb5c6000a628453c7cd5a4cf67d63f589228473"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_01_APPLICATION_CHECK.json",
+      "bytes": 14956,
+      "sha256": "46b30edb635037a3fb61725e402c8cbefb2d9adee47a4266fa9ad18d741d62d6"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_RELIC_NULL_01_APPLICATION_CHECK.json",
+      "bytes": 51125,
+      "sha256": "f237141fbab29dfc50a311d5e2217e4af3db698d5a838fbeeacb287c5aea738e"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/CURRENT_SPELL_REVIEW_RECONCILIATION_01.json",
+      "bytes": 553476,
+      "sha256": "ea3f2299cdc582d25e817ca30118b3e63a7a4ea4618a8a35fd822d5345d4bd36"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/di7-exact-final-verdict/DI7_EXACT_ACCEPTANCE_AUTHORITY.json",
+      "bytes": 5747,
+      "sha256": "fe3618c91ed413bce808f40b5022f1d3100e8afb892d69cced6c8106f4fc9e8c"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/DI7_EXACT_ACCEPTANCE_RECEIPT.json",
+      "bytes": 6187,
+      "sha256": "3d3aa9d09c7d7bfe5fb28b160554174f111c77e5d81bc0c6fb9b9d8fa559a788"
+    }
+  ],
+  "all70CurrentSourcesUnchanged": true,
+  "all48CaseIdsPreserved": true,
+  "all30OriginalTextsPreserved": true,
+  "newRulesAdopted": false,
+  "sourceInformationDeleted": 0,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false
+}

@@ -1,0 +1,2276 @@
+{
+  "recordedAtUtc": "2026-10-16T07:35:31.799665+00:00",
+  "authority": {
+    "path": "docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03.json",
+    "bytes": 4824,
+    "sha256": "c1c266c3f9d894acb3f682b77652c094b870adb0c51fa4e681e5134f75f51572"
+  },
+  "receipt": {
+    "path": "docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json",
+    "bytes": 6291,
+    "sha256": "8dfee7f8a9cd036df80650079b289895cae245de0d8ca17bd926798de55bce2d"
+  },
+  "changes": [
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+      },
+      "operations": [
+        {
+          "pointer": "/spells/329/operational/resolution",
+          "old": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+          "replacement": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Under the NEW scoped AC4-ALIGN-01 exception, also exclude all Alignment Lock/Alignment Anchor overlays on this target when computing this baseline. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still supplies Neutral/Neutral, subject to that caster's own active AC4 Lock/Anchor snapshot for the final effective read. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed; an eligible active Alignment Lock/Alignment Anchor snapshot applies last under AC4-ALIGN-01, without deleting, pausing or refreshing these lower records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent."
+        },
+        {
+          "pointer": "/spells/329/operational/effect",
+          "old": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.",
+          "replacement": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step. NEW scoped AC4-ALIGN-01: effective-alignment reads evaluate this live Suggestion overlay and the reviewed AP-AS-01 Purge interaction first, then apply the eligible active Alignment Lock/Alignment Anchor snapshot last. Lock/Anchor ending or inactivity exposes the then-live lower result with its original history/deadline; no ended overlay is restored. This adds no general alignment priority system."
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_enchantment_rank1.json",
+        "bytes": 80106,
+        "sha256": "3d9e00ac2b94e69134e80e6e6898d406a60485d7704d27e278ba24afc744403b",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_enchantment_rank1.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/candidate_enchantment_rank1.json",
+        "bytes": 80876,
+        "sha256": "9ece97aaf441f06d322f221193c44c6c5254b7c4a4dd2ca43169c0b3d161b730"
+      },
+      "operations": [
+        {
+          "pointer": "/spells/9/resolution",
+          "old": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+          "replacement": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Under the NEW scoped AC4-ALIGN-01 exception, also exclude all Alignment Lock/Alignment Anchor overlays on this target when computing this baseline. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still supplies Neutral/Neutral, subject to that caster's own active AC4 Lock/Anchor snapshot for the final effective read. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed; an eligible active Alignment Lock/Alignment Anchor snapshot applies last under AC4-ALIGN-01, without deleting, pausing or refreshing these lower records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent."
+        },
+        {
+          "pointer": "/spells/9/effect",
+          "old": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.",
+          "replacement": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step. NEW scoped AC4-ALIGN-01: effective-alignment reads evaluate this live Suggestion overlay and the reviewed AP-AS-01 Purge interaction first, then apply the eligible active Alignment Lock/Alignment Anchor snapshot last. Lock/Anchor ending or inactivity exposes the then-live lower result with its original history/deadline; no ended overlay is restored. This adds no general alignment priority system."
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_enchantment_rank1.json",
+        "bytes": 80106,
+        "sha256": "3d9e00ac2b94e69134e80e6e6898d406a60485d7704d27e278ba24afc744403b",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_enchantment_rank1.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_drafts/batch_enchantment_rank1.json",
+        "bytes": 80876,
+        "sha256": "9ece97aaf441f06d322f221193c44c6c5254b7c4a4dd2ca43169c0b3d161b730"
+      },
+      "operations": [
+        {
+          "pointer": "/spells/9/resolution",
+          "old": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+          "replacement": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Under the NEW scoped AC4-ALIGN-01 exception, also exclude all Alignment Lock/Alignment Anchor overlays on this target when computing this baseline. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still supplies Neutral/Neutral, subject to that caster's own active AC4 Lock/Anchor snapshot for the final effective read. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed; an eligible active Alignment Lock/Alignment Anchor snapshot applies last under AC4-ALIGN-01, without deleting, pausing or refreshing these lower records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent."
+        },
+        {
+          "pointer": "/spells/9/effect",
+          "old": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.",
+          "replacement": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step. NEW scoped AC4-ALIGN-01: effective-alignment reads evaluate this live Suggestion overlay and the reviewed AP-AS-01 Purge interaction first, then apply the eligible active Alignment Lock/Alignment Anchor snapshot last. Lock/Anchor ending or inactivity exposes the then-live lower result with its original history/deadline; no ended overlay is restored. This adds no general alignment priority system."
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/spell_dependencies.json",
+        "bytes": 5405295,
+        "sha256": "d1bb374765a5d94eee59ecb05e8420e7102e751db4352ff90475963586a06b40",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/spell_dependencies.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/spell_dependencies.json",
+        "bytes": 5406065,
+        "sha256": "b39e304a1bbba90784257977de4e1832198324b816205a96db018501e42c5688"
+      },
+      "operations": [
+        {
+          "pointer": "/spells/alignment-suggestion/completeCurrentProcedureCard/operational/resolution",
+          "old": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+          "replacement": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Under the NEW scoped AC4-ALIGN-01 exception, also exclude all Alignment Lock/Alignment Anchor overlays on this target when computing this baseline. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still supplies Neutral/Neutral, subject to that caster's own active AC4 Lock/Anchor snapshot for the final effective read. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed; an eligible active Alignment Lock/Alignment Anchor snapshot applies last under AC4-ALIGN-01, without deleting, pausing or refreshing these lower records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent."
+        },
+        {
+          "pointer": "/spells/alignment-suggestion/completeCurrentProcedureCard/operational/effect",
+          "old": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.",
+          "replacement": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step. NEW scoped AC4-ALIGN-01: effective-alignment reads evaluate this live Suggestion overlay and the reviewed AP-AS-01 Purge interaction first, then apply the eligible active Alignment Lock/Alignment Anchor snapshot last. Lock/Anchor ending or inactivity exposes the then-live lower result with its original history/deadline; no ended overlay is restored. This adds no general alignment priority system."
+        },
+        {
+          "pointer": "/spells/acid-splash/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/acid-splash/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/alarm/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/alarm/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/alarm-ward/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/alarm-ward/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/alignment-empathy/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/alignment-empathy/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/alignment-essence/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/alignment-essence/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/alignment-sense/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/alignment-sense/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/alignment-shield/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/alignment-shield/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/alignment-suggestion/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/alignment-suggestion/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/arcane-echo/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/arcane-echo/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/arcane-lock/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/arcane-lock/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/arcane-ray/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/arcane-ray/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/arcane-shield-shatter/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/arcane-shield-shatter/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/arcane-ward/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/arcane-ward/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/armor-of-faith/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/armor-of-faith/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/astral-projection/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/astral-projection/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/aura-glimpse/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/aura-glimpse/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/aura-sight/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/aura-sight/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/bane/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/bane/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/barrier-flicker/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/barrier-flicker/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/beguiling-gaze/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/beguiling-gaze/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/binding-circle/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/binding-circle/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/burning-hands/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/burning-hands/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/burning-sands/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/burning-sands/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/calm-whispers/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/calm-whispers/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/cause-fear/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/cause-fear/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/chain-jolt/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/chain-jolt/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/charm-person/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/charm-person/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/chill-of-the-crypt/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/chill-of-the-crypt/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/chill-touch/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/chill-touch/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/chromatic-orb/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/chromatic-orb/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/clairaudience-lesser/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/clairaudience-lesser/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/command/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/command/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/comprehend-languages/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/comprehend-languages/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/confusing-flash/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/confusing-flash/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/conjure-rope/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/conjure-rope/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/conjure-water/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/conjure-water/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/corruption-insight/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/corruption-insight/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/corruption-sensor/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/corruption-sensor/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/corruption-ward/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/corruption-ward/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/counterspell/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/counterspell/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/crackle-jolt/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/crackle-jolt/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/dancing-lights/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/dancing-lights/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/daze/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/daze/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/detect-corruption/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/detect-corruption/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/detect-emotion/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/detect-emotion/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/detect-faction/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/detect-faction/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/detect-magic/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/detect-magic/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/detect-poison/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/detect-poison/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/detect-secret-doors/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/detect-secret-doors/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/detect-weather/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/detect-weather/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/disguise-self/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/disguise-self/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/dispel-magic/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/dispel-magic/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/dispel-minor/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/dispel-minor/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/dispel-resonance/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/dispel-resonance/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/disrupt-memory/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/disrupt-memory/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/distort-voice/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/distort-voice/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/distract/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/distract/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/druidcraft/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/druidcraft/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/dust-gust/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/dust-gust/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/earth-tremor/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/earth-tremor/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/earthen-grip/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/earthen-grip/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/elemental-bolt/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/elemental-bolt/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/elemental-resistance/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/elemental-resistance/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/elemental-touch/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/elemental-touch/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/enthrall/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/enthrall/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/enthralling-tune/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/enthralling-tune/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/faction-charm/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/faction-charm/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/faction-emblem/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/faction-emblem/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/faction-insight/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/faction-insight/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/faction-messenger/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/faction-messenger/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/faction-seal/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/faction-seal/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/faction-sympathy/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/faction-sympathy/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/false-comfort/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/false-comfort/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/false-life/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/false-life/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/far-echo/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/far-echo/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/fate-coin/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/fate-coin/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/feather-fall/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/feather-fall/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/find-familiar/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/find-familiar/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/fireburst/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/fireburst/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/flame-armor/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/flame-armor/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/flame-lash/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/flame-lash/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/flare-spark/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/flare-spark/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/flicker-flame/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/flicker-flame/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/force-needle/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/force-needle/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/force-spike/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/force-spike/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/foresight-flicker/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/foresight-flicker/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/fortify-object/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/fortify-object/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/freezing-touch/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/freezing-touch/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/friends/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/friends/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/frost-arrow/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/frost-arrow/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/future-echo/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/future-echo/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/ghost-sound/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/ghost-sound/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/glimmering-eyes/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/glimmering-eyes/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/glimpse-future/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/glimpse-future/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/grave-spark/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/grave-spark/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/guidance/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/guidance/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/guiding-spark/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/guiding-spark/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/gust/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/gust/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/harmonic-protection/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/harmonic-protection/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/heat-metal-conjured/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/heat-metal-conjured/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/hellish-rebuke/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/hellish-rebuke/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/heroism/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/heroism/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/hideous-laughter/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/hideous-laughter/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/ice-knife/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/ice-knife/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/identify/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/identify/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/ignition-bolt/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/ignition-bolt/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/illusory-blade/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/illusory-blade/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/jump/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/jump/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/lifedraw/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/lifedraw/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/locate-object/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/locate-object/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/lodestone-pull/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/lodestone-pull/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/longstrider/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/longstrider/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/lullaby/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/lullaby/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mage-light/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mage-light/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/magehand/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/magehand/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/magic-missile-storm/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/magic-missile-storm/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mark-omen/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mark-omen/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mending/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mending/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mental-flicker/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mental-flicker/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mental-tap/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mental-tap/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mesmerize/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mesmerize/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/message/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/message/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/minor-combustion/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/minor-combustion/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/minor-elemental-ward/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/minor-elemental-ward/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/minor-enhancement/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/minor-enhancement/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/minor-illusion/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/minor-illusion/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/minor-image/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/minor-image/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/minor-suggestion/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/minor-suggestion/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mirage-spark/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mirage-spark/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mirror-image/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mirror-image/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mist-step/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mist-step/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mist-veil/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mist-veil/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/mold-earth/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/mold-earth/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/nullify-element/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/nullify-element/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/omen-whisper/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/omen-whisper/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/pacify/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/pacify/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/pebble-swarm/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/pebble-swarm/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/phantom-key/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/phantom-key/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/planar-binding/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/planar-binding/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/poison-spray/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/poison-spray/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/predict-movement/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/predict-movement/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/protective-sphere/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/protective-sphere/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/purify-drop/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/purify-drop/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/purify-food-and-drink/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/purify-food-and-drink/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/ray-of-frost/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/ray-of-frost/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/read-memories/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/read-memories/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/read-surface-thoughts/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/read-surface-thoughts/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/repel-vermin/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/repel-vermin/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/repelling-pulse/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/repelling-pulse/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/repulsion-field/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/repulsion-field/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resistance/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resistance/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-bridge/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-bridge/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-influence/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-influence/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-kindle/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-kindle/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-lock/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-lock/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-map/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-map/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-mote/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-mote/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-shield/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-shield/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-sight/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-sight/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/resonance-whisper/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/resonance-whisper/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/sacred-flame/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/sacred-flame/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/sanctuary/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/sanctuary/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/scribe-destiny/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/scribe-destiny/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/seal-minor-wound/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/seal-minor-wound/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/sense-alignment/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/sense-alignment/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/sense-corruption/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/sense-corruption/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/sense-magic/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/sense-magic/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/sense-undead/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/sense-undead/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/shape-water/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/shape-water/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/shield/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/shield/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/shocking-grasp/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/shocking-grasp/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/shockwave/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/shockwave/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/silent-image/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/silent-image/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/sleep/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/sleep/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/slow/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/slow/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/soothe-animal/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/soothe-animal/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/soul-mark/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/soul-mark/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/soundburst/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/soundburst/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/spare-the-dying/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/spare-the-dying/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/sparkbolt/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/sparkbolt/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/spider-climb/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/spider-climb/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/stone-skin-sliver/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/stone-skin-sliver/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/stoneflesh/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/stoneflesh/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/summon-familiar/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/summon-familiar/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/summon-fire-pet/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/summon-fire-pet/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/summon-lesser-skeleton/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/summon-lesser-skeleton/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/summon-minor-weapon/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/summon-minor-weapon/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/summon-mod-rod/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/summon-mod-rod/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/summon-tool/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/summon-tool/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/thunder-clap/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/thunder-clap/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/thunderclap/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/thunderclap/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/thunderwave/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/thunderwave/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/true-sight-lesser/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/true-sight-lesser/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/unseen-servant/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/unseen-servant/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/voice-of-peace/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/voice-of-peace/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/warding-bond/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/warding-bond/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/warding-gesture/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/warding-gesture/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/warding-mark/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/warding-mark/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/warning-ward/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/warning-ward/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/weaken-will/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/weaken-will/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/witch-bolt/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/witch-bolt/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        },
+        {
+          "pointer": "/spells/zephyr-strike/binding/bytes",
+          "old": 5059945,
+          "replacement": 5060715
+        },
+        {
+          "pointer": "/spells/zephyr-strike/binding/sha256",
+          "old": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+          "replacement": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/cohorts/general_combat.json",
+        "bytes": 7149704,
+        "sha256": "9de3091291a9ab3e2ef3e58b7c5fca0158ac96a38c7712f8c008b24245d5633d",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/cohorts/general_combat.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/feat_candidates/exact_01/cohorts/general_combat.json",
+        "bytes": 7150474,
+        "sha256": "7e98440867e5435494a658845a9d55523146e6f4785c46634194764a108a7193"
+      },
+      "operations": [
+        {
+          "pointer": "/completeCurrentSpellDependencies/alignment-suggestion/completeCurrentProcedureCard/operational/resolution",
+          "old": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+          "replacement": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Under the NEW scoped AC4-ALIGN-01 exception, also exclude all Alignment Lock/Alignment Anchor overlays on this target when computing this baseline. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still supplies Neutral/Neutral, subject to that caster's own active AC4 Lock/Anchor snapshot for the final effective read. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed; an eligible active Alignment Lock/Alignment Anchor snapshot applies last under AC4-ALIGN-01, without deleting, pausing or refreshing these lower records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent."
+        },
+        {
+          "pointer": "/completeCurrentSpellDependencies/alignment-suggestion/completeCurrentProcedureCard/operational/effect",
+          "old": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.",
+          "replacement": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step. NEW scoped AC4-ALIGN-01: effective-alignment reads evaluate this live Suggestion overlay and the reviewed AP-AS-01 Purge interaction first, then apply the eligible active Alignment Lock/Alignment Anchor snapshot last. Lock/Anchor ending or inactivity exposes the then-live lower result with its original history/deadline; no ended overlay is restored. This adds no general alignment priority system."
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_STARTER.md",
+        "bytes": 1183182,
+        "sha256": "3a68eef10b4f5c6b70a3b479807d1276dbbd52daa1c8bd66bef476007171f132",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_STARTER.md"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_PLAYTEST_STARTER.md",
+        "bytes": 1183952,
+        "sha256": "d156b03b57621652917be06a94e2dfff598e38188284705df67b136ad2fb6d31"
+      },
+      "operations": [
+        {
+          "old": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+          "replacement": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Under the NEW scoped AC4-ALIGN-01 exception, also exclude all Alignment Lock/Alignment Anchor overlays on this target when computing this baseline. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still supplies Neutral/Neutral, subject to that caster's own active AC4 Lock/Anchor snapshot for the final effective read. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed; an eligible active Alignment Lock/Alignment Anchor snapshot applies last under AC4-ALIGN-01, without deleting, pausing or refreshing these lower records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent."
+        },
+        {
+          "old": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.",
+          "replacement": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step. NEW scoped AC4-ALIGN-01: effective-alignment reads evaluate this live Suggestion overlay and the reviewed AP-AS-01 Purge interaction first, then apply the eligible active Alignment Lock/Alignment Anchor snapshot last. Lock/Anchor ending or inactivity exposes the then-live lower result with its original history/deadline; no ended overlay is restored. This adds no general alignment priority system."
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/docs/feats/exact-candidate-01/SPELL_PAYLOADS.md",
+        "bytes": 2481728,
+        "sha256": "77515db248e1ebea298a382428a64bedc785bb3de8ce08d276503b4e6d49e2bc",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/docs/feats/exact-candidate-01/SPELL_PAYLOADS.md"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/docs/feats/exact-candidate-01/SPELL_PAYLOADS.md",
+        "bytes": 2482498,
+        "sha256": "d52c773c6b1f019e2b5ae3b2a488fbe4fcabbeef989f7d877e78a4ac99e39427"
+      },
+      "operations": [
+        {
+          "old": "\"The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.\"",
+          "replacement": "\"The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Under the NEW scoped AC4-ALIGN-01 exception, also exclude all Alignment Lock/Alignment Anchor overlays on this target when computing this baseline. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still supplies Neutral/Neutral, subject to that caster's own active AC4 Lock/Anchor snapshot for the final effective read. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed; an eligible active Alignment Lock/Alignment Anchor snapshot applies last under AC4-ALIGN-01, without deleting, pausing or refreshing these lower records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.\""
+        },
+        {
+          "old": "\"The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.\"",
+          "replacement": "\"The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step. NEW scoped AC4-ALIGN-01: effective-alignment reads evaluate this live Suggestion overlay and the reviewed AP-AS-01 Purge interaction first, then apply the eligible active Alignment Lock/Alignment Anchor snapshot last. Lock/Anchor ending or inactivity exposes the then-live lower result with its original history/deadline; no ended overlay is restored. This adds no general alignment priority system.\""
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "bytes": 50379,
+        "sha256": "b7955c4204f5663f0461728351e30f2e6129aed33d59805b65966472fe4b90aa",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+        "bytes": 52470,
+        "sha256": "1bed6bd2ddf4f7e608999b2db05ffd29d22bd075bb6d9181f1b3f7c79b03b1cb"
+      },
+      "operations": [
+        {
+          "old": "**Alignment Suggestion:** calculate each new one-step shift with all prior same-spell overlays ignored, retaining independent actual alignment changes. Only changed defined axes receive fixed overlay values. A no-change result creates no replacement; the caster's already-required concentration transition still occurs and never resurrects an old application. A valid changed-axis application replaces the previous same-spell application; replaced concentration maintains no remaining effect. Ending exposes the then-current underlying alignment, not a historical snapshot. No conduct, belief or oathbreaking is compelled. NEW DI7 AP-AS-01 adds one named exception only: when computing a new Alignment Suggestion target baseline, exclude all Alignment Purge overlays as well as previous Suggestion overlays, retaining all other independent actual changes. Purge supplies Neutral/Neutral after live Suggestion values for effective-alignment reads, without deleting or pausing them. The caster orientation remains its actual effective snapshot, including any operative Purge on the caster. Preserve the original paragraph and reviewed card as historical evidence; no other spell or alignment effect inherits this exception.",
+          "replacement": "**Alignment Suggestion:** calculate each new one-step shift with all prior same-spell overlays ignored, retaining independent actual alignment changes. Only changed defined axes receive fixed overlay values. A no-change result creates no replacement; the caster's already-required concentration transition still occurs and never resurrects an old application. A valid changed-axis application replaces the previous same-spell application; replaced concentration maintains no remaining effect. Ending exposes the then-current underlying alignment, not a historical snapshot. No conduct, belief or oathbreaking is compelled. NEW DI7 AP-AS-01 adds one named exception only: when computing a new Alignment Suggestion target baseline, exclude all Alignment Purge overlays as well as previous Suggestion overlays, retaining all other independent actual changes. Purge supplies Neutral/Neutral after live Suggestion values for effective-alignment reads, without deleting or pausing them. The caster orientation remains its actual effective snapshot, including any operative Purge on the caster. Preserve the original paragraph and reviewed card as historical evidence; no other spell or alignment effect inherits this exception.\n\n**AC4-ALIGN-01 — reviewed Lock/Anchor integration.** NEW scoped exception `AC4-ALIGN-01` for Alignment Lock/Alignment Anchor versus reviewed Alignment Purge/Suggestion. A Lock/Anchor application freezes only the effective defined axis value it actually snapshots; it does not delete, prevent creation of, pause, refund, or rewrite an underlying Alignment Suggestion, Alignment Purge, or independent lawful alignment record. For effective-alignment reads on a locked axis, evaluate the ordinary underlying history and reviewed Suggestion/Purge interaction (including AP-AS-01) first, then apply the active Lock/Anchor snapshot last. Thus a Purge or Suggestion cast after a lock can establish its own live record and pay/keep its own costs and clock, but cannot change the locked effective axis while that lock remains active. When a new Suggestion computes its target baseline, exclude prior Suggestion overlays and Purge overlays as AP-AS-01 already requires, and additionally exclude AC4 Lock/Anchor overlays on the target so the lock cannot become a ratchet staircase. A Purge on the Suggestion caster still affects that caster's own effective orientation normally. If Lock/Anchor is applied while Purge or Suggestion is already effective, it snapshots the currently effective defined value; later ending/suppression of the lower overlay does not alter that snapshot. When Lock/Anchor ends or is inactive because a zone was exited/suppressed, the then-live lower lawful result becomes effective immediately with its original deadline/history; no old snapshot is restored and no missed application replays. Undefined axes are never fabricated.\n\nThe [complete fifteen-spell AC4 chapter](../spells/candidates/ABJURATION_CONJURATION_RANK4_REVIEWED_03.md) and [review receipt](../../../../docs/audit/2026-10-08/full-game/AC4_EXACT_ACCEPTANCE_03_RECEIPT.json) govern the exact accepted authored procedures, including separate Alignment Anchor placements, finite summon profiles and all scoped interfaces. These manuscript acceptances do not enable runtime selection or certify human balance."
+        }
+      ]
+    },
+    {
+      "before": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+        "bytes": 329450,
+        "sha256": "dbe64ed1c29f8a74e10266c86068a748ee8cb8adcc18332389ef9628642cc0c4",
+        "preservedCopy": "docs/audit/2026-10-08/full-game/source-before-ac4-exact-acceptance-03/DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json"
+      },
+      "after": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+        "bytes": 346113,
+        "sha256": "8b12ea675d1af552e88c98c2260535df1a2860ed2a4c084e3f38f6344393f00e"
+      },
+      "operations": [
+        {
+          "scope": "15 exact authored memberships, current catalog binding, additional accepted envelope and aggregate counts",
+          "oldCounts": {
+            "reviewed": 419,
+            "pending": 429
+          },
+          "newCounts": {
+            "reviewed": 434,
+            "pending": 414
+          }
+        }
+      ]
+    }
+  ],
+  "newExactCanonicalCopies": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+      "bytes": 144067,
+      "sha256": "dc44dfa02289bf0b1f016f01fc9d79cd3a75c913c9e8e8e984e2299ea7c9ed39"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/abjuration_conjuration_rank4_cases_03.json",
+      "bytes": 35394,
+      "sha256": "d267d3d0dfc271c31538fcd21fb5ec85fc523b578fa419fbccc6694dfaf2a0b1"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/spells/candidates/ABJURATION_CONJURATION_RANK4_REVIEWED_03.md",
+      "bytes": 44927,
+      "sha256": "162266a146c39d41b4a9806bb626328bc96c883fb9b9685fa9bdd432ba745ffc"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/director-only/spells/ABJURATION_CONJURATION_RANK4_REVIEWED_03.md",
+      "bytes": 23326,
+      "sha256": "30f1f19f9b389a341bd8685774d438ee0909ef27f480fc37b9114de9b8955b8d"
+    }
+  ],
+  "sourceInformationDeleted": 0,
+  "activeCatalogDependencyBindingsRefreshed": 202,
+  "historicalSourceRecordsUnchanged": true
+}

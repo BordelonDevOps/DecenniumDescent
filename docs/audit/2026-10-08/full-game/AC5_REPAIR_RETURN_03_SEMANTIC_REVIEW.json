@@ -1,0 +1,112 @@
+{
+  "id": "AC5-REPAIR-RETURN-03-SEMANTIC-REVIEW",
+  "recordedAtUtc": "2026-10-16T10:15:33.166091+00:00",
+  "status": "Repair03 received exactly and structurally passes. Most original findings are resolved; four focused geometry/timing/operation topics remain before exact acceptance. No adoption.",
+  "archive": {
+    "path": "docs/audit/2026-10-08/full-game/DD_AC5_Repair_03_Return.zip",
+    "bytes": 183586,
+    "sha256": "42ccbc2dd1af03a66fc814aaccbb685dcb93c884c2ace308c25285759e07ab07"
+  },
+  "structuralCheck": {
+    "path": "docs/audit/2026-10-08/full-game/AC5_REPAIR_RETURN_03_STRUCTURAL_CHECK.json",
+    "bytes": 164826,
+    "sha256": "36bc43dd1cc726d5147c0c106a2f40340753af64676a1d3abb8944001d78ddad"
+  },
+  "manualReviewScope": [
+    "Compared every current procedure against the preserved first return; read all changed procedures and every changed/new shared rule.",
+    "Read both unchanged complete profiles and all17 specifically repaired/new case current-state/action/outcome ledgers, plus X10/X22/X24; inspected current adjudications for the other cases and relied on their preserved prior independent review for unchanged details.",
+    "Verified chapter inclusion of exact current procedures structurally; checked new portal shared rules present verbatim in both chapters.",
+    "Checked actual Burning Hands range/cone, Core death/save/Stable timing, accepted Null finite/ordinary lifecycle, AC4 Anchor exact source, and actual Fate Coin/class Dispel while preparing AC6."
+  ],
+  "priorRepairAssessment": [
+    {
+      "id": "AC5-R03-01",
+      "assessment": "Resolved: all current references in local recursive verification resolve."
+    },
+    {
+      "id": "AC5-R03-02",
+      "assessment": "Resolved: actual Aegis conservation77=43+17+17, finalHP43/48 and protector Barrier30 unchanged."
+    },
+    {
+      "id": "AC5-R03-03",
+      "assessment": "Resolved: same unveiled Pet with Veiled owner; no invented sixty-second Veil grant."
+    },
+    {
+      "id": "AC5-R03-04",
+      "assessment": "Actual ancestry and most missing branches supplied; X03 and X12 still have concrete timeline/geometry deficiencies below."
+    },
+    {
+      "id": "AC5-R03-05",
+      "assessment": "Incoming checkpoint and permanent book protection clarified; X25 geometry and direct-dispel operation ordering remain below."
+    },
+    {
+      "id": "AC5-R03-06",
+      "assessment": "Resolved: prospective actual origin, atomic provenance commit and fallback creation provenance are explicit NEW scoped choices."
+    },
+    {
+      "id": "AC5-R03-07",
+      "assessment": "Unsupported Falling and source-local nonteleport crossing chosen; wall/portal fixture and operation details remain below."
+    },
+    {
+      "id": "AC5-R03-08",
+      "assessment": "Resolved: ACCEPT/RESIST, named admission/transport/closure reuse and all extant secondary identities retained."
+    },
+    {
+      "id": "AC5-R03-09",
+      "assessment": "Order cap, next opportunity, expiry, replacement, plane separation and companion gates are explicitly authored."
+    },
+    {
+      "id": "AC5-R03-10",
+      "assessment": "Concentration replacement and base/nonbase/protected-X accounting are explicit; worked base-waived surcharge total3/pool10 conserves."
+    }
+  ],
+  "issues": [
+    {
+      "id": "AC5-R04-01",
+      "title": "Incoming Antimagic example exceeds the actual Burning Hands cone; define the direct-dispel exception per operation",
+      "locations": [
+        "CASEBOOK.json AC5-X25",
+        "SPELLS_MODEL.json /sharedRules/AC5-ANTIMAGIC-IO-03"
+      ],
+      "finding": "X25 places Wizard at(20,0), target B at(0,0), then says the actual 15-foot Burning Hands cone includes B. Even a Medium five-foot footprint centered on B leaves its closest x=2.5 point 17.5ft from the caster. The frozen Burning Hands /operational explicitly has range15 and a15-foot cone. This is not a valid incoming-payload example. Also Greater Dispel selects an area center and captures applications; it does not select one target field at declaration, so the new direct-field exception needs an exact termination-operation meaning.",
+      "proposedConcreteRepair": "Keep field center(0,0) radius10 and caster(20,0), point the cone west, put B at(7.5,0) with a fitting actual footprint wholly/partly in the field and A at(15,0) wholly outside. State actual dimensions, LoE and cone inclusion. Give Burning Hands cost2, W1 RP30->28, then on a later legal turn Dimensional Door7 ->21, with actual Dissonance cadence below surcharge threshold. W2 Greater Dispel10 is a different caster. For its immutable captured set, specify whether the self-dispel exception protects only termination of each captured Antimagic application or the whole cast. Recommended NEW narrow completion: classify local payload suppression once for the captured termination operations before performing any removals; only the targeted Antimagic termination operation bypasses that same field, another Antimagic still blocks normally, and other suppressed captured operations do not spring back after the first field ends. If a different ordering is chosen, state it explicitly and work it. Include one other ongoing rank-eligible inside buff in X25 and show its actual outcome without a second scan."
+    },
+    {
+      "id": "AC5-R04-02",
+      "title": "Occupied Wall resumption fixture cannot reach its stated initial position; make panel selection determinate",
+      "locations": [
+        "CASEBOOK.json AC5-X12",
+        "SPELLS_MODEL.json /sharedRules/AC5-WALL-PANELS-03",
+        "SPELLS_MODEL.json /spells/4/procedure"
+      ],
+      "finding": "X12 suppresses only y[-2.5,+2.5],z[0,5], then says a standing Medium body occupying z[0,6] walked into x[-2.5,+2.5] across x=0. The wall from z5 to6 was never suppressed; this starting overlap is illegal without an explicitly legal posture change and clearance. The new rule alternates panel, panel/portion and occupied portions, leaving whether an intersecting body holds the entire fixed2.5ft panel absent or creates a body-shaped cutout unresolved.",
+      "proposedConcreteRepair": "Use a fully legal six-foot-tall passage by suppressing the fixed six panels y[-2.5,+2.5] by z[0,7.5] before the creature enters, with actual suppressor geometry that covers them. A body y[-2.5,+2.5],z[0,6] then occupies all six panel volumes at resumption. Recommended NEW rule: active suppression still clips exact intersecting wall portions; on removal of suppression, if a pending portion in a fixed logical panel intersects an occupant, hold that entire previously suppressed portion of that fixed panel absent until clear, never deactivate a portion that remained solid. Whole-panel suppression in X12 therefore leaves six whole panels pending. Previously active wall cannot be entered merely because a different part is pending. State this algorithm in the shared rule and full spell procedure; show six pending panels at t18 and their return at t24 with no push/cut. A different exact clipped algorithm is acceptable if its occupied extent and clearance are mathematically defined and the example follows it."
+    },
+    {
+      "id": "AC5-R04-03",
+      "title": "Living Magma zero-state example omits the real death-save and recovery clocks",
+      "locations": [
+        "CASEBOOK.json AC5-X03"
+      ],
+      "finding": "X03 schedules ordinary positive packets at t12,t18,t24 and claims the third causes death, but supplies neither target death-save classification nor intervening regular START rolls. The current Core makes an ordinary non-death-save monster die on the first qualifying ordinary packet at0, whereas a character/significant NPC gets mandatory regular death saves. Those omitted rolls can kill, stabilize or restoreHP before t24. Its Stable recovery d4/deadline and Magma second/third ticks are also absent.",
+      "proposedConcreteRepair": "Use an explicit character or designated significant NPC that uses death saves. Preserve the actual Null Magma root. One fully determinate option: target regular starts t6,t12,t18,t24; at t6 Magma Null tick7 takes6HP toStable0, roll recovery d4=2 and set absolute7206. No death save while Stable. At t12 Null tick1 preserves Stable then a separate later-in-that-turn noncritical ordinary1-damage event cancels deadline and gives failure1. At t18 resolve the actual due death save d20=10 (success1) and Null tick1 without altering that existing schedule/counters, then separate ordinary1 causes failure2. At t24 regular death save d20=11 gives success2 before separate ordinary1 causes failure3/death. If actual same-start ordering differs, follow the frozen Core/Null/Combat authority and explicitly order both; no extra turn is invented. Show source ends after its third Magma opportunity at t18, while the independent damage/death events can continue. Record counters, d4 deadline cancellation, actual no-critical/no-Wound circumstances, costs and no later revival. A simpler equally complete legal timeline is fine."
+    },
+    {
+      "id": "AC5-R04-04",
+      "title": "Separate portal formation from prevented transit and complete three-dimensional/forced crossing inputs",
+      "locations": [
+        "SPELLS_MODEL.json /spells/15/procedure",
+        "SPELLS_MODEL.json /sharedRules/AC5-PORTAL-GEOMETRY-03",
+        "CASEBOOK.json AC5-X27",
+        "CASEBOOK.json new AC5-X31"
+      ],
+      "finding": "The portal before-payment steps say to recheck true endpoint blockers including Dimensional Anchor, without saying whether those prevent portal formation or only a traveler transaction. Accepted AC4 Dimensional Anchor /spells/2/procedure expressly allows a portal to remain present and blocks actual teleport/planar transition transactions, not spells generally. X27 gives Large10x10 with no height, despite an8ft aperture, and says enough forced movement without a concrete distance, path or handling of squeeze/carrying.",
+      "proposedConcreteRepair": "Clarify that creating the linked empty apertures is not itself a body/item planar transition; Anchor can block use while the portal remains live under its original deadline. If proposing an additional portal-specific formation prohibition, label and justify that NEW restriction instead of attributing it to accepted Anchor. Give L an actual stated height/pose that fits or lawfully squeezes through8ft, actual whole destination footprint and supporting space, and an ordinary/difficult+squeeze cost example. For forced movement, explicitly state whether the existing ordinary shove/path procedure authorizes forcing a too-wide body into a squeeze and how many real path feet are needed; do not assume a generic shove imports all missing permission. A concrete Medium fitting-body forced crossing can demonstrate No Escape voluntary versus involuntary without adding unprinted squeeze authority. Add X31 with a portal already formed under an operative Anchor, a blocked known crossing, Anchor ending before portal deadline, then one legal crossing and eventual closure. Preserve the source-local nonteleport classification, real alignment metadata and no free return."
+    }
+  ],
+  "sourceInformationDeleted": 0,
+  "newSpellAdoptions": 0,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false,
+  "balanceApproved": false
+}

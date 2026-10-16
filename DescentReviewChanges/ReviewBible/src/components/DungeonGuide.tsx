@@ -23,6 +23,7 @@ import { Button } from './ui/button';
 import encounters from '@/data/floor-encounters.json';
 import dungeonMechanics from '@/data/dungeon-mechanics.json';
 import haven from '@/data/haven.json';
+import { DirectorCosmologyNotes, PlayerCosmologyNotes, QualifiedCycleTimeline } from './CosmologyReadingNotes';
 
 type Haven = { name: string; description: string };
 type DraftRegion = { name: string; note: string; draft?: boolean };
@@ -77,12 +78,11 @@ type VictoryConsequencesView = {
 
 function DraftBadge() {
   return (
-    <Badge
-      variant="outline"
-      className="ml-2 text-[9px] px-1 py-0 border-amber-500/40 text-amber-300/80 align-middle"
+    <span
+      className="inline-flex items-center rounded-md border font-semibold ml-2 text-[9px] px-1 py-0 border-amber-500/40 text-amber-300/80 align-middle"
     >
       Draft
-    </Badge>
+    </span>
   );
 }
 
@@ -710,16 +710,26 @@ const DungeonGuide: React.FC = () => {
               <CardTitle className="text-amber-400">Myth & Timeline</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm text-amber-50/80">
-              <ul className="list-disc pl-5 space-y-1">
-                {dungeonMechanics.cycle.mythHistory.map((m) => (
-                  <li key={m.slice(0, 48)}>{m}</li>
-                ))}
-              </ul>
-              <ul className="list-disc pl-5 space-y-1 text-amber-100/70 pt-2">
-                {dungeonMechanics.timeline.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
+              <PlayerCosmologyNotes />
+              <QualifiedCycleTimeline />
+              <details className="border-t border-amber-600/30 pt-3">
+                <summary className="cursor-pointer text-amber-300 focus-visible:outline focus-visible:outline-2">
+                  Director / source reference — original myth and timeline
+                </summary>
+                <div className="space-y-4 pt-4">
+                  <DirectorCosmologyNotes />
+                  <ul className="list-disc pl-5 space-y-1">
+                    {dungeonMechanics.cycle.mythHistory.map((m) => (
+                      <li key={m.slice(0, 48)}>{m}</li>
+                    ))}
+                  </ul>
+                  <ul className="list-disc pl-5 space-y-1 text-amber-100/70">
+                    {dungeonMechanics.timeline.map((t) => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
             </CardContent>
           </Card>
         </TabsContent>

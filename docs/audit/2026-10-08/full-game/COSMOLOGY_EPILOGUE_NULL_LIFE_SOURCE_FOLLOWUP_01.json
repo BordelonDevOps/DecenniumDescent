@@ -1,0 +1,132 @@
+{
+  "recordedAtUtc": "2026-10-16T00:18:19.632562+00:00",
+  "status": "source/interface preparation only; not submitted and no new rules adopted",
+  "previousReading": {
+    "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_RELIC_NULL_READING_01.json",
+    "bytes": 24514,
+    "sha256": "2c7707993770772320e11e10f1020bc0d495827fb228ae205a03478689b55ba6"
+  },
+  "bookEvidence": [
+    {
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "bytes": 625021,
+        "sha256": "a753da2ce935ed29e4f3f14575f3785140821c3f0c43adb760da6149b12e295e"
+      },
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 4238,
+      "text": "Sacrificial Defense: Take damage in place of an ally, converting a portion to non-lethal damage.",
+      "textSha256": "20f5df882dc63910b94749fbebbd45eae731bc49dcce77fbd53a03719bcacd29"
+    },
+    {
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "bytes": 625021,
+        "sha256": "a753da2ce935ed29e4f3f14575f3785140821c3f0c43adb760da6149b12e295e"
+      },
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 8282,
+      "text": "When reducing a creature to 0 HP with a melee attack, you can choose to knock it out instead of killing it. It falls unconscious and is stable.",
+      "textSha256": "4cd318209d02578f27aac269a94e40734bb073a97b9b847c6222a97b089ffd77"
+    },
+    {
+      "source": {
+        "path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "bytes": 625021,
+        "sha256": "a753da2ce935ed29e4f3f14575f3785140821c3f0c43adb760da6149b12e295e"
+      },
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 8286,
+      "text": "A buffer against damage, lost before normal HP. Cannot be healed. Do not stack (take the higher value if you gain more). Do not restore consciousness at 0 HP. Last until depleted or after a long rest, unless specified otherwise.",
+      "textSha256": "90c2f5c7f59b5d7bec375b500ecefa4c620a507eac1a5a660c8ed19f67b22097"
+    }
+  ],
+  "currentSourceCard": {
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "bytes": 56702,
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+    },
+    "jsonPointer": "/cards/29",
+    "record": {
+      "id": "soldier.hero.champion.sacrificial-defense",
+      "name": "Sacrificial Defense",
+      "className": "Soldier",
+      "band": "Hero",
+      "path": "Champion",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "One adjacent ally that would reach 0 HP from damage",
+      "duration": "One hit",
+      "frequency": "1/long rest",
+      "effect": "Reduce damage by up to your current HP minus 1, taking that amount as unmitigable damage yourself. Ally takes remainder. Cannot make either creature's HP negative, erase massive-damage rules or transfer the cost again.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4239,
+        "originalText": "Sacrificial Defense: Take damage in place of an ally, converting a portion to non-lethal damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  },
+  "currentLifeInterfaceEvidence": [
+    {
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+        "bytes": 15877,
+        "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+      },
+      "lineStartOneBased": 35,
+      "lineEndInclusive": 60,
+      "text": "## Resolve a damage event\n\nResolve each genuinely separate hit or damage event once. Do not split one packet to multiply Wound saves or combine separate hits merely to cross a threshold. Feature-specific prevention that acts before damage or before reaching zero resolves at its printed timing first.\n\n1. Resolve attack/save, damage and applicable defenses. The remaining nonnegative amount is **resolved damage**.\n2. Record HP, Wounds and zero-HP state before the event. Remove temporary HP first. **Post-temp damage = resolved damage minus temporary HP absorbed.** Keep this amount even when it exceeds current HP; floor the resulting current HP at zero.\n3. Check V6 Instant Death. If post-temp damage minus HP before the hit is at least maximum HP, the creature dies. For a creature already at zero, this is post-temp damage at least maximum HP. Stop: there is no Wound save, death-save failure or successful knockout from that event.\n4. Otherwise, a living creature makes one Wound save if it dropped from positive HP to zero, if **2 × post-temp damage is at least maximum HP**, or if the effect actually inflicts Maiming. Overlapping triggers still cause only one save. The post-temp threshold and one-save rule are new provisional interpretations. Maiming is an independent trigger even when temporary HP absorbs all ordinary damage; immunity to Maiming itself still applies.\n5. Make a Constitution save against **max(10, floor(post-temp damage / 2))**. Use pre-event Wounds for the -1-per-Wound penalty. Maiming with zero post-temp damage uses DC 10. A Wound gained now cannot penalize the roll that created it.\n6. A success adds no Wound. A failure that began with zero, one or two Wounds adds exactly one; failure by 5 or more also gives that Wound one Injury. A failure that began with three Wounds kills the creature instead: no fourth Wound and no Injury roll. Stop processing later living-target consequences if dead.\n7. If the creature was already at zero before this event and post-temp damage is positive, end Stable. A creature using death saves adds one failure, or two for a critical hit; three failures kill it. An ordinary creature that does not use death saves dies instead, without starting death counters. A hit from positive HP to zero does not also cause a same-packet death failure.\n8. If this event newly reduces positive HP to zero, a valid melee knockout makes the surviving creature Stable. Otherwise a character/significant NPC using death saves begins dying; an ordinary monster dies. A previously Stable creature whose temporary HP absorbed all damage remains Stable unless an independent Maiming result killed it. The Director identifies significant NPCs consistently. Knockout cannot override Instant Death or a fatal Wound save.\n\nCore's Maiming and Wound trigger rules remain subject to an actual feature's eligibility. The reference helper receives already legal events; it does not grant every attack Maiming or a damage-prevention exception.\n\n## Zero HP and recovery\n\nA living character at zero HP is Unconscious. Core's condition already includes Incapacitated, unawareness, dropping held items and falling Prone; an adjacent hit is critical as specified there. Healing does not silently remove other independent causes of Unconscious or Prone.\n\nWhile dying, make one death save at the **start of each regular initiative turn**. Roll d20 without modifiers unless a feature specifically modifies death saves. Natural 20 restores 1 HP; natural 1 adds two failures. Other results of 10 or more add one success; 9 or less add one failure. Three successes make the creature Stable; three failures make it Dead. Extra turns and Actions add no extra death saves. Stable or Dead creatures do not roll them.\n\nRegaining positive HP or becoming Stable resets both counters. Temporary HP does not raise normal HP, end Unconscious or reset counters. Fully absorbed damage does not end Stable or add a death failure in this provisional interpretation. Independent Maiming can still cause its Wound save.\n\n**Stabilize:** an Action and DC 10 Wisdom (Medicine) check, or an Action using one healer's-kit use automatically, stabilizes a living dying creature at zero. It remains Unconscious and makes no death saves. Roll 1d4 once when it becomes Stable and record its absolute recovery time that many hours later. If still Stable then, it regains 1 HP. Damage reaching normal HP cancels that deadline and resumes dying with the appropriate failures. Rest and Stable recovery use the same elapsed clock, so four hours of recovery inside an eight-hour Watch do not cost twelve hours. A later rest does not separately replay the Stable healing event.\n\n**Dead:** ordinary healing and stabilization do not restore life. Resurrection must satisfy its own willing-soul, body, time, cost and target rules. It does not automatically remove Wounds, Corruption, debts, legal death or claims upon the body. Corpses cannot supply repeated resource triggers.",
+      "textSha256": "558ad2997bfc1880489bb8bd9053c3c1f5e92ccba3182ab4267c8dd0f6ba03c3"
+    },
+    {
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+        "bytes": 23410,
+        "sha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7"
+      },
+      "lineStartOneBased": 17,
+      "lineEndInclusive": 51,
+      "text": "| TemporaryHP | Separate nonstacking buffer | Not healing, stabilization or resurrection |\n\nNames never select the operation. Phoenix Rebirth heals a still-living ally at0. Cleric Resurrection returns an actual dead identity. Ritual of Undeath's Ward replaces death; ordinary Death Ward is a positive-to-zero floor. Feign death and spirit manifestations are not death or resurrection.\n\n## Damage quantities and resolution\n\n| Quantity | Definition and use |\n|---|---|\n| resolvedDamage | After defenses, before tempHP; positive damage event iff greater than0 |\n| tempAbsorbed | min(tempHP, resolvedDamage) |\n| postTempDamage | resolvedDamage minus tempAbsorbed, uncapped by currentHP; Core Instant Death/Wounds |\n| actualHpDamage | NormalHP lost to the packet after true prevention; recovery and state-assignment loss excluded |\n| actualDamageDealt | NEW anti-overkill bridge: tempAbsorbed plus actualHpDamage; numeric actual-damage drains/reflections |\n\nOrdinary “damages,” “takes damage” and “damaging hit” predicates use a positive resolved packet. Actual-HP wording (Burning Blood/Rewind Wound) uses actualHpDamage. Numeric actual-damage wording (Sanguine Rite/Echo Leech/Merciful Smite/Wound Eater/Gravebrand) uses actualDamageDealt. Source attack/hit predicates remain distinct.\n\nExample: HP10/temp10 takes5: numeric actual damage5, actualHP damage0, positive packet. HP1 under a floor takes5: numeric0 but positive packet. HP3 takes12: numeric3, raw post-temp12. HP0 takes1: numeric0, positive packet and normal death-failure consequences.\n\nDivine Judgment consumes its once-this-actual-target-turn entitlement on a positive packet, then reflects min(Cleric level, max(1, floor(actualDamageDealt/2))). Thus HP1-floor/numeric0 reflects1 and consumes; fully prevented resolved0 does neither. Wrathful Brand/Balanced Scales use the positive predicate where their source says damage occurred.\n\nResolve a damage event in this order:\n\n1. Snapshot pre-event HP/tempHP/Wounds; resolve defenses, temp absorption and uncapped post-temp damage.\n2. Core Instant Death uses postTempDamage minus preHP greater than or equal to effective maximum when reduced to0. It precedes ordinary floors. Open a legal would-die replacement; stop that packet's death procedure. No Wound save or zero-HP failure follows this branch.\n3. If not Instant Death, resolve applicable true floors. They cannot raise an already0 creature. They preserve raw damage and attached conditions; a prevented drop creates no drop-only Wound trigger, but half-max/Maiming still applies.\n4. Spiral-TouchedIII alone has a specific pre-Wound recovery exception. If positive-to-zero remains, spend its use, preserve that raw crossing trigger, attempt quarter-max direct recovery and apply phase-out. Broad HP-gain prohibition blocks the recovery but not the use/phase.\n5. Resolve the one Core Wound save using original post-temp damage and pre-event Wounds. Fatal Wound death opens its own legal replacement window. Actual death ends Spiral phase; a successful independent Ward prevents actual death.\n6. Resolve already-zero damage failures/death and its legal replacement window. A successful replacement stops skipped same-packet death branches; never replay a Wound/failure branch merely because replacement changedHP.\n7. Finalize a newly surviving0 creature's dying/Stable/knockout state. Only an explicitly triggered post-zero Reaction such as Grace Reversal can act before ordinary zeroHP Reaction loss finalizes.\n8. Resolve eligible post-zero Phoenix/Unyielding-style healing only if target still lives, followed by later triggers. This healing never retroactively reduces the triggering packet's numeric damage.\n\nThe affected creature chooses among simultaneously eligible offered survival effects, then rechecks remaining triggers. A paid Reaction spends its declared cost; a limited automatic survival use spends when its actual source resolves. A true floor preventing the crossing means Spiral's use is not spent. No generic extra Reaction or return from death is created.\n\nFor Ritual Ward, sufficient body and no explicitly unpreventable death are prerequisites. It can intercept Instant Death, fatal Wounds, third death-save failure, eligible direct death and lethal tracks. Positive pre-eventHP→1 is loss prevention and works through Decay. Already0 with HP gain prohibited instead becomes living Stable0: clear counters and establish a d4-hour recovery deadline immediately.\n",
+      "textSha256": "4d12da3131a4ffb71df68b07078bd88ad49967a38f952505378e9abd846ffa2d"
+    },
+    {
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+        "bytes": 13112,
+        "sha256": "b298415146cba6453ec33f1310b4b668ac74e0e2d2681a08e077852c065d56e1"
+      },
+      "lineStartOneBased": 49,
+      "lineEndInclusive": 59,
+      "text": "## Hit identity and final damage accounting\n\nThe original damage target retains its original hit, failed-save, critical and on-hit-rider identity even if all damage is transferred. A rider that requires positive damage must recheck the actual remaining packet. A transferred recipient was not hit by that attack and did not fail its save; it receives no attached poison/control/maiming/knockout rider merely because damage moved.\n\nAccordingly, transferred damage from a critical attack gives an already0HP recipient the ordinary one damage failure, not two critical-hit failures. Concentration still sees the transferred recipient's resolved packet even if temporary HP absorbs all of it.\n\nUse the [reviewed life-state interface](HEALING_DEATH_PLAYTEST.md) after resolving each final recipient. Numeric actual damage is temporary HP absorbed plus actual normal HP lost, excluding overkill and damage prevented by an HP floor. Sum each terminal recipient once. Do not also count the unsplit parent or unrelated counterdamage.\n\nPhysical root totals include every recipient. A healing/resource/reflection consumer sums only branches permitted for that consumer and qualifying for its own source's target predicate. For example, a meaningful-hostile-only drain does not automatically count damage transferred onto a friendly protector. Check all applicable flags for a compound trigger, such as a passive healing proc.\n\n## Source-specific restrictions",
+      "textSha256": "7882f88b0a72be9ac521b343e582a3e226dea03dd6721875915796caaebc0f33"
+    }
+  ],
+  "findings": [
+    "V6 P8282 grants optional knockout only on reducing a creature to0HP with a melee attack. It does not itself supply a universal nonlethal-damage type or general ranged/area/ongoing-damage permission.",
+    "Current Core integration resolves Instant Death and fatal Wounds before the surviving melee-knockout Stable assignment. Current later healing interface adds exact survival windows; it does not make knockout an all-causes death prevention.",
+    "Original cosmology P314 says all damage dealt becomes non-lethal during Null Veil. How this expands targeting/damage sources and interacts with Instant Death, Wounds, already-zero targets, Maiming and non-damage death is an actual unsolved interface, not an automatic identity with V6 knockout.",
+    "Soldier Sacrificial Defense preserves the historical non-lethal phrase in provenance but its current card explicitly forbids erasing massive-damage rules. That class-specific integration is not a general definition for every Null effect.",
+    "Damage sharing preserves the original attacker/hit and source lineage; transferred recipients do not inherit attack/knockout riders merely because damage moved. A Null conversion must define original damage-owner versus transferring/reflecting character and which recipient branches it affects.",
+    "The source term all damage does not by itself convert non-damage HP payments, direct death, lethal Exhaustion/Strain, Hunt finality or resurrection restrictions. New Null procedures must classify these explicitly without silently merging KT/PT/Corruption/Null Veil."
+  ],
+  "nextConferenceQuestions": [
+    "Define exactly when Null conversion is evaluated (damage-source owner at creation or resolution, current veil suppression, delayed packets), what counts as damage the character deals, and whether companion/environmental consequences count. Preserve a single root/recipient lineage and no duplicated prevention/resource triggers.",
+    "Choose and justify NEW explicit nonlethal integration for creature recipients, objects/constructs, positive-to-zero, already-zero and massive damage. If this source-specific rule prevents death/Wounds, identify the precise overridden stages; if it does not, explain why all damage non-lethal still admits fatal results. Do not hide the choice behind the generic word nonlethal.",
+    "Specify whether the one-round successful CHA shrug temporarily suppresses or actually removes the Veil, what remains during suppression, exact resume/expiry marker, and duration of failed-save Incapacitated. Failure cannot indefinitely prevent the Bonus Action needed to escape without a printed recovery procedure.",
+    "Keep original hourly WIS DC15 exposure, but define cumulative exposure/reentry, field identity, changing boundaries, repeat saves while already Veiled, unconscious/sleeping travelers and simultaneous exposures. A mask fear/Null-lullaby advantage does not automatically label every residual Null save a lullaby.",
+    "Specify each exact purge route: mask confession action/time/understood fictional content/wearing status, which Archon blessing/Guidance/Test counts, and finite brew dose/administration/consumption. Do not assume any previously granted temporary Archon card permanently grants purge.",
+    "Use numerical examples for HP10/max20 taking40, HP3/max20 taking8, a preexisting3-Wound failed save, a Stable0 victim hit again, ranged/area/delayed/shared damage, ongoing source whose Veil changed, a constructed target and direct HP cost. Keep death/Hunt decisions separate."
+  ],
+  "searchLimit": "Targeted nonlethal/knockout/passive-Insight searches and exact current life interfaces only; not proof of absence from all historical sources.",
+  "sourceInformationDeleted": 0,
+  "newRulesAdopted": false,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false,
+  "wholeGameApproved": false
+}

@@ -1,0 +1,334 @@
+You said:
+The symbols have to be deciphered by research skill hidden across multiple libraries within the descent. Once you gain functional knowledge of it, it "taints" you and you the more you know, the more corrupted you become until you either fall and the NPCs start hunting you down for violation of the pact or you die.
+ChatGPT said:
+
+That fits the lore very well, and it gives the Equation of Oblivion a strong gameplay consequence instead of making it just background cosmology.
+
+I would treat this as a new owner lock:
+
+Forbidden Knowledge Taint: The symbols and operators of the Equation of Oblivion cannot be understood from a single source. Their meanings are distributed across hidden libraries, sealed archives, damaged tablets, forbidden commentaries, and deep-floor records throughout the Descent. Characters must use Research to reconstruct functional meanings piece by piece. Knowledge itself is dangerous. Each genuine advance in understanding exposes the researcher more directly to the underlying truth of the Matrix and increases corruption. Functional knowledge therefore creates a progressive taint: the more of the Equation a character understands, the more visibly and metaphysically compromised they become. At sufficient knowledge/corruption, the Pact recognizes the character as a violation risk. Pact-aligned agents and NPCs begin hunting them. The terminal outcomes are fall, capture, madness/corruption, or death unless some exceptional means of concealment or resistance exists.
+
+The important distinction is that reading a symbol is not enough. A character can see the equation and know it matters without being tainted much. The dangerous step is understanding what a symbol actually means within the cosmology.
+
+So I would separate three states:
+
+Observed: You have seen the glyph or copied it. No meaningful understanding.
+Deciphered: You know what the symbol represents.
+Functional Knowledge: You understand how that term relates to the Equation and can reason with it.
+
+Only the latter two should matter for taint, with Functional Knowledge carrying the real danger.
+
+The structure almost writes itself as a forbidden-research loop:
+
+Discovery
+→
+Research
+→
+Decipherment
+→
+Functional Knowledge
+→
+Taint
+→
+Pact Detection
+Discovery→Research→Decipherment→Functional Knowledge→Taint→Pact Detection
+
+And then eventually:
+
+Knowledge
+↑
+⟹
+Corruption
+↑
+⟹
+Detection Risk
+↑
+Knowledge↑⟹Corruption↑⟹Detection Risk↑
+
+The strongest thematic part is that the player has to choose to keep learning. They are not corrupted because they accidentally found a book. They become corrupted because they keep pursuing the truth after realizing the truth is changing them.
+
+For gameplay, I would not make this ordinary generic Corruption. I would give it its own hidden state, something like Oblivion Taint or Matrical Taint, because it represents direct exposure to forbidden cosmological structure rather than moral corruption.
+
+A clean machine-testable model would be:
+
+𝐾
+=
+∑
+𝑖
+=
+1
+𝑛
+𝑘
+𝑖
+K=
+i=1
+∑
+n
+	​
+
+k
+i
+	​
+
+
+where 
+𝐾
+K is total Functional Knowledge, and each deciphered Equation component contributes knowledge weight 
+𝑘
+𝑖
+k
+i
+	​
+
+.
+
+Then taint could derive from knowledge:
+
+𝑇
+=
+𝑓
+(
+𝐾
+)
+T=f(K)
+
+and Pact attention from taint:
+
+𝑃
+=
+𝑔
+(
+𝑇
+)
+P=g(T)
+
+So the game does not randomly corrupt someone for succeeding at Research. Research success advances knowledge; knowledge deterministically increases exposure; the resulting taint triggers consequences.
+
+I would also make the libraries deliberately non-linear. One library might explain a symbol but not its operator. Another explains the operator but uses a different notation. A third reveals that two apparently unrelated glyphs are equivalent. That means no single successful Research check can solve the Equation.
+
+The most important unresolved design question now is:
+
+How many functional-knowledge stages exist before the Pact begins actively hunting the character?
+
+I would recommend 7 stages, because seven already resonates strongly with the cosmology, but that would be a new mechanical choice rather than recovered lore.
+
+You said:
+remember, creatures in level 5 or more have tainted just by hearing the voices as proximity to the old ones.
+ChatGPT said:
+
+Yes. That changes the model in an important way: taint is not caused only by forbidden knowledge. It already exists as an environmental consequence of proximity to the Old One.
+
+From level 5 onward, creatures can become tainted simply by hearing the voices bleeding outward from the imprisoned Old One. They do not need to understand what they hear. The deeper/closer they are, the more exposure they accumulate.
+
+So there are really two distinct paths:
+
+Proximity Taint — passive exposure to the Old One: voices, resonance, presence, dreams, whispers. This explains why deeper-level creatures are increasingly altered even when they know nothing about the Matrix or Equation.
+Knowledge Taint — understanding forbidden cosmological truth. Researching and functionally deciphering the Equation exposes the mind to the same underlying reality deliberately rather than accidentally, causing much more dangerous corruption.
+
+That gives us an important distinction:
+
+Exposure
+≠
+Understanding
+Exposure
+
+=Understanding
+	​
+
+
+but both contribute to corruption:
+
+𝑇
+=
+𝑇
+proximity
++
+𝑇
+knowledge
+T=T
+proximity
+	​
+
++T
+knowledge
+	​
+
+	​
+
+
+A creature deep in the Descent might therefore be heavily tainted but completely ignorant. Conversely, a scholar could become severely tainted without ever reaching the deepest levels because they reconstructed too much of the Equation.
+
+And this implies something important for Pact enforcement: taint alone cannot constitute a Pact violation, otherwise the Pact would have to hunt virtually everything living deep enough in the Descent. The dangerous threshold is when taint is accompanied by functional forbidden knowledge, deliberate interaction with the secret, attempted disclosure, manipulation of the Matrix, or other conduct that threatens the Pact.
+
+So the progression becomes:
+
+Proximity
+→
+Voices
+→
+Taint
+Proximity→Voices→Taint
+
+while the forbidden scholar follows:
+
+Research
+→
+Understanding
+→
+Knowledge Taint
+→
+Pact Violation Risk
+→
+Hunt
+Research→Understanding→Knowledge Taint→Pact Violation Risk→Hunt
+
+That should be treated as part of the core hidden cosmology going forward.
+
+You said:
+Once a hunt is initiated, the character becomes hardcore. If they die, thats it.
+ChatGPT said:
+
+Then the hunt is a true point of no return.
+
+I would lock it this way:
+
+Pact Hunt / Hardcore State: Once the Pact formally initiates a hunt against a character, that character enters a permanent hardcore state. From that moment forward, death is final. No resurrection, revival, soul-return, rewind, duplicate body, divine intervention, or ordinary recovery mechanic can restore that character after death unless you later create a very explicit cosmology-level exception.
+
+That makes the progression much sharper:
+
+Taint
+→
+Forbidden Knowledge
+→
+Pact Violation
+→
+HUNT
+→
+HARDCORE
+Taint→Forbidden Knowledge→Pact Violation→
+HUNT
+	​
+
+→
+HARDCORE
+	​
+
+
+And once Hunt is active:
+
+Death
+⇒
+Permanent Character Loss
+Death⇒Permanent Character Loss
+	​
+
+
+The important part is that Hunt must be an explicit state change, not something players discover retroactively after dying. The Pact can still be secretive, but the character should receive some unmistakable in-world sign that the rules have changed: a mark, severed resurrection tether, recurring hunter manifestations, a Choir/Pact omen, or some other established signal.
+
+That also creates a strong escalation ladder:
+
+heard the voices → tainted → learned too much → became dangerous → Pact notices → Hunt declared → mortality becomes absolute
+
+This should probably sit above ordinary death rules as a specific cosmology override.
+
+You said:
+No. There are a very VERY limited number of ways to avoid it. Divine/Abyssal intervention is possible but extremely rare.
+ChatGPT said:
+
+Then the lock should be narrower:
+
+Pact Hunt / Hardcore State: Once the Pact formally initiates a Hunt against a character, that character enters a hardcore state. Ordinary resurrection and recovery from death no longer function. Death is effectively permanent.
+
+There are, however, extremely rare exceptional escapes from that finality. Divine or Abyssal intervention can override the Hunt’s death finality, but only under extraordinary circumstances. These are not player-accessible routine mechanics, purchasable services, standard spells, or guaranteed quest rewards. They should remain exceptional cosmological events.
+
+So the rule becomes:
+
+Hunt Active
++
+Death
+⇒
+Permanent Loss
+Hunt Active+Death⇒Permanent Loss
+	​
+
+
+except:
+
+Direct Divine/Abyssal Intervention
+⇒
+Possible Exception
+Direct Divine/Abyssal Intervention⇒Possible Exception
+	​
+
+
+The key word is possible. Even direct intervention does not automatically save the character; it merely creates one of the very few ways the finality can be broken.
+
+That keeps the Hunt terrifying without making it absolutely metaphysically irreversible.
+
+You said:
+commit it to codex
+Worked for 41s
+ChatGPT said:
+
+I can preserve this as a Codex-ready owner lock, but I can’t truthfully say it was committed to the Codex repository from this chat: the connected GitHub account does not currently expose the Dungeon Crawler / ReviewBible repository, and there is no mounted local repo here to commit into.
+
+The exact canon block I would commit is:
+
+OWNER LOCK — Equation Knowledge, Taint, Pact Hunt, and Hardcore Death
+
+The symbols and operators of the Equation of Oblivion are fragmented across multiple hidden libraries, archives, inscriptions, and restricted records throughout the Descent. No single library contains a complete explanation. Characters must use Research and related investigation to identify symbols, correlate notation, and develop functional understanding.
+
+Merely seeing or copying a symbol is not equivalent to understanding it. Functional knowledge is dangerous. As a character successfully reconstructs the Equation and understands more of its cosmological meaning, that knowledge increasingly taints the character. Greater understanding produces greater corruption and increases the risk that the Pact recognizes the character as a threat or violation.
+
+Taint also exists independently of knowledge. Beginning at Level 5 and deeper, creatures may become tainted simply through proximity to the imprisoned Old One, including exposure to its voices. Such creatures can be heavily tainted without possessing any knowledge of the Equation, the Matrix, the Heartcell, or the Pact.
+
+Therefore, Proximity Taint and Knowledge Taint are distinct causes that may coexist. Taint by itself is not proof of forbidden knowledge or Pact violation.
+
+If a character's knowledge, conduct, or interaction with the forbidden cosmology causes the Pact to formally initiate a Hunt, that character enters Hardcore State.
+
+While Hardcore State is active, ordinary resurrection, revival, soul-return, restoration from death, or comparable normal recovery methods cannot return that character after death. Death is effectively permanent.
+
+There are a very limited number of exceptional ways for a hunted character to escape this finality. Direct Divine or Abyssal intervention can potentially overcome or circumvent the Hunt, but such intervention is extraordinarily rare, never routine, never guaranteed, and is not ordinary player-accessible resurrection.
+
+In shorthand:
+
+Proximity
+→
+Taint
+Proximity→Taint
+Research
+→
+Functional Knowledge
+→
+Knowledge Taint
+→
+Pact Risk
+Research→Functional Knowledge→Knowledge Taint→Pact Risk
+Hunt Initiated
+⇒
+Hardcore State
+Hunt Initiated⇒Hardcore State
+	​
+
+Hardcore State
++
+Death
+⇒
+Permanent Death
+Hardcore State+Death⇒Permanent Death
+	​
+
+
+with only exceptionally rare cosmological intervention capable of producing an exception.
+
+I would also record the Equation's fragmented-library decipherment system separately from the generic corruption rules, because this is a Director-only cosmology/revelation mechanic, not ordinary public character knowledge.
+
+Once the Dungeon Crawler/ReviewBible repository is exposed through the connected GitHub account, I can commit this directly rather than merely preparing the lock.
+
+ChatGPT can make mistakes. Check important info.
+Latest response
+
+
+
+
+5.6 Medium

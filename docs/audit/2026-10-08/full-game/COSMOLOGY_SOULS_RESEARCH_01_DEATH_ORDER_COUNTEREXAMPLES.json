@@ -1,0 +1,90 @@
+{
+  "recordedAtUtc": "2026-10-15T22:22:04.811685+00:00",
+  "status": "source-supported authored counterexamples for current souls/Hunt review; not runtime tests",
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "bytes": 15877,
+      "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5059945,
+      "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "bytes": 81863,
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89"
+    }
+  ],
+  "exactCardReferences": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "jsonPointer": "/spells/637",
+      "id": "death-ward",
+      "effect": "Prevent one positive-to-zero HP crossing. Preserve the raw damage packet, Core Instant Death check, half-maximum/Maiming Wound triggers and attached conditions. The prevented positive-to-zero crossing does not itself create a drop-only Wound save. This is loss prevention, not healing, so a cannot-regain-HP effect does not stop it. Other eligible survival effects are rechecked after the selected prevention resolves; no duplicate automatic use is consumed after the crossing has already been prevented.",
+      "limitations": "Does not trigger while the target is already at 0. Does not resurrect, repair a vital body, prevent third death-save failure/fatal Wound death/lethal-track death or override explicitly unpreventable HP loss. Cannot legalize an otherwise unaffordable HP cost. If multiple independently owned wards exist, use only the chosen eligible prevention; unused records retain their own concentration/deadline. This is distinct from Cleric Ritual of Undeath's would-die replacement. Normal spell costs and risk apply."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "jsonPointer": "/cards/57",
+      "id": "cleric.hero.cultist.ritual-of-undeath",
+      "effect": "Ritual of Undeath. Tags: cultist, undead, rite. Choose one mode. Corpse Servant: one humanoid corpse dead no more than 1 minute rises for 3 rounds as a temporary thrall with AC 13, 10 HP, Speed 30 feet and one attack only when you spend your shared companion Bonus Action command using your Cleric technique attack bonus; on hit it deals S d6 necrotic. The thrall disappears at 0 HP or when duration ends and grants no XP, loot, new corpse, Conviction or resurrection target. Death Ward: one living ally is marked for 1 minute; the first time it would die during that duration, it instead remains at 1 HP and counts as both humanoid and undead until the end of its next turn. Neither mode removes Wounds. The Conviction expenditure can vent Dissonance once."
+    }
+  ],
+  "cases": [
+    {
+      "id": "SR-LIFE-01",
+      "initial": {
+        "hp": 20,
+        "maxHp": 40,
+        "temporaryHp": 0,
+        "wounds": 3,
+        "huntActive": true,
+        "ordinaryDeathWardActive": true,
+        "ritualWardActive": false
+      },
+      "event": {
+        "resolvedDamage": 25,
+        "woundSaveD20": 6,
+        "constitutionModifier": 2,
+        "proficiencyBonus": 3,
+        "constitutionSaveProficient": true
+      },
+      "orderedReasoning": [
+        "25 minus 20 = 5, below max40: no Core Instant Death.",
+        "Ordinary Death Ward replaces the eligible positive-to-zero crossing with1HP and is consumed.",
+        "The independent half-maximum trigger remains:2x25 >=40. One Wound save still occurs; DC=max(10,floor25/2)=12.",
+        "Use pre-event3Wounds:-3. Roll6+CON2+PB3-3=8; failure while already3Wounds is fatal, with no fourth Wound.",
+        "No other would-die prevention is present. Actual Dead plus HuntActive creates Hunted Death."
+      ],
+      "expected": "A1HP-floor event alone does not prove the character survived the whole event."
+    },
+    {
+      "id": "SR-LIFE-02",
+      "variationOf": "SR-LIFE-01",
+      "change": "An independently valid Cleric Ritual of Undeath Death Ward mode is also active.",
+      "expected": "At the fatal Wound would-die window, the eligible Ritual Ward instead leaves the same living identity at1HP. Wounds remain3; both humanoid and undead applies until end of its next turn. No actual Dead state and no new Hunted Death. Hunt remains active. Follow specific prevention timing; do not replay the consumed fatal transition."
+    },
+    {
+      "id": "SR-LIFE-03",
+      "initial": {
+        "hp": 20,
+        "maxHp": 40,
+        "temporaryHp": 0,
+        "huntActive": true,
+        "ordinaryDeathWardActive": true,
+        "ritualWardActive": false
+      },
+      "event": {
+        "resolvedDamage": 60
+      },
+      "expected": "60-20=40 meets Core Instant Death. Ordinary Death Ward expressly excludes it. No Wound save/death-counter processing follows. Without another eligible prevention, actual death while hunted creates Hunted Death."
+    }
+  ],
+  "requiredReviewQualification": "Update first-return NEW-E05/SH-T03 wording if it implies any1HPfloor guarantees survival. Hunted Death is assessed after the entire legal event and applicable would-die replacements. Ordinary spell Death Ward and Cleric Ritual Ward are different procedures.",
+  "arithmeticChecked": true,
+  "executedAsSoftwareTests": false,
+  "newRulesAdopted": false
+}

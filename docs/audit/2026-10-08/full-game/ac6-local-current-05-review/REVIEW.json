@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "1.0",
+  "id": "DD-AC6-LOCAL-CURRENT-05-REVIEW",
+  "reviewedArchive": {
+    "name": "DD_AC6_Local_Current_05.zip",
+    "bytes": 7479645,
+    "sha256": "183df365a2e38c8e1e291686363d88044c65cbcdb77dbbc345fd481dc2753ce2"
+  },
+  "reviewedCurrentArtifactBindings": [
+    {
+      "name": "REGISTER.json",
+      "bytes": 62215,
+      "sha256": "46d490d6d781ea91829cc63908b1d9855b917267be5242cb1782bf2cf9f3ab41"
+    },
+    {
+      "name": "SPELLS_MODEL.json",
+      "bytes": 813721,
+      "sha256": "602aa1136e0493c9f6025477a3b1b1175bfdc75958b2e7805bac5d86f39e5dd3"
+    },
+    {
+      "name": "PLAYER_CHAPTER.md",
+      "bytes": 105466,
+      "sha256": "a590b1e8c9a1f6049edfa4ce688553ff6ed704618f8dc27711bb5f88c8e7940a"
+    },
+    {
+      "name": "DIRECTOR_REVIEW.md",
+      "bytes": 129701,
+      "sha256": "ef05a0eb9f72e5e9eaac1f3c8334d9606ad02d82fb0064300c3fa1bd37c6a295"
+    },
+    {
+      "name": "CASEBOOK.json",
+      "bytes": 373915,
+      "sha256": "ee6e3054f08eca2b34851f2b9ebe52737abcb939e5ae6875b16d12c948109988"
+    },
+    {
+      "name": "SOURCE_HASHES.json",
+      "bytes": 22653,
+      "sha256": "51d996794d1907ebc5b685d4578975c1a035cdf42bd2a925b87327bb71d56828"
+    },
+    {
+      "name": "VERDICT.md",
+      "bytes": 596,
+      "sha256": "5ba3069f31156e3d65687d5abd2d0deea4abde740200245b062ff0e9a01be39c"
+    },
+    {
+      "name": "EVIDENCE_MANIFEST.json",
+      "bytes": 5120,
+      "sha256": "bb62f1e3b1d9ae390aa8489b39fa6df00715f366ae62dc03bd459772810b7421"
+    }
+  ],
+  "sourceVerification": {
+    "bindingCount": 103,
+    "allFrozenSourceBytesAndHashesVerified": true,
+    "failures": []
+  },
+  "scopeActuallyChecked": {
+    "spellIdentityCount": 14,
+    "placementCount": 16,
+    "currentCaseCount": 55,
+    "historicalOriginalTextCount": 22,
+    "proceduresRead": "all 14 current spell procedures plus both Alignment Nexus modes and current shared rules",
+    "casesRead": "all 55 current adjudications; L05 fixtures were independently recalculated in detail",
+    "deepChecks": [
+      "NX-D02 Repair03 and Repair04 history preservation against the embedded exact prior archives",
+      "Chain Arc AC6-N17 body-volume distances, every complete successor array, fair draws, six saves, damage and HP results",
+      "AC6-SUMMON-SUPPRESS-01 scope against accepted AC5 summon intersection convention",
+      "AC6-N15 Ready preparation/release timing, Reaction deadline, sphere/body intersection through descent, Fall Marker, Healing Rite and independent summon expiry",
+      "current Nexus 60-second Divination6 versus 600-second Conjuration8 clocks",
+      "current JSON-pointer/source-reference resolution and 103 frozen source identities"
+    ]
+  },
+  "dispositions": [
+    {
+      "id": "AC6-L05-01",
+      "verdict": "AGREE",
+      "evidence": "The current NX-D02 repair04PreviousCurrentVersion is byte-semantically identical to the NX-D02 record from the embedded exact Return03 CASEBOOK, and local05PreviousCurrentVersion is identical to the embedded Return04 NX-D02 record. The current adjudication remains separate; no history was overwritten."
+    },
+    {
+      "id": "AC6-L05-02",
+      "verdict": "AGREE",
+      "evidence": {
+        "rule": "AC6-CHAIN-GEOMETRY-05 is explicitly NEW and source-specific; it uses one same point-pair for <=30-ft body-volume distance and clear LoE, without changing global range rules.",
+        "recomputedCandidateArrays": {
+          "A": [
+            "B",
+            "C",
+            "F"
+          ],
+          "F": [
+            "B",
+            "C",
+            "H",
+            "U"
+          ],
+          "U": [
+            "D",
+            "H"
+          ],
+          "D": [
+            "E"
+          ],
+          "E": [
+            "G"
+          ]
+        },
+        "recomputedKeyDistancesFeet": {
+          "A-B": 11.180339887,
+          "A-C": 11.180339887,
+          "A-F": 20.0,
+          "F-B": 14.142135624,
+          "F-C": 14.142135624,
+          "F-H": 26.925824036,
+          "F-U": 17.5,
+          "U-B": 33.35416016,
+          "U-C": 33.35416016,
+          "U-D": 22.5,
+          "U-H": 22.638462845,
+          "D-E": 25.0,
+          "E-G": 25.0
+        },
+        "selectionSequence": [
+          "A",
+          "F",
+          "U",
+          "D",
+          "E",
+          "G"
+        ],
+        "damageCheck": "3d8 faces [6,7,6] = 19. A fails but lightning immunity leaves 30/30; F fails 30->11; U total14 fails 40->21; D total18 succeeds and takes floor(19/2)=9, 30->21; E total8 fails 30->11; G total18 succeeds for 9, 30->21."
+      }
+    },
+    {
+      "id": "AC6-L05-03",
+      "verdict": "AGREE",
+      "evidence": "The frozen accepted AC5 rule AC5-ANTIMAGIC-SUMMON-01 already uses whole-body suppression when any part of only its two named summon profiles intersects operative Lesser Antimagic. AC6-SUMMON-SUPPRESS-01 explicitly extends that convention only to Greater Air Pet, Greater Planar Ally and each Faction Army soldier and expressly denies a global extended-field or other-antimagic-source rule."
+    },
+    {
+      "id": "AC6-L05-04",
+      "verdict": "REVISE",
+      "evidence": "All requested clocks, costs and physics are coherent except one Ready timing sentence. COMBAT_ACTION_PLAYTEST.md, section Ready, states that a readied spell is cast/paid at preparation but the legal target/area point is selected and rechecked at release. Current AC6-N15 instead says C chooses fixed point (0,0,11) at t20.5 preparation. The point is legal at t24.5 release and all later geometry remains valid, so this is a narrow presentation/adjudication timing correction only.",
+      "confirmedCalculations": {
+        "healing": "Healing Rite 1d8=4 + WIS3 = 7 HP; same Pet 0->7 before suppression.",
+        "ready": "Preparation t20.5 in C slot [20,22], 10 RP paid and held concentration; next regular START deadline t26; trigger/release t24.5 is timely and consumes the available Reaction.",
+        "fallMarker": "Suppression starts t24.5 inside enclosing slot [24,26]; the same slot in the next numbered round is [30,32], so first Falling Step occurs at t32.",
+        "continuousIntersection": "For Pet body horizontal x/y [-2.5,2.5] and vertical [h,h+5] descending h=20..0 through a radius-10 sphere centered (0,0,11), maximum nearest body-to-center distance is 9 ft, so the body intersects for the full descent.",
+        "impact": "20-ft uncontrolled fall => 1d6; roll3; HP7->4 and Prone. Original Pet expiry remains t60."
+      }
+    }
+  ],
+  "requiredMinimalCorrection": {
+    "candidateCanRemainByteIdentical": false,
+    "changedFilesRequired": [
+      "CASEBOOK.json",
+      "DIRECTOR_REVIEW.md"
+    ],
+    "casebook": {
+      "pointer1": "/cases/14/actionsAndResolution/2",
+      "replacementText": "At t24.5 during W regular turn[24,26], W gives the agreed visible hand signal. After that trigger resolves, C spends its available Reaction to release the same paid spell before t26. At release C selects and rechecks the fixed point(0,0,11),8ft away with clear LoE. There is no second spell cast, RP charge or Ready Action. The field establishes its fixed10ft-radius sphere centered(0,0,11), with nominal concentration deadline84.5; its own family exception allows it to remain active while C is inside it.",
+      "pointer2": "/cases/14/actionsAndResolution/3"
+    },
+    "directorReview": {
+      "location": "DIRECTOR_REVIEW.md, AC6-N15 rendered worked example, numbered items 3 and 4",
+      "replacementItem3": "3. At t20.5 during C regular turn[20,22], C uses Action to Ready the Action-time Lesser Antimagic. Pay10RP:20->10, hold concentration, and specify the visible W hand signal as trigger. No target/area point is selected yet; under the frozen Ready rule, the legal area point is selected at release. The Ready deadline is C next actual regular START t26. No prior concentration or spent Reaction blocks this action.",
+      "replacementItem4": "4. At t24.5 during W regular turn[24,26], W gives the agreed visible hand signal. After that trigger resolves, C spends its available Reaction to release the same paid spell before t26. At release C selects and rechecks the fixed point(0,0,11),8ft away with clear LoE. There is no second spell cast, RP charge or Ready Action. The field establishes its fixed10ft-radius sphere centered(0,0,11), with nominal concentration deadline84.5; its own family exception allows it to remain active while C is inside it."
+    },
+    "unchangedAfterRepair": [
+      "AC6-N15 initial state",
+      "costLedger",
+      "clockLedger",
+      "geometryLedger",
+      "outcome",
+      "sourceRefs",
+      "AC6-SUMMON-SUPPRESS-01",
+      "all other 54 current cases",
+      "all 103 frozen sources"
+    ]
+  },
+  "remainingFindings": [
+    {
+      "severity": "blocking exact acceptance of current bytes but narrow",
+      "file": "CASEBOOK.json",
+      "pointer": "/cases/14/actionsAndResolution/2-3",
+      "source": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md — Ready",
+      "finding": "The area point is selected at Ready preparation instead of release."
+    },
+    {
+      "severity": "same duplicated rendering",
+      "file": "DIRECTOR_REVIEW.md",
+      "location": "AC6-N15 worked example items 3-4",
+      "source": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md — Ready",
+      "finding": "Mirror the same correction so chapter and casebook remain consistent."
+    }
+  ],
+  "boundedStatus": {
+    "spellAdoption": false,
+    "runtimeExecutionApproved": false,
+    "humanPlaytestingApproved": false,
+    "numericalBalanceApproved": false,
+    "cosmologyCanonApproved": false,
+    "wholeGameClosureApproved": false,
+    "publicationApproved": false
+  }
+}

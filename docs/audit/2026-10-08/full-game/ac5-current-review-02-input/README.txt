@@ -1,0 +1,1 @@
+Read CURRENT_REVIEW_INPUT.json first. Complete source files are under sources/<binding.path>. All16spells need full authorship; historical post-push deferrals are preserved evidence only. Ordinary Banishment is now an accepted comparison. Do not execute bundled source tools.

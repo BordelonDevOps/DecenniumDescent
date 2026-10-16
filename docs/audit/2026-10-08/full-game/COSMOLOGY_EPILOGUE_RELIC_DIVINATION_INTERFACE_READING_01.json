@@ -1,0 +1,670 @@
+{
+  "recordedAtUtc": "2026-10-16T00:49:24.663454+00:00",
+  "status": "independent source interface reading while return pending; not relic approval",
+  "sourceComparisons": [
+    {
+      "id": "scribe-destiny",
+      "catalogSource": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "catalogPointer": "/spells/219",
+      "catalogRecord": {
+        "id": "scribe-destiny",
+        "name": "Scribe Destiny",
+        "schools": [
+          "Divination"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Mirrorsage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Ranger": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Shaman": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Divination",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "scribe-destiny",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One creature you perceive within 30 feet and line of effect. Choose greatest desire or greatest fear before its save.",
+          "duration": "Instantaneous",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "The target makes a Wisdom save against your spell DC. On success you learn nothing. On failure privately learn one actual currently dominant deep desire or fear in the chosen category, subject to specific information protection.",
+          "effect": "The result is an intelligible concept, not necessarily a verbal quotation, and does not require a shared language. It is a fundamental motive rather than only the creature’s passing mood. When several motives are genuinely coequal, the Director records one consistent selection while the materially relevant state remains unchanged; repeat casts do not rotate through tied motives. A genuinely absent motive in the chosen category reports None discernible. An undefined or specifically protected answer reports Indeterminate. Creature type alone does not decide whether a motive exists: an active Undead or Construct can qualify when its actual mental state supports the answer.",
+          "scaling": "None. No automatic increase in targets, range, duration, uses or information.",
+          "limitations": "This supplies no Frightened condition, emotional compulsion, guaranteed leverage, automatic check success, memory search, truth verification or future behavior. Immunity only to Frightened is not an immunity to reading a fear; an actual defense covering mental/divinatory information retains its exact scope. The spell adds no voluntary-save waiver, automatic notification of success/failure or future-cast immunity. Ordinary perception of casting and actual defensive features may reveal the attempt. Actual class access, repertoire, V/S/F components, costs, Dissonance/Refrain, beginning hooks, concentration transitions and interruption follow SPELL_INTEGRATION_RULES.md. Costs commit before the counter window without refunds or restoration of prior concentration. Explicit remote-destination/concealment exceptions override ordinary originating line of effect only as printed. Specific information protections apply to their actual subject and generating-source scope; hidden but unprotected facts are valid information, and missing facts are never invented. No automatic scaling or upcast.",
+          "designNotes": "PRESERVED: Action/30feet/V,S,F/instantaneous, greatest desire or fear and WIS save. NEW: caster category selection, intelligible deep-motive output, stable tie handling and independent absence/undefined/protected results; Fear tag grants no condition.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime, numerical balance and broader information/roll-system validation pending",
+          "sourcePlacements": [
+            {
+              "name": "Scribe Destiny",
+              "school": "Divination",
+              "level": 1,
+              "summary": "Learn a creature's greatest desire or fear (WIS save resists)."
+            }
+          ],
+          "sourceCoreEntries": [
+            {
+              "index": 228,
+              "original": {
+                "school": "Divination",
+                "level": 1,
+                "name": "Scribe Destiny",
+                "effect": "Learn a creature's greatest desire or fear (WIS save resists).",
+                "source_paragraph": 9263,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Fear"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "classAccessEvidence": {
+            "Cleric": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 2
+            },
+            "Mirrorsage": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 2
+            },
+            "Ranger": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Divination",
+              "baseRpCost": 2
+            },
+            "Shaman": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 2
+            },
+            "Wizard": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 2
+            },
+            "Paladin": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Divination",
+              "baseRpCost": 2
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK1_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK1_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_RANK1_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_divination_rank1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "scribe-destiny",
+          "original": {
+            "name": "Scribe Destiny",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Divination",
+            "schools": [
+              "Divination"
+            ],
+            "placements": [
+              {
+                "name": "Scribe Destiny",
+                "school": "Divination",
+                "level": 1,
+                "summary": "Learn a creature's greatest desire or fear (WIS save resists)."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 1,
+              "Mirrorsage": 1,
+              "Ranger": 1,
+              "Shaman": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Cleric": 1,
+              "Mirrorsage": 1,
+              "Ranger": 1,
+              "Shaman": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Mirrorsage": 1,
+              "Ranger": 2,
+              "Shaman": 1,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Cleric": "Divination",
+              "Mirrorsage": "Divination",
+              "Ranger": "Divination",
+              "Shaman": "Divination",
+              "Wizard": "Divination",
+              "Paladin": "Divination"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Learn a creature's greatest desire or fear (WIS save resists).",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Mirrorsage",
+              "Ranger",
+              "Shaman",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 228,
+              "original": {
+                "school": "Divination",
+                "level": 1,
+                "name": "Scribe Destiny",
+                "effect": "Learn a creature's greatest desire or fear (WIS save resists).",
+                "source_paragraph": 9263,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Fear"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": []
+      },
+      "reviewSource": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+        "bytes": 329450,
+        "sha256": "dbe64ed1c29f8a74e10266c86068a748ee8cb8adcc18332389ef9628642cc0c4"
+      },
+      "reviewPointer": "/entries/219",
+      "reviewRecord": {
+        "id": "scribe-destiny",
+        "name": "Scribe Destiny",
+        "authoredStatus": "reviewed-authored-operational-playtest",
+        "procedureFile": "catalog.json",
+        "procedurePointer": "/spells/219/operational",
+        "wholeCardPointer": "/spells/219",
+        "sourceStatus": "operational-playtest-draft",
+        "priorCatalogSelectionStatusUnchanged": true
+      }
+    },
+    {
+      "id": "read-surface-thoughts",
+      "catalogSource": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "catalogPointer": "/spells/212",
+      "catalogRecord": {
+        "id": "read-surface-thoughts",
+        "name": "Read Surface Thoughts",
+        "schools": [
+          "Divination"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 0
+          },
+          "Mirrorsage": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 0
+          },
+          "Ranger": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 0
+          },
+          "Shaman": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 0
+          },
+          "Wizard": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 0
+          },
+          "Paladin": {
+            "rank": 0,
+            "minimumClassLevel": 2,
+            "school": "Divination",
+            "baseRpCost": 0
+          }
+        },
+        "operational": {
+          "id": "read-surface-thoughts",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One creature you perceive within 30 feet and line of effect.",
+          "duration": "Instantaneous",
+          "concentration": false,
+          "components": [
+            "V",
+            "S"
+          ],
+          "resolution": "The target makes a Wisdom save against your actual spell DC. Success gives no thought. Failure gives one immediate thought occupying its conscious attention at resolution, if such a thought exists and is not specifically protected. This spell grants no option to waive the save; any independently authorized save-failure rule retains its own scope.",
+          "effect": "Receive one brief phrase, image, emotion, sensory impression or simple idea. A verbal thought retains the language in which the target frames it; unknown words remain unintelligible without independent language comprehension. Nonverbal images and feelings are perceived as such, not automatically translated into a precise proposition. An actually unconscious creature has no conscious surface thought to supply. Ordinary sleep does not make its dreams eligible without an exact rule granting that permission. Thought eligibility follows actual present mental state, not an assumed creature-type stereotype.",
+          "scaling": "None. No automatic increase in targets, range, duration or information.",
+          "limitations": "No memory search, interrogation, truth compulsion, complete motive reading, guaranteed future intent, mind control or psychic damage. The target is not automatically alerted by success/failure of reading, but normal perception of V/S casting or an actual mental-defense feature can reveal the attempt. Success grants no later immunity. A later legal cast uses a fresh save and reads only the thought then actually current, with ordinary Refrain; repeated casting cannot turn one thought into a hidden biography or force the target to think about a chosen subject. A blocked or absent thought gives no reason distinguishing save, protection or current lack of thought. Actual class access and repertoire, audible V/free-hand S components, casting sequence, Refrain/Dissonance, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Base RP is 0 but repeated cantrips still follow their actual strain rules. No automatic upcast or unstated scaling. Source-specific protections apply only to their actual scope. Protection from Scrying prevents new Divination/Scrying information about its protected subject, including beneficial inspection, but grants no blanket immunity to damage, buffs or other noninformational mechanics merely because of their school; it does not erase already-known facts or ordinary records.",
+          "designNotes": "PRESERVED: Action/30feet/V,S/instantaneous, one current thought and WIS save negates. NEW: conscious one-thought boundary, original-language handling, no automatic notification/immunity, no inferred sentience from species and explicit lack of a spell-granted voluntary save waiver.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; information-system runtime and numerical balance pending",
+          "sourcePlacements": [
+            {
+              "name": "Read Surface Thoughts",
+              "school": "Divination",
+              "level": 0,
+              "summary": "Glimpse the current thought of a creature (WIS save negates)."
+            }
+          ],
+          "sourceCoreEntries": [
+            {
+              "index": 221,
+              "original": {
+                "school": "Divination",
+                "level": 0,
+                "name": "Read Surface Thoughts",
+                "effect": "Glimpse the current thought of a creature (WIS save negates).",
+                "source_paragraph": 9254,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 0
+              }
+            }
+          ],
+          "classAccessEvidence": {
+            "Cleric": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 0
+            },
+            "Mirrorsage": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 0
+            },
+            "Ranger": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 0
+            },
+            "Shaman": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 0
+            },
+            "Wizard": {
+              "rank": 0,
+              "minimumClassLevel": 1,
+              "school": "Divination",
+              "baseRpCost": 0
+            },
+            "Paladin": {
+              "rank": 0,
+              "minimumClassLevel": 2,
+              "school": "Divination",
+              "baseRpCost": 0
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_EXACT_REVIEW.md",
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_FINAL_CLARIFICATION.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_EXACT_REVIEW.md",
+            "docs/audit/2026-10-08/full-game/GPT_DIVINATION_CANTRIP_FINAL_CLARIFICATION.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_divination_cantrips.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "read-surface-thoughts",
+          "original": {
+            "name": "Read Surface Thoughts",
+            "level": 0,
+            "resonanceRank": 0,
+            "school": "Divination",
+            "schools": [
+              "Divination"
+            ],
+            "placements": [
+              {
+                "name": "Read Surface Thoughts",
+                "school": "Divination",
+                "level": 0,
+                "summary": "Glimpse the current thought of a creature (WIS save negates)."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 0,
+              "Mirrorsage": 0,
+              "Ranger": 0,
+              "Shaman": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classRanks": {
+              "Cleric": 0,
+              "Mirrorsage": 0,
+              "Ranger": 0,
+              "Shaman": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Mirrorsage": 1,
+              "Ranger": 1,
+              "Shaman": 1,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Cleric": "Divination",
+              "Mirrorsage": "Divination",
+              "Ranger": "Divination",
+              "Shaman": "Divination",
+              "Wizard": "Divination",
+              "Paladin": "Divination"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Glimpse the current thought of a creature (WIS save negates).",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Mirrorsage",
+              "Ranger",
+              "Shaman",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 221,
+              "original": {
+                "school": "Divination",
+                "level": 0,
+                "name": "Read Surface Thoughts",
+                "effect": "Glimpse the current thought of a creature (WIS save negates).",
+                "source_paragraph": 9254,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 0
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": []
+      },
+      "reviewSource": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+        "bytes": 329450,
+        "sha256": "dbe64ed1c29f8a74e10266c86068a748ee8cb8adcc18332389ef9628642cc0c4"
+      },
+      "reviewPointer": "/entries/212",
+      "reviewRecord": {
+        "id": "read-surface-thoughts",
+        "name": "Read Surface Thoughts",
+        "authoredStatus": "reviewed-authored-operational-playtest",
+        "procedureFile": "catalog.json",
+        "procedurePointer": "/spells/212/operational",
+        "wholeCardPointer": "/spells/212",
+        "sourceStatus": "operational-playtest-draft",
+        "priorCatalogSelectionStatusUnchanged": true
+      }
+    },
+    {
+      "id": "divine-truth",
+      "catalogSource": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "catalogPointer": "/spells/299",
+      "catalogRecord": {
+        "id": "divine-truth",
+        "name": "Divine Truth",
+        "schools": [
+          "Divination"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Divination",
+            "baseRpCost": 26
+          },
+          "Wizard": {
+            "rank": 9,
+            "minimumClassLevel": 17,
+            "school": "Divination",
+            "baseRpCost": 26
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "divine-truth",
+          "original": {
+            "name": "Divine Truth",
+            "level": 9,
+            "resonanceRank": 9,
+            "school": "Divination",
+            "schools": [
+              "Divination"
+            ],
+            "placements": [
+              {
+                "name": "Divine Truth",
+                "school": "Divination",
+                "level": 9,
+                "summary": "Force a creature to answer 3 questions truthfully, regardless of resistances."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 9,
+              "Wizard": 9
+            },
+            "classRanks": {
+              "Cleric": 9,
+              "Wizard": 9
+            },
+            "classLearnLevels": {
+              "Cleric": 17,
+              "Wizard": 17
+            },
+            "classSchools": {
+              "Cleric": "Divination",
+              "Wizard": "Divination"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Force a creature to answer 3 questions truthfully, regardless of resistances.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 310,
+              "original": {
+                "school": "Divination",
+                "level": 9,
+                "name": "Divine Truth",
+                "effect": "Force a creature to answer 3 questions truthfully, regardless of resistances.",
+                "source_paragraph": 9361,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward"
+                ],
+                "rp_cost": 26
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "reviewSource": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+        "bytes": 329450,
+        "sha256": "dbe64ed1c29f8a74e10266c86068a748ee8cb8adcc18332389ef9628642cc0c4"
+      },
+      "reviewPointer": "/entries/299",
+      "reviewRecord": {
+        "id": "divine-truth",
+        "name": "Divine Truth",
+        "authoredStatus": "pending-authored-procedure",
+        "procedureFile": "catalog.json",
+        "procedurePointer": null,
+        "wholeCardPointer": "/spells/299",
+        "sourceStatus": "blocked-pending-operational-review",
+        "priorCatalogSelectionStatusUnchanged": true
+      }
+    }
+  ],
+  "currentFilesEqualFrozenPacket": true,
+  "findings": [
+    "Scribe Destiny currently returns one actual deep desire/fear on failed WIS save, explicitly fundamental motive and subject to specific information protection. A NEW Xi motive-certainty protection has an actual reviewed interface; define protected output as Indeterminate according to the spell, not an invented false answer.",
+    "Read Surface Thoughts returns one immediate conscious thought and expressly excludes complete motive reading. It remains subject to real language/consciousness/line-of-effect/save/component rules. Do not promise the pendant universally reveals, blocks or translates it merely because its school is Divination.",
+    "Divine Truth has no current operational procedure and remains pending-authored-procedure. A relic example may identify that boundary but cannot make the spell selectable.",
+    "The draft glimpsed during generation used these three IDs. This check establishes their actual source state only; wait for the completed returned archive before evaluating its exact final text."
+  ],
+  "sourceInformationDeleted": 0,
+  "newRulesAdopted": false,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false
+}

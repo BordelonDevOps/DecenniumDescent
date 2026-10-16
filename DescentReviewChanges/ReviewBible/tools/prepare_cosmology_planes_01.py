@@ -1,0 +1,92 @@
+"""Build the planes conference after the focused Q6 successor is verified."""
+from datetime import datetime, timezone
+import hashlib,json,zipfile
+from apply_di7_ap_as_01 import G,R,A,info,encoded
+
+
+def read(p):return json.loads(p.read_bytes())
+
+
+def main():
+    root=A/'cosmology-planes-01';archive=A/'DD_Cosmology_Planes_01.zip';receipt=A/'COSMOLOGY_PLANES_01_PREPARATION.json'
+    assert all(not p.exists() for p in [root,archive,receipt])
+    q6check=A/'COSMOLOGY_Q6_LATER_LOCK_01_APPLICATION_CHECK.json'
+    assert q6check.exists(),'Finish the focused Q6 conference before preparing this packet.'
+    ownercheck=A/'HEARTCELL_OWNER_UPDATE_02_APPLICATION_CHECK.json'
+    assert read(ownercheck)['sourcePreferenceAmbiguityClosed'],'Carry the latest owner instructions into this review.'
+    readings=[A/n for n in ['COSMOLOGY_PLANES_SOURCE_CONCORDANCE_01.json','COSMOLOGY_PLANES_TRANSIT_DEPENDENCY_READING_01.json','COSMOLOGY_PLANES_REVIEWED_COUNTERPART_READING_01.json','COSMOLOGY_PLANES_DIRECTOR_AND_RECEIPT_READING_01.json','COSMOLOGY_SAVED_WEBSITE_SOURCE_CHECK_01.json']]
+    sources={}
+    for p in readings:
+        sources[p.relative_to(G).as_posix()]=info(p)
+        for row in read(p)['sourceBindings']:
+            assert info(G/row['path'])==row, row['path']
+            sources[row['path']]=row
+    additional=[
+        R/'docs/director-only/cosmology/CURRENT_COSMOLOGY_READ_FIRST.md',
+        R/'docs/director-only/cosmology/CREATION_ORIGINS_REVIEWED_01.md',
+        R/'docs/director-only/cosmology/GODS_PANTHEONS_REVIEWED_01.md',
+        R/'docs/director-only/cosmology/OWNER_RECONCILIATION_REVIEWED_01.md',
+        R/'docs/director-only/cosmology/Q6_LATER_LOCK_REVIEWED_01.md',
+        R/'data/director/cosmology/gods_pantheons_reviewed_01.json',
+        R/'data/director/cosmology/owner_reconciliation_reviewed_01.json',
+        R/'data/director/cosmology/q6_later_lock_reviewed_01.json',
+        G/'docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md',G/'docs/canon/CANON_MANIFEST.json',
+        G/'docs/mechanics/CONTINUITY_SOURCE_OF_TRUTH.md',
+        A/'COSMOLOGY_Q6_LATER_LOCK_01_RECEIVED_DECISION.json',q6check,
+        A/'COSMOLOGY_OWNER_RECONCILIATION_01_ADOPTION_CHECK.json',
+        A/'COSMOLOGY_OWNER_SOURCE_PRIORITY_2026_10_15_CAPTURE.json',
+        A/'COSMOLOGY_OWNER_CORRECTIONS_2026_10_15_MESSAGE_CAPTURE.json',
+        A/'COSMOLOGY_GODS_PANTHEONS_FOLLOWUP_01_RECEIVED_DECISION.json',
+        A/'COSMOLOGY_DIRECTOR_INTERSTICE_SOURCE_CHECK_01.json',
+        R/'data/director/cosmology/planes_source_inventory_draft_01.json',
+        R/'docs/director-only/cosmology/PLANES_SOURCE_INVENTORY_DRAFT_01.md',
+        A/'COSMOLOGY_PLANES_SOURCE_INVENTORY_DRAFT_01_CHECK.json',
+        R/'docs/director-only/cosmology/HEARTCELL_OWNER_UPDATE_02.md',
+        R/'data/director/cosmology/heartcell_owner_update_02.json',
+        R/'docs/director-only/cosmology/EQUATION_OF_OBLIVION_NOTEBOOK_DRAFTS_01.md',
+        R/'data/director/cosmology/equation_of_oblivion_notebook_drafts_01.json',
+        A/'HEARTCELL_OWNER_UPDATE_02_RECEIVED_DECISION.json',ownercheck,
+        A/'HEARTCELL_OWNER_UPDATE_02_VERDICT.txt',
+        A/'COSMOLOGY_HEARTCELL_HUNT_2026_10_15_TURN_CAPTURE.json',
+        A/'COSMOLOGY_HEARTCELL_HUNT_2026_10_15_THREAD_CAPTURE.json',
+    ]
+    for p in additional:sources[p.relative_to(G).as_posix()]=info(p)
+    bindings=list(sources.values())
+    issues=[{k:row[k] for k in ['id','topic','localFinding','proposedReviewAction']} for row in read(readings[0])['issues']]
+    issues.append({'id':'PL-11','topic':'Saved cosmology website and its diagram claims','localFinding':'The owner specifically reminded Codex to include the saved website. webpage.html is Interactive Cosmology: Calan\'thir plus four labeled shells. The companion viewer has seven displayed bodies and twelve FirstSong chapter bodies matching contiguous original DOCX text after whitespace normalization. Its World I-VI entry still preserves a gap.','proposedReviewAction':'Read the standalone HTML and actual viewer/data. Inventory diagram/tooltip claims, distinguish labels and visual coordinates from approved topology, and retain their source contribution without silently equating the four shells, seven displayed bodies, four original primary realms or 32 mortal plane labels.'})
+    status={'reviewId':'COSMOLOGY-PLANES-01','recordedAtUtc':datetime.now(timezone.utc).isoformat(),'issues':issues,
+            'preparationSuccessors':{'gods':'Corrected follow-up received and verified; original first-return citation errors preserved as historical.','owner':'The earlier eleven corrections and latest HEARTCELL-OWNER-UPDATE-02 are applied. Source preference is settled: original manuscripts first with explicit owner corrections. Primordial cycles are ages; Choir attack-response intent and derivative virtues are recorded, while precise chronology/mapping remain open. New equation drafts, Research/proximity taint and Hunt death with rare Divine/Abyssal exceptions are qualitative owner directions; no numeric mechanics. Underlying Heartcell builder remains unresolved, but no source-preference clarification is pending.','q6':'Focused later-lock successor is verified against28bound sources and29citation occurrences; updated for later owner source preference. Read it for registered crystal path/public ceiling, instead of broad Q6-unresolved shorthand.','transit':'12 whole pending catalog cards, two complete unadopted proposals, six reviewed counterpart cards, EX58 boundary contract, two frozen Blink receipt-only dispositions. No spell approval occurs merely by this conference.','director':'31 actual Director paragraphs reviewed around Brogi/Tier3; Ch34/65 separately captured. This is not a whole-book-read assertion.'},
+            'unchangedMechanicalBaseline':{'ordinarySpellsReviewed':419,'ordinarySpellsPending':429,'ordinarySpellTotal':848,'newSpellApprovalsInPreparation':0,'newRuntimeCertification':False},
+            'sourceInformationDeleted':0,'fullCosmologyApproved':False}
+    request=f'''COSMOLOGY-PLANES-01 — source-linked plane cosmology and gameplay interfaces.
+
+Continue from the verified owner reconciliation, HEARTCELL-OWNER-UPDATE-02 and Q6 later-lock successor supplied here. The owner clarified in Resolve Heartcell Origins: always use original cosmology sources and answer from existing lore first; apply explicit owner corrections and report actual gaps after reading the relevant source. This closes the earlier source-preference ambiguity, not the underlying Heartcell-builder question. Do not repeat that clarification request, rebuild missing history, or merge the OldGod/Ul'nak/Interstice identities. This pass compares the plane accounts and prepares a usable Director reading, preserving the mortal-belief boundary and actual spell procedures.
+
+Current owner updates also mean primordial cycles are cosmological ages with musical/aeonic analogy, with no fixed year conversion. The First Choir's attack-response/derivative-virtue intent is recorded; original P33-35 formation versus P39 direct-assault order remains a flagged conflict. Do not invent an event or exact named Harmony-to-Choir mapping. The commissioned Equation variants are new inscription drafts, not recovered original math. Multiple-library Research, functional-knowledge taint, level-5 voice/proximity taint, Hunt-triggered hardcore death and extremely rare Divine/Abyssal exceptions are recorded qualitatively; no seven-stage system, numeric combination or routine resurrection exception was chosen. Apply these as boundaries where relevant to PL-07/08/10, and hand operational soul/death details to their later review without silently deciding them.
+
+Start with REVIEW_SCOPE.json, the four COSMOLOGY_PLANES_* reading/concordance records, and COSMOLOGY_SAVED_WEBSITE_SOURCE_CHECK_01.json. The owner explicitly reminded us that the cosmology website is saved in the repository: include it as a source. The source-complete packet has {len(bindings)} bound source files under sources/<repository-relative-path>. SOURCE_BINDINGS.json hashes actual uploaded bytes. Some source files contain large catalogs: read the cited whole cards, relevant shared rules and full surrounding prose, not merely matching names. Report bounded semantic coverage accurately.
+
+Discuss and disposition PL-01 through PL-11. Original Cosmology ChIV P60-76 has four primary realms and four tributaries at P71; AppendixB has 32 named plane labels under Q5's mortal Wheel of Testimony. The saved webpage.html labels Calan'thir as Celestial Spiral axis and four shells (Infernal Spiral, Elemental Ring, Primordial Mandala, Celestial Arc); the companion viewer presents Material, four elements, Throne of Accord and Nessus. Those are additional source presentations to compare, not discard or automatically identify with the others. All twelve website FirstSong sections are present and match original DOCX passages after whitespace normalization; that code check does not substitute for semantic reading. Its World I-VI placeholder is not recovered chapter content. Preserve explicit source relationships and named courts with their authority; do not fabricate a complete map or one-to-one ontology. Same names, themes or elemental tags alone cannot merge places or identify rulers. Mephistopheles is Cania only; Maladomini's replacement remains unknown. Current Harmony governance is established but its mapping to named Choir virtues is not. Treat original chronology as evidence qualified by the later owner corrections.
+
+Specific source work: original Cosmology P60-76 and P270-276; Player P9977 and the complete plane/court/faction/tension passage P10111-10415; Matrix P87-140; Director P763-773 and P2288-2307; source epilogue inventory; July Q5/Q7, registered Q6/current successor; actual transit cards and EX58. Paragraphs count every w:p, including blank/table paragraphs, zero-based. Full DOCX sources and extraction records are both supplied. The new planes_source_inventory_draft_01.json indexes 76 source claims: 32 mortal plane labels, 16 court/member/site entries, 4 factions, 4 campaign tensions, 8 original realms, 5 standalone diagram labels and 7 companion bodies. Verify/correct the index; these are not 76 distinct planes. Distinguish the four Shadow Conclave members from the four Astral Dominion sites. Carry the four current tensions as source hooks until the campaign epoch is established; do not identify the Void Sovereign with Boundless Void or the unnamed primal survivor by word overlap.
+
+Gameplay distinction: Faction Portal already permits a real known receiving headquarters on the same OR another plane subject to its exact reputation/payload/ward rules; don't impose a blanket no-planar-travel rule. Local MistStep, ArcanePortal and BlinkStep have their own bounded procedures. PlanarWindow observes, PlanarAllyMinor summons; neither supplies a plane-travel license. PlaneShift, PlanarGate, AstralProjection, Etherealness, EtherealDisjunction, TeleportObject, TeleportationCircle, Teleport, Blink, Banishment, PlanarSummonsLesser/Greater remain operationally pending. Two supplied complete transport drafts are unadopted; Blink remains receipt-only. A service price, original descriptive prose, Planar tag or named endpoint is insufficient to fill procedure gaps. Existing specific effects govern their actual scope without silently deciding extraction, taxes, claims, clocks, rest or cargo clearance. Do not change spell counts/flags or approve high-rank procedures in this conference.
+
+Return COSMOLOGY_PLANES_01_Addendum_and_Evidence.zip with exactly REGISTER.json (11 issues, retained facts, mortal beliefs, proposed clarifications, unresolved dependencies, source citations); DIRECTOR_COMPANION.md (readable source-linked chapter distinguishing the original account, mortal teaching and both website presentations, useful connections and play boundaries); PLANE_AND_COURT_INDEX.json (source-linked named places/courts and website labels, claims and authority; no invented equivalences); TRAVEL_INTERFACE_MATRIX.json (actual reviewed versus pending effects, clock/extraction/return/endpoint dependencies); SOURCE_HASHES.json; SEMANTIC_COVERAGE.json; VERDICT.md; EVIDENCE_MANIFEST.json (bytes/SHA256 of the other seven files).
+
+Use exact path + DOCX part/paragraphIndexZeroBased/excerpt or Markdown line/excerpt or JSON pointer evidence. Distinguish verbatim quotation from a summary. Include concrete examples for interpreting conflicting maps, attempted travel, planar time/rest and revelation handling, with any new policy proposal clearly labeled as a proposal. Do not silently invent new mechanics or close unresolved soul/death jurisdiction; hand those to the next ordered review. No original sources/receipts deleted, no public export or book rewrite, no human balance/publication/whole-game certification.
+'''
+    root.mkdir()
+    (root/'REVIEW_SCOPE.json').write_bytes(encoded(status));(root/'SOURCE_BINDINGS.json').write_bytes(encoded(bindings));(root/'REQUEST.txt').write_text(request,encoding='utf-8',newline='\n')
+    for row in bindings:
+        p=G/row['path'];dest=root/'sources'/row['path'];dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(p.read_bytes());assert dest.read_bytes()==p.read_bytes()
+    payloads=[{'path':p.relative_to(root).as_posix(),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file()]
+    (root/'PACKAGE_MANIFEST.json').write_bytes(encoded(payloads))
+    with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
+        for p in sorted(root.rglob('*')):
+            if p.is_file():z.write(p,p.relative_to(root).as_posix())
+    receipt.write_bytes(encoded({'reviewId':status['reviewId'],'archive':info(archive),'sources':len(bindings),'payloads':len(payloads),'issues':len(issues),'scope':info(root/'REVIEW_SCOPE.json'),'submitted':False,'sourceInformationDeleted':0}))
+    print(json.dumps(read(receipt)))
+
+
+if __name__=='__main__':main()

@@ -1,0 +1,77 @@
+{
+  "recordedAtUtc": "2026-10-16T00:53:04.085703+00:00",
+  "status": "source/calendar interface preparation only; no arc or epoch adopted",
+  "earlierReading": {
+    "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_CAMPAIGN_ARC_READING_01.json",
+    "bytes": 17885,
+    "sha256": "f5945dcfdda42d7dee05ef2cdc0c7d2ff17b9c345dff14a24c13aca1af576be6"
+  },
+  "source": {
+    "path": "The_World_of_Aethel_Lore.docx",
+    "bytes": 39362,
+    "sha256": "74876a384fc1409dd959195ef8c5657de10d81c61b502ebc75407869b2d5361d"
+  },
+  "exactParagraphEvidence": [
+    {
+      "path": "The_World_of_Aethel_Lore.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 52,
+      "text": "- Calendar: 10-year rotation. Shardspire activates in the tenth year. Cycles are named after their victor.",
+      "textSha256": "d956edbb7c7b32c9631d6e2f0f25f6b7805a797ec9fb3721b41fd66dbf6ae784"
+    },
+    {
+      "path": "The_World_of_Aethel_Lore.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 90,
+      "text": "- Calendar of Aethel:",
+      "textSha256": "f943bd6e565e2de5064a395a0bf0c910592490ff38a9102f08ab33fcc576f6e2"
+    },
+    {
+      "path": "The_World_of_Aethel_Lore.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 91,
+      "text": "  - 400-day year, 10 months of 40 days",
+      "textSha256": "5adaed19b7c0333bd9091dd3a5dad34de5dce77d809f2a4d68917cf205cfc14f"
+    },
+    {
+      "path": "The_World_of_Aethel_Lore.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 92,
+      "text": "  - 10th day of each month = Holyday",
+      "textSha256": "15e2f4c32a6b40d45d55abcac6100aab7526fa06cf13a069f1e969984eb03a2c"
+    },
+    {
+      "path": "The_World_of_Aethel_Lore.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 93,
+      "text": "  - Final 10 days of year = Twilight Week, the time when divine and mortal boundaries blur",
+      "textSha256": "022405e437a3118c7fefa30427461235bac2b8f9868891ea1369881e3cd0b903"
+    }
+  ],
+  "currentChronologyBoundary": {
+    "source": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/chronology_source_reviewed_01.json",
+      "bytes": 70381,
+      "sha256": "96f51efca23ec0e17a26f23ae6a42a4707e26decbe918624937fa09bd156516d"
+    },
+    "jsonPointer": "/sourceBoundaries/1",
+    "value": "Primordial Cycles are qualitative ages, distinct from the400-day mortal year, ten-year mortal rotation and operational Opening/Horn clocks. No unprovided conversion is inferred."
+  },
+  "findings": [
+    "OriginalWorldP91 specifies400days per mortal civil year and10months of40days. P92 says10thday eachmonthHolyday; P93 calls the final10days TwilightWeek. Preserve the10day named interval rather than silently forcing a seven-day week.",
+    "P52 ten-year rotation is distinct from the400-day year and from primordial ages. The current chronology explicitly forbids inferred conversions among primordialCycles, AE dates and operational/celestial clocks.",
+    "The fictional Cania contract must state which calendar its annual obligation uses and its first due instant. If NEW terms choose Aethel civil years, use400days, not365 or ten-yearDescent cadence; a different local interval must be explicit NEW contract text.",
+    "No exact Equinox date was found in the two targeted original World/Matrix manuscripts. Cosmology names equinox events but that alone fixes no month/day or prospective epoch. Supply an explicitly NEW local deadline record for the optional arc without presenting it as recovered astronomy."
+  ],
+  "searchScope": [
+    "The_World_of_Aethel_Lore.docx",
+    "The Decennium Descent and the Matrix of Oblivion.docx",
+    "Current chronology source reference and targeted current mechanics/manual text"
+  ],
+  "rangeReadRecovery": "An initial request to print through paragraph99 exceeded the94paragraph document. All extant requested paragraphs through93 were read; this saved record indexes only verified existing paragraphs.",
+  "sourceInformationDeleted": 0,
+  "newRulesAdopted": false,
+  "campaignEpochChosen": false,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false
+}

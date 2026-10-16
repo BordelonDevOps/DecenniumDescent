@@ -987,8 +987,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/413"
       },
       "grantsNoAccessByItself": true
@@ -1357,8 +1357,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/796"
       },
       "grantsNoAccessByItself": true
@@ -1729,8 +1729,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/18"
       },
       "grantsNoAccessByItself": true
@@ -2229,8 +2229,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/313"
       },
       "grantsNoAccessByItself": true
@@ -2769,8 +2769,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/129"
       },
       "grantsNoAccessByItself": true
@@ -3271,8 +3271,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/226"
       },
       "grantsNoAccessByItself": true
@@ -4027,8 +4027,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/28"
       },
       "grantsNoAccessByItself": true
@@ -4342,8 +4342,8 @@
             "S",
             "F"
           ],
-          "resolution": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
-          "effect": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.",
+          "resolution": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Under the NEW scoped AC4-ALIGN-01 exception, also exclude all Alignment Lock/Alignment Anchor overlays on this target when computing this baseline. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still supplies Neutral/Neutral, subject to that caster's own active AC4 Lock/Anchor snapshot for the final effective read. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed; an eligible active Alignment Lock/Alignment Anchor snapshot applies last under AC4-ALIGN-01, without deleting, pausing or refreshing these lower records. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+          "effect": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step. NEW scoped AC4-ALIGN-01: effective-alignment reads evaluate this live Suggestion overlay and the reviewed AP-AS-01 Purge interaction first, then apply the eligible active Alignment Lock/Alignment Anchor snapshot last. Lock/Anchor ending or inactivity exposes the then-live lower result with its original history/deadline; no ended overlay is restored. This adds no general alignment priority system.",
           "scaling": "None. No automatic increase in range, targets, duration, magnitude or uses.",
           "limitations": "The spell grants no automatic knowledge of either character’s axes, including whether a value changed. Actual information protections still govern observations. It never compels matching behavior, belief, confession, loyalty, PvP, personality or oathbreaking; conduct clauses still judge actual conduct. Ending removes only this overlay, without restoring an old alignment snapshot, deleting independent changes or reviving a replaced overlay. Caster orientation is fixed at application, not tracked through later caster changes. Ward tag creates no ward. More specific alignment-changing effects retain their actual interaction rules; this card does not invent a general priority engine for every unrelated overlay. Actual class access/repertoire, costs, components, Dissonance/Refrain, concentration transitions and cast/counter order follow SPELL_INTEGRATION_RULES.md. Pay a legal cast before effect resolution; failure/countering refunds nothing and restores no displaced concentration. V is audible, S requires the ordinary usable hand, and F is the normal class focus. Saves use the actual casting class's spell DC and binary save rules. Creature type alone supplies no mental immunity; Charmed-only immunity does not block effects that never impose Charmed. Actual broader defenses retain their written scope. No automatic scaling, generic upcast or free identification of hidden eligibility.",
           "designNotes": "PRESERVED: Action/30feet/V,S,M/F as focus, WIS, concentration minute and actual push toward caster alignment. NEW: temporary canonical one-step overlay on both eligible axes. Exact-review proposals: compute without previous same-spell overlay to prevent recast ratcheting, overlay only genuinely changed axes, fixed values, and no new application when no defined axis changes; independent base changes survive ending.",
@@ -4525,8 +4525,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/329"
       },
       "grantsNoAccessByItself": true
@@ -5511,8 +5511,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/409"
       },
       "grantsNoAccessByItself": true
@@ -6035,8 +6035,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/32"
       },
       "grantsNoAccessByItself": true
@@ -6835,8 +6835,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/402"
       },
       "grantsNoAccessByItself": true
@@ -7273,8 +7273,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/424"
       },
       "grantsNoAccessByItself": true
@@ -8144,8 +8144,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/0"
       },
       "grantsNoAccessByItself": true
@@ -8676,8 +8676,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/23"
       },
       "grantsNoAccessByItself": true
@@ -9108,8 +9108,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/397"
       },
       "grantsNoAccessByItself": true
@@ -9456,8 +9456,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/204"
       },
       "grantsNoAccessByItself": true
@@ -9882,8 +9882,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/8"
       },
       "grantsNoAccessByItself": true
@@ -10350,8 +10350,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/331"
       },
       "grantsNoAccessByItself": true
@@ -10772,8 +10772,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/5"
       },
       "grantsNoAccessByItself": true
@@ -11268,8 +11268,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/316"
       },
       "grantsNoAccessByItself": true
@@ -11800,8 +11800,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/22"
       },
       "grantsNoAccessByItself": true
@@ -14450,8 +14450,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/426"
       },
       "grantsNoAccessByItself": true
@@ -14982,8 +14982,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/116"
       },
       "grantsNoAccessByItself": true
@@ -15324,8 +15324,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/302"
       },
       "grantsNoAccessByItself": true
@@ -16723,8 +16723,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/613"
       },
       "grantsNoAccessByItself": true
@@ -17155,8 +17155,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/420"
       },
       "grantsNoAccessByItself": true
@@ -17583,8 +17583,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/317"
       },
       "grantsNoAccessByItself": true
@@ -17929,8 +17929,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/591"
       },
       "grantsNoAccessByItself": true
@@ -18611,8 +18611,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/415"
       },
       "grantsNoAccessByItself": true
@@ -19283,8 +19283,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/427"
       },
       "grantsNoAccessByItself": true
@@ -19781,8 +19781,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/221"
       },
       "grantsNoAccessByItself": true
@@ -20747,8 +20747,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/325"
       },
       "grantsNoAccessByItself": true
@@ -21221,8 +21221,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/223"
       },
       "grantsNoAccessByItself": true
@@ -21715,8 +21715,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/321"
       },
       "grantsNoAccessByItself": true
@@ -22247,8 +22247,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/123"
       },
       "grantsNoAccessByItself": true
@@ -22617,8 +22617,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/107"
       },
       "grantsNoAccessByItself": true
@@ -24614,8 +24614,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/230"
       },
       "grantsNoAccessByItself": true
@@ -25146,8 +25146,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/130"
       },
       "grantsNoAccessByItself": true
@@ -25682,8 +25682,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/29"
       },
       "grantsNoAccessByItself": true
@@ -26386,8 +26386,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/38"
       },
       "grantsNoAccessByItself": true
@@ -26756,8 +26756,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/101"
       },
       "grantsNoAccessByItself": true
@@ -27426,8 +27426,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/412"
       },
       "grantsNoAccessByItself": true
@@ -27768,8 +27768,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/301"
       },
       "grantsNoAccessByItself": true
@@ -29634,8 +29634,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/11"
       },
       "grantsNoAccessByItself": true
@@ -29982,8 +29982,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/203"
       },
       "grantsNoAccessByItself": true
@@ -30486,8 +30486,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/210"
       },
       "grantsNoAccessByItself": true
@@ -30960,8 +30960,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/216"
       },
       "grantsNoAccessByItself": true
@@ -31702,8 +31702,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/25"
       },
       "grantsNoAccessByItself": true
@@ -32200,8 +32200,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/224"
       },
       "grantsNoAccessByItself": true
@@ -32700,8 +32700,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/213"
       },
       "grantsNoAccessByItself": true
@@ -33178,8 +33178,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/525"
       },
       "grantsNoAccessByItself": true
@@ -34353,8 +34353,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/40"
       },
       "grantsNoAccessByItself": true
@@ -34723,8 +34723,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/1"
       },
       "grantsNoAccessByItself": true
@@ -35255,8 +35255,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/19"
       },
       "grantsNoAccessByItself": true
@@ -35751,8 +35751,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/306"
       },
       "grantsNoAccessByItself": true
@@ -36566,8 +36566,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/513"
       },
       "grantsNoAccessByItself": true
@@ -37064,8 +37064,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/323"
       },
       "grantsNoAccessByItself": true
@@ -37942,8 +37942,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/693"
       },
       "grantsNoAccessByItself": true
@@ -38474,8 +38474,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/100"
       },
       "grantsNoAccessByItself": true
@@ -38902,8 +38902,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/428"
       },
       "grantsNoAccessByItself": true
@@ -39270,8 +39270,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/118"
       },
       "grantsNoAccessByItself": true
@@ -39642,8 +39642,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/126"
       },
       "grantsNoAccessByItself": true
@@ -40014,8 +40014,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/20"
       },
       "grantsNoAccessByItself": true
@@ -40546,8 +40546,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/110"
       },
       "grantsNoAccessByItself": true
@@ -42259,8 +42259,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/332"
       },
       "grantsNoAccessByItself": true
@@ -42755,8 +42755,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/307"
       },
       "grantsNoAccessByItself": true
@@ -44282,8 +44282,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/328"
       },
       "grantsNoAccessByItself": true
@@ -44818,8 +44818,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/114"
       },
       "grantsNoAccessByItself": true
@@ -45320,8 +45320,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/225"
       },
       "grantsNoAccessByItself": true
@@ -45856,8 +45856,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/128"
       },
       "grantsNoAccessByItself": true
@@ -46396,8 +46396,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/31"
       },
       "grantsNoAccessByItself": true
@@ -46902,8 +46902,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/312"
       },
       "grantsNoAccessByItself": true
@@ -47398,8 +47398,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/304"
       },
       "grantsNoAccessByItself": true
@@ -48217,8 +48217,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/611"
       },
       "grantsNoAccessByItself": true
@@ -48717,8 +48717,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/205"
       },
       "grantsNoAccessByItself": true
@@ -49215,8 +49215,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/222"
       },
       "grantsNoAccessByItself": true
@@ -49705,8 +49705,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/528"
       },
       "grantsNoAccessByItself": true
@@ -51183,8 +51183,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/795"
       },
       "grantsNoAccessByItself": true
@@ -51953,8 +51953,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/418"
       },
       "grantsNoAccessByItself": true
@@ -52481,8 +52481,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/121"
       },
       "grantsNoAccessByItself": true
@@ -52911,8 +52911,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/405"
       },
       "grantsNoAccessByItself": true
@@ -53779,8 +53779,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/99"
       },
       "grantsNoAccessByItself": true
@@ -54861,8 +54861,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/104"
       },
       "grantsNoAccessByItself": true
@@ -56313,8 +56313,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/408"
       },
       "grantsNoAccessByItself": true
@@ -56741,8 +56741,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/421"
       },
       "grantsNoAccessByItself": true
@@ -57241,8 +57241,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/200"
       },
       "grantsNoAccessByItself": true
@@ -57667,8 +57667,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/9"
       },
       "grantsNoAccessByItself": true
@@ -58097,8 +58097,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/404"
       },
       "grantsNoAccessByItself": true
@@ -58593,8 +58593,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/309"
       },
       "grantsNoAccessByItself": true
@@ -58897,8 +58897,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/419"
       },
       "grantsNoAccessByItself": true
@@ -59395,8 +59395,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/240"
       },
       "grantsNoAccessByItself": true
@@ -59741,8 +59741,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/502"
       },
       "grantsNoAccessByItself": true
@@ -60237,8 +60237,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/305"
       },
       "grantsNoAccessByItself": true
@@ -60737,8 +60737,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/209"
       },
       "grantsNoAccessByItself": true
@@ -61579,8 +61579,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/587"
       },
       "grantsNoAccessByItself": true
@@ -62970,8 +62970,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/781"
       },
       "grantsNoAccessByItself": true
@@ -63318,8 +63318,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/201"
       },
       "grantsNoAccessByItself": true
@@ -63896,8 +63896,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/698"
       },
       "grantsNoAccessByItself": true
@@ -64322,8 +64322,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/12"
       },
       "grantsNoAccessByItself": true
@@ -65416,8 +65416,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/122"
       },
       "grantsNoAccessByItself": true
@@ -65722,8 +65722,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/429"
       },
       "grantsNoAccessByItself": true
@@ -66072,8 +66072,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/327"
       },
       "grantsNoAccessByItself": true
@@ -66566,8 +66566,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/326"
       },
       "grantsNoAccessByItself": true
@@ -66998,8 +66998,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/430"
       },
       "grantsNoAccessByItself": true
@@ -67472,8 +67472,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/215"
       },
       "grantsNoAccessByItself": true
@@ -67904,8 +67904,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/425"
       },
       "grantsNoAccessByItself": true
@@ -68714,8 +68714,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/520"
       },
       "grantsNoAccessByItself": true
@@ -71008,8 +71008,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/709"
       },
       "grantsNoAccessByItself": true
@@ -71358,8 +71358,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/603"
       },
       "grantsNoAccessByItself": true
@@ -72333,8 +72333,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/228"
       },
       "grantsNoAccessByItself": true
@@ -72867,8 +72867,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/102"
       },
       "grantsNoAccessByItself": true
@@ -73281,8 +73281,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/710"
       },
       "grantsNoAccessByItself": true
@@ -73627,8 +73627,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/310"
       },
       "grantsNoAccessByItself": true
@@ -74494,8 +74494,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/774"
       },
       "grantsNoAccessByItself": true
@@ -74906,8 +74906,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/684"
       },
       "grantsNoAccessByItself": true
@@ -75338,8 +75338,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/422"
       },
       "grantsNoAccessByItself": true
@@ -77384,8 +77384,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/220"
       },
       "grantsNoAccessByItself": true
@@ -78262,8 +78262,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/692"
       },
       "grantsNoAccessByItself": true
@@ -78608,8 +78608,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/303"
       },
       "grantsNoAccessByItself": true
@@ -79104,8 +79104,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/308"
       },
       "grantsNoAccessByItself": true
@@ -79598,8 +79598,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/318"
       },
       "grantsNoAccessByItself": true
@@ -79966,8 +79966,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/784"
       },
       "grantsNoAccessByItself": true
@@ -80396,8 +80396,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/407"
       },
       "grantsNoAccessByItself": true
@@ -80930,8 +80930,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/103"
       },
       "grantsNoAccessByItself": true
@@ -81342,8 +81342,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/688"
       },
       "grantsNoAccessByItself": true
@@ -81818,8 +81818,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/510"
       },
       "grantsNoAccessByItself": true
@@ -82164,8 +82164,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/503"
       },
       "grantsNoAccessByItself": true
@@ -82660,8 +82660,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/315"
       },
       "grantsNoAccessByItself": true
@@ -83002,8 +83002,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/506"
       },
       "grantsNoAccessByItself": true
@@ -83404,8 +83404,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/517"
       },
       "grantsNoAccessByItself": true
@@ -83776,8 +83776,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/125"
       },
       "grantsNoAccessByItself": true
@@ -84308,8 +84308,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/111"
       },
       "grantsNoAccessByItself": true
@@ -84886,8 +84886,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/696"
       },
       "grantsNoAccessByItself": true
@@ -86362,8 +86362,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/6"
       },
       "grantsNoAccessByItself": true
@@ -86862,8 +86862,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/202"
       },
       "grantsNoAccessByItself": true
@@ -87360,8 +87360,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/319"
       },
       "grantsNoAccessByItself": true
@@ -88363,8 +88363,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/108"
       },
       "grantsNoAccessByItself": true
@@ -89835,8 +89835,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/112"
       },
       "grantsNoAccessByItself": true
@@ -90295,8 +90295,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/157"
       },
       "grantsNoAccessByItself": true
@@ -90721,8 +90721,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/417"
       },
       "grantsNoAccessByItself": true
@@ -91065,8 +91065,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/206"
       },
       "grantsNoAccessByItself": true
@@ -92828,8 +92828,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/17"
       },
       "grantsNoAccessByItself": true
@@ -93254,8 +93254,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/13"
       },
       "grantsNoAccessByItself": true
@@ -93786,8 +93786,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/24"
       },
       "grantsNoAccessByItself": true
@@ -95059,8 +95059,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/411"
       },
       "grantsNoAccessByItself": true
@@ -96023,8 +96023,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/229"
       },
       "grantsNoAccessByItself": true
@@ -96519,8 +96519,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/212"
       },
       "grantsNoAccessByItself": true
@@ -96945,8 +96945,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/14"
       },
       "grantsNoAccessByItself": true
@@ -97371,8 +97371,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/2"
       },
       "grantsNoAccessByItself": true
@@ -98007,8 +98007,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/26"
       },
       "grantsNoAccessByItself": true
@@ -98377,8 +98377,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/785"
       },
       "grantsNoAccessByItself": true
@@ -98909,8 +98909,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/127"
       },
       "grantsNoAccessByItself": true
@@ -99407,8 +99407,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/330"
       },
       "grantsNoAccessByItself": true
@@ -99939,8 +99939,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/106"
       },
       "grantsNoAccessByItself": true
@@ -100467,8 +100467,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/30"
       },
       "grantsNoAccessByItself": true
@@ -100965,8 +100965,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/227"
       },
       "grantsNoAccessByItself": true
@@ -101497,8 +101497,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/113"
       },
       "grantsNoAccessByItself": true
@@ -101927,8 +101927,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/10"
       },
       "grantsNoAccessByItself": true
@@ -102431,8 +102431,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/211"
       },
       "grantsNoAccessByItself": true
@@ -103426,8 +103426,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/314"
       },
       "grantsNoAccessByItself": true
@@ -104693,8 +104693,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/414"
       },
       "grantsNoAccessByItself": true
@@ -105061,8 +105061,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/21"
       },
       "grantsNoAccessByItself": true
@@ -105555,8 +105555,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/219"
       },
       "grantsNoAccessByItself": true
@@ -105927,8 +105927,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/7"
       },
       "grantsNoAccessByItself": true
@@ -106435,8 +106435,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/208"
       },
       "grantsNoAccessByItself": true
@@ -106939,8 +106939,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/214"
       },
       "grantsNoAccessByItself": true
@@ -107365,8 +107365,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/3"
       },
       "grantsNoAccessByItself": true
@@ -107711,8 +107711,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/600"
       },
       "grantsNoAccessByItself": true
@@ -109227,8 +109227,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/695"
       },
       "grantsNoAccessByItself": true
@@ -109697,8 +109697,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/16"
       },
       "grantsNoAccessByItself": true
@@ -110678,8 +110678,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/410"
       },
       "grantsNoAccessByItself": true
@@ -111206,8 +111206,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/117"
       },
       "grantsNoAccessByItself": true
@@ -112022,8 +112022,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/518"
       },
       "grantsNoAccessByItself": true
@@ -112520,8 +112520,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/320"
       },
       "grantsNoAccessByItself": true
@@ -113366,8 +113366,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/346"
       },
       "grantsNoAccessByItself": true
@@ -114424,8 +114424,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/311"
       },
       "grantsNoAccessByItself": true
@@ -114924,8 +114924,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/207"
       },
       "grantsNoAccessByItself": true
@@ -115825,8 +115825,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/406"
       },
       "grantsNoAccessByItself": true
@@ -116339,8 +116339,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/596"
       },
       "grantsNoAccessByItself": true
@@ -116641,8 +116641,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/403"
       },
       "grantsNoAccessByItself": true
@@ -118997,8 +118997,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/703"
       },
       "grantsNoAccessByItself": true
@@ -120086,8 +120086,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/105"
       },
       "grantsNoAccessByItself": true
@@ -121054,8 +121054,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/701"
       },
       "grantsNoAccessByItself": true
@@ -121586,8 +121586,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/124"
       },
       "grantsNoAccessByItself": true
@@ -121960,8 +121960,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/115"
       },
       "grantsNoAccessByItself": true
@@ -122310,8 +122310,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/604"
       },
       "grantsNoAccessByItself": true
@@ -122846,8 +122846,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/120"
       },
       "grantsNoAccessByItself": true
@@ -123382,8 +123382,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/119"
       },
       "grantsNoAccessByItself": true
@@ -123752,8 +123752,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/109"
       },
       "grantsNoAccessByItself": true
@@ -124733,8 +124733,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/423"
       },
       "grantsNoAccessByItself": true
@@ -125163,8 +125163,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/416"
       },
       "grantsNoAccessByItself": true
@@ -125595,8 +125595,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/431"
       },
       "grantsNoAccessByItself": true
@@ -126561,8 +126561,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/217"
       },
       "grantsNoAccessByItself": true
@@ -128448,8 +128448,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/797"
       },
       "grantsNoAccessByItself": true
@@ -129414,8 +129414,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/324"
       },
       "grantsNoAccessByItself": true
@@ -130054,8 +130054,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/27"
       },
       "grantsNoAccessByItself": true
@@ -130482,8 +130482,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/4"
       },
       "grantsNoAccessByItself": true
@@ -130910,8 +130910,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/15"
       },
       "grantsNoAccessByItself": true
@@ -131408,8 +131408,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/218"
       },
       "grantsNoAccessByItself": true
@@ -131752,8 +131752,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/322"
       },
       "grantsNoAccessByItself": true
@@ -133199,8 +133199,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/432"
       },
       "grantsNoAccessByItself": true
@@ -134099,8 +134099,8 @@
       },
       "binding": {
         "file": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
-        "bytes": 5059945,
-        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30",
+        "bytes": 5060715,
+        "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc",
         "pointer": "/spells/433"
       },
       "grantsNoAccessByItself": true

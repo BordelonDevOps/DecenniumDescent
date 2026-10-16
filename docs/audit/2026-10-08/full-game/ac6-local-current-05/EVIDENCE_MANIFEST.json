@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "5.0",
+  "moduleId": "DD-AC6-LOCAL-CURRENT-05",
+  "status": "unadopted local correction candidate",
+  "frozenSourceCount": 103,
+  "identityCount": 14,
+  "placementCount": 16,
+  "historicalTextCount": 22,
+  "currentCaseCount": 55,
+  "priorReturnProvenance": {
+    "priorReturnArchive": {
+      "path": "docs/audit/2026-10-08/full-game/DD_AC6_Repair_04_Return.zip",
+      "bytes": 253952,
+      "sha256": "a9a32823acc03843f3aa4f947182d0c4ebeb25312cc26258a964adcb674656fa"
+    },
+    "priorEightFiles": [
+      {
+        "path": "REGISTER.json",
+        "bytes": 57093,
+        "sha256": "0eeaa1ee2c9882f385282f2a689a783bc5bacc7262af7cfb9945f447ed9471c7"
+      },
+      {
+        "path": "SPELLS_MODEL.json",
+        "bytes": 751279,
+        "sha256": "1fbb4b2b89ccae184d79810f8dc368bb9c61e8f753e75b05369313af7e24536a"
+      },
+      {
+        "path": "PLAYER_CHAPTER.md",
+        "bytes": 102436,
+        "sha256": "8691e8fc5bf2bbb3148578d2df4aefff1fdca4160eab172f0efca6ecbed70ce6"
+      },
+      {
+        "path": "DIRECTOR_REVIEW.md",
+        "bytes": 118695,
+        "sha256": "5cc2624b01925b109f528f7b25d3f694d16c638702e850e667f827906835f68d"
+      },
+      {
+        "path": "CASEBOOK.json",
+        "bytes": 319665,
+        "sha256": "0d068ba130ffbd4b31636b5d5d27c860f6ed53c3d8403cf2d84a0af4b457d726"
+      },
+      {
+        "path": "SOURCE_HASHES.json",
+        "bytes": 22653,
+        "sha256": "51d996794d1907ebc5b685d4578975c1a035cdf42bd2a925b87327bb71d56828"
+      },
+      {
+        "path": "VERDICT.md",
+        "bytes": 1922,
+        "sha256": "4e4ca94ece5446cfac5bdde8d76861a194c4241800523e054388e5c30b31fb1b"
+      },
+      {
+        "path": "EVIDENCE_MANIFEST.json",
+        "bytes": 2288,
+        "sha256": "085e7bfb2c9b7de1ff31bacf362cce57ddae8536f3baf4c88169e4adb32ff215"
+      }
+    ],
+    "return03ArchiveForMissingHistory": {
+      "path": "docs/audit/2026-10-08/full-game/DD_AC6_Full_Review_03_Return.zip",
+      "bytes": 252130,
+      "sha256": "dbbef55122205be4bc3477c53c489cc150f46e832c2b78cad2b8e887573179f9"
+    },
+    "independentReturn04Check": {
+      "path": "docs/audit/2026-10-08/full-game/AC6_REPAIR_04_INDEPENDENT_STRUCTURAL_CHECK.json",
+      "bytes": 148043,
+      "sha256": "d6ad7d83a8f4ed22bf40a5f2c4c01a7375abd3f00e4ade7ed5185a99b69825de"
+    }
+  },
+  "localCorrections": [
+    {
+      "id": "AC6-L05-01",
+      "type": "preservation repair",
+      "change": "NX-D02 now retains the exact superseded return03 case, including old references, in repair04PreviousCurrentVersion. The exact return04 case is also retained. No current NX-D02 adjudication changes."
+    },
+    {
+      "id": "AC6-L05-02",
+      "type": "NEW bounded rule plus example correction",
+      "change": "AC6-CHAIN-GEOMETRY-05 makes successor measurement consistent for all occupied bodies and same-pair LoE. AC6-N17 enumerates all ten bodies, every complete candidate array, fair draw, six actual saves and HP outcomes. The unsupported universal endpoint-center bound is removed."
+    },
+    {
+      "id": "AC6-L05-03",
+      "type": "NEW explicit AC6 suppression scope",
+      "change": "AC6-SUMMON-SUPPRESS-01 explicitly applies whole-body suppression when any part intersects operative Lesser Antimagic, matching the accepted AC5 convention only for the three AC6 summon profiles. Other source/extended-area rules remain unchanged."
+    },
+    {
+      "id": "AC6-L05-04",
+      "type": "concrete timing and geometry repair",
+      "change": "AC6-N15 now uses actual Ready preparation, trigger and Reaction, separate source clocks, enclosing24..26 regular slot and next-round32 fall marker, a field intersecting the Pet throughout descent, and paid legal Healing Rite. Its Null packet and previously damaged HP are explicitly supplied input states, not newly invented attacks."
+    }
+  ],
+  "runtimeTestsExecuted": false,
+  "humanPlaytested": false,
+  "balanceApproved": false,
+  "files": [
+    {
+      "name": "REGISTER.json",
+      "bytes": 62215,
+      "sha256": "46d490d6d781ea91829cc63908b1d9855b917267be5242cb1782bf2cf9f3ab41"
+    },
+    {
+      "name": "SPELLS_MODEL.json",
+      "bytes": 813721,
+      "sha256": "602aa1136e0493c9f6025477a3b1b1175bfdc75958b2e7805bac5d86f39e5dd3"
+    },
+    {
+      "name": "PLAYER_CHAPTER.md",
+      "bytes": 105466,
+      "sha256": "a590b1e8c9a1f6049edfa4ce688553ff6ed704618f8dc27711bb5f88c8e7940a"
+    },
+    {
+      "name": "DIRECTOR_REVIEW.md",
+      "bytes": 129701,
+      "sha256": "ef05a0eb9f72e5e9eaac1f3c8334d9606ad02d82fb0064300c3fa1bd37c6a295"
+    },
+    {
+      "name": "CASEBOOK.json",
+      "bytes": 373915,
+      "sha256": "ee6e3054f08eca2b34851f2b9ebe52737abcb939e5ae6875b16d12c948109988"
+    },
+    {
+      "name": "SOURCE_HASHES.json",
+      "bytes": 22653,
+      "sha256": "51d996794d1907ebc5b685d4578975c1a035cdf42bd2a925b87327bb71d56828"
+    },
+    {
+      "name": "VERDICT.md",
+      "bytes": 596,
+      "sha256": "5ba3069f31156e3d65687d5abd2d0deea4abde740200245b062ff0e9a01be39c"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+"""Expose the accepted arc module and preserve navigation history."""
+from copy import deepcopy
+from datetime import datetime,timezone
+import ast,json,subprocess,sys
+from apply_di7_ap_as_01 import G,R,A,info,encoded
+def read(p):return json.loads(p.read_bytes())
+
+def main():
+    now=datetime.now(timezone.utc).isoformat(); application=A/'COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_01_APPLICATION_CHECK.json';app=read(application)
+    assert app['newProvisionalModuleAdopted'] and app['failureCount']==0
+    previous=A/'ACTIVE_AUTHORING_CHECKPOINT_AFTER_ARCS_LOCAL_PATCH_01_SUBMISSION.json'
+    target=A/'ACTIVE_AUTHORING_CHECKPOINT_AFTER_CAMPAIGN_ARCS_APPLICATION_01.json'
+    delta=A/'CAMPAIGN_ARCS_APPLICATION_01_NAVIGATION_DELTA.json';keep=A/'navigation-before-campaign-arcs-application-01'
+    assert not any(p.exists() for p in [target,delta,keep])
+    start=G/'START_HERE.md';guide=R/'docs/director-only/cosmology/CURRENT_COSMOLOGY_READ_FIRST.md';nav=R/'tools/build_review_map.py';ledger=R/'data/playtest/game_development_coverage.json'
+    originals={};saved=[]
+    for p in [start,guide,nav,ledger,G/'REVIEW_MAP.html',A/'REVIEW_MAP_BUILD.json']:
+        raw=p.read_bytes();q=keep/p.relative_to(G);q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(raw);originals[p]=raw
+        saved.append({**info(p),'preservedCopy':q.relative_to(G).as_posix()})
+    (keep/'PRESERVATION_MANIFEST.json').write_bytes(encoded(saved))
+    text=originals[start].decode();old=next(s for s in text.split('\n\n') if s.startswith('**Current joint review:**'))
+    new='**Current joint review:** **EPI-01–17 is now jointly reviewed and locally applied as NEW provisional playtest authorship.** The latest module provides the three conditional post-epilogue arcs: Rekindling Stars, Conclave of Untitled Songs and Devil’s Signature. Read its [player chapter](DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_PLAYTEST.md) and [Director chapter](DescentReviewChanges/ReviewBible/docs/director-only/cosmology/EPILOGUE_CAMPAIGN_ARCS_REVIEWED_01.md). [Actual GPT accepted the complete corrected package by its exact hash](docs/audit/2026-10-08/full-game/EPILOGUE_ARCS_LOCAL_PATCH_01_ACTUAL_ACCEPTANCE_NATIVE.json). The [application receipt](docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_01_APPLICATION_CHECK.json) records 86 source-integrity checks, 996 patch checks and 69 application checks with no failures; all 78 authored examples and 51 unchanged source bindings are retained. These are not runtime or human tests. Continue from the [latest checkpoint](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_AFTER_CAMPAIGN_ARCS_APPLICATION_01.json), [cosmology guide](DescentReviewChanges/ReviewBible/docs/director-only/cosmology/CURRENT_COSMOLOGY_READ_FIRST.md) or [review map](REVIEW_MAP.html). Ordinary spells remain **419 reviewed / 429 pending**. Campaign era, unresolved identities, runtime, human playtesting, balance and whole-game flow remain open. Latest verified GitHub backup is **18c6e3a**; later work is local. **You are monitoring usage; the earlier 50% stop is withdrawn.**'
+    text=text.replace(old,new,1)
+    old=next(s for s in text.split('\n\n') if s.startswith('**Later campaign arcs:**'))
+    text=text.replace(old,'**Later campaign arcs:** EPI-15–17 is now the [jointly reviewed provisional reference](DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_PLAYTEST.md), with complete Director procedures and 78 preserved examples. The final corrections restore source-bound atmosphere rows, actual vent timing, deadline equality, real wage-settlement time, complete chapters and lawful vessel prerequisites. Original returns remain preserved. The three optional arcs require an agreed post-epilogue campaign placement before activation; acceptance does not choose that placement or settle unresolved cosmological identities.',1)
+    old='[EPI-08–14 relics, optional chambers and Null rules](DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md); current provisional authorship'
+    assert old in text;text=text.replace(old,'[EPI-08–14 relics, optional chambers and Null rules](DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md), [EPI-15–17 conditional campaign arcs](DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_PLAYTEST.md); current provisional authorship',1)
+    start.write_text(text,encoding='utf8',newline='\n')
+    text=originals[guide].decode();text=text.replace('EPI-15–17 is now in its own actual conference, as described below.','EPI-15–17 is now also jointly accepted and applied, as described below.',1)
+    old=next(s for s in text.split('\n\n') if s.startswith('The **second EPI-15–17 return'))
+    text=text.replace(old,'The **complete corrected EPI-15–17 module is jointly accepted and locally applied as NEW provisional playtest authorship**. Use the [player chapter](../../mechanics/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_PLAYTEST.md), [Director chapter](EPILOGUE_CAMPAIGN_ARCS_REVIEWED_01.md), [exact model and acceptance wrapper](../../../data/director/cosmology/epilogue_campaign_arcs_reviewed_01.json) and [78 authored cases](../../../data/director/cosmology/epilogue_campaign_arcs_cases_01.json). Actual Part4 [accepted all six corrections and the full exact package](../../../../../docs/audit/2026-10-08/full-game/EPILOGUE_ARCS_LOCAL_PATCH_01_ACTUAL_ACCEPTANCE_NATIVE.json). The [application receipt](../../../../../docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_01_APPLICATION_CHECK.json) retains 51 unchanged source bindings and records 86 source-integrity, 996 patch-preservation/coverage and 69 application checks, all passing. Earlier returns and all historical sources remain preserved. EPI-01–17 is now applied within authored provisional scope. These optional post-epilogue arcs still need an agreed campaign placement before activation; identity/canon, runtime, human, balance, whole-game and publication gates remain open.',1)
+    guide.write_text(text,encoding='utf8',newline='\n')
+    coverage=json.loads(originals[ledger]);before=deepcopy(coverage);row=next(x for x in coverage['aspects'] if x['id']=='DD-50');oldrow=deepcopy(row)
+    row['draftEvidence'].extend([application.relative_to(G).as_posix(),app['confirmation']['path'],app['data']['path'],app['playerChapter']['path'],app['directorChapter']['path']])
+    row.setdefault('currentEvidenceAddenda',[]).append({'id':'epilogue-campaign-arcs-application01','recordedAtUtc':now,'completeModuleJointlyAccepted':True,'newProvisionalModuleApplied':True,'authoredCases':78,'sourceBindings':51,'sourceChecks':86,'patchChecks':996,'applicationChecks':69,'failureCount':0,'wholeAreaClosed':False,'runtimeTestsExecuted':0,'humanPlaytested':False})
+    assert all(row[k]==oldrow[k] for k in ['status','closure','humanEvidence','completionClass'])
+    assert [x for x in before['aspects'] if x['id']!='DD-50']==[x for x in coverage['aspects'] if x['id']!='DD-50'];ledger.write_bytes(encoded(coverage))
+    scope='Complete EPI-15–17 accepted by actual Part4 and applied as NEW provisional authored reference:3 conditional arcs,78 examples,51 unchanged sources;86 source+996 patch+69 application checks pass. EPI-01–17 now applied. Ordinary spells419 reviewed/429 pending; remaining systems/content and final packaging still open. Runtime,human,balance,whole-game and owner epoch/identities remain separate.'
+    code=originals[nav].decode();tail=' + read(A / "ARCS_LOCAL_PATCH_01_NAVIGATION_DELTA.json")["changes"]\n';assert code.count(tail)==1
+    code=code.replace(tail,tail.rstrip('\n')+' + read(A / "CAMPAIGN_ARCS_APPLICATION_01_NAVIGATION_DELTA.json")["changes"]\n',1)
+    vals=[v for n in ast.walk(ast.parse(code)) if isinstance(n,ast.Dict) for k,v in zip(n.keys,n.values) if isinstance(k,ast.Constant) and k.value=='notebookReview'];assert len(vals)==1
+    code=code.replace(ast.get_source_segment(code,vals[0]),repr(scope),1)
+    items=[('EPI15–17 — applied module and validation',application.name),('EPI15–17 — actual complete-module acceptance','EPILOGUE_ARCS_LOCAL_PATCH_01_ACTUAL_ACCEPTANCE_NATIVE.json')]
+    code=code.replace('    pending = [\n','    pending = [\n'+''.join('        '+repr(x)+',\n' for x in items),1);compile(code,str(nav),'exec');nav.write_text(code,encoding='utf8',newline='\n')
+    delta.write_bytes(encoded({'recordedAtUtc':now,'changes':[{'before':next(x for x in saved if x['path']==p.relative_to(G).as_posix()),'after':info(p)} for p in [start,guide,ledger,nav]],'sourceInformationDeleted':0,'newProvisionalModuleApplied':'EPI15–17','fullDomainClosureChanged':False,'humanOrOwnerEvidenceChanged':False}))
+    run=subprocess.run([sys.executable,'-X','utf8',str(nav)],capture_output=True,text=True,encoding='utf8');assert run.returncode==0,(run.stdout[-1000:],run.stderr[-1000:])
+    build=read(A/'REVIEW_MAP_BUILD.json');assert not build['missingLinks']
+    state=read(previous);state.update(recordedAtUtc=now,previousCheckpoint=info(previous),status=scope,goalTurnClassification='progress',previousGoalTurnClassification='progress',coverageDelta=info(delta),coverageLedger=info(ledger),ownerStartPage=info(start),newRuleAdoptions=1,newRuleAdoptionScope='Complete EPI-15–17 locally applied as jointly reviewed NEW provisional playtest authorship.',navigation={'map':info(G/'REVIEW_MAP.html'),'receipt':info(A/'REVIEW_MAP_BUILD.json'),'links':build['existingDistinctLinks'],'missingLinks':[]})
+    state['campaignArcsApplication']=app
+    state['activeGptReview'].update(status='Complete module explicitly ACCEPTED by actual Part4; exact candidate locally applied.',generationConfirmedLiveAtObservation=False,returnReceived=True,expectedReturn=None,newRulesAdopted=True,application=info(application))
+    state['safeNextActions']=['EPI-01–17 is applied within provisional authored scope; do not restart its completed conference. Preserve campaign-frame and identity holds.','Refresh the15 existing rank4 Abjuration/Conjuration proposals against current whole spell/class/research/Null interfaces and submit for dedicated actual GPT review. Current total remains419 reviewed/429 pending.','Continue environment/consumables/disease, feats, bestiary, Director, final Player/Director packaging and companion work under the75-area ledger. All modules require source-preserving actual review.','Complete joint whole-game flow before final completion/delivery. Latest verified GitHub backup remains18c6e3a; no later push is claimed. Human testing/balance remain separate.']
+    state['resumedBlockedAudit']={'classification':'progress','evidence':info(application),'meaningfulProgress':scope};state.setdefault('preservationManifests',[]).append(info(keep/'PRESERVATION_MANIFEST.json'));target.write_bytes(encoded(state))
+    print(json.dumps({'checkpoint':info(target),'application':info(application),'links':build['existingDistinctLinks'],'missingLinks':0}))
+
+if __name__=='__main__':main()

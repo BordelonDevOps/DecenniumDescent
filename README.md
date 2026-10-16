@@ -1,4 +1,4 @@
-> **Latest progress backup — 15 October 2026:** See [the current snapshot status](SNAPSHOT_STATUS_2026-10-15_PANTHEONS.md). Includes the gods/pantheons submission, local source comparisons, epilogue inventory and Matrix formula source check. The saved GPT verdict is still pending. **419 spells reviewed / 429 pending.** Full cosmology and whole-game approval remain open. Earlier status text below is retained history.
+> **Latest backup — 16 October 2026:** Decennium Descent is **video-game-only**. The active plan and current saved work are included; development remains paused. **451 ordinary spells reviewed / 397 pending.** AC6 is not locally adopted. See [snapshot status](SNAPSHOT_STATUS_2026-10-16_VIDEO_GAME.md). Earlier snapshot statements below are preserved history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 

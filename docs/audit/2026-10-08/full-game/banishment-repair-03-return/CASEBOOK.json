@@ -1,0 +1,1623 @@
+{
+  "schemaVersion": "3.0",
+  "moduleId": "DD-BANISHMENT-REPAIR-03",
+  "caseCount": 35,
+  "cases": [
+    {
+      "id": "BAN-C01",
+      "historicalSourceScenario": {
+        "id": "BAN-C01",
+        "initialState": "Wizard7,INT+4,PB3,actual spell prepared,RP30,precast strain below surcharge; target CHA total14 vsDC15, no defenses/guard use, origin legal.",
+        "proposedOutcome": "Commit7RP and current ordinary strain/concentration; on failure create one cell and target branch at t0, with deadline t60. No attack or damage.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Wizard 7, INT +4, PB +3, spell DC15, RP30; target declares RESIST, CHA total14; hard-control allowance unused. Origin plane/world anchor is exact current Medium 5x5 footprint centered at world (0,0), orientation north.",
+      "actionsAndResolution": [
+        "Wizard commits Action/V-S-F and 7 RP; Banishment concentration begins.",
+        "Target rolls CHA total14 vs DC15: failure; hard-control allowance is available.",
+        "At t0 establish BAN-CELL-03, snapshot origin plane/world anchor, and move the same target body plus legal noncreature gear."
+      ],
+      "costLedger": {
+        "rpStart": 30,
+        "rpSpent": 7,
+        "rpEnd": 23
+      },
+      "clockLedger": {
+        "establishedSecond": 0,
+        "absoluteDeadlineSecond": 60
+      },
+      "geometryLedger": {
+        "originAnchor": "world center (0,0), Medium 5x5, north"
+      },
+      "currentAdjudication": "Target is exiled from t0 with absolute deadline t60. No origin-plane space is reserved or protected.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/castAndSave",
+          "role": "save/cost/control gate"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/cell",
+          "role": "cell establishment"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/originPlane",
+          "role": "fixed origin-plane anchor metadata"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C02",
+      "historicalSourceScenario": {
+        "id": "BAN-C02",
+        "initialState": "Same state, target CHA total15.",
+        "proposedOutcome": "Save succeeds; no cell/transport/hard component. RP and cast strain remain spent; displaced prior concentration is not restored.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Wizard 7, DC15, RP30; target declares RESIST and rolls CHA total15.",
+      "actionsAndResolution": [
+        "Wizard commits Action/V-S-F and 7 RP; new concentration begins.",
+        "CHA total15 meets DC15."
+      ],
+      "costLedger": {
+        "rpStart": 30,
+        "rpSpent": 7,
+        "rpEnd": 23
+      },
+      "clockLedger": {
+        "castCommitSecond": 0
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Save succeeds. No cell, exile or hard-control claim. Paid cast remains spent; displaced prior concentration does not return.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/castAndSave",
+          "role": "save/cost result"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "pointer": "section: cost commitment/concentration/counter ordering",
+          "role": "shared spell timing"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C03",
+      "historicalSourceScenario": {
+        "id": "BAN-C03",
+        "initialState": "Target actually has Oracle15 Fate-Bound BoonIV; ordinary CHA total13,DC15.",
+        "proposedOutcome": "Actual+2 banishment bonus gives15 and succeeds, subject to the existing strongest-flat-bonus rule. No generic protection for other Oracle paths.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Oracle 15 target has Fate-Bound Boon IV; base CHA save total13; Banishment DC15.",
+      "actionsAndResolution": [
+        "Apply exact +2 Fate-Bound bonus: 13+2=15."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Save succeeds; no exile.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "pointer": "/spells/48",
+          "role": "printed ordinary Banishment Action/range/components/base RP/Instantaneous metadata and temporary-other-plane effect"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/88",
+          "role": "Fate-Bound Boon IV +2 against banishment"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/castAndSave/save",
+          "role": "save"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C04",
+      "historicalSourceScenario": {
+        "id": "BAN-C04",
+        "initialState": "Source previously used a hard whole-turn component on this target in the encounter; target would fail CHA.",
+        "proposedOutcome": "No new exile, no replacement soft effect and no refunded cast. A fresh session label does not erase the same encounter record.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Same source-character already established one hard whole-turn control component on this target this encounter; target would otherwise fail Banishment save.",
+      "actionsAndResolution": [
+        "Commit/pay cast and resolve failed CHA save.",
+        "Existing shared hard-control allowance is unavailable."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No cell/exile and no invented soft substitute; paid cast remains spent.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "pointer": "/spells/48",
+          "role": "printed ordinary Banishment Action/range/components/base RP/Instantaneous metadata and temporary-other-plane effect"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+          "pointer": "section: hard whole-turn control allowance",
+          "role": "shared control gate"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/castAndSave/hardControl",
+          "role": "Banishment use"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C05",
+      "historicalSourceScenario": {
+        "id": "BAN-C05",
+        "initialState": "Exile begins t0; target is still present at t60; anchor is legal.",
+        "proposedOutcome": "Return same body/actual carried gear once at t60. No renewed turn, HP, resources, deadline or short/long rest.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Primary established at t0; same Medium body and carried gear remain. Origin world anchor is physically clear at t60.",
+      "actionsAndResolution": [
+        "At t60 absolute deadline ends Banishment.",
+        "BAN-CLOSE-03 returns the same body to the origin plane.",
+        "Canonical placement succeeds at normal current-anatomy space at the same anchor; cell ends."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "establishedSecond": 0,
+        "closureSecond": 60
+      },
+      "geometryLedger": {
+        "originAnchor": "same legal 5x5 footprint"
+      },
+      "currentAdjudication": "Same body/HP/resources return once; no rest or resource refresh.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory placement/reversion authority"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "pointer": "section: movement/squeezing",
+          "role": "squeeze and movement geometry"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "BAN-CLOSE-03 / BAN-PLACEMENT-HANDOFF-03"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C06",
+      "historicalSourceScenario": {
+        "id": "BAN-C06",
+        "initialState": "At t18 another creature starts a movement step whose completion would occupy the anchor.",
+        "proposedOutcome": "Proposed rule returns the banished body immediately before that geometry change; resolve ordinary occupied-space movement. No force-wall damage or duplicate body. Requires BAN-03 confirmation.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Primary origin anchor is a legal 5x5 square at t0. At t18 another creature moves into that square and remains through t60.",
+      "actionsAndResolution": [
+        "The movement at t18 is legal; Banishment creates no origin-plane exclusion ward.",
+        "At t60 closure returns the primary to the origin plane and canonical same-anchor placement fails due to occupancy.",
+        "Legal squeeze does not solve occupancy; nearest legal adjacent square in the same unobstructed region is available and is selected."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "occupancySecond": 18,
+        "closureSecond": 60
+      },
+      "geometryLedger": {
+        "originAnchor": "occupied at closure",
+        "resolvedPlacement": "nearest legal adjacent"
+      },
+      "currentAdjudication": "No preemptive return, forced displacement of the occupant, crushing or terrain ward occurs.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory placement/reversion authority"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "pointer": "section: movement/squeezing",
+          "role": "squeeze and movement geometry"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "BAN-CLOSE-03 / BAN-PLACEMENT-HANDOFF-03"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C07",
+      "historicalSourceScenario": {
+        "id": "BAN-C07",
+        "initialState": "At t24 an actual effect would remove the origin platform’s support.",
+        "proposedOutcome": "Proposed rule returns the target before support loss; support then fails and ordinary Falling starts. Banishment grants no fall immunity. Requires BAN-03 confirmation.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Primary origin anchor was on a platform. At t24 the platform/support is destroyed, leaving clear unsupported air at the fixed world anchor.",
+      "actionsAndResolution": [
+        "Support-loss resolves normally at t24; no Banishment interrupt.",
+        "At t60 closure returns the primary to the exact clear anchor.",
+        "The footprint is legal but unsupported, so ordinary Falling begins after placement."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "supportLossSecond": 24,
+        "closureSecond": 60
+      },
+      "geometryLedger": {
+        "originAnchor": "clear unsupported air"
+      },
+      "currentAdjudication": "No support recreation and no fall immunity.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory placement/reversion authority"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "pointer": "section: movement/squeezing",
+          "role": "squeeze and movement geometry"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "BAN-CLOSE-03 / BAN-PLACEMENT-HANDOFF-03"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C08",
+      "historicalSourceScenario": {
+        "id": "BAN-C08",
+        "initialState": "A finite summon takes qualifying Null damage inside at t12 and reaches0; its own source expires t30.",
+        "proposedOutcome": "Use current Null Disabled instead of damage-caused disappearance at t12. Independent source expiry at t30 removes that body; Banishment returns no replacement body or loot. Real loose cargo remains recorded.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Water Pet is primary. At t12 qualifying Null damage reaches 0; pet becomes Null Disabled0. Its source independently expires t30.",
+      "actionsAndResolution": [
+        "At t12 keep same Disabled body/source deadline.",
+        "At t30 source expiry ends finite summon body and releases its body portion of package; real assigned cargo remains on package ledger.",
+        "At Banishment ending no pet body is recreated."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "nullDisabledSecond": 12,
+        "petSourceExpirySecond": 30
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No corpse/loot/material water; surviving real cargo settles through origin-plane canonical placement.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/8/procedure",
+          "role": "accepted current Summon Water Pet procedure"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "pointer": "section: finite summon Null Disabled at 0",
+          "role": "Null lifecycle"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "current closure/lifecycle"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory lifecycle/placement coexistence"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C09",
+      "historicalSourceScenario": {
+        "id": "BAN-C09",
+        "initialState": "Hunted target suffers a complete fatal event inside at t20, with all legitimate replacements resolved and no survival.",
+        "proposedOutcome": "Commit actual Hunted Death; return only the surviving corpse at spell ending. The transportation does not revive, duplicate or free its soul.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Hunted living primary is exiled; at t20 a real fatal event leaves a corpse.",
+      "actionsAndResolution": [
+        "Commit actual death/Hunted finality at t20.",
+        "At closure the same corpse and surviving assigned gear occupy the origin-plane canonical placement."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "deathSecond": 20
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No resurrection or soul release is created.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "pointer": "section: death/body lifecycle",
+          "role": "death"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/planes_reviewed_01.json",
+          "pointer": "section: souls/death reviewed interfaces",
+          "role": "cosmology boundary"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "current closure/lifecycle"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory lifecycle/placement coexistence"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C10",
+      "historicalSourceScenario": {
+        "id": "BAN-C10",
+        "initialState": "Target voluntarily leaves the cell through an independently legal cross-plane Faction Portal with actual HQ knowledge/standing/source permission.",
+        "proposedOutcome": "Use that real route, payment, custody and destination. End this Banishment without pulling the escaped identity back; return only objects still in the cell. No HQ knowledge is supplied by Banishment.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Banished Wizard 7 has Faction Portal prepared, RP20, canonical faction F reputation +1 and personally known HQ receiving point H. Sword S1 was transported and is now loose at cell-local center (0,+5). Banishment is maintained by another caster.",
+      "actionsAndResolution": [
+        "At t12 Wizard spends Action/V-S-F and 5 RP to cast Faction Portal into a currently perceived fitting local entrance on the cell floor; portal concentration begins and destination H is fixed.",
+        "At t18 Wizard spends 5 feet movement entering the doorway; the real Faction Portal crossing rechecks H and succeeds atomically.",
+        "Primary escape ends Banishment immediately. BAN-CLOSE-03 projects loose S1 to the origin plane, applies ordinary item placement, and destroys the cell."
+      ],
+      "costLedger": {
+        "wizardRpStart": 20,
+        "factionPortalRpSpent": 5,
+        "wizardRpEnd": 15
+      },
+      "clockLedger": {
+        "portalCastSecond": 12,
+        "escapeSecond": 18,
+        "banishmentEndsSecond": 18
+      },
+      "geometryLedger": {
+        "portalEntrance": "5 ft wide x 8 ft high, currently inside cell",
+        "looseSwordCellOffset": "(0,+5)"
+      },
+      "currentAdjudication": "Wizard remains at H. S1 returns once if it still exists; there is no later pullback and no lingering empty cell.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/145/operational",
+          "role": "current Faction Portal"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "pointer": "section: cost commitment/concentration/counter ordering",
+          "role": "portal concentration timing"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/escape/primaryEscape",
+          "role": "application ending on escape"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/objects",
+          "role": "loose-object settlement"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C11",
+      "historicalSourceScenario": {
+        "id": "BAN-C11",
+        "initialState": "An actual different creature enters through an independently legal route before ending.",
+        "proposedOutcome": "Draft requires BAN-04 completion; no automatic inclusion as cargo, body deletion or unsupported claim that independent interplanar travel is universally blocked.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "CONDITIONAL interface fixture only: visitor V would need an exact source that can identify and legally reach this generated cell. The supplied Faction Portal and Spectral Steed records do not establish discovery/targeting of an arbitrary unknown Banishment cell.",
+      "actionsAndResolution": [
+        "If an exact source independently supplies destination knowledge/permission, it must target a fitting currently perceived in-cell footprint before arrival; Banishment cannot expand first to legalize it.",
+        "Without that exact source permission, no visitor arrival occurs and no Action/RP/destination knowledge is invented.",
+        "If a visitor did legally establish, BAN-CLOSE-03 would return it by stable admission order using its projected closure anchor and canonical placement."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "currentState": "no demonstrated visitor arrival"
+      },
+      "currentAdjudication": "This is conditional interface coverage only; no current legal external-visitor route is asserted.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/145/operational",
+          "role": "Faction Portal destination limits"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/143/operational",
+          "role": "Spectral Steed current travel permission"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/admission",
+          "role": "BAN-ADMIT-03"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/secondaryAnchors",
+          "role": "conditional secondary closure"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C12",
+      "historicalSourceScenario": {
+        "id": "BAN-C12",
+        "initialState": "Target carries a separate willing ally and a real backpack.",
+        "proposedOutcome": "Only chosen body and legal noncreature gear can depart. Establish legal origin placement for the ally; impossible separation defeats the atomic transaction. No free second traveler.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Target carries a willing ally as a separate creature plus a real backpack; ally can legally be set down in an adjacent origin square before commitment.",
+      "actionsAndResolution": [
+        "Preflight separates the ally because a separate creature is not gear.",
+        "Target fails its save and only target plus legal noncreature carried gear transit."
+      ],
+      "costLedger": {
+        "banishmentRpSpent": 7
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Ally remains on origin plane; no free second traveler.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/transportAndCustody/separateBodies",
+          "role": "separate-body custody"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Carrying and Load",
+          "role": "body/carrying distinction"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C13",
+      "historicalSourceScenario": {
+        "id": "BAN-C13",
+        "initialState": "At t25 target’s real shapechange would exceed original anchor dimensions.",
+        "proposedOutcome": "Proposed rule returns the current pre-change body first, then resolves the paid shapechange under its actual placement rules. It grants no free resize or transformation refund; BAN-03 must confirm event ordering.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Banished Druid 7, RP15, current Medium 5x5 body of occupied height6 in the standard 15x15x15 cell. A legal R4 Large Polymorph profile is 10x10 and fits centered inside current bounds. Origin anchor is ordinary open terrain.",
+      "actionsAndResolution": [
+        "At t24 Polymorph voluntary preflight validates the 10x10 body entirely inside the current cell before payment.",
+        "Druid spends Action/V-S-F and 7 RP; the target legally becomes Large. No origin-plane berth is checked or protected.",
+        "At t60 Banishment ends; current Large body returns to origin plane and canonical placement uses the current anatomy. The original 5x5 anchor cannot contain 10x10, but an adjacent same-region 10x10 placement is legal."
+      ],
+      "costLedger": {
+        "druidRpStart": 15,
+        "polymorphRpSpent": 7,
+        "druidRpEnd": 8
+      },
+      "clockLedger": {
+        "polymorphSecond": 24,
+        "closureSecond": 60
+      },
+      "geometryLedger": {
+        "cellBounds": "x/y[-7.5,+7.5], z[0,15]",
+        "largeFootprint": "10x10 within current bounds"
+      },
+      "currentAdjudication": "Voluntary size change succeeds only because current cell space was already legal. Closure does not cancel the transformation or create a terrain ward.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/735/operational",
+          "role": "current Polymorph"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "voluntary preflight/mandatory placement"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/cell/voluntaryGeometry",
+          "role": "cell preflight"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/creaturePlacement",
+          "role": "return placement"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C14",
+      "historicalSourceScenario": {
+        "id": "BAN-C14",
+        "initialState": "Caster ends concentration t9 while target is legal; later the original ward returns from suppression.",
+        "proposedOutcome": "Return at t9 and terminate this application; restoration does not re-banish or revive its old timer.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Primary is exiled; origin anchor exists. Caster ends Banishment concentration at t9.",
+      "actionsAndResolution": [
+        "Ordinary no-action concentration ending at t9 triggers BAN-CLOSE-03.",
+        "Primary is returned to origin plane and canonical placement resolves from the fixed anchor.",
+        "Cell is destroyed immediately."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "closureSecond": 9
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Later suppression/restoration cannot re-banish the target because this application ended.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "pointer": "section: concentration",
+          "role": "ordinary concentration ending"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "BAN-CLOSE-03"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C15",
+      "historicalSourceScenario": {
+        "id": "BAN-C15",
+        "initialState": "A genuine endpoint transport prohibition arises during exile.",
+        "proposedOutcome": "BAN-03/06 must explicitly reconcile prevention with early/mandatory return and finite temporary duration; the draft claims no universal bypass or indefinite prison.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Primary origin anchor is physically clear. At t20 a current Dimensional Anchor is established so its 60-ft field covers the return endpoint through t60.",
+      "actionsAndResolution": [
+        "At t60 Banishment ends. The physical same-anchor footprint is legal.",
+        "BAN-CLOSE-03 terminal endpoint exception ignores only Dimensional Anchor's transport-prevention predicate for this mandatory return.",
+        "After origin-plane return, canonical placement succeeds at the same anchor; Anchor remains active for all other applicable travel."
+      ],
+      "costLedger": {
+        "anchorRpSpent": 7
+      },
+      "clockLedger": {
+        "anchorEstablishedSecond": 20,
+        "closureSecond": 60
+      },
+      "geometryLedger": {
+        "physicalFit": true,
+        "endpointBlocked": true
+      },
+      "currentAdjudication": "Finite return with no general Anchor bypass, refund or voluntary escape permission.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/2/procedure",
+          "role": "accepted Dimensional Anchor"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/endpointBlockerException",
+          "role": "terminal blocker-only exception"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "physical placement"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C16",
+      "historicalSourceScenario": {
+        "id": "BAN-C16",
+        "initialState": "A corpse is selected as the original target; an actual active creature-classified Undead is selected in another cast.",
+        "proposedOutcome": "Corpse is not an eligible creature. Active Undead is not excluded by its name; actual creature/type defenses and source eligibility govern.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Fixture A selects corpse; fixture B selects active creature-classified Undead with no exact immunity.",
+      "actionsAndResolution": [
+        "A corpse is not a creature, so known target illegality prevents commitment.",
+        "Active Undead remains creature and uses ordinary Banishment save/defenses."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No name-based immunity or corpse targeting.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "pointer": "/spells/48",
+          "role": "printed ordinary Banishment Action/range/components/base RP/Instantaneous metadata and temporary-other-plane effect"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "pointer": "section: corpse/creature lifecycle",
+          "role": "corpse distinction"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C17",
+      "historicalSourceScenario": {
+        "id": "BAN-C17",
+        "initialState": "Origin and target remain stable; countered cast, hidden later obstruction, and actual target save reroll occur in separate fixtures.",
+        "proposedOutcome": "Preserve chronological payment/cadence and original saves; no new target, free retry or refund. Exact numeric outcomes must be supplied in later joint review.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Three numeric fixtures. F1: Cleric 7 Banishment DC15, RP20. Wizard 5 Counterspeller INT+4 PB+3, RP10, automatic Wizard Counterspell. F2: same Banishment caster, target RESIST CHA12 and hidden active Dimensional Anchor covers target origin. F3: Oracle target with actual Spiral-Touched Boon I has one failed-save reroll available.",
+      "actionsAndResolution": [
+        "F1: Cleric commits Action/V-S-F and 7 RP. Counterspell trigger opens. Wizard spends Reaction/V-S-F and 3 RP, rolls natural11 + INT4 + PB3 =18 vs DC18 (10 + 2*rank4): success; Banishment is negated after costs, no save/cell.",
+        "F2: Cleric commits 7 RP; target rolls12 vs15 failure. At establishment, hidden Anchor endpoint predicate blocks the transition; no cell and no hard-control claim. No refund or cause report is created.",
+        "F3: target initially fails the CHA save; it spends the actual once/day Spiral-Touched reroll and uses the rerolled result. If reroll total reaches DC, no exile; otherwise resolve failed-save establishment normally."
+      ],
+      "costLedger": {
+        "F1_clericRpSpent": 7,
+        "F1_wizardCounterspellRpSpent": 3,
+        "F2_clericRpSpent": 7
+      },
+      "clockLedger": {
+        "F1_counterWindow": "during cast before save",
+        "F2_anchorCheck": "establishment",
+        "F3_reroll": "actual source timing"
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "All three use current numeric records; no free retry, refund or migrated save.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/17",
+          "role": "Wizard Counterspell actual cost/check"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/2/procedure",
+          "role": "Dimensional Anchor"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/14",
+          "role": "Spiral-Touched Boon I reroll"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "pointer": "section: cost commitment/concentration/counter ordering",
+          "role": "counter/cost timing"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C18",
+      "historicalSourceScenario": {
+        "id": "BAN-C18",
+        "initialState": "Target drops an originally transported sword inside, consumes a real potion and later returns.",
+        "proposedOutcome": "Return the same surviving sword and empty surviving container where actually present, never an unconsumed potion or duplicate carried item. Ending creates no material from cell walls/air/floor.",
+        "evidenceKind": "authored conditional example; unresolved outcomes explicitly marked, not runtime or human test"
+      },
+      "currentInitialState": "Target enters with sword S1, potion P1 and backpack. Inside it drops S1 and drinks P1 leaving empty container B1.",
+      "actionsAndResolution": [
+        "S1 is a real loose object after being dropped; P1 is consumed; B1 remains a real surviving empty container.",
+        "At closure the target body returns first under canonical creature placement. Then S1 and B1 use their projected origin-plane item anchors and the existing legal item-position / nearest-adjacent / pending-placement rule."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No duplicate sword or unconsumed potion; cell material creates nothing.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/objects",
+          "role": "loose-object closure ordering"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: equipment return/loss",
+          "role": "real item identity and pending placement"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "current closure lifecycle"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C19",
+      "historicalSourceScenario": {
+        "id": "BAN-C19",
+        "initialState": "An actual No Escape mark is active on target T. T is unwilling and fails a legal Banishment save; compare T voluntarily electing failure to accept rescue.",
+        "requiredResolution": "Decide exact voluntary/forced transport predicate for these two branches; do not label all banishment voluntary or all willing transport forced.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "Three separate restriction fixtures. Before any save target declares admissionIntent. A: No Escape active. B: Verdict Absolute active. C: Reign of Ashes ash-bound active.",
+      "actionsAndResolution": [
+        "A/No Escape: ACCEPT+elect-fail and ACCEPT+roll-fail are voluntary extradimensional admission and are blocked. RESIST+failed-save is forced and is not blocked by No Escape's voluntary wording.",
+        "B/Verdict Absolute: none of the Banishment branches are blocked because BAN-TRANSPORT-CLASS-02 classifies Banishment as non-teleport planar/extradimensional displacement, while Verdict Absolute forbids voluntary teleportation/invisibility only.",
+        "C/Reign of Ashes: none are blocked because it denies benefit from Dash/teleportation and Banishment is not teleportation."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "intentValues": [
+          "ACCEPT",
+          "RESIST"
+        ]
+      },
+      "currentAdjudication": "Exact card predicates remain distinct; this classification is Banishment-only.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/41",
+          "role": "No Escape exact predicate"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/43",
+          "role": "Verdict Absolute exact predicate"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/130",
+          "role": "Reign of Ashes exact predicate"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/transportClassification",
+          "role": "Banishment-only classification"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/castAndSave/admissionIntent",
+          "role": "voluntariness predicate"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C20",
+      "historicalSourceScenario": {
+        "id": "BAN-C20",
+        "initialState": "T was exiled before a No Escape or Reign of Ashes restriction could lawfully become active on it. The60-second deadline now arrives.",
+        "requiredResolution": "Resolve actual application legality first, then mandatory return versus the exact active transport restriction. No indefinite cell from a blanket blocker; no silently invented source exception.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "Banishment already established. A voluntary-only restriction later exists on a body when t60 closure occurs.",
+      "actionsAndResolution": [
+        "Closure is mandatory, not a voluntary travel choice.",
+        "BAN-CLOSE-03 returns the extant identity to the origin plane; voluntary-only No Escape/Verdict predicates do not block closure.",
+        "Physical fitting is resolved canonically; any conflict is an origin-plane placement conflict, not continued exile."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "closureSecond": 60
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No voluntary-only effect creates indefinite Banishment.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/41",
+          "role": "No Escape"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/43",
+          "role": "Verdict Absolute"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "mandatory closure"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C21",
+      "historicalSourceScenario": {
+        "id": "BAN-C21",
+        "initialState": "A Chain of Duty ally reaches0 inside the separate cell; its old origin anchor is20 feet from the Paladin.",
+        "requiredResolution": "Same-plane rescue condition is false. Anchor distance does not replace actual target plane/location; no free Paladin entry.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "Chain of Duty ally is inside cell at0HP; Paladin is on origin plane 20ft from old anchor.",
+      "actionsAndResolution": [
+        "Check actual current planes, not anchor metadata.",
+        "Same-plane predicate is false."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Chain of Duty rescue cannot trigger from outside cell.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/99",
+          "role": "Chain of Duty exact same-plane rescue card"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/currentInterfaces/paladin",
+          "role": "same-plane consequence"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C22",
+      "historicalSourceScenario": {
+        "id": "BAN-C22",
+        "initialState": "A cell occupant with Wizard Dimensional Pocket attempts to create storage and enter it. Compare an active nonliving Construct occupant.",
+        "requiredResolution": "Living entry is expressly barred; a creature is not unattended material merely because nonliving. Do not confer a new cell escape through an inventory ability.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "Cell occupant tries Dimensional Pocket as creature escape; compare active Construct creature.",
+      "actionsAndResolution": [
+        "Storage permission applies to unattended material/object, not a creature body.",
+        "Construct creature classification does not turn body into inventory."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No escape route created.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/20",
+          "role": "Wizard Dimensional Pocket exact storage card"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/escape",
+          "role": "escape requires real permission"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C23",
+      "historicalSourceScenario": {
+        "id": "BAN-C23",
+        "initialState": "A visitor has an independently legal interplanar route to the cell, actual knowledge and enough fitting space; arrival would occur before t60.",
+        "requiredResolution": "The existing draft has no complete terminal state for that visitor. Review a finite entry/collapse protocol explicitly; neither absence of free return nor source expiry permits stranding/deletion.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "CONDITIONAL interface fixture only: visitor V would need an exact source that can identify and legally reach this generated cell. The supplied Faction Portal and Spectral Steed records do not establish discovery/targeting of an arbitrary unknown Banishment cell.",
+      "actionsAndResolution": [
+        "If an exact source independently supplies destination knowledge/permission, it must target a fitting currently perceived in-cell footprint before arrival; Banishment cannot expand first to legalize it.",
+        "Without that exact source permission, no visitor arrival occurs and no Action/RP/destination knowledge is invented.",
+        "If a visitor did legally establish, BAN-CLOSE-03 would return it by stable admission order using its projected closure anchor and canonical placement."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "currentState": "no demonstrated visitor arrival"
+      },
+      "currentAdjudication": "This is conditional interface coverage only; no current legal external-visitor route is asserted.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/145/operational",
+          "role": "Faction Portal destination limits"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/143/operational",
+          "role": "Spectral Steed current travel permission"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/admission",
+          "role": "BAN-ADMIT-03"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/secondaryAnchors",
+          "role": "conditional secondary closure"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C24",
+      "historicalSourceScenario": {
+        "id": "BAN-C24",
+        "initialState": "T uses an otherwise legal creature-creation ability inside the cell; a distinct creature would remain when t60 arrives.",
+        "requiredResolution": "Treat internally created bodies as well as visitors. A no-visitor rule alone does not close this case. Preserve real source costs and creature identity; specify finite terminal placement.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "Banished Wizard 7, RP18, Summon Water Pet prepared; Banishment maintained by another caster. Wizard is Medium 5x5, occupied height6, centered in standard cell x/y[-7.5,+7.5], z[0,15], occupying x/y[-2.5,+2.5]. The supported adjacent Medium square x[2.5,7.5], y[-2.5,2.5] is entirely inside the opaque cell and visible with line of effect.",
+      "actionsAndResolution": [
+        "At t12 Wizard spends Action/V-S-F and 7 RP and starts Water Pet concentration, targeting exactly the already-visible adjacent 5x5 square.",
+        "The Pet establishes there with its accepted Medium body/profile; only after legal creation may cell boundaries expand if needed for clearance (none is required here).",
+        "At t60 Pet still exists. BAN-CLOSE-03 returns primary first, then Pet by admission order. Pet's projected origin-plane anchor is 5 feet east of the primary anchor; canonical placement resolves each body."
+      ],
+      "costLedger": {
+        "wizardRpStart": 18,
+        "waterPetRpSpent": 7,
+        "wizardRpEnd": 11
+      },
+      "clockLedger": {
+        "petCreatedSecond": 12,
+        "banishmentClosureSecond": 60
+      },
+      "geometryLedger": {
+        "initialCellBounds": "x/y[-7.5,+7.5], z[0,15]",
+        "wizardFootprint": "x/y[-2.5,+2.5]",
+        "petTargetFootprint": "x[2.5,7.5], y[-2.5,2.5], z=0 supported",
+        "petProjectedClosureAnchor": "+5 ft east of primary origin"
+      },
+      "currentAdjudication": "Creation legality does not depend on pre-cast expansion. If the Pet source ended earlier, no Pet body would return.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/8/procedure",
+          "role": "accepted Summon Water Pet"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/cell/initialGeometry",
+          "role": "actual cell bounds"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/admission/internalCreation",
+          "role": "current in-cell target preflight"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/secondaryAnchors",
+          "role": "secondary return anchor"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C25",
+      "historicalSourceScenario": {
+        "id": "BAN-C25",
+        "initialState": "Origin footprint is aboard a moving vehicle, or the origin surface becomes unsupported during exile.",
+        "requiredResolution": "Choose fixed-world anchor versus support-attached coordinates explicitly. The local draft proposes fixed origin and pre-change early return; evaluate real event boundaries and Falling, not a hidden force-wall reservation.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "Primary is banished from a vehicle at world anchor A. Vehicle later moves 200 ft.",
+      "actionsAndResolution": [
+        "Origin anchor A is fixed world metadata and does not ride with the vehicle.",
+        "At closure primary returns to origin plane at A and applies canonical placement against current terrain there."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "vehicleMovesBeforeClosure": true
+      },
+      "geometryLedger": {
+        "fixedOriginAnchor": "A"
+      },
+      "currentAdjudication": "Return never tracks the moving vehicle. If A is clear unsupported air, place there and begin ordinary Falling.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/originPlane",
+          "role": "fixed world anchor"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "support/falling placement"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C26",
+      "historicalSourceScenario": {
+        "id": "BAN-C26",
+        "initialState": "One atomic source event changes T geometry and another body occupancy so the preserved anchor no longer fits. No intermediate state is exposed by that source.",
+        "requiredResolution": "Complete the draft unresolved atomic-change branch. Preemptive return cannot depend on retrospectively splitting an indivisible resolved event.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "CONDITIONAL atomic mandatory-geometry fixture: while inside the cell an indivisible source event changes the primary from 5x5x6 to 10x10x8. Assume the source event is mandatory rather than a voluntary preflight.",
+      "actionsAndResolution": [
+        "Resolve the source event completely; Banishment may not veto, delay or rewind it.",
+        "After resolution, BAN-CELL-03 expands boundaries if the current 10x10x8 body needs more clearance.",
+        "At closure return the current body to origin plane and apply canonical placement; if no normal/squeeze/nearest-adjacent candidate exists, record placementConflict on origin plane and destroy the cell."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "resultingBody": "10x10x8"
+      },
+      "currentAdjudication": "Mandatory source state wins over Banishment geometry. This remains conditional because no exact supplied source is asserted to have this composite event.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory ending cannot be vetoed"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/cell/mandatoryGeometry",
+          "role": "cell expansion after mandatory event"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/placementConflictState",
+          "role": "origin-plane conflict"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C27",
+      "historicalSourceScenario": {
+        "id": "BAN-C27",
+        "initialState": "T dies in the cell with genuine worn gear; separately a finite Null Disabled summon expires there.",
+        "requiredResolution": "Return actual surviving corpse/objects under their source identities; no resurrection, Hunt reset, recreated summon body, free loot or repeated corpse use.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "Primary dies leaving genuine corpse/gear. A finite summon secondary independently expires before closure.",
+      "actionsAndResolution": [
+        "Preserve corpse identity/package reservation.",
+        "Release ended summon berth when its body ends if no cargo remains assigned.",
+        "At closure place corpse/gear only."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No resurrection, summon recreation or loot duplication.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+          "pointer": "section: death and finite summon lifecycle",
+          "role": "body lifecycle"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "current closure/lifecycle"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory lifecycle/placement coexistence"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C28",
+      "historicalSourceScenario": {
+        "id": "BAN-C28",
+        "initialState": "Before the endpoint, T lawfully escapes elsewhere with some original gear and leaves other objects in the cell.",
+        "requiredResolution": "Do not drag escaped T back. Settle every remaining real object once and close the cell by a finite rule, preserving consumed/moved object history; no duplicated cargo or new permanent plane.",
+        "runtimeTest": false,
+        "adopted": false
+      },
+      "currentInitialState": "Primary legally escapes at t40 through an actual independent route, taking some gear but leaving loose sword S2 at cell-local offset (+5,0). No secondary body remains.",
+      "actionsAndResolution": [
+        "Escape resolves and immediately ends primary Banishment branch.",
+        "BAN-CLOSE-03 projects S2 to its origin-plane item anchor and applies ordinary legal item placement/pending rules.",
+        "Cell is destroyed in the same ending sequence."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "escapeSecond": 40,
+        "banishmentEndsSecond": 40
+      },
+      "geometryLedger": {
+        "swordOffset": "+5 ft east"
+      },
+      "currentAdjudication": "Primary stays at escape destination; S2 returns once or is recorded as pending item if no legal drop exists.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/escape/primaryEscape",
+          "role": "escape lifecycle"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/objects",
+          "role": "item settlement"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: equipment return",
+          "role": "item placement/pending"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C29",
+      "historicalSourceScenario": null,
+      "currentInitialState": "Primary origin anchor is physically clear. At t20 Wizard 7 with Dimensional Anchor prepared, RP20, legally perceives that point and has no incompatible concentration.",
+      "actionsAndResolution": [
+        "Wizard spends Action/V-S-F/7 RP to establish accepted 60-ft Dimensional Anchor centered on the origin anchor.",
+        "At t60 Banishment ends; Anchor would block the planar endpoint.",
+        "BAN-CLOSE-03 ignores only that terminal transport-prevention predicate, returns the same body to the origin plane, then canonical same-anchor placement succeeds."
+      ],
+      "costLedger": {
+        "anchorCasterRpStart": 20,
+        "anchorRpSpent": 7,
+        "anchorCasterRpEnd": 13
+      },
+      "clockLedger": {
+        "anchorEstablishedSecond": 20,
+        "banishmentClosureSecond": 60
+      },
+      "geometryLedger": {
+        "originAnchorPhysicalState": "clear",
+        "anchorRadiusFt": 60
+      },
+      "currentAdjudication": "Anchor remains active for every other applicable teleport/planar event. No voluntary bypass or refund.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/2/procedure",
+          "role": "accepted Dimensional Anchor"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/endpointBlockerException",
+          "role": "blocker-only closure exception"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "physical placement"
+        }
+      ]
+    },
+    {
+      "id": "BAN-C30",
+      "historicalSourceScenario": null,
+      "currentInitialState": "Banished Wizard 7, RP20, has Summon Spectral Steed and Summon Water Pet prepared; Banishment maintained by another caster. Wizard is Medium in initial x/y[-7.5,+7.5], z[0,15] cell, occupying x/y[-2.5,+2.5].",
+      "actionsAndResolution": [
+        "t6: Wizard uses 5 ft ordinary movement west, ending at footprint x[-7.5,-2.5], y[-2.5,2.5]; this is inside the current cell and costs 5 ft movement.",
+        "t12: the now-visible supported Large 10x10 footprint x[-2.5,7.5], y[-5,5] is entirely inside the cell. Wizard spends Action/V-S-F/5 RP and starts Spectral Steed concentration, creating the Large steed there.",
+        "t24: Wizard commits Action/V-S-F/7 RP to Water Pet targeting a currently visible fitting Medium square after ordinary positioning. Starting Water Pet concentration ends Steed concentration, so the Steed body ends before the Pet establishes.",
+        "t60: Water Pet still exists. Closure returns primary then Pet; the ended Steed is not recreated."
+      ],
+      "costLedger": {
+        "wizardRpStart": 20,
+        "spectralSteedRpSpent": 5,
+        "waterPetRpSpent": 7,
+        "wizardRpEnd": 8
+      },
+      "clockLedger": {
+        "moveSecond": 6,
+        "steedCreatedSecond": 12,
+        "steedEndsAndPetCreatedSecond": 24,
+        "closureSecond": 60
+      },
+      "geometryLedger": {
+        "initialCellBounds": "x/y[-7.5,+7.5], z[0,15]",
+        "wizardAfterMove": "x[-7.5,-2.5], y[-2.5,2.5]",
+        "steedTarget": "x[-2.5,7.5], y[-5,5]",
+        "steedTargetInsideCurrentCell": true
+      },
+      "currentAdjudication": "Both summons use actual source costs and legal pre-cast in-cell footprints. No expansion is used to authorize a target outside the boundary.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/143/operational",
+          "role": "Summon Spectral Steed"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/8/procedure",
+          "role": "Summon Water Pet"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "pointer": "section: cost commitment/concentration/counter ordering",
+          "role": "concentration replacement"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/cell/initialGeometry",
+          "role": "cell bounds"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/admission/internalCreation",
+          "role": "pre-cast fitting target requirement"
+        }
+      ]
+    },
+    {
+      "id": "BAN-X01",
+      "historicalSourceScenario": null,
+      "currentInitialState": "Physical-exhaustion closure proof. Primary is a current Medium 5x5 body. After exile, origin terrain collapses so the original anchor, every legal squeeze candidate, and every nearest legal adjacent position in the same unobstructed region are filled by solid stone at t30.",
+      "actionsAndResolution": [
+        "Collapse at t30 resolves normally; Banishment has no protected terrain silhouette.",
+        "At t60 Banishment ends and the same extant body is assigned to the snapshotted origin plane/anchor.",
+        "Canonical same-position placement fails; legal squeeze fails; no nearest legal adjacent same-region candidate exists.",
+        "Record placementConflict=true with occupiedFootprint=null, current body/HP/conditions/clocks intact on origin plane. Destroy Banishment cell immediately.",
+        "If the obstruction is later removed, rerun canonical placement from the same anchor using the then-current anatomy."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "collapseSecond": 30,
+        "closureSecond": 60
+      },
+      "geometryLedger": {
+        "originPhysicalCandidates": "none"
+      },
+      "currentAdjudication": "Physical exhaustion has a finite Banishment outcome: the spell ends and no body remains extraplanar. The unresolved state is the already-authorized physical placement conflict on the origin plane, not deletion, overlap or indefinite exile.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory placement/reversion authority"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "pointer": "section: movement/squeezing",
+          "role": "squeeze and movement geometry"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "BAN-CLOSE-03 / BAN-PLACEMENT-HANDOFF-03"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/placementConflictState",
+          "role": "exact conflict state"
+        }
+      ]
+    },
+    {
+      "id": "BAN-X02",
+      "historicalSourceScenario": null,
+      "currentInitialState": "Blocker-only proof. Primary origin anchor and adjacent physical geometry remain completely clear. At t20 accepted Dimensional Anchor covers the endpoint through t60.",
+      "actionsAndResolution": [
+        "At t60 terminal return would be blocked only by Anchor's transport predicate.",
+        "BAN-CLOSE-03 endpointBlockerException ignores only that prevention for mandatory closure.",
+        "Body is assigned to origin plane and canonical same-anchor placement succeeds immediately."
+      ],
+      "costLedger": {
+        "anchorRpSpent": 7
+      },
+      "clockLedger": {
+        "anchorSecond": 20,
+        "closureSecond": 60
+      },
+      "geometryLedger": {
+        "physicalFit": true
+      },
+      "currentAdjudication": "This is distinct from physical exhaustion: there is a valid physical footprint, so no placement conflict is recorded.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/2/procedure",
+          "role": "Dimensional Anchor"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/endpointBlockerException",
+          "role": "narrow terminal exception"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "same-anchor placement"
+        }
+      ]
+    },
+    {
+      "id": "BAN-X03",
+      "historicalSourceScenario": null,
+      "currentInitialState": "Exact Paladin matrix. For each card independently, run (a) ACCEPT+elect failure, (b) ACCEPT+roll and fail, (c) RESIST+roll and fail.",
+      "actionsAndResolution": [
+        "No Escape /cards/41: (a) blocked; (b) blocked; (c) not blocked by this card because only (a)/(b) are voluntary extradimensional admission.",
+        "Verdict Absolute /cards/43: none blocked; its exact text forbids voluntary teleportation/invisibility, and BAN-TRANSPORT-CLASS-02 says Banishment is not teleportation.",
+        "Reign of Ashes /cards/130: none blocked; it denies benefit from Dash/teleportation, and Banishment is not teleportation."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "branches": 9
+      },
+      "currentAdjudication": "Voluntariness comes from admissionIntent, not from whether the save die was rolled.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/41",
+          "role": "No Escape"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/43",
+          "role": "Verdict Absolute"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/130",
+          "role": "Reign of Ashes"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/transportClassification",
+          "role": "Banishment-only classification"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/castAndSave/admissionIntent",
+          "role": "ACCEPT/RESIST"
+        }
+      ]
+    },
+    {
+      "id": "BAN-X04",
+      "historicalSourceScenario": null,
+      "currentInitialState": "Real secondary-body escape proof. Banishment is maintained by another caster. Banished Mage 7, PB+3, M+4, RP20, current Focus Fire, has selected Conjure Elemental Familiar, has ordinary Faction Portal access, canonical faction F reputation +1 and personally known HQ receiving point H. Initial Medium cell is x/y[-7.5,+7.5], z[0,15]. Loose sword S1 is at local (0,+5).",
+      "actionsAndResolution": [
+        "t6: Mage spends Action and 4 RP on Conjure Elemental Familiar, selecting the currently visible unoccupied 5-ft combat space x[2.5,7.5], y[-2.5,2.5]. The source says one unoccupied space; this fixture uses that one 5-ft space without inferring a creature Size category. Familiar AC15, HP16, Speed30; Fire familiar has fire resistance; duration10 minutes, 1/long rest, no printed concentration.",
+        "t12: Mage spends Action/V-S-F and 5 RP to cast Faction Portal at the currently open supported local entrance x[-7.5,-2.5], y[-2.5,2.5], destination H. Portal concentration begins; Familiar remains because its card has no printed concentration.",
+        "t18: Mage spends 5 ft movement entering the Portal; crossing succeeds to H. Primary escape immediately ends Banishment.",
+        "BAN-CLOSE-03 returns the still-extant Familiar first as the sole secondary body, then loose S1 under item placement; cell is destroyed. The Mage is not pulled back."
+      ],
+      "costLedger": {
+        "mageRpStart": 20,
+        "familiarRpSpent": 4,
+        "portalRpSpent": 5,
+        "mageRpEnd": 11
+      },
+      "clockLedger": {
+        "familiarCreatedSecond": 6,
+        "portalCastSecond": 12,
+        "escapeAndClosureSecond": 18,
+        "familiarNaturalExpirySecond": 606
+      },
+      "geometryLedger": {
+        "cellBounds": "x/y[-7.5,+7.5], z[0,15]",
+        "familiarTargetSpace": "x[2.5,7.5], y[-2.5,2.5]",
+        "portalEntrance": "x[-7.5,-2.5], y[-2.5,2.5], 5ft x 8ft",
+        "looseSword": "local (0,+5)"
+      },
+      "currentAdjudication": "This is a demonstrated current legal secondary-body branch using a nonconcentration companion source; no incompatible Water Pet/Portal concentration is assumed.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+          "pointer": "/cards/21",
+          "role": "Conjure Elemental Familiar"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+          "pointer": "/engine/9",
+          "role": "shared Companion Command"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+          "pointer": "/engine/10",
+          "role": "common familiar profile"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/145/operational",
+          "role": "Faction Portal"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/escape/primaryEscape",
+          "role": "escape ends application"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure",
+          "role": "secondary/body/object closure"
+        }
+      ]
+    },
+    {
+      "id": "BAN-X05",
+      "historicalSourceScenario": null,
+      "currentInitialState": "Mandatory-reversion counterexample. Root creature is Medium but is legally Tiny under current Polymorph when Banishment establishes at t0. Tiny origin footprint is one 2.5-ft subcell inside a narrow stone alcove whose opening/adjacent region cannot fit Medium anatomy. Polymorph is maintained by a different caster and has an absolute expiry at t20. Banishment cell begins 15x15 horizontally after Tiny+clearance rounding.",
+      "actionsAndResolution": [
+        "At t20 Polymorph expires. The mandatory ending occurs even though the original origin alcove could not fit Medium anatomy; Banishment may not veto or delay it.",
+        "Inside the Banishment cell the root Medium 5x5 body is now current. It fits the existing 15x15 cell; if a mandatory result ever exceeded current bounds, BAN-CELL-03 would expand after the event.",
+        "At t60 Banishment ends and assigns the current Medium identity to the origin plane at the fixed Tiny-era anchor.",
+        "Canonical normal-space placement fails; legal squeeze fails; no nearest legal adjacent placement in the same unobstructed region fits. Record origin-plane placementConflict=true and destroy the cell.",
+        "All HP, conditions and clocks continue. Removing/opening the obstruction later permits canonical placement from the same anchor; Banishment does not resume."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "banishmentEstablishedSecond": 0,
+        "polymorphMandatoryExpirySecond": 20,
+        "banishmentClosureSecond": 60
+      },
+      "geometryLedger": {
+        "originExpressedAtCast": "Tiny 2.5x2.5",
+        "rootAfterExpiry": "Medium 5x5",
+        "initialCellHorizontal": "15x15",
+        "originMediumCandidates": "none"
+      },
+      "currentAdjudication": "The accepted mandatory body rule is preserved exactly in substance: Polymorph ends on its own deadline regardless of origin fit. The later Banishment ending creates no terrain ward and no extraplanar hold; unresolved fit is the canonical origin-plane placement conflict.",
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/735/operational",
+          "role": "Polymorph mandatory expiry/reversion"
+        },
+        {
+          "authority": "current frozen source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Placement and involuntary endings",
+          "role": "mandatory ending and placement conflict"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/cell/mandatoryGeometry",
+          "role": "in-cell mandatory geometry preservation"
+        },
+        {
+          "authority": "NEW scoped Banishment authorship",
+          "path": "SPELL_MODEL.json",
+          "pointer": "/procedure/closure/placementConflictState",
+          "role": "origin-plane conflict after closure"
+        }
+      ]
+    }
+  ]
+}

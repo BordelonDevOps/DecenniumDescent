@@ -1,0 +1,1720 @@
+{
+  "id": "BANISHMENT-CLASS-INTERFACES-02",
+  "recordedAtUtc": "2026-10-16T07:22:41.706087+00:00",
+  "status": "Unsubmitted independent comparison addendum; unresolved scenarios are requirements for complete authorship, not operative rules",
+  "priorDraft": {
+    "path": "docs/audit/2026-10-08/full-game/banishment-local-draft-01/PROPOSAL.json",
+    "bytes": 36979,
+    "sha256": "2c08cddf1e1a9db31dbf1b91b075727e8c968f2aa59dae873d92f190b4b5b10b"
+  },
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "bytes": 110219,
+      "sha256": "b514ef61a468d5d9b19031811f98860f1a61324b4626df601d2748dcb46ce6a6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "bytes": 81863,
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+      "bytes": 64641,
+      "sha256": "bfcd0ff392035e48bdef27da630b911b96ce85ba036de5de622cdc2427a47a33"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/dragoon.json",
+      "bytes": 62883,
+      "sha256": "b55a59ae743bc1b8ed0d5832eb40453f438bc9c9f4a69aef87f3e19048e0fb0e"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "bytes": 88119,
+      "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "bytes": 80394,
+      "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+      "bytes": 61768,
+      "sha256": "9179729dd39e0a81f4f6d78b9fbb0c7fb296fb5d418aaa238d7ff6aa02b2bd3a"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "bytes": 82831,
+      "sha256": "18a8bac9168cb4c87c641b4f2e792d31ed5ae2ae56240b3fbeced9f6ada74fc9"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "bytes": 526843,
+      "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+      "bytes": 267843,
+      "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+      "bytes": 67283,
+      "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+      "bytes": 59934,
+      "sha256": "c88fcad8c14734cc852a95aee7b3686fd64ea2a8cfb9d014f4297b7efec94a62"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "bytes": 56702,
+      "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+      "bytes": 59012,
+      "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+      "bytes": 59506,
+      "sha256": "f087cc9250f1864e60209fb13bff86800d45b7238dc09e8eac2dbf2272b09c1d"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "bytes": 156208,
+      "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+    }
+  ],
+  "classEnvelopesScanned": 17,
+  "navigationMethod": "banish|exile|cross[- ]plan|interplan|another plane|other plane|planar|teleport|extradimensional",
+  "nonExhaustiveWarning": "Lexical navigation is not proof of all semantic class coverage. All17 full envelopes should accompany the actual conference; only explicitly marked cards were independently read here.",
+  "exactComparisonCards": [
+    {
+      "class": "Cleric",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+        "bytes": 81863,
+        "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89"
+      },
+      "pointer": "/cards/25",
+      "id": "cleric.arch.banish-unholy",
+      "completeCard": {
+        "id": "cleric.arch.banish-unholy",
+        "name": "Banish Unholy",
+        "className": "Cleric",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 5,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "4 RP",
+        "rangeAndTarget": "Up to three Undead or Fiends within 30 feet",
+        "duration": "Instantaneous; banishment rider lasts until end of target's next turn",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Banish Unholy. Tags: divine, control. Each target makes a Wisdom save. Failure deals (S+1)d8 radiant damage and pushes it up to 15 feet directly away from you; success takes half damage and no push. A target failing by 10 or more is also banished until the end of its next turn, then returns to the nearest legal space.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2003,
+          "originalText": "Banish Unholy: Channel divine energy to damage and potentially banish undead, demons, or other unholy entities."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Distinct class technique. WIS, radiant damage/push and next-turn rider are not the ordinary spell CHA/60-second proposal. Its nearest-legal return is comparison evidence, not a complete finite-cell termination rule.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Druid",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+        "bytes": 88119,
+        "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+      },
+      "pointer": "/cards/15",
+      "id": "druid.arch.shadow-lynx",
+      "completeCard": {
+        "id": "druid.arch.shadow-lynx",
+        "name": "Shadow Lynx",
+        "className": "Druid",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "form",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic",
+        "activation": "Reaction Blink; Action claw",
+        "cost": "One shift; Blink 1 Form Surge",
+        "rangeAndTarget": "Self; claw 5 ft",
+        "duration": "Blink instant; form 10 minutes",
+        "frequency": "Blink 1/shift and finite reserve",
+        "effect": "Arch attunement required. Claw 2d4+WIS magical slashing; +2 Stealth while motionless. When attack would hit, Reaction teleport 30 ft to visible empty space, causing triggering attack to miss if you leave its reach/range. Next claw before end next turn advantage. No blanket immunity to magical damage.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2648,
+          "originalText": "Shadow Lynx\nBlink: As a reaction when you would be hit by an attack, you can teleport up to 30 ft. to an unoccupied space you can see\nMagical Attacks: Your attacks count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks\nDruid Circles\nCircle of the Land"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Druid",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+        "bytes": 88119,
+        "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+      },
+      "pointer": "/cards/33",
+      "id": "druid.hero.storm.thunderhorn-stag",
+      "completeCard": {
+        "id": "druid.hero.storm.thunderhorn-stag",
+        "name": "Thunderhorn Stag",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Storm",
+        "sourceKind": "form",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Action antlers or Thunder Step",
+        "cost": "One shift; Step 1 Form Surge",
+        "rangeAndTarget": "Storm Hero; antlers 5 ft; teleport 30 ft",
+        "duration": "While in Thunderhorn Stag",
+        "frequency": "Step 1/shift and finite reserve",
+        "effect": "Antlers 1d8+WIS piercing; after 20 ft approach first hit/turn also 2d8 thunder and CON save or Deafened through end next turn. Step Action teleport 30 ft, departure 10 ft radius up to 3 creatures CON save 2d8 thunder, half success. Sense natural storm approach 24 hours, no exact prediction of magical weather.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2724,
+          "originalText": "Thunderhorn Stag\nCharge: If you move at least 20 ft. straight toward a target and hit with a horn attack, the target takes 2d8 thunder damage and must succeed on a Constitution saving throw or be deafened until the end of its next turn\nThunder Step: Once per transformation, you can teleport up to 30 ft. in a crack of thunder. Each creature within 10 ft. of the space you left must make a Constitution saving throw or take 2d8 thunder damage and be deafened until the end of its next turn.\nWeather Sense: You can sense approaching storms up to 24 hours in advance"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Mage",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+        "bytes": 80394,
+        "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b"
+      },
+      "pointer": "/cards/8",
+      "id": "mage.base.blink",
+      "completeCard": {
+        "id": "mage.base.blink",
+        "name": "Blink",
+        "className": "Mage",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Self",
+        "duration": "Instantaneous",
+        "frequency": "Recharge 2 rounds",
+        "effect": "Blink. Tags: mage-spell, teleportation. Teleport to an unoccupied space you can perceive within 30 feet. This movement does not provoke opportunity attacks and cannot pass through planar wards that prohibit teleportation. Blink deals no damage and is non-elemental, so using it clears an active Elemental Nuke Chain.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2900,
+          "originalText": "Blink: Teleport a short distance to avoid danger or reposition."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 1
+      },
+      "independentDisposition": "Perceived legal space within30 feet and actual planar wards apply. A local teleport supplies no unprinted external view or cross-plane exit.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Mage",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+        "bytes": 80394,
+        "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b"
+      },
+      "pointer": "/cards/22",
+      "id": "mage.arch.displacement",
+      "completeCard": {
+        "id": "mage.arch.displacement",
+        "name": "Displacement",
+        "className": "Mage",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 7,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "Self",
+        "duration": "Until start of your next regular turn",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Displacement. Tags: mage-spell, arcanist, illusion, teleportation. Teleport up to 20 feet to an unoccupied space you perceive and create two illusory duplicates. Until the start of your next regular turn, the next two attack rolls made against you have disadvantage; each attack roll consumes one duplicate whether it hits or misses. Area effects ignore the duplicates. This non-elemental spell clears an active Nuke Chain.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2923,
+          "originalText": "Displacement: Create illusory duplicates of yourself while teleporting to safety."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 4
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Mage",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+        "bytes": 80394,
+        "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b"
+      },
+      "pointer": "/cards/49",
+      "id": "mage.hero.lich.corpse-gateway",
+      "completeCard": {
+        "id": "mage.hero.lich.corpse-gateway",
+        "name": "Corpse Gateway",
+        "className": "Mage",
+        "band": "Hero",
+        "path": "Lich",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One visible corpse within 60 feet and one unoccupied space within 5 feet of it",
+        "duration": "Instantaneous",
+        "frequency": "Recharge 2 rounds",
+        "effect": "Corpse Gateway. Tags: mage-spell, lich, teleportation, corpse. Teleport to the chosen unoccupied space adjacent to a visible corpse. The corpse is not consumed or altered. Summoned-companion remains, repeated fragments of the same destroyed creature and illusory corpses are not legal anchors. This non-elemental spell clears an active Nuke Chain.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2988,
+          "originalText": "Corpse Gateway: Teleport to a corpse within line of sight."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 7
+      },
+      "independentDisposition": "Requires an actual visible eligible corpse and adjacent destination. It grants no remote view, arbitrary cross-plane knowledge or invented corpse inside the cell. Source corpse identity and eligibility remain real.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Monk",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+        "bytes": 82831,
+        "sha256": "18a8bac9168cb4c87c641b4f2e792d31ed5ae2ae56240b3fbeced9f6ada74fc9"
+      },
+      "pointer": "/cards/50",
+      "id": "monk.hero.way-of-shadow.deathless-silence",
+      "completeCard": {
+        "id": "monk.hero.way-of-shadow.deathless-silence",
+        "name": "Deathless Silence",
+        "className": "Monk",
+        "band": "Hero",
+        "path": "Way of Shadow",
+        "sourceKind": "passive",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic",
+        "activation": "Action",
+        "cost": "5 Ki + 5 RP",
+        "rangeAndTarget": "Up to three enemies you can perceive within 60 feet",
+        "duration": "Until start of your next regular turn; max-HP reduction until rest",
+        "frequency": "1/long rest; automatic Hero Final",
+        "effect": "Final — Deathless Silence. Tags: hero, shadow, final, teleportation, max-hp, weave. Until the start of your next regular turn you cannot be targeted by opportunity attacks or Reactions. Teleport adjacent to up to three different chosen enemies in sequence and make one unarmed strike against each. On each hit, the target makes a Constitution save. Failure reduces its maximum HP by 4 S+M under the common non-stacking rule and suppresses one non-core defensive passive it possesses until the end of its next turn; the Director identifies an applicable visible passive before the save. This does not disable core class engines, legendary rules or creature type traits.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3313,
+          "originalText": "Final – Deathless Silence: Untargetable 1 turn → teleport to 3 enemies and apply Void Palm (max HP -25%, passive disable)."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Monk",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+        "bytes": 82831,
+        "sha256": "18a8bac9168cb4c87c641b4f2e792d31ed5ae2ae56240b3fbeced9f6ada74fc9"
+      },
+      "pointer": "/cards/51",
+      "id": "monk.hero.way-of-shadow.shadow-step",
+      "completeCard": {
+        "id": "monk.hero.way-of-shadow.shadow-step",
+        "name": "Shadow Step",
+        "className": "Monk",
+        "band": "Hero",
+        "path": "Way of Shadow",
+        "sourceKind": "active",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 Ki + 1 RP",
+        "rangeAndTarget": "Self",
+        "duration": "Until start of your next regular turn",
+        "frequency": "Recharge 2 rounds",
+        "effect": "Shadow Step. Tags: hero, shadow, teleportation, weave. Teleport up to 30 feet to an unoccupied space you perceive. You become Invisible until you make an attack, deal damage, force a saving throw, start another technique or the duration ends. This movement provokes no opportunity attacks. As a minor Weave technique, the common extra-Ki payment may prevent its 1 Dissonance.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3316,
+          "originalText": "Shadow Step: Briefly step into the shadow realm, becoming untargetable and reappearing at a different location."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Oracle",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/5",
+      "id": "oracle.supplement.shared.divine-sense",
+      "completeCard": {
+        "id": "oracle.supplement.shared.divine-sense",
+        "name": "Divine Sense",
+        "className": "Oracle",
+        "band": "Base",
+        "path": "Shared",
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "supplement",
+        "activation": "Action",
+        "cost": "0 RC",
+        "rangeAndTarget": "Self; 60-foot sense",
+        "duration": "1 minute",
+        "frequency": "1/short rest",
+        "effect": "For 1 minute sense the presence, approximate direction and broad nature of divine, undead and extraplanar creatures or active presences within 60 feet that are not behind an effect specifically blocking divination. You learn only broad categories such as celestial/divine, undead, fiendish, fey, elemental or other extraplanar, not identity, alignment, statistics or intentions.",
+        "prerequisite": "Oracle 1",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_BASE_SKILLS[3]; book line 3418",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_BASE_SKILLS[3]",
+              "value": "Divine Sense — detect divine, undead, or extraplanar entities"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Oracle",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/53",
+      "id": "oracle.supplement.haunted.haunted-boon-v",
+      "completeCard": {
+        "id": "oracle.supplement.haunted.haunted-boon-v",
+        "name": "Haunted — Boon V",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Haunted",
+        "sourceKind": "curseBoon",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for selected Curse",
+        "activation": "Action to summon",
+        "cost": "0",
+        "rangeAndTarget": "One spirit scout; one-mile same-plane route limit",
+        "duration": "10 minutes",
+        "frequency": "1/long rest",
+        "effect": "1/long rest summon one spirit scout for 10 minutes. It can travel along a route you have personally traveled on the same plane, up to 1 mile from you, observe with ordinary sight/hearing, speak with willing dead spirits it encounters and deliver one short prophetic message. On return it truthfully reports what it directly observed and may identify one unexpected creature or person's name it actually encountered. It cannot pass sealed planar barriers, read minds or reveal unknowable facts.",
+        "prerequisite": "Oracle 20; selected Curse:Haunted",
+        "source": {
+          "line": null,
+          "reference": "CURSES.ORACLE_CURSES[3]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "CURSES.ORACLE_CURSES[3]",
+              "value": {
+                "id": "haunted",
+                "name": "Haunted",
+                "blurb": "Restless dead attend your steps, offering aid at a social cost",
+                "limitations": [
+                  "Restless spirits draw attention: you suffer −2 to Stealth in haunted places or crowded civilized areas",
+                  "Spirits sometimes speak through you at inopportune moments; social checks may require a Wisdom save",
+                  "You sometimes address people who are not yet present, unsettling those who witness it"
+                ],
+                "boons": [
+                  {
+                    "level": 3,
+                    "name": "Curse Boon I",
+                    "description": "Spectral attendants grant +1 AC against the first attack each round. Once per day, a spirit whispers a warning — you cannot be surprised."
+                  },
+                  {
+                    "level": 5,
+                    "name": "Curse Boon II",
+                    "description": "Once per combat, a bound spirit intercepts a single-target attack against you, absorbing up to 5 + level damage before dissipating. The spirit wails as it fades — the attacker must save or suffer −2 to their next attack as dread clings to them."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Curse Boon III",
+                    "description": "Spirits murmur of danger — you and allies within 3 tiles cannot be surprised while you are conscious. Echoes of the dead grant +2 to Insight checks nearby."
+                  },
+                  {
+                    "level": 15,
+                    "name": "Curse Boon IV",
+                    "description": "Summon a wailing chorus: enemies within 3 tiles suffer Dread (−10% hit chance and saves) for 2 turns. Once per long rest."
+                  },
+                  {
+                    "level": 20,
+                    "name": "Curse Boon V",
+                    "description": "Once per day, bind a hostile or friendly spirit to scout, speak with the dead at a distance, or deliver a prophetic message along a path you have walked. The spirit persists for 10 minutes or until it completes one task; when it returns, it whispers what it saw and one name you did not send it to find."
+                  }
+                ],
+                "draft": true,
+                "source": "Draft — Aethel lore, pending author review"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Oracle",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/88",
+      "id": "oracle.supplement.fate-bound.fate-bound-boon-iv",
+      "completeCard": {
+        "id": "oracle.supplement.fate-bound.fate-bound-boon-iv",
+        "name": "Fate-Bound — Boon IV",
+        "className": "Oracle",
+        "band": "Hero",
+        "path": "Fate-Bound",
+        "sourceKind": "curseBoon",
+        "minimumClassLevel": 15,
+        "acquisition": "automatic for selected Curse",
+        "activation": "Passive; triggered death-save reroll",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent save bonus; immediate reroll",
+        "frequency": "Reroll 1/long rest",
+        "effect": "+2 on saves against death effects, banishment, forced temporal/fate displacement and effects explicitly severing a destiny bond. 1/long rest reroll one failed death save.",
+        "prerequisite": "Oracle 15; selected Curse:Fate-Bound",
+        "source": {
+          "line": null,
+          "reference": "CURSES.ORACLE_CURSES[9]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "CURSES.ORACLE_CURSES[9]",
+              "value": {
+                "id": "fate-bound",
+                "name": "Fate-Bound",
+                "blurb": "Foreknowledge marks your path, but each omen narrows the road ahead",
+                "limitations": [
+                  "You cannot voluntarily break a sworn oath or prophecy without losing 1 Revelation Charge and suffering psychic backlash",
+                  "Major life choices may feel predetermined once you have seen the threads that lead to them",
+                  "Trying to flee a foreseen disaster without confronting it imposes −2 to saves until you face the omen"
+                ],
+                "boons": [
+                  {
+                    "level": 3,
+                    "name": "Curse Boon I",
+                    "description": "Once per day, glimpse one likely outcome before a party decision — the ally acting gains +2 to the related check or save. You must speak the omen aloud; allies who heard it retain the bonus even if the party chooses a different path."
+                  },
+                  {
+                    "level": 5,
+                    "name": "Curse Boon II",
+                    "description": "Fated dodge: once per combat, force an attack against you to reroll as fate rewinds the strike. You must declare after the roll but before damage."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Curse Boon III",
+                    "description": "When an ally within 5 tiles would critically fail a save, you may accept the failure on yourself instead (once per long rest). The thread binds to you."
+                  },
+                  {
+                    "level": 15,
+                    "name": "Curse Boon IV",
+                    "description": "Thread of destiny: +2 to saves vs death, fate-altering magic, and effects that would remove you from a prophesied path. Once per long rest, reroll a failed death save as the Concord refuses to cut your thread early."
+                  },
+                  {
+                    "level": 20,
+                    "name": "Curse Boon V",
+                    "description": "Once per day, declare a prophetic outcome — one ally within 6 tiles auto-succeeds their next save or attack as the Concord enforces the written thread. You must describe the outcome aloud before the roll; if the prophecy fails to come true by end of combat, you lose 1 Revelation Charge as the thread frays."
+                  }
+                ],
+                "draft": true,
+                "source": "Draft — Aethel lore, pending author review"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Actual acquired Fate-Bound Oracle15 grants +2 versus banishment. The 1/LR death-save reroll does not become a banishment reroll.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Oracle",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/149",
+      "id": "oracle.supplement.dream.unreality",
+      "completeCard": {
+        "id": "oracle.supplement.dream.unreality",
+        "name": "Unreality",
+        "className": "Oracle",
+        "band": "Arch",
+        "path": "Dream",
+        "sourceKind": "tier-ii-revelation",
+        "minimumClassLevel": 6,
+        "acquisition": "choose first at Oracle 6; a distinct second at Oracle 13",
+        "activation": "Passive and Reaction",
+        "cost": "0 RC",
+        "rangeAndTarget": "Self; attacker within normal attack range",
+        "duration": "Passive permanent; Reaction instantaneous",
+        "frequency": "Passive avoidance once per round; vanish 1/short rest",
+        "effect": "Once per round when an enemy attack roll would hit you, roll d4; on 4 the attack instead hits an illusory echo and misses. Separately, once per short rest when an attack would deal damage to you, use your Reaction before damage to make that attack miss and teleport to an unoccupied space 1 tile away that you can perceive. The attacker then makes a Wisdom save; on failure it suffers Dread (-1 attack and save) until the end of its next turn.",
+        "prerequisite": "Oracle 6; Mystery: Dream; selected Tier II Revelation",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[4].tierII[2]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[4].tierII[2]",
+              "value": {
+                "name": "Unreality",
+                "kind": "passive",
+                "description": "Passive: when an enemy misses you with an attack, 25% chance they strike an illusory echo instead (once per round). Once per short rest, when you would take damage from an attack, you may instead vanish into unreality — the attack misses, you reappear 1 tile away, and the attacker must save or suffer Dread (−10% hit/saves) for 1 turn."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "An attack-triggered miss/teleport cannot trigger from Banishment own CHA save; a separately eligible incoming attack retains its actual trigger. No arbitrary dodge against all spell casts.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Oracle",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/185",
+      "id": "oracle.supplement.shadow.shadow-step",
+      "completeCard": {
+        "id": "oracle.supplement.shadow.shadow-step",
+        "name": "Shadow Step",
+        "className": "Oracle",
+        "band": "Arch",
+        "path": "Shadow",
+        "sourceKind": "tier-i-revelation",
+        "minimumClassLevel": 3,
+        "acquisition": "choose one at Oracle 3",
+        "activation": "Bonus Action",
+        "cost": "1 RC",
+        "rangeAndTarget": "Self; unoccupied space in dim light or darkness within 3 tiles",
+        "duration": "Teleport instantaneous; empowerment until end of current turn",
+        "frequency": "At will while RC remains",
+        "effect": "Teleport to the chosen legal space without provoking opportunity attacks. Until the end of the turn, if you make a damaging attack while the target cannot see you or while you are concealed, add S d6 psychic damage to that attack once. Shadow Step itself does not make you Invisible.",
+        "prerequisite": "Oracle 3; Mystery: Shadow; selected Tier I Revelation",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_MYSTERIES[7].tierI[2]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_MYSTERIES[7].tierI[2]",
+              "value": {
+                "name": "Shadow Step",
+                "charges": 1,
+                "kind": "active",
+                "description": "Spend 1 charge: teleport up to 3 tiles to a space in dim light or darkness you can see; you leave no sound and gain +25% damage on your next attack from concealment before end of turn."
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Paladin",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/39",
+      "id": "paladin.supplement.oath-of-vengeance.relentless-pursuit",
+      "completeCard": {
+        "id": "paladin.supplement.oath-of-vengeance.relentless-pursuit",
+        "name": "Relentless Pursuit",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of Vengeance",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 5,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Bonus Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "Self; one creature currently marked by you",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "At will while RP remains",
+        "effect": "For up to 3 rounds, movement you take that directly reduces distance to the marked target ignores nonmagical difficult terrain and does not cost extra movement for climbing minor obstacles no higher than 5 feet. This does not grant teleportation, flight or movement through creatures or solid objects.",
+        "prerequisite": "Paladin 5; Oath of Vengeance",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[1].revelationSpells[1]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[1].revelationSpells[1]",
+              "value": {
+                "level": 5,
+                "spell": "Relentless Pursuit — ignore difficult terrain vs marked target"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 2,
+        "oathId": "vengeance",
+        "oathName": "Oath of Vengeance",
+        "oathbreakerName": "Malice",
+        "displayPath": "Oath of Vengeance"
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Paladin",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/41",
+      "id": "paladin.supplement.oath-of-vengeance.no-escape",
+      "completeCard": {
+        "id": "paladin.supplement.oath-of-vengeance.no-escape",
+        "name": "No Escape",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of Vengeance",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 13,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "7 RP",
+        "rangeAndTarget": "Up to 3 creatures marked by you within 60 feet",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "At will while RP remains",
+        "effect": "While affected, a marked creature cannot voluntarily teleport, become invisible or enter extradimensional travel. If it willingly moves out of your Oath aura, opportunity attacks against it have advantage until the end of its next turn. This spell does not prevent ordinary movement, forced movement or planar effects explicitly stronger than the ward.",
+        "prerequisite": "Paladin 13; Oath of Vengeance",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[1].revelationSpells[3]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[1].revelationSpells[3]",
+              "value": {
+                "level": 13,
+                "spell": "No Escape — marked foes within 60 ft cannot teleport, become invisible, or use extradimensional travel; if they leave your aura, opportunity attacks against them have advantage until end of next turn"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 4,
+        "oathId": "vengeance",
+        "oathName": "Oath of Vengeance",
+        "oathbreakerName": "Malice",
+        "displayPath": "Oath of Vengeance"
+      },
+      "independentDisposition": "Voluntary teleport/extradimensional prohibition must be distinguished from hostile forced exile and mandatory source-ending return. Willing election of save failure needs an explicit decision. Do not infer immunity from the feature name.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Paladin",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/43",
+      "id": "paladin.supplement.oath-of-vengeance.verdict-absolute",
+      "completeCard": {
+        "id": "paladin.supplement.oath-of-vengeance.verdict-absolute",
+        "name": "Verdict Absolute",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oath of Vengeance",
+        "sourceKind": "finalOathGift",
+        "minimumClassLevel": 20,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Bonus Action",
+        "cost": "0 RP",
+        "rangeAndTarget": "One Judgment Brand target; witnesses in your aura",
+        "duration": "3 rounds",
+        "frequency": "1/long rest",
+        "effect": "For 3 rounds, your current Judgment Brand cannot be removed by an ordinary save or concealment effect. Smites against the branded target use maximum Smite dice, and it cannot voluntarily teleport or become invisible. If the branded target reaches 0 HP during the effect, restore your Lay on Hands pool to its normal maximum once, then up to three hostile creatures in your aura that witnessed the defeat make Wisdom saves; on failure they are Frightened until the end of their next turn. The Lay on Hands refill requires a meaningful nonsummoned hostile defeated in a real encounter; staged or willing sacrifices do not qualify.",
+        "prerequisite": "Paladin 20; Oath of Vengeance",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[1].finalOathGift",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[1].finalOathGift",
+              "value": "Verdict Absolute — once per day, your Judgment Brand cannot be resisted: marked foes suffer max-dice smites, cannot teleport or become invisible, and if reduced to 0 HP you restore your full Lay on Hands pool; unmarked foes who witness the execution must save or become frightened until end of next turn."
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "vengeance",
+        "oathName": "Oath of Vengeance",
+        "oathbreakerName": "Malice",
+        "displayPath": "Oath of Vengeance"
+      },
+      "independentDisposition": "The actual brand clause prevents voluntary teleport/invisibility. It is not a general banishment immunity or an automatic counterspell.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Paladin",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/99",
+      "id": "paladin.supplement.oath-of-the-chain.chain-of-duty",
+      "completeCard": {
+        "id": "paladin.supplement.oath-of-the-chain.chain-of-duty",
+        "name": "Chain of Duty",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of the Chain",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 5,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "One willing ally within 30 feet",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "At will while RP remains",
+        "effect": "Mark the ally. If it is reduced to 0 HP while within 60 feet and on the same plane, you may use your Reaction to teleport to an unoccupied space adjacent to it. This teleport prevents no damage and does not heal either creature. The spell then ends.",
+        "prerequisite": "Paladin 5; Oath of the Chain",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[6].revelationSpells[1]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[6].revelationSpells[1]",
+              "value": {
+                "level": 5,
+                "spell": "Chain of Duty — mark ally; teleport to them when they fall"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 2,
+        "oathId": "chain",
+        "oathName": "Oath of the Chain",
+        "oathbreakerName": "Shackled Lord",
+        "displayPath": "Oath of the Chain"
+      },
+      "independentDisposition": "Its actual0-HP rescue requires same plane and60 feet. A target in a distinct cell does not qualify merely because its origin anchor is near the Paladin.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Paladin",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/123",
+      "id": "paladin.supplement.oath-of-chains-broken.liberty-s-step",
+      "completeCard": {
+        "id": "paladin.supplement.oath-of-chains-broken.liberty-s-step",
+        "name": "Liberty's Step",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of Chains Broken",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 5,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Bonus Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "Self; one ally you can see within 60 feet",
+        "duration": "Until end of current turn",
+        "frequency": "At will while RP remains",
+        "effect": "Until the end of the turn, movement you take that directly reduces distance to the chosen ally does not provoke opportunity attacks and ignores nonmagical difficult terrain. This spell grants no additional movement, teleportation or movement through occupied solid spaces.",
+        "prerequisite": "Paladin 5; Oath of Chains Broken",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[8].revelationSpells[1]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[8].revelationSpells[1]",
+              "value": {
+                "level": 5,
+                "spell": "Liberty's Step — ignore opportunity attacks when moving to ally"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 2,
+        "oathId": "chains-broken",
+        "oathName": "Oath of Chains Broken",
+        "oathbreakerName": "Unbound Flame",
+        "displayPath": "Oath of Chains Broken"
+      },
+      "independentDisposition": "Supplies movement permissions only; no teleport or passage through occupied solid boundaries.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Paladin",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/130",
+      "id": "paladin.supplement.oathbreaker-oath-of-chains-broken.reign-of-ashes",
+      "completeCard": {
+        "id": "paladin.supplement.oathbreaker-oath-of-chains-broken.reign-of-ashes",
+        "name": "Reign of Ashes",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oathbreaker — Oath of Chains Broken",
+        "sourceKind": "blasphemousWord",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic for corresponding Oathbreaker",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Up to 3 enemies in your Oath aura",
+        "duration": "Damage instantaneous; ash bonds until end of next turn",
+        "frequency": "1/short rest; replaces Signature Power use",
+        "effect": "Each target makes a Dexterity save, taking 2 S d6 fire damage on failure or half on success. A failing target becomes ash-bound until the end of its next turn: Speed is halved and it cannot benefit from Dash or teleportation. It retains its Action and Reaction unless another feature removes them.",
+        "prerequisite": "Paladin 11; Oathbreaker — Oath of Chains Broken",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[8].oathbreaker.blasphemousWord",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[8].oathbreaker.blasphemousWord",
+              "value": "Reign of Ashes — chaotic fire that traps foes"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "chains-broken",
+        "oathName": "Oath of Chains Broken",
+        "oathbreakerName": "Unbound Flame",
+        "displayPath": "Unbound Flame — Oath of Chains Broken Oathbreaker"
+      },
+      "independentDisposition": "Cannot benefit from teleportation requires explicit reconciliation with the new Banishment transport classification, willing rescue versus hostile exile, and required return. Preserve exact source wording; do not silently universalize No Escape voluntary scope.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Ranger",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/0",
+      "id": "ranger.base.weapon-bond",
+      "completeCard": {
+        "id": "ranger.base.weapon-bond",
+        "name": "Weapon Bond",
+        "className": "Ranger",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Ritual",
+        "cost": "0; 1 hour during rest",
+        "rangeAndTarget": "One bow or pair of blades touched",
+        "duration": "Until rebonded",
+        "frequency": "One bond",
+        "effect": "Bond weapons. Bonus Action summons one bonded weapon to your hand from within 30 ft if not held by another creature and no total cover. Cannot disarm someone or cross planar boundaries; bond no additional items.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3841,
+          "originalText": "Weapon Bond: Form a special connection with either a bow or a pair of blades, allowing you to summon them to your hand."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Ranger",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/8",
+      "id": "ranger.base.skirmisher-s-step",
+      "completeCard": {
+        "id": "ranger.base.skirmisher-s-step",
+        "name": "Skirmisher's Step",
+        "className": "Ranger",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Immediate movement",
+        "frequency": "Recharge 2",
+        "effect": "Move up to half Speed without provoking opportunity attacks. Supplied movement does not increase remaining normal movement. Requires an unblocked route; no teleport or escape from restraints.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3851,
+          "originalText": "Skirmisher's Step: Move half your speed without provoking opportunity attacks."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Ranger",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/16",
+      "id": "ranger.arch.pathfinder-s-mark",
+      "completeCard": {
+        "id": "ranger.arch.pathfinder-s-mark",
+        "name": "Pathfinder's Mark",
+        "className": "Ranger",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "1 RP",
+        "rangeAndTarget": "One fixed visible point within 30 ft",
+        "duration": "24 hours",
+        "frequency": "One location mark",
+        "effect": "Know direction and rough distance to the point within 10 miles on same plane. A new mark replaces old. It does not create teleportation, observe occupants or reveal a path through barriers.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3866,
+          "originalText": "Pathfinder's Mark: Place a magical mark on a location that you can sense the direction and distance to for 24 hours."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Ranger",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/23",
+      "id": "ranger.hero.warder.warden-s-vigilance",
+      "completeCard": {
+        "id": "ranger.hero.warder.warden-s-vigilance",
+        "name": "Warden's Vigilance",
+        "className": "Ranger",
+        "band": "Hero",
+        "path": "Warder",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Ritual",
+        "cost": "1 RP; 10 minutes",
+        "rangeAndTarget": "Natural area within 300 ft",
+        "duration": "Instant information",
+        "frequency": "1/short rest",
+        "effect": "Learn direction of one substantial recent fire, poisoning or unnatural blight in the area. Does not locate arbitrary enemies or identify culprits. A protected or planar-hidden effect may remain undetected.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3881,
+          "originalText": "Warden's Vigilance: Detect threats to natural areas within a large radius."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Ranger",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/27",
+      "id": "ranger.hero.warder.warden-s-step",
+      "completeCard": {
+        "id": "ranger.hero.warder.warden-s-step",
+        "name": "Warden's Step",
+        "className": "Ranger",
+        "band": "Hero",
+        "path": "Warder",
+        "sourceKind": "active",
+        "minimumClassLevel": 12,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "Empty space adjacent to injured ally within 30 ft",
+        "duration": "Instant; pressure until start next turn",
+        "frequency": "Recharge 3",
+        "effect": "Teleport to visible legal space. Up to 2 adjacent enemies make WIS save; failure gives disadvantage on next attack against someone other than you. No forced targeting, movement or whole-Action loss.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3887,
+          "originalText": "Warden's Step: Teleport to an injured ally and taunt nearby foes."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Ranger",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/32",
+      "id": "ranger.hero.stalker.keen-hunter",
+      "completeCard": {
+        "id": "ranger.hero.stalker.keen-hunter",
+        "name": "Keen Hunter",
+        "className": "Ranger",
+        "band": "Hero",
+        "path": "Stalker",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Your quarry within normal sight",
+        "duration": "While marked",
+        "frequency": "Continuous",
+        "effect": "If quarry attempts to Hide while visible to you, you know its position until it gains total cover or leaves your sight. Does not negate invisibility, darkness or planar travel without an appropriate sense.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3897,
+          "originalText": "Keen Hunter: Tracked targets cannot hide from you within your line of sight."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Ranger",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/38",
+      "id": "ranger.hero.stalker.vanishing-act",
+      "completeCard": {
+        "id": "ranger.hero.stalker.vanishing-act",
+        "name": "Vanishing Act",
+        "className": "Ranger",
+        "band": "Hero",
+        "path": "Stalker",
+        "sourceKind": "active",
+        "minimumClassLevel": 16,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "4 RP; 1 short-rest use",
+        "rangeAndTarget": "Self; visible destination within 30 ft",
+        "duration": "Until start next turn or attack/cast",
+        "frequency": "1/short rest",
+        "effect": "Teleport to unoccupied visible space and become invisible until the stated end. Cannot pass a ward that blocks teleportation, escape a dimensional prison or retain invisibility after attacking.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3905,
+          "originalText": "Vanishing Act: Disappear from sight and reposition to any point within 30 feet."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Soldier",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+        "bytes": 56702,
+        "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+      },
+      "pointer": "/cards/8",
+      "id": "soldier.base.tactical-reposition",
+      "completeCard": {
+        "id": "soldier.base.tactical-reposition",
+        "name": "Tactical Reposition",
+        "className": "Soldier",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Immediate movement",
+        "frequency": "Recharge 2",
+        "effect": "Move up to half Speed without opportunity attacks. Requires an open route; no teleporting, escaping restraints or attacks.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4201,
+          "originalText": "Tactical Reposition: Move half your speed without provoking opportunity attacks."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Soldier",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+        "bytes": 56702,
+        "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+      },
+      "pointer": "/cards/10",
+      "id": "soldier.arch.command-step",
+      "completeCard": {
+        "id": "soldier.arch.command-step",
+        "name": "Command Step",
+        "className": "Soldier",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "One willing ally adjacent",
+        "duration": "Immediate movement",
+        "frequency": "Once/round on your turn",
+        "effect": "After you take an Action, ally may move 5 ft without opportunity attacks. No extra action, attack, teleport or movement through blocked spaces.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4208,
+          "originalText": "Command Step: Once per round, shift one adjacent ally 1 tile in any direction."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Soldier",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+        "bytes": 56702,
+        "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+      },
+      "pointer": "/cards/20",
+      "id": "soldier.arch.hold-the-line",
+      "completeCard": {
+        "id": "soldier.arch.hold-the-line",
+        "name": "Hold the Line",
+        "className": "Soldier",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Reaction",
+        "cost": "1 short-rest use",
+        "rangeAndTarget": "One enemy entering your melee reach",
+        "duration": "Until end its turn",
+        "frequency": "1/short rest",
+        "effect": "Make one melee weapon attack. On hit normal damage and STR save or Speed 0. This is soft movement control; teleportation and forced movement remain possible.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4220,
+          "originalText": "Hold the Line: Establish a defensive position that grants bonuses to allies behind you."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Speed0 soft control expressly permits teleport and forced movement. Banishment is not blocked by Speed0 alone.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Soldier",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+        "bytes": 56702,
+        "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+      },
+      "pointer": "/cards/26",
+      "id": "soldier.hero.champion.divine-lockdown",
+      "completeCard": {
+        "id": "soldier.hero.champion.divine-lockdown",
+        "name": "Divine Lockdown",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": "Champion",
+        "sourceKind": "active",
+        "minimumClassLevel": 12,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "1 encounter use",
+        "rangeAndTarget": "Up to 3 enemies within 15 ft",
+        "duration": "Until end next target turn",
+        "frequency": "1/encounter",
+        "effect": "STR save each; failure Speed 0 and cannot take Reactions. Success Speed-10 ft only. This is physical suppression; teleport remains possible. No damage or additional free attacks.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4236,
+          "originalText": "Divine Lockdown: Prevent enemy movement in a small area (once per encounter)."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Physical suppression expressly leaves teleport available. Reaction loss can matter separately but does not become planar anchoring.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Soldier",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+        "bytes": 56702,
+        "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0"
+      },
+      "pointer": "/cards/45",
+      "id": "soldier.hero.tyrant.execution-zone",
+      "completeCard": {
+        "id": "soldier.hero.tyrant.execution-zone",
+        "name": "Execution Zone",
+        "className": "Soldier",
+        "band": "Hero",
+        "path": "Tyrant",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "1 short-rest use",
+        "rangeAndTarget": "15 ft square within 60 ft",
+        "duration": "3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Designate zone. First time each round one enemy tries to leave, Reaction weapon attack; on hit normal damage and STR save or movement ends at boundary for current turn. Teleport/forced movement works. One shot across all targets, no impassable magical wall.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4269,
+          "originalText": "Execution Zone: Create an area where enemies take –1 to morale and cannot escape."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "The exact source permits teleport/forced movement and is not an impassable magical wall.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Thief",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/9",
+      "id": "thief.base.shadow-step",
+      "completeCard": {
+        "id": "thief.base.shadow-step",
+        "name": "Shadow Step",
+        "className": "Thief",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "0",
+        "rangeAndTarget": "Self in cover/concealment",
+        "duration": "Immediate movement",
+        "frequency": "Recharge 2",
+        "effect": "Move half Speed and attempt Hide if the destination can conceal you. Movement produces no deliberate footfall noise but normal senses still apply. This Base feature is not teleportation.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4382,
+          "originalText": "Shadow Step: Move half your speed without making sound or leaving tracks."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Thief",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/14",
+      "id": "thief.arch.shadow-stab",
+      "completeCard": {
+        "id": "thief.arch.shadow-stab",
+        "name": "Shadow Stab",
+        "className": "Thief",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 9,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "1 encounter use",
+        "rangeAndTarget": "One enemy critically hit by your melee weapon",
+        "duration": "Instant movement; Bleed 2 turns",
+        "frequency": "1/encounter",
+        "effect": "After crit, move through target to adjacent empty space within 10 ft without opportunity attacks; apply Bleed 1d4 next 2 target turns. Movement requires open route, is not teleport and does not add another attack.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4392,
+          "originalText": "Shadow Stab: On critical hit, teleport through target and apply Bleed (level 9)."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Thief",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/19",
+      "id": "thief.arch.crippling-strike",
+      "completeCard": {
+        "id": "thief.arch.crippling-strike",
+        "name": "Crippling Strike",
+        "className": "Thief",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 15,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "One enemy hit by your Sneak Attack",
+        "duration": "Until end next target turn",
+        "frequency": "Once/own turn",
+        "effect": "Target CON save; failure Speed halved. Does not stack multiple slow fractions or deny teleport. Explicit Arch minimum 15 retained.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4399,
+          "originalText": "Crippling Strike: Your Sneak Attack applies Slow effect to the target (level 15)."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Its slow expressly does not deny teleport. Preserve ordinary agency/actions separately.",
+      "independentlyReadForThisAddendum": true
+    },
+    {
+      "class": "Thief",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/26",
+      "id": "thief.hero.arcane-trickster.flash-shift",
+      "completeCard": {
+        "id": "thief.hero.arcane-trickster.flash-shift",
+        "name": "Flash Shift",
+        "className": "Thief",
+        "band": "Hero",
+        "path": "Arcane Trickster",
+        "sourceKind": "active",
+        "minimumClassLevel": 12,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Self",
+        "duration": "Until start next turn",
+        "frequency": "Recharge 3",
+        "effect": "Teleport 15 ft to perceived unoccupied space; gain+2 AC and+2 saves until duration ends. Full solid barrier blocks destination sight. Magical technique 1 D.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4416,
+          "originalText": "Flash Shift: Blink 3 tiles, avoid opportunity attacks, and gain +2 AC/Saves for 1 round."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Thief",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/33",
+      "id": "thief.hero.shadowblade.dark-step",
+      "completeCard": {
+        "id": "thief.hero.shadowblade.dark-step",
+        "name": "Dark Step",
+        "className": "Thief",
+        "band": "Hero",
+        "path": "Shadowblade",
+        "sourceKind": "active",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Bonus Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Self in dim light/darkness",
+        "duration": "Instant; one attack this turn",
+        "frequency": "Recharge 3",
+        "effect": "Teleport 25 ft to visible dim/dark unoccupied space. Next weapon attack this turn has advantage. Magical technique 1 D; no travel through unseen closed rooms.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4430,
+          "originalText": "Dark Step: Teleport behind any enemy within 5 tiles and gain advantage on your next attack."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Wizard",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "bytes": 100635,
+        "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+      },
+      "pointer": "/cards/4",
+      "id": "wizard.base.scholarly-mind",
+      "completeCard": {
+        "id": "wizard.base.scholarly-mind",
+        "name": "Scholarly Mind",
+        "className": "Wizard",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Always",
+        "effect": "Scholarly Mind. Tags: base, passive, knowledge. You have advantage on Intelligence checks whose primary purpose is recalling, researching or analyzing arcane theory, magical history, planar magical principles or constructed spell formulae. It does not grant advantage on spell attacks, Counterspell checks or general Investigation unrelated to arcane scholarship.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5200,
+          "originalText": "Scholarly Mind: Gain advantage on Intelligence checks related to arcane knowledge."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "independentDisposition": "Navigation evidence only; no claim of independent complete semantic review from keyword matching.",
+      "independentlyReadForThisAddendum": false
+    },
+    {
+      "class": "Wizard",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "bytes": 100635,
+        "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+      },
+      "pointer": "/cards/20",
+      "id": "wizard.arch.dimensional-pocket",
+      "completeCard": {
+        "id": "wizard.arch.dimensional-pocket",
+        "name": "Dimensional Pocket",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 7,
+        "acquisition": "selection",
+        "activation": "Ritual",
+        "cost": "3 RP",
+        "rangeAndTarget": "One point within 5 feet",
+        "duration": "8 hours",
+        "frequency": "1/long rest",
+        "effect": "Dimensional Pocket. Tags: arch, active, wizard-spell, conjuration, ritual. Create an extradimensional storage space holding up to 100 pounds or 10 cubic feet of unattended nonliving material. Retrieving or placing an item while adjacent to the opening uses an object interaction. Living creatures cannot enter. When duration ends, remaining contents appear harmlessly in the nearest unoccupied space.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5225,
+          "originalText": "Dimensional Pocket: Create a small extradimensional space to store items."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 4
+      },
+      "independentDisposition": "This stores unattended nonliving material, excludes living creatures and is not a generic doorway to any selected plane. An active nonliving Construct creature cannot be assumed to be unattended material. The actual overflow return is comparison evidence only.",
+      "independentlyReadForThisAddendum": true
+    }
+  ],
+  "independentlyReadCards": 15,
+  "newAuthoredReviewScenarios": [
+    {
+      "id": "BAN-C19",
+      "initialState": "An actual No Escape mark is active on target T. T is unwilling and fails a legal Banishment save; compare T voluntarily electing failure to accept rescue.",
+      "requiredResolution": "Decide exact voluntary/forced transport predicate for these two branches; do not label all banishment voluntary or all willing transport forced.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C20",
+      "initialState": "T was exiled before a No Escape or Reign of Ashes restriction could lawfully become active on it. The60-second deadline now arrives.",
+      "requiredResolution": "Resolve actual application legality first, then mandatory return versus the exact active transport restriction. No indefinite cell from a blanket blocker; no silently invented source exception.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C21",
+      "initialState": "A Chain of Duty ally reaches0 inside the separate cell; its old origin anchor is20 feet from the Paladin.",
+      "requiredResolution": "Same-plane rescue condition is false. Anchor distance does not replace actual target plane/location; no free Paladin entry.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C22",
+      "initialState": "A cell occupant with Wizard Dimensional Pocket attempts to create storage and enter it. Compare an active nonliving Construct occupant.",
+      "requiredResolution": "Living entry is expressly barred; a creature is not unattended material merely because nonliving. Do not confer a new cell escape through an inventory ability.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C23",
+      "initialState": "A visitor has an independently legal interplanar route to the cell, actual knowledge and enough fitting space; arrival would occur before t60.",
+      "requiredResolution": "The existing draft has no complete terminal state for that visitor. Review a finite entry/collapse protocol explicitly; neither absence of free return nor source expiry permits stranding/deletion.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C24",
+      "initialState": "T uses an otherwise legal creature-creation ability inside the cell; a distinct creature would remain when t60 arrives.",
+      "requiredResolution": "Treat internally created bodies as well as visitors. A no-visitor rule alone does not close this case. Preserve real source costs and creature identity; specify finite terminal placement.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C25",
+      "initialState": "Origin footprint is aboard a moving vehicle, or the origin surface becomes unsupported during exile.",
+      "requiredResolution": "Choose fixed-world anchor versus support-attached coordinates explicitly. The local draft proposes fixed origin and pre-change early return; evaluate real event boundaries and Falling, not a hidden force-wall reservation.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C26",
+      "initialState": "One atomic source event changes T geometry and another body occupancy so the preserved anchor no longer fits. No intermediate state is exposed by that source.",
+      "requiredResolution": "Complete the draft unresolved atomic-change branch. Preemptive return cannot depend on retrospectively splitting an indivisible resolved event.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C27",
+      "initialState": "T dies in the cell with genuine worn gear; separately a finite Null Disabled summon expires there.",
+      "requiredResolution": "Return actual surviving corpse/objects under their source identities; no resurrection, Hunt reset, recreated summon body, free loot or repeated corpse use.",
+      "runtimeTest": false,
+      "adopted": false
+    },
+    {
+      "id": "BAN-C28",
+      "initialState": "Before the endpoint, T lawfully escapes elsewhere with some original gear and leaves other objects in the cell.",
+      "requiredResolution": "Do not drag escaped T back. Settle every remaining real object once and close the cell by a finite rule, preserving consumed/moved object history; no duplicated cargo or new permanent plane.",
+      "runtimeTest": false,
+      "adopted": false
+    }
+  ],
+  "sourceChecks": 17,
+  "failureCount": 0,
+  "newRulesAdopted": false,
+  "sourceInformationDeleted": 0,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false
+}

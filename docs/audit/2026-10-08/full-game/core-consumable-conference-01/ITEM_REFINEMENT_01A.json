@@ -1,0 +1,141 @@
+{
+  "recordedAtUtc": "2026-10-16T03:35:36.493569+00:00",
+  "status": "Local unadopted refinement; four source holds remain.",
+  "previousModel": {
+    "path": "docs/audit/2026-10-08/full-game/core-consumable-items-local-draft-01/history/before-refinement-01a/ITEMS_MODEL.json",
+    "bytes": 96805,
+    "sha256": "fe090449603a2ba9d9d43bb13951d3a3a0dba260f10b55cace08227e5fdf3734"
+  },
+  "previousCases": {
+    "path": "docs/audit/2026-10-08/full-game/core-consumable-items-local-draft-01/history/before-refinement-01a/CASEBOOK.json",
+    "bytes": 20260,
+    "sha256": "29892a1b949a8f4c1ef9780a39ec43a7731929a8961d2983d6d35a154bc51a55"
+  },
+  "model": {
+    "path": "docs/audit/2026-10-08/full-game/core-consumable-items-local-draft-01/ITEMS_MODEL.json",
+    "bytes": 98269,
+    "sha256": "5ff05f15f06d07d000c4f53284964ba22f050165d3a9562001d1fb7ab858cde0"
+  },
+  "casebook": {
+    "path": "docs/audit/2026-10-08/full-game/core-consumable-items-local-draft-01/CASEBOOK.json",
+    "bytes": 22446,
+    "sha256": "213db753086f9de891ecb0dcd815b4ad5452cdf9a56ddc9d67f7d833dd2eb971"
+  },
+  "discussion": {
+    "path": "docs/audit/2026-10-08/full-game/core-consumable-items-local-draft-01/DIRECTOR_DISCUSSION.md",
+    "bytes": 49228,
+    "sha256": "e2c9416b966156f21b0d13a36e5e34039c444ebbf01a6e6f544458464df367b5"
+  },
+  "changes": [
+    {
+      "itemId": "CB-04",
+      "field": "benefit",
+      "reason": "Resolve continuous/paused clock contradiction with cumulative rough-motion seconds within one episode.",
+      "before": "For eight elapsed hours, gain advantage on actual ability checks to resist or recover from seasickness. NEW bounded motion procedure: on rough waterborne travel, after ten continuous minutes of actual rough motion, make a CON ability check DC 12. Failure causes the local Seasick penalty: disadvantage on STR/DEX ability checks, no automatic attacks/saves/damage penalty. While rough motion continues, repeat once at each subsequent completed hour from that first check; success ends Seasick, failure applies/retains it. Do not create additional checks for changing seats, headings, initiative or sessions.",
+      "after": "For eight elapsed hours, gain advantage on actual ability checks to resist or recover from seasickness. NEW bounded waterborne-motion procedure: track cumulative seconds of actual rough motion in one motion episode. First CON ability check DC12 occurs at600rough-motion seconds, then at4200,7800 and each further3600rough-motion seconds. Failure applies/retains local Seasick: disadvantage on STR/DEX ability checks, with no automatic attack/save/damage penalty. Success ends that penalty. Quiet intervals pause accumulation and create no check; a short quiet interval does not backdate or reset an already processed marker. An episode ends after600continuous seconds without rough motion, clearing Seasick and the counter. A later new episode begins at0. Seat/heading/initiative/session changes never create extra checks."
+    },
+    {
+      "itemId": "CB-04",
+      "field": "endingOrCrash",
+      "reason": "Define quiet recovery and exact episode-reset boundary independently of brew expiry.",
+      "before": "The advantage expires at T0+28800; it does not itself cure an existing Seasick record. Ten uninterrupted minutes without rough motion ends this local Seasick penalty and resets the exposure clock. Returning to rough motion before those ten minutes complete retains the original clock and penalty.",
+      "after": "Grog advantage expires atT0+28800; it does not itself cure Seasick. The separate motion episode ends after600uninterrupted seconds without rough motion. Re-entry earlier than that retains its accumulated rough seconds and penalty; steady time is not added to the rough-motion counter. At an exact600second steady completion, end the prior episode before any genuinely new motion begins."
+    },
+    {
+      "itemId": "CS-03",
+      "field": "endingOrCrash",
+      "reason": "Prevent a rest before the crash from prepaying its proposed post-crash benefit lock.",
+      "before": "At the ten-minute or actual early benefit end, end this dose’s unspent temporary HP and CON-penalty exception, then take 1d6 NEW necrotic crash damage. The recipient cannot gain this item’s benefit again until an actual qualifying Long Rest after the dose. The lock begins at dose completion so repeated overlap cannot avoid it; a rest before the running dose ends does not release that current lock until its end.",
+      "after": "At this dose’s ten-minute/tolerant or actual early benefit end, remove its unspent temporary HP and chosen CON-penalty exception, then take1d6NEW necrotic crash damage. A benefit lock begins at dose completion and clears only after this dose has ended/crashed AND a genuinely qualifying Long Rest completes at or after that actual crash timestamp. A rest completed earlier cannot prepay the post-crash lock. If crash and rest completion share a timestamp, resolve the actual dose end/damage/life state first, then award only a rest that still qualifies under the normal rules. A corpse receives no rest benefit. Every deliberately consumed locked dose retains its own ending/lock record; all operative Redwake locks must clear before another benefit."
+    },
+    {
+      "itemId": "CS-10",
+      "field": "benefit",
+      "reason": "Remove unsupported positive-base gate and state ordinary zero/negative damage flooring.",
+      "before": "For ten elapsed minutes gain fire resistance and add +1 to one damage component of each actual melee attack that hits and would otherwise have a positive rolled/base damage amount before defenses. Choose an existing component at declaration, using its type; no new type is invented. It includes legal melee weapon, unarmed, natural or melee spell attacks; it excludes a melee-range save effect, miss, damaging aura or a new secondary damage trigger. Add once per attack, not once per die or component.",
+      "after": "For ten elapsed minutes gain fire resistance and add+1 to one existing damage component of each actual melee attack that hits. Choose that component at declaration and retain its type. Apply the point in the attack’s ordinary flat-damage formula before the final nonnegative floor and defenses, once per attack rather than per die/component. A real zero damage formula can become1; a sufficiently negative formula can still floor to0. This supplies no damage component for an attack that has none. Legal melee weapon, unarmed, natural and melee spell attacks qualify; a melee-range save effect, miss, damaging aura or separately triggered secondary packet does not."
+    },
+    {
+      "itemId": "CS-12",
+      "field": "repetitionAndTolerance",
+      "reason": "Select an actual stored-element dose before cone orientation; preserve per-dose recoil types and order.",
+      "before": "Tolerance halves the entitlement window to30seconds, not damage dice or recoil. A doubled dose never gives two breaths or6d6. Multiple overlapping same-item entitlements obey CU-01-10: one breath spends all overlapping entitlements, with each consumed dose’s own recoil resolved once. A later actual dose can grant a new opportunity subject to its real dependence/overdose rules.",
+      "after": "Tolerance halves the entitlement window to30seconds, not damage dice or recoil. A doubled dose never gives two breaths or6d6. Multiple overlapping same-item entitlements obey CU-01-10: one breath spends all overlapping entitlements, with each consumed dose’s own recoil resolved once. A later actual dose can grant a new opportunity subject to its real dependence/overdose rules. If overlapping unspent doses chose different elements, declare one currently unexpired dose record as the source of the breath before choosing cone orientation or rolling. Its already selected type controls that breath; no new type is chosen. Spending the one breath marks every overlapping unspent same-item entitlement consumed, and each such dose resolves its own once-only recoil in actual dose-application order, using that dose’s own selected type. An earlier individually expired dose is not consumed or recoiled again. Expiry of one unused dose ends/recoils that dose alone; it grants no new use and does not erase a still-live independent record."
+    }
+  ],
+  "newCases": [
+    {
+      "id": "CB-04-I01-C3",
+      "itemId": "CB-04",
+      "title": "Pause preserves only rough seconds",
+      "given": "An episode has540rough seconds. Then540steady seconds, then60rough seconds. Grog active.",
+      "expected": "No check during steady time. Totalrough reaches600 atelapsed1140, producing the one firstcheck. Ten full steady minutes would instead reset the episode. Next marker remains4200roughseconds, not4200wallseconds.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-03-I01-C3",
+      "itemId": "CS-03",
+      "title": "No prepaid post-crash rest",
+      "given": "DoseT0; actual qualifying Long Rest completesT0+300; dosebenefit ends/crashesT0+600.",
+      "expected": "The earlier rest cannot clear this dose’s post-crash lock. Actual crash at600 applies; a later genuinely qualifying Long Rest is required. A coincident rest at600 would be evaluated only after actual crash/life state and its ordinary eligibility.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-10-I01-C3",
+      "itemId": "CS-10",
+      "title": "Zero and negative attack formulas",
+      "given": "Legal melee hit with one actual damage component; its ordinary flat formula is0 in one history and−2 in another, before the nonnegative floor.",
+      "expected": "EmberResin+1 yields1 in the first history andmax(0,−2+1)=0 in the second. A grapple/attack with no damage component gains none. No positive-base prerequisite is invented.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-12-I01-C3",
+      "itemId": "CS-12",
+      "title": "Two stored elements, one actual breath",
+      "given": "Unexpired fire doseA then cold doseB; both unspent. User declaresA asbreathsource beforeorientation.",
+      "expected": "One3d6fire cone, no cold cone. Mark both entitlements consumed; resolveA1d6fire recoil thenB1d6cold recoil in actualapplication order, eachwithitsdefenses/life. No latersecondbreath orduplicateexpiryrecoil.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    }
+  ],
+  "authoredSituations": 52,
+  "checks": [
+    {
+      "name": "48prior case IDs preserved plus four distinct new cases",
+      "pass": true
+    },
+    {
+      "name": "every original source object unchanged",
+      "pass": true
+    },
+    {
+      "name": "rough-only clock example",
+      "pass": true
+    },
+    {
+      "name": "zero and negative flat-damage boundaries",
+      "pass": true
+    },
+    {
+      "name": "all source binding bytes remain exact",
+      "pass": true
+    },
+    {
+      "name": "four held items unchanged",
+      "pass": true
+    },
+    {
+      "name": "no actual approval or promotion",
+      "pass": true
+    }
+  ],
+  "checkCount": 7,
+  "failureCount": 0,
+  "repairNote": "The first script stopped after preserving history and writing the revised model/cases/discussion/checks because a digest helper was undefined. This completion verified the actual revised state and finished only manifest/receipt; it did not apply edits twice. The helper is repaired for source completeness; the one-shot script must not be rerun.",
+  "newRulesAdopted": false,
+  "sourceInformationDeleted": 0,
+  "runtimeSituationsExecuted": 0
+}

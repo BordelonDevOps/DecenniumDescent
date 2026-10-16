@@ -1,0 +1,719 @@
+{
+  "proposal": {
+    "id": "RELIC-NULL-03-LOCAL-PATCH-01",
+    "status": "PROPOSED only; actual GPT review pending; no adoption",
+    "recordedAtUtc": "2026-10-16T05:42:34.541318+00:00",
+    "basedOn": {
+      "path": "docs/audit/2026-10-08/full-game/DD_Cosmology_Epilogue_Relic_Null_03_Return_01.zip",
+      "bytes": 118128,
+      "sha256": "88df4e8a928ac2e2407ba9872801c52e791ab6fa066ca22124c9b93a1e029764"
+    },
+    "findingIds": [
+      "RN3-01",
+      "RN3-02",
+      "RN3-03",
+      "RN3-04",
+      "RN3-05",
+      "RN3-06",
+      "RN3-07",
+      "RN3-08",
+      "RN3-09"
+    ]
+  },
+  "findings": [
+    {
+      "id": "RN3-01",
+      "title": "Initial failed exposure save is absent from the operative rule",
+      "evidence": [
+        "null.field.exposure requires WIS DC15 but never states the first failure applies Veil; RN-N01 and RNX-14-A do apply it. Both chapters repeat the omission."
+      ],
+      "proposedResolution": "State the first failure creates one Veil; success creates none; existing Veil follows the no-stack/no-refresh rule. Dead exception remains.",
+      "gptReviewed": false
+    },
+    {
+      "id": "RN3-02",
+      "title": "Both chapters omit the recipient lifecycle branches they reference",
+      "evidence": [
+        "Ordered damage step6 refers to recipientLifecycle branches below; neither chapter prints the model table. Undying Spellform, Ranger Beast, finite summons, undead and local projections cannot be adjudicated from the advertised complete prose."
+      ],
+      "proposedResolution": "Render every existing recipientLifecycle branch in both chapters, unchanged, and print the existing eight local actor bindings. Remove double numbering only.",
+      "gptReviewed": false
+    },
+    {
+      "id": "RN3-03",
+      "title": "Actor placement contradicts counts and arena distance",
+      "evidence": [
+        "All four Toy Sentinels use the single center (20,20) despite one-per-plinth count. Devil(25,20) and Demon(20,20) are5ft apart; CH10 requires30ft."
+      ],
+      "proposedResolution": "Use four distinct Toy/plinth identities at (10,10),(30,10),(10,30),(30,30). Keep CH10 stated30ft separation by Devil(10,25),Demon(40,25), circlecenter(25,25). New scene geometry only.",
+      "gptReviewed": false
+    },
+    {
+      "id": "RN3-04",
+      "title": "Player chapter discloses hidden puzzle answers",
+      "evidence": [
+        "PLAYER_CHAPTER CH04 geometry prints Row1=B,Row2=A,Row3=C despite its Director-only-answer promise. CH08 fallback prints sequence2-5-1-6."
+      ],
+      "proposedResolution": "Keep exact answers in model/Director only; player text states successful read/check reveals the fixed answer.",
+      "gptReviewed": false
+    },
+    {
+      "id": "RN3-05",
+      "title": "Retained examples contain obsolete fields and incomplete ledgers",
+      "evidence": [
+        "RN-R10-04 still says north backstage; RN-C09 unused tokens stay in bowl; RNX-08-B still spends3/5HP and rolls1d6 although clipped catches now do no impact. RNX-09-A mentions Hold; RNX-09-B lists backpack/tray/A absent from its setup. RNX-14-B unspecified rest conflicts with beneficial-LR reset. RNX-07-A has3 reads but2 results and an unexplained10m+."
+      ],
+      "proposedResolution": "Repair exact stale fields; retain all75 IDs/order. Add explicit DC14/+5 natural1 arithmetic to RNX-01-B. Cases remain authored examples, not tests.",
+      "gptReviewed": false
+    },
+    {
+      "id": "RN3-06",
+      "title": "Frightened climb example does not locate its fear source",
+      "evidence": [
+        "CONDITIONS_PLAYTEST lines311–325: visible fear source imposes check disadvantage; moving closer is forbidden. RNX-08-A assumes advantage without specifying fear visibility or movement direction."
+      ],
+      "proposedResolution": "Keep self-steady rule; state source is below and out of sight so climbing away is legal and no fear disadvantage applies; explicitly explain visible-source cancellation alternative.",
+      "gptReviewed": false
+    },
+    {
+      "id": "RN3-07",
+      "title": "Twelve-character cap is real but absent from the84-source handoff",
+      "evidence": [
+        "Current GAMEPLAY_LOOP_CANON.md line91 states no more than12 characters per Expedition. None of the84 SOURCE_HASHES paths is this guide; prior cap claim therefore lacked supplied source evidence."
+      ],
+      "proposedResolution": "Freeze and supply that current file as source85; retain original84 entries unchanged. Bind the exact line91 excerpt. No new roster cap is created.",
+      "gptReviewed": false
+    },
+    {
+      "id": "RN3-08",
+      "title": "Shardpool activation, emergency-space and voluntary-release boundaries need explicit text",
+      "evidence": [
+        "Action by willing group does not identify who spends it or what adjacent means. Nearest legal chamber floor can include the supposedly+20-only emergency pad. Return Waiting forbids all voluntary agency but discusses only outside-caster concentration release. Geometry omits the promised north bypass exit."
+      ],
+      "proposedResolution": "One initiator spends Action, included among1–6 willing travelers with current footprints within5ft of pool. Exclude pad from ordinary return/origin before+20. Permit only actual no-action end-concentration during Waiting. Print north door/lever. These are NEW scoped completions for GPT review.",
+      "gptReviewed": false
+    },
+    {
+      "id": "RN3-09",
+      "title": "Void arrival fear lacks a source and transition-safe expiry",
+      "evidence": [
+        "CH11 Boundless Void arrival says Frightened until end of next turn from vertigo, without a recorded fear-source location or regular/outside-initiative clock."
+      ],
+      "proposedResolution": "Use cell-local center(10,10,z0) as the NEW fixed vertigo source; end at next regular target-turn end or outside+6s absolute, preserving markers. Ordinary immunity and fear rules still apply.",
+      "gptReviewed": false
+    }
+  ],
+  "operations": [
+    {
+      "issue": "RN3-01",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/null/field/exposure",
+      "old": "Each creature keeps minutes-per-field. While physically inside a field, accumulate elapsed minutes. Each time that field's accumulator reaches 60, subtract 60 and immediately make WIS save DC15. Partial minutes pause on exit and resume on re-entry to the same field. Completing one beneficial Long Rest wholly outside that field clears only that field's partial accumulator; it does not purge Null Veil or erase exposure history.",
+      "replacement": "Each creature keeps minutes-per-field. While physically inside a field, accumulate elapsed minutes. Each time that field's accumulator reaches 60, subtract 60 and immediately make WIS save DC15. Partial minutes pause on exit and resume on re-entry to the same field. Completing one beneficial Long Rest wholly outside that field clears only that field's partial accumulator; it does not purge Null Veil or erase exposure history. On a failed hourly save, a creature without Null Veil gains one Null Veil immediately; on success it gains none. A creature already bearing Veil uses the no-stack/no-refresh rule below. Dead targets remain ineligible."
+    },
+    {
+      "issue": "RN3-01",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "Each creature keeps minutes-per-field. While physically inside a field, accumulate elapsed minutes. Each time that field's accumulator reaches 60, subtract 60 and immediately make WIS save DC15. Partial minutes pause on exit and resume on re-entry to the same field. Completing one beneficial Long Rest wholly outside that field clears only that field's partial accumulator; it does not purge Null Veil or erase exposure history.",
+      "replacement": "Each creature keeps minutes-per-field. While physically inside a field, accumulate elapsed minutes. Each time that field's accumulator reaches 60, subtract 60 and immediately make WIS save DC15. Partial minutes pause on exit and resume on re-entry to the same field. Completing one beneficial Long Rest wholly outside that field clears only that field's partial accumulator; it does not purge Null Veil or erase exposure history. On a failed hourly save, a creature without Null Veil gains one Null Veil immediately; on success it gains none. A creature already bearing Veil uses the no-stack/no-refresh rule below. Dead targets remain ineligible.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-01",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "Each creature keeps minutes-per-field. While physically inside a field, accumulate elapsed minutes. Each time that field's accumulator reaches 60, subtract 60 and immediately make WIS save DC15. Partial minutes pause on exit and resume on re-entry to the same field. Completing one beneficial Long Rest wholly outside that field clears only that field's partial accumulator; it does not purge Null Veil or erase exposure history.",
+      "replacement": "Each creature keeps minutes-per-field. While physically inside a field, accumulate elapsed minutes. Each time that field's accumulator reaches 60, subtract 60 and immediately make WIS save DC15. Partial minutes pause on exit and resume on re-entry to the same field. Completing one beneficial Long Rest wholly outside that field clears only that field's partial accumulator; it does not purge Null Veil or erase exposure history. On a failed hourly save, a creature without Null Veil gains one Null Veil immediately; on success it gains none. A creature already bearing Veil uses the no-stack/no-refresh rule below. Dead targets remain ineligible.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "**What Null Veil does not erase.**",
+      "replacement": "### Recipient lifecycles for qualifying Null damage\n\n**Ordinary living recipient.** Use orderedAlgorithm steps 3–5. Positive→positive: no packet-created Wound/Instant Death. New positive→0: Stable0 unless an exact source-specific zero permission overrides. Already Dying0: same counters/markers. Already Stable0: same recovery deadline.\n\n**Ranger Beast.** Source normally dies immediately at0. Qualifying Null damage replaces that damage-caused immediate-death transition with Null Disabled at0: Incapacitated, Speed0, no commands/actions; same animal/bond remains. Ordinary legal companion healing above0 ends Disabled. A later independent non-damage death/removal rule still works.\n\n**Finite summon, Familiar or Mirror Beast.** Source normally disappears/ends at0. Qualifying Null damage replaces only that damage-caused zero disappearance with Null Disabled at0 while its original duration/source still exists. Independent duration expiry, dismissal, concentration/source end or replacement still ends it. Legal companion healing above0 restores function; no generic repair/resummon is granted.\n\n**Mage Lich elite.** Source normally becomes destroyed bound asset at0. Qualifying Null damage leaves same elite Null Disabled at0, not destroyed; therefore Soulbound is not legal solely from this zero. Legal companion healing above0 restores it. An independent actual destruction/expiry can later create its normal destroyed state.\n\n**Wizard standard undead.** Qualifying Null damage leaves same minion Null Disabled at0 instead of damage-caused destruction. Dismissal or owner completed-LR expiry still ends it. Legal healing above0 if a real source applies may restore it.\n\n**Authored local projection.** A scene projection whose authored 0-HP rule says disperse/end uses that administrative projection endpoint even under Null; it is not a living death/Wound branch. ACT-FEAST-STEWARD instead uses its explicit Collapsed Projection rule. This classification must be printed in the actor profile, not inferred from a name.\n\n**Undying Spellform.** If qualifying damage newly reduces a Mage with actual Undying Spellform to0 without killing outright, its printed trigger occurs and its 1/LR use is spent. It overrides zero-HP Unconscious/Incapacitated permissions as reviewed: conscious, half-Speed voluntary movement, normal Action, legal spellcasting/concentration, no independent BA/Reaction. Triggering damage still causes its concentration save. If still0 at feature expiry, the reviewed expiry destabilizes/cancels Stable recovery and adds one failed death save; that later feature-expiry event is not the original Null damage packet.\n\n**Would-die protections.** A protection whose trigger requires actual death/would-die/fatal result does not trigger and spends no use when Null skips that damage-caused death branch. Do not replay it later. Separate minimum-HP prevention that resolves earlier follows its own source if actually triggered.\n\n**Actual nonliving Construct.** For an actual nonliving Construct creature with an authored HP/destruction endpoint, qualifying Null damage reducing it to0 replaces only damage-caused destruction with Null Disabled0: Incapacitated, Speed0, no Actions/Bonus Actions/Reactions/commands. Same construct identity remains; no corpse/parts/loot are generated by the zero. Only an actual repair/heal rule that expressly applies to that construct can raise it above0 and end Disabled; no generic repair is granted.\n\n**Silence Wraith only.** For ACT-SILENCE-WRAITH specifically, qualifying Null damage reducing it to0 replaces its damage-caused dispersal with Null Disabled0 (Incapacitated, Speed0, no Actions/Bonus Actions/Reactions). It has no corpse/soul/loot. The chamber’s independent correct-plate terminal may still pacify/disperse that same identity; no generic healing/repair is invented.\n\n**Local actor bindings.** ACT-TOY-SENTINEL: ordinaryNonlivingConstruct; ACT-SILENCE-WRAITH: localSpirit; ACT-ACCORD-DEVIL: localProjection; ACT-ACCORD-DEMON: localProjection; ACT-ECHO-DOPPELGANGER: localProjection; ACT-FEAST-STEWARD: explicit Collapsed Projection actor rule; ACT-NULL-WITNESS: ordinaryLiving; ACT-GLASS-MENDER-SENTINEL: localProjection.\n\n**What Null Veil does not erase.**",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "**What Null Veil does not erase.**",
+      "replacement": "### Recipient lifecycles for qualifying Null damage\n\n**Ordinary living recipient.** Use orderedAlgorithm steps 3–5. Positive→positive: no packet-created Wound/Instant Death. New positive→0: Stable0 unless an exact source-specific zero permission overrides. Already Dying0: same counters/markers. Already Stable0: same recovery deadline.\n\n**Ranger Beast.** Source normally dies immediately at0. Qualifying Null damage replaces that damage-caused immediate-death transition with Null Disabled at0: Incapacitated, Speed0, no commands/actions; same animal/bond remains. Ordinary legal companion healing above0 ends Disabled. A later independent non-damage death/removal rule still works.\n\n**Finite summon, Familiar or Mirror Beast.** Source normally disappears/ends at0. Qualifying Null damage replaces only that damage-caused zero disappearance with Null Disabled at0 while its original duration/source still exists. Independent duration expiry, dismissal, concentration/source end or replacement still ends it. Legal companion healing above0 restores function; no generic repair/resummon is granted.\n\n**Mage Lich elite.** Source normally becomes destroyed bound asset at0. Qualifying Null damage leaves same elite Null Disabled at0, not destroyed; therefore Soulbound is not legal solely from this zero. Legal companion healing above0 restores it. An independent actual destruction/expiry can later create its normal destroyed state.\n\n**Wizard standard undead.** Qualifying Null damage leaves same minion Null Disabled at0 instead of damage-caused destruction. Dismissal or owner completed-LR expiry still ends it. Legal healing above0 if a real source applies may restore it.\n\n**Authored local projection.** A scene projection whose authored 0-HP rule says disperse/end uses that administrative projection endpoint even under Null; it is not a living death/Wound branch. ACT-FEAST-STEWARD instead uses its explicit Collapsed Projection rule. This classification must be printed in the actor profile, not inferred from a name.\n\n**Undying Spellform.** If qualifying damage newly reduces a Mage with actual Undying Spellform to0 without killing outright, its printed trigger occurs and its 1/LR use is spent. It overrides zero-HP Unconscious/Incapacitated permissions as reviewed: conscious, half-Speed voluntary movement, normal Action, legal spellcasting/concentration, no independent BA/Reaction. Triggering damage still causes its concentration save. If still0 at feature expiry, the reviewed expiry destabilizes/cancels Stable recovery and adds one failed death save; that later feature-expiry event is not the original Null damage packet.\n\n**Would-die protections.** A protection whose trigger requires actual death/would-die/fatal result does not trigger and spends no use when Null skips that damage-caused death branch. Do not replay it later. Separate minimum-HP prevention that resolves earlier follows its own source if actually triggered.\n\n**Actual nonliving Construct.** For an actual nonliving Construct creature with an authored HP/destruction endpoint, qualifying Null damage reducing it to0 replaces only damage-caused destruction with Null Disabled0: Incapacitated, Speed0, no Actions/Bonus Actions/Reactions/commands. Same construct identity remains; no corpse/parts/loot are generated by the zero. Only an actual repair/heal rule that expressly applies to that construct can raise it above0 and end Disabled; no generic repair is granted.\n\n**Silence Wraith only.** For ACT-SILENCE-WRAITH specifically, qualifying Null damage reducing it to0 replaces its damage-caused dispersal with Null Disabled0 (Incapacitated, Speed0, no Actions/Bonus Actions/Reactions). It has no corpse/soul/loot. The chamber’s independent correct-plate terminal may still pacify/disperse that same identity; no generic healing/repair is invented.\n\n**Local actor bindings.** ACT-TOY-SENTINEL: ordinaryNonlivingConstruct; ACT-SILENCE-WRAITH: localSpirit; ACT-ACCORD-DEVIL: localProjection; ACT-ACCORD-DEMON: localProjection; ACT-ECHO-DOPPELGANGER: localProjection; ACT-FEAST-STEWARD: explicit Collapsed Projection actor rule; ACT-NULL-WITNESS: ordinaryLiving; ACT-GLASS-MENDER-SENTINEL: localProjection.\n\n**What Null Veil does not erase.**",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "1. 1. ",
+      "replacement": "1. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "2. 2. ",
+      "replacement": "2. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "3. 3. ",
+      "replacement": "3. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "4. 4. ",
+      "replacement": "4. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "5. 5. ",
+      "replacement": "5. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "6. 6. ",
+      "replacement": "6. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "7. 7. ",
+      "replacement": "7. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "8. 8. ",
+      "replacement": "8. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "1. 1. ",
+      "replacement": "1. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "2. 2. ",
+      "replacement": "2. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "3. 3. ",
+      "replacement": "3. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "4. 4. ",
+      "replacement": "4. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "5. 5. ",
+      "replacement": "5. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "6. 6. ",
+      "replacement": "6. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "7. 7. ",
+      "replacement": "7. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-02",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "8. 8. ",
+      "replacement": "8. ",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/0/geometry",
+      "old": "40×40-ft square; west arch entrance, east arch ordinary exit initially sealed; central 10-ft forge dais; four 5-ft toy plinths.",
+      "replacement": "NEW fixed scene map: 40×40-ft square, southwest origin, floor z=0, ceiling20. West arch x=0,y17.5–22.5; east arch x=40,y17.5–22.5 is initially sealed. Central 10×10 forge dais occupies x15–25,y15–25 at floor level. Four 5×5 plinth spaces are centered at (10,10),(30,10),(10,30),(30,30); Toy1..Toy4 start respectively on those spaces. Each is a separate ACT-TOY-SENTINEL creature with its own24HP and resolution record. No starting spaces overlap."
+    },
+    {
+      "issue": "RN3-03",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "40×40-ft square; west arch entrance, east arch ordinary exit initially sealed; central 10-ft forge dais; four 5-ft toy plinths.",
+      "replacement": "NEW fixed scene map: 40×40-ft square, southwest origin, floor z=0, ceiling20. West arch x=0,y17.5–22.5; east arch x=40,y17.5–22.5 is initially sealed. Central 10×10 forge dais occupies x15–25,y15–25 at floor level. Four 5×5 plinth spaces are centered at (10,10),(30,10),(10,30),(30,30); Toy1..Toy4 start respectively on those spaces. Each is a separate ACT-TOY-SENTINEL creature with its own24HP and resolution record. No starting spaces overlap.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "40×40-ft square; west arch entrance, east arch ordinary exit initially sealed; central 10-ft forge dais; four 5-ft toy plinths.",
+      "replacement": "NEW fixed scene map: 40×40-ft square, southwest origin, floor z=0, ceiling20. West arch x=0,y17.5–22.5; east arch x=40,y17.5–22.5 is initially sealed. Central 10×10 forge dais occupies x15–25,y15–25 at floor level. Four 5×5 plinth spaces are centered at (10,10),(30,10),(10,30),(30,30); Toy1..Toy4 start respectively on those spaces. Each is a separate ACT-TOY-SENTINEL creature with its own24HP and resolution record. No starting spaces overlap.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/actorProfiles/ACT-TOY-SENTINEL/initialPlacement",
+      "old": "CH01: center forge dais, square centered (20,20), floor z=0.",
+      "replacement": "CH01: Toy1(10,10), Toy2(30,10), Toy3(10,30), Toy4(30,30), all floor z=0, one independent creature per printed plinth."
+    },
+    {
+      "issue": "RN3-03",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "CH01: center forge dais, square centered (20,20), floor z=0.",
+      "replacement": "CH01: Toy1(10,10), Toy2(30,10), Toy3(10,30), Toy4(30,30), all floor z=0, one independent creature per printed plinth.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/9/geometry",
+      "old": "50-ft-diameter arena; west entry gate, east exit gate, central 10-ft accord circle.",
+      "replacement": "NEW fixed scene map: 50-ft-diameter arena centered (25,25), floor z=0, ceiling20. West entry at (0,25), east exit at (50,25); central accord circle has diameter10 and center (25,25). Devil starts (10,25), Demon (40,25), exactly30ft apart; each occupies its own Medium footprint."
+    },
+    {
+      "issue": "RN3-03",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "50-ft-diameter arena; west entry gate, east exit gate, central 10-ft accord circle.",
+      "replacement": "NEW fixed scene map: 50-ft-diameter arena centered (25,25), floor z=0, ceiling20. West entry at (0,25), east exit at (50,25); central accord circle has diameter10 and center (25,25). Devil starts (10,25), Demon (40,25), exactly30ft apart; each occupies its own Medium footprint.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "50-ft-diameter arena; west entry gate, east exit gate, central 10-ft accord circle.",
+      "replacement": "NEW fixed scene map: 50-ft-diameter arena centered (25,25), floor z=0, ceiling20. West entry at (0,25), east exit at (50,25); central accord circle has diameter10 and center (25,25). Devil starts (10,25), Demon (40,25), exactly30ft apart; each occupies its own Medium footprint.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/actorProfiles/ACT-ACCORD-DEVIL/initialPlacement",
+      "old": "CH10: (25,20), floor z=0.",
+      "replacement": "CH10: (10,25), floor z=0."
+    },
+    {
+      "issue": "RN3-03",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "CH10: (25,20), floor z=0.",
+      "replacement": "CH10: (10,25), floor z=0.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/actorProfiles/ACT-ACCORD-DEMON/initialPlacement",
+      "old": "CH10: (20,20), floor z=0.",
+      "replacement": "CH10: (40,25), floor z=0."
+    },
+    {
+      "issue": "RN3-03",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "CH10: (20,20), floor z=0.",
+      "replacement": "CH10: (40,25), floor z=0.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/9/procedures/0",
+      "old": "At initiative start both projections use their printed profiles and normally prioritize each other. The Director records exact starting spaces: Devil at west inner edge, Demon at east inner edge, 30 ft apart; PCs enter through west gate outside the projections’ initial spaces.",
+      "replacement": "At initiative start both projections use their printed profiles and normally prioritize each other. The Director records exact starting spaces: Devil at (10,25), Demon at (40,25), 30 ft apart; PCs enter through west gate outside the projections’ initial spaces."
+    },
+    {
+      "issue": "RN3-03",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "At initiative start both projections use their printed profiles and normally prioritize each other. The Director records exact starting spaces: Devil at west inner edge, Demon at east inner edge, 30 ft apart; PCs enter through west gate outside the projections’ initial spaces.",
+      "replacement": "At initiative start both projections use their printed profiles and normally prioritize each other. The Director records exact starting spaces: Devil at (10,25), Demon at (40,25), 30 ft apart; PCs enter through west gate outside the projections’ initial spaces.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "At initiative start both projections use their printed profiles and normally prioritize each other. The Director records exact starting spaces: Devil at west inner edge, Demon at east inner edge, 30 ft apart; PCs enter through west gate outside the projections’ initial spaces.",
+      "replacement": "At initiative start both projections use their printed profiles and normally prioritize each other. The Director records exact starting spaces: Devil at (10,25), Demon at (40,25), 30 ft apart; PCs enter through west gate outside the projections’ initial spaces.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-03",
+      "file": "CASEBOOK.json",
+      "caseId": "RN-C01",
+      "jsonPointer": "/cases/16/initialState",
+      "old": "Party enters CH01; four Toy Sentinels active.",
+      "replacement": "Party enters CH01; Toy1..4 each have24HP on distinct plinths at (10,10),(30,10),(10,30),(30,30). Each approach uses real legal movement."
+    },
+    {
+      "issue": "RN3-03",
+      "file": "CASEBOOK.json",
+      "caseId": "RN-C10",
+      "jsonPointer": "/cases/25/initialState",
+      "old": "Both projections above0HP.",
+      "replacement": "Devil starts(10,25), Demon(40,25),30ft apart, both above0HP. Each broker pays actual movement to enter the central10-ft accord circle before its Action; this example assumes both projections remain above0 until the second success."
+    },
+    {
+      "issue": "RN3-04",
+      "file": "PLAYER_CHAPTER.md",
+      "old": " Fixed safe lanes remain Row1=B, Row2=A, Row3=C.",
+      "replacement": " The Director records one fixed safe lane per row; successful observation reveals it.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-04",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "success derives mechanical tab sequence 2-5-1-6 and opens exit",
+      "replacement": "success reveals the fixed mechanical tab sequence and opens exit",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RN-R10-04",
+      "jsonPointer": "/cases/11/steps",
+      "old": [
+        "Return physically to CH12 north backstage Glass-Mender room with same shattered mirror and TAB-SILENCE-1..3.",
+        "Sentinel inspects and accepts; no roll. On acceptance tabs transfer/are consumed and mirror pieces enter Sentinel custody.",
+        "Complete2 uninterrupted active hours. Mirror reforms as same identity; pending benefit/history not reset."
+      ],
+      "replacement": [
+        "Return physically to CH12 east-stage Glass-Mender room with same shattered mirror and TAB-SILENCE-1..3.",
+        "Sentinel inspects and accepts; no roll. On acceptance tabs transfer/are consumed and mirror pieces enter Sentinel custody.",
+        "Complete2 uninterrupted active hours. Mirror reforms as same identity; pending benefit/history not reset."
+      ]
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RN-C09",
+      "jsonPointer": "/cases/24/initialState",
+      "old": "Four eligible Expedition characters present; TOKEN-WIND-01..04 assigned; remaining8 tokens stay bowl.",
+      "replacement": "Four eligible Expedition characters present; TOKEN-WIND-01..04 assigned; remaining8 tokens stay at their numbered neutral stations."
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-08-B",
+      "jsonPointer": "/cases/62/consumedStock",
+      "old": "HP damage3/5; no cable stock consumed",
+      "replacement": "No HP damage from either clipped catch; each failed attempt spends Action+30 movement, each recovery Action+10 movement. No cable stock consumed."
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-08-B",
+      "jsonPointer": "/cases/62/rollsAndDCs",
+      "old": [
+        "DC14 totals10/12",
+        "damage1d6=3/5"
+      ],
+      "replacement": [
+        "Climb DC14 totals10/12 fail; no impact damage roll for either supported catch."
+      ]
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-09-A",
+      "jsonPointer": "/cases/63/consumedStock",
+      "old": "Card consumed once at t0; no extra destination stock gained during Hold.",
+      "replacement": "Card consumed once at t0; no extra stock is granted by the recovery extension."
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-09-B",
+      "jsonPointer": "/cases/64/consumedStock",
+      "old": "One card consumed; lost backpack stays local; carried tray transfers custody to A.",
+      "replacement": "One card consumed at activation; no backpack, tray or additional traveler is introduced by this example."
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-14-B",
+      "jsonPointer": "/cases/74/initialState",
+      "old": "Character enters CH07 field for25m, leaves for rest, later reenters35m; separately uses CH11 Veiled Expanse card for10m.",
+      "replacement": "Character enters CH07 field for25m, leaves for a beneficial Short Rest only (no beneficial Long Rest), later reenters35m; separately uses CH11 Veiled Expanse card for10m."
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-14-B",
+      "jsonPointer": "/cases/74/steps",
+      "old": [
+        "First CH07 stay accumulates25m; leaving pauses same fieldId accumulator. A rest outside does not erase partial exposure unless an actual rule expressly says so.",
+        "Reentry resumes25m; after35m more, total reaches60m and one hourly save occurs. Example roll16 vs15 Success; begin next-hour accumulator at0.",
+        "If character already had Null Veil from an earlier failure, a successful future field save does not purge it; Veil persists until purge.",
+        "CH11 Veiled Expanse landing cell explicitly has no active Null field, so its10m visit adds0 to CH07 or any other exposure accumulator."
+      ],
+      "replacement": [
+        "First CH07 stay accumulates25m; leaving pauses the field accumulator. The specified beneficial Short Rest outside does not clear it. A beneficial Long Rest wholly outside this field would clear its partial accumulator under the actual exposure rule; that event does not occur in this branch.",
+        "Reentry resumes25m; after35m more, total reaches60m and one hourly save occurs. Example roll16 vs15 Success; begin next-hour accumulator at0.",
+        "If character already had Null Veil from an earlier failure, a successful future field save does not purge it; Veil persists until purge.",
+        "CH11 Veiled Expanse landing cell explicitly has no active Null field, so its10m visit adds0 to CH07 or any other exposure accumulator."
+      ]
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-14-B",
+      "jsonPointer": "/cases/74/elapsedTime",
+      "old": "25m + rest +35m + separate10m visit",
+      "replacement": "25m exposure + one beneficial Short Rest outside +35m exposure + separate10m card visit. No beneficial Long Rest occurs."
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-07-A",
+      "jsonPointer": "/cases/59/elapsedTime",
+      "old": "10m+ between observations",
+      "replacement": "Three successful read Actions plus actual paid travel along the fixed lanes; no10-minute retry study is needed."
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-07-A",
+      "jsonPointer": "/cases/59/rollsAndDCs",
+      "old": [
+        "DC14:15 success,14 success"
+      ],
+      "replacement": [
+        "Row1 read DC14 total15 success",
+        "Row2 read DC14 total14 success",
+        "Row3 read DC14 total16 success"
+      ]
+    },
+    {
+      "issue": "RN3-05",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-01-B",
+      "jsonPointer": "/cases/48/steps",
+      "old": [
+        "Interrupted-harvest subcheck: begin a10-minute EL-3 harvest at t=9:55. Its completion would be t=19:55, not t=10:00. The mandatory t=10:00 return attempt interrupts it after5 seconds; no harvest check occurs, no part appears, and EL-3 remains on the anchored basin in the landing cell.",
+        "Exact-boundary subcheck: if a different10-minute harvest had begun at t=0:00 and its completion event were due exactly t=10:00, CH11’s explicit priority resolves the return attempt first. If the harvester returns, the local completion cannot execute afterward; no free ingredient is created.",
+        "Later BT-3 harvest roll7+5=12 vs14 Failure: BT-3 is consumed/bruised,0 part.",
+        "BT-4 harvest natural1 resolves the module Critical Failure outcome:0 part and10-minute tool cleaning before another flora harvest.",
+        "Later destruction/loss of BT-TRAY-2 preserves those depleted node identities; no node/tray respawns."
+      ],
+      "replacement": [
+        "Interrupted-harvest subcheck: begin a10-minute EL-3 harvest at t=9:55. Its completion would be t=19:55, not t=10:00. The mandatory t=10:00 return attempt interrupts it after5 seconds; no harvest check occurs, no part appears, and EL-3 remains on the anchored basin in the landing cell.",
+        "Exact-boundary subcheck: if a different10-minute harvest had begun at t=0:00 and its completion event were due exactly t=10:00, CH11’s explicit priority resolves the return attempt first. If the harvester returns, the local completion cannot execute afterward; no free ingredient is created.",
+        "Later BT-3 harvest roll7+5=12 vs14 Failure: BT-3 is consumed/bruised,0 part.",
+        "BT-4 harvest uses modifier+5, natural1: total6 vsDC14 is ordinary Failure, shifted one degree by natural1 to Critical Failure. Yield0; the node has spent its single attempt and the tool requires10-minute cleaning before another flora harvest.",
+        "Later destruction/loss of BT-TRAY-2 preserves those depleted node identities; no node/tray respawns."
+      ]
+    },
+    {
+      "issue": "RN3-06",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-08-A",
+      "jsonPointer": "/cases/61/initialState",
+      "old": "Subcase1: Medium climber STR20 has base Speed40, current Speed30 from Burdened, Load12/20 and carried mass180/300 lb; total attached cable load400<600; ally anchored at z15. Subcase2: ordinary unburdened Frightened climber Speed30 begins S1 clipped at z0 with two hands free.",
+      "replacement": "Subcase1: Medium climber STR20 has base Speed40, current Speed30 from Burdened, Load12/20 and carried mass180/300 lb; total attached cable load400<600; ally anchored at z15. Subcase2: ordinary unburdened Frightened climber Speed30 begins S1 clipped at z0 with two hands free. In Subcase2 the recorded fear source is below the starting platform, out of line of sight; climbing upward moves farther away. No other disadvantage applies."
+    },
+    {
+      "issue": "RN3-06",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-08-A",
+      "jsonPointer": "/cases/61/steps",
+      "old": [
+        "Subcase1: ally spends Help Action. Burdened disadvantage and Help advantage cancel. Climber spends Action+30 movement; Athletics13+5=18 vs14 succeeds z0→15. Action spent, movement0; no extra capacity/movement granted.",
+        "Subcase2: frightened climber begins S1 climb and, as part of that same climb Action before the climb check, makes the scoped self-steady WIS DC14 save. Roll12+WIS2=14 succeeds, granting advantage on this segment climb without a second Action.",
+        "Still within the same S1 climb Action, roll Athletics with advantage: dice6/15 +3 =18 vs14 succeeds. The same Action and30 movement complete S1; climber reaches z15 with movement0. If the WIS save had failed, the climb check would simply lack this advantage; the Action would still continue."
+      ],
+      "replacement": [
+        "Subcase1: ally spends Help Action. Burdened disadvantage and Help advantage cancel. Climber spends Action+30 movement; Athletics13+5=18 vs14 succeeds z0→15. Action spent, movement0; no extra capacity/movement granted.",
+        "Subcase2: frightened climber begins S1 climb and, as part of that same climb Action before the climb check, makes the scoped self-steady WIS DC14 save. Roll12+WIS2=14 succeeds, granting advantage on this segment climb without a second Action.",
+        "Still within the same S1 climb Action, roll Athletics with advantage: dice6/15 +3 =18 vs14 succeeds. The same Action and30 movement complete S1; climber reaches z15 with movement0. If the WIS save had failed, the climb check would simply lack this advantage; the Action would still continue. If the fear source were visible, Frightened disadvantage would cancel this advantage; self-steady never permits willingly moving closer to the fear source."
+      ]
+    },
+    {
+      "issue": "RN3-07",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/8/voting/expeditionCapSource",
+      "old": null,
+      "replacement": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md",
+        "firstLineOneBased": 91,
+        "lastLineOneBased": 91,
+        "excerpt": "An Expedition contains no more than twelve characters. Larger forces are multiple Expeditions coordinating."
+      }
+    },
+    {
+      "issue": "RN3-08",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/10/procedures/0",
+      "old": "Four one-use cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents and Boundless Void. Shuffle facedown; draw without replacement. Action by willing group up to six adjacent creatures activates drawn card. Preflight each traveler’s actual current footprint/height into the 20×20×20 destination landing volume and record one nonoverlapping marked origin footprint in the chamber; if any traveler cannot fit, activation fails and card is not consumed.",
+      "replacement": "Four one-use cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents and Boundless Void. Shuffle facedown; draw without replacement. One willing initiator spends one Action to activate the drawn card for itself and up to five other willing creatures. Each traveler must have its current footprint within5ft of the pool boundary and fit a legal supported, nonoverlapping origin footprint outside the emergency pad. Consent costs no extra Action; no traveler gains an Action from activation. Preflight each traveler’s actual current footprint/height into the 20×20×20 destination landing volume and record one nonoverlapping marked origin footprint in the chamber; if any traveler cannot fit, activation fails and card is not consumed."
+    },
+    {
+      "issue": "RN3-08",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "Four one-use cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents and Boundless Void. Shuffle facedown; draw without replacement. Action by willing group up to six adjacent creatures activates drawn card. Preflight each traveler’s actual current footprint/height into the 20×20×20 destination landing volume and record one nonoverlapping marked origin footprint in the chamber; if any traveler cannot fit, activation fails and card is not consumed.",
+      "replacement": "Four one-use cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents and Boundless Void. Shuffle facedown; draw without replacement. One willing initiator spends one Action to activate the drawn card for itself and up to five other willing creatures. Each traveler must have its current footprint within5ft of the pool boundary and fit a legal supported, nonoverlapping origin footprint outside the emergency pad. Consent costs no extra Action; no traveler gains an Action from activation. Preflight each traveler’s actual current footprint/height into the 20×20×20 destination landing volume and record one nonoverlapping marked origin footprint in the chamber; if any traveler cannot fit, activation fails and card is not consumed.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-08",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "Four one-use cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents and Boundless Void. Shuffle facedown; draw without replacement. Action by willing group up to six adjacent creatures activates drawn card. Preflight each traveler’s actual current footprint/height into the 20×20×20 destination landing volume and record one nonoverlapping marked origin footprint in the chamber; if any traveler cannot fit, activation fails and card is not consumed.",
+      "replacement": "Four one-use cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents and Boundless Void. Shuffle facedown; draw without replacement. One willing initiator spends one Action to activate the drawn card for itself and up to five other willing creatures. Each traveler must have its current footprint within5ft of the pool boundary and fit a legal supported, nonoverlapping origin footprint outside the emergency pad. Consent costs no extra Action; no traveler gains an Action from activation. Preflight each traveler’s actual current footprint/height into the 20×20×20 destination landing volume and record one nonoverlapping marked origin footprint in the chamber; if any traveler cannot fit, activation fails and card is not consumed.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-08",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/10/procedures/2",
+      "old": "At +10:00 the first return attempt resolves before same-timestamp local landing-cell events. Recheck each traveler’s current body footprint/height. Return any legal traveler to its recorded origin footprint if still legal; otherwise nearest legal chamber floor in stable traveler-ID order. Already returned travelers stay returned. An original traveler carried by another remains its own identity and is placed once. Dropped/lost gear remains where actually left.",
+      "replacement": "At +10:00 the first return attempt resolves before same-timestamp local landing-cell events. Recheck each traveler’s current body footprint/height. Return any legal traveler to its recorded origin footprint if still legal; otherwise nearest legal chamber floor in stable traveler-ID order. Already returned travelers stay returned. An original traveler carried by another remains its own identity and is placed once. Dropped/lost gear remains where actually left. For all ordinary placement attempts, exclude the reserved emergency pad; it is unlocked only by the explicit +20:00 emergency step and remains eligible on later rechecks."
+    },
+    {
+      "issue": "RN3-08",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "At +10:00 the first return attempt resolves before same-timestamp local landing-cell events. Recheck each traveler’s current body footprint/height. Return any legal traveler to its recorded origin footprint if still legal; otherwise nearest legal chamber floor in stable traveler-ID order. Already returned travelers stay returned. An original traveler carried by another remains its own identity and is placed once. Dropped/lost gear remains where actually left.",
+      "replacement": "At +10:00 the first return attempt resolves before same-timestamp local landing-cell events. Recheck each traveler’s current body footprint/height. Return any legal traveler to its recorded origin footprint if still legal; otherwise nearest legal chamber floor in stable traveler-ID order. Already returned travelers stay returned. An original traveler carried by another remains its own identity and is placed once. Dropped/lost gear remains where actually left. For all ordinary placement attempts, exclude the reserved emergency pad; it is unlocked only by the explicit +20:00 emergency step and remains eligible on later rechecks.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-08",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "At +10:00 the first return attempt resolves before same-timestamp local landing-cell events. Recheck each traveler’s current body footprint/height. Return any legal traveler to its recorded origin footprint if still legal; otherwise nearest legal chamber floor in stable traveler-ID order. Already returned travelers stay returned. An original traveler carried by another remains its own identity and is placed once. Dropped/lost gear remains where actually left.",
+      "replacement": "At +10:00 the first return attempt resolves before same-timestamp local landing-cell events. Recheck each traveler’s current body footprint/height. Return any legal traveler to its recorded origin footprint if still legal; otherwise nearest legal chamber floor in stable traveler-ID order. Already returned travelers stay returned. An original traveler carried by another remains its own identity and is placed once. Dropped/lost gear remains where actually left. For all ordinary placement attempts, exclude the reserved emergency pad; it is unlocked only by the explicit +20:00 emergency step and remains eligible on later rechecks.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-08",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/10/procedures/6",
+      "old": "If still impossible after +20:00, enter NEW scene-local Return Waiting, not stasis: the unresolved traveler remains in the bounded landing cell and has no voluntary scene agency (no Actions, Bonus Actions, Reactions, movement, interaction, harvesting or onward travel), but is not frozen or untargetable by rule. Existing absolute/virtual deadlines, form durations, concentration/source dependencies, conditions, life/death/Stable recovery, companion expiry and paid costs continue exactly under their source rules. Recheck immediately when such an event changes placement eligibility and otherwise once per elapsed minute; return at the first legal check in stable ID order.",
+      "replacement": "If still impossible after +20:00, enter NEW scene-local Return Waiting, not stasis: the unresolved traveler remains in the bounded landing cell and has no voluntary scene agency (no Actions, Bonus Actions, Reactions, movement, interaction, harvesting or onward travel), but is not frozen or untargetable by rule. Existing absolute/virtual deadlines, form durations, concentration/source dependencies, conditions, life/death/Stable recovery, companion expiry and paid costs continue exactly under their source rules. Recheck immediately when such an event changes placement eligibility and otherwise once per elapsed minute; return at the first legal check in stable ID order. Narrow release exception: an unresolved traveler may end its own existing concentration without an Action if its actual source permits that release. This permits no new activation, movement, harvest or other voluntary activity; a resulting eligibility change triggers the same immediate return check."
+    },
+    {
+      "issue": "RN3-08",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "If still impossible after +20:00, enter NEW scene-local Return Waiting, not stasis: the unresolved traveler remains in the bounded landing cell and has no voluntary scene agency (no Actions, Bonus Actions, Reactions, movement, interaction, harvesting or onward travel), but is not frozen or untargetable by rule. Existing absolute/virtual deadlines, form durations, concentration/source dependencies, conditions, life/death/Stable recovery, companion expiry and paid costs continue exactly under their source rules. Recheck immediately when such an event changes placement eligibility and otherwise once per elapsed minute; return at the first legal check in stable ID order.",
+      "replacement": "If still impossible after +20:00, enter NEW scene-local Return Waiting, not stasis: the unresolved traveler remains in the bounded landing cell and has no voluntary scene agency (no Actions, Bonus Actions, Reactions, movement, interaction, harvesting or onward travel), but is not frozen or untargetable by rule. Existing absolute/virtual deadlines, form durations, concentration/source dependencies, conditions, life/death/Stable recovery, companion expiry and paid costs continue exactly under their source rules. Recheck immediately when such an event changes placement eligibility and otherwise once per elapsed minute; return at the first legal check in stable ID order. Narrow release exception: an unresolved traveler may end its own existing concentration without an Action if its actual source permits that release. This permits no new activation, movement, harvest or other voluntary activity; a resulting eligibility change triggers the same immediate return check.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-08",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "If still impossible after +20:00, enter NEW scene-local Return Waiting, not stasis: the unresolved traveler remains in the bounded landing cell and has no voluntary scene agency (no Actions, Bonus Actions, Reactions, movement, interaction, harvesting or onward travel), but is not frozen or untargetable by rule. Existing absolute/virtual deadlines, form durations, concentration/source dependencies, conditions, life/death/Stable recovery, companion expiry and paid costs continue exactly under their source rules. Recheck immediately when such an event changes placement eligibility and otherwise once per elapsed minute; return at the first legal check in stable ID order.",
+      "replacement": "If still impossible after +20:00, enter NEW scene-local Return Waiting, not stasis: the unresolved traveler remains in the bounded landing cell and has no voluntary scene agency (no Actions, Bonus Actions, Reactions, movement, interaction, harvesting or onward travel), but is not frozen or untargetable by rule. Existing absolute/virtual deadlines, form durations, concentration/source dependencies, conditions, life/death/Stable recovery, companion expiry and paid costs continue exactly under their source rules. Recheck immediately when such an event changes placement eligibility and otherwise once per elapsed minute; return at the first legal check in stable ID order. Narrow release exception: an unresolved traveler may end its own existing concentration without an Action if its actual source permits that release. This permits no new activation, movement, harvest or other voluntary activity; a resulting eligibility change triggers the same immediate return check.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-08",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/10/geometry",
+      "old": "NEW fixed scene map: 50×40-ft chamber, southwest origin, floor z=0, ceiling z=20. West entrance x=0,y17.5–22.5. Central 10×10 pool x15–25,y15–25. Four 5×5 plinths: west x10–15,y17.5–22.5; east x25–30,y17.5–22.5; south x17.5–22.5,y10–15; north x17.5–22.5,y25–30. Six marked activation/return-origin spaces A1–A6 occupy legal floor around the pool and are assigned only when each traveler’s current footprint fits without overlap. Emergency return pad is a supported 20×20 floor area x30–50,y20–40,z=0 with clear volume through z=20; it does not overlap the pool/plinths and is reserved from ordinary voluntary occupation while a card visit is active.",
+      "replacement": "NEW fixed scene map: 50×40-ft chamber, southwest origin, floor z=0, ceiling z=20. West entrance x=0,y17.5–22.5. Central 10×10 pool x15–25,y15–25. Four 5×5 plinths: west x10–15,y17.5–22.5; east x25–30,y17.5–22.5; south x17.5–22.5,y10–15; north x17.5–22.5,y25–30. Six marked activation/return-origin spaces A1–A6 occupy legal floor around the pool and are assigned only when each traveler’s current footprint fits without overlap. Emergency return pad is a supported 20×20 floor area x30–50,y20–40,z=0 with clear volume through z=20; it does not overlap the pool/plinths and is reserved from ordinary voluntary occupation while a card visit is active. The north bypass exit is x22.5–27.5,y40, with its lever adjacent at (27.5,37.5), outside the emergency pad. Ordinary legal floor connects the west entrance to that lever/exit."
+    },
+    {
+      "issue": "RN3-08",
+      "file": "PLAYER_CHAPTER.md",
+      "old": "NEW fixed scene map: 50×40-ft chamber, southwest origin, floor z=0, ceiling z=20. West entrance x=0,y17.5–22.5. Central 10×10 pool x15–25,y15–25. Four 5×5 plinths: west x10–15,y17.5–22.5; east x25–30,y17.5–22.5; south x17.5–22.5,y10–15; north x17.5–22.5,y25–30. Six marked activation/return-origin spaces A1–A6 occupy legal floor around the pool and are assigned only when each traveler’s current footprint fits without overlap. Emergency return pad is a supported 20×20 floor area x30–50,y20–40,z=0 with clear volume through z=20; it does not overlap the pool/plinths and is reserved from ordinary voluntary occupation while a card visit is active.",
+      "replacement": "NEW fixed scene map: 50×40-ft chamber, southwest origin, floor z=0, ceiling z=20. West entrance x=0,y17.5–22.5. Central 10×10 pool x15–25,y15–25. Four 5×5 plinths: west x10–15,y17.5–22.5; east x25–30,y17.5–22.5; south x17.5–22.5,y10–15; north x17.5–22.5,y25–30. Six marked activation/return-origin spaces A1–A6 occupy legal floor around the pool and are assigned only when each traveler’s current footprint fits without overlap. Emergency return pad is a supported 20×20 floor area x30–50,y20–40,z=0 with clear volume through z=20; it does not overlap the pool/plinths and is reserved from ordinary voluntary occupation while a card visit is active. The north bypass exit is x22.5–27.5,y40, with its lever adjacent at (27.5,37.5), outside the emergency pad. Ordinary legal floor connects the west entrance to that lever/exit.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-08",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "NEW fixed scene map: 50×40-ft chamber, southwest origin, floor z=0, ceiling z=20. West entrance x=0,y17.5–22.5. Central 10×10 pool x15–25,y15–25. Four 5×5 plinths: west x10–15,y17.5–22.5; east x25–30,y17.5–22.5; south x17.5–22.5,y10–15; north x17.5–22.5,y25–30. Six marked activation/return-origin spaces A1–A6 occupy legal floor around the pool and are assigned only when each traveler’s current footprint fits without overlap. Emergency return pad is a supported 20×20 floor area x30–50,y20–40,z=0 with clear volume through z=20; it does not overlap the pool/plinths and is reserved from ordinary voluntary occupation while a card visit is active.",
+      "replacement": "NEW fixed scene map: 50×40-ft chamber, southwest origin, floor z=0, ceiling z=20. West entrance x=0,y17.5–22.5. Central 10×10 pool x15–25,y15–25. Four 5×5 plinths: west x10–15,y17.5–22.5; east x25–30,y17.5–22.5; south x17.5–22.5,y10–15; north x17.5–22.5,y25–30. Six marked activation/return-origin spaces A1–A6 occupy legal floor around the pool and are assigned only when each traveler’s current footprint fits without overlap. Emergency return pad is a supported 20×20 floor area x30–50,y20–40,z=0 with clear volume through z=20; it does not overlap the pool/plinths and is reserved from ordinary voluntary occupation while a card visit is active. The north bypass exit is x22.5–27.5,y40, with its lever adjacent at (27.5,37.5), outside the emergency pad. Ordinary legal floor connects the west entrance to that lever/exit.",
+      "expectedOccurrences": 1
+    },
+    {
+      "issue": "RN3-08",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-09-A",
+      "jsonPointer": "/cases/63/initialState",
+      "old": "Two recorded travelers A and B reach t=10:00. A currently fits its origin footprint. B is Large/otherwise blocked by a concentration-maintained form cast by an outside caster; effect has not expired.",
+      "replacement": "Two recorded travelers A and B reach t=10:00. A currently fits its origin footprint. B is Large/otherwise blocked by a concentration-maintained form cast by an outside caster; effect has not expired. B has a legal Medium origin footprint but adjacent actual obstacles prevent its current Large body fitting there; all other ordinary free spaces are likewise too small for B. The reserved pad is excluded before+20:00. A and B current bodies fit nonoverlapping spaces in the destination cell."
+    },
+    {
+      "issue": "RN3-08",
+      "file": "CASEBOOK.json",
+      "caseId": "RNX-09-B",
+      "jsonPointer": "/cases/64/steps",
+      "old": [
+        "At t20:00 ordinary placement is retried. E fits the pad: place E once in pad subarea x30–40,y20–30,z0; 10×10 footprint and15-ft height fit the 20×20×20 reserved volume with no overlap.",
+        "D’s same surviving corpse/body record is return-eligible and is placed once in another legal pad/chamber space if it fits. No living copy or replacement body is created. If the body had actually been consumed/removed by a source, there would be no physical body to place.",
+        "C still cannot fit, so C enters Return Waiting: no voluntary scene agency, but all real duration/life/concentration clocks continue. A form expiry at t23:00 resolves normally and reduces C’s footprint.",
+        "The eligibility-changing expiry triggers an immediate recheck at t23:00; C returns then. The waiting rule did not freeze or extend the form."
+      ],
+      "replacement": [
+        "At t20:00 ordinary placement is retried. E fits the pad: place E once in pad subarea x30–40,y20–30,z0; 10×10 footprint and15-ft height fit the 20×20×20 reserved volume with no overlap.",
+        "D’s same surviving corpse/body record is return-eligible and is placed once in another legal pad/chamber space if it fits. No living copy or replacement body is created. If the body had actually been consumed/removed by a source, there would be no physical body to place.",
+        "C still cannot fit, so C enters Return Waiting: no voluntary scene agency, but all real duration/life/concentration clocks continue. A form expiry at t23:00 resolves normally and reduces C’s footprint.",
+        "The eligibility-changing expiry triggers an immediate recheck at t23:00; C returns then. The waiting rule did not freeze or extend the form.",
+        "Separate release check: a waiting traveler whose own existing concentration is the source of an obstructing form may end that concentration without an Action only if the actual source allows it. Process the source end and immediate placement recheck; no other voluntary activity becomes available."
+      ]
+    },
+    {
+      "issue": "RN3-09",
+      "file": "RELIC_NULL_MODEL.json",
+      "jsonPointer": "/chambers/10/destinations/Boundless Void",
+      "old": "20×20 force-lattice cell with no air loss/gravity hazard in this bounded staging bubble; WIS save DC14 or Frightened until end of next turn from vertigo. No outer travel.",
+      "replacement": "20×20×20 force-lattice cell, local southwest origin, floor z=0, with no air loss/gravity hazard in this bounded staging bubble. On arrival WIS save DC14 or Frightened of the fixed vertigo source at cell center(10,10,z0) until the end of the target’s next regular turn; outside initiative,6 elapsed seconds absolute. Preserve the recorded virtual/absolute deadline through initiative changes; ordinary fear immunity and movement restrictions apply. No outer travel."
+    },
+    {
+      "issue": "RN3-09",
+      "file": "DIRECTOR_CHAPTER.md",
+      "old": "20×20 force-lattice cell with no air loss/gravity hazard in this bounded staging bubble; WIS save DC14 or Frightened until end of next turn from vertigo. No outer travel.",
+      "replacement": "20×20×20 force-lattice cell, local southwest origin, floor z=0, with no air loss/gravity hazard in this bounded staging bubble. On arrival WIS save DC14 or Frightened of the fixed vertigo source at cell center(10,10,z0) until the end of the target’s next regular turn; outside initiative,6 elapsed seconds absolute. Preserve the recorded virtual/absolute deadline through initiative changes; ordinary fear immunity and movement restrictions apply. No outer travel.",
+      "expectedOccurrences": 1
+    }
+  ],
+  "sourceEntryAppend": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md",
+    "bytes": 43475,
+    "sha256": "ba5ebcbdb77a27cb8fde88ba13fd05216d6808b10f7b58b64e6cba54eed62066"
+  },
+  "checks": {
+    "original75CaseIdsSameOrder": true,
+    "original84SourceEntriesUnchanged": true,
+    "source85ActualBytes": {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md",
+      "bytes": 43475,
+      "sha256": "ba5ebcbdb77a27cb8fde88ba13fd05216d6808b10f7b58b64e6cba54eed62066"
+    },
+    "all10LifecycleBranchesPrintedInBothChapters": true,
+    "playerFixedPuzzleAnswersRemoved": true,
+    "originalReturnedEightFilesUnchanged": true,
+    "runtimeTestsExecuted": 0
+  },
+  "newRulesAdopted": false,
+  "sourceInformationDeleted": 0,
+  "semanticReviewScope": "Both full prose chapters, all75 authored examples, current Null model and revision03 actor/maps/procedures reviewed; reference/source checks are distinct from execution and numerical balance.",
+  "proposedArchive": {
+    "path": "docs/audit/2026-10-08/full-game/DD_Relic_Null_03_Local_Patch_01.zip",
+    "bytes": 153828,
+    "sha256": "748593ca501cd43c6557a4101525ed1362d89d3283c7c41bad4070df540aefcb"
+  },
+  "patchManifest": {
+    "path": "docs/audit/2026-10-08/full-game/relic-null-03-local-patch-01/PATCH_MANIFEST.json",
+    "bytes": 65262,
+    "sha256": "5529f2e059ac60d406009804ed9606b9fea626d30b82932d460416d8da7f8f03"
+  }
+}

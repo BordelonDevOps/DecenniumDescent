@@ -1,0 +1,986 @@
+{
+  "recordedAtUtc": "2026-10-16T05:21:02.019576+00:00",
+  "reviewedArchive": {
+    "path": "docs/audit/2026-10-08/full-game/DD_Cosmology_Epilogue_Relic_Null_02_Return_02.zip",
+    "bytes": 102637,
+    "sha256": "de3a15bee044b7e631cf46a572a104589f928913c5b618c246369a50d7925905"
+  },
+  "earlierReturnPreserved": {
+    "path": "docs/audit/2026-10-08/full-game/DD_Cosmology_Epilogue_Relic_Null_02_Return_01.zip",
+    "bytes": 101523,
+    "sha256": "194783144aa4a2c23a2fef121639472f91b87fa57a5da6547e67e0357ae3fe03"
+  },
+  "sourceFormatResolution": {
+    "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_RELIC_NULL_02_SOURCE_FORMAT_RESOLUTION_01.json",
+    "bytes": 36365,
+    "sha256": "b7906c6fd7f616c16f62bfac9a0ae75fc04f57fbe3c82cb12edfc03e8302a49a"
+  },
+  "status": "Targeted independent semantic follow-up; remaining defects block adoption. Await actual GPT disposition.",
+  "acceptedSelfAuditRepairs": [
+    "Prone standing movement before Tessellation recovery",
+    "Burdened disadvantage/Help cancellation with explicit capacity",
+    "Finite tray/flask carry accounting",
+    "Actual Healing Rite chosen, with arithmetic still to correct",
+    "CH10 Favor confined to CH10"
+  ],
+  "findings": [
+    {
+      "id": "RN2-01",
+      "title": "Restore a usable complete player chapter",
+      "finding": "The latest PLAYER_CHAPTER replaces readable relic procedures with long raw JSON, omits the hourly WIS DC15 exposure rule and final passive Insight5, omits creation-time damage-root behavior, abbreviates all three purge requirements and omits individual plant recognition/harvest/freshness and dose outcomes. Shrug success/failure paragraphs are concatenated without explicit outcome labels. The Director/model still contain these rules. Both chapters must carry their full intended operational content and preserve player/Director information boundaries.",
+      "required": "Rewrite human-readable chapters and compare each operative rule with the model. Player text must state complete player-facing costs, time, targets, outcomes, recovery and limits; use explicit Director cross-references for private scene information rather than exporting raw model internals."
+    },
+    {
+      "id": "RN2-02",
+      "title": "Finish actor envelopes and derive passive scores from actual modifiers",
+      "finding": "Toy Perception+3 prints passive11, Wraith Perception+7 prints14, and other profiles disagree with 10+their printed WIS/Perception modifier. In the absence of a separately printed modifier the expected values are Toy13, Wraith17, Devil11, Demon11, Echo12, Glass-Mender13. Clockwork Lunge still lacks reach/target count; Echo Strike lacks explicit melee reach/type/target count; Sera Quarterstaff lacks reach/target count. Rehearse Doubt lacks a complete Action/clock envelope.",
+      "required": "Use frozen COMBAT_ACTION line172 and actual actor modifiers. Complete every actor action/reaction and initial placement needed by the rooms, including the fear source and outside/inside initiative deadlines. Do not invent proficiency solely to preserve a mistaken passive.",
+      "evidence": [
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/actorProfiles/ACT-TOY-SENTINEL",
+          "value": {
+            "id": "ACT-TOY-SENTINEL",
+            "name": "Memory Forge Toy Sentinel",
+            "status": "NEW provisional scene actor",
+            "lifeClass": "Construct creature; ordinary monster life-state. At 0 HP it is destroyed/inert unless a local Null rule applies.",
+            "size": "Small",
+            "AC": 15,
+            "HP": 24,
+            "speed": "30 ft",
+            "senses": "darkvision 60 ft; passive Perception 11",
+            "abilityMods": {
+              "STR": 2,
+              "DEX": 3,
+              "CON": 2,
+              "INT": -1,
+              "WIS": 1,
+              "CHA": 0
+            },
+            "proficiencies": "Perception +3",
+            "defenses": "immune to poison and disease; no other immunity",
+            "actions": [
+              {
+                "name": "Tin Edge",
+                "attack": "+6 melee, reach 5 ft, one target",
+                "damage": "1d8+3 slashing"
+              },
+              {
+                "name": "Clockwork Lunge",
+                "attack": "+6 melee after moving at least 10 ft straight",
+                "damage": "1d6+3 bludgeoning; target STR save DC14 or Prone"
+              }
+            ],
+            "behavior": "Attacks the nearest creature carrying/touching a manifested toy. A successful Comfort action against it ends hostility permanently for this chamber."
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/actorProfiles/ACT-SILENCE-WRAITH",
+          "value": {
+            "id": "ACT-SILENCE-WRAITH",
+            "name": "Silence Wraith",
+            "status": "NEW provisional scene actor; not bestiary promotion",
+            "lifeClass": "Spirit creature; significant scene NPC using HP. At 0 HP disperses; no harvestable corpse or soul-claim.",
+            "size": "Medium",
+            "AC": 15,
+            "HP": 58,
+            "speed": "30 ft, fly 30 ft (hover)",
+            "senses": "Heartbeat vibration sense 60 ft through contiguous CH03 stone/plate surfaces when the creature with a beating heart is physically supported by those surfaces; passive Perception 14. Motion does not switch off a heartbeat. A genuinely heartbeat-free creature creates no heartbeat signal solely from anatomy, but other ordinary perception remains possible. A flying/hovering creature with no contact to chamber surfaces transmits no heartbeat vibration through them.",
+            "abilityMods": {
+              "STR": 0,
+              "DEX": 4,
+              "CON": 2,
+              "INT": 1,
+              "WIS": 4,
+              "CHA": 2
+            },
+            "proficiencies": "Perception +7, Stealth +7",
+            "defenses": "resistance to nonmagical bludgeoning/piercing/slashing; immune to Deafened",
+            "actions": [
+              {
+                "name": "Hush Claw",
+                "attack": "+7 melee spell-like scene attack; reach 5 ft; one target",
+                "damage": "2d6+4 cold; target CON save DC15 or cannot deliberately speak until end of that target’s next regular turn (outside initiative: 6 seconds absolute). This actor-specific speech loss is not the whole Silenced condition; it independently blocks V while it lasts because V requires actual audible speech."
+              },
+              {
+                "name": "Pulse Hunt",
+                "attack": "Action; one creature whose heartbeat location the Wraith currently senses within 30 ft",
+                "damage": "WIS save DC15; failure: Frightened of the Wraith until end of that target’s next regular turn (outside initiative: 6 seconds absolute)."
+              }
+            ],
+            "behavior": "Hunts strongest heartbeat vibration it can sense. Stillness never erases a heartbeat. It may use ordinary visible-target perception if applicable; heartbeat sense itself does not see through total-cover barriers disconnected from the chamber stone."
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/actorProfiles/ACT-ECHO-DOPPELGANGER",
+          "value": {
+            "id": "ACT-ECHO-DOPPELGANGER",
+            "name": "Echo Doppelganger",
+            "status": "NEW provisional scene actor; not a PC copy",
+            "lifeClass": "Projection; 0 HP ends projection, no corpse/soul/XP duplication.",
+            "size": "Medium",
+            "AC": 15,
+            "HP": 48,
+            "speed": "30 ft",
+            "senses": "passive Perception 13",
+            "abilityMods": {
+              "STR": 2,
+              "DEX": 4,
+              "CON": 2,
+              "INT": 1,
+              "WIS": 2,
+              "CHA": 2
+            },
+            "proficiencies": "Acrobatics +7, Insight +5",
+            "defenses": "resistance psychic",
+            "actions": [
+              {
+                "name": "Echo Strike",
+                "attack": "+7 melee or ranged 20 ft",
+                "damage": "2d6+4 force"
+              },
+              {
+                "name": "Rehearse Doubt",
+                "attack": "one creature within 30 ft",
+                "damage": "CHA save DC15; failure -2 to next ability check before end next turn"
+              }
+            ],
+            "reactions": [
+              {
+                "name": "Mirrored Guard",
+                "effect": "Once/round when hit, +2 AC against that attack; if this makes attack miss, no further effect."
+              }
+            ],
+            "behavior": "Looks like the triggering character but copies no class cards, resources, inventory, spells, memories, XP, attunements, or identity. It attacks that character first."
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/actorProfiles/ACT-NULL-WITNESS",
+          "value": {
+            "id": "ACT-NULL-WITNESS",
+            "name": "Witness Sera, Quiet-Well Recorder",
+            "status": "NEW provisional mortal NPC for chamber access",
+            "lifeClass": "Living humanoid significant NPC; uses death saves if reduced to 0.",
+            "size": "Medium",
+            "AC": 12,
+            "HP": 22,
+            "speed": "30 ft",
+            "senses": "passive Perception 14",
+            "abilityMods": {
+              "STR": 0,
+              "DEX": 1,
+              "CON": 1,
+              "INT": 3,
+              "WIS": 4,
+              "CHA": 2
+            },
+            "proficiencies": "Insight +7, Religion +6, Persuasion +5",
+            "defenses": "none beyond ordinary equipment",
+            "actions": [
+              {
+                "name": "Quarterstaff",
+                "attack": "+3 melee",
+                "damage": "1d6 bludgeoning"
+              },
+              {
+                "name": "Record Petition",
+                "attack": "noncombat",
+                "damage": "Acts as local Witness only for current EPI06 petition step one; grants no automatic favorable Archon response."
+              }
+            ],
+            "behavior": "Neutral recorder; refuses coercion, follows current EPI06 motive-record procedure, and leaves if attacked."
+          }
+        }
+      ]
+    },
+    {
+      "id": "RN2-03",
+      "title": "Make Ladder self-steadying and failure branches executable",
+      "finding": "The frightened climber spends its Action to steady but that advantage expires at the start of its next turn; the separate climb also costs an Action. A character with only its normal Action cannot use the benefit. The cable catch covers clipped failure only; unclipped failure and over-capacity clip attempts are undefined. The corrected burdened example is accepted as a useful repair, but it does not resolve these branches.",
+      "required": "Choose and label a scoped NEW self-steady timing that an ordinary character can use, with no extra Action assumption. State clip capacity preflight, unclip/withdrawal and unclipped failure against real geometry, hand requirements and movement costs. Work a frightened ordinary climber through the whole sequence.",
+      "evidence": [
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/chambers/5",
+          "value": {
+            "id": "CH06-LADDER-DEBRIS",
+            "seed": 6,
+            "name": "Ladder Debris Shaft",
+            "source": {
+              "path": "The Cosmology of Decennium Descent.docx",
+              "part": "word/document.xml",
+              "paragraphIndexZeroBased": 309,
+              "textSha256": "76eae3831a199e5ea37159649eed54a67f48a8b5444b46e6b744ac42d8c4f72d"
+            },
+            "status": "NEW provisional chamber scene",
+            "placement": "Conditional undocumented-floor scene.",
+            "geometry": "60-ft shaft, 10×10-ft clear interior. Bottom ledge z=0–5 ft, top ledge z=60 ft. Four 15-ft rung segments: S1 z0→15, S2 15→30, S3 30→45, S4 45→60. One fixed wall cable runs z=0→60 with clips at every 5 ft; rated 600 lb total attached load. One creature occupies a rung segment at a time unless actual size/space permits otherwise.",
+            "sensory": "Broken luminous rungs blink in sequence; wind rises each segment.",
+            "dangerTelegraph": "Etched handprint reads 'COURAGE IS CONTINUING WHILE AFRAID, NOT A NEW SKILL.'",
+            "objective": "Ascend four segments.",
+            "procedures": [
+              "Clip to safety cable: Action at bottom/top or while adjacent to cable; one free hand. Harness/clip is chamber stock and stays on cable. An attached creature and carried load count against 600-lb capacity.",
+              "Climb one 15-ft segment: requires an Action, 30 ft of remaining movement (scene-local 2:1 climb cost), and STR (Athletics) DC14 or DEX (Acrobatics) DC14. The Action and 30 movement are both spent on success or failure. If insufficient movement remains, the attempt cannot begin.",
+              "A frightened climber may spend an Action once for that segment to make WIS save DC14. Success grants advantage on its next check for that segment before its next regular turn starts (outside initiative: within 6 seconds); failure grants nothing. This is not the climb Action.",
+              "Failure while clipped deals 1d6 bludgeoning and catches at max(0, segmentStartZ−5). Thus S1 failure catches on bottom ledge z=0, never below floor. For S2–S4 the creature hangs 5 ft below segment start.",
+              "Recover from a hanging catch above z0: Action plus 10 ft remaining movement to climb 5 ft back to segment-start ledge; no check. This is not a free ascent and does not complete the failed segment.",
+              "An ally securely on the destination ledge/segment top may spend Help Action to grant ordinary advantage if physically able; the old +2 is removed to use the current Help interface and avoid stacking a duplicate assistance engine."
+            ],
+            "failure": "Three failures by same climber do not end scene; withdrawal downward remains possible. Ordinary actual flight/teleport works if legal.",
+            "reward": "Top ledge holds one finite 50-ft luminous rope (ordinary rope visibility only, no magic bonus).",
+            "persistent": "Rope stock one."
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-08-A",
+          "value": {
+            "id": "RNX-08-A",
+            "title": "Ladder segment consumes both Action and movement with assistance",
+            "category": "RNX follow-up",
+            "initialState": "Medium climber STR20 has base Speed40, current Speed30 from Burdened status, remaining movement30, carried inventory Load12/20 and carried mass180/300 lb. With body/harness and carried load, the cable ledger records 400 lb total attached load <600. Ally is securely anchored at z15.",
+            "steps": [
+              "Ally spends Help Action, physically assisting S1.",
+              "Burdened gives disadvantage on the climbing check; the ally’s Help gives advantage, so they cancel to one normal roll. Climber spends Action and30 movement to attempt S1; normal Athletics roll13+5=18 vs14 Success.",
+              "Climber moves z0→15. Remaining ordinary movement0. The printed Load12 and 180-lb mass both remain within the stated Load20 and 300-lb physical carrying ceilings; no extra free movement is granted."
+            ],
+            "elapsedTime": "one round/turn sequence",
+            "consumedStock": "No consumable stock; cable remains chamber fixture.",
+            "finalState": "Climber on z15 ledge, Action spent, movement0; assistance consumed for that check.",
+            "rollsAndDCs": [
+              "Athletics DC14 normal after Help advantage cancels Burdened disadvantage =18"
+            ],
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-08-B",
+          "value": {
+            "id": "RNX-08-B",
+            "title": "Cable catch on first and third segments has legal coordinates/recovery",
+            "category": "RNX follow-up",
+            "initialState": "Branch1 climber clipped at z0 attemptsS1. Branch2 same rules at S3 start z30.",
+            "steps": [
+              "B1 Athletics total10 vs14 Failure. Spend Action+30 movement, take1d6=3, catch=max(0,-5)=z0 bottom ledge, Prone; no below-floor space and no ascent. Future S1 requires new Action/movement.",
+              "B2 Acrobatics total12 vs14 Failure at z30. Spend Action+30, take1d6=5, cable catches z25. On next turn, recovery requires Action+10 movement to climb5ft back to z30; that recovery does not complete S3. A later new Action+30 movement is required for S3 attempt."
+            ],
+            "elapsedTime": "two illustrative failed attempts, each followed by normal next-turn recovery as stated",
+            "consumedStock": "HP damage3/5; no cable stock consumed",
+            "finalState": "No free ascent; first failure stays floor; third failure hangs z25 then returns z30 by paid recovery.",
+            "rollsAndDCs": [
+              "DC14 totals10/12",
+              "damage1d6=3/5"
+            ],
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        }
+      ]
+    },
+    {
+      "id": "RN2-04",
+      "title": "Supply coherent physical maps for the corrected procedures",
+      "finding": "A 20x20 return pad cannot occupy a northeast quadrant of a 30x30 room (15x15), and its overhead description lacks an actual support elevation. Tessellation has row/lane labels but no complete coordinates for staging strips, flower beds, markers, safe inter-row/return travel and nets. Quiet Well calls a 10x10 southwest alcove outside its cylinder without specifying whether it extends outside the circular wall. The reachable Glass-Mender side room lacks dimensions/placement for its actor and repair cradle.",
+      "required": "Give fixed coordinate bounds, height/support, doors, legal starting/return spaces and connected routes for these NEW scenes. Preserve the approved finite map pattern. Demonstrate a legal round trip and legal current Large-body return without overlaps or assumed off-map room.",
+      "evidence": [
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/chambers/3",
+          "value": {
+            "id": "CH04-TESSELLATION-GARDEN",
+            "seed": 4,
+            "name": "Tessellation Garden",
+            "source": {
+              "path": "The Cosmology of Decennium Descent.docx",
+              "part": "word/document.xml",
+              "paragraphIndexZeroBased": 309,
+              "textSha256": "76eae3831a199e5ea37159649eed54a67f48a8b5444b46e6b744ac42d8c4f72d"
+            },
+            "status": "NEW provisional chamber scene",
+            "placement": "Conditional undocumented-floor scene.",
+            "geometry": "45×45-ft garden. Three 10-ft-deep traversal rows run west→east. Each row has three 5-ft lanes A/B/C separated by flower beds. Fixed safe lanes: Row1=B, Row2=A, Row3=C. Each unsafe lane has a catch net 10 ft below that lane and a fixed return ladder to that row’s west staging strip.",
+            "sensory": "Geometric flowers rotate; loose pebbles fall sideways over certain beds.",
+            "dangerTelegraph": "Petals point in alternating gravity directions before each zone changes.",
+            "objective": "Cross without forcing the geometry.",
+            "procedures": [
+              "At each row, a creature within 5 ft of its petal marker may spend an Action to read it: WIS (Perception) or INT (Investigation) DC14. Success identifies the fixed safe lane. Failure gives no false answer. One Action read per character per row; after failure that character may retry only after 10 uninterrupted minutes studying that same row.",
+              "Entering an unsafe lane triggers gravity immediately: DEX save DC14. Success returns creature to row start without entering the lane and spends the attempted 5 ft movement. Failure drops it 10 ft onto that lane’s net, Prone, taking 1d6 bludgeoning.",
+              "Net recovery is a scene-local climb: first end Prone under the ordinary Prone rule if necessary (standing costs floor(half current Speed) movement). Then spend an Action plus 20 ft of remaining movement to climb 10 vertical ft (2:1) and emerge on that row’s west staging strip. If the creature lacks 20 ft remaining movement after standing and other movement, it cannot start recovery unless it legally increases its movement budget first. An adjacent ally at the strip may Help normally if physically possible.",
+              "Rope, flight, teleportation or shapechanging work only if an actual rule grants them and destination/space is legal. No free generic traversal ability."
+            ],
+            "failure": "No lockout; parties can backtrack to entrance. Repeated failed reads do not change safe path.",
+            "reward": "One finite packet of geometric seeds, purely decorative/no recipe.",
+            "persistent": "Safe pattern fixed for chamber identity; seeds one packet.",
+            "map": {
+              "row1": {
+                "safe": "B"
+              },
+              "row2": {
+                "safe": "A"
+              },
+              "row3": {
+                "safe": "C"
+              },
+              "persistence": "Fixed for this chamber identity; observation never rerolls it."
+            }
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/chambers/6",
+          "value": {
+            "id": "CH07-QUIET-WELL",
+            "seed": 7,
+            "name": "Quiet Well Remnant",
+            "source": {
+              "path": "The Cosmology of Decennium Descent.docx",
+              "part": "word/document.xml",
+              "paragraphIndexZeroBased": 309,
+              "textSha256": "76eae3831a199e5ea37159649eed54a67f48a8b5444b46e6b744ac42d8c4f72d"
+            },
+            "status": "NEW provisional chamber scene",
+            "placement": "Conditional undocumented-floor scene.",
+            "geometry": "25-ft circular chamber with 10-ft-diameter well centered at origin. Entrance west; east door opposite. A marked 10×10 petition alcove occupies the southwest wall and is outside the active Null field.",
+            "sensory": "Faint gray-blue glow; spoken words sound emotionally flat near rim.",
+            "dangerTelegraph": "Mask-shaped relief shows one face intact, one cracked, with inscription 'WEAR WHAT YOU MADE; RECEIVE WHAT IT MEANS.'",
+            "objective": "Interact with well or bypass safely.",
+            "procedures": [
+              "One character wearing an operative Living mask may spend 1 uninterrupted minute at rim stating a fictional vow-related truth; gain one temporary Inspiration d6 that expires at next beneficial Long Rest and does not exceed the current EPI01 Inspiration pool cap.",
+              "A wearer of an operative Cracked mask doing the same records one Disquiet d6 under current EPI01 rules instead; no extra permanent boon.",
+              "Unmasked/dormant-mask characters receive only an image and no mechanical boon/bane.",
+              "Bypass: WIS (Insight) DC14 after 10 minutes identifies that interaction is optional; east door opens by ordinary lever after 1 minute regardless."
+            ],
+            "failure": "No forced mask use. Well does not purge Null Veil by itself.",
+            "reward": "Finite one-time well response per character identity; no refill by revisiting.",
+            "persistent": "Response ledger per character/chamber.",
+            "actors": [
+              "ACT-NULL-WITNESS"
+            ],
+            "witness": "Witness Sera is present once per chamber adoption and can fulfill EPI06 consultation step one for otherwise eligible petitioners. The chamber provides a 10×10 quiet alcove for the one-hour meditation, but petition timing/result remain current EPI06.",
+            "nullField": {
+              "fieldId": "NULL-FIELD-QUIET-WELL-1",
+              "status": "NEW operational boundary for the source small Null glow",
+              "boundary": "Vertical cylinder radius 7.5 ft centered on well, floor to 10 ft above floor. Crossing boundary starts/stops exposure; visual glow outside that cylinder is not exposure.",
+              "clock": "Use NULL-FIELD-01 accumulation by stable field identity. The field’s hourly clock is continuous per creature exposure time; leaving pauses this field accumulator rather than deleting it. Reentry resumes same partial exposure.",
+              "petitionAlcove": "Outside cylinder. One-hour EPI06 meditation there adds no exposure unless creature voluntarily enters the cylinder.",
+              "order": "At an exact timestamp, process already-due field hourly save before a later same-timestamp voluntary petition/blessing completion unless the source event explicitly has earlier priority; a qualifying Temporary Blessing purge then resolves and does not erase continued field exposure."
+            }
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/chambers/10",
+          "value": {
+            "id": "CH11-SHARDPOOL",
+            "seed": 11,
+            "name": "Shardpool Confluence",
+            "source": {
+              "path": "The Cosmology of Decennium Descent.docx",
+              "part": "word/document.xml",
+              "paragraphIndexZeroBased": 309,
+              "textSha256": "76eae3831a199e5ea37159649eed54a67f48a8b5444b46e6b744ac42d8c4f72d"
+            },
+            "status": "NEW provisional bounded plane-swap scene",
+            "placement": "Conditional undocumented-floor scene; does not grant general plane travel.",
+            "geometry": "30×30-ft pool chamber. Central 10×10 pool. Four 5-ft plinths at cardinal points. Emergency return pad is a marked 20×20×20-ft volume occupying the northeast chamber quadrant/overhead return volume; while any card visit is active it is a reserved destination and ordinary voluntary placement into it is illegal.",
+            "sensory": "Pool reflects four reviewed primary realms; four facedown one-use shard cards float above it.",
+            "dangerTelegraph": "Inscription: 'DRAW WITHOUT RETURN; TEN MINUTES; THE POOL BRINGS YOU BACK.'",
+            "objective": "Survive/adapt to brief plane landings or decline.",
+            "procedures": [
+              "Four one-use cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents and Boundless Void. Shuffle facedown; draw without replacement. Action by willing group up to six adjacent creatures activates drawn card. All must fit destination 20×20×20 landing volume at activation; otherwise activation fails and card is not consumed.",
+              "On successful activation, record traveler identity set, their current body footprints/heights and carried noncreature gear; consume card once. They swap to bounded landing cell for exactly 10:00 elapsed minutes. Noncreature objects lawfully picked up inside a landing cell may return if physically carried at return. A creature not in the recorded traveler set never becomes return-eligible merely by being carried later.",
+              "At +10:00 return attempt resolves before same-timestamp local events. Recheck each recorded traveler’s current footprint/height. Place into original marked footprint if legal; otherwise nearest legal chamber placements in stable traveler-ID order. Return of one traveler does not duplicate/remove another. An original traveler being physically carried by another is still placed once as its own traveler identity. Lost/dropped gear stays where actually left.",
+              "If any traveler cannot be legally placed, already placed travelers remain returned; unresolved travelers stay in landing cell for a recovery extension of at most 10 minutes with ordinary agency. At +20:00 make second attempt.",
+              "If still impossible at +20:00, use emergency pad if current body fits and pad is legal. If pad is physically impossible despite reservation, unresolved travelers enter Return Hold in their landing cell: they are frozen, cannot act/move/interact/harvest or be targeted, and no local clocks/effects newly advance for them. Recheck legal chamber placement every 1 elapsed minute and place them at first legal opportunity in stable ID order. Return Hold grants no continued plane access or onward travel.",
+              "Each card remains consumed after successful activation regardless of return delay. No onward portal exists."
+            ],
+            "destinations": {
+              "Crystal Bastion": "20×20×20 cinder-font cell; safe platform, one sealed Xi reliquary and six uniquely numbered 1-pint Bastion flame-water flasks FW-1..FW-6, 1 lb each. No active Null exposure field. No exit beyond invisible boundary.",
+              "Veiled Expanse": "20×20×20 gray fen cell; NO active Null exposure field merely from realm name. Finite portable planting stock: three Bittersap trays BT-TRAY-1..3 (each 24×12×8 in, 18 lb, two mature nodes), two Echo Lily basins EL-TRAY-1..2 (18×18×6 in, 14 lb, two blooms), one Tranquil Thorn tray TT-TRAY-1 (18×12×6 in, 8 lb, four sprigs), one Black Hush tray BH-TRAY-1 (18×12×4 in, 7 lb, four patches). Lifting one container from its cradle is an Action, requires two free hands, and makes that exact container carried gear; one creature can carry at most one such bulky container at a time unless an actual carrying feature permits otherwise. Removing a container removes its exact plant identities from this landing cell permanently. Containers have AC10/5HP and ordinary object consequences; destruction/loss never respawns plants. Recognition/harvest may occur later from the same carried container under the flora rules.",
+              "Radiant Currents": "20×20 shallow luminous current; DEX save DC14 on arrival or Prone; no damage; one finite prism shell (narrative only).",
+              "Boundless Void": "20×20 force-lattice cell with no air loss/gravity hazard in this bounded staging bubble; WIS save DC14 or Frightened until end of next turn from vertigo. No outer travel."
+            },
+            "failure": "Declining interaction leaves north exit lever usable after 1 minute. Consumed cards stay consumed even if party leaves.",
+            "reward": "Finite destination contents only. Xi Pendant and flora/flame water are real stock; no duplication.",
+            "persistent": "Four-card deck and all landing-cell stock persist globally for this chamber identity."
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/relics/2/reformation",
+          "value": {
+            "status": "NEW narrowed operational interpretation of source Sentinel discretion; one repair opportunity for this mirror identity.",
+            "scene": "CH12-GLASS-MENDER attached north backstage room of Omega Theatre.",
+            "access": "After CH12 first resolves, the north backstage door remains an ordinary physical route from CH12 whenever the adopted dungeon location is physically reachable. Leaving the chamber does not delete the room or actor.",
+            "actor": "ACT-GLASS-MENDER-SENTINEL",
+            "availability": "At most once per mirror identity.",
+            "stock": "All three exact silver reflection tabs and the recoverable shattered mirror identity are required.",
+            "tabTransaction": "Sentinel inspects first. Refusal or missing stock consumes nothing. On acceptance, all three tabs transfer into the repair cradle and are consumed immediately; mirror pieces remain in Sentinel custody during work.",
+            "procedure": "2 uninterrupted active hours of Sentinel work; no roll. Interruption resets accumulated repair-work time to 0 but does not recreate tabs. If the Sentinel and pieces remain available, work can restart without new tabs because the same consumed tabs remain committed in the cradle.",
+            "discretion": "Sentinel accepts only the original mirror, all three tabs, unused lifetime repair, and a non-hostile requester. It refuses a counterfeit/copy, missing stock, a second repair, or a requester currently attacking/coercing it. A hostility refusal is final for that visit; after the scene returns to non-hostile status for 10 elapsed minutes, one new request may be made. The Sentinel may not invent additional moral tests or prices.",
+            "completion": "Same mirror identity reforms. Pending mirror benefit is not restored. EPI07 Sentinel/history records are neither reset nor copied. A second shattering has no repair procedure in this module."
+          }
+        }
+      ]
+    },
+    {
+      "id": "RN2-05",
+      "title": "Resolve Return Hold against existing absolute clocks",
+      "finding": "Return Hold freezes all local clocks/effects and targeting, while established life, form, concentration and expiry rules retain absolute/virtual deadlines. An enlarged traveler that cannot fit can remain frozen past the enlargement expiry, preventing the very body reversion that would make return legal. The relationship to an outside caster ending concentration, death/Stable recovery, companion expiry and a corpse of an original traveler is unspecified.",
+      "required": "Replace or fully reconcile this NEW return fallback with existing clocks and source lifecycles. Prefer preserving real deadlines rather than a parallel universal stasis engine. Explicitly distinguish any allowed +10-to+20-minute agency from the later waiting state. Work blocked return during form expiry, an externally ended concentration effect, one traveler returning earlier, and original-traveler death without copying identities.",
+      "evidence": [
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/chambers/10/procedures",
+          "value": [
+            "Four one-use cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents and Boundless Void. Shuffle facedown; draw without replacement. Action by willing group up to six adjacent creatures activates drawn card. All must fit destination 20×20×20 landing volume at activation; otherwise activation fails and card is not consumed.",
+            "On successful activation, record traveler identity set, their current body footprints/heights and carried noncreature gear; consume card once. They swap to bounded landing cell for exactly 10:00 elapsed minutes. Noncreature objects lawfully picked up inside a landing cell may return if physically carried at return. A creature not in the recorded traveler set never becomes return-eligible merely by being carried later.",
+            "At +10:00 return attempt resolves before same-timestamp local events. Recheck each recorded traveler’s current footprint/height. Place into original marked footprint if legal; otherwise nearest legal chamber placements in stable traveler-ID order. Return of one traveler does not duplicate/remove another. An original traveler being physically carried by another is still placed once as its own traveler identity. Lost/dropped gear stays where actually left.",
+            "If any traveler cannot be legally placed, already placed travelers remain returned; unresolved travelers stay in landing cell for a recovery extension of at most 10 minutes with ordinary agency. At +20:00 make second attempt.",
+            "If still impossible at +20:00, use emergency pad if current body fits and pad is legal. If pad is physically impossible despite reservation, unresolved travelers enter Return Hold in their landing cell: they are frozen, cannot act/move/interact/harvest or be targeted, and no local clocks/effects newly advance for them. Recheck legal chamber placement every 1 elapsed minute and place them at first legal opportunity in stable ID order. Return Hold grants no continued plane access or onward travel.",
+            "Each card remains consumed after successful activation regardless of return delay. No onward portal exists."
+          ]
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-09-A",
+          "value": {
+            "id": "RNX-09-A",
+            "title": "Blocked return never overlaps bodies; Return Hold is bounded agency",
+            "category": "RNX follow-up",
+            "initialState": "Two travelers A/B active. Before +10 original footprints and all adjacent legal spaces blocked. Before +20 emergency pad is also physically obstructed despite reservation by a collapsed immovable scene object.",
+            "steps": [
+              "At +10 first return attempt fails for A/B; both stay in landing cell recovery extension, no card refund.",
+              "At +20 second attempt still fails; emergency pad illegal. Both enter Return Hold: frozen, no actions/movement/harvest/targeting/local clock advancement.",
+              "At +23 chamber allies clear one legal5ft space. Recheck minute marker places A only; B remains Hold because no second legal space.",
+              "At +24 second space clears; B returns. Stable traveler-ID order prevents overlap/duplication."
+            ],
+            "elapsedTime": "24m from activation",
+            "consumedStock": "Card consumed once at t0; no extra destination stock gained during Hold.",
+            "finalState": "A/B each exist once in CH11; landing cell empty; no portal/access remains.",
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-09-B",
+          "value": {
+            "id": "RNX-09-B",
+            "title": "Enlargement, lost gear and carried traveler resolve by current return state",
+            "category": "RNX follow-up",
+            "initialState": "Travelers A/B recorded at activation; A later enlarges to Large within landing cell; A drops backpack; B later carries A while both remain recorded travelers. A also picks up one lawful flora tray.",
+            "steps": [
+              "At +10 recheck bodies. A current Large footprint must fit chamber placement; if original5ft footprint cannot, search nearest legal Large placement. B is separate traveler identity even if carrying A; no double passenger. Carry relation may end to place both legally.",
+              "Dropped backpack is not carried at return, so remains in landing cell. Flora tray is noncreature gear physically carried by A and returns if fit/capacity legal.",
+              "If A cannot fit any chamber placement/emergency pad, A follows extension/Hold while B may return now. No new card/use is consumed.",
+              "A local non-recorded creature picked up during visit would not be return-eligible and would remain local; this does not duplicate it."
+            ],
+            "elapsedTime": "10m plus any return wait",
+            "consumedStock": "One card consumed; lost backpack stays local; carried tray transfers custody to A.",
+            "finalState": "Each recorded traveler once; gear follows actual carriage; no smuggled creature/duplicate.",
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        }
+      ]
+    },
+    {
+      "id": "RN2-06",
+      "title": "Correct worked time and class-feature arithmetic",
+      "finding": "RNX-01-B starts a ten-minute Echo Lily harvest at9:55 but claims completion due at10:00; it is due19:55. RNX-14-A counts only60m30s despite the EPI06 procedure requiring consultation10m, meditation60m and symbolic act10m unless already completed stages are explicitly recorded. RNX-03-A now cites Healing Rite correctly but asserts 2d8+M without a Cleric level/S and turns a result at least4 into exactly HP4. RNX-03-B says end/start marker rather than the actual Undying Spellform end of next regular turn.",
+      "required": "Use exact source cards and timelines: cleric.json /cards/12 is S d8+M, class S=1/2/3/4 at L1/5/11/17; mage.json /cards/42 expires at end of next regular turn. State level, M, actual dice, HP maximum/cap and costs. Split interrupted-harvest and genuine same-timestamp-boundary cases as necessary. Show all EPI06 stages and168h cooldown from response.",
+      "evidence": [
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-01-B",
+          "value": {
+            "id": "RNX-01-B",
+            "title": "Return priority, failed harvest and lost container do not clone flora",
+            "category": "RNX follow-up",
+            "initialState": "Traveler remains in Veiled cell with EL-TRAY-2 still anchored; starts EL-3 harvest at t=9:55. Separate returned BT-TRAY-2 later contains BT-3/BT-4.",
+            "steps": [
+              "At t=10:00 return event has priority over harvest completion scheduled same timestamp; traveler returns and EL-3 remains unharvested because its anchored basin was not carried. No ingredient appears.",
+              "Later BT-3 harvest roll7+5=12 vs14 Failure: BT-3 consumed,0 part.",
+              "BT-4 harvest roll natural1 (Critical Failure under table convention used by module): BT-4 consumed,0 part and tool requires10m cleaning.",
+              "If BT-TRAY-2 is later destroyed/lost, its depleted node records stay depleted and no adjacent node/tray respawns."
+            ],
+            "elapsedTime": "First branch 5s unfinished; later harvests each20m plus cleaning if continued",
+            "consumedStock": "No ingredient from unfinished event; BT-3/BT-4 depleted; lost tray remains lost.",
+            "finalState": "Stock ledger reflects exact identities; zero respawn/copy/access extension.",
+            "rollsAndDCs": [
+              "Harvest DC14:12 Failure; Critical Failure as module outcome"
+            ],
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-14-A",
+          "value": {
+            "id": "RNX-14-A",
+            "title": "Quiet Well field map orders exposure and petition purge",
+            "category": "RNX follow-up",
+            "initialState": "Petitioner begins with 59m30s accumulated exposure in NULL-FIELD-QUIET-WELL-1, then stands inside cylinder. Witness/alcove available outside field. EPI06 petition eligibility satisfied.",
+            "steps": [
+              "t0→0:30 inside field reaches60m total; hourly WIS save DC15 is due. Roll11+2=13 Failure => apply field result/Veil per NULL field rule.",
+              "Petitioner leaves cylinder; field accumulator pauses at0 toward next hour and enters petition alcove.",
+              "One-hour meditation/petition proceeds outside field, adding no exposure. At completion response roll is6 (Temporary Blessing band5–8).",
+              "Qualifying Temporary Blessing grants per EPI06 and revision purge trigger immediately purges current Null Veil. Exposure accumulator remains recorded at0 after processed hour; purge does not delete field history."
+            ],
+            "elapsedTime": "60m30s from initial entry through petition after due save",
+            "consumedStock": "No finite item stock; EPI06 petition opportunity/rest gates follow actual module.",
+            "finalState": "Veil purged by actual5–8 blessing; field clock preserved separately.",
+            "rollsAndDCs": [
+              "Field WIS DC15=13 fail",
+              "EPI06 response roll=6 Temporary Blessing"
+            ],
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-03-A",
+          "value": {
+            "id": "RNX-03-A",
+            "title": "Source-specific companion and projection zero lifecycles",
+            "category": "RNX follow-up",
+            "initialState": "At t0: Ranger Beast HP5; Mage Familiar HP4 with30s remaining duration; local Accord Devil Projection HP3. Each receives separate qualifying Null packet5 from Veiled character.",
+            "steps": [
+              "t0 Beast→0: immediate-death branch replaced; Null Disabled, same living animal identity and bond, no corpse. At t6 an allied Cleric within 30 ft spends an Action and 2 RP on the reviewed Healing Rite; a legal 2d8+M result is at least 4 HP, restoring the living Beast to HP4 and ending Null Disabled.",
+              "t0 Familiar→0: damage-caused disappearance replaced; Null Disabled; original duration continues. No heal occurs. At t30 independent duration expiry ends/disappears Familiar normally.",
+              "t0 Accord Devil→0: its printed projection 0-HP endpoint disperses immediately because that is administrative projection termination, not living death/Stable."
+            ],
+            "elapsedTime": "0→30s",
+            "consumedStock": "No summon/refill/use is generated. Beast recovery spends one actual Cleric Healing Rite Action and 2 RP; Familiar duration is consumed normally.",
+            "finalState": "Beast active HP4 same bond; Familiar ended by expiry; projection dispersed; no corpses/duplicates.",
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-03-B",
+          "value": {
+            "id": "RNX-03-B",
+            "title": "Would-die ward is skipped; Undying Spellform still triggers at new zero",
+            "category": "RNX follow-up",
+            "initialState": "Mage Lich PC HP6, actual Undying Spellform ready1/LR, concentration active. Separate eligible would-die Ward also ready. Qualifying Null packet10 after mitigation.",
+            "steps": [
+              "Damage reduces6→0. Null skips damage-caused fatal branches, so would-die Ward trigger never occurs and its use remains ready.",
+              "Undying Spellform trigger is damage-reduces-to0-without-killing, so it triggers and spends its1/LR use. New-zero Stable conversion creates Stable0 first; Spellform overrides zeroHP unconscious/incapacitated permissions for its duration.",
+              "Triggering damage still makes normal concentration save; example post-mitigation10 => DC10, roll13+CON2=15 Success, concentration remains.",
+              "Mage has normal Action and half-Speed voluntary movement, no independent BA/Reaction from Spellform.",
+              "At next regular turn end/start marker per actual feature, if still0 Spellform expiry destabilizes, cancels Stable recovery deadline and adds one failed death save; that is a later feature event, not replayed Null damage."
+            ],
+            "elapsedTime": "through next regular turn",
+            "consumedStock": "Undying Spellform1/LR consumed; Ward not consumed.",
+            "finalState": "Ward still ready; Spellform spent; concentration retained on shown save; later expiry applies its own failure if still0.",
+            "rollsAndDCs": [
+              "CON concentration DC10:15 Success"
+            ],
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        }
+      ]
+    },
+    {
+      "id": "RN2-07",
+      "title": "Make Twin Wind examples follow their closure rule",
+      "finding": "RNX-11-B supplies only one eligible voter A. A depositing its token immediately meets the all-eligible-resolved close rule, so it cannot then change/deposit another token before a supposed10-minute close. Twelve physical tokens also need a stated procedure when more than twelve independently eligible characters attend; eligibility cannot silently produce a thirteenth token. Leaving/unconscious voters and abstention/token custody need one stable rule.",
+      "required": "Retain finite one-identity voting. Work deadline/revote with an explicitly unresolved eligible voter keeping the vote open, and a separate single-voter immediate-close case. Define eligibility snapshot/change/overflow and exact token custody without cloning.",
+      "evidence": [
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/chambers/8/voting",
+          "value": {
+            "stock": "12 physical numbered decision tokens, TOKEN-WIND-01..12, 0.05 lb each, fixed chamber stock. At voting-open assign at most one token to each eligible voter in stable Expedition identity order; unused tokens remain in bowl.",
+            "eligibility": "Conscious Expedition character physically present in the entry chamber before voting closes. Temporary summons, pets, companions, minions, projections and scene actors are not voters unless they are independently recorded Expedition characters. A late qualifying Expedition character arriving before closure may receive one unused token; arrival at/after closing timestamp is too late.",
+            "oneVote": "Each assigned identity controls one token. Depositing it in Blue/Amber is an Action. Moving that same token to the other socket before close is another Action and changes the vote. Duplicate/unassigned deposits are rejected and do not count. An eligible voter may declare abstention with brief communication; its token returns to bowl.",
+            "close": "Closes immediately when every then-eligible voter has either a deposited token or recorded abstention, or at exactly +10:00 from scene opening, whichever occurs first. At the exact timeout, close happens before a same-timestamp late arrival/deposit.",
+            "tie": "Count one deposited token per eligible identity. Tie selects Blue by fixed neutral order. One corridor solidifies once; one Wind Token reward at most once."
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-11-B",
+          "value": {
+            "id": "RNX-11-B",
+            "title": "Repeated deposit, companion and deadline arrival use one eligibility rule",
+            "category": "RNX follow-up",
+            "initialState": "Voter A assigned token01; pet companion present but not independent Expedition character; Character B arrives exactly +10:00.",
+            "steps": [
+              "A deposits token01 Blue (Action), then tries to deposit another unassigned token: mechanism rejects it. A may only move token01 with another Action before close.",
+              "Pet companion is ineligible and receives no token.",
+              "At exactly +10:00 timeout closes before same-timestamp arrival/deposit; B is late and gets no token.",
+              "Count only legal deposits; if A alone voted Blue, Blue wins."
+            ],
+            "elapsedTime": "10m exact deadline",
+            "consumedStock": "No extra token/reward duplication; one legal deposit.",
+            "finalState": "One vote per identity; companion/late arrival excluded deterministically.",
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        }
+      ]
+    },
+    {
+      "id": "RN2-08",
+      "title": "Complete Null recipient and lethal-branch ordering",
+      "finding": "The replacement recipientLifecycle table has no explicit branch for an ordinary nonliving Construct such as Toy Sentinel, although RN-N11 still asserts generic Disabled. Silence Wraith is described as a Spirit significant NPC which disperses, without an explicit relation to that table. The livingCreature text explicitly skips Instant Death/Wounds on positive-to-zero, but already-Dying merely says no added failure; RN-N05 expects no Instant Death/Wounds at Stable0. A qualifying hit that leaves positive HP can still trigger a fatal fourth-Wound save under Core unless the scope is settled.",
+      "required": "State one ordered Null damage algorithm for positive-to-positive, new zero, existing Dying0, Stable0, source-specific nonliving/created creatures, projections and objects. Decide explicitly where damage-caused Instant Death, Wound/Maiming and existing-fatal-Wound branches are bypassed; preserve independent non-damage expiry/cost events. Bind local actors to actual lifecycle branches, with no anatomy guessed solely from names.",
+      "evidence": [
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/RELIC_NULL_MODEL.json",
+            "bytes": 87983,
+            "sha256": "d1710954aa9e201b9663596adf508c0acb856da176bf90526818e9c0f36f5928"
+          },
+          "jsonPointer": "/null/veil/damageNonlethal",
+          "value": {
+            "scope": "At creation of each damage root, record root dealer. If the root dealer is a character currently under unsuppressed Null Veil, mark the entire root `nullNonlethal=true`. Delayed/ongoing descendant packets inherit that flag from the root; later Veil changes do not retroactively change an already-created root. A new later activation/attack creates a new root and re-evaluates.",
+            "independentCompanions": "A companion/minion has its own dealer identity. Controller Veil does not convert companion damage unless an exact ability says the controller is the damage dealer.",
+            "shared": "Pure transfer/redirection keeps the original root's nullNonlethal flag. It does not create a second root or extra prevention/resource triggers.",
+            "reflection": "An effect that explicitly creates new reflected/retaliatory damage uses the reflector as dealer and evaluates that new root at creation. A mere transfer is not reflection.",
+            "livingCreature": "After ordinary mitigation/temp HP, a qualifying packet may reduce a living recipient to 0. If it was positive before the packet and becomes 0, skip damage-caused Instant Death, Wound/Maiming creation, death-save failures and ordinary death; it becomes Stable0 with death successes/failures reset under Core and receives exactly one normal Stable recovery deadline. If it was already Dying0, the packet adds no damage-caused failure but DOES NOT stabilize it, clear counters or change its existing death-save schedule. If already Stable0, it remains Stable and keeps its existing absolute recovery deadline; do not reroll/extend it. If temporary HP absorbs all HP loss and normal HP never reaches0, no zero-state transition occurs.",
+            "nonlivingCreature": "Use recipientLifecycle table; never infer anatomy solely from a name/type label. Objects still use object rule.",
+            "objects": "Objects/noncreature structures take damage normally; 'nonlethal' does not make objects indestructible.",
+            "preexisting": "Does not remove old Wounds/Injuries, revive Dead creatures, clear existing dying counters, rewrite death history, cure conditions, or prevent non-damage lethal costs/tracks. Newly-zero stabilization resets only its current death-save counters because becoming Stable requires that under Core.",
+            "riders": "Independent non-damage riders still resolve if their exact trigger was met and they do not require a Wound/death result.",
+            "directCosts": "Direct HP payments/sacrificial costs are not damage and are not converted.",
+            "hunt": "This nonlethal override does not alter Hunt finality or Hunted Death rules for actual later deaths from other causes.",
+            "recipientLifecycle": {
+              "ordinaryLiving": "New positive→0: Stable0 as above. Already Dying0: remains Dying with same counters/deadline markers. Already Stable0: remains Stable with same recovery deadline.",
+              "rangerBeast": "Source normally dies immediately at0. Qualifying Null damage replaces that damage-caused immediate-death transition with Null Disabled at0: Incapacitated, Speed0, no commands/actions; same animal/bond remains. Ordinary legal companion healing above0 ends Disabled. A later independent non-damage death/removal rule still works.",
+              "finiteSummonFamiliarMirrorBeast": "Source normally disappears/ends at0. Qualifying Null damage replaces only that damage-caused zero disappearance with Null Disabled at0 while its original duration/source still exists. Independent duration expiry, dismissal, concentration/source end or replacement still ends it. Legal companion healing above0 restores function; no generic repair/resummon is granted.",
+              "mageLichElite": "Source normally becomes destroyed bound asset at0. Qualifying Null damage leaves same elite Null Disabled at0, not destroyed; therefore Soulbound is not legal solely from this zero. Legal companion healing above0 restores it. An independent actual destruction/expiry can later create its normal destroyed state.",
+              "wizardStandardUndead": "Qualifying Null damage leaves same minion Null Disabled at0 instead of damage-caused destruction. Dismissal or owner completed-LR expiry still ends it. Legal healing above0 if a real source applies may restore it.",
+              "localProjection": "A scene projection whose printed 0-HP rule says disperse/end uses that administrative projection endpoint. This is not a living death/corpse transition and is not converted into Stable/Disabled unless that specific actor says so. ACT-FEAST-STEWARD is the explicit exception with Collapsed Projection.",
+              "undyingSpellform": "If qualifying damage newly reduces a Mage with actual Undying Spellform to0 without killing outright, its printed trigger occurs and its 1/LR use is spent. It overrides zero-HP Unconscious/Incapacitated permissions as reviewed: conscious, half-Speed voluntary movement, normal Action, legal spellcasting/concentration, no independent BA/Reaction. Triggering damage still causes its concentration save. If still0 at feature expiry, the reviewed expiry destabilizes/cancels Stable recovery and adds one failed death save; that later feature-expiry event is not the original Null damage packet.",
+              "wouldDieProtections": "A protection whose trigger requires actual death/would-die/fatal result does not trigger and spends no use when Null skips that damage-caused death branch. Do not replay it later. Separate minimum-HP prevention that resolves earlier follows its own source if actually triggered."
+            }
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RN-N05",
+          "value": {
+            "id": "RN-N05",
+            "title": "Stable0 target hit again by Null-nonlethal packet",
+            "category": "Null EPI-13",
+            "initialState": "Living target Stable0 with failures/successes already reset by the event that made it Stable; absolute recovery deadline Trec already recorded. Veiled dealer creates10-damage root.",
+            "steps": [
+              "Resolve packet at0HP.",
+              "No damage-caused death failure/Wound/Instant Death.",
+              "Target remains Stable0. Keep the exact existing Trec; do not roll a second recovery time or extend Trec."
+            ],
+            "elapsedTime": "one packet",
+            "consumedStock": "10 damage",
+            "finalState": "Stable0; counters remain0/0; same Trec.",
+            "citations": [
+              {
+                "path": "The Cosmology of Decennium Descent.docx",
+                "part": "word/document.xml",
+                "paragraphIndexZeroBased": 314,
+                "textSha256": "b23b62618a9f10889486aca32a8d2c9b561d87fc488d3cd321b91ac94c56f461"
+              },
+              {
+                "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+                "firstLineOneBased": 35,
+                "lastLineOneBased": 60
+              }
+            ]
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RN-N07",
+          "value": {
+            "id": "RN-N07",
+            "title": "Shared damage retains root nonlethal flag",
+            "category": "Null EPI-13",
+            "initialState": "Veiled attacker deals finalized root that is legally split/transferred by existing damage-sharing feature.",
+            "steps": [
+              "Root marked nullNonlethal before transfer.",
+              "Existing sharing procedure divides packet once.",
+              "Each recipient resolves its branch with nullNonlethal flag; no extra root/resource trigger from transfer.",
+              "Ordinary defenses follow actual sharing stage."
+            ],
+            "elapsedTime": "one root resolution",
+            "consumedStock": "sharing feature's actual cost",
+            "finalState": "Neither branch creates Wounds/death failures/Instant Death from this root.",
+            "citations": [
+              {
+                "path": "The Cosmology of Decennium Descent.docx",
+                "part": "word/document.xml",
+                "paragraphIndexZeroBased": 314,
+                "textSha256": "b23b62618a9f10889486aca32a8d2c9b561d87fc488d3cd321b91ac94c56f461"
+              },
+              {
+                "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+                "firstLineOneBased": 1,
+                "lastLineOneBased": 58
+              }
+            ]
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RN-N11",
+          "value": {
+            "id": "RN-N11",
+            "title": "Veiled damage disables construct creature at zero",
+            "category": "Null EPI-13",
+            "initialState": "Construct creature HP6; Veiled character deals resolved10.",
+            "steps": [
+              "Root marked nullNonlethal.",
+              "Construct HP becomes0.",
+              "Instead of destroyed/Dead, apply local Disabled: Incapacitated, Speed0.",
+              "No Wound/death-save mechanics are created."
+            ],
+            "elapsedTime": "one damage packet",
+            "consumedStock": "10 damage",
+            "finalState": "Construct Disabled0 until an actual applicable repair/heal restores function.",
+            "citations": [
+              {
+                "path": "The Cosmology of Decennium Descent.docx",
+                "part": "word/document.xml",
+                "paragraphIndexZeroBased": 314,
+                "textSha256": "b23b62618a9f10889486aca32a8d2c9b561d87fc488d3cd321b91ac94c56f461"
+              },
+              {
+                "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+                "firstLineOneBased": 358,
+                "lastLineOneBased": 370
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "RN2-09",
+      "title": "Reconcile retained cases with the revised model",
+      "finding": "RNX-12-A moves Demon from(20,0)10ft toward PC(0,0), leaving it15ft from Devil(25,0), yet claims Devil is5ft away without moving. RN-C03 retains north-exit/no-combat wording despite the revised east-exit/heartbeat-risk procedure. RN-C06 counts five climb Actions but omits the paid cable attachment and hanging recovery before retry. RN-R08-04 places a rest before transfer yet assumes charge remains0 without saying why that rest fails the pendant refresh conditions.",
+      "required": "Preserve all75 case IDs, correct their contents, and audit previous examples against the final model rather than only checking ID presence. Show actual movement, Action, condition, stock and clock ledgers. Treat authored examples as examples, not executed runtime tests.",
+      "evidence": [
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RNX-12-A",
+          "value": {
+            "id": "RNX-12-A",
+            "title": "Complete actor round resolves ranges, fear marker and Feast Steward zero",
+            "category": "RNX follow-up",
+            "initialState": "Illustrative initiative: PC A at(0,0); Demon at(20,0); Devil at(25,0); Feast Steward separate test at HP5 adjacent to hostile PC.",
+            "steps": [
+              "Demon turn: moves10ft, uses Roar 15-ft cone including PC A. PC WIS roll9+3=12 vs15 Failure; Frightened until end of PC A next regular turn.",
+              "Devil turn: Contract Blade requires reach5; target Demon now5ft away; attack roll11+7=18 vs AC14 hit, damage1d10(6)+3+1d4(2)=11.",
+              "PC A regular turn occurs while Frightened; marker remains until end of this PC A turn then expires, regardless of extra turns.",
+              "Separate Steward test: PC hits for7, HP5→0. Steward enters Collapsed Projection, not dead/dispersed: Prone, Incapacitated, Speed0/no actions until legal healing or scene resolution."
+            ],
+            "elapsedTime": "one complete initiative round; Steward branch same round",
+            "consumedStock": "11 projection damage; Steward HP packet7; no loot/corpse.",
+            "finalState": "Fear expires at exact target-end marker; Devil/Demon retain profiles; Steward remains collapsed present.",
+            "rollsAndDCs": [
+              "Roar WIS DC15=12 fail",
+              "Blade attack18 hit vs14; damage11"
+            ],
+            "authority": "RELIC_NULL_MODEL revision 02 + preserved source interfaces"
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RN-C03",
+          "value": {
+            "id": "RN-C03",
+            "title": "Echoless Vault pattern bypass",
+            "category": "Chamber EPI-12",
+            "initialState": "Party enters CH03; Silence Wraith active.",
+            "steps": [
+              "Spend10m INT(Investigation) DC14: roll12+INT2+PB4=18 reveals 1-3-5-7 plate pattern.",
+              "Four Actions depress sequence without moving carelessly.",
+              "North exit opens and Wraith pacifies; reliquary can be opened."
+            ],
+            "elapsedTime": "10m24s",
+            "consumedStock": "none",
+            "finalState": "Glove reliquary accessible; no combat required.",
+            "citations": [
+              {
+                "path": "The Cosmology of Decennium Descent.docx",
+                "part": "word/document.xml",
+                "paragraphIndexZeroBased": 309,
+                "textSha256": "76eae3831a199e5ea37159649eed54a67f48a8b5444b46e6b744ac42d8c4f72d"
+              }
+            ]
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RN-C06",
+          "value": {
+            "id": "RN-C06",
+            "title": "Ladder Debris courage adaptation",
+            "category": "Chamber EPI-12",
+            "initialState": "PC climbs four segments using Athletics+7.",
+            "steps": [
+              "Segment1 roll8+7=15 success.",
+              "Segment2 roll5+7=12 fail; safety cable catches, d6=3 damage.",
+              "Retry segment2 roll11+7=18 success.",
+              "Segments3/4 rolls10/9 +7 succeed."
+            ],
+            "elapsedTime": "5 Actions plus movement",
+            "consumedStock": "3 HP damage",
+            "finalState": "PC reaches top; no fatal fall.",
+            "citations": [
+              {
+                "path": "The Cosmology of Decennium Descent.docx",
+                "part": "word/document.xml",
+                "paragraphIndexZeroBased": 309,
+                "textSha256": "76eae3831a199e5ea37159649eed54a67f48a8b5444b46e6b744ac42d8c4f72d"
+              }
+            ]
+          }
+        },
+        {
+          "file": {
+            "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-relic-null-02-return-02/CASEBOOK.json",
+            "bytes": 85817,
+            "sha256": "acbb12e65786de9ff440f883b35a045c2998d2db5834190106148ab1ed0aedc9"
+          },
+          "caseId": "RN-R08-04",
+          "value": {
+            "id": "RN-R08-04",
+            "title": "Transfer cannot refresh pendant",
+            "category": "Relic EPI-08",
+            "initialState": "Bearer spent charge earlier. Pendant is handed to a second character after first bearer rests.",
+            "steps": [
+              "Transfer ends old bond; item charge stays 0.",
+              "Second bearer performs 1 active hour bond.",
+              "Second bearer has not completed a beneficial Long Rest while bonded, so charge stays 0.",
+              "After a later legal beneficial Long Rest while bonded, charge refreshes to1."
+            ],
+            "elapsedTime": "1h bond + later 8h Long Rest",
+            "consumedStock": "none",
+            "finalState": "No swap-reset exploit; charge eventually 1 after valid refresh.",
+            "citations": [
+              {
+                "path": "The Cosmology of Decennium Descent.docx",
+                "part": "word/document.xml",
+                "paragraphIndexZeroBased": 302,
+                "textSha256": "1178b6267123e3b37af06e936a08ad87d8e1188bca66ecb5668a5be511722a22"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "findingCount": 9,
+  "newRulesAdopted": false,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false,
+  "sourceInformationDeleted": 0
+}

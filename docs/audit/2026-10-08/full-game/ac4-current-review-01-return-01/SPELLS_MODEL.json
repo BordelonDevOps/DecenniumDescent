@@ -1,0 +1,2956 @@
+{
+  "id": "DD-AC4-CURRENT-REVIEW-01-RETURN",
+  "status": "NEW provisional authored playtest candidate",
+  "scope": {
+    "spells": 15,
+    "minimumAccessRank": 4,
+    "alignmentAnchorSeparateClericRank7": true,
+    "banishmentExcluded": true
+  },
+  "sharedRules": {
+    "castingEngine": "Use SPELL_INTEGRATION_RULES.md exactly: legal action/components/target/repertoire first; class-specific rank/cost; pre-cast Dissonance; commit RP/materials/concentration; apply Dissonance/Refrain/cast-begin hooks; resolve interruption; then effect. Failed/countered/saved casts refund nothing.",
+    "timing": "One-minute concentration effects use the source's normal ten future caster regular-start markers in initiative or 60 elapsed seconds outside unless this card states a different exact clock. Ten minutes = 100 future caster regular-start markers or 600 elapsed seconds. Alignment Lock uses 24 elapsed hours; rank-7 Alignment Anchor uses seven elapsed days; Bind Element uses two future target regular ends / 12 elapsed seconds outside initiative. Preserve virtual/absolute deadlines through initiative changes, absence and suppression.",
+    "null": "Creation-time Null root identity remains governed by accepted EPI-08–14. Pure transfer/redirection preserves the root flag. New reflected/retaliatory damage only uses a new root when an exact effect says it creates new damage. Finite summons reduced to 0 by qualifying Null damage use the accepted Disabled branch while independent expiry/concentration/replacement remains real.",
+    "faction": "Use standing-v1 separately from membership and invocation permission. Faction Seal's reviewed invocation-permission procedure is the permission reference where invoked. Positive standing never creates membership or permission.",
+    "alignment": "Reviewed Alignment Purge AP-AS-01 remains exactly source-specific. AC4-ALIGN-01 is an additional NEW scoped exception only for Alignment Lock/Alignment Anchor; it creates no universal alignment priority engine.",
+    "banishment": "Banishment is not one of these fifteen. The earlier pre-push sequencing hold is historical. Its exact source receipt is preserved and it remains the next separate procedure-authoring obligation using current planes/souls sources."
+  },
+  "interfaceQuestionDispositions": [
+    {
+      "id": "AC4-R01",
+      "verdict": "AGREE",
+      "reason": "Spell Shield is pure redirection, not a new reflected/retaliatory root. Original cast/dealer/root/nullNonlethal/concentration identity is preserved; the reflector supplies only the return origin."
+    },
+    {
+      "id": "AC4-R02",
+      "verdict": "REVISE",
+      "reason": "Add NEW scoped AC4-ALIGN-01: Lock/Anchor snapshots apply after the reviewed Suggestion/Purge result for effective reads; lower overlays remain live, and new Suggestion baseline excludes AC4 locks to prevent ratcheting."
+    },
+    {
+      "id": "AC4-R03",
+      "verdict": "AGREE",
+      "reason": "Use standing-v1 and actual membership/affiliation/invocation records. Positive standing, null fields, information access, disguise and temporary Envoy affiliation are not membership or permission."
+    },
+    {
+      "id": "AC4-R04",
+      "verdict": "REVISE",
+      "reason": "Water Pet and Faction Envoy use the accepted finite-summon Null Disabled-at-0 branch for qualifying Null damage. Water Pet healing deliberately spends the owner's one shared support/offense activation as a scoped NEW exception."
+    },
+    {
+      "id": "AC4-R05",
+      "verdict": "REVISE",
+      "reason": "Accept the Dampening Field's NEW +2-RP bridge as a mandatory spell-price component before final Influence. No-pool actors cannot pay; nonspell RC/features remain outside."
+    },
+    {
+      "id": "AC4-R06",
+      "verdict": "AGREE",
+      "reason": "Use source-specific virtual/absolute deadlines; suppression never resets them. Hidden ineligibility is adjudicated after commitment without free information. Suppressed bodies/conditions keep identity and clocks."
+    },
+    {
+      "id": "AC4-R07",
+      "verdict": "REVISE",
+      "reason": "Spell Shield trigger uses actual generating rank 0-3 to reconcile level3/Tier3. Elemental Drain uses 5 RP for this candidate while preserving catalog 2 and Core 5 as an explicit conflict."
+    },
+    {
+      "id": "AC4-R08",
+      "verdict": "AGREE",
+      "reason": "Endpoint-based Dimensional Anchor, selective Corruption Barrier, whole-pool Crystalline Barrier and current Xi/Null interfaces remain bounded; no epilogue machine becomes a generic spell rule."
+    },
+    {
+      "id": "AC4-R09",
+      "verdict": "AGREE",
+      "reason": "Banishment remains outside the fifteen. The old pre-push hold is historical; its current status is source-only next-authoring obligation under reviewed planes/souls."
+    }
+  ],
+  "spells": [
+    {
+      "spellId": "greater-warding",
+      "name": "Greater Warding",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-02",
+      "questionDisposition": {
+        "verdict": "AGREE",
+        "reason": "Greater Warding preserves the printed +2 AC/+2 saves and spell resistance by defining the ambiguous resistance as spell-origin damage resistance; current damage/sharing ordering is retained."
+      },
+      "sourceAndAccess": {
+        "id": "greater-warding",
+        "name": "Greater Warding",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Monk": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Paladin": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "greater-warding",
+          "original": {
+            "name": "Greater Warding",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Greater Warding",
+                "school": "Abjuration",
+                "level": 4,
+                "summary": "Target gains +2 to AC and saves, resistance to spells."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classRanks": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 7,
+              "Druid": 7,
+              "Mage": 7,
+              "Monk": 18,
+              "Tinker": 14,
+              "Wizard": 7,
+              "Paladin": 13
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target gains +2 to AC and saves, resistance to spells.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 49,
+              "original": {
+                "school": "Abjuration",
+                "level": 4,
+                "name": "Greater Warding",
+                "effect": "Target gains +2 to AC and saves, resistance to spells.",
+                "source_paragraph": 9040,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, M/F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "7bbafb36b9f1e3696d56c1e3b349f32f98d75d8646e7e931fbdb246590d2e955",
+      "procedure": "Action; range 60 feet; V/S/F; concentration up to one minute. Choose one willing creature you perceive with line of effect, including yourself. It receives +2 AC and +2 to ordinary saving throws, plus resistance to damage originating from spells. NEW: interpret resistance to spells as damage resistance, without advantage on saves, effect immunity, absorption or reflection. It covers each spell-origin damage component, including an ongoing spell pulse, but not an ordinary weapon attack enabled by a magical buff or a nonspell technique that spends RP. Generic save bonuses do not modify unmodified death saves. Resolve one applicable resistance per component before a lawful Warding Bond transfer and temporary HP; a transferred packet that forbids second mitigation cannot be halved again through this ward. Same-stat bonuses use the strongest: Warding Bond’s +1 and this +2 give +2. The initial 60-foot range is not an ongoing tether. Suppression removes benefits without pausing the deadline, healing, refilling resources or triggering a new application on return.",
+      "newChoices": "NEW: willing recipient and spell-origin damage resistance supply the missing recipient and resistance definition.",
+      "historicalWorkedCases": [
+        "A warded ally receives 11 fire damage from a spell. Resistance leaves 5 before a legal Warding Bond split; the transferred share receives no second resistance.",
+        "An ordinary sword attack under a spell buff remains a weapon attack. This ward alone does not halve its ordinary physical damage."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "spell-shield",
+      "name": "Spell Shield",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-03",
+      "questionDisposition": {
+        "verdict": "REVISE",
+        "reason": "Spell Shield keeps the printed reflection promise but is operationally a one-use pending ward and pure redirection of one eligible single-target rank-0..3 spell; this resolves level/Tier wording and current Null root identity."
+      },
+      "sourceAndAccess": {
+        "id": "spell-shield",
+        "name": "Spell Shield",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Monk": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Paladin": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "spell-shield",
+          "original": {
+            "name": "Spell Shield",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Spell Shield",
+                "school": "Abjuration",
+                "level": 4,
+                "summary": "Reflect spells of 3rd level or lower back at caster."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classRanks": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 7,
+              "Druid": 7,
+              "Mage": 7,
+              "Monk": 18,
+              "Tinker": 14,
+              "Wizard": 7,
+              "Paladin": 13
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Reflect spells of 3rd level or lower back at caster.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 50,
+              "original": {
+                "school": "Abjuration",
+                "level": 4,
+                "name": "Spell Shield",
+                "effect": "Reflect spells of Tier 3 or lower back at caster.",
+                "source_paragraph": 9041,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "84fd9eb02b0c6c40bd5a97c51c73e0641d693c93a9914e4ce4e42ba8b8241e23",
+      "procedure": "Action; range 60 feet; V/S/F. NEW: replace Instantaneous protection metadata with one minute, without concentration, on one willing perceived creature with line of effect. Only one pending Spell Shield can protect a recipient across casters; a successful replacement ends the prior one. Interpret 3rd level and Tier 3 as the triggering spell’s actual generating rank 0–3. Caster level, discounted RP price and target class do not determine eligibility. After ordinary interruption and before any original attack, save or payload resolution, the recipient may spend its Reaction to reflect a hostile pending spell whose only selected creature target is that recipient. The reflected path originates at the protected recipient and ends at the original caster, who must fit the original spell’s creature-type, willingness, range and line-of-effect requirements measured from that return origin. Hidden eligibility is adjudicated without disclosing protected information. Revalidate, then spend the Reaction and consume the shield. Redirect the one payload, retaining the original caster’s ownership, statistics, costs, concentration and causal identity. Resolve its normal attack or save against that caster, with no automatic self-hit or duplicate roll against the former target. Areas, multiple targets, nonspells, copies and already reflected packets are ineligible. A declined or ineligible event leaves the shield available until its original deadline. No legal return target means no reflection. Suppression disables triggering while its timer continues. It cannot reflect its own creation or initiate another reflection/copy chain.\n\nCURRENT INTERFACE — Spell Shield is a pure redirection of the already-pending original spell payload, not a new reflected/retaliatory damage root. The original cast ID, generating rank, caster ownership, attack/save statistics, concentration owner, source costs, and any creation-time Null `nullNonlethal` flag remain unchanged. The protected recipient is only the return origin for range/line-of-effect revalidation. If the returned spell creates an ongoing target branch or delayed rider, that branch/rider is attached to the original caster as its new recipient while retaining the original spell/caster identity. Because no new damage root is created, a Veiled reflector does not newly make the returned damage Null-nonlethal, and an un-Veiled reflector does not strip an original Veiled caster's root flag. The packet cannot trigger Spell Shield again and cannot be copied/reflected recursively.",
+      "newChoices": "NEW: one-minute, one-use Reaction protection; rank 0–3 translation; return origin at the protected recipient. These explicitly resolve the Action/Instantaneous and level/Tier conflicts.",
+      "historicalWorkedCases": [
+        "A rank-3 spell with one hostile creature target can return to its caster if the return target and path are legal. A rank-4 spell remains ineligible even when discounted to 3 RP.",
+        "Two protected creatures cannot bounce one spell indefinitely: the first redirected packet is already reflected and cannot trigger another shield."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "dimensional-anchor",
+      "name": "Dimensional Anchor",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-04",
+      "questionDisposition": {
+        "verdict": "AGREE",
+        "reason": "Dimensional Anchor is a fixed 60-foot-radius concentration sphere using origin/destination endpoint tests only; no imagined-path test or new topology is created."
+      },
+      "sourceAndAccess": {
+        "id": "dimensional-anchor",
+        "name": "Dimensional Anchor",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Monk": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Paladin": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "dimensional-anchor",
+          "original": {
+            "name": "Dimensional Anchor",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Dimensional Anchor",
+                "school": "Abjuration",
+                "level": 4,
+                "summary": "Prevent teleportation and planar travel in 60-ft radius."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classRanks": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 7,
+              "Druid": 7,
+              "Mage": 7,
+              "Monk": 18,
+              "Tinker": 14,
+              "Wizard": 7,
+              "Paladin": 13
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Prevent teleportation and planar travel in 60-ft radius.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 51,
+              "original": {
+                "school": "Abjuration",
+                "level": 4,
+                "name": "Dimensional Anchor",
+                "effect": "Prevent teleportation and planar travel in 60-ft radius.",
+                "source_paragraph": 9042,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Movement",
+                  "Planar"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "2c9a828cc25f2847309df3c44414777adf840b490df44fedce1b67bdb9dff217",
+      "procedure": "Action; range 60 feet; V/S/F. NEW: create a fixed 60-foot-radius sphere centered on a perceived point within range and line of effect, with concentration up to one minute. It prevents an actual teleportation or planar-transition transaction when any transported body’s origin or destination footprint intersects the area. Cargo travels with its actual body; an object transported independently uses its own endpoints. Do not test an imaginary path between two outside endpoints. Ordinary travel through the area remains possible. The rule applies to willing, hostile and self transport using established location records; it creates no destination or plane. A portal can remain present, but transit using a blocked endpoint cannot complete. A known obstruction fails preflight before payment; hidden obstruction or a field established after commitment can defeat a paid transit, leaving the entire transaction at its origin. Atomic group travel fails together, without splitting bodies or inventory. Ending or suppressing the field allows future otherwise legal transactions but does not retry or refund past attempts. The field does not suppress summons, images, mundane movement, physical forced displacement, spells generally, or effects merely because they once crossed space. There is no save or physical cage. An explicit source exception can bypass only the prevention it actually names.",
+      "newChoices": "NEW: fixed sphere, minute concentration and endpoint-based prevention, with atomic group failure and separate casting range and radius.",
+      "historicalWorkedCases": [
+        "Both teleport endpoints outside the sphere permit transit even if a straight line between them crosses the sphere.",
+        "A portal can remain visible while its endpoint is blocked. A transit defeated after commitment leaves the traveler and real gear at the origin, with costs spent."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "corruption-barrier",
+      "name": "Corruption Barrier",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-05",
+      "questionDisposition": {
+        "verdict": "AGREE",
+        "reason": "Corruption Barrier uses actual Corrupted eligibility, finite selective geometry and bounded contact damage without becoming a universal solid wall/detector."
+      },
+      "sourceAndAccess": {
+        "id": "corruption-barrier",
+        "name": "Corruption Barrier",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Monk": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Paladin": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "corruption-barrier",
+          "original": {
+            "name": "Corruption Barrier",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Corruption Barrier",
+                "school": "Abjuration",
+                "level": 4,
+                "summary": "Create a wall that blocks and damages corrupted creatures."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classRanks": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 7,
+              "Druid": 7,
+              "Mage": 7,
+              "Monk": 18,
+              "Tinker": 14,
+              "Wizard": 7,
+              "Paladin": 13
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Create a wall that blocks and damages corrupted creatures.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 52,
+              "original": {
+                "school": "Abjuration",
+                "level": 4,
+                "name": "Corruption Barrier",
+                "effect": "Create a wall that blocks and damages corrupted creatures.",
+                "source_paragraph": 9043,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Corruption"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "d3e276657e1f50b623f716b8dec55b815fa8f71b097ab4f6ac0873c5d96e425e",
+      "procedure": "Action; range 60 feet; V/S/F; concentration up to one minute. NEW: create a visible nonphysical warding plane up to 30 feet long, 10 feet high and 1 foot thick on supported ground. Every point must be within range and line of effect when created. Its thickness cannot overlap an occupied body or forcibly relocate one. Only an actual active Corrupted condition, or a source record explicitly granting equivalent mechanical eligibility, makes a creature affected. Appearance, ancestry, faction, alignment, spell tags and unrelated disease do not establish that predicate. Suppressed eligibility does not qualify while suppressed. The plane blocks affected creatures’ voluntary or forced physical crossing, including carriage, stopping that movement at the boundary. A teleport destination overlapping its thickness is blocked; a fitting destination beyond it does not cross a physical path and is allowed unless another rule prevents transport. It supplies no support against unsupported Falling; such falling can cross with the same contact damage and continues normally. The first attempted physical crossing or blocked destination contact per creature per numbered round deals 2d6 radiant, with a CON save for half rounded down; passing does not bypass the barrier. Across overlapping barriers use the earliest eligible active application for that event and one spell-family contact packet per creature per round. Exposure is spent even if defenses prevent all damage. Outside initiative use consecutive six-second intervals anchored to the first contact, preserving the open interval on entering initiative. A simultaneous group contact shares one damage roll, with separate saves and defenses. Nonmatching creatures, objects and attacks pass. There is no sight obstruction, cover, universal physical wall, diagnostic report or harvestable substance. Going around an edge remains possible; standing near the wall adds no tick. The caster is affected if eligible.",
+      "newChoices": "NEW: finite selective plane, actual Corrupted predicate, bounded 2d6 contact across overlapping sources, endpoint-only teleport contact and no support against falling.",
+      "historicalWorkedCases": [
+        "A Corrupted creature fails its CON save on its first crossing attempt: it takes the rolled 2d6 and stops before the wall. Success halves damage but still blocks crossing.",
+        "A creature without actual Corrupted eligibility can cross. A fitting teleport destination beyond the wall also avoids contact; neither grants hidden moral or origin information."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "resonance-dampening-field",
+      "name": "Resonance Dampening Field",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-06",
+      "questionDisposition": {
+        "verdict": "REVISE",
+        "reason": "Resonance Dampening Field receives a scoped NEW mandatory +2-RP spell-price interface, including otherwise free/charge-only spell casts, ordered before final Resonance Influence."
+      },
+      "sourceAndAccess": {
+        "id": "resonance-dampening-field",
+        "name": "Resonance Dampening Field",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Monk": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Paladin": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "resonance-dampening-field",
+          "original": {
+            "name": "Resonance Dampening Field",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Resonance Dampening Field",
+                "school": "Abjuration",
+                "level": 4,
+                "summary": "All spellcasting in area costs +2 Resonance Points."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classRanks": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 7,
+              "Druid": 7,
+              "Mage": 7,
+              "Monk": 18,
+              "Tinker": 14,
+              "Wizard": 7,
+              "Paladin": 13
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "All spellcasting in area costs +2 Resonance Points.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 53,
+              "original": {
+                "school": "Abjuration",
+                "level": 4,
+                "name": "Resonance Dampening Field",
+                "effect": "All spellcasting in area costs +2 Resonance Points.",
+                "source_paragraph": 9044,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Resonance"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "1980196038c14f12d73c6fbb5d2bf0ae44556fe795808f44374c24492c9a784d",
+      "procedure": "Action; range 60 feet; V/S/F. NEW: create a fixed 20-foot-radius sphere at a perceived point with line of effect, with concentration up to one minute. All actual spellcasting by a creature whose occupied space intersects the active area costs an additional 2 RP. Determine caster position at legal cast commitment, not a projection’s origin or a later release. Apply this mandatory surcharge after ordinary source/base waivers and reductions, before the reviewed final Resonance Influence adjustment. Overlapping instances add only one +2, retaining each source and deadline. Cantrips, Reaction spells and normally free or charged spell activations also incur it. NEW: for this field only, a spell route with no normal RP price acquires an additional 2-RP payment requirement; it does not acquire an RP pool. A creature with no pool cannot afford a positive final RP payment. Final Influence can modify this actual new price once. Nonspell techniques, Oracle RC abilities not classified as spells, ongoing concentration, creature attacks and a readied spell’s release are not new casts. Rituals pay at actual casting commitment, not each work interval. Preflight the full final price, action, components and other costs together. Suppression, exit, resistance or countering after commitment gives no refund. The field does not retroactively surcharge the cast that created it.\n\nCURRENT PRICE INTERFACE — ACCEPT the proposed NEW surcharge bridge only for this spell. Treat +2 RP as a mandatory spell-price component inserted into the ordinary legal price before final Resonance Influence. First validate that the activation is actually a spell cast. Compute its ordinary base/additional price, Dissonance, class/source reductions or waivers and their own minimums; then add this field's mandatory +2 unless an exact waiver expressly waives mandatory extras; then apply final Resonance Influence ±1, minimum 0. A rank-0 spell therefore normally becomes 2 RP before Influence. A genuine spell activation that otherwise uses only a charge/free use gains this one +2-RP interface; its charge/use is still spent normally. A caster with no RP pool cannot commit a positive final RP payment. Nonspell RC Revelations, class techniques, companion actions, ongoing concentration pulses and readied-spell release are not recosted. Ordinary Dissonance/Refrain and class cast-begin hooks occur only after a legal affordable cast commits.",
+      "newChoices": "NEW: finite area/duration, additional RP interface for normally free or charged spells, and ordering before final Influence.",
+      "historicalWorkedCases": [
+        "A 0-RP cantrip inside costs 2 RP; an applicable final Ease adjustment of −1 makes 1 RP. A caster without an RP pool cannot commit it.",
+        "Two overlapping fields still add only 2 RP. Releasing a spell already prepared with Ready does not pay again."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "faction-sanctuary",
+      "name": "Faction Sanctuary",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-07",
+      "questionDisposition": {
+        "verdict": "REVISE",
+        "reason": "Faction Sanctuary keeps finite benefits but now explicitly uses reviewed faction invocation permission and actual membership; standing-v1 or temporary affiliation does not substitute."
+      },
+      "sourceAndAccess": {
+        "id": "faction-sanctuary",
+        "name": "Faction Sanctuary",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Monk": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Paladin": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "faction-sanctuary",
+          "original": {
+            "name": "Faction Sanctuary",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Faction Sanctuary",
+                "school": "Abjuration",
+                "level": 4,
+                "summary": "Area becomes sacred to a faction; members gain benefits while inside."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classRanks": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 7,
+              "Druid": 7,
+              "Mage": 7,
+              "Monk": 18,
+              "Tinker": 14,
+              "Wizard": 7,
+              "Paladin": 13
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Area becomes sacred to a faction; members gain benefits while inside.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 54,
+              "original": {
+                "school": "Abjuration",
+                "level": 4,
+                "name": "Faction Sanctuary",
+                "effect": "Area becomes sacred to a faction; members gain benefits while inside.",
+                "source_paragraph": 9045,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Faction"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "60da855c87be03f4c50473cd09aad4f78df214194bae0295fbcd79b8799a0bd1",
+      "procedure": "Action; range 60 feet; V/S/F. NEW: create a fixed 20-foot-radius, 10-foot-high area on immobile supported ground you perceive with line of effect, with concentration up to ten minutes. Choose an actual canonical faction for which you already have invocation permission. Choose one benefit: Protection gives +2 AC; Resolve gives +2 to ordinary saves; Steadiness gives advantage on actual checks or saves to resist an effect explicitly inflicting Frightened, or to end that condition through a check or save its source already allows. No new escape check is created. Recipients must actually be members of that faction, occupy the area and have line of effect to its center at the relevant event. Standing, affiliation, disguise and missing membership records do not substitute. Hidden membership is resolved without public disclosure. Ordinary strongest-stat and advantage rules apply. Entering, leaving, membership changes and suppression change eligibility immediately, without new uses or grace periods. Visitors can freely enter or leave; attacks are not blocked. The visible emblem grants no law, ownership, rest success, healing, resources or allegiance. The source’s word sacred is preserved without adding theology. Ten minutes uses 100 future regular-start markers or 600 elapsed seconds under the shared clock; extra turns do not shorten it.\n\nCURRENT FACTION INTERFACE — Use the reviewed Faction Seal invocation-permission procedure for selecting the faction: the Director must have an actual recorded source or explicit campaign permission allowing this caster to invoke that canonical faction. `standing-v1`, positive standing, reputation skill, temporary affiliation, a summoned Envoy, disguise, or information access does not grant that permission or membership. Recipients receive the sanctuary benefit only from their own actual membership record; hidden membership is resolved privately.",
+      "newChoices": "NEW: three finite benefits, actual invocation and membership requirements, and a ten-minute area without institutional or cosmological grants.",
+      "historicalWorkedCases": [
+        "Protection overlaps a +1 AC ward. A qualifying member receives +2, rather than +3.",
+        "Favorable standing does not establish membership and supplies no sanctuary bonus by itself."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "alignment-lock",
+      "name": "Alignment Lock",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-08",
+      "questionDisposition": {
+        "verdict": "REVISE",
+        "reason": "Alignment Lock retains a 24-hour effective-axis freeze and gains explicit AC4-ALIGN-01 interaction with reviewed Purge/Suggestion without deleting underlying records."
+      },
+      "sourceAndAccess": {
+        "id": "alignment-lock",
+        "name": "Alignment Lock",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Monk": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Paladin": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "alignment-lock",
+          "original": {
+            "name": "Alignment Lock",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Alignment Lock",
+                "school": "Abjuration",
+                "level": 4,
+                "summary": "Prevent target from changing alignment for 24 hours."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classRanks": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 7,
+              "Druid": 7,
+              "Mage": 7,
+              "Monk": 18,
+              "Tinker": 14,
+              "Wizard": 7,
+              "Paladin": 13
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Prevent target from changing alignment for 24 hours.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 55,
+              "original": {
+                "school": "Abjuration",
+                "level": 4,
+                "name": "Alignment Lock",
+                "effect": "Prevent target from changing alignment for 24 hours.",
+                "source_paragraph": 9046,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "24 hours",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Alignment"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "ab8e3909fdb77bc60d00b08d5a70e66f0ee21b211f7cedf2977585016d8ef77a",
+      "procedure": "Action; range 60 feet; V/S/F. One perceived creature with line of effect makes a CHA save. NEW: a willing creature can elect failure before the roll. Success causes no application; failure establishes a nonconcentration lock lasting 24 elapsed hours. Record each currently defined effective canonical alignment axis; undefined axes remain undefined and unprotected. While operative, the lock prevents a recorded effective value from being replaced by a different one. It neither reveals values nor compels conduct. Underlying progression, Corrupted and other independent records continue to change and remain recorded, but a locked axis exposes its fixed value to mechanical alignment queries until the lock ends. Display-only masks retain their own rules and do not become actual state changes. NEW: use the earliest active eligible lock for each axis; later conflicting applications retain their own snapshots and deadlines but are suppressed for that axis. Ending exposes the current underlying state without restoring an old baseline or erasing another source’s record. Suppression retains the clock and can expose underlying changes without replaying them when the lock resumes. A prevented transition does not refund a paid cost or queue a later free attempt. Explicit absolute-source exceptions and information protections retain their scope. This grants no moral judgment, oath override or personality restriction.\n\nCURRENT INTERFACE — NEW scoped exception `AC4-ALIGN-01` for Alignment Lock/Alignment Anchor versus reviewed Alignment Purge/Suggestion. A Lock/Anchor application freezes only the effective defined axis value it actually snapshots; it does not delete, prevent creation of, pause, refund, or rewrite an underlying Alignment Suggestion, Alignment Purge, or independent lawful alignment record. For effective-alignment reads on a locked axis, evaluate the ordinary underlying history and reviewed Suggestion/Purge interaction (including AP-AS-01) first, then apply the active Lock/Anchor snapshot last. Thus a Purge or Suggestion cast after a lock can establish its own live record and pay/keep its own costs and clock, but cannot change the locked effective axis while that lock remains active. When a new Suggestion computes its target baseline, exclude prior Suggestion overlays and Purge overlays as AP-AS-01 already requires, and additionally exclude AC4 Lock/Anchor overlays on the target so the lock cannot become a ratchet staircase. A Purge on the Suggestion caster still affects that caster's own effective orientation normally. If Lock/Anchor is applied while Purge or Suggestion is already effective, it snapshots the currently effective defined value; later ending/suppression of the lower overlay does not alter that snapshot. When Lock/Anchor ends or is inactive because a zone was exited/suppressed, the then-live lower lawful result becomes effective immediately with its original deadline/history; no old snapshot is restored and no missed application replays. Undefined axes are never fabricated.",
+      "newChoices": "NEW: CHA save with voluntary failure, effective-axis snapshots, retained underlying records and deterministic per-axis priority.",
+      "historicalWorkedCases": [
+        "A locked axis stays at its recorded effective value while an independent underlying change is retained. Expiry exposes that current underlying record.",
+        "An undefined axis is not assigned Neutral. An observer does not automatically learn a hidden locked value."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "alignment-anchor",
+      "name": "Alignment Anchor",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-09",
+      "questionDisposition": {
+        "verdict": "REVISE",
+        "reason": "Both Alignment Anchor placements remain separate; the Conjuration zone and Cleric rank-7 creature placement use separate procedures and AC4-ALIGN-01. The conduct clause remains bounded by established predicates and the hard-denial guard."
+      },
+      "sourceAndAccess": {
+        "id": "alignment-anchor",
+        "name": "Alignment Anchor",
+        "schools": [
+          "Abjuration",
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 7,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 17
+          },
+          "Dragoon": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Ranger": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Shaman": {
+            "rank": 4,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "alignment-anchor",
+          "original": {
+            "name": "Alignment Anchor",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration",
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Alignment Anchor",
+                "school": "Abjuration",
+                "level": 7,
+                "summary": "Fix a creature's alignment for 7 days; they cannot act against it."
+              },
+              {
+                "name": "Alignment Anchor",
+                "school": "Conjuration",
+                "level": 4,
+                "summary": "Create a zone where creatures cannot change alignment."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 7,
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classRanks": {
+              "Cleric": 7,
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 13,
+              "Dragoon": 18,
+              "Druid": 7,
+              "Mage": 7,
+              "Ranger": 13,
+              "Shaman": 10,
+              "Tinker": 14,
+              "Wizard": 7
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Fix a creature's alignment for 7 days; they cannot act against it.",
+            "alternateSummaries": [
+              "Create a zone where creatures cannot change alignment."
+            ],
+            "classes": [
+              "Cleric",
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 78,
+              "original": {
+                "school": "Abjuration",
+                "level": 7,
+                "name": "Alignment Anchor",
+                "effect": "Fix a creature's alignment for 7 days; they cannot act against it.",
+                "source_paragraph": 9075,
+                "casting_time": "1 action",
+                "range": "120 feet",
+                "duration": "7 days",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Alignment"
+                ],
+                "rp_cost": 17
+              }
+            },
+            {
+              "index": 159,
+              "original": {
+                "school": "Conjuration",
+                "level": 4,
+                "name": "Alignment Anchor",
+                "effect": "Create a zone where creatures cannot change alignment.",
+                "source_paragraph": 9175,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Alignment"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Class-specific ranks differ; never use global minimum rank for every class",
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "8bb030a8bce9afd5744dc428f395603cb69d39eb91017007bbe276eff65a160b",
+      "procedure": "Keep both actual placements separate. Conjuration rank 4, base 7 RP, range 60 feet: NEW Action, V/S/F creates a fixed 15-foot-radius sphere at a perceived point with line of effect, with concentration up to one minute. Snapshot each creature’s defined effective axes when it first occupies the area with line of effect to the center, including eligible occupants at creation. While eligible inside, those axes use Alignment Lock’s proposed prevention and underlying-history rules. No save or entry bar applies. Leaving removes the constraint immediately; reentry reuses that application’s first snapshot. Store priority when the application first qualifies on that creature/axis. Exit or suppression makes it inactive for priority selection without changing the original timestamp on resumption. Abjuration rank 7, base 17 RP, range 120 feet, currently Cleric: NEW Action, V/S/F targets one perceived creature with line of effect for a CHA save; a willing target can elect failure. Failure applies the effective-axis lock for seven elapsed days without concentration. Preserve cannot act against it as a bounded conduct restriction: only deliberate conduct explicitly incompatible with the locked record under an already established source predicate can be vetoed. A player chooses another legal action without spending the rejected choice’s costs; no beliefs, self-harm, confession, allegiance or new moral standard is compelled. Without an established incompatibility predicate, the clause has no invented test. A veto that would leave no legal ordinary Action or deny the whole turn additionally requires and spends the shared hard-denial allowance; after it is spent, such a whole-Action/turn veto cannot recur that encounter. The axis lock and independently legal narrower restriction continue. This NEW limiting interpretation is a proposal beside the broader original, not recovered doctrine. Neither placement grants the other’s mode, rank, price or class access.\n\nCURRENT INTERFACE — NEW scoped exception `AC4-ALIGN-01` for Alignment Lock/Alignment Anchor versus reviewed Alignment Purge/Suggestion. A Lock/Anchor application freezes only the effective defined axis value it actually snapshots; it does not delete, prevent creation of, pause, refund, or rewrite an underlying Alignment Suggestion, Alignment Purge, or independent lawful alignment record. For effective-alignment reads on a locked axis, evaluate the ordinary underlying history and reviewed Suggestion/Purge interaction (including AP-AS-01) first, then apply the active Lock/Anchor snapshot last. Thus a Purge or Suggestion cast after a lock can establish its own live record and pay/keep its own costs and clock, but cannot change the locked effective axis while that lock remains active. When a new Suggestion computes its target baseline, exclude prior Suggestion overlays and Purge overlays as AP-AS-01 already requires, and additionally exclude AC4 Lock/Anchor overlays on the target so the lock cannot become a ratchet staircase. A Purge on the Suggestion caster still affects that caster's own effective orientation normally. If Lock/Anchor is applied while Purge or Suggestion is already effective, it snapshots the currently effective defined value; later ending/suppression of the lower overlay does not alter that snapshot. When Lock/Anchor ends or is inactive because a zone was exited/suppressed, the then-live lower lawful result becomes effective immediately with its original deadline/history; no old snapshot is restored and no missed application replays. Undefined axes are never fabricated.",
+      "newChoices": "NEW: two placement-specific procedures, explicit zone snapshot/priority handling, and conduct restrictions using existing predicates and shared control history.",
+      "historicalWorkedCases": [
+        "The Cleric placement remains rank 7 and base 17 RP. A Druid’s rank-4 zone does not lower that price or grant its own seven-day single-target mode.",
+        "A Director cannot invent a moral requirement forcing a player to attack an ally. No established incompatibility predicate means no conduct veto."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "summon-water-pet",
+      "name": "Summon Water Pet",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-10",
+      "questionDisposition": {
+        "verdict": "REVISE",
+        "reason": "Summon Water Pet keeps its printed body values and heal/attack, gains a complete command profile, a scoped shared support/offense allowance for healing, and current Null Disabled-at-0 handling."
+      },
+      "sourceAndAccess": {
+        "id": "summon-water-pet",
+        "name": "Summon Water Pet",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Ranger": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Shaman": {
+            "rank": 4,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "summon-water-pet",
+          "original": {
+            "name": "Summon Water Pet",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Summon Water Pet",
+                "school": "Conjuration",
+                "level": 4,
+                "summary": "HP 35, AC 14, can heal allies for 2d6 or attack for 1d10 cold."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classRanks": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classLearnLevels": {
+              "Dragoon": 18,
+              "Druid": 7,
+              "Mage": 7,
+              "Ranger": 13,
+              "Shaman": 10,
+              "Tinker": 14,
+              "Wizard": 7
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "HP 35, AC 14, can heal allies for 2d6 or attack for 1d10 cold.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 152,
+              "original": {
+                "school": "Conjuration",
+                "level": 4,
+                "name": "Summon Water Pet",
+                "effect": "HP 35, AC 14, can heal allies for 2d6 or attack for 1d10 cold.",
+                "source_paragraph": 9168,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage",
+                  "Healing",
+                  "Summoning"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "5e1e7ccb1b6779758d32788b673d412187ca98146af5c595b83a64df64591ed0",
+      "procedure": "Action; range 60 feet; V/S/F; concentration up to one minute. Create one Medium Elemental companion in a perceived fitting unoccupied supported space with line of effect. Preserve printed AC 14, HP 35, 2d6 healing and 1d10 cold attack. NEW profile: walking Speed 30 feet, body mass 150 pounds, all six ability scores 10, saves equal to your PB, other checks +0, ordinary sight/hearing. It understands your spoken commands without speech or telepathy. No swimming, amphibious trait, fluid passage, immunity or free water follows from its name. It acts immediately after your regular turn. A Bonus Action command while within 60 feet and able to perceive you permits movement and one attack, heal, Dodge, Dash, Disengage or Search. Without a command it can move defensively and Dodge. No free Help, grapple, shove, item activation or opportunity attack is granted. Attack: one melee spell attack using your actual casting ability + PB, reach 5 feet, 1d10 cold without a modifier. Heal: one willing living creature it perceives within 5 feet and line of effect regains 2d6 ordinary HP without a modifier. A Downed recipient is eligible under its actual healing rules. NEW: either attack or heal consumes the owner’s one shared companion offensive/support activation for that numbered round. One companion therefore cannot heal while another uses that same offensive allowance. Each command still costs its actual Bonus Action; extra turns or repeated commands add no activations. Healing belongs to the pet, without triggering the owner’s personal spell, lifesteal or class hooks; no healing copy, resource conversion or overflow is added. One Water Pet per caster; successful replacement ends the old body. At 0 HP or source end it vanishes without a corpse, loot, death reward or material water. It can carry genuinely entrusted existing gear within its actual capacity; real cargo drops legally on ending. Suppression preserves the existing body/HP and deadline without movement, attack, healing or a fresh summon trigger until resumption.\n\nCURRENT NULL/LIFECYCLE INTERFACE — A qualifying `nullNonlethal=true` damage root that reduces this finite summoned companion from positive HP to 0 does not end or replace the body. Use the accepted `finiteSummonFamiliarMirrorBeast` branch: the same identity becomes `Null Disabled 0` (Incapacitated, Speed 0, no Actions/Bonus Actions/Reactions/commands) while the original spell/concentration/deadline continues. Independent concentration end, duration expiry, dismissal or replacement still ends the body. Only a real healing/repair source whose targeting expressly applies to this creature can raise it above 0 and end Disabled; no generic free heal, resummon refresh, or corpse/loot is created.\nNEW scoped command decision: its printed 2d6 heal deliberately spends the owner's one shared companion offensive/support activation for that numbered round, the same allowance its attack would spend. Pure movement/Dodge without that heal/attack does not spend the offensive/support allowance beyond the ordinary Bonus Action command.",
+      "newChoices": "NEW: complete finite body/command profile, melee/healing ranges, and one owner-wide activation shared by attack and healing. Printed healing and attack remain alternatives.",
+      "historicalWorkedCases": [
+        "A commanded 2d6 heal can restore a living ally at 0 HP if no actual restriction blocks healing. It spends the round’s shared companion activation.",
+        "The pet has no swim mode simply because it looks like water. Its disappearance produces no harvestable water."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "crystalline-barrier",
+      "name": "Crystalline Barrier",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-11",
+      "questionDisposition": {
+        "verdict": "AGREE",
+        "reason": "Crystalline Barrier uses one opaque 30x10x1 wall with one AC18/40HP pool; suppression/occupied-return and no-material-stock rules make it runnable."
+      },
+      "sourceAndAccess": {
+        "id": "crystalline-barrier",
+        "name": "Crystalline Barrier",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Ranger": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Shaman": {
+            "rank": 4,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "crystalline-barrier",
+          "original": {
+            "name": "Crystalline Barrier",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Crystalline Barrier",
+                "school": "Conjuration",
+                "level": 4,
+                "summary": "Wall of elemental glass (AC 18, HP 40), blocks line of sight."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classRanks": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classLearnLevels": {
+              "Dragoon": 18,
+              "Druid": 7,
+              "Mage": 7,
+              "Ranger": 13,
+              "Shaman": 10,
+              "Tinker": 14,
+              "Wizard": 7
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Wall of elemental glass (AC 18, HP 40), blocks line of sight.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 153,
+              "original": {
+                "school": "Conjuration",
+                "level": 4,
+                "name": "Crystalline Barrier",
+                "effect": "Wall of elemental glass (AC 18, HP 40), blocks line of sight.",
+                "source_paragraph": 9169,
+                "casting_time": "1 action",
+                "range": "Sight",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Detection"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "3b41cebc9177e114ac8c163366504b3e4d1c91eafb1f8129c360119ecbb6f512",
+      "procedure": "Action; range Sight; V/S/F; concentration up to one minute. NEW: choose a clear visible supported location with line of effect, without an invented numeric range cap. Create one opaque wall of elemental glass along a contiguous straight segment, up to 30 feet long, 10 feet high and 1 foot thick. At least one full face of every section must be visible at placement. The thickness cannot bisect, contain or lift a body or object; correct known illegal geometry before payment. AC 18 and 40 HP belong to one whole wall, not each section. Its intact footprint blocks ordinary passage, sight and line of effect, supplying total cover. Glass appearance does not negate printed sight blocking. It is a magical object, not a creature. Damage must legally affect objects; no resistance, threshold or immunity is invented. Damage to any part reduces the same pool; at 0 HP the entire wall vanishes. Targeting a selected 5-foot section uses the actual ordinary attack/action procedure and damages the whole pool; it gives no extra attack or independent hole. Creation inflicts no attack or save. Creatures can go around or over legal edges. The wall cannot carry a building or bridge load, creates no permanent glass or harvest stock, and leaves no damaging shards on ending. Suppression removes its blocking presence while retaining spent HP and the original deadline. If its former footprint is occupied on resumption, it stays suppressed until the whole footprint is clear or it expires; it never evicts, crushes or duplicates an occupant.",
+      "newChoices": "NEW: finite opaque geometry, one 40-HP pool, source-specific suppression/resumption occupancy, and no permanent structural or material output.",
+      "historicalWorkedCases": [
+        "Hits dealing 23 and 17 damage to different sections deplete the same 40-HP pool and remove the entire wall.",
+        "Sight range permits a distant visible legal segment. It does not reveal placement behind existing total cover."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "elemental-drain",
+      "name": "Elemental Drain",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-12",
+      "questionDisposition": {
+        "verdict": "REVISE",
+        "reason": "Elemental Drain preserves the 2-vs-5 source conflict and adopts Core's 5-RP loss for this candidate, with one random element draw and active-creature RP-holder eligibility."
+      },
+      "sourceAndAccess": {
+        "id": "elemental-drain",
+        "name": "Elemental Drain",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Ranger": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Shaman": {
+            "rank": 4,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "elemental-drain",
+          "original": {
+            "name": "Elemental Drain",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Elemental Drain",
+                "school": "Conjuration",
+                "level": 4,
+                "summary": "Target loses 2 Resonance Points and takes 3d6 damage (random element)."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classRanks": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classLearnLevels": {
+              "Dragoon": 18,
+              "Druid": 7,
+              "Mage": 7,
+              "Ranger": 13,
+              "Shaman": 10,
+              "Tinker": 14,
+              "Wizard": 7
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target loses 2 Resonance Points and takes 3d6 damage (random element).",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 154,
+              "original": {
+                "school": "Conjuration",
+                "level": 4,
+                "name": "Elemental Drain",
+                "effect": "Target loses 5 RP and takes 3d6 damage of a random element.",
+                "source_paragraph": 9170,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "4c99bd932c04ef4244d7c538ff5d4581f7fb1b7e8bb85f47e8d8f4c107cc6622",
+      "procedure": "Action; range 60 feet; V/S/F; instantaneous. Target one perceived creature with line of effect. NEW: choose Core’s loss of 5 RP over the catalog’s 2 RP, retaining both originals. After interruption, draw 1d6 once: 1 acid, 2 cold, 3 fire, 4 lightning, 5 thunder, 6 poison. Roll 3d6 damage once. The target makes a CON save: failure takes full damage and separately loses up to 5 current RP; success takes half damage rounded down and loses no RP. Apply damage, defenses and survival consequences first. Then, on a failed save, remove min(5, current RP) if the target is still an active creature holder of an actual RP pool. Damage immunity alone does not cancel this separate failed-save loss. A target without RP still receives eligible damage, with no RC, slot or charge substitution. The caster gains no RP. Save rerolls affect only the permitted save; they never redraw the element or create extra damage rolls. No drain from an ended/dead holder, negative RP, maximum-RP reduction or resource proc is created. Recasting requires a new paid spell. Later suppression cannot reverse resolved damage or RP loss.\nCURRENT LIFECYCLE CLARIFICATION — `active creature holder` is mechanical, not biological: an active creature-classified Undead or Construct with a real RP pool can lose RP. A true dead body/corpse that is no longer an active creature cannot. Damage immunity can reduce the damage component to 0 without preventing the separate failed-save RP loss unless an exact immunity also prevents that resource effect.",
+      "newChoices": "NEW: explicit Core 5-RP choice, finite six-element draw, CON save, and separate damage/resource-loss branches.",
+      "historicalWorkedCases": [
+        "On a failed save, a surviving target with 3 RP loses 3 and reaches 0. The caster gains 0 RP.",
+        "If fire damage is prevented by immunity but the CON save failed, a living target’s actual RP pool still loses up to 5."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "bind-element",
+      "name": "Bind Element",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-13",
+      "questionDisposition": {
+        "verdict": "AGREE",
+        "reason": "Bind Element preserves Paralyzed for two rounds, adds one early repeat save and uses the current shared hard-denial guard without replacing the condition."
+      },
+      "sourceAndAccess": {
+        "id": "bind-element",
+        "name": "Bind Element",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Ranger": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Shaman": {
+            "rank": 4,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "bind-element",
+          "original": {
+            "name": "Bind Element",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Bind Element",
+                "school": "Conjuration",
+                "level": 4,
+                "summary": "Trap one elemental creature in place (WIS save or paralyzed 2 rounds)."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classRanks": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classLearnLevels": {
+              "Dragoon": 18,
+              "Druid": 7,
+              "Mage": 7,
+              "Ranger": 13,
+              "Shaman": 10,
+              "Tinker": 14,
+              "Wizard": 7
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Trap one elemental creature in place (WIS save or paralyzed 2 rounds).",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 155,
+              "original": {
+                "school": "Conjuration",
+                "level": 4,
+                "name": "Bind Element",
+                "effect": "Trap one elemental creature in place (WIS save or paralyzed 2 rounds).",
+                "source_paragraph": 9171,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Control"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "3cf5a13cf2f9ee6e6bd6cceac445d63f45c253438e54ffc0137f7329aadc1073",
+      "procedure": "Action; range 60 feet; V/S/F. Target one perceived creature with line of effect whose actual current creature-type/profile record is Elemental. Hidden type eligibility is resolved after legal commitment; a spell tag, costume or ingredient is insufficient. The target makes a WIS save. Success causes no application. Failure attempts actual Paralyzed through the end of its second future regular turn, excluding a turn already in progress when applied; no concentration. NEW: repeat the WIS save at the first such turn’s end and end the effect on success. At the second scheduled end it expires without a useless extra save. If begun outside initiative, repeat after six elapsed seconds and expire after twelve; retain that absolute deadline on entering initiative without replaying a save. This preserves the printed two-round clause. Actual paralysis immunity and the shared source-character/target/encounter hard-denial guard apply. Following the reviewed Sleep and Hypnotic Pattern convention, establishing one hard component spends the guard once, not on every affected turn. A spent guard blocks a new Paralyzed application without an invented soft fallback. Recasting, replacement, suppression and ending never refund the mark or extend the old application. Paralyzed retains its full current meaning: Incapacitated, no movement or speech, automatic STR/DEX save failures, advantage on attacks against it, and critical hits for attacks hitting from within 5 feet. Concentration ending and action-type losses follow that condition. No additional damage, strangulation or physical restraint is added. Later suppression retains clocks and history; initial prevention never banks a future application. The spell does not move the body or create support, and ordinary Falling remains possible.",
+      "newChoices": "NEW: exact two-turn endpoints, one early repeat save, outside-initiative timing and explicit binding to reviewed once-per-established-application control accounting.",
+      "historicalWorkedCases": [
+        "An actual Elemental fails WIS while the source’s shared guard is unused. Paralyzed spends that guard and may end at the first repeat save; persistence through a second turn does not spend another mark.",
+        "A humanoid casting elemental spells is not an Elemental. A real Elemental already hard-controlled by this source character receives no invented fallback from a later failed save."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "dimensional-door",
+      "name": "Dimensional Door",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-14",
+      "questionDisposition": {
+        "verdict": "AGREE",
+        "reason": "Dimensional Door is self plus actual carried gear to one known same-plane destination within 500 feet, with atomic failure and ordinary support/falling."
+      },
+      "sourceAndAccess": {
+        "id": "dimensional-door",
+        "name": "Dimensional Door",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Ranger": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Shaman": {
+            "rank": 4,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "dimensional-door",
+          "original": {
+            "name": "Dimensional Door",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Dimensional Door",
+                "school": "Conjuration",
+                "level": 4,
+                "summary": "Teleport up to 500 ft to a known location."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classRanks": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classLearnLevels": {
+              "Dragoon": 18,
+              "Druid": 7,
+              "Mage": 7,
+              "Ranger": 13,
+              "Shaman": 10,
+              "Tinker": 14,
+              "Wizard": 7
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Teleport up to 500 ft to a known location.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 156,
+              "original": {
+                "school": "Conjuration",
+                "level": 4,
+                "name": "Dimensional Door",
+                "effect": "Teleport up to 500 ft to a known location.",
+                "source_paragraph": 9172,
+                "casting_time": "1 action",
+                "range": "500 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Movement"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "4a3c5c351d5277186ceca3f0062d025143a86786be354adda607476204d91c36",
+      "procedure": "Action; range 500 feet; V/S/F; instantaneous. Teleport yourself and your actually worn/carried legal gear to one known fitting unoccupied destination on the same established plane. NEW: known means personally perceived now or personally occupied/examined before, with an accurate fixed location relative to your current position. Rumor, approximate direction, imagined layout or a map alone is insufficient. This expressly permits an unseen known destination without line of effect or a traversed path, but grants no remote senses or new place knowledge. Choose one exact footprint and orientation before payment. Recheck occupancy, actual transport prohibitions and custody at resolution. A hidden or newly invalid destination leaves you and all gear at the origin with costs spent, without damage, partial arrival or an automatic nearest-safe substitute. No passenger is granted: a willing or unwilling carried creature is not gear. A genuinely carried unattended object can travel within actual carrying limits, keeping its identity and ownership. Unsupported free space is permitted if the body fits, then ordinary Falling begins immediately; there is no hover. Transit does not end unrelated conditions unless their actual source or physical relationship ends. This Conjuration identity remains distinct from Universal Dimension Door and borrows none of its unreviewed rules.",
+      "newChoices": "NEW: self and actual gear, direct destination knowledge, explicit unseen-destination permission and atomic failure, without an imported passenger allowance.",
+      "historicalWorkedCases": [
+        "You can return with your real backpack to a personally examined balcony 450 feet away if its arrival space is still legal.",
+        "If that space is secretly occupied, the paid spell fails at the origin. It gives neither an adjacent substitute nor a duplicated backpack."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "resonance-beacon",
+      "name": "Resonance Beacon",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-15",
+      "questionDisposition": {
+        "verdict": "AGREE",
+        "reason": "Resonance Beacon is a finite fixed destination with enrolled allies and a separate Action/2-RP nonspell transit activation; support destruction and transport wards remain real."
+      },
+      "sourceAndAccess": {
+        "id": "resonance-beacon",
+        "name": "Resonance Beacon",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Ranger": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Shaman": {
+            "rank": 4,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "resonance-beacon",
+          "original": {
+            "name": "Resonance Beacon",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Resonance Beacon",
+                "school": "Conjuration",
+                "level": 4,
+                "summary": "Create a point that allies can teleport to using Resonance Points."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classRanks": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classLearnLevels": {
+              "Dragoon": 18,
+              "Druid": 7,
+              "Mage": 7,
+              "Ranger": 13,
+              "Shaman": 10,
+              "Tinker": 14,
+              "Wizard": 7
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Create a point that allies can teleport to using Resonance Points.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 157,
+              "original": {
+                "school": "Conjuration",
+                "level": 4,
+                "name": "Resonance Beacon",
+                "effect": "Create a point that allies can teleport to using Resonance Points.",
+                "source_paragraph": 9173,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Movement",
+                  "Resonance"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "3752a54698c43ca79952c06d047aa68ab084d1f9f83e919d95176d97ae6b676d",
+      "procedure": "Action; range 60 feet; V/S/F. NEW: create a visible immobile luminous sigil, 1 foot across, on a perceived supported surface with line of effect, with concentration up to ten minutes. It marks one fitting 5-foot destination square immediately above the surface. At creation enroll yourself and up to PB other willing allies you perceive within 60 feet who can perceive the beacon and consent. Affiliation is not consent. Record exact recipients; later PB changes or remote permission add none. An enrolled living creature on the same plane and within 500 feet of the beacon can spend an Action and 2 of its own actual RP to teleport itself and legally carried gear into that fitting unoccupied square. It need not see the beacon again but gains no updated senses. This is a nonspell activation of the existing spell, with no new cast, Dissonance, Refrain or Counterspell event. Spellcasting-only surcharges and discounts do not modify that payment; a broader actual ability-payment rule applies only if its scope expressly permits. Actual transport prohibitions remain. Preflight known affordability, range and legality; hidden or new obstruction after commitment leaves body and gear at the origin with costs spent. No passenger, creature-as-gear, forced ownership transfer or eviction is granted. Resolve one traveler at a time; another cannot arrive until the square is free. Initial base 7 RP is distinct from each later traveler’s 2 RP. Moving or destroying the marked support ends this fixed beacon. Suppression blocks new transit without queuing attempts or pausing its deadline. One beacon per caster; successful replacement ends the old one. No portal network, refund, RP transfer or item duplication is created.",
+      "newChoices": "NEW: finite enrollment, ten-minute concentration, 500-foot self-only use, one arrival square and a separate nonspell Action/2-RP traveler payment.",
+      "historicalWorkedCases": [
+        "An enrolled ally spends an Action and 2 RP to arrive in the free square. A second ally must wait until that square is clear.",
+        "Lifting the marked paving stone ends the fixed beacon. It cannot become a free movable destination."
+      ],
+      "examplesAreRuntimeTests": false
+    },
+    {
+      "spellId": "faction-ally",
+      "name": "Faction Ally",
+      "status": "NEW provisional authored playtest candidate; not canon/runtime/balance approval",
+      "questionId": "AC4-16",
+      "questionDisposition": {
+        "verdict": "REVISE",
+        "reason": "Faction Ally uses one finite summon-only Envoy profile, actual faction permission/membership evidence, shared command/offense limits and current Null Disabled-at-0 handling."
+      },
+      "sourceAndAccess": {
+        "id": "faction-ally",
+        "name": "Faction Ally",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Ranger": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Shaman": {
+            "rank": 4,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "faction-ally",
+          "original": {
+            "name": "Faction Ally",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Faction Ally",
+                "school": "Conjuration",
+                "level": 4,
+                "summary": "Summon a CR 3 creature aligned with your faction."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classRanks": {
+              "Dragoon": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Ranger": 4,
+              "Shaman": 4,
+              "Tinker": 4,
+              "Wizard": 4
+            },
+            "classLearnLevels": {
+              "Dragoon": 18,
+              "Druid": 7,
+              "Mage": 7,
+              "Ranger": 13,
+              "Shaman": 10,
+              "Tinker": 14,
+              "Wizard": 7
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Summon a CR 3 creature aligned with your faction.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 158,
+              "original": {
+                "school": "Conjuration",
+                "level": 4,
+                "name": "Faction Ally",
+                "effect": "Summon a CR 3 creature aligned with your faction.",
+                "source_paragraph": 9174,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Summoning",
+                  "Faction"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "sourceRecordSha256": "df35a884ba661db2613acb1163ac786affa6ddf2c5239e9e2a9fa366d5544d0b",
+      "procedure": "Action; range 60 feet; V/S/F; concentration up to one minute. Require actual membership in a recorded faction and actual invocation permission; favorable standing alone is insufficient. NEW: summon one willing temporary faction-affiliated ally using the complete Faction Envoy profile below, in a perceived fitting unoccupied supported space with line of effect. The profile is designed for the source’s nominal CR 3 role; balance and CR certification remain open. The current public CR-3 entries do not establish both finished mechanics and this caster’s faction relationship; their original profiles remain comparison evidence. Temporary affiliation grants no institutional membership, credentials, secrets, reputation or alignment. Member-only benefits require actual separate membership evidence. The Envoy acts immediately after your regular turn under the actual Bonus Action command and shared offensive-action allowance, using only the profile’s listed actions. Without a command it can move defensively and Dodge. One Envoy per caster; successful replacement, 0 HP or concentration/source ending removes the old body. Real borrowed cargo drops legally without duplication; its conjured blade vanishes. Suppression preserves the same body, HP and deadline without actions, healing or a fresh summon event until resumption. No autonomous attack, loot, corpse, soul/resource reward, free Help or unknown faction information is granted. This summons one finite body; it does not requisition a real NPC or publish Director-only traits.\n\nCURRENT FACTION INTERFACE — `caster faction` means an actual recorded faction relationship qualifying as the caster's membership/affiliation for this spell plus actual invocation permission where the reviewed faction-permission procedure requires it. Positive `standing-v1` alone is never enough. The temporary Envoy's `faction-affiliated` descriptor is source-limited to this summon and is not institutional membership; it cannot satisfy member-only Sanctuary, credentials, reputation, or access.\n\nCURRENT NULL/LIFECYCLE INTERFACE — A qualifying `nullNonlethal=true` damage root that reduces this finite summoned companion from positive HP to 0 does not end or replace the body. Use the accepted `finiteSummonFamiliarMirrorBeast` branch: the same identity becomes `Null Disabled 0` (Incapacitated, Speed 0, no Actions/Bonus Actions/Reactions/commands) while the original spell/concentration/deadline continues. Independent concentration end, duration expiry, dismissal or replacement still ends the body. Only a real healing/repair source whose targeting expressly applies to this creature can raise it above 0 and end Disabled; no generic free heal, resummon refresh, or corpse/loot is created.",
+      "newChoices": "NEW: finite nominal-CR-3 Envoy for the missing qualified roster, without invented institutional membership or balance certification.",
+      "historicalWorkedCases": [
+        "The Envoy’s two attack components use one commanded offensive Action, leaving no shared offensive allowance for another companion that round.",
+        "Favorable reputation alone does not authorize this cast without actual faction membership and invocation permission."
+      ],
+      "examplesAreRuntimeTests": false
+    }
+  ],
+  "factionAllyProfile": {
+    "id": "proposal.faction-envoy-cr3",
+    "status": "NEW summon-only profile for the source’s nominal CR 3 role; no human CR/balance certification.",
+    "size": "Medium",
+    "type": "Humanoid for mechanical targeting only; no new ancestry or setting origin.",
+    "nominalChallengeRating": 3,
+    "armorClass": 15,
+    "hitPoints": 50,
+    "bodyMassPounds": 170,
+    "walkingSpeedFeet": 30,
+    "abilities": {
+      "STR": 16,
+      "DEX": 14,
+      "CON": 14,
+      "INT": 10,
+      "WIS": 12,
+      "CHA": 10
+    },
+    "savingThrows": {
+      "STR": 3,
+      "DEX": 2,
+      "CON": 2,
+      "INT": 0,
+      "WIS": 1,
+      "CHA": 0
+    },
+    "checks": "Use the actual ability modifier without additional proficiency. Ordinary sight/hearing; understands the caster’s spoken commands through this spell only, without other languages, telepathy or faction intelligence. No resistances, immunities, spells, slots, class features or special senses.",
+    "attack": "One commanded offensive Action makes two melee weapon attacks, +5 to hit, reach 5 feet, each dealing 1d8+3 slashing. Each target must be legal when attacked. Movement between attacks uses the same actual 30-foot movement budget. A critical doubles only the die. No ranged attack or ammunition is supplied. The temporary one-handed blade is nontransferable: separation makes it vanish without supplying another wielder, material or value.",
+    "actions": "A Bonus Action command from the owner, within 60 feet and perceived through actual senses, permits movement and the two-attack offensive Action OR one ordinary Dodge, Dash, Disengage or Search. No item activation, casting, Help, grapple, shove, healing or independent opportunity attack. Without a command it may move defensively and Dodge. It shares the owner’s command/offense allowance; extra turns create no additional offense.",
+    "lifecycle": "One entity and HP pool, without refresh from commands, transfer or suppression. Ordinary non-Null damage reaching 0 uses the source finite-summon endpoint and ends the body. Qualifying Null-nonlethal damage reaching 0 instead uses the accepted finite-summon Null Disabled0 branch while concentration/deadline remains; independent concentration/source ending, replacement or dismissal still ends it. A real healing/repair source must expressly apply to raise a Disabled Envoy above0; no generic free recovery. Real entrusted cargo drops legally on ending. No conjured stock, corpse, reward, harvest, permanent recruitment or faction standing."
+  },
+  "banishmentSourceOnlyReceipt": [
+    {
+      "spellId": "banishment",
+      "questionId": "AC4-01",
+      "scope": "post-push receipt only",
+      "fullSourceAndCurrentAccessRecord": {
+        "id": "banishment",
+        "name": "Banishment",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "blocked-pending-operational-review",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Druid": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Mage": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Monk": {
+            "rank": 4,
+            "minimumClassLevel": 18,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Tinker": {
+            "rank": 4,
+            "minimumClassLevel": 14,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Wizard": {
+            "rank": 4,
+            "minimumClassLevel": 7,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          },
+          "Paladin": {
+            "rank": 4,
+            "minimumClassLevel": 13,
+            "school": "Abjuration",
+            "baseRpCost": 7
+          }
+        },
+        "operational": null,
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "banishment",
+          "original": {
+            "name": "Banishment",
+            "level": 4,
+            "resonanceRank": 4,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Banishment",
+                "school": "Abjuration",
+                "level": 4,
+                "summary": "Send a creature to another plane temporarily."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classRanks": {
+              "Cleric": 4,
+              "Druid": 4,
+              "Mage": 4,
+              "Monk": 4,
+              "Tinker": 4,
+              "Wizard": 4,
+              "Paladin": 4
+            },
+            "classLearnLevels": {
+              "Cleric": 7,
+              "Druid": 7,
+              "Mage": 7,
+              "Monk": 18,
+              "Tinker": 14,
+              "Wizard": 7,
+              "Paladin": 13
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Send a creature to another plane temporarily.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 48,
+              "original": {
+                "school": "Abjuration",
+                "level": 4,
+                "name": "Banishment",
+                "effect": "Send a creature to another plane temporarily.",
+                "source_paragraph": 9039,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Planar"
+                ],
+                "rp_cost": 7
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation",
+          "Not selectable in this spell playtest packet until individual operational review"
+        ]
+      },
+      "recordSha256": "6f033826209686de6d256a1f6473230563f356e879b6fb083641140b3e4515b5",
+      "individualQuestion": "POST-PUSH RECEIPT ONLY. Preserve the source promise of temporary transport to another plane, Core Action/60ft/Instantaneous and all access records without inventing a destination, planar relation, return procedure or new cosmic origin. Carry this unchanged source to the owner-directed careful cosmology review after the successful authorized GitHub push and verified remote commit. Exclude it from present mechanical authoring and approval."
+    }
+  ],
+  "sourceBindingsCount": 70,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytestsExecuted": 0
+}

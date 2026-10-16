@@ -1,0 +1,2272 @@
+{
+  "id": "DD-AC4-CORRECTIONS-02",
+  "recordedAtUtc": "2026-10-16T07:14:31.164446+00:00",
+  "status": "Independent semantic findings for actual GPT conference; no adoption",
+  "reviewedReturn": {
+    "path": "docs/audit/2026-10-08/full-game/DD_AC4_Current_Review_01_Return_01.zip",
+    "bytes": 60991,
+    "sha256": "0f12daaf4b39e3d830cdf6b7dd3d20d9f50b4cdd0523ffdb4fdce104be9bf6fa"
+  },
+  "sourceIntegrityCheck": {
+    "path": "docs/audit/2026-10-08/full-game/AC4_CURRENT_REVIEW_01_RETURN_SOURCE_CHECK_01.json",
+    "bytes": 20320,
+    "sha256": "715ed889a54c85ee63184211a395a64f936f254bc37aee5ba7e6b658e585ec9c"
+  },
+  "readingCompleted": [
+    "All15 complete model procedures and shared interfaces",
+    "All45 examples",
+    "All original/current question dispositions",
+    "Full Player chapter, with15 exact procedure equality checks",
+    "Full Director chapter",
+    "Full Envoy profile",
+    "Current named comparison cards and scoped EPI Null damage/lifecycle rules"
+  ],
+  "findings": [
+    {
+      "id": "AC4-C01",
+      "kind": "exact clock omission",
+      "locations": [
+        "SPELLS_MODEL.json#/sharedRules/timing",
+        "SPELLS_MODEL.json#/spells/1/procedure",
+        "PLAYER_CHAPTER.md Time and Spell Shield"
+      ],
+      "finding": "Shared timing scopes the one-minute clock to concentration effects, but Spell Shield expressly has no concentration and supplies no exact endpoint of its own.",
+      "proposal": "Give Spell Shield the tenth future caster regular-start marker after application in initiative, excluding a start already in progress/past; outside initiative application+60 seconds. Preserve the fixed virtual/absolute deadline across entry/exit, reorder, extra turns, absence/death and suppression; caster death alone does not end this nonconcentration ward. Keep source-specific clocks distinct. Add a concrete expiry/suppression example."
+    },
+    {
+      "id": "AC4-C02",
+      "kind": "contradictory eligibility",
+      "locations": [
+        "SPELLS_MODEL.json#/spells/14/procedure",
+        "CASEBOOK.json AC4-16-B"
+      ],
+      "finding": "Faction Ally first requires actual membership AND invocation permission, but its appended interface permits membership/affiliation and permission only where required. Those are different gates. The original example expressly requires both.",
+      "proposal": "Use actual recorded membership in one exact canonical faction AND recorded source/campaign invocation permission under Faction Seal. Affiliation/standing alone cannot qualify. Keep Sanctuary caster invocation permission independent from recipient membership. If you prefer a different NEW gate, explicitly justify it and harmonize every procedure/example; do not leave both readings."
+    },
+    {
+      "id": "AC4-C03",
+      "kind": "cast identity versus damage-root creation",
+      "locations": [
+        "SPELLS_MODEL.json#/spells/1/procedure",
+        "CASEBOOK.json AC4-X01 and AC4-X02",
+        "COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md creation-time damage flag"
+      ],
+      "finding": "Pure redirection is coherent, but wording that no new damage root is created and that a pending cast already has its Null root can be read as allocating all damage roots at cast commitment. Accepted EPI instead evaluates the actual dealer at each damage-root creation; cast identity and damage-root identity are not synonyms.",
+      "proposal": "Spell Shield itself creates no replacement damage root and does not advance the original spell damage-root checkpoint. Preserve an already-created root flag; when the original spell has not created its root yet, create it at its ordinary checkpoint under the original caster/dealer, then evaluate that dealer actual Veil state. Descendants inherit their real parent flag. Non-damaging Charm Person requires no damage root. Make X01 concrete with unchanged Veil through the real root checkpoint, then include a boundary variant where Veil changes before versus after creation. Do not invent a universal cast-time root."
+    },
+    {
+      "id": "AC4-C04",
+      "kind": "finite summon zero-state ambiguity",
+      "locations": [
+        "SPELLS_MODEL.json#/spells/7/procedure",
+        "SPELLS_MODEL.json#/spells/14/procedure",
+        "SPELLS_MODEL.json#/factionAllyProfile/lifecycle",
+        "CASEBOOK.json AC4-X06"
+      ],
+      "finding": "The original prose still says at 0 HP it vanishes, while the appended exception only covers a positive-to-zero event. The accepted finite-summon rule replaces damage-caused disappearance and must also remain coherent for further qualifying Null damage to an already Disabled0 body.",
+      "proposal": "Integrate the exception directly: ordinary non-Null damage can invoke the actual finite-summon endpoint; qualifying Null damage reaching or striking its already-Disabled0 body preserves that same body without death/loot, new recovery/expiry clocks or reapplication. Independent expiry, dismissal, replacement and concentration ending remain real. Add a repeated-Null-at0 case and an independent-expiry case. This is clarification of accepted EPI scope, not new immunity to unrelated ending."
+    },
+    {
+      "id": "AC4-C05",
+      "kind": "missing playable profile in player chapter",
+      "locations": [
+        "PLAYER_CHAPTER.md Faction Ally",
+        "SPELLS_MODEL.json#/factionAllyProfile"
+      ],
+      "finding": "The player procedure promises the complete Faction Envoy profile below, but the chapter goes directly to Banishment. Its AC, HP, abilities, saves, attacks, commands and lifecycle appear only in the model. The Director prose also does not supply that profile.",
+      "proposal": "Include the complete exact Envoy profile in PLAYER_CHAPTER.md, with all fields and the corrected eligibility/lifecycle. Reference its structured model location from the Director chapter. Keep nominal CR3 explicitly provisional, not certified. Check every other promised below/reference for actual content."
+    },
+    {
+      "id": "AC4-C06",
+      "kind": "unfinished targeting predicates",
+      "locations": [
+        "SPELLS_MODEL.json#/spells/7/procedure",
+        "SPELLS_MODEL.json#/spells/13/procedure",
+        "SPELLS_MODEL.json#/factionAllyProfile",
+        "CASEBOOK.json AC4-X06"
+      ],
+      "finding": "Water Pet source heals an ally, whereas procedure says any willing living creature; preserve the actual ally requirement. The new living restriction for its heal and Beacon needs an explicit scope, and the two newly authored summon profiles have no living/nonliving targeting classification. X06 expressly leaves whether this Elemental qualifies for Healing Rite unresolved.",
+      "proposal": "Complete these local predicates explicitly as NEW authorship. Preserve willing ally for Water Pet. Decide whether Beacon requires active creature identity rather than living biology, or state and justify the narrower new exclusion. Give Water Pet and Envoy exact mechanical eligibility for living-target effects/ordinary healing while they exist, without claiming natural origins, souls, corpse/loot or generic construct/undead rules. Use actual Cleric Healing Rite (living ally, Action2RP30ft,Sd8+M) for a fully resolved positive recovery example or a fully resolved rejection; do not hide the decision behind an unspecified independently legal heal."
+    },
+    {
+      "id": "AC4-C07",
+      "kind": "incorrect named comparison and incomplete transaction",
+      "locations": [
+        "CASEBOOK.json AC4-X09"
+      ],
+      "finding": "The current reviewed ordinary spell is Summon Spectral Steed, stable ID summon-spectral-steed; Planar Crossing is its one-attempt Action. There is no reviewed Planar Steed identity in the catalog. The example omits the finite crossing use and supposes an unspecified legal foreign-plane mid-resolution cast.",
+      "proposal": "Use exact Summon Spectral Steed and preserve owner BA command, mount Action, one crossing attempt spent at start, real rider/cargo limits and original concentration clock. A concrete independently maintained destination Anchor unknown to the traveler can defeat the committed crossing without inventing a free interrupt or cross-plane trigger perception. If retaining an after-commit event, identify an actual legal trigger/Reaction/source and all original paid costs; no free Action while another Action resolves."
+    },
+    {
+      "id": "AC4-C08",
+      "kind": "integration examples need resolved state and legal event order",
+      "locations": [
+        "CASEBOOK.json AC4-X03, AC4-X08, AC4-X13, AC4-X15"
+      ],
+      "finding": "Several requested integration examples remain conditional sketches. X03 never supplies Suggestion caster orientation or resulting one-step overlay; X13 leaves Warding Bond shares/tempHP arithmetic unresolved; X08 uses generic unnamed waivers; X15 assumes an unspecified independent legal event between commitment and resolution.",
+      "proposal": "Complete X03 with actual axis values/cast order/costs/saves/clocks in both lock-before and lower-overlay-before variants. X13 must state exact conserved shares, recipient HP/tempHP results and no second mitigation. X08 should use actual supplied class/source waiver examples with exact field-before-final-Influence arithmetic. X15 must use an actual sourced event timing permission or label a narrow NEW Beacon commit/revalidation checkpoint explicitly for joint agreement; no generic new interrupt windows. Preserve all original30 IDs/texts and existing X01..X15 identities. Additional bounded authored cases may be added with new IDs if needed. These are authored examples, not executed tests."
+    }
+  ],
+  "exactComparisonRecords": [
+    {
+      "id": "acid-arrow",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "pointer": "/spells/441",
+      "exactCurrentRecord": {
+        "id": "acid-arrow",
+        "name": "Acid Arrow",
+        "schools": [
+          "Evocation"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Crimson Agent": {
+            "rank": 2,
+            "minimumClassLevel": 5,
+            "school": "Evocation",
+            "baseRpCost": 3
+          },
+          "Dragoon": {
+            "rank": 2,
+            "minimumClassLevel": 8,
+            "school": "Evocation",
+            "baseRpCost": 3
+          },
+          "Mage": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Evocation",
+            "baseRpCost": 3
+          },
+          "Wizard": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Evocation",
+            "baseRpCost": 3
+          }
+        },
+        "operational": {
+          "id": "acid-arrow",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One creature or independently legal object you perceive within 30 feet and line of effect.",
+          "duration": "Instantaneous initial attack plus one finite ongoing delayed rank-2 spell rider per successful hit, no concentration. Creature: execute at its first future regular END, excluding its current turn. Object: execute at the caster’s first future regular END, excluding the caster’s current turn. Outside initiative: application +6 seconds. Preserve the original corresponding regular/virtual marker or absolute deadline across entry/exit/reorder, absence, plane change and extra turns.",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "Make a ranged spell attack. Miss: no damage or delayed rider. Hit: resolve 4d4 acid, doubling only those initial attack dice on a critical. After that packet, if the same recipient remains the same continuing eligible creature/object, attach the delayed rider unless an actual defense prevents it. Initial damage reduced to 0 does not itself prevent attachment. Merely reaching 0 HP is not automatically death or loss of continuing creature identity. If the initial packet actually kills/ends that creature identity or destroys that object before attachment, no rider is created.",
+          "effect": "At its scheduled marker, an existing unsuppressed rider deals a separately rolled 2d4 acid to the same continuing recipient as one nonattack packet, then ends. This is an existing-effect consequence, not a cast: no RP, Dissonance, Refrain, cast-begin hook or Counterspell window; ordinary damage/outcome hooks keep their actual predicates. No delayed critical dice. Every qualifying hit has an independent source-owned rider, including same-ID casts by the same or different owners; they coexist rather than refresh or replace. Simultaneous due riders resolve in stable application order as separate packets. An eligible dispel/removal can end a specific pending rank-2 rider before execution despite the source’s Instantaneous cast metadata. Suppression never pauses its marker. If suppressed when due, consume the one-shot event without damage, end that rider, and never replay it after suppression lifts. Movement, lost range/line of effect/perception, caster absence and identity-preserving transformation do not alone end the rider. Actual death/ended continuing creature identity, object destruction or replacement/resummoning ends its recipient’s rider; resurrection/recreation does not inherit it. Actual transformation/source rules may independently end or suppress it.",
+          "scaling": "None. No automatic increase in damage, range, targets, duration, uses or magnitude.",
+          "limitations": "No delayed retargeting to a corpse, replacement or last location; no extra-turn acceleration or timing reset; no washing/scraping removal procedure, physical recoverable arrow or mundane acid material. The ordinary attack and delayed packet remain separate. A directly selected object must be perceived, within range and line of effect, and independently legal: unattended, held by the caster, or deliberately offered by a willing holder. This gives no general permission to target hostile worn/carried inventory. Use actual object AC, durability and defenses; the spell does not automatically destroy an object. Actual class/source access, repertoire, level, action availability, components, costs, concentration transitions, Dissonance/Refrain and cast/counter/outcome hooks follow SPELL_INTEGRATION_RULES.md. These actual rank-2 placements have base 3 RP; actual source modifiers and strain surcharges still apply. V is audible, S requires the ordinary usable free hand or an actual exception, and F is the ordinary class focus. A legal cast commits payment and cast-begin consequences before its Counterspell window; later failure/countering refunds nothing and restores no displaced concentration. Spell attacks use d20 + PB + actual casting modifier against AC; natural 1 misses/natural 20 hits and doubles only actual attack damage dice. Saves use DC 8 + PB + actual casting modifier and binary-save rules. Actual defenses and source-specific hooks retain their real trigger scopes. No automatic level scaling, generic upcast, new action budget or resource generation.",
+          "designNotes": "PRESERVED: stable ID Acid Arrow, initial 4d4 acid and next-round 2d4. SOURCE-EVIDENCE ADOPTION: possible Melf’s Acid Arrow Core metadata supplies Action/30 feet/V,S,F/Instantaneous without identity/access merger. NEW: ranged attack, miss-none, post-initial-packet attachment, exact one-shot marker, coexistence, dispellable ongoing rider and suppression-at-execution consumption.",
+          "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader integration pending",
+          "sourcePlacements": [
+            {
+              "name": "Acid Arrow",
+              "school": "Evocation",
+              "level": 2,
+              "summary": "4d4 acid damage initially, 2d4 acid next round."
+            }
+          ],
+          "sourceCoreEntries": [],
+          "sourceHistoricalAliasEvidence": [
+            {
+              "index": 455,
+              "original": {
+                "school": "Evocation",
+                "level": 2,
+                "name": "Melf's Acid Arrow",
+                "effect": "4d4 acid damage initially, 2d4 acid next round.",
+                "source_paragraph": 9542,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ],
+          "classAccessEvidence": {
+            "Crimson Agent": {
+              "rank": 2,
+              "minimumClassLevel": 5,
+              "school": "Evocation",
+              "baseRpCost": 3
+            },
+            "Dragoon": {
+              "rank": 2,
+              "minimumClassLevel": 8,
+              "school": "Evocation",
+              "baseRpCost": 3
+            },
+            "Mage": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Evocation",
+              "baseRpCost": 3
+            },
+            "Wizard": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Evocation",
+              "baseRpCost": 3
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_AUTHORING_CLARIFICATION.md",
+            "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_EXACT_AND_DELIVERY_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_EVOCATION_RANK2_EXACT_AND_DELIVERY_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_evocation_rank2.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "acid-arrow",
+          "original": {
+            "name": "Acid Arrow",
+            "level": 2,
+            "resonanceRank": 2,
+            "school": "Evocation",
+            "schools": [
+              "Evocation"
+            ],
+            "placements": [
+              {
+                "name": "Acid Arrow",
+                "school": "Evocation",
+                "level": 2,
+                "summary": "4d4 acid damage initially, 2d4 acid next round."
+              }
+            ],
+            "classLevels": {
+              "Crimson Agent": 2,
+              "Dragoon": 2,
+              "Mage": 2,
+              "Wizard": 2
+            },
+            "classRanks": {
+              "Crimson Agent": 2,
+              "Dragoon": 2,
+              "Mage": 2,
+              "Wizard": 2
+            },
+            "classLearnLevels": {
+              "Crimson Agent": 5,
+              "Dragoon": 8,
+              "Mage": 3,
+              "Wizard": 3
+            },
+            "classSchools": {
+              "Crimson Agent": "Evocation",
+              "Dragoon": "Evocation",
+              "Mage": "Evocation",
+              "Wizard": "Evocation"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "4d4 acid damage initially, 2d4 acid next round.",
+            "alternateSummaries": [],
+            "classes": [
+              "Crimson Agent",
+              "Dragoon",
+              "Mage",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [],
+          "possibleHistoricalAliases": [
+            {
+              "index": 455,
+              "original": {
+                "school": "Evocation",
+                "level": 2,
+                "name": "Melf's Acid Arrow",
+                "effect": "4d4 acid damage initially, 2d4 acid next round.",
+                "source_paragraph": 9542,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ]
+        },
+        "reviewFlags": [
+          "Core V2 name differs; possible alias retained for comparison, not an automatic rules merge"
+        ]
+      }
+    },
+    {
+      "id": "charm-person",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "pointer": "/spells/317",
+      "exactCurrentRecord": {
+        "id": "charm-person",
+        "name": "Charm Person",
+        "schools": [
+          "Enchantment",
+          "Illusion"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Crimson Agent": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Illusion",
+            "baseRpCost": 2
+          },
+          "Mirrorsage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Thief": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "charm-person",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One living person you can perceive within range",
+          "duration": "Concentration, up to 1 minute",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "The target makes a Wisdom save against your spell save DC. On failure, it gains the CoreV2 Charmed condition toward you and regards you as friendly for the duration. At the end of each of its turns, and the first time each round you or your allies damage it, it repeats the Wisdom save; success ends the spell. On the initial save success, no effect.",
+          "effect": "Charm one person so it temporarily regards you as friendly. Charmed does not grant command authority, compel beliefs, reveal secrets, or force the target to obey requests.",
+          "scaling": "None.",
+          "limitations": "A player-controlled target retains full agency over choices and beliefs. The spell cannot force self-harm, confession, permanent allegiance, transfer of possessions, or actions beyond the CoreV2 Charmed restrictions. A creature that cannot be Charmed is unaffected. Only the first damage event each round grants the additional repeat save. Ranked casting causes normal Dissonance and Refrain.",
+          "designNotes": "Core V2 Action, 30-foot range, V/S/F components, and Wisdom save are retained; F is represented as an existing class casting focus. Core lists Instantaneous duration, which conflicts with 'regards caster as friendly' and 'save ends early.' Concentration up to 1 minute and repeat-save cadence are NEW provisional operational decisions. Two source school placements are preserved externally; this record does not choose class access.",
+          "authoringFile": "data/playtest/spell_drafts/batch_2.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "charm-person",
+          "original": {
+            "name": "Charm Person",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Enchantment",
+            "schools": [
+              "Enchantment",
+              "Illusion"
+            ],
+            "placements": [
+              {
+                "name": "Charm Person",
+                "school": "Enchantment",
+                "level": 1,
+                "summary": "Target regards caster as friendly (WIS save ends early)."
+              },
+              {
+                "name": "Charm Person",
+                "school": "Illusion",
+                "level": 1,
+                "summary": "Make one person regard you as a friend."
+              }
+            ],
+            "classLevels": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Monk": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Monk": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Bard": 1,
+              "Crimson Agent": 2,
+              "Monk": 3,
+              "Mirrorsage": 1,
+              "Thief": 3,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Bard": "Enchantment",
+              "Crimson Agent": "Enchantment",
+              "Monk": "Illusion",
+              "Mirrorsage": "Enchantment",
+              "Thief": "Enchantment",
+              "Wizard": "Enchantment",
+              "Paladin": "Enchantment"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target regards caster as friendly (WIS save ends early).",
+            "alternateSummaries": [
+              "Make one person regard you as a friend."
+            ],
+            "classes": [
+              "Bard",
+              "Crimson Agent",
+              "Monk",
+              "Mirrorsage",
+              "Thief",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 328,
+              "original": {
+                "school": "Enchantment",
+                "level": 1,
+                "name": "Charm Person",
+                "effect": "Target regards caster as friendly (WIS save ends early).",
+                "source_paragraph": 9388,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Control"
+                ],
+                "rp_cost": 2
+              }
+            },
+            {
+              "index": 550,
+              "original": {
+                "school": "Illusion",
+                "level": 1,
+                "name": "Charm Person",
+                "effect": "Make one person regard you as a friend.",
+                "source_paragraph": 9660,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Control"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "id": "summon-spectral-steed",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "pointer": "/spells/143",
+      "exactCurrentRecord": {
+        "id": "summon-spectral-steed",
+        "name": "Summon Spectral Steed",
+        "schools": [
+          "Conjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Dragoon": {
+            "rank": 3,
+            "minimumClassLevel": 13,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Druid": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Mage": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Ranger": {
+            "rank": 3,
+            "minimumClassLevel": 9,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Shaman": {
+            "rank": 3,
+            "minimumClassLevel": 7,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Tinker": {
+            "rank": 3,
+            "minimumClassLevel": 10,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          },
+          "Wizard": {
+            "rank": 3,
+            "minimumClassLevel": 5,
+            "school": "Conjuration",
+            "baseRpCost": 5
+          }
+        },
+        "operational": {
+          "id": "summon-spectral-steed",
+          "activation": "Action",
+          "rangeFeet": 60,
+          "targets": "One unoccupied space you perceive within range and line of effect large enough to contain the mount.",
+          "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; preserve the virtual phase through initiative changes, absence, death and planar travel. Outside initiative, expires 60 seconds after application, retaining that absolute deadline when entering initiative. An already-passed start does not count. Ends earlier at concentration end or steed0 HP.",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "No creation roll. A commanded Planar Crossing uses the steed's Action and its one crossing attempt. Spend that use when the attempt starts. It teleports the steed, any eligible mounted rider and permitted gear together to a specific known site on another plane, or fails safely at origin if arrival is illegal or an exact ward blocks it. Failure does not refund the attempt or actions and reveals no reason or hidden coordinates.",
+          "effect": "Create a Large noncombat spectral mount: AC 14, HP 30, walking Speed60, body mass 500 pounds, saves equal to owner PB, other checks+0, ordinary sight/hearing; it understands the owner's spoken commands without speech or telepathy. It acts immediately after the owner. An owner Bonus Action command within 60 feet and perceptible to it permits movement plus Dodge, Dash or Planar Crossing; Dash uses the ordinary movement-budget rules. It shares the owner-wide companion command allowance but supplies no damaging Action. Uncommanded it may move defensively and Dodge. It may carry one willing Medium-or-smaller rider plus that rider's legally carried noncreature gear, within 350 pounds AND 12 Load total. Count the rider's effective body weight plus every item once; count body casualty Load (Tiny 1.5/Small 3/Medium 6) plus all gear Load, including melded gear. At 6–12 Load it is Burdened under BODY_EQUIPMENT_PLAYTEST.md: Speed reduced10 feet and relevant check disadvantage. These fixed capacities do not imply a Strength score. Mounting requires an Action while adjacent to the stationary steed and within both capacities. Dismounting voluntarily requires an Action while it is stationary, to a legal adjacent space; this Action includes that placement. While riding, select one 5-foot portion of the steed's footprint as the rider's position; it moves with that portion, without free repositioning among its squares. Other positioning requires actual legal movement/actions. If the steed disappears or the rider can no longer legally ride, the rider remains at their current rider position and ordinary support/Falling applies; use the body guide's minimum adjacent placement rule if a persistent steed/obstruction makes that position illegal, never teleport through a barrier. An imposed excess load or anatomy change cannot be vetoed to preserve riding.\n\nFor Planar Crossing, the owner chooses one specific arrival site on a different plane that they personally visited or can uniquely identify from a reliable map, description or established source. The command authorizes the attempt; the steed spends its Action after the owner. A mounted rider must still willingly accept and fit the capacity/anatomy rules. An unladen steed may also cross. Arrival needs legal space for the whole mount and rider; ordinary support requirements apply, so unsupported arrival leads to Falling rather than hover. Distance to the destination is not limited by the 60-foot summoning/command range. The spell provides the interplanar transition itself without requiring an existing portal, but no same-plane teleport. The group moves atomically, preserving relative rider position, belongings, conditions and ongoing clocks. Nothing is left in a between-planes buffer. No portal remains for followers.",
+          "scaling": "Only its expressly printed owner-PB saves change. Fixed AC 14/HP 30/Speed60 before ordinary burden/conditions,350 lb/12 Load capacity and one crossing do not automatically scale.",
+          "limitations": "One Spectral Steed per caster; one crossing attempt per steed. Resummoning requires a new legal paid cast and new mounting/commands, never a free refresh. This profile grants no attack, autonomous opportunity attack, Help advantage, flight, hover, phase movement, special senses, resistance/immunity, spellcasting, sale value, loot, corpse or resource trigger. It cannot carry a second creature or independent casualty inside a bag, nor substitute cargo-only hauling for the printed rider-and-gear role. No additional carrying capacity, gear ownership change or magical location search is supplied. Its known destination need not be visible or in originating line of effect; the explicit interplanar exception is still subject to actual arrival legality and written blockers. The command must be valid at attempt start; crossing itself does not cancel that already committed command because distance/plane then changes. Future commands require their own actual range/perception. Concentration is not given an extra plane/range tether; clocks continue. Dismissal does not return or delete riders/property. Travel may avoid a geographic route segment but does not settle claims, contamination, law, Opening time or Extraction by declaration. A successful replacement has its own endpoint; stale cleanup cannot end the new application. A countered cast creates no replacement, although its concentration transition has already occurred. Actual class access, rank, preparation, V/S/F components, casting costs, Dissonance/Refrain, class hooks, concentration transitions and counter windows follow SPELL_INTEGRATION_RULES.md. Costs and beginning hooks commit before interruption, with no refunds or restoration of prior concentration. Direct target selection and local creation require the printed line of effect; expressly remote teleport destinations use their own printed rules. No generic upcast or unstated scaling.",
+          "designNotes": "PRESERVED: Action/60 feet/V,S,F/concentration 1 minute and a mount that truly travels between planes. NEW: complete finite mount/riding/command/crossing profile and one attempt, known-site eligibility and atomic custody. REVIEWED CORRECTION: source conference proposed6 Load, but reviewed BODY_EQUIPMENT_PLAYTEST.md assigns a Medium transported body 6 Load before equipment. Use 12 Load total with unchanged350 lb ceiling, counting the body and applying ordinary Burdened at 6 Load. This explicitly changes the NEW proposal to support the promised rider plus gear; it is not a source-derived number. All fixed profile values require human balance review.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime, travel-system implementation, numerical balance and whole-game validation pending",
+          "sourceCoreEntries": [
+            {
+              "index": 148,
+              "original": {
+                "school": "Conjuration",
+                "level": 3,
+                "name": "Summon Spectral Steed",
+                "effect": "Create a mount that can travel between planes.",
+                "source_paragraph": 9162,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Summoning",
+                  "Planar"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "sourcePlacements": [
+            {
+              "name": "Summon Spectral Steed",
+              "school": "Conjuration",
+              "level": 3,
+              "summary": "Create a mount that can travel between planes."
+            }
+          ],
+          "classAccessEvidence": {
+            "Dragoon": {
+              "rank": 3,
+              "minimumClassLevel": 13,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Druid": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Mage": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Ranger": {
+              "rank": 3,
+              "minimumClassLevel": 9,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Shaman": {
+              "rank": 3,
+              "minimumClassLevel": 7,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Tinker": {
+              "rank": 3,
+              "minimumClassLevel": 10,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            },
+            "Wizard": {
+              "rank": 3,
+              "minimumClassLevel": 5,
+              "school": "Conjuration",
+              "baseRpCost": 5
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK3_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_conjuration_rank3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "summon-spectral-steed",
+          "original": {
+            "name": "Summon Spectral Steed",
+            "level": 3,
+            "resonanceRank": 3,
+            "school": "Conjuration",
+            "schools": [
+              "Conjuration"
+            ],
+            "placements": [
+              {
+                "name": "Summon Spectral Steed",
+                "school": "Conjuration",
+                "level": 3,
+                "summary": "Create a mount that can travel between planes."
+              }
+            ],
+            "classLevels": {
+              "Dragoon": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Ranger": 3,
+              "Shaman": 3,
+              "Tinker": 3,
+              "Wizard": 3
+            },
+            "classRanks": {
+              "Dragoon": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Ranger": 3,
+              "Shaman": 3,
+              "Tinker": 3,
+              "Wizard": 3
+            },
+            "classLearnLevels": {
+              "Dragoon": 13,
+              "Druid": 5,
+              "Mage": 5,
+              "Ranger": 9,
+              "Shaman": 7,
+              "Tinker": 10,
+              "Wizard": 5
+            },
+            "classSchools": {
+              "Dragoon": "Conjuration",
+              "Druid": "Conjuration",
+              "Mage": "Conjuration",
+              "Ranger": "Conjuration",
+              "Shaman": "Conjuration",
+              "Tinker": "Conjuration",
+              "Wizard": "Conjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Create a mount that can travel between planes.",
+            "alternateSummaries": [],
+            "classes": [
+              "Dragoon",
+              "Druid",
+              "Mage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 148,
+              "original": {
+                "school": "Conjuration",
+                "level": 3,
+                "name": "Summon Spectral Steed",
+                "effect": "Create a mount that can travel between planes.",
+                "source_paragraph": 9162,
+                "casting_time": "1 action",
+                "range": "60 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Summoning",
+                  "Planar"
+                ],
+                "rp_cost": 5
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "id": "warding-bond",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "pointer": "/spells/27",
+      "exactCurrentRecord": {
+        "id": "warding-bond",
+        "name": "Warding Bond",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Druid": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Mage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Tinker": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "warding-bond",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One willing ally other than yourself, perceived within range and line of effect. Neither participant may already participate in another Warding Bond, as caster or protected ally.",
+          "duration": "Concentration, up to 1 minute. In initiative, expires at the caster's tenth future regular-start marker after application; retain that virtual marker through initiative changes, departure or death. Outside initiative, expires 60 seconds after application; entering initiative preserves that absolute deadline. An already-passed start never counts. Ends earlier when concentration ends. Also ends if either participant dies. Reaching 0 HP alone is not a separate ending condition; ordinary Incapacitated/concentration rules still apply.",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "Automatic on legal casting. On each eligible positive incoming damage packet to the ally, apply the mandatory post-defense transfer described below; a rounded-zero transfer claims no transfer operation.",
+          "effect": "The ally gains +1 AC and +1 to saves, subject separately to the strongest applicable flat bonus. After the ally's defenses and legal prevention, before temporary HP, transfer floor(remaining damage / 2) to you and leave the remainder on the ally. Keep the damage type. Your transferred share skips a second mitigation/prevention stage and cannot transfer again; apply your temporary HP, HP, applicable life-state protections, Wounds and concentration consequences normally. The ally retains the hit, failed-save, critical and attached-rider identity; you were not hit and did not fail that save merely because damage transferred.",
+          "scaling": "None. The rank-2 duplicate grants no upgrade or extra effect.",
+          "limitations": "Use DAMAGE_SHARING_PLAYTEST.md: one transfer operation per original-recipient damage root, across all owners. A prior pre-mitigation split preempts this transfer; competing positive mandatory post-defense claims are chosen by the original target. The retained ally portion cannot subsequently be transferred again after this split. Complete the current packet's split and life consequences before concentration failure caused by that packet ends the bond; never undo a committed share. One Warding Bond per participating creature across all casters; casting cannot create chains or cycles. Initial range/line of effect are required, but no continuing distance or line-of-effect tether is imposed. This ordinary spell neither consumes nor increases the Paladin class redirection round ledger and grants none of its named healing/resource riders or proc permissions. Unrelated downstream triggers still require their own exact source authorization. Direct HP payments are not damage and cannot be transferred. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+          "designNotes": "PRESERVED: Action, 30 feet, concentration 1 minute, +1 AC/saves and half-damage sharing; M/F uses focus. NEW: willing ally, conserved mandatory post-defense split, rounding, participation and life endpoints, no continued tether and ordinary-spell/class-engine separation. CONFLICT RULING: source-derived class access is rank 1; duplicate rank-2 block is retained as evidence only.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+          "sourceCoreEntries": [
+            {
+              "index": 27,
+              "original": {
+                "school": "Abjuration",
+                "level": 1,
+                "name": "Warding Bond",
+                "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+                "source_paragraph": 9012,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, M/F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage",
+                  "Ward"
+                ],
+                "rp_cost": 2
+              }
+            },
+            {
+              "index": 35,
+              "original": {
+                "school": "Abjuration",
+                "level": 2,
+                "name": "Warding Bond",
+                "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+                "source_paragraph": 9022,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, M/F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage",
+                  "Ward"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ],
+          "sourcePlacements": [
+            {
+              "name": "Warding Bond",
+              "school": "Abjuration",
+              "level": 1,
+              "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+            },
+            {
+              "name": "Warding Bond",
+              "school": "Abjuration",
+              "level": 2,
+              "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+            }
+          ],
+          "classAccessEvidence": {
+            "Cleric": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Druid": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Mage": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Monk": {
+              "rank": 1,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Tinker": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Wizard": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Paladin": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "warding-bond",
+          "original": {
+            "name": "Warding Bond",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Warding Bond",
+                "school": "Abjuration",
+                "level": 1,
+                "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+              },
+              {
+                "name": "Warding Bond",
+                "school": "Abjuration",
+                "level": 2,
+                "summary": "Link with ally; they gain +1 AC and saves, you take half their damage."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 3,
+              "Tinker": 2,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 27,
+              "original": {
+                "school": "Abjuration",
+                "level": 1,
+                "name": "Warding Bond",
+                "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+                "source_paragraph": 9012,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, M/F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage",
+                  "Ward"
+                ],
+                "rp_cost": 2
+              }
+            },
+            {
+              "index": 35,
+              "original": {
+                "school": "Abjuration",
+                "level": 2,
+                "name": "Warding Bond",
+                "effect": "Link with ally; they gain +1 AC and saves, you take half their damage.",
+                "source_paragraph": 9022,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, M/F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage",
+                  "Ward"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "id": "resonance-influence",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "pointer": "/spells/330",
+      "exactCurrentRecord": {
+        "id": "resonance-influence",
+        "name": "Resonance Influence",
+        "schools": [
+          "Enchantment"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Crimson Agent": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Mirrorsage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Thief": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "resonance-influence",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One creature you perceive within30feet and line of effect. Choose Ease or Burden at casting; Ease requires actual willingness at application.",
+          "duration": "Until the next qualifying spell commits or up to1minute, no concentration. In initiative, expires at the caster's tenth future regular-start marker after application; an already-passed start never counts. Outside initiative, expires after 60 elapsed seconds. Retain the original virtual phase or absolute deadline through initiative changes, absence and planar travel; moving between timing modes does not reset it.",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "Ease: automatic on a willing target; establish a pending−1RP final-price modifier. Burden: target makes a Wisdom save even if willing unless an independent rule grants a save waiver; failure establishes pending+1RP, success creates no replacement. One pending Resonance Influence record per target across casters; a successful eligible application replaces the previous mode/deadline. Invalid or saved-against application does not erase a valid old record.",
+          "effect": "For the target’s next actual spell cast whose procedure has an RP-price interface, compute the ordinary legal RP price first: actual class/source rank/base, mandatory printed spell extras, applicable Dissonance surcharge, and only the exact eligible class/source reductions or waivers with their scopes/minimums. Then apply this spell’s final±1, minimum0, with no credit/refund. An ordinary0RP cantrip qualifies: Burden prices it at1; Ease leaves it0 and is still consumed. A genuine RP-priced spell reduced/waived to0 also qualifies; this final modifier can make its payment1. A charge-only item spell or free technique with no RP-price interface does not qualify and consumes nothing. An RP-priced actual class/item spell can qualify; paying RP for a nonspell technique alone does not. Validate adjusted affordability and all other preflight rules, then consume the record atomically at legal cast commitment with payment. Later failure/countering does not refund the rider. An illegal/unaffordable attempted cast never commits and leaves it available.",
+          "scaling": "None. No automatic increase in range, targets, duration, magnitude or uses.",
+          "limitations": "Ready pays/consumes at spell preparation, not release. This new application cannot retroactively alter its own already-paid casting price; a previously existing Influence may price that cast normally. Ordinary class minimums govern their own discount calculations first; the final Ease may then reduce an otherwise1RP result to0. Mandatory extras remain in that ordinary price, not omitted, though Ease can offset1RP of the resulting total. Other non-RP costs, charges, limited uses, rank/access/repertoire, components, Fractured restriction, Dissonance and Refrain are unchanged. A pending hostile+1 requires real adjusted affordability but does not grant the caster hidden knowledge of RP pools or pricing failures. Current quote_cast helper lacks this stateful modifier and class-discount integration; this card is a tabletop interface, not a runtime implementation. Actual class access/repertoire, costs, components, Dissonance/Refrain, concentration transitions and cast/counter order follow SPELL_INTEGRATION_RULES.md. Pay a legal cast before effect resolution; failure/countering refunds nothing and restores no displaced concentration. V is audible, S requires the ordinary usable hand, and F is the normal class focus. Saves use the actual casting class's spell DC and binary save rules. Creature type alone supplies no mental immunity; Charmed-only immunity does not block effects that never impose Charmed. Actual broader defenses retain their written scope. No automatic scaling, generic upcast or free identification of hidden eligibility.",
+          "designNotes": "PRESERVED: Action/30feet/V,S,F and next-spell RP cost±1. NEW: modes, willingness/WIS, minute, final-price ordering, replacement and cast-commit consumption. Exact-review proposal explicitly includes a normally RP-priced cast made free by another source, while excluding a source with no RP-price interface; final modifier follows source-specific minimum calculations.",
+          "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader Enchantment/social-control integration pending",
+          "sourcePlacements": [
+            {
+              "name": "Resonance Influence",
+              "school": "Enchantment",
+              "level": 1,
+              "summary": "Target's next spell costs +1 or -1 Resonance Points."
+            }
+          ],
+          "sourceCoreEntries": [
+            {
+              "index": 341,
+              "original": {
+                "school": "Enchantment",
+                "level": 1,
+                "name": "Resonance Influence",
+                "effect": "Target's next spell costs +1 or -1 Resonance Points.",
+                "source_paragraph": 9401,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Resonance"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "classAccessEvidence": {
+            "Bard": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Crimson Agent": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Mirrorsage": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Thief": {
+              "rank": 1,
+              "minimumClassLevel": 3,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Wizard": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Paladin": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_RANK1_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_RANK1_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_RANK1_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_enchantment_rank1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "resonance-influence",
+          "original": {
+            "name": "Resonance Influence",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Enchantment",
+            "schools": [
+              "Enchantment"
+            ],
+            "placements": [
+              {
+                "name": "Resonance Influence",
+                "school": "Enchantment",
+                "level": 1,
+                "summary": "Target's next spell costs +1 or -1 Resonance Points."
+              }
+            ],
+            "classLevels": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Bard": 1,
+              "Crimson Agent": 2,
+              "Mirrorsage": 1,
+              "Thief": 3,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Bard": "Enchantment",
+              "Crimson Agent": "Enchantment",
+              "Mirrorsage": "Enchantment",
+              "Thief": "Enchantment",
+              "Wizard": "Enchantment",
+              "Paladin": "Enchantment"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target's next spell costs +1 or -1 Resonance Points.",
+            "alternateSummaries": [],
+            "classes": [
+              "Bard",
+              "Crimson Agent",
+              "Mirrorsage",
+              "Thief",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 341,
+              "original": {
+                "school": "Enchantment",
+                "level": 1,
+                "name": "Resonance Influence",
+                "effect": "Target's next spell costs +1 or -1 Resonance Points.",
+                "source_paragraph": 9401,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Resonance"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "id": "alignment-suggestion",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "pointer": "/spells/329",
+      "exactCurrentRecord": {
+        "id": "alignment-suggestion",
+        "name": "Alignment Suggestion",
+        "schools": [
+          "Enchantment"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Crimson Agent": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Mirrorsage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Thief": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Enchantment",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "alignment-suggestion",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One creature you perceive within30feet and line of effect. No requirement that its alignment be known; hidden canonical axes are resolved after paid casting.",
+          "duration": "Concentration, up to1minute. In initiative, expires at the caster's tenth future regular-start marker after application; an already-passed start never counts. Outside initiative, expires after 60 elapsed seconds. Retain the original virtual phase or absolute deadline through initiative changes, absence and planar travel; moving between timing modes does not reset it.",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "The target makes a Wisdom save. Success: no new overlay. Failure: snapshot your actual current alignment orientation. For each axis defined both for you and for the target, compute one step toward your snapshotted value along Lawful–Neutral–Chaotic and Good–Neutral–Evil. Compute the target baseline without any previous Alignment Suggestion overlay on that target and, under the explicitly NEW DI7 AP-AS-01 exception, without any Alignment Purge overlay on that target. Retain all other independent actual alignment effects/records. This target-only exclusion does not change the caster-orientation snapshot: an actual Purge on the caster still makes its effective orientation Neutral/Neutral. An unsuppressed Purge on the target covers the resulting live Suggestion values until Purge ends or is suppressed. An already matching or undefined axis gains no changed-value overlay. If at least one axis changes, replace the prior same-spell overlay with the new recorded axis values/deadline. A failed-save cast that changes no defined axis creates no new overlay and does not itself replace a valid older one; mandatory concentration transitions remain independent.",
+          "effect": "The changed values are the target’s actual effective canonical alignment for rules that query those axes during the overlay, including real alignment-gated spells/items. Example: baseline Chaotic Evil targeted by a Lawful Good caster becomes Neutral Neutral; one such overlay never jumps two steps. Its values remain fixed until expiry/removal/replacement and do not recompute every time another underlying record changes. Unchanged/unoverlaid axes follow their actual underlying records. An independent effect such as Corrupted can change underlying alignment while this spell persists; that change remains and is exposed when the applicable overlay ends. One Alignment Suggestion overlay per target across casters; recasting cannot use its old overlay as a staircase for another same-spell step.",
+          "scaling": "None. No automatic increase in range, targets, duration, magnitude or uses.",
+          "limitations": "The spell grants no automatic knowledge of either character’s axes, including whether a value changed. Actual information protections still govern observations. It never compels matching behavior, belief, confession, loyalty, PvP, personality or oathbreaking; conduct clauses still judge actual conduct. Ending removes only this overlay, without restoring an old alignment snapshot, deleting independent changes or reviving a replaced overlay. Caster orientation is fixed at application, not tracked through later caster changes. Ward tag creates no ward. More specific alignment-changing effects retain their actual interaction rules; this card does not invent a general priority engine for every unrelated overlay. Actual class access/repertoire, costs, components, Dissonance/Refrain, concentration transitions and cast/counter order follow SPELL_INTEGRATION_RULES.md. Pay a legal cast before effect resolution; failure/countering refunds nothing and restores no displaced concentration. V is audible, S requires the ordinary usable hand, and F is the normal class focus. Saves use the actual casting class's spell DC and binary save rules. Creature type alone supplies no mental immunity; Charmed-only immunity does not block effects that never impose Charmed. Actual broader defenses retain their written scope. No automatic scaling, generic upcast or free identification of hidden eligibility.",
+          "designNotes": "PRESERVED: Action/30feet/V,S,M/F as focus, WIS, concentration minute and actual push toward caster alignment. NEW: temporary canonical one-step overlay on both eligible axes. Exact-review proposals: compute without previous same-spell overlay to prevent recast ratcheting, overlay only genuinely changed axes, fixed values, and no new application when no defined axis changes; independent base changes survive ending.",
+          "implementationStatus": "REVIEWED authored operational PLAYTEST manuscript; runtime, human balance and broader Enchantment/social-control integration pending",
+          "sourcePlacements": [
+            {
+              "name": "Alignment Suggestion",
+              "school": "Enchantment",
+              "level": 1,
+              "summary": "Subtly push target toward your alignment (WIS save)."
+            }
+          ],
+          "sourceCoreEntries": [
+            {
+              "index": 340,
+              "original": {
+                "school": "Enchantment",
+                "level": 1,
+                "name": "Alignment Suggestion",
+                "effect": "Subtly push target toward your alignment (WIS save).",
+                "source_paragraph": 9400,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, M/F",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Ward",
+                  "Alignment"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "classAccessEvidence": {
+            "Bard": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Crimson Agent": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Mirrorsage": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Thief": {
+              "rank": 1,
+              "minimumClassLevel": 3,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Wizard": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            },
+            "Paladin": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Enchantment",
+              "baseRpCost": 2
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_RANK1_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_RANK1_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_ENCHANTMENT_RANK1_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_enchantment_rank1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "alignment-suggestion",
+          "original": {
+            "name": "Alignment Suggestion",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Enchantment",
+            "schools": [
+              "Enchantment"
+            ],
+            "placements": [
+              {
+                "name": "Alignment Suggestion",
+                "school": "Enchantment",
+                "level": 1,
+                "summary": "Subtly push target toward your alignment (WIS save)."
+              }
+            ],
+            "classLevels": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Bard": 1,
+              "Crimson Agent": 1,
+              "Mirrorsage": 1,
+              "Thief": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Bard": 1,
+              "Crimson Agent": 2,
+              "Mirrorsage": 1,
+              "Thief": 3,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Bard": "Enchantment",
+              "Crimson Agent": "Enchantment",
+              "Mirrorsage": "Enchantment",
+              "Thief": "Enchantment",
+              "Wizard": "Enchantment",
+              "Paladin": "Enchantment"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Subtly push target toward your alignment (WIS save).",
+            "alternateSummaries": [],
+            "classes": [
+              "Bard",
+              "Crimson Agent",
+              "Mirrorsage",
+              "Thief",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 340,
+              "original": {
+                "school": "Enchantment",
+                "level": 1,
+                "name": "Alignment Suggestion",
+                "effect": "Subtly push target toward your alignment (WIS save).",
+                "source_paragraph": 9400,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, M/F",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Ward",
+                  "Alignment"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": []
+      }
+    },
+    {
+      "id": "faction-seal",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "bytes": 5059945,
+        "sha256": "c5de86abf689495abea5aa6cecb4a1cea441dcafea3805941bdbb6873e072b30"
+      },
+      "pointer": "/spells/31",
+      "exactCurrentRecord": {
+        "id": "faction-seal",
+        "name": "Faction Seal",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Druid": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Mage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Tinker": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "faction-seal",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One fixed point on an immobile solid surface you can perceive within range and line of effect; designate one exact canonical factionId the campaign permits you to invoke.",
+          "duration": "1 hour: expires 3,600 seconds after application. Initiative changes do not reset the deadline.",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "Automatic after legal casting. Before using this spell, the Director records which existing canonical factions this caster is permitted to invoke, using an established source permission or an explicit campaign permission. No listed permission means that faction is not an eligible choice.",
+          "effect": "Place a visible seal and a fixed area extending 10 feet in radius and 10 feet above its surface. The seal flares while at least one creature occupying the area, with line of effect to the seal, has an actual reputation score of -3, -2 or -1 for the selected faction. It stops flaring when no qualifying creature remains. Its only direct report is that at least one qualifying negative-standing creature is present.",
+          "scaling": "None.",
+          "limitations": "Zero or positive standing does not trigger; missing reputation is unknown and does not trigger. Hidden or invisible creatures can trigger it, but the flare reveals no creature, square, disguise, true identity, alignment, intent, statistics or exact score, and does not cancel invisibility. Teleportation counts only when the creature actually occupies the area. Ordinary observers can draw mundane conclusions from the signal. Naming or invoking a faction grants no membership, credentials, legal authority, standing change or institutional protection. Overlapping seals do not grant extra information beyond each seal's own binary result. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+          "designNotes": "PRESERVED: Action, 30 feet, V/S/F, faction marker and negative-reputation detection. NEW CONFLICT RULING: fixed 10-foot-radius/10-foot-high area, visible binary flare, explicit invocation permission and 1 hour without concentration replace unresolved Instantaneous area metadata. Campaign permission procedure is an explicit reviewed playtest completion; no existing source permission is fabricated.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+          "sourceCoreEntries": [
+            {
+              "index": 31,
+              "original": {
+                "school": "Abjuration",
+                "level": 1,
+                "name": "Faction Seal",
+                "effect": "Mark an area as protected by a specific faction; intruders with negative reputation are revealed.",
+                "source_paragraph": 9016,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Detection",
+                  "Faction"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "sourcePlacements": [
+            {
+              "name": "Faction Seal",
+              "school": "Abjuration",
+              "level": 1,
+              "summary": "Mark an area as protected by a specific faction; intruders with negative reputation are revealed."
+            }
+          ],
+          "classAccessEvidence": {
+            "Cleric": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Druid": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Mage": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Monk": {
+              "rank": 1,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Tinker": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Wizard": {
+              "rank": 1,
+              "minimumClassLevel": 1,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            },
+            "Paladin": {
+              "rank": 1,
+              "minimumClassLevel": 2,
+              "school": "Abjuration",
+              "baseRpCost": 2
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "faction-seal",
+          "original": {
+            "name": "Faction Seal",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Faction Seal",
+                "school": "Abjuration",
+                "level": 1,
+                "summary": "Mark an area as protected by a specific faction; intruders with negative reputation are revealed."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 3,
+              "Tinker": 2,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Mark an area as protected by a specific faction; intruders with negative reputation are revealed.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 31,
+              "original": {
+                "school": "Abjuration",
+                "level": 1,
+                "name": "Faction Seal",
+                "effect": "Mark an area as protected by a specific faction; intruders with negative reputation are revealed.",
+                "source_paragraph": 9016,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward",
+                  "Detection",
+                  "Faction"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "id": "cleric.base.healing-rite",
+      "file": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+        "bytes": 81863,
+        "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89"
+      },
+      "pointer": "/cards/12",
+      "exactCurrentRecord": {
+        "id": "cleric.base.healing-rite",
+        "name": "Healing Rite",
+        "className": "Cleric",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One living ally within 30 feet",
+        "duration": "Instantaneous",
+        "frequency": "At will while RP remains",
+        "effect": "Healing Rite. Tags: rite, healing. One living ally regains S d8 + M HP. It cannot restore a dead creature or remove Wounds. Consecrated Ground and appropriate Invocation Path bonuses may modify this healing.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 1983,
+          "originalText": "Healing Rite: A channeled ability that restores health to an ally, with increased effectiveness on consecrated ground."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/class_spell_progression.csv",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/class_spell_school_mapping.csv",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_campaign_arcs_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_character_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/director/spell_proposals/abjuration_conjuration_rank4.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/playtest/bestiary_public_source_candidate.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/playtest/spell_sources/catalog.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/dragoon.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/manifest.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Bard_Playtest_v0_1.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/director-only/cosmology/PLANES_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/director-only/cosmology/SOULS_RESEARCH_REVIEWED_01.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CHARACTER_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/DEVICE_LIFECYCLE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_REVIEW_STATUS.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_PULSE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/REMAINING_LIFECYCLE_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/spells/candidates/DI7_SHAMAN_CASTING_INTERFACE.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/spells/candidates/DIVINATION_RANK7_EXACT_01.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/docs/spells/proposals/ABJURATION_CONJURATION_RANK4.md",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/rulebook_output.txt",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/src/data/spells.js",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/tools/build_abjuration_conjuration_rank4_operating_proposal.py",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source DescentReviewChanges/ReviewBible/tools/prepare_ac4_current_review_01.py",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source docs/audit/2026-10-08/full-game/ABJURATION_CONJURATION_RANK4_SOURCE_PREPARATION.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_CAMPAIGN_ARCS_01_APPLICATION_CHECK.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_RELIC_NULL_01_APPLICATION_CHECK.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source docs/audit/2026-10-08/full-game/CURRENT_SPELL_REVIEW_RECONCILIATION_01.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source docs/audit/2026-10-08/full-game/di7-exact-final-verdict/DI7_EXACT_ACCEPTANCE_AUTHORITY.json",
+      "passed": true
+    },
+    {
+      "name": "Current frozen source docs/audit/2026-10-08/full-game/DI7_EXACT_ACCEPTANCE_RECEIPT.json",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure greater-warding",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure spell-shield",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure dimensional-anchor",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure corruption-barrier",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure resonance-dampening-field",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure faction-sanctuary",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure alignment-lock",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure alignment-anchor",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure summon-water-pet",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure crystalline-barrier",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure elemental-drain",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure bind-element",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure dimensional-door",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure resonance-beacon",
+      "passed": true
+    },
+    {
+      "name": "Player exact full procedure faction-ally",
+      "passed": true
+    }
+  ],
+  "checkCount": 85,
+  "failureCount": 0,
+  "newRulesAdopted": false,
+  "sourceInformationDeleted": 0,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false
+}

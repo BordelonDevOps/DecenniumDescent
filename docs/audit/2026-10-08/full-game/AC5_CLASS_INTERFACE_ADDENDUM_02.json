@@ -1,0 +1,1159 @@
+{
+  "id": "AC5-CLASS-INTERFACE-ADDENDUM-02",
+  "recordedAtUtc": "2026-10-16T08:05:00.649951+00:00",
+  "status": "Prepared and unsent; concrete source comparisons for forthcoming AC5 conference, no new spell approvals.",
+  "parentAudit": {
+    "path": "docs/audit/2026-10-08/full-game/AC5_CURRENT_SOURCE_INTERFACE_AUDIT_01.json",
+    "bytes": 1205456,
+    "sha256": "a1ceb2bb17752094f293df969f2d1f9a1278478de683c7341fccbc74490f9221"
+  },
+  "independentlyReadCardCount": 25,
+  "completeCurrentCards": [
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "bytes": 100635,
+        "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+      },
+      "pointer": "/cards/19",
+      "completeCard": {
+        "id": "wizard.arch.dispel-magic",
+        "name": "Dispel Magic",
+        "className": "Wizard",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 5,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "One creature, object or magical effect within 60 feet",
+        "duration": "Instantaneous",
+        "frequency": "Recharge 2 rounds",
+        "effect": "Dispel Magic. Tags: arch, active, wizard-spell, abjuration. Choose one ongoing spell effect you can perceive. If its rank is 3 or lower, end it. If it is rank 4 or higher, make an Intelligence check adding proficiency against DC 10 + spell rank; success ends it. Permanent artifact properties and effects explicitly immune to dispelling are unaffected.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5224,
+          "originalText": "Dispel Magic: End magical effects in an area or on a target."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 3
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "bytes": 100635,
+        "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+      },
+      "pointer": "/cards/22",
+      "completeCard": {
+        "id": "wizard.hero.spellbinder.sigil-authority",
+        "name": "Sigil Authority",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": "Spellbinder",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Always",
+        "effect": "Sigil Authority. Tags: hero, spellbinder, passive. Gain +1 on Counterspell and Dispel Magic ability checks. When a creature is Charmed, Frightened, Paralyzed, Restrained or Stunned by a source other than the spell you are currently casting, your Spellbinder spells that force it to save use a Wizard spell DC 2 higher. This increase never applies retroactively to the condition that enabled it.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5242,
+          "originalText": "Sigil Authority: +1 to all counterspell rolls, +2 DC vs targets currently affected by crowd control"
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "bytes": 100635,
+        "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+      },
+      "pointer": "/cards/23",
+      "completeCard": {
+        "id": "wizard.hero.spellbinder.spell-preservation",
+        "name": "Spell Preservation",
+        "className": "Wizard",
+        "band": "Hero",
+        "path": "Spellbinder",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Your spellbook",
+        "duration": "Permanent",
+        "frequency": "Always",
+        "effect": "Spell Preservation. Tags: hero, spellbinder, passive, spellbook. Your primary spellbook cannot be destroyed, erased or rendered permanently unreadable by non-artifact mundane or magical means. It can still be stolen, hidden, transported, suppressed, sealed by an artifact-level effect or voluntarily abandoned. Copies and backup books do not automatically receive this protection.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 5243,
+          "originalText": "Spell Preservation: Your spellbook cannot be destroyed by non-artifact means."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+        "bytes": 80394,
+        "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b"
+      },
+      "pointer": "/cards/15",
+      "completeCard": {
+        "id": "mage.arch.arcane-bypass",
+        "name": "Arcane Bypass",
+        "className": "Mage",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 5,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "0",
+        "rangeAndTarget": "One Mage spell you are beginning to cast",
+        "duration": "For that spell",
+        "frequency": "1/long rest",
+        "effect": "Arcane Bypass. Tags: arcanist, penetration. Before paying costs for a damaging Mage spell, declare Arcane Bypass. Damage from that spell ignores resistance to its printed damage types. Immunity remains immunity. The declaration is spent once the spell is legally cast even if all attacks miss or all targets succeed on saves.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2914,
+          "originalText": "Arcane Bypass: Once per rest, ignore all enemy resistances for one spell."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+        "bytes": 80394,
+        "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b"
+      },
+      "pointer": "/cards/18",
+      "completeCard": {
+        "id": "mage.arch.spell-efficiency",
+        "name": "Spell Efficiency",
+        "className": "Mage",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 9,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Until end of your next regular turn",
+        "frequency": "At most once per turn",
+        "effect": "Spell Efficiency. Tags: arcanist, resonance, focus. After you legally cast a Focus-eligible spell, your next differently named Focus-eligible spell of the same current element before the end of your next regular turn costs 1 less RP, minimum 1 RP. This reduction cannot apply to Focus finishers, Resonance Surge's additional cost or a spell already reduced to 0 by another explicit feature.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2917,
+          "originalText": "Spell Efficiency: Reduce the Resonance Point cost of spells cast in sequence with the same element."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+        "bytes": 59934,
+        "sha256": "c88fcad8c14734cc852a95aee7b3686fd64ea2a8cfb9d014f4297b7efec94a62"
+      },
+      "pointer": "/cards/41",
+      "completeCard": {
+        "id": "shaman.hero.bloodcaller.spell-resistance",
+        "name": "Spell Resistance",
+        "className": "Shaman",
+        "band": "Hero",
+        "path": "Bloodcaller",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "While known",
+        "frequency": "Continuous",
+        "effect": "Advantage on saving throws against spells. Does not give advantage against every supernatural weapon or class technique unless it is explicitly a spell; no automatic spell negation or RP refund.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4085,
+          "originalText": "Spell Resistance: Gain advantage on saves against spells and magical effects."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/21",
+      "completeCard": {
+        "id": "thief.hero.arcane-trickster.arcane-resistance",
+        "name": "Arcane Resistance",
+        "className": "Thief",
+        "band": "Hero",
+        "path": "Arcane Trickster",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Against spells",
+        "frequency": "Continuous",
+        "effect": "Gain+2 saves against spells. Not all supernatural monster abilities are spells; no resistance to damage unless separately granted.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4409,
+          "originalText": "Arcane Resistance: Gain +2 to saves against magic."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/23",
+      "completeCard": {
+        "id": "thief.hero.arcane-trickster.spell-disruptor",
+        "name": "Spell Disruptor",
+        "className": "Thief",
+        "band": "Hero",
+        "path": "Arcane Trickster",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Triggered",
+        "cost": "1 RP",
+        "rangeAndTarget": "One enemy critically hit by your poisoned weapon",
+        "duration": "Until end next target turn",
+        "frequency": "Once/round",
+        "effect": "WIS save or suppress one observed temporary magical+AC bonus, maximum 2. No core class engine, innate trait, item destruction or blanket magic shutdown. Magical technique incurs 1 D unless cadence prevents it.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4411,
+          "originalText": "Spell Disruptor: Your poisons also suppress passive magical abilities for 1 round on critical hits."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/24",
+      "completeCard": {
+        "id": "thief.hero.arcane-trickster.magebane-blade",
+        "name": "Magebane Blade",
+        "className": "Thief",
+        "band": "Hero",
+        "path": "Arcane Trickster",
+        "sourceKind": "active",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One enemy in weapon reach/range",
+        "duration": "Instant",
+        "frequency": "Recharge 3",
+        "effect": "Make one weapon attack with normal Sneak eligibility. On hit suppress one temporary spell buff of rank no greater than your spell-rank access through end next turn; higher rank remains. If none eligible, add 1d6 psychic. Magical technique 1 D.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4414,
+          "originalText": "Magebane Blade: Your Sneak Attack removes 1 magical buff or deals 1d6 psychic damage if no buff is present."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+        "bytes": 59012,
+        "sha256": "9c2896fbf19bd3f1138707db2545b19156341c0a6e9be6a15192b19582068400"
+      },
+      "pointer": "/cards/27",
+      "completeCard": {
+        "id": "thief.hero.arcane-trickster.arcane-theft",
+        "name": "Arcane Theft",
+        "className": "Thief",
+        "band": "Hero",
+        "path": "Arcane Trickster",
+        "sourceKind": "active",
+        "minimumClassLevel": 14,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "One enemy within 30 ft with observed spell buff",
+        "duration": "Concentration, at most 3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Target WIS save. Failure suppress one eligible temporary rank 1–3 buff for duration and gain only its printed AC bonus (max 2), Speed bonus(max 10 ft), or resistance to one damage type; choose before save. Does not copy actions, spells, resources, summons or capstones. Magical technique 1 D.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4417,
+          "originalText": "Arcane Theft: Steal a beneficial spell effect from a target and apply it to yourself."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/7",
+      "completeCard": {
+        "id": "ranger.base.nature-s-whisper",
+        "name": "Nature's Whisper",
+        "className": "Ranger",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 1,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "1 RP",
+        "rangeAndTarget": "Natural terrain within 15 ft",
+        "duration": "1 minute",
+        "frequency": "Recharge 3",
+        "effect": "Gain advantage on one Perception/Survival check to find tracks, hidden natural creatures or signs of passage. It reveals evidence on success, not automatically creatures through total cover, incorporeal beings or thoughts.\n\nNEW NWQ-01 classification: this exact card is a magical nonspell class technique, not an ordinary spell, class spell, cantrip, Echo release or Matrix cast. Preserve spellRank:null and the historical originalText; no rank, school, spell component block, repertoire, spellcasting credential or class engine is inferred from its name, its historical minor-spell wording or its 1 RP cost.\n\nNEW NWQ-02 activation: no verbal, somatic, focus, material, command-word or audible channel is required by the technique itself. You must be conscious, capable of the required Action, legitimately entitled to this exact activation, ready on its own recharge ledger, and able to perceive and have line of effect to the selected actual natural terrain within 15 feet. Silence, occupied hands or lack of a casting focus alone do not prohibit it. Actual suppression or a prohibition whose operative scope covers this magical technique still applies. The later investigation keeps its own senses, hands, tools, access and task requirements. A permitted borrowed activation separately requires Versatile Mastery's actual donor preparation, consent and perceived/understood signal; the technique supplies no communication channel.\n\nKEEP shared technique strain: pay 1 actual RP from your own existing lawful personal pool, not a donor pool or newly granted pool. No ordinary spell-rank price, spell strain surcharge, automatic spell Dissonance, Refrain update, remembered-spell-name change, Fracture ranked-cast prohibition or rank-based trauma is applied by this activation. It does not clear, advance, consume or vent an ordinary spell-cadence record. Do not invent a casting ability or recompute a strain Limit for it. A later Perception or Survival check uses your own current applicable task ability and actual proficiency or replacing Expertise, ordinarily Wisdom, not a donor modifier or automatic borrowed skill proficiency. There is no activation attack or saving-throw DC. Its legal commitment is a magical-ability-use event: it prevents idle-turn Dissonance recovery on the actor's regular turn containing that commitment, including when the paid activation is interrupted. An illegal uncommitted declaration is not such an event. Merely retaining the rider or applying it to a later ordinary task is not another activation. Extra turns and off-turn releases create no additional recovery tick and cannot rewrite a completed tick. Actual separately acquired hooks operate only on their exact triggers; this is not a Bard Performance or an ordinary Ranger spell cast, and it grants no donor Track Target, Hit Chain, stabilization, Crescendo or Echo engine.\n\nNEW NWQ-04 commitment and area: before payment, declare this source, actor and one fixed investigation area consisting only of the actual natural terrain within 15 feet of the actor's commitment position that is then perceivable and has line of effect. Record that area and position; the area does not follow the actor and no moving aura or remote sensor is created. Actual hidden clues need not already be known or present to make an otherwise lawful investigation site eligible. Commit the legal Action and 1 RP together, set the actor's same-card Recharge counter to 3, and, for borrowing, spend the single Versatile Mastery use at that same commitment. Record donor provenance without spending any donor resource. A rejected precommit declaration spends none of these costs. Resolve the activation within that same action after only genuinely applicable source-defined interruptions; there is no automatic Counterspell window, opposed cast roll or concentration test. Ordinary Counterspell and rank-limited spell dispels do not acquire this nonspell target. A separately sourced interrupt or suppression must actually cover it; ordinary damage alone does not add a concentration requirement. If the actor cannot finish the activation or its fixed terrain is no longer legally in range, perceivable and reachable by line of effect at resolution, the paid activation fails without a new area or refund. Borrowing's donor condition is tested at actual activation commitment, not imposed as a new continuing tether after receipt of the signal.\n\nNEW NWQ-04 rider and check: a surviving activation gives this actor one unused rider from actual resolution until resolution time plus 60 elapsed seconds; the exact deadline is not renewed by travel, turns, initiative changes, donor departure or the borrowed permission ending. No concentration is required. At most one unused Nature's Whisper rider belongs to that actor across native and borrowed uses; a new successful resolution replaces an older unused rider, not stacks or banks checks. A failed or interrupted new activation does not itself replace an older otherwise valid rider. Before any dice or outcome are supplied, voluntarily bind the rider to one separately lawful and paid Perception or Survival check about tracks, hidden natural creatures or signs of passage in the original fixed area. The relevant terrain/evidence must still be natural, within 15 feet of the actor and accessible to the task's actual senses and line of effect; no total-cover, thoughts, incorporeal-detection or automatic-revelation exception is supplied. Consume the rider at that check's outcome commitment before rolling or determining its result, even if other advantage already exists, disadvantage cancels it, the legal check fails, or a genuine interruption then prevents its result. An invalid check declaration does not consume the rider or grant a free roll. A paid longer task whose check reaches adjudication at or after the deadline receives no rider. Use ordinary task resolution and advantage cancellation; no passive-score adjustment, extra degree effect, free check, new retry or second bonus is granted. Reveal only real evidence supported by the actual successful task and observer rules; unknown data is not proof of absence. Failure does not reveal otherwise hidden facts. Expired, consumed or ended riders cannot be reclaimed by repeating a request.\n\nKEEP generic nonspell Ready: this Action-time technique may be readied through the current Ready procedure. Ready setup spends its Action and records one perceivable trigger; it does not activate Nature's Whisper, pay its RP/feat use, start its Recharge, start its minute, update spell history or create held-spell concentration. On a legal release before Ready expires, spend the required permitted Reaction and perform the actual activation commitment instead of another Action; recheck its own entitlement, recharge, personal RP, terrain and, for borrowing, the prepared donor/signal conditions at that release. An invalid or declined trigger spends no release resource and may await another valid trigger within the same Ready window. Unreleased, replaced or expired Ready loses its setup Action but not an unspent Nature/feat cost. A legally released then interrupted activation retains all committed costs and Recharge. Native and borrowed copies use the actor's same source-ID recharge history; borrowing does not refresh it or the donor's history. Recharge 3 ticks once at each subsequent owner regular-turn start, or once per six elapsed seconds outside initiative without double counting; extra Actions and extra turns do not tick it. A recharge becoming ready grants no new borrowed feat use.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3850,
+          "originalText": "Nature's Whisper: Cast a minor nature spell that reveals hidden creatures or tracks within a small area."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+        "bytes": 67283,
+        "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+      },
+      "pointer": "/cards/36",
+      "completeCard": {
+        "id": "ranger.hero.stalker.shattershot",
+        "name": "Shattershot",
+        "className": "Ranger",
+        "band": "Hero",
+        "path": "Stalker",
+        "sourceKind": "active",
+        "minimumClassLevel": 12,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "One enemy in bow range",
+        "duration": "Instant; shield suppression until end next turn",
+        "frequency": "Recharge 3",
+        "effect": "One bow attack; hit adds S d6 piercing. Target makes STR save or loses its shield's AC bonus until end next turn. One visible rank 1–3 magical defense can instead be suppressed after a WIS save failure; never permanently destroys gear or dispels everything.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 3903,
+          "originalText": "Shattershot: Fire a specialized arrow that breaks shields and removes magical buffs."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+        "bytes": 59506,
+        "sha256": "f087cc9250f1864e60209fb13bff86800d45b7238dc09e8eac2dbf2272b09c1d"
+      },
+      "pointer": "/cards/28",
+      "completeCard": {
+        "id": "tinker.hero.artificer.overload-suppression",
+        "name": "Overload Suppression",
+        "className": "Tinker",
+        "band": "Hero",
+        "path": "Artificer",
+        "sourceKind": "active",
+        "minimumClassLevel": 16,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "3 RP",
+        "rangeAndTarget": "One enemy construct/device within 30 ft",
+        "duration": "Until end next target turn",
+        "frequency": "1/short rest",
+        "effect": "CON save or fails its next Reaction and has disadvantage on attacks. On failure by 5 also Stunned, shared hard-denial guard. No automatic permanent deactivation, hacking allegiance or ignoring boss immunity.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4623,
+          "originalText": "Overload Suppression: Temporarily disable enemy mechanical devices or constructs."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+        "bytes": 59506,
+        "sha256": "f087cc9250f1864e60209fb13bff86800d45b7238dc09e8eac2dbf2272b09c1d"
+      },
+      "pointer": "/cards/38",
+      "completeCard": {
+        "id": "tinker.hero.warmachine.malfunction-field",
+        "name": "Malfunction Field",
+        "className": "Tinker",
+        "band": "Hero",
+        "path": "Warmachine",
+        "sourceKind": "passive",
+        "minimumClassLevel": 10,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Enemy within 5 ft of your device",
+        "duration": "While device active",
+        "frequency": "Once/round total",
+        "effect": "First spell attack by one enemy has disadvantage. Multiple devices do not multiply effect; area/spell-saves unchanged. Does not create antimagic zone.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4645,
+          "originalText": "Malfunction Field: Enemies near your devices must roll twice on spell attacks and take the lower result."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/6",
+      "completeCard": {
+        "id": "oracle.supplement.shared.curse-manifestation",
+        "name": "Curse Manifestation",
+        "className": "Oracle",
+        "band": "Base",
+        "path": "Shared",
+        "sourceKind": "active",
+        "minimumClassLevel": 2,
+        "acquisition": "supplement",
+        "activation": "Bonus Action",
+        "cost": "1 RC",
+        "rangeAndTarget": "Self",
+        "duration": "3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Intensify your chosen Curse. For 3 rounds gain +1 on Revelation attack rolls and +1 to your Revelation save DC. For the same duration take -1 AC and -1 on your own saving throws. Any part of the selected Curse that can normally be voluntarily suppressed cannot be suppressed while Manifestation lasts.",
+        "prerequisite": "Oracle 2 and a selected Curse",
+        "source": {
+          "line": null,
+          "reference": "MYSTERIES.ORACLE_BASE_SKILLS[2]; book line 3417",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "MYSTERIES.ORACLE_BASE_SKILLS[2]",
+              "value": "Curse Manifestation — intensify Curse for benefits at increased limitations"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/8",
+      "completeCard": {
+        "id": "oracle.supplement.shared.oracle-s-burden",
+        "name": "Oracle's Burden",
+        "className": "Oracle",
+        "band": "Base",
+        "path": "Shared",
+        "sourceKind": "automatic",
+        "minimumClassLevel": 2,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Automatic at Oracle 2",
+        "effect": "Your selected Curse is recognized as an intrinsic Oracle class condition rather than an ordinary removable curse. Remove Curse, cleansing, resurrection and similar generic effects cannot remove or suspend it. Only a feature that explicitly names your Oracle Curse can suppress, transform or replace one of its effects.",
+        "prerequisite": "Oracle 2",
+        "source": {
+          "line": null,
+          "reference": "mainRegistry.levels[1].features[0]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "mainRegistry.levels[1].features[0]",
+              "value": {
+                "text": "Oracle's Burden",
+                "draft": false
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/54",
+      "completeCard": {
+        "id": "oracle.supplement.curse.tongues",
+        "name": "Tongues",
+        "className": "Oracle",
+        "band": "Base",
+        "path": "Curse",
+        "sourceKind": "curse",
+        "minimumClassLevel": 1,
+        "acquisition": "choose one Curse at1",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Permanent",
+        "frequency": "Chosen once at Oracle 1",
+        "effect": "LIMITATIONS: unless you suppress the chorus, take -2 on social checks with mortals who do not understand your overlapping speech. You may suppress it as an Action for 10 minutes; while suppressed you cannot use Tongues Boons requiring supernatural speech. Prophetic statements may be misunderstood narratively but the Director should not falsify player intent. After more than 1 uninterrupted hour of mundane concentration, make a DC 10 Wisdom save or lose the final 10 minutes of progress to intrusive voices.",
+        "prerequisite": "Selected Curse: Tongues",
+        "source": {
+          "line": null,
+          "reference": "CURSES.ORACLE_CURSES[4]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "CURSES.ORACLE_CURSES[4]",
+              "value": {
+                "id": "tongues",
+                "name": "Tongues",
+                "blurb": "Many voices share your speech, making truth harder to hear cleanly",
+                "limitations": [
+                  "Unless you suppress the curse, social checks with mortals who do not share your mystery tongue suffer −2",
+                  "Even accurate prophetic speech is often misheard; listeners may hear what they fear",
+                  "You cannot fully silence the chorus; concentrating on mundane tasks longer than 1 hour requires a Wisdom save"
+                ],
+                "boons": [
+                  {
+                    "level": 3,
+                    "name": "Curse Boon I",
+                    "description": "Understand all spoken languages and read divine script fragments. Allies within 5 tiles gain +2 to Lore and Insight checks when you interpret for them."
+                  },
+                  {
+                    "level": 5,
+                    "name": "Curse Boon II",
+                    "description": "Confounding babble: one enemy within 3 tiles must save or lose their next action, overwhelmed by overlapping voices. Once per combat."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Curse Boon III",
+                    "description": "Prophetic utterance — force one creature within 3 tiles to truthfully answer a yes/no question drawn from the Choir's echo. Once per day."
+                  },
+                  {
+                    "level": 15,
+                    "name": "Curse Boon IV",
+                    "description": "Polyglot surge: communicate with beasts, plants, and spirits for 1 hour as the First Song's vocabulary flows through you. Once per long rest."
+                  },
+                  {
+                    "level": 20,
+                    "name": "Curse Boon V",
+                    "description": "Once per day, speak a single Word in the tongue of creation — all who hear must save or obey one short command. Those who resist take psychic damage."
+                  }
+                ],
+                "draft": true,
+                "source": "Draft — Aethel lore, pending author review"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+        "bytes": 526843,
+        "sha256": "fda69f674d24eab725957d07e04d79a92a48d9d2e28615e47ffd98046b80e327"
+      },
+      "pointer": "/cards/79",
+      "completeCard": {
+        "id": "oracle.supplement.consumed.consumed-boon-i",
+        "name": "Consumed — Boon I",
+        "className": "Oracle",
+        "band": "Arch",
+        "path": "Consumed",
+        "sourceKind": "curseBoon",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for selected Curse",
+        "activation": "Passive; Action to suppress appearance",
+        "cost": "0",
+        "rangeAndTarget": "Self",
+        "duration": "Damage reduction permanent; suppression one hour",
+        "frequency": "Reduction first theme damage/round; suppression 1/long rest",
+        "effect": "reduce the first instance of your Mystery theme damage you take each round by PB. Once per long rest suppress visible transformation for 1 hour, though divination still detects your Mystery.",
+        "prerequisite": "Oracle 3; selected Curse:Consumed",
+        "source": {
+          "line": null,
+          "reference": "CURSES.ORACLE_CURSES[8]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "CURSES.ORACLE_CURSES[8]",
+              "value": {
+                "id": "consumed",
+                "name": "Consumed",
+                "blurb": "Your Mystery remakes your body until its element shows through",
+                "limitations": [
+                  "As you gain levels, your appearance shifts toward your Mystery's theme: flame hair, starlit eyes, bone protrusions, and the like",
+                  "Some civilized NPCs react with fear or awe; concealing the change in formal courts requires ongoing effort",
+                  "As your body changes, armor and gear must be refitted periodically (roleplay / downtime cost)"
+                ],
+                "boons": [
+                  {
+                    "level": 3,
+                    "name": "Curse Boon I",
+                    "description": "Gain +5% resistance aligned with your Mystery's element or theme (fire, necrotic, force, psychic, etc.). Once per day, suppress visible transformation for 1 hour in civilized areas — the Mystery still leaks through divination."
+                  },
+                  {
+                    "level": 5,
+                    "name": "Curse Boon II",
+                    "description": "Elemental skin: +1 AC while wearing light or no armor as your flesh hardens into mystery-matter. Unarmed strikes and natural weapons you wield count as magical and deal +1d4 thematic damage."
+                  },
+                  {
+                    "level": 10,
+                    "name": "Curse Boon III",
+                    "description": "Mystery infusion: weapon and touch attacks deal +1d4 thematic damage matching your Mystery. Revelation potency visibly bleeds into your strikes."
+                  },
+                  {
+                    "level": 15,
+                    "name": "Curse Boon IV",
+                    "description": "Partial transformation: ignore difficult terrain tied to your Mystery (fire walks, shadow steps, temporal stutter, etc.). Allies who follow within 1 tile during the same round may treat that terrain as normal ground until your next turn."
+                  },
+                  {
+                    "level": 20,
+                    "name": "Curse Boon V",
+                    "description": "Once per day, fully embody your Mystery's element for 3 rounds — immunity to that damage type, +2 effective Revelation potency, and visible manifestation (aura, wings of flame, star corona, etc.). Allies within 2 tiles gain +1 AC as your transformation steadies the battlefield; suppression is impossible while the embodiment lasts."
+                  }
+                ],
+                "draft": true,
+                "source": "Draft — Aethel lore, pending author review"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/69",
+      "completeCard": {
+        "id": "paladin.supplement.oathbreaker-oath-of-flame.scorch-the-sanctified",
+        "name": "Scorch the Sanctified",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oathbreaker — Oath of Flame",
+        "sourceKind": "oathbreakerAura",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for corresponding Oathbreaker",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Up to 3 enemies in your Oath aura",
+        "duration": "While conscious and target remains in aura",
+        "frequency": "Choose targets at start of each turn",
+        "effect": "Selected enemies cannot regain HP from passive regeneration. At the start of each selected enemy's turn it makes a Charisma save. On failure, one temporary beneficial magical effect on it chosen by the Director from eligible non-innate effects is suppressed until the start of its next turn. Immunities, class engines, permanent traits and attunement are never suppressed.",
+        "prerequisite": "Paladin 3; Oathbreaker — Oath of Flame",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[3].oathbreaker.aura",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[3].oathbreaker.aura",
+              "value": "Scorch the Sanctified — remove buffs; block regeneration"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "flame",
+        "oathName": "Oath of Flame",
+        "oathbreakerName": "Inferno",
+        "displayPath": "Inferno — Oath of Flame Oathbreaker"
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/70",
+      "completeCard": {
+        "id": "paladin.supplement.oathbreaker-oath-of-flame.scorch-the-sanctified-blasphemous-word",
+        "name": "Scorch the Sanctified — Blasphemous Word",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oathbreaker — Oath of Flame",
+        "sourceKind": "blasphemousWord",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic for corresponding Oathbreaker",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "Up to 3 creatures in your Oath aura",
+        "duration": "Instantaneous; suppressed effect until end of next turn",
+        "frequency": "1/short rest; replaces Signature Power use",
+        "effect": "Each target makes a Constitution save, taking S d6 fire plus S d6 necrotic damage on failure or half on success. A failing target also has one eligible temporary beneficial spell or regeneration effect suppressed until the end of its next turn. You may knowingly include allies among the targets; the effect offers them no protection.",
+        "prerequisite": "Paladin 11; Oathbreaker — Oath of Flame",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[3].oathbreaker.blasphemousWord",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[3].oathbreaker.blasphemousWord",
+              "value": "Scorch the Sanctified — AoE purge that harms allies"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "flame",
+        "oathName": "Oath of Flame",
+        "oathbreakerName": "Inferno",
+        "displayPath": "Inferno — Oath of Flame Oathbreaker"
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/119",
+      "completeCard": {
+        "id": "paladin.supplement.oath-of-chains-broken.liberating-smite",
+        "name": "Liberating Smite",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of Chains Broken",
+        "sourceKind": "oathSmite",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Triggered",
+        "cost": "Use normal Divine Smite cost: 1 RP for S d6 or 2 RP for (S+1)d8",
+        "rangeAndTarget": "Creature hit by your melee weapon attack",
+        "duration": "Instantaneous; freedom until end of target's next turn",
+        "frequency": "One paid Smite total per round, shared with all normal and reactive Smite uses; any redirection uses its shared allowance",
+        "effect": "Choose force or radiant; the entire Smite packet uses that type. If the target is currently grappling or restraining another creature, one grapple or restraint it is maintaining ends after damage. If the target itself is Grappled or Restrained, those conditions are suppressed until the end of its next turn, after which a still-valid source may resume them. Against a Director-identified oppressor actively enforcing captivity or coercion in the scene, add S flat damage once.",
+        "prerequisite": "Paladin 3; Oath of Chains Broken",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[8].smiteType",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[8].smiteType",
+              "value": "Force or radiant — bonus damage vs oppressors and bound foes; on hit, target loses grapple or restraint until end of next turn"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "conductClauses": [
+          "Break the bonds of the unjustly imprisoned, and do not turn liberation into license to abandon them",
+          "Resist every tyrant, including the one who would rule in freedom's name",
+          "Guard the newly freed from exploitation, for an open door is not yet a safe road"
+        ],
+        "oathId": "chains-broken",
+        "oathName": "Oath of Chains Broken",
+        "oathbreakerName": "Unbound Flame",
+        "displayPath": "Oath of Chains Broken"
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/122",
+      "completeCard": {
+        "id": "paladin.supplement.oath-of-chains-broken.break-bonds",
+        "name": "Break Bonds",
+        "className": "Paladin",
+        "band": "Arch",
+        "path": "Oath of Chains Broken",
+        "sourceKind": "oathSpell",
+        "minimumClassLevel": 3,
+        "acquisition": "automatic for chosen Oath",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One willing ally within 30 feet",
+        "duration": "Instantaneous; movement/escape benefit until end of next turn",
+        "frequency": "At will while RP remains",
+        "effect": "End one non-artifact Grappled or Restrained condition affecting the ally if its source permits magical release. If the restraint was magical, the ally also gains +10 feet Speed and advantage on its next check or save to escape another grapple/restraint before the end of its next turn. This does not dispel unrelated spell effects.",
+        "prerequisite": "Paladin 3; Oath of Chains Broken",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[8].revelationSpells[0]",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[8].revelationSpells[0]",
+              "value": {
+                "level": 3,
+                "spell": "Break Bonds — touch or 30-ft ally; end one restraint or grapple; if ally was magically bound, +10 ft movement and advantage on next escape attempt until end of next turn"
+              }
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": 1,
+        "oathId": "chains-broken",
+        "oathName": "Oath of Chains Broken",
+        "oathbreakerName": "Unbound Flame",
+        "displayPath": "Oath of Chains Broken"
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+        "bytes": 267843,
+        "sha256": "f028a253a1a08dd17e42a2abbcd3d7f7a484ea9d8255c934339bdf1739ae8e09"
+      },
+      "pointer": "/cards/142",
+      "completeCard": {
+        "id": "paladin.supplement.oathbreaker-oath-of-the-martyr-king.crownshatter-decree",
+        "name": "Crownshatter Decree",
+        "className": "Paladin",
+        "band": "Hero",
+        "path": "Oathbreaker — Oath of the Martyr King",
+        "sourceKind": "blasphemousWord",
+        "minimumClassLevel": 11,
+        "acquisition": "automatic for corresponding Oathbreaker",
+        "activation": "Action",
+        "cost": "2 RP",
+        "rangeAndTarget": "One willing ally in your aura",
+        "duration": "Until end of your next regular turn",
+        "frequency": "1/short rest; replaces shared Signature use",
+        "effect": "With the ally’s agreement, transfer one temporary +1 or +2 numerical AC, attack or save bonus from a non-innate effect on that ally to yourself, capped at +2. The ally loses that bonus during the transfer. Its source duration/concentration continues and expiration ends your stolen bonus. Never copy a permanent passive, class engine, action, resource, spell use, resistance, immunity or another theft. This does not extend or recharge the original effect.",
+        "prerequisite": "Paladin 11; Oathbreaker — Oath of the Martyr King",
+        "source": {
+          "line": null,
+          "reference": "SACRED_OATHS[9].oathbreaker.blasphemousWord",
+          "originalText": "",
+          "status": "source-derived",
+          "originalObjects": [
+            {
+              "reference": "SACRED_OATHS[9].oathbreaker.blasphemousWord",
+              "value": "Crownshatter Decree — steal boons from allies"
+            }
+          ]
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null,
+        "oathId": "martyr-king",
+        "oathName": "Oath of the Martyr King",
+        "oathbreakerName": "Usurper's Crown",
+        "displayPath": "Usurper's Crown — Oath of the Martyr King Oathbreaker"
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+        "bytes": 81863,
+        "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89"
+      },
+      "pointer": "/cards/47",
+      "completeCard": {
+        "id": "cleric.hero.priest.cosmic-equilibrium",
+        "name": "Cosmic Equilibrium",
+        "className": "Cleric",
+        "band": "Hero",
+        "path": "Priest",
+        "sourceKind": "active",
+        "minimumClassLevel": 16,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "7 RP",
+        "rangeAndTarget": "15-foot-radius fixed zone centered within 30 feet",
+        "duration": "Concentration, maximum 3 rounds",
+        "frequency": "1/short rest",
+        "effect": "Cosmic Equilibrium. Tags: priest, zone, healing, radiant. Once per round, when a living ally in the zone receives healing beyond its missing HP, redirect up to S+M of that excess as radiant damage to one enemy in the zone. Separately, once per round when an enemy in the zone takes radiant damage from one of your Cleric features, one ally in the zone regains up to S+M HP, not exceeding half the actual radiant damage dealt. These two conversions cannot trigger each other.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2042,
+          "originalText": "Cosmic Equilibrium: Create a zone where healing and harm are balanced, converting excess damage to healing and vice versa."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    },
+    {
+      "binding": {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+        "bytes": 88119,
+        "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+      },
+      "pointer": "/cards/19",
+      "completeCard": {
+        "id": "druid.hero.land.nature-s-ward",
+        "name": "Nature's Ward",
+        "className": "Druid",
+        "band": "Hero",
+        "path": "Land",
+        "sourceKind": "feature",
+        "minimumClassLevel": 10,
+        "acquisition": "automatic",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Land Circle self",
+        "duration": "Permanent",
+        "frequency": "Automatic Circle feature",
+        "effect": "Immune to Charmed/Frightened from fey/elementals, poison damage, Poisoned and disease. Does not suppress all creature abilities or remove an existing curse.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2673,
+          "originalText": "Nature's Ward\nWhen you reach 10th level, you can't be charmed or frightened by elementals or fey, and you are immune to poison and disease."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      },
+      "readScope": "Current operative card independently read; original source object preserved as evidence."
+    }
+  ],
+  "scopeWarning": "25 selected operative cards read; not exhaustive semantic review of all17 classes or approval of pending AC5 rules.",
+  "rangerDrift": {
+    "historicalBinding": "584df9db3a6785f6268709cf3e376ae48dd62607c3ddb8e5ad5b2cc57e62f3f2",
+    "pointer": "/cards/7/effect",
+    "historicalEffect": "Gain advantage on one Perception/Survival check to find tracks, hidden natural creatures or signs of passage. It reveals evidence on success, not automatically creatures through total cover, incorporeal beings or thoughts.",
+    "currentCardId": "ranger.base.nature-s-whisper",
+    "interpretation": "Current NWQ nonspell classification and activation/rider procedure supersede the shorter historical comparison text."
+  },
+  "issues": [
+    {
+      "id": "AC5-CLASS-01",
+      "title": "Wizard Dispel Magic is a distinct class spell",
+      "cardIds": [
+        "wizard.arch.dispel-magic",
+        "wizard.hero.spellbinder.sigil-authority"
+      ],
+      "requiredReview": "Wizard class Dispel is Action3RP/60ft/Recharge2/rank3, automatic through3 and INT+PB against10+rank above3. Do not replace this with the proposed Greater Dispel10+2rank procedure or ordinary same-name payload. Sigil Authority explicitly names Counterspell and Dispel Magic checks; do not silently extend its+1 to Greater Dispel solely because both end spells."
+    },
+    {
+      "id": "AC5-CLASS-02",
+      "title": "Nature's Whisper current classification",
+      "cardIds": [
+        "ranger.base.nature-s-whisper"
+      ],
+      "requiredReview": "The old AC5 Ranger envelope predates accepted NWQ. Current Nature's Whisper is magical NONSPELL, spellRank:null, Action1RP/Recharge3, no ordinary spell components/counter window/rank cadence, and has exact suppression and Ready rules. Lesser Antimagic may interact only through a genuinely applicable magical-technique scope; Greater Dispel needs an actual nonspell dispel interface. Nexus/Dampening do not apply merely because it costs1RP."
+    },
+    {
+      "id": "AC5-CLASS-03",
+      "title": "Intrinsic Oracle condition protection",
+      "cardIds": [
+        "oracle.supplement.shared.oracle-s-burden",
+        "oracle.supplement.shared.curse-manifestation",
+        "oracle.supplement.curse.tongues",
+        "oracle.supplement.consumed.consumed-boon-i"
+      ],
+      "requiredReview": "Oracle's Burden expressly prevents generic remove/suspend and requires a feature naming the Oracle Curse. Do not let broad magic language suppress the entire Curse. Manifestation prevents normally voluntary Curse suppression for its3rounds; Tongues and Consumed retain their own expressly named suppression permissions and limits. Decide specific effects from the actual cards, not a blanket class erasure."
+    },
+    {
+      "id": "AC5-CLASS-04",
+      "title": "Spell-save defenses remain distinct",
+      "cardIds": [
+        "shaman.hero.bloodcaller.spell-resistance",
+        "thief.hero.arcane-trickster.arcane-resistance",
+        "druid.hero.land.nature-s-ward"
+      ],
+      "requiredReview": "Shaman Spell Resistance already grants advantage against actual spells; the ordinary rank5ward cannot stack another advantage. Thief Arcane Resistance grants+2spell saves, not damage resistance. Druid Nature's Ward immunity covers Charmed/Frightened from fey/elementals plus its printed poison/disease scope, not every ability of those types or every planar removal."
+    },
+    {
+      "id": "AC5-CLASS-05",
+      "title": "Mage price and penetration scope",
+      "cardIds": [
+        "mage.arch.arcane-bypass",
+        "mage.arch.spell-efficiency"
+      ],
+      "requiredReview": "Arcane Bypass ignores actual printed damage-type resistance for one declared damaging Mage spell, not immunity, antimagic, walls or endpoint blockers. Spell Efficiency needs prior real Focus-eligible cast and next differently named same-current-element eligible spell, min1, with actual exclusions. Use that predicate before the new Nexus/Dampening/Influence stages; no automatic eligibility for every Conjuration spell."
+    },
+    {
+      "id": "AC5-CLASS-06",
+      "title": "Limited theft and suppression are not universal dispels",
+      "cardIds": [
+        "thief.hero.arcane-trickster.spell-disruptor",
+        "thief.hero.arcane-trickster.magebane-blade",
+        "thief.hero.arcane-trickster.arcane-theft",
+        "ranger.hero.stalker.shattershot"
+      ],
+      "requiredReview": "Preserve each trigger, save, rank cap and selected payload. Arcane Theft only temporary rank1–3buffs and printed AC/Speed/one resistance; it cannot take rank5Spell Resistance, prevention pools, summons or resources. Shattershot distinguishes shield equipmentAC from one visible rank1–3magical defense. Spell Disruptor affects observed temporary magical+AC maximum2; Resonance Barrier is not+AC merely because named shield/barrier."
+    },
+    {
+      "id": "AC5-CLASS-07",
+      "title": "Device abilities are not antimagic by title",
+      "cardIds": [
+        "tinker.hero.artificer.overload-suppression",
+        "tinker.hero.warmachine.malfunction-field"
+      ],
+      "requiredReview": "Overload Suppression targets construct/device and applies its next-Reaction/attack-disadvantage/Stunned failure-by5 clauses, with shared hard-control guard. Malfunction Field imposes disadvantage on the first qualifying spell attack, once/round total; it leaves save-based areas unchanged and explicitly creates no antimagic zone."
+    },
+    {
+      "id": "AC5-CLASS-08",
+      "title": "Paladin aura and word do not share one suppression scope",
+      "cardIds": [
+        "paladin.supplement.oathbreaker-oath-of-flame.scorch-the-sanctified",
+        "paladin.supplement.oathbreaker-oath-of-flame.scorch-the-sanctified-blasphemous-word"
+      ],
+      "requiredReview": "The aura uses a target-start CHA save and one Director-selected temporary beneficial non-innate magical effect, never immunities/class engines/permanent traits/attunement. The Blasphemous Word uses an Action2RP, CON and damage plus one temporary beneficial spell or regeneration effect. Keep these predicates distinct in ward/summon suppression examples."
+    },
+    {
+      "id": "AC5-CLASS-09",
+      "title": "Release and transfer apply only their printed components",
+      "cardIds": [
+        "paladin.supplement.oath-of-chains-broken.liberating-smite",
+        "paladin.supplement.oath-of-chains-broken.break-bonds",
+        "paladin.supplement.oathbreaker-oath-of-the-martyr-king.crownshatter-decree"
+      ],
+      "requiredReview": "Liberating Smite/Break Bonds operate on their actual Grappled/Restrained predicates and source release permissions, not generic Planar Binding service or Banishment. Crownshatter transfers temporary+1/+2numerical AC/attack/save bonuses only; it cannot move Spell Resistance advantage, Resonance Barrier prevention, immunity, resources or a class engine."
+    },
+    {
+      "id": "AC5-CLASS-10",
+      "title": "Protected books and radiant conversions",
+      "cardIds": [
+        "wizard.hero.spellbinder.spell-preservation",
+        "cleric.hero.priest.cosmic-equilibrium"
+      ],
+      "requiredReview": "Spell Preservation protects against permanent destruction/erasure but explicitly permits suppression; a field does not destroy or duplicate the book. Cosmic Equilibrium converts actual eligible excess healing/radiant damage under two once/round pools which cannot trigger each other. Fire aura damage and prevented Barrier damage do not become qualifying Cleric radiant damage or actual damage dealt."
+    }
+  ],
+  "additionalExamples": [
+    {
+      "id": "AC5-K01",
+      "title": "Wizard class and ordinary dispels",
+      "requiredResolution": "Use a real rank7 ongoing source. Class Dispel DC17 with INT4+PB4 and die10 totals18: success. Proposed Greater Dispel DC24 with the same modifiers and die15 totals23: failure unless its own reviewed rule changes. Record Action/RP/recharge separately and do not automatically add Sigil Authority to Greater Dispel.",
+      "runtimeTest": false,
+      "newSpellRuleAdopted": false
+    },
+    {
+      "id": "AC5-K02",
+      "title": "Nature's Whisper in a field",
+      "requiredResolution": "Actual Ranger with personalRP5 uses lawful Nature's Whisper inside Nexus plus Dampening: it remains a nonspell technique with its own1RP/recharge rules. Separately apply eligible antimagic suppression to the same technique without granting ordinary Counterspell or a guessed spell rank.",
+      "runtimeTest": false,
+      "newSpellRuleAdopted": false
+    },
+    {
+      "id": "AC5-K03",
+      "title": "Oracle exact protection",
+      "requiredResolution": "Oracle2+ with Burden and selected Tongues enters Lesser Antimagic while Curse Manifestation is active. Decide only source-permitted specific suppression; no generic removal of intrinsic Curse or its protected drawbacks.",
+      "runtimeTest": false,
+      "newSpellRuleAdopted": false
+    },
+    {
+      "id": "AC5-K04",
+      "title": "Different save defenses",
+      "requiredResolution": "A Shaman Bloodcaller with its actual passive receives ordinary Spell Resistance: one advantage only. Separately a Thief with Arcane Resistance receives the ward: apply one advantage plus its actual+2spell-save modifier under existing bonus rules; generic concentration saves do not acquire spell-save provenance.",
+      "runtimeTest": false,
+      "newSpellRuleAdopted": false
+    },
+    {
+      "id": "AC5-K05",
+      "title": "Theft and prevention",
+      "requiredResolution": "A Thief attempts Arcane Theft against rank5Spell Resistance, then Spell Disruptor against a Resonance Barrier prevention pool. Both fail the respective rank/payload predicate; neither becomes an AC bonus from a name.",
+      "runtimeTest": false,
+      "newSpellRuleAdopted": false
+    },
+    {
+      "id": "AC5-K06",
+      "title": "Tinker versus save area",
+      "requiredResolution": "A caster under a real Malfunction Field uses proposed Massive Elemental Blast, which resolves via target DEX saves. No spell attack exists for the device's disadvantage to affect.",
+      "runtimeTest": false,
+      "newSpellRuleAdopted": false
+    },
+    {
+      "id": "AC5-K07",
+      "title": "Paladin release versus service",
+      "requiredResolution": "A target is subject to Planar Binding service but is neither Grappled nor Restrained. Break Bonds and Liberating Smite do not automatically end that unrelated binding record. A separately sourced actual restraint uses its own release branch.",
+      "runtimeTest": false,
+      "newSpellRuleAdopted": false
+    },
+    {
+      "id": "AC5-K08",
+      "title": "Aura and word suppression",
+      "requiredResolution": "Use actual Inferno Paladin cards69and70 against a recipient with temporary Spell Resistance and a distinct intrinsic immunity. Respect each save/timing/eligibility and never suppress the immunity via the aura.",
+      "runtimeTest": false,
+      "newSpellRuleAdopted": false
+    }
+  ],
+  "sourceInformationDeleted": 0,
+  "newSpellAdoptions": 0,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false
+}

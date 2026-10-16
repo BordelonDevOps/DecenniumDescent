@@ -1,0 +1,2342 @@
+{
+  "schemaVersion": "1.0",
+  "moduleId": "DD-AC5-CURRENT-REVIEW-02",
+  "caseCount": 54,
+  "cases": [
+    {
+      "id": "AB5-01-A",
+      "title": "Antimagic suppresses local new cast, not remote buff",
+      "historicalOriginalText": "AB5-01-A: A caster inside the active sphere commits an otherwise legal rank-five spell, spending10RP and its ordinary cadence. Its payload is suppressed and receives no later delayed resolution on leaving. An already-established remote buff outside the sphere is not canceled merely because its concentrating caster entered it.",
+      "currentInitialState": "Wizard9 inside operative Lesser Antimagic; RP32; rank5 spell legal; separate ally outside carries an already-established remote buff whose manifestation never intersects field.",
+      "actionsAndResolution": [
+        "Wizard commits the rank5 spell: Action/components and 10 RP are paid; ordinary cadence/concentration transition occurs.",
+        "Because the new spell payload originates inside operative Lesser Antimagic, its magical payload is suppressed at resolution with no queued later effect.",
+        "The remote buff outside remains active because only its caster—not its manifestation—entered the field."
+      ],
+      "costLedger": {
+        "wizardRpStart": 32,
+        "spellRpSpent": 10,
+        "wizardRpEnd": 22
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "fieldRadiusFt": 10
+      },
+      "currentAdjudication": "New cast costs remain spent and produces no delayed payload; remote outside buff persists to its own deadline.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/54",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/antimagic-field-lesser/procedure",
+          "role": "current local suppression"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "pointer": "section: cost commitment/concentration/counter ordering",
+          "role": "cast commitment"
+        }
+      ]
+    },
+    {
+      "id": "AB5-01-B",
+      "title": "Antimagic buffer/item/history",
+      "historicalOriginalText": "AB5-01-B: A body-attached magical buffer has12remaining when the bearer enters. It cannot absorb a new8damage packet inside; leaving within its original lifetime restores the same12remaining, not20and not an8HP refund. Ordinary stone already created by an instantaneous material spell remains real, and two Lesser Antimagic fields do not switch each other on and off indefinitely.",
+      "currentInitialState": "Creature enters field with an ongoing magical buffer showing 12 remaining; also carries ordinary stone already created by a completed instantaneous material spell. Two Lesser Antimagic fields overlap.",
+      "actionsAndResolution": [
+        "While bearer intersects field, buffer is unavailable and cannot absorb an 8-damage packet; its remaining balance stays 12 and original expiry continues.",
+        "Stone remains ordinary matter because completed material creation is not rewound.",
+        "Same-family Lesser Antimagic fields are exempt from suppressing each other and create one union of active volume.",
+        "Leaving before buffer expiry restores access to same remaining 12; no HP refund."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "overlap": "two 10-ft-radius fields"
+      },
+      "currentAdjudication": "No queued prevention, no stone deletion, no field oscillation.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/54",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/antimagic-field-lesser/procedure",
+          "role": "suppression history/same-family exemption"
+        }
+      ]
+    },
+    {
+      "id": "AB5-03-A",
+      "title": "Greater Dispel shared higher-rank check",
+      "historicalOriginalText": "AB5-03-A: The snapshot includes a rank2buff, rank5field and two recipient records from one rank6cast. The first two end automatically. Wizard+8rolls15for23against rank6DC22, so both captured rank6recipient applications end using that one success. An unselected remote recipient remains unless the original source truly binds it to the ended parent.",
+      "currentInitialState": "Wizard9 Greater Dispel caster: INT+4 PB4 -> +8. Snapshot captures one rank2 buff, one rank5 field and two recipient applications from one rank6 generating cast.",
+      "actionsAndResolution": [
+        "Rank2 and rank5 applications end automatically.",
+        "For original rank6 generating cast, roll once: d20=15 +8 =23 vs DC22 (10+2×6): success.",
+        "Reuse that one success for both captured rank6 recipient applications."
+      ],
+      "costLedger": {
+        "greaterDispelRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "radiusFt": 30
+      },
+      "currentAdjudication": "Both captured rank6 applications end. Any remote application from same cast outside snapshot remains unless parent source says otherwise.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/56",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/greater-dispel/procedure",
+          "role": "snapshot/rank resolution"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "pointer": "section: spell ranks/pricing",
+          "role": "rank identity"
+        }
+      ]
+    },
+    {
+      "id": "AB5-03-B",
+      "title": "Snapshot does not expand",
+      "historicalOriginalText": "AB5-03-B: An eligible wall blocks another effect when the purge snapshot is taken. Ending that wall does not add the formerly hidden effect to this cast. A rank6check rolling natural20+0against22 uses the reviewed natural improvement from Failure to Success; no standard-game flat natural20 rule or free protected-effect identification is substituted.",
+      "currentInitialState": "Greater Dispel snapshot: rank5 Wall of Force portion is in sphere and blocks center LoE to another effect at capture time. Separate rank6 check fixture has +0 and d20=20 vs DC22.",
+      "actionsAndResolution": [
+        "Capture snapshot before endings; hidden effect behind wall is excluded.",
+        "Rank5 wall ends automatically; snapshot remains frozen and hidden effect is not added.",
+        "For rank6 fixture, total20 vs DC22 is ordinary Failure; current natural-shift rule improves the degree once to Success, so captured rank6 effect ends."
+      ],
+      "costLedger": {
+        "greaterDispelRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "radiusFt": 30
+      },
+      "currentAdjudication": "No second scan, no protected-effect identification, no generic 'natural20 always succeeds' replacement.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/56",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/greater-dispel/procedure",
+          "role": "fixed capture"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "pointer": "section: natural degree shifts",
+          "role": "natural shift"
+        }
+      ]
+    },
+    {
+      "id": "AB5-04-A",
+      "title": "Spell Resistance direct and ending saves",
+      "historicalOriginalText": "AB5-04-A: A recipient makes the original WIS save against a hostile spell and later that spell's printed WIS ending save. Both gain ordinary advantage while this hour-long ward operates. If a separate source imposes disadvantage, normal cancellation yields one ordinary roll, not multiple advantage dice or a reroll after seeing failure.",
+      "currentInitialState": "Protected target has one hostile spell requiring initial WIS save and a later printed WIS ending save; another source imposes disadvantage.",
+      "actionsAndResolution": [
+        "Initial save is directly required by spell: Spell Resistance supplies advantage; opposing disadvantage cancels to one normal roll.",
+        "Later printed ending save is still dependent on same spell: same rule.",
+        "No extra reroll after seeing result."
+      ],
+      "costLedger": {
+        "spellResistanceRpSpent": 10
+      },
+      "clockLedger": {
+        "durationSeconds": 3600
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Exactly ordinary advantage/disadvantage cancellation; no multi-advantage dice.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/57",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/spell-resistance/procedure",
+          "role": "spell-origin save scope"
+        }
+      ]
+    },
+    {
+      "id": "AB5-04-B",
+      "title": "Spell attack vs downstream concentration",
+      "historicalOriginalText": "AB5-04-B: A spell attack damages the warded creature. The attack receives no automatic disadvantage, and the creature's resulting generic concentration save does not gain Spell Resistance merely because the damage came from a spell. A charge-based item actually casting a save-requiring spell does qualify, regardless of whether it charged the caster RP.",
+      "currentInitialState": "Protected creature is hit by a spell attack and separately must make an ordinary concentration save from damage. Separate source-recognized charge/use-only spell fixture forces a save.",
+      "actionsAndResolution": [
+        "Spell attack roll receives no disadvantage from Spell Resistance.",
+        "Generic concentration save is caused by damage/life rule, not directly by a spell save instruction: no Spell Resistance advantage.",
+        "A genuine charge/use-only activation that is actually a spell and directly forces a save does receive the ward's advantage regardless of RP pricing."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Provenance controls; pricing does not classify a technique as a spell.",
+      "notes": [
+        "The historical example does not itself identify a named ancestry token; this current adjudication preserves only the source-recognized charge/use-only spell category. AC5-X06 handles the price-interface comparison separately."
+      ],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/57",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/spell-resistance/procedure",
+          "role": "causal save scope"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+          "pointer": "line 25 / charge-only ancestry spell category",
+          "role": "source-recognized charge-only spell category"
+        }
+      ]
+    },
+    {
+      "id": "AB5-05-A",
+      "title": "Force wall physical and LoE barrier",
+      "historicalOriginalText": "AB5-05-A: An invisible vertical wall blocks an arrow and a directly targeted spell whose path must cross it, though a viewer can see the opponent through ordinary light. The caster cannot bypass the effect barrier simply by choosing a damage-area center beyond it. A real open route around its finite edge remains available.",
+      "currentInitialState": "Invisible vertical Wall of Force lies between archer/caster and visible enemy; finite edge has an open route around it.",
+      "actionsAndResolution": [
+        "Arrow intersects wall and cannot pass.",
+        "Directly targeted spell requiring ordinary LoE through wall is illegal/blocked despite visual sight.",
+        "Caster cannot place a new ordinary area origin beyond wall without required originating LoE.",
+        "A creature may move around the real finite edge by ordinary movement."
+      ],
+      "costLedger": {
+        "wallRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "wall": "30×15 ft max"
+      },
+      "currentAdjudication": "Light/vision through wall does not grant physical/spell path through it.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/58",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/wall-of-force/procedure",
+          "role": "barrier behavior"
+        }
+      ]
+    },
+    {
+      "id": "AB5-05-B",
+      "title": "Force-wall support and safe resumption",
+      "historicalOriginalText": "AB5-05-B: A legal horizontal wall supports a creature until concentration ends, then actual Falling starts at that height. If a portion is suppressed and a body straddles it when suppression ends, local restoration waits for legal clearance; it neither bisects the body nor grants a free push to a tactically chosen square.",
+      "currentInitialState": "Horizontal Wall of Force supports creature at height. Later one wall segment is suppressed while a body occupies the closing segment.",
+      "actionsAndResolution": [
+        "While active, horizontal wall provides support.",
+        "When concentration ends, all support ends and ordinary Falling starts from current height.",
+        "For separate suppression fixture, suppressed portion is absent; on resumption occupied portion remains locally pending until body clears; no bisect/shove."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "wallDeadlineSeconds": 60
+      },
+      "geometryLedger": {
+        "orientation": "horizontal support"
+      },
+      "currentAdjudication": "No free displacement or support after source ending.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/58",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/wall-of-force/procedure",
+          "role": "support/suppression/resumption"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: falling/support",
+          "role": "ordinary falling"
+        }
+      ]
+    },
+    {
+      "id": "AB5-06-A",
+      "title": "Barrier unmodified conversion",
+      "historicalOriginalText": "AB5-06-A: Wizard9 choosesX2with unmodified base10and no surcharge, paying12RP (32→20) and offering60prevention. A later17damage packet after ordinary defenses consumes17, leaving43and no residual packet. It does not generate17temporaryHP, RP recovery or drain credit.",
+      "currentInitialState": "Wizard9 RP32 PB4 casts Resonance Barrier on willing ally, chooses X=2; no Nexus/Dampening/Influence/Dissonance surcharge.",
+      "actionsAndResolution": [
+        "Ordinary base paid=10; protected X2 paid separately; total12 RP ->20.",
+        "creditableBasePaid=10; pool=5×(10+2)=60.",
+        "Later 17 post-defense eligible damage: pool prevents17, leaving43 and residual0."
+      ],
+      "costLedger": {
+        "rpStart": 32,
+        "basePaid": 10,
+        "protectedX": 2,
+        "totalSpent": 12,
+        "rpEnd": 20
+      },
+      "clockLedger": {
+        "poolStart": 60,
+        "poolEnd": 43
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Prevented17 is not actualDamageDealt/tempHP/RP recovery.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/59",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PRICE-01",
+          "role": "price/credit"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+          "pointer": "section: Resolve the kind of protection first",
+          "role": "prevention ordering"
+        }
+      ]
+    },
+    {
+      "id": "AB5-06-B",
+      "title": "Barrier surcharge and transfer",
+      "historicalOriginalText": "AB5-06-B: With pre-cast Dissonance10against limit10, base10+X2+surcharge1cost13and still offers60, not65. A received transferred branch explicitly bypassing prevention leaves the pool unchanged. A new40point offer against43remaining loses the strongest-only comparison and does not refresh that old source, despite the new actual payment.",
+      "currentInitialState": "Wizard9 RP32; pre-cast Dissonance at surcharge threshold adds +1; X2; no Nexus/Dampening/Influence. Existing Barrier has43 remaining; new paid offer would be40.",
+      "actionsAndResolution": [
+        "Price=base10 + Dissonance1 + protectedX2 =13. creditable base10; pool offer60, not65.",
+        "Transferred branch explicitly marked unmitigated arrives after original prevention stage and cannot consume Barrier.",
+        "Separate weaker/equal offer40 against existing43 is paid but does not refresh retained source/expiry."
+      ],
+      "costLedger": {
+        "totalSpent": 13,
+        "creditedRp": 12
+      },
+      "clockLedger": {
+        "retainedPool": 43
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Surcharge not credited; no second prevention of unmitigated transfer; strongest remaining same-family record persists.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/59",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PRICE-01",
+          "role": "credit rules"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+          "pointer": "line 13 / section: transfer",
+          "role": "unmitigated transfer skips prevention"
+        }
+      ]
+    },
+    {
+      "id": "AB5-08-A",
+      "title": "Reputation signed contributions",
+      "historicalOriginalText": "AB5-08-A: In one actual scene the protected character receives a legitimate+1contribution and a−2contribution. The latter is recorded as prevented0; the net unprevented+1uses the ordinary scene/absolute caps. The shield does not force NPCs to forgive the underlying act or erase evidence, and no−2debt appears after24hours.",
+      "currentInitialState": "Protected character standing0 receives one +1 and one -2 institutional contribution in same scene under current signed-ledger rules.",
+      "actionsAndResolution": [
+        "Record +1 normally.",
+        "Record -2 event/provenance, replace contribution with0 while shield operative.",
+        "Apply ordinary scene/absolute caps to unprevented net +1."
+      ],
+      "costLedger": {
+        "shieldRpSpent": 10
+      },
+      "clockLedger": {
+        "durationSeconds": 86400
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Standing becomes+1. Underlying act/evidence/NPC reactions remain; no -2 debt after expiry.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/61",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/reputation-shield/procedure",
+          "role": "standing prevention"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/REPUTATION.md",
+          "pointer": "section: standing/reputation",
+          "role": "standing ledger"
+        }
+      ]
+    },
+    {
+      "id": "AB5-08-B",
+      "title": "Reputation rise, standing cost and suppression",
+      "historicalOriginalText": "AB5-08-B: The character gains standing from+1to+2while protected; later genuine negative contributions are still blocked rather than merely allowing a fall back to the original+1. A voluntary transaction requiring payment of1standing cannot obtain its benefit for free. During a genuine suppression interval, a new ordinary penalty may lower standing and is not rolled back when protection resumes.",
+      "currentInitialState": "Character starts standing+1, rises to+2 while protected. Later a real -1 consequence, then a voluntary transaction requiring 1 standing, then a suppression interval with new -1 event.",
+      "actionsAndResolution": [
+        "Protected -1 is recorded/prevented0; standing stays+2.",
+        "Standing-cost transaction cannot proceed free while shield prevents negative payment; target may end shield first to pay.",
+        "During actual suppression, new -1 applies normally. Resumption does not restore it."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "durationSeconds": 86400
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Shield is prospective negative-contribution prevention, not floor/escrow/social control.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/61",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/reputation-shield/procedure",
+          "role": "gain/cost/suppression"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/REPUTATION.md",
+          "pointer": "section: standing/reputation",
+          "role": "current standing rules"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-01-A",
+      "title": "Greater Fire Pet attack + passive aura",
+      "historicalOriginalText": "CJ5-01-A: The pet receives the one legal BA attack command and hits for2d10=12fire. A perceived foe still adjacent at its next regular START fails the aura DEX and takes1d6=5fire. These are the one commanded attack plus the explicitly printed passive aura, not permission for a second companion Action.",
+      "currentInitialState": "Wizard9 owner PB4 INT4 => spell attack+8, DC16. Greater Fire Pet commanded and adjacent perceived hostile target survives until next regular START.",
+      "actionsAndResolution": [
+        "Owner spends one legal Bonus Action command; attached pet attack hits and rolls2d10=12 fire. Attack root dealer=pet.",
+        "At target's next regular START, aura eligibility passes; DEX save fails; shared aura d6=5; recipient aura root dealer=pet; take5 before defenses."
+      ],
+      "costLedger": {
+        "summonRpSpent": 10
+      },
+      "clockLedger": {
+        "sourceDeadlineSeconds": 60
+      },
+      "geometryLedger": {
+        "auraRadiusFt": 5
+      },
+      "currentAdjudication": "One commanded offensive Action plus one passive aura checkpoint; owner Veil is not dealer.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/153",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/profiles/AC5-PROFILE-GREATER-FIRE-PET-01",
+          "role": "profile"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-ROOT-01",
+          "role": "root ownership"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-01-B",
+      "title": "Fire Pet aura frequency",
+      "historicalOriginalText": "CJ5-01-B: A foe crosses the aura three times in one turn. Entry itself deals nothing; only its actual future regular START can attempt the family tick, with one owner/target history for the round. Replacing the pet or granting the foe an extra turn cannot reset that history or turn the pet into free fuel.",
+      "currentInitialState": "One foe moves across/into/out of aura three times during one turn; later receives an extra turn in same numbered round. Owner perceives hostility.",
+      "actionsAndResolution": [
+        "Entry/crossing never triggers aura.",
+        "At first future regular START within5ft, one aura attempt may occur.",
+        "Family history prevents another aura attempt for same owner/target/Greater-Fire-Pet family in same numbered round even after replacement or extra turn."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "auraRadiusFt": 5
+      },
+      "currentAdjudication": "No entry damage, no replacement reset, no fuel/material production.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/153",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/profiles/AC5-PROFILE-GREATER-FIRE-PET-01/aura",
+          "role": "aura frequency"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-02-A",
+      "title": "Massive Blast shared dice separate defenses",
+      "historicalOriginalText": "CJ5-02-A: The chosen type is cold and the shared5d8roll is23. A failed enemy takes23before defenses; a saved enemy takes11, then actual cold resistance halves that to5. The cast stays cold for both and creates no ice patch or slow condition.",
+      "currentInitialState": "Wizard9 chooses cold before payment; center legal; two perceived hostile recipients. Shared5d8=23. A fails DEX; B succeeds and has cold resistance.",
+      "actionsAndResolution": [
+        "A takes23 cold before other defenses.",
+        "B save half=floor(23/2)=11; then resistance half floor=5.",
+        "Separate damage roots exist for A and B with same caster dealer/cast ID."
+      ],
+      "costLedger": {
+        "spellRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "radiusFt": 20
+      },
+      "currentAdjudication": "No ice/Slow terrain; whole cast stays cold.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/154",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/massive-elemental-blast/procedure",
+          "role": "damage choice/save"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-ROOT-01",
+          "role": "recipient roots"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-02-B",
+      "title": "Blast range vs radius and hostile information",
+      "historicalOriginalText": "CJ5-02-B: A visible center is20feet from the caster and the sphere extends another20feet beyond it; range and radius are distinct. All perceived qualifying enemies with center line of effect are included, while an unseen presumed enemy is not revealed or selected from hidden allegiance data. There is no finite target-count cap to redistribute after a save.",
+      "currentInitialState": "Center is exactly20ft from caster; sphere extends20ft beyond center. Several perceived hostile bodies qualify; one unseen suspected enemy is present.",
+      "actionsAndResolution": [
+        "Center is legal because casting-point range is20ft.",
+        "Every perceived qualifying hostile inside radius+center LoE is included; no numerical cap.",
+        "Unseen/suspected enemy is not automatically identified/selected."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "centerRangeFt": 20,
+        "radiusFt": 20
+      },
+      "currentAdjudication": "Area can extend40ft from caster along that direction because point range and radius are distinct; no hidden allegiance detector.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/154",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/massive-elemental-blast/procedure",
+          "role": "geometry/hostility snapshot"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-03-A",
+      "title": "Living Magma exact three ticks",
+      "historicalOriginalText": "CJ5-03-A: After failing the original CON save, the target takes no immediate damage. Its next three future regular STARTs roll1d10=6,3,9fire. These total18nominal damage before defenses over exactly three opportunities; no extra first-round packet is added to the printed promise.",
+      "currentInitialState": "Target fails initial CON vs DC16 at t0. No suppression. Future regular STARTs occur t6,t12,t18. Tick rolls6,3,9.",
+      "actionsAndResolution": [
+        "At failed-save establishment create one Living Magma damage root; no immediate damage packet.",
+        "t6 child packet6 fire; t12 child3; t18 child9.",
+        "After third opportunity rider ends."
+      ],
+      "costLedger": {
+        "spellRpSpent": 10
+      },
+      "clockLedger": {
+        "rootCreated": 0,
+        "tickSeconds": [
+          6,
+          12,
+          18
+        ]
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Nominal total18 before defenses; exactly three opportunities.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/155",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/living-magma/procedure",
+          "role": "three ticks"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-ROOT-01/livingMagma",
+          "role": "root checkpoint"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-03-B",
+      "title": "Living Magma suppression consumes ordinal",
+      "historicalOriginalText": "CJ5-03-B: The second START occurs while the rider is suppressed and is consumed without a roll/damage. The third remains its original last opportunity. A bucket of water does not remove this non-Burning spell record, and a later successful initial CON save against another cast does not erase the existing application.",
+      "currentInitialState": "Target failed initial save; second scheduled START is under actual suppression; third is not. Separate new cast later succeeds on initial CON.",
+      "actionsAndResolution": [
+        "First tick resolves normally.",
+        "Second scheduled opportunity is suppressed: consume ordinal; no roll, packet or child root.",
+        "Third remains final opportunity.",
+        "Later successful new-cast save does not replace/end existing older rider because new rider never establishes."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "tickOrdinals": [
+          1,
+          2,
+          3
+        ]
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No makeup tick; bucket of water is not a magical removal source.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/155",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/living-magma/procedure",
+          "role": "suppression/replacement"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-ROOT-01",
+          "role": "no child root on suppressed tick"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-06-A",
+      "title": "Nexus price and Ease",
+      "historicalOriginalText": "CJ5-06-A: An eligible actual rank-five spell has ordinary discountable price10and is committed by a caster inside one or three overlapping Nexuses. Its Nexus price is8in either case; subsequent reviewed Ease can make that7. The actual rank remains5and its normal Dissonance gain remains; no2RP is also recovered into the pool.",
+      "currentInitialState": "Actual rank5 RP-priced spell base10 committed by caster inside three overlapping Nexuses; no Dampening; pending accepted Ease.",
+      "actionsAndResolution": [
+        "Ordinary/source reductions leave base10.",
+        "One Nexus total reduces10→8; overlaps do not stack.",
+        "Final Ease reduces8→7.",
+        "Cast remains rank5 with normal cadence/Dissonance; no 2RP recovery is created."
+      ],
+      "costLedger": {
+        "base": 10,
+        "nexusReduction": 2,
+        "afterNexus": 8,
+        "ease": -1,
+        "final": 7
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Final RP price7.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/158",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PRICE-01",
+          "role": "price order"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/330",
+          "role": "final Influence"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-06-B",
+      "title": "Nexus replacement and Ready timing",
+      "historicalOriginalText": "CJ5-06-B: A Wizard replacing their own concentration Nexus ends the old concentration at commitment, so cannot rely on that disappearing field to price the new cast at8. A genuinely separate other-owner field still present can qualify. A readied cast paid inside keeps that paid price when released outside, with no second discount or refund.",
+      "currentInitialState": "Wizard maintains own Nexus and wants to cast replacement; separate fixture has another owner's Nexus. Readied spell is committed inside field then released outside.",
+      "actionsAndResolution": [
+        "Starting replacement concentration ends own old Nexus at commitment before new cast can use it; own old field gives no discount.",
+        "Another owner's already-operative Nexus may qualify.",
+        "Readied spell prices once at preparation/commitment; later release outside does not reprice/refund."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "fieldRadiusFt": 10
+      },
+      "currentAdjudication": "No self-financed concentration replacement; no release-time second discount.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/158",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/resonance-nexus/procedure",
+          "role": "commitment eligibility/replacement"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-07-A",
+      "title": "Faction Champion creation/attack",
+      "historicalOriginalText": "CJ5-07-A: A genuinely positive-standing faction qualifies at creation. The one champion's commanded attack uses Wizard+8and rolls2d8=11plusPB4for15slashing, with no extra companion attack granted. Its apparent shield and armor are intrinsicAC18, not two free sellable items taken from a distant faction armory.",
+      "currentInitialState": "Wizard9 PB4 spell attack+8. Faction F has alliedStatus=true, standing+1, current invocation permission, no aid prohibition. Champion summoned legally.",
+      "actionsAndResolution": [
+        "Champion gate passes AC5-CHAMPION-ALLY-01.",
+        "Owner BA command; Champion Strike attack uses+8 and hits; 2d8=11 + PB4 =15 slashing.",
+        "Intrinsic shield/armor remain profile manifestation, not inventory."
+      ],
+      "costLedger": {
+        "summonRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "attackReachFt": 5
+      },
+      "currentAdjudication": "One finite Champion; no extra companion Action/items/real NPC transport.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/159",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-CHAMPION-ALLY-01",
+          "role": "faction gate"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/profiles/AC5-PROFILE-FACTION-CHAMPION-01",
+          "role": "profile"
+        }
+      ]
+    },
+    {
+      "id": "CJ5-07-B",
+      "title": "Champion cap, standing drift and cargo",
+      "historicalOriginalText": "CJ5-07-B: The caster cannot create one champion from each of three friendly factions to gain three source slots; this spell permits one per owner across all factions. An actual later standing decrease does not duplicate or teleport a real officer into its body. On expiry a genuinely borrowed lantern drops intact, while the manifested weapon leaves no harvestable item or NPC corpse.",
+      "currentInitialState": "Caster has three friendly factions but only one live Champion. Existing Champion carries genuine borrowed lantern and intrinsic manifested weapon. Standing later drops.",
+      "actionsAndResolution": [
+        "Spell permits one Champion per owner across all factions; second successful formation replaces first rather than adds another.",
+        "Later ordinary standing loss does not remotely end already admitted body.",
+        "At source expiry body ends; real lantern drops/settles at last legal position; intrinsic weapon vanishes."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "sourceDeadlineSeconds": 60
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No teleported officer, corpse/loot, faction stock duplication or source-slot multiplication.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/159",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/profiles/AC5-PROFILE-FACTION-CHAMPION-01",
+          "role": "body cap/cargo"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-CHAMPION-ALLY-01",
+          "role": "gate"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X01",
+      "title": "Null-disabled Greater Fire Pet and healing",
+      "historicalOriginalText": null,
+      "currentInitialState": "Wizard9 owns live Greater Fire Pet, source deadline t60; pet HP5/60. Enemy damage root is qualifying nullNonlethal=true and deals8. Later Cleric5 WIS+3, S=2, M=3, RP10 stands within30ft.",
+      "actionsAndResolution": [
+        "t6: qualifying Null damage would reduce pet below0; accepted finite-summon branch places same pet at Disabled0 instead of damage-caused disappearance. Source concentration/deadline continues.",
+        "t12: a second qualifying Null packet hits the already Disabled0 pet; it remains same Disabled0 body with no organic death/Wound and no refreshed duration.",
+        "t18: Cleric spends Action+2RP Healing Rite. AC5-SUMMON-TARGET-01 treats this existing profile as living ally for HP healing. Roll 2d8=7 + M3 =10; pet HP becomes10/60 and Disabled ends because HP>0.",
+        "t60 source expiry/concentration ending still removes pet normally if not already ended."
+      ],
+      "costLedger": {
+        "clericRpStart": 10,
+        "healingRiteRpSpent": 2,
+        "clericRpEnd": 8
+      },
+      "clockLedger": {
+        "nullHit1": 6,
+        "nullHit2": 12,
+        "healing": 18,
+        "sourceDeadline": 60
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Null changes only damage-caused finite-summon disappearance. Legal healing restores same body; independent source ending remains authoritative.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/153",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+          "pointer": "/currentModule/null/veil/damageNonlethal/recipientLifecycle/finiteSummonFamiliarMirrorBeast",
+          "role": "accepted finite-summon Null lifecycle"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-SUMMON-TARGET-01",
+          "role": "healing extension"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+          "pointer": "/cards/12",
+          "role": "Cleric Healing Rite"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+          "pointer": "/engine/0",
+          "role": "Cleric S/M engine"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X02",
+      "title": "Null-disabled Faction Champion and source expiry",
+      "historicalOriginalText": null,
+      "currentInitialState": "Wizard9 owns live Faction Champion HP6/70 carrying genuine 2-lb lantern; source concentration deadline t60. Qualifying Null packet deals12 at t6. Cleric1 WIS+3, S1,M3,R P6 later heals.",
+      "actionsAndResolution": [
+        "t6: Null packet produces same Champion Disabled0 rather than finite-summon disappearance; lantern remains genuine cargo.",
+        "t12: Cleric spends Action+2RP; Healing Rite 1d8=5 +3 =8 -> Champion HP8/70, clearing Disabled.",
+        "t60: concentration deadline ends Champion body. Intrinsic armor/weapon vanish; genuine lantern remains and drops/settles at last legal position."
+      ],
+      "costLedger": {
+        "clericRpStart": 6,
+        "healingRiteRpSpent": 2,
+        "clericRpEnd": 4
+      },
+      "clockLedger": {
+        "nullHit": 6,
+        "healing": 12,
+        "sourceEnd": 60
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No NPC corpse/loot or source-duration refresh is created.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/159",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+          "pointer": "/currentModule/null/veil/damageNonlethal/recipientLifecycle/finiteSummonFamiliarMirrorBeast",
+          "role": "accepted finite-summon Null lifecycle"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-SUMMON-TARGET-01",
+          "role": "healing extension"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+          "pointer": "/cards/12",
+          "role": "Cleric Healing Rite"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/profiles/AC5-PROFILE-FACTION-CHAMPION-01",
+          "role": "cargo/ending"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X03",
+      "title": "Living Magma root provenance across Veil change",
+      "historicalOriginalText": null,
+      "currentInitialState": "Wizard9 has unsuppressed Null Veil at t0 and casts Living Magma on target HP18; target fails CON. Wizard's Veil is purged at t3. Tick rolls at t6/t12/t18 are6/5/7.",
+      "actionsAndResolution": [
+        "t0 failed save successfully establishes rider and AC5-ROOT-01 creates one root with dealer Wizard and nullNonlethal=true; no immediate packet.",
+        "t3 Veil ends, but root flag is historical and unchanged.",
+        "t6/t12/t18 tick packets descend from same root and all retain nullNonlethal=true; rolls are6,5,7 before defenses.",
+        "Any tick taking living target to0 follows accepted Null nonlethal damage branch; no later Veil rewrite."
+      ],
+      "costLedger": {
+        "spellRpSpent": 10
+      },
+      "clockLedger": {
+        "root": 0,
+        "veilEnds": 3,
+        "ticks": [
+          6,
+          12,
+          18
+        ]
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Living Magma has one creation-time Null provenance root, not a new Veil decision per tick.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/155",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-ROOT-01/livingMagma",
+          "role": "root timing"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+          "pointer": "/currentModule/null/veil/damageNonlethal/scope",
+          "role": "accepted Null root creation/dealer rule"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X04",
+      "title": "Fire Pet aura roots use pet identity",
+      "historicalOriginalText": null,
+      "currentInitialState": "Owner has Null Veil throughout numbered round. Greater Fire Pet itself is not Veiled at hostile T1 START, then legitimately gains unsuppressed Null Veil before hostile T2 START. Shared aura d6 roll=4.",
+      "actionsAndResolution": [
+        "T1 START: aura qualifies; create root dealer=pet. Pet not Veiled -> root nullNonlethal=false even though owner is Veiled; failed DEX takes4 fire before defenses.",
+        "Between starts pet gains Veil under a legal Null exposure event.",
+        "T2 START: separate recipient root dealer=pet. Pet is now Veiled -> root nullNonlethal=true; reuse shared d6=4 but do not copy T1 root flag."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "auraRadiusFt": 5,
+        "sharedRoll": 4
+      },
+      "currentAdjudication": "Shared damage die does not merge roots; owner/control identity is not damage dealer.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/153",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-ROOT-01/greaterFirePetAura",
+          "role": "separate aura roots"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_relic_null_reviewed_01.json",
+          "pointer": "/currentModule/null/veil/damageNonlethal/scope",
+          "role": "accepted Null root creation/dealer rule"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X05",
+      "title": "Nexus + Dampening + Ease and base-only waiver",
+      "historicalOriginalText": null,
+      "currentInitialState": "Fixture A: Wizard9 casts rank5 base10 spell while body intersects one Nexus and one accepted Dampening Field, with pending Ease. Fixture B: Wizard20 uses Grand Reservoir /cards/62 for same legal rank5 spell inside both fields with pending Ease.",
+      "actionsAndResolution": [
+        "A: ordinary base10 -> Nexus8 -> Dampening mandatory+2=10 -> Ease -1=9. Pay9 RP; spell remains rank5.",
+        "B: Grand Reservoir waives normal/base RP cost to0 but not mandatory extras. Nexus has no remaining ordinary RP-price component to reduce ->0. Dampening creates mandatory +2 interface ->2. Ease ->1. Spend Grand Reservoir use and pay1 RP if Wizard has a pool; components/cadence remain."
+      ],
+      "costLedger": {
+        "A_finalRp": 9,
+        "B_finalRp": 1,
+        "B_grandReservoirUseSpent": 1
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Accepted Dampening ordering is unchanged; Nexus never moves after it and never discounts protected/created Dampening extra.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/158",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PRICE-01",
+          "role": "price order"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/4",
+          "role": "accepted Resonance Dampening Field"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/330",
+          "role": "Ease"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/62",
+          "role": "Grand Reservoir"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X06",
+      "title": "Charge/use-only spell versus RP-paid nonspell",
+      "historicalOriginalText": null,
+      "currentInitialState": "Fixture A uses a legitimately pre-existing charge/use-only ancestry casting entitlement for actual Burning Hands; this review does not create that ancestry grant. Caster has an RP pool and stands inside Nexus+Dampening. Fixture B is Ranger Nature's Whisper /cards/7 with RP5 inside both fields.",
+      "actionsAndResolution": [
+        "A: Burning Hands remains an actual spell. Its ancestry route has no ordinary RP-price interface, so Nexus has 0 discountable RP and does nothing. Accepted Dampening adds its scoped +2 RP interface; the ancestry charge/use is still spent. If the caster had no RP pool, the cast would be unaffordable. Burning Hands keeps its own Action/components/save/damage.",
+        "B: Nature's Whisper is magical NONSPELL, Action1RP, Recharge3, spellRank null. Nexus and Dampening do not alter its1RP cost. It commits1RP and Recharge3 under its own card; Lesser Antimagic can suppress its magical payload only by the field's explicit nonspell scope."
+      ],
+      "costLedger": {
+        "A_dampeningRp": 2,
+        "A_chargeUseSpent": 1,
+        "B_natureWhisperRp": 1,
+        "B_rechargeSet": 3
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "RP payment does not classify a technique as a spell; Nexus does not manufacture an RP price for charge/use-only spells.",
+      "notes": [
+        "The packet recognizes charge-only ancestry spell routes but does not include a specific ancestry-grant card. The fixture therefore presumes an already legitimate campaign entitlement; it does not author one."
+      ],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/426",
+          "role": "actual Burning Hands spell"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+          "pointer": "line 25 / charge-only ancestry spell",
+          "role": "source-recognized charge-only spell route"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/4",
+          "role": "accepted Resonance Dampening Field"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/158",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+          "pointer": "/cards/7",
+          "role": "Nature's Whisper"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PRICE-01",
+          "role": "price boundary"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X07",
+      "title": "Barrier conversion under Nexus+Dampening+Ease",
+      "historicalOriginalText": null,
+      "currentInitialState": "Wizard9 RP32 PB4 casts Resonance Barrier with X2 while inside Nexus and Dampening, pending Ease; no Dissonance surcharge.",
+      "actionsAndResolution": [
+        "Base10 -> Nexus8.",
+        "Dampening +2 ->10.",
+        "Ease -1 -> final RP-priced spell amount9, allocated against creditable base8 ->7.",
+        "Protected X2 paid separately; total payment11. creditable=7+2=9; prevention pool=45."
+      ],
+      "costLedger": {
+        "rpStart": 32,
+        "base": 10,
+        "afterNexus": 8,
+        "dampening": 2,
+        "ease": -1,
+        "rpPriced": 9,
+        "protectedX": 2,
+        "totalSpent": 11,
+        "rpEnd": 21,
+        "pool": 45
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No credit for Dampening or waived Ease point; X remains paid/creditable and undiscounted.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/59",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PRICE-01/barrierCreditAllocation",
+          "role": "credit allocation"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/4",
+          "role": "accepted Resonance Dampening Field"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/330",
+          "role": "Ease"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X08",
+      "title": "Transferred unmitigated damage bypasses Barrier",
+      "historicalOriginalText": null,
+      "currentInitialState": "Ally A has Resonance Barrier pool43. A takes post-defense25 damage. An actual post-defense sharing source transfers17 to protected recipient B, whose separate Resonance Barrier pool is30; transferred branch is marked unmitigated/no further prevention.",
+      "actionsAndResolution": [
+        "A's own eligible pure prevention resolves before post-defense transfer if applicable to A under that source; fixture transfer amount17 is already the finalized transferred branch.",
+        "B receives17 with damage type preserved and skips another DR/resistance/immunity/prevention stage per current damage-sharing rule.",
+        "B's Barrier remains30; it cannot spend17 a second time. TempHP/life consequences on B still resolve normally."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No double mitigation and no Barrier credit/recovery from transferred damage.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/59",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+          "pointer": "lines 11-15 / section: Resolve the kind of protection first",
+          "role": "post-defense transfer order"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+          "pointer": "line 61 / source-specific restrictions",
+          "role": "no second prevention"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X09",
+      "title": "Antimagic vs Dimensional Door endpoints",
+      "historicalOriginalText": null,
+      "currentInitialState": "Fixture A: Wizard outside Lesser Antimagic at origin O; known legal same-plane Dimensional Door destination D also outside; a drawn straight line O-D crosses the sphere. Fixture B: same caster's body is actually inside the field at commitment.",
+      "actionsAndResolution": [
+        "A: Dimensional Door has no traversed path/LoE requirement to known destination. Lesser Antimagic does not invent one, so crossing a drawn line is irrelevant; cast resolves if its own endpoint rules pass.",
+        "B: Wizard may legally commit Door if casting permissions/resources pass; costs/cadence are spent. Because spell manifestation originates in operative antimagic volume, payload is suppressed and body remains at O. No delayed teleport occurs on exit."
+      ],
+      "costLedger": {
+        "dimensionalDoorBaseRp": 7
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "A_originOutside": true,
+        "A_destinationOutside": true,
+        "imaginaryLineCrossesField": true,
+        "B_originInside": true
+      },
+      "currentAdjudication": "Local suppression is not a universal beam/path engine.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/54",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/12",
+          "role": "accepted Dimensional Door"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/antimagic-field-lesser/procedure",
+          "role": "local-source scope"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X10",
+      "title": "Antimagic AC5 summon and protected spellbook",
+      "historicalOriginalText": null,
+      "currentInitialState": "Greater Fire Pet HP31 carries genuine lantern; live source has30s remaining. Wizard with Spell Preservation holds primary spellbook. Both enter Lesser Antimagic for12s then leave before deadlines.",
+      "actionsAndResolution": [
+        "Pet body uses AC5-ANTIMAGIC-SUMMON-01: same identity/HP31/cargo/deadline; Speed0, no Actions/commands/aura/attack while inside. No missed aura is queued.",
+        "Spellbook remains physical. Spell Preservation protection is suppressible by its actual card; field does not destroy or duplicate book.",
+        "On exit, still-live pet resumes with HP31 and remaining source time; Spell Preservation resumes if book still exists. No HP/charge/deadline refresh."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "suppressionSeconds": 12
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Suppression preserves history/body/item identity; it is not end/resummon.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/54",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-ANTIMAGIC-SUMMON-01",
+          "role": "AC5 summon suppression"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/23",
+          "role": "Spell Preservation"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X11",
+      "title": "Greater Dispel fixed snapshot with rank5 wall and rank7 effect",
+      "historicalOriginalText": null,
+      "currentInitialState": "Wizard9 Greater Dispel caster +8. Snapshot center captures rank5 Wall of Force that blocks center LoE to effect E behind it, plus one reviewed rank7 Alignment Anchor application in reachable area. Higher-rank roll d15.",
+      "actionsAndResolution": [
+        "Capture snapshot: Wall + rank7 Anchor are captured; E is not.",
+        "Rank5 Wall ends automatically.",
+        "Wall disappearance does not expand snapshot to E.",
+        "Rank7 check =15+8=23 vs DC24 (10+2×7): failure, so captured rank7 Anchor remains."
+      ],
+      "costLedger": {
+        "greaterDispelRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "radiusFt": 30
+      },
+      "currentAdjudication": "No Sigil Authority bonus and no second scan.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/56",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/58",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/7",
+          "role": "accepted Alignment Anchor"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/22",
+          "role": "Sigil Authority"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X12",
+      "title": "Force wall support, suppression, resumption and Falling",
+      "historicalOriginalText": null,
+      "currentInitialState": "Horizontal Wall of Force at z20 supports Medium creature. At t12 Antimagic suppresses a 10-ft section under creature; creature begins Falling through missing segment. At t18 field ends while creature is no longer intersecting segment.",
+      "actionsAndResolution": [
+        "Suppression removes only intersecting wall portion; wall concentration/deadline continues.",
+        "Loss of support starts ordinary Falling from z20. Wall does not freeze body.",
+        "At t18 suppressed segment may resume only where clear. If a body/object occupied closing plane it would remain locally pending, not crush/bisect.",
+        "If wall itself expires while someone stands on active portion, support ends and one ordinary Fall Marker begins."
+      ],
+      "costLedger": {},
+      "clockLedger": {
+        "suppressionStart": 12,
+        "suppressionEnd": 18,
+        "wallDeadline": 60
+      },
+      "geometryLedger": {
+        "wallZFt": 20
+      },
+      "currentAdjudication": "No oxygen deletion, forced displacement or duplicate falling.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/58",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/54",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: Falling/support",
+          "role": "falling"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X13",
+      "title": "Reputation protection, correction and standing transaction",
+      "historicalOriginalText": null,
+      "currentInitialState": "Target standing with Faction F = +1. Reputation Shield active. Scene has genuine -2 contribution and separate clerical data correction showing an earlier duplicated +1 should never have existed. Later target attempts transaction costing1 standing.",
+      "actionsAndResolution": [
+        "Genuine -2 contribution is recorded with provenance but applied as0 due shield.",
+        "Administrative correction removes erroneous duplicate record if present; correction is not a new negative gameplay contribution and is not blocked.",
+        "Standing-cost transaction cannot proceed while shield prevents the negative payment. Target may voluntarily end its own shield, then pay1 standing under transaction rules."
+      ],
+      "costLedger": {
+        "shieldRpSpent": 10
+      },
+      "clockLedger": {
+        "shieldDurationSeconds": 86400
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No deferred debt, no protection from corrections and no free purchase.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/61",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/REPUTATION.md",
+          "pointer": "section: standing/reputation",
+          "role": "standing ledger"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X14",
+      "title": "Faction Champion gate is distinct",
+      "historicalOriginalText": null,
+      "currentInitialState": "Caster has Faction A standing+2 but no alliedStatus/invocation permission; Faction B membership+standing+1+invocation permission but alliedStatus not recorded; Faction C alliedStatus=true, standing+1, invocation permission, no aid ban.",
+      "actionsAndResolution": [
+        "A fails AC5-CHAMPION-ALLY-01 despite positive standing.",
+        "B fails because membership/permission does not manufacture Champion alliedStatus.",
+        "C passes and can be chosen before payment if all ordinary cast/space gates pass."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Faction Ally and Faction Portal credentials remain distinct from Champion gate.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/159",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-CHAMPION-ALLY-01",
+          "role": "Champion gate"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/14",
+          "role": "Faction Ally gate"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/145",
+          "role": "current Faction Portal"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X15",
+      "title": "Banish Elemental type scope",
+      "historicalOriginalText": null,
+      "currentInitialState": "Caster has three perceived creatures within60: E=current creatureType Elemental with no plane provenance; S=summoned Humanoid with no outsider tag; O=non-Elemental body with exact current outsider classification. All otherwise targetable.",
+      "actionsAndResolution": [
+        "E is eligible by explicit Elemental type even without provenance.",
+        "S is ineligible: summoned is not synonym for Elemental/outsider.",
+        "O is eligible by explicit outsider classification.",
+        "Choose one eligible target before payment; spell never discloses hidden eligibility beyond normal observed outcome."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Banish Elemental target taxonomy remains distinct from Elemental Banishment and Planar Binding.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/55",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/banish-elemental/procedure",
+          "role": "type eligibility"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X16",
+      "title": "Elemental Banishment summon-source scope",
+      "historicalOriginalText": null,
+      "currentInitialState": "Caster perceives hostile natural Elemental N and hostile summoned non-Elemental Champion C, both within60/LoE. C has live summon-source identity; N has none.",
+      "actionsAndResolution": [
+        "N is ineligible despite Elemental type because this spell requires one summoned enemy.",
+        "C is eligible despite non-Elemental type because live source proves summoned body and caster currently perceives/regards it hostile.",
+        "On C failed CHA and available hard-control allowance, establish AC5-BANISH-EXT cell with this spell's concentration minute."
+      ],
+      "costLedger": {
+        "spellRpSpent": 10
+      },
+      "clockLedger": {
+        "maxExileSeconds": 60
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No merge with Banish Elemental.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/156",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/elemental-banishment/procedure",
+          "role": "summon eligibility"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-BANISH-EXT-01",
+          "role": "closure reuse"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X17",
+      "title": "Elemental Banishment source expiry, cargo, rider, endpoint blocker",
+      "historicalOriginalText": null,
+      "currentInitialState": "Hostile summoned Champion C carries genuine lantern L and physically carries separate willing Small creature R. C source expires at t30. C fails CHA at t0; origin is under no Anchor initially. At t20 Dimensional Anchor is established over C's origin return endpoint.",
+      "actionsAndResolution": [
+        "Before exile separate creature R is not gear; R remains origin-plane. C+legal noncreature lantern L transit into AC5-BANISH-EXT cell.",
+        "t20 Anchor begins over return endpoint; exile continues.",
+        "t30 Champion's independent summon source expires: body ends; intrinsic gear vanishes; genuine lantern remains loose. Elemental Banishment ends immediately because body source ended.",
+        "AC5-BANISH-EXT closes cell. Terminal Banishment blocker exception ignores only Anchor prevention for mandatory cargo return; L returns/settles once. C is not recreated and R never moved."
+      ],
+      "costLedger": {
+        "elementalBanishmentRpSpent": 10,
+        "anchorRpSpent": 7
+      },
+      "clockLedger": {
+        "exileStart": 0,
+        "anchorStart": 20,
+        "championSourceEnd": 30
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Source expiry outranks exile duration; real cargo preserved; separate creature never becomes gear.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/156",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-BANISH-EXT-01",
+          "role": "source-ending/cargo closure"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_exact_model_04.json",
+          "pointer": "/procedure",
+          "role": "accepted ordinary Banishment procedure"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/2",
+          "role": "accepted Dimensional Anchor"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/profiles/AC5-PROFILE-FACTION-CHAMPION-01",
+          "role": "finite body/cargo"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X18",
+      "title": "Planar Protection physical crossing",
+      "historicalOriginalText": null,
+      "currentInitialState": "Ward chooses actual planeKey P-A and fixed15ft sphere. Creature T has currentBody.lastArrivedFromPlaneKey=P-A. T starts outside. Creature U with same provenance starts already inside at ward creation.",
+      "actionsAndResolution": [
+        "T walks/forced-moves inward: crossing halts at last legal exterior position; no damage/shove.",
+        "U is not expelled at creation. U may move inside and leave; after leaving, same provenance prevents reentry while ward operates.",
+        "Carrier cannot turn T into inventory; may drop T outside. A teleport arrival whose destination is inside ward fails atomically under its own cost rules."
+      ],
+      "costLedger": {
+        "spellRpSpent": 10
+      },
+      "clockLedger": {
+        "wardDeadlineSeconds": 60
+      },
+      "geometryLedger": {
+        "radiusFt": 15
+      },
+      "currentAdjudication": "Ward is an entry restriction keyed to explicit operational provenance, not native/type taxonomy.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/60",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PLANAR-META-01",
+          "role": "provenance"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/planar-protection/procedure",
+          "role": "crossing rules"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X19",
+      "title": "Unknown planar provenance remains unknown",
+      "historicalOriginalText": null,
+      "currentInitialState": "Planar Protection ward chooses P-A. Creature Q has no established lastArrivedFromPlaneKey/createdFromPlaneKey and no exact source-provenance record. Separate Planar Binding caster targets Q based only on appearance/rumor.",
+      "actionsAndResolution": [
+        "Protection does not secretly infer Q from P-A; Q is Indeterminate and ward cannot treat unknown provenance as proven P-A.",
+        "Planar Binding cast can be legally attempted if target/range known, but eligibility revalidation finds no required extraplanar evidence; paid cast fails with no service record and no diagnostic of native/origin truth."
+      ],
+      "costLedger": {
+        "planarBindingRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Unknown is not false cosmology and spells do not reveal provenance by failure.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/60",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/157",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PLANAR-META-01/unknown",
+          "role": "unknown provenance"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X20",
+      "title": "Planar Binding does not extend finite summon source",
+      "historicalOriginalText": null,
+      "currentInitialState": "Water Pet W exists under owner concentration with30s remaining. W previously crossed a real Alignment Portal from planeKey P-A to current plane P-B, so current travel provenance records lastArrivedFromPlaneKey=P-A. Binder Wizard9 within60/LoE casts Planar Binding; W fails CHA and hard-control available.",
+      "actionsAndResolution": [
+        "Planar Binding establishes 24h service record at t0; it does not take over Water Pet source ownership/concentration.",
+        "t30 original Water Pet concentration/source ends: W body ends under its source.",
+        "Planar Binding ends because target body/source ceased; no 23h59m30s replacement body, corpse or cargo grant appears."
+      ],
+      "costLedger": {
+        "planarBindingRpSpent": 10
+      },
+      "clockLedger": {
+        "bindingDeadline": 86400,
+        "waterPetSourceEnd": 30
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Binding duration never extends finite source lifespan.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/157",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/8",
+          "role": "accepted Summon Water Pet"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PLANAR-META-01",
+          "role": "travel provenance"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/planar-binding/procedure",
+          "role": "source-lifespan limit"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X21",
+      "title": "Planar Binding order and behavior-budget arbitration",
+      "historicalOriginalText": null,
+      "currentInitialState": "Bound extraplanar creature T has one ordinary Action and30ft movement this turn. Earlier current Command spell instruction at timestamp10 requires Grovel; Planar Binding binder later issues BA service order at timestamp20 to Attack creature A. Both effects are live; no extra Action.",
+      "actionsAndResolution": [
+        "Gather mandatory instructions by accepted Compelled Budget Arbitration. Earlier Grovel can be satisfied by legal Prone posture/movement without necessarily consuming Action; then Attack may still be possible if legal from Prone/remaining range.",
+        "If an earlier mandatory instruction instead consumes the only ordinary Action incompatibly, later Binding Attack order receives no second Action and remains ineffective only for that contested opportunity.",
+        "Binding never forces an RP spell, charge, per-rest ability or companion action gate absent from target's actual budget."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {
+        "priority": {
+          "Command": 10,
+          "BindingOrder": 20
+        }
+      },
+      "currentAdjudication": "No duplicated turn/action/resource; priority timestamp and compatibility decide.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/157",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/325",
+          "role": "current Command"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+          "pointer": "section: Compelled budget arbitration",
+          "role": "budget arbitration"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X22",
+      "title": "Alignment Portal actual compatible plane vs Wheel label",
+      "historicalOriginalText": null,
+      "currentInitialState": "Caster effective alignment Lawful Good. Director has actual plane record planeKey=P-A, known site SITE-1, AC5 AlignmentPortalCompatibility includes Lawful Good. Separate mortal lore calls a Wheel destination 'Celestia' but no source establishes Celestia == P-A or any actual planeKey/site.",
+      "actionsAndResolution": [
+        "Portal to P-A/SITE-1 passes metadata/alignment/site preflight if geometry/blockers pass.",
+        "Attempt using only mortal label 'Celestia' fails preflight: no actual planeKey+known site/equivalence exists.",
+        "No comparison infers P-A objective alignment/native population/soul destination."
+      ],
+      "costLedger": {
+        "portalRpSpentIfLegal": 10
+      },
+      "clockLedger": {
+        "maxGateSeconds": 60
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "Genuine portal uses actual record; mortal Wheel label alone is not travel ontology.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/160",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-ALIGN-PORTAL-META-01",
+          "role": "compatibility metadata"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/sharedRules/AC5-PLANAR-META-01",
+          "role": "planeKey/site"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "docs/mechanics/OWNER_COSMOLOGY_LOCKS_2026-07-30.md",
+          "pointer": "full document",
+          "role": "owner cosmology boundary"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X23",
+      "title": "Alignment Portal with Suggestion/Purge under Lock",
+      "historicalOriginalText": null,
+      "currentInitialState": "Target-caster has underlying effective alignment record Chaotic Good. Current reviewed Suggestion/Purge history yields lower effective result Neutral Good. Active Alignment Lock has snapshotted Neutral Good on both defined axes. P-A compatibility includes Neutral Good.",
+      "actionsAndResolution": [
+        "At Portal commitment compute lower underlying history first using AP-AS-01; then AC4-ALIGN-01 applies Lock snapshot last, so effective key is Neutral Good.",
+        "Later underlying Purge/Suggestion record change while Lock stays active does not change the locked effective key and is not deleted/paused.",
+        "Portal resolves using effective Neutral Good if destination metadata/site still valid. Once gate formed, it snapshots that key; later alignment changes do not collapse it."
+      ],
+      "costLedger": {
+        "portalRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {
+        "alignmentKeyAtCommit": "Neutral Good"
+      },
+      "currentAdjudication": "Portal does not turn Lock into a ratchet or rewrite underlying alignment history.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/160",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/6",
+          "role": "accepted Alignment Lock"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/329",
+          "role": "current Alignment Suggestion"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+          "pointer": "/cards/5",
+          "role": "reviewed Alignment Purge"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/alignment-portal/procedure",
+          "role": "alignment ordering"
+        }
+      ]
+    },
+    {
+      "id": "AC5-X24",
+      "title": "Alignment Portal atomic group/cargo, Anchor and expiry",
+      "historicalOriginalText": null,
+      "currentInitialState": "Open Alignment Portal links origin plane P-A SITE-O to P-B SITE-D, deadline t60. At t54 traveler A has 5ft movement and legally carries20lb gear plus physically carries separate Small creature B within actual body/load capacity; destination can fit both. At t57 Dimensional Anchor becomes active on destination aperture. Traveler C waits at origin.",
+      "actionsAndResolution": [
+        "t54 A/B crossing packet preflights both bodies and gear; spend5ft movement and atomically place both at destination. Update each body's lastArrivedFromPlaneKey=P-A.",
+        "t57 Anchor covers destination. C's next known crossing is blocked at preflight; no 5ft crossing movement is committed and C remains origin.",
+        "t60 absolute portal deadline closes both apertures. No body/cargo is bisected, no pending crossing begins, and A/B receive no free return."
+      ],
+      "costLedger": {
+        "portalCastRpSpent": 10
+      },
+      "clockLedger": {
+        "A_crossing": 54,
+        "anchorStarts": 57,
+        "portalCloses": 60
+      },
+      "geometryLedger": {
+        "aperture": "5ft×8ft",
+        "crossingMovementFt": 5
+      },
+      "currentAdjudication": "Separate carried creature is a traveler, not gear; endpoint blocker is rechecked each crossing.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/160",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/2",
+          "role": "accepted Dimensional Anchor"
+        },
+        {
+          "authority": "NEW scoped AC5 authorship",
+          "path": "SPELLS_MODEL.json",
+          "pointer": "/spells/alignment-portal/procedure",
+          "role": "crossing/expiry"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "pointer": "section: carrying and placement",
+          "role": "separate body/load"
+        }
+      ]
+    },
+    {
+      "id": "AC5-K01",
+      "title": "Wizard class Dispel versus Greater Dispel rank7",
+      "historicalOriginalText": null,
+      "currentInitialState": "Wizard class Dispel user has INT+4 PB4 => +8 and feature ready; separate Greater Dispel caster also +8. Target is reviewed rank7 Alignment Anchor application.",
+      "actionsAndResolution": [
+        "Wizard /cards/19 spends Action+3RP and sets Recharge2. Rank7 >3: DC=10+7=17; d10+8=18 -> success, effect ends in fixture branch.",
+        "Separate Greater Dispel spends Action+10RP. Rank7 uses DC=10+2×7=24; d15+8=23 -> failure.",
+        "Sigil Authority +1 is eligible only for named Wizard Dispel Magic check, not Greater Dispel. If applied to class branch it only improves already-successful18 to19; it cannot be imported to Greater."
+      ],
+      "costLedger": {
+        "classDispelRp": 3,
+        "classRechargeRounds": 2,
+        "greaterDispelRp": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Distinct class spell and rank5 ordinary spell procedures remain distinct.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/19",
+          "role": "Dispel Magic"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/22",
+          "role": "Sigil Authority"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/56",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/7",
+          "role": "accepted Alignment Anchor"
+        }
+      ]
+    },
+    {
+      "id": "AC5-K02",
+      "title": "Nature's Whisper inside Nexus+Dampening/Antimagic",
+      "historicalOriginalText": null,
+      "currentInitialState": "Ranger has RP5, Nature's Whisper ready, body inside operative Nexus+Dampening; separate branch also inside Lesser Antimagic.",
+      "actionsAndResolution": [
+        "Nature's Whisper is magical NONSPELL spellRank null. Spend its own Action+1RP and set Recharge3; Nexus does not reduce and Dampening does not surcharge despite RP payment.",
+        "In Antimagic branch, the same nonspell Action+1RP+Recharge3 can legally commit; field's explicit magical-nonspell scope suppresses its magical payload/rider. It does not gain spell rank or Counterspell window."
+      ],
+      "costLedger": {
+        "rangerRpStart": 5,
+        "natureWhisperRpSpent": 1,
+        "rangerRpEnd": 4,
+        "recharge": 3
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Cost remains1RP, recharge3; classification does not drift.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+          "pointer": "/cards/7",
+          "role": "Nature's Whisper"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/158",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/4",
+          "role": "accepted Resonance Dampening Field"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/54",
+          "role": "source spell identity/access/effect"
+        }
+      ]
+    },
+    {
+      "id": "AC5-K03",
+      "title": "Oracle Curse under Antimagic",
+      "historicalOriginalText": null,
+      "currentInitialState": "Oracle has intrinsic Tongues Curse active and then uses Curse Manifestation BA1RC for3 rounds. Oracle enters Lesser Antimagic.",
+      "actionsAndResolution": [
+        "Oracle's Burden explicitly prevents generic remove/suspend of Oracle Curse; Lesser Antimagic does not erase Tongues/Curse engine.",
+        "Curse Manifestation says normally voluntarily suppressible Curse portions cannot be suppressed while Manifestation lasts; Antimagic does not become a feature naming Oracle Curse.",
+        "After Manifestation ends, Tongues may use its own Action to self-suppress for10minutes. Consumed's appearance suppression remains its own 1/long-rest permission."
+      ],
+      "costLedger": {
+        "curseManifestationRcSpent": 1
+      },
+      "clockLedger": {
+        "manifestationRounds": 3,
+        "tonguesSelfSuppressionSeconds": 600
+      },
+      "geometryLedger": {},
+      "currentAdjudication": "No generic intrinsic-Curse erasure or invented spell classification.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/8",
+          "role": "Oracle's Burden"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/6",
+          "role": "Curse Manifestation"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/54",
+          "role": "Tongues"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/79",
+          "role": "Consumed — Boon I"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/54",
+          "role": "source spell identity/access/effect"
+        }
+      ]
+    },
+    {
+      "id": "AC5-K04",
+      "title": "Spell-save defenses distinct",
+      "historicalOriginalText": null,
+      "currentInitialState": "Shaman Bloodcaller has /cards/41 Spell Resistance passive and receives ordinary rank5 Spell Resistance; Thief Arcane Trickster with /cards/21 +2 also receives ward. Hostile spell forces WIS save; separate concentration save follows spell damage.",
+      "actionsAndResolution": [
+        "Shaman hostile spell save has advantage from both sources but advantage does not stack: one advantaged roll.",
+        "Thief spell save gets one advantage plus numerical +2.",
+        "Later generic concentration save from damage is not directly a spell save; neither ordinary Spell Resistance nor Shaman spell-resistance passive supplies advantage merely due to spell-origin damage. Other concentration modifiers remain."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No damage resistance or duplicate advantage.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/57",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+          "pointer": "/cards/41",
+          "role": "Spell Resistance"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+          "pointer": "/cards/21",
+          "role": "Arcane Resistance"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "pointer": "section: concentration",
+          "role": "concentration distinction"
+        }
+      ]
+    },
+    {
+      "id": "AC5-K05",
+      "title": "Limited Arcane Theft/Spell Disruptor",
+      "historicalOriginalText": null,
+      "currentInitialState": "Thief sees target with ordinary rank5 Spell Resistance and separate Resonance Barrier prevention pool; Arcane Theft and Spell Disruptor ready.",
+      "actionsAndResolution": [
+        "Arcane Theft /cards/27 targets only eligible temporary rank1-3 buff and copies only printed AC/Speed/one resistance. Rank5 Spell Resistance is ineligible.",
+        "Spell Disruptor /cards/23 targets observed temporary magical +AC bonus max2. Resonance Barrier is a prevention pool, not +AC; no eligible payload.",
+        "No feature steals advantage, prevention RP/pool, summon or class engine."
+      ],
+      "costLedger": {
+        "arcaneTheftRpIfAttempted": 3,
+        "spellDisruptorRpIfAttempted": 1
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Names 'resistance'/'barrier' do not broaden class-card predicates.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+          "pointer": "/cards/27",
+          "role": "Arcane Theft"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+          "pointer": "/cards/23",
+          "role": "Spell Disruptor"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/57",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/59",
+          "role": "source spell identity/access/effect"
+        }
+      ]
+    },
+    {
+      "id": "AC5-K06",
+      "title": "Malfunction Field does not affect save-based blast",
+      "historicalOriginalText": null,
+      "currentInitialState": "Enemy Wizard casts Massive Elemental Blast while in Tinker Warmachine's Malfunction Field.",
+      "actionsAndResolution": [
+        "Massive Blast uses DEX saving throws and no spell attack.",
+        "Malfunction Field applies disadvantage only to first qualifying spell attack once/round; no qualifying attack roll exists.",
+        "Targets make ordinary DEX saves; field remains unused for a later actual spell attack that round if otherwise eligible."
+      ],
+      "costLedger": {
+        "massiveBlastRpSpent": 10
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No antimagic or save disadvantage is created.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+          "pointer": "/cards/38",
+          "role": "Malfunction Field"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/154",
+          "role": "source spell identity/access/effect"
+        }
+      ]
+    },
+    {
+      "id": "AC5-K07",
+      "title": "Planar Binding is not Grappled/Restrained",
+      "historicalOriginalText": null,
+      "currentInitialState": "Ally is under live Planar Binding service record but has neither Grappled nor Restrained condition. Paladin has Liberating Smite and Break Bonds.",
+      "actionsAndResolution": [
+        "Liberating Smite release riders require actual grapple/restraint maintained by target or affecting target; Planar Binding service supplies neither, so no release applies.",
+        "Break Bonds targets non-artifact Grappled/Restrained conditions; Planar Binding is not one and cannot be ended.",
+        "Binding may still be removed by actual eligible dispel/removal sources."
+      ],
+      "costLedger": {},
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "No generic 'bond' name matching.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/157",
+          "role": "source spell identity/access/effect"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/119",
+          "role": "Liberating Smite"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/122",
+          "role": "Break Bonds"
+        }
+      ]
+    },
+    {
+      "id": "AC5-K08",
+      "title": "Paladin suppression vs temporary spell ward and intrinsic immunity",
+      "historicalOriginalText": null,
+      "currentInitialState": "Selected enemy has temporary ordinary Spell Resistance application and separate intrinsic source-granted fire immunity. Oathbreaker Flame Paladin has Scorch aura /cards/69 and Blasphemous Word /cards/70.",
+      "actionsAndResolution": [
+        "Aura: at target regular START CHA save fails. Director may select one eligible temporary beneficial non-innate magical effect; ordinary Spell Resistance can be selected/suppressed until next target start if it meets current predicate. Intrinsic fire immunity is never eligible.",
+        "Blasphemous Word: Action2RP, targets CON save. On failure apply printed fire+necrotic damage then may suppress one eligible temporary beneficial spell or regeneration until target next end. Spell Resistance can be selected; intrinsic immunity/class engine cannot.",
+        "The two cards have different save/timing/endpoints and do not merge."
+      ],
+      "costLedger": {
+        "blasphemousWordRpSpent": 2
+      },
+      "clockLedger": {},
+      "geometryLedger": {},
+      "currentAdjudication": "Intrinsic immunity stays intact; temporary ward can be suppressed only under exact card scope.",
+      "notes": [],
+      "evidenceKind": "authored adjudication example; not runtime/human/balance test",
+      "sourceRefs": [
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/69",
+          "role": "Scorch the Sanctified"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "pointer": "/cards/70",
+          "role": "Scorch the Sanctified — Blasphemous Word"
+        },
+        {
+          "authority": "frozen current source",
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/57",
+          "role": "source spell identity/access/effect"
+        }
+      ]
+    }
+  ]
+}

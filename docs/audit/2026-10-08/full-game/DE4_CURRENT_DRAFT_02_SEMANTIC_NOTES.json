@@ -1,0 +1,38 @@
+{
+  "id": "DE4-CURRENT-DRAFT-02-SEMANTIC-NOTES",
+  "status": "Independent semantic review of an unsent local draft. Correct before joint DE4 submission; no rules are adopted.",
+  "draft": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_02.json",
+  "findings": [
+    {
+      "id": "DE4-L03-01",
+      "affected": "DE4-N11",
+      "finding": "The accepted Alignment Portal tests caster compatibility before creation, snapshots it, and does not re-test every traveler's alignment. The current forecast case incorrectly treats a traveler's later LawfulEvil alignment as an entry prohibition.",
+      "authority": {"path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json", "pointer": "/spells/15/procedure"},
+      "requiredCorrection": "Make the two planned actions actual new portal creation at t20 versus t40 by the subject caster, with an explicitly established site compatible with NeutralGood only and a real Lock expiry at t30. Separately show that later alignment changes do not close an already-created portal or bar a legal traveler. Preserve the original required-case text and record its unsupported ward-crossing premise as corrected, not fulfilled unchanged."
+    },
+    {
+      "id": "DE4-L03-02",
+      "affected": "DE4-N16",
+      "finding": "A normal same-caster Dominate Person recast already ends old concentration at commitment. The opening old-control-remains wording is too easy to read as preserving it despite the later qualification.",
+      "authority": {"path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md", "section": "Cast commitment and incompatible prior concentration"},
+      "requiredCorrection": "Use a different candidate controller with an already-spent source-character/target hard guard for the blocked replacement branch, leaving the original controller's concentration intact. Use a third eligible controller for actual replacement. Keep ordinary same-caster concentration loss as an explicit independent branch with no restoration."
+    },
+    {
+      "id": "DE4-L03-03",
+      "affected": "DE4-N13",
+      "finding": "The prior 3RP expenditure is still unnamed and conditional. The current Wizard Dispel card supplies an actual Action/3RP/rank3 spell source that can be used before the information read.",
+      "authority": {"path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json", "pointer": "/cards/19"},
+      "requiredCorrection": "Supply a legal real earlier Wizard Dispel against a perceived ongoing low-rank spell effect, actual known/acquired card and Action, no price modifier, and verify that source's catalog record; then read the actual RP12-to9 change. Preserve distinct RC/charges without granting a pool."
+    },
+    {
+      "id": "DE4-L03-04",
+      "affected": "Compulsion procedure and DE4-N24",
+      "finding": "An absent actual attached phase supplies no execution event; the draft says the sole opportunity expires without specifying a finite expiry checkpoint when no phase exists. This needs explicit scoped authorship instead of an implied missing event.",
+      "authority": {"path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md", "section": "Original regular/virtual timing markers"},
+      "requiredCorrection": "Define and record the spell-specific finite ending checkpoint at establishment: the next qualifying actual regular/attached-phase opportunity with its preserved timing marker, or an explicit six-second outside/no-schedule fallback. If the real lifecycle cannot execute at that fixed checkpoint, expire without creating a phase or retry. Confirm wording against exact control bridges before drafting it."
+    }
+  ],
+  "newSpellAdoptions": 0,
+  "sourceInformationDeleted": 0,
+  "runtimeTestsExecuted": 0
+}

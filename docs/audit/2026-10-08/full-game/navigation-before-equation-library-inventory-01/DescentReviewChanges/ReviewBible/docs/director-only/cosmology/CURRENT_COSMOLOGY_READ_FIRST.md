@@ -1,0 +1,15 @@
+# Current cosmology reading order
+
+Start with [the latest Heartcell owner update](HEARTCELL_OWNER_UPDATE_02.md): original-source priority is settled; primordial cycles are ages; the Choir clarification and chronology conflict are recorded; the commissioned Equation drafts, Research taint, proximity taint and exceptional Hunt/death rule are preserved.
+
+Then read [the earlier eleven owner corrections](OWNER_RECONCILIATION_REVIEWED_01.md). Their historical source-preference ambiguity and undefined cycle meaning are qualified by the latest update. The underlying Heartcell builder remains unresolved. An exact Harmony-to-Choir mapping and a fully reconciled awakening chronology remain open.
+
+Read [creation and origins](CREATION_ORIGINS_REVIEWED_01.md) and [gods and pantheons](GODS_PANTHEONS_REVIEWED_01.md) as earlier records subject to both owner updates. Mephistopheles is Cania only; the devouring-to-one correction and no-essence-tether correction remain current. The survivor's identity and Maladomini's replacement ruler are not supplied.
+
+Original Cosmology, Matrix and surviving World manuscripts govern cosmological source reading, with explicit owner corrections applied. Original passages, mortal belief, owner decisions and new notebook designs retain separate provenance. The new Equation drafts do not recover the missing original formula or World I-VI.
+
+This is Director/design material. The [Q6 endgame companion](Q6_LATER_LOCK_REVIEWED_01.md) is verified and applied: it distinguishes the registered crystal path and public ceiling from open identity and full encounter mechanics. Planes, souls/death/resurrection, history, divine/class powers and campaign revelations still need their remaining reviews. Numerical mechanics, runtime, human playtesting and publication are not certified by these records.
+
+The [planes review packet](../../../../../docs/audit/2026-10-08/full-game/COSMOLOGY_PLANES_01_PREPARATION.json) includes the saved website and 64 sources. GPT reached its conversation-length limit before returning a verdict; the packet and continuation handoff are preserved. The [souls/death preparation](SOULS_DEATH_REVIEW_PREPARATION_01.md) compares original soul lore, existing resurrection procedures and the Hunt owner direction; its proposed interfaces are not adopted mechanics.
+
+For the next souls/death conference, use the [concrete souls, forbidden research and Hunt draft](SOULS_DEATH_HUNT_CONFERENCE_DRAFT_01.md): 12 discussion sections and 20 situations, with 48 exact evidence locations verified. It is unsubmitted and unadopted. Its current status correction recognizes the reviewed standalone Soul Mirror procedure; the legacy pending catalog is historical evidence. No numerical taint scale or intervention route has been chosen.

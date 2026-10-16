@@ -1,0 +1,258 @@
+{
+  "status": "Authored proposed adjudications, not runtime/human tests",
+  "count": 28,
+  "cases": [
+    {
+      "id": "CU01-C01",
+      "title": "First ordinary use",
+      "start": "Substance X: no doses, no tolerance or dependence; actual unit available.",
+      "events": "Complete one legal dose.",
+      "elapsedSeconds": 6,
+      "expected": "One unit consumed; rest count 1; no repeat-dose save or overdose. Benefit and its one crash use the individual profile.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C02",
+      "title": "Second use",
+      "start": "Same substance: one completed dose since the rest boundary.",
+      "events": "Complete another ordinary dose and fail its printed dependence CON save.",
+      "elapsedSeconds": 6,
+      "expected": "Rest count 2; named dependence begins under CU-01-06. No overdose yet. Actual second benefit and crash still apply.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C03",
+      "title": "Third use is not retroactively shortened",
+      "start": "Two ordinary uses in the current seven-day window; tolerance inactive.",
+      "events": "Complete a third single dose before the next qualifying rest; succeed on dependence save.",
+      "elapsedSeconds": 6,
+      "expected": "Current dose has normal duration. Tolerance becomes active afterward. Rest count 3 separately triggers this item’s real severe complication and proposed automatic named dependence despite the successful save.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C04",
+      "title": "Fourth use under tolerance",
+      "start": "Tolerance active; printed benefit 600 seconds.",
+      "events": "Take a single dose.",
+      "elapsedSeconds": 6,
+      "expected": "Benefit lasts 300 seconds from actual completion. Crash duration stays its printed duration; repeat-dose/overdose follows the separate rest counter.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C05",
+      "title": "Doubled first event",
+      "start": "No doses in this rest epoch/window; two ready actual units with a profile permitting one doubled administration.",
+      "events": "Consume both in one event.",
+      "elapsedSeconds": 6,
+      "expected": "Rest/rolling count 2, one dependence save because the event contains the second dose, no overdose. Potency and normal duration are not doubled.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C06",
+      "title": "Doubled event crossing three",
+      "start": "One previous dose; tolerance inactive; two units ready.",
+      "events": "Complete a doubled event.",
+      "elapsedSeconds": 6,
+      "expected": "Rest/rolling count 3; at most one dependence save and one item-specific overdose event. Current duration is normal; tolerance becomes active only afterward.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C07",
+      "title": "Doubled tolerant use",
+      "start": "Tolerance active; printed duration 600 seconds, two real units prepared.",
+      "events": "Complete a permitted doubled event.",
+      "elapsedSeconds": 6,
+      "expected": "Duration 600 seconds, never 1200. Count two actual doses and resolve each threshold once per event as proposed.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C08",
+      "title": "No retrospective doubling",
+      "start": "Tolerance active; one unit consumed at T0 and another at T0+6 through separate administrations.",
+      "events": "Later call them one doubled dose.",
+      "elapsedSeconds": 6,
+      "expected": "Two separate events remain, each with its own tolerance-adjusted duration/crash and threshold evaluation. No retroactive restoration of the first duration.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C09",
+      "title": "Tolerance latch outlives the rolling third use",
+      "start": "Tolerance active; old doses age out but a dose was taken six days ago.",
+      "events": "Rolling seven-day count falls from three to one.",
+      "elapsedSeconds": null,
+      "expected": "Tolerance remains active; fewer than three current doses does not substitute for seven full days of abstinence.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C10",
+      "title": "Exact seven-day boundary",
+      "start": "Last actual dose completed at T0; no later dose.",
+      "events": "Reach T0+604800 and consume a new dose at that timestamp.",
+      "elapsedSeconds": 604800,
+      "expected": "Clear tolerance first, exclude the old boundary event from the rolling window, then count the new dose. Its duration is normal unless another source explicitly changes it.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C11",
+      "title": "New supplier is the same substance",
+      "start": "Quickglass history has two doses since a qualifying rest.",
+      "events": "Buy Quickglass from another seller and consume it.",
+      "elapsedSeconds": 6,
+      "expected": "It is the third Quickglass dose, not first use of a new brand. Actual stock changes, recipient history persists.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C12",
+      "title": "Different substance is a separate history",
+      "start": "Quickglass rest count 2, Moonsap rest count 0.",
+      "events": "Consume one Moonsap.",
+      "elapsedSeconds": 6,
+      "expected": "Moonsap count becomes 1; Quickglass stays 2. Effects may coexist only within their actual rules; no automatic pooled drug counter.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C13",
+      "title": "Rest does not cancel a scheduled crash",
+      "start": "A 600-second dose begins 300 seconds before an actual qualifying Long Rest completion.",
+      "events": "Rest completes before the dose’s fixed endpoint.",
+      "elapsedSeconds": 300,
+      "expected": "Proposed rest counter reset and maintenance opening occur, but the remaining 300 seconds of benefit and its crash remain scheduled. The earlier dose cannot satisfy the new maintenance interval.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C14",
+      "title": "Unrewarded rest is an unresolved decision",
+      "start": "The character already received a beneficial Long Rest within the current 24-hour cap.",
+      "events": "Complete another safe eight-hour Rest Watch.",
+      "elapsedSeconds": 28800,
+      "expected": "Under this NEW proposal, eligible Rest Debt may clear but substance epoch/maintenance does not reset. This case cannot be called an adopted rule until GPT resolves CU-01-05.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C15",
+      "title": "Maintenance at the boundary",
+      "start": "Named dependence; next qualifying rest completes at T0.",
+      "events": "A completed legal dose has timestamp T0 exactly, after the ordered rest event.",
+      "elapsedSeconds": 0,
+      "expected": "Open the interval then credit that actual dose once; no prepaid next interval. Dose/crash/tolerance consequences still occur.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C16",
+      "title": "Suppressed Withdrawal during recovery",
+      "start": "Named dependence and Withdrawal, symptom suppression active.",
+      "events": "Patient completes the actual seven-day no-dose project with real daily work/Supply and a successful recovery check.",
+      "elapsedSeconds": 604800,
+      "expected": "Suppression did not count as a dose or break abstinence. Named dependence/Withdrawal removed by the actual project, and seven-day abstinence also clears tolerance; no free supplies or project success.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C17",
+      "title": "Redundant dose still breaks abstinence",
+      "start": "An abstinence project is running; another effect would suppress this dose’s benefit.",
+      "events": "Actually complete a dose anyway.",
+      "elapsedSeconds": 6,
+      "expected": "Physical dose and history count, project fails, and its item-specific crash/thresholds still resolve. A redundant or suppressed benefit does not make consumption nonexistent.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C18",
+      "title": "Independent Quickglass endpoints",
+      "start": "Two valid Quickglass doses, each actually lasting 600 seconds, completed at T0 and T0+300.",
+      "events": "Reach T0+600, then T0+900.",
+      "elapsedSeconds": 900,
+      "expected": "First crash at 600 adds one expedition Strain and DEX-check disadvantage until 4200, even while the second benefit lasts until 900. Second crash at 900 adds its own point and disadvantage until 4500. One advantage/Speed bonus at a time, two real crashes. Actual Strain endpoints/life rules still apply.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C19",
+      "title": "Tolerant Quickglass crash is not halved",
+      "start": "Tolerance active, one valid single Quickglass dose completed T0.",
+      "events": "Reach its 300-second benefit endpoint.",
+      "elapsedSeconds": 300,
+      "expected": "Crash at 300; the independent one-hour DEX-check penalty lasts through 3900, not 2100. Apply expedition gain through its actual track.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C20",
+      "title": "Early ending and suppression differ",
+      "start": "One dose has a fixed T0+600 endpoint.",
+      "events": "At T0+100 one legal effect ends its benefit; in an alternative history it merely suppresses it.",
+      "elapsedSeconds": 100,
+      "expected": "NEW proposal: actual ending triggers the one crash at 100, with no duplicate at 600. Mere suppression retains the original endpoint and crash at 600. The effect must actually target this nonspell benefit.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C21",
+      "title": "No fear-advantage stockpile",
+      "start": "Two unspent overlapping Dragonblood Brandy entitlements, assuming a later approved complete profile.",
+      "events": "Commit one eligible fear save before rolling.",
+      "elapsedSeconds": null,
+      "expected": "One advantage state applies and both overlapping same-item entitlements become spent under the proposal. They do not provide a second save afterward. Their actual other consequences remain.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C22",
+      "title": "Brew is not silently a dependence drug",
+      "start": "A real serving of Thunder-Vein Ale; no item-specific added brewing rule approved.",
+      "events": "Its actual proposed ten-minute benefit ends.",
+      "elapsedSeconds": 600,
+      "expected": "Apply the printed +1 Intoxication once when the individual profile is approved; do not invent a magical-substance dependence DC, serum Strain or second intoxication from its name.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C23",
+      "title": "One pint is not a basket",
+      "start": "One actual proposed pint of hydration-safe Small Beer consumed by a normal Small/Medium creature.",
+      "events": "If the proposed hydration credit is approved, record that pint once.",
+      "elapsedSeconds": null,
+      "expected": "One of eight daily water pints credited, not two pounds of food, lamp oil, sundries or an entire Supply. Container/remaining liquid remain actual inventory.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C24",
+      "title": "Hunger is distinct from provisions",
+      "start": "Hollow Cask suppression active; character consumes no required food today.",
+      "events": "Reach the canonical provisioning endpoint.",
+      "elapsedSeconds": null,
+      "expected": "No invented food credit. Apply the actual unmet-day procedure; do not treat the suppressed sensation as satisfaction of the food requirement.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C25",
+      "title": "Healing arithmetic respects the existing stage",
+      "start": "Hollow Cask proposed −1 local flat reduction, base healing 8, systemic Corrupted half, no other modifier.",
+      "events": "Resolve one actual healing event.",
+      "elapsedSeconds": null,
+      "expected": "8 × 1/2 = 4, then −1 = 3 before ordinary caps. Do not subtract once from the root and again from the same numeric add-on.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C26",
+      "title": "Blight Totem comparison",
+      "start": "Same systemic half and base 8; both Blight Totem and Hollow Cask local reductions apply.",
+      "events": "Compare the two permitted local-reduction plans.",
+      "elapsedSeconds": null,
+      "expected": "Systemic half plus Totem half yields 2. Systemic half plus Hollow Cask −1 yields 3. Select 2; do not combine Totem and Cask into 1.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C27",
+      "title": "Missing overdose is a real blocker",
+      "start": "A substance has a complete first-dose benefit but no defined severe complication.",
+      "events": "Attempt to classify the whole item as operational.",
+      "elapsedSeconds": null,
+      "expected": "Fail that completion claim. Keep the source row, dose proposal and missing individual complication visible; no generic placeholder or avoidance of third-dose cases closes the item.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    },
+    {
+      "id": "CU01-C28",
+      "title": "Cosmology review is not item approval",
+      "start": "Reviewed souls/planes documents exist; Ghostwine’s exact targeting/fear procedure remains unreviewed.",
+      "events": "Attempt to use the general review as approval of Ghostwine or Sovereign Reserve.",
+      "elapsedSeconds": null,
+      "expected": "Keep both whole item records pending specific review. No spirit identity, terminal recorder, protected information or new realm is inferred.",
+      "status": "Authored adjudication of proposed rules; not a runtime or human test."
+    }
+  ]
+}

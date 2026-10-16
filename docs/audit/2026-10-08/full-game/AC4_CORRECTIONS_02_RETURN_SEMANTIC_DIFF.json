@@ -1,0 +1,815 @@
+{
+  "status": "Exact structural changes for independent semantic reading; not adoption",
+  "changes": [
+    {
+      "pointer": "/model/correctionDispositions",
+      "before": null,
+      "after": [
+        {
+          "id": "AC4-C01",
+          "verdict": "AGREE",
+          "kind": "correction/clarification"
+        },
+        {
+          "id": "AC4-C02",
+          "verdict": "AGREE",
+          "kind": "correction/clarification"
+        },
+        {
+          "id": "AC4-C03",
+          "verdict": "AGREE",
+          "kind": "correction/clarification"
+        },
+        {
+          "id": "AC4-C04",
+          "verdict": "AGREE",
+          "kind": "correction/clarification"
+        },
+        {
+          "id": "AC4-C05",
+          "verdict": "AGREE",
+          "kind": "correction/clarification"
+        },
+        {
+          "id": "AC4-C06",
+          "verdict": "AGREE",
+          "kind": "NEW scoped authorship"
+        },
+        {
+          "id": "AC4-C07",
+          "verdict": "AGREE",
+          "kind": "correction/clarification"
+        },
+        {
+          "id": "AC4-C08",
+          "verdict": "AGREE",
+          "kind": "NEW scoped authorship"
+        }
+      ]
+    },
+    {
+      "pointer": "/model/factionAllyProfile/lifecycle",
+      "before": "One entity and HP pool, without refresh from commands, transfer or suppression. Ordinary non-Null damage reaching 0 uses the source finite-summon endpoint and ends the body. Qualifying Null-nonlethal damage reaching 0 instead uses the accepted finite-summon Null Disabled0 branch while concentration/deadline remains; independent concentration/source ending, replacement or dismissal still ends it. A real healing/repair source must expressly apply to raise a Disabled Envoy above0; no generic free recovery. Real entrusted cargo drops legally on ending. No conjured stock, corpse, reward, harvest, permanent recruitment or faction standing.",
+      "after": "One entity and HP pool, without refresh from commands, transfer or suppression. Ordinary non-Null damage reaching 0 uses the source finite-summon endpoint and ends the body. Qualifying Null-nonlethal damage reaching 0 instead uses the accepted finite-summon Null Disabled0 branch while concentration/deadline remains; independent concentration/source ending, replacement or dismissal still ends it. A real healing/repair source must expressly apply to raise a Disabled Envoy above0; no generic free recovery. Real entrusted cargo drops legally on ending. No conjured stock, corpse, reward, harvest, permanent recruitment or faction standing. Qualifying Null damage reaching 0 or later striking the same already-Disabled0 body preserves that body/state with no death/loot/new clock/reapplication. Independent concentration end, expiry, dismissal or replacement still ends it."
+    },
+    {
+      "pointer": "/model/factionAllyProfile/targetingClassification",
+      "before": null,
+      "after": "NEW scoped AC4-SUMMON-TARGET-01: while this finite body exists, mechanically eligible as an active creature and living ally for ordinary HP-healing/living-creature targeting, including Cleric Healing Rite. No natural origin, biology, soul, corpse, undead/construct or cosmological identity is inferred."
+    },
+    {
+      "pointer": "/model/sharedRules/summonTargeting",
+      "before": null,
+      "after": "NEW scoped AC4-SUMMON-TARGET-01: solely for the two authored AC4 temporary profiles Summon Water Pet and Faction Envoy, while their finite body exists they count as an active creature and as a living ally for ordinary HP-healing/living-creature targeting, including Cleric Healing Rite. This is a mechanical targeting classification only; it establishes no natural origin, biology, soul, corpse, loot, undead/construct taxonomy or cosmological identity. Null Disabled 0 remains the same existing body and may receive an otherwise legal heal; an ended/expired/dismissed body is no longer a target. Resonance Beacon uses active-creature identity rather than biological 'living' status: an enrolled creature must still be able to spend its own Action and RP."
+    },
+    {
+      "pointer": "/model/sharedRules/timing",
+      "before": "One-minute concentration effects use the source's normal ten future caster regular-start markers in initiative or 60 elapsed seconds outside unless this card states a different exact clock. Ten minutes = 100 future caster regular-start markers or 600 elapsed seconds. Alignment Lock uses 24 elapsed hours; rank-7 Alignment Anchor uses seven elapsed days; Bind Element uses two future target regular ends / 12 elapsed seconds outside initiative. Preserve virtual/absolute deadlines through initiative changes, absence and suppression.",
+      "after": "One-minute concentration effects use the source's normal ten future caster regular-start markers in initiative or 60 elapsed seconds outside unless this card states a different exact clock. Ten minutes = 100 future caster regular-start markers or 600 elapsed seconds. Alignment Lock uses 24 elapsed hours; rank-7 Alignment Anchor uses seven elapsed days; Bind Element uses two future target regular ends / 12 elapsed seconds outside initiative. Preserve virtual/absolute deadlines through initiative changes, absence and suppression.\nSPELL SHIELD EXACT CLOCK — Because Spell Shield is nonconcentration, its own one-minute deadline is explicit: in initiative, application records the caster's tenth future regular-start marker after application, excluding any start already in progress or past. Outside initiative, deadline = application timestamp + 60 elapsed seconds. Preserve that fixed virtual/absolute deadline across initiative entry/exit, reorder, extra turns, absence, caster death and suppression. Caster death alone does not end Spell Shield."
+    },
+    {
+      "pointer": "/model/spells/1/procedure",
+      "before": "Action; range 60 feet; V/S/F. NEW: replace Instantaneous protection metadata with one minute, without concentration, on one willing perceived creature with line of effect. Only one pending Spell Shield can protect a recipient across casters; a successful replacement ends the prior one. Interpret 3rd level and Tier 3 as the triggering spell’s actual generating rank 0–3. Caster level, discounted RP price and target class do not determine eligibility. After ordinary interruption and before any original attack, save or payload resolution, the recipient may spend its Reaction to reflect a hostile pending spell whose only selected creature target is that recipient. The reflected path originates at the protected recipient and ends at the original caster, who must fit the original spell’s creature-type, willingness, range and line-of-effect requirements measured from that return origin. Hidden eligibility is adjudicated without disclosing protected information. Revalidate, then spend the Reaction and consume the shield. Redirect the one payload, retaining the original caster’s ownership, statistics, costs, concentration and causal identity. Resolve its normal attack or save against that caster, with no automatic self-hit or duplicate roll against the former target. Areas, multiple targets, nonspells, copies and already reflected packets are ineligible. A declined or ineligible event leaves the shield available until its original deadline. No legal return target means no reflection. Suppression disables triggering while its timer continues. It cannot reflect its own creation or initiate another reflection/copy chain.\n\nCURRENT INTERFACE — Spell Shield is a pure redirection of the already-pending original spell payload, not a new reflected/retaliatory damage root. The original cast ID, generating rank, caster ownership, attack/save statistics, concentration owner, source costs, and any creation-time Null `nullNonlethal` flag remain unchanged. The protected recipient is only the return origin for range/line-of-effect revalidation. If the returned spell creates an ongoing target branch or delayed rider, that branch/rider is attached to the original caster as its new recipient while retaining the original spell/caster identity. Because no new damage root is created, a Veiled reflector does not newly make the returned damage Null-nonlethal, and an un-Veiled reflector does not strip an original Veiled caster's root flag. The packet cannot trigger Spell Shield again and cannot be copied/reflected recursively.",
+      "after": "Action; range 60 feet; V/S/F. NEW: replace Instantaneous protection metadata with one minute, without concentration, on one willing perceived creature with line of effect. Exact duration: in initiative record the caster's tenth future regular-start marker after application, excluding a start already in progress/past; outside initiative deadline = application +60 seconds. Preserve that fixed deadline through initiative changes, extra turns, absence, caster death and suppression; caster death alone does not end this nonconcentration ward. Only one pending Spell Shield can protect a recipient across casters; a successful replacement ends the prior one. Interpret 3rd level and Tier 3 as the triggering spell’s actual generating rank 0–3. Caster level, discounted RP price and target class do not determine eligibility. After ordinary interruption and before any original attack, save or payload resolution, the recipient may spend its Reaction to reflect a hostile pending spell whose only selected creature target is that recipient. The reflected path originates at the protected recipient and ends at the original caster, who must fit the original spell’s creature-type, willingness, range and line-of-effect requirements measured from that return origin. Hidden eligibility is adjudicated without disclosing protected information. Revalidate, then spend the Reaction and consume the shield. Redirect the one payload, retaining the original caster’s ownership, statistics, costs, concentration and causal identity. Resolve its normal attack or save against that caster, with no automatic self-hit or duplicate roll against the former target. Areas, multiple targets, nonspells, copies and already reflected packets are ineligible. A declined or ineligible event leaves the shield available until its original deadline. No legal return target means no reflection. Suppression disables triggering while its timer continues. It cannot reflect its own creation or initiate another reflection/copy chain.\n\nCURRENT INTERFACE — Spell Shield is pure redirection of the already-pending original spell payload. Spell Shield itself creates no replacement damage root and does not advance the original spell's damage-root creation checkpoint. The original cast ID, generating rank, caster ownership, attack/save statistics, concentration owner and source costs remain unchanged. If the original spell already created a damage root before the reflection window, preserve that root and its existing `nullNonlethal` flag. If it has not yet created a root, create that root only at the original spell's ordinary checkpoint under the original caster/dealer, and evaluate that dealer's actual Veil state at that checkpoint. Descendant damage inherits its real parent-root flag under the accepted Null rules. The protected recipient is only the return origin for range/line-of-effect revalidation. If the returned spell creates an ongoing target branch or delayed rider, that branch/rider is attached to the original caster as its new recipient while retaining the original spell/caster identity. Reflection itself creates no root. A Veiled reflector therefore supplies no Null flag merely by reflecting, and the reflector's later Veil changes are irrelevant to the original spell's dealer checkpoint. Non-damaging spells such as Charm Person create no damage root at all. The packet cannot trigger Spell Shield again and cannot be copied/reflected recursively."
+    },
+    {
+      "pointer": "/model/spells/8/procedure",
+      "before": "Action; range 60 feet; V/S/F; concentration up to one minute. Create one Medium Elemental companion in a perceived fitting unoccupied supported space with line of effect. Preserve printed AC 14, HP 35, 2d6 healing and 1d10 cold attack. NEW profile: walking Speed 30 feet, body mass 150 pounds, all six ability scores 10, saves equal to your PB, other checks +0, ordinary sight/hearing. It understands your spoken commands without speech or telepathy. No swimming, amphibious trait, fluid passage, immunity or free water follows from its name. It acts immediately after your regular turn. A Bonus Action command while within 60 feet and able to perceive you permits movement and one attack, heal, Dodge, Dash, Disengage or Search. Without a command it can move defensively and Dodge. No free Help, grapple, shove, item activation or opportunity attack is granted. Attack: one melee spell attack using your actual casting ability + PB, reach 5 feet, 1d10 cold without a modifier. Heal: one willing living creature it perceives within 5 feet and line of effect regains 2d6 ordinary HP without a modifier. A Downed recipient is eligible under its actual healing rules. NEW: either attack or heal consumes the owner’s one shared companion offensive/support activation for that numbered round. One companion therefore cannot heal while another uses that same offensive allowance. Each command still costs its actual Bonus Action; extra turns or repeated commands add no activations. Healing belongs to the pet, without triggering the owner’s personal spell, lifesteal or class hooks; no healing copy, resource conversion or overflow is added. One Water Pet per caster; successful replacement ends the old body. At 0 HP or source end it vanishes without a corpse, loot, death reward or material water. It can carry genuinely entrusted existing gear within its actual capacity; real cargo drops legally on ending. Suppression preserves the existing body/HP and deadline without movement, attack, healing or a fresh summon trigger until resumption.\n\nCURRENT NULL/LIFECYCLE INTERFACE — A qualifying `nullNonlethal=true` damage root that reduces this finite summoned companion from positive HP to 0 does not end or replace the body. Use the accepted `finiteSummonFamiliarMirrorBeast` branch: the same identity becomes `Null Disabled 0` (Incapacitated, Speed 0, no Actions/Bonus Actions/Reactions/commands) while the original spell/concentration/deadline continues. Independent concentration end, duration expiry, dismissal or replacement still ends the body. Only a real healing/repair source whose targeting expressly applies to this creature can raise it above 0 and end Disabled; no generic free heal, resummon refresh, or corpse/loot is created.\nNEW scoped command decision: its printed 2d6 heal deliberately spends the owner's one shared companion offensive/support activation for that numbered round, the same allowance its attack would spend. Pure movement/Dodge without that heal/attack does not spend the offensive/support allowance beyond the ordinary Bonus Action command.",
+      "after": "Action; range 60 feet; V/S/F; concentration up to one minute. Create one Medium Elemental companion in a perceived fitting unoccupied supported space with line of effect. Preserve printed AC 14, HP 35, 2d6 healing and 1d10 cold attack. NEW profile: walking Speed 30 feet, body mass 150 pounds, all six ability scores 10, saves equal to your PB, other checks +0, ordinary sight/hearing. It understands your spoken commands without speech or telepathy. No swimming, amphibious trait, fluid passage, immunity or free water follows from its name. It acts immediately after your regular turn. A Bonus Action command while within 60 feet and able to perceive you permits movement and one attack, heal, Dodge, Dash, Disengage or Search. Without a command it can move defensively and Dodge. No free Help, grapple, shove, item activation or opportunity attack is granted. Attack: one melee spell attack using your actual casting ability + PB, reach 5 feet, 1d10 cold without a modifier. Heal: one willing ally it perceives within 5 feet and line of effect regains 2d6 ordinary HP without a modifier. Under NEW scoped AC4-SUMMON-TARGET-01, this AC4 Water Pet and the AC4 Faction Envoy are mechanically eligible living allies for ordinary healing while their body exists; this does not establish natural origin, biology, soul or corpse identity. A Downed recipient is eligible under its actual healing rules. NEW: either attack or heal consumes the owner’s one shared companion offensive/support activation for that numbered round. One companion therefore cannot heal while another uses that same offensive allowance. Each command still costs its actual Bonus Action; extra turns or repeated commands add no activations. Healing belongs to the pet, without triggering the owner’s personal spell, lifesteal or class hooks; no healing copy, resource conversion or overflow is added. One Water Pet per caster; successful replacement ends the old body. Ordinary non-Null damage that reaches 0 invokes the source finite-summon endpoint and ends the body without corpse, loot, death reward or material water. A qualifying Null root instead uses the Disabled-at-0 exception below. It can carry genuinely entrusted existing gear within its actual capacity; real cargo drops legally on ending. Suppression preserves the existing body/HP and deadline without movement, attack, healing or a fresh summon trigger until resumption.\n\nCURRENT NULL/LIFECYCLE INTERFACE — A qualifying `nullNonlethal=true` damage root that reduces this finite summoned companion from positive HP to 0, or later strikes that same already-`Null Disabled 0` body, does not end, replace or reapply the body/state. Use the accepted `finiteSummonFamiliarMirrorBeast` branch: the same identity becomes `Null Disabled 0` (Incapacitated, Speed 0, no Actions/Bonus Actions/Reactions/commands) while the original spell/concentration/deadline continues. Independent concentration end, duration expiry, dismissal or replacement still ends the body. A real healing source whose targeting applies under AC4-SUMMON-TARGET-01 can raise it above 0 and end Disabled; no generic free heal, resummon refresh, or corpse/loot is created.\nNEW scoped command decision: its printed 2d6 heal deliberately spends the owner's one shared companion offensive/support activation for that numbered round, the same allowance its attack would spend. Pure movement/Dodge without that heal/attack does not spend the offensive/support allowance beyond the ordinary Bonus Action command."
+    },
+    {
+      "pointer": "/model/spells/13/procedure",
+      "before": "Action; range 60 feet; V/S/F. NEW: create a visible immobile luminous sigil, 1 foot across, on a perceived supported surface with line of effect, with concentration up to ten minutes. It marks one fitting 5-foot destination square immediately above the surface. At creation enroll yourself and up to PB other willing allies you perceive within 60 feet who can perceive the beacon and consent. Affiliation is not consent. Record exact recipients; later PB changes or remote permission add none. An enrolled living creature on the same plane and within 500 feet of the beacon can spend an Action and 2 of its own actual RP to teleport itself and legally carried gear into that fitting unoccupied square. It need not see the beacon again but gains no updated senses. This is a nonspell activation of the existing spell, with no new cast, Dissonance, Refrain or Counterspell event. Spellcasting-only surcharges and discounts do not modify that payment; a broader actual ability-payment rule applies only if its scope expressly permits. Actual transport prohibitions remain. Preflight known affordability, range and legality; hidden or new obstruction after commitment leaves body and gear at the origin with costs spent. No passenger, creature-as-gear, forced ownership transfer or eviction is granted. Resolve one traveler at a time; another cannot arrive until the square is free. Initial base 7 RP is distinct from each later traveler’s 2 RP. Moving or destroying the marked support ends this fixed beacon. Suppression blocks new transit without queuing attempts or pausing its deadline. One beacon per caster; successful replacement ends the old one. No portal network, refund, RP transfer or item duplication is created.",
+      "after": "Action; range 60 feet; V/S/F. NEW: create a visible immobile luminous sigil, 1 foot across, on a perceived supported surface with line of effect, with concentration up to ten minutes. It marks one fitting 5-foot destination square immediately above the surface. At creation enroll yourself and up to PB other willing allies you perceive within 60 feet who can perceive the beacon and consent. Affiliation is not consent. Record exact recipients; later PB changes or remote permission add none. An enrolled active creature identity on the same plane and within 500 feet of the beacon can spend an Action and 2 of its own actual RP to teleport itself and legally carried gear into that fitting unoccupied square. It need not see the beacon again but gains no updated senses. This is a nonspell activation of the existing spell, with no new cast, Dissonance, Refrain or Counterspell event. Spellcasting-only surcharges and discounts do not modify that payment; a broader actual ability-payment rule applies only if its scope expressly permits. Actual transport prohibitions remain. Preflight known affordability, range and legality; hidden or new obstruction after commitment leaves body and gear at the origin with costs spent. No passenger, creature-as-gear, forced ownership transfer or eviction is granted. Resolve one traveler at a time; another cannot arrive until the square is free. Initial base 7 RP is distinct from each later traveler’s 2 RP. Moving or destroying the marked support ends this fixed beacon. Suppression blocks new transit without queuing attempts or pausing its deadline. One beacon per caster; successful replacement ends the old one. No portal network, refund, RP transfer or item duplication is created.\nNEW scoped Beacon checkpoint `AC4-BEACON-01`: commit the Action and 2 RP only after known affordability/range/origin checks. Immediately before relocation resolution, revalidate that this same Beacon still exists, remains unsuppressed, its marked support/square is legal, the traveler remains eligible/on-plane/in-range, and no actual transport prohibition now blocks the transaction. This is a spell-specific resolution checkpoint, not a generic interrupt window. If revalidation fails, the paid activation fails at origin without refund or retry. Events can change these facts only through their own already-legal timing; Beacon grants no event or Reaction by itself."
+    },
+    {
+      "pointer": "/model/spells/14/procedure",
+      "before": "Action; range 60 feet; V/S/F; concentration up to one minute. Require actual membership in a recorded faction and actual invocation permission; favorable standing alone is insufficient. NEW: summon one willing temporary faction-affiliated ally using the complete Faction Envoy profile below, in a perceived fitting unoccupied supported space with line of effect. The profile is designed for the source’s nominal CR 3 role; balance and CR certification remain open. The current public CR-3 entries do not establish both finished mechanics and this caster’s faction relationship; their original profiles remain comparison evidence. Temporary affiliation grants no institutional membership, credentials, secrets, reputation or alignment. Member-only benefits require actual separate membership evidence. The Envoy acts immediately after your regular turn under the actual Bonus Action command and shared offensive-action allowance, using only the profile’s listed actions. Without a command it can move defensively and Dodge. One Envoy per caster; successful replacement, 0 HP or concentration/source ending removes the old body. Real borrowed cargo drops legally without duplication; its conjured blade vanishes. Suppression preserves the same body, HP and deadline without actions, healing or a fresh summon event until resumption. No autonomous attack, loot, corpse, soul/resource reward, free Help or unknown faction information is granted. This summons one finite body; it does not requisition a real NPC or publish Director-only traits.\n\nCURRENT FACTION INTERFACE — `caster faction` means an actual recorded faction relationship qualifying as the caster's membership/affiliation for this spell plus actual invocation permission where the reviewed faction-permission procedure requires it. Positive `standing-v1` alone is never enough. The temporary Envoy's `faction-affiliated` descriptor is source-limited to this summon and is not institutional membership; it cannot satisfy member-only Sanctuary, credentials, reputation, or access.\n\nCURRENT NULL/LIFECYCLE INTERFACE — A qualifying `nullNonlethal=true` damage root that reduces this finite summoned companion from positive HP to 0 does not end or replace the body. Use the accepted `finiteSummonFamiliarMirrorBeast` branch: the same identity becomes `Null Disabled 0` (Incapacitated, Speed 0, no Actions/Bonus Actions/Reactions/commands) while the original spell/concentration/deadline continues. Independent concentration end, duration expiry, dismissal or replacement still ends the body. Only a real healing/repair source whose targeting expressly applies to this creature can raise it above 0 and end Disabled; no generic free heal, resummon refresh, or corpse/loot is created.",
+      "after": "Action; range 60 feet; V/S/F; concentration up to one minute. Require actual membership in a recorded faction and actual invocation permission; favorable standing alone is insufficient. NEW: summon one willing temporary faction-affiliated ally using the complete Faction Envoy profile below, in a perceived fitting unoccupied supported space with line of effect. The profile is designed for the source’s nominal CR 3 role; balance and CR certification remain open. The current public CR-3 entries do not establish both finished mechanics and this caster’s faction relationship; their original profiles remain comparison evidence. Temporary affiliation grants no institutional membership, credentials, secrets, reputation or alignment. Member-only benefits require actual separate membership evidence. The Envoy acts immediately after your regular turn under the actual Bonus Action command and shared offensive-action allowance, using only the profile’s listed actions. Without a command it can move defensively and Dodge. One Envoy per caster; successful replacement or concentration/source ending removes the old body. Ordinary non-Null damage that reaches 0 invokes the finite-summon endpoint and removes it; qualifying Null damage instead uses the Disabled-at-0 rule below. Real borrowed cargo drops legally without duplication; its conjured blade vanishes. Suppression preserves the same body, HP and deadline without actions, healing or a fresh summon event until resumption. No autonomous attack, loot, corpse, soul/resource reward, free Help or unknown faction information is granted. This summons one finite body; it does not requisition a real NPC or publish Director-only traits.\n\nCURRENT FACTION INTERFACE — `caster faction` requires actual recorded membership in one exact canonical faction AND actual source/campaign invocation permission under the reviewed Faction Seal permission procedure. Affiliation, favorable `standing-v1`, disguise, information access, or the Envoy's temporary descriptor cannot substitute for either gate. Faction Sanctuary's caster invocation permission remains its own gate and does not itself make a Sanctuary recipient a member. The temporary Envoy's `faction-affiliated` descriptor is source-limited to this summon and is not institutional membership; it cannot satisfy member-only Sanctuary, credentials, reputation, or access.\n\nCURRENT NULL/LIFECYCLE INTERFACE — A qualifying `nullNonlethal=true` damage root that reduces this finite summoned companion from positive HP to 0, or later strikes that same already-`Null Disabled 0` body, does not end, replace or reapply the body/state. Use the accepted `finiteSummonFamiliarMirrorBeast` branch: the same identity becomes `Null Disabled 0` (Incapacitated, Speed 0, no Actions/Bonus Actions/Reactions/commands) while the original spell/concentration/deadline continues. Independent concentration end, duration expiry, dismissal or replacement still ends the body. A real healing source whose targeting applies under NEW scoped AC4-SUMMON-TARGET-01 can raise it above 0 and end Disabled; no generic free heal, resummon refresh, or corpse/loot is created."
+    },
+    {
+      "pointer": "/casebook/cases",
+      "before": [
+        {
+          "id": "AC4-02-A",
+          "spellId": "greater-warding",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A warded ally receives 11 fire damage from a spell. Resistance leaves 5 before a legal Warding Bond split; the transferred share receives no second resistance.",
+          "currentAdjudication": "A warded ally receives 11 fire damage from a spell. Resistance leaves 5 before a legal Warding Bond split; the transferred share receives no second resistance.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-02-B",
+          "spellId": "greater-warding",
+          "kind": "preserved-original-authored-example",
+          "originalText": "An ordinary sword attack under a spell buff remains a weapon attack. This ward alone does not halve its ordinary physical damage.",
+          "currentAdjudication": "An ordinary sword attack under a spell buff remains a weapon attack. This ward alone does not halve its ordinary physical damage.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-03-A",
+          "spellId": "spell-shield",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A rank-3 spell with one hostile creature target can return to its caster if the return target and path are legal. A rank-4 spell remains ineligible even when discounted to 3 RP.",
+          "currentAdjudication": "A rank-3 spell with one hostile creature target can return to its caster if the return target and path are legal. A rank-4 spell remains ineligible even when discounted to 3 RP. Apply current pure-redirection root/dealer/Null identity.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-03-B",
+          "spellId": "spell-shield",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Two protected creatures cannot bounce one spell indefinitely: the first redirected packet is already reflected and cannot trigger another shield.",
+          "currentAdjudication": "Two protected creatures cannot bounce one spell indefinitely: the first redirected packet is already reflected and cannot trigger another shield. Apply current pure-redirection root/dealer/Null identity.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-04-A",
+          "spellId": "dimensional-anchor",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Both teleport endpoints outside the sphere permit transit even if a straight line between them crosses the sphere.",
+          "currentAdjudication": "Both teleport endpoints outside the sphere permit transit even if a straight line between them crosses the sphere.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-04-B",
+          "spellId": "dimensional-anchor",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A portal can remain visible while its endpoint is blocked. A transit defeated after commitment leaves the traveler and real gear at the origin, with costs spent.",
+          "currentAdjudication": "A portal can remain visible while its endpoint is blocked. A transit defeated after commitment leaves the traveler and real gear at the origin, with costs spent.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-05-A",
+          "spellId": "corruption-barrier",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A Corrupted creature fails its CON save on its first crossing attempt: it takes the rolled 2d6 and stops before the wall. Success halves damage but still blocks crossing.",
+          "currentAdjudication": "A Corrupted creature fails its CON save on its first crossing attempt: it takes the rolled 2d6 and stops before the wall. Success halves damage but still blocks crossing.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-05-B",
+          "spellId": "corruption-barrier",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A creature without actual Corrupted eligibility can cross. A fitting teleport destination beyond the wall also avoids contact; neither grants hidden moral or origin information.",
+          "currentAdjudication": "A creature without actual Corrupted eligibility can cross. A fitting teleport destination beyond the wall also avoids contact; neither grants hidden moral or origin information.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-06-A",
+          "spellId": "resonance-dampening-field",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A 0-RP cantrip inside costs 2 RP; an applicable final Ease adjustment of −1 makes 1 RP. A caster without an RP pool cannot commit it.",
+          "currentAdjudication": "A 0-RP cantrip inside costs 2 RP; an applicable final Ease adjustment of −1 makes 1 RP. A caster without an RP pool cannot commit it. Apply the accepted scoped +2-RP bridge before final Influence.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-06-B",
+          "spellId": "resonance-dampening-field",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Two overlapping fields still add only 2 RP. Releasing a spell already prepared with Ready does not pay again.",
+          "currentAdjudication": "Two overlapping fields still add only 2 RP. Releasing a spell already prepared with Ready does not pay again. Apply the accepted scoped +2-RP bridge before final Influence.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-07-A",
+          "spellId": "faction-sanctuary",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Protection overlaps a +1 AC ward. A qualifying member receives +2, rather than +3.",
+          "currentAdjudication": "Protection overlaps a +1 AC ward. A qualifying member receives +2, rather than +3.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-07-B",
+          "spellId": "faction-sanctuary",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Favorable standing does not establish membership and supplies no sanctuary bonus by itself.",
+          "currentAdjudication": "Favorable standing does not establish membership and supplies no sanctuary bonus by itself.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-08-A",
+          "spellId": "alignment-lock",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A locked axis stays at its recorded effective value while an independent underlying change is retained. Expiry exposes that current underlying record.",
+          "currentAdjudication": "A locked axis stays at its recorded effective value while an independent underlying change is retained. Expiry exposes that current underlying record. Apply AC4-ALIGN-01 and AP-AS-01 exactly; no ratcheting.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-08-B",
+          "spellId": "alignment-lock",
+          "kind": "preserved-original-authored-example",
+          "originalText": "An undefined axis is not assigned Neutral. An observer does not automatically learn a hidden locked value.",
+          "currentAdjudication": "An undefined axis is not assigned Neutral. An observer does not automatically learn a hidden locked value. Apply AC4-ALIGN-01 and AP-AS-01 exactly; no ratcheting.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-09-A",
+          "spellId": "alignment-anchor",
+          "kind": "preserved-original-authored-example",
+          "originalText": "The Cleric placement remains rank 7 and base 17 RP. A Druid’s rank-4 zone does not lower that price or grant its own seven-day single-target mode.",
+          "currentAdjudication": "The Cleric placement remains rank 7 and base 17 RP. A Druid’s rank-4 zone does not lower that price or grant its own seven-day single-target mode. Apply AC4-ALIGN-01 and AP-AS-01 exactly; no ratcheting.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-09-B",
+          "spellId": "alignment-anchor",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A Director cannot invent a moral requirement forcing a player to attack an ally. No established incompatibility predicate means no conduct veto.",
+          "currentAdjudication": "A Director cannot invent a moral requirement forcing a player to attack an ally. No established incompatibility predicate means no conduct veto. Apply AC4-ALIGN-01 and AP-AS-01 exactly; no ratcheting.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-10-A",
+          "spellId": "summon-water-pet",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A commanded 2d6 heal can restore a living ally at 0 HP if no actual restriction blocks healing. It spends the round’s shared companion activation.",
+          "currentAdjudication": "A commanded 2d6 heal can restore a living ally at 0 HP if no actual restriction blocks healing. It spends the round’s shared companion activation. Qualifying Null damage at 0 uses finite-summon Disabled, not immediate end.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-10-B",
+          "spellId": "summon-water-pet",
+          "kind": "preserved-original-authored-example",
+          "originalText": "The pet has no swim mode simply because it looks like water. Its disappearance produces no harvestable water.",
+          "currentAdjudication": "The pet has no swim mode simply because it looks like water. Its disappearance produces no harvestable water. Qualifying Null damage at 0 uses finite-summon Disabled, not immediate end.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-11-A",
+          "spellId": "crystalline-barrier",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Hits dealing 23 and 17 damage to different sections deplete the same 40-HP pool and remove the entire wall.",
+          "currentAdjudication": "Hits dealing 23 and 17 damage to different sections deplete the same 40-HP pool and remove the entire wall.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-11-B",
+          "spellId": "crystalline-barrier",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Sight range permits a distant visible legal segment. It does not reveal placement behind existing total cover.",
+          "currentAdjudication": "Sight range permits a distant visible legal segment. It does not reveal placement behind existing total cover.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-12-A",
+          "spellId": "elemental-drain",
+          "kind": "preserved-original-authored-example",
+          "originalText": "On a failed save, a surviving target with 3 RP loses 3 and reaches 0. The caster gains 0 RP.",
+          "currentAdjudication": "On a failed save, a surviving target with 3 RP loses 3 and reaches 0. The caster gains 0 RP. Use 5-RP loss on failed save and active-creature RP-holder eligibility.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-12-B",
+          "spellId": "elemental-drain",
+          "kind": "preserved-original-authored-example",
+          "originalText": "If fire damage is prevented by immunity but the CON save failed, a living target’s actual RP pool still loses up to 5.",
+          "currentAdjudication": "If fire damage is prevented by immunity but the CON save failed, a living target’s actual RP pool still loses up to 5. Use 5-RP loss on failed save and active-creature RP-holder eligibility.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-13-A",
+          "spellId": "bind-element",
+          "kind": "preserved-original-authored-example",
+          "originalText": "An actual Elemental fails WIS while the source’s shared guard is unused. Paralyzed spends that guard and may end at the first repeat save; persistence through a second turn does not spend another mark.",
+          "currentAdjudication": "An actual Elemental fails WIS while the source’s shared guard is unused. Paralyzed spends that guard and may end at the first repeat save; persistence through a second turn does not spend another mark.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-13-B",
+          "spellId": "bind-element",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A humanoid casting elemental spells is not an Elemental. A real Elemental already hard-controlled by this source character receives no invented fallback from a later failed save.",
+          "currentAdjudication": "A humanoid casting elemental spells is not an Elemental. A real Elemental already hard-controlled by this source character receives no invented fallback from a later failed save.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-14-A",
+          "spellId": "dimensional-door",
+          "kind": "preserved-original-authored-example",
+          "originalText": "You can return with your real backpack to a personally examined balcony 450 feet away if its arrival space is still legal.",
+          "currentAdjudication": "You can return with your real backpack to a personally examined balcony 450 feet away if its arrival space is still legal.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-14-B",
+          "spellId": "dimensional-door",
+          "kind": "preserved-original-authored-example",
+          "originalText": "If that space is secretly occupied, the paid spell fails at the origin. It gives neither an adjacent substitute nor a duplicated backpack.",
+          "currentAdjudication": "If that space is secretly occupied, the paid spell fails at the origin. It gives neither an adjacent substitute nor a duplicated backpack.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-15-A",
+          "spellId": "resonance-beacon",
+          "kind": "preserved-original-authored-example",
+          "originalText": "An enrolled ally spends an Action and 2 RP to arrive in the free square. A second ally must wait until that square is clear.",
+          "currentAdjudication": "An enrolled ally spends an Action and 2 RP to arrive in the free square. A second ally must wait until that square is clear.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-15-B",
+          "spellId": "resonance-beacon",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Lifting the marked paving stone ends the fixed beacon. It cannot become a free movable destination.",
+          "currentAdjudication": "Lifting the marked paving stone ends the fixed beacon. It cannot become a free movable destination.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-16-A",
+          "spellId": "faction-ally",
+          "kind": "preserved-original-authored-example",
+          "originalText": "The Envoy’s two attack components use one commanded offensive Action, leaving no shared offensive allowance for another companion that round.",
+          "currentAdjudication": "The Envoy’s two attack components use one commanded offensive Action, leaving no shared offensive allowance for another companion that round. Qualifying Null damage at 0 uses finite-summon Disabled, not immediate end.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-16-B",
+          "spellId": "faction-ally",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Favorable reputation alone does not authorize this cast without actual faction membership and invocation permission.",
+          "currentAdjudication": "Favorable reputation alone does not authorize this cast without actual faction membership and invocation permission. Qualifying Null damage at 0 uses finite-summon Disabled, not immediate end.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X01",
+          "spellId": "spell-shield",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: Wizard A (class 7, PB3, INT+4, spell DC15, RP20) bears unsuppressed Null Veil and casts operational Acid Arrow (rank2, base3 RP) at creature B, who already has one pending Spell Shield. B and A are 20 ft apart with line of effect; B has a Reaction. A commits Acid Arrow: RP20→17, Dissonance/Refrain update, and the cast survives interruption. Before the Acid Arrow attack, B spends its Reaction and Spell Shield. Return legality from B to A is valid within Acid Arrow's 30-ft range. The same Acid Arrow cast/root is redirected; A remains caster/dealer/owner and its root keeps nullNonlethal=true because A was Veiled when the root was created. Roll the returned attack against A; on a hit with 4d4=10 and A at 8 HP, qualifying Null damage reduces A to Stable0 rather than creating damage-caused death/Wounds. If the delayed 2d4 Acid Arrow rider attaches, it is still A's original spell branch on A and inherits the same root flag and original deadline rules; it is not a second reflected root. Shield is consumed; no second target receives the original payload.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X02",
+          "spellId": "spell-shield",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: Wizard A is un-Veiled, RP20, concentrating on no spell. B is Veiled and has pending Spell Shield plus a Reaction. A casts operational Charm Person (rank1, base2 RP, concentration up to1 minute) at B from 20 ft. At cast commitment A pays 2 RP and establishes Charm Person concentration before the reaction window. B reflects. The return from B to A is legal and uses A's original spell DC and ownership. B's Veil creates no new Null root because Spell Shield is redirection, not new damage. A remains the concentration owner even though A is now the returned target; if A fails its WIS save the same Charm Person branch affects A under its own odd-but-legal self-target result until its normal ending. Reflection neither transfers concentration to B nor opens a second cast/price/Refrain event.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X03",
+          "spellId": "alignment-lock",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: target T has underlying Lawful Good. Caster L (Abjuration rank4) casts Alignment Lock, pays 7 RP, T fails CHA, and L snapshots Lawful/Good until +24h. Later caster P casts reviewed Alignment Purge, pays17 RP, T fails WIS, and Purge's 60-second concentration record becomes live below the lock. Effective read remains Lawful Good because AC4-ALIGN-01 applies Lock last. Then caster S casts a new reviewed Alignment Suggestion. Its target baseline excludes prior Suggestion/Purge overlays under AP-AS-01 and excludes the AC4 Lock overlay under AC4-ALIGN-01; it therefore computes from lawful underlying history, not the locked display, so no staircase occurs. If Suggestion validly establishes an axis change it remains live below Lock. At +30s Purge ends: Lock still displays Lawful Good. At +60s Suggestion ends: Lock still displays Lawful Good. At +24h Lock ends and the then-current underlying lawful record appears. No ended snapshot is restored.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X04",
+          "spellId": "alignment-anchor",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: target T is under reviewed Purge, so effective alignment is Neutral/Neutral while underlying record is Chaotic Good. A Conjuration rank4 Alignment Anchor zone is created for 7 RP; T is inside at creation and its first zone snapshot is Neutral/Neutral. Purge later ends, but while T stays in the zone the Anchor still freezes Neutral/Neutral. T exits: the zone constraint becomes inactive and underlying Chaotic Good is effective. T reenters the same zone: it reuses that application's original Neutral/Neutral snapshot rather than taking a new snapshot. A separate later Alignment Lock can coexist by its own timestamp; earliest active eligible lock per axis governs among same-family locks. A creature whose moral axis is genuinely undefined entering the zone receives no fabricated Neutral value on that axis. All casts keep their real costs/deadlines regardless of hidden eligibility.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X05",
+          "spellId": "faction-sanctuary",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: caster C has actual invocation permission for canonical faction F and creates Protection-mode Faction Sanctuary, paying7 RP and concentrating up to10 minutes. Owner O is a genuine member of F. O's temporary Faction Envoy stands inside the sanctuary, but its summon record grants only temporary faction affiliation, not institutional membership. Result: O can receive the +2 AC benefit if O personally occupies the area; the Envoy receives no member-only benefit unless an independent actual membership record for that exact body exists. O's positive standing or membership cannot be borrowed by the Envoy. No membership fact is publicly disclosed by the failed benefit.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X06",
+          "spellId": "summon-water-pet",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: Water Pet is at 6/35 HP with 24 seconds left on its caster's concentration. An enemy damage root was created by a currently Veiled dealer and deals 8 qualifying damage. Pet reaches0 and uses the accepted finite-summon Null branch: same Pet becomes Null Disabled0, Speed0, Incapacitated, no commands/actions; it does not vanish and concentration continues. The Water Pet card itself supplies no self-heal and its 2d6 heal does not automatically establish that this Elemental is a 'living ally' for Healing Rite, so no generic heal is invented. If an independently legal source expressly able to heal this Elemental later restores positive HP, Disabled ends on that actual recovery. In this fixture none does; at the original +24s concentration deadline the same Disabled body independently ends. No corpse, water stock, loot or resummon refund appears.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X07",
+          "spellId": "summon-water-pet",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: one multiclass owner controls a Water Pet and another companion; both are ready, owner has one Bonus Action and the ordinary one shared damaging/support activation for numbered round 5. Owner spends the Bonus Action commanding Water Pet to heal ally R; roll2d6=7 and R regains7 subject to normal cap. By the AC4 scoped rule that heal spends the owner's one shared support/offense activation for round5. The second companion cannot then make its damaging attack in round5 even if another effect could issue it a command; an extra turn does not refresh the numbered-round allowance. Conversely, if the second companion had attacked first, Water Pet could still move/Dodge under a legal command but could not use its heal that round.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X08",
+          "spellId": "resonance-dampening-field",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Field is active. Caster A has RP10 and final Resonance Influence Ease. A casts a rank4 spell whose ordinary price is7 with no other modifier: field adds2→9, Ease applies last→8; A may commit if able. Caster B has an exact source waiver reducing a genuine RP-priced spell's ordinary price to0; field mandatory extra makes2, Ease makes1, so a positive payment remains unless the waiver expressly covers mandatory extras. Caster C activates a genuine spell whose normal source cost is one charge and no RP; the AC4 field adds a new2-RP interface while the charge is still spent; with no Influence it costs charge+2 RP. Caster D has no RP pool, so cannot commit that positive2 payment. Oracle E uses a Revelation Charge feature that is not classified as a spell: field adds nothing, because no spell cast occurs. Ongoing concentration pulses and readied-spell release are not new casts and are not recharged.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X09",
+          "spellId": "dimensional-anchor",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: an operational Planar Steed with willing rider has already committed its Planar Crossing Action and required costs/command; origin is outside the future Anchor. Before the crossing resolves, another caster legally establishes Dimensional Anchor so the planned destination footprint lies inside its60-ft sphere. At resolution the whole mount+rider+carried gear transaction fails atomically and remains at origin; no body/cargo splits and committed costs are not refunded. Separate control: two same-plane teleport endpoints both lie outside a Dimensional Anchor while the straight imaginary line between them crosses its sphere. Because Anchor tests actual origin/destination footprints rather than an imagined path, that outside-to-outside transaction is not blocked by this field alone.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X10",
+          "spellId": "corruption-barrier",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Barrier is a30x10 selective plane. A carrier physically carries a genuinely Corrupted passenger toward it. Because the passenger's occupied body would cross, the barrier stops the crossing at the boundary and triggers that passenger's first contact packet for the numbered round; CON save is rolled for that passenger. Later an unsupported Corrupted creature falls through the plane: barrier does not provide support, so it takes one eligible contact packet and the ordinary fall continues beyond the plane. A third Corrupted traveler teleports from one legal space to a fitting destination wholly beyond the barrier without destination overlap; there is no physical path test, so Corruption Barrier alone does not block that teleport. Each creature's one contact entitlement uses its own numbered-round/six-second interval; no standing-near tick is added.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X11",
+          "spellId": "bind-element",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Target E has an actual Elemental creature-type record and is perceived at40 ft. Caster C has already spent its shared character→E hard-denial allowance earlier this encounter. C casts Bind Element anyway, pays7 RP, E fails WIS. The new Paralyzed hard component is blocked by the already-spent guard; no Restrained/Stunned/soft fallback is invented and the paid cast is not refunded. Control variant: with an unused guard, failure establishes Paralyzed through E's second future regular end; at first future end E fails the repeat WIS save, then the effect is suppressed for one interval. Suppression does not pause or restart the second-turn marker. At the second scheduled regular end the application expires even if still suppressed; restoration afterward cannot reapply it for free.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X12",
+          "spellId": "crystalline-barrier",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Caster creates one Crystalline Barrier and pays7 RP; wall starts AC18/40HP with original one-minute concentration deadline. Object-legal attacks deal13 total damage, leaving27HP. The wall is then suppressed; a Medium creature moves into part of the former footprint. Suppression does not heal or reset HP. Before the footprint clears, the original concentration deadline arrives and the spell expires. Result: no wall resumes, no creature is evicted/crushed, no 27-HP renewed wall is banked, and no elemental-glass crafting stock or shards are created.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X13",
+          "spellId": "greater-warding",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Recipient R has Greater Warding, Warding Bond to ally B, and3 temp HP. A spell-origin packet deals11 damage before defenses. Greater Warding resistance halves once: floor(11/2)=5. Warding Bond then performs its lawful transfer using the already-mitigated packet under its own conserved split; the transferred share cannot be halved again by R's Greater Warding or by treating the transfer as new spell damage. Apply each recipient's temp HP only to the actual share it receives. Greater Warding and Warding Bond retain separate concentration/source endpoints; +2 and +1 same-stat save/AC bonuses use the strongest +2 rather than +3. No absorption/reflection occurs.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X14",
+          "spellId": "elemental-drain",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Caster C pays7 RP and commits Elemental Drain. One element draw is4=lightning and the single3d6 roll is11. Target U is an active creature-classified Undead with current RP7 and no relevant immunity; it fails CON, takes11 ordinary lightning subject to its defenses, then loses min(5,7)=5 RP→2. Target D is a true dead body/corpse, not an active creature: it is not an active RP holder and cannot lose RP; do not infer creature status from the word undead. Target I is an active eligible creature with RP6 and lightning immunity; on failed CON it takes0 lightning but still loses5 RP→1 because damage immunity does not itself cancel the separate resource-loss branch. C gains no RP and no target goes negative.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X15",
+          "spellId": "resonance-beacon",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Beacon is active on a fixed support. Enrolled traveler T within500 ft spends its Action and2 RP to activate transit while the arrival square is initially legal. Before resolution, an independent legal event destroys/moves the marked support; the Beacon spell ends. T remains at origin, keeps the spent Action/RP, and receives no free retry, nearest-square arrival or duplicated gear. A later new Beacon requires a new cast and enrollment. Xi comparison: the Shard Pendant cannot end the Beacon wholesale because it is a fixed spell-created destination with no individual ongoing target branch. If T separately has an eligible ongoing spell-effect branch with identifiable caster and T as target, Xi may end only that branch with both consents and a real charge; ending it does not restore the failed Beacon activation.",
+          "runtimeTest": false
+        }
+      ],
+      "after": [
+        {
+          "id": "AC4-02-A",
+          "spellId": "greater-warding",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A warded ally receives 11 fire damage from a spell. Resistance leaves 5 before a legal Warding Bond split; the transferred share receives no second resistance.",
+          "currentAdjudication": "A warded ally receives 11 fire damage from a spell. Resistance leaves 5 before a legal Warding Bond split; the transferred share receives no second resistance.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-02-B",
+          "spellId": "greater-warding",
+          "kind": "preserved-original-authored-example",
+          "originalText": "An ordinary sword attack under a spell buff remains a weapon attack. This ward alone does not halve its ordinary physical damage.",
+          "currentAdjudication": "An ordinary sword attack under a spell buff remains a weapon attack. This ward alone does not halve its ordinary physical damage.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-03-A",
+          "spellId": "spell-shield",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A rank-3 spell with one hostile creature target can return to its caster if the return target and path are legal. A rank-4 spell remains ineligible even when discounted to 3 RP.",
+          "currentAdjudication": "A rank-3 spell with one hostile creature target can return to its caster if the return target and path are legal. A rank-4 spell remains ineligible even when discounted to 3 RP. Apply current pure-redirection root/dealer/Null identity.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-03-B",
+          "spellId": "spell-shield",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Two protected creatures cannot bounce one spell indefinitely: the first redirected packet is already reflected and cannot trigger another shield.",
+          "currentAdjudication": "Two protected creatures cannot bounce one spell indefinitely: the first redirected packet is already reflected and cannot trigger another shield. Apply current pure-redirection root/dealer/Null identity.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-04-A",
+          "spellId": "dimensional-anchor",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Both teleport endpoints outside the sphere permit transit even if a straight line between them crosses the sphere.",
+          "currentAdjudication": "Both teleport endpoints outside the sphere permit transit even if a straight line between them crosses the sphere.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-04-B",
+          "spellId": "dimensional-anchor",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A portal can remain visible while its endpoint is blocked. A transit defeated after commitment leaves the traveler and real gear at the origin, with costs spent.",
+          "currentAdjudication": "A portal can remain visible while its endpoint is blocked. A transit defeated after commitment leaves the traveler and real gear at the origin, with costs spent.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-05-A",
+          "spellId": "corruption-barrier",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A Corrupted creature fails its CON save on its first crossing attempt: it takes the rolled 2d6 and stops before the wall. Success halves damage but still blocks crossing.",
+          "currentAdjudication": "A Corrupted creature fails its CON save on its first crossing attempt: it takes the rolled 2d6 and stops before the wall. Success halves damage but still blocks crossing.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-05-B",
+          "spellId": "corruption-barrier",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A creature without actual Corrupted eligibility can cross. A fitting teleport destination beyond the wall also avoids contact; neither grants hidden moral or origin information.",
+          "currentAdjudication": "A creature without actual Corrupted eligibility can cross. A fitting teleport destination beyond the wall also avoids contact; neither grants hidden moral or origin information.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-06-A",
+          "spellId": "resonance-dampening-field",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A 0-RP cantrip inside costs 2 RP; an applicable final Ease adjustment of −1 makes 1 RP. A caster without an RP pool cannot commit it.",
+          "currentAdjudication": "A 0-RP cantrip inside costs 2 RP; an applicable final Ease adjustment of −1 makes 1 RP. A caster without an RP pool cannot commit it. Apply the accepted scoped +2-RP bridge before final Influence.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-06-B",
+          "spellId": "resonance-dampening-field",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Two overlapping fields still add only 2 RP. Releasing a spell already prepared with Ready does not pay again.",
+          "currentAdjudication": "Two overlapping fields still add only 2 RP. Releasing a spell already prepared with Ready does not pay again. Apply the accepted scoped +2-RP bridge before final Influence.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-07-A",
+          "spellId": "faction-sanctuary",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Protection overlaps a +1 AC ward. A qualifying member receives +2, rather than +3.",
+          "currentAdjudication": "Protection overlaps a +1 AC ward. A qualifying member receives +2, rather than +3.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-07-B",
+          "spellId": "faction-sanctuary",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Favorable standing does not establish membership and supplies no sanctuary bonus by itself.",
+          "currentAdjudication": "Favorable standing does not establish membership and supplies no sanctuary bonus by itself.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-08-A",
+          "spellId": "alignment-lock",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A locked axis stays at its recorded effective value while an independent underlying change is retained. Expiry exposes that current underlying record.",
+          "currentAdjudication": "A locked axis stays at its recorded effective value while an independent underlying change is retained. Expiry exposes that current underlying record. Apply AC4-ALIGN-01 and AP-AS-01 exactly; no ratcheting.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-08-B",
+          "spellId": "alignment-lock",
+          "kind": "preserved-original-authored-example",
+          "originalText": "An undefined axis is not assigned Neutral. An observer does not automatically learn a hidden locked value.",
+          "currentAdjudication": "An undefined axis is not assigned Neutral. An observer does not automatically learn a hidden locked value. Apply AC4-ALIGN-01 and AP-AS-01 exactly; no ratcheting.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-09-A",
+          "spellId": "alignment-anchor",
+          "kind": "preserved-original-authored-example",
+          "originalText": "The Cleric placement remains rank 7 and base 17 RP. A Druid’s rank-4 zone does not lower that price or grant its own seven-day single-target mode.",
+          "currentAdjudication": "The Cleric placement remains rank 7 and base 17 RP. A Druid’s rank-4 zone does not lower that price or grant its own seven-day single-target mode. Apply AC4-ALIGN-01 and AP-AS-01 exactly; no ratcheting.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-09-B",
+          "spellId": "alignment-anchor",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A Director cannot invent a moral requirement forcing a player to attack an ally. No established incompatibility predicate means no conduct veto.",
+          "currentAdjudication": "A Director cannot invent a moral requirement forcing a player to attack an ally. No established incompatibility predicate means no conduct veto. Apply AC4-ALIGN-01 and AP-AS-01 exactly; no ratcheting.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-10-A",
+          "spellId": "summon-water-pet",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A commanded 2d6 heal can restore a living ally at 0 HP if no actual restriction blocks healing. It spends the round’s shared companion activation.",
+          "currentAdjudication": "A commanded 2d6 heal can restore a living ally at 0 HP if no actual restriction blocks healing. It spends the round’s shared companion activation. Qualifying Null damage at 0 uses finite-summon Disabled, not immediate end.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-10-B",
+          "spellId": "summon-water-pet",
+          "kind": "preserved-original-authored-example",
+          "originalText": "The pet has no swim mode simply because it looks like water. Its disappearance produces no harvestable water.",
+          "currentAdjudication": "The pet has no swim mode simply because it looks like water. Its disappearance produces no harvestable water. Qualifying Null damage at 0 uses finite-summon Disabled, not immediate end.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-11-A",
+          "spellId": "crystalline-barrier",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Hits dealing 23 and 17 damage to different sections deplete the same 40-HP pool and remove the entire wall.",
+          "currentAdjudication": "Hits dealing 23 and 17 damage to different sections deplete the same 40-HP pool and remove the entire wall.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-11-B",
+          "spellId": "crystalline-barrier",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Sight range permits a distant visible legal segment. It does not reveal placement behind existing total cover.",
+          "currentAdjudication": "Sight range permits a distant visible legal segment. It does not reveal placement behind existing total cover.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-12-A",
+          "spellId": "elemental-drain",
+          "kind": "preserved-original-authored-example",
+          "originalText": "On a failed save, a surviving target with 3 RP loses 3 and reaches 0. The caster gains 0 RP.",
+          "currentAdjudication": "On a failed save, a surviving target with 3 RP loses 3 and reaches 0. The caster gains 0 RP. Use 5-RP loss on failed save and active-creature RP-holder eligibility.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-12-B",
+          "spellId": "elemental-drain",
+          "kind": "preserved-original-authored-example",
+          "originalText": "If fire damage is prevented by immunity but the CON save failed, a living target’s actual RP pool still loses up to 5.",
+          "currentAdjudication": "If fire damage is prevented by immunity but the CON save failed, a living target’s actual RP pool still loses up to 5. Use 5-RP loss on failed save and active-creature RP-holder eligibility.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-13-A",
+          "spellId": "bind-element",
+          "kind": "preserved-original-authored-example",
+          "originalText": "An actual Elemental fails WIS while the source’s shared guard is unused. Paralyzed spends that guard and may end at the first repeat save; persistence through a second turn does not spend another mark.",
+          "currentAdjudication": "An actual Elemental fails WIS while the source’s shared guard is unused. Paralyzed spends that guard and may end at the first repeat save; persistence through a second turn does not spend another mark.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-13-B",
+          "spellId": "bind-element",
+          "kind": "preserved-original-authored-example",
+          "originalText": "A humanoid casting elemental spells is not an Elemental. A real Elemental already hard-controlled by this source character receives no invented fallback from a later failed save.",
+          "currentAdjudication": "A humanoid casting elemental spells is not an Elemental. A real Elemental already hard-controlled by this source character receives no invented fallback from a later failed save.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-14-A",
+          "spellId": "dimensional-door",
+          "kind": "preserved-original-authored-example",
+          "originalText": "You can return with your real backpack to a personally examined balcony 450 feet away if its arrival space is still legal.",
+          "currentAdjudication": "You can return with your real backpack to a personally examined balcony 450 feet away if its arrival space is still legal.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-14-B",
+          "spellId": "dimensional-door",
+          "kind": "preserved-original-authored-example",
+          "originalText": "If that space is secretly occupied, the paid spell fails at the origin. It gives neither an adjacent substitute nor a duplicated backpack.",
+          "currentAdjudication": "If that space is secretly occupied, the paid spell fails at the origin. It gives neither an adjacent substitute nor a duplicated backpack.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-15-A",
+          "spellId": "resonance-beacon",
+          "kind": "preserved-original-authored-example",
+          "originalText": "An enrolled ally spends an Action and 2 RP to arrive in the free square. A second ally must wait until that square is clear.",
+          "currentAdjudication": "An enrolled ally spends an Action and 2 RP to arrive in the free square. A second ally must wait until that square is clear.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-15-B",
+          "spellId": "resonance-beacon",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Lifting the marked paving stone ends the fixed beacon. It cannot become a free movable destination.",
+          "currentAdjudication": "Lifting the marked paving stone ends the fixed beacon. It cannot become a free movable destination.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-16-A",
+          "spellId": "faction-ally",
+          "kind": "preserved-original-authored-example",
+          "originalText": "The Envoy’s two attack components use one commanded offensive Action, leaving no shared offensive allowance for another companion that round.",
+          "currentAdjudication": "The Envoy’s two attack components use one commanded offensive Action, leaving no shared offensive allowance for another companion that round. Qualifying Null damage at 0 uses finite-summon Disabled, not immediate end.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-16-B",
+          "spellId": "faction-ally",
+          "kind": "preserved-original-authored-example",
+          "originalText": "Favorable reputation alone does not authorize this cast without actual faction membership and invocation permission.",
+          "currentAdjudication": "Favorable reputation or affiliation alone does not authorize this cast. The caster must have actual recorded membership in one exact canonical faction AND actual invocation permission under the reviewed Faction Seal permission procedure. Qualifying Null damage at0 uses finite-summon Disabled, not immediate end.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X01",
+          "spellId": "spell-shield",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: caster A has no Veil when A commits an eligible rank-3 damaging spell against protected B; B has Spell Shield and a Reaction. The source spell does not create its damage root until its ordinary damage-resolution checkpoint. B reflects before that checkpoint. Spell Shield creates no replacement root and does not move the checkpoint. A remains caster/dealer. A's Veil state is unchanged (none) through the real root checkpoint, so the root is ordinary lethal-capable damage; B's Veil state is irrelevant. Boundary variant: if an independently legal event gives A a Veil before the original root checkpoint, that newly created original root is `nullNonlethal=true`; if A gains the Veil only after the root checkpoint, the already-created root keeps its ordinary flag. If the source spell had created its root before reflection, its existing flag would simply be preserved.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X02",
+          "spellId": "spell-shield",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: Wizard A is un-Veiled, RP20, concentrating on no spell. B is Veiled and has pending Spell Shield plus a Reaction. A casts operational Charm Person (rank1, base2 RP, concentration up to1 minute) at B from 20 ft. At cast commitment A pays 2 RP and establishes Charm Person concentration before the reaction window. B reflects. The return from B to A is legal and uses A's original spell DC and ownership. B's Veil creates no new Null root because Spell Shield is redirection, not new damage. A remains the concentration owner even though A is now the returned target; if A fails its WIS save the same Charm Person branch affects A under its own odd-but-legal self-target result until its normal ending. Reflection neither transfers concentration to B nor opens a second cast/price/Refrain event. Spell Shield's own deadline is the tenth future regular-start marker of its caster (or application+60s outside initiative), fixed through suppression/absence/death; Charm Person creates no damage root because it deals no damage.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X03",
+          "spellId": "alignment-lock",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Variant A, Lock first. Target T has underlying Chaotic Evil. L is a legal rank-4 Alignment Lock caster, pays 7 RP as an Action; T fails the CHA save. Lock snapshots Chaotic/Evil for +24 elapsed hours. P then legally casts rank-7 Alignment Purge, pays 17 RP as an Action; T fails WIS, and P concentrates for 60 elapsed seconds on a Neutral/Neutral overlay below Lock. Effective read remains Chaotic Evil while Lock is active. S is a Lawful Good Wizard with Alignment Suggestion prepared: Action, 30 ft, base 2 RP, WIS save, concentration up to one minute. T fails. Suggestion baseline excludes target-side Purge and prior Suggestion plus AC4 Lock/Anchor under AC4-ALIGN-01, so baseline is underlying Chaotic Evil; caster snapshot is Lawful Good; one-step values become Neutral/Neutral and remain live below Lock. Purge ending does not alter Lock. Suggestion ending does not alter Lock. At +24h Lock ends and the then-live lawful lower record becomes effective. Variant B, lower overlay first: T begins Chaotic Evil; S first applies Suggestion toward Lawful Good, producing Neutral/Neutral after failed WIS and paying 2 RP; L then applies Lock after failed CHA and snapshots the currently effective Neutral/Neutral. If Suggestion later ends, Lock remains Neutral/Neutral until its own +24h deadline. No undefined axis, refund, replay, or staircase is created.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X04",
+          "spellId": "alignment-anchor",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: target T is under reviewed Purge, so effective alignment is Neutral/Neutral while underlying record is Chaotic Good. A Conjuration rank4 Alignment Anchor zone is created for 7 RP; T is inside at creation and its first zone snapshot is Neutral/Neutral. Purge later ends, but while T stays in the zone the Anchor still freezes Neutral/Neutral. T exits: the zone constraint becomes inactive and underlying Chaotic Good is effective. T reenters the same zone: it reuses that application's original Neutral/Neutral snapshot rather than taking a new snapshot. A separate later Alignment Lock can coexist by its own timestamp; earliest active eligible lock per axis governs among same-family locks. A creature whose moral axis is genuinely undefined entering the zone receives no fabricated Neutral value on that axis. All casts keep their real costs/deadlines regardless of hidden eligibility.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X05",
+          "spellId": "faction-sanctuary",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: caster C has actual invocation permission for canonical faction F and creates Protection-mode Faction Sanctuary, paying7 RP and concentrating up to10 minutes. Owner O is a genuine member of F. O's temporary Faction Envoy stands inside the sanctuary, but its summon record grants only temporary faction affiliation, not institutional membership. Result: O can receive the +2 AC benefit if O personally occupies the area; the Envoy receives no member-only benefit unless an independent actual membership record for that exact body exists. O's positive standing or membership cannot be borrowed by the Envoy. No membership fact is publicly disclosed by the failed benefit.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X06",
+          "spellId": "summon-water-pet",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: Water Pet is at 6/35 HP with 24 seconds left on its caster's concentration. A Veiled dealer's qualifying root deals 8; Pet reaches0 and becomes the same Null Disabled0 body. A second qualifying Null hit for 5 while it is already Disabled0 does not end, replace, reapply or create a new recovery clock. On the Cleric's next turn, a Cleric 5 (Wisdom16, M=3, S=2) within30 ft spends an Action and 2 RP on actual Healing Rite, whose target is one living ally. Under NEW scoped AC4-SUMMON-TARGET-01 the Water Pet qualifies mechanically while its body exists; roll 2d8=9, +3 =12 HP, so Pet becomes 12/35 and Disabled ends. This classification claims no natural biology/soul/corpse rule. Independent-expiry control: if no heal occurs, the same Disabled body ends at its original +24s concentration deadline; no corpse, loot, water stock or refund appears.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X07",
+          "spellId": "summon-water-pet",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Initial state: one multiclass owner controls a Water Pet and another companion; both are ready, owner has one Bonus Action and the ordinary one shared damaging/support activation for numbered round 5. Owner spends the Bonus Action commanding Water Pet to heal ally R; roll2d6=7 and R regains7 subject to normal cap. By the AC4 scoped rule that heal spends the owner's one shared support/offense activation for round5. The second companion cannot then make its damaging attack in round5 even if another effect could issue it a command; an extra turn does not refresh the numbered-round allowance. Conversely, if the second companion had attacked first, Water Pet could still move/Dodge under a legal command but could not use its heal that round.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X08",
+          "spellId": "resonance-dampening-field",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Field is active. A casts an ordinary rank-4 7-RP spell: mandatory field extra +2 produces 9 before final Resonance Influence; with Ease -1 final price is 8. B is a Winterfang Druid 14 using the actual Master of Winter source permission to cast its bounded winter control-weather spell once without expending Resonance Points. That source waiver zeroes the ordinary RP payment, but the AC4 field mandatory extra is then +2; with no broader waiver B must pay 2 RP in addition to consuming the once/long-rest use, or cannot commit. C is a Wizard 2 using actual Ritual Casting: a ritual spell's source price is 0 RP unless it explicitly consumes RP; if a legal ritual's resolution/casting point occurs while this field applies, the field's mandatory +2 is still evaluated before final Influence, though the ritual's own 10-minute time and encounter prohibition remain real. D has no RP pool and therefore cannot commit a spell route whose final mandatory field price is positive. Ranger Druidic Arrow remains a magical class technique, not an ordinary spell, so the field adds no RP. Oracle Revelation Charges remain nonspell class power and are outside.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X09",
+          "spellId": "dimensional-anchor",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Exact comparison: owner O previously paid the legal Summon Spectral Steed cast and is maintaining its original one-minute concentration; the Large steed is carrying one willing Medium rider whose effective body+gear is 180 lb and 5 Load, within the 350-lb/12-Load caps. O begins its turn with the steed within60 ft and perceptive. O spends the required Bonus Action command for Planar Crossing toward a specific known site on another plane. The steed acts immediately after O and spends its Action; its one crossing attempt is consumed when the attempt starts. Unknown to O, a separately maintained Dimensional Anchor already covers the destination footprint. At resolution the endpoint is illegal, so steed+rider+permitted gear remain atomically at origin. The Action, command and one crossing attempt are not refunded; no hidden reason/coordinates are revealed; the steed's original concentration clock continues. No mid-resolution cast, free interrupt or cross-plane trigger perception is invented. Control: same-plane teleport endpoints both outside an Anchor are not blocked merely because an imaginary straight line crosses the sphere.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X10",
+          "spellId": "corruption-barrier",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Barrier is a30x10 selective plane. A carrier physically carries a genuinely Corrupted passenger toward it. Because the passenger's occupied body would cross, the barrier stops the crossing at the boundary and triggers that passenger's first contact packet for the numbered round; CON save is rolled for that passenger. Later an unsupported Corrupted creature falls through the plane: barrier does not provide support, so it takes one eligible contact packet and the ordinary fall continues beyond the plane. A third Corrupted traveler teleports from one legal space to a fitting destination wholly beyond the barrier without destination overlap; there is no physical path test, so Corruption Barrier alone does not block that teleport. Each creature's one contact entitlement uses its own numbered-round/six-second interval; no standing-near tick is added.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X11",
+          "spellId": "bind-element",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Target E has an actual Elemental creature-type record and is perceived at40 ft. Caster C has already spent its shared character→E hard-denial allowance earlier this encounter. C casts Bind Element anyway, pays7 RP, E fails WIS. The new Paralyzed hard component is blocked by the already-spent guard; no Restrained/Stunned/soft fallback is invented and the paid cast is not refunded. Control variant: with an unused guard, failure establishes Paralyzed through E's second future regular end; at first future end E fails the repeat WIS save, then the effect is suppressed for one interval. Suppression does not pause or restart the second-turn marker. At the second scheduled regular end the application expires even if still suppressed; restoration afterward cannot reapply it for free.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X12",
+          "spellId": "crystalline-barrier",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Caster creates one Crystalline Barrier and pays7 RP; wall starts AC18/40HP with original one-minute concentration deadline. Object-legal attacks deal13 total damage, leaving27HP. The wall is then suppressed; a Medium creature moves into part of the former footprint. Suppression does not heal or reset HP. Before the footprint clears, the original concentration deadline arrives and the spell expires. Result: no wall resumes, no creature is evicted/crushed, no 27-HP renewed wall is banked, and no elemental-glass crafting stock or shards are created.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X13",
+          "spellId": "greater-warding",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Recipient R has Greater Warding, an existing Warding Bond whose caster is B, R has 3 temp HP, B has 2 temp HP; both start at 20/20 HP. One spell-origin packet deals 11 to R. Greater Warding resistance applies once: floor(11/2)=5. Warding Bond is mandatory post-defense: transfer floor(5/2)=2 to B and leave 3 on R. The transferred 2 skips a second mitigation/prevention stage. Apply temp HP separately: R's 3 temp HP absorbs its retained 3, leaving R 20/20 HP and 0 temp HP; B's 2 temp HP absorbs transferred 2, leaving B 20/20 HP and 0 temp HP. No second resistance, transfer or mitigation occurs. +2 Greater Warding and +1 Warding Bond same-stat AC/save bonuses use strongest +2, not +3.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X14",
+          "spellId": "elemental-drain",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Caster C pays7 RP and commits Elemental Drain. One element draw is4=lightning and the single3d6 roll is11. Target U is an active creature-classified Undead with current RP7 and no relevant immunity; it fails CON, takes11 ordinary lightning subject to its defenses, then loses min(5,7)=5 RP→2. Target D is a true dead body/corpse, not an active creature: it is not an active RP holder and cannot lose RP; do not infer creature status from the word undead. Target I is an active eligible creature with RP6 and lightning immunity; on failed CON it takes0 lightning but still loses5 RP→1 because damage immunity does not itself cancel the separate resource-loss branch. C gains no RP and no target goes negative.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-X15",
+          "spellId": "resonance-beacon",
+          "kind": "new-integration-authored-example",
+          "currentAdjudication": "Beacon is active on fixed support. Enrolled traveler T is an active creature on the same plane, within500 ft, with 2 RP. T spends its Action and commits 2 RP. Under NEW scoped AC4-BEACON-01, immediately before relocation the spell revalidates the same Beacon/support/destination, T eligibility and actual transport blockers. In this fixture an already-sourced environmental collapse event scheduled for that timestamp under the scene's normal event order destroys the marked support before Beacon relocation resolves; Beacon therefore ends and revalidation fails. T stays at origin; Action/RP remain spent; no retry or nearest-square arrival occurs. This checkpoint grants no Reaction or new interrupt window—the collapse was independently scheduled and legal. If no independently legal event changes state, resolution proceeds immediately after commitment/revalidation. Xi still cannot end the Beacon wholesale because it is not an individual ongoing target branch.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-CX01",
+          "spellId": "spell-shield",
+          "kind": "correction-authored-example",
+          "currentAdjudication": "Spell Shield applied during caster C's turn after C's regular-start marker records the tenth future C regular-start marker. It is suppressed across markers 4-6, C is absent at marker7 and dies before marker8; suppression/absence/death do not reset or end this nonconcentration ward. It remains unable to trigger while suppressed, resumes if suppression ends, and expires exactly at marker10. Outside initiative the equivalent endpoint is application+60s.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-CX04",
+          "spellId": "faction-ally",
+          "kind": "correction-authored-example",
+          "currentAdjudication": "Envoy is Null Disabled0 with 18s left on concentration. A second qualifying Null packet hits the same body: it remains the same Disabled0 identity with no new deadline or reapplication. The caster then voluntarily ends concentration through its actual no-action concentration release; that independent source ending removes the Envoy immediately. Null does not immunize it from concentration expiry/dismissal/replacement.",
+          "runtimeTest": false
+        },
+        {
+          "id": "AC4-CX05",
+          "spellId": "faction-ally",
+          "kind": "correction-authored-example",
+          "currentAdjudication": "Envoy at0 is mechanically a living ally only under AC4-SUMMON-TARGET-01. Cleric5 Wisdom16 spends Action+2RP Healing Rite within30ft; S=2, M=3, dice 4+5=9, total12 HP. Envoy rises to12 HP and Null Disabled ends. This targeting classification does not establish soul, natural origin, corpse, biology or loot.",
+          "runtimeTest": false
+        }
+      ]
+    },
+    {
+      "pointer": "/casebook/count",
+      "before": 45,
+      "after": 48
+    }
+  ],
+  "changeCount": 11
+}

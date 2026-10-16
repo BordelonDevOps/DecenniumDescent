@@ -1,0 +1,476 @@
+{
+  "count": 52,
+  "proposedItemAdjudications": 44,
+  "unresolvedSourceBoundaries": 8,
+  "status": "Authored examples, not executed gameplay tests.",
+  "cases": [
+    {
+      "id": "CB-01-I01-C1",
+      "itemId": "CB-01",
+      "title": "One real pint",
+      "given": "Normal8-pint water day, no water yet; consume one proposed serving.",
+      "expected": "Credit1pint water and0food/Supply baskets; no Intoxication. Actual pint is gone and container remains.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-01-I01-C2",
+      "itemId": "CB-01",
+      "title": "Repeated serving choice",
+      "given": "Consume a second actual serving.",
+      "expected": "Under the explicitly NEW repeat proposal, total2pints hydration and no Intoxication. This extension of the source’s one-serving clause still requires GPT approval.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-02-I01-C1",
+      "itemId": "CB-02",
+      "title": "Spoiled food",
+      "given": "Entitlement active; actual spoiled-food hazard requires aCONsave.",
+      "expected": "Advantage applies and the one entitlement is spent before result; no illness cure afterward.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-02-I01-C2",
+      "itemId": "CB-02",
+      "title": "Different poison",
+      "given": "Same entitlement active; bitten by an unrelated venomous creature.",
+      "expected": "No advantage from this brew; its entitlement/expiry remain. Poisoned as a shared condition label does not establish spoiled-food origin.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-03-I01-C1",
+      "itemId": "CB-03",
+      "title": "Undefined stage",
+      "given": "A referee proposes that first cold exposure means global Exhaustion1.",
+      "expected": "No adopted conversion exists. Keep the item held until the exact cold stage/meaning is jointly chosen.",
+      "kind": "unresolved-source-boundary",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-03-I01-C2",
+      "itemId": "CB-03",
+      "title": "Sky-voyage shortcut",
+      "given": "A draft upper-atmosphere inhalation event deals cold damage and thin-air Exhaustion.",
+      "expected": "Do not treat that local draft as the missing global cold-weather level table or grant general cold resistance.",
+      "kind": "unresolved-source-boundary",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-04-I01-C1",
+      "itemId": "CB-04",
+      "title": "First motion check",
+      "given": "Rough water motion beginsT0; grog active. At600seconds CONcheck rolls4and16, modifier0.",
+      "expected": "Advantage gives16, meetingDC12; no Seasick. Next continuous-motion check4200, not another check on seat change.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-04-I01-C2",
+      "itemId": "CB-04",
+      "title": "Actual recovery",
+      "given": "Already Seasick; motion stops, then restarts after9minutes.",
+      "expected": "No ten-minute recovery completed, so penalty/original clock remain. Ten uninterrupted steady minutes would end it; brew expiry alone would not.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-05-I01-C1",
+      "itemId": "CB-05",
+      "title": "Environmental flat reduction",
+      "given": "Eligible heat hazard deals5fire; no save/classDR; actual fire resistance also active.",
+      "expected": "Proposed flat1 gives4, resistance halves to2. Porter alone would give4, not2.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-05-I01-C2",
+      "itemId": "CB-05",
+      "title": "Combat fire",
+      "given": "A fire spell deals5fire to the same drinker.",
+      "expected": "Porter gives no reduction because this is direct spell damage. Any independently real fire resistance still applies.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-06-I01-C1",
+      "itemId": "CB-06",
+      "title": "One meal check",
+      "given": "During the actual meal, a real eligible Nature check is declared; base total14 against15.",
+      "expected": "Choose entitlement before roll; +1 gives15 before the actual natural-die degree shift. It is one real task, not automatic research completion.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-06-I01-C2",
+      "itemId": "CB-06",
+      "title": "Late project",
+      "given": "The meal ended; a four-hour research finding later completes.",
+      "expected": "No wine bonus from the ended meal window. An earlier conversation does not extend the meal or grant project credit.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-07-I01-C1",
+      "itemId": "CB-07",
+      "title": "Player-owned truth",
+      "given": "DoseT0; sleep1h actually completes beforeT0+24h; WISsave total12.",
+      "expected": "Player chooses an emotional fact/surrogate; DC13fails. On waking, one-hour Perception-check disadvantage; no automatic lost rest or imposed private belief.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-07-I01-C2",
+      "itemId": "CB-07",
+      "title": "No sleep",
+      "given": "A creature completes a source-defined rest without sleeping, or wakes before one continuous hour.",
+      "expected": "No completed dream, no invented sleep requirement or truth. If none completes by24hours, entitlement expires unused.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-08-I01-C1",
+      "itemId": "CB-08",
+      "title": "Speed ordering",
+      "given": "Base walking30; Ale+5; actual Exhaustion2half; no other modifiers.",
+      "expected": "Effective walking Speed floor(35/2)=17. At its own benefit end gain the one printed Intoxication point.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-08-I01-C2",
+      "itemId": "CB-08",
+      "title": "Overlapping ends",
+      "given": "Servings completedT0 andT0+300; no ending suppression.",
+      "expected": "Speed bonus stays+5, not+10. Gain Intoxication at600 and900 separately; the second dose does not defer the first crash.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-09-I01-C1",
+      "itemId": "CB-09",
+      "title": "Rapid resistant drink",
+      "given": "Consume the0.125lb serving with the rapidAction; actual fire resistance.",
+      "expected": "One-fire packet halves to0; a lawful fear entitlement still exists. No extra Action or universal fear immunity.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-09-I01-C2",
+      "itemId": "CB-09",
+      "title": "Two fear sources",
+      "given": "Brandy entitlement and Intoxication episode entitlement both available.",
+      "expected": "They cannot create double advantage. Spending Brandy does not automatically spend the independent episode use unless its own actual choice is made.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-10-I01-C1",
+      "itemId": "CB-10",
+      "title": "Healing and Totem",
+      "given": "Baseheal8, systemicCorruptedhalf, both BlightTotem andCask.",
+      "expected": "Compare Totem plan2 with Cask plan3, choose2. Do not compound to1 or subtract twice from the same event.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-10-I01-C2",
+      "itemId": "CB-10",
+      "title": "No nutrition",
+      "given": "Hunger is suppressed, but actual food requirement goes unmet at daily settlement.",
+      "expected": "Use the actual one-Strain-per-unsupported-day procedure; sensation is not food and no water/oil/sundries appear.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-11-I01-C1",
+      "itemId": "CB-11",
+      "title": "Chant pulse and harmful fear",
+      "given": "Drinker hears ordinary-volume Chant of Renewal and later Chant of Fear.",
+      "expected": "No Renewal healing/beneficialrider. Fear still uses its actual save because no-benefit does not grant harmful-Chant immunity.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-11-I01-C2",
+      "itemId": "CB-11",
+      "title": "Echo identity",
+      "given": "A legal non-Chant Echo stores a real prior Chant heal on a different eligible ally; its actual target/hearing rules are met.",
+      "expected": "Under this explicit tag-based proposal, the Echo is not automatically banned as a Chant. No blocked zero-heal event may be fabricated as its source; joint review must confirm this boundary.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-12-I01-C1",
+      "itemId": "CB-12",
+      "title": "Resurrection ambiguity",
+      "given": "A former drinker dies, is genuinely restored, and later speaks/dies again.",
+      "expected": "No choice between first terminal sentence and eventual last sentence is made here. Preserve both source and unresolved terminal-record question.",
+      "kind": "unresolved-source-boundary",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-12-I01-C2",
+      "itemId": "CB-12",
+      "title": "Unwitnessed speech",
+      "given": "A drinker speaks privately far from the unique vintage.",
+      "expected": "No omniscient recording/retrieval, soul identity or hidden information is granted by the uncompleted source row.",
+      "kind": "unresolved-source-boundary",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-01-I01-C1",
+      "itemId": "CS-01",
+      "title": "Tolerant normal crash",
+      "given": "One tolerated single dose completesT0; benefit duration300.",
+      "expected": "At300 gain1expeditionStrain and DEX-check disadvantage until3900. No serumStrain or half-hour crash substitution.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-01-I01-C2",
+      "itemId": "CS-01",
+      "title": "Third-dose complication",
+      "given": "Third dose since proposed qualifyingrest, no applicabledefenses; overdoseroll4.",
+      "expected": "Immediate4lightning and6secondsStunned plus shared proposed dependence advancement; actual later normalcrash remains. Apply real life rules if damage is fatal.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-02-I01-C1",
+      "itemId": "CS-02",
+      "title": "Failure-gated dice",
+      "given": "First ordinary WISsave succeeds.",
+      "expected": "Literal first-failed wording should not be silently spent here; the simpler next-save replacement would differ and requires an explicit decision.",
+      "kind": "unresolved-source-boundary",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-02-I01-C2",
+      "itemId": "CS-02",
+      "title": "Advantage and margin",
+      "given": "An advantaged normal save would fail by1; a different conditional die pool could fail by5.",
+      "expected": "The crash can affect a source-defined failure margin; do not declare it meaningless or retroactively roll an unapproved second save. Hold full procedure until the dice window is chosen.",
+      "kind": "unresolved-source-boundary",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-03-I01-C1",
+      "itemId": "CS-03",
+      "title": "Actual Wound count",
+      "given": "PB3, two real Wounds; choose one record, accept6tempHP.",
+      "expected": "CONsave penalty becomes−1 during the selectedexception, not0; actualtwo Wounds, HDrecovery andlinkedInjuries remain. Third/fatalWound rules use actual count.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-03-I01-C2",
+      "itemId": "CS-03",
+      "title": "Benefit lock",
+      "given": "A second serving is deliberately swallowed before the required qualifyingrest.",
+      "expected": "No new tempHP orWoundexception; actualdosehistory/cost and its eventualcrash still occur. No overlap loophole by dosing before the first10minutes end.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-04-I01-C1",
+      "itemId": "CS-04",
+      "title": "Invisible movement",
+      "given": "Invisible creature moves inside10ft behind no barrier; drinker has functioning sight.",
+      "expected": "Learn its actualposition under the proposed sense; do not grant true sight. Apply current Invisible-known-position exception and any independent obscurity separately.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-04-I01-C2",
+      "itemId": "CS-04",
+      "title": "Wall or stationary target",
+      "given": "Invisible creature stays still or moves behind totalopaqueobstruction.",
+      "expected": "No movement-sense acquisition through the wall or from stationarypresence. No magical target eligibility is invented.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-05-I01-C1",
+      "itemId": "CS-05",
+      "title": "Nearest untyped object",
+      "given": "An ordinary corpse and an alleged spirit are near the drinker.",
+      "expected": "Do not invent spiritual/ethereal eligibility, range/tie selection or a WISDC from the name. The entire operational profile remains held.",
+      "kind": "unresolved-source-boundary",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-05-I01-C2",
+      "itemId": "CS-05",
+      "title": "Protected knowledge",
+      "given": "A general souls model exists but no Ghostwine-specific perception verdict.",
+      "expected": "The item does not automatically reveal ownership, identities, Hunt records or absolute cosmic truth.",
+      "kind": "unresolved-source-boundary",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-06-I01-C1",
+      "itemId": "CS-06",
+      "title": "Save then flat then resistance",
+      "given": "Spell rolls13damage; save succeeds; PB3 reduction and actual matching resistance; no strongerflatDR.",
+      "expected": "13/2floor=6, subtract3=3, resistancefloor=1. A redirectedpost-defense portion does not run this reduction again.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-06-I01-C2",
+      "itemId": "CS-06",
+      "title": "RP and RC",
+      "given": "Normal benefit ends;600secondRPspendlock begins. OracleRC and actualRP both present.",
+      "expected": "RPspending blocked; RC unaffected by name. A zeroRP legal effect still needs its actualcomponents/othercosts and cannot relabel paidRP asfree.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-07-I01-C1",
+      "itemId": "CS-07",
+      "title": "Dose and laterExposure",
+      "given": "First ordinary dose benefit expires while AnchorProject isactive.",
+      "expected": "Apply proposedactual+1Unitygain; realtrack interrupts project evenatcap ifgainunprevented. NoHuntmark/Equationknowledge/forcedbelief follows.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-07-I01-C2",
+      "itemId": "CS-07",
+      "title": "Overdose and normalcrash",
+      "given": "An overdose event occurs; normalbenefitwillendlater.",
+      "expected": "OneadditionalUnitygainnow and oneordinarygainlater, through actualtrack. No separate identity-deletion mechanic is invented.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-08-I01-C1",
+      "itemId": "CS-08",
+      "title": "Finite researchbonus",
+      "given": "A validchosenfour-hourfinding completesinside the8hwindow.",
+      "expected": "+2toits actualeligiblecheck only. No autoqualification, extra finding, borrowed proficiency or clock halving.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-08-I01-C2",
+      "itemId": "CS-08",
+      "title": "Choosing not to pursue",
+      "given": "Atbenefitend thequestionisnotanswered andnoactualworkcanbedone.",
+      "expected": "Concentration-maintenance savedisadvantage lasts atmost8h. Playercanleaveorchooseotherwork; no indefinitecompulsion or invented10minuteanswer.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-09-I01-C1",
+      "itemId": "CS-09",
+      "title": "Split-day water",
+      "given": "Baseline8pints/day; crashactivefourhoursbeforedayend andfourafter.",
+      "expected": "Eachday gains8×4/24=4/3extra pints. Totalextra8/3. Actualconsumptioncreditsonce; overlappingcrashescountuniontime.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-09-I01-C2",
+      "itemId": "CS-09",
+      "title": "Derived swim speed",
+      "given": "EffectivewalkingSpeed15afterrealmodifiers; DeepBlueactive.",
+      "expected": "Granted swim15, not7 fromhalvingagain. If actualwalking becomes0, thisderivedswim becomes0; nofreebreathingafterexpiry.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-10-I01-C1",
+      "itemId": "CS-10",
+      "title": "Mixed melee damage",
+      "given": "One legalmeleeattackhaspiercing+firecomponents; choosepiercingfor+1beforetheroll.",
+      "expected": "Addonepointtopiercing,notonepercomponent/die. It isnotanotherhit orcriticaldie; actualdefensesapply.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-10-I01-C2",
+      "itemId": "CS-10",
+      "title": "Peaceful choice",
+      "given": "Crashactive; actornegotiatesceasefirewithanactualPersuasioncheck, thensellsordinarysupplies.",
+      "expected": "De-escalationcheckhasdisadvantage. Ordinarysalescheckdoesnotunlessitactuallyservesthatconflictpurpose. Characterisnotforcedtoattack.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-11-I01-C1",
+      "itemId": "CS-11",
+      "title": "Maximized die remains spent",
+      "given": "Availableactuald8, CON+2, ordinaryhealingeligible, noneothermodifiers.",
+      "expected": "Spendd8; base10healingbeforeactualcaps. Itisonehealingdie,notflat10forper-dieclassification. OnfirstusemakeproposedDC16dependencesave.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-11-I01-C2",
+      "itemId": "CS-11",
+      "title": "Suppressed poison expires",
+      "given": "Poisonedsourcehas20minutesleft; Ashsuppressesconditionfor1hour.",
+      "expected": "Sourceexpiresatitsoriginal20minuteendpoint. Atonehouritdoesnotreturn. Independentongoingpoisondamagewasneverautomaticallycured.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-12-I01-C1",
+      "itemId": "CS-12",
+      "title": "One breath and recoil",
+      "given": "PB3, CON+2, choosecoldatdosecompletion; legalbreathwithinwindow, damage13, targetDEXsave15.",
+      "expected": "DC13:targetsuccess takesfloor13/2=6beforedefenses. Userresolvesown1d6coldrecoilonce. Noignition,push,selectivealliesorsecondbreath.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-12-I01-C2",
+      "itemId": "CS-12",
+      "title": "Expired overdose entitlement",
+      "given": "Tolerantsingledosewindow30seconds; overdosecomplicationroll5; nobodyexhales.",
+      "expected": "ImmediateNEWrigid-limbs−10walkingfor1hour; at30secondsunusedentitlementexpiresandnormal1d6chosentyperecoiloccurs. MutationdoesnotgrantaWarriorslot.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CB-04-I01-C3",
+      "itemId": "CB-04",
+      "title": "Pause preserves only rough seconds",
+      "given": "An episode has540rough seconds. Then540steady seconds, then60rough seconds. Grog active.",
+      "expected": "No check during steady time. Totalrough reaches600 atelapsed1140, producing the one firstcheck. Ten full steady minutes would instead reset the episode. Next marker remains4200roughseconds, not4200wallseconds.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-03-I01-C3",
+      "itemId": "CS-03",
+      "title": "No prepaid post-crash rest",
+      "given": "DoseT0; actual qualifying Long Rest completesT0+300; dosebenefit ends/crashesT0+600.",
+      "expected": "The earlier rest cannot clear this dose’s post-crash lock. Actual crash at600 applies; a later genuinely qualifying Long Rest is required. A coincident rest at600 would be evaluated only after actual crash/life state and its ordinary eligibility.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-10-I01-C3",
+      "itemId": "CS-10",
+      "title": "Zero and negative attack formulas",
+      "given": "Legal melee hit with one actual damage component; its ordinary flat formula is0 in one history and−2 in another, before the nonnegative floor.",
+      "expected": "EmberResin+1 yields1 in the first history andmax(0,−2+1)=0 in the second. A grapple/attack with no damage component gains none. No positive-base prerequisite is invented.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    },
+    {
+      "id": "CS-12-I01-C3",
+      "itemId": "CS-12",
+      "title": "Two stored elements, one actual breath",
+      "given": "Unexpired fire doseA then cold doseB; both unspent. User declaresA asbreathsource beforeorientation.",
+      "expected": "One3d6fire cone, no cold cone. Mark both entitlements consumed; resolveA1d6fire recoil thenB1d6cold recoil in actualapplication order, eachwithitsdefenses/life. No latersecondbreath orduplicateexpiryrecoil.",
+      "kind": "proposed-item-adjudication",
+      "runtimeExecuted": false
+    }
+  ]
+}

@@ -1,0 +1,429 @@
+{
+  "schemaVersion": "1.0",
+  "title": "Decennium Descent Canon Manifest",
+  "updated": "2026-08-05",
+  "description": "Single registry of domain-level authoritative sources. This file does not duplicate domain facts; it points to the files that own them. Do not maintain a second parallel Source of Truth for the same facts.",
+  "mainCutover": {
+    "status": "done",
+    "completedAt": "2026-08-05",
+    "report": "docs/canon/MAIN_CUTOVER_V6_2026-08-05.md",
+    "rollbackArchive": "archive/main-pre-v6-cutover-2026-08-05/",
+    "notes": "2026-08-05: Owner-authorized main cutover from ReviewBible (V6 Consolidated). Live companion now uses public crafting 433, spells 848, feats 335, Player Rulebook v6, Core Systems public v2 + Director materials under docs/books, MM Source Pack (85). ReviewBible retained as assembled review-build mirror — not deleted."
+  },
+  "pendingDeliveries": [
+    {
+      "slug": "DecenniumDescentv7",
+      "path": "DescentReviewChanges/incoming/DecenniumDescentv7/",
+      "status": "pending-review",
+      "stagedAt": "2026-08-05",
+      "contents": [
+        "DD_V7_Cursor_Playtest_Master_Instructions.md",
+        "Decennium_Descent_Gameplay_Loop_Bible_v1.docx",
+        "01_Combat_Class_Balance/ (DD_V7_Cursor_01_Combat_Class_Balance.zip)",
+        "02_Expedition_Extraction/ (DD_V7_Cursor_02_Expedition_Extraction.zip)",
+        "03_Haven_Economy_Social/ (DD_V7_Cursor_03_Haven_Economy_Social.zip)",
+        "04_Seasonal_Decennial/ (DD_V7_Cursor_04_Seasonal_Decennial.zip)"
+      ],
+      "missingFromDrop": [
+        "05-readability-speed-onboarding (listed in Master Instructions; zip not delivered)"
+      ],
+      "relatedDomains": [
+        "combat",
+        "class-identity",
+        "economy",
+        "gate-tier-scaling",
+        "locked-baselines",
+        "role-abilities"
+      ],
+      "notes": "2026-08-05: Staged only per REPOSITORY_PROMOTION.md. Multi-agent playtest kits + Gameplay Loop Bible v1. Do NOT auto-promote to ReviewBible or main. Playtest packs assume V7 Gameplay Complete paths (GAMEPLAY_LOOP_CANON.md, Design Doctrine, gameplay-loop JSON) not yet on main. See incoming/.../PENDING_REVIEW.md."
+    },
+    {
+      "slug": "DecenniumDescentv6",
+      "path": "DescentReviewChanges/incoming/DecenniumDescentv6/",
+      "alsoPresentAt": ["DecenniumDescentv6/"],
+      "status": "cut-over-to-main",
+      "promotedAt": "2026-08-05",
+      "promotedTo": "DescentReviewChanges/ReviewBible/",
+      "mainCutoverAt": "2026-08-05",
+      "promotionReport": "DescentReviewChanges/ReviewBible/PROMOTION_V6_2026-08-05.md",
+      "mainCutoverReport": "docs/canon/MAIN_CUTOVER_V6_2026-08-05.md",
+      "notes": "Owner 2026-08-05: promoted into ReviewBible, then cut over into main approved release. Incoming retained as historical stage copy. ReviewBible retained."
+    }
+  ],
+  "hierarchy": {
+    "doc": "docs/canon/REPOSITORY_PROMOTION.md",
+    "layers": [
+      "main = approved release (V6 cutover done 2026-08-05)",
+      "ReviewBible = assembled review build (mirrors V6 promote; retained)",
+      "DescentReviewChanges/ = unapproved staging",
+      "DescentReviewChanges/incoming/ = newly delivered packs awaiting review"
+    ]
+  },
+  "opsProtocol": "docs/mechanics/CONTINUITY_SOURCE_OF_TRUTH.md",
+  "assembledBuild": "DescentReviewChanges/ReviewBible/",
+  "domains": [
+    {
+      "domain": "crafting",
+      "authoritativePaths": [
+        "data/crafting/Decennium_Descent_Crafting_Bible_v4.json",
+        "books/player/Decennium_Descent_Crafting_Bible_v5_Known_Descent.docx",
+        "books/director/Decennium_Descent_Crafting_Bible_v4_Full_Internal.docx",
+        "src/data/crafting-recipes.json"
+      ],
+      "alsoPresentAt": [
+        "DescentReviewChanges/ReviewBible/data/crafting/Decennium_Descent_Crafting_Bible_v4.json",
+        "DescentReviewChanges/ReviewBible/src/data/crafting-recipes.json",
+        "DescentReviewChanges/incoming/crafting-bible/Decennium_Descent_Crafting_Bible_v4.json",
+        "DecenniumDescentv6/data/crafting/Decennium_Descent_Crafting_Bible_v4.json",
+        "archive/main-pre-v6-cutover-2026-08-05/src/data/crafting-recipes.json",
+        "src/data/legacy/crafting-recipes-v1-623.pre-v6-cutover-2026-08-05.json"
+      ],
+      "version": "4 (mechanical) / v5 Known Descent publication / public runtime 433",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "pathStatus": {
+        "data/crafting/Decennium_Descent_Crafting_Bible_v4.json": "found (687 recipes / 696 materials — mechanical SoT)",
+        "src/data/crafting-recipes.json": "found (433 public runtime — live main)",
+        "archive/.../crafting-recipes.json": "archived prior main 623",
+        "src/data/legacy/crafting-recipes-v1-623.pre-v6-cutover-2026-08-05.json": "legacy mirror of archived 623"
+      },
+      "supersedes": [
+        "DescentReviewChanges/crafting-bible/Decennium_Descent_Crafting_Bible_v2.docx",
+        "DescentReviewChanges/crafting-bible/Decennium_Descent_Crafting_Bible_v2.json",
+        "Crafting Bible v3 (any path)",
+        "Prior main 623-recipe runtime (archived 2026-08-05)"
+      ],
+      "notes": "Owner main cutover 2026-08-05: live companion uses 433 public runtime matching ReviewBible/V6. Full mechanical v4 at data/crafting/. See docs/canon/MAIN_CUTOVER_V6_2026-08-05.md and docs/crafting/CRAFTING_V4_MAIN_CUTOVER_2026-08-05.md."
+    },
+    {
+      "domain": "spellcasting",
+      "authoritativePaths": [
+        "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "books/director/Decennium_Descent_Core_Systems_Bible_v1_Full_Director.docx",
+        "data/director/Decennium_Descent_Core_Systems_Data_v1_Full_Director.json",
+        "src/data/spells.js"
+      ],
+      "alsoPresentAt": [
+        "docs/manuals/core-systems/",
+        "DescentReviewChanges/ReviewBible/books/player/",
+        "DescentReviewChanges/ReviewBible/src/data/spells.js",
+        "archive/main-pre-v6-cutover-2026-08-05/src/data/spells.js",
+        "Decennium_Descent_Core_Systems_Bible_v1.docx",
+        "Decennium_Descent_Core_Systems_Data_v1.json"
+      ],
+      "version": "public v2 Known Descent + Director v1 Full / companion spells 848",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [
+        "Overlapping spellcasting rules in Player Rulebook where direct conflict exists",
+        "Overlapping spellcasting rules in Instruments of the Weave where direct conflict exists",
+        "Prior main 832-spell catalog (archived 2026-08-05)",
+        "Incoming Core Systems public-facing v1 as public layer (Director v1 retained)"
+      ],
+      "notes": "Owner main cutover 2026-08-05: Core Systems public v2 + Director v1 live on main; companion spells.js cut to 848 (+ spell-placements / spell-utils). Does NOT supersede class identity, paths, feats, racial traits, crafting recipes, creature lore, setting history, or Director cosmology."
+    },
+    {
+      "domain": "combat",
+      "authoritativePaths": [
+        "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "books/director/Decennium_Descent_Core_Systems_Bible_v1_Full_Director.docx",
+        "data/director/Decennium_Descent_Core_Systems_Data_v1_Full_Director.json"
+      ],
+      "alsoPresentAt": [
+        "docs/manuals/core-systems/",
+        "DescentReviewChanges/ReviewBible/docs/manuals/core-systems/",
+        "Decennium_Descent_Core_Systems_Bible_v1.docx",
+        "Decennium_Descent_Core_Systems_Data_v1.json"
+      ],
+      "version": "public v2 Known Descent + Director v1 Full",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [
+        "Overlapping combat rules in Player Rulebook where direct conflict exists"
+      ],
+      "notes": "Owner main cutover 2026-08-05. Same Core Systems pack as spellcasting / gate-tier-scaling / economy."
+    },
+    {
+      "domain": "gate-tier-scaling",
+      "authoritativePaths": [
+        "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "books/director/Decennium_Descent_Core_Systems_Bible_v1_Full_Director.docx",
+        "data/director/Decennium_Descent_Core_Systems_Data_v1_Full_Director.json"
+      ],
+      "alsoPresentAt": [
+        "docs/manuals/core-systems/",
+        "DescentReviewChanges/ReviewBible/docs/manuals/core-systems/",
+        "Decennium_Descent_Core_Systems_Bible_v1.docx",
+        "Decennium_Descent_Core_Systems_Data_v1.json"
+      ],
+      "version": "public v2 Known Descent + Director v1 Full",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [
+        "Overlapping gate/tier scaling tables elsewhere where direct conflict exists"
+      ],
+      "notes": "Owner main cutover 2026-08-05. Core Systems gate_tiers / related JSON sections are authoritative."
+    },
+    {
+      "domain": "economy",
+      "authoritativePaths": [
+        "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+        "books/director/Decennium_Descent_Core_Systems_Bible_v1_Full_Director.docx",
+        "data/director/Decennium_Descent_Core_Systems_Data_v1_Full_Director.json"
+      ],
+      "alsoPresentAt": [
+        "docs/manuals/core-systems/",
+        "src/data/resonance-economy.js",
+        "DescentReviewChanges/ReviewBible/docs/manuals/core-systems/",
+        "Decennium_Descent_Core_Systems_Bible_v1.docx",
+        "Decennium_Descent_Core_Systems_Data_v1.json"
+      ],
+      "version": "public v2 Known Descent + Director v1 Full",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [
+        "Overlapping economy/market rules in earlier craft or Instruments docs where direct conflict exists"
+      ],
+      "notes": "Owner main cutover 2026-08-05. Does not replace crafting recipe data (crafting domain)."
+    },
+    {
+      "domain": "monster-manual-public",
+      "authoritativePaths": [
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/"
+      ],
+      "alsoPresentAt": [
+        "DescentReviewChanges/ReviewBible/docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/",
+        "books/player/Decennium_Descent_Monster_Manual_of_the_Known_Descent_v2.docx",
+        "DecenniumDescentv6/docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/",
+        "archive/main-pre-v6-cutover-2026-08-05/docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/"
+      ],
+      "primaryArtifacts": [
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/Decennium_Descent_Monster_Manual_of_the_Known_Descent_v2.docx",
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/volume-metadata.json",
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/entries/"
+      ],
+      "version": "Known Descent v2 (canon-boundary rewrite) — merged RB pack live on main",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [
+        "DescentReviewChanges/docs/bestiary/monster-manual/ (earlier MM-01 Markdown compile)",
+        "Conflicting ReviewBible Bestiary of Aethel publication text",
+        "First Monster Manual Volume I builds",
+        "Pre-cutover main MM pack (83 files; archived)"
+      ],
+      "notes": "Owner main cutover 2026-08-05: main now holds merged Source Pack (85 files) from ReviewBible — classic-label fracture-kin nabassu/sibriex retained alongside v6 fleshwright/nightreaver. Build filters: BUILD_FILTERS.md + build-filters.json."
+    },
+    {
+      "domain": "monster-manual-director",
+      "authoritativePaths": [
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Directors_Sealed_Bestiary_Source/"
+      ],
+      "alsoPresentAt": [
+        "DescentReviewChanges/ReviewBible/docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Directors_Sealed_Bestiary_Source/",
+        "books/director/Decennium_Descent_Directors_Sealed_Bestiary_v1.docx"
+      ],
+      "primaryArtifacts": [
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Directors_Sealed_Bestiary_Source/Decennium_Descent_Directors_Sealed_Bestiary_v1.docx",
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Directors_Sealed_Bestiary_Source/volume-metadata.json",
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Directors_Sealed_Bestiary_Source/entries/"
+      ],
+      "version": "Sealed Bestiary v1",
+      "visibility": "director",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [
+        "Any public exposure of Tiers VII–X, the Marquis, or the claimant system",
+        "Conflicting ReviewBible bestiary deep-continuity dumps"
+      ],
+      "notes": "Owner main cutover 2026-08-05. Do not publish into player-facing builds. See docs/manuals/DIRECTOR_MATERIALS_VISIBILITY.md."
+    },
+    {
+      "domain": "floor-97-old-god-endgame",
+      "authoritativePaths": [
+        "docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md"
+      ],
+      "alsoPresentAt": [
+        "docs/mechanics/CONTINUITY_SOURCE_OF_TRUTH.md",
+        "docs/bestiary/Decennium_Descent_Monster_Manual_Canon_Rewrite_Source_Pack/Monster_Manual_of_the_Known_Descent_Source/CANON_BOUNDARY.md",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/LEVEL_97_OLD_GOD_Q6_OPEN.md"
+      ],
+      "version": "2026-08-05 dual-layer",
+      "visibility": "director",
+      "status": "canonical",
+      "supersedes": [
+        "Binding of the Old God as publicly reliable mechanics",
+        "Old God Interstice as publicly reliable mechanics",
+        "Player-facing Floor 97/100 / focusing crystal / Old God vulnerability text"
+      ],
+      "notes": "Owner lock 2026-08-05 §2: Crystal path is Director-level canonical truth. Public knowledge ends at failed Sixth Gate. Dual-layer rumors publicly. Player Rulebook rewrite DEFERRED — do not scrub Binding/Interstice chapters in this pass; mark for later."
+    },
+    {
+      "domain": "feats",
+      "authoritativePaths": [
+        "src/data/feats.js",
+        "books/player/Decennium_Descent_Feat_Compendium_v1.docx",
+        "docs/feats/FEAT_REGISTRY_STATUS.md",
+        "docs/feats/FEAT_REGISTRY_PLAN.md"
+      ],
+      "supportingPaths": [
+        "DescentReviewChanges/ReviewBible/src/data/feats.js",
+        "docs/feats/feat-registry-snapshot.json",
+        "Feats and Skills Overview.txt",
+        "Decennium_Descent_330_Feat_Compendium.docx",
+        "Decennium_Descent_Feats.docx",
+        "Decennium_Descent_Combat_Feats.docx",
+        "Decennium_Descent_Magic_Feats.docx",
+        "Decennium_Descent_Skill_Feats.docx",
+        "archive/main-pre-v6-cutover-2026-08-05/src/data/feats.js"
+      ],
+      "version": "v6 Feat Compendium / registry (335) — live on main",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "pathStatus": {
+        "src/data/feats.js": "found (335 IDs — live main from v6/RB)",
+        "archive/.../feats.js": "archived prior main 336",
+        "Feats and Skills Overview.txt": "pending-locate",
+        "Decennium_Descent_330_Feat_Compendium.docx": "found (stub output — not SoT)"
+      },
+      "supersedes": [
+        "Feat Compendium DOCX stubs as Source of Truth (outputs only)",
+        "Forced final count of 330/336 from stub filenames",
+        "Prior main 336-feat registry (archived 2026-08-05)"
+      ],
+      "notes": "Owner main cutover 2026-08-05: live feats.js is 335 from ReviewBible/v6. Overview.txt still pending-locate. Core Systems does NOT own feats."
+    },
+    {
+      "domain": "role-abilities",
+      "authoritativePaths": [
+        "docs/canon/ROLE_ABILITIES_NOTE.md",
+        "docs/mechanics/EXPEDITION_STRUCTURE_CANON.md"
+      ],
+      "version": "2026-08-05",
+      "visibility": "public",
+      "status": "canonical",
+      "supersedes": [
+        "Any separate role-ability corpus / role-abilities.js as product SoT"
+      ],
+      "notes": "Owner lock 2026-08-05 §9: No separate role-ability corpus. Roles are expedition functions. Ability surface = racial, base/arch/hero/path, feats, spells, items, universal combat/expedition actions."
+    },
+    {
+      "domain": "class-identity",
+      "authoritativePaths": [
+        "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "decennium descent player rulebook.docx",
+        "rulebook_output.txt",
+        "src/data/canon-classes.js",
+        "src/data/class-details.js"
+      ],
+      "alsoPresentAt": [
+        "DescentReviewChanges/ReviewBible/books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "DescentReviewChanges/ReviewBible/src/data/class-details.js",
+        "docs/manuals/Decennium_Descent_Player_Rulebook_v6.docx"
+      ],
+      "version": "Player Rulebook v6 + companion class-details (live main)",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [],
+      "notes": "Owner main cutover 2026-08-05: Player Rulebook v6 + class-details/class-core-mechanics live on main. Core Systems does NOT supersede class identity."
+    },
+    {
+      "domain": "paths",
+      "authoritativePaths": [
+        "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "decennium descent player rulebook.docx",
+        "rulebook_output.txt",
+        "src/data/class-paths.js",
+        "src/data/prestige.js",
+        "src/data/prestige-lorebook.json"
+      ],
+      "alsoPresentAt": [
+        "DescentReviewChanges/ReviewBible/src/data/class-paths.js",
+        "DescentReviewChanges/ReviewBible/src/data/prestige-lorebook.json"
+      ],
+      "version": "Player Rulebook v6 / companion paths live on main",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [],
+      "notes": "Arch / Hero / prestige / specialization paths. NOT superseded by Core Systems. prestige-lorebook promoted from RB on cutover."
+    },
+    {
+      "domain": "racial",
+      "authoritativePaths": [
+        "books/player/Decennium_Descent_Player_Rulebook_v6.docx",
+        "decennium descent player rulebook.docx",
+        "rulebook_output.txt",
+        "src/data/races.js",
+        "src/data/racial-variants.json",
+        "src/data/builder-races.js"
+      ],
+      "alsoPresentAt": [
+        "DescentReviewChanges/ReviewBible/src/data/racial-variants.json",
+        "Decennium_Descent_Finalized_Racial_Abilities_and_Feats.docx"
+      ],
+      "version": "Player Rulebook v6 / racial-variants from v6 — live main",
+      "visibility": "public",
+      "status": "canonical",
+      "reviewBuildStatus": "canonical",
+      "mainCutoverStatus": "done",
+      "supersedes": [],
+      "notes": "Racial traits / variants. Main racial-variants.json cut over from ReviewBible/v6. NOT superseded by Core Systems."
+    },
+    {
+      "domain": "locked-baselines",
+      "authoritativePaths": [
+        "docs/mechanics/CONTINUITY_SOURCE_OF_TRUTH.md"
+      ],
+      "version": "2026-07-31 locks",
+      "visibility": "internal",
+      "status": "canonical",
+      "supersedes": [
+        "Independent re-ownership of the same override facts in ReviewBible pack SoT"
+      ],
+      "notes": "Opening 2400h/100d; Horn PoNR 1200h/day 50; expedition max 12; Q6 Floor 97 / Old God dual-layer (Director crystal path — see domain floor-97-old-god-endgame). ReviewBible pack SoT may mirror for convenience but must not independently own or diverge these facts — sync from this ops tracker + domain sources via CANON_MANIFEST."
+    }
+  ],
+  "missingFiles": [
+    {
+      "expected": "Feats and Skills Overview.txt",
+      "domain": "feats",
+      "status": "pending-locate"
+    }
+  ],
+  "recentlyLocated": [
+    {
+      "expected": "Decennium_Descent_Crafting_Bible_v4.json",
+      "domain": "crafting",
+      "status": "canonical-main",
+      "foundAt": [
+        "data/crafting/Decennium_Descent_Crafting_Bible_v4.json",
+        "DescentReviewChanges/ReviewBible/data/crafting/Decennium_Descent_Crafting_Bible_v4.json",
+        "DescentReviewChanges/incoming/crafting-bible/Decennium_Descent_Crafting_Bible_v4.json",
+        "DecenniumDescentv6/data/crafting/Decennium_Descent_Crafting_Bible_v4.json"
+      ],
+      "notes": "Live on main after 2026-08-05 cutover. Prior main 623 archived."
+    }
+  ]
+}

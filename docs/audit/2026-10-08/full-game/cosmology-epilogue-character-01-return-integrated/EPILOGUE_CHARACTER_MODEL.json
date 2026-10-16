@@ -1,0 +1,1412 @@
+{
+  "moduleId": "DD-COSMOLOGY-EPILOGUE-CHARACTER-01-INTEGRATED-ER01-ER07",
+  "status": "NEW PROVISIONAL AUTHORSHIP — integrated EPI-01–07 candidate after ER01–ER07; local/runtime/human/balance/whole-game/publication gates open",
+  "approvalGates": {
+    "runtime": false,
+    "human": false,
+    "balance": false,
+    "wholeGame": false,
+    "publication": false,
+    "campaignEpoch": "OWNER CHOICE PENDING; nothing in EPI01–07 selects before/during/after Proof War."
+  },
+  "authority": {
+    "source": "Original manuscripts govern subject to explicit owner corrections and current reviewed bounded rules.",
+    "epoch": "OWNER CHOICE PENDING",
+    "boundaries": [
+      "EPI-08 through EPI-17 remain open.",
+      "Nine-verses/seven-mechanical-benefits gap is preserved.",
+      "No pending spell is promoted.",
+      "KT/PT/Hunt/death procedures remain current and unchanged except where this module explicitly calls them.",
+      "No hidden identity or 710 AE phase treatment is adopted."
+    ]
+  },
+  "commonClocks": {
+    "moduleDay": "24 elapsed campaign hours. 'Next dawn' in this module means the next recorded 24-hour campaign-day boundary used by the table. This administrative clock applies underground/across planes and is not a cosmological-time claim.",
+    "session": "Director assigns a sessionId when scheduled play begins and closes it when that scheduled play session ends. Breaks, reconnects, or pauses within the same scheduled session do not refresh once/session resources.",
+    "beneficialLongRest": "Use current reviewed 8-hour Long Rest and its once-per-24h benefit limit.",
+    "beneficialShortRest": "Use current reviewed 1-hour Short Rest and its current benefit limits.",
+    "round": "Use current combat/action rules. Source 6 meters is converted to 20 feet only for the mask reveal."
+  },
+  "EPI01": {
+    "title": "Home plane, Inspiration and Disquiet",
+    "sourceStatus": "Preserved source direction operationalized with NEW provisional mechanics.",
+    "homeAffiliations": [
+      {
+        "id": "home.bastion",
+        "name": "Bastion of Flame",
+        "principle": "Disciplined passion tempered before it becomes destructive.",
+        "source": {
+          "path": "The Cosmology of Decennium Descent.docx",
+          "part": "word/document.xml",
+          "paragraphIndexZeroBased": 271,
+          "textSha256": "1e0ff86a9c27b773e4b37d67b0df0cecb8a8b2af7f2986474a3dec5ad8f90193"
+        }
+      },
+      {
+        "id": "home.veiled",
+        "name": "Veiled Expanse",
+        "principle": "Privacy and secrecy yield when honest motion and engagement are necessary.",
+        "source": {
+          "path": "The Cosmology of Decennium Descent.docx",
+          "part": "word/document.xml",
+          "paragraphIndexZeroBased": 272,
+          "textSha256": "8d0fde570c071d31b535649960afff000fb6b0430d72b8c8a1cd94ad226e9754"
+        }
+      },
+      {
+        "id": "home.radiant",
+        "name": "Radiant Currents",
+        "principle": "Law is responsive to perspective and must remain fluid enough to meet reality.",
+        "source": {
+          "path": "The Cosmology of Decennium Descent.docx",
+          "part": "word/document.xml",
+          "paragraphIndexZeroBased": 273,
+          "textSha256": "0e51b094b6184f0db6ff049b70f6ed05b943379aefc234adbb05ef70074d56cd"
+        }
+      },
+      {
+        "id": "home.void",
+        "name": "Boundless Void",
+        "principle": "Questions puncture complacency; uncertainty should be examined rather than hidden.",
+        "source": {
+          "path": "The Cosmology of Decennium Descent.docx",
+          "part": "word/document.xml",
+          "paragraphIndexZeroBased": 274,
+          "textSha256": "3003505942923c9ce9c73ea5c298ea4ebde2e817b260d697541747f93da81522"
+        }
+      }
+    ],
+    "choiceRule": "At character creation or module adoption choose one of the four primary-realm affiliations listed here. This is an elective spiritual/philosophical affiliation only; it grants no ancestry, resistance, factual planar knowledge, travel, access, language or literal birthplace.",
+    "whyFour": "NEW narrowing for current play: only the four source-described primary realm coils are eligible. Citadel/Nine Hells/Abyss artwork in the same map is not treated as equivalent home-plane choices by this module.",
+    "awayTest": "At completion of a beneficial Long Rest, check the character's currently established plane/location. If it is the chosen realm, no EPI-01 reward or penalty resolves. If it is another established plane/location, evaluate conduct. If location is genuinely unknown/ambiguous, resolve neither reward nor penalty.",
+    "evaluationWindow": "Use the preceding 24 elapsed hours ending at beneficial Long Rest completion. Record concrete materially relevant deliberate choices. Only aligned choices => gain one Inspiration die. Only knowingly contrary choices => gain one Disquiet record. If both aligned and knowingly contrary qualifying choices occurred, mixed conduct cancels for this review: neither gain nor Disquiet. Neutral/no relevant choice => neither. Warn before a foreseeable knowingly-contrary commitment.",
+    "inspiration": {
+      "id": "resource.epilogue-inspiration",
+      "die": "d6",
+      "capacity": 2,
+      "gain": "Gain one die, never above 2.",
+      "spendTiming": "Before rolling one eligible ability check, spend one die and add it to that check total.",
+      "eligible": "Ability checks only. Not attack rolls or saving throws. Initiative is eligible only if the current initiative procedure explicitly resolves it as an ability check.",
+      "stacking": "At most one Epilogue Inspiration die on a check. It cannot be combined with a Conflict Die on the same check. Advantage/disadvantage and legal source bonuses otherwise work normally.",
+      "persistence": "Persists until spent. A gain at cap is lost; it never becomes another resource.",
+      "initial": "At module adoption each character has 0 ready Epilogue Inspiration dice and 0 spent-recoverable slots.",
+      "slotLedger": "Capacity is two total slots. A ready die occupies a slot. Spending it changes that slot to spent-recoverable. A normal EPI-01 gain restores one spent slot first; if none is spent, it creates one new ready slot only if fewer than two total slots exist. At cap, gain is lost.",
+      "courageRecovery": "Courage motif restores exactly one spent-recoverable slot to ready. It cannot create a never-earned die from 0/0.",
+      "archonTest": "Successful Archon Test sets the two slots to ready and clears any spent-recoverable state; it does not create a third slot."
+    },
+    "disquiet": {
+      "id": "state.epilogue-disquiet",
+      "record": "At most one pending Disquiet d6.",
+      "effect": "On the character's next ability check before expiry, subtract 1d6 after other numeric modifiers and before degree comparison.",
+      "stacking": "Does not stack. A new Disquiet refreshes its expiry to 24 hours from the triggering Long Rest.",
+      "clearance": "Consumed by that check or expires after 24 elapsed hours.",
+      "separation": "Not Corrupted, Knowledge Taint, Proximity Taint, Dissonance, Expedition Strain, Warrior Strain or Exhaustion.",
+      "interaction": "A check affected by Disquiet cannot spend Epilogue Inspiration or a Conflict Die.",
+      "gainedAt": "Record exact gainedAt timestamp for every source of Disquiet, including Long-Rest evaluation and Archon vow reaffirmation.",
+      "expiry": "Expires 24 elapsed hours after its own gainedAt timestamp; a later Disquiet replaces the pending die and sets a new gainedAt/expiry.",
+      "bonusBlock": "On the affected check the character cannot spend Epilogue Inspiration or Conflict Die. This restriction must be presented anywhere Disquiet is presented."
+    },
+    "source": [
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 270,
+        "textSha256": "082ddd611753c9b06d15c74e1a9e59885c99a8961be5d40b888d9486854414c5"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 271,
+        "textSha256": "1e0ff86a9c27b773e4b37d67b0df0cecb8a8b2af7f2986474a3dec5ad8f90193"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 272,
+        "textSha256": "8d0fde570c071d31b535649960afff000fb6b0430d72b8c8a1cd94ad226e9754"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 273,
+        "textSha256": "0e51b094b6184f0db6ff049b70f6ed05b943379aefc234adbb05ef70074d56cd"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 274,
+        "textSha256": "3003505942923c9ce9c73ea5c298ea4ebde2e817b260d697541747f93da81522"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 275,
+        "textSha256": "73c1e71617e9a9ac08ed6c3ec39196e8c9d6cf4c3fc98e62d899e820b671249b"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 276,
+        "textSha256": "e0d4b44a3610efc2c139216e76e8ce6fc8036cce3694a104b3deeb39c502c573"
+      }
+    ]
+  },
+  "EPI02": {
+    "title": "Seven Choir motifs",
+    "sourceStatus": "Seven named source benefits preserved; access/timing/limits are NEW provisional authorship.",
+    "sourceAccounting": "The source says nine verses, one for each virtue plus Variable Omega, yet supplies only seven named mechanical motif benefits. This module implements only those seven benefits. It does not invent a missing historical verse, eighth virtue, Variable Omega benefit, or transcription correction.",
+    "access": {
+      "starterProvision": "NEW PROVISIONAL provisioning: at module adoption the Expedition receives one durable Seven-Motif Folio containing all seven implemented motif contours and one Witness note naming them. It is a play object, not recovered original music, lyrics or Equation text. The folio is finite: one master copy. Copies preserve access but do not create extra activation allowances.",
+      "teacher": "If the table wants an in-fiction teacher, Maelin Quill, a mortal Cantor Witness, is available during the first already-established safe settlement/haven/base scene after module adoption for 72 elapsed hours. Maelin teaches from the Expedition folio and creates no new Descent room or cosmological authority. The folio itself is sufficient if Maelin is unavailable.",
+      "learn": "A character learns one motif by 1 uninterrupted hour rehearsal from the folio, a faithful copy, or Maelin. The learner must be proficient with the instrument used or an applicable Performance skill. Learning is not consumption.",
+      "expeditionLedger": "At module adoption create one motifLedgerId for each actually separate Expedition then in existence. All descendants of a later split retain that same motifLedgerId and shared transaction history indefinitely; time passing does not create a new pool. On a merge, link every contributing ledger to one merged state using the latest lastRefreshAt and the lowest current allowance. Later renaming, membership change, split, or re-merge never unlinks those histories. One registered member cannot refresh two linked ledger pools in the same 24 elapsed hours. A truly independent Expedition that existed separately at module adoption has its own initial ledger until it later merges.",
+      "refresh": "After a beneficial Long Rest completed by any registered member, refresh allowance to 1 only if at least 24 elapsed hours have passed since lastRefreshAt. At most one refresh in any 24 elapsed hours. Rest staggering cannot create extra uses.",
+      "preflight": "Ordinary motif: at performance start identify motif, performer, fixed candidate listeners, any selected workOrder/beneficiaries, 30-foot range/hearing, legal effect, and current shared allowance. Law uses its own Action preflight. A preflight failure means the activation never begins and spends nothing.",
+      "payment": "Ordinary motifs spend the shared allowance only at successful 60-second completion after the completion recheck, immediately before effects. Law commits during its Action after legal preflight and immediately before its save/denial checks. After commitment, resistance, immunity, hard-denial guard, or no-benefit resolution does not refund the allowance.",
+      "ordinaryActivation": "Except Law, perform audibly for 60 uninterrupted seconds outside an encounter. Candidates are fixed at start, but each candidate must remain willing, within 30 feet, and able to hear for the entire performance. At completion remove any candidate who failed those conditions, recheck the effect's legality, and only then commit. Commitment occurs at successful completion: deduct the shared allowance immediately before resolving effects. If no legal effect/listener/work order remains, there is no commitment and no allowance spend.",
+      "lawException": "Law uses its own combat-speed Action activation and hostile-target rule below; its target is not required to be willing.",
+      "multiplePerformers": "Additional performers are cosmetic and do not multiply effects, range, allowance, restoration, save DC or duration.",
+      "recording": "A recording cannot activate a motif without a later exact rule.",
+      "interruption": "Ordinary motif interrupted before successful completion spends elapsed time but no allowance and creates no effect. Law is a combat exception: once its Action reaches commitment, its allowance is spent even if immunity, denial guard, or save prevents control.",
+      "repeatSource": "Copies/scores do not multiply the shared allowance.",
+      "sharedControlDenial": "NEW PROVISIONAL shared hard-denial mark: Law control and mask Stunned use a mark keyed by sourceCharacterId + targetId + actual encounterId. A legal Law or mask activation pays its own cost before immunity/guard/save. If the mark already exists, that EPI control effect has no control effect and no replacement rider. If no mark exists and the effect actually applies its control condition, set the mark. Immunity, a pre-existing guard, or a successful save does not set a new mark. Existing class features consult their own printed once-per-target/encounter guards and printed fallbacks; this module does not erase or duplicate those fallbacks. Initiative changes do not create a new encounter or reset the mark."
+    },
+    "motifSaveDC": "8 + activating performer's proficiency bonus + Charisma modifier, used only where the motif itself calls for a save.",
+    "motifs": [
+      {
+        "id": "motif.courage",
+        "name": "Courage",
+        "sourceBenefit": "all characters regain one spent hero point or equivalent resource",
+        "effect": "Each legal listener may restore 1 spent-recoverable Epilogue Inspiration slot to ready, personal cap 2. A listener with no spent-recoverable slot gains nothing; Courage never creates a first never-earned die and restores no class/resource engine."
+      },
+      {
+        "id": "motif.balance",
+        "name": "Balance",
+        "sourceBenefit": "swap prepared abilities once without downtime",
+        "effect": "Choose one willing listener and one legal prepared-loadout family they actually possess. Druid ordinary spells: swap one currently prepared ordinary druid spell for another legal druid spell under normal rank/preparation rules. Druid level11+ Arch attunement: swap one currently attuned Arch form among Dire Wolf, Earth Warden (Dire Bear), or Sky Serpent for another unlocked Arch form; this does not itself activate a form or clear Refrain. If the removed form is currently assumed, end it under normal Shapeshift rules with no refund. Wizard: swap one prepared ordinary matrix for another legal spell already in the Wizard's accessible spellbook. Remove any Matrix Mastery modification from the removed matrix; the replacement is unmodified until a later legal full preparation. Any Matrix Linking pair containing the removed matrix becomes inactive; retain its already-spent per-round history and form no new pair. Quick Substitution/Component Enhancement do not transfer. Stability Reinforcement tied to the removed matrix stops providing its +2 concentration-save bonus once that matrix is removed, but an already-cast spell continues under its own duration/concentration rules unless that spell itself ends for another reason. Wizard Dissonance/Refrain, limited-use counters, matrix-family history and ongoing cast effects otherwise persist. Warrior: swap one equipped mutation for another owned/unlocked mutation satisfying actual tree/tier/slot gates. If removing Flesh Warden, lower max HP by 2 per Warrior level and clamp current HP to the new max if necessary; equipping/re-equipping it raises max only and never heals. Ending any removed active mutation follows its own rule. Preserve serum doses, Strain, BT, cooldowns and recovery reserves. No pending spell is approved."
+      },
+      {
+        "id": "motif.law",
+        "name": "Law",
+        "sourceBenefit": "compels a revealed foe to parley for one round unless directly attacked",
+        "effect": "COMBAT EXCEPTION. As an Action, performer audibly presents Law, chooses one revealed hostile creature within 30 feet that can hear it, and fixes willing protected listeners within 30 feet who can hear the Action; the performer may be included. After legal preflight, commit and spend the shared allowance before checking shared denial, immunity, and the binary Wisdom save vs Motif DC. If the sourceCharacter-target-encounter shared denial mark already exists, no Law control applies and no replacement rider is granted. On a failed save with no immunity/guard, apply Law control for one round and set that shared denial mark. Until the same initiative marker next round (or 6 elapsed seconds outside initiative), the target cannot voluntarily attack, use hostile targeted abilities against, or deliberately include any protected listener in a hostile area effect. It may speak, move, defend, Dodge, Disengage, refuse terms, or act nonhostile. The effect ends immediately when any protected listener directly attacks the target, hit or miss, or deliberately includes the target in a hostile area effect; break resolves before that hostile effect. Third-party attacks and environmental damage do not break it. Save success, immunity, or denial gives no control and no refund."
+      },
+      {
+        "id": "motif.sorrow",
+        "name": "Sorrow",
+        "sourceBenefit": "reroll of a failed Wisdom saving throw",
+        "effect": "Ordinary 1-minute performance grants each legal listener one pending Sorrow reroll for 24 elapsed hours. When that listener later fails one Wisdom saving throw, after seeing failure but before the failed-save consequence is committed, they may consume Sorrow to reroll that save once using the same save procedure/modifiers that applied to the original roll. The reroll replaces the original even if worse. It cannot rewind committed consequences, death, or an already-resolved save and cannot reroll the same save again through Sorrow. A listener can hold at most one pending Sorrow grant; another grant while one is pending neither stacks nor extends its original expiry."
+      },
+      {
+        "id": "motif.pattern",
+        "name": "Pattern",
+        "sourceBenefit": "advantage on next skill check that involves study",
+        "effect": "Each listener gains one pending Pattern benefit for 24 elapsed hours: advantage on the next ability check whose primary task is study, research, deciphering, analysis or recall. Consumed when used. Duplicate Pattern benefits do not stack or extend."
+      },
+      {
+        "id": "motif.contradiction",
+        "name": "Contradiction",
+        "sourceBenefit": "forces advantage on an Insight check aimed at discovering hidden motives",
+        "effect": "Each listener gains one pending Contradiction benefit for 24 elapsed hours: advantage on the next Wisdom (Insight) check whose declared purpose is discovering a creature's hidden motive or internal inconsistency. It is not truth detection. Consumed when used. Duplicates do not stack or extend."
+      },
+      {
+        "id": "motif.transition",
+        "name": "Transition",
+        "sourceBenefit": "halves the time required for ritual magic or complex tasks",
+        "effect": "At ordinary motif preflight fix one existing workOrderId, its exact task, materials/prerequisites, mandatory worker roles, and up to four named beneficiaries. At successful motif completion, those same records must still exist; commit and spend allowance, then apply the reduction. Each beneficiary must start their affected active work within 24 elapsed hours of the grant or that unused reduction expires. Once a beneficiary starts, the reduction remains attached only to that same underlying work order under its original interruption/deadline rules; it cannot transfer to a retry/new project/new worker. For each beneficiary let r be positive remaining active-work minutes after all exact source time modifiers. New remaining time = min(r, max(1, ceil(r/2))) minutes; if r is positive but under 1 minute, leave r unchanged; zero stays zero. Thus 5m→3m, 30s→30s. Transition may apply once per underlying workOrderId. Eligible work includes mask shaping, fixed research/synthesis, the existing 8-hour decipher project, ordinary crafting active work, and ritual/complex-task active casting work only when an exact rule supplies that clock. Ineligible: rests, travel, waits, observation windows, Opening/Horn clocks, effect durations, Knowledge Transfer duration, training/level gates, missing prerequisites/materials. For a mandatory joint phase, every required participant has an independently adjusted clock and must remain present/qualified for the entire actual common phase; the phase completes only when every required worker satisfies their clock. Optional assistance applies only while the assistant remains legally qualified throughout the actual check-producing work."
+      }
+    ],
+    "source": [
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 279,
+        "textSha256": "808a9d9742e5b471fc676af0fe28da8082b4340184bf5a31b84de1a72a25dcb1"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 280,
+        "textSha256": "593d14d0620fb30d133fcf92e0ed21fd57ea7c92e23c991b86e8e55aa2757654"
+      }
+    ],
+    "transitionClockPolicy": {
+      "order": "Apply exact source time modifiers first; Transition then modifies only the still-unperformed eligible active work fixed at motif preflight.",
+      "formula": "For remaining minutes r>=1: min(r,max(1,ceil(r/2))); for 0<r<1 leave r unchanged; r=0 unchanged.",
+      "examples": [
+        "Wizard full preparation 60m with an exact 25% preparation reduction becomes45m; Transition then gives23m.",
+        "Forge Dwarf 480m artisan-tool creation with exact 25% creation-time reduction becomes360m; Transition then gives180m.",
+        "Fervent Ritualist: only an actual ritual casting-work clock qualifies. If an exact ritual has base active casting10m and the source's 10% faster channel rule makes it9m, Transition makes it5m. Never infer a casting time from an effect duration."
+      ],
+      "jointWork": "Required simultaneous participation remains simultaneous; no worker may leave merely because their personal credited minimum ended. Borrowed proficiency or other qualification must cover the actual common phase.",
+      "deadline": "The original work order's absolute deadline/interruption rules remain unchanged; Transition never resets them."
+    }
+  },
+  "EPI03": {
+    "title": "Unfinished vow",
+    "sourceStatus": "Source starting-vow requirement preserved; record/revision interfaces are NEW provisional authorship.",
+    "creation": "SOURCE-PRESERVING MODULE DEFAULT: every player character begins this module with exactly one active unfinished fictional vow, recorded as one sentence describing an ideal action not yet fulfilled. For an existing campaign, create it at module adoption before using EPI-03/04. This is not optional within this adopted module, but later revision/retirement agency remains as below.",
+    "boundaries": "This personal vow is not a Paladin Sacred Oath, divine Pact, legal contract, alignment lock, geas, mind control, class requirement or automatic reputation rule.",
+    "playerPrivacy": "The vow and any confession concern fictional character information only. No rule requires a player to disclose real-world private facts, beliefs, trauma or secrets.",
+    "communication": "When a mask procedure requires confession, the active vow must be communicated to one willing ally or Sentinel who actually understands it. Spoken, signed or written communication is valid if meaning is understood; current language/translation rules apply.",
+    "states": [
+      "active",
+      "fulfilled",
+      "retired",
+      "superseded",
+      "review-pending"
+    ],
+    "fulfillment": "When the table agrees the ideal action was genuinely fulfilled in fiction, mark the vow fulfilled. This grants no XP, resource, beneficial rest, condition removal, mask repair, petition reroll or Paladin Oath consequence by itself.",
+    "revision": "Outside an encounter, spend 10 uninterrupted minutes reflecting and communicate a replacement one-sentence vow to an understanding ally or Sentinel. Mark the previous vow superseded and the new vow active. A player may instead retire the vow. Revision/retirement never clears Corruption, KT/PT, Exhaustion, Strain, Dissonance or another track and never rerolls failed crafting.",
+    "maskRebind": "A mask bound to a fulfilled, retired or superseded vow becomes dormant immediately: no wearing benefits, reveal or Cracked penalty. It never auto-transfers to the new vow. To rebind that same physical mask to the current active vow, spend 1 uninterrupted hour reflection/communication; quality, fixed class/key, wearer identity, physical condition and wearer-owned reveal ledger persist. No crafting reroll or charge refresh.",
+    "paladin": "Changing, fulfilling or retiring a personal unfinished vow is not by itself a Paladin Oath breach. Paladin Oath consequences use the actual Paladin procedure only.",
+    "source": [
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 282,
+        "textSha256": "6dc8854d155e5ee0d51114239528c43728dadf9b1040375e844a4a53d39c8546"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 283,
+        "textSha256": "d39789919b12ccb354e439d00d22b9d231b60d0f23a3d02c5f6fa7985f8721dd"
+      }
+    ],
+    "activeLimit": "A character has at most one active unfinished vow. Creating/revising a vow marks the previous active vow superseded unless it was already fulfilled/retired.",
+    "reviewPending": "Archon-test failure creates VowReviewPending. It has no automatic 24h expiry: petitioning is locked until resolved. Within or after 24h the player may revise/retire under normal EPI-03 or reaffirm unchanged after 10 uninterrupted minutes. Reaffirmation closes review and creates one Disquiet with gainedAt at completion. Overdue review imposes no additional class/alignment/belief penalty."
+  },
+  "EPI04": {
+    "title": "Living and Cracked Masks",
+    "sourceStatus": "Source 8-hour mask, key-ability check, Living/Cracked outcomes and wearing benefits preserved; missing operational fields are NEW provisional authorship.",
+    "ritualType": "A separate personal vow ritual, not a new entry in the 687 reviewed trade-recipe catalog. Generic crafting quality does not alter mask quality, reveal count or DC.",
+    "materials": {
+      "initialProvision": "NEW PROVISIONAL finite provisioning: at module adoption each PC receives exactly one class-reflective blank keyed to the class selected for this module at adoption. The Expedition reserve contains exactly one replacement blank for that PC keyed to that same recorded class. Later multiclassing or another mask project does not transmute the blank or reserve entry. No replenishment is created by this module.",
+      "replacement": "A PC may claim their one reserve replacement only after their prior blank/mask is lost, destroyed or irreparably spoiled. Claiming requires access to the Expedition reserve at an already-established safe/legal storage location and 10 minutes inventory work. Once claimed/used, that reserve entry is gone. Any further replacement requires a separately authored campaign source; 25 gp alone does not imply infinite availability.",
+      "specialSourceMaterials": "Ranger still water frozen beneath moonlight, Wizard Arcane-Crucible condensed silver, and Thief polished black glass remain the source-fiction identity of those provisioned blanks. Provisioning is NEW module setup, not recovered loot/geography.",
+      "repair": "A damaged but not destroyed mask may be repaired only at an actually accessible suitable workshop with 1 active hour and 10 gp of actually available mundane repair materials. A workshop label or listed price does not create stock. Repair restores physical usability only; it does not change quality, vow binding, operative status or reveal ledger.",
+      "consumption": "Commit one blank at project start. It becomes the resulting mask when the check resolves. Expiry/destruction can consume it; no duplicate output is created."
+    },
+    "project": {
+      "requiredWork": "8 active hours of personal shaping.",
+      "pause": "May pause only after completed 1-hour work blocks. An interruption within a block loses that incomplete block but preserves earlier completed blocks if the blank remains intact.",
+      "expiry": "If not completed within 7 elapsed days of the first work block, the committed blank is spoiled and the project ends; begin again with a new blank.",
+      "assistants": "No assistant contributes time or a bonus. The shaping is personal.",
+      "restOverlap": "Mask work is active work and cannot overlap a rest, travel, guard duty or another incompatible active project.",
+      "startTimestamp": "Record one absolute projectStart timestamp immediately before the first work block begins. The 7-day deadline is projectStart + 168 elapsed hours; shortening active work does not move that deadline.",
+      "transition": "Transition may halve only remaining active shaping work under EPI-02. Work remains pausable at the mask rule's one-hour-block boundaries: if Transition creates a final remainder shorter than 1h, that remainder is the final block. The final-hour confession cutoff is the start of the last 60 minutes of actual remaining required shaping; if fewer than 60 minutes remain when Transition is applied, the cutoff occurs immediately at that application.",
+      "binding": "At project start record active vowId and maskClass and commit the keyed blank. If that vow changes before the final crafting check, disclose the consequence before revision and pause the project. The wearer may cancel (the committed blank is spoiled) or finish only a cosmetic dormant mask under the original fixed project record and unchanged absolute deadline. That dormant mask may later use the existing 1-hour rebind procedure. No new crafting check, secret transfer, or deadline reset occurs."
+    },
+    "confession": {
+      "requirement": "Before the first shaping block, communicate the active vow to one willing ally or Sentinel who understands it.",
+      "secretsLedger": "At project start, privately record 0–3 fictional facts about that vow that the character knowingly withholds from that confession. The Director needs only the number unless a fact becomes relevant in play.",
+      "dc": "10 + secrets count.",
+      "change": "Before the final work hour begins, a withheld fact may be removed from the count only if it is actually communicated to the original witness (or an explicitly recorded replacement witness who receives the whole vow context). After the final hour begins, DC is fixed."
+    },
+    "check": {
+      "roll": "One bare ability check using the fixed mask key ability. Proficiency bonus applies only if an existing exact feature applies to that ability check; artisan/tool proficiency alone does not add PB.",
+      "degreeProcedure": "Use current fixed-DC four-degree rules including bounded natural-20/natural-1 shifts.",
+      "collapse": "Critical Success or Success => Living Mask. Failure or Critical Failure => Cracked Mask.",
+      "criticalLimits": "Critical degree grants no additional charges, quality tier, save DC, secret reduction or generic item quality."
+    },
+    "classRows": [
+      {
+        "class": "Bard",
+        "maskKeyAbility": "CHA",
+        "reflectiveMaterial": "silvered resonant glass scored with the character's own performance marks",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Bard primary Charisma",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BARD_PLAYTEST_v0_1.md",
+          "firstLineOneBased": 11,
+          "lastLineOneBased": 14,
+          "note": "Line 11 states Charisma primary; lines 12–14 preserve the Bard Charisma engine context."
+        }
+      },
+      {
+        "class": "Cleric",
+        "maskKeyAbility": "WIS",
+        "reflectiveMaterial": "polished devotional mirror-metal bearing the cleric's chosen sacred symbol",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Cleric Wisdom",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Crimson Agent",
+        "maskKeyAbility": "INT",
+        "reflectiveMaterial": "polished crimson hematite-glass with a fine capillary pattern",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "NEW mask choice uses hemomancy/intelligence side, not weapon Dexterity",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/crimson-agent.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Dragoon",
+        "maskKeyAbility": "STR",
+        "reflectiveMaterial": "mirror-polished lance-steel scale",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Dragoon Strength",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/dragoon.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Druid",
+        "maskKeyAbility": "WIS",
+        "reflectiveMaterial": "reflective resin cast over shed bark or stone from a personally tended natural place",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Druid Wisdom",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Mage",
+        "maskKeyAbility": "INT",
+        "reflectiveMaterial": "smoked prism-glass that catches the mage's chosen elemental hue",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Mage Intelligence",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Mirrorsage",
+        "maskKeyAbility": "INT",
+        "reflectiveMaterial": "true mirror-silver backed by a hand-marked reflection grid",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Mirrorsage Intelligence",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mirrorsage.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Monk",
+        "maskKeyAbility": "DEX",
+        "reflectiveMaterial": "water-polished mirrorstone thin enough to wear as a face plate",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Monk Dexterity",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Oracle",
+        "maskKeyAbility": "CHA",
+        "reflectiveMaterial": "polished scrying glass marked with the Oracle's Mystery sign",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Oracle Charisma",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Paladin",
+        "maskKeyAbility": "CHA",
+        "reflectiveMaterial": "mirror-polished oathsteel carrying a nonbinding personal-vow inscription",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Paladin Charisma; personal vow is not Sacred Oath",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Ranger",
+        "maskKeyAbility": "WIS",
+        "reflectiveMaterial": "still water frozen beneath moonlight",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "source material preserved; NEW mask-only key uses primal Wisdom rather than weapon Dexterity",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Shaman",
+        "maskKeyAbility": "WIS",
+        "reflectiveMaterial": "mica-backed spirit glass framed in polished bone or wood",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Shaman Wisdom",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Soldier",
+        "maskKeyAbility": "CON",
+        "reflectiveMaterial": "mirror-polished shield steel cut from a retired defensive plate",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "NEW mask-only key uses Soldier Constitution rather than weapon Dexterity",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Thief",
+        "maskKeyAbility": "DEX",
+        "reflectiveMaterial": "polished shards of black glass",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "source material preserved; mask-only key uses primary Dexterity",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Tinker",
+        "maskKeyAbility": "INT",
+        "reflectiveMaterial": "polished brass-and-glass lens plate with visible maker marks",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "bounded mask-only key follows Tinker Intelligence",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+          "jsonPointer": "/class"
+        }
+      },
+      {
+        "class": "Warrior",
+        "maskKeyAbility": "recorded permanent Warrior ability (STR or DEX)",
+        "reflectiveMaterial": "mirror-finished alchemical steel blank",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "Use the Warrior level-1 permanent Strength-or-Dexterity class ability choice from warrior.json /engine/0; mask crafting never chooses anew.",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+          "jsonPointer": "/engine/0"
+        }
+      },
+      {
+        "class": "Wizard",
+        "maskKeyAbility": "INT",
+        "reflectiveMaterial": "liquid silver condensed from Arcane Crucible fumes",
+        "authority": "NEW PROVISIONAL authorship except Ranger/Wizard/Thief material preserved from source paragraph 286 where noted",
+        "reason": "source material preserved; Wizard Intelligence",
+        "classSource": {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "jsonPointer": "/class"
+        }
+      }
+    ],
+    "multiclass": {
+      "choice": "At project start a multiclass character chooses exactly one of their actual classes as maskClass and records it. That row fixes reflective material and mask key ability for this vow-mask identity.",
+      "noHighestFishing": "The wearer cannot choose a different class/key ability at reveal time. A replacement/rebound version of the same mask identity keeps the fixed class unless a brand-new 8-hour mask project is completed for a new mask identity."
+    },
+    "identity": {
+      "creatorWearer": "A mask is created by, bound to and mechanically usable by one wearer and one vow identity.",
+      "loan": "Another creature can wear it cosmetically but gains no mask mechanics. Loaning, stealing, copying or swapping masks does not transfer or refresh reveal.",
+      "operativeLimit": "One operative mask per wearer. Completion/rebind does NOT automatically deactivate an existing operative mask.",
+      "attunement": "No generic attunement slot is consumed or created.",
+      "anatomy": "The operative mask must be physically wearable on compatible facial anatomy. If a transformation melds equipment or leaves no suitable face, mask effects are suppressed until the mask is physically wearable again.",
+      "itemProfile": "A completed mask is a durable worn face item weighing 2 lb; when unworn it is ordinary carried gear and occupies normal carried/storage capacity. It consumes no generic attunement slot. Don or doff as an Action unless truthful-removal procedure applies. This module adds no random breakage roll; if an external effect lawfully damages objects, use the actual object-damage procedure. Repair requires an actually accessible suitable workshop and 10 gp of actually available mundane materials.",
+      "operativeDesignation": "If the wearer has no operative mask, a newly completed/rebound eligible mask may be designated operative immediately. If another operative mask exists, the new one remains dormant until completion of a beneficial rest, when the wearer may designate exactly one owned eligible mask operative. Retiring, fulfilling, or superseding the bound vow immediately dormants that mask and removes its operative designation. Switching designation never refreshes wearerRevealCharge.",
+      "loss": "Loss/theft suppresses effects because the item is not worn. Recovery restores the same item; it never resets charge or vow state. Destroyed masks cannot be recovered by a copied description.",
+      "revealLedger": "Reveal is wearer-owned, not mask/vow-owned. At module adoption initialize wearerRevealCharge=1. Any current operative mask spends this same ledger. Rebinding, revising vows, crafting/replacing/repairing masks, switching operative masks or recovering a lost mask never refreshes it."
+    },
+    "wearing": {
+      "commonBenefits": "While an operative Living or Cracked mask is worn, the wearer has advantage on saving throws explicitly against fear effects and Null lullabies. This is not immunity, cleansing, truth detection or KT/PT/Corruption protection.",
+      "crackedPenalty": "A Cracked Mask also gives disadvantage on a social ability check involving deception when that deception would materially impede the active vow. Director states applicability before the roll when reasonably knowable.",
+      "reveal": {
+        "charge": "Use the wearer-owned wearerRevealCharge ledger, maximum 1.",
+        "refresh": "A beneficial Short Rest or Long Rest sets wearerRevealCharge to 1, subject to the underlying rest's real benefit limits. One rest refreshes at most once. No mask/vow/project transition refreshes it.",
+        "action": "Action",
+        "target": "One creature within 20 feet that the wearer can perceive, that can perceive the revealed mask, with line of effect.",
+        "dc": "8 + wearer's current proficiency bonus + current modifier of the fixed mask key ability.",
+        "save": "Charisma saving throw; binary.",
+        "spend": "After a legal target is declared, spend charge before the save. Success or immunity does not refund it.",
+        "failure": "On failed Charisma save, target is Stunned for exactly one round. In initiative, expire at the same initiative marker in the next round. Outside initiative, expire 6 elapsed seconds after application. If initiative starts or stops during the duration, keep the original absolute/marker endpoint; never extend/rebase to a later target turn.",
+        "success": "No effect.",
+        "hardDenial": "Stun immunity blocks Stunned. Existing source-target hard-denial/boss/condition rules remain separate and are not bypassed.",
+        "noExtraTags": "Fear advantage from wearing the mask does not make reveal a fear effect unless an exact source says so."
+      },
+      "donning": "Don as an Action if compatible facial anatomy and item in hand/accessible gear. Removing uses EPI-04 removal rules. Mechanical benefits require the operative mask physically worn.",
+      "sharedDenialLedger": "Mask reveal uses the same NEW provisional sourceCharacter-target-encounter shared hard-denial mark as Law. A legal reveal spends wearerRevealCharge before immunity/guard/save. If the shared mark already exists, mask reveal applies no Stunned and no replacement rider. If no mark exists, target is not Stun-immune, and the Charisma save fails, apply actual Stunned for the mask's one-round duration and set the mark. Immunity, existing guard, or save success does not set a new mark. Existing class control features retain only their own printed fallback (for example Monk Stunning Strike's Reaction-loss fallback when its Stun Guard already marks the target)."
+    },
+    "removal": {
+      "safeOwnTurn": "On wearer's own turn, remove as a Free Action while audibly stating one truthful current emotional-state statement.",
+      "safeOutsideTurn": "Outside own turn, spend Reaction if available while making the truthful statement.",
+      "signedWritten": "If unable to speak but able to sign or write and have the statement understood, removal takes an Action and counts as safe.",
+      "ordinary": "The wearer may simply remove the mask as an Action without making the truth statement. No curse, death, identity loss, condition or hidden punishment is invented; effects end while unworn.",
+      "unwillingForced": "Forced removal/loss uses the actual contest/item rules of the causing effect. If removed, effects are suppressed. Charge, mask quality and vow identity do not reset."
+    },
+    "source": [
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 284,
+        "textSha256": "6d860042c411bf439cf603d13889b0284cad718c64511f5a3f10008d6a9853ee"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 285,
+        "textSha256": "a11e94c0a4c9e1f687a9ca6b6730c30e1837e465750ba8b0d36d081678d533bf"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 286,
+        "textSha256": "447a3e17d3bf815458c324648aa9178c2e88f02824ef0cd1bf55cf8f69f735c4"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 287,
+        "textSha256": "0d3e8eadfe9719e742c4071cfb39626c355e59d7f693219c40907a3f6271fac1"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 288,
+        "textSha256": "023b5c6aedce165a10e070d9e6bb3dcbac8ed8464ac690ff8514d16254754821"
+      }
+    ],
+    "conditionReference": {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "anchor": "stunned"
+    }
+  },
+  "EPI05": {
+    "title": "Virtue opposition and Conflict Die",
+    "sourceStatus": "Seven source pairings and once/session d12 preserved; opposition declaration and fatigue binding are NEW provisional interpretation.",
+    "virtueRows": [
+      {
+        "id": "virtue.courage",
+        "name": "Courage",
+        "classes": [
+          "Bard",
+          "Warrior",
+          "Paladin"
+        ]
+      },
+      {
+        "id": "virtue.balance",
+        "name": "Balance",
+        "classes": [
+          "Druid",
+          "Ranger",
+          "Dragoon"
+        ]
+      },
+      {
+        "id": "virtue.law",
+        "name": "Law",
+        "classes": [
+          "Cleric",
+          "Soldier",
+          "Mage"
+        ]
+      },
+      {
+        "id": "virtue.sorrow",
+        "name": "Sorrow",
+        "classes": [
+          "Oracle",
+          "Shaman"
+        ]
+      },
+      {
+        "id": "virtue.pattern",
+        "name": "Pattern",
+        "classes": [
+          "Wizard",
+          "Tinker",
+          "Mirrorsage"
+        ]
+      },
+      {
+        "id": "virtue.contradiction",
+        "name": "Contradiction",
+        "classes": [
+          "Thief",
+          "Crimson Agent"
+        ]
+      },
+      {
+        "id": "virtue.transition",
+        "name": "Transition",
+        "classes": [
+          "Monk",
+          "Mirrorsage",
+          "Paladin"
+        ]
+      }
+    ],
+    "resonance": "The source pairings describe natural resonance only. They do not restrict classes, alignment, belief, personality, loyalty, advancement or available virtues. A virtue not listed with a class is not automatically opposed.",
+    "oppositionDeclaration": {
+      "when": "At start of each sessionId, before any Conflict Die use.",
+      "presentClass": "A multiclass character selects one actual class they currently possess as presentClass for this session. A single-class character uses that class.",
+      "strength": "Player states one concrete present class strength actually supported by current class mechanics (for example defense, precise weapon attack, control, healing, mobility, preparation, or adaptation).",
+      "virtue": "Player chooses one of the seven virtues and states a fictional tension between that virtue and the named class strength.",
+      "agreement": "Player and Director agree the tension is meaningful enough to count. This is a rules eligibility agreement, not a judgment of player morality.",
+      "duration": "Declaration lasts for that sessionId; it cannot be changed after a Conflict Die is spent in that session.",
+      "paladin": "It does not alter or breach a Paladin Sacred Oath unless actual Paladin rules independently say the character's in-fiction conduct does so."
+    },
+    "conflictDie": {
+      "die": "d12",
+      "frequency": "Once per sessionId.",
+      "declaration": "Before rolling an eligible ability check, declare use. Roll the d20 and d12 together and add the d12 to the check total.",
+      "eligible": "Ability checks only, including opposed checks when the underlying procedure calls them ability checks. Never attack rolls or saving throws.",
+      "fixedDC": "For fixed-DC checks, compute numeric degree using the total including d12, then apply the current bounded natural-20/natural-1 degree shift from the d20 exactly once.",
+      "opposed": "For opposed checks, compare final totals under Core: higher wins; exact tie leaves existing state unchanged, so an initiating user fails to change it. Conflict use is spent. Only a win counts as success for the fatigue cost; tie/loss does not gain Exhaustion.",
+      "stacking": "Cannot combine with Epilogue Inspiration on the same check. Legal advantage/disadvantage and other source modifiers continue normally.",
+      "failure": "The once/session use is spent. If final outcome is Failure or Critical Failure, no Exhaustion is gained because source text attaches fatigue to successful outcome.",
+      "successCost": "After a successful final outcome completely resolves, immediately gain 1 level of current core Exhaustion.",
+      "trackSeparation": "Do not also add Expedition Strain, Warrior serum Strain or another fatigue/strain track for this same source consequence.",
+      "exhaustionFive": "At Exhaustion 5, current core cumulative disadvantage on ability checks applies. Roll the d20 with that disadvantage, then add the d12 and modifiers. If final check succeeds, resolve success first, then gain Exhaustion 6 and resolve the current lethal rule.",
+      "immunity": "A creature immune to Exhaustion at declaration cannot use Conflict Die. Also, if the declared check's own successful outcome is known in advance to grant Exhaustion immunity before the success cost, that check is ineligible for Conflict Die; this avoids using the success itself to erase the source's price. If an unforeseen independent effect grants immunity after legal declaration, resolve current core immunity normally and record that the external effect suppressed the cost; no deferred hidden Exhaustion is invented.",
+      "sessionBoundary": "Ending or starting a session does not create a beneficial rest or recover any other resource. A technical break in the same scheduled session keeps the same sessionId."
+    },
+    "source": [
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 290,
+        "textSha256": "24097635f9ab89a7b90f9824687c5961871924fa9d0b220bb1fc6e19cd3f2574"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 291,
+        "textSha256": "b441777d840604f3d024b9feaa817049dc18428e5ec9d040053e150e99547f46"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 292,
+        "textSha256": "8295cdf8338bc8ba28979ea22a33b625da19931e191f5dc24fdc79954169c81a"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 293,
+        "textSha256": "8e6e27629aab9b9bcd284c3c1fb3c9143c0e1fe139181f89263b19acdce401cf"
+      }
+    ],
+    "references": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_RECOVERY_PLAYTEST.md"
+      }
+    ]
+  },
+  "EPI06": {
+    "title": "Archon petitions",
+    "sourceStatus": "Source eligibility/three steps/d12 bands preserved; credentials, cooldowns, finite boons, challenge scenes, and planar-step interface are NEW provisional authorship.",
+    "eligibility": {
+      "classes": [
+        "Cleric",
+        "Monk"
+      ],
+      "mentorAlternative": "Any other character qualifies only if a spiritualMentor record already exists in play before petition begins.",
+      "spiritualMentorRecord": "Names one specific NPC, ancestor, order-teacher or equivalent spiritual guide; records how relationship was established. It grants no class feature by itself.",
+      "falseMentor": "A fabricated or post-hoc mentor record does not qualify and the Witness refuses to start the petition; no cooldown is consumed."
+    },
+    "witness": {
+      "credential": "NEW PROVISIONAL Witness: Maelin Quill (same mortal Cantor Witness used for motif onboarding) can record Archon petitions; not an Archon, omniscient or spiritually infallible.",
+      "placement": "At module adoption, Maelin is present for 72 elapsed hours at the first already-established safe settlement/haven/base scene the Expedition enters. Thereafter Maelin remains a normal campaign NPC only where fiction has actually placed them. The module creates no remote Witness or new room.",
+      "consultation": "10 uninterrupted minutes. Record petitioner, virtue, motive, eligibility basis, petitionId, start timestamp and prior response.",
+      "unavailable": "If Maelin or another already-established qualified Witness is not actually accessible, petition cannot begin. No remote substitution."
+    },
+    "meditation": {
+      "time": "1 uninterrupted hour in a quiet chamber or equivalent quiet space already available.",
+      "interruption": "Any encounter, forced movement, deliberate unrelated task or loss of required quiet before completion loses that hour. Restart later if still eligible; no response roll/cooldown yet."
+    },
+    "symbolicActs": {
+      "Courage": {
+        "time": "10 minutes",
+        "act": "Name one feared but voluntary in-fiction task and take one concrete preparatory step toward it."
+      },
+      "Balance": {
+        "time": "10 minutes",
+        "act": "Balance two unequal physical loads so neither support bears more than half the combined weight."
+      },
+      "Law": {
+        "time": "10 minutes",
+        "act": "Write one rule for the current problem and one explicit exception condition."
+      },
+      "Sorrow": {
+        "time": "10 minutes",
+        "act": "Memorialize a real in-fiction loss without inventing a new historical fact."
+      },
+      "Pattern": {
+        "time": "10 minutes",
+        "act": "Arrange seven marked tiles into a repeatable documented sequence."
+      },
+      "Contradiction": {
+        "time": "10 minutes",
+        "act": "State two apparently conflicting true propositions and the context in which both can be true."
+      },
+      "Transition": {
+        "time": "10 minutes",
+        "act": "Disassemble and reassemble a simple nonmagical marker/tool into a different useful configuration."
+      }
+    },
+    "responseRoll": {
+      "when": "After consultation, uninterrupted meditation and symbolic act all complete.",
+      "roll": "1d12; no modifier unless a later exact rule explicitly modifies this response roll.",
+      "cooldown": "Once the response die is rolled, that character cannot complete another Archon petition until 7 elapsed days have passed. No repeated petition/reroll fishing during cooldown.",
+      "interruptionBeforeRoll": "Does not begin cooldown, but spent elapsed time/scene costs are not refunded."
+    },
+    "guidance": {
+      "range": "d12 result 1–4",
+      "duration": "24 elapsed hours from grant.",
+      "stacking": "Only one Archon Guidance boon can be active on a character; a new one replaces the old and never multiplies advantage.",
+      "virtueChecks": {
+        "Courage": [
+          "STR (Athletics) when confronting immediate physical danger",
+          "CHA (Persuasion) when rallying someone to face immediate danger"
+        ],
+        "Balance": [
+          "WIS (Survival) when stabilizing a natural/environmental situation",
+          "WIS (Animal Handling) when calming/steadying a beast"
+        ],
+        "Law": [
+          "INT (Investigation) when examining rules, contracts or records",
+          "CHA (Persuasion) in formal negotiation governed by stated rules"
+        ],
+        "Sorrow": [
+          "WIS (Medicine)",
+          "WIS (Insight) concerning grief, pain or loss"
+        ],
+        "Pattern": [
+          "INT (Arcana) involving magical patterns",
+          "INT (Investigation) involving formulae/sequences"
+        ],
+        "Contradiction": [
+          "WIS (Insight) for inconsistency/motive",
+          "INT (Investigation) for conflicting records"
+        ],
+        "Transition": [
+          "DEX (Acrobatics) involving controlled change of position",
+          "INT (Engineering) involving controlled mechanical transformation"
+        ]
+      },
+      "effect": "Advantage on qualifying ability checks only. Director confirms declared task fits before roll."
+    },
+    "blessing": {
+      "range": "d12 result 5–8",
+      "expiry": "Next module dawn.",
+      "menu": [
+        {
+          "virtue": "Courage",
+          "status": "NEW PROVISIONAL temporary blessing menu",
+          "sourceCard": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "jsonPointer": "/cards/2",
+            "id": "warrior.base.combat-instinct",
+            "name": "Combat Instinct"
+          },
+          "transferredEffect": "Combat Instinct. Gain +1 on initiative rolls. You cannot be Surprised while conscious unless the opposing creature's Stealth check exceeds your passive Perception by 5 or more. This does not grant extra Actions or movement before combat.",
+          "minimumClassLevel": 1,
+          "grantAdaptation": {
+            "acquisition": "Temporary grant bypasses only normal feature acquisition while the boon lasts.",
+            "noClassImport": "No class level, proficiency, engine, resource pool, equipment, advancement credential, or unrelated card is gained.",
+            "duplicate": "If recipient already has the exact card, boon has no additional mechanical effect and response is not rerolled.",
+            "scaling": "Use only scaling expressly present in the transferred card. A non-Monk temporary recipient of Unarmored Speed uses the baseline +5 feet/+1 initiative; only an actual Monk 11+ has the card's +10-foot clause.",
+            "expiry": "Expires at next module dawn."
+          },
+          "cardEnvelope": {
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "Permanent",
+            "frequency": "Always",
+            "effect": "Combat Instinct. Gain +1 on initiative rolls. You cannot be Surprised while conscious unless the opposing creature's Stealth check exceeds your passive Perception by 5 or more. This does not grant extra Actions or movement before combat.",
+            "minimumClassLevel": 1
+          },
+          "temporaryGrantRule": "The blessing grants this exact card envelope until module dawn. The boon expiry shortens only the overall ownership window; it never broadens the card's own activation, target, duration, frequency, conditions or scaling."
+        },
+        {
+          "virtue": "Balance",
+          "status": "NEW PROVISIONAL temporary blessing menu",
+          "sourceCard": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+            "jsonPointer": "/cards/2",
+            "id": "ranger.base.natural-explorer",
+            "name": "Natural Explorer"
+          },
+          "transferredEffect": "Advantage on Survival checks in natural terrain; ignore nonmagical difficult terrain caused by vegetation, loose earth, mud or snow. Magical terrain, climbing and hazards still require their own rules.",
+          "minimumClassLevel": 1,
+          "grantAdaptation": {
+            "acquisition": "Temporary grant bypasses only normal feature acquisition while the boon lasts.",
+            "noClassImport": "No class level, proficiency, engine, resource pool, equipment, advancement credential, or unrelated card is gained.",
+            "duplicate": "If recipient already has the exact card, boon has no additional mechanical effect and response is not rerolled.",
+            "scaling": "Use only scaling expressly present in the transferred card. A non-Monk temporary recipient of Unarmored Speed uses the baseline +5 feet/+1 initiative; only an actual Monk 11+ has the card's +10-foot clause.",
+            "expiry": "Expires at next module dawn."
+          },
+          "cardEnvelope": {
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "While known",
+            "frequency": "Continuous",
+            "effect": "Advantage on Survival checks in natural terrain; ignore nonmagical difficult terrain caused by vegetation, loose earth, mud or snow. Magical terrain, climbing and hazards still require their own rules.",
+            "minimumClassLevel": 1
+          },
+          "temporaryGrantRule": "The blessing grants this exact card envelope until module dawn. The boon expiry shortens only the overall ownership window; it never broadens the card's own activation, target, duration, frequency, conditions or scaling."
+        },
+        {
+          "virtue": "Law",
+          "status": "NEW PROVISIONAL temporary blessing menu",
+          "sourceCard": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+            "jsonPointer": "/cards/2",
+            "id": "soldier.base.tactical-awareness",
+            "name": "Tactical Awareness"
+          },
+          "transferredEffect": "Gain+2 Perception and initiative. Does not reveal unseen creatures automatically or allow attacks without line of fire.",
+          "minimumClassLevel": 1,
+          "grantAdaptation": {
+            "acquisition": "Temporary grant bypasses only normal feature acquisition while the boon lasts.",
+            "noClassImport": "No class level, proficiency, engine, resource pool, equipment, advancement credential, or unrelated card is gained.",
+            "duplicate": "If recipient already has the exact card, boon has no additional mechanical effect and response is not rerolled.",
+            "scaling": "Use only scaling expressly present in the transferred card. A non-Monk temporary recipient of Unarmored Speed uses the baseline +5 feet/+1 initiative; only an actual Monk 11+ has the card's +10-foot clause.",
+            "expiry": "Expires at next module dawn."
+          },
+          "cardEnvelope": {
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "During combat",
+            "frequency": "Continuous",
+            "effect": "Gain+2 Perception and initiative. Does not reveal unseen creatures automatically or allow attacks without line of fire.",
+            "minimumClassLevel": 1
+          },
+          "temporaryGrantRule": "The blessing grants this exact card envelope until module dawn. The boon expiry shortens only the overall ownership window; it never broadens the card's own activation, target, duration, frequency, conditions or scaling."
+        },
+        {
+          "virtue": "Sorrow",
+          "status": "NEW PROVISIONAL temporary blessing menu",
+          "sourceCard": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json",
+            "jsonPointer": "/cards/2",
+            "id": "shaman.base.alchemical-knowledge",
+            "name": "Alchemical Knowledge"
+          },
+          "transferredEffect": "Gain advantage on INT(Arcana) or alchemist-tool checks to identify a substance's mundane ingredients and likely purpose. Identification does not guarantee safety or supply a recipe/materials; failure yields uncertainty, not false certainty.",
+          "minimumClassLevel": 1,
+          "grantAdaptation": {
+            "acquisition": "Temporary grant bypasses only normal feature acquisition while the boon lasts.",
+            "noClassImport": "No class level, proficiency, engine, resource pool, equipment, advancement credential, or unrelated card is gained.",
+            "duplicate": "If recipient already has the exact card, boon has no additional mechanical effect and response is not rerolled.",
+            "scaling": "Use only scaling expressly present in the transferred card. A non-Monk temporary recipient of Unarmored Speed uses the baseline +5 feet/+1 initiative; only an actual Monk 11+ has the card's +10-foot clause.",
+            "expiry": "Expires at next module dawn."
+          },
+          "cardEnvelope": {
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "One potion/substance examined for 1 minute",
+            "duration": "Check only",
+            "frequency": "At will",
+            "effect": "Gain advantage on INT(Arcana) or alchemist-tool checks to identify a substance's mundane ingredients and likely purpose. Identification does not guarantee safety or supply a recipe/materials; failure yields uncertainty, not false certainty.",
+            "minimumClassLevel": 1
+          },
+          "temporaryGrantRule": "The blessing grants this exact card envelope until module dawn. The boon expiry shortens only the overall ownership window; it never broadens the card's own activation, target, duration, frequency, conditions or scaling."
+        },
+        {
+          "virtue": "Pattern",
+          "status": "NEW PROVISIONAL temporary blessing menu",
+          "sourceCard": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "jsonPointer": "/cards/4",
+            "id": "wizard.base.scholarly-mind",
+            "name": "Scholarly Mind"
+          },
+          "transferredEffect": "Scholarly Mind. Tags: base, passive, knowledge. You have advantage on Intelligence checks whose primary purpose is recalling, researching or analyzing arcane theory, magical history, planar magical principles or constructed spell formulae. It does not grant advantage on spell attacks, Counterspell checks or general Investigation unrelated to arcane scholarship.",
+          "minimumClassLevel": 1,
+          "grantAdaptation": {
+            "acquisition": "Temporary grant bypasses only normal feature acquisition while the boon lasts.",
+            "noClassImport": "No class level, proficiency, engine, resource pool, equipment, advancement credential, or unrelated card is gained.",
+            "duplicate": "If recipient already has the exact card, boon has no additional mechanical effect and response is not rerolled.",
+            "scaling": "Use only scaling expressly present in the transferred card. A non-Monk temporary recipient of Unarmored Speed uses the baseline +5 feet/+1 initiative; only an actual Monk 11+ has the card's +10-foot clause.",
+            "expiry": "Expires at next module dawn."
+          },
+          "cardEnvelope": {
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "Permanent",
+            "frequency": "Always",
+            "effect": "Scholarly Mind. Tags: base, passive, knowledge. You have advantage on Intelligence checks whose primary purpose is recalling, researching or analyzing arcane theory, magical history, planar magical principles or constructed spell formulae. It does not grant advantage on spell attacks, Counterspell checks or general Investigation unrelated to arcane scholarship.",
+            "minimumClassLevel": 1
+          },
+          "temporaryGrantRule": "The blessing grants this exact card envelope until module dawn. The boon expiry shortens only the overall ownership window; it never broadens the card's own activation, target, duration, frequency, conditions or scaling."
+        },
+        {
+          "virtue": "Contradiction",
+          "status": "NEW PROVISIONAL temporary blessing menu",
+          "sourceCard": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json",
+            "jsonPointer": "/cards/4",
+            "id": "thief.base.trap-intuition",
+            "name": "Trap Intuition"
+          },
+          "transferredEffect": "Advantage on Perception/Investigation to notice physical traps and their triggers. Does not reveal every trap automatically or defeat concealed magic.",
+          "minimumClassLevel": 1,
+          "grantAdaptation": {
+            "acquisition": "Temporary grant bypasses only normal feature acquisition while the boon lasts.",
+            "noClassImport": "No class level, proficiency, engine, resource pool, equipment, advancement credential, or unrelated card is gained.",
+            "duplicate": "If recipient already has the exact card, boon has no additional mechanical effect and response is not rerolled.",
+            "scaling": "Use only scaling expressly present in the transferred card. A non-Monk temporary recipient of Unarmored Speed uses the baseline +5 feet/+1 initiative; only an actual Monk 11+ has the card's +10-foot clause.",
+            "expiry": "Expires at next module dawn."
+          },
+          "cardEnvelope": {
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "While searching for traps",
+            "frequency": "Continuous",
+            "effect": "Advantage on Perception/Investigation to notice physical traps and their triggers. Does not reveal every trap automatically or defeat concealed magic.",
+            "minimumClassLevel": 1
+          },
+          "temporaryGrantRule": "The blessing grants this exact card envelope until module dawn. The boon expiry shortens only the overall ownership window; it never broadens the card's own activation, target, duration, frequency, conditions or scaling."
+        },
+        {
+          "virtue": "Transition",
+          "status": "NEW PROVISIONAL temporary blessing menu",
+          "sourceCard": {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+            "jsonPointer": "/cards/5",
+            "id": "monk.base.unarmored-speed",
+            "name": "Unarmored Speed"
+          },
+          "transferredEffect": "Unarmored Speed. Tags: base, passive, mobility. While wearing no armor and using no shield, increase walking Speed by 5 feet and gain +1 on initiative rolls. At Monk 11 the Speed increase becomes 10 feet. This bonus does not multiply other Speed increases and is suppressed while armored.",
+          "minimumClassLevel": 1,
+          "grantAdaptation": {
+            "acquisition": "Temporary grant bypasses only normal feature acquisition while the boon lasts.",
+            "noClassImport": "No class level, proficiency, engine, resource pool, equipment, advancement credential, or unrelated card is gained.",
+            "duplicate": "If recipient already has the exact card, boon has no additional mechanical effect and response is not rerolled.",
+            "scaling": "Use only scaling expressly present in the transferred card. A non-Monk temporary recipient of Unarmored Speed uses the baseline +5 feet/+1 initiative; only an actual Monk 11+ has the card's +10-foot clause.",
+            "expiry": "Expires at next module dawn."
+          },
+          "cardEnvelope": {
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Self",
+            "duration": "Permanent while unarmored",
+            "frequency": "Always",
+            "effect": "Unarmored Speed. Tags: base, passive, mobility. While wearing no armor and using no shield, increase walking Speed by 5 feet and gain +1 on initiative rolls. At Monk 11 the Speed increase becomes 10 feet. This bonus does not multiply other Speed increases and is suppressed while armored.",
+            "minimumClassLevel": 1
+          },
+          "temporaryGrantRule": "The blessing grants this exact card envelope until module dawn. The boon expiry shortens only the overall ownership window; it never broadens the card's own activation, target, duration, frequency, conditions or scaling."
+        }
+      ],
+      "selection": "Use the one fixed menu feature corresponding to petition virtue. No reroll or alternative class-card fishing.",
+      "duplicate": "If recipient already possesses exact feature card, grant has no additional mechanical effect; response remains 5–8 and is not rerolled.",
+      "nonmember": "A character need not belong to source class to receive temporary feature; grant bypasses acquisition only and imports no class engine.",
+      "playerReadable": "All seven exact card envelopes are printed in PLAYER_CHAPTER.md; JSON IDs are provenance, not required play instructions."
+    },
+    "test": {
+      "range": "d12 result 9–11",
+      "selection": "Use challenge scene corresponding to petition virtue.",
+      "scenes": [
+        {
+          "virtue": "Courage",
+          "id": "test.courage.bridge",
+          "scene": "The Shaking Span",
+          "props": "Projected near platform 10x10 ft; far platform 10x10 ft; a 30-ft-long,5-ft-wide rope bridge connects them. Courier+sealed ledger begin at the near end of the bridge beside petitioner. Projected safety rope is coiled on near platform.",
+          "clock": "Three rounds/18 seconds. Resolve petitioner Action and any end-round courier movement first; at the end of round3, after that movement, release far anchor. Thus a third successful Brace on round3 reaches safety before release.",
+          "options": [
+            {
+              "method": "Coach",
+              "procedure": "Action, courier can hear within normal speech across bridge; CHA (Persuasion) DC15. Success immediately moves courier+ledger15 ft along bridge. Two successes by end round3 reach far platform."
+            },
+            {
+              "method": "Brace",
+              "procedure": "Action while petitioner can physically brace the line from near side; STR (Athletics) DC15. Success moves courier+ledger10 ft at end of that round. Three successes, including one on round3, reach far platform before anchor release."
+            },
+            {
+              "method": "Safety line",
+              "procedure": "Round1 Action DEX (Acrobatics) DC15 to rig projected rope. Success secures line; round2 Action escorts courier 15 ft; round3 Action escorts remaining15 ft with no further check. Failure leaves rope unrigged and another attempt may be made next round."
+            }
+          ],
+          "cleverAlternatives": "Any nonviolent plan that physically accounts for 30-ft crossing, ledger and three-round clock may use a fitting DC15 check once per round; teleporting/flight from unrelated actual abilities works only if those abilities are genuinely available and does not create them.",
+          "success": "Courier and ledger both on far platform before end of round3.",
+          "failure": "Otherwise projected freeze prevents injury and the Test boon fails. Projected props vanish; any real resource voluntarily spent on actual abilities remains spent.",
+          "materialReturn": "All projected props vanish; real character resources actually spent remain spent unless their own rules say otherwise."
+        },
+        {
+          "virtue": "Balance",
+          "id": "test.balance.cistern",
+          "scene": "The Twin Cistern",
+          "props": "Projected basins: capacity7 and5, both empty; reservoir contains exactly9 units; one3-unit cup; no other vessels. Gate reads 'Exactly six units in the basins; spill none.'",
+          "clock": "20 elapsed minutes; each fill/pour is one Action/6 seconds outside initiative for bookkeeping.",
+          "options": [
+            {
+              "method": "Direct",
+              "procedure": "No check. Fill the3-unit cup and pour both full cupfuls into the7-unit basin (6/7), leaving the5-unit basin empty; or place one full cupful in each basin (3/7 and3/5). Each fill or pour is one Action/6s."
+            },
+            {
+              "method": "Study",
+              "procedure": "10 minutes INT (Investigation) DC15. Success states a legal two-cup solution. Failure gives no false solution. Critical Failure has the same task failure plus one projected reset. A check completing exactly at20:00 resolves, but no scene time remains for the required physical pours."
+            }
+          ],
+          "success": "Exactly6 units in basins with no capacity exceeded/spill before timeout.",
+          "failure": "Every spill or stated Critical-Failure reset increments one common reset counter; third reset fails immediately. Timeout without completed legal pours fails.",
+          "materialReturn": "Projected liquid/containers vanish."
+        },
+        {
+          "virtue": "Law",
+          "id": "test.law.queue",
+          "scene": "The Broken Queue",
+          "props": "Projected claimants A/B/C; four numbered ration tokens. Start: A holds #1,#2; B holds #3; C holds none; #4 is in tray. Posted rule: 'One token per claimant. Give an unclaimed token to the earliest claimant still lacking one. If none lack one, leave extras in tray.' Queue order A,B,C.",
+          "clock": "15 elapsed minutes. Token pickup/placement/reclaim is one Action each (6s outside initiative bookkeeping). An amendment proposal takes1 minute; each projected claimant answers immediately yes/no.",
+          "options": [
+            {
+              "method": "Apply rule",
+              "procedure": "No check: reclaim one of A's extras, give exactly one token to C, leave the remaining fourth token in tray. Final A/B/C each exactly one."
+            },
+            {
+              "method": "Voluntary correction",
+              "procedure": "CHA (Persuasion) DC15, up to two1-minute attempts, may get A to return an extra voluntarily; failure never forbids later lawful nonpunitive redistribution."
+            },
+            {
+              "method": "Audit",
+              "procedure": "5 minutes INT (Investigation) DC10 identifies A's duplicate holding; does not decide policy."
+            },
+            {
+              "method": "Prospective amendment",
+              "procedure": "Before any redistribution, petitioner states one prospective amendment limited to queue order and which numbered single token each claimant receives; it cannot waive the one-token-per-claimant cap or require punitive forfeiture. Petitioner plus projected A/B/C must all explicitly agree during the1-minute proposal. Then apply amended rule transparently."
+            }
+          ],
+          "success": "Without a unanimously agreed prospective amendment: A/B/C each exactly one token and #4 remains tray. With a legal amendment, the one-token-per-claimant cap still holds and any fourth extra remains tray.",
+          "failure": "Empty/withheld claimant allocation, secret retroactive rule change, coercive punishment, exceeding one token per claimant, or timeout fails.",
+          "materialReturn": "Tokens/claimants vanish."
+        },
+        {
+          "virtue": "Sorrow",
+          "id": "test.sorrow.memorial",
+          "scene": "The Missing Name",
+          "props": "Projected stones Aven/Bria/Cale/blank; authenticated briefing: Daro carried the lamp home alive after the recorded event; the record does not identify which missing deceased belongs on the blank stone.",
+          "clock": "10 elapsed minutes.",
+          "options": [
+            {
+              "method": "Preserve uncertainty",
+              "procedure": "Immediate explicit choice: leave blank or inscribe 'Unknown' and state that the evidence establishes Daro survived but does not identify the missing deceased."
+            },
+            {
+              "method": "Analyze",
+              "procedure": "10 minutes WIS (Insight) or INT (History) DC15. Success confirms insufficiency; Failure still yields no fabricated identity. A check completing exactly at10:00 is followed by one immediate no-time answer before timeout."
+            }
+          ],
+          "success": "Refuse to invent unsupported dead identity while still honoring the loss.",
+          "failure": "Confidently inscribe Daro/another unsupported name, give no explicit preserve-uncertainty answer, or leave response unfinished at timeout.",
+          "materialReturn": "Projection vanishes."
+        },
+        {
+          "virtue": "Pattern",
+          "id": "test.pattern.tiles",
+          "scene": "The Turning Mosaic",
+          "props": "Projected tiles 2,3,5,8,12,? and inscription 'Add one more than before.' Three placement attempts.",
+          "clock": "10 elapsed minutes.",
+          "options": [
+            {
+              "method": "Answer",
+              "procedure": "Place17; no check."
+            },
+            {
+              "method": "Analyze",
+              "procedure": "5 minutes INT (Investigation) DC12; Success reveals increments +1,+2,+3,+4,+5; Failure no false pattern."
+            }
+          ],
+          "success": "Place17.",
+          "failure": "Three wrong placements or timeout; each wrong placement consumes one attempt and resets final tile.",
+          "materialReturn": "Tiles vanish."
+        },
+        {
+          "virtue": "Contradiction",
+          "id": "test.contradiction.witnesses",
+          "scene": "The Mirror Ledger",
+          "props": "Door ledger states 'A never crossed the vault threshold.' Mirror ledger states 'A appeared inside at bell.' Wall note: 'The interior mirror projects the exterior witness line into the vault; projections are not entrants.' Logs are authenticated within projection.",
+          "clock": "10 elapsed minutes.",
+          "options": [
+            {
+              "method": "Reconcile",
+              "procedure": "No check if player explains both ledgers can be true: A's image appeared inside while A did not enter."
+            },
+            {
+              "method": "Analyze",
+              "procedure": "5 minutes INT (Investigation) DC15. Success points to wall note/projection mechanism. Failure leaves records unresolved. A second attempt is legal only if5 full minutes remain."
+            }
+          ],
+          "success": "State a context where both authenticated claims coexist without calling either false.",
+          "failure": "Unsupported fraud accusation, no stated reconciliation, or timeout fails. Two failed 5-minute analyses consume the full clock and therefore fail unless an immediate correct reconciliation was already stated at the deadline.",
+          "materialReturn": "Projection vanishes."
+        },
+        {
+          "virtue": "Transition",
+          "id": "test.transition.platforms",
+          "scene": "The Moving Steps",
+          "props": "Three projected 5x5-ft platforms A/B/C occupy Left/Center/Right tracks; each neighboring platform footprint is separated by a 5-ft open gap. Exit ledge is 5 ft beyond the Right platform edge. Crystal starts on A with petitioner; carrying it prevents Dash. At each round-end platforms rotate Left→Center→Right→Left.",
+          "clock": "Three rounds/18 seconds.",
+          "options": [
+            {
+              "method": "Ride",
+              "procedure": "Remain on A through end round1 (A→Center), remain through end round2 (A→Right), then on round3 use normal movement to step with crystal onto exit; no check."
+            },
+            {
+              "method": "Jump",
+              "procedure": "Use actual movement/jump rules. If the character's actual movement can clear the 5-ft horizontal gap, make DEX (Acrobatics) DC15 because the destination platform is moving. Success lands on the chosen adjacent platform with crystal; failure leaves the petitioner prone on the origin platform with that attempted movement spent. Speed0 cannot make the normal step/jump unless an actual ability says otherwise."
+            },
+            {
+              "method": "Read cycle",
+              "procedure": "Action INT (Engineering) DC15 identifies next round's rotation only; no movement. Failure consumes Action and gives no false direction."
+            }
+          ],
+          "success": "Crystal reaches exit ledge (a 5-ft step from Right platform) before end round3.",
+          "failure": "Otherwise projection resets harmlessly after round3; real resources voluntarily spent remain spent.",
+          "materialReturn": "Crystal/platforms vanish; real expended resources stay expended."
+        }
+      ],
+      "success": "Set the existing EPI-01 two-slot Inspiration ledger to two ready dice and zero spent-recoverable slots. Never create a third slot.",
+      "failure": {
+        "state": "VowReviewPending",
+        "choice": "Petition locks until resolved. Player may revise/retire vow under EPI-03, or reaffirm unchanged after 10 uninterrupted minutes; reaffirmation grants Disquiet with gainedAt at completion.",
+        "deadline": "No forced 24h default. The prior 24h suggestion is removed; unresolved review simply remains pending and blocks another petition.",
+        "agency": "No forced alignment, personality, Paladin Oath or belief rewrite."
+      },
+      "sharedProcedure": "One petitioner is the challenge actor. In round scenes the petitioner has one Action per 6-second round; helpers do not supply extra challenge turns. Actual external features work only when their exact target/timing permits them and real resources voluntarily spent remain spent. For challenge task checks, Critical Success/Success both resolve the listed success and Failure/Critical Failure both resolve the listed failure unless the scene expressly says otherwise. An action/check completing exactly at the deadline resolves before timeout. End immediately on success or failure; no same-petition restart. Projected props/hazards vanish and cause no real injury, but real character resources spent are not refunded unless their own rule refunds them."
+    },
+    "revelation": {
+      "range": "d12 result 12",
+      "sigil": {
+        "id": "item.concord-step-sigil",
+        "name": "Concord Step Sigil",
+        "status": "NEW PROVISIONAL travel interface; not a spell/pending spell approval.",
+        "sessionWindow": "Granted during sessionId S. It cannot activate until S is formally closed. It may activate only during actual campaign time before next scheduled sessionId opens. Closing/opening a session advances zero campaign time by itself. If next session begins before activation completes, sigil expires unused.",
+        "setup": {
+          "origin": "At module adoption designate one already-existing, currently accessible campaign hub physically on Aethel as the Concord threshold: one marked 15-ft square (nine 5-ft cells) in an existing room. If no such hub is reachable when a response-12 petition resolves, grant the petitioner-bound sigil but it remains unactivated and may expire under the sessionWindow; disclose this access fact before the petition roll. This rule creates no hub, Gate permission, or Haven.",
+          "destinations": "All four NEW provisional primary-realm visitor alcoves in destinationScenes are enabled at module adoption. They are adaptation scenes, not recovered/public geography.",
+          "availability": "All four visitor alcoves are valid destination choices for this module. The petitioner chooses one during outbound preflight; no Director 'not authored' inert result remains."
+        },
+        "direction": "Outbound only from designated Aethel threshold to chosen enabled alcove. Return only from that same alcove to same threshold. No realm-to-realm step, dungeon Gate bypass, or onward route.",
+        "outbound": {
+          "channel": "10 uninterrupted minutes; petitioner must be living, conscious, willing and remain at origin. At start fix up to five total travelers including petitioner, all living/conscious/willing within10ft. Dead/unconscious creatures cannot be travelers; ordinary carried gear follows carrying capacity.",
+          "preflight": "Verify inter-session outbound window still open, origin hub accessible, chosen one of four enabled alcoves, traveler eligibility, legal destination spaces, and any stronger explicit travel denial. No commit if petitioner lacks a legal destination space.",
+          "recheck": "At completion recheck all. A traveler no longer conscious/willing/present is omitted; petitioner loss of eligibility interrupts whole channel. If at least petitioner remains and destination has legal spaces, commit.",
+          "occupied": "Destination has six marked spaces. Use them in fixed numbered order; occupied/illegal cells are skipped, then nearest legal unoccupied room space. Up to5 total travelers. If petitioner has no legal space, fail without consumption; if only some companions fit, disclose and omit companions in reverse declared order before commit.",
+          "commit": "On completion recheck living/conscious/willing/present status and legal landing for each traveler. Move only valid committed travelers, consume sigil, record outboundAt and personal returnUnused=true only for actual outbound travelers. Ordinary carried gear within actual carrying capacity travels with them."
+        },
+        "return": {
+          "authorization": "Each outbound traveler has one personal returnUnused flag. Any subset with unused flags may attempt independently or together from destination alcove; petitioner need not accompany a companion return. A traveler can return at most once.",
+          "channel": "10 uninterrupted minutes from inside the destination room/vestibule. Preflight requires each participant living, conscious, willing, present, unused personal flag, and enough time to complete. Latest legal start is exactly outboundAt+7h50m.",
+          "completion": "At completion recheck living/conscious/willing/present, unused flag, origin travel denial, and landing spaces. A companion who became invalid is omitted and stays with flag unchanged until expiry. If a solo returner becomes invalid, the return fails. Move valid participants to legal Aethel threshold cells, then consume only their flags.",
+          "interruption": "Interrupted channel spends elapsed time but no flag. Retry only if a full10m can still complete at or before expiry.",
+          "deadline": "A valid return completing exactly at outboundAt+8h resolves first; immediately afterward all remaining unused flags expire. Therefore start exactly at+7h50m is legal and +7h50m01s is refused. Session UI/opening advances no campaign time: opening the next scheduled session cancels only an uncommitted outbound activation, not already-issued personal return rights, which continue until their actual 8h deadline.",
+          "blocked": "At completion, if origin travel denial or no legal landing affects a traveler, that traveler remains and their flag stays unused only until expiry. Others may resolve independently."
+        },
+        "ownership": "Sigil is petitioner-bound before outbound; cannot be sold/copied/transferred. After outbound item is consumed; return authorizations are ledger records, not items.",
+        "hazard": "Step itself adds no damage, KT/PT/Hunt or rest. The closed destination room/vestibule remains lit, breathable and temperate after return expiry; there is no module-authored route beyond the sealed outer door and no automatic lethal environment.",
+        "destinationArea": "Each destination is a closed 20x20-ft visitor room plus a 5x10-ft vestibule behind one ordinary interior door. Six 5-ft arrival spaces are marked in the room. The vestibule's outer stone/metal door has no authored route beyond it and cannot be opened by this module. Light, breathable air, and temperate conditions persist after the 8h return deadline; expiry does not become lethal. Each room contains exactly six sealed 1-day mundane ration packets and six 1-quart water flasks total; once consumed they do not replenish. No beneficial-rest/Haven status is granted. Before outbound disclose that missing the return can strand travelers here and this module provides no onward/return route after flags expire; only a separately actually available approved travel effect or campaign rescue can leave.",
+        "destinationScenes": [
+          {
+            "id": "concord.bastion.ember-record-room",
+            "realm": "Bastion of Flame",
+            "name": "Ember Record Room",
+            "custodian": "Sera Venn, mortal kiln archivist",
+            "geometry": "20x20 room, six numbered arrival cells along west wall; 5x10 vestibule north; sealed outer door.",
+            "props": "Cooling slate table; six charcoal sticks; one finite stack of six blank clay slips; ration/water stock as destinationArea.",
+            "activity": "20 minutes. Choice A: copy one visible geometric heat-flow diagram onto one clay slip; truthful outcome: portable mundane diagram useful as a story clue to identify this room later, no mechanical bonus. Choice B: help Sera sort three cracked slips by cooling pattern with INT (Investigation) DC10; success earns one signed visitor receipt naming this alcove, failure preserves the slips and earns no receipt.",
+            "answers": [
+              "Where are we? — 'A visitor record room associated with Bastion service traditions.'",
+              "Can this teach the Equation? — 'No.'",
+              "Is there an exit route for us? — 'Not through the sealed outer door under this visitor arrangement.'"
+            ]
+          },
+          {
+            "id": "concord.veiled.quiet-vestibule",
+            "realm": "Veiled Expanse",
+            "name": "Quiet Ledger Alcove",
+            "custodian": "Mara Olt, mortal privacy clerk",
+            "geometry": "20x20 room, six arrival cells centered; 5x10 east vestibule; sealed outer door.",
+            "props": "Six opaque envelopes; one ledger with six visitor-number lines; six blank rubbing sheets; finite rations/water.",
+            "activity": "10 minutes. Choice A: write a voluntary fact about the visit in one envelope and seal it; custodian returns a numbered receipt without opening it. Choice B: decline disclosure and take a blank rubbing of the room's public visitor mark. Both are valid and reveal no hidden identity.",
+            "answers": [
+              "Must we confess secrets? — 'No.'",
+              "Does this room prove the Veiled Expanse's full geography? — 'No.'",
+              "Can you open the outer door? — 'Not under this visitor arrangement.'"
+            ]
+          },
+          {
+            "id": "concord.radiant.current-table",
+            "realm": "Radiant Currents",
+            "name": "Current Table Room",
+            "custodian": "Tomas Rill, mortal mediation clerk",
+            "geometry": "20x20 room; six south arrival cells; 5x10 west vestibule; sealed outer door.",
+            "props": "A three-position tabletop channel model; six wax markers; one finite public procedure card; finite rations/water.",
+            "activity": "30 minutes. Choice A: arrange the model to route one marker around an obstruction; no check and receive one stamped procedure card. Choice B: propose another legal route and make WIS (Insight) DC10; success gets a custodian annotation describing the alternative, failure leaves the original card only.",
+            "answers": [
+              "Is this divine law? — 'No, it is a local mediation teaching model.'",
+              "Does it map the whole realm? — 'No.'",
+              "Can the Step take us elsewhere? — 'Only as your sigil's actual rules permit.'"
+            ]
+          },
+          {
+            "id": "concord.void.question-room",
+            "realm": "Boundless Void",
+            "name": "Question Lantern Room",
+            "custodian": "Ilan Mere, mortal inquiry keeper",
+            "geometry": "20x20 room; six east arrival cells; 5x10 south vestibule; sealed outer door.",
+            "props": "Seven lantern shutters labeled who/what/when/where/why/how/unknown; six blank question cards; finite rations/water.",
+            "activity": "15 minutes. Choice A: place one honest unresolved campaign question under 'unknown' and receive a dated copy of the question card. Choice B: classify a supplied mundane riddle among who/what/when/where/why/how with INT (Investigation) DC10; success receives a signed classification card, failure receives no card and no false answer.",
+            "answers": [
+              "Will you answer hidden cosmology? — 'No.'",
+              "Is uncertainty a failure here? — 'No.'",
+              "Is there an onward route? — 'None supplied by this visitor module.'"
+            ]
+          }
+        ]
+      }
+    },
+    "dawn": "Use commonClocks.moduleDay administrative boundary. It is a play clock, not a universal astronomy/plane-time claim.",
+    "source": [
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 295,
+        "textSha256": "06cd128c3eafb504c8bf8cf26e587b8b29bda28d6ce46345ea6b3ea938819cdb"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 296,
+        "textSha256": "b31f1c2f2745ecc235963139276f86f4be087744bf2631cdf3a971f954e8aed8"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 297,
+        "textSha256": "4ffe992e4a359ddf0d87dedbd13123d0957dbdf32e9ff04fa49af50764173279"
+      },
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 298,
+        "textSha256": "f9b9d7367678069871b4e24f68beadef66b2487fb3cbd5fac4b612201b72614d"
+      }
+    ]
+  },
+  "EPI07": {
+    "title": "Sentinel encounters and finite information",
+    "sourceStatus": "Neutral-question structure preserved; exact encounter limits and three finite examples are NEW provisional authorship.",
+    "procedure": {
+      "encounterId": "Every authored Sentinel projection has a unique encounterId and can grant at most one information boon to the Expedition.",
+      "earnest": "A character asks one concrete in-fiction question genuinely seeking information relevant to a current problem. This is fictional intent adjudication, not a test of real-player sincerity, belief or private disclosure.",
+      "knowledgeRecord": "Director must predefine what that Sentinel actually knows. Neutral observer does not mean omniscient.",
+      "outOfScope": "If the question exceeds that Sentinel's predefined knowledge, it answers 'I do not know.' The one immediate follow-up within 1 minute must narrow the SAME SUBJECT, not switch subjects. Example: after 'Who built the Heartcell?' a legal narrowing asks what evidence about the builder the Sentinel has observed; asking about an unrelated bridge is not a narrowing. After that answer/final out-of-scope response the encounter is spent.",
+      "boonTypes": [
+        "puzzle solution",
+        "local map fragment",
+        "contingent future vision"
+      ],
+      "repeat": "Once boon or final out-of-scope answer is delivered, same Sentinel encounter gives no second boon. Later ordinary investigation remains available.",
+      "forbiddenInference": [
+        "Equation fragments",
+        "certainty about unresolved hidden identities",
+        "floor shortcuts/teleports",
+        "guaranteed future",
+        "cosmological retcon",
+        "permanent class feature",
+        "travel permission"
+      ],
+      "publicKnowledge": "New Sentinel information learned in play belongs to that Expedition. It does not retroactively raise general public reliable knowledge beyond failed Sixth Gate."
+    },
+    "examples": [
+      {
+        "id": "sentinel.puzzle.three-lamps",
+        "type": "puzzle solution",
+        "question": "Which lamp opens the sealed archive door?",
+        "knowledgeLimit": "The Sentinel observed this local lamp mechanism and riddle only; it does not know the archive contents.",
+        "puzzle": "Exactly one plaque is true. Lamp First plaque: 'Second opens the door.' Lamp Second: 'This lamp does not open the door.' Lamp Third: 'First does not open the door.' Exactly one lamp opens the door. Which?",
+        "answer": "First. If First opens: plaques evaluate false/true/false = exactly one true. If Second opens: true/false/true = two true. If Third opens: false/true/true = two true. Therefore First is unique.",
+        "reward": "Sentinel states 'First' and the truth-table reasoning once. Operating the real lamp remains required.",
+        "ordinaryInvestigation": "20 minutes examining wiring; INT (Investigation) DC15 reveals which lamp circuit reaches the door latch. Failure gives uncertainty, not a false answer.",
+        "operation": "Lighting a lamp is one Action. Correct First opens the door. Wrong lamp causes harmless circuit lock for 1 minute, then resets; maximum three wrong attempts before mechanism stays locked until ordinary repair."
+      },
+      {
+        "id": "sentinel.map.fourrooms",
+        "type": "local map fragment",
+        "question": "What connects this collapsed gallery to the water stair?",
+        "knowledgeLimit": "Only immediate local geometry the Sentinel has directly observed.",
+        "graph": {
+          "Collapsed Gallery": [
+            "Bronze Door -> Echo Hall",
+            "Narrow Crawl -> Service Niche"
+          ],
+          "Echo Hall": [
+            "Stone Door -> Water Stair"
+          ],
+          "Service Niche": [
+            "One-way drop -> Water Stair"
+          ],
+          "Water Stair": []
+        },
+        "reward": "A drawn graph of those doors/passages. It grants no teleport, key, door opening, map beyond these nodes, or deeper-floor shortcut.",
+        "ordinaryInvestigation": "Scout each accessible edge normally; 10 minutes per open corridor plus actual obstacles."
+      },
+      {
+        "id": "sentinel.future.sluice",
+        "type": "contingent future vision",
+        "question": "What happens if we leave the western sluice open until the next bell?",
+        "knowledgeLimit": "Near-term causal projection from current water pressure; not fixed fate.",
+        "vision": "If the western sluice remains open through the next bell under current pressure, the lower gallery floods to waist depth within 10 minutes.",
+        "contingency": "Closing the sluice, altering pressure, disabling the bell-linked release, or other material choices can prevent the event. If prevented, the vision was conditional, not false or retconned.",
+        "ordinaryInvestigation": "10 minutes of pressure readings; INT (Engineering) DC15 derives same conditional forecast."
+      }
+    ],
+    "source": [
+      {
+        "path": "The Cosmology of Decennium Descent.docx",
+        "part": "word/document.xml",
+        "paragraphIndexZeroBased": 299,
+        "textSha256": "15f08b39e1e3309a5fbb8dafaf11510718836d6d7470bf6efd58f7461faac48a"
+      }
+    ]
+  },
+  "mechanicsReferences": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "scope": "fixed-DC degrees, saves, HP/death boundaries"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+      "scope": "Action/Bonus Action/Reaction/round timing"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "scope": "Stunned and other condition semantics"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITION_RECOVERY_PLAYTEST.md",
+      "scope": "condition/exhaustion recovery interfaces"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/expedition_candidate/part03.json",
+      "scope": "Short Rest/Long Rest elapsed-time and benefit limits"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/planes_reviewed_01.json",
+      "scope": "plane naming/authority boundary"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/souls_research_reviewed_01.json",
+      "scope": "KT/PT/Hunt/death/rare intervention boundaries"
+    }
+  ]
+}

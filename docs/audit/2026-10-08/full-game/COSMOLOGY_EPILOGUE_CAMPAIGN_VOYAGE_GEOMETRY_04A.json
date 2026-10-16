@@ -1,0 +1,101 @@
+{
+  "recordedAtUtc": "2026-10-16T02:01:48.733043+00:00",
+  "status": "Local proposal clarification, unsubmitted/unadopted.",
+  "baseRefinement": {
+    "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_EPILOGUE_CAMPAIGN_VOYAGE_REFINEMENT_04.json",
+    "bytes": 56344,
+    "sha256": "edfada774728c33550a0bcf2f30828bb1060e0b9575505e3fbe95ce4a14def51"
+  },
+  "previousModel": {
+    "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-campaign-arcs-local-draft-01/history/before-voyage-geometry-04a/ARCS_MODEL.json",
+    "bytes": 70574,
+    "sha256": "1e0488a4cea8615d82902ea4ca3126a208218188c86ff2624ffbe423cb2853fa"
+  },
+  "previousCases": {
+    "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-campaign-arcs-local-draft-01/history/before-voyage-geometry-04a/CASEBOOK.json",
+    "bytes": 13031,
+    "sha256": "67b356340a8bc3f688ed127d0c751cab52e61cd2f1aa59fc85cded4783893704"
+  },
+  "model": {
+    "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-campaign-arcs-local-draft-01/ARCS_MODEL.json",
+    "bytes": 71434,
+    "sha256": "2d13117cf4ecdbd5a2dc2d16f60a1705c4c9956ee208a20a4a2cec555c925c96"
+  },
+  "casebook": {
+    "path": "docs/audit/2026-10-08/full-game/cosmology-epilogue-campaign-arcs-local-draft-01/CASEBOOK.json",
+    "bytes": 13179,
+    "sha256": "cf0c0c3c98c70801a865d6877600a019b73e3195914f86614daa16343c1d53a4"
+  },
+  "changes": [
+    {
+      "jsonPointer": "/arcs/1/vessel/body",
+      "before": "NEW dry hull and fixed machinery:30x20x15ft,3000lb,AC15,120HP. Dry mass includes empty fuel tank, fixed canopy mechanism, pilot/engine stations, pressure-control hardware and the two-door airlock; it excludes installed fuel, air cartridge, loose mission stock, occupants and their equipment. Main cabin20x15x12ft; airlock10x10x12ft fits inside the stated hull envelope and has two10ft-wide12ft-high doors. Stations each have one5ft operator position; the operator uses that same square, not a second square. Two underfloor5x5x2ft lockers hold the actual loose kit; check actual cargo volume and access. Nothing overlaps occupied bodies or solid fittings.",
+      "after": "NEW dry hull and fixed machinery:30x20x15ft,3000lb,AC15,120HP. Dry mass includes empty fuel tank, fixed canopy mechanism, pilot/engine stations, pressure-control hardware and the two-door airlock; it excludes installed fuel, air cartridge, loose mission stock, occupants and their equipment. Main cabin20x15x12ft; airlock10x10x12ft fits inside the stated hull envelope and has two10ft-wide12ft-high doors. Stations each have one5ft operator position; the operator uses that same square, not a second square. Two underfloor5x5x2ft lockers hold the actual loose kit; check actual cargo volume and access. Nothing overlaps occupied bodies or solid fittings. In the berth map, the hull isx0–20,y0–30. Main cabin isx0–20,y0–15; airlock isx10–20,y15–25, so the two enclosed rooms do not overlap. The inner door lies aty15,x10–20; the outer door lies atx20,y15–25. The two5ft station positions lie atx0–5,y0–5 andx15–20,y0–5. The sample worker starts beside the inner door at(12.5,12.5), uses a legal airlock cell at(12.5,17.5), and works at(32.5,17.5). The longest sample doorway/gangplank traversal is20ft; no crew station blocks it."
+    },
+    {
+      "jsonPointer": "/arcs/1/strandScene/geometry",
+      "before": "NEW40x40ft level lattice at30miles altitude, with combined deck-and-mooring supported-load rating6000lb. Use a local map with x/east and y/north in feet: hull berth x0–20,y0–30; outer hatch atx20,y10–20; fixed10ft-wide5ft-long gangplank spansx20–25,y10–20; working bayx25–35,y10–20. The8ft lightstrand stands atx35,y15, within ordinary5ft reach from the working bay edge. It weighs8lb after release. There is a clear route from the outer hatch to the work position. Check actual full footprints; a Large worker can occupy the10x10ft bay if unoccupied. Two mooring operators can reach their stations inside; the work position is outside. Count hull, actual payload and independently supported deck loads once, including tethered mass. Lattice is AC18HP100, cleat assemblyAC18HP40; at0HP or combined load>6000 its support fails and actual support/fall rules apply. Damage is real and persistent; no free repair or new permanent route.",
+      "after": "NEW40x40ft level lattice at30miles altitude, with combined deck-and-mooring supported-load rating6000lb. Use a local map with x/east and y/north in feet: hull berth x0–20,y0–30; outer hatch atx20,y15–25; fixed10ft-wide5ft-long gangplank spansx20–25,y15–25; working bayx25–35,y15–25. The8ft lightstrand stands atx35,y20, within ordinary5ft reach from the working bay edge. It weighs8lb after release. There is a clear route from the outer hatch to the work position. Check actual full footprints; a Large worker can occupy the10x10ft bay if unoccupied. Two mooring operators can reach their stations inside; the work position is outside. Count hull, actual payload and independently supported deck loads once, including tethered mass. Lattice is AC18HP100, cleat assemblyAC18HP40; at0HP or combined load>6000 its support fails and actual support/fall rules apply. Damage is real and persistent; no free repair or new permanent route."
+    },
+    {
+      "jsonPointer": "/arcs/1/vessel/supportStates/priority",
+      "before": "At a common timestamp finish an otherwise legal support-transfer/door operation first only if all its actual prerequisites remain available through completion. Then resolve resource expiry and unmet control requirements, then ordinary Falling deadlines. A transfer cannot finish after its supporting hull or required mechanism has already been destroyed. No later Action retroactively avoids an impact.",
+      "after": "At a common timestamp finish an otherwise legal support-transfer/door operation first only if all its actual prerequisites remain available through completion. Then resolve resource expiry and unmet control requirements, then ordinary Falling deadlines. A transfer cannot finish after its supporting hull or required mechanism has already been destroyed. No later Action retroactively avoids an impact. Exactly enough fuel to cover an interval supplies power through that interval’s endpoint, allowing its legal completed transfer to resolve before the resulting zero-fuel loss. Insufficient fuel removes lift at its actual earlier depletion timestamp; the transfer cannot pretend it remained powered."
+    },
+    {
+      "scheduleId": "inner-out",
+      "before": "Open inner door and move to legal airlock position using actual Speed30.",
+      "after": "Open inner door and move to the legal airlock position using actual effectiveSpeed20 after Burdened. The printed route is within20ft."
+    },
+    {
+      "caseId": "ARC16-C14",
+      "before": {
+        "id": "ARC16-C14",
+        "start": "One powered craft event already completed this numbered round; engineer then becomes Incapacitated.",
+        "events": "Paid event remains spent. In the next round no replacement engineer contributes by round end.",
+        "elapsedSeconds": 6,
+        "end": "At that boundary powered support fails and Falling starts unless actual mooring/canopy/other support is already valid. Controller switching grants no extra event."
+      },
+      "after": {
+        "id": "ARC16-C14",
+        "start": "TimeT0 is the end of the current numbered round: its craft event was already paid, and the engineer has just become Incapacitated after contributing. No replacement is available for the next full round.",
+        "events": "The already-paid event stands. During the next full6second round no replacement engineer contributes; assess the unmet requirement atT0+6.",
+        "elapsedSeconds": 6,
+        "end": "At that boundary powered support fails and Falling starts unless actual mooring/canopy/other support is already valid. Controller switching grants no extra event."
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "cabin and airlock interiors do not overlap",
+      "pass": true
+    },
+    {
+      "name": "hull and working bay fit the40ft platform",
+      "pass": true
+    },
+    {
+      "name": "Burdened sample movement fits printed path",
+      "pass": true
+    },
+    {
+      "name": "strands within5ft reach from sample work position",
+      "pass": true
+    },
+    {
+      "name": "all28 IDs and authored durations remain unchanged",
+      "pass": true
+    },
+    {
+      "name": "20interval schedule and final time remain intact",
+      "pass": true
+    }
+  ],
+  "checkCount": 6,
+  "failureCount": 0,
+  "scope": "Exact sample geometry/movement, time origin and retained schedule only; no broad semantic approval.",
+  "newRulesAdopted": false,
+  "sourceInformationDeleted": 0,
+  "runtimeTestsExecuted": 0,
+  "humanPlaytested": false
+}

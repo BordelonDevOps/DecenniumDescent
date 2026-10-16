@@ -1,0 +1,891 @@
+# Director Chapter — EPI-08–14 Relics, Seeds, and Residual Null
+
+## Scope and authority
+
+Everything operational in this chapter beyond exact preserved source statements is **NEW provisional authorship**. The four relic names/effects, twelve seed concepts, Residual Null statements and flora names/formula come from the original epilogue. Their timing, DCs, scene geography, stock, actors, failure states and system interfaces are completed here for play.
+
+The original chamber heading is **Dungeon Seeds after Infinite Yield**. Do not silently use these scenes as proof that Infinite Yield has occurred. Current campaign epoch is still owner-choice pending. If you stage a chamber outside the source temporal premise, record that as alternate staging and place it only at an actual existing undocumented-floor site. No numbered floor is selected by this module.
+
+Encounter numbers below are fixed illustrative tuning for four level-11 PCs and have not been runtime- or human-playtested.
+
+## Relics
+### Shard Pendant of Xi (RELIC-XI-PENDANT-1)
+
+Source paragraph: 302.
+
+**physical:** {"form": "black-silver pendant on 24-inch cord", "weightLb": 0.2, "wearing": "neck slot; one free hand only to don/remove; passive/active require worn", "durability": "special relic; ordinary loss/destruction is real; no automatic respawn"}
+
+**acquisition:** {"scene": "CH11 Shardpool Confluence — Crystal Bastion landing cell", "stock": 1, "procedure": "On the Crystal Bastion landing cell, the one Xi reliquary has two opposed pressure plates. Press both plates simultaneously with two hands or two creatures (one Action) to open it. No roll. Once opened the pendant can be taken with an Action.", "depletion": "Reliquary opens once; item never respawns."}
+
+**bond:** {"required": true, "eligibility": "any class", "procedure": "1 uninterrupted active hour wearing/handling the actual pendant; no roll; not a rest. Transfer or 10+ minutes separation from the item ends bond. A new bearer repeats the hour.", "cap": "This module creates no universal attunement-slot cap."}
+
+**passive:** {"name": "Motive-Certainty Refusal", "rule": "A magical information effect cannot return an output that claims the bearer's actual motive, fundamental desire, or intended reason with absolute certainty. It may still return emotions, surface thoughts, alignment, observable behavior, probabilities, or other information within its real scope. If only the prohibited field is blocked, other legal fields remain.", "examples": [{"spell": "Scribe Destiny", "catalogId": "scribe-destiny", "status": "reviewed", "result": "Blocked when it would return the bearer's fundamental motive; other spell limits remain."}, {"spell": "Read Surface Thoughts", "catalogId": "read-surface-thoughts", "status": "reviewed", "result": "Not blocked merely for reading one current thought; its own text expressly denies complete motive reading."}, {"spell": "Divine Truth", "catalogId": "divine-truth", "status": "pending", "result": "No new ruling and no promotion. Pendant interaction remains unimplemented until that spell is reviewed."}]}
+
+**active:** {"name": "Declare Contradiction", "uses": "1 charge; refreshes only when the bonded bearer completes a beneficial Long Rest while possessing the pendant. Transfer, rebonding, removal, destruction/recovery, or another person's rest never refreshes it.", "activation": "Action", "range": "60 ft; bearer must perceive the selected creature and know which ongoing spell record is being addressed.", "target": "One ongoing spell-effect record currently affecting one creature. A fixed zone/area with no individual target record is ineligible. A multi-target spell can lose one independently tracked target branch without ending other branches.", "consent": "During the Action the actual caster and selected affected target must each knowingly agree. Consent is a fiction-level no-action response, not compelled communication. Dead, absent, unreachable, mindless, or unwilling caster/target means consent cannot be completed.", "commit": "The Action is spent on declaration. The charge is spent only when both consents are valid; then the selected ongoing effect branch ends immediately.", "concentration": "No RP/slot/action/use refund. If the ended branch was the last remaining effect of a concentration spell, concentration ends normally; otherwise other branches remain.", "ongoingDamage": "A continuing spell-created target record is eligible only while it is still an ongoing spell effect with identifiable caster and target. Damage already resolved is never rewound.", "failure": "Invalid target or missing/declined consent spends the Action but not the charge."}
+
+**transfer:** "Bond ends on transfer. Charge state belongs to item identity and transfers with it; no reset."
+
+**duplicate:** "One actual item. Copies/illusions cannot duplicate passive, charge, or identity."
+
+**mechanicCitations:** [{"path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json", "jsonPointer": "/spells/219", "note": "Scribe Destiny reviewed operational record"}, {"path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json", "jsonPointer": "/spells/212", "note": "Read Surface Thoughts reviewed operational record"}, {"path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json", "jsonPointer": "/spells/299", "note": "Divine Truth remains blocked-pending-operational-review"}]
+
+### Concord Spear Fragment (RELIC-CONCORD-SPEAR-1)
+
+Source paragraph: 303.
+
+**physical:** {"form": "Proof-War spear fragment mounted on serviceable 6-ft haft", "weightLb": 3, "hands": "one hand normally; two hands for versatile damage", "baseWeapon": "Spear: 1d6 piercing, versatile 1d8, thrown 20/60. Relic explicitly adds Finesse and Heavy for its attuned user.", "properties": ["Finesse", "Heavy", "Thrown 20/60", "Versatile 1d8"], "small": "Actual Heavy rule applies: Small creatures have disadvantage on attack rolls with it."}
+
+**acquisition:** {"scene": "CH10 Crimson Accord Arena", "stock": 1, "procedure": "Resolve the staged duel by either side-victory or neutral accord. If party prevents both projections from being reduced to 0 and completes the Accord option, spear fragment rises from center plinth automatically. Otherwise it appears after the projection duel ends but is sealed for 1 hour; then it can be taken. One actual fragment.", "depletion": "No respawn."}
+
+**bond:** {"required": true, "eligibility": "Paladin or Soldier class level >=1", "procedure": "1 uninterrupted active hour drilling forms with actual spear; no roll; not a rest.", "proficiency": "Eligibility does not grant spear proficiency. Use actual class/ancestry/feat proficiency; an unproficient wielder omits proficiency bonus as normal.", "cap": "No universal attunement cap."}
+
+**hesitation:** {"activation": "Bonus Action before one actual attack with this spear on the same turn", "effect": "Charge that one declared attack with radiant bonus damage equal to floor(character level/2), minimum 0.", "scope": "Melee or thrown spear attack. The attack must occur before turn end; if not, charge expires. A miss consumes the charge. No idle precharge, rewind, or carryover.", "crit": "Radiant bonus is a flat number and is not multiplied by a critical hit unless a future exact rule explicitly multiplies flat bonuses.", "thrown": "Thrown spear remains where the attack places it and must be physically recovered; no magical return.", "resource": "No RP, Conviction, Soldier engine, planar authority, or divine spellcasting is granted."}
+
+**loss:** "If lost/destroyed, no replacement is generated."
+
+**duplicate:** "No copied fragment has powers."
+
+**mechanicCitations:** [{"path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx", "part": "word/document.xml", "paragraphIndexZeroBased": 6741, "textSha256": "34332817bc3e58f426e97dd58f2a61a06001d9bb9c0722cdf1475427417d6753"}, {"path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx", "part": "word/document.xml", "paragraphIndexZeroBased": 6743, "textSha256": "06dd39e2f3929f09bf45c6db2ea0a9f5a63fd846f37ea929055ed6b71d6fcac5"}, {"path": "books/player/Decennium_Descent_Player_Rulebook_v6.docx", "part": "word/document.xml", "paragraphIndexZeroBased": 6755, "textSha256": "240c9343be5543e2eeb7bef931451ce00613f81067c02b0735a503335d527c4a"}, {"path": "DescentReviewChanges/ReviewBible/data/playtest/equipment_source_catalog.json", "jsonPointer": "/records/74"}]
+
+### Mirror of Potential Silence (RELIC-MIRROR-SILENCE-1)
+
+Source paragraph: 304.
+
+**physical:** {"form": "oval hand mirror, black glass, silver rim", "weightLb": 1.0, "hands": "one hand to activate/touch; can be carried or stowed", "attunement": "none"}
+
+**acquisition:** {"scene": "CH12 Omega Theatre", "stock": 1, "procedure": "Complete the theatre through a fictional-vow/neutral-prompt branch or resolve the Echo Doppelganger. Mirror rises from the stage trap together with exactly three silver reflection tabs. One mirror and three tabs total.", "depletion": "No second mirror from replay."}
+
+**activation:** {"activation": "Action; user touches mirror and speaks/signs/writes one fictional-character fear in a language the user can express. No real-player personal disclosure.", "beneficiary": "User only.", "pending": "Mirror shows a brief fictional image where the fear is untrue. The user gains advantage on their next Wisdom saving throw made within 24 hours. One pending benefit maximum; cannot activate again while pending.", "resolution": "On the qualifying Wisdom save, first resolve normal advantage/disadvantage cancellation and every legal reroll/replacement. If the final save outcome succeeds, pending benefit is consumed and mirror remains intact. If final outcome fails, pending benefit is consumed and mirror shatters after that save resolves.", "expiry": "Pending benefit expires after 24 elapsed hours unused; mirror remains intact.", "away": "If mirror is lost/destroyed before pending save, the pending benefit ends immediately."}
+
+**reformation:** {"scene": "Sentinel Glass-Mender side scene attached to CH12", "availability": "At most once per mirror identity.", "stock": "Three silver reflection tabs found with the original mirror are the only repair stock; all three are consumed.", "procedure": "Bring shattered pieces and all three tabs to the projected Glass-Mender Sentinel. 2 uninterrupted hours; no roll. Does not reset EPI07 information-boon history or create a new item identity. After reformation the mirror can be activated normally. A second shattering has no procedure in this module."}
+
+**duplicate:** "Reflections/copies are mundane images only."
+
+**mechanicCitations:** [{"path": "The Cosmology of Decennium Descent.docx", "part": "word/document.xml", "paragraphIndexZeroBased": 304, "textSha256": "9c6d5d580703d7ce2c8e15f83e9aa622b7c3248fcd59301cda5b1600adb41494"}]
+
+### Glove of Null Ink (RELIC-NULL-GLOVE-1)
+
+Source paragraph: 305.
+
+**physical:** {"form": "single black glove with sealed ebony motes beneath translucent stitching", "weightLb": 0.5, "wearing": "one compatible hand; writing requires that hand free", "attunement": "none"}
+
+**acquisition:** {"scene": "CH03 Echoless Vault", "stock": 1, "procedure": "The glove is already crafted and sealed in a soundless reliquary. After the Silence Wraith is comforted/evaded/defeated, open the reliquary with an Action. This is an already-crafted relic; the module creates no Matrix-dust mining or crafting recipe.", "provenance": "A sealed label says the glove was made from dissolved Matrix dust; no loose usable dust remains.", "depletion": "One glove, no respawn."}
+
+**airWriting:** {"activation": "Action", "range": "Choose a point within 10 ft and line of effect; write on a fixed or free-standing plane no larger than 10×10 ft.", "content": "Up to 25 words or equivalent simple symbols in one written language the wearer actually knows. One active inscription per glove; making a new one erases the old.", "duration": "10 elapsed minutes, then vanishes. Wearer can erase early with an Action within 10 ft.", "visibility": "A creature must be able to see the inscription. Blindness, total visual obstruction, and applicable darkness still matter.", "readability": "At observation time, a creature can derive the underlying text only if it currently and sincerely advocates a peaceful but passionless solution to the immediate dispute/topic addressed by the inscription. This is an established fictional stance, not alignment, faction, species, or secret cult membership. The glove never reports who qualifies.", "language": "Eligibility reveals the actual written words, not automatic translation. An eligible observer who does not know the chosen language still needs real language/translation rules.", "copying": "An eligible reader may remember or transcribe the understood ordinary text. An ineligible observer may copy visible shapes, but that copy is nonmagical meaningless glyph-shape data and does not later self-decode.", "limits": "No mind reading, loyalty test, compulsion, KT/PT protection, peacefulness certification, or hidden-identity revelation."}
+
+**duplicate:** "No inscription duplicates relic/resource/class effects."
+
+**mechanicCitations:** [{"path": "The Cosmology of Decennium Descent.docx", "part": "word/document.xml", "paragraphIndexZeroBased": 305, "textSha256": "67d69c81412a9d32c9758ca8062bf92799da7d844c731ef4962f3f9d1c7eef1a"}]
+
+## Local actor profiles
+
+### Memory Forge Toy Sentinel (ACT-TOY-SENTINEL)
+
+{
+  "id": "ACT-TOY-SENTINEL",
+  "name": "Memory Forge Toy Sentinel",
+  "status": "NEW provisional scene actor",
+  "lifeClass": "Construct creature; ordinary monster life-state. At 0 HP it is destroyed/inert unless a local Null rule applies.",
+  "size": "Small",
+  "AC": 15,
+  "HP": 24,
+  "speed": "30 ft",
+  "senses": "darkvision 60 ft; passive Perception 11",
+  "abilityMods": {
+    "STR": 2,
+    "DEX": 3,
+    "CON": 2,
+    "INT": -1,
+    "WIS": 1,
+    "CHA": 0
+  },
+  "proficiencies": "Perception +3",
+  "defenses": "immune to poison and disease; no other immunity",
+  "actions": [
+    {
+      "name": "Tin Edge",
+      "attack": "+6 melee, reach 5 ft, one target",
+      "damage": "1d8+3 slashing"
+    },
+    {
+      "name": "Clockwork Lunge",
+      "attack": "+6 melee after moving at least 10 ft straight",
+      "damage": "1d6+3 bludgeoning; target STR save DC14 or Prone"
+    }
+  ],
+  "behavior": "Attacks the nearest creature carrying/touching a manifested toy. A successful Comfort action against it ends hostility permanently for this chamber."
+}
+
+### Silence Wraith (ACT-SILENCE-WRAITH)
+
+{
+  "id": "ACT-SILENCE-WRAITH",
+  "name": "Silence Wraith",
+  "status": "NEW provisional scene actor; not bestiary promotion",
+  "lifeClass": "Spirit creature; significant scene NPC using HP. At 0 HP disperses; no harvestable corpse or soul-claim.",
+  "size": "Medium",
+  "AC": 15,
+  "HP": 58,
+  "speed": "30 ft, fly 30 ft (hover)",
+  "senses": "vibration sense 60 ft while creature is touching chamber surfaces; passive Perception 14",
+  "abilityMods": {
+    "STR": 0,
+    "DEX": 4,
+    "CON": 2,
+    "INT": 1,
+    "WIS": 4,
+    "CHA": 2
+  },
+  "proficiencies": "Perception +7, Stealth +7",
+  "defenses": "resistance to nonmagical bludgeoning/piercing/slashing; immune to Deafened",
+  "actions": [
+    {
+      "name": "Hush Claw",
+      "attack": "+7 melee, reach 5 ft",
+      "damage": "2d6+4 cold; target CON save DC15 or cannot speak until end of its next turn"
+    },
+    {
+      "name": "Pulse Hunt",
+      "attack": "Action, one creature touching floor within 30 ft",
+      "damage": "WIS save DC15; failure: Frightened until end of target's next turn"
+    }
+  ],
+  "behavior": "Cannot perceive creatures that remain motionless and do not touch vibrating chamber surfaces. It pursues the strongest current vibration."
+}
+
+### Accord Devil Projection (ACT-ACCORD-DEVIL)
+
+{
+  "id": "ACT-ACCORD-DEVIL",
+  "name": "Accord Devil Projection",
+  "status": "NEW provisional projection, not bestiary promotion",
+  "lifeClass": "Projection; 0 HP ends projection, no corpse/soul/loot.",
+  "size": "Medium",
+  "AC": 16,
+  "HP": 52,
+  "speed": "30 ft",
+  "senses": "passive Perception 13",
+  "abilityMods": {
+    "STR": 3,
+    "DEX": 2,
+    "CON": 3,
+    "INT": 2,
+    "WIS": 1,
+    "CHA": 4
+  },
+  "proficiencies": "Deception +7, Persuasion +7",
+  "defenses": "resistance fire; projection ignores disease/poison",
+  "actions": [
+    {
+      "name": "Contract Blade",
+      "attack": "+7 melee",
+      "damage": "1d10+3 slashing + 1d4 fire"
+    },
+    {
+      "name": "Measured Rebuke",
+      "attack": "ranged 30 ft, +6",
+      "damage": "2d6 psychic"
+    }
+  ],
+  "behavior": "Prioritizes the demon projection unless a PC attacks or materially aids the demon."
+}
+
+### Accord Demon Projection (ACT-ACCORD-DEMON)
+
+{
+  "id": "ACT-ACCORD-DEMON",
+  "name": "Accord Demon Projection",
+  "status": "NEW provisional projection, not bestiary promotion",
+  "lifeClass": "Projection; 0 HP ends projection, no corpse/soul/loot.",
+  "size": "Medium",
+  "AC": 14,
+  "HP": 60,
+  "speed": "35 ft",
+  "senses": "passive Perception 12",
+  "abilityMods": {
+    "STR": 4,
+    "DEX": 2,
+    "CON": 4,
+    "INT": 0,
+    "WIS": 1,
+    "CHA": 1
+  },
+  "proficiencies": "Athletics +7",
+  "defenses": "resistance cold; projection ignores disease/poison",
+  "actions": [
+    {
+      "name": "Rending Claw",
+      "attack": "+7 melee",
+      "damage": "2d8+4 slashing"
+    },
+    {
+      "name": "Roar of Refusal",
+      "attack": "15-ft cone",
+      "damage": "WIS save DC15 or Frightened until end of next turn"
+    }
+  ],
+  "behavior": "Rushes the devil projection; attacks PCs only after direct interference against it."
+}
+
+### Echo Doppelganger (ACT-ECHO-DOPPELGANGER)
+
+{
+  "id": "ACT-ECHO-DOPPELGANGER",
+  "name": "Echo Doppelganger",
+  "status": "NEW provisional scene actor; not a PC copy",
+  "lifeClass": "Projection; 0 HP ends projection, no corpse/soul/XP duplication.",
+  "size": "Medium",
+  "AC": 15,
+  "HP": 48,
+  "speed": "30 ft",
+  "senses": "passive Perception 13",
+  "abilityMods": {
+    "STR": 2,
+    "DEX": 4,
+    "CON": 2,
+    "INT": 1,
+    "WIS": 2,
+    "CHA": 2
+  },
+  "proficiencies": "Acrobatics +7, Insight +5",
+  "defenses": "resistance psychic",
+  "actions": [
+    {
+      "name": "Echo Strike",
+      "attack": "+7 melee or ranged 20 ft",
+      "damage": "2d6+4 force"
+    },
+    {
+      "name": "Rehearse Doubt",
+      "attack": "one creature within 30 ft",
+      "damage": "CHA save DC15; failure -2 to next ability check before end next turn"
+    }
+  ],
+  "reactions": [
+    {
+      "name": "Mirrored Guard",
+      "effect": "Once/round when hit, +2 AC against that attack; if this makes attack miss, no further effect."
+    }
+  ],
+  "behavior": "Looks like the triggering character but copies no class cards, resources, inventory, spells, memories, XP, attunements, or identity. It attacks that character first."
+}
+
+### Ash Feast Steward (ACT-FEAST-STEWARD)
+
+{
+  "id": "ACT-FEAST-STEWARD",
+  "name": "Ash Feast Steward",
+  "status": "NEW provisional projection",
+  "lifeClass": "Projection; cannot die, leaves when scene resolves.",
+  "size": "Medium",
+  "AC": 14,
+  "HP": 40,
+  "speed": "30 ft",
+  "senses": "passive Perception 12",
+  "abilityMods": {
+    "STR": 1,
+    "DEX": 1,
+    "CON": 2,
+    "INT": 2,
+    "WIS": 2,
+    "CHA": 3
+  },
+  "proficiencies": "Insight +5",
+  "defenses": "immune to poison/disease (projection)",
+  "actions": [
+    {
+      "name": "Ash Ladle",
+      "attack": "+5 melee",
+      "damage": "1d6+2 bludgeoning; no attack unless party becomes violent"
+    }
+  ],
+  "behavior": "Explains serving etiquette truthfully, never forces eating, and allows withdrawal."
+}
+
+### Witness Sera, Quiet-Well Recorder (ACT-NULL-WITNESS)
+
+{
+  "id": "ACT-NULL-WITNESS",
+  "name": "Witness Sera, Quiet-Well Recorder",
+  "status": "NEW provisional mortal NPC for chamber access",
+  "lifeClass": "Living humanoid significant NPC; uses death saves if reduced to 0.",
+  "size": "Medium",
+  "AC": 12,
+  "HP": 22,
+  "speed": "30 ft",
+  "senses": "passive Perception 14",
+  "abilityMods": {
+    "STR": 0,
+    "DEX": 1,
+    "CON": 1,
+    "INT": 3,
+    "WIS": 4,
+    "CHA": 2
+  },
+  "proficiencies": "Insight +7, Religion +6, Persuasion +5",
+  "defenses": "none beyond ordinary equipment",
+  "actions": [
+    {
+      "name": "Quarterstaff",
+      "attack": "+3 melee",
+      "damage": "1d6 bludgeoning"
+    },
+    {
+      "name": "Record Petition",
+      "attack": "noncombat",
+      "damage": "Acts as local Witness only for current EPI06 petition step one; grants no automatic favorable Archon response."
+    }
+  ],
+  "behavior": "Neutral recorder; refuses coercion, follows current EPI06 motive-record procedure, and leaves if attacked."
+}
+
+## Twelve chamber seeds
+
+### 1. Memory Forge (CH01-MEMORY-FORGE)
+
+**placement:** "Conditional: adopt only at an actual existing undocumented-floor site appropriate to the campaign. Original source premise is after Infinite Yield; use outside that premise must be explicitly logged as alternate staging. No numbered floor/epoch selected."
+
+**geometry:** "40×40-ft square; west arch entrance, east arch ordinary exit initially sealed; central 10-ft forge dais; four 5-ft toy plinths."
+
+**sensory:** "Warm metal smell, hammer ticks with no smith, four metal toys mimic fictional childhood objects chosen by characters or Director-safe prompts."
+
+**dangerTelegraph:** "Before any attack, each toy raises its edge and the forge projects the words 'COMFORT WHAT MEMORY MADE SHARP.'"
+
+**actors:** ["ACT-TOY-SENTINEL"]
+
+**count:** "Four Toy Sentinels, one per plinth; fixed illustrative tuning for four level-11 PCs, unplayed/unbalanced."
+
+**objective:** "Open east exit by calming or disabling all four toys."
+
+**procedures:** ["Comfort: Action within 5 ft, CHA (Persuasion) or WIS (Insight) DC14 using fictional character context; success permanently calms one toy. A character may instead place the toy on forge dais and spend 1 minute repairing/arranging it with INT (Engineering) DC14; success calms it.", "Combat is legal. At 0 HP a toy is inert and counts resolved.", "Withdrawal: west entrance remains open; unresolved toys do not pursue beyond room."]
+
+**failure:** "A failed Comfort check provokes that toy's next attack against the acting character; no infinite escalating DC."
+
+**reward:** "When all four resolve, east exit opens and one 0.5-lb Memory Ingot appears. It is a mundane narrative relic with no recipe/power and never respawns."
+
+**persistent:** "Calmed/destroyed toys remain resolved; ingot appears once."
+
+### 2. Gallery of Unpainted Murals (CH02-UNPAINTED-GALLERY)
+
+**placement:** "Conditional undocumented-floor scene; same temporal wrapper as CH01."
+
+**geometry:** "20×60-ft hall; entrance south, exit north; six blank wall panels."
+
+**sensory:** "Dry pigment smell, soft brush-noise from empty walls."
+
+**dangerTelegraph:** "A brass placard states: 'TOUCH SHOWS AMBITION; IMAGE IS POSSIBILITY, NOT PROPHECY.'"
+
+**objective:** "Reveal three murals and choose one fictional ambition to acknowledge."
+
+**procedures:** ["Touching a panel is an Object Interaction and creates one image of a plausible next ambition for that character, chosen from already-established character fiction or a Director-safe prompt. It is not guaranteed future truth.", "After three images, one character spends an Action to state, sign, or write which image they pursue/reject and why; no roll. Players need not disclose real personal goals.", "Alternative: 10-minute INT (Investigation) DC14 identifies the acknowledgement latch and permits a neutral statement such as 'These are possibilities, not commands.'"]
+
+**failure:** "No lethal failure. Refusing interaction leaves north exit shut; south exit remains open."
+
+**reward:** "One finite mural rubbing sheet (0.02 lb) showing only the chosen image; no divination power."
+
+**persistent:** "Each panel reveals once per character identity; revisiting does not generate new ambitions/rewards."
+
+### 3. Echoless Vault (CH03-ECHOLESS-VAULT)
+
+**placement:** "Conditional undocumented-floor scene; same wrapper."
+
+**geometry:** "35×35-ft vault; stone entrance west and reliquary alcove east; floor divided into seven 5-ft vibration plates."
+
+**sensory:** "Absolute acoustic silence inside; vibrations visibly ripple silver dust on floor."
+
+**dangerTelegraph:** "At threshold, footprints make silver rings and a translucent hunter turns toward them."
+
+**actors:** ["ACT-SILENCE-WRAITH"]
+
+**objective:** "Reach east reliquary or open north exit without feeding the hunter vibrations."
+
+**procedures:** ["Move silently: move at half Speed and make DEX (Stealth) DC15 once per turn when crossing a new plate. Success creates no detectable floor pulse; failure lets Wraith locate that creature until end of Wraith's next turn.", "Stillness: spend Action and do not move; Wraith cannot target you by vibration until you move/touch a vibrating plate.", "Noncombat bypass: three characters can sequentially depress the seven plates in etched 1-3-5-7 pattern using 4 Actions total; INT (Investigation) DC14 reveals pattern after 10 minutes. Completion opens north exit and pacifies Wraith.", "Combat is legal; Wraith profile is self-contained."]
+
+**failure:** "Failed pattern resets only plate sequence, not room/relic. West entrance remains ordinary withdrawal."
+
+**reward:** "East reliquary contains the one Glove of Null Ink, RELIC-NULL-GLOVE-1."
+
+**persistent:** "Glove stock one; Wraith remains pacified/dispersed after terminal resolution."
+
+### 4. Tessellation Garden (CH04-TESSELLATION-GARDEN)
+
+**placement:** "Conditional undocumented-floor scene."
+
+**geometry:** "45×45-ft garden; entrance southwest, exit northeast; nine 10-ft hex-flower zones with 5-ft paths."
+
+**sensory:** "Geometric flowers rotate; loose pebbles fall sideways over certain beds."
+
+**dangerTelegraph:** "Petals point in alternating gravity directions before each zone changes."
+
+**objective:** "Cross without forcing the geometry."
+
+**procedures:** ["At each of three rows choose one of three paths. Read petal pattern with WIS (Perception) or INT (Investigation) DC14; success identifies safe path. Failure gives no false answer; moving anyway triggers local gravity.", "Triggered gravity: DEX save DC14. Failure slides 10 ft to marked catch-net and falls Prone; takes 1d6 bludgeoning. Success stays on path. Catch-net prevents lethal falls.", "Creative bypass: ropes, flight, teleportation, climbing, or shapechanging work only if actually available and geometry/space fits; no new power."]
+
+**failure:** "No lockout; parties can backtrack to entrance. Repeated failed reads do not change safe path."
+
+**reward:** "One finite packet of geometric seeds, purely decorative/no recipe."
+
+**persistent:** "Safe pattern fixed for chamber identity; seeds one packet."
+
+### 5. Negative Feast Hall (CH05-NEGATIVE-FEAST)
+
+**placement:** "Conditional undocumented-floor scene."
+
+**geometry:** "30×50-ft hall; south entrance, north exit; table seats eight; seven covered dishes plus one empty plate."
+
+**sensory:** "Food smells rich, but shadows under dishes are ash-gray."
+
+**dangerTelegraph:** "Steward says: 'No guest receives a second portion until every seated guest who asks has one.'"
+
+**actors:** ["ACT-FEAST-STEWARD"]
+
+**objective:** "Demonstrate restraint and distribute first portions fairly."
+
+**procedures:** ["Eight first portions exist. Any willing creature may sit; no one is compelled to eat. Serve no creature a second portion until every seated creature that requested food has one. Serving is an Action.", "Success after all requested first portions are distributed and party waits 1 minute without taking a second.", "Investigation DC14 after 10 minutes states the rule plainly. Characters may also leave seats empty."]
+
+**failure:** "If a second portion is taken early, all remaining food turns to ash; scene fails but south exit stays open. No poisoning or forced starvation."
+
+**reward:** "Success opens north exit and leaves two mundane 1-day ration packs; finite."
+
+**persistent:** "Food/rations do not replenish."
+
+### 6. Ladder Debris Shaft (CH06-LADDER-DEBRIS)
+
+**placement:** "Conditional undocumented-floor scene."
+
+**geometry:** "60-ft vertical shaft; four 15-ft segments; entry ledge bottom, exit ledge top; fixed safety cable on wall."
+
+**sensory:** "Broken luminous rungs blink in sequence; wind rises each segment."
+
+**dangerTelegraph:** "Etched handprint reads 'COURAGE IS CONTINUING WHILE AFRAID, NOT A NEW SKILL.'"
+
+**objective:** "Ascend four segments."
+
+**procedures:** ["Each segment requires one Action and either STR (Athletics) DC14 or DEX (Acrobatics) DC14. Before attempting, a frightened climber may instead make WIS save DC14 to steady; success grants advantage on that segment only.", "Failure catches climber on safety cable 5 ft below segment start, deals 1d6 bludgeoning, and consumes the Action. No fatal fall.", "An ally anchored above can spend an Action to grant +2 to one climber's next Athletics check; not cumulative."]
+
+**failure:** "Three failures by same climber do not end scene; withdrawal downward remains possible. Ordinary actual flight/teleport works if legal."
+
+**reward:** "Top ledge holds one finite 50-ft luminous rope (ordinary rope visibility only, no magic bonus)."
+
+**persistent:** "Rope stock one."
+
+### 7. Quiet Well Remnant (CH07-QUIET-WELL)
+
+**placement:** "Conditional undocumented-floor scene."
+
+**geometry:** "25-ft circular chamber; 10-ft-diameter well center; entrance/exit same arch plus sealed east door."
+
+**sensory:** "Faint gray-blue glow; spoken words sound emotionally flat near rim."
+
+**dangerTelegraph:** "Mask-shaped relief shows one face intact, one cracked, with inscription 'WEAR WHAT YOU MADE; RECEIVE WHAT IT MEANS.'"
+
+**objective:** "Interact with well or bypass safely."
+
+**procedures:** ["One character wearing an operative Living mask may spend 1 uninterrupted minute at rim stating a fictional vow-related truth; gain one temporary Inspiration d6 that expires at next beneficial Long Rest and does not exceed the current EPI01 Inspiration pool cap.", "A wearer of an operative Cracked mask doing the same records one Disquiet d6 under current EPI01 rules instead; no extra permanent boon.", "Unmasked/dormant-mask characters receive only an image and no mechanical boon/bane.", "Bypass: WIS (Insight) DC14 after 10 minutes identifies that interaction is optional; east door opens by ordinary lever after 1 minute regardless."]
+
+**failure:** "No forced mask use. Well does not purge Null Veil by itself."
+
+**reward:** "Finite one-time well response per character identity; no refill by revisiting."
+
+**persistent:** "Response ledger per character/chamber."
+
+**actors:** ["ACT-NULL-WITNESS"]
+
+**witness:** "Witness Sera is present once per chamber adoption and can fulfill EPI06 consultation step one for otherwise eligible petitioners. The chamber provides a 10×10 quiet alcove for the one-hour meditation, but petition timing/result remain current EPI06."
+
+### 8. Wax Library Seed — Silent Cell (CH08-WAX-SEED)
+
+**placement:** "Conditional undocumented-floor scene. Explicitly not the Floor68 Melted Annex or Floor50 service collection."
+
+**geometry:** "20×30-ft cell; six wax strips on wall, south entrance, east exit."
+
+**sensory:** "Warm wax smell; copper tabs numbered 1–6."
+
+**dangerTelegraph:** "Door plate: 'VOICE MELTS; EYES PRESERVE.'"
+
+**objective:** "Silently preserve four harmless strips or solve copper-tab fallback."
+
+**procedures:** ["Each strip has 20 words of NEW harmless local maintenance poetry, not Equation evidence. Silent reading in known language takes 1 minute/strip and may be copied normally.", "Reading a strip aloud starts 60-second irreversible melt of that strip. Stopping speech does not reverse it.", "After four strips are silently read/coped, east exit opens.", "Fallback if fewer than four strips remain: 10-minute INT (Investigation) DC15 on copper tabs; success derives mechanical tab sequence 2-5-1-6 and opens exit. Failure gives no false sequence; Critical Failure locks tab panel 1 hour."]
+
+**failure:** "Destroyed strips never respawn and cannot satisfy any Matrix research/library prerequisite."
+
+**reward:** "One mundane wax-seal kit with six seals; no recipe/evidence power."
+
+**persistent:** "Strip destruction/copies and seal stock persist."
+
+### 9. Twin Wind Passages (CH09-TWIN-WIND)
+
+**placement:** "Conditional undocumented-floor scene."
+
+**geometry:** "Entry chamber 20×20; two parallel 40-ft corridors, Blue and Amber, rejoin at one 20×20 exit room."
+
+**sensory:** "Each corridor shows a staged projection of the party making a different immediate chamber choice."
+
+**dangerTelegraph:** "Threshold says 'ONE PATH SOLIDIFIES. NO SELF IS COPIED.'"
+
+**objective:** "Choose which projected local outcome becomes the chamber's path."
+
+**procedures:** ["Party has 10 elapsed minutes. Blue projection shows door opened by cooperation; Amber shows door forced but one bridge collapses. These are chamber-local possibilities, not history/time travel.", "Place one finite decision token from entry bowl into Blue or Amber socket (Action). When all willing present party members have chosen or time expires, majority choice solidifies; tie -> Blue by fixed neutral order. Abstentions do not count.", "Solidification physically opens chosen corridor and seals the other. No second party, inventory, HP, resources, uses, memories, or timeline exists.", "Withdrawal through entry remains possible until token commitment; after solidification entry also remains open."]
+
+**failure:** "Timeout with no votes opens Blue and gives no reward. No history rewrite."
+
+**reward:** "If deliberate choice before timeout, one 0.1-lb Wind Token appears; narrative proof only."
+
+**persistent:** "Choice fixed forever for chamber identity."
+
+### 10. Crimson Accord Arena (CH10-CRIMSON-ARENA)
+
+**placement:** "Conditional undocumented-floor scene."
+
+**geometry:** "50-ft-diameter arena; west entry gate, east exit gate, central 10-ft accord circle."
+
+**sensory:** "Red and blue projection sigils manifest one devil and one demon reenacting a historical-looking but explicitly staged duel."
+
+**dangerTelegraph:** "Banner: 'REENACTMENT — YOUR CHOICE CHANGES THIS PERFORMANCE, NOT HISTORY.'"
+
+**actors:** ["ACT-ACCORD-DEVIL", "ACT-ACCORD-DEMON"]
+
+**objective:** "Influence staged duel or broker accord."
+
+**procedures:** ["At initiative start projections fight each other. PCs may attack either, heal/aid by actual abilities, or broker accord.", "Accord: a PC in center circle spends Action for CHA (Persuasion) DC15. Need two successes by any PCs before either projection reaches 0 HP. A failure causes both projections to make one attack against broker on their next turns, then resume duel.", "If one projection reaches 0, other wins. East gate opens after any terminal state."]
+
+**failure:** "No real planar faction standing changes. 'Planar favor' is one local Favor Mark granting advantage on one social check with a projection/Sentinel inside this chamber only, then consumed; expires on exit."
+
+**reward:** "One Concord Spear Fragment appears at terminal state per relic acquisition rules."
+
+**persistent:** "Projection outcome and spear depletion persist; no replay farming."
+
+### 11. Shardpool Confluence (CH11-SHARDPOOL)
+
+**placement:** "Conditional undocumented-floor scene; does not grant general plane travel."
+
+**geometry:** "30×30-ft pool chamber with four 5-ft rune plinths around central 10-ft pool; entry south, exit north."
+
+**sensory:** "Pool reflects four reviewed primary realms; four facedown one-use shard cards float above it."
+
+**dangerTelegraph:** "Inscription: 'DRAW WITHOUT RETURN; TEN MINUTES; THE POOL BRINGS YOU BACK.'"
+
+**objective:** "Survive/adapt to brief plane landings or decline."
+
+**procedures:** ["Four shard cards correspond exactly to Crystal Bastion, Veiled Expanse, Radiant Currents, Boundless Void. Shuffle facedown; draw without replacement. One Action by a willing traveler group of up to six adjacent creatures activates that card.", "All willing travelers must fit the destination's marked 20×20-ft landing cell using current footprint rules. If any cannot fit, activation fails without consuming card.", "Successful activation swaps those travelers and carried gear to the bounded landing cell for exactly 10 elapsed minutes. At +10:00, return resolves before any same-timestamp local event. Return targets original marked footprints; if blocked, use nearest legal adjacent same-region placement under current body placement rules. If no legal placement, travelers remain in landing cell for up to 10 additional minutes while obstruction can be cleared; then a second return attempt occurs. If still impossible, they appear at chamber's fixed 20×20 emergency return pad, never elsewhere.", "Each card is consumed on successful activation and never replenishes. No onward portal exists in landing cells."]
+
+**destinations:** {"Crystal Bastion": "20×20 cinder-font cell; safe stone platform, one sealed Xi reliquary and six 1-pint flasks Bastion flame water. No exit beyond invisible boundary; ambient heat comfortable.", "Veiled Expanse": "20×20 gray fen cell; finite flora beds: six Bittersap nodes, four Tranquilthorn sprigs, four Echo Lily blooms, four Blackhush moss patches. No wandering entities authored.", "Radiant Currents": "20×20 shallow luminous current; DEX save DC14 on arrival or Prone; no damage; one finite prism shell (narrative only).", "Boundless Void": "20×20 force-lattice cell with no air loss/gravity hazard in this bounded staging bubble; WIS save DC14 or Frightened until end of next turn from vertigo. No outer travel."}
+
+**failure:** "Declining interaction leaves north exit lever usable after 1 minute. Consumed cards stay consumed even if party leaves."
+
+**reward:** "Finite destination contents only. Xi Pendant and flora/flame water are real stock; no duplication."
+
+**persistent:** "Four-card deck and all landing-cell stock persist globally for this chamber identity."
+
+### 12. Omega Theatre (CH12-OMEGA-THEATRE)
+
+**placement:** "Conditional undocumented-floor scene."
+
+**geometry:** "30×40-ft theatre; entry rear, stage front, east exit; one mirror trapdoor center stage."
+
+**sensory:** "Empty seats whisper lines from fictional character histories already established in play."
+
+**dangerTelegraph:** "Playbill: 'CHARACTER FICTION ONLY. ANY PLAYER MAY USE THE NEUTRAL PROMPT.'"
+
+**actors:** ["ACT-ECHO-DOPPELGANGER"]
+
+**objective:** "Narrate or otherwise acknowledge one unresolved fictional vow, or face/resolve Echo Doppelganger."
+
+**procedures:** ["Each participating character chooses: (A) state/sign/write one fact about their current fictional unfinished vow; (B) use neutral prompt 'My character admits the vow is unresolved'; or (C) decline.", "No real-world personal disclosure is ever required. Current EPI03 vow record supplies fiction if player chooses.", "If at least one participating character completes A/B, theatre accepts and exit opens after 1 minute. Characters who decline suffer no penalty.", "If all present decline, one Echo Doppelganger projection manifests for one randomly selected willing-to-engage character; if nobody consents to combat, theatre instead opens exit after 10 minutes with no relic reward.", "Combat terminal: Doppelganger at 0 disperses; alternatively its target can spend Action and complete neutral prompt, causing projection to disperse."]
+
+**failure:** "No character is compelled to speak. Exit always available through consent-safe terminal branch."
+
+**reward:** "Mirror of Potential Silence plus exactly three silver reflection tabs appears only if scene resolves through A/B or Doppelganger resolution; not on 10-minute no-engagement exit."
+
+**persistent:** "One mirror total; one lifetime Sentinel reformation stock bundled with it."
+
+## Residual Null adjudication
+
+{
+  "id": "NULL-VEIL-01",
+  "status": "NEW PROVISIONAL AUTHORSHIP completing original P311–315",
+  "sources": [
+    {
+      "path": "The Cosmology of Decennium Descent.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 311,
+      "textSha256": "a52efda80c3e54d102f7ac71037bf5419066d7671932f3b001e80974800ae191"
+    },
+    {
+      "path": "The Cosmology of Decennium Descent.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 312,
+      "textSha256": "07a40574d1c6d47c17121a0450a4cc91ba0bb535d910c56750af766c946f91ed"
+    },
+    {
+      "path": "The Cosmology of Decennium Descent.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 313,
+      "textSha256": "6d6699bbc337c5e7505236f3fadb106e651cbbca14bb5cbefa4984ee48bb4771"
+    },
+    {
+      "path": "The Cosmology of Decennium Descent.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 314,
+      "textSha256": "b23b62618a9f10889486aca32a8d2c9b561d87fc488d3cd321b91ac94c56f461"
+    },
+    {
+      "path": "The Cosmology of Decennium Descent.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 315,
+      "textSha256": "6312b43f12953b3ad3b356d8c2359bb8ceed4a33ea20071e1627d90e40015b5c"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+      "firstLineOneBased": 35,
+      "lastLineOneBased": 60
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+      "firstLineOneBased": 358,
+      "lastLineOneBased": 370
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "firstLineOneBased": 1,
+      "lastLineOneBased": 58
+    }
+  ],
+  "field": {
+    "definition": "A Residual Null field is a Director-authored bounded area with a stable field identity, explicit boundary and clock. This module authors such fields only where a chamber/site says so; high-altitude/catacomb wording remains source context, not an everywhere detector.",
+    "exposure": "Each creature keeps minutes-per-field. While physically inside a field, accumulate elapsed minutes. Each time that field's accumulator reaches 60, subtract 60 and immediately make WIS save DC15. Partial minutes pause on exit and resume on re-entry to the same field. Completing one beneficial Long Rest wholly outside that field clears only that field's partial accumulator; it does not purge Null Veil or erase exposure history.",
+    "multiple": "Genuinely distinct overlapping field identities track separately. Merely nesting/renaming one field cannot multiply saves.",
+    "alreadyVeiled": "Still make hourly saves for exposure history; success has no extra effect, failure does not stack or refresh a second Veil.",
+    "sleeping": "Living sleeping/Unconscious creatures make the WIS save normally because those conditions do not automatically fail Wisdom saves. Dead targets do not gain Veil."
+  },
+  "veil": {
+    "duration": "Persists until one listed purge succeeds. Exiting field alone does not end it.",
+    "passiveInsight": "While Veil is active and not suppressed, final passive Insight is 5. This is a setting of that passive score, not omniscience or motive detection. Suppression restores normal calculation for its duration.",
+    "damageNonlethal": {
+      "scope": "At creation of each damage root, record root dealer. If the root dealer is a character currently under unsuppressed Null Veil, mark the entire root `nullNonlethal=true`. Delayed/ongoing descendant packets inherit that flag from the root; later Veil changes do not retroactively change an already-created root. A new later activation/attack creates a new root and re-evaluates.",
+      "independentCompanions": "A companion/minion has its own dealer identity. Controller Veil does not convert companion damage unless an exact ability says the controller is the damage dealer.",
+      "shared": "Pure transfer/redirection keeps the original root's nullNonlethal flag. It does not create a second root or extra prevention/resource triggers.",
+      "reflection": "An effect that explicitly creates new reflected/retaliatory damage uses the reflector as dealer and evaluates that new root at creation. A mere transfer is not reflection.",
+      "livingCreature": "Resolve attack/save, ordinary mitigation and temporary HP normally. HP may fall to 0. For this nullNonlethal packet only, skip Instant Death, Wound/Maiming save creation, zero-HP death-save failures and ordinary-monster death caused by that packet. A newly 0 living recipient becomes Unconscious and Stable with counters reset and receives the normal Stable recovery deadline. An already-0 living Stable/dying recipient takes HP loss none below 0 and gains no death failure from this packet; if it was dying, it becomes Stable because this packet is expressly nonlethal.",
+      "nonlivingCreature": "A creature explicitly nonliving (construct/undead/etc.) can be reduced to 0 HP but is Disabled at 0 by this packet instead of destroyed/Dead. Disabled: Incapacitated, Speed 0, cannot regain function except through an actual repair/healing rule that applies to it. This is a NEW local state solely to make the source's broad nonlethal promise coherent for nonliving creatures.",
+      "objects": "Objects/noncreature structures take damage normally; 'nonlethal' does not make objects indestructible.",
+      "preexisting": "Does not remove old Wounds/Injuries, revive Dead creatures, undo earlier death failures, cure conditions, or prevent non-damage lethal costs/tracks.",
+      "riders": "Independent non-damage riders still resolve if their exact trigger was met and they do not require a Wound/death result.",
+      "directCosts": "Direct HP payments/sacrificial costs are not damage and are not converted.",
+      "hunt": "This nonlethal override does not alter Hunt finality or Hunted Death rules for actual later deaths from other causes."
+    },
+    "shrug": {
+      "activation": "Bonus Action while active and not Incapacitated; CHA save DC15, binary.",
+      "success": "Suppress Veil until the start of the character's next regular turn in initiative. Outside initiative, suppress for 6 elapsed seconds. During suppression passive Insight and damage conversion are inactive, but the Veil record remains and exposure clocks continue.",
+      "failure": "Apply actual Incapacitated until the end of the character's next regular turn. Outside initiative, 1 elapsed minute. Concentration ends immediately under current Incapacitated rule. After duration, Bonus Action can be attempted again if otherwise legal.",
+      "immunity": "Immunity to Incapacitated prevents that failure condition; no unnamed substitute penalty. The save can still fail and Veil remains unsuppressed."
+    },
+    "purge": {
+      "maskConfession": {
+        "status": "NEW narrow extension to current EPI04",
+        "requirements": "Wearer's current operative Living or Cracked mask is physically worn. Spend an Action and communicate one truthful current fictional emotional-state statement tied to the mask's bound vow to one willing creature/Sentinel within ordinary communication reach who actually understands it. Spoken, signed, or written methods follow current language rules.",
+        "effect": "If understood, purge Null Veil immediately after the Action. Mask stays worn; wearerRevealCharge and safe-removal rules are unchanged. Real-player personal disclosure is never required.",
+        "failure": "If nobody understands or statement is not truthful/current fiction, Action spent and Veil remains.",
+        "citations": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_character_reviewed_01.json",
+            "jsonPointer": "/currentModule/EPI04"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CHARACTER_PLAYTEST.md",
+            "firstLineOneBased": 102,
+            "lastLineOneBased": 109
+          }
+        ]
+      },
+      "archonBlessing": {
+        "status": "NEW narrow purge interpretation bound to current EPI06",
+        "requirements": "Complete the current EPI06 petition procedure using a real available Witness/quiet chamber/symbolic act. If the response roll is 5–8 and grants the actual Temporary Blessing boon, the granting moment also purges one Null Veil from the petitioner.",
+        "nonqualifying": "Guidance 1–4, Test 9–11, Revelation 12, old blessing history, or a previously granted temporary feature do not purge. This module adds no reroll or guaranteed result.",
+        "access": "CH07 includes a finite local Witness profile who can perform the consultation when that chamber is adopted; petition eligibility/rest/timing remain current EPI06 rules.",
+        "citations": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/cosmology/epilogue_character_reviewed_01.json",
+            "jsonPointer": "/currentModule/EPI06"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_CHARACTER_PLAYTEST.md",
+            "firstLineOneBased": 161,
+            "lastLineOneBased": 176
+          }
+        ]
+      },
+      "bittersap": {
+        "requirements": "Consume one actual NULL-ANTIDOTE-DOSE under Equipment Item Procedures.",
+        "effect": "Purge Null Veil immediately after successful administration. Continuing field exposure remains and future hourly saves still occur.",
+        "limits": "Does not cure Corrupted, Dissonance, Strain, Exhaustion, KT/PT, Hunt, Wounds, poison, disease or another condition unless an exact separate rule says so.",
+        "citations": [
+          {
+            "path": "The Cosmology of Decennium Descent.docx",
+            "part": "word/document.xml",
+            "paragraphIndexZeroBased": 315,
+            "textSha256": "6312b43f12953b3ad3b356d8c2359bb8ceed4a33ea20071e1627d90e40015b5c"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+            "firstLineOneBased": 5,
+            "lastLineOneBased": 5
+          }
+        ]
+      }
+    }
+  }
+}
+
+### Damage-order checklist
+
+1. Identify one original damage root and its dealer at root creation.
+2. Set `nullNonlethal` from that dealer's unsuppressed Veil state.
+3. Resolve hit/save and ordinary defenses.
+4. Apply exactly one legal sharing/transfer operation under the current sharing rules; transfers inherit the root flag.
+5. Remove temporary HP, then normal HP.
+6. If the flag is false, use normal Core Instant Death/Wound/zero-HP procedure.
+7. If true, apply the creature/object recipient branches in `NULL-VEIL-01`; skip only the damage-caused lethal stages named there.
+8. Never erase prior Wounds, legal death, Hunt, debts or non-damage lethal tracks.
+## Flora and antidote
+
+### Bittersap Root (FLORA-BITTERSAP)
+
+{
+  "id": "FLORA-BITTERSAP",
+  "name": "Bittersap Root",
+  "source": {
+    "path": "The Cosmology of Decennium Descent.docx",
+    "part": "word/document.xml",
+    "paragraphIndexZeroBased": 316,
+    "textSha256": "b2f9343e5c8f3d147498b2266e07da8576c5dcf4e1e795ea8df94e79a1111526"
+  },
+  "status": "NEW provisional physical procedure",
+  "habitat": "CH11 Veiled Expanse landing cell, damp gray loam",
+  "stock": "6 mature nodes; each node one harvest attempt; no replenishment in this module",
+  "recognize": "10 minutes, INT or WIS (Nature) DC14. Success identifies plant and safe root; failure = uncertainty, not false ID.",
+  "harvest": "20 minutes, one hand + small knife or herbalism kit; WIS (Survival) DC14. Critical Success 2 parts, Success 1, Failure 0 and node is bruised/consumed, Critical Failure 0 and tool must be cleaned 10 minutes before another flora harvest.",
+  "unit": "1 part = 0.1 lb cleaned root",
+  "freshness": "7 days ordinary storage; 30 days in a sealed cool specimen case; then spoiled/nonfunctional.",
+  "effect": "No direct mechanical effect when eaten raw; recipe ingredient only."
+}
+
+### Tranquil Thorn (FLORA-TRANQUILTHORN)
+
+{
+  "id": "FLORA-TRANQUILTHORN",
+  "name": "Tranquil Thorn",
+  "source": {
+    "path": "The Cosmology of Decennium Descent.docx",
+    "part": "word/document.xml",
+    "paragraphIndexZeroBased": 316,
+    "textSha256": "b2f9343e5c8f3d147498b2266e07da8576c5dcf4e1e795ea8df94e79a1111526"
+  },
+  "status": "NEW provisional physical procedure",
+  "habitat": "CH11 Veiled Expanse landing cell, dry raised stones",
+  "stock": "4 sprigs; no replenishment",
+  "recognize": "10 minutes Nature DC14",
+  "harvest": "10 minutes with gloves or tongs; DEX (Herbalism kit) DC14. Critical Success 2 parts, Success1, Failure0 and sprig breaks, Critical Failure0 and harvester takes1 piercing damage.",
+  "unit": "0.05 lb",
+  "freshness": "14 days dry; 60 days sealed",
+  "effect": "No default combat/cure effect. A brewed nonmagical tea is calming fiction only and grants no mechanical bonus."
+}
+
+### Echo Lily (FLORA-ECHOLILY)
+
+{
+  "id": "FLORA-ECHOLILY",
+  "name": "Echo Lily",
+  "source": {
+    "path": "The Cosmology of Decennium Descent.docx",
+    "part": "word/document.xml",
+    "paragraphIndexZeroBased": 316,
+    "textSha256": "b2f9343e5c8f3d147498b2266e07da8576c5dcf4e1e795ea8df94e79a1111526"
+  },
+  "status": "NEW provisional physical procedure",
+  "habitat": "CH11 Veiled Expanse landing cell, shallow reflective water",
+  "stock": "4 blooms; no replenishment",
+  "recognize": "10 minutes Nature DC14",
+  "harvest": "10 minutes with herbalism kit; DEX (Herbalism kit) DC14. Critical Success 2 parts, Success1, Failure0 and bloom wilts, Critical Failure0 and adjacent second bloom also wilts (if any).",
+  "unit": "1 part = 0.05 lb petals",
+  "freshness": "3 days ordinary; 14 days sealed cool",
+  "effect": "Recipe ingredient only; no standalone echo/memory power."
+}
+
+### Black Hush Moss (FLORA-BLACKHUSH)
+
+{
+  "id": "FLORA-BLACKHUSH",
+  "name": "Black Hush Moss",
+  "source": {
+    "path": "The Cosmology of Decennium Descent.docx",
+    "part": "word/document.xml",
+    "paragraphIndexZeroBased": 316,
+    "textSha256": "b2f9343e5c8f3d147498b2266e07da8576c5dcf4e1e795ea8df94e79a1111526"
+  },
+  "status": "NEW provisional physical procedure",
+  "habitat": "CH11 Veiled Expanse landing cell, shaded stone edge",
+  "stock": "4 patches; no replenishment",
+  "recognize": "10 minutes Nature DC14",
+  "harvest": "10 minutes with scraper/herbalism kit; DEX (Herbalism kit) DC14. Critical Success2 parts, Success1, Failure0 and patch lost, Critical Failure0 and one adjacent patch contaminated (if any).",
+  "unit": "0.05 lb",
+  "freshness": "30 days dry/sealed",
+  "effect": "No default Null cure or silence effect. Can be used as mundane black dye after 10 minutes steeping."
+}
+
+### Bittersap Antidote
+
+{
+  "id": "NULL-ANTIDOTE-01",
+  "name": "Bittersap Antidote",
+  "status": "NEW special procedure; not added to 687 reviewed trade recipes",
+  "sources": [
+    {
+      "path": "The Cosmology of Decennium Descent.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 315,
+      "textSha256": "6312b43f12953b3ad3b356d8c2359bb8ceed4a33ea20071e1627d90e40015b5c"
+    },
+    {
+      "path": "The Cosmology of Decennium Descent.docx",
+      "part": "word/document.xml",
+      "paragraphIndexZeroBased": 316,
+      "textSha256": "b2f9343e5c8f3d147498b2266e07da8576c5dcf4e1e795ea8df94e79a1111526"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+      "firstLineOneBased": 5,
+      "lastLineOneBased": 5
+    }
+  ],
+  "ingredients": "2 Bittersap parts + 1 Echo Lily part + 1 pint actual Bastion flame water",
+  "flameWater": {
+    "source": "CH11 Crystal Bastion landing cell",
+    "stock": "6 sealed 1-pint flasks, 1 lb each; no replenishment. Home-plane affiliation, Concord Step, or ordinary plane choice creates none.",
+    "access": "Only via an actually adopted CH11 shard-card activation or another separately authored lawful source; this module grants no general Bastion travel."
+  },
+  "apparatus": "Heatproof pot, stirring tool, one ordinary heat source; Herbalism kit or Alchemist's supplies available to the brewer.",
+  "work": "30 uninterrupted active minutes. Ingredients are committed/consumed when boiling begins. At completion make INT (Herbalism kit) or INT (Alchemist's supplies) DC15; use proficiency only if actually proficient.",
+  "outcomes": {
+    "Critical Success": "1 dose; shelf life 30 days.",
+    "Success": "1 dose; shelf life 7 days.",
+    "Failure": "0 dose; ingredients consumed; pot remains usable after 10-minute cleaning.",
+    "Critical Failure": "0 dose; ingredients consumed; pot fouled and unusable for 1 hour of cleaning."
+  },
+  "dose": {
+    "weightLb": 0.2,
+    "administration": "Action, one available hand. Drink, or feed to willing/Incapacitated living creature within5ft if it can swallow, per equipment procedure. Unwilling active creature has no free forced-dose permission.",
+    "effect": "Purges Null Veil only. Dose consumed whether or not target is Veiled; no diagnostic refund."
+  },
+  "limits": "No Corruption/KT/PT/Hunt/Dissonance/Strain/Exhaustion/Wound/poison/disease cure. No reviewed recipe-count change."
+}
+
+## Persistence ledger
+
+Track chamber identity and placement, `alternateStaging`, every terminal state, relic stock/removal/destruction, Mirror reformation use, Shardpool card consumption, landing-cell inventory, flora nodes/blooms/patches, flame-water flasks, wax-strip destruction/copies, local Favor Marks and one-time rewards. Re-entering or rerolling a seed never refills these records.
+
+The CH08 Wax Library Seed is unrelated to the reviewed Floor-68 Melted Annex and Floor-50 service collection except for sharing the broad original seed concept. It never restores their books, research receipts or qualification evidence.
+
+## Remaining boundaries
+
+No procedure here supplies a universal plane-travel right, resurrection, pending spell/bestiary/recipe approval, class proficiency, recovered Equation formula, hidden identity, historical rewrite, campaign epoch, or publication status.

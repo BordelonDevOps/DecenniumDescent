@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import lore from "@/data/cosmology-lore.json";
+import { DirectorCosmologyNotes, PlayerCosmologyNotes } from "./CosmologyReadingNotes";
 
 type PlaneInfo = {
   name: string;
@@ -65,6 +66,51 @@ const GLOSSARY_TERMS = [
 ] as const;
 
 export default function CosmologyViewer() {
+  const [showSourceReference, setShowSourceReference] = useState(false);
+
+  if (showSourceReference) {
+    return (
+      <div>
+        <Card className="m-6 bg-slate-900/70 border-amber-600/30">
+          <CardHeader>
+            <CardTitle className="text-amber-300">Director / source reference</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <DirectorCosmologyNotes />
+            <Button variant="outline" onClick={() => setShowSourceReference(false)}>
+              Return to player cosmology
+            </Button>
+          </CardContent>
+        </Card>
+        <OriginalCosmologyReference />
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6 max-w-3xl mx-auto">
+      <Card className="bg-slate-900/70 border-amber-600/30">
+        <CardHeader>
+          <CardTitle className="text-amber-300">Cosmology</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-5">
+          <PlayerCosmologyNotes />
+          <div className="border-t border-amber-600/30 pt-4 space-y-3">
+            <p className="text-sm text-amber-100/70">
+              The original cosmology reader contains Director material and story
+              revelations. Open it deliberately when you want to consult those sources.
+            </p>
+            <Button variant="outline" onClick={() => setShowSourceReference(true)}>
+              Open Director / source reference
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+function OriginalCosmologyReference() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [selected, setSelected] = useState<PlaneInfo>(PLANES[0]);
   const [paused, setPaused] = useState(false);

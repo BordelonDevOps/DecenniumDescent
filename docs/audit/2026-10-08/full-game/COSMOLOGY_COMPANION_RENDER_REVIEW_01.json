@@ -1,0 +1,88 @@
+{
+  "recordedAtUtc": "2026-10-15T22:48:40.175224+00:00",
+  "status": "bounded actual local development render observed; no source change or release approval",
+  "workspace": "C:\\Github\\DecenniumDescent\\DescentReviewChanges\\ReviewBible",
+  "url": "http://127.0.0.1:8517",
+  "serverCommand": "node C:/Github/DecenniumDescent/node_modules/next/dist/bin/next dev -H127.0.0.1 -p8517",
+  "serverSession": 42828,
+  "observedServer": "Next15.4.5; Ready; Compiled /; GET /200",
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/components/DungeonGuide.tsx",
+      "bytes": 31113,
+      "sha256": "59dc8089c30921b51ab92e66c4eca4b231833ca5187e0741cc9241da98364345"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/components/CosmologyViewer.tsx",
+      "bytes": 19323,
+      "sha256": "f0e873d27414dc18687a2090187b90e05c1238de5145140cc3870e9b8a37a4b6"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/app/page.tsx",
+      "bytes": 1976,
+      "sha256": "54d7f70a9fb334710269cd4dad06e0d89e1645a0d633a8fcafa7242e140ae236"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/data/dungeon-mechanics.json",
+      "bytes": 10309,
+      "sha256": "2161154f50bd277569267080d839ecca2317b8e468f9388939193b4b64bb7a82"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/src/data/floor-encounters.json",
+      "bytes": 32837,
+      "sha256": "d7da5f21afee89eb42f4a243bdfdcfe40f53814426755920c8b4bc5baaf54f30"
+    }
+  ],
+  "actionsObserved": [
+    "Fresh local page rendered Character Builder",
+    "Clicked DUNGEON GUIDE, then Mechanics",
+    "Rendered Myth & Timeline with unqualified Level97/eleventh-shard Binding claim and87AE/710AE timeline",
+    "Clicked COSMOLOGY; original FirstSong chapter and plane presentation were available from same navigation without a visible Director-mode gate"
+  ],
+  "evidence": [
+    {
+      "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_COMPANION_TIMELINE_RENDER_01_DOM.txt",
+      "bytes": 9766,
+      "sha256": "419b1faf4f120b71581254e04d94f3d92774dbcb94fc5358532b0b7708c50c0f"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_COMPANION_TIMELINE_RENDER_01_FOCUS.png",
+      "bytes": 136763,
+      "sha256": "4df0174987ce686333e424c6a57edcf27d1b3f280d7006ebe75973a8f8e60ab9"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_COMPANION_READER_RENDER_01_DOM.txt",
+      "bytes": 18289,
+      "sha256": "0ff92d141d07c54e0427f5c3b9e9f933b3e479ca07333c921220d66732b95b21"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/COSMOLOGY_COMPANION_READER_RENDER_01.png",
+      "bytes": 134760,
+      "sha256": "63695cf4d58653a86a4e62b2bddb6aea6e62930ebf14ea1ba8e2e83b2fbdb325"
+    }
+  ],
+  "findings": [
+    {
+      "id": "UI-CE07-01",
+      "finding": "Myth & Timeline renders old Binding chronology as ordinary list prose without a local claim/reliability qualification. Q6/chronology reference must govern an explicit reader-facing revision."
+    },
+    {
+      "id": "UI-CE07-02",
+      "finding": "The 87AE and710AE entries are rendered together without the phase uncertainty note."
+    },
+    {
+      "id": "UI-CE07-03",
+      "finding": "Cosmology reader exposes original narrative through the ordinary local nav. A draft-extract notice does not itself explain player knowledge versus Director/source reference."
+    }
+  ],
+  "limits": [
+    "Only local dev rendering of these paths was checked; no production deployment or public release verified",
+    "Two Next development issues were shown by the badge; their cause was not inspected in this bounded check",
+    "No claim of account access-control/security test",
+    "No whole-game runtime or balance certification"
+  ],
+  "canonicalSourceEditsPerformed": 0,
+  "sourceInformationDeleted": 0,
+  "publicationApproved": false,
+  "wholeGameApproved": false
+}

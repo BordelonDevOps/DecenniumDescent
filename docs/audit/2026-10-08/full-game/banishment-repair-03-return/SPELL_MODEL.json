@@ -1,0 +1,444 @@
+{
+  "schemaVersion": "1.0",
+  "moduleId": "DD-BANISHMENT-REPAIR-03",
+  "status": "NEW provisional authored playtest replacement candidate; Banishment remains unadopted",
+  "sourceAndAccess": {
+    "id": "banishment",
+    "name": "Banishment",
+    "schools": [
+      "Abjuration"
+    ],
+    "status": "blocked-pending-operational-review",
+    "visibility": "public-source-review",
+    "classAccess": {
+      "Cleric": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Druid": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Mage": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Monk": {
+        "rank": 4,
+        "minimumClassLevel": 18,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Tinker": {
+        "rank": 4,
+        "minimumClassLevel": 14,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Wizard": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Paladin": {
+        "rank": 4,
+        "minimumClassLevel": 13,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      }
+    },
+    "operational": null,
+    "additionalRpCost": 0,
+    "source": {
+      "catalogPath": "src/data/spells.js",
+      "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+      "catalogKey": "banishment",
+      "original": {
+        "name": "Banishment",
+        "level": 4,
+        "resonanceRank": 4,
+        "school": "Abjuration",
+        "schools": [
+          "Abjuration"
+        ],
+        "placements": [
+          {
+            "name": "Banishment",
+            "school": "Abjuration",
+            "level": 4,
+            "summary": "Send a creature to another plane temporarily."
+          }
+        ],
+        "classLevels": {
+          "Cleric": 4,
+          "Druid": 4,
+          "Mage": 4,
+          "Monk": 4,
+          "Tinker": 4,
+          "Wizard": 4,
+          "Paladin": 4
+        },
+        "classRanks": {
+          "Cleric": 4,
+          "Druid": 4,
+          "Mage": 4,
+          "Monk": 4,
+          "Tinker": 4,
+          "Wizard": 4,
+          "Paladin": 4
+        },
+        "classLearnLevels": {
+          "Cleric": 7,
+          "Druid": 7,
+          "Mage": 7,
+          "Monk": 18,
+          "Tinker": 14,
+          "Wizard": 7,
+          "Paladin": 13
+        },
+        "classSchools": {
+          "Cleric": "Abjuration",
+          "Druid": "Abjuration",
+          "Mage": "Abjuration",
+          "Monk": "Abjuration",
+          "Tinker": "Abjuration",
+          "Wizard": "Abjuration",
+          "Paladin": "Abjuration"
+        },
+        "castingTime": "Not specified in current rulebook",
+        "range": "Not specified in current rulebook",
+        "components": "Not specified in current rulebook",
+        "duration": "Not specified in current rulebook",
+        "description": "Send a creature to another plane temporarily.",
+        "alternateSummaries": [],
+        "classes": [
+          "Cleric",
+          "Druid",
+          "Mage",
+          "Monk",
+          "Tinker",
+          "Wizard",
+          "Paladin"
+        ],
+        "status": "canon",
+        "source": "Player Rulebook — Spell Lists"
+      },
+      "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+      "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+      "coreEntries": [
+        {
+          "index": 48,
+          "original": {
+            "school": "Abjuration",
+            "level": 4,
+            "name": "Banishment",
+            "effect": "Send a creature to another plane temporarily.",
+            "source_paragraph": 9039,
+            "casting_time": "1 action",
+            "range": "60 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Planar"
+            ],
+            "rp_cost": 7
+          }
+        }
+      ],
+      "possibleHistoricalAliases": []
+    },
+    "reviewFlags": [
+      "Core resolution requires an explicit operational interpretation",
+      "Not selectable in this spell playtest packet until individual operational review"
+    ]
+  },
+  "sourceConflict": {
+    "catalog": "Rulebook catalog says only: Send a creature to another plane temporarily; catalog duration unspecified.",
+    "core": "Core entry supplies Action, 60 feet, V/S/F, 7 RP and duration Instantaneous.",
+    "disposition": "Preserve both original records unchanged. For provisional runnability, author NEW concentration up to 60 elapsed seconds while retaining Instantaneous as historical/source metadata. This is an explicit authored reconciliation, not a rewrite of either source."
+  },
+  "questionDispositions": [
+    {
+      "id": "BAN-01",
+      "verdict": "REVISE",
+      "kind": "NEW scoped authorship",
+      "reason": "A generated isolated extraplanar spell-cell preserves the printed temporary-other-plane effect without naming or identifying any reviewed plane. The draft topology is retained only as a local spell-space and revised to an elastic finite enclosure so body/atomic geometry changes do not require a hidden preemptive interrupt."
+    },
+    {
+      "id": "BAN-02",
+      "verdict": "REVISE",
+      "kind": "NEW scoped authorship",
+      "reason": "Use Action/60 ft/V-S-F/base 7 RP and actual class spell DC; NEW CHA save, willing pre-roll failure, concentration up to 60 elapsed seconds, one-live-application guard, and the existing shared hard-control allowance. Concentration begins at legal cast commitment and a failed/countered cast does not restore displaced concentration."
+    },
+    {
+      "id": "BAN-03",
+      "verdict": "REVISE",
+      "kind": "NEW scoped authorship",
+      "reason": "Use finite BAN-CLOSE-03. No pre-change early-return interrupt exists. Mandatory source events resolve normally. When Banishment ends, remaining identities are moved to the snapshotted origin plane despite a narrow terminal endpoint-blocker exception, then physical fitting is resolved by the already accepted canonical placement procedure. An unresolved physical placement conflict is an origin-plane state, not continuing exile."
+    },
+    {
+      "id": "BAN-04",
+      "verdict": "REVISE",
+      "kind": "NEW scoped authorship",
+      "reason": "Independently legal visitors and internally created creatures retain their own real permissions/costs. Their source must target a currently fitting, perceived in-cell footprint; Banishment cannot expand first to create target legality. At closure, all remaining real identities are returned once in stable order and handed to canonical placement; ended/escaped/consumed identities are not recreated."
+    },
+    {
+      "id": "BAN-05",
+      "verdict": "AGREE WITH CLARIFICATION",
+      "kind": "correction/clarification",
+      "reason": "The spell transports exactly the selected creature plus genuine noncreature worn/carried gear. Separate creature bodies—including passengers, mounts, swallowed creatures and companions—do not become gear. Impossible separation/tethers can defeat establishment. Transformations, death, body removal, Null Disabled summons and cargo keep their own source lifecycles."
+    },
+    {
+      "id": "BAN-06",
+      "verdict": "AGREE WITH CURRENT INTERFACES",
+      "kind": "correction/clarification",
+      "reason": "Use accepted AC4 interfaces: rank-4 Banishment is ineligible for Spell Shield; Dimensional Anchor blocks ordinary planar endpoints; Resonance Beacon remains same-plane; Xi can end only the actual ongoing target branch with its exact consent/perception/range/charge procedure. Cleric Banish Unholy remains a different class technique."
+    },
+    {
+      "id": "BAN-07",
+      "verdict": "REVISE",
+      "kind": "correction + NEW scoped transport classification",
+      "reason": "Keep Paladin cards exact. NEW BAN-TRANSPORT-CLASS-02 classifies this spell only as planar/extradimensional displacement, not teleportation. No Escape blocks only voluntarily accepted Banishment because it expressly includes voluntary extradimensional travel; Verdict Absolute does not block Banishment because it names only teleportation/invisibility; Reign of Ashes does not block because it denies benefit from Dash/teleportation. A pre-save acceptance flag determines voluntary versus forced admission whether the target elects failure or rolls."
+    },
+    {
+      "id": "BAN-08",
+      "verdict": "REVISE",
+      "kind": "NEW scoped authorship",
+      "reason": "BAN-ADMIT-03 allows a visitor/created body only through its own real destination/creation permission, cost and a fitting currently perceived in-cell footprint. No expansion can supply prior target perception/LoE. After legal establishment the cell may expand only for clearance. Admission grants no route, knowledge, immunity or return resource."
+    },
+    {
+      "id": "BAN-09",
+      "verdict": "REVISE",
+      "kind": "NEW scoped authorship",
+      "reason": "No universal interrupt or rewind is created. Mandatory transformations/death/expiry complete under their actual source. Cell geometry expands after mandatory in-cell anatomy changes as needed. Final Banishment ending uses BAN-CLOSE-03 and canonical placement-conflict handling on the origin plane; no future ruling is needed for ordinary collapse/filled-space cases."
+    },
+    {
+      "id": "BAN-10",
+      "verdict": "AGREE",
+      "kind": "review discipline",
+      "reason": "Accepted AC4 procedures are interoperability authority only within their recorded scope; lexical class hits are navigation evidence only. Preserve all historical scenario text as evidence, author current adjudications separately, and claim no runtime/human/balance approval."
+    }
+  ],
+  "procedure": {
+    "identity": {
+      "spellId": "banishment",
+      "name": "Banishment",
+      "school": "Abjuration",
+      "rank": 4,
+      "baseRpCost": 7,
+      "activation": "Action",
+      "range": "60 feet",
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "printedSourceDuration": "Instantaneous",
+      "printedEffect": "Send a creature to another plane temporarily.",
+      "status": "NEW provisional authored playtest candidate; source Instantaneous metadata preserved as evidence"
+    },
+    "access": {
+      "Cleric": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Druid": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Mage": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Monk": {
+        "rank": 4,
+        "minimumClassLevel": 18,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Tinker": {
+        "rank": 4,
+        "minimumClassLevel": 14,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Wizard": {
+        "rank": 4,
+        "minimumClassLevel": 7,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      },
+      "Paladin": {
+        "rank": 4,
+        "minimumClassLevel": 13,
+        "school": "Abjuration",
+        "baseRpCost": 7
+      }
+    },
+    "castAndSave": {
+      "target": "One actually perceived creature within 60 feet and line of effect, including the caster; not a corpse, image, soul record or unattended object.",
+      "commit": "Validate known class/repertoire, V/S/F, Action, range/line of effect, affordability, concentration permission, obvious body/custody impossibilities and obvious transport blocks. Pay the actual final spell price and perform ordinary cast/counter timing. NEW concentration begins at legal cast commitment and displaces incompatible prior concentration normally.",
+      "save": "NEW BAN-SAVE-01: target makes a Charisma save against the actual casting-class spell DC. Before rolling, target records admissionIntent = ACCEPT or RESIST. ACCEPT may either elect automatic failure or roll normally; if it rolls and fails, establishment is still voluntary. RESIST plus failed save is involuntary. Actual save bonuses/defenses apply, including Fate-Bound Boon IV +2 against banishment. Success creates no cell and no exile.",
+      "hardControl": "On a failed save, establishment is one hard encounter-removal component under the existing source-character/target/encounter hard-control allowance. If that allowance cannot be claimed, no exile/cell is established and no soft fallback is invented. The paid cast remains spent.",
+      "oneLive": "Only one live ordinary Banishment application may attach to the same creature. An attached target cannot receive a second application; no replacement, stacked cell or timer refresh.",
+      "preflightAddendum": "Apply BAN-TRANSPORT-CLASS-02 and target-side restrictions before commitment when known. No Escape blocks admissionIntent=ACCEPT because Banishment enters extradimensional travel. Verdict Absolute and Reign of Ashes do not block this non-teleport planar displacement. A hidden/new blocker may still defeat establishment after costs commit under ordinary spell integration.",
+      "admissionIntent": "Before the save, record ACCEPT or RESIST. ACCEPT is voluntary admission whether the target elects failure or actually rolls and fails. RESIST remains forced on a failed save. This Banishment-only predicate is used only where an exact source distinguishes voluntary extradimensional travel."
+    },
+    "cell": {
+      "ruleId": "BAN-CELL-03",
+      "classification": "NEW narrowly scoped temporary Banishment spell-space; names no canonical plane",
+      "planeIdentity": "A distinct temporary extraplanar spell-cell generated by this spell. It is not identified with any named reviewed plane, afterlife, deity, Heartcell state, soul destination, natural origin or campaign era.",
+      "coordinates": "Cell-local x=east, y=north, z=up. Floor is z=0. The primary arrives with the center of its horizontal footprint at local (0,0) in its current orientation.",
+      "initialGeometry": "Initial horizontal extent equals the primary's actual footprint plus 5 feet of clearance on every side; round each total horizontal axis upward to the next 5 feet. Height equals actual occupied body height plus 5 feet overhead, rounded upward to the next 5 feet. Example: Medium 5x5 body with occupied height 6 feet starts in x[-7.5,+7.5], y[-7.5,+7.5], z[0,15]. A Tiny 2.5x2.5 body also receives a 15x15 horizontal cell after rounding.",
+      "supportAndEnvironment": "The entire current cell floor is level ephemeral support. The cell supplies ordinary light and a nonharmful spell-local sustaining medium sufficient for an admitted body's already-established respiration needs. This grants no stock, harvest, resistance, immunity, amphibious trait or cosmological fact.",
+      "boundaries": "Cell boundaries are opaque to mundane sight/sound and ordinary line of effect/passage. A source cannot target space beyond the current boundary and rely on later expansion to make that target legal.",
+      "voluntaryGeometry": "Voluntary body-size/shape changes follow their actual source and BODY_EQUIPMENT_PLAYTEST.md preflight against the current in-cell volume. Banishment does not expand first to legalize a voluntary change.",
+      "mandatoryGeometry": "An actual mandatory ending/reversion/death/body-lifecycle event is never failed, delayed or negated to preserve cell geometry. Resolve it first under its source. If the resulting current body needs more room, expand the cell outward after the mandatory event, only enough to contain all extant bodies plus 5 feet clearance. Expansion moves no body and creates no new target permission.",
+      "materiality": "Floor/walls/light/sustaining medium are ephemeral spell boundaries with no inventory identity, sale, harvest or residue."
+    },
+    "agencyAndClocks": {
+      "duration": "NEW concentration, maximum 60 elapsed seconds from successful establishment. Record absolute deadline establishment+60 seconds. In initiative, preserve the equivalent tenth future regular-start marker only as a display aid; the absolute deadline controls cross-mode transitions.",
+      "agency": "Primary and any admitted visitors retain their actual Actions, Bonus Actions, Reactions, movement, concentration, conditions, HP, death saves, resources and class permissions. Banishment itself adds no Incapacitated, restraint, stasis, healing or rest.",
+      "clocks": "All existing condition, summon, concentration, Opening/Horn, Hunt, Stable/death and other real deadlines continue 1:1. Extra turns/initiative changes do not refresh them.",
+      "ending": "Caster may end its own concentration through the ordinary no-action concentration permission. Caster Incapacitated/concentration failure/end, the absolute deadline, successful Xi termination, actual dispel/end of this application, or suppression of this Banishment application initiates closure immediately. NEW Banishment-specific suppression rule: because suppression disables the exile/cell effect itself, suppression closes and ends this application rather than pausing it for later resumption."
+    },
+    "transportAndCustody": {
+      "primaryTransport": "On successful establishment transport the same selected creature identity and only its genuine noncreature worn/carried gear within actual custody/carrying/dimensional limits.",
+      "separateBodies": "No separate creature is converted into gear. A mount, carried passenger, swallowed separate creature, controlled companion or other distinct creature remains at origin. Before establishment, separate it into a legal origin placement if possible. If actual anatomy/restraint makes separation impossible, establishment fails atomically; paid cast/commit history remains, and the hard-control allowance is not spent because exile never established.",
+      "tethers": "An external tether/fixture does not travel merely because attached. If no current rule permits legal separation and the selected body cannot move intact without transporting another body/fixed structure, establishment fails atomically.",
+      "objects": "Record transported object IDs and custody. Consumed, destroyed, transferred or independently removed objects remain consumed/destroyed/transferred/removed. No ending event duplicates inventory."
+    },
+    "admission": {
+      "ruleId": "BAN-ADMIT-03",
+      "classification": "NEW Banishment-only admission completion",
+      "externalVisitor": "A different creature can enter only through an independently legal source that truly reaches this generated cell, satisfies that source's destination knowledge/perception/range/cost requirements, and designates a fitting unoccupied footprint already inside the current cell. The current 49-source set does not prove a generic route to an unknown cell.",
+      "internalCreation": "An occupant may create/summon a body only through its actual source and only into a fitting unoccupied footprint it can currently perceive/target inside the cell. Pay the source's real Action/RP/frequency/concentration/command costs. No pre-cast cell expansion may supply missing target space or line of effect.",
+      "postEstablishmentExpansion": "After a visitor/created body legally establishes in an already-valid in-cell footprint, the cell may expand outward only to restore the ordinary 5-foot clearance around extant bodies. That expansion is not part of source preflight.",
+      "effect": "Admission does not attach Banishment to the secondary body and grants no reusable return route, destination knowledge, immunity, action or resource. Its own independent lifecycle remains real."
+    },
+    "escape": {
+      "rule": "Any occupant may use an independently legal escape/travel source exactly as written, paying its actual costs and satisfying its own destination, perception, range, geometry and blocker requirements. Banishment supplies none of those prerequisites.",
+      "primaryEscape": "If the primary legally leaves the cell, the Banishment application ends immediately. In that same resolution sequence, BAN-CLOSE-03 settles every remaining secondary body/object, then destroys the cell even if it is already empty. The escaped primary is not pulled back.",
+      "secondaryEscape": "A secondary body that independently leaves remains at its legal destination and is absent from later closure.",
+      "failure": "A failed escape spends only source-defined costs/history and leaves the body in the cell."
+    },
+    "closure": {
+      "ruleId": "BAN-CLOSE-03",
+      "placementRuleId": "BAN-PLACEMENT-HANDOFF-03",
+      "classification": "NEW Banishment-only finite ending. The spell-cell ends; physical fit is then handed to the accepted canonical BODY_EQUIPMENT_PLAYTEST placement-conflict procedure rather than protected closure anchors.",
+      "trigger": "Every Banishment application ending invokes closure: deadline, concentration end, valid Xi/end/suppression, or primary legal escape. Invoke even for an empty cell; an empty ephemeral cell simply ceases.",
+      "originPlane": "At successful establishment snapshot the primary target's actual origin-plane identity as an opaque existing plane reference and its fixed world anchor/orientation. The anchor never rides with a later-moving platform/vehicle. This records location only and does not name or settle cosmology.",
+      "secondaryAnchors": "When a secondary body first legally establishes in the cell, record a deterministic origin-plane closure anchor by projecting its cell-local horizontal/vertical offset from the primary local origin onto the primary's fixed world axes. This creates metadata only: no origin-plane space is reserved, protected, excluded or altered.",
+      "looseObjectAnchors": "At closure start, carried gear remains with its actual carrier. For each genuinely loose surviving object, project its current cell-local position onto the primary fixed world anchor to obtain an item placement anchor. Consumed/destroyed/escaped objects are absent.",
+      "mandatoryPlaneReturn": "For every remaining extant body/corpse/object, end the extraplanar spell state and assign it to the snapshotted origin plane before physical placement. This transition is mandatory and is not a voluntary teleport.",
+      "endpointBlockerException": "NEW narrowly scoped Banishment terminal exception: if a current Dimensional Anchor or other true endpoint transport-prevention predicate would block this mandatory closure transition, ignore only that prevention predicate for the terminal return. Do not ignore physical terrain, occupancy, anatomy, support, death/body removal, item existence or any voluntary-travel rule. This exception grants no future transport privilege and cannot be used for escape or another spell.",
+      "creatureOrder": [
+        "primary current body/corpse if still present",
+        "secondary creature bodies by stable admission order"
+      ],
+      "creaturePlacement": "For each returned creature/corpse in order, apply BODY_EQUIPMENT_PLAYTEST.md Placement and involuntary endings at that entity's closure anchor: (1) normal current-anatomy space at same position; (2) legal squeeze under COMBAT_ACTION_PLAYTEST.md; (3) nearest legal adjacent placement in the same unobstructed region, using minimum displacement, then greatest overlap with the previous/anchor footprint, then the fixed neutral board order. It cannot pass through a wall, closed barrier or occupied space and does not search farther afield.",
+      "multiEntityPlacement": "Resolve entities in the stated stable order. A body already legally placed is ordinary occupied space for later entities. If that leaves a later entity with no same-anchor/squeeze/nearest-adjacent candidate, the later entity records a placement conflict; earlier legal placements are not undone.",
+      "placementConflictState": "If no canonical candidate fits, Banishment still ends and the spell-cell is destroyed. Record the same extant identity on the origin plane with placementConflict=true, fixed closureAnchor, current anatomy/orientation/HP/conditions/resources/custody, and occupiedFootprint=null until canonical placement becomes legal. This is not extraplanar imprisonment, overlap permission, deletion, Incapacitated, stasis or a new condition. All actual clocks/lifecycles continue. Because no legal footprint exists, an action/reaction/movement/targeting effect that requires position, path, reach, adjacency, support, perception or line of effect cannot satisfy that spatial prerequisite. Already-attached nonspatial effects and mandatory life/body events continue. When obstruction changes or an independently legal relocation effect can lawfully resolve the conflict, rerun the canonical placement procedure from the same closure anchor using the entity's then-current anatomy.",
+      "fallingAndSupport": "If a legal returned footprint is unsupported, place it there and start ordinary Falling immediately. Banishment never moves the body directly to ground. A placement conflict has no occupied footprint and therefore does not begin Falling until it is actually placed in unsupported space.",
+      "objects": "After creature handling, settle loose noncreature objects by stable object-ID using the existing equipment rule: place at its anchor/current legal item position or nearest legal adjacent item position; if no legal drop exists, record that item's placement as pending. It continues to exist and is not duplicated, destroyed or used to displace another creature.",
+      "deathAndRemoval": "Mandatory death, source expiry, concentration ending, Polymorph reversion, actual-0-HP ending, cargo release and other true source events are never failed or delayed for Banishment geometry. A remaining corpse returns as that same corpse. A vanished/expired summon body is not recreated. Hunted Death/finality and ordinary item provenance remain unchanged.",
+      "cellEnd": "After every remaining identity is either legally placed, recorded as an origin-plane placement conflict/pending item, or confirmed absent, destroy the ephemeral cell immediately. No placement conflict keeps Banishment or its concentration alive."
+    },
+    "currentInterfaces": {
+      "spellShield": "Banishment is generating rank 4 and therefore does not satisfy accepted Spell Shield rank 0–3 eligibility, regardless of discounts.",
+      "dimensionalAnchor": "At establishment, Dimensional Anchor applies under its accepted endpoint rule and can defeat the planar transition. During voluntary escape it applies normally. At BAN-CLOSE-03 terminal ending, the mandatory-plane-return step uses only the narrowly scoped endpointBlockerException; physical fit is never ignored and is resolved afterward by BAN-PLACEMENT-HANDOFF-03.",
+      "resonanceBeacon": "Beacon requires same-plane traveler/beacon. A Beacon outside the cell does not become same-plane. A Beacon created inside obeys its actual rules but does not create an outside destination.",
+      "xi": "Xi Declare Contradiction can end the ongoing Banishment creature-target branch only through its actual Action, 60-foot perception, known spell record, caster+target consent and charge procedure. Isolation may make those predicates unavailable; possession alone is not remote release.",
+      "fateBound": "Actual Oracle Fate-Bound Boon IV grants its +2 against banishment saves; no generic Oracle immunity exists.",
+      "paladin": "NEW BAN-TRANSPORT-CLASS-02 applies only to ordinary Banishment: it is planar/extradimensional displacement, not teleportation. No Escape (/cards/41) blocks admissionIntent=ACCEPT because it expressly forbids voluntary extradimensional travel; it does not block RESIST+failed-save forced exile. Verdict Absolute (/cards/43) names only voluntary teleportation/invisibility, so it does not block either Banishment branch. Reign of Ashes (/cards/130) denies benefit from Dash/teleportation; it does not block Banishment. Chain of Duty still requires same plane.",
+      "cleric": "Cleric Banish Unholy remains its own class card: WIS save, radiant damage/push and possible until-end-next-turn banishment rider. It does not borrow this ordinary spell's cell/save/duration.",
+      "nullSummons": "A finite summoned body that is Null Disabled at 0 remains the same body while its source persists. Banishment does not heal/refresh it. Independent summon concentration/deadline/end remains real; if it ends in the cell, there is no body to eject."
+    },
+    "transportClassification": {
+      "ruleId": "BAN-TRANSPORT-CLASS-02",
+      "classification": "NEW Banishment-only transport classification",
+      "rule": "Ordinary Banishment is planar/extradimensional displacement. It is not teleportation. This classification exists only to adjudicate this spell against exact current predicates and does not redefine other planar effects.",
+      "paladinConsequences": {
+        "No Escape": "Blocks ACCEPT because the card expressly forbids voluntary extradimensional travel; does not stop forced RESIST+failed-save exile.",
+        "Verdict Absolute": "Does not block Banishment because its card forbids only voluntary teleportation/invisibility.",
+        "Reign of Ashes": "Does not block Banishment because its card denies benefit from Dash/teleportation and Banishment is not teleportation."
+      }
+    }
+  },
+  "historicalDraftAuthority": "Evidence only; historical-local-draft remains unadopted and does not override current sources.",
+  "banishUnholyDistinction": "Cleric Banish Unholy is separate and does not inherit this procedure.",
+  "cosmologyBoundary": "BAN-CELL-01 names no canonical plane, afterlife, god, Heartcell identity, soul destination or campaign era.",
+  "examplesAreTests": false,
+  "repairDispositions": [
+    {
+      "id": "BAN-R03-01",
+      "verdict": "AGREE — REPLACE RETURN-BERTH INVARIANT",
+      "kind": "correction plus NEW Banishment-only closure handoff",
+      "reason": "Repair02's protected-berth invariant conflicts with the accepted mandatory-ending rule in BODY_EQUIPMENT_PLAYTEST.md. A death, summon expiry, concentration ending, mandatory Polymorph reversion, actual 0 HP endpoint, cargo release, or other mandatory source event must occur even when a later body/gear geometry cannot fit the old origin space. Remove BAN-RETURN-RESERVE-02 and every terrain-exclusion/geometry-veto effect. BAN-CLOSE-03 ends Banishment first, mandatorily returns each extant identity to the snapshotted origin plane, and then hands physical placement to the accepted same-anchor → legal squeeze → nearest legal adjacent/same-unobstructed-region procedure. If no candidate exists, record an origin-plane placement conflict; the Banishment cell is already destroyed and all real clocks/lifecycles continue."
+    },
+    {
+      "id": "BAN-R03-02",
+      "verdict": "AGREE — REMOVE STALE CLOSURE AUTHORITIES",
+      "kind": "correction",
+      "reason": "All active BAN-CLOSE-01, BAN-CLOSE-02 and BAN-RETURN-RESERVE-02 references are removed from the operative model/chapters/register/cases. Historical Repair02 wording is retained only as explicitly superseded audit evidence. Current closure authority is BAN-CLOSE-03 plus BAN-PLACEMENT-HANDOFF-03."
+    },
+    {
+      "id": "BAN-R03-03",
+      "verdict": "AGREE — FIX CELL PREFLIGHT GEOMETRY",
+      "kind": "correction",
+      "reason": "A source cannot target space outside the opaque cell and then rely on later expansion to legalize its own preflight. The current cell procedure now gives explicit bounds. For a 5-by-5 Medium body of 6-foot occupied height centered at local origin, the cell is x/y -7.5..+7.5 and z 0..15. Internal creation/visitor arrival must target a fitting currently perceived in-cell footprint before resolution. Mandatory body endings may occur regardless of fit and then expand the cell; voluntary geometry changes must fit the current cell before payment."
+    },
+    {
+      "id": "BAN-R03-04",
+      "verdict": "AGREE — REPLACE INVALID SECONDARY-BODY ESCAPE FIXTURE",
+      "kind": "correction",
+      "reason": "BAN-X04 now uses the actual Mage card Conjure Elemental Familiar (Mage 5, Action, 4 RP, rank 3, 10 minutes, no printed concentration) owned by the escaping Mage. The Mage then starts Faction Portal concentration and escapes while the familiar and a genuine loose object remain. This proves the secondary-body closure branch without keeping two incompatible concentrations or inventing an outside visitor."
+    }
+  ],
+  "priorRepairDispositions": [
+    {
+      "id": "BAN-R02-01",
+      "verdict": "AGREE — REPLACE CLOSURE DESIGN",
+      "kind": "NEW scoped authorship",
+      "reason": "The prior 120-foot terminal search was incomplete when no physically fitting candidate existed. Replace it with BAN-RETURN-RESERVE-02: each independently returnable body/object package must receive a unique protected origin-plane berth in a finite 120-foot 3D lattice before it can exist as an independent closure unit inside the cell. Primary reserves its exact vacated footprint atomically at establishment. New visitors/creatures, larger body geometry, or independently loose oversized objects cannot establish unless a berth can be reserved. Closure therefore always has a physically fitting nonoverlapping berth; transport-prevention alone is handled by the narrow terminal blocker exception."
+    },
+    {
+      "id": "BAN-R02-02",
+      "verdict": "AGREE — CORRECT PALADIN READING",
+      "kind": "correction plus NEW local classification",
+      "reason": "Keep the three Paladin cards distinct. BAN-TRANSPORT-CLASS-02 classifies ordinary Banishment only as planar/extradimensional displacement, not teleportation. No Escape can block a voluntarily accepted Banishment because it expressly forbids voluntary extradimensional travel. Verdict Absolute cannot block Banishment because it forbids only voluntary teleportation/invisibility. Reign of Ashes cannot block it because its ash-bind denies benefit from Dash/teleportation and Banishment is not teleportation. Voluntariness is a pre-save acceptance flag independent of whether the target elects failure or rolls."
+    },
+    {
+      "id": "BAN-R02-03",
+      "verdict": "AGREE — UNIFY APPLICATION LIFECYCLE",
+      "kind": "correction",
+      "reason": "Primary legal escape ends the Banishment application immediately. That same ending immediately invokes closure for every remaining secondary body/object and then destroys the cell even when empty. There is no branch lifetime after primary escape."
+    },
+    {
+      "id": "BAN-R02-04",
+      "verdict": "AGREE — REPAIR EVIDENCE SCHEMA",
+      "kind": "correction",
+      "reason": "Move RP and other costs to costLedger, timing/deadlines to clockLedger, and populate every current case sourceRefs with exact frozen paths/pointers plus explicit NEW-rule pointers. Preserve every historicalSourceScenario byte-equivalent JSON object."
+    },
+    {
+      "id": "BAN-R02-05",
+      "verdict": "AGREE — CONCRETIZE CURRENT CASES",
+      "kind": "correction",
+      "reason": "Use actual Faction Portal, Counterspell, Water Pet, Spectral Steed, Dimensional Anchor, Polymorph and Oracle reroll records where supplied. External-visitor routes to an unknown Banishment cell remain conditional because the 49 frozen sources do not themselves give Faction Portal or Spectral Steed knowledge of an arbitrary generated cell. Supply costs, rolls, actions, clocks, footprints and terminal identities in the applicable fixtures."
+    }
+  ]
+}

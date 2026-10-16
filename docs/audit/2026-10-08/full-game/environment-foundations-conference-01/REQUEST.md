@@ -1,0 +1,19 @@
+# Environmental foundations — exact proposal conference
+
+Please review the seven proposed environmental procedures and all 59 authored situations as one coherent set. This packet has 25 frozen source files, 13 current class cards, five current recipe cards, complete evidence for five broken Chapter 5 climate references, and eleven proposed answers to the climate acceptance questions. The full 25 files are under sources/ with their original relative paths. Other original-book hashes cited inside those evidence files identify source provenance; they are not a claim that every original book is included as a separate payload here.
+
+Nothing in this draft has been adopted. Original books, current class cards, existing reviewed chapters and both older and current drafts remain preserved. The user requests a complete authored campaign-playtest candidate and actual conference on consequential mechanics. Please correct defects rather than merely approving isolated paragraphs.
+
+Give particular attention to:
+
+1. EF-01 elapsed time, initiative transitions, simultaneous source endings and nonduplicated pressure costs.
+2. EF-02 breath reserve/grace, repeated short access to air, true nonbreathing bodies, transformation/resurrection, underwater V, state assignment rather than damage, real companion lifecycles, would-die replacements and the proposed exceptions to natural20/three-success stabilization. Do these interact coherently with the reviewed healing/death pipeline? Any replacement must be explicit NEW and fully specify cadence and costs.
+3. EF-03 actual temperature/severity, fractional exposure across changing conditions, stage progression, Exhaustion ownership and recovery. Resolve the five source climate references with an explicit authored decision. Evaluate ancestry advantage and Warrior ordinary-penalty classification without claiming either was already agreed.
+4. EF-04 Stoneback's exact interpretation. All four consumable source holds remain unapproved; this packet offers one concrete proposed resolution for CB-03. Do not approve the unseen other20 consumable procedures or change the preserved original four-hour, Tier2,1sp record.
+5. EF-05 direct fire versus attached Burning, finite contact clocks and actual extinguishing resources; dense smoke, breathing and ventilation. Preserve current oil and existing ordinary-extinguish mechanics in their scopes.
+6. EF-06 movement cost/caps, actual anatomy, current reactions, sinking abstraction and real weight/Load/tethers/towing. Do not infer a structural rescue rope from the explicitly ineligible Fiber-Husk Climbing Cord.
+7. EF-07 weather forecasts, source-specific spells, mild StormMagic adjustments and exact overlap/recast priority. No cosmological calendar, season, origin, plane or campaign-era decision is authorized by this mechanics draft.
+
+Return a complete corrected candidate, including every current procedure and case ID with explicit dispositions. Identify source-derived rules versus NEW adopted proposals versus unresolved questions. If an alternative is needed, supply its complete operational rule and update every affected example. Flag any genuine owner decision; do not invent prior owner canon. No human/runtime/balance/publication/whole-game approval is requested.
+
+Requested return archive: DD_Environment_Foundations_01_Return.zip with eight root files: REGISTER.json, ENVIRONMENT_MODEL.json, PLAYER_CHAPTER.md, DIRECTOR_CHAPTER.md, CASEBOOK.json, SOURCE_HASHES.json, VERDICT.md, EVIDENCE_MANIFEST.json. Preserve all59 case IDs and list amendments; add further cases where necessary. Include exact source hashes, version-bound verdict and return size/SHA256. If file export is unavailable, say so rather than claiming an archive was created. The actual discussion and all decisions must remain readable in the notebook.
