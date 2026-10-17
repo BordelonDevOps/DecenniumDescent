@@ -1,4 +1,4 @@
-> **Latest backup — 16 October 2026:** Decennium Descent is **video-game-only**. The active plan and current saved work are included; development remains paused. **451 ordinary spells reviewed / 397 pending.** AC6 is not locally adopted. See [snapshot status](SNAPSHOT_STATUS_2026-10-16_VIDEO_GAME.md). Earlier snapshot statements below are preserved history.
+> **Latest backup — 17 October 2026:** Saved work is backed up and development is stopped at the owner's request. The video-game-only direction remains active. **451 ordinary spells reviewed / 397 pending.** AC6 and DE4 have not been newly adopted. See [snapshot status](SNAPSHOT_STATUS_2026-10-17_STOP.md). Earlier status below is preserved history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 
