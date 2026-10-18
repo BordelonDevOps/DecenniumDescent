@@ -1,0 +1,5 @@
+# Seven rank-seven manifestations and fields
+
+Read seven complete source identities/seven placements,23 unselected questions,20 full accepted counterparts and scoped interfaces. Three individually justified tierB and four tierC identities. Preserve Banishment Field ALL extraplanar creatures/CHA/30radius, Earth Pet80HP/20AC/2d10Prone, Volcanic Cage1-3/6d6Fire/CON, Prismatic Conflux2d8 per enemy and separate randomness, Resonance Storm1d6RP to allies each round, Faction Citadel24hours and Alignment Avatar actual transformation. All missing geometry/timing/profiles/resource limits remain explicit NEW decisions.
+
+Actual Companion05 is unadopted comparison; its Soulburn exception is not a Storm refund permission. Pending travel grants no native-plane or return rule. Actual expedition/crafting requirements remain distinct from a conjured wall/roof. Return complete source-linked procedures, every question disposition and content holds. No source deletion, membership change, runtime/human/balance/cosmology or75-domain closure.
