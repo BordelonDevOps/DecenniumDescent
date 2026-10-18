@@ -1,0 +1,121 @@
+{
+  "reviewId": "FEAT335-COPY-RELEASE-SOURCE-01-ADDENDUM",
+  "date": "2026-10-15",
+  "scope": "CRS-01..03 only; no feat exact approval, runtime, balance, whole-game or cosmology approval",
+  "submission": {
+    "path": "DD_Feat335_Copy_Release_Source_01.zip",
+    "bytes": 1768982,
+    "sha256": "922898bd1cf1fd64fb6c77639f2fdefd3266417b05344567031a5cf04b9c5196",
+    "payloadsPlusManifest": 24
+  },
+  "decisions": [
+    {
+      "id": "CRS-01",
+      "classification": "NEW minimum completion",
+      "decision": "Use one copy-derived chronological family keyed by the stable underlying captured source effect identity, not by capture event, granting feat, profile, q, selected numeric type, or chosen casting-ability route. The feat-copy namespace keeps this history distinct from ordinary casting of the underlying spell and from Mirrorsage class Echo Release.",
+      "operativeWording": "NEW feat-copy chronological identity. Every paid feat-copy cast records `castFamilyKey = feat-copy::<canonicalSourceEffectId>`. `canonicalSourceEffectId` is the stable identity of the actually witnessed underlying spell/effect from which the bounded profile was captured; for a source-qualified monster ability use that ability's stable source identity. Changing the capture event, owner, Eldritch Echo/Mimicry/Arcane Adaptation permission, bounded profile, selected damage/type component, q, or qualifying casting-ability route does not create a new family. Copies sharing that key use the ordinary chronological Refrain history together. An ordinary cast of the underlying spell uses its ordinary spell family and does not share the feat-copy family; Mirrorsage Echo Release likewise keeps its own class family. A missing stable underlying source identity is ineligible for release rather than being assigned a favorable new key. This key grants no ordinary spell knowledge or access."
+    },
+    {
+      "id": "CRS-02",
+      "classification": "NEW minimum completion",
+      "decision": "Only sustained copy profiles require concentration: Ward, Hindrance and Boon yes; Strike, Burst, Mend and Step no. Step is instantaneous. This corrects the lifecycle shorthand that grouped Step with sustained profiles.",
+      "operativeWording": "NEW feat-copy concentration tags. Strike: no. Burst: no. Mend: no. Ward: yes. Hindrance: yes. Boon: yes. Step: no; its movement/teleport resolves instantaneously. A concentration-required copy establishes the releaser's one concentration burden during casting commitment under the ordinary sequence, ending an incompatible existing concentration before the counter window. If that cast is later countered, prior concentration remains ended and no copied lasting effect remains. Loss of concentration ends the Ward/Hindrance/Boon copied effect immediately; their printed earlier deadlines still cap duration. Immediate profiles establish no new concentration burden. Ready is separate: preparation already occupies concentration. On release, an immediate profile resolves and that Ready concentration ends with the released spell; a concentration-required Ward/Hindrance/Boon continues on that same one concentration burden, never a second slot. No witnessed original concentration tag is inherited or used to change these seven profile tags."
+    },
+    {
+      "id": "CRS-03",
+      "classification": "KEEP FS-09 feat-route engine; guarded scope clarification",
+      "decision": "Paid feat-copy casts use the FS-09 independent feat-casting strain engine, not the chosen class route engine. Base Dissonance 0/1/2 and Limit=max(4, 2*PB + casting modifier). No Wizard protected prepared-matrix exemption, Shaman totem vent, Mirrorsage class Echo first-release waiver, Cleric Rite/Invocation vent, or other class protected reduction/routing applies unless a future source explicitly names feat-copy casts. The ordinary SPELL_INTEGRATION_RULES Limit remains unchanged for ordinary class casting.",
+      "operativeWording": "COPY-ROUTE STRAIN SCOPE. A paid feat-copy cast under FS-08 is an independent feat-casting route for strain purposes. Use FS-09 exactly: base Dissonance 0 for q/rank 0, 1 for ranks 1-5, and 2 for ranks 6-9; apply ordinary same-family Refrain using CRS-01; and use `Limit = max(4, 2*PB + casting modifier)` for that copy route, including its existing surcharge/block thresholds. The owned route chosen to qualify the copy supplies only the permitted casting ability, rank ceiling and other expressly required source credentials; it does not import that class engine's protected Dissonance reduction, routing, vent, prepared-matrix treatment or proc chain into the feat-copy cast. In particular a Wizard-qualified copy is not a prepared matrix, a Shaman-qualified copy is not an ordinary Shaman spell for the totem vent, and a Mirrorsage-qualified copy is not class Echo Release. The ordinary `max(4, 2 + PB + max(0, modifier))` Limit in SPELL_INTEGRATION_RULES remains controlling for ordinary class spells within its existing scope and is not globally changed here. If the only qualifying route is the feat-only Eldritch Blast grant, it supplies CHA and only its actual rank-0 ceiling; it does not change the copy engine or Limit, create a Warlock/class engine, or qualify a ranked q>0 copy."
+    }
+  ],
+  "affectedDerivedLocations": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+      "location": "FS-08",
+      "operation": "append CRS-01 family key, CRS-02 concentration tags and CRS-03 copy-route strain scope; preserve existing FS-08 text"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/supplements.json",
+      "location": "SUP-07/value/copyProfileContract",
+      "operation": "add castFamilyKey contract; add per-profile concentrationRequired fields; correct lifecycle Step shorthand to instantaneous; add strainEngineRef=FS-09/CRS-03"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/candidate.json",
+      "location": "feat IDs eldritch_echo, mimicry, arcane_adaptation",
+      "operation": "append matching release text to completeOperativeProcedure/payloadOperational/operationalRules representations as present; do not change acquisition predicates or source originals"
+    },
+    {
+      "path": "docs/audit/2026-10-08/full-game/FEAT_EXACT_01_ACQUISITION_CONTRACTS.json",
+      "location": "records eldritch_echo, mimicry, arcane_adaptation",
+      "operation": "append same release integration wording to derived operative procedure only; preserve originalObject and acquisition contract history"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "location": "no global replacement",
+      "operation": "optional cross-reference note only: ordinary class Limit remains unchanged; feat-copy route uses FS-09. Do not replace line-35 formula."
+    }
+  ],
+  "acceptanceExamples": [
+    {
+      "id": "CRS01-A",
+      "expectation": "Two consecutive Eldritch Echo captures of the same underlying spell identity, even from different source events or with different bounded profile/q choices, share one feat-copy family; the second copy receives the next ordinary Refrain step. Capture event ID does not reset history."
+    },
+    {
+      "id": "CRS01-B",
+      "expectation": "A Mimicry copy and later Arcane Adaptation activation of the same underlying captured spell/effect identity share the same feat-copy family. Changing permission source or casting ability route does not reset Refrain."
+    },
+    {
+      "id": "CRS01-C",
+      "expectation": "An ordinary personally known cast of the underlying spell followed by a feat-copy cast uses two distinct chronological families. The ordinary cast does not grant the copy and does not pre-load the feat-copy Refrain family."
+    },
+    {
+      "id": "CRS01-D",
+      "expectation": "Two different underlying source spell/effect identities that both map to Strike remain different feat-copy families; common profile ID alone does not merge history."
+    },
+    {
+      "id": "CRS02-A",
+      "expectation": "Strike/Burst/Mend/Step do not displace existing concentration merely because they are feat-copy casts; each resolves immediately."
+    },
+    {
+      "id": "CRS02-B",
+      "expectation": "Ward/Hindrance/Boon displace incompatible prior concentration at commitment. Countering afterward does not restore prior concentration and leaves no copied lasting effect."
+    },
+    {
+      "id": "CRS02-C",
+      "expectation": "A successful lasting Ward/Hindrance/Boon ends immediately on lost concentration even if its stated two-interval/source deadline has not arrived."
+    },
+    {
+      "id": "CRS02-D",
+      "expectation": "Ready preparation already holds concentration. Releasing Ward/Hindrance/Boon continues the same one burden; releasing an immediate profile ends the Ready hold after resolution. No second concentration slot exists."
+    },
+    {
+      "id": "CRS03-A",
+      "expectation": "Wizard-qualified feat copy does not receive Wizard first-prepared-matrix base-Dissonance exemption and is not a prepared matrix."
+    },
+    {
+      "id": "CRS03-B",
+      "expectation": "Shaman-qualified feat copy inside its own totem aura does not consume or benefit from the ordinary-Shaman-spell vent unless a future source explicitly names feat-copy casts."
+    },
+    {
+      "id": "CRS03-C",
+      "expectation": "Mirrorsage qualification does not import class Echo Release first-release Refrain waiver; the feat copy still consumes the shared release allowance only where its exact existing source says so."
+    },
+    {
+      "id": "CRS03-D",
+      "expectation": "At PB3 and casting modifier +3, feat-copy Limit is max(4,6+3)=9. Ordinary class spell Limit under the separate integration formula would be max(4,2+3+3)=8; this difference is intentional scoped authority, not a global correction."
+    },
+    {
+      "id": "CRS03-E",
+      "expectation": "Feat-only Eldritch Blast route can qualify q0 with CHA; it cannot establish q1+ ceiling, a class engine, Wizard/Mirrorsage/Shaman protections, or another RP pool."
+    }
+  ],
+  "nonGrants": [
+    "No original spell/repertoire grant",
+    "No new copy/capture source",
+    "No new RP pool",
+    "No class proc/vent/protected matrix",
+    "No extra concentration slot",
+    "No changed owner-round release cap",
+    "No promotion of the 335-feat candidate"
+  ]
+}

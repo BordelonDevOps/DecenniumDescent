@@ -1,0 +1,441 @@
+{
+  "status": "REVIEWED / reference-VALIDATED:12 bounded spell-form profiles",
+  "profiles": [
+    {
+      "id": "spellform.humanoid",
+      "tier": "R4",
+      "size": "Medium",
+      "movement": {
+        "walk": 30
+      },
+      "speech": true,
+      "hands": true,
+      "ac": {
+        "mode": "normal",
+        "amount": 0
+      },
+      "attack": {
+        "dice": "1d6",
+        "damageType": "bludgeoning",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.humanoid",
+        "tier": "R4",
+        "size": "Medium",
+        "movement": "walk 30",
+        "speechHands": "yes / yes",
+        "ac": "formNormalAC",
+        "naturalAttack": "1d6+M bludgeoning",
+        "passiveAnatomy": "none"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.predator",
+      "tier": "R4",
+      "size": "Medium",
+      "movement": {
+        "walk": 40
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 13
+      },
+      "attack": {
+        "dice": "1d8",
+        "damageType": "slashing",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.predator",
+        "tier": "R4",
+        "size": "Medium",
+        "movement": "walk 40",
+        "speechHands": "no / no",
+        "ac": "max(formNormalAC,13)",
+        "naturalAttack": "1d8+M slashing",
+        "passiveAnatomy": "none"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.brute",
+      "tier": "R4",
+      "size": "Large",
+      "movement": {
+        "walk": 30
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 15
+      },
+      "attack": {
+        "dice": "2d6",
+        "damageType": "bludgeoning",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.brute",
+        "tier": "R4",
+        "size": "Large",
+        "movement": "walk 30",
+        "speechHands": "no / no",
+        "ac": "max(formNormalAC,15)",
+        "naturalAttack": "2d6+M bludgeoning",
+        "passiveAnatomy": "none"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.avian",
+      "tier": "R4",
+      "size": "Small",
+      "movement": {
+        "walk": 10,
+        "fly": 50
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 13
+      },
+      "attack": {
+        "dice": "1d6",
+        "damageType": "slashing",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.avian",
+        "tier": "R4",
+        "size": "Small",
+        "movement": "walk 10, fly 50",
+        "speechHands": "no / no",
+        "ac": "max(formNormalAC,13)",
+        "naturalAttack": "1d6+M slashing",
+        "passiveAnatomy": "flight"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.aquatic",
+      "tier": "R4",
+      "size": "Medium",
+      "movement": {
+        "walk": 20,
+        "swim": 50
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 14
+      },
+      "attack": {
+        "dice": "1d8",
+        "damageType": "piercing",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": true,
+      "sourceProposal": {
+        "id": "spellform.aquatic",
+        "tier": "R4",
+        "size": "Medium",
+        "movement": "walk 20, swim 50",
+        "speechHands": "no / no",
+        "ac": "max(formNormalAC,14)",
+        "naturalAttack": "1d8+M piercing",
+        "passiveAnatomy": "water breathing"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.burrower",
+      "tier": "R4",
+      "size": "Medium",
+      "movement": {
+        "walk": 30,
+        "burrowLooseSoil": 15
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 14
+      },
+      "attack": {
+        "dice": "1d8",
+        "damageType": "bludgeoning",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.burrower",
+        "tier": "R4",
+        "size": "Medium",
+        "movement": "walk 30, burrow 15 through loose soil",
+        "speechHands": "no / no",
+        "ac": "max(formNormalAC,14)",
+        "naturalAttack": "1d8+M bludgeoning",
+        "passiveAnatomy": "loose-soil burrow"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.greater-brute",
+      "tier": "R9",
+      "size": "Large",
+      "movement": {
+        "walk": 40
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 17
+      },
+      "attack": {
+        "dice": "2d8",
+        "damageType": "bludgeoning",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.greater-brute",
+        "tier": "R9",
+        "size": "Large",
+        "movement": "walk 40",
+        "speechHands": "no / no",
+        "ac": "max(formNormalAC,17)",
+        "naturalAttack": "2d8+M bludgeoning",
+        "passiveAnatomy": "none"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.greater-winged",
+      "tier": "R9",
+      "size": "Large",
+      "movement": {
+        "walk": 20,
+        "fly": 60
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "floor",
+        "amount": 16
+      },
+      "attack": {
+        "dice": "2d8",
+        "damageType": "slashing",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.greater-winged",
+        "tier": "R9",
+        "size": "Large",
+        "movement": "walk 20, fly 60",
+        "speechHands": "no / no",
+        "ac": "max(formNormalAC,16)",
+        "naturalAttack": "2d8+M slashing",
+        "passiveAnatomy": "flight"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.elemental-air",
+      "tier": "R9",
+      "size": "Medium",
+      "movement": {
+        "fly": 60,
+        "hover": true
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "fixed",
+        "amount": 16
+      },
+      "attack": {
+        "dice": "2d8",
+        "damageType": "lightning",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [
+        "lightning"
+      ],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.elemental-air",
+        "tier": "R9",
+        "size": "Medium",
+        "movement": "fly 60, hover",
+        "speechHands": "no / no",
+        "ac": "16",
+        "naturalAttack": "2d8+M lightning",
+        "passiveAnatomy": "lightning resistance"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.elemental-earth",
+      "tier": "R9",
+      "size": "Large",
+      "movement": {
+        "walk": 30,
+        "burrowLooseSoil": 20
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "fixed",
+        "amount": 17
+      },
+      "attack": {
+        "dice": "2d8",
+        "damageType": "bludgeoning",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.elemental-earth",
+        "tier": "R9",
+        "size": "Large",
+        "movement": "walk 30, burrow 20 loose soil",
+        "speechHands": "no / no",
+        "ac": "17",
+        "naturalAttack": "2d8+M bludgeoning",
+        "passiveAnatomy": "loose-soil burrow"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.elemental-fire",
+      "tier": "R9",
+      "size": "Medium",
+      "movement": {
+        "walk": 40
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "fixed",
+        "amount": 16
+      },
+      "attack": {
+        "dice": "2d8",
+        "damageType": "fire",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [
+        "fire"
+      ],
+      "waterBreathing": false,
+      "sourceProposal": {
+        "id": "spellform.elemental-fire",
+        "tier": "R9",
+        "size": "Medium",
+        "movement": "walk 40",
+        "speechHands": "no / no",
+        "ac": "16",
+        "naturalAttack": "2d8+M fire",
+        "passiveAnatomy": "fire resistance"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    },
+    {
+      "id": "spellform.elemental-water",
+      "tier": "R9",
+      "size": "Medium",
+      "movement": {
+        "walk": 20,
+        "swim": 60
+      },
+      "speech": false,
+      "hands": false,
+      "ac": {
+        "mode": "fixed",
+        "amount": 16
+      },
+      "attack": {
+        "dice": "2d8",
+        "damageType": "cold",
+        "category": "natural/form",
+        "count": 1,
+        "reachFeet": 5
+      },
+      "resistances": [
+        "cold"
+      ],
+      "waterBreathing": true,
+      "sourceProposal": {
+        "id": "spellform.elemental-water",
+        "tier": "R9",
+        "size": "Medium",
+        "movement": "walk 20, swim 60",
+        "speechHands": "no / no",
+        "ac": "16",
+        "naturalAttack": "2d8+M cold",
+        "passiveAnatomy": "cold resistance, water breathing"
+      },
+      "provenance": "NEW finite spell profile agreed with GPT; not a Druid or bestiary stat block"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "GPT_TRANSFORMATION_SPELL_FIRST_REVIEW.md",
+      "sha256": "2d70c89fc53db4e4498c1c0e4a603bfe57e7b02e3d0583330899fd63d7e5009d"
+    },
+    {
+      "path": "GPT_TRANSFORMATION_SPELL_BOUNDARIES.md",
+      "sha256": "83e76eb5f04e2b02a0948f95d0d9e72db19d522c0372520cedf01b0b733b927d"
+    },
+    {
+      "path": "GPT_TRANSFORMATION_SPELL_FINAL_INTERFACES.md",
+      "sha256": "192f5eadabd7f0f502ea5d831016a17e3eeb22860bf8e4ddb847e38cce91935d"
+    }
+  ],
+  "reviewClosure": "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+}
