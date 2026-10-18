@@ -1,0 +1,9 @@
+# Local exact review notes — pending
+
+Actual GPT Conference07 supplied23 exact changes. Current08 replayed them and preserved the full predecessor, then corrected three supplemental fixtures: P01 Wizard11 CON14 HP68→53; P02 vertical slab cut x3.75 gives area/volume75/25; P04 Wizard9 CON14 HP56→41→25 and automatic Counterspell at2, explicit Abjuration Orb caster. Full original GPT supplements remain unchanged in history.
+
+Current09 adds eight fully reversible occupied-space repairs. Medium/Small anatomy uses actual5x5ft space and measured height. The named Ranger Beast uses5x5 with measured height2. Synthetic recipients are explicitly conditional profiles. Whole-body collision stops the Lance target at x37.5 after7.5ft before wall40; another clear-path push remains20ft and its full endpoint support extends through52.5. Meteor wall clipping, Wail, Horrid Wilting, Crystalline Flash and Death Tide intersections were recomputed. Wail Wizard13/CON14 HP is80; Death Tide Wizard17/CON14 HP104 loses24 to80. All original outcomes not explicitly changed remain preserved. The complete before/after record is in CASEBOOK.json and sources/DAMAGE_CONTROL_25_GEOMETRY_DELTA_09.json at its full repository path.
+
+All25 procedures and source/access records are unchanged from Current08, including scoped proposed rule choices. All36 original scenarios,64 earlier current identities and6 GPT supplements survive, for70 current records. None is a runtime execution. This exact10 package supersedes unsent09; it does not include nested predecessor ZIPs because complete current sources, the exact predecessor candidate, prior package manifest and correction history suffice for this review. Older ZIPs remain preserved locally.
+
+Actual concurrence is required for these local fixture changes and the full exact artifacts. No accepted source, index membership, live runtime, balance, cosmology or domain closure is claimed.

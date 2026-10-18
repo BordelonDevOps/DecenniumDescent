@@ -1,0 +1,7 @@
+# Damage/control25 — exact rebound10
+
+Read current/REGISTER.json, LOCAL_REVIEW_NOTES.md, SPELLS_MODEL.json, CASEBOOK.json and both full manuscripts. All25 complete procedures,26 placements,36 original texts and70 current records are supplied, with frozen complete authorities and actual GPT Conference07 receipt. Current09 contains the exact23 conference corrections, three preserved supplemental repairs and eight additional occupied-space/HP fixture repairs. The last group is fully reversible and explicitly requires your concurrence.
+
+Please verify the actual complete procedures, source decisions, corrected geometry and chronological HP, all70 case identities and original36 obligations. Retain conditional-input limitations; no unknown attack, defense, lifecycle, body size or source is granted. Address whole-body wall stopping/support, AoE inclusion, Wizard HP and Ranger HP-only lifecycle. If coherent, return bounded exact authored acceptance of the EIGHT current files with their actual names, byte counts and SHA256. Otherwise give minimal complete before/after corrections with exact pointers.
+
+Only after actual acceptance may byte-identical canonical copies and separately verified25-identity discovery membership follow. Current counts480 reviewed/368 pending/204 standalone remain unchanged; expected505/343/229 is conditional on actual later application. Source catalog, accepted guides, unrelated cohorts and all75 domain gates retain their actual authority. No runtime, human playtest, balance, cosmology or release approval is requested.

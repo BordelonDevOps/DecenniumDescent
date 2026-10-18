@@ -1,0 +1,1224 @@
+{
+  "id": "PERSISTENT20-CURRENT07-LOCAL-DELTAS",
+  "status": "Complete reversible changes after exact GPT replay; concurrence pending",
+  "previousCandidate": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/persistent_damage_20_current_06.json",
+    "bytes": 1221424,
+    "sha256": "9bd43da9044540722507c3d8649fc42fa49d43f2739b400328061103eb9539bc"
+  },
+  "actualGPTProposal": {
+    "path": "docs/audit/2026-10-08/full-game/persistent-damage20-conference-06-review/PROPOSED_CORRECTIONS.json",
+    "bytes": 206404,
+    "sha256": "17d32b854064c87df93c3026b075983287785974beb01e93e188f80c68674463"
+  },
+  "fullLocalChanges": [
+    {
+      "path": "/adversarialVectors04/4",
+      "before": {
+        "id": "P20-X05",
+        "name": "Ordinary versus Null-disabled actual Ranger Beast and separate penalty lifetime",
+        "scope": "Actual acquired companion lifecycle with pending Synaptic Enchantment application; independent root-flag branches",
+        "initialState": {
+          "caster": "Wizard9 actual Enchantment preparation,10RP32→22,INT18/PB4/DC16, first-matrixD0.",
+          "actualCompanion": "Ranger16 Warder, genuinely selected Beast Companion card; source ritual1hour+4RP alreadypaid and1/LRspent, actual eligible willing beast, WIS18/PB5 givesmaxHP36/current10 and saves+5, one40ft-or-less movement mode, no imported immunities.",
+          "INTFace": 1,
+          "psychic8d6": [
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "ordinaryWoundCONFace": 18,
+          "penaltyOriginalFutureOwnerPhaseENDs": [
+            8,
+            14,
+            20
+          ]
+        },
+        "resolution": [
+          "INT1+5=6 failsDC16; raw29. Ordinary branch posttemp29minusHP10=19<max36, so noInstantDeath. Actual new-zeroWoundCON18+5=23 passesDC14. Actual RangerBeast source dies at0; no new creature penalty attaches, and no free resummon/bond reset.",
+          "Null branch qualifying true root suppresses Wound/InstantDeath/damage-death; same body/bond becomesNullDisabled0. Separate admitted Synaptic penalty can attach to continuing creature if otherwise eligible; Disabled supplies no actions/commands.",
+          "Its spell-specific future owner-phase ending saves/checkpoints do not create death saves or ordinary turn refresh. Independent actual source expiry/removal remains real; a later genuine heal above0 restores function under real source."
+        ],
+        "expected": {
+          "ordinary": {
+            "HP": 0,
+            "dead": true,
+            "newPenalty": false
+          },
+          "Null": {
+            "HP": 0,
+            "Disabled": true,
+            "sameBond": true,
+            "newPenaltyEligible": true,
+            "WoundSaveCount": 0
+          },
+          "freeBodyRecreation": false
+        }
+      },
+      "after": {
+        "id": "P20-X05",
+        "name": "Ordinary versus Null-disabled actual Ranger Beast and separate penalty lifetime",
+        "scope": "Actual acquired companion lifecycle with pending Synaptic Enchantment application; independent root-flag branches",
+        "initialState": {
+          "caster": "Wizard9 actual Enchantment preparation,10RP32→22,INT18/PB4/DC16, first-matrixD0.",
+          "actualCompanion": "Ranger16 Warder, genuinely selected Beast Companion card; source ritual1hour+4RP alreadypaid and1/LRspent, actual eligible willing beast, WIS18/PB5 givesmaxHP36/current10 and saves+5, one40ft-or-less movement mode, no imported immunities.",
+          "INTFace": 1,
+          "psychic8d6": [
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "penaltyOriginalFutureOwnerPhaseENDs": [
+            8,
+            14,
+            20
+          ]
+        },
+        "resolution": [
+          "INT1+5=6 fails DC16; 8d6 faces total29. The actual Ranger Beast uses its source-specific HP-only lifecycle, not ordinary Wounds or death saves. Ordinary damage reduces current10 to0: it dies immediately, its bond ends and its actual surviving corpse remains. No Wound save, Stable state or new creature penalty applies. No free resummon or bond reset follows.",
+          "Null branch qualifying true root suppresses Wound/InstantDeath/damage-death; same body/bond becomesNullDisabled0. Separate admitted Synaptic penalty can attach to continuing creature if otherwise eligible; Disabled supplies no actions/commands.",
+          "Its spell-specific future owner-phase ending saves/checkpoints do not create death saves or ordinary turn refresh. Independent actual source expiry/removal remains real; a later genuine heal above0 restores function under real source."
+        ],
+        "expected": {
+          "ordinary": {
+            "HP": 0,
+            "dead": true,
+            "newPenalty": false,
+            "WoundSaveCount": 0,
+            "deathSaveCount": 0,
+            "bondEnded": true,
+            "actualCorpseRemains": true
+          },
+          "Null": {
+            "HP": 0,
+            "Disabled": true,
+            "sameBond": true,
+            "newPenaltyEligible": true,
+            "WoundSaveCount": 0
+          },
+          "freeBodyRecreation": false
+        },
+        "sourceRefs07": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+            "bytes": 20087,
+            "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08",
+            "section": "Companion lifecycle table; Ranger Beast HP-only exception"
+          }
+        ]
+      },
+      "reason": "Local source repair: returned review noticed the HP-only exception but supplied no replacement for the existing erroneous Wound roll. Preserve the complete former case in this delta.",
+      "actualGPTConcurrenceOnThisLocalChange": false
+    },
+    {
+      "path": "/currentExamples/17",
+      "before": {
+        "id": "EV6-03-B",
+        "spellId": "arcane-mortar",
+        "originalTextUnchanged": "EV6-03-B: The caster commands a target, then an intervening effect suppresses the cannon before the attached phase. That command remains spent, but no shot began, so the ammunition remains three and the damaging activation was not consumed by this cannon. Suppression ending within the original minute allows a later new command, not a delayed free shot. If damage instead destroys the machine, it vanishes; a repair feature requiring original debris cannot reconstruct it or claim 100 lb of scrap.",
+        "scope": "Source-qualified paid Ready/suppression/attached-phase fixture; the separate object-destruction branch remains an explicitly declared post-admission damage composition, not an executed unknown attack.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "schoolSpecialization": "Abjuration",
+          "INT": 18,
+          "PB": 4,
+          "spellAttackModifier": 8,
+          "DC": 16,
+          "genuineRepertoirePreparation": "arcane-mortar",
+          "actualSchool": "Evocation",
+          "actualRank": 6,
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "ActionAvailableAndSpent": true,
+          "componentsUsable": "Actual original V/S/F or unpriced M-or-F as required; no new consumed-price requirement",
+          "NullAtCast": false,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "WizardFirstDistinctPreparedBaseExemption": true,
+          "RefrainExtra": 0,
+          "noOptionalActivatedSubclassModifier": true,
+          "concentrationBefore": null,
+          "noCasterDamageUnlessExplicit": true
+        },
+        "recipientBaseline": "Unless explicitly replaced: significant living synthetic ordinary creature, max/current HP200, no temporary HP/Wounds/concentration, no relevant defenses or family history, saves+0, ordinary body fitting declared geometry. This is a declared test profile, not inferred from a creature label.",
+        "initialState": {
+          "mortar": {
+            "sourceOwner": "W",
+            "HP": 30,
+            "ammo": 3,
+            "creationSecond": 0,
+            "absoluteExpirySecond": 60,
+            "bodyBounds": {
+              "x": [
+                17.5,
+                22.5
+              ],
+              "y": [
+                -2.5,
+                2.5
+              ],
+              "z": [
+                0,
+                5
+              ]
+            },
+            "massLb": 100,
+            "AC": 16,
+            "support": "actual unobstructed floor z=0"
+          },
+          "owner": {
+            "id": "W",
+            "currentRegularSlot": [
+              0,
+              2
+            ],
+            "nextRegularSlot": [
+              6,
+              8
+            ],
+            "positionCenter": [
+              0,
+              0,
+              3
+            ],
+            "bodySpace": "Medium 5x5, occupied height6; usable V/S/F, ordinary Action and BA available",
+            "spellActionAt": 0,
+            "commandAt": 1,
+            "attachedPhaseAt": 2,
+            "RP": "40 minus13 =27; first distinct prepared matrix D0"
+          },
+          "target": {
+            "id": "T",
+            "positionCenter": [
+              40,
+              0,
+              3
+            ],
+            "bodySpace": "Medium 5x5, occupied height6",
+            "AC": 14,
+            "HP": 200,
+            "maxHP": 200,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "defenses": "none relevant",
+            "classification": "declared significant ordinary creature"
+          },
+          "readiedSuppressor": {
+            "id": "C",
+            "class": "Wizard",
+            "level": 9,
+            "INT": 18,
+            "PB": 4,
+            "schoolSpecialization": "Abjuration",
+            "knownPreparedSpell": "antimagic-field-lesser",
+            "rank": 5,
+            "positionCenter": [
+              20,
+              0,
+              3
+            ],
+            "regularSlotAtPreparation": [
+              -2,
+              0
+            ],
+            "nextRegularSTART": 4,
+            "ReadyActionSecond": -1,
+            "RPBefore": 32,
+            "RPPaidAtPreparation": 10,
+            "RPAfter": 22,
+            "cadence": "first distinct prepared matrix base D0; first name, no Refrain surcharge",
+            "componentsAtPreparation": "actual usable V/S/F",
+            "holdConcentration": "begins at -1; no prior concentration, interruption, damage or reaction prohibition",
+            "trigger": "W gives the agreed visible hand signal during W turn",
+            "areaSelection": "no point chosen during preparation; selected and rechecked at release",
+            "availableReactionAtRelease": true,
+            "releaseSecond": 1.5,
+            "voluntaryConcentrationEndSecond": 3
+          },
+          "world": "All declared bodies/spaces have clear actual perception and LoE as needed, clear ground support, no other suppressor or movement blocker. C does not need a field point or existing cannon at Ready preparation.",
+          "independentDestroyBranch": "Reset to the original commanded-cannon premise without the suppressing field. An independently lawful object damage event is supplied as an explicit composition input: 30 actual force before firing. No unprovided attack ability is asserted."
+        },
+        "actionsAndResolution": [
+          "At t-1 in C regular slot[-2,0], C spends its Action to Ready the actual Action-time Lesser Antimagic, pays10RP32→22, supplies V/S/F, resolves its first-matrix/cast cadence once and holds concentration. Declare only the visible W hand signal as trigger; do not choose the field point yet. Held Ready expires at C actual next regular START t4.",
+          "At t0 W legally casts Arcane Mortar for13RP40→27. At t1 W spends its normal Bonus Action command, names perceived T20ft from the cannon, and retains the shared offensive allowance pending actual firing. W remains in its own regular slot until t2.",
+          "At t1.5 W gives the visible signal. Immediately after that trigger, C spends its available Reaction and chooses/rechecks point(20,0,2.5), within10ft with clear LoE. The same paid Lesser Antimagic manifests radius10 there; normal concentration would end at61.5 absent earlier ending. This is not a new cast or second RP payment. The field covers the cannon; its own same-family exemption preserves the field while C is within it.",
+          "At the actual attached phase t2 the cannon is locally suppressed. No shot starts; ammo remains3, the shared offensive allowance was not consumed by this cannon, and the already-paid command is lost rather than queued.",
+          "At t3 C ends field concentration through its actual no-Action permission. The same physical cannon resumes HP30/ammo3 with its original expiry60. No shot fires at resumption.",
+          "At W regular turn[6,8], W may spend a new available BA command on the same legal T. With no other shared offensive use that round, the attached phase t8 starts one shot: natural12+8=20 hits AC14; 5d6 faces[3,3,4,4,4]=18 force. Ammo3→2 and T200→182; one source-owner damage root, no Wound threshold or concentration on T. This concrete later use does not refund either earlier command or extend the original deadline.",
+          "Independent destruction composition: the stipulated legal30 force reduces the object to0 before firing; it is destroyed and vanishes, with no remaining original debris or100lb salvage. A repair that requires actual debris cannot reconstruct it. This branch is not a fabricated current attack execution."
+        ],
+        "expectedFinalState": {
+          "suppressionBranch": {
+            "HP": 30,
+            "ammo": 3,
+            "commandSpent": true,
+            "offensiveActivationSpentByCannon": false,
+            "automaticResumedShot": false,
+            "resumedAtSecond": 3,
+            "originalExpirySecond": 60
+          },
+          "destructionBranch": {
+            "bodyExists": false,
+            "repairDebrisAvailable": false,
+            "salvageLb": 0
+          },
+          "laterNewCommand": {
+            "at": 8,
+            "ammo": 2,
+            "targetHP": 182,
+            "newBACommandsAfterResume": 1,
+            "offensiveActivationSpent": true
+          }
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/persistent_damage_20_current_01.json",
+            "pointer": "/spells/8"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank6.json",
+            "pointer": "/records/2/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "bytes": 30409,
+            "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+            "authorityKind": "FROZEN_SOURCE",
+            "section": "Ready",
+            "lineRange": [
+              97,
+              111
+            ]
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+            "bytes": 337035,
+            "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/spells/0/procedure",
+            "reason": "Actual Lesser Antimagic, rank-unlimited local suppression and real cast/hold clocks."
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+            "bytes": 20087,
+            "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08",
+            "authorityKind": "FROZEN_SOURCE",
+            "section": "Commands and attached phases",
+            "lineRange": [
+              7,
+              13
+            ]
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "bytes": 100635,
+            "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "bytes": 100635,
+            "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/18"
+          }
+        ],
+        "runtimeExecuted": false,
+        "costLedger": {
+          "WSpellRP": 13,
+          "CReadySpellRPAtMinus1": 10,
+          "CReleaseRP": 0,
+          "CReadyAction": 1,
+          "CReleaseReaction": 1,
+          "WCommandsAt1And6": 2,
+          "firstPhaseShotCost": 0,
+          "realShotAt8": 1
+        },
+        "clockLedger": {
+          "readyPrepared": -1,
+          "readyExpiry": 4,
+          "readiedRelease": 1.5,
+          "fieldIntendedExpiry": 61.5,
+          "fieldActualEnd": 3,
+          "mortarCreated": 0,
+          "mortarAbsoluteExpiry": 60,
+          "firstAttachedPhase": 2,
+          "laterAttachedPhase": 8
+        }
+      },
+      "after": {
+        "id": "EV6-03-B",
+        "spellId": "arcane-mortar",
+        "originalTextUnchanged": "EV6-03-B: The caster commands a target, then an intervening effect suppresses the cannon before the attached phase. That command remains spent, but no shot began, so the ammunition remains three and the damaging activation was not consumed by this cannon. Suppression ending within the original minute allows a later new command, not a delayed free shot. If damage instead destroys the machine, it vanishes; a repair feature requiring original debris cannot reconstruct it or claim 100 lb of scrap.",
+        "scope": "Source-qualified paid Ready/suppression/attached-phase fixture; the separate object-destruction branch remains an explicitly declared post-admission damage composition, not an executed unknown attack.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "schoolSpecialization": "Abjuration",
+          "INT": 18,
+          "PB": 4,
+          "spellAttackModifier": 8,
+          "DC": 16,
+          "genuineRepertoirePreparation": "arcane-mortar",
+          "actualSchool": "Evocation",
+          "actualRank": 6,
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "ActionAvailableAndSpent": true,
+          "componentsUsable": "Actual original V/S/F or unpriced M-or-F as required; no new consumed-price requirement",
+          "NullAtCast": false,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "WizardFirstDistinctPreparedBaseExemption": true,
+          "RefrainExtra": 0,
+          "noOptionalActivatedSubclassModifier": true,
+          "concentrationBefore": null,
+          "noCasterDamageUnlessExplicit": true
+        },
+        "recipientBaseline": "Unless explicitly replaced: significant living synthetic ordinary creature, max/current HP200, no temporary HP/Wounds/concentration, no relevant defenses or family history, saves+0, ordinary body fitting declared geometry. This is a declared test profile, not inferred from a creature label.",
+        "initialState": {
+          "mortar": {
+            "sourceOwner": "W",
+            "HP": 30,
+            "ammo": 3,
+            "creationSecond": 0,
+            "absoluteExpirySecond": 60,
+            "bodyBounds": {
+              "x": [
+                17.5,
+                22.5
+              ],
+              "y": [
+                -2.5,
+                2.5
+              ],
+              "z": [
+                0,
+                5
+              ]
+            },
+            "massLb": 100,
+            "AC": 16,
+            "support": "actual unobstructed floor z=0"
+          },
+          "owner": {
+            "id": "W",
+            "currentRegularSlot": [
+              0,
+              2
+            ],
+            "nextRegularSlot": [
+              6,
+              8
+            ],
+            "positionCenter": [
+              0,
+              0,
+              3
+            ],
+            "bodySpace": "Medium 5x5, occupied height6; usable V/S/F, ordinary Action and BA available",
+            "spellActionAt": 0,
+            "commandAt": 1,
+            "attachedPhaseAt": 2,
+            "RP": "40 minus13 =27; first distinct prepared matrix D0"
+          },
+          "target": {
+            "id": "T",
+            "positionCenter": [
+              40,
+              0,
+              3
+            ],
+            "bodySpace": "Medium 5x5, occupied height6",
+            "AC": 14,
+            "HP": 200,
+            "maxHP": 200,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "defenses": "none relevant",
+            "classification": "declared significant ordinary creature"
+          },
+          "readiedSuppressor": {
+            "id": "C",
+            "class": "Wizard",
+            "level": 9,
+            "INT": 18,
+            "PB": 4,
+            "schoolSpecialization": "Abjuration",
+            "knownPreparedSpell": "antimagic-field-lesser",
+            "rank": 5,
+            "positionCenter": [
+              20,
+              -11,
+              3
+            ],
+            "regularSlotAtPreparation": [
+              -2,
+              0
+            ],
+            "nextRegularSTART": 4,
+            "ReadyActionSecond": -1,
+            "RPBefore": 32,
+            "RPPaidAtPreparation": 10,
+            "RPAfter": 22,
+            "cadence": "first distinct prepared matrix base D0; first name, no Refrain surcharge",
+            "componentsAtPreparation": "actual usable V/S/F",
+            "holdConcentration": "begins at -1; no prior concentration, interruption, damage or reaction prohibition",
+            "trigger": "W gives the agreed visible hand signal during W turn",
+            "areaSelection": "no point chosen during preparation; selected and rechecked at release",
+            "availableReactionAtRelease": true,
+            "releaseSecond": 1.5,
+            "voluntaryConcentrationEndSecond": 3,
+            "bodySpace": "Medium 5x5 feet; measured occupied height6; half-extents[2.5,2.5,3] on floor z=0",
+            "actualRelationshipToMortar": "May be hostile; whole-body gap6ft exceeds the5ft close-quarters threshold. No other hostile capable creature is within5ft of the cannon at its later shot."
+          },
+          "world": "All declared bodies/spaces have clear actual perception and LoE as needed, clear ground support, no other suppressor or movement blocker. C does not need a field point or existing cannon at Ready preparation.",
+          "independentDestroyBranch": "Reset to the original commanded-cannon premise without the suppressing field. An independently lawful object damage event is supplied as an explicit composition input: 30 actual force before firing. No unprovided attack ability is asserted."
+        },
+        "actionsAndResolution": [
+          "At t-1 in C regular slot[-2,0], C spends its Action to Ready the actual Action-time Lesser Antimagic, pays10RP32→22, supplies V/S/F, resolves its first-matrix/cast cadence once and holds concentration. Declare only the visible W hand signal as trigger; do not choose the field point yet. Held Ready expires at C actual next regular START t4.",
+          "At t0 W legally casts Arcane Mortar for13RP40→27. At t1 W spends its normal Bonus Action command, names perceived T20ft from the cannon, and retains the shared offensive allowance pending actual firing. W remains in its own regular slot until t2.",
+          "At t1.5 W gives the visible signal. Immediately after that trigger, C spends its available Reaction and chooses/rechecks point(20,-2,2.5), within10ft with clear LoE. The same paid Lesser Antimagic manifests radius10 there; normal concentration would end at61.5 absent earlier ending. This is not a new cast or second RP payment. The field covers the cannon; its own same-family exemption preserves the field while C is within it.",
+          "At the actual attached phase t2 the cannon is locally suppressed. No shot starts; ammo remains3, the shared offensive allowance was not consumed by this cannon, and the already-paid command is lost rather than queued.",
+          "At t3 C ends field concentration through its actual no-Action permission. The same physical cannon resumes HP30/ammo3 with its original expiry60. No shot fires at resumption.",
+          "At W regular turn[6,8], W may spend a new available BA command on the same legal T. With no other shared offensive use that round, the attached phase t8 starts one shot: natural12+8=20 hits AC14; 5d6 faces[3,3,4,4,4]=18 force. Ammo3→2 and T200→182; one source-owner damage root, no Wound threshold or concentration on T. This concrete later use does not refund either earlier command or extend the original deadline.",
+          "Independent destruction composition: the stipulated legal30 force reduces the object to0 before firing; it is destroyed and vanishes, with no remaining original debris or100lb salvage. A repair that requires actual debris cannot reconstruct it. This branch is not a fabricated current attack execution."
+        ],
+        "expectedFinalState": {
+          "suppressionBranch": {
+            "HP": 30,
+            "ammo": 3,
+            "commandSpent": true,
+            "offensiveActivationSpentByCannon": false,
+            "automaticResumedShot": false,
+            "resumedAtSecond": 3,
+            "originalExpirySecond": 60
+          },
+          "destructionBranch": {
+            "bodyExists": false,
+            "repairDebrisAvailable": false,
+            "salvageLb": 0
+          },
+          "laterNewCommand": {
+            "at": 8,
+            "ammo": 2,
+            "targetHP": 182,
+            "newBACommandsAfterResume": 1,
+            "offensiveActivationSpent": true
+          }
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/persistent_damage_20_current_01.json",
+            "pointer": "/spells/8"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank6.json",
+            "pointer": "/records/2/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "bytes": 30409,
+            "sha256": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+            "authorityKind": "FROZEN_SOURCE",
+            "section": "Ready",
+            "lineRange": [
+              97,
+              111
+            ]
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+            "bytes": 337035,
+            "sha256": "d782569ed8ef558f4edf54634e0d8c19926e24e2437528f1769b5ef3ce594898",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/spells/0/procedure",
+            "reason": "Actual Lesser Antimagic, rank-unlimited local suppression and real cast/hold clocks."
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+            "bytes": 20087,
+            "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08",
+            "authorityKind": "FROZEN_SOURCE",
+            "section": "Commands and attached phases",
+            "lineRange": [
+              7,
+              13
+            ]
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "bytes": 100635,
+            "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "bytes": 100635,
+            "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/18"
+          }
+        ],
+        "runtimeExecuted": false,
+        "costLedger": {
+          "WSpellRP": 13,
+          "CReadySpellRPAtMinus1": 10,
+          "CReleaseRP": 0,
+          "CReadyAction": 1,
+          "CReleaseReaction": 1,
+          "WCommandsAt1And6": 2,
+          "firstPhaseShotCost": 0,
+          "realShotAt8": 1
+        },
+        "clockLedger": {
+          "readyPrepared": -1,
+          "readyExpiry": 4,
+          "readiedRelease": 1.5,
+          "fieldIntendedExpiry": 61.5,
+          "fieldActualEnd": 3,
+          "mortarCreated": 0,
+          "mortarAbsoluteExpiry": 60,
+          "firstAttachedPhase": 2,
+          "laterAttachedPhase": 8
+        },
+        "geometryChecks07": {
+          "releasedFieldCenter": [
+            20,
+            -2,
+            2.5
+          ],
+          "casterCenterToFieldSquared": 81.25,
+          "casterCenterToFieldFt": 9.013878188659973,
+          "maximumMortarCornerToFieldSquared": 32.75,
+          "fieldRadiusSquared": 100,
+          "CToMortarWholeBodyGapFt": 6,
+          "bodyOverlapAtCreation": false,
+          "closeQuartersDisadvantageFromC": false,
+          "floorZ": 0,
+          "actualSource": {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+            "bytes": 22726,
+            "sha256": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3"
+          }
+        }
+      },
+      "reason": "Local correction to GPT PC06: its caster center[20,0,3] physically overlapped the newly created mortar. Move C and the released field point; retain every paid Ready, command, ammunition, suppression and destruction obligation. Actual concurrence pending.",
+      "actualGPTConcurrenceOnThisLocalChange": false
+    },
+    {
+      "path": "/currentSupplementalExamples/8",
+      "before": {
+        "id": "P20-C07-02",
+        "spellId": "ice-storm",
+        "scope": "Two independent authored exact-class-DR fixtures for the proposed Ice Storm-only selection/allocation. Prior hostile damage establishing BT and Adaptive Tissue cold resistance is an explicit legal starting-state premise, not fabricated attack execution.",
+        "sourceAccess": {
+          "caster": {
+            "class": "Wizard",
+            "level": 7,
+            "specialization": "Abjuration",
+            "INT": 18,
+            "PB": 3,
+            "DC": 15,
+            "prepared": "ice-storm",
+            "Action": true,
+            "components": "V/S/F",
+            "RPBefore": 24,
+            "cost": 7,
+            "RPAfter": 17,
+            "firstMatrixD": 0
+          },
+          "recipient": {
+            "class": "Warrior",
+            "level": 10,
+            "path": "Wardborn",
+            "CON": 16,
+            "DEX": 14,
+            "PB": 4,
+            "maxHP": 105,
+            "currentHP": 105,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "selectedArchCards": [
+              "warrior.arch.brutal-fortitude",
+              "warrior.arch.adaptive-tissue"
+            ],
+            "selectedHero": "warrior.hero.wardborn.bulwark-mutation-tree",
+            "equippedMutation": "warrior.supplement.spinal-plating",
+            "slot": 1,
+            "ordinaryActiveLimitSatisfied": true,
+            "sourceOtherFlatDR": "Automatic Bone Hardened is physical WEAPON-only and does not apply to this hail spell; no other source applies."
+          }
+        },
+        "activation": {
+          "atSecond": -5,
+          "realWarriorRegularTurn": true,
+          "BonusAction": "Serum Injection",
+          "preparedDose": "Stonecore",
+          "reserveBefore": 2,
+          "dosesSpent": 1,
+          "reserveAfter": 1,
+          "StrainBefore": 0,
+          "StrainAfter": 1,
+          "duration": "source3rounds, tracked next original starts; active through both independent t0 resolution fixtures",
+          "actualProfileConsequences": "Stonecore+2AC, size-qualified forced-movement/knockback immunity, Speed-10; no effect on this DEX save or hail damage; no Serum Tolerance/Mutation Adaptation selected"
+        },
+        "geometry": {
+          "castingPoint": [
+            30,
+            0,
+            0
+          ],
+          "cylinderRadius": 20,
+          "height": 40,
+          "casterCenter": [
+            0,
+            0,
+            3
+          ],
+          "recipientCenter": [
+            30,
+            0,
+            3
+          ],
+          "bodies": "each Medium5x5 height6; clear supported ground and LoE; caster outside affected region"
+        },
+        "branches": [
+          {
+            "id": "A",
+            "BT": 3,
+            "rawPools": {
+              "bludgeoning": [
+                3,
+                4,
+                4,
+                4
+              ],
+              "cold": [
+                4,
+                4,
+                4,
+                5
+              ]
+            },
+            "DEX": {
+              "face": 18,
+              "modifier": 2,
+              "total": 20,
+              "DC": 15
+            },
+            "savedAmounts": {
+              "bludgeoning": 7,
+              "cold": 8
+            },
+            "selection": "Brutal Fortitude3 wins over Spinal Plating2; preserve its before-resistance stage. Do not apply Spinal afterward as a second strongest source.",
+            "exactShares": {
+              "bludgeoning": "3*7/15=7/5",
+              "cold": "3*8/15=8/5"
+            },
+            "allocatedReduction": {
+              "bludgeoning": 1,
+              "cold": 2
+            },
+            "afterReduction": {
+              "bludgeoning": 6,
+              "cold": 6
+            },
+            "afterColdResistance": {
+              "bludgeoning": 6,
+              "cold": 3
+            },
+            "damage": 9,
+            "HPAfter": 96,
+            "newWounds": 0
+          },
+          {
+            "id": "B",
+            "BT": 2,
+            "independentReset": true,
+            "rawPools": {
+              "bludgeoning": [
+                1,
+                1,
+                1,
+                2
+              ],
+              "cold": [
+                3,
+                4,
+                4,
+                4
+              ]
+            },
+            "DEX": {
+              "face": 18,
+              "modifier": 2,
+              "total": 20,
+              "DC": 15
+            },
+            "savedAmounts": {
+              "bludgeoning": 2,
+              "cold": 7
+            },
+            "selection": "Both class reductions equal2. No accepted priority for this tie is supplied. NEW Ice-only immutable source-card order selects warrior.arch.brutal-fortitude before warrior.supplement.spinal-plating, retaining the selected before-resistance stage.",
+            "exactShares": {
+              "bludgeoning": "2*2/9=4/9",
+              "cold": "2*7/9=14/9"
+            },
+            "allocatedReduction": {
+              "bludgeoning": 0,
+              "cold": 2
+            },
+            "afterReduction": {
+              "bludgeoning": 2,
+              "cold": 5
+            },
+            "afterColdResistance": {
+              "bludgeoning": 2,
+              "cold": 2
+            },
+            "damage": 4,
+            "HPAfter": 101,
+            "newWounds": 0,
+            "notSelectedAlternative": "Selecting Spinal after resistance would produce a different result on these inputs; the target cannot optimize that choice or stack both."
+          }
+        ],
+        "ending": "Each branch is a separate complete reset with its own actual7RP cast. One grouped recipient event, no concentration on Warrior, no new zero, no half-maximum damage or maiming trigger. Residual magical terrain deadline60 remains independent of the mutation/source clocks.",
+        "proposedRuleIds": [
+          "P20-ICE-MIXED-07"
+        ],
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+            "bytes": 4945319,
+            "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/spells/454",
+            "operativeIdentity": "ice-storm",
+            "reason": "Complete immutable source/access and printed effect record; operational status is not changed by this report."
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+            "bytes": 17321,
+            "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+            "authorityKind": "FROZEN_SOURCE",
+            "section": "Damage, healing, stacking and companions",
+            "lineRange": [
+              31,
+              39
+            ]
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/11",
+            "operativeIdentity": "warrior.arch.brutal-fortitude"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/15",
+            "operativeIdentity": "warrior.arch.adaptive-tissue"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/105",
+            "operativeIdentity": "warrior.supplement.spinal-plating"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/27",
+            "operativeIdentity": "warrior.hero.wardborn.bulwark-mutation-tree"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/56",
+            "operativeIdentity": "warrior.supplement.bone-hardened"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/67",
+            "operativeIdentity": "warrior.supplement.stonecore"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/2"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/4"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/5"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/6"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+            "bytes": 15877,
+            "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+            "authorityKind": "FROZEN_SOURCE",
+            "section": "Damage, zero HP, Wounds and death saves",
+            "lineRange": [
+              37,
+              58
+            ]
+          }
+        ],
+        "runtimeExecuted": false
+      },
+      "after": {
+        "id": "P20-C07-02",
+        "spellId": "ice-storm",
+        "scope": "Two independent authored exact-class-DR fixtures for the proposed Ice Storm-only selection/allocation. Prior hostile damage establishing BT and Adaptive Tissue cold resistance is an explicit legal starting-state premise, not fabricated attack execution.",
+        "sourceAccess": {
+          "caster": {
+            "class": "Wizard",
+            "level": 7,
+            "specialization": "Abjuration",
+            "INT": 18,
+            "PB": 3,
+            "DC": 15,
+            "prepared": "ice-storm",
+            "Action": true,
+            "components": "V/S/F",
+            "RPBefore": 24,
+            "cost": 7,
+            "RPAfter": 17,
+            "firstMatrixD": 0
+          },
+          "recipient": {
+            "class": "Warrior",
+            "level": 10,
+            "path": "Wardborn",
+            "CON": 16,
+            "DEX": 14,
+            "PB": 4,
+            "maxHP": 105,
+            "currentHP": 105,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "selectedArchCards": [
+              "warrior.arch.brutal-fortitude",
+              "warrior.arch.adaptive-tissue"
+            ],
+            "selectedHero": "warrior.hero.wardborn.bulwark-mutation-tree",
+            "equippedMutation": "warrior.supplement.spinal-plating",
+            "slot": 1,
+            "ordinaryActiveLimitSatisfied": true,
+            "sourceOtherFlatDR": "Automatic Bone Hardened is physical WEAPON-only and does not apply to this hail spell; no other source applies.",
+            "HPDerivation": "Warrior d12, CON16 modifier+3 throughout: first12+3=15, nine fixed gains7+3=10 each; max15+90=105. Full current105 is an explicitly recovered starting state, not free healing from advancement; no HP-changing selections."
+          }
+        },
+        "activation": {
+          "atSecond": -5,
+          "realWarriorRegularTurn": true,
+          "BonusAction": "Serum Injection",
+          "preparedDose": "Stonecore",
+          "reserveBefore": 2,
+          "dosesSpent": 1,
+          "reserveAfter": 1,
+          "StrainBefore": 0,
+          "StrainAfter": 1,
+          "duration": "source3rounds, tracked next original starts; active through both independent t0 resolution fixtures",
+          "actualProfileConsequences": "Stonecore+2AC, size-qualified forced-movement/knockback immunity, Speed-10; no effect on this DEX save or hail damage; no Serum Tolerance/Mutation Adaptation selected"
+        },
+        "geometry": {
+          "castingPoint": [
+            30,
+            0,
+            0
+          ],
+          "cylinderRadius": 20,
+          "height": 40,
+          "casterCenter": [
+            0,
+            0,
+            3
+          ],
+          "recipientCenter": [
+            30,
+            0,
+            3
+          ],
+          "bodies": "each Medium5x5 height6; clear supported ground and LoE; caster outside affected region"
+        },
+        "branches": [
+          {
+            "id": "A",
+            "BT": 3,
+            "rawPools": {
+              "bludgeoning": [
+                3,
+                4,
+                4,
+                4
+              ],
+              "cold": [
+                4,
+                4,
+                4,
+                5
+              ]
+            },
+            "DEX": {
+              "face": 18,
+              "modifier": 2,
+              "total": 20,
+              "DC": 15
+            },
+            "savedAmounts": {
+              "bludgeoning": 7,
+              "cold": 8
+            },
+            "selection": "Brutal Fortitude3 wins over Spinal Plating2; preserve its before-resistance stage. Do not apply Spinal afterward as a second strongest source.",
+            "exactShares": {
+              "bludgeoning": "3*7/15=7/5",
+              "cold": "3*8/15=8/5"
+            },
+            "allocatedReduction": {
+              "bludgeoning": 1,
+              "cold": 2
+            },
+            "afterReduction": {
+              "bludgeoning": 6,
+              "cold": 6
+            },
+            "afterColdResistance": {
+              "bludgeoning": 6,
+              "cold": 3
+            },
+            "damage": 9,
+            "HPAfter": 96,
+            "newWounds": 0
+          },
+          {
+            "id": "B",
+            "BT": 2,
+            "independentReset": true,
+            "rawPools": {
+              "bludgeoning": [
+                1,
+                1,
+                1,
+                2
+              ],
+              "cold": [
+                3,
+                4,
+                4,
+                4
+              ]
+            },
+            "DEX": {
+              "face": 18,
+              "modifier": 2,
+              "total": 20,
+              "DC": 15
+            },
+            "savedAmounts": {
+              "bludgeoning": 2,
+              "cold": 7
+            },
+            "selection": "Both class reductions equal2. No accepted priority for this tie is supplied. NEW Ice-only immutable source-card order selects warrior.arch.brutal-fortitude before warrior.supplement.spinal-plating, retaining the selected before-resistance stage.",
+            "exactShares": {
+              "bludgeoning": "2*2/9=4/9",
+              "cold": "2*7/9=14/9"
+            },
+            "allocatedReduction": {
+              "bludgeoning": 0,
+              "cold": 2
+            },
+            "afterReduction": {
+              "bludgeoning": 2,
+              "cold": 5
+            },
+            "afterColdResistance": {
+              "bludgeoning": 2,
+              "cold": 2
+            },
+            "damage": 4,
+            "HPAfter": 101,
+            "newWounds": 0,
+            "notSelectedAlternative": "Selecting Spinal after resistance would produce a different result on these inputs; the target cannot optimize that choice or stack both."
+          }
+        ],
+        "ending": "Each branch is a separate complete reset with its own actual7RP cast. One grouped recipient event, no concentration on Warrior, no new zero, no half-maximum damage or maiming trigger. Residual magical terrain deadline60 remains independent of the mutation/source clocks.",
+        "proposedRuleIds": [
+          "P20-ICE-MIXED-07"
+        ],
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+            "bytes": 4945319,
+            "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/spells/454",
+            "operativeIdentity": "ice-storm",
+            "reason": "Complete immutable source/access and printed effect record; operational status is not changed by this report."
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+            "bytes": 17321,
+            "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+            "authorityKind": "FROZEN_SOURCE",
+            "section": "Damage, healing, stacking and companions",
+            "lineRange": [
+              31,
+              39
+            ]
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/11",
+            "operativeIdentity": "warrior.arch.brutal-fortitude"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/15",
+            "operativeIdentity": "warrior.arch.adaptive-tissue"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/105",
+            "operativeIdentity": "warrior.supplement.spinal-plating"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/27",
+            "operativeIdentity": "warrior.hero.wardborn.bulwark-mutation-tree"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/56",
+            "operativeIdentity": "warrior.supplement.bone-hardened"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/cards/67",
+            "operativeIdentity": "warrior.supplement.stonecore"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/2"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/4"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/5"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+            "bytes": 156208,
+            "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7",
+            "authorityKind": "FROZEN_SOURCE",
+            "pointer": "/engine/6"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+            "bytes": 15877,
+            "sha256": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+            "authorityKind": "FROZEN_SOURCE",
+            "section": "Damage, zero HP, Wounds and death saves",
+            "lineRange": [
+              37,
+              58
+            ]
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/classes/warrior.md",
+            "bytes": 112406,
+            "sha256": "e54b6943cf1614f766c18f8a9703869aef7949bac93d541a7326cb1959715b5b",
+            "section": "Book setup, d12 HP"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+            "bytes": 20258,
+            "sha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84",
+            "section": "Chronological HP; d12 fixed7"
+          }
+        ],
+        "runtimeExecuted": false
+      },
+      "reason": "Evidence-only HP derivation:105 is correct for actual d12 Warrior10/CON16. No numeric correction and no new source rule.",
+      "actualGPTConcurrenceOnThisLocalChange": false
+    }
+  ],
+  "sourceInformationDeleted": 0
+}

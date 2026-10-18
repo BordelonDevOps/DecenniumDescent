@@ -1,4 +1,4 @@
-> **Latest development backup — 18 October 2026 UTC:** Video-game development continues with actual GPT. **480 ordinary spells reviewed / 368 pending.** The returned 25-spell corrections and new full conference packets are preserved. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_CONFERENCES.md). Earlier backup notices below are preserved history.
+> **Latest development backup — 18 October 2026 UTC:** Video-game development continues with actual GPT. **480 ordinary spells reviewed / 368 pending.** Current source-preserving corrections, complete review packets and active companion/life conference are saved. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_GEOMETRY.md). Earlier backup notices below are preserved history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 

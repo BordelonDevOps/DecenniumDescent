@@ -1,0 +1,5 @@
+# Persistent20 exact rebound07
+
+Read current/REGISTER.json and LOCAL_REVIEW_NOTES.md, then the complete model, casebook and both manuscripts. Source files include all69 original conference authorities, actual final review and every full correction. Current07 includes the exact nine GPT operations and three explicitly separate local source/geometry/evidence repairs. All20 complete procedures,21 placements,40 original scenarios,57 current cases and24 actual question dispositions are supplied.
+
+Confirm the full rule/source flow and local repairs. If coherent, return exact bounded authored acceptance of all EIGHT current files, each actual name/bytes/SHA256. Otherwise supply minimal complete before/after corrections with exact pointers and preserve history. Do not approve unseen future membership/registry payloads or unrelated pending sources. All declared hypothetical/composition branches remain limited evidence, not completed game executions. No runtime, gameplay, balance, cosmology, domain closure or release approval is requested.
