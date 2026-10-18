@@ -1,4 +1,4 @@
-> **Latest development backup —18 October2026 UTC:** Video game only. **525 ordinary spells reviewed /323 pending.** Agreed copied-spell commitment and recipient effects are implemented in bounded Python integrations. GPT Part4 reached its conversation-length limit; continuation approval is pending. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_COPY_INTEGRATION.md). Earlier notices remain history.
+> **Latest development backup —18 October2026 UTC:** Video game only. **525 ordinary spells reviewed /323 pending.** Shaman/Mirrorsage copy integrations and a six-spell rank-eight source conference are preserved. GPT Part4 is full; continuation creation awaits authorization. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_CLASSES_RANK8.md). Earlier notices remain history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 

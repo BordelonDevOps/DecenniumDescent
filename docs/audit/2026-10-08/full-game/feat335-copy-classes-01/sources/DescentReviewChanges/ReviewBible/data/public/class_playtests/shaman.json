@@ -1,0 +1,1385 @@
+{
+  "schemaVersion": "1.0",
+  "version": "0.1-playtest",
+  "class": "Shaman",
+  "status": "provisional-card-draft-not-balance-approved",
+  "sourceExtractSha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b",
+  "protectedInterfaceOriginal": "Once per round, the first spell cast inside the Shaman's own active Totem aura generates 1 less Dissonance (minimum 0).",
+  "rpByClassLevel": [
+    3,
+    4,
+    7,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30,
+    33,
+    36,
+    39,
+    42,
+    45,
+    48,
+    51,
+    54,
+    58
+  ],
+  "rpAuthority": "Direct Core Systems V2 table",
+  "maxSpellRankByClassLevel": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7
+  ],
+  "asiClassLevels": [
+    4,
+    8,
+    12,
+    16,
+    19
+  ],
+  "engine": [
+    "Wisdom is the class ability. Choose Elemental Affinity automatically at 1: Fire, Ice, Air or Earth. Spellcasting/RP remain separate from Totem objects and flasks. Totem capacity 1, rises 2 at 13; any third replaces one of your existing totems. A totem is a visible Tiny magical object: AC 12+PB, HP 2 L, immobile, immune to poison/psychic/conditions, vulnerable to ordinary weapon and other damage. At 0 HP its aura ends. A new totem appears within 30 ft; cannot occupy a creature's space, serve as a bridge, trap a creature without a save or move through walls.",
+    "Totem Casting is Action 2 RP, duration 3 of your turns, 15 ft aura. Choose Flame, Stone, Frost, Spirit or Renewal. Benefits require an ally/target in the aura, maximum 3 creatures benefiting per pulse/round chosen by you. Flame adds 1 fire to an ally's first direct weapon hit per round; on critical that target Burns 1d4 next turn. Stone reduces damage by 1 and gives enemies-1 to STR checks to shove. Frost: enemy first entering/starting each round makes CON save or Speed-10 ft until end its turn. Spirit: first necrotic/hex damage per target per round adds 1. Renewal: on start and each of next 2 turns with Bonus Action+1 RP maintenance, up to 3 allies regain 2 HP. Thus Renewal total cost 4 RP for 3 pulses; no free healing on entry. All totems share one concentration burden; losing it ends all. Other concentration effects replace them. Non-Renewal auras need no Bonus Action upkeep. Multiple same-name/stat auras do not stack.",
+    "On your turn you may spend Bonus Action to move one totem up to 15 ft along unobstructed ground, remaining within 60 ft. This competes with healing maintenance, companion commands and advanced flasks. Moving an aura over a creature cannot trigger its once/round effect repeatedly. Totem destruction creates no resource return. Once per round, the first ordinary spell cast while inside your own active totem aura generates 1 less Dissonance, minimum 0; no RP reduction.",
+    "The book places Flask Use at Base but describes advanced flask casting as Theurgist/Soothsayer-only. For this draft, Base Flask Use grants mundane prepared tactical flasks thrown with an Action; at Hero 10 only Theurgist/Soothsayer gain magical Bonus Action flasks. Bloodcaller retains mundane alchemical knowledge, not the advanced flask subsystem. At long rest prepare 2 flasks, rising to 3 at 5 and 4 at 11; no encounter refill or stockpiling, total carry cap 4, unused contents become inert when preparing a new batch. This finite-rest supply replaces encounter-based free heal farming.",
+    "Flask tier uses S. Mundane Base modes: Burn=one enemy 30 ft DEX save S d6 fire half, failure 1d4 fire next turn; Root=one ground enemy 30 ft STR save Speed 0 until end its next turn; Weaken=one enemy 30 ft CON save or-1 attack damage until end its next turn. Advanced Hero modes additionally: Stun=one enemy 30 ft CON save or no Reactions, failure by 10 Stunned until end its next turn; Heal=one living ally 30 ft S d6+M HP; Restore=end Frightened or Poisoned on one ally 30 ft. Every thrown flask consumes one prepared unit and 2 RP for advanced magic (Base mundane flasks cost 0 RP). Changing payload requires no separate crafting action when throwing. No flask leaves harvestable poison or another flask.",
+    "Choose Fire/Ice/Air/Earth bonuses through affinity card; Ember/Cold/Shock damage are fire/cold/lightning, Earth uses bludgeoning. Summoned elemental spirits use one standard companion each, maximum one normally; Elemental Chorus expressly summons a package of 4 but all share one Bonus Action command and a printed combined pulse. Companions cannot generate RP, trigger flask refunds or create corpse/kill farms.",
+    "Bloodcaller at Hero 10 transforms permanently into Hagraven, with the player choosing this class path and its stated loss of ordinary Shaman spellcasting. It does NOT lose its RP reservoir: printed Hagraven/Totem techniques still pay RP, but it cannot cast ordinary Shaman spells or advanced magical flasks. It retains prior totem/technique selections. The change is a class choice, not permission for involuntary player-character conversion; ancestry identity and player control remain. At long rest it can prepare mundane flasks only if Base Flask Use is known.",
+    "Shaman Base 1–2, Spiritwalker Arch 3–9, and Theurgist/Soothsayer/Bloodcaller Hero 10–20 remain separate stages. Elemental Affinity is automatic 1, not an extra selection cost. No explicit Arch capstone in source:9 has its ordinary choice. At 20 your selected Hero's last active ultimate gains the explicit new capstone improvement below; no new generic Hero class is invented."
+  ],
+  "workedExample": [
+    "Shaman 5, WIS 16, PB 3, S 2, M 3, RP 12. Know Totem Casting, Spirit Shock, Flask Use, Elemental Ward at 1. Prepare 3 mundane flasks after a real long rest. Totem capacity 1.",
+    "Turn 1: Action Totem Casting places Renewal within 30 ft, pays 2 RP (12→10). Up to 3 allies inside regain 2 HP each. One concentration effect is active.",
+    "Turn 2: Bonus Action maintenance pays 1 RP (10→9), heals 2 HP to up to 3 allies. Action Spirit Shock costs 2 RP (9→7) and deals 2d8 on failed save. No extra flask Bonus Action remains.",
+    "Turn 3: Bonus Action+1 RP Renewal maintenance (7→6), final 2 HP pulse. Action throws one mundane Root flask, prepared count 3→2, no RP; target STR save. Its save success gives no refund.",
+    "At start turn 4 totem expires. Placing a new Renewal costs full 2 RP and starts another finite 3 pulse effect. Encounter end does not refill flasks or RP.",
+    "At Hero 10 a Bloodcaller still uses this totem/technique loop, but cannot cast ordinary Shaman spells or advanced Bonus Action magical flasks."
+  ],
+  "balanceQuestions": [
+    "Do totem movement and maintenance create useful Bonus Action choices?",
+    "Do flask preparation limits stop healing stockpiles without making alchemy tedious?",
+    "Does Hagraven retain enough breadth after losing ordinary spellcasting?"
+  ],
+  "cards": [
+    {
+      "id": "shaman.base.elemental-affinity",
+      "name": "Elemental Affinity",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "automatic",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Chosen permanently at 1",
+      "frequency": "Automatic",
+      "effect": "Choose Fire: first fire technique hit/turn adds 1 damage; Ice: first cold damage target/turn loses 5 ft Speed until end next turn; Air:+5 ft Speed; Earth:+1 on STR/CON saves against forced movement. These are alternatives, not cumulative affinities.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4011,
+        "originalText": "Elemental Affinity: Choose an element (Fire, Ice, Air, or Earth) that enhances your abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.spirit-sight",
+      "name": "Spirit Sight",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP",
+      "rangeAndTarget": "Exposed spirits/elementals within 30 ft",
+      "duration": "1 minute",
+      "frequency": "Recharge 3",
+      "effect": "Perceive location/outline of invisible spirits and elementals not behind total cover. This does not reveal unrelated invisible creatures, private memories or all magical traps. No attack advantage against ordinary hidden creatures.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4012,
+        "originalText": "Spirit Sight: Perceive spirits and elemental forces invisible to others."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.alchemical-knowledge",
+      "name": "Alchemical Knowledge",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One potion/substance examined for 1 minute",
+      "duration": "Check only",
+      "frequency": "At will",
+      "effect": "Gain advantage on INT(Arcana) or alchemist-tool checks to identify a substance's mundane ingredients and likely purpose. Identification does not guarantee safety or supply a recipe/materials; failure yields uncertainty, not false certainty.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4013,
+        "originalText": "Alchemical Knowledge: Identify potions and alchemical substances with greater accuracy."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.primal-resilience",
+      "name": "Primal Resilience",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Resistance to affinity damage: Fire fire, Ice cold, Air lightning, Earth thunder. Does not stack with another resistance or grant immunity to related terrain hazards.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4014,
+        "originalText": "Primal Resilience: Gain resistance to your chosen elemental affinity."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.ancestral-whispers",
+      "name": "Ancestral Whispers",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 short-rest use",
+      "rangeAndTarget": "Self just failing a Perception or initiative-related check",
+      "duration": "One roll",
+      "frequency": "1/short rest",
+      "effect": "Reroll with+M, using the new result. Requires ability to hear the spirit warning; cannot reroll a save/attack or retroactively undo a completed ambush round.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4015,
+        "originalText": "Ancestral Whispers: Occasionally receive guidance from ancestral spirits when in danger."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.flask-use",
+      "name": "Flask Use",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 prepared mundane flask",
+      "rangeAndTarget": "One target within 30 ft",
+      "duration": "Payload-specific",
+      "frequency": "Prepared 2/3/4 at 1/5/11 per long rest",
+      "effect": "Throw a Burn, Root or Weaken flask using the exact engine profile. At Hero 10 Theurgist/Soothsayer may instead throw an advanced mode as Bonus Action for 2 RP and a prepared flask. Bloodcaller does not gain that upgrade.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4018,
+        "originalText": "Flask Use: Create and throw elemental bombs (2 per encounter) that cause various effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.totem-casting",
+      "name": "Totem Casting",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP; Renewal upkeep 1 RP+Bonus Action",
+      "rangeAndTarget": "One totem within 30 ft with 15 ft aura",
+      "duration": "3 of your turns",
+      "frequency": "Capacity 1, 2 at 13",
+      "effect": "Place one Flame/Stone/Frost/Spirit/Renewal totem using the engine's exact profile. All your totems share concentration. Respect 3 creature aura/pulse limit; same-stat bonuses do not stack. Replacing a totem ends it without refund.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4019,
+        "originalText": "Totem Casting: Place a totem that creates an aura effect for 3 rounds."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.spirit-shock",
+      "name": "Spirit Shock",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One enemy within 60 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 2",
+      "effect": "Target makes DEX save: S d8 affinity damage, half on success. Affinity rider applies once; this printed technique is not an ordinary spell, cannot Overcast and does not generate a flask or totem.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4020,
+        "originalText": "Spirit Shock: Channel elemental energy into a damaging burst."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.commune-with-spirits",
+      "name": "Commune with Spirits",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Ritual",
+      "cost": "1 RP; 10 minutes",
+      "rangeAndTarget": "Local spirit within 30 ft or area examined",
+      "duration": "Up to 3 questions",
+      "frequency": "1/short rest",
+      "effect": "Ask about events the local spirit could have perceived within the previous day. Director gives truthful sensory information or unknown. No compelled omniscience, future certainty or forced player beliefs.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4021,
+        "originalText": "Commune with Spirits: Gain information about an area or object by consulting with local spirits."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.base.elemental-ward",
+      "name": "Elemental Ward",
+      "className": "Shaman",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 RP",
+      "rangeAndTarget": "Self or ally within 15 ft taking elemental damage",
+      "duration": "One damage instance",
+      "frequency": "Recharge 2",
+      "effect": "Reduce acid/cold/fire/lightning/thunder damage by S d6+M, minimum 0. No reflected damage or resource gain. Does not protect from unrelated physical/psychic damage.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4022,
+        "originalText": "Elemental Ward: Create a temporary barrier against a specific type of elemental damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.enhanced-elemental-attunement",
+      "name": "Enhanced Elemental Attunement",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your affinity techniques",
+      "duration": "While known",
+      "frequency": "Once/turn",
+      "effect": "Fire adds 1 to first fire damage roll; Ice's slow increases to 10 ft; Air also gives+1 initiative; Earth adds+1 to CON concentration saves. These replace corresponding basic affinity quantities rather than duplicating them.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4028,
+        "originalText": "Enhanced Elemental Attunement: Your chosen element grants additional benefits to your abilities."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.extended-totem-duration",
+      "name": "Extended Totem Duration",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0; full upkeep for extra Renewal pulse",
+      "rangeAndTarget": "One of your totems",
+      "duration": "Maximum 4 of your turns",
+      "frequency": "Continuous",
+      "effect": "Totems last 1 extra turn. Renewal may have a fourth pulse only if you pay Bonus Action+1 RP on that turn; no fifth pulse and no automatic free healing. Concentration still required.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4029,
+        "originalText": "Extended Totem Duration: Totems last for an additional round."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.spirit-cache",
+      "name": "Spirit Cache",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 short-rest use",
+      "rangeAndTarget": "One flask/to-tem effect you directly used",
+      "duration": "Stored until encounter end",
+      "frequency": "1/short rest",
+      "effect": "Store its profile, not an active copy. On a later turn use normal Action/Bonus Action and pay all RP and a new flask unit or full totem cost to repeat it. Add 1d6 to one numerical damage/heal amount; no copy of refund/limited use.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4030,
+        "originalText": "Spirit Cache: Store one flask or totem effect to recast later (once per encounter)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.totem-pulse",
+      "name": "Totem Pulse",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 6,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "1 RP optional",
+      "rangeAndTarget": "Up to 3 creatures inside newly placed non-healing totem",
+      "duration": "Instant",
+      "frequency": "Once/turn",
+      "effect": "On placement pay 1 RP: allies gain M temporary HP OR enemies make DEX save for S affinity damage, half on success. No immediate second Renewal healing pulse, no repeat from moving the totem.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4031,
+        "originalText": "Totem Pulse: Totems create an immediate area effect when placed (level 6)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.spirit-saturation",
+      "name": "Spirit Saturation",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 9,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "One non-Renewal totem you place",
+      "duration": "Normal duration",
+      "frequency": "1/long rest",
+      "effect": "Waive its 2 RP placement cost once. Still use Action, concentration, capacity and any added costs. Cannot create a healing totem or be cached/refunded to generate more free casts.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4032,
+        "originalText": "Spirit Saturation: Gain one free totem cast per combat (level 9)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.elemental-channeling",
+      "name": "Elemental Channeling",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "Self",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Embody affinity: gain+10 ft Speed and once/turn add 1d4 affinity damage to a weapon hit. Fire/cold/lightning/bludgeoning by affinity. This concentration replaces your totem burden, so it is a tactical alternative.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4035,
+        "originalText": "Elemental Channeling: Temporarily embody your chosen element, gaining related benefits."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.spirit-walk",
+      "name": "Spirit Walk",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Self",
+      "duration": "Until end current turn",
+      "frequency": "Recharge 3",
+      "effect": "Move up to 15 ft through creatures and nonmagical material no thicker than 5 ft, ending in a visible empty space. Gain no attack immunity; take 1d6 force if no legal exit and return to starting space. No attacks/casts while inside matter.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4036,
+        "originalText": "Spirit Walk: Briefly become incorporeal, passing through solid objects or avoiding damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.ancestral-guardian",
+      "name": "Ancestral Guardian",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "2 RP",
+      "rangeAndTarget": "Ally within 30 ft being damaged",
+      "duration": "One damage instance",
+      "frequency": "Recharge 3",
+      "effect": "A guardian prevents S d8+M damage, minimum 0. It then vanishes and creates no companion action, corpse or refund. Cannot prevent sacrifice/trauma or redirect prevented damage into another trigger.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4037,
+        "originalText": "Ancestral Guardian: Summon a protective spirit that intercepts damage meant for you."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.elemental-surge",
+      "name": "Elemental Surge",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 5,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One active totem within 60 ft",
+      "duration": "Until start next turn",
+      "frequency": "Recharge 3",
+      "effect": "Choose one: aura radius+5 ft OR numerical flat benefit improves by 1. Renewal instead adds M HP to its next paid pulse, once, without adding a pulse. Same-name/stat stacking rules remain.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4038,
+        "originalText": "Elemental Surge: Enhance a totem's effect for one round."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.arch.spirit-binding",
+      "name": "Spirit Binding",
+      "className": "Shaman",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 7,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One willing ally or held object within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 3",
+      "effect": "Ally gains resistance to your affinity damage; OR its held weapon adds 1d4 affinity damage on first hit/turn. Choose one, fixed for duration. Spirit cannot cast independently or grant spell knowledge.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4039,
+        "originalText": "Spirit Binding: Temporarily bind a minor elemental spirit to an object or ally, granting benefits."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.echo-totem",
+      "name": "Echo Totem",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 additional RP",
+      "rangeAndTarget": "Adjacent empty space within 5 ft of newly placed totem",
+      "duration": "Same remaining duration",
+      "frequency": "Once/placement",
+      "effect": "Create a weak echo anchor of that totem. It counts toward capacity; if no space in capacity, cannot create it. Its radius 10 ft and numerical bonuses/healing are half, rounded down. Shared concentration/upkeep and same-name nonstacking prevent double healing.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4048,
+        "originalText": "Echo Totem: Automatically cast a second, weaker totem when placing your primary totem."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.elemental-harmony",
+      "name": "Elemental Harmony",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your summoned elemental",
+      "duration": "Summon duration",
+      "frequency": "Continuous",
+      "effect": "Add class level to its maximum/current HP on creation and 1 turn duration, maximum 4 turns for class summons. Cannot extend once/day Chorus beyond 4 turns or restore an existing creature's lost HP.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4049,
+        "originalText": "Elemental Harmony: Your elemental summons gain increased duration and health."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.spiritual-resonance",
+      "name": "Spiritual Resonance",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Two of your active totems within 10 ft of one another",
+      "duration": "While placement condition holds",
+      "frequency": "Continuous",
+      "effect": "Their aura radii increase 5 ft. No extra targets or extra pulses and overlapping same-name benefits do not stack. One totem and its echo still use normal capacity.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4050,
+        "originalText": "Spiritual Resonance: Totems affect a larger area when placed near each other."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.benevolent-spirits",
+      "name": "Benevolent Spirits",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "One ally below half HP healed by your paid technique",
+      "duration": "Instant",
+      "frequency": "Once/turn",
+      "effect": "Add M HP to that healing. It does not improve multiple targets, copies or triggered heals, and cannot itself trigger Benevolent Spirits again.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4051,
+        "originalText": "Benevolent Spirits: Your healing effects are 25% more powerful on allies below half health."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.summon-ice-wisp",
+      "name": "Summon Ice Wisp",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "One spirit in empty space within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Summon standard Ice Wisp with fly 30 ft. Commanded attack deals cold; on hit target STR save or Speed 0 until end its next turn. No whole-turn freezing, bonus independent spells or multiple companion attacks.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4054,
+        "originalText": "Summon Ice Wisp: Call forth a spirit of frost that can snare and freeze enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.summon-airling",
+      "name": "Summon Airling",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "One spirit within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Summon standard Airling with fly 40 ft. Commanded attack deals lightning; on hit target CON save or loses Reactions until end its next turn. Failure by 10 also Stunned, subject to the shared hard-denial guard across all the Shaman’s features. Companion Stun counts as the Shaman’s denial; if the target already suffered that denial this encounter, only damage and Reaction loss resolve. One shared companion command.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4055,
+        "originalText": "Summon Airling: Conjure an air elemental that stuns enemies and deals lightning damage."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.summon-cinderflame",
+      "name": "Summon Cinderflame",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "One spirit within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Summon standard Cinderflame. Commanded hit deals fire plus Burn 1d4 next target turn. On destruction only (not dismissal), up to 3 enemies within 5 ft make DEX save for S d4 fire, half. Explosion creates no further death/resource triggers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4056,
+        "originalText": "Summon Cinderflame: Create a fire spirit that applies burning damage over time and explodes on death."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.summon-stonekin",
+      "name": "Summon Stonekin",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "One spirit within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "Recharge 4",
+      "effect": "Summon standard Stonekin. Command chooses bludgeoning attack with STR save or Prone on hit, OR gives up to 3 adjacent allies reduction 2 until start next turn. No simultaneous attack and protection command.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4057,
+        "originalText": "Summon Stonekin: Manifest an earth elemental that can root enemies and grant damage reduction to allies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.theurgist.elemental-chorus",
+      "name": "Elemental Chorus",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Theurgist",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "8 RP; 1 long-rest use",
+      "rangeAndTarget": "Four spirits in 10 ft-radius zone within 30 ft",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Summon a single Chorus package: four visible spirits share HP 4 L, AC 12+PB, immobile. Bonus Action command pulses up to 3 enemies: DEX save S d6 chosen affinity damage half; one failed target Speed-10 ft until end next turn. Four spirits do not make four separate attacks.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4058,
+        "originalText": "Elemental Chorus: Ultimate ability that summons all four elemental types around a zone for massive combined effect."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.divining-totem",
+      "name": "Divining Totem",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One divining totem within 30 ft; observed enemy in aura",
+      "duration": "3 of your turns",
+      "frequency": "Capacity and concentration as totems",
+      "effect": "Each own-turn start choose one visible enemy in 15 ft aura. First ally attack against it before your next turn gains+1 to hit; first attack it makes has-1. Predicts immediate intent, not guaranteed future actions; totem has ordinary object stats.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4064,
+        "originalText": "Divining Totem: Place a special totem that reveals enemy actions before they occur (one target per round)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.predictive-alchemy",
+      "name": "Predictive Alchemy",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "One prepared flask just thrown",
+      "duration": "Instant",
+      "frequency": "1/long rest",
+      "effect": "Retain the spent flask count once, but still pay RP/Action and all other costs. This deterministic refund cannot be copied, cached or apply to another refunded use. Carry cap 4 remains.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4065,
+        "originalText": "Predictive Alchemy: Your flasks have a chance to not be consumed when used."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.fate-s-whisper",
+      "name": "Fate's Whisper",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "1 short-rest use",
+      "rangeAndTarget": "Self before making a saving throw",
+      "duration": "One save",
+      "frequency": "1/short rest",
+      "effect": "Gain advantage on that save. Must declare before rolling; no additional reroll if advantage already applies. Does not create a Prophecy Trigger or restore RP.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4066,
+        "originalText": "Fate's Whisper: Gain advantage on one saving throw per encounter."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.balanced-elements",
+      "name": "Balanced Elements",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your own elemental slowing/burning effect",
+      "duration": "As modified",
+      "frequency": "Once/turn",
+      "effect": "Choose one application: add 1 damage to its next Burn tick OR extend a Speed reduction until end target's following turn. Never extends Stunned, silence, concentration duration or whole-Action denial.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4067,
+        "originalText": "Balanced Elements: Your elemental effects last longer and have secondary effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.delayed-detonation",
+      "name": "Delayed Detonation",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 prepared flask; normal payload RP",
+      "rangeAndTarget": "Point within 30 ft",
+      "duration": "Until start your next turn",
+      "frequency": "Recharge 3",
+      "effect": "Set a flask to trigger at start next turn or first enemy entering 5 ft before then; choose when placing. On trigger one creature within 5 ft resolves its normal payload/save. If no target when timer ends it is spent harmlessly. No repeated explosions.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4070,
+        "originalText": "Delayed Detonation: Throw a flask that explodes after a set time or trigger."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.healing-splash",
+      "name": "Healing Splash",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "1 prepared flask; 3 RP",
+      "rangeAndTarget": "Up to 3 living allies in 5 ft radius within 30 ft",
+      "duration": "Instant",
+      "frequency": "Recharge 3",
+      "effect": "Each regains S d6+M HP, shared roll. This consumes a flask and replaces its normal payload. No damage to enemies, free conditions removed or resource refunds beyond the explicit once/day Predictive Alchemy.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4071,
+        "originalText": "Healing Splash: Convert a damage flask into an area healing effect."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.omen-brand",
+      "name": "Omen Brand",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One enemy within 60 ft",
+      "duration": "Until end next turn",
+      "frequency": "Recharge 3",
+      "effect": "Next ally attack against target has advantage and ignores half cover; not an automatic hit. If attack misses the brand ends. Cannot override total cover, immunity or target legality.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4072,
+        "originalText": "Omen Brand: Mark a target so that the next ally's ability against them automatically hits."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.fate-weaving",
+      "name": "Fate Weaving",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Reaction",
+      "cost": "4 RP; 1 short-rest use",
+      "rangeAndTarget": "One creature within 60 ft just rolled an attack/save/check",
+      "duration": "Immediate reroll",
+      "frequency": "1/short rest",
+      "effect": "Force one d20 reroll after result known but before consequence, using new result. Cannot reroll damage, resource quantities, a reroll or an already resolved event. No beliefs or future outcomes guaranteed.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4073,
+        "originalText": "Fate Weaving: Manipulate probability to force a reroll of any die."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.soothsayer.omen-loop",
+      "name": "Omen Loop",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Soothsayer",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "Normal RP+2 RP; fresh flask if required; 1 long-rest use",
+      "rangeAndTarget": "Your own qualifying effect used within previous 2 turns",
+      "duration": "Normal effect duration",
+      "frequency": "1/long rest",
+      "effect": "Repeat one non-Finale, non-resource-restoring class flask/totem effect with normal targets and full costs. It replaces the current Action; cannot repeat another repeat, regain per-rest uses or exceed totem capacity. If effect required a flask, consume one now.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4074,
+        "originalText": "Omen Loop: Ultimate ability that repeats a spell, flask, or totem cast from two turns ago (once per encounter)."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.hagraven-form",
+      "name": "Hagraven Form",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "automatic",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Permanent while Bloodcaller",
+      "frequency": "Automatic on Hero entry",
+      "effect": "Become Hagraven: retain player control/mental stats, light-armor use and ordinary movement; claws are finesse 1d6 slashing, darkvision 60 ft and poison resistance. Lose ordinary Shaman spellcasting/advanced magical flasks; retain RP for printed techniques and totems. No free flight or hidden monster stat block.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4082,
+        "originalText": "Hagraven Form: Your body transforms into a twisted, avian-humanoid hybrid with natural weapons and resistances."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.blood-feast",
+      "name": "Blood Feast",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "Self at start regular turn; hostile bleeding creature within 10 ft",
+      "duration": "Instant",
+      "frequency": "Once/turn",
+      "effect": "Pay 1 RP to regain M HP. Bleeding allies, summons or staged captives cannot qualify. No healing while Downed; secondary heal creates no damage/resource triggers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4083,
+        "originalText": "Blood Feast: Heal when enemies near you are bleeding."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.necrotic-aura",
+      "name": "Necrotic Aura",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "1 RP",
+      "rangeAndTarget": "Up to 3 enemies within 10 ft at your turn start",
+      "duration": "Instant",
+      "frequency": "Once/turn",
+      "effect": "Pay 1 RP; CON save S d4 necrotic, half on success. This replaces unlimited free aura damage. Cannot trigger itself, create Bleed or generate additional RP from kills.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4084,
+        "originalText": "Necrotic Aura: Enemies within 10 feet take minor necrotic damage each round."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.spell-resistance",
+      "name": "Spell Resistance",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "passive",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "While known",
+      "frequency": "Continuous",
+      "effect": "Advantage on saving throws against spells. Does not give advantage against every supernatural weapon or class technique unless it is explicitly a spell; no automatic spell negation or RP refund.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4085,
+        "originalText": "Spell Resistance: Gain advantage on saves against spells and magical effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.blight-totem",
+      "name": "Blight Totem",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "Totem within 30 ft; 15 ft aura affecting all creatures",
+      "duration": "3 of your turns",
+      "frequency": "Ordinary totem capacity/concentration",
+      "effect": "HP healing received inside aura is halved, rounding down, including allies and you. Nonstacking with another healing reduction; temporary HP unaffected. This totem has standard object stats and grants no free damage/healing.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4088,
+        "originalText": "Blight Totem: Place a corrupted totem that reduces all healing in its area by 50%."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.blood-curse",
+      "name": "Blood Curse",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 RP",
+      "rangeAndTarget": "One living enemy within 60 ft",
+      "duration": "3 target turns",
+      "frequency": "Recharge 3",
+      "effect": "CON save or Bleed 1d4 necrotic at start of each of next 3 turns. Action plus successful Medicine check against class DC ends it; magical healing also permits an immediate CON save to end. Never permanently unhealable; no repeated stacking.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4089,
+        "originalText": "Blood Curse: Inflict a bleeding wound that cannot be healed normally."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.talon-strike",
+      "name": "Talon Strike",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "active",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One enemy in claw reach",
+      "duration": "Instant; reduction until end next turn",
+      "frequency": "Recharge 2",
+      "effect": "Make one claw attack; hit adds S d6 necrotic and reduces the next healing it receives by M, minimum 0. Applies once and ends. No arbitrary percent stacking or permanent maximum-HP reduction.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4090,
+        "originalText": "Talon Strike: Make a vicious attack that causes bleeding and reduces healing received."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.death-shriek",
+      "name": "Death Shriek",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "active",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "4 RP",
+      "rangeAndTarget": "Up to 3 enemies within 15 ft that hear you",
+      "duration": "Until end each target's next turn",
+      "frequency": "Recharge 3",
+      "effect": "WIS save or Frightened and disadvantage on next concentration save. It still gets ordinary Actions and new saves normally; repeats WIS save at turn end to end fear early. Not automatic failure or total spell disable.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4091,
+        "originalText": "Death Shriek: Emit a terrifying cry that causes enemies to have disadvantage on concentration and casting."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.hero.bloodcaller.bloodroot-trail",
+      "name": "Bloodroot Trail",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": "Bloodcaller",
+      "sourceKind": "active",
+      "minimumClassLevel": 16,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "6 RP; 1 long-rest use",
+      "rangeAndTarget": "Up to 30 ft of ground traversed this turn, 5 ft wide",
+      "duration": "Concentration, 3 of your turns",
+      "frequency": "1/long rest",
+      "effect": "Leave a visible bloodroot trail, no solid wall. Each enemy first entering/starting on it per round makes DEX save for S d6 necrotic, half on success; failure Bleed 1d4 next turn. Maximum 3 creatures damaged/round chosen in entry order; no persistent corruption after expiry.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 4092,
+        "originalText": "Bloodroot Trail: Ultimate ability that leaves a cursed line wherever you move; enemies crossing it take damage and start bleeding."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "shaman.supplement.elder-spirit-accord-new-hero-capstone",
+      "name": "Elder Spirit Accord — new Hero capstone",
+      "className": "Shaman",
+      "band": "Hero",
+      "path": null,
+      "sourceKind": "supplement",
+      "minimumClassLevel": 20,
+      "acquisition": "automatic",
+      "activation": "Triggered",
+      "cost": "1 long-rest use",
+      "rangeAndTarget": "Your chosen Hero ultimate",
+      "duration": "One activation",
+      "frequency": "1/long rest",
+      "effect": "When starting Elemental Chorus, Omen Loop or Bloodroot Trail, reduce its RP cost by 3, minimum 1, and add M to one damage/healing roll from that use. You must know that ability and still spend its own limited use. If you do not know it, instead reduce one known Hero technique's RP cost by 3, minimum 1. No extra duration, flask, totem, command or repeated cast.",
+      "prerequisite": "See class engine and progression.",
+      "source": {
+        "line": null,
+        "reference": null,
+        "originalText": "",
+        "status": "explicit-new-playtest-completion"
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ],
+  "schedule": [
+    {
+      "classLevel": 1,
+      "choose": 4,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 2,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 2,
+      "choose": 2,
+      "bands": [
+        "Base"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 3,
+      "choose": 2,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 4,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 5,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 6,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 7,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 8,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 9,
+      "choose": 1,
+      "bands": [
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 10,
+      "choose": 2,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 1,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 11,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 12,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 13,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 14,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 15,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 16,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 17,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 18,
+      "choose": 1,
+      "bands": [
+        "Hero"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    },
+    {
+      "classLevel": 19,
+      "choose": 1,
+      "bands": [
+        "Base",
+        "Arch"
+      ],
+      "minimumActives": 0,
+      "asiOrFeat": true
+    },
+    {
+      "classLevel": 20,
+      "choose": 0,
+      "bands": [],
+      "minimumActives": 0,
+      "asiOrFeat": false
+    }
+  ],
+  "exceptionSchedule": {},
+  "sourceFiles": [
+    "../../../data/playtest/class_sources/shaman.json",
+    "../../../data/playtest/class_sources/supplements.json"
+  ],
+  "authoringNotes": "Provisional; notebook adversarial findings reconciled and source-preserving editorial review complete. Human balance testing remains."
+}

@@ -1,0 +1,149 @@
+{
+  "id": "FEAT335-COPY-RELEASE-INTEGRATION-01",
+  "recordedAtUtc": "2026-10-18T09:31:37.005778+00:00",
+  "status": "IMPLEMENTED_BOUNDED_AGREED_RULES; GPT_UPDATE_PREPARED_UNSENT",
+  "authority": {
+    "path": "docs/audit/2026-10-08/full-game/feat335-copy-release-source-addendum-01/FEAT335_COPY_RELEASE_SOURCE_ADDENDUM_01.json",
+    "bytes": 10469,
+    "sha256": "667141a1116129f9213ff53387c713f66c05b6d31efad324b0ab251a943c843b"
+  },
+  "actualDecisionReceipt": {
+    "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_SOURCE_01_RECEIVED_DECISION.json",
+    "bytes": 1565,
+    "sha256": "8e48db1c49e36adb7565b6316d9ec71ed6ceb304d2b83d07f6653c1b15dca74f"
+  },
+  "implementation": {
+    "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+    "bytes": 13155,
+    "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+  },
+  "validation": {
+    "path": "docs/audit/2026-10-08/full-game/FEAT335_COPY_RELEASE_01_CHECK.json",
+    "bytes": 868662,
+    "sha256": "577b92bf5f82030ef2203623f0d8fed155aec09d45b10489e04bd16780111a07"
+  },
+  "validationScope": "Actual paid copy acquisitions and conditional witnessed source components connect to direct-Action payment, RP/cadence, permission consumption, owner-round cap, current provider and shared concentration. Separate Ready lifecycle boundary exercised.",
+  "acceptanceCoverage": [
+    {
+      "id": "CRS01-A",
+      "expectation": "Two consecutive Eldritch Echo captures of the same underlying spell identity, even from different source events or with different bounded profile/q choices, share one feat-copy family; the second copy receives the next ordinary Refrain step. Capture event ID does not reset history.",
+      "status": "bounded-interface-tested",
+      "limitations": [
+        "Different actual capture/profile/feat tested; two Echo captures across a real beneficial rest and varying same-source class rank are not executed."
+      ]
+    },
+    {
+      "id": "CRS01-B",
+      "expectation": "A Mimicry copy and later Arcane Adaptation activation of the same underlying captured spell/effect identity share the same feat-copy family. Changing permission source or casting ability route does not reset Refrain.",
+      "status": "bounded-interface-tested",
+      "limitations": []
+    },
+    {
+      "id": "CRS01-C",
+      "expectation": "An ordinary personally known cast of the underlying spell followed by a feat-copy cast uses two distinct chronological families. The ordinary cast does not grant the copy and does not pre-load the feat-copy Refrain family.",
+      "status": "bounded-interface-tested",
+      "limitations": [
+        "Ordinary quote/history boundary tested; no full ordinary spell cast/payload transaction here."
+      ]
+    },
+    {
+      "id": "CRS01-D",
+      "expectation": "Two different underlying source spell/effect identities that both map to Strike remain different feat-copy families; common profile ID alone does not merge history.",
+      "status": "bounded-interface-tested",
+      "limitations": []
+    },
+    {
+      "id": "CRS02-A",
+      "expectation": "Strike/Burst/Mend/Step do not displace existing concentration merely because they are feat-copy casts; each resolves immediately.",
+      "status": "bounded-interface-tested",
+      "limitations": []
+    },
+    {
+      "id": "CRS02-B",
+      "expectation": "Ward/Hindrance/Boon displace incompatible prior concentration at commitment. Countering afterward does not restore prior concentration and leaves no copied lasting effect.",
+      "status": "bounded-interface-tested",
+      "limitations": []
+    },
+    {
+      "id": "CRS02-C",
+      "expectation": "A successful lasting Ward/Hindrance/Boon ends immediately on lost concentration even if its stated two-interval/source deadline has not arrived.",
+      "status": "bounded-interface-tested",
+      "limitations": []
+    },
+    {
+      "id": "CRS02-D",
+      "expectation": "Ready preparation already holds concentration. Releasing Ward/Hindrance/Boon continues the same one burden; releasing an immediate profile ends the Ready hold after resolution. No second concentration slot exists.",
+      "status": "bounded-interface-tested",
+      "limitations": [
+        "Shared concentration lifecycle tested from paid-preparation premise; Ready payment, trigger, Reaction, expiry scheduling and release cap remain unintegrated."
+      ]
+    },
+    {
+      "id": "CRS03-A",
+      "expectation": "Wizard-qualified feat copy does not receive Wizard first-prepared-matrix base-Dissonance exemption and is not a prepared matrix.",
+      "status": "bounded-interface-tested",
+      "limitations": []
+    },
+    {
+      "id": "CRS03-B",
+      "expectation": "Shaman-qualified feat copy inside its own totem aura does not consume or benefit from the ordinary-Shaman-spell vent unless a future source explicitly names feat-copy casts.",
+      "status": "open-class-provider-integration",
+      "limitations": [
+        "Unsupported actual class routes reject; no Shaman totem or Mirrorsage shared allowance engine executed."
+      ]
+    },
+    {
+      "id": "CRS03-C",
+      "expectation": "Mirrorsage qualification does not import class Echo Release first-release Refrain waiver; the feat copy still consumes the shared release allowance only where its exact existing source says so.",
+      "status": "open-class-provider-integration",
+      "limitations": [
+        "Unsupported actual class routes reject; no Shaman totem or Mirrorsage shared allowance engine executed."
+      ]
+    },
+    {
+      "id": "CRS03-D",
+      "expectation": "At PB3 and casting modifier +3, feat-copy Limit is max(4,6+3)=9. Ordinary class spell Limit under the separate integration formula would be max(4,2+3+3)=8; this difference is intentional scoped authority, not a global correction.",
+      "status": "bounded-interface-tested",
+      "limitations": []
+    },
+    {
+      "id": "CRS03-E",
+      "expectation": "Feat-only Eldritch Blast route can qualify q0 with CHA; it cannot establish q1+ ceiling, a class engine, Wizard/Mirrorsage/Shaman protections, or another RP pool.",
+      "status": "bounded-interface-tested",
+      "limitations": []
+    }
+  ],
+  "counts": {
+    "checks": 136,
+    "conditionalPaidHistories": 19,
+    "copyProfiles": 7,
+    "acceptanceRowsTracked": 13,
+    "openActualClassProviderRows": 2
+  },
+  "openWork": [
+    "Recipient damage/healing/buffer/control/movement payloads and real world clocks.",
+    "Full Shaman and Mirrorsage qualification and class shared-release allowance integration.",
+    "Full Ready payment/action/trigger/Reaction/expiry transaction; concentration boundary alone is implemented.",
+    "Actual price modifiers, world suppression/dispels and executable game-engine integration."
+  ],
+  "queuedSourceIssue": {
+    "id": "COPY-READY-ALLOWANCE-01",
+    "status": "Question for actual GPT; no new rule selected",
+    "question": "FS-08 casts and pays Ready at preparation, while SUP-07 caps one feat-copy release per owner per numbered round and Mimicry consumes a failed/countered release. For a held feat-copy prepared in round N and released in N+1, identify an existing exact ruling or specify when the owner-round allowance (and an actually owned Mirrorsage shared allowance) is checked/reserved/spent, including countered preparation, failed/lost hold and a competing direct release. Do not infer a new timing from the lifecycle-only adapter.",
+    "context": "Direct Action commitment reserves its round; Ready is deliberately not accepted by that adapter. Concentration-only tests begin from an already-paid preparation premise."
+  },
+  "limits": [
+    "World source completion, perception, capture geometry, action frames, selection legality and magic/component predicates remain conditional scenario premises.",
+    "Only the actual Wizard and paid rank-zero Blast credential routes are connected. Shaman/Mirrorsage and other providers, shared class release caps and priced modifiers are not implemented.",
+    "Recipient HP/damage/healing/movement/buffer/control effects, real world deadlines, suppression/dispel, save-load and live engine behavior are not executed by this release adapter.",
+    "Concentration effectActive is a lifecycle record, not evidence of an actual recipient modifier or successful target resolution.",
+    "Ready starts from already-paid preparation; no complete Ready transaction or owner-round cap timing is claimed.",
+    "Source-bound finite tests do not approve the 335 feats, numerical balance, human gameplay, cosmology canon, publication or whole game."
+  ],
+  "newRuleAdoptions": 0,
+  "sourceInformationDeleted": 0,
+  "fullFeatExactApproved": false,
+  "runtimeApproved": false,
+  "humanBalanceApproved": false,
+  "wholeGameComplete": false
+}
