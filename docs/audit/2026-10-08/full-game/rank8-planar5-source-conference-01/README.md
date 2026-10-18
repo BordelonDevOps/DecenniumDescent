@@ -1,0 +1,1 @@
+Five exact rank8 planar sources, seven placements and24 unselected questions. Original cosmology manuscripts and saved website plus explicit owner corrections are supplied in full. Five individual tierC assessments. Applied spell counterparts and separately accepted-but-unapplied Illusion/Control context preserve exact scopes. No new rule, case, runtime or cosmology adoption.

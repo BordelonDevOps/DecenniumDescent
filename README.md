@@ -1,4 +1,4 @@
-> **Latest development backup —18 October2026 UTC:** Video game only. **525 ordinary spells reviewed /323 pending;249 standalone.** Full Control15 conference accepted an exact proposed successor;39 accepted spell identities remain unapplied. Three new source conferences and evidence through checkpoint41 are preserved. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_CONTROL15_FINAL.md). Earlier notices remain history.
+> **Latest development backup —18 October2026 UTC:** Video game only. **525 reviewed /323 pending;249 standalone.** Source preparation through checkpoint45 is preserved, with221 pending identities grouped and102 ungrouped rank9 identities.39 accepted spells remain unapplied. Four copied-feat defects were reproduced; final GPT corrections remain pending. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_RANK9_SOURCES.md). Earlier notices remain history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 
