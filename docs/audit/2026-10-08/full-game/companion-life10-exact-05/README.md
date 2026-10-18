@@ -1,0 +1,1 @@
+Read current/REGISTER.json and LOCAL_REVIEW_NOTES.md, then the complete model, casebook and both chapters. Review eight exact current artifacts. Historical source bytes are under historical-current04/; complete current source bytes under sources/. Command Undeath retains two explicit whole-case holds. No pending NPC or counterpart is approved by inclusion.

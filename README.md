@@ -1,4 +1,4 @@
-> **Latest development backup —18 October2026 UTC:** Video game only. **525 ordinary spells reviewed /323 pending.** Persistent20 exact acceptance and verified application are preserved. Full companion Current04 is under actual GPT review. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_PERSISTENT20.md). Earlier notices remain history.
+> **Latest development backup —18 October2026 UTC:** Video game only. **525 ordinary spells reviewed /323 pending.** Companion Current04 decisions are preserved in a complete exact05 draft awaiting review; Illusion14 is under actual GPT review. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_COMPANION_ILLUSION.md). Earlier notices remain history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 
