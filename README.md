@@ -1,4 +1,4 @@
-> **Latest development backup —18 October2026 UTC:** Video game only. **525 ordinary spells reviewed /323 pending.** Three new rank-seven source conferences and GPT handoff03 are preserved through checkpoint28. Every pending rank-seven access identity has a source-review packet; none is promoted by preparation. GPT Part4 is full and Part5 creation remains pending. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_RANK7_SOURCES.md). Earlier notices remain history.
+> **Latest development backup —18 October2026 UTC:** Video game only. **525 ordinary spells reviewed /323 pending.** Calibration Review Part5 received the full handoff and Illusion14 review archives. New resource/control/ward source conferences and checkpoint32 are preserved. No new semantic approval is claimed. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_PART5_WARDS.md). Earlier notices remain history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 

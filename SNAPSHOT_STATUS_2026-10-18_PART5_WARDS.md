@@ -1,0 +1,19 @@
+# Decennium Descent development backup —18 October2026 UTC
+
+This backup preserves video-game development after `4e7ec8d2c9c77931ecc18e74dbcbf96eebd64cb1` through [checkpoint32](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_RANK8_WARD_32.json). Ordinary spells remain **525 reviewed /323 pending**, with249 standalone procedures and173 accepted scoped interfaces. Source preparation and actual delivery are distinct from semantic acceptance.
+
+[Calibration Review Part5](https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6ad4a867-f330-83e9-829e-bf2bb41a6c09) received three full archives: handoff03, Illusion14 Current12 and its current-acceptance supplement. The saved user turn, exact request, attachment names, byte/hash bindings and visible live review are recorded in the [actual submission](docs/audit/2026-10-08/full-game/GPT_CONTINUATION_05_ACTUAL_START_01.json). The old Part4 length-limit evidence is preserved. The additional continuation confirmation was an unnecessary Codex interpretation; the owner's standing instructions already authorized continued collaboration. No new human answer or automatic approval rejection is fabricated. GPT is actively reviewing14 full procedures and their cases; no final has yet been recorded. CompanionExact05 plus expanded CR2 evidence are next.
+
+The complete copy commitment, recipient and class-provider integrations and two source conferences were delivered within handoff03 for awareness. Four later source conferences were summarized in the actual request. Their full packets still await delivery; the newest ward5 packet was prepared after that request and is also unsent. Historical UNSENT labels inside frozen preparations describe their original creation time.
+
+Three complete rank8 source conferences are new since the prior backup:
+
+- Resource6:52 full sources,24 questions and229 checks. Spell absorption, recovery, cost waivers and exact cost knowledge retain their source conflicts, including the unassigned Mana Furnace alias and Leyline Flow's differing recovery amounts.
+- Control5:61 full sources,18 questions and251 checks. Frozen Time Prism, Paralyzing Presence, Power Word Stun, Mental Collapse and Reality Rewrite retain their exact native promises and open state/timing/channel decisions.
+- Ward5:81 full sources,eight school placements,21 accepted counterparts,23 questions and359 checks. Alignment Immunity, Antilife Shell, Antimagic Field, Mind Blank and Reputation Fortress preserve distinct school text, class access and source-specific protection/geometry/suppression questions. Two individually tierB and three tierC; no procedure or case is adopted.
+
+Queue25 retains all323 pending identities:177 in26 active/prepared groups and146 ungrouped. All75 full domain rows/gates remain unchanged. Checkpoint32 has520 source/preservation/navigation checks and1406 existing links with none missing. CompanionExact05's eight artifacts and both next-review archives were independently checked against their preserved hashes; no content hold was silently cleared.
+
+Continue from [START_HERE.md](START_HERE.md) and [REVIEW_MAP.html](REVIEW_MAP.html). Latest allowance observation39percentremaining; continue to review completion or20percentremaining. Runtime, human gameplay, numerical balance, cosmology canon, whole-game flow and release are separate gates. This is a development backup.
+
+The [preservation manifest](docs/audit/2026-10-18/github-snapshot-part5-wards/manifest.json) records selected files and retained local exclusions. Every prior tracked Git entry remains. Existing exclusions keep private configuration, unrelated browser captures, third-party references, imported assets, dependencies and mixed archives locally. No deletion, force push or history rewrite is performed. The source authoring folder remains separate from the delivery checkout.
