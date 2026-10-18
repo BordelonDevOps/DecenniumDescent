@@ -1,0 +1,2959 @@
+{
+  "original": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/companion_life_10_current_03.json",
+    "bytes": 1632270,
+    "sha256": "5be95fad457581748440a0c1ab8b0ed0305855cc143f0d91d586f4658d77fefb"
+  },
+  "changes": [
+    {
+      "caseId": "IN6-11-A",
+      "pointer": "/currentCases/16",
+      "reason": "Original obligation explicitly includes real armor. Current03 supplied only a nonarmor coat. Bind the actual reviewed padded armor, retained fit/condition, lower worn AC and real nonproficiency rather than silently dropping that obligation.",
+      "completeBefore": {
+        "id": "IN6-11-A",
+        "spellId": "create-undead",
+        "status": "AUTHORED_CURRENT_DESIGN_VECTOR",
+        "runtimeExecuted": false,
+        "authority": "Actual GPT conference proposal plus bound inherited interfaces; final exact review outstanding",
+        "environment": {
+          "plane": "same ordinary encounter plane, no cosmology inference",
+          "light": "bright, ordinary sight/hearing throughout open area",
+          "ground": "continuous flat floor z=0, supports all named masses; open x/y extents at least[-100,100], ceiling z=30 unless overridden",
+          "geometry": "Distances are shortest distances between actual body volumes; point-range uses nearest caster-body point. Bounds are actual occupied space; touching faces do not overlap interiors.",
+          "LoE": "No opaque intervening objects, barriers or cover unless explicitly listed. Each selected source-target segment is in the described open region.",
+          "time": "Each independent fixture begins at its own time0/round1. Within each round owner regular turn precedes its complete attached phase, then listed recipient turn. Next owner regular START is+6 seconds. No additional phases, refreshes or implicit actions.",
+          "baseline": "No other actors, equipment bonuses, damage/healing modifiers, hidden suppressors, Fate disclosure grants or out-of-scope effects. Input prior states do not assert an unsupplied historical attack."
+        },
+        "actors": [
+          {
+            "id": "creator-C11",
+            "class": "Cleric",
+            "classLevel": 11,
+            "totalLevel": 11,
+            "PB": 4,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 10,
+              "WIS": 18,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 8,
+            "spellDC": 16,
+            "normalHP": 80,
+            "maximumHP": 80,
+            "hpDerivation": {
+              "firstBase": 8,
+              "laterBase": 5,
+              "CONPerLevel": 2,
+              "levels": 11
+            },
+            "RP": 30,
+            "maximumRP": 30,
+            "body": {
+              "id": "creator-C11",
+              "size": "Medium",
+              "centerXY": [
+                0,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  -2.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  2.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "create-undead"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Actual ordinary Cleric repertoire choice under shared fallback, within class/rank/known capacity; no borrowed school or Wizard preparation exception."
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "creator-C11-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 10,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "InvocationPath": "Judgment; no Invocation or Rite used unless specified",
+            "Conviction": 5,
+            "heroPath": "Saint"
+          },
+          {
+            "id": "cone-ally",
+            "fixtureClassification": "Explicit synthetic encounter input; not a named class or approved bestiary creature",
+            "body": {
+              "id": "cone-ally",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                -2.5
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -5.0,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  0.0,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "type": "Humanoid",
+            "normalHP": 60,
+            "maximumHP": 60,
+            "temporaryHP": 0,
+            "AC": 12,
+            "CONSaveBonus": 2,
+            "lifecycle": "HP-only living synthetic recipient",
+            "Speed": 30,
+            "conditions": [],
+            "Wounds": 0,
+            "defenses": [],
+            "interceptors": [],
+            "donorProvenance": "genuine noncreated living body; not a summon, copy or consumed animation",
+            "anatomy": "connected head/torso, two arms/hands, two legs; no missing/harvested parts",
+            "gear": [],
+            "responses": "No protective, resurrection, control or other response unless separately supplied."
+          },
+          {
+            "id": "cone-enemy",
+            "fixtureClassification": "Explicit synthetic encounter input; not a named class or approved bestiary creature",
+            "body": {
+              "id": "cone-enemy",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                2.5
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  0.0,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  5.0,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "type": "Humanoid",
+            "normalHP": 60,
+            "maximumHP": 60,
+            "temporaryHP": 0,
+            "AC": 12,
+            "CONSaveBonus": 2,
+            "lifecycle": "HP-only living synthetic recipient",
+            "Speed": 30,
+            "conditions": [],
+            "Wounds": 0,
+            "defenses": [],
+            "interceptors": [],
+            "donorProvenance": "genuine noncreated living body; not a summon, copy or consumed animation",
+            "anatomy": "connected head/torso, two arms/hands, two legs; no missing/harvested parts",
+            "gear": [],
+            "responses": "No protective, resurrection, control or other response unless separately supplied."
+          }
+        ],
+        "bodyInputs": [
+          {
+            "id": "Ghast-corpse",
+            "body": {
+              "id": "Ghast-corpse",
+              "size": "Medium",
+              "centerXY": [
+                10,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  7.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  12.5,
+                  2.5,
+                  1
+                ]
+              },
+              "heightFeet": 1,
+              "massLb": 180,
+              "orientation": "prone",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "typeAtDeath": "Humanoid",
+            "deathTime": -90000,
+            "realNonCreatedAllocation": "Ghast-corpse-matter",
+            "consumed": false,
+            "connectedHeadTorso": true,
+            "missingParts": [
+              "left hand"
+            ],
+            "gear": [
+              {
+                "id": "old-coat",
+                "massLb": 2,
+                "Load": 0.2,
+                "fit": "ordinary soft mundane coat, not armor; no AC bonus",
+                "condition": "torn left sleeve"
+              }
+            ],
+            "history": "Explicit physical input: genuinely dead ordinary humanoid, intact stated matter; not a copy, conjured donor or prior animation. No prior killing blow or biography is inferred.",
+            "standingHeightIfSupported": 6,
+            "retainedNeeds": "No environmental immunity assigned. Long-term needs/behavior require separate supplied records; this immediate fixture does not claim work or survival outcomes."
+          }
+        ],
+        "events": [
+          {
+            "actor": "creator-C11",
+            "spellId": "create-undead",
+            "rank": 6,
+            "school": "Necromancy",
+            "timeSeconds": 0,
+            "round": 1,
+            "activation": "Action on actual regular turn",
+            "RPBefore": 30,
+            "baseRP": 13,
+            "surcharge": 0,
+            "RPPaid": 13,
+            "RPAfterCommit": 17,
+            "normalHPCost": 0,
+            "normalHPAfterCommit": 80,
+            "DissonanceBefore": 0,
+            "baseDissonance": 2,
+            "Refrain": 0,
+            "DissonanceAfter": 2,
+            "concentration": false,
+            "durationStart": "successful establishment at this time",
+            "checks": "Actual listed learned/prepared source, rank/access, Action, components, full geometry and affordable precommit pools. No unlisted counter, source modifier or interrupt in this branch."
+          },
+          {
+            "select": "same corpse -> Ghast, old corpse usable despite25hour age",
+            "bodyState": "same anchor prone at10,0; retained left-hand absence and torn coat; HP50 AC14; no Conjuration/Flesh bonus; no creation-round action"
+          },
+          {
+            "time": 6,
+            "round": 2,
+            "phase": "real creator BA and attached phase",
+            "command": "stand then exhale toward+x",
+            "standCost": 15,
+            "Speed": 30,
+            "movementAfter": 0,
+            "headOutlet": [
+              12.5,
+              0,
+              5
+            ],
+            "cone": "15foot cone along+x; cross-section radius equals forward distance/2 (base diameter15), capped at x27.5; actual 3D volume and clear origin LoE",
+            "recipients": [
+              "cone-ally",
+              "cone-enemy"
+            ],
+            "intersectionWitnesses": {
+              "cone-ally": [
+                18,
+                -1,
+                5
+              ],
+              "cone-enemy": [
+                18,
+                1,
+                5
+              ]
+            },
+            "sharedDice": [
+              3,
+              4
+            ],
+            "poison": 7,
+            "DC": 16,
+            "CON": {
+              "cone-ally": {
+                "die": 15,
+                "bonus": 2,
+                "total": 17,
+                "success": true,
+                "damage": 3
+              },
+              "cone-enemy": {
+                "die": 5,
+                "bonus": 2,
+                "total": 7,
+                "success": false,
+                "damage": 7
+              }
+            },
+            "meleeActionThisPhase": false
+          }
+        ],
+        "expected": {
+          "casterRP": 17,
+          "casterDissonance": 2,
+          "GhastHP": 50,
+          "leftHandRestored": false,
+          "allyHP": 57,
+          "enemyHP": 53,
+          "newWounds": 0,
+          "Poisoned": false,
+          "toxinStock": 0,
+          "offenses": 1,
+          "CRAssigned": false,
+          "permanentBody": true
+        },
+        "independentBranches": [],
+        "prerequisite": null,
+        "notes": [
+          "Cone witnesses lie5.5ft forward and1ft radial from mouth, inside radius2.75 and within each actual5x5x6 body. The two recipient footprints touch at y0 without overlapping interiors. Cone width convention must match inherited combat geometry; not a new all-spell cone definition."
+        ]
+      },
+      "completeAfter": {
+        "id": "IN6-11-A",
+        "spellId": "create-undead",
+        "status": "AUTHORED_CURRENT_DESIGN_VECTOR",
+        "runtimeExecuted": false,
+        "authority": "Actual GPT conference proposal plus bound inherited interfaces; final exact review outstanding",
+        "environment": {
+          "plane": "same ordinary encounter plane, no cosmology inference",
+          "light": "bright, ordinary sight/hearing throughout open area",
+          "ground": "continuous flat floor z=0, supports all named masses; open x/y extents at least[-100,100], ceiling z=30 unless overridden",
+          "geometry": "Distances are shortest distances between actual body volumes; point-range uses nearest caster-body point. Bounds are actual occupied space; touching faces do not overlap interiors.",
+          "LoE": "No opaque intervening objects, barriers or cover unless explicitly listed. Each selected source-target segment is in the described open region.",
+          "time": "Each independent fixture begins at its own time0/round1. Within each round owner regular turn precedes its complete attached phase, then listed recipient turn. Next owner regular START is+6 seconds. No additional phases, refreshes or implicit actions.",
+          "baseline": "No other actors, equipment bonuses, damage/healing modifiers, hidden suppressors, Fate disclosure grants or out-of-scope effects. Input prior states do not assert an unsupplied historical attack."
+        },
+        "actors": [
+          {
+            "id": "creator-C11",
+            "class": "Cleric",
+            "classLevel": 11,
+            "totalLevel": 11,
+            "PB": 4,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 10,
+              "WIS": 18,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 8,
+            "spellDC": 16,
+            "normalHP": 80,
+            "maximumHP": 80,
+            "hpDerivation": {
+              "firstBase": 8,
+              "laterBase": 5,
+              "CONPerLevel": 2,
+              "levels": 11
+            },
+            "RP": 30,
+            "maximumRP": 30,
+            "body": {
+              "id": "creator-C11",
+              "size": "Medium",
+              "centerXY": [
+                0,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  -2.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  2.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "create-undead"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Actual ordinary Cleric repertoire choice under shared fallback, within class/rank/known capacity; no borrowed school or Wizard preparation exception."
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "creator-C11-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 10,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "InvocationPath": "Judgment; no Invocation or Rite used unless specified",
+            "Conviction": 5,
+            "heroPath": "Saint"
+          },
+          {
+            "id": "cone-ally",
+            "fixtureClassification": "Explicit synthetic encounter input; not a named class or approved bestiary creature",
+            "body": {
+              "id": "cone-ally",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                -2.5
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -5.0,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  0.0,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "type": "Humanoid",
+            "normalHP": 60,
+            "maximumHP": 60,
+            "temporaryHP": 0,
+            "AC": 12,
+            "CONSaveBonus": 2,
+            "lifecycle": "HP-only living synthetic recipient",
+            "Speed": 30,
+            "conditions": [],
+            "Wounds": 0,
+            "defenses": [],
+            "interceptors": [],
+            "donorProvenance": "genuine noncreated living body; not a summon, copy or consumed animation",
+            "anatomy": "connected head/torso, two arms/hands, two legs; no missing/harvested parts",
+            "gear": [],
+            "responses": "No protective, resurrection, control or other response unless separately supplied."
+          },
+          {
+            "id": "cone-enemy",
+            "fixtureClassification": "Explicit synthetic encounter input; not a named class or approved bestiary creature",
+            "body": {
+              "id": "cone-enemy",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                2.5
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  0.0,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  5.0,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "type": "Humanoid",
+            "normalHP": 60,
+            "maximumHP": 60,
+            "temporaryHP": 0,
+            "AC": 12,
+            "CONSaveBonus": 2,
+            "lifecycle": "HP-only living synthetic recipient",
+            "Speed": 30,
+            "conditions": [],
+            "Wounds": 0,
+            "defenses": [],
+            "interceptors": [],
+            "donorProvenance": "genuine noncreated living body; not a summon, copy or consumed animation",
+            "anatomy": "connected head/torso, two arms/hands, two legs; no missing/harvested parts",
+            "gear": [],
+            "responses": "No protective, resurrection, control or other response unless separately supplied."
+          }
+        ],
+        "bodyInputs": [
+          {
+            "id": "Ghast-corpse",
+            "body": {
+              "id": "Ghast-corpse",
+              "size": "Medium",
+              "centerXY": [
+                10,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  7.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  12.5,
+                  2.5,
+                  1
+                ]
+              },
+              "heightFeet": 1,
+              "massLb": 180,
+              "orientation": "prone",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "typeAtDeath": "Humanoid",
+            "deathTime": -90000,
+            "realNonCreatedAllocation": "Ghast-corpse-matter",
+            "consumed": false,
+            "connectedHeadTorso": true,
+            "missingParts": [
+              "left hand"
+            ],
+            "gear": [
+              {
+                "id": "old-coat",
+                "massLb": 2,
+                "Load": 0.2,
+                "fit": "ordinary soft mundane coat, not armor; no AC bonus",
+                "condition": "torn left sleeve"
+              },
+              {
+                "id": "actual-padded-Ghast",
+                "source": "data/playtest/equipment_acquisition_candidate.json /items/0",
+                "catalogId": "armor-and-shields.padded",
+                "massLb": 8,
+                "Load": 0.8,
+                "custody": "worn on same actual torso; correct Medium fit retained",
+                "condition": "scuffed but not Broken; cosmetic old damage not repaired",
+                "ACFormula": "11+DEXmodifier",
+                "DEXModifier": 1,
+                "wornAC": 12,
+                "armorProficiency": false
+              }
+            ],
+            "history": "Explicit physical input: genuinely dead ordinary humanoid, intact stated matter; not a copy, conjured donor or prior animation. No prior killing blow or biography is inferred.",
+            "standingHeightIfSupported": 6,
+            "retainedNeeds": "No environmental immunity assigned. Long-term needs/behavior require separate supplied records; this immediate fixture does not claim work or survival outcomes."
+          }
+        ],
+        "events": [
+          {
+            "actor": "creator-C11",
+            "spellId": "create-undead",
+            "rank": 6,
+            "school": "Necromancy",
+            "timeSeconds": 0,
+            "round": 1,
+            "activation": "Action on actual regular turn",
+            "RPBefore": 30,
+            "baseRP": 13,
+            "surcharge": 0,
+            "RPPaid": 13,
+            "RPAfterCommit": 17,
+            "normalHPCost": 0,
+            "normalHPAfterCommit": 80,
+            "DissonanceBefore": 0,
+            "baseDissonance": 2,
+            "Refrain": 0,
+            "DissonanceAfter": 2,
+            "concentration": false,
+            "durationStart": "successful establishment at this time",
+            "checks": "Actual listed learned/prepared source, rank/access, Action, components, full geometry and affordable precommit pools. No unlisted counter, source modifier or interrupt in this branch."
+          },
+          {
+            "select": "same corpse -> Ghast, old corpse usable despite25hour age",
+            "bodyState": "Same anchor prone at10,0; retained left-hand absence, real worn padded armor and torn coat. BaseHP50, baseAC14; actual compatible worn armor replaces AC with11+DEX1=12. No Conjuration/Flesh bonus; no creation-round action."
+          },
+          {
+            "time": 6,
+            "round": 2,
+            "phase": "real creator BA and attached phase",
+            "command": "stand then exhale toward+x",
+            "standCost": 15,
+            "Speed": 30,
+            "movementAfter": 0,
+            "headOutlet": [
+              12.5,
+              0,
+              5
+            ],
+            "cone": "15foot cone along+x; cross-section radius equals forward distance/2 (base diameter15), capped at x27.5; actual 3D volume and clear origin LoE",
+            "recipients": [
+              "cone-ally",
+              "cone-enemy"
+            ],
+            "intersectionWitnesses": {
+              "cone-ally": [
+                18,
+                -1,
+                5
+              ],
+              "cone-enemy": [
+                18,
+                1,
+                5
+              ]
+            },
+            "sharedDice": [
+              3,
+              4
+            ],
+            "poison": 7,
+            "DC": 16,
+            "CON": {
+              "cone-ally": {
+                "die": 15,
+                "bonus": 2,
+                "total": 17,
+                "success": true,
+                "damage": 3
+              },
+              "cone-enemy": {
+                "die": 5,
+                "bonus": 2,
+                "total": 7,
+                "success": false,
+                "damage": 7
+              }
+            },
+            "meleeActionThisPhase": false,
+            "actualArmorInterface": {
+              "wornAC": 12,
+              "baseAC": 14,
+              "totalRealGearLb": 10,
+              "totalLoad": 1,
+              "burdenThreshold": 7,
+              "Burdened": false,
+              "nonproficiency": "STR/DEX checks, saves and attacks have disadvantage; spell RP+1 and concentration disadvantage if such operations occur. This chosen CON-save exhalation is a magical nonspell native Action, no STR/DEX attack roll or spell cast, so those penalties do not change its pool/DC or create a new RP price. Padded Stealth disadvantage remains.",
+              "actualMissingHand": "left hand stays absent, head/oral outlet remains usable"
+            }
+          }
+        ],
+        "expected": {
+          "casterRP": 17,
+          "casterDissonance": 2,
+          "GhastHP": 50,
+          "leftHandRestored": false,
+          "allyHP": 57,
+          "enemyHP": 53,
+          "newWounds": 0,
+          "Poisoned": false,
+          "toxinStock": 0,
+          "offenses": 1,
+          "CRAssigned": false,
+          "permanentBody": true,
+          "GhastBaseAC": 14,
+          "GhastActualWornAC": 12,
+          "realArmorID": "actual-padded-Ghast",
+          "armorDuplicated": false,
+          "armorRepaired": false
+        },
+        "independentBranches": [],
+        "prerequisite": null,
+        "notes": [
+          "Cone witnesses lie5.5ft forward and1ft radial from mouth, inside radius2.75 and within each actual5x5x6 body. The two recipient footprints touch at y0 without overlapping interiors. Cone width convention must match inherited combat geometry; not a new all-spell cone definition."
+        ],
+        "unresolvedProposalQuestions": [
+          "CL10-C03-Q03"
+        ]
+      }
+    },
+    {
+      "caseId": "NE5-04-B",
+      "pointer": "/currentCases/7",
+      "reason": "Supply a complete actual counterer body/build/pool and geometric range for the countered branch; the Current03 shorthand named Wizard9 but omitted that actual actor.",
+      "completeBefore": {
+        "id": "NE5-04-B",
+        "spellId": "grave-gift",
+        "status": "AUTHORED_CURRENT_DESIGN_VECTOR",
+        "runtimeExecuted": false,
+        "authority": "Actual GPT conference proposal plus bound inherited interfaces; final exact review outstanding",
+        "environment": {
+          "plane": "same ordinary encounter plane, no cosmology inference",
+          "light": "bright, ordinary sight/hearing throughout open area",
+          "ground": "continuous flat floor z=0, supports all named masses; open x/y extents at least[-100,100], ceiling z=30 unless overridden",
+          "geometry": "Distances are shortest distances between actual body volumes; point-range uses nearest caster-body point. Bounds are actual occupied space; touching faces do not overlap interiors.",
+          "LoE": "No opaque intervening objects, barriers or cover unless explicitly listed. Each selected source-target segment is in the described open region.",
+          "time": "Each independent fixture begins at its own time0/round1. Within each round owner regular turn precedes its complete attached phase, then listed recipient turn. Next owner regular START is+6 seconds. No additional phases, refreshes or implicit actions.",
+          "baseline": "No other actors, equipment bonuses, damage/healing modifiers, hidden suppressors, Fate disclosure grants or out-of-scope effects. Input prior states do not assert an unsupplied historical attack."
+        },
+        "actors": [
+          {
+            "id": "gift-W9",
+            "class": "Wizard",
+            "classLevel": 9,
+            "totalLevel": 9,
+            "PB": 4,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 18,
+              "WIS": 10,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 8,
+            "spellDC": 16,
+            "normalHP": 2,
+            "maximumHP": 56,
+            "hpDerivation": {
+              "firstBase": 6,
+              "laterBase": 4,
+              "CONPerLevel": 2,
+              "levels": 9
+            },
+            "RP": 32,
+            "maximumRP": 32,
+            "body": {
+              "id": "gift-W9",
+              "size": "Medium",
+              "centerXY": [
+                0,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  -2.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  2.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "grave-gift"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+              "matrixCapacity": 13,
+              "firstDistinctPreparedFamilyBaseDissonance": 0
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "gift-W9-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 10,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "specialization": "Divination",
+            "ConjurationCreationBonus": 0,
+            "FleshAscendantAcquired": false,
+            "heroPath": null,
+            "schoolPassive": "Divination failed-save reroll remains unused"
+          },
+          {
+            "id": "patient",
+            "fixtureClassification": "Explicit synthetic encounter input; not a named class or approved bestiary creature",
+            "body": {
+              "id": "patient",
+              "size": "Medium",
+              "centerXY": [
+                15,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  12.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  17.5,
+                  2.5,
+                  1
+                ]
+              },
+              "heightFeet": 1,
+              "massLb": 180,
+              "orientation": "prone",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "type": "Humanoid",
+            "normalHP": 0,
+            "maximumHP": 40,
+            "temporaryHP": 0,
+            "AC": 12,
+            "CONSaveBonus": 2,
+            "lifecycle": "living synthetic death-save-enabled ally, actual Dying",
+            "Speed": 30,
+            "conditions": [
+              "Prone",
+              "zero-HP Unconscious",
+              "zero-HP Incapacitated"
+            ],
+            "Wounds": 1,
+            "defenses": [],
+            "interceptors": [],
+            "donorProvenance": "genuine noncreated living body; not a summon, copy or consumed animation",
+            "anatomy": "connected head/torso, two arms/hands, two legs; no missing/harvested parts",
+            "gear": [],
+            "responses": "No protective, resurrection, control or other response unless separately supplied.",
+            "Critical": false,
+            "willing": true,
+            "deathSuccesses": 1,
+            "deathFailures": 2,
+            "independentInjury": "old left-hand injury unchanged",
+            "pose": "lying, bounds min[12.5,-2.5,0] max[17.5,2.5,1]; no new change of occupied footprint"
+          },
+          {
+            "id": "chill-W3",
+            "class": "Wizard",
+            "classLevel": 3,
+            "totalLevel": 3,
+            "PB": 2,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 16,
+              "WIS": 10,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 5,
+            "spellDC": 13,
+            "normalHP": 20,
+            "maximumHP": 20,
+            "hpDerivation": {
+              "firstBase": 6,
+              "laterBase": 4,
+              "CONPerLevel": 2,
+              "levels": 3
+            },
+            "RP": 10,
+            "maximumRP": 10,
+            "body": {
+              "id": "chill-W3",
+              "size": "Medium",
+              "centerXY": [
+                35,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  32.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  37.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "chill-touch"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+              "matrixCapacity": 6,
+              "firstDistinctPreparedFamilyBaseDissonance": 0
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "chill-W3-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 7,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "specialization": "Divination",
+            "ConjurationCreationBonus": 0,
+            "FleshAscendantAcquired": false,
+            "heroPath": null,
+            "schoolPassive": "Divination failed-save reroll remains unused"
+          }
+        ],
+        "bodyInputs": [],
+        "events": [
+          {
+            "time": -1,
+            "priorLawfulState": "Patient is alive Dying0, already has a successful real Chill Touch /catalog/spells/415/operational hit rider. Source-owner chill-W3, target’s first future regular END is time3. This fixture begins after that fully resolved source event; no invented melee hit against Unconscious is asserted. Exact blocked-HP rider and original endpoint are inputs, not a fresh cast or damage test."
+          },
+          {
+            "actor": "gift-W9",
+            "spellId": "grave-gift",
+            "rank": 5,
+            "school": "Necromancy",
+            "timeSeconds": 0,
+            "round": 1,
+            "activation": "Action on actual regular turn",
+            "RPBefore": 32,
+            "baseRP": 10,
+            "surcharge": 0,
+            "RPPaid": 10,
+            "RPAfterCommit": 22,
+            "normalHPCost": 1,
+            "normalHPAfterCommit": 1,
+            "DissonanceBefore": 0,
+            "baseDissonance": 0,
+            "Refrain": 0,
+            "DissonanceAfter": 0,
+            "concentration": false,
+            "durationStart": "successful establishment at this time",
+            "checks": "Actual listed learned/prepared source, rank/access, Action, components, full geometry and affordable precommit pools. No unlisted counter, source modifier or interrupt in this branch."
+          },
+          {
+            "time": 0,
+            "targetGap": 10,
+            "resolve": "HP assignment blocked by still-operative Chill Touch; independently stabilize still-Dying target",
+            "privateD4": 2,
+            "StableDeadline": 7200
+          }
+        ],
+        "expected": {
+          "donorHP": 1,
+          "donorRP": 22,
+          "patientHP": 0,
+          "Stable": true,
+          "deathSuccesses": 0,
+          "deathFailures": 0,
+          "deadline": 7200,
+          "newFateAdapter": false,
+          "Wounds": 1,
+          "UnconsciousRetained": true,
+          "ProneRetained": true
+        },
+        "independentBranches": [
+          {
+            "name": "Already Stable",
+            "initial": "same inputs except already Stable0 with deadline3500",
+            "expected": "preserve3500; no d4 draw; pay1HP/10RP"
+          },
+          {
+            "name": "Donor1HP even with source-qualified would-die Ward",
+            "initial": "donor1HP, otherwise same legal state",
+            "expected": "unaffordable, no commitment/cost; cost is not a damage/death Ward trigger"
+          },
+          {
+            "name": "Known actually dead recipient",
+            "initial": "recipient has actually died before target selection",
+            "expected": "ineligible; no cast/payment; this spell grants no resurrection"
+          },
+          {
+            "name": "Countered after costs",
+            "initial": "same legal initial donor2/targetDying",
+            "operation": "Use independently sourced Wizard9 class Counterspell: actual available Reaction/3RP/recharge0,20ft clear range; d20=12+INT4+PB4=20 against rank5 DC20; success; source records as in IN4-10-A with rank5/DC20",
+            "expected": "donor1HP/22RP; patient stays Dying0 with original counters; no Stable d4"
+          }
+        ],
+        "prerequisite": null,
+        "notes": []
+      },
+      "completeAfter": {
+        "id": "NE5-04-B",
+        "spellId": "grave-gift",
+        "status": "AUTHORED_CURRENT_DESIGN_VECTOR",
+        "runtimeExecuted": false,
+        "authority": "Actual GPT conference proposal plus bound inherited interfaces; final exact review outstanding",
+        "environment": {
+          "plane": "same ordinary encounter plane, no cosmology inference",
+          "light": "bright, ordinary sight/hearing throughout open area",
+          "ground": "continuous flat floor z=0, supports all named masses; open x/y extents at least[-100,100], ceiling z=30 unless overridden",
+          "geometry": "Distances are shortest distances between actual body volumes; point-range uses nearest caster-body point. Bounds are actual occupied space; touching faces do not overlap interiors.",
+          "LoE": "No opaque intervening objects, barriers or cover unless explicitly listed. Each selected source-target segment is in the described open region.",
+          "time": "Each independent fixture begins at its own time0/round1. Within each round owner regular turn precedes its complete attached phase, then listed recipient turn. Next owner regular START is+6 seconds. No additional phases, refreshes or implicit actions.",
+          "baseline": "No other actors, equipment bonuses, damage/healing modifiers, hidden suppressors, Fate disclosure grants or out-of-scope effects. Input prior states do not assert an unsupplied historical attack."
+        },
+        "actors": [
+          {
+            "id": "gift-W9",
+            "class": "Wizard",
+            "classLevel": 9,
+            "totalLevel": 9,
+            "PB": 4,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 18,
+              "WIS": 10,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 8,
+            "spellDC": 16,
+            "normalHP": 2,
+            "maximumHP": 56,
+            "hpDerivation": {
+              "firstBase": 6,
+              "laterBase": 4,
+              "CONPerLevel": 2,
+              "levels": 9
+            },
+            "RP": 32,
+            "maximumRP": 32,
+            "body": {
+              "id": "gift-W9",
+              "size": "Medium",
+              "centerXY": [
+                0,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  -2.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  2.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "grave-gift"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+              "matrixCapacity": 13,
+              "firstDistinctPreparedFamilyBaseDissonance": 0
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "gift-W9-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 10,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "specialization": "Divination",
+            "ConjurationCreationBonus": 0,
+            "FleshAscendantAcquired": false,
+            "heroPath": null,
+            "schoolPassive": "Divination failed-save reroll remains unused"
+          },
+          {
+            "id": "patient",
+            "fixtureClassification": "Explicit synthetic encounter input; not a named class or approved bestiary creature",
+            "body": {
+              "id": "patient",
+              "size": "Medium",
+              "centerXY": [
+                15,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  12.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  17.5,
+                  2.5,
+                  1
+                ]
+              },
+              "heightFeet": 1,
+              "massLb": 180,
+              "orientation": "prone",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "type": "Humanoid",
+            "normalHP": 0,
+            "maximumHP": 40,
+            "temporaryHP": 0,
+            "AC": 12,
+            "CONSaveBonus": 2,
+            "lifecycle": "living synthetic death-save-enabled ally, actual Dying",
+            "Speed": 30,
+            "conditions": [
+              "Prone",
+              "zero-HP Unconscious",
+              "zero-HP Incapacitated"
+            ],
+            "Wounds": 1,
+            "defenses": [],
+            "interceptors": [],
+            "donorProvenance": "genuine noncreated living body; not a summon, copy or consumed animation",
+            "anatomy": "connected head/torso, two arms/hands, two legs; no missing/harvested parts",
+            "gear": [],
+            "responses": "No protective, resurrection, control or other response unless separately supplied.",
+            "Critical": false,
+            "willing": true,
+            "deathSuccesses": 1,
+            "deathFailures": 2,
+            "independentInjury": "old left-hand injury unchanged",
+            "pose": "lying, bounds min[12.5,-2.5,0] max[17.5,2.5,1]; no new change of occupied footprint"
+          },
+          {
+            "id": "chill-W3",
+            "class": "Wizard",
+            "classLevel": 3,
+            "totalLevel": 3,
+            "PB": 2,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 16,
+              "WIS": 10,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 5,
+            "spellDC": 13,
+            "normalHP": 20,
+            "maximumHP": 20,
+            "hpDerivation": {
+              "firstBase": 6,
+              "laterBase": 4,
+              "CONPerLevel": 2,
+              "levels": 3
+            },
+            "RP": 10,
+            "maximumRP": 10,
+            "body": {
+              "id": "chill-W3",
+              "size": "Medium",
+              "centerXY": [
+                35,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  32.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  37.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "chill-touch"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+              "matrixCapacity": 6,
+              "firstDistinctPreparedFamilyBaseDissonance": 0
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "chill-W3-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 7,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "specialization": "Divination",
+            "ConjurationCreationBonus": 0,
+            "FleshAscendantAcquired": false,
+            "heroPath": null,
+            "schoolPassive": "Divination failed-save reroll remains unused"
+          }
+        ],
+        "bodyInputs": [],
+        "events": [
+          {
+            "time": -1,
+            "priorLawfulState": "Patient is alive Dying0, already has a successful real Chill Touch /catalog/spells/415/operational hit rider. Source-owner chill-W3, target’s first future regular END is time3. This fixture begins after that fully resolved source event; no invented melee hit against Unconscious is asserted. Exact blocked-HP rider and original endpoint are inputs, not a fresh cast or damage test."
+          },
+          {
+            "actor": "gift-W9",
+            "spellId": "grave-gift",
+            "rank": 5,
+            "school": "Necromancy",
+            "timeSeconds": 0,
+            "round": 1,
+            "activation": "Action on actual regular turn",
+            "RPBefore": 32,
+            "baseRP": 10,
+            "surcharge": 0,
+            "RPPaid": 10,
+            "RPAfterCommit": 22,
+            "normalHPCost": 1,
+            "normalHPAfterCommit": 1,
+            "DissonanceBefore": 0,
+            "baseDissonance": 0,
+            "Refrain": 0,
+            "DissonanceAfter": 0,
+            "concentration": false,
+            "durationStart": "successful establishment at this time",
+            "checks": "Actual listed learned/prepared source, rank/access, Action, components, full geometry and affordable precommit pools. No unlisted counter, source modifier or interrupt in this branch."
+          },
+          {
+            "time": 0,
+            "targetGap": 10,
+            "resolve": "HP assignment blocked by still-operative Chill Touch; independently stabilize still-Dying target",
+            "privateD4": 2,
+            "StableDeadline": 7200
+          }
+        ],
+        "expected": {
+          "donorHP": 1,
+          "donorRP": 22,
+          "patientHP": 0,
+          "Stable": true,
+          "deathSuccesses": 0,
+          "deathFailures": 0,
+          "deadline": 7200,
+          "newFateAdapter": false,
+          "Wounds": 1,
+          "UnconsciousRetained": true,
+          "ProneRetained": true
+        },
+        "independentBranches": [
+          {
+            "name": "Already Stable",
+            "initial": "same inputs except already Stable0 with deadline3500",
+            "expected": "preserve3500; no d4 draw; pay1HP/10RP"
+          },
+          {
+            "name": "Donor1HP even with source-qualified would-die Ward",
+            "initial": "donor1HP, otherwise same legal state",
+            "expected": "unaffordable, no commitment/cost; cost is not a damage/death Ward trigger"
+          },
+          {
+            "name": "Known actually dead recipient",
+            "initial": "recipient has actually died before target selection",
+            "expected": "ineligible; no cast/payment; this spell grants no resurrection"
+          },
+          {
+            "name": "Countered after costs",
+            "initial": "same legal initial donor2/targetDying",
+            "operation": {
+              "source": "wizard.json /cards/17 automatic Counterspell at2, rank1 class matrix",
+              "activation": "actual available Reaction at Gift cast beginning after Gift costs; counterer perceives V/S in open bright room",
+              "rangeGapFeet": 18.027756377319946,
+              "rangeLimit": 60,
+              "RPBefore": 32,
+              "RPPaid": 3,
+              "RPAfter": 29,
+              "DissonanceBefore": 0,
+              "firstDistinctPreparedClassFamilyBase": 0,
+              "Refrain": 0,
+              "DissonanceAfter": 0,
+              "INT": 4,
+              "PB": 4,
+              "d20": 12,
+              "checkTotal": 20,
+              "DC": 20,
+              "degree": "Success",
+              "rechargeBefore": 0,
+              "rechargeAfter": 2,
+              "counteredSpellRank": 5,
+              "noCounterpulseOrFeedback": true,
+              "noRetrySamePendingCast": true
+            },
+            "expected": "Gift donor remains1HP/22RP after paid cost; recipient remains original Dying0 with original counters and no new Stable d4; counterer29RP/recharge2.",
+            "additionalActor": {
+              "id": "gift-counter-W9",
+              "class": "Wizard",
+              "classLevel": 9,
+              "totalLevel": 9,
+              "PB": 4,
+              "abilities": {
+                "STR": 10,
+                "DEX": 14,
+                "CON": 14,
+                "INT": 18,
+                "WIS": 10,
+                "CHA": 8
+              },
+              "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+              "spellAttack": 8,
+              "spellDC": 16,
+              "normalHP": 56,
+              "maximumHP": 56,
+              "hpDerivation": {
+                "firstBase": 6,
+                "laterBase": 4,
+                "CONPerLevel": 2,
+                "levels": 9
+              },
+              "RP": 32,
+              "maximumRP": 32,
+              "body": {
+                "id": "gift-counter-W9",
+                "size": "Medium",
+                "centerXY": [
+                  20,
+                  15
+                ],
+                "feetZ": 0,
+                "bounds": {
+                  "min": [
+                    17.5,
+                    12.5,
+                    0
+                  ],
+                  "max": [
+                    22.5,
+                    17.5,
+                    6
+                  ]
+                },
+                "heightFeet": 6,
+                "massLb": 180,
+                "orientation": "upright, world XYZ",
+                "geometryRole": "authored actual encounter input, not a universal species height"
+              },
+              "AC": 12,
+              "walkSpeed": 30,
+              "temporaryHP": 0,
+              "Wounds": 0,
+              "repertoire": {
+                "actualFixtureChoices": [],
+                "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+                "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+                "matrixCapacity": 13,
+                "firstDistinctPreparedFamilyBaseDissonance": 0
+              },
+              "equipment": {
+                "armor": null,
+                "shield": null,
+                "hands": "one ordinary focus held; other hand free for S",
+                "focus": {
+                  "id": "gift-counter-W9-focus",
+                  "massLb": 1,
+                  "Load": 0.1,
+                  "boundsFeet": [
+                    0.5,
+                    0.25,
+                    0.25
+                  ],
+                  "permissions": "casting focus only, no attack/bonus/charge"
+                }
+              },
+              "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+              "Dissonance": 0,
+              "previousCastName": null,
+              "RefrainRun": 0,
+              "strainLimit": 10,
+              "currentConditions": [],
+              "concentration": null,
+              "ReactionAvailable": true,
+              "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+              "lifecycle": "living PC with death saves, not an HP-only monster",
+              "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+              "specialization": "Divination",
+              "ConjurationCreationBonus": 0,
+              "FleshAscendantAcquired": false,
+              "heroPath": null,
+              "schoolPassive": "Divination failed-save reroll remains unused"
+            }
+          }
+        ],
+        "prerequisite": null,
+        "notes": []
+      }
+    },
+    {
+      "caseId": "CL10-SUPPRESSION-BRANCHES",
+      "pointer": "/currentCases/23",
+      "reason": "Specify the actual originally legal paid command before the readied field release, instead of calling an unspecified order source-qualified.",
+      "completeBefore": {
+        "id": "CL10-SUPPRESSION-BRANCHES",
+        "spellId": "shared-companion-lifecycle",
+        "status": "AUTHORED_CURRENT_DESIGN_VECTOR",
+        "runtimeExecuted": false,
+        "authority": "Actual GPT conference proposal plus bound inherited interfaces; final exact review outstanding",
+        "environment": {
+          "plane": "same ordinary encounter plane, no cosmology inference",
+          "light": "bright, ordinary sight/hearing throughout open area",
+          "ground": "continuous flat floor z=0, supports all named masses; open x/y extents at least[-100,100], ceiling z=30 unless overridden",
+          "geometry": "Distances are shortest distances between actual body volumes; point-range uses nearest caster-body point. Bounds are actual occupied space; touching faces do not overlap interiors.",
+          "LoE": "No opaque intervening objects, barriers or cover unless explicitly listed. Each selected source-target segment is in the described open region.",
+          "time": "Each independent fixture begins at its own time0/round1. Within each round owner regular turn precedes its complete attached phase, then listed recipient turn. Next owner regular START is+6 seconds. No additional phases, refreshes or implicit actions.",
+          "baseline": "No other actors, equipment bonuses, damage/healing modifiers, hidden suppressors, Fate disclosure grants or out-of-scope effects. Input prior states do not assert an unsupplied historical attack."
+        },
+        "actors": [
+          {
+            "id": "suppression-W9",
+            "class": "Wizard",
+            "classLevel": 9,
+            "totalLevel": 9,
+            "PB": 4,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 18,
+              "WIS": 10,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 8,
+            "spellDC": 16,
+            "normalHP": 56,
+            "maximumHP": 56,
+            "hpDerivation": {
+              "firstBase": 6,
+              "laterBase": 4,
+              "CONPerLevel": 2,
+              "levels": 9
+            },
+            "RP": 32,
+            "maximumRP": 32,
+            "body": {
+              "id": "suppression-W9",
+              "size": "Medium",
+              "centerXY": [
+                27.5,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  25.0,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  30.0,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "antimagic-field-lesser"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+              "matrixCapacity": 13,
+              "firstDistinctPreparedFamilyBaseDissonance": 0
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "suppression-W9-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 10,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "specialization": "Divination",
+            "ConjurationCreationBonus": 0,
+            "FleshAscendantAcquired": false,
+            "heroPath": null,
+            "schoolPassive": "Divination failed-save reroll remains unused"
+          },
+          {
+            "id": "original-source-W11",
+            "class": "Wizard",
+            "classLevel": 11,
+            "totalLevel": 11,
+            "PB": 4,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 18,
+              "WIS": 10,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 8,
+            "spellDC": 16,
+            "normalHP": 68,
+            "maximumHP": 68,
+            "hpDerivation": {
+              "firstBase": 6,
+              "laterBase": 4,
+              "CONPerLevel": 2,
+              "levels": 11
+            },
+            "RP": 40,
+            "maximumRP": 40,
+            "body": {
+              "id": "original-source-W11",
+              "size": "Medium",
+              "centerXY": [
+                0,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  -2.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  2.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "summon-corpse-golem",
+                "summon-death-knight",
+                "summon-soul-wraith",
+                "create-homunculus",
+                "negative-energy-flood",
+                "danse-macabre",
+                "create-undead"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+              "matrixCapacity": 15,
+              "firstDistinctPreparedFamilyBaseDissonance": 0
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "original-source-W11-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 10,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "specialization": "Divination",
+            "ConjurationCreationBonus": 0,
+            "FleshAscendantAcquired": false,
+            "heroPath": "Spellbinder, no modifying Hero card invoked",
+            "schoolPassive": "Divination failed-save reroll remains unused"
+          }
+        ],
+        "bodyInputs": [],
+        "events": [
+          {
+            "independentFixtures": "Each named branch is a separate encounter state, never seven creatures sharing one space simultaneously. Each original source was actually established at time0 by its source-qualified creator; remaining3HP and current source/gear pose are prior lawful state inputs; no fresh creation or free casting is claimed by this suppression event."
+          },
+          {
+            "actor": "suppression-W9",
+            "spellId": "antimagic-field-lesser",
+            "rank": 5,
+            "school": "Abjuration",
+            "timeSeconds": 5,
+            "round": 1,
+            "activation": "Ready spell on caster actual regular Action at5; next caster regular START11; V/S/F, price/cadence once now; held concentration starts5",
+            "RPBefore": 32,
+            "baseRP": 10,
+            "surcharge": 0,
+            "RPPaid": 10,
+            "RPAfterCommit": 22,
+            "normalHPCost": 0,
+            "normalHPAfterCommit": 56,
+            "DissonanceBefore": 0,
+            "baseDissonance": 0,
+            "Refrain": 0,
+            "DissonanceAfter": 0,
+            "concentration": true,
+            "durationStart": "successful establishment at this time",
+            "checks": "Actual listed learned/prepared source, rank/access, Action, components, full geometry and affordable precommit pools. No unlisted counter, source modifier or interrupt in this branch.",
+            "trigger": "Hear the named original creator issue its actual spoken command to the target after creator regular START6; release immediately after that observable completed command, before later attached phase6.5"
+          },
+          {
+            "time": 6.1,
+            "release": "actual available Reaction; legal point selected now, no second spell cast/price/counter window",
+            "point": [
+              20,
+              0,
+              3
+            ],
+            "radius": 10,
+            "pointRangeFromCasterBody": 5,
+            "LoE": "open",
+            "targetBody": "Medium5x5x6 at20,0,0; substitute actual Large10x10x8 Golem or Tiny2.5x2.5x2 Hom, all intersect sphere",
+            "creator": "original separate creator body at0,0 is outside field; its spoken command was actually legal when issued before the field appeared",
+            "expiry": 66.1
+          },
+          {
+            "time": 6.5,
+            "input": "Issued command reaches its genuine original-owner attached opportunity while expression/control suppressed or ended; command is spent/lost. No new Bonus Action or phase created."
+          },
+          {
+            "time": 13,
+            "operation": "AM owner ends concentration; original source clocks unchanged"
+          }
+        ],
+        "expected": {
+          "newGlobalSummonRule": false,
+          "branchesReviewedAsSeparateProposedLifecycles": true
+        },
+        "independentBranches": [
+          {
+            "body": "Golem",
+            "originalExpiry": 60,
+            "expectedAt13": "no return",
+            "expectedAt6_1": "body and creating application end; actual real2lb lantern deposited current floor, never copied"
+          },
+          {
+            "body": "Wraith",
+            "originalExpiry": 60,
+            "expectedAt13": "no return",
+            "expectedAt6_1": "manifestation and creating application end; actual cargo settles locally"
+          },
+          {
+            "body": "Homunculus",
+            "originalExpiry": null,
+            "expectedAt13": "no return",
+            "expectedAt6_1": "persistent source/body ends; actual cargo settles locally"
+          },
+          {
+            "body": "Knight",
+            "originalExpiry": 60,
+            "expectedAt13": "same body3HP returns only if saved-pose suppression cleared and local fit succeeds; no gear pickup; occupied/expiry alternatives NE5-01-B",
+            "expectedAt6_1": "body absent with saved current pose20,0,0; real gear drops; HP3 and original60 deadline retained"
+          },
+          {
+            "body": "Flood zombie",
+            "originalExpiry": 3600,
+            "expectedAt13": "same3HP animation resumes, old queued order not replayed, original3600 deadline",
+            "expectedAt6_1": "same consumed physical body inert, real gear/support/gravity unchanged"
+          },
+          {
+            "body": "Danse member",
+            "originalExpiry": 3600,
+            "expectedAt13": "same3HP member animation, no old order replay, original3600 deadline",
+            "expectedAt6_1": "same physical consumed member inert; does not end outside cohort members"
+          },
+          {
+            "body": "Create Undead Ghoul",
+            "originalExpiry": null,
+            "schedule": "next independent slot after original creator’s next scheduled occurrence, e.g. creator regular START12; no immediate7 turn; if an actual opportunity already spent that numbered round, no duplicate. Reacquisition at13 retires independent slot prospectively into next genuinely available attached phase. No particular autonomous behavior or work is claimed.",
+            "expectedAt6_1": "permanent flesh remains3HP; authority suppressed, underlying independent agency; native magical slowing rider unavailable but ordinary physical body survives"
+          },
+          {
+            "body": "Command Undeath target",
+            "status": "CONDITIONAL_CONTENT_PREREQUISITE",
+            "missing": "actual CR2 full profile and true successful old binding",
+            "expectedRuleOnly": "physical body remains; only authority suppresses, original actual schedule retained, no queued-order replay"
+          }
+        ],
+        "prerequisite": null,
+        "notes": [],
+        "independentPriorSourceInstances": [
+          {
+            "label": "Golem",
+            "spell": "summon-corpse-golem",
+            "rank": 4,
+            "maxHP": 60,
+            "duration": 60,
+            "size": "Large",
+            "height": 8,
+            "mass": 600,
+            "actualBody": {
+              "id": "Golem",
+              "size": "Large",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  15.0,
+                  -5.0,
+                  0
+                ],
+                "max": [
+                  25.0,
+                  5.0,
+                  8
+                ]
+              },
+              "heightFeet": 8,
+              "massLb": 600,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 60,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              33
+            ],
+            "initialHP": 60,
+            "currentHP": 3,
+            "lossBeforeFixture": 57,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Knight",
+            "spell": "summon-death-knight",
+            "rank": 5,
+            "maxHP": 80,
+            "duration": 60,
+            "size": "Medium",
+            "height": 6,
+            "mass": 180,
+            "actualBody": {
+              "id": "Knight",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 60,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              30
+            ],
+            "initialHP": 80,
+            "currentHP": 3,
+            "lossBeforeFixture": 77,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Wraith",
+            "spell": "summon-soul-wraith",
+            "rank": 6,
+            "maxHP": 100,
+            "duration": 60,
+            "size": "Medium",
+            "height": 6,
+            "mass": 0,
+            "actualBody": {
+              "id": "Wraith",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 0,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 60,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              27
+            ],
+            "initialHP": 100,
+            "currentHP": 3,
+            "lossBeforeFixture": 97,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Homunculus",
+            "spell": "create-homunculus",
+            "rank": 6,
+            "maxHP": 20,
+            "duration": null,
+            "size": "Tiny",
+            "height": 2,
+            "mass": 8,
+            "actualBody": {
+              "id": "Homunculus",
+              "size": "Tiny",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  18.75,
+                  -1.25,
+                  0
+                ],
+                "max": [
+                  21.25,
+                  1.25,
+                  2
+                ]
+              },
+              "heightFeet": 2,
+              "massLb": 8,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": null,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              27
+            ],
+            "initialHP": 20,
+            "currentHP": 3,
+            "lossBeforeFixture": 17,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Flood zombie",
+            "spell": "negative-energy-flood",
+            "rank": 5,
+            "maxHP": 20,
+            "duration": 3600,
+            "size": "Medium",
+            "height": 6,
+            "mass": 180,
+            "actualBody": {
+              "id": "Flood zombie",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 3600,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              30
+            ],
+            "initialHP": 20,
+            "currentHP": 3,
+            "lossBeforeFixture": 17,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Danse member",
+            "spell": "danse-macabre",
+            "rank": 5,
+            "maxHP": 20,
+            "duration": 3600,
+            "size": "Medium",
+            "height": 6,
+            "mass": 180,
+            "actualBody": {
+              "id": "Danse member",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 3600,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              30
+            ],
+            "initialHP": 20,
+            "currentHP": 3,
+            "lossBeforeFixture": 17,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Create Undead Ghoul",
+            "spell": "create-undead",
+            "rank": 6,
+            "maxHP": 40,
+            "duration": null,
+            "size": "Medium",
+            "height": 6,
+            "mass": 180,
+            "actualBody": {
+              "id": "Create Undead Ghoul",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": null,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              27
+            ],
+            "initialHP": 40,
+            "currentHP": 3,
+            "lossBeforeFixture": 37,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          }
+        ]
+      },
+      "completeAfter": {
+        "id": "CL10-SUPPRESSION-BRANCHES",
+        "spellId": "shared-companion-lifecycle",
+        "status": "AUTHORED_CURRENT_DESIGN_VECTOR",
+        "runtimeExecuted": false,
+        "authority": "Actual GPT conference proposal plus bound inherited interfaces; final exact review outstanding",
+        "environment": {
+          "plane": "same ordinary encounter plane, no cosmology inference",
+          "light": "bright, ordinary sight/hearing throughout open area",
+          "ground": "continuous flat floor z=0, supports all named masses; open x/y extents at least[-100,100], ceiling z=30 unless overridden",
+          "geometry": "Distances are shortest distances between actual body volumes; point-range uses nearest caster-body point. Bounds are actual occupied space; touching faces do not overlap interiors.",
+          "LoE": "No opaque intervening objects, barriers or cover unless explicitly listed. Each selected source-target segment is in the described open region.",
+          "time": "Each independent fixture begins at its own time0/round1. Within each round owner regular turn precedes its complete attached phase, then listed recipient turn. Next owner regular START is+6 seconds. No additional phases, refreshes or implicit actions.",
+          "baseline": "No other actors, equipment bonuses, damage/healing modifiers, hidden suppressors, Fate disclosure grants or out-of-scope effects. Input prior states do not assert an unsupplied historical attack."
+        },
+        "actors": [
+          {
+            "id": "suppression-W9",
+            "class": "Wizard",
+            "classLevel": 9,
+            "totalLevel": 9,
+            "PB": 4,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 18,
+              "WIS": 10,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 8,
+            "spellDC": 16,
+            "normalHP": 56,
+            "maximumHP": 56,
+            "hpDerivation": {
+              "firstBase": 6,
+              "laterBase": 4,
+              "CONPerLevel": 2,
+              "levels": 9
+            },
+            "RP": 32,
+            "maximumRP": 32,
+            "body": {
+              "id": "suppression-W9",
+              "size": "Medium",
+              "centerXY": [
+                27.5,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  25.0,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  30.0,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "antimagic-field-lesser"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+              "matrixCapacity": 13,
+              "firstDistinctPreparedFamilyBaseDissonance": 0
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "suppression-W9-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 10,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "specialization": "Divination",
+            "ConjurationCreationBonus": 0,
+            "FleshAscendantAcquired": false,
+            "heroPath": null,
+            "schoolPassive": "Divination failed-save reroll remains unused"
+          },
+          {
+            "id": "original-source-W11",
+            "class": "Wizard",
+            "classLevel": 11,
+            "totalLevel": 11,
+            "PB": 4,
+            "abilities": {
+              "STR": 10,
+              "DEX": 14,
+              "CON": 14,
+              "INT": 18,
+              "WIS": 10,
+              "CHA": 8
+            },
+            "abilityGeneration": "Recorded four-d6/drop-lowest arrays: 4,3,3,1 ->10; 6,4,4,1 ->14; 6,4,4,1 ->14; 6,5,5,1 ->16; 4,3,3,1 ->10; 3,3,2,1 ->8. Assign16 to casting ability,10 to the other mental ability. If attained, ASI4 gives casting ability+2. Later ASIs, if attained, use unrelated noncombat choices with no modifier to any tested event.",
+            "spellAttack": 8,
+            "spellDC": 16,
+            "normalHP": 68,
+            "maximumHP": 68,
+            "hpDerivation": {
+              "firstBase": 6,
+              "laterBase": 4,
+              "CONPerLevel": 2,
+              "levels": 11
+            },
+            "RP": 40,
+            "maximumRP": 40,
+            "body": {
+              "id": "original-source-W11",
+              "size": "Medium",
+              "centerXY": [
+                0,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  -2.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  2.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "AC": 12,
+            "walkSpeed": 30,
+            "temporaryHP": 0,
+            "Wounds": 0,
+            "repertoire": {
+              "actualFixtureChoices": [
+                "summon-corpse-golem",
+                "summon-death-knight",
+                "summon-soul-wraith",
+                "create-homunculus",
+                "negative-energy-flood",
+                "danse-macabre",
+                "create-undead"
+              ],
+              "scope": "Known/learned and prepared for this proposed design encounter only; pending spells are not enabled in public playtests.",
+              "acquisition": "Each named ordinary spell selected as a legal level-up book addition at or after its rank gate; available additions suffice. One hour preparation after a beneficial long rest; no duplicates. Unlisted choices supply no test modifier.",
+              "matrixCapacity": 15,
+              "firstDistinctPreparedFamilyBaseDissonance": 0
+            },
+            "equipment": {
+              "armor": null,
+              "shield": null,
+              "hands": "one ordinary focus held; other hand free for S",
+              "focus": {
+                "id": "original-source-W11-focus",
+                "massLb": 1,
+                "Load": 0.1,
+                "boundsFeet": [
+                  0.5,
+                  0.25,
+                  0.25
+                ],
+                "permissions": "casting focus only, no attack/bonus/charge"
+              }
+            },
+            "components": "audible V; free S hand; held class F; M/F uses focus alternative",
+            "Dissonance": 0,
+            "previousCastName": null,
+            "RefrainRun": 0,
+            "strainLimit": 10,
+            "currentConditions": [],
+            "concentration": null,
+            "ReactionAvailable": true,
+            "otherModifiers": "No defenses, price discounts, boosts, healing modifiers, injury, suppression, or unrelated acquired-feature activation unless separately stated.",
+            "lifecycle": "living PC with death saves, not an HP-only monster",
+            "sourceContext": "Complete actual class engine and current foundation/integration rules are bound by the candidate, not inferred from a spell name.",
+            "specialization": "Divination",
+            "ConjurationCreationBonus": 0,
+            "FleshAscendantAcquired": false,
+            "heroPath": "Spellbinder, no modifying Hero card invoked",
+            "schoolPassive": "Divination failed-save reroll remains unused"
+          }
+        ],
+        "bodyInputs": [],
+        "events": [
+          {
+            "independentFixtures": "Each named branch is a separate encounter state, never seven creatures sharing one space simultaneously. Each original source was actually established at time0 by its source-qualified creator; remaining3HP and current source/gear pose are prior lawful state inputs; no fresh creation or free casting is claimed by this suppression event."
+          },
+          {
+            "actor": "suppression-W9",
+            "spellId": "antimagic-field-lesser",
+            "rank": 5,
+            "school": "Abjuration",
+            "timeSeconds": 5,
+            "round": 1,
+            "activation": "Ready spell on caster actual regular Action at5; next caster regular START11; V/S/F, price/cadence once now; held concentration starts5",
+            "RPBefore": 32,
+            "baseRP": 10,
+            "surcharge": 0,
+            "RPPaid": 10,
+            "RPAfterCommit": 22,
+            "normalHPCost": 0,
+            "normalHPAfterCommit": 56,
+            "DissonanceBefore": 0,
+            "baseDissonance": 0,
+            "Refrain": 0,
+            "DissonanceAfter": 0,
+            "concentration": true,
+            "durationStart": "successful establishment at this time",
+            "checks": "Actual listed learned/prepared source, rank/access, Action, components, full geometry and affordable precommit pools. No unlisted counter, source modifier or interrupt in this branch.",
+            "trigger": "Hear the named original creator issue its actual spoken command to the target after creator regular START6; release immediately after that observable completed command, before later attached phase6.5"
+          },
+          {
+            "time": 6.1,
+            "release": "At6.1, after audible command has completed at6.05, AM caster spends its actual Reaction before owner ends6.25/attached6.5; select point now; no second price/cadence or Counterspell window.",
+            "point": [
+              20,
+              0,
+              3
+            ],
+            "radius": 10,
+            "pointRangeFromCasterBody": 5,
+            "LoE": "open",
+            "targetBody": "Medium5x5x6 at20,0,0; substitute actual Large10x10x8 Golem or Tiny2.5x2.5x2 Hom, all intersect sphere",
+            "creator": "original separate creator body at0,0 is outside field; its spoken command was actually legal when issued before the field appeared",
+            "expiry": 66.1,
+            "originalCommand": {
+              "sourceOwner": "original-source-W11",
+              "time": 6.05,
+              "round": 2,
+              "activation": "one actual regular-turn Bonus Action",
+              "instruction": "defensive movement0 and Dodge at the next real attached opportunity",
+              "perceivedBody": true,
+              "samePlane": true,
+              "rangeGapUpperBound": 16.25,
+              "clearLoEAndAudibleChannel": true,
+              "commandAllowanceBefore": 1,
+              "commandAllowanceAfter": 0,
+              "offensiveAllowanceSpent": false,
+              "legalBeforeField": true
+            }
+          },
+          {
+            "time": 6.5,
+            "input": "Issued command reaches its genuine original-owner attached opportunity while expression/control suppressed or ended; command is spent/lost. No new Bonus Action or phase created."
+          },
+          {
+            "time": 13,
+            "operation": "AM owner ends concentration; original source clocks unchanged"
+          }
+        ],
+        "expected": {
+          "newGlobalSummonRule": false,
+          "branchesReviewedAsSeparateProposedLifecycles": true,
+          "sourceClock": "AM starts at actual release6.1, deadline66.1, voluntarily ends13; original summon clocks remain independent."
+        },
+        "independentBranches": [
+          {
+            "body": "Golem",
+            "originalExpiry": 60,
+            "expectedAt13": "no return",
+            "expectedAt6_1": "body and creating application end; actual real2lb lantern deposited current floor, never copied"
+          },
+          {
+            "body": "Wraith",
+            "originalExpiry": 60,
+            "expectedAt13": "no return",
+            "expectedAt6_1": "manifestation and creating application end; actual cargo settles locally"
+          },
+          {
+            "body": "Homunculus",
+            "originalExpiry": null,
+            "expectedAt13": "no return",
+            "expectedAt6_1": "persistent source/body ends; actual cargo settles locally"
+          },
+          {
+            "body": "Knight",
+            "originalExpiry": 60,
+            "expectedAt13": "same body3HP returns only if saved-pose suppression cleared and local fit succeeds; no gear pickup; occupied/expiry alternatives NE5-01-B",
+            "expectedAt6_1": "body absent with saved current pose20,0,0; real gear drops; HP3 and original60 deadline retained"
+          },
+          {
+            "body": "Flood zombie",
+            "originalExpiry": 3600,
+            "expectedAt13": "same3HP animation resumes, old queued order not replayed, original3600 deadline",
+            "expectedAt6_1": "same consumed physical body inert, real gear/support/gravity unchanged"
+          },
+          {
+            "body": "Danse member",
+            "originalExpiry": 3600,
+            "expectedAt13": "same3HP member animation, no old order replay, original3600 deadline",
+            "expectedAt6_1": "same physical consumed member inert; does not end outside cohort members"
+          },
+          {
+            "body": "Create Undead Ghoul",
+            "originalExpiry": null,
+            "schedule": "next independent slot after original creator’s next scheduled occurrence, e.g. creator regular START12; no immediate7 turn; if an actual opportunity already spent that numbered round, no duplicate. Reacquisition at13 retires independent slot prospectively into next genuinely available attached phase. No particular autonomous behavior or work is claimed.",
+            "expectedAt6_1": "permanent flesh remains3HP; authority suppressed, underlying independent agency; native magical slowing rider unavailable but ordinary physical body survives"
+          },
+          {
+            "body": "Command Undeath target",
+            "status": "CONDITIONAL_CONTENT_PREREQUISITE",
+            "missing": "actual CR2 full profile and true successful old binding",
+            "expectedRuleOnly": "physical body remains; only authority suppresses, original actual schedule retained, no queued-order replay"
+          }
+        ],
+        "prerequisite": null,
+        "notes": [],
+        "independentPriorSourceInstances": [
+          {
+            "label": "Golem",
+            "spell": "summon-corpse-golem",
+            "rank": 4,
+            "maxHP": 60,
+            "duration": 60,
+            "size": "Large",
+            "height": 8,
+            "mass": 600,
+            "actualBody": {
+              "id": "Golem",
+              "size": "Large",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  15.0,
+                  -5.0,
+                  0
+                ],
+                "max": [
+                  25.0,
+                  5.0,
+                  8
+                ]
+              },
+              "heightFeet": 8,
+              "massLb": 600,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 60,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              33
+            ],
+            "initialHP": 60,
+            "currentHP": 3,
+            "lossBeforeFixture": 57,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Knight",
+            "spell": "summon-death-knight",
+            "rank": 5,
+            "maxHP": 80,
+            "duration": 60,
+            "size": "Medium",
+            "height": 6,
+            "mass": 180,
+            "actualBody": {
+              "id": "Knight",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 60,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              30
+            ],
+            "initialHP": 80,
+            "currentHP": 3,
+            "lossBeforeFixture": 77,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Wraith",
+            "spell": "summon-soul-wraith",
+            "rank": 6,
+            "maxHP": 100,
+            "duration": 60,
+            "size": "Medium",
+            "height": 6,
+            "mass": 0,
+            "actualBody": {
+              "id": "Wraith",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 0,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 60,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              27
+            ],
+            "initialHP": 100,
+            "currentHP": 3,
+            "lossBeforeFixture": 97,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Homunculus",
+            "spell": "create-homunculus",
+            "rank": 6,
+            "maxHP": 20,
+            "duration": null,
+            "size": "Tiny",
+            "height": 2,
+            "mass": 8,
+            "actualBody": {
+              "id": "Homunculus",
+              "size": "Tiny",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  18.75,
+                  -1.25,
+                  0
+                ],
+                "max": [
+                  21.25,
+                  1.25,
+                  2
+                ]
+              },
+              "heightFeet": 2,
+              "massLb": 8,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": null,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              27
+            ],
+            "initialHP": 20,
+            "currentHP": 3,
+            "lossBeforeFixture": 17,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Flood zombie",
+            "spell": "negative-energy-flood",
+            "rank": 5,
+            "maxHP": 20,
+            "duration": 3600,
+            "size": "Medium",
+            "height": 6,
+            "mass": 180,
+            "actualBody": {
+              "id": "Flood zombie",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 3600,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              30
+            ],
+            "initialHP": 20,
+            "currentHP": 3,
+            "lossBeforeFixture": 17,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Danse member",
+            "spell": "danse-macabre",
+            "rank": 5,
+            "maxHP": 20,
+            "duration": 3600,
+            "size": "Medium",
+            "height": 6,
+            "mass": 180,
+            "actualBody": {
+              "id": "Danse member",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": 3600,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              30
+            ],
+            "initialHP": 20,
+            "currentHP": 3,
+            "lossBeforeFixture": 17,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          },
+          {
+            "label": "Create Undead Ghoul",
+            "spell": "create-undead",
+            "rank": 6,
+            "maxHP": 40,
+            "duration": null,
+            "size": "Medium",
+            "height": 6,
+            "mass": 180,
+            "actualBody": {
+              "id": "Create Undead Ghoul",
+              "size": "Medium",
+              "centerXY": [
+                20,
+                0
+              ],
+              "feetZ": 0,
+              "bounds": {
+                "min": [
+                  17.5,
+                  -2.5,
+                  0
+                ],
+                "max": [
+                  22.5,
+                  2.5,
+                  6
+                ]
+              },
+              "heightFeet": 6,
+              "massLb": 180,
+              "orientation": "upright, world XYZ",
+              "geometryRole": "authored actual encounter input, not a universal species height"
+            },
+            "creator": "original-source-W11",
+            "createdAt": 0,
+            "sourceExpiry": null,
+            "originalCasting": "actual source-qualified Wizard11 Action at indicated prior time, listed spell learned/prepared, available V/S/F, declared legal body/target/matter under that exact procedure; first prepared familyD0; no surcharge/discount; created/formed exactly once",
+            "creatorRPAtThatCast": [
+              40,
+              27
+            ],
+            "initialHP": 40,
+            "currentHP": 3,
+            "lossBeforeFixture": 37,
+            "historyBoundary": "These are explicit prior lawful body/source inputs, not a claimed replay/test of unsupplied attacks. Consumed animations retain real connected head/torso, no missing parts and consumed allocation; finite manifestations create no reusable corpse. No generic approval of a bestiary profile.",
+            "currentFlags": "no resistance/temporaryHP/Wound/armor/max modifier; no gear except where branch expressly gives real lantern; no Conjuration or Flesh Ascendant",
+            "ownerMarkers": "Null fixture START -1,5,11,17 and END -.5,5.5,11.5,17.5; suppression fixture START0,6,12,18, END+.25 and attached+.5",
+            "atMostOneBodyFromThisTablePerIndependentFixture": true
+          }
+        ]
+      }
+    }
+  ],
+  "questionRoutingAddedTo": [
+    "IN4-10-B",
+    "IN6-07-B",
+    "IN6-09-A",
+    "IN6-09-B",
+    "IN6-11-A"
+  ],
+  "allOtherCaseContentUnchanged": true,
+  "proceduresAndSharedRulesUnchanged": true,
+  "newRuleAdoptions": 0,
+  "sourceInformationDeleted": 0
+}
