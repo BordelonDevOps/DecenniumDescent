@@ -1,0 +1,5 @@
+# Six travel spells: source conference
+
+Read all six complete source records, eight school placements, seventeen new questions, thirteen full accepted counterparts and current scoped interfaces. This follows a verified preservation push and the existing carefully qualified planes review. It does not reopen source authority or promote the mortal Wheel, saved website or operational plane keys into a universal cosmology. Original manuscripts and the saved website are present.
+
+Five records have individually justified tier C risk; Teleport is tier B. Preserve every original question and the nonoperative Blink receipt/case. There are no earlier complete operational procedures or new current cases for this cohort. Return complete source-linked proposed procedures, per-question dispositions and explicit missing-content holds; author actual complete cases only after the design choices are settled.525 reviewed /323 pending remain unchanged. Old reference counts/statuses are history; the live index and exact receipts control. No source deletion, game-wide interface expansion, runtime/balance/human/cosmology/campaign-epoch or75-domain closure.

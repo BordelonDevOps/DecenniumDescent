@@ -1,0 +1,3 @@
+# Enchantment Rank7 8 source conference01
+
+Read all8 complete source records/questions and19 explicit new questions, the full accepted comparisons and frozen source files. There are ZERO earlier complete procedures or worked cases for this cohort in the audited authoring map. Return complete source-linked proposed procedures, per-question decisions and subsequent case-development requirements. Preserve all original school placements and each actual class access. New local choices remain provisional until current full cases and exact acceptance.505 reviewed/343 pending unchanged. No source deletion, global interface expansion, runtime/human/balance/cosmology or75-domain closure.

@@ -1,4 +1,4 @@
-> **Latest development backup —18 October2026 UTC:** Video-game-only. **505 ordinary spells reviewed /343 pending.** Damage/control25 exact acceptance and verified application are preserved. Persistent20 remains under actual GPT review; companion and source packets remain pending. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_DAMAGE25.md). Earlier notices are retained history.
+> **Latest development backup —18 October2026 UTC:** Video game only. **525 ordinary spells reviewed /323 pending.** Persistent20 exact acceptance and verified application are preserved. Full companion Current04 is under actual GPT review. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_PERSISTENT20.md). Earlier notices remain history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 

@@ -1,0 +1,55 @@
+"""Index accepted persistent20 interfaces and actual companion conference; no new design."""
+from copy import deepcopy
+from collections import Counter
+from datetime import datetime,timezone
+import hashlib,json
+from apply_di7_ap_as_01 import G,R,A,info,encoded
+from prepare_ac5_current_interfaces_01 import at
+
+def read(p):return json.loads(p.read_bytes())
+def digest(v):return hashlib.sha256(v.encode() if isinstance(v,str) else encoded(v)).hexdigest()
+
+def main():
+ P=R/'data/director/spell_review';oldp=P/'accepted_interface_registry_05.json';newp=P/'accepted_interface_registry_06.json';invold=P/'ordinary_spell_inventory_04.json';invnew=P/'ordinary_spell_inventory_05.json';qold=P/'remaining_work_queue_10.json';qnew=P/'remaining_work_queue_11.json';root=A/'accepted-interface-refresh-06';report=A/'PERSISTENT20_REGISTRY_QUEUE_06_CHECK.json'
+ assert not any(p.exists() for p in [newp,invnew,qnew,root,report]);checks=[];frozen=[];now=datetime.now(timezone.utc).isoformat()
+ def ck(n,v):checks.append({'check':n,'passed':bool(v)});assert v,n
+ def freeze(p):
+  dst=root/'sources'/p.relative_to(G);dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(p.read_bytes());ck('Full frozen source '+p.name,dst.read_bytes()==p.read_bytes());b={**info(p),'frozenCopy':dst.relative_to(G).as_posix()};frozen.append(b);return b
+ receiptp=A/'PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json';receipt=read(receiptp);modelp=G/receipt['completeEnvelope']['path'];model=read(modelp);indexp=R/'data/public/spell_playtests/authored_review_index.json';index=read(indexp);old=read(oldp);reg=deepcopy(old)
+ ck('Exact accepted application checked',info(modelp)==receipt['completeEnvelope'] and read(A/'PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_CHECK.json')['failureCount']==0)
+ ck('143 previous interfaces',len(old['entries'])==143)
+ for e in old['entries']:
+  b=e['currentAuthoritativeSource'];ck('Previous authority '+e['id'],digest(e['exactAuthority'])==e['authoritySha256'] and all(info(G/b['path'])[k]==b[k] for k in ['bytes','sha256']))
+ source=freeze(modelp);authority=freeze(receiptp)
+ for p in [G/receipt['acceptanceAuthority']['path'],oldp,invold,indexp]:freeze(p)
+ def add(ident,name,pointer,used,scope,root_pointer=None):
+  value=at(model,pointer);context={'model':source,'sharedRulesPointer':'/sharedRules','referenceAliases':receipt['caseSourceReferenceAliases']}
+  if root_pointer:context.update(rootMappingPointer=root_pointer,completeSourceSpecificRootMapping=deepcopy(at(model,root_pointer)))
+  reg['entries'].append({'id':ident,'name':name,'acceptanceStatus':'accepted-authored-video-game-candidate','acceptanceBasis':authority,'scope':scope,'currentAuthoritativeSource':{**source,'pointer':pointer},'exactAuthority':deepcopy(value),'authoritySha256':digest(value),'trigger':'Only the accepted source-defined trigger, including actual lifecycle and eligibility.','inputs':'Actual source/class access, paid resources, finite timing, body geometry and hidden/public state as specified in full model.','outputs':'Only the exact named spell effects, state transitions and qualified damage-root records.','lifecycle':'Original identity, clocks, consumed opportunities, source-specific suppression/ending and cleanup persist.','exceptions':'No generic environment, healing, root, Fate presentation or spell-family promotion. Existing conditional source comparisons retain their limits.','knownSourceSpecificExtensions':[],'usedBy':used,'usageCoverage':'Only the exact named spell scopes and explicit shared users.','reusableWithinScope':True,'summaryAuthority':'Full exact source/context controls; this registry adds no mechanic.','completeContext':context,'runtimeImplementedByRegistry':False})
+ for key in model['sharedRules']:add(key,key,'/sharedRules/'+key,receipt['acceptedSpellIds'],'Only the20 accepted persistent-damage spells and source relationships expressly named in this rule; not a global recurring-damage or geometry rule.')
+ for n,s in enumerate(model['spells']):add('P20-PROCEDURE-'+s['id'],s['name'],f'/spells/{n}/procedure',[s['id']],'Only this exact spell procedure, its actual access and complete source-specific root mapping. No new permission from pending counterparts.',f'/spells/{n}/damageRootProposal')
+ add('P20-ICE-MIXED-07','Ice Storm exact mixed-defense allocation','/iceStormMixedDefenseOption/completeProposedText',['ice-storm'],'Ice Storm only, independently accepted here. Not Meteor Spear or global defense stacking. Actual class strongest-source selection, source stages and exact rational ties remain controlling.')
+ ck('173 distinct scoped interfaces',len(reg['entries'])==len({e['id'] for e in reg['entries']})==173);ck('All143 prior entries exact',reg['entries'][:143]==old['entries']);reg.update(recordedAtUtc=now,previousRegistry=info(oldp),newRulesAuthoredByRefresh=0)
+ ids=set(receipt['acceptedSpellIds']);inv=deepcopy(read(invold));inv.update(recordedAtUtc=now,previousInventory=info(invold),authoredIndex=info(indexp),reviewedRecordedCount=525,pendingRecordedCount=323,reviewedIds=[e['id'] for e in index['entries'] if e['authoredStatus']=='reviewed-authored-operational-playtest'],pending=[e for e in inv['pending'] if e['id'] not in ids],persistent20AcceptanceReceipt=info(receiptp),verifiedRemainingAfterPersistent20=323,statusCaveat='Current membership and exact receipts govern. Source catalog statuses/history are retained; no runtime, balance or full-domain approval.')
+ ck('525/323 current inventory',index['authoredCounts']=={'reviewed':525,'pending':323} and len(inv['reviewedIds'])==525 and len(inv['pending'])==323)
+ ck('All848 identities retained',set(inv['reviewedIds'])|{e['id'] for e in inv['pending']}=={e['id'] for e in index['entries']})
+ q=deepcopy(read(qold));before=deepcopy(q);resolved=next(g for g in q['groups'] if g['group']=='persistent-damage20');resolvedrows=[r for r in q['rows'] if r['id'] in ids];q['groups']=[g for g in q['groups'] if g['group']!='persistent-damage20'];q['rows']=[r for r in q['rows'] if r['id'] not in ids];q.setdefault('resolvedGroups',[]).append({'oldGroupUnchanged':resolved,'oldRowsUnchanged':resolvedrows,'actualApplicationReceipt':info(receiptp),'resolution':'20 exact accepted procedures applied byte-identically; full history retained.'})
+ prep=A/'RANK7_MECHANICS_16_SOURCE_CONFERENCE_01_PREPARATION.json';pp=read(prep);combined=read(G/pp['candidate']['path']);all16=[r['spellId'] for r in combined['records']];old8=next(g for g in q['groups'] if g['group']=='evocation-rank7-8');pos=q['groups'].index(old8)
+ q.setdefault('supersededPreparedGroups',[]).append({'oldGroupUnchanged':deepcopy(old8),'reason':'Preferred dispatch is mixed16 with per-spell1A/12B/3C risk allocation; parent8 packets unchanged and unsent.','replacementPreparation':info(prep)})
+ q['groups'][pos]={'group':'rank7-mechanics16','phase':'source-only-conference-prepared-unsent','identities':all16,'identityCount':16,'candidate':pp['candidate'],'preparation':info(prep),'archive':pp['archive'],'riskCounts':combined['riskCounts'],'genuineQuestions':33,'adopted':False,'earlierCompleteProcedures':0,'newCurrentEncounters':0}
+ for row in q['rows']:
+  if row['id'] in all16:
+   ck('Only old8 or ungrouped added8 '+row['id'],row['currentGroup'] in [None,'evocation-rank7-8']);row['previousGroupBeforeMixed16']=row['currentGroup'];row['previousPhaseBeforeMixed16']=row['currentPhase'];row.update(currentGroup='rank7-mechanics16',currentPhase='source-only-conference-prepared-unsent',nextAction='Confer on full mixed16 source packet:1routine/12interaction-heavy/3systemic. Do not send the older8-spell packets as duplicate conferences. After real decisions, complete current cases and exact acceptance remain.')
+ submission=A/'COMPANION_LIFE_10_CURRENT_04_ACTUAL_SUBMISSION.json';native=read(submission);turn=native['turns'][0];ck('Actual companion submission',turn['id']=='3215cb75-04cf-48fb-8d6b-9dbc93d04850' and native['attachments'][0]['name']=='DD_Companion_Life_10_Current_04_Draft.zip')
+ cg=next(g for g in q['groups'] if g['group']=='companion-life10');cg['previousGroupBeforeCurrent04Submission']=deepcopy(cg);cg.update(phase='actual-gpt-current04-semantic-conference-in-progress',actualSubmission=info(submission),actualUserTurn=turn['id'],actualGptThread=native['thread']['id'],fullCurrent04ActuallySubmitted=True)
+ for row in q['rows']:
+  if row['id'] in cg['identities']:row.update(currentPhase=cg['phase'],nextAction='Preserve actual full Current04 conference final, verify complete returned corrections and resolve five explicit questions; no exact acceptance inferred while active.')
+ q['previousSourceBindingsUnchanged']=deepcopy(q['sourceBindings']);q['sourceBindings']=[info(G/b['path']) if b['path']==indexp.relative_to(G).as_posix() else b for b in q['sourceBindings']];q['sourceBindings'].extend([info(qold),info(receiptp),info(A/'PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_CHECK.json'),info(submission),info(prep),pp['candidate'],pp['archive'],pp['check']])
+ q.update(id='REMAINING-WORK-QUEUE-11',recordedAtUtc=now,previousQueue=info(qold),ordinarySpellCounts={'total':848,'reviewed':525,'pending':323},pendingDistribution=dict(Counter(r['currentPhase'] for r in q['rows'])),preparedOrActualReviewIdentityCount=106,otherEarlierCompleteProposalCount=0,originalSourceOrReceiptWorkCount=217,limitations='Current exact receipts and index govern. All old queues, source-only records and frozen counts remain history. Full Current04 is actually submitted; mixed16 is unsent. Membership is not runtime, balance or whole-game closure.')
+ ck('20 exact pending removals',len(resolvedrows)==20 and len(q['rows'])==323 and [r['id'] for r in q['rows']]==[r['id'] for r in before['rows'] if r['id'] not in ids])
+ ck('14groups106disjoint identities',len(q['groups'])==14 and sum(g['identityCount'] for g in q['groups'])==len({i for g in q['groups'] for i in g['identities']})==106)
+ ck('216 source-only plus1 receipt outside groups',sum(r['currentGroup'] is None for r in q['rows'])==217 and q['pendingDistribution']['no-complete-procedure-found-in-current-proposal-directory']==216 and q['pendingDistribution']['receipt-only-pending']==1)
+ for b in q['sourceBindings']:ck('Queue bound source '+b['path'],info(G/b['path'])==b)
+ newp.write_bytes(encoded(reg));invnew.write_bytes(encoded(inv));qnew.write_bytes(encoded(q));(root/'SOURCE_MANIFEST.json').write_bytes(encoded({'bindings':frozen}));report.write_bytes(encoded({'recordedAtUtc':now,'registry':info(newp),'inventory':info(invnew),'queue':info(qnew),'checks':checks,'checkCount':len(checks),'failureCount':0,'inheritedInterfaces':143,'newlyIndexedAcceptedInterfaces':30,'totalInterfaces':173,'authoredCounts':index['authoredCounts'],'pendingGroups':14,'preparedOrSubmittedIdentities':106,'otherCompleteProposals':0,'sourceOrReceiptWork':217,'newRulesAuthoredByRefresh':0,'runtimeTestsExecuted':0,'sourceInformationDeleted':0}));print(json.dumps({'registry':info(newp),'queue':info(qnew),'checks':len(checks),'interfaces':173,'counts':index['authoredCounts']}))
+
+if __name__=='__main__':main()

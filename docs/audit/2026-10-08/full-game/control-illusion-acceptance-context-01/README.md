@@ -1,0 +1,3 @@
+# Current acceptance context for Control15 and Illusion14
+
+This supplement accompanies the separately attached full Current12 packet. It preserves both original packets unchanged and accounts for the only source drift:525/323 membership and current progress navigation. All108 old registry interfaces remain unchanged within173 current interfaces. The45 added accepted entries are exactly damage/control25 and persistent20, with full canonical chapters/models/cases and receipts included. All29 pending identities remain pending. Do not treat this supplement as a full submission of either underlying packet.

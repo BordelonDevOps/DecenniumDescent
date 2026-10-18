@@ -1,0 +1,5 @@
+# Rank7 mechanics16 source conference01
+
+This is a mixed16 source conference under the owner’s accelerated digital review protocol:1routine,12interaction-heavy,3systemic. Read all16exact source records/18placements and33genuine source decisions. Allocate deep review to the3systemic decisions, not every inherited rule. The original two unsent8-spell packets remain full unchanged history; their blanket all-C staging labels are superseded by this per-spell classification. Two former workflow/access questions are inherited requirements, not open design choices.
+
+Return complete source-linked proposed procedures, exception-focused per-question dispositions, full source verification and precise current-case obligations. No earlier full procedures or worked cases exist for this cohort in the audited authoring map; zero current encounters are submitted here. No new access, external spell imports, global interface promotion, cosmology, runtime/human/balance or whole-game approval.505reviewed/343pending unchanged. This packet is UNSENT.
