@@ -1,0 +1,30 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import json,hashlib
+G=Path(r'C:\Github\DecenniumDescent'); A=G/'docs/audit/2026-10-08/full-game'; W=Path(r'C:\Users\cbord\Documents\ChatGPT\Decennium Descent\audit_work')
+def raw(p):return Path('\\\\?\\'+str(p)).read_bytes()
+def meta(p):
+ b=raw(p);return {'path':str(p.relative_to(G)).replace('\\','/'),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+def write(p,b):
+ assert not p.exists(),str(p);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+def js(p):return json.loads(raw(p))
+receipt=A/'CONTROL15_PART5_RECOVERED_SOURCES_01_RECEIPT.json';assert not receipt.exists()
+ui=A/'CONTROL15_PART5_RECOVERED_SOURCES_01_UI.txt';write(ui,raw(W/'control15-part5-sources-recovered02-ui.txt'))
+ui_text=raw(ui).decode('utf-8');assert 'Codex has checked the pertinent' in ui_text and 'ChatGPT is responding' in ui_text
+native=A/'CONTROL15_PART5_RECOVERED_SOURCES_01_NATIVE.json';p=js(native)
+turn=next(t for t in p['turns'] if any(i.get('type')=='userMessage' and any(c.get('text','').startswith('Codex has checked the pertinent') for c in i.get('content',[])) for i in t['items']))
+assert turn['id']=='230cc541-987d-460e-b4eb-38f7202e436d'
+for name in ['preserve_part5_pertinent_returns01.py','check_part5_corrections_sources01.py','record_part5_catchup_and_source_delivery01.py']:
+ write(A/'part5-catchup-local-tools-01'/name,raw(W/name))
+start=G/'START_HERE.md';before=raw(start);backup=A/'PART5_CATCHUP_01_START_HERE_BEFORE.md';write(backup,before)
+notice=('**Latest GPT results — 18 October 2026:** Actual [Calibration Review Part 5](https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6ad4a867-f330-83e9-829e-bf2bb41a6c09) accepted **Illusion14 Exact13 and Companion10 Exact05**, each with all eight submitted artifacts unchanged and its existing holds retained. The [three-return preservation receipt](docs/audit/2026-10-08/full-game/GPT_PART5_PERTINENT_RETURNS_01_RECEIPT.json) binds the actual final messages, downloaded archives, manifests and all16 exact local artifact comparisons. These24 identities await verified repository integration: the actual index remains525/323/249;549/299/273 is only the projection. GPT also prepared six Control/Ready corrections; [read-only local verification](docs/audit/2026-10-08/full-game/PART5_CORRECTIONS_LOCAL_PREFLIGHT_01.json) matched all five live baselines and exactly replayed/reversed22 operations in memory. No correction was applied. All19 source bindings GPT lacked were recovered exactly; the full94-member Control15 Conference12, current-context supplement and local report were [delivered for the full remaining conference](docs/audit/2026-10-08/full-game/CONTROL15_PART5_RECOVERED_SOURCES_01_RECEIPT.json). Actual user turn230cc541-987d-460e-b4eb-38f7202e436d is confirmed; GPT is responding. The owner continued in Calibration Review Part 5; the separate Review continuation part 5 has been updated as standby. This actual later history supersedes earlier UNSENT/running/routing observations below and in checkpoint34. Source-history, content holds, runtime, balance and whole-game gates remain distinct.\r\n\r\n')
+anchor=b'**Continuation routing update';assert before.count(anchor)==1
+after=before.replace(anchor,notice.encode('utf-8')+b'**Historical continuation routing update',1)
+after=after.replace(b'**GPT collaboration current:**',b'**Earlier GPT collaboration snapshot (superseded above):**',1)
+after=after.replace(b'**Companion/life10 actual exact review:**',b'**Companion/life10 preparation history (actual acceptance now recorded above):**',1)
+assert len(after)>len(before)
+start.write_bytes(after)
+report={'recordedAtUtc':datetime.now(timezone.utc).isoformat(),'status':'RECOVERED_FULL_SOURCES_DELIVERED; GPT_FULL_CONTROL15_CONFERENCE_IN_PROGRESS','threadId':'6ad4a867-f330-83e9-829e-bf2bb41a6c09','chatTitle':'Calibration Review Part 5','actualUserTurn':turn['id'],'exactRequest':meta(A/'CONTROL15_PART5_RECOVERED_SOURCES_01_REQUEST.txt'),'nativeSubmission':meta(native),'scopedUI':meta(ui),'localScreenshot':str(W/'control15-part5-sources-recovered02.png'),'attachments':[meta(A/n) for n in ['DD_Control_15_Conference_12.zip','DD_Control_Illusion_Current_Acceptance_Context_01.zip','PART5_CORRECTIONS_LOCAL_PREFLIGHT_01.json']],'uploadNameNote':'Current acceptance supplement displayed with(2) filename suffix; unchanged exact hash identifies it.','recoveredSourceCount':19,'all54ExpectedControlSourceBindingsVerified':True,'actualReturnedPackages':meta(A/'GPT_PART5_PERTINENT_RETURNS_01_RECEIPT.json'),'localReadOnlyVerification':meta(A/'PART5_CORRECTIONS_LOCAL_PREFLIGHT_01.json'),'index':meta(G/'DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json'),'appliedCounts':{'reviewed':525,'pending':323,'standalone':249,'identities':848},'projectedOnlyAfter24AcceptedIdentitiesApplied':{'reviewed':549,'pending':299,'standalone':273},'routing':'Owner later continued actual work in Calibration Review Part5. Separate Review continuation part5 received a status-only update and remains standby. Do not resubmit/review already accepted Illusion14 or Companion10.','instructionBoundary':'Owner message in GPT ee46d85a-5148-43c3-b3cb-a695ba7e783d reserved implementation for a later instruction. Current request asked Codex to check pertinent developments. This pass preserved and verified returned evidence and delivered missing sources, without applying rules or implementing runtime.','startHereBefore':meta(backup),'startHereAfter':meta(start),'sourceInformationDeleted':0,'rulesApplied':0,'runtimeTestsExecuted':0,'gitPushPerformed':False}
+assert report['index']['sha256']=='6f9b86e21f6a69c7ba2469aba89d5907aa08da567226a2c4bd3ced9e09409857'
+write(receipt,(json.dumps(report,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
+print(json.dumps({'receipt':meta(receipt),'actualUserTurn':turn['id'],'indexUnchanged':True,'documentation':'Latest evidence linked; prior snapshots retained and labelled historical'},indent=2))

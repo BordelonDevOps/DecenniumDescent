@@ -1,0 +1,125 @@
+{
+  "status": "REVIEWED / reference-VALIDATED operational-playtest drafts",
+  "scope": "Five bounded spell interfaces; not numerical balance or whole-game certification",
+  "reviewEvidence": [
+    "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+  ],
+  "spells": [
+    {
+      "id": "harmonic-bulwark",
+      "activation": "Action",
+      "rangeFeet": 60,
+      "targets": "One willing creature you can perceive within 60 feet",
+      "duration": "Cast instantaneous; accepted temporary HP last until depleted, replaced, or the recipient completes a long rest",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic after legal payment; temporary-HP strongest-only arbitration then applies.",
+      "effect": "The chosen willing recipient receives a temporary-HP offer equal to 5 times credited RP. Credited RP is actual base RP paid after exact legal base-cost reductions plus chosen additional X from0..PB. X cannot be discounted. Ordinary surcharges never count toward credited RP. Use canonical ordinary-cast pricing; Refrain changes post-cast Dissonance and is not a new RP surcharge.",
+      "scaling": "5 temporary HP per credited RP. Additional conversion RP X is capped by proficiency bonus and must actually be paid.",
+      "limitations": "Additional conversion RP cannot itself be discounted. Payment occurs before nonstack arbitration and is not refunded when a stronger or equal shield remains. A cast with zero credited RP is illegal. Free casts/copies that spend no credited RP create no fresh Harmonic Bulwark shield unless their own exact copy rule expressly copies an already-resolved temporary-HP event. Temporary HP are not healing and use the canonical one-active-buffer rule. Choose X before commitment. Commit Action plus quoted casting payment plus X before countering or arbitration; no post-commit refund. A countered spell offers nothing.",
+      "designNotes": "PRESERVED: Harmonic Bulwark identity, Universal Rank 3, class access/learn levels/base 5 RP, and 5 temporary HP per RP source wording. NEW: Action, 60-foot range, one willing target, V/S/F components, PB cap on discretionary RP, exact credited-RP accounting, and V6-default shield lifetime. Action/range/components resemble the unproven Mana Shield candidate but are adopted only as provisional Harmonic Bulwark design choices; the alias is not treated as source identity.",
+      "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+      "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "polymorph",
+      "activation": "Action",
+      "rangeFeet": 60,
+      "targets": "One physical creature you can perceive within 60 feet",
+      "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Choose one legal R4 spell-form profile and validate its space before payment. A willing target may waive its save. An unwilling target makes a Constitution save against your spell DC. On failure it transforms. At the end of each of its original regular turns, and once per numbered round after it suffers positive actual HP damage, it may repeat the save; success ends the transformation. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath.",
+      "effect": "Replace the target's current anatomy with the chosen R4 spell-form profile while preserving one body, current/max HP, temporary HP, Wounds, conditions, attributes, proficiency, identity, resources, initiative and condition clocks. The supplied form attack uses the original caster's current spell attack bonus and M. Equipment melds and is unavailable unless a separate anatomy-compatible passive bonus is certified. The target retains control of all decisions.",
+      "scaling": "No automatic profile, damage, target-count or duration scaling. Use only the bounded R4 spell-form register.",
+      "limitations": "No monster stat block, multiattack, class spellcasting, legendary power, new resource pool or second HP pool is gained. Speech, hands and movement come only from the selected profile. A willing target may spend its Action on its regular turn to end its own Polymorph. Actual 0 HP, death or Incapacitated after same-packet prevention resolves ends the spell without healing. Explicit transformation immunity and legendary defenses apply normally. Natural/form attacks do not automatically qualify for unrelated weapon-only features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+      "designNotes": "PRESERVED: Polymorph identity, Transmutation Rank 4, exact class access, Action, 60 feet, V/S/F and base 7 RP. NEW: one-minute concentration, target/save/repeat-save procedure, R4 finite profile list, same-body state retention, caster-derived form attack, equipment/anatomy rules and zero-HP reversion.",
+      "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+      "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "shapechange",
+      "activation": "Action",
+      "rangeFeet": 0,
+      "targets": "Self",
+      "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Choose one legal R4 or R9 spell-form profile on cast. No save. Once on each of your original regular turns afterward, you may use a Bonus Action to switch to a different legal profile. The new anatomy must fit the available space. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath. No internal switch on the casting turn or an extra turn; first switch is the next original regular turn, then at most one on each later original regular turn.",
+      "effect": "You retain your identity, current/max HP, temporary HP, Wounds, conditions, attributes, proficiency, resources, initiative and existing effects. Only your current anatomy/profile changes. Each supplied natural attack uses your current spell attack bonus and M. Profile switching does not create a new body, heal, refresh resources, restore temporary HP or reset rest/recharge uses.",
+      "scaling": "No automatic scaling beyond the bounded R4+R9 profile register.",
+      "limitations": "Only one Shapechange anatomy exists at a time. An identical-profile switch is rejected before Bonus Action payment. Internal switches are not spell casts and do not create new Dissonance or Refrain events. Equipment remains melded through switches. Losing flight while unsupported begins ordinary falling. Actual 0 HP, death or Incapacitated after same-packet prevention ends Shapechange without healing. The spell grants no Druid Buffer Reserve, Form Surge, Shapeshift use or Druid form features. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+      "designNotes": "PRESERVED: Shapechange identity, Rank 9, Druid/Mage/Wizard access and class-specific schools, Action, source 120-foot metadata, V/S/F, base 26 RP, and the core concept of changing creature form each round. NEW: operational target narrowed to Self, one-minute concentration, Bonus Action once-per-original-regular-turn switching, finite R4/R9 profiles and same-body state rules. The original 120-foot source field remains preserved in provenance despite the self-target operational narrowing.",
+      "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+      "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "true-polymorph",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "One eligible physical creature or one eligible discrete nonmagical unattended object within 120 feet",
+      "duration": "Concentration during a 1-minute shaping period; if maintained for the full minute, the transformation persists until dispelled without further concentration; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Choose creature-to-creature, willing-creature-to-object, object-to-creature, or object-to-object before payment. Creature-to-creature may affect an unwilling target on a failed Constitution save; while shaping, that target repeats the save at each original regular end and once per numbered round after positive actual HP damage. Creature-to-object requires willingness. Objects make no save. If concentration survives the full shaping minute, the result becomes persistent until dispelled. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath.",
+      "effect": "Creature transformations retain one identity and one HP/durability history. Creature-to-creature uses any legal R4 or R9 spell-form profile. Creature-to-object creates one inert mundane object anatomy without healing or a new durability pool. Object-to-creature uses the object's existing structural HP as its one durability ledger and creates a controlled no-soul companion using an eligible non-humanoid R4/R9 profile and the caster's snapshotted spell statistics. Object-to-object changes only mundane form/material within the bounded utility restrictions.",
+      "scaling": "No automatic scaling. Permanent attack/DC values supplied by this spell snapshot the original caster's spell attack, spell DC and M when cast. Snapshot PB and source class as well. All True Polymorph supplied attack/DC values use this snapshot from casting, including shaping.",
+      "limitations": "No mode creates XP, loot, a soul, resurrection entitlement, valuable material, consumable stock, ammunition, currency, medicine, food or magical properties. Carried, worn, attuned, magical, artifact, structural-terrain and undefined-durability objects are ineligible. Object-origin creatures cannot receive ordinary HP healing as a means of repairing their source object. Only one active object-origin True Polymorph creature per caster is permitted. Such a creature shares the owner's companion Bonus Action/offensive budget and gains no independent turn/resources. Permanent True Polymorph does not end at 0 HP merely to restore the original form. Death/destruction remains real; later dispelling changes anatomy only and never heals, resurrects or recreates missing matter. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted. Object origin and earliest physical identity persist through every transformation chain. Object-origin creatures never gain a humanoid profile, soul, ordinary healing, resurrection or biological/class/rest resources. Use one actual structural HP ledger; structural0 destroys the object and ends its creature manifestation. Creature-origin object anatomy is actionless, not automatically Incapacitated. Allowed object templates are barrier/slab, ramp/wedge, open-container, static-furniture or simple-one-piece-tool; no actuated mechanism, magical or valuable output. Output size Tiny..Large and within one category of input; output mass cannot exceed recorded input or earliest origin mass; value cannot exceed original documented ceiling. Corpses/remains, magical/attuned/carried/worn/attended/structural objects and undefined structural durability are ineligible. An object-creature reserves its original caster slot on successful shaping; suppression/control change never frees it. At the60-second boundary finish damage, resolve due repeat save, then stabilize only surviving links. Replacing an active True object anatomy requires legal True replacement, not fresh nonmagical/unattended outside-object admission. Creature-origin people retain their CON save against unwilling creature-profile recasts and must consent to object-profile recasts. Returning them to creature anatomy grants no companion slot.",
+      "designNotes": "PRESERVED: True Polymorph identity, Rank 9, exact class access/schools, Action, 120 feet, V/S/F, base 26 RP, creature/object scope and meaningful until-dispelled permanence. NEW: one-minute shaping/stabilization procedure, save/agency rules, bounded form register, object eligibility/size/value rules, object-origin companion contract, one controlled-object-creature cap, durability conservation and destruction/dispel semantics.",
+      "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+      "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "concentrationAfterStabilization": false,
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "mass-polymorph",
+      "activation": "Action",
+      "rangeFeet": 120,
+      "targets": "Up to 10 distinct physical creatures you can perceive within 120 feet",
+      "duration": "Concentration, up to 1 minute; absolute checkpoint at casting timestamp +60 seconds, never extended by extra turns",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Before payment choose 1-10 targets and one legal R4 spell-form profile for each, validating each possible anatomy's space. Willing targets may waive saves. Each unwilling target independently makes a Constitution save. Failure creates that target's transformation link. Each hostile transformed target repeats the save at its original regular-turn end and once per numbered round after positive actual HP damage. Success ends only that target's link. Use the complete TRANSFORMATION_SPELL_PLAYTEST.md procedure and finite spell_form_profiles.json register. Preflight all targets, anatomy, space and access before committing Action/RP; commit ends your old concentration before counters or saves. A failed or countered new spell does not restore old concentration. An anatomy from another source is replaced only on actual success. No displaced form remains underneath. Before payment validate O/O, O/T, T/O and T/T footprint compatibility for every pair of targets; saves resolve independently and successful anatomy changes apply simultaneously.",
+      "effect": "Each failed/waived target gains exactly one selected R4 anatomy while retaining its own identity, current/max HP, temporary HP, Wounds, conditions, attributes, proficiency, resources, initiative and condition clocks. Each target's supplied natural attack uses the original caster's current spell attack bonus and M. All transformed targets share one concentration record but otherwise resolve their own transformation endings independently.",
+      "scaling": "Exactly up to 10 creatures. No generic three-target cap and no automatic access to the R9-only greater/elemental profiles.",
+      "limitations": "Casting range and line of effect are checked only when the spell is committed; there is no ongoing range tether. One target ending does not end another. Concentration ending removes every remaining target transformation. No target gains monster stat blocks, multiattack, resources, class features or a second HP pool. Equipment/anatomy, natural-attack taxonomy, damage/reversion and agency follow the shared spell-transformation chassis. The subject owns supplied natural-attack events; the original caster supplies attack statistics. These attacks are not spell casts or automatically caster spell-damage/kill triggers. A Druid cannot enter Shapeshift while a spell anatomy is active. Temporary lower-rank spells cannot replace higher-rank anatomy. Only a successful True Polymorph or an exact named exception can replace permanent True anatomy. Antimagic suppresses the same record while concentration and its absolute clock continue; True Polymorph can stabilize while suppressed. Suppression never frees an object-companion slot or resets gear. Creature-origin type tags remain unchanged; profile names confer no creature type. Every supplied attack has5-foot reach. Original anatomical abilities unavailable in the selected profile do not persist underneath it. A successful new transformation closes the old record and atomically restores/recaptures still-existing original gear; internal profile switches instead retain the same meld set and drop incompatible external gear. Mandatory reversion returns at the same anchor; blocked placement is referred to canonical geometry without automatic teleport or crushing damage. Original melded gear remains inaccessible under antimagic. A willing temporary creature-origin recipient can use its regular-turn rejection Action while suppressed if its root creature anatomy can act; object-origin identities gain no rejection right. No generic magical-attack bypass flag is granted.",
+      "designNotes": "PRESERVED: Mass Polymorph identity, Transmutation Rank 9, Druid/Mage/Wizard level-17 access, Action, 120 feet, V/S/F, base 26 RP and explicit up-to-10-creature scope. NEW: one-minute concentration, preselected per-target R4 profiles, independent saves/endings, no ongoing tether and shared same-body transformation rules.",
+      "implementationStatus": "REVIEWED / reference-VALIDATED operational-playtest draft",
+      "procedureReference": "docs/mechanics/TRANSFORMATION_SPELL_PLAYTEST.md",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_TRANSFORMATION_SPELL_FINAL_CLOSURE.md"
+      ]
+    }
+  ]
+}

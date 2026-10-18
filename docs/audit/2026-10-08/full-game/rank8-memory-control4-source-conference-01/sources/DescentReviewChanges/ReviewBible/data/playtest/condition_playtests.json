@@ -1,0 +1,951 @@
+{
+  "schemaVersion": "1.0",
+  "status": "reviewed and reference-validated within generic Core condition/recovery scope",
+  "scope": "All28 Core condition identities preserved. New generic procedures are explicit playtest proposals, not edits to approved books or a claim of game-wide balance.",
+  "sharedRules": [
+    "This overlay governs generic conditions in the combined candidate. A reviewed card overrides a generic clause only where it prints the specific exception. An unreviewed historical summary never grants an extra ability or bypasses a gate. The existing combined source-character/target/encounter hard-denial cap still applies to class/spell/companion applications.",
+    "Record each condition source, affected creature, applying DC, magnitude, start, duration and ending method. Same-name nonnumeric penalties apply once; independent sources continue until each ends. A generic cure naming a condition clears its source records unless a reviewed procedure specifies one-record scope. Bleeding Medicine and Burning DEX saves use the specific procedures below. Track Charmed, Frightened, Marked and Grappled relationships separately. Exhaustion, Intoxication, Unity and Wounds use their explicit tracks.",
+    "Immunity to a named condition prevents that condition, including an inherited component, but does not silently grant immunity to every parent condition that can cause it. For example, Prone immunity prevents the Prone component of Unconscious, not its other effects. Immunity to an inflicted condition never erases the underlying zero-HP or dead state. Gaining immunity suppresses applicable existing effects while immunity lasts; their clocks continue unless explicitly paused. Removing immunity does not reapply a one-time consequence or restart an old duration.",
+    "Advantages and disadvantages never multiply dice: any advantage and any disadvantage cancel to one normal d20 roll, regardless of the number of sources. Automatic failure of a required check/save is resolved without a roll. A condition does not give a save where its source grants none. A critical-if-hit rider never makes a missed attack hit. Automatic failure has no rolled total: use ordinary Failure, not Critical Failure or an invented failure margin, unless the source explicitly supplies one.",
+    "Generic Core Bleeding and Burning join family.bleeding and family.ongoing-fire respectively, with source-owner stack groups. At one identical target timing marker, all due generic and custom groups in that family compete: highest expected unmitigated damage, then earliest application. Only the winning group's source-permitted instances deal damage. All due groups consume that tick; losers do not defer or bank it. Different printed markers resolve separately. No record also receives a duplicate generic tick. Core generic timing is end of regular target turn; extra turns do not tick. Outside initiative preserve one periodic step per complete six seconds with no duplicate interval across initiative transitions.",
+    "Strain is not globally unique: expedition.strain and warrior.serum-strain are separate source-qualified tracks, both distinct from the six-level Exhaustion condition. See the Strain namespace reference for the current candidate. Oracle one-turn Revelation backlash is also separate from global Exhaustion; its printed penalties and endpoint remain unchanged. Wound Eater feeding failures explicitly use global Exhaustion. Never silently convert similarly named tracks.",
+    "See CONDITION_RECOVERY_PLAYTEST.md for finite recovery, cleansing, substance, Intoxication and Unity procedures. These new proposals are labeled separately from recovered source rules. Conditions do not reveal Director secrets or force player beliefs or decisions.",
+    "SUPERSESSION — NEW PROVISIONAL INTEGRATION: The unified Bleeding/ongoing-fire family registry supersedes earlier provisional clauses that selected generic records separately, used ending DC as a damage tie-breaker, cleared all generic Bleeding through one Medicine result, or used one Burning save to clear all generic Burning. Original Core quotations and raw review history remain unchanged. See CUSTOM_CONDITION_BINDINGS.md and the recorded GPT_GENERIC_CUSTOM_ALIGNMENT review."
+  ],
+  "conditions": [
+    {
+      "id": "addicted",
+      "name": "Addicted",
+      "coreText": "The creature has dependence on a named substance. Without a maintenance dose after a long rest, it gains Withdrawal.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "Record dependence on one named substance. After each completed long rest, if the creature has not taken the required maintenance dose for that substance, apply Withdrawal for that substance. Existing source procedures for repeated doses, dependence DC, tolerance and overdose continue to operate.",
+      "application": "Applied only by a substance or dependence procedure that explicitly creates or advances dependence. Merely consuming a substance does not automatically grant Addicted unless its procedure says so.",
+      "durationAndEnding": "A new maintenance dose is due immediately after each completed long rest. Until taken, apply that substance's Withdrawal; a pre-rest dose cannot satisfy this new interval. A dose suppresses symptoms until the next maintenance interval, but dependence persists. A seven-day no-dose recovery project or an explicit dependence-removal effect can remove it; see CONDITION_RECOVERY_PLAYTEST.md.",
+      "stacking": "Track one Addicted record per named substance. Separate substance dependencies coexist; duplicate dependence on the same substance does not create multiple copies unless a source defines severity.",
+      "immunitiesAndOverrides": "A feature explicitly preventing dependence blocks application. Magic that only removes symptoms does not automatically remove dependence, consistent with the source treatment text.",
+      "provisionalDecisions": [
+        "NEW: maintenance dose may relieve that substance's current Withdrawal symptoms without removing Addicted; exact dependence cure procedure remains deferred."
+      ],
+      "openDependencies": [
+        "Audit individual substance cards, dose escalation wording, equipment availability and specific cure effects during item integration."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 727,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 728
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "bleeding",
+      "name": "Bleeding",
+      "coreText": "Take damage equal to proficiency bonus at the end of each turn. An action and Medicine check or magical healing ends it.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "At the end of the affected creature's regular turn, take damage equal to its current PB, unless the selected reviewed application prints a different magnitude. Use that application's specified physical type; if none, slashing.",
+      "application": "Only explicit Bleeding applications create a source record. Record DC (or 10), magnitude, type and endpoint.",
+      "durationAndEnding": "Persists until its source or applicable cure ends it. Self or adjacent helper spends an Action selecting one active eligible Bleed record before a WIS (Medicine) check: printed cure DC, otherwise recorded applying effect/class/spell DC, otherwise 10. Success or Critical Success ends that record only. One legal magical healing event with positive pre-cap/pre-prohibition potential ends all ordinary records with an automatic-healing endpoint, even at full HP or while Corrupted/Decay prevents actual HP gain. Each Shaman Blood Curse instead gets its own printed CON save. Explicit end-one/end-all removers retain exact scope and protected-source exceptions.",
+      "stacking": "Independent source-owner records enter unified family arbitration at their actual marker. No DC tie-break or separate generic damage layer. Medicine ends one selected record; positive-potential magical healing ends all eligible automatic-cure records.",
+      "immunitiesAndOverrides": "Creatures explicitly immune to bleeding/blood-loss effects cannot gain it. Specific spell/class/item Bleeding numbers replace the generic PB magnitude only when printed.",
+      "provisionalDecisions": [
+        "NEW: affected-creature PB; explicit physical type or slashing fallback; source DC or 10; one regular-turn tick and strongest-record selection.",
+        "Source-faithful clarification: magical healing need not increase current HP to end Bleeding.",
+        "SUPERSESSION — NEW PROVISIONAL INTEGRATION: The unified Bleeding/ongoing-fire family registry supersedes earlier provisional clauses that selected generic records separately, used ending DC as a damage tie-breaker, cleared all generic Bleeding through one Medicine result, or used one Burning save to clear all generic Burning. Original Core quotations and raw review history remain unchanged. See CUSTOM_CONDITION_BINDINGS.md and the recorded GPT_GENERIC_CUSTOM_ALIGNMENT review."
+      ],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 729,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 730
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_GENERIC_CUSTOM_ALIGNMENT.md"
+      ]
+    },
+    {
+      "id": "blinded",
+      "name": "Blinded",
+      "coreText": "Cannot see; automatically fails sight checks; attacks have disadvantage and attacks against it have advantage.",
+      "compatibleV6Details": [
+        "V6 matches: cannot see, automatically fails sight-required checks, own attacks have disadvantage, attacks against have advantage."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature cannot see, automatically fails checks that require sight, has disadvantage on attack rolls, and attack rolls against it have advantage.",
+      "application": "Only an effect that explicitly inflicts Blinded applies it.",
+      "durationAndEnding": "Use the applying effect's printed duration, save, cure or endpoint.",
+      "stacking": "Multiple Blinded applications do not increase the penalties; track independent durations only when needed to know when all sources have ended.",
+      "immunitiesAndOverrides": "A sense that does not require sight may still function. A feature explicitly allowing sight while Blinded overrides only its printed scope.",
+      "provisionalDecisions": [],
+      "openDependencies": [
+        "Full special-senses and vision interaction belongs to the stealth/vision pass."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 731,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 732
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "burning",
+      "name": "Burning",
+      "coreText": "Take fire damage at end of turn. An action, immersion, or successful Dexterity save ends it.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "At end of the affected creature's regular turn its generic record offers 1d4 fire damage to unified family arbitration, unless its source specifies another magnitude. Only the winning stack group deals damage. Damage immunity does not by itself remove Burning.",
+      "application": "Applied only by an effect that explicitly inflicts Burning. Record the applying effect's DC; if none exists, use DC 10.",
+      "durationAndEnding": "Self or adjacent helper may spend one Action to end all active ordinary-extinguishable attached fires on this creature. Full immersion of all burning portions does the same. Explicit protected-source exceptions survive. At each regular target turn end, after due ticks are consumed, each surviving active ongoing-fire record with future damage remaining makes its own binary DEX save against its own source DC or 10. Success ends only that record. An indefinite generic fire counts as having future damage; a finite record with its final tick consumed expires without another save.",
+      "stacking": "Independent records enter unified ongoing-fire family arbitration. One Action/full immersion clears all ordinary-extinguishable records; DEX saves operate per surviving eligible record, not one selected-source save for all fires.",
+      "immunitiesAndOverrides": "Fire immunity prevents the damage but does not automatically end Burning unless the source or immunity says so. An effect explicitly immune to Burning blocks application.",
+      "provisionalDecisions": [
+        "NEW: 1d4 fire fallback, source DC or 10, damage then free ending save; Action/immersion can end before damage.",
+        "NEW: shared periodic timing and strongest-record precedence; adjacent helper and immersion boundaries.",
+        "SUPERSESSION — NEW PROVISIONAL INTEGRATION: The unified Bleeding/ongoing-fire family registry supersedes earlier provisional clauses that selected generic records separately, used ending DC as a damage tie-breaker, cleared all generic Bleeding through one Medicine result, or used one Burning save to clear all generic Burning. Original Core quotations and raw review history remain unchanged. See CUSTOM_CONDITION_BINDINGS.md and the recorded GPT_GENERIC_CUSTOM_ALIGNMENT review."
+      ],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 733,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 734
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_GENERIC_CUSTOM_ALIGNMENT.md"
+      ]
+    },
+    {
+      "id": "charmed",
+      "name": "Charmed",
+      "coreText": "Cannot willingly harm the charmer; charmer has advantage on social checks against it.",
+      "compatibleV6Details": [
+        "V6 specifies the creature cannot attack the charmer or target the charmer with harmful abilities or magical effects, and gives the charmer advantage on social interaction checks."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature cannot willingly take an action or make a choice it knows would harm the charmer: this includes attacks, harmful targeting, and knowingly placing the charmer in a harmful area or indirect effect. Unforeseeable or genuinely unknown collateral harm is not retroactively a willing violation. The charmer has advantage on social ability checks against it. Charmed itself never compels affection, obedience, beliefs, allegiance, affirmative protection or self-harm.",
+      "application": "Each application identifies the charmer/source.",
+      "durationAndEnding": "Use the applying effect's printed duration and repeat-save/ending procedure.",
+      "stacking": "A creature may be Charmed by more than one source; each source relation is tracked independently. Advantage does not stack.",
+      "immunitiesAndOverrides": "Charm immunity prevents application. Forced actions from another effect are not made voluntary merely because the creature is Charmed.",
+      "provisionalDecisions": [
+        "Agency clarification: Charmed never by itself grants control over beliefs, targets or decisions beyond the explicit harm restriction.",
+        "Source-faithful correction reviewed in GPT_CUSTOM_RIDER_SECOND_REVIEW.md: Core's unwilling-to-harm restriction is broader than direct targeting; preserve its area/indirect-harm scope without importing mind control."
+      ],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 735,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 736
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CUSTOM_RIDER_SECOND_REVIEW.md"
+      ]
+    },
+    {
+      "id": "corrupted",
+      "name": "Corrupted",
+      "coreText": "Healing is reduced, corruption-sensitive effects worsen, and long rests may shift behavior or form until cleansed.",
+      "compatibleV6Details": [
+        "V6: healing effects restore half normal HP; disadvantage on saves against spells/abilities from evil creatures; faint aura detectable by magic revealing evil; at end of each long rest make DC 15 Wisdom save or alignment shifts one step toward evil."
+      ],
+      "sourceConflicts": [],
+      "effect": "Halve each healing effect's final potential HP once, rounded down, before the HP ceiling. Saves against spells/abilities from individually recorded Evil creatures have disadvantage; its aura can be detected by effects revealing evil. At each completed long rest make DC 15 WIS save or move one moral step Good to Neutral to Evil, leaving law/chaos unchanged. Already Evil remains Evil. Alignment does not compel conduct, party separation, PvP or automatic oathbreaking.",
+      "application": "Only effects that explicitly inflict Corrupted apply it.",
+      "durationAndEnding": "Persists until an explicit cleansing effect or the eight-hour cleansing project in CONDITION_RECOVERY_PLAYTEST.md succeeds. Long rest alone does not cleanse it. At a simultaneous cleansing/rest endpoint, resolve cleansing first and make the Corrupted rest save only if it remains.",
+      "stacking": "Corrupted does not stack with itself. Apply the generic half-healing reduction once; an effect does not halve again merely because it restates the same Corrupted penalty.",
+      "immunitiesAndOverrides": "Natural-20 death-save recovery and recovered Stable 1-HP recovery are state-recovery rules rather than healing effects and still restore exactly 1 HP. Explicit cleansing or protection may override within scope.",
+      "provisionalDecisions": [
+        "NEW: round half healing down once; guaranteed death-save/Stable one-HP state recovery is not a healing effect.",
+        "Source-grounded: individual recorded alignment or Evil tag only; no ancestry/faction inference, forced behavior or automatic conduct violation.",
+        "NEW: generic cleansing project supplies a finite recovery route."
+      ],
+      "openDependencies": [
+        "Cross-check separately reviewed corruption-sensitive transformations and specific restoration effects."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 737,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 738
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "dazed",
+      "name": "Dazed",
+      "coreText": "Choose either action or movement on the turn, not both; no bonus action.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "On every affected turn, including extra turns, choose Action-mode (at most one Action total and no voluntary Speed expenditure or Dash) or Movement-mode (ordinary movement, no Action). Movement expressly included in the permitted Action still resolves. No Bonus Action; Reactions and concentration are unaffected.",
+      "application": "Only an effect that explicitly inflicts Dazed applies it.",
+      "durationAndEnding": "Use the applying effect's endpoint. Applies immediately: earlier voluntary movement that turn forbids further Actions; an earlier Action forbids further voluntary Speed expenditure; if both already occurred, neither may occur again. Do not undo completed events. Extra-Action grants cannot bypass the one-Action ceiling.",
+      "stacking": "Multiple Dazed applications do not further reduce the turn; track only the longest/independent ending sources.",
+      "immunitiesAndOverrides": "An immunity to Dazed blocks application. Forced movement is not voluntary movement and remains possible.",
+      "provisionalDecisions": [
+        "NEW: immediate mid-turn handling, each extra turn gets its own mode, one-Action ceiling, explicit action-contained movement exception."
+      ],
+      "openDependencies": [
+        "Interaction with future nonstandard action types if any are introduced."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 739,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 740
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "deafened",
+      "name": "Deafened",
+      "coreText": "Cannot hear and fails hearing checks; verbal coordination may fail.",
+      "compatibleV6Details": [
+        "V6 matches inability to hear and automatic failure of hearing-required checks."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature cannot hear and automatically fails checks that require hearing. It cannot satisfy a rule that specifically requires hearing another creature's command, warning, chant or audible signal.",
+      "application": "Only effects that explicitly inflict Deafened apply it.",
+      "durationAndEnding": "Use the applying effect's duration/end condition.",
+      "stacking": "Multiple applications do not compound.",
+      "immunitiesAndOverrides": "Deafened does not prevent the creature from speaking or supplying its own verbal components unless another condition such as Silenced applies.",
+      "provisionalDecisions": [
+        "Operational clarification: 'verbal coordination may fail' means hearing-dependent coordination requirements fail; no generic roll is added."
+      ],
+      "openDependencies": [
+        "Future command/audible-coordination features must state whether hearing is required."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 741,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 742
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "exhausted",
+      "name": "Exhausted",
+      "coreText": "Use the six-level exhaustion track; effects are cumulative and level 6 is death.",
+      "compatibleV6Details": [
+        "Level 1: disadvantage on ability checks.",
+        "Level 2: Speed halved.",
+        "Level 3: disadvantage on attack rolls and saving throws.",
+        "Level 4: hit point maximum halved.",
+        "Level 5: Speed reduced to 0.",
+        "Level 6: death."
+      ],
+      "sourceConflicts": [],
+      "effect": "Track 0–6 cumulative levels: 1 disadvantage ability checks; 2 half Speed after flat changes; 3 disadvantage attacks and saves; 4 maximum HP max(1,floor(otherwise-applicable maximum/2)); 5 Speed zero; 6 death.",
+      "application": "An effect that grants one or more Exhaustion levels increases the track by that amount, maximum 6, unless it explicitly sets a level instead.",
+      "durationAndEnding": "Eligible beneficial eight-hour long rest removes one level under CONDITION_RECOVERY_PLAYTEST.md, at most one generic removal per 24 hours. Source-specific prerequisites can block removal. Meeting a prerequisite such as Moisture Dependency immersion does not itself remove a level unless printed.",
+      "stacking": "Levels add, maximum 6. Derive level-4 maximum from the otherwise-applicable current maximum, never a previously halved value. Clamp HP down when maximum decreases; raising maximum does not heal. Level-5 zero Speed overrides halving.",
+      "immunitiesAndOverrides": "An explicit Exhaustion immunity blocks levels. Removing Exhaustion from a dead level-6 creature does not restore life; resurrection is still required.",
+      "provisionalDecisions": [
+        "NEW: maximum-HP floor 1, recomputation/clamping and flat-Speed-before-halving order.",
+        "NEW: finite generic long-rest recovery; source-specific removal blocks remain.",
+        "Recovered V6: six cumulative level effects."
+      ],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 743,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 744
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "frightened",
+      "name": "Frightened",
+      "coreText": "Disadvantage while source is visible and cannot willingly move closer.",
+      "compatibleV6Details": [
+        "V6 specifies disadvantage on ability checks and attack rolls while the source of fear is within line of sight, and prohibits willingly moving closer."
+      ],
+      "sourceConflicts": [],
+      "effect": "While the source of fear is visible/in line of sight, the creature has disadvantage on ability checks and attack rolls. While Frightened it cannot willingly move closer to that source.",
+      "application": "Each application records its fear source.",
+      "durationAndEnding": "Use the applying effect's duration and repeat-save procedure.",
+      "stacking": "Separate fear sources are tracked independently. Disadvantage does not stack.",
+      "immunitiesAndOverrides": "Fear immunity blocks application. Forced movement may move the creature closer because the prohibition is on willing movement.",
+      "provisionalDecisions": [],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 745,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 746
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "grappled",
+      "name": "Grappled",
+      "coreText": "Speed 0; ends if grappler is incapacitated or reach is broken.",
+      "compatibleV6Details": [
+        "V6 adds that the creature cannot benefit from bonuses to Speed and confirms ending when the grappler is incapacitated or an effect removes the target from reach.",
+        "V6 all-XML paragraph 8206 gives ordinary grapple application and opposed escape; fixed-DC card escapes remain specific class/spell rules."
+      ],
+      "sourceConflicts": [],
+      "effect": "Speed becomes 0 and cannot be increased by bonuses while Grappled.",
+      "application": "A Grappled application records the grappler/source and its reach.",
+      "durationAndEnding": "Ends if the grappler is Incapacitated, reach breaks, or the applying effect ends/its escape succeeds. A class/spell card with a fixed save DC uses an Action and STR (Athletics) or DEX (Acrobatics) against that DC. An ordinary V6 grapple uses an Action to escape with STR (Athletics) or DEX (Acrobatics) opposed by the grappler's STR (Athletics); higher total wins, ties retain the grapple. Multiple grapplers require ending each relationship.",
+      "stacking": "Multiple grapplers may maintain separate Grappled records; Speed remains 0 until all relevant grapples end.",
+      "immunitiesAndOverrides": "A creature immune to Grappled cannot receive it. Teleportation or forced movement that breaks reach ends that grapple unless a specific effect says otherwise.",
+      "provisionalDecisions": [],
+      "openDependencies": [
+        "Final generic grapple/shove procedure remains part of the combat maneuver audit."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 747,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 748
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "incapacitated",
+      "name": "Incapacitated",
+      "coreText": "Cannot take actions or reactions.",
+      "compatibleV6Details": [
+        "V6 matches: cannot take actions or reactions."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature cannot take an Action, Bonus Action or Reaction. Passive effects continue unless their own rules require consciousness or another condition disables them. Incapacitated by itself does not reduce Speed or prohibit speech.",
+      "application": "Applied by a condition or effect that explicitly says the creature is Incapacitated.",
+      "durationAndEnding": "Use the parent condition/effect's duration.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Current shared concentration rules end concentration immediately when the creature becomes Incapacitated. A specific effect may preserve a passive benefit through Incapacitation if explicitly stated.",
+      "provisionalDecisions": [
+        "NEW integration: Bonus Actions are included in unavailable actions.",
+        "Already explicit in CLASS_PLAYTEST_RULES.md: becoming Incapacitated ends concentration."
+      ],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 749,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 750
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "intoxicated",
+      "name": "Intoxicated",
+      "coreText": "Disadvantage on precise Dexterity and Intelligence checks; advantage on one save against fear. Stacks worsen into Dazed and Unconscious.",
+      "compatibleV6Details": [
+        "Existing Intoxication Track: 0 Sober; 1 Relaxed with advantage on one fear save and disadvantage on precise memory checks; 2 Intoxicated condition; 3 Dazed and Speed -10 ft; 4 Unconscious for 1d4 hours plus Constitution save against poisoning; 5 medical emergency, gain a Wound or die without treatment at Director discretion."
+      ],
+      "sourceConflicts": [],
+      "effect": "Use the single 0–5 Intoxication track and procedures in CONDITION_RECOVERY_PLAYTEST.md. Level 1 grants one fear-save advantage use per continuous nonzero episode and disadvantage precise-memory checks; level 2 additionally gives disadvantage precise DEX/INT checks; level 3 additionally Dazed and Speed-10; levels 4/5 additionally Unconscious and their poisoning/emergency procedures.",
+      "application": "Explicit Intoxication gains advance the dose-driven track. An effect saying Intoxicated without a numeric level creates a separate minimum effective score of 2 for its printed duration, or NEW two hours if it prints no duration. It adds no dose-driven points. Generic direct applications never create floors 3–5. A source setting level 3–5 must individually state its dose-driven points or exact recovery exception.",
+      "durationAndEnding": "Use the hourly sobriety, level 4 timer or level 5 emergency procedure, or an explicit reviewed cure. Full details including direct timed applications are in CONDITION_RECOVERY_PLAYTEST.md. Each no-duration floor-2 application expires exactly two elapsed hours after application. Multiple floors do not stack, but the floor persists while any is active; ending one does not remove independent dose-driven points.",
+      "stacking": "One track. One fear-save advantage use for the entire episode until level 0, never refreshed by moving between positive levels. Other independent Dazed/Unconscious/Poisoned sources remain after intoxication recovers.",
+      "immunitiesAndOverrides": "An effect explicitly preventing intoxication blocks track gain. Unconscious at level 4 uses the normal Unconscious condition.",
+      "provisionalDecisions": [
+        "NEW: cumulative condition thresholds, direct-application floor and continuous-episode fear-save limit.",
+        "NEW: finite sobriety, poisoning and medical-emergency procedures; source values/conditions preserved."
+      ],
+      "openDependencies": [
+        "Individual brew/substance cards still need their complete dose, access and balance audit."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 751,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 752
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "invisible",
+      "name": "Invisible",
+      "coreText": "Cannot be seen normally; attacks against it have disadvantage and its attacks have advantage until location is revealed.",
+      "compatibleV6Details": [
+        "V6: impossible to see without special senses or magic; heavily obscured for hiding; location may be detected by noises or tracks; attacks against have disadvantage and own attacks have advantage."
+      ],
+      "sourceConflicts": [
+        "Core explicitly ends the generic attack advantage/disadvantage when location is revealed; V6 states those attack modifiers without that endpoint. Core controls the conflict."
+      ],
+      "effect": "Cannot be seen normally. Until an observer knows its location, that observer attacks it with disadvantage and it attacks that observer with advantage. Once location is revealed, these Invisible-specific modifiers end for that observer. Do not re-grant them through V6 generic unseen rules solely because it is still Invisible. A special sense actually seeing it bypasses these modifiers. Knowing location is not seeing; effects requiring sight still need sight.",
+      "application": "Only an effect explicitly granting Invisible applies it.",
+      "durationAndEnding": "Use the granting effect's duration. V6 attacks reveal location upon attacking; resolve the revealing attack first, then observers able to perceive evidence know the location. Independent hiding/concealment uses its own procedure; later broad vision integration must specify losing and regaining location knowledge. Invisible remains visually effective after revelation.",
+      "stacking": "Multiple Invisible effects do not stack.",
+      "immunitiesAndOverrides": "A special sense or magic that actually sees the creature removes Invisible's unseen benefits for that observer within that sense's scope. Knowing location is not the same as seeing.",
+      "provisionalDecisions": [
+        "Operational distinction: visibility state and known location are separate.",
+        "No generic detection DC, automatic attack-reveal rule or movement-rehide rule is invented here.",
+        "Recovered V6: attacking reveals location. NEW timing clarification: resolve that attack before its revelation; Core location endpoint specifically overrides the otherwise-conflicting unseen attack modifiers."
+      ],
+      "openDependencies": [
+        "Stealth, sound, tracks, hiding and location-reveal procedure in the vision/stealth pass."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 753,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 754
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "marked",
+      "name": "Marked",
+      "coreText": "A named creature or faction can track, target, or trigger abilities against the marked creature.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "Marked establishes a source-specific relationship between the marked creature and one named creature, faction or effect. It makes the target eligible only for tracking, targeting or trigger rights explicitly printed by that reviewed source.",
+      "application": "Every application records marker source/faction, the granting ability or rule, and any rights/duration printed there.",
+      "durationAndEnding": "Use the applying source's duration/end rule. If none is supplied, that Marked application remains incomplete and should not be activated until its source is reviewed.",
+      "stacking": "Marks from different named sources may coexist. Reapplying the same mark refreshes/replaces according to that source. Generic Marked supplies no additive numerical bonus.",
+      "immunitiesAndOverrides": "An effect preventing marks blocks application within scope.",
+      "provisionalDecisions": [
+        "NEW integration: Marked alone grants no universal location knowledge, global tracking bonus, damage bonus or permission to bypass cover/planar boundaries."
+      ],
+      "openDependencies": [
+        "Individual mark-producing features must define their specific rights."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 755,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 756
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "paralyzed",
+      "name": "Paralyzed",
+      "coreText": "Incapacitated, cannot move or speak, fails Strength/Dexterity saves, adjacent hits are critical.",
+      "compatibleV6Details": [
+        "V6 adds attack rolls against the creature have advantage and specifies attacks that hit from within 5 feet are critical."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature is Incapacitated, cannot move or speak, automatically fails Strength and Dexterity saving throws, attack rolls against it have advantage, and any attack that hits it from within 5 feet is a critical hit.",
+      "application": "Only an effect explicitly inflicting Paralyzed applies it.",
+      "durationAndEnding": "Use the applying effect's duration and repeat-save/ending procedure.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Paralysis immunity blocks application. Incapacitated consequences, including loss of Bonus Action/Reaction and concentration ending under the shared rule, apply.",
+      "provisionalDecisions": [],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 757,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 758
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "petrified",
+      "name": "Petrified",
+      "coreText": "Incapacitated stone-like state; resistance to damage, immunity to poison/disease, weight ×10.",
+      "compatibleV6Details": [
+        "V6: transformed into inanimate substance, weight ×10, cease aging, Incapacitated, cannot move/speak, unaware, attacks against have advantage, automatically fails Strength/Dexterity saves, resistance to all damage, immunity to poison and disease, existing poison/disease suspended rather than neutralized."
+      ],
+      "sourceConflicts": [
+        "Core damage rules separately state Corruption damage cannot be resisted unless an effect explicitly protects against Corruption. Petrified does not explicitly name Corruption."
+      ],
+      "effect": "The creature becomes an inanimate stone-like substance, weight ×10, ceases aging, is Incapacitated, cannot move or speak, is unaware, automatically fails Strength and Dexterity saves, and attacks against it have advantage. It has resistance to all damage except Corruption damage, and immunity to poison and disease; existing poison/disease effects are suspended rather than removed.",
+      "application": "Only an effect explicitly inflicting Petrified applies it.",
+      "durationAndEnding": "Use the applying effect's duration/removal rule. Suspended poison/disease resumes if Petrified ends and the underlying effect has not otherwise expired or been cured.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Petrification immunity blocks application. Corruption resistance is not granted because the special Core Corruption rule requires explicit Corruption protection.",
+      "provisionalDecisions": [
+        "Integration ruling: generic all-damage resistance from Petrified does not satisfy Core's explicit-protection requirement for Corruption."
+      ],
+      "openDependencies": [
+        "Interaction with aging clocks and object-targeting effects belongs to later environment/item passes."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 759,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 760
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "poisoned",
+      "name": "Poisoned",
+      "coreText": "Disadvantage on attacks and ability checks.",
+      "compatibleV6Details": [
+        "V6 matches exactly."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature has disadvantage on attack rolls and ability checks.",
+      "application": "Only an effect explicitly inflicting Poisoned applies it.",
+      "durationAndEnding": "Use the applying effect's duration/removal rule.",
+      "stacking": "Multiple Poisoned applications do not stack disadvantage; independent durations may coexist.",
+      "immunitiesAndOverrides": "Poisoned immunity blocks application. Poison damage resistance alone does not imply Poisoned immunity unless stated.",
+      "provisionalDecisions": [],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 761,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 762
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "prone",
+      "name": "Prone",
+      "coreText": "Crawl or stand; melee attackers within 5 ft. have advantage; ranged attackers have disadvantage.",
+      "compatibleV6Details": [
+        "V6: only movement is crawl unless standing; own attack rolls have disadvantage; attacks from within 5 feet have advantage, otherwise disadvantage."
+      ],
+      "sourceConflicts": [
+        "For a ranged attack made from within 5 feet, V6 distance-only wording would grant advantage while Core specifically says ranged attackers have disadvantage. Core controls."
+      ],
+      "effect": "Own attacks have disadvantage. Melee attacks against it within 5 feet have advantage; ranged attacks against it have disadvantage at every distance; other attacks beyond 5 feet have disadvantage. Movement requires crawling or standing. Drop Prone without Speed expenditure; standing costs half current Speed, rounded down, requires nonzero Speed and sufficient movement. Crawl costs 2 feet per foot, or 3 in difficult terrain.",
+      "application": "Applied when an effect explicitly knocks a creature Prone or another rule such as Unconscious causes it.",
+      "durationAndEnding": "Ends when the creature successfully stands or an explicit effect ends Prone.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Prone immunity blocks application. A feature may explicitly ignore Prone attack penalties.",
+      "provisionalDecisions": [
+        "Core-vs-V6 conflict resolved in favor of Core for ranged attacks within 5 feet.",
+        "Recovered V6 movement: half-Speed standing and 2/3-for-1 crawling. NEW explicit zero-Speed standing prohibition, preventing zero-cost standing while Grappled."
+      ],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 763,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 764
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "resonance-burn",
+      "name": "Resonance Burn",
+      "coreText": "Maximum RP reduced and spell failure risk increases until a long rest or treatment.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [
+        "The current spell pilot explicitly uses Dissonance/Refrain and excludes the historical Burn/fizzle system to avoid stacking two strain engines."
+      ],
+      "effect": "Preserved source condition only. It is inactive in the current Dissonance-only playtest configuration and therefore applies no numeric RP-cap reduction or spell-failure procedure until separately reviewed.",
+      "application": "A feature whose only unresolved consequence is Resonance Burn remains blocked/non-operational in this configuration unless that feature separately defines all needed numbers without invoking the historical Burn engine.",
+      "durationAndEnding": "Source says until a long rest or treatment when active; exact treatment remains part of the historical Burn review.",
+      "stacking": "No stacking procedure is active in the current configuration.",
+      "immunitiesAndOverrides": "A reviewed configuration may explicitly enable Resonance Burn instead of or alongside another strain model, but that requires a separate decision.",
+      "provisionalDecisions": [
+        "Pilot decision: preserve but do not execute Resonance Burn while Dissonance/Refrain is the active strain system."
+      ],
+      "openDependencies": [
+        "An individual card invoking unresolved historical Burn is not operational until separately adapted and reviewed; no universal second failure engine is active."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 765,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 766
+      },
+      "configuration": "preserved; inactive in this Dissonance configuration",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "restrained",
+      "name": "Restrained",
+      "coreText": "Speed 0; attacks against have advantage, own attacks and Dexterity saves have disadvantage.",
+      "compatibleV6Details": [
+        "V6 adds that the creature cannot benefit from bonuses to Speed."
+      ],
+      "sourceConflicts": [],
+      "effect": "Speed becomes 0 and cannot benefit from Speed bonuses. Attack rolls against the creature have advantage; its own attack rolls and Dexterity saving throws have disadvantage.",
+      "application": "Only an effect explicitly inflicting Restrained applies it.",
+      "durationAndEnding": "Use the applying effect's printed duration, save or escape rule. If an effect creates a physical restraint and provides no escape procedure, use the existing shared playtest escape procedure only if that source is eligible for it.",
+      "stacking": "Multiple Restrained applications do not compound penalties, but all independently maintained sources must end before the creature is no longer Restrained.",
+      "immunitiesAndOverrides": "Restrained immunity blocks application. Teleportation does not automatically end a restraint unless it breaks the source relationship or the applying effect says so.",
+      "provisionalDecisions": [],
+      "openDependencies": [
+        "Final generic physical-restraint escape procedure in combat rules."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 767,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 768
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "silenced",
+      "name": "Silenced",
+      "coreText": "Cannot use verbal components, command words, Chants, or audible coordination.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "The creature cannot use spell/ability verbal components, command words, Chants, or any feature requiring audible coordination. It may still think, perceive, move, use somatic/nonverbal abilities and use effects that explicitly function without sound.",
+      "application": "Only effects explicitly inflicting Silenced apply it.",
+      "durationAndEnding": "Use the applying effect's duration/end rule.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "An ability explicitly usable without speech or audible sound is unaffected. Silence immunity blocks application only if explicitly defined.",
+      "provisionalDecisions": [
+        "Clarification: Silenced is not universal mental or magical shutdown."
+      ],
+      "openDependencies": [
+        "Specific audible-command features must state whether they require being heard by recipients."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 769,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 770
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "staggered",
+      "name": "Staggered",
+      "coreText": "Cannot react, loses Guard, and the next forced movement gains +5 ft. Ends at start of next turn.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "Cannot take Reactions. Remove current Guard: its unused +2 AC against the first attack and enabled Interpose end. Guard cannot be gained while Staggered. The next otherwise-legal forced-movement event before expiry gains 5 feet in the same direction, once; solid obstacles still stop it.",
+      "application": "Only an effect explicitly inflicting Staggered applies it.",
+      "durationAndEnding": "Ends at the start of the affected creature's next regular turn. The +5-foot rider is consumed by the first qualifying forced movement or expires unused.",
+      "stacking": "Duplicate applications do not add multiple 5-foot riders. Later application can refresh the endpoint but cannot refresh a consumed rider while continuously Staggered. A new condition episode after it fully ends may grant a new rider.",
+      "immunitiesAndOverrides": "Forced movement still obeys obstacle, solid-matter and legality rules. A feature explicitly preventing forced movement can negate the movement despite Staggered.",
+      "provisionalDecisions": [
+        "NEW endpoint clarification: 'next turn' means the affected creature's next regular turn.",
+        "NEW: +5 feet is consumed once.",
+        "Core Guard paragraph 394: +2 AC against first attack before next turn and enable Interpose. NEW: Guard removed rather than paused, cannot regain during Staggered; consumed rider not refreshed by reapplication."
+      ],
+      "openDependencies": [
+        "Full Guard/Interpose action review remains in combat; this condition now names the existing Guard benefits it removes."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 771,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 772
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "stunned",
+      "name": "Stunned",
+      "coreText": "Incapacitated, cannot move, fails Strength/Dexterity saves, attacks against have advantage.",
+      "compatibleV6Details": [
+        "V6 adds that the creature can speak only falteringly."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature is Incapacitated, cannot move, automatically fails Strength and Dexterity saving throws, attack rolls against it have advantage, and it can speak only falteringly.",
+      "application": "Only an effect explicitly inflicting Stunned applies it; source-character hard-denial limits remain separate application rules.",
+      "durationAndEnding": "Use the applying effect's duration/repeat-save procedure.",
+      "stacking": "Does not stack.",
+      "immunitiesAndOverrides": "Stun immunity blocks application. Incapacitated consequences apply, including no Bonus Action/Reaction and concentration ending under the shared rule.",
+      "provisionalDecisions": [],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 773,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 774
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "unconscious",
+      "name": "Unconscious",
+      "coreText": "Incapacitated, unaware, drops held items, falls Prone, adjacent hits are critical.",
+      "compatibleV6Details": [
+        "V6 adds cannot move or speak, automatically fails Strength/Dexterity saves, attacks against have advantage, and any hit from within 5 feet is critical."
+      ],
+      "sourceConflicts": [],
+      "effect": "The creature is Incapacitated, unaware of surroundings, cannot move or speak, drops held items, falls Prone, automatically fails Strength and Dexterity saving throws, attack rolls against it have advantage, and any attack that hits from within 5 feet is a critical hit.",
+      "application": "Applied by effects explicitly causing Unconscious, including the active 0-HP rules.",
+      "durationAndEnding": "Use the causing rule's endpoint. Healing above 0 ends only Unconscious caused solely by the 0-HP state; it does not remove an independent Unconscious effect.",
+      "stacking": "Multiple causes may coexist; the creature remains Unconscious until all relevant causes end.",
+      "immunitiesAndOverrides": "An immunity to Unconscious blocks applicable external effects but does not necessarily override death/0-HP rules unless explicitly stated. Incapacitated consequences apply.",
+      "provisionalDecisions": [],
+      "openDependencies": [],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 775,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 776
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "unity-exposure",
+      "name": "Unity Exposure",
+      "coreText": "Track exposure from 0-6. At thresholds, distinctions, memories, loyalties, and eventually identity begin to erode.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [],
+      "effect": "Use the provisional public score 0–6 table in CONDITION_RECOVERY_PLAYTEST.md:0/1 no generic penalty;2 -1 specific distinction Perception/Investigation;3 -1 INT/WIS checks;4 -1 INT/WIS/CHA checks;5 disadvantage those checks;6 disadvantage those checks and saves. Use current row only. Player agency remains.",
+      "application": "Only explicit effects such as reviewed substances, hazards or Director mechanics may alter Unity Exposure.",
+      "durationAndEnding": "Persists; only an explicit reviewed effect or successful three-day Anchor Project changes the score. Ordinary rest does not clear it.",
+      "stacking": "Exposure changes modify the single 0–6 track; cap at 6 unless an authoritative source explicitly allows another state.",
+      "immunitiesAndOverrides": "An effect explicitly preventing Unity Exposure blocks only the exposure it covers.",
+      "provisionalDecisions": [
+        "NEW provisional public threshold/recovery mechanics, discussed with GPT; not recovered canon.",
+        "Public score does not imply knowledge of hidden causes, truths, involuntary beliefs or identity deletion. Director handling remains separately packaged."
+      ],
+      "openDependencies": [
+        "Review all Unity application sources and Director narrative threshold material separately; no source-approved numeric threshold table was recovered in the bounded searches."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 777,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 778
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "withdrawal",
+      "name": "Withdrawal",
+      "coreText": "Disadvantage on ability checks and RP recovery; severity depends on substance and duration of dependence.",
+      "compatibleV6Details": [
+        "Dependence source: user needs a dose after each long rest or gains Withdrawal; treatment may use Medicine, Religion, Alchemy or a recovery project, while magic can remove symptoms without necessarily removing dependence."
+      ],
+      "sourceConflicts": [
+        "Current Retune is deterministic and has no RP-recovery roll on which disadvantage can operate."
+      ],
+      "effect": "The creature has disadvantage on ability checks. If an RP-recovery procedure actually calls for a roll, that recovery roll has disadvantage. The current deterministic Retune formula receives no invented numeric penalty from this wording. Oracle Revelation Charges are not RP and are unaffected.",
+      "application": "Applied for a named substance when its Addicted maintenance requirement is missed or another source explicitly inflicts Withdrawal. Record the substance/source separately.",
+      "durationAndEnding": "A legal maintenance dose suppresses that substance's symptoms for its current maintenance interval without removing Addicted. Reviewed symptom relief follows its printed duration. A successful dependence recovery project removes both named dependence and its Withdrawal. The generic condition has no extra numerical severity levels; a substance adds severity only where its reviewed card defines it.",
+      "stacking": "Separate substance Withdrawal records may coexist, but disadvantage on ability checks applies only once. Severity does not numerically stack unless a substance-specific rule defines it.",
+      "immunitiesAndOverrides": "An effect explicitly preventing Withdrawal symptoms suppresses the condition within its scope but need not remove Addicted.",
+      "provisionalDecisions": [
+        "NEW: a maintenance dose can end current Withdrawal symptoms while dependence persists.",
+        "Integration decision: deterministic Retune is not numerically altered because 'disadvantage' has no roll to modify.",
+        "Oracle RC explicitly remains outside an RP-only condition."
+      ],
+      "openDependencies": [
+        "Review substance-specific additions individually; do not infer penalties for deterministic RP recovery or Oracle RC."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 779,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 780
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    },
+    {
+      "id": "wounded",
+      "name": "Wounded",
+      "coreText": "Each Wound imposes -1 Constitution saves and reduces Hit Dice recovery; three Wounds is Critical.",
+      "compatibleV6Details": [],
+      "sourceConflicts": [
+        "V6 Appendix has a separate temporary Wounded condition: cannot regain HP except magical healing/long rest, disadvantage Constitution saves, damage at 0 causes one death-save failure, ends on magical healing/long rest. Core owns this conflict for the current candidate, so that V6 temporary package is preserved but inactive."
+      ],
+      "effect": "Use the existing Core Wound records from the reviewed HP/Wound overlay. Each Wound gives -1 Constitution saving throws and reduces maximum Hit Dice recovered per long rest by 1. At three Wounds the creature is Critically Wounded under that overlay's Speed, healing-ceiling and failed-Wound-save rules.",
+      "application": "Wounds are gained only through the active Wound-trigger/save system or an effect explicitly granting a Wound. Do not separately add a second condition penalty merely because a source labels the creature Wounded.",
+      "durationAndEnding": "Each Wound persists until a reviewed treatment or effect removes that Wound. Removing a Wound also removes its linked Injury. Leaving three Wounds ends Critical state under the existing overlay.",
+      "stacking": "Wound records stack numerically according to Core. The current overlay allows 0-3 living Wounds; a failed Wound save begun at three Wounds is fatal instead of creating a fourth.",
+      "immunitiesAndOverrides": "An effect explicitly preventing Wounds blocks only qualifying Wound gain within scope. Ordinary HP healing does not remove Wounds unless it explicitly says so.",
+      "provisionalDecisions": [
+        "Integration decision already reviewed: Core Wound records are the active meaning of Wounded in this candidate; the conflicting V6 temporary Wounded package is inactive and does not double-apply penalties."
+      ],
+      "openDependencies": [
+        "Specific restoration effects that remove Wounds will be cross-checked during spell/item/condition integration."
+      ],
+      "source": {
+        "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+        "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+        "paragraph": 781,
+        "paragraphIndex": "zero-based all w:p descendants",
+        "paragraphKind": "condition heading",
+        "textParagraph": 782
+      },
+      "configuration": "active provisional overlay",
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+      ]
+    }
+  ]
+}
