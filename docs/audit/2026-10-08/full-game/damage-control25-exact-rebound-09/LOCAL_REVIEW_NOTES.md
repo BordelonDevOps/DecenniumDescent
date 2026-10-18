@@ -1,0 +1,7 @@
+# Local exact review notes — pending
+
+The actual final GPT conference is preserved in the230039-byte review archive and receipt. All23 complete before/after operations were independently replayed forward/reverse against exactCurrent07; Current08 preserves the full predecessor and changed before values. This package keeps all25source/access records,26placements,36originaltexts and64existingcurrentrecordidentities, including limited raw arithmetic/conditional fixtures. Six additional conference examples remain distinct.
+
+The local current copies of three GPT supplements correct source-bound fixture details: Wizard11CON14fixedHP68→53, Wizard9CON14fixedHP56→41→25/automaticCounterspell ownership, and a specifically vertical ice cut before assigning75/25supportarea. Full original GPT versions are preserved unchanged in the casebook and Current08. Actual GPT concurrence is still required; these changes do not purport to be already accepted.
+
+The model and both complete manuscripts carry identical current procedures/sharedrules. The Director manuscript adds all70currentrecords and36originaltexts. File/source/pointer/arithmetic verification is not gameplay. No live catalog, index, registry or source authority was changed; no acceptedAC6/DE4 reopening, global ice/mixed-defense rule or sixth Fate presentation. Separate pending cohorts and all75domain gates remain open at their actual status.

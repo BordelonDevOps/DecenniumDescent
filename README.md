@@ -1,4 +1,4 @@
-> **Latest development backup — 18 October2026 UTC:** Video-game development is active. **480 ordinary spells reviewed /368 pending**; AC6 and DE4 exact authored integration is complete. The next25 source conference is running with the actual GPT notebook. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_DE4.md). Older backup/stop notices below are preserved history.
+> **Latest development backup — 18 October 2026 UTC:** Video-game development continues with actual GPT. **480 ordinary spells reviewed / 368 pending.** The returned 25-spell corrections and new full conference packets are preserved. See [snapshot status](SNAPSHOT_STATUS_2026-10-18_CONFERENCES.md). Earlier backup notices below are preserved history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 
