@@ -1,0 +1,379 @@
+{
+  "status": "PROPOSED_ADDITIONS_TO_A_NEW_PENDING_REVISION",
+  "currentInputCaseCount": 34,
+  "additionalCaseCount": 2,
+  "cases": [
+    {
+      "id": "DE4-N35",
+      "spellId": "mass-pacify",
+      "title": "Pacification blocks a compelled attack without creating a fallback budget",
+      "status": "NEW_REVIEW_AUTHORED_EXAMPLE_NOT_EXECUTED_NOT_ADOPTED",
+      "addressesFinding": "DE4-F02",
+      "initialState": "Two different Wizard7 casters P and D each have INT18/PB3, Abjuration specialization, actual prepared Mass Pacify (P) or Dominate Person (D),14RP,0Dissonance and no concentration. DC15 for these Enchantment spells; first different prepared family has0base Dissonance, with no Refrain. T is an actual Humanoid significant NPC with WIS0, an ordinary unexpended Action, ordinary melee attack and no relevant immunity. R is a different adjacent creature. No creature has committed an attack against T since the pacification. The source-character/target/encounter hard-control allowance of D is unused.",
+      "actionsAndResolution": [
+        "At t0 P commits Action/V/S/F/7RP,14→7, selects visible center T within30ft and ordinarily identifies T as an enemy. T WIS8 fails DC15. One Mass Pacify application establishes, concentration deadline60. No hidden enemies are invented.",
+        "At t2 D separately commits Action/V/S/F/7RP,14→7, to legal Dominate Person within60ft. T WIS9 fails DC15; D establishes and claims its actual hard-control allowance. D concentration deadline62. P concentration is independent and remains.",
+        "At T regular START t4, D is conscious on the same actual plane and issues the one opportunity order to make its ordinary melee attack against adjacent R. The corrected attack prohibition is absolute for new attacks, including compelled ones. The attack cannot commit. Under actual compelled-budget arbitration an impossible instruction claims no Action/ammunition and does not become an alternative attack or free action.",
+        "T can choose its ordinary Dodge Action at t4.5 because no other rule prevents it; this is its existing Action, not a compelled replacement. No attack against T has committed, so pacification has not ended.",
+        "At affected END t6 T repeats WIS12 versus DC15 and fails Dominate Person. Both real applications continue with their own original clocks. The expired turn-specific attack order is not banked."
+      ],
+      "costLedger": {
+        "P": {
+          "RPbefore": 14,
+          "spent": 7,
+          "after": 7,
+          "Action": 1,
+          "baseDissonance": 0
+        },
+        "D": {
+          "RPbefore": 14,
+          "spent": 7,
+          "after": 7,
+          "Action": 1,
+          "baseDissonance": 0
+        },
+        "T": {
+          "compelledAttackActionSpent": 0,
+          "ammoSpent": 0,
+          "ordinaryChosenDodgeAction": 1
+        },
+        "P_and_D_differentOwners": true
+      },
+      "clockLedger": {
+        "regularSlots": {
+          "P": [
+            0,
+            2
+          ],
+          "D": [
+            2,
+            4
+          ],
+          "T": [
+            4,
+            6
+          ]
+        },
+        "PacifyDeadline": 60,
+        "DominateDeadline": 62,
+        "TrepeatSaveAt": 6
+      },
+      "geometryLedger": {
+        "positionsFeet": {
+          "P": [
+            0,
+            0
+          ],
+          "D": [
+            0,
+            10
+          ],
+          "T": [
+            20,
+            0
+          ],
+          "R": [
+            25,
+            0
+          ]
+        },
+        "allBodies": "Medium 5x5,6ft tall;grounded;clear LoE",
+        "P_to_T": 20,
+        "D_to_T": "sqrt(500)=22.3607 ft",
+        "T_to_R": "adjacent normal melee reach"
+      },
+      "outcome": "Removing voluntarily closes an unprinted control bypass without expanding Mass Pacify to ban nonattack harm, movement or all Actions.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_05.json",
+          "pointer": "/spells/8/completeSourceAndAccess/source/original/description",
+          "role": "Printed cannot attack unless attacked",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_05.json",
+          "pointer": "/spells/7/procedure",
+          "role": "Pending Dominate Person ordinary Action and opportunity",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+          "lineStart": 5,
+          "lineEnd": 28,
+          "role": "Absolute restrictions and impossible-instruction arbitration",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "lineStart": 161,
+          "lineEnd": 184,
+          "role": "Actual voluntary/forced distinction is material",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/9",
+          "role": "Abjuration specialization does not add to these Enchantment DCs",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11",
+          "role": "First different prepared-family base-Dissonance exception",
+          "authority": "supplied source"
+        }
+      ],
+      "priorCurrentVersion": null
+    },
+    {
+      "id": "DE4-N36",
+      "spellId": "phantasmal-killer",
+      "title": "New Stable deadline, later ordinary damage, real START death saves and independent summon expiry",
+      "status": "NEW_REVIEW_AUTHORED_EXAMPLE_NOT_EXECUTED_NOT_ADOPTED",
+      "addressesFinding": "DE4-F04",
+      "initialState": "Two independent branches below; no state or resources carry between them. Branch A uses Monk18 C with DEX18/PB6,18RP,0Dissonance, actual Illusion4 Phantasmal Killer repertoire, Veil already operative, and no price modifiers. DC18, Dissonance limit12. T is designated significant living NPC with death saves, HP10/max100, WIS0, no tempHP, Wounds, psychic/fire immunity or resistance. A is Wizard7 INT18/PB3, Abjuration specialization,20RP/0Dissonance, actual Burning Hands preparation, no Veil and no concentration. Branch B uses the same legal Monk fixture freshly reset; a separately owned actual Water Pet is created beforehand as specified.",
+      "actionsAndResolution": [
+        "A/t0: C commits Phantasmal Killer Action/V/S/F/7RP,18→11; base Dissonance0→1, no Refrain. T WIS9 fails DC18. Failed-save Illusion damage-component establishment creates root R with C as dealer and creationNull=true. Immediate4d10 faces[2,3,4,5]=14 reaches0 from10. Qualifying Null produces Stable0/Unconscious/Prone and resets success/failure counters to0. Roll Stable d4=2 hours exactly once; absolute recovery deadline7200. No Wound or Instant Death from this qualifying packet.",
+        "A/t4: T regular START finds Stable; no death save. Round1 Illusion exposure was used by t0 initial packet, so no second packet. At END t6 T WIS6 fails18; application continues.",
+        "A/t8: Wizard A uses Action/V/S/F on the real east-facing15ft Burning Hands cone. Pay2RP20→18; first prepared family base-Dissonance0, no Refrain. T is Unconscious and automatically fails actual DEX save.3d6[1,1,1]=3 non-Null fire damage breaks Stable, cancels deadline7200, and at existing0 adds one failed death save. No critical attack exists: this is save-based damage, not an attack.3 is below max100 Instant Death and half-max50 Wound thresholds.",
+        "A/t10: Before periodic spell damage, actual regular-START death save natural10 gives success1 with failure1 retained. Then the round2 scheduled Illusion packet4d10[2,3,4,5]=14 still uses R creationNull=true and preserves Dying0 plus those counters; it does not make the already-Dying target newly Stable or create a recovery deadline. At END t12 T WIS7 fails18.",
+        "A/t14: A recasts Burning Hands with actual2RP18→16. Base1 plus consecutive same-family Refrain1 raises Dissonance0→2, below limit9. Unconscious T automatically fails DEX;3d6[1,1,1]=3 ordinary damage at0 raises failures1→2, successes1 unchanged. No other threshold is reached.",
+        "A/t16: Actual regular-START death save natural2 raises failures2→3: T dies before the later START-damage phase. Death ends the corresponding Phantasmal Killer application. There is no third Illusion packet, no restored Stable timer, and no RP refund. This is a real life-order example, not a simulation execution.",
+        "B/t-55: independently reset Wizard7 owner O has Water Pet actually prepared,20RP and no concentration, casts Action/V/S/F/7RP20→13 outside initiative, and creates the exact supported Medium Water Pet AC14/HP35 with original60-second absolute deadline t5. Source-owner PB3 is used for its saves. No new creature profile or natural/soul identity is authored.",
+        "B/t0: fresh Monk C casts the same legal Illusion Phantasmal Killer7RP18→11,D0→1; Pet WIS natural7+ownerPB3=10 failsDC18. Root R2 is Null at creation.4d10[10,10,10,10]=40 leaves that same finite Pet body NullDisabled0; its expiry stays t5. It gets no creature death-save or Stable recovery clock. The Pet was fully present and perceivable when the spell targeted it.",
+        "B/t4: its owner-linked phase exists after owner O regular turn[2,4], but no actions/movement are available to a Disabled Pet. This is not a new independent turn. The round1 initial Phantasmal Killer exposure is already spent, so no extra packet is manufactured. The separately required source-only END WIS save rolls natural6+PB3=9 and fails18; it grants no Action, Reaction, death save or recharge.",
+        "B/t5: Water Pet original source expiry ends the body independently of Null and the still-existing Monk concentration. Phantasmal Killer ends for that now-ended creature identity. No source-only save or later pulse recreates it. With no real loose cargo declared, nothing remains except ordinary application history."
+      ],
+      "costLedger": {
+        "branchA": {
+          "Monk": {
+            "RPbefore": 18,
+            "spent": 7,
+            "after": 11,
+            "DissonanceAfter": 1
+          },
+          "Wizard": {
+            "RPbefore": 20,
+            "casts": [
+              {
+                "t": 8,
+                "cost": 2,
+                "after": 18,
+                "DissonanceAfter": 0
+              },
+              {
+                "t": 14,
+                "cost": 2,
+                "after": 16,
+                "DissonanceAfter": 2
+              }
+            ]
+          }
+        },
+        "branchB": {
+          "WaterPetOwner": {
+            "t": -55,
+            "RPbefore": 20,
+            "cost": 7,
+            "after": 13
+          },
+          "Monk": {
+            "RPbefore": 18,
+            "cost": 7,
+            "after": 11,
+            "DissonanceAfter": 1
+          }
+        },
+        "branchesIndependent": true
+      },
+      "clockLedger": {
+        "branchA": {
+          "regularSlots": {
+            "C": [
+              0,
+              2
+            ],
+            "A": [
+              2,
+              4
+            ],
+            "T": [
+              4,
+              6
+            ]
+          },
+          "repeatEachSeconds": 6,
+          "PKoriginalMax": 60,
+          "StableRollHours": 2,
+          "StableDeadlineCreatedAt0": 7200,
+          "StableDeadlineCanceledAt": 8,
+          "STARTs": [
+            4,
+            10,
+            16
+          ],
+          "PKopportunities": [
+            0,
+            4,
+            10,
+            16
+          ],
+          "resolvedPKpackets": [
+            0,
+            10
+          ],
+          "deathEndsApplicationAt": 16
+        },
+        "branchB": {
+          "WaterPetEstablished": -55,
+          "WaterPetExpiry": 5,
+          "MonkPKestablished": 0,
+          "actualOwnerRegularSlot": [
+            2,
+            4
+          ],
+          "actualPetPhaseBegins": 4,
+          "PKinitialRoundExposureAlreadySpent": true,
+          "bodyEndCancelsFuturePulses": 5
+        }
+      },
+      "geometryLedger": {
+        "branchA": {
+          "C": [
+            0,
+            0,
+            0
+          ],
+          "A": [
+            15,
+            0,
+            0
+          ],
+          "T": [
+            25,
+            0,
+            0
+          ],
+          "anatomy": "Medium5x5x6;clear grounded bodies",
+          "BurningHands": "15ft east cone from A; T center10ft away/body wholly inside cone; C west and excluded",
+          "PKrange": 25
+        },
+        "branchB": {
+          "C": [
+            0,
+            0,
+            0
+          ],
+          "Pet": [
+            25,
+            0,
+            0
+          ],
+          "Owner": [
+            25,
+            10,
+            0
+          ],
+          "bodies": "actual Medium supported footprints;clear LoE and creation/target ranges"
+        }
+      },
+      "outcome": "The new Stable recovery clock is actually created and canceled; ordinary damage and death saves remain lethal while descendants of the earlier Null root remain nonlethal. A different finite-summon branch ends on its original source deadline despite NullDisabled0. Neither branch grants a new global timing rule.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_05.json",
+          "pointer": "/spells/12/procedure",
+          "role": "Two actual Phantasmal Killer modes, exposure and death ordering",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_05.json",
+          "pointer": "/sharedRules/DE4-NIGHTMARE-ROOT-02",
+          "role": "Pending root snapshot rule",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_05.json",
+          "pointer": "/sharedRules/newCompanionPulseBinding",
+          "role": "Pending owner-phase pulse bridge",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_05.json",
+          "pointer": "/sharedRules/newEndSaveBinding",
+          "role": "Pending source-only save bridge",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/engine/0",
+          "role": "Monk DEX casting",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/rpByClassLevel/17",
+          "role": "Monk18 real RP18",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/maxSpellRankByClassLevel/17",
+          "role": "Monk18 actual rank4",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/9",
+          "role": "Abjuration chosen, no Evocation specialization",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11",
+          "role": "Actual Wizard Dissonance exception",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/426/operational",
+          "role": "Actual Burning Hands15ft3d6DEX",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/8/procedure",
+          "role": "Water Pet HP35/NullDisabled0/real finite expiry",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "lineStart": 719,
+          "lineEnd": 729,
+          "role": "Unconscious auto STR/DEX failure",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "lineStart": 35,
+          "lineEnd": 58,
+          "role": "Damage at0, death-save order and Stable d4 recovery",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "lineStart": 45,
+          "lineEnd": 68,
+          "role": "Actual START/END and absolute clocks",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "section": "Creation-time damage roots and Null recipient lifecycle",
+          "role": "No refreshed root, Dying preservation and finite-body exception",
+          "authority": "accepted supplied source"
+        }
+      ],
+      "priorCurrentVersion": null
+    }
+  ]
+}

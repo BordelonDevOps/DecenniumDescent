@@ -1,0 +1,521 @@
+{
+  "id": "DAMAGE-CONTROL-25-HISTORY-RECONCILIATION-02",
+  "before": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/damage_control_25_current_01.json",
+    "bytes": 328846,
+    "sha256": "976b9d86545f3579ccbcb641d0ac053ca8be083dfc56036b87b3a0972255180a"
+  },
+  "matches": [
+    {
+      "spellId": "orb-of-annihilation",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank4.json",
+        "bytes": 1933607,
+        "sha256": "a2dfc527d9068008ea762680926f6e91a12989f0ac6c683b038a59544e5ac5ea",
+        "pointer": "/records/1"
+      },
+      "priorCurrent01Procedure": {
+        "target": "One perceived creature within60ft and line of effect.",
+        "shape": "single",
+        "save": "DEX",
+        "damage": [
+          [
+            8,
+            8,
+            "force"
+          ]
+        ],
+        "success": "half damage",
+        "rider": "None. No destruction/annihilation rider.",
+        "new": "Creature-only target, ordinary perception/LoE; source already supplies8d8 force and DEX half."
+      },
+      "resolution": "Retain earlier independently legal object mode and actual object DEX/durability bridge; the short new creature-only alternative omitted prior authored scope.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "voltaic-detonation",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank4.json",
+        "bytes": 1933607,
+        "sha256": "a2dfc527d9068008ea762680926f6e91a12989f0ac6c683b038a59544e5ac5ea",
+        "pointer": "/records/3"
+      },
+      "priorCurrent01Procedure": {
+        "target": "All creatures in a10ft-radius sphere centered on a perceived point within60ft.",
+        "shape": "point sphere",
+        "radius": 10,
+        "range": 60,
+        "save": "CON",
+        "damage": [
+          [
+            6,
+            8,
+            "lightning"
+          ]
+        ],
+        "success": "half damage; no Stunned",
+        "rider": "Failure separately attempts Stunned for one target-round under the hard guard.",
+        "new": "10ft explosion radius, CON save/half branch, finite one-turn target END interpretation; source leaves geometry/resolution unspecified."
+      },
+      "resolution": "Retain separate DEX half-damage and CON Stunned saves plus earlier finite attached-phase ending; the short new one-CON branch is only an unaccepted alternative.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "frozen-tomb",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank5.json",
+        "bytes": 2274162,
+        "sha256": "9a64f68681836a2baa931c1ecfae44d6764b43b7c7c4da97d28600c91cd1d39e",
+        "pointer": "/records/2"
+      },
+      "priorCurrent01Procedure": {
+        "target": "One perceived creature within60ft and line of effect.",
+        "shape": "single",
+        "save": "CON",
+        "damage": [
+          [
+            5,
+            8,
+            "cold"
+          ]
+        ],
+        "success": "no damage or Paralyzed",
+        "rider": "Failure separately attempts Paralyzed for two target-rounds under the hard guard. No ice object, time stop, Frozen or repeat save.",
+        "new": "Creature-only target and explicit success negation of the combined failure payload; preserves CON,5d8 and two rounds."
+      },
+      "resolution": "Retain complete prior two-future-END hard-guard/Paralyzed procedure and no physical ice or fire-thaw import.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "meteor-spear",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank5.json",
+        "bytes": 2274162,
+        "sha256": "9a64f68681836a2baa931c1ecfae44d6764b43b7c7c4da97d28600c91cd1d39e",
+        "pointer": "/records/3"
+      },
+      "priorCurrent01Procedure": {
+        "target": "Only ordinarily identified enemy creatures intersecting the60ft line with origin line of effect.",
+        "shape": "line",
+        "length": 60,
+        "save": "DEX",
+        "damage": [
+          [
+            8,
+            6,
+            "fire"
+          ],
+          [
+            3,
+            6,
+            "bludgeoning"
+          ]
+        ],
+        "success": "half each typed raw part",
+        "rider": "None; no meteor object, crater, ignition or building target.",
+        "new": "5ft line diameter, DEX half, one shared pair of typed pools and one grouped recipient event.",
+        "blockers": [
+          "DC25-MIXED-DEFENSE-01"
+        ]
+      },
+      "resolution": "Retain prior60x5x5 prism, source-required perceived enemy targeting and both full damage pools; no cylinder substitution.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "arc-surge",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank5.json",
+        "bytes": 2274162,
+        "sha256": "9a64f68681836a2baa931c1ecfae44d6764b43b7c7c4da97d28600c91cd1d39e",
+        "pointer": "/records/4"
+      },
+      "priorCurrent01Procedure": {
+        "target": "Ordinarily identified enemies in a40ft-radius sphere centered on the caster.",
+        "shape": "self sphere",
+        "radius": 40,
+        "save": "DEX",
+        "damage": [
+          [
+            6,
+            8,
+            "lightning"
+          ]
+        ],
+        "success": "half damage",
+        "rider": "None.",
+        "new": "Self-centered40ft area and DEX half proposed instead of assuming automatic damage from ambiguous metadata."
+      },
+      "resolution": "Retain prior CON save and explicit perceived-enemy selection; DEX in current01 was a different unaccepted completion.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "cone-of-cold",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank5.json",
+        "bytes": 2274162,
+        "sha256": "9a64f68681836a2baa931c1ecfae44d6764b43b7c7c4da97d28600c91cd1d39e",
+        "pointer": "/records/5"
+      },
+      "priorCurrent01Procedure": {
+        "target": "All creatures intersecting the60ft cone, excluding only the casting body.",
+        "shape": "cone",
+        "length": 60,
+        "halfAngleDegrees": 30,
+        "save": "CON",
+        "damage": [
+          [
+            8,
+            8,
+            "cold"
+          ]
+        ],
+        "success": "half damage",
+        "rider": "None; no Frozen, Speed control or ice terrain.",
+        "new": "30degree half-angle, CON half; source states damage/length but not exact cone/resolution."
+      },
+      "resolution": "Retain earlier cone full diameter equal to axial distance (radius=d/2), not current01 half-angle30degrees; replace only tabletop raster convention with exact world-space geometry.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "destructive-wave",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank5.json",
+        "bytes": 2274162,
+        "sha256": "9a64f68681836a2baa931c1ecfae44d6764b43b7c7c4da97d28600c91cd1d39e",
+        "pointer": "/records/7"
+      },
+      "priorCurrent01Procedure": {
+        "target": "All creatures in a20ft-radius sphere centered on a perceived point within60ft.",
+        "shape": "point sphere",
+        "radius": 20,
+        "range": 60,
+        "save": "CON",
+        "damage": [
+          [
+            5,
+            6,
+            "thunder"
+          ],
+          [
+            5,
+            6,
+            "radiant"
+          ]
+        ],
+        "success": "half each typed raw part; no Prone",
+        "rider": "Failure separately attempts Prone; no push, knockback or Deafened.",
+        "new": "Point-centered20ft radius, CON half, split the printed10d6 into5d6 thunder+5d6 radiant as one grouped event; no friendly exclusion added.",
+        "blockers": [
+          "DC25-MIXED-DEFENSE-01"
+        ]
+      },
+      "resolution": "Retain earlier10d6 thunder OR radiant and self-centered60ft sphere, excluding caster but including other creatures. Current01 split5+5/remote20ft alternative is preserved separately and not operative in current02.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "solar-flare",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank6.json",
+        "bytes": 4096189,
+        "sha256": "a05b5b86fe2e66878053e23d6139eac36c448ae2025c73b28acb09cf903e1b44",
+        "pointer": "/records/0"
+      },
+      "priorCurrent01Procedure": {
+        "target": "Ordinarily identified enemies in a60ft-radius sphere centered on the caster.",
+        "shape": "self sphere",
+        "radius": 60,
+        "save": "CON",
+        "damage": [
+          [
+            8,
+            6,
+            "fire"
+          ]
+        ],
+        "success": "half damage; no Blinded",
+        "rider": "Failure separately attempts Blinded for one target-round. Actual blindness immunity affects only that component.",
+        "new": "Self-centered radius, CON half and finite Blinded endpoint; source explicitly says all enemies60ft and8d6."
+      },
+      "resolution": "Retain prior visual-delivery gate and independent fire/Blinded scope plus perception-qualified enemy set.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "chain-lightning",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank6.json",
+        "bytes": 4096189,
+        "sha256": "a05b5b86fe2e66878053e23d6139eac36c448ae2025c73b28acb09cf903e1b44",
+        "pointer": "/records/4"
+      },
+      "priorCurrent01Procedure": {
+        "target": "Choose one perceived primary creature within60ft and up to three distinct perceived secondary creatures each within30ft of the primary actual body; no creature repeats.",
+        "shape": "chain",
+        "range": 60,
+        "secondaryRange": 30,
+        "save": "DEX",
+        "damage": [
+          [
+            10,
+            8,
+            "lightning"
+          ]
+        ],
+        "success": "half damage for that recipient",
+        "rider": "NEW choose the entire target set before commitment, validate primary at release and snapshot the surviving legal set after interruptions. Primary needs caster LoE; every secondary needs primary-to-secondary LoE at that snapshot and actual caster perception. The primary is an expressly authorized secondary-emission locus for this spell only, at its recorded body geometry. Primary payload must be permitted to establish; prevention of that primary application cancels arcs, but immunity/zero damage or its later death does not. Secondary applications are independently defended and use the primary emission origin for Globe/LoE, the original caster dealer for Null. One shared10d8 pool, no added hops, damage decay, random Chain Arc selection or rescan.",
+        "new": "30ft secondary reach, selected distinct set, primary-emission origin, shared full pool and DEX half; all explicit conference choices."
+      },
+      "resolution": "Retain prior actual legal object targets and full primary/secondary pre-damage snapshot. Clarify the source-specific remote arc origin and actual Globe/antimagic component checks as NEW, without importing random Chain Arc.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "sunbeam",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank6.json",
+        "bytes": 4096189,
+        "sha256": "a05b5b86fe2e66878053e23d6139eac36c448ae2025c73b28acb09cf903e1b44",
+        "pointer": "/records/6"
+      },
+      "priorCurrent01Procedure": {
+        "target": "All creatures intersecting the60ft line.",
+        "shape": "line",
+        "length": 60,
+        "save": "CON",
+        "damage": [
+          [
+            6,
+            8,
+            "radiant"
+          ]
+        ],
+        "success": "half damage; no Blinded",
+        "rider": "Failure separately attempts Blinded for one target-round. One instantaneous beam only; no recast Action, ongoing concentration beam or Undead bonus.",
+        "new": "5ft diameter, CON half and finite Blinded endpoint. Preserve source Instantaneous."
+      },
+      "resolution": "Retain prior five-foot-diameter cylinder, visual-delivery gate, single instantaneous beam and finite blindness. Remove only tabletop discretization wording from proposed current text.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "freezing-sphere",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/evocation_rank6.json",
+        "bytes": 4096189,
+        "sha256": "a05b5b86fe2e66878053e23d6139eac36c448ae2025c73b28acb09cf903e1b44",
+        "pointer": "/records/7"
+      },
+      "priorCurrent01Procedure": {
+        "target": "All creatures in a60ft-radius sphere centered on a perceived point within60ft, plus the separately unresolved printed water-freezing effect.",
+        "shape": "point sphere",
+        "radius": 60,
+        "range": 60,
+        "save": "CON",
+        "damage": [
+          [
+            10,
+            6,
+            "cold"
+          ]
+        ],
+        "success": "half creature damage",
+        "rider": "The source expressly freezes water. The exact water volume/eligibility, persistence, material/support/float/collision and creature displacement rules are NOT yet authored. The damage procedure cannot be adopted alone as completion of this spell. No invented entrapment, pressure blast, body-fluid freezing, permanent resource generation or removal of the source promise.",
+        "new": "Creature damage center and CON half proposed; complete spell blocked on an explicit finite ice procedure and its real physical interfaces.",
+        "blockers": [
+          "DC25-ICE-01"
+        ]
+      },
+      "resolution": "Restore the earlier full top-foot water selection, constant-volume/mass conservation, body/clearance exclusions, ice durability/load/slip/thaw/fire-melt proposal and both original conservation vectors. The problem is now explicit pending review/refinement, not an absent historical ice draft.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "blight",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "bytes": 3776102,
+        "sha256": "ad0019a2e88c7fd96002b54d89351d4a9095ba835a4d17e72c82d099c367fc51",
+        "pointer": "/records/10"
+      },
+      "priorCurrent01Procedure": {
+        "target": "One perceived creature within60ft and line of effect. Only an actual Plant-classified creature gets the proposed greater-damage branch; mundane plant objects are not included.",
+        "shape": "single",
+        "save": "CON",
+        "damage": [
+          [
+            8,
+            8,
+            "necrotic"
+          ]
+        ],
+        "success": "half damage",
+        "rider": "NEW actual Plant creature:12d8 necrotic instead of8d8, same save and actual defenses. Type is private actual state checked after payment; no preflight type oracle. No automatic maximum dice, Undead exception, crop destruction or corpse/soul rider.",
+        "new": "CON half and12d8 Plant branch explicitly quantify unspecified MORE. Creature Plant eligibility is not inferred from name, ancestry flavor or carried plant matter."
+      },
+      "resolution": "Retain prior10d8 actual living-plant enhancement and narrow tracked mundane-plant mode. The12d8 creature-only current01 alternative is preserved but not selected.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "soulfire-nova",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "bytes": 4578509,
+        "sha256": "b59b1d520bb63d306198805e2f76cb85ff1c051f10545fe708f07e7a9d1cf06d",
+        "pointer": "/records/9"
+      },
+      "priorCurrent01Procedure": {
+        "target": "All creatures in a20ft-radius sphere centered on a perceived point within60ft.",
+        "shape": "point sphere",
+        "radius": 20,
+        "range": 60,
+        "save": "CON",
+        "damage": [
+          [
+            6,
+            6,
+            "necrotic"
+          ]
+        ],
+        "success": "half damage; no Blinded",
+        "rider": "Failure separately attempts one-target-round Blinded only on an actual Undead creature. Necrotic immunity does not prevent that independently permitted blindness. Other types still receive their actual damage.",
+        "new": "20ft explosion, CON half and one-target-round Undead blindness; no soul ontology or inferred all-Undead immunity."
+      },
+      "resolution": "Retain complete prior Undead classification, damage/blindness independence and actual companion-phase finite ending.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "circle-of-death",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "bytes": 4578509,
+        "sha256": "b59b1d520bb63d306198805e2f76cb85ff1c051f10545fe708f07e7a9d1cf06d",
+        "pointer": "/records/11"
+      },
+      "priorCurrent01Procedure": {
+        "target": "All creatures in a60ft-radius sphere centered on a perceived point within60ft.",
+        "shape": "point sphere",
+        "radius": 60,
+        "range": 60,
+        "save": "CON",
+        "damage": [
+          [
+            8,
+            6,
+            "necrotic"
+          ]
+        ],
+        "success": "half damage",
+        "rider": "None; ordinary actual lifecycle only. Preserve V/S/M-or-F.",
+        "new": "Point-centered placement, CON half; no kill threshold, instant death exception or resurrection lock."
+      },
+      "resolution": "Retain complete prior all-creature/60ft radius, material-or-focus, actual source/lifecycle and no repeated effect detail.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "mental-bomb",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "bytes": 5237482,
+        "sha256": "c5603e7e22cc3b46ca52d816662c49285848530795596aae71e60ff304168478",
+        "pointer": "/records/3"
+      },
+      "priorCurrent01Procedure": {
+        "target": "Ordinarily identified enemy creatures in a20ft-radius sphere centered on the caster.",
+        "shape": "self sphere",
+        "radius": 20,
+        "save": "WIS",
+        "damage": [
+          [
+            4,
+            6,
+            "psychic"
+          ]
+        ],
+        "success": "half damage; no Reaction loss",
+        "rider": "NEW trigger: immediately after the caster resolves a positive post-defense/pre-temp damage packet whose actual source creature the caster perceives within20ft and LoE and ordinarily identifies as an enemy. Resolve its actual damage/Wound/lifecycle first; caster must still be able to cast and have the real Reaction. No trigger from zero prevention, inaccessible source, self-damage or merely enemy detection. On each failed target save, remove its one available ordinary Reaction if present. If absent, record one pending cancellation of the next ordinary regular-START Reaction refresh at its original next future START; expire after processing that refresh, even if the target could not act. No schedule: pending cancellation expires after6 elapsed seconds without inventing a refresh. It never removes separately granted special Reactions or resets a resource. Multiple pending losses on the same target cancel that same one next ordinary refresh, with no queue into further turns.",
+        "new": "Missing trigger, WIS half and finite next-Reaction loss semantics are explicit choices; Reaction denial remains distinct from hard whole-Action control.",
+        "blockers": [
+          "DC25-REACTION-01"
+        ]
+      },
+      "resolution": "Retain earlier completed-hostile-use trigger, point-centered20ft sphere, INT save and finite next-elected-Reaction debt including actual special Reactions. Preserve current01 retaliation/WIS/ordinary-refresh alternative as history; it has not replaced the earlier fuller proposal.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "veil-of-terror",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "bytes": 5237482,
+        "sha256": "c5603e7e22cc3b46ca52d816662c49285848530795596aae71e60ff304168478",
+        "pointer": "/records/8"
+      },
+      "priorCurrent01Procedure": {
+        "target": "One perceived enemy creature within60ft and line of effect.",
+        "shape": "single",
+        "save": "WIS",
+        "damage": [
+          [
+            4,
+            6,
+            "psychic"
+          ]
+        ],
+        "success": "no damage or Frightened",
+        "rider": "Failure deals psychic once and separately attempts Frightened toward the caster, concentration up to60 elapsed seconds. No periodic damage or repeat save is added. Fear immunity does not prevent the independent damage; psychic immunity does not prevent fear. If fear fails to establish, no ongoing application remains. Illusory personal terror gives no location knowledge or real creature/object. Existing fear source sight/approach predicates apply.",
+        "new": "Single target, explicit caster fear source, damage once, absolute finite concentration clock and independent components; source already supplies WIS/fear/4d6/concentration."
+      },
+      "resolution": "Retain earlier regular-END repeat WIS saves, source visual image and precise fear identity. Current01 no-repeat-save alternative is not silently substituted.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "phantom-swarm",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "bytes": 5237482,
+        "sha256": "c5603e7e22cc3b46ca52d816662c49285848530795596aae71e60ff304168478",
+        "pointer": "/records/10"
+      },
+      "priorCurrent01Procedure": {
+        "target": "One perceived creature within60ft and line of effect.",
+        "shape": "single",
+        "save": "WIS",
+        "damage": [
+          [
+            5,
+            6,
+            "psychic"
+          ]
+        ],
+        "success": "half damage; no movement instruction",
+        "rider": "NEW failed save creates one pending move-away instruction. At the next future actual regular START after normal required processing, spend up to10ft of actual remaining ordinary movement safely away from the caster position recorded at application on its actual plane, using real terrain/crawl/squeeze cost. No Dash, Action loss, forced teleport, owner BA, optional expenditure, self-destructive route or new movement mode. Direction never homes to a later caster. Owner-attached target: use only its actual phase after the next original-owner regular turn not already begun, bounded by that original recorded phase marker. No original schedule: expire at application+6 seconds; a normal independent out-of-initiative body may use one safe movement opportunity in the real ordinary budget by that time, establishing initiative before hostile behavior. Missing phase, different plane, suppression, zero Speed, blocked route or no safe path consumes the check and expires the instruction without retry. Preserve original latest marker through reorder/absence; a lawful earlier actual opportunity may consume it once, a later repair/phase cannot replay it. This is a NEW spell-scoped proposal parallel to pending DE4, not inheritance of an accepted Compulsion extension.",
+        "new": "Single target, WIS half,10ft compelled actual movement and finite opportunity/no-phase rules; source gives5d6 and must move away but none of these details.",
+        "blockers": [
+          "DC25-SWARM-01"
+        ]
+      },
+      "resolution": "Retain all-creature20ft sphere and30ft actual movement away from its fixed center. Add an explicit finite original latest marker/no-phase expiry proposal; no single-target10ft or homing caster rewrite.",
+      "jointAcceptance": false
+    },
+    {
+      "spellId": "invisible-tide",
+      "source": {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "bytes": 4578509,
+        "sha256": "b59b1d520bb63d306198805e2f76cb85ff1c051f10545fe708f07e7a9d1cf06d",
+        "pointer": "/records/3"
+      },
+      "priorCurrent01Procedure": {
+        "target": "All creatures in a30ft-radius sphere centered on the caster, including the caster.",
+        "shape": "self sphere",
+        "radius": 30,
+        "save": "DEX",
+        "damage": [],
+        "success": "no Prone",
+        "rider": "Failure attempts Prone under its actual immunity, stand and support rules. No damage, water, physical push, new speed or whole-Action hard-control claim.",
+        "new": "Self-centered3D inclusion completes source creatures within30; preserve DEX failure Prone."
+      },
+      "resolution": "Retain complete prior actual Prone/Falling/hover/anchor/aquatic and no-physical-water boundaries.",
+      "jointAcceptance": false
+    }
+  ],
+  "originalCaseCount": 36,
+  "preservedAlternativeCaseCount": 32,
+  "newAdoptions": 0,
+  "scope": "Correction of the incomplete current01 draft consolidation. Earlier detailed proposals had not been accepted; they remain explicit proposals. No accepted rule changed."
+}

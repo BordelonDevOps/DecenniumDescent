@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1.0",
+  "id": "DD-AC6-SEMANTIC-CURRENT-06-JOINT-REVIEW",
+  "verdict": "ACCEPT_BYTE_IDENTICAL_FOR_PROVISIONAL_AUTHORED_AC6_CAMPAIGN_PLAYTEST_CANDIDATE",
+  "reviewedInputArchive": {
+    "name": "DD_AC6_Semantic_Current_06.zip",
+    "bytes": 7430424,
+    "sha256": "4693842bf52da2062d27e22d30d08dff450dbdf563c36b7399db4ca34909872f"
+  },
+  "acceptedCurrentArtifactBindings": [
+    {
+      "name": "REGISTER.json",
+      "bytes": 69839,
+      "sha256": "2215846a99bff8b48b3dd5fa96baebf02eb6d3c0da462c216c67dd73c98bea60"
+    },
+    {
+      "name": "SPELLS_MODEL.json",
+      "bytes": 904985,
+      "sha256": "6f6fe2141e011624e585262a7de6e6a95fef75696d5d6337440f2d1dce711885"
+    },
+    {
+      "name": "PLAYER_CHAPTER.md",
+      "bytes": 107956,
+      "sha256": "e63a1713c6e0386d4504828e8a59b4a0d9e155a1073eaed5a31b43c86efd3b0c"
+    },
+    {
+      "name": "DIRECTOR_REVIEW.md",
+      "bytes": 163407,
+      "sha256": "86512df9f2fa03b621bf4ef6ee2afce900cad0a29e2f7d85c63fc582ac30c0e1"
+    },
+    {
+      "name": "CASEBOOK.json",
+      "bytes": 561857,
+      "sha256": "2e9612e80f2f907c4b30afddbcb75e611b57632739d264a84e074483bbb356b6"
+    },
+    {
+      "name": "SOURCE_HASHES.json",
+      "bytes": 22653,
+      "sha256": "51d996794d1907ebc5b685d4578975c1a035cdf42bd2a925b87327bb71d56828"
+    },
+    {
+      "name": "VERDICT.md",
+      "bytes": 676,
+      "sha256": "c7e0242bf8f3468ac5195a8d704d5cd725fe4c58f95bacd4f79571ce3ad80e7d"
+    },
+    {
+      "name": "EVIDENCE_MANIFEST.json",
+      "bytes": 3753,
+      "sha256": "f5b5d3f879775c5177a18a6c07c571540ad092560dcc940ca37726ada457c1b3"
+    }
+  ],
+  "sourceVerification": {
+    "frozenBindingCount": 103,
+    "allFrozenSourceBytesAndHashesVerified": true,
+    "failures": []
+  },
+  "moduleIdentity": {
+    "spellIdentityCount": 14,
+    "printedPlacementCount": 16,
+    "currentCaseCount": 55,
+    "historicalOriginalTextCount": 22,
+    "currentFilesMayRemainByteIdentical": true
+  },
+  "reviewedScope": {
+    "procedures": "All 14 current spell procedures were read, including both Alignment Nexus modes and the operative shared rules/profiles.",
+    "cases": "All 55 current adjudications were read. All 51 original scenario obligations were compared against the current cases; the four RX cases were also reviewed.",
+    "deepIndependentChecks": [
+      "AC6-N15 Ready preparation/release timing, t26 deadline, t32 Fall Marker, full-descent sphere/body intersection, Healing Rite 7 HP, 20-ft fall 1d6=3, 4 HP/Prone, independent t60 Pet expiry",
+      "AC6-N19 zero-HP Stable/Unconscious/Prone transition, adjacent Skybrand advantage and automatic critical, doubled 2d12=[2,3]=5, two death-save failures, caster-owned root identity before/after Bittersap Veil purge",
+      "AC6-N01 Blast enemy/perception predicate, DEX 8 vs DC16 failed save, shared 5d8=22 full damage outside Globe, rank-vs-price behavior",
+      "AC6-N02 actual Wizard /cards/19 class Dispel: rank3 spell, Action, 3 RP, Recharge2, outside Globe paid-but-suppressed branch, inside DC16 success branch",
+      "AC6-N10 / AC6-RX03 accepted Greater Dispel automatic removal of rank5 Lesser Antimagic and immutable operation snapshot semantics",
+      "PB-D03 one-foot wall volume against radius10 sphere, four fully suppressed central panel volumes, maximum squared radius 50.25, positive-volume interior overlap versus mere face/edge contact",
+      "PB-D06 no-platform vertical-Falling completion versus lateral blocking; scoped NEW procedure does not grant general passage",
+      "GA-D02..D06 restored Load, Healing Rite, NullDisabled, expiry, provenance and replacement/used-command obligations",
+      "NX-D01,D02,D05..D08,D10,D11 restored access, locked-alignment, destination inhabitant, atomic hidden-Anchor group failure, 599/600 closure, projectile range, remote-mouth dispel/independent Nexus and Large receiving-space obligations",
+      "PB-D05 accepted Banishment closure versus Barrier endpoint prevention/pending placement",
+      "AC6-N20 round1 no-command, 20+10 route, first miss, real Soldier Net Bolt Ready interruption and concentration loss",
+      "AC6-RX01 supported three-summon suppression fixture and AC6-N04 accepted-AC5 status cleanup",
+      "Current JSON-pointer references into JSON artifacts were resolved; 103 frozen source bindings were independently re-hashed"
+    ],
+    "limits": "This is a source-linked authored coherence review. It is not exhaustive runtime state-space testing, human playtesting or numerical balance certification."
+  },
+  "dispositions": [
+    {
+      "id": "AC6-L06-01",
+      "verdict": "AGREE",
+      "evidence": "AC6-N15 now follows the frozen Ready rule: Action and 10 RP are committed at t20.5 and only the perceivable trigger is declared then; at t24.5 Reaction release the fixed area point (0,0,11) is selected and rechecked, before the t26 Ready deadline. No second cast or RP payment occurs."
+    },
+    {
+      "id": "AC6-L06-02",
+      "verdict": "AGREE",
+      "evidence": "The first qualifying Null Skybrand hit takes the significant NPC from 8 to Stable0, which under current zero-HP rules also makes it Unconscious and Prone. Skybrand's NEW source-specific spatial bridge uses the blade point only for its own attack reach/LoE/distance predicates while the Wizard remains dealer/root owner. The second attack is within 5 ft, has advantage [7,11], hits on 19, and is automatically critical; doubled 2d12 [2,3]=5 ordinary damage at already 0 HP cancels Stable recovery and adds two death-save failures. No global remote-sense or attacker-body rule is created."
+    },
+    {
+      "id": "AC6-L06-03",
+      "verdict": "AGREE",
+      "evidence": "AC6-N01 restores the actual perceived-enemy predicate and the explicit failed DEX save 8 vs DC16 before full shared 5d8=22 damage to the outside recipient. AC6-N02 preserves Wizard /cards/19 as a rank3 spell: the outside branch legally commits 3 RP and Recharge2, then Globe suppresses the incoming rank3 application before any higher-rank task; the independent inside branch pays the same real cost and succeeds at 16 vs DC16."
+    },
+    {
+      "id": "AC6-L06-04",
+      "verdict": "AGREE",
+      "evidence": "Accepted Greater Dispel automatically ends ordinary spell applications of recorded rank0-5. AC6-N10 therefore ends Lesser Antimagic F1 at t20 without a check; the immutable snapshot still leaves simultaneously captured Seal/parent termination operations suppressed and they do not replay after F1 ends. AC6-RX03 correctly separates the different branch where Wizard class Dispel remains inside a still-active suppressor and spends its real 3 RP/Recharge2 without executing its task."
+    },
+    {
+      "id": "AC6-L06-05",
+      "verdict": "AGREE",
+      "evidence": "PB-D03 now uses the complete wall volume x[-15,15], y[-0.5,0.5], z[0,15] and sphere x^2+y^2+(z-5)^2<=100. The four central 5x5x1 panel volumes have farthest squared distance 25+0.25+25=50.25<100 and are therefore fully suppressed. The Large body's positive-volume interior overlap is exactly those four panels; mere contact with neighboring faces/edges is not occupancy."
+    },
+    {
+      "id": "AC6-L06-06",
+      "verdict": "AGREE_WITH_NEW_SCOPED_AUTHORSHIP",
+      "evidence": "The frozen Planar Barrier identity promises selective blocking but does not itself supply a horizontal platform. The explicit current completion is coherent and narrow: unsupported downward Falling through a top/bottom edge is not stopped or given a new Fall Marker; any qualifying body volume actually overlapping a panel while falling makes that panel pending until clear, while other operative vertical faces continue to stop lateral crossing. This is Planar-Barrier-specific authored geometry and does not create a general movement, support or cosmology rule."
+    },
+    {
+      "id": "AC6-L06-07",
+      "verdict": "AGREE",
+      "evidence": "The named current cases again carry the material source-compatible original obligations under the same IDs rather than generic substitutes: Greater Ally Load rejection, exact Healing Rite recovery, NullDisabled expiry, replacement/cargo and used command history; Nexus locked alignment, destination-plane inhabitants versus origin, atomic hidden-Anchor group failure, t599/t600 closure, 20+30 projectile range/no remote caster, remote-mouth dispel plus independent Nexus, and Large receiving depth; PB-D05 mandatory Banishment return; AC6-N20 no-command round, 20+10 route, first miss and actual Net Bolt interruption. These restorations do not change the frozen source/access records."
+    },
+    {
+      "id": "AC6-L06-08",
+      "verdict": "AGREE",
+      "evidence": "AC6-RX01 now states all three suppressed summon bodies are already supported on the ground, so the fixture does not imply suppressed Air Pet Hover persistence. AC6-N04 now identifies the AC5 comparison as accepted rather than conditional without changing the underlying rules."
+    }
+  ],
+  "finalCoherenceFinding": {
+    "blockingAuthoredCoherenceFindingsRemaining": 0,
+    "statement": "Within the reviewed 14-identity / 16-placement AC6 authored scope, no remaining concrete source-conflict or authored-procedure blocker was found in the exact eight current files."
+  },
+  "boundedStatus": {
+    "spellAdoption": false,
+    "runtimeExecutionApproved": false,
+    "humanPlaytestingApproved": false,
+    "numericalBalanceApproved": false,
+    "cosmologyCanonApproved": false,
+    "wholeGameClosureApproved": false,
+    "publicationApproved": false
+  }
+}

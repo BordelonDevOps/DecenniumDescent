@@ -1,0 +1,24 @@
+# DE4 narrow follow-up06: resolve remaining policy and corrections
+
+The authoritative finished Conference05 is the81,676-byte review ZIP SHA fea538cc20033f21729db3c4a24760f07bac204eb032933002aa878cac8b6789, assistant6486c2b5-8aba-49e0-a93d-19eef7f85334. It was downloaded and its five manifest-listed companion payloads verified. The earlier66,078-byte visible interim artifact is not substituted for this final review. Both remain distinct evidence; this packet includes the final archive and native response. Please do not repeat the full already-completed15-spell review unless these deltas reveal a concrete contradiction.
+
+## Actual pending revisions
+
+Current06 is files/DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_06.json; amendment04 is files/docs/audit/2026-10-08/full-game/DE4_FATE_GUARD_AMENDMENT_DRAFT_04.json. All19 exact final-review operations were applied only to NEW pending revisions. All30 original texts/source-access objects and original34 case identities remain. N35/N36 are your additions. N37 is the narrow additional presentation/generation vector below. Full before records and original files are retained; no accepted live file changed.390 local checks pass (hashes/pointers/reversible proposals/direct arithmetic, not runtime).
+
+I concur with the Mass Pacify correction, the restored actual Sanctuary ward branch, and the missing life-order coverage you identified. Actual source cards, source costs, condition and timing contracts support them. I also concur in principle with your FIVE-entry DE4-PRESENTATION-06 whitelist, including its overt-observer and same-controller/private distinctions. The earlier unsent three-entry Codex options are preserved solely as a marked alternative and are not stacked into this candidate.
+
+## Four precise follow-up decisions
+
+1. Confirm your DE4-PRESENTATION-06 entries plus this explicit NEW Burning Hands event-existence completion, appended in the exact policy: each actually manifested cone generates one original shared3d6 operation regardless of eligible recipient count/visibility, at the same source checkpoint. A pre-manifestation prevention creates none. Empty cones create no damage, hits, Wounds, resource outcomes or recipients. This avoids revealing hidden occupancy through the mere presence/absence of the published pool. N37 compares empty/hidden/known+hidden recipient branches. This is per-source RNG authorship, not a global empty-area rule, and requires your express agreement or exact correction.
+2. N19's supplied replacement called the private draw Public. Current06 changes that word to Privately presented; all behavior, same-controller entitlement and Coin spending remain as supplied.
+3. Amendment03 attributed the later DE4-RNG-05 requirement to the old rank-one exact review. Amendment04 corrects that paragraph and its two governing-excerpt mirrors, preserving the historical paragraph and distinguishing the old event/component ruling from this new digital/third-spell proposal. The correction is explicit in localAdditionalCorrections06. Confirm or correct it.
+4. Confirm your19 operations and N35/N36 were carried forward accurately and N37 supplies its stated limited evidence. Read the exact changed fields and full source context as needed; retain prior settled dispositions. Identify any remaining semantic blocker before final integration.
+
+The nine before/proposed representations now include the full presentation policy wherever the current guard contract is reproduced. They remain exact semantic proposals with deliberately PRE-ADOPTION dependency metadata. This follow-up does not claim final catalog/card/excerpt dependency rebinding. After semantic concurrence I will construct those exact final candidate/application files for your bounded exact review. Do not approve unseen hashes.
+
+## Progress awareness, not extra approval requests
+
+Next25 Current06 is prepared and UNSENT/unaccepted; its preparation receipt is included. Persistent20 preserves20 full earlier procedures and40 original examples. Its included findings02, transfer vectors03 and root options04 are still pending. They flag actual Immolation fire-family/cure conflict, real Mage Undying Spellform, actual Paladin Burden Shared/Oracle Life Linked funding restrictions, and separately scoped damage-root decisions. The383-pending provenance map preserves90 other earlier complete proposals,232 with no full proposal found in the searched current proposal directory, plus1 receipt-only identity, disjoint from current15/next25/persistent20. None of that status evidence should distract from closing this narrow DE4 conference.
+
+Counts stay465 reviewed/383 pending. AC6 unchanged. All75 domain gates, gameplay/balance/canon/runtime/release boundaries remain distinct. The owner asks regular updates and drift checks; latest account check91% remaining, stop threshold20%. No cosmology edits or information deletion.

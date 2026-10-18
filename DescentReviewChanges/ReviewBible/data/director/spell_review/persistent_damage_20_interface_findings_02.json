@@ -1,0 +1,278 @@
+{
+  "id": "PERSISTENT-DAMAGE-20-INTERFACE-FINDINGS-02",
+  "recordedAtUtc": "2026-10-18T01:42:51.429924+00:00",
+  "status": "Unsent source-linked findings and one proposed current fixture; original procedures unchanged",
+  "findings": [
+    {
+      "id": "P20-F01",
+      "classification": "INTERFACE CONFLICT / integration clarification",
+      "spellIds": [
+        "immolation"
+      ],
+      "currentProposalPointer": "evocation_rank5.json /records/6/procedure",
+      "authority": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+        "section": "periodic.arbitration and family.ongoing-fire"
+      },
+      "finding": "The proposed Immolation record explicitly joins ongoing-fire recognition/prevention/cures, but its cross-owner language describes separate paid riders without specifying the existing shared family arbitration. The accepted family contract allows one winning stack group at each identical marker; all due groups consume a tick, including losers. Separate records do not by themselves authorize simultaneous full damage from each.",
+      "recommendedDisposition": "State explicit inheritance of the existing family arbitration and source instance caps; preserve each source clock, eligible ending save and future opportunities. If the intent instead exempts Immolation from that arbitration, present a separately scoped exception for Director agreement; do not silently multiply damage.",
+      "newRulesApplied": false
+    },
+    {
+      "id": "P20-F02",
+      "classification": "OPEN DESIGN QUESTION",
+      "spellIds": [
+        "immolation"
+      ],
+      "currentProposalPointer": "evocation_rank5.json /records/6/procedure",
+      "authority": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+        "section": "cure-presence-suppression and Attached fire treatment"
+      },
+      "finding": "Existing ordinary-extinguishable attached fire uses one self/helper Action or full immersion to end all eligible records, including suppressed records, without a listed DEX task. The pending Immolation-specific DEX Sleight-of-Hand task ending one record is a real source-specific deviation, not inheritance.",
+      "optionA": "Register Immolation as ordinary-extinguishable; reuse the existing one Action/full-immersion cure of all eligible fires, with no new task check. Preserve the old DEX proposal verbatim as an unadopted alternative.",
+      "optionB": "Explicitly author Immolation as a protected-fire exception and define its one-record DEX task, physical prerequisites and interaction with broader cure sources. That is new spell-specific resistance to ordinary treatment.",
+      "recommended": "A, because the source promises recurring damage but does not promise a resistant extinguish procedure. Require actual Director disposition before changing any original proposal.",
+      "scope": "Only this pending spell binding, no global cure change."
+    },
+    {
+      "id": "P20-F03",
+      "classification": "EXAMPLE ERROR / missing actual source",
+      "spellIds": [
+        "storm-sphere"
+      ],
+      "currentCaseId": "EV4-08-B",
+      "finding": "The original scenario needs an actual source that permits continuing concentration while no Bonus Action is available. Current Mage Undying Spellform expressly does so. The supplied named fixture retains the original t6 area pulse and absence of automatic bolt without an unnamed exception.",
+      "replacementFixtureId": "P20-STORM-REAL-01",
+      "procedureChangeNeeded": false
+    },
+    {
+      "id": "P20-F04",
+      "classification": "INTERFACE INHERITANCE",
+      "spellIds": [
+        "leeching-plague",
+        "enervation"
+      ],
+      "authority": {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+        "section": "Hit identity and final damage accounting; Source-specific restrictions"
+      },
+      "finding": "Terminal damage accounting must additionally retain source branch flags. In particular Burden Shared prohibits derived healing, and Oracle Life Linked prohibits recovery. Actual numeric damage alone does not make a branch eligible funding. This existing restriction can be inherited without a new global rule. The different proposed Leeching/Enervation donor predicates still need a source-specific decision.",
+      "recommendedDisposition": "Add source-qualified branch flag inputs to both heal vectors and explicitly exclude forbidden branch funding before summing/flooring. Use an actual transfer source, its real owner access, costs and stage."
+    }
+  ],
+  "proposedSourceFixture": {
+    "id": "P20-STORM-REAL-01",
+    "preservesOriginalCaseId": "EV4-08-B",
+    "originalTextUnchanged": "EV4-08-B: The field’s t=6 pulse occurs while the caster is unable to spend a Bonus Action but still legally concentrating through a specific applicable exception. Eligible creatures can face that genuine bludgeoning pulse; no lightning bolt fires automatically. A skipped bolt is not added to the next regular turn.",
+    "sourceAccess": {
+      "Mage": {
+        "level": 10,
+        "hero": "Lich legitimately acquired after the actual completed source ritual and informed player choice",
+        "UndyingSpellformCard": "mage.hero.lich.undying-spellform",
+        "acquiredAndUnused": true,
+        "INT": 18,
+        "CON": 14,
+        "DEX": 14,
+        "PB": 4,
+        "spellDC": 16,
+        "Focus": "Cold",
+        "noSurgeOrNukeBonus": true,
+        "maxHP": 62,
+        "HPBeforeRay": 5,
+        "temporaryHP": 0,
+        "Wounds": 0,
+        "unarmoredAC": 12,
+        "RPBeforeStorm": 29,
+        "stormRank": 4,
+        "RPPaid": 7,
+        "RPAfterStorm": 22,
+        "Dissonance": {
+          "before": 0,
+          "after": 1,
+          "RefrainExtra": 0
+        }
+      },
+      "hostileWizard": {
+        "level": 1,
+        "INT": 18,
+        "PB": 2,
+        "spellAttackBonus": 6,
+        "independentlyPrepared": "arcane-ray",
+        "sourceRank": 0,
+        "RPBefore": 4,
+        "cost": 0,
+        "RPAfter": 4,
+        "firstNameRefrainExtra": 0,
+        "spellActionAvailable": true,
+        "components": "V/S usable",
+        "NullVeil": false
+      }
+    },
+    "initialGeometry": {
+      "MageBodyCenter": [
+        0,
+        0,
+        1
+      ],
+      "sphereCenter": [
+        30,
+        0,
+        1
+      ],
+      "sphereRadius": 20,
+      "hostileWizardBodyCenter": [
+        -10,
+        0,
+        1
+      ],
+      "RangerBeastBodyCenter": [
+        30,
+        0,
+        1
+      ],
+      "allBodyHalfExtents": [
+        1,
+        1,
+        1
+      ],
+      "relevantPerceptionAndLoE": true,
+      "Beast": "actual acquired Ranger16 Warder bond, WIS18/PB5, maxHP36/currentHP36, no bludgeoning defense; source supplied",
+      "MageOutsideSphere": true,
+      "wizardOutsideSphere": true
+    },
+    "timeline": [
+      {
+        "at": 0,
+        "operation": "Mage Action casts proposed Storm Sphere with legal center; initial13 bludgeoning pool, Beast STR face14+5=19 succeeds DC16",
+        "expected": {
+          "BeastDamage": 6,
+          "BeastHP": 30,
+          "MageRP": 22,
+          "concentrationActive": true,
+          "fieldExpiry": 60,
+          "nextSourcePulse": 6
+        }
+      },
+      {
+        "at": 5,
+        "operation": "Hostile Wizard Action casts actual Arcane Ray from10ft away; natural15+6=21 hits AC12,1d6 face6force",
+        "expected": {
+          "MageHP": 0,
+          "actualHPDamage": 5,
+          "overkill": 1,
+          "newZeroWoundSave": {
+            "CONFace": 18,
+            "modifier": 2,
+            "DC": 10,
+            "success": true,
+            "newWounds": 0
+          },
+          "concentrationSave": {
+            "CONFace": 18,
+            "modifier": 2,
+            "DC": 10,
+            "success": true
+          },
+          "UndyingSpellformTriggeredAndUseSpent": true,
+          "MageStillConscious": true,
+          "concentrationStillActive": true,
+          "ordinaryDyingCounters": [
+            0,
+            0
+          ],
+          "featureOriginalExpiry": 8
+        }
+      },
+      {
+        "at": 6,
+        "operation": "Next actual regular Mage START: death save face15; separately genuine scheduled source area pulse rolls13, Beast STR face1+5=6 fails DC16",
+        "expected": {
+          "MageDeathSuccesses": 1,
+          "MageDeathFailures": 0,
+          "MageHP": 0,
+          "MageCanSpendNormalAction": true,
+          "MageIndependentBAAvailable": false,
+          "BeastDamage": 13,
+          "BeastHP": 17,
+          "lightningBoltsAutomaticallyFired": 0,
+          "boltOpportunityBanked": false,
+          "concentrationStillActive": true
+        }
+      },
+      {
+        "at": 8,
+        "operation": "Original next Mage regular END; still0HP, actual Undying Spellform expires",
+        "expected": {
+          "MageUnconscious": true,
+          "MageDeathSuccesses": 1,
+          "MageDeathFailures": 1,
+          "concentrationEnds": true,
+          "futureSpherePulses": 0,
+          "missedBoltsReplayed": 0
+        }
+      }
+    ],
+    "scope": "Authored lawful-source fixture of the pending Storm Sphere procedure; not engine execution. Separate simultaneous START/death/pulse events follow accepted ordering; no pulse at expiry is invented."
+  },
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/persistent_damage_20_source_convergence_01.json",
+      "bytes": 486274,
+      "sha256": "76420c97078ec5828f63a686ee96bbdb48ef87699e6c4fcbc28fc33e5bb6ab8e"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json",
+      "bytes": 80394,
+      "sha256": "c64782e192e2e63e5abed5728f9213c9d4cf956bce1a75da7a156dbfd1141e0b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 5060715,
+      "sha256": "3259b91e5ce3fedb725a521f82cb6c0a383762d3ecfd7c4addc6a95b164a7acc"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CUSTOM_CONDITION_BINDINGS.md",
+      "bytes": 143396,
+      "sha256": "745cbd788c454e4a9a77ce30eb7ba62f27b2a84dc20b2a870ff4ca2482356830"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/HEALING_DEATH_PLAYTEST.md",
+      "bytes": 23410,
+      "sha256": "8d68794687b97da70aaff9953f9724e31e9fa3c8568fd4c2f9e8fd05d34c93f7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/ranger.json",
+      "bytes": 67283,
+      "sha256": "ae6b884b8ca2d1c89034d2c16a48e6e4b8061d0a774158cb7f5159557cbea326"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CREATURE_LIFECYCLE_PLAYTEST.md",
+      "bytes": 20087,
+      "sha256": "eae68470d4dba14aa74334e22270e35a8aea022d3c5013aa75a96c15d8e93b08"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "bytes": 20258,
+      "sha256": "5c9f9ab4c9b485546a249637a335f56193dd3d58e58c451f9561c4e330c09a84"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+      "bytes": 11475,
+      "sha256": "8ce30a927b550d31bc981fc9537fccd178507c6b5e671fe9c6d82b987476f871"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+      "bytes": 13112,
+      "sha256": "b298415146cba6453ec33f1310b4b668ac74e0e2d2681a08e077852c065d56e1"
+    }
+  ],
+  "newRuleAdoptions": 0,
+  "runtimeTestsExecuted": 0,
+  "sourceInformationDeleted": 0
+}

@@ -1,0 +1,13 @@
+# Decennium Descent development backup —18 October2026 UTC
+
+Active development continues with the actual GPT notebook. The game is video-game-only. This verified progress snapshot preserves completed authored integration and pending development since `c1e2b7dcec461bd51ec9f20cb23e87ab42eb9a92`.
+
+Ordinary spell accounting is **480 reviewed /368 pending** across848 identities, including204 complete standalone procedures. AC6’s14 identities and DE4’s15 identities are accepted and integrated with exact payload copies and preserved source versions. DE4 retains37 current cases,30 original texts and95 frozen sources. Its1,893 local application checks and249 registry/inventory checks pass; the current registry contains108 scoped accepted interfaces.
+
+The next25 full source conference07 is actually submitted to Review Continuation Part4. It includes25 full procedures,36 original scenario vectors,15 high-rank supplements and nine substantive decisions. These25 are still pending. Persistent20 Current05 retains40 original vectors,7 supplements and8 adversarial cases. Illusion14 Current04 has14 full proposals,28 original texts and8 current vectors;20 remain to expand. Creation is preserved separately for economy/crafting review. All these pending cohorts retain earlier versions and exact source evidence.
+
+Continue from the [active checkpoint](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_DE4_APPLIED_NEXT25_SUBMITTED_06.json), [start guide](START_HERE.md), [development direction](DescentReviewChanges/ReviewBible/docs/DEVELOPMENT_DIRECTION.md) or [review map](REVIEW_MAP.html). The map verified1,291 distinct links with none missing. All75 domain gates remain distinct and open according to their actual evidence.
+
+The [manifest](docs/audit/2026-10-18/github-snapshot-de4/manifest.json) records exact included hashes and exclusions. Original material and every previously tracked Git entry are preserved. Established backup exclusions remain local: private configuration, unrelated browser/sidebar captures, third-party reference books, imported assets, dependencies, generated folders and immutable archives containing those materials. No force-push or source deletion is used. GitHub is a backup destination; no remote files are imported into the authoring folder.
+
+Source review and file checks do not establish game implementation, runtime correctness, human gameplay, numerical balance, cosmology/canon, whole-game completion or release. Continue until the review is complete or any reported usage allowance reaches20% remaining; latest observed allowance was84% remaining. No prior stopped/paused status governs this active continuation.
