@@ -1,0 +1,59 @@
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 718, in _warm_feature_flows
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 509, in _warm_drawing_and_image_flows
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/generated/interface/models.py", line 32861, in bring_to_front
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/rpc/remote.py", line 764, in __call__
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/rpc/client.py", line 175, in call
+artifact_tool.rpc.client.RemoteError: Element ordering requires an owning element collection.
+test_dominate_expiry_precedes_save (test_specification_models.ControlTimingTests.test_dominate_expiry_precedes_save) ... ok
+test_dominate_no_phase_is_end_only (test_specification_models.ControlTimingTests.test_dominate_no_phase_is_end_only) ... ok
+test_dominate_real_phase_maps_next_save_and_cadence (test_specification_models.ControlTimingTests.test_dominate_real_phase_maps_next_save_and_cadence) ... ok
+test_dominate_simultaneous_checkpoints_deduplicated (test_specification_models.ControlTimingTests.test_dominate_simultaneous_checkpoints_deduplicated) ... ok
+test_dominate_toggle_does_not_reset_or_catch_up (test_specification_models.ControlTimingTests.test_dominate_toggle_does_not_reset_or_catch_up) ... ok
+test_geas_cannot_promote_soft_task_to_full_action (test_specification_models.ControlTimingTests.test_geas_cannot_promote_soft_task_to_full_action) ... ok
+test_geas_keeps_legitimately_acquired_hard_permission (test_specification_models.ControlTimingTests.test_geas_keeps_legitimately_acquired_hard_permission) ... ok
+test_geas_original_deadline (test_specification_models.ControlTimingTests.test_geas_original_deadline) ... ok
+test_geas_soft_alternative_and_voluntary_opening (test_specification_models.ControlTimingTests.test_geas_soft_alternative_and_voluntary_opening) ... ok
+test_missing_cr_not_level_conversion (test_specification_models.ControlTimingTests.test_missing_cr_not_level_conversion) ... ok
+test_puppet_expiry_precedes_final_save (test_specification_models.ControlTimingTests.test_puppet_expiry_precedes_final_save) ... ok
+test_puppet_missing_phase_does_not_create_save (test_specification_models.ControlTimingTests.test_puppet_missing_phase_does_not_create_save) ... ok
+test_puppet_suppressed_end_and_no_travel_still_save (test_specification_models.ControlTimingTests.test_puppet_suppressed_end_and_no_travel_still_save) ... ok
+test_puppet_suppressed_start_still_has_first_end_save (test_specification_models.ControlTimingTests.test_puppet_suppressed_start_still_has_first_end_save) ... ok
+test_underway_puppet_end_is_not_first_future_end (test_specification_models.ControlTimingTests.test_underway_puppet_end_is_not_first_future_end) ... ok
+test_concentration_loss_no_refund (test_specification_models.CopyReadyTests.test_concentration_loss_no_refund) ... ok
+test_crossround_class_cap_failure_no_partial_feat_spend (test_specification_models.CopyReadyTests.test_crossround_class_cap_failure_no_partial_feat_spend) ... ok
+test_crossround_feat_cap_failure_no_partial_class_spend (test_specification_models.CopyReadyTests.test_crossround_feat_cap_failure_no_partial_class_spend) ... ok
+test_crossround_spends_both_rounds_with_one_payment (test_specification_models.CopyReadyTests.test_crossround_spends_both_rounds_with_one_payment) ... ok
+test_decline_keeps_original_hold_and_deadline (test_specification_models.CopyReadyTests.test_decline_keeps_original_hold_and_deadline) ... ok
+test_expiry_exact_boundary_precedes_release (test_specification_models.CopyReadyTests.test_expiry_exact_boundary_precedes_release) ... ok
+test_immediate_concentration_ends_after_resolution (test_specification_models.CopyReadyTests.test_immediate_concentration_ends_after_resolution) ... ok
+test_invalid_replacement_does_not_delete_prior_hold (test_specification_models.CopyReadyTests.test_invalid_replacement_does_not_delete_prior_hold) ... ok
+test_late_prevention_retains_committed_spends (test_specification_models.CopyReadyTests.test_late_prevention_retains_committed_spends) ... ok
+test_no_future_allowance_reserved_at_preparation (test_specification_models.CopyReadyTests.test_no_future_allowance_reserved_at_preparation) ... ok
+test_precommit_failure_is_atomic (test_specification_models.CopyReadyTests.test_precommit_failure_is_atomic) ... ok
+test_preparation_id_cannot_be_reused (test_specification_models.CopyReadyTests.test_preparation_id_cannot_be_reused) ... ok
+test_preparation_spends_before_counter (test_specification_models.CopyReadyTests.test_preparation_spends_before_counter) ... ok
+test_retry_no_second_payload_or_spend (test_specification_models.CopyReadyTests.test_retry_no_second_payload_or_spend) ... ok
+test_same_round_cannot_use_someone_elses_token (test_specification_models.CopyReadyTests.test_same_round_cannot_use_someone_elses_token) ... ok
+test_same_round_release_reuses_own_token (test_specification_models.CopyReadyTests.test_same_round_release_reuses_own_token) ... ok
+test_snapshot_restoration_preserves_history (test_specification_models.CopyReadyTests.test_snapshot_restoration_preserves_history) ... ok
+test_sustained_same_concentration_burden (test_specification_models.CopyReadyTests.test_sustained_same_concentration_burden) ... ok
+test_target_invalid_keeps_hold_without_reaction (test_specification_models.CopyReadyTests.test_target_invalid_keeps_hold_without_reaction) ... ok
+test_unowned_class_engine_not_granted (test_specification_models.CopyReadyTests.test_unowned_class_engine_not_granted) ... ok
+test_actual_death_blocks_exit (test_specification_models.PrisonTests.test_actual_death_blocks_exit) ... ok
+test_distinct_new_admission_has_distinct_root (test_specification_models.PrisonTests.test_distinct_new_admission_has_distinct_root) ... ok
+test_duplicate_departure_cannot_repeat_damage (test_specification_models.PrisonTests.test_duplicate_departure_cannot_repeat_damage) ... ok
+test_entry_exit_are_separate_damage_events (test_specification_models.PrisonTests.test_entry_exit_are_separate_damage_events) ... ok
+test_exit_preserves_nonnull_snapshot_after_veil_gain (test_specification_models.PrisonTests.test_exit_preserves_nonnull_snapshot_after_veil_gain) ... ok
+test_exit_preserves_null_snapshot_after_veil_loss (test_specification_models.PrisonTests.test_exit_preserves_null_snapshot_after_veil_loss) ... ok
+test_suppression_consumes_exit_without_dice_event (test_specification_models.PrisonTests.test_suppression_consumes_exit_without_dice_event) ... ok
+test_true_seeing_uses_live_exit_not_dispel (test_specification_models.PrisonTests.test_true_seeing_uses_live_exit_not_dispel) ... ok
+test_zero_hp_is_not_actual_death (test_specification_models.PrisonTests.test_zero_hp_is_not_actual_death) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.002s
+
+OK

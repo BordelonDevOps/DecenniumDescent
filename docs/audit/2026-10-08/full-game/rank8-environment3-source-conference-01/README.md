@@ -1,0 +1,1 @@
+Three exact rank8 environment sources, four placements and13 unselected questions; all individually tierC. Full native sources, actual accepted spell comparisons and separately qualified provisional expedition/transport sources. No procedure, case, numerical balance, cosmology or runtime adoption.

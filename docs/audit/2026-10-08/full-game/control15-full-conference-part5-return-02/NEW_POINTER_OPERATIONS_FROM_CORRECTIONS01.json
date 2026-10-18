@@ -1,0 +1,154 @@
+{
+  "baseline": {
+    "file": "baseline/CONTROL15_AFTER_CORRECTIONS01.json",
+    "bytes": 1385053,
+    "sha256": "5df3a463982c23600b48a430b105c55963658f590833a6d68eec7553293ce4a0"
+  },
+  "result": {
+    "file": "successor/CONTROL15_REVIEWED_SUCCESSOR13.json",
+    "bytes": 1389475,
+    "sha256": "80bef5de1b26e8d9beb75ddd00b30c9eff66d4e7ec3f4bd04c5d0da54ed91198"
+  },
+  "operationCount": 5,
+  "newProcedureRepairCount": 0,
+  "newCaseClarificationCount": 1,
+  "successorMetadataOperationCount": 4,
+  "operations": [
+    {
+      "op": "replace",
+      "fileKey": "control15",
+      "repositoryPath": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/control_15_current_12.json",
+      "jsonPointer": "/currentExamples/15/independentBranches/1/timeline/5",
+      "decisionId": "CTRL15-DANCE-CASE-END-02",
+      "classification": "Case clarification of an already selected ending-save rule; not a new spell rule",
+      "reason": "The original final event assumed survival through suppression to61.2 without supplying intervening ending-save outcomes. Preserve that terminal as conditional rather than silently skip or force those saves.",
+      "before": {
+        "at": 61.2,
+        "operation": "OriginalDanceexpireswhilestillsuppressed;laterAMending63cannotrestoreit.",
+        "expected": {
+          "DanceEnded": true,
+          "guardRefunded": false,
+          "fresh60secWindow": false
+        }
+      },
+      "after": {
+        "at": 61.2,
+        "operation": "CONDITIONAL TERMINAL BRANCH: if this original Dance remains live until61.2, it expires at its original deadline while expression is still suppressed; the later Lesser Antimagic ending at63 cannot restore it. A genuinely successful intervening scheduled WIS ending save or other lawful earlier ending ends Dance earlier, not at61.2.",
+        "expected": {
+          "DanceEnded": true,
+          "guardRefunded": false,
+          "fresh60secWindow": false
+        },
+        "branchPrecondition": "The final expected values below are conditional on no earlier successful scheduled ending save and no other earlier lawful ending. The fixture does not supply the intervening save outcomes; they must not be silently treated as failures or omitted because the rider is suppressed.",
+        "interveningSaveObligation": "While this application still exists, every actual original-owner regular attached phase END supplied by the existing chassis offers its source-specific WIS ending save, including under suppression. Do not invent an absent phase or retroactive save, replay an already resolved END, or reset the original61.2 deadline. At a coincident original expiry, expiry is first. An earlier successful save retains the spent hard-control history, owner Bonus Action and already consumed phase Action; suppression ending supplies no restoration."
+      }
+    },
+    {
+      "op": "replace",
+      "fileKey": "control15",
+      "repositoryPath": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/control_15_current_12.json",
+      "jsonPointer": "/id",
+      "classification": "successor metadata only",
+      "before": "CONTROL-15-CURRENT-12",
+      "after": "CONTROL-15-PART5-REVIEWED-SUCCESSOR-13",
+      "reason": "Identify this newly completed full conference without rewriting the frozen original or prior correction package."
+    },
+    {
+      "op": "replace",
+      "fileKey": "control15",
+      "repositoryPath": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/control_15_current_12.json",
+      "jsonPointer": "/recordedAtUtc",
+      "classification": "successor metadata only",
+      "before": "2026-10-18T05:27:09.633604+00:00",
+      "after": "2026-10-18T16:58:00.653793+00:00",
+      "reason": "Identify this newly completed full conference without rewriting the frozen original or prior correction package."
+    },
+    {
+      "op": "replace",
+      "fileKey": "control15",
+      "repositoryPath": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/control_15_current_12.json",
+      "jsonPointer": "/status",
+      "classification": "successor metadata only",
+      "before": "UNSENT / UNADOPTED full15-spell source conference12. Thirty original scenarios and30 current cases preserved; actual body/range/clearance repairs and29 complete before/after cases supplied.13 design questions remain unchanged. No runtime, source-rule adoption, CR inference or exact joint acceptance.",
+      "after": "SEMANTICALLY ACCEPTED provisional authored video-game Control15 successor WITH CONTENT AND CONDITIONAL HOLDS. This complete conference selects the15 full procedures and their scoped routing; it does not apply project files/index/registry, enable runtime or certify balance. The two original positive Dominate cases and the Puppet companion-contest case retain their actual-content prerequisites; Dance terminal61.2 is explicitly conditional.",
+      "reason": "Identify this newly completed full conference without rewriting the frozen original or prior correction package."
+    },
+    {
+      "op": "add",
+      "fileKey": "control15",
+      "repositoryPath": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/control_15_current_12.json",
+      "jsonPointer": "/fullConferenceReviewPart5_02",
+      "classification": "successor review metadata only",
+      "beforeExists": false,
+      "before": null,
+      "after": {
+        "id": "DD-CONTROL15-FULL-CONFERENCE-PART5-02",
+        "sourceBaseline": {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/control_15_current_12.json",
+          "bytes": 1346471,
+          "sha256": "33e1f85faab956d04bc9b9648e5cf619b12065e7f32d78ea986a284b1158835d"
+        },
+        "priorCorrectedControlPayload": {
+          "bytes": 1385053,
+          "sha256": "5df3a463982c23600b48a430b105c55963658f590833a6d68eec7553293ce4a0"
+        },
+        "priorCorrectionPackagePreserved": {
+          "bytes": 6704401,
+          "sha256": "449e40d625447b206422d1e1df776952c30e7a34b72157d1e4cded0dc04793b0"
+        },
+        "selectedProcedureCount": 15,
+        "actualQuestionCount": 13,
+        "originalScenarioCount": 30,
+        "currentCaseCount": 30,
+        "sourceCoverage": {
+          "allExpectedBindings": 54,
+          "available": 54,
+          "previouslyUnavailableRecovered": 19,
+          "missing": 0
+        },
+        "newProcedureChangesBeyondCorrections01": 0,
+        "newCaseChangesBeyondCorrections01": [
+          {
+            "caseId": "EN6-07-B",
+            "pointer": "/currentExamples/15/independentBranches/1/timeline/5",
+            "decision": "CTRL15-DANCE-CASE-END-02"
+          }
+        ],
+        "holds": [
+          {
+            "caseId": "EN5-01-A",
+            "kind": "whole positive case: actual operative CR-qualified creature/native attacks"
+          },
+          {
+            "caseId": "EN5-01-B",
+            "kind": "whole original positive case: actual operative CR-qualified attached creature; its unrated-target rejection branches remain coherent"
+          },
+          {
+            "caseId": "EN6-03-B",
+            "kind": "whole positive grapple-dependent case: applicable companion opposed-check profile; timing conclusions are conditional on a real preceding grapple"
+          },
+          {
+            "caseId": "EN6-07-B",
+            "kind": "conditional terminal at61.2: no supplied intervening ending-save outcomes"
+          }
+        ],
+        "authority": "This full-conference review, not the earlier targeted pass, selects the complete fifteen proposed procedures. Original questions, original proposal text, older pending labels, source counters and prior correctionHistoryPart5_01 remain preserved history. The exact new selected procedure strings and sharedContractRouting11 govern only this returned authored candidate. Actual project adoption and all engine flags remain unchanged.",
+        "currentAppliedBaseline": {
+          "reviewed": 525,
+          "pending": 323,
+          "standalone": 249,
+          "interfaces": 173
+        },
+        "companionAndIllusionExactAcceptances": "Independent and unapplied here; their exact artifacts/receipts are not amended.",
+        "copiedFeatReadyBoundary": "The unchanged COPY-READY-ALLOWANCE-01 proposal and13 feat-file operations remain in the separate corrections01 archive. Their two-touched-round allowance is not an ordinary-Ready charge or a completed class/provider/runtime integration. No second RP/components/capture payment.",
+        "realRuntimeTestsExecuted": 0,
+        "humanGameplayTestsExecuted": 0,
+        "numericalBalanceApproved": false,
+        "cosmologyCanonApproved": false,
+        "wholeGameOrReleaseApproved": false
+      },
+      "reason": "Preserve actual review status, recovered source coverage and remaining content/application boundaries as a new record."
+    }
+  ],
+  "applicationBoundary": "Proposal reconstruction only. No project writes or future canonical/index/rendering approval."
+}

@@ -1,0 +1,1 @@
+Five exact rank8 perception sources, six placements,21 unselected questions; all individually tierC. Full sources and actual accepted comparisons preserve original metadata and narrow scopes. No procedure, case, source conflict, numerical balance or game-runtime implementation is adopted by this packet.
