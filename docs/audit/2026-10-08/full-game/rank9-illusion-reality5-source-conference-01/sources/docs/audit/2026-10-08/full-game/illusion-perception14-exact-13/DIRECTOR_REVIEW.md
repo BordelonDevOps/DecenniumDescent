@@ -1,0 +1,16753 @@
+# Illusion and perception spells — video game candidate
+
+Fourteen existing spell identities. The repaired procedures have completed semantic review; this exact rendering awaits final integration review. Creation is a separate review.
+
+## Greater Invisibility
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 4 | 10 | 7 |
+| Crimson Agent | Illusion | 4 | 11 | 7 |
+| Monk | Illusion | 4 | 18 | 7 |
+| Mirrorsage | Illusion | 4 | 10 | 7 |
+| Thief | Illusion | 4 | 18 | 7 |
+| Wizard | Illusion | 4 | 7 | 7 |
+
+Action; range 60 feet; V/S/F. Choose one willing creature you perceive with line of effect, including yourself. KEEP the target stays Invisible while attacking. NEW replace the contradictory Instantaneous metadata with concentration up to sixty elapsed seconds. Unlike the reviewed ordinary Invisibility identity, no Action, Bonus Action, Reaction, attack, dealt damage, forced save, spellcasting or other technique ends this effect merely by being used. Actual loss of this spell’s concentration, expiry, qualifying removal or the recipient’s actual death ends it. A different concentration spell cast by its own caster still displaces it normally. The recipient’s actual initial worn/held/carried noncreature gear within its lawful anatomy and capacity shares visual concealment while that same item remains in its possession. Dropped, fired or transferred items immediately become visible; regripping one later does not restore this cast’s concealment, and newly picked-up external property never gains it. No carried creature, mount or independently living body is concealed by that gear clause. Existing melded property retains its real body/equipment history without creating a second visible item. Ordinary voice, footfalls, tracks, light emitted by actual equipment and physical interaction remain real. A revealing attack can leave the creature Invisible while observers learn its location and lose only the Invisible-specific attack modifiers. Neither location knowledge nor Investigation grants sight through this actual condition; use an actual qualifying sense/removal. Suppression suspends this record’s concealment while its original deadline runs; it neither deletes observer knowledge nor restores a spent/released item to the initial gear set. Multiple owners’ sources retain separate concentration records, with no stacked Invisible benefit. There is no continuing caster-to-target range tether after application.
+
+Applicable shared clauses: IP14-SOURCE1-casting, IP14-SOURCE1-clocks, IP14-SOURCE1-identityAndMultiplicity, IP14-SOURCE1-perceptionAndIllusions, IP14-SOURCE1-hardControlAndMovement.
+
+## Hallucinatory Terrain
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 4 | 10 | 7 |
+| Crimson Agent | Illusion | 4 | 11 | 7 |
+| Monk | Illusion | 4 | 18 | 7 |
+| Mirrorsage | Illusion | 4 | 10 | 7 |
+| Thief | Illusion | 4 | 18 | 7 |
+| Wizard | Illusion | 4 | 7 | 7 |
+
+Action; range 150 feet; V/S/F. KEEP an area appearing as another terrain. NEW choose a perceived supported terrain center within 150 feet and line of effect; the stationary horizontal footprint has radius up to seventy-five feet, so its maximum horizontal span is the printed 150 feet. Its visual depiction occupies at most thirty feet above or below the chosen center, clipped by real barriers and the terrain actually perceived when composed. Replace Instantaneous with concentration up to one hour. At casting specify one static visual terrain appearance based on actual known/perceived shapes: stone can appear grassy, safe ground can look broken, or visible shallow water can look like a dry bed. It does not reveal or accurately reconstruct concealed geography. NEW only background terrain appearance changes: creatures, independently carried objects, buildings, vehicles, doors, mechanisms and actual light sources remain visibly themselves; it cannot paint a concealing opaque surface over them. It may disguise a perceived natural pit or apparent footing, but the illusion provides no real floor. It does not remove actual visual obstruction: a real boulder painted as grass still blocks sight/line of effect and physically obstructs passage. A false boulder on empty ground adds no mechanical blocked sight, cover or collision. No sound, smell, temperature, touch, harvest, difficult-terrain modifier, navigation success or forced movement is created. Observers can make the shared examination or witness conclusive contradiction; an informed observer can distinguish the false appearance without seeing through real obstacles. The image is fixed to its initial world area and never follows a vehicle or relocates with uprooted terrain. Newly exposed ground or arriving objects are not newly mapped or given an intelligently adapted image; actual departures/changed objects can supply evidence of the false overlay. There is no independent image control after casting. Overlapping such depictions retain separate records; NEW at a shared visual surface only the latest successful depiction is presented, with an older still-active one becoming apparent if the later one ends. Knowing one does not automatically identify an independently different illusion. Suppression removes only the affected source appearance while its clock runs; concentration loss, expiry or removal ends it.
+
+Applicable shared clauses: IP14-SOURCE1-casting, IP14-SOURCE1-clocks, IP14-SOURCE1-identityAndMultiplicity, IP14-SOURCE1-perceptionAndIllusions, IP14-SOURCE1-hardControlAndMovement.
+
+## Mind Maze
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 4 | 10 | 7 |
+| Crimson Agent | Illusion | 4 | 11 | 7 |
+| Monk | Illusion | 4 | 18 | 7 |
+| Mirrorsage | Illusion | 4 | 10 | 7 |
+| Thief | Illusion | 4 | 18 | 7 |
+| Wizard | Illusion | 4 | 7 | 7 |
+
+Action; range 60 feet; V/S/F. One perceived creature with line of effect makes WIS. Success establishes nothing. KEEP failure loses one round in confusion. NEW on a failed save, if actual defenses permit and the shared hard-control allowance is unused, establish a custom lost-round state immediately until the end of the target’s next future regular turn, excluding an in-progress turn. There is no concentration; this ongoing rank-4 rider expressly survives the original Instantaneous metadata and is subject to qualifying removal/suppression. It prohibits new full Actions, Bonus Actions, Reactions and voluntary movement commitments. Already legally committed Actions/Reactions finish their actual resolution; movement already spent is not refunded, while later uncommitted movement cannot begin. Extra turns inside the interval gain no exception and do not shorten the endpoint. The target still makes actual required saves, death saves and ending checks, can perceive/think and use permitted speech, retains passive defenses and can be moved by independent forces. This is not Stunned, Incapacitated, Paralyzed, Blinded or the ordinary Confusion spell; it imposes no automatic failed saves, attack advantage, forced hostile attack or concentration loss by itself. Ordinary damage or a separately applicable incapacitating state still affects concentration normally. Apply the shared future attached-phase/six-second bridge where the recipient has no regular turn, without inventing a companion turn. Consume the source-character/target/encounter guard only on establishment; an already spent guard or relevant immunity blocks this entire lost-round state, with no replacement penalty. Charmed-only immunity does not cover a rider that imposes no Charmed condition; actual broader defenses apply. Suppression permits whatever normal actions are otherwise legal while suppressed, without restoring budgets already spent or extending the endpoint. The used hard-control allowance remains used after early removal or suppression. No repeat save is added; expiry/removal/death of the recipient ends the rider. No teleportation or stopped personal time occurs.
+
+Applicable shared clauses: IP14-SOURCE1-casting, IP14-SOURCE1-clocks, IP14-SOURCE1-identityAndMultiplicity, IP14-SOURCE1-perceptionAndIllusions, IP14-SOURCE1-hardControlAndMovement.
+
+## Illusory Clone
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 4 | 10 | 7 |
+| Crimson Agent | Illusion | 4 | 11 | 7 |
+| Monk | Illusion | 4 | 18 | 7 |
+| Mirrorsage | Illusion | 4 | 10 | 7 |
+| Thief | Illusion | 4 | 18 | 7 |
+| Wizard | Illusion | 4 | 7 | 7 |
+
+Action; range 60 feet; V/S/F. KEEP one clone mimicking the caster and a place swap once per round. NEW create one visual-only duplicate of your actual current body and gear appearance at a perceived position within sixty feet and line of effect, with enough geometric room for the depicted body. It has your current silhouette and occupied dimensions, but no creature identity, HP, physical gear, collision, attack, senses or targetable creature status. Replace Instantaneous with concentration up to sixty seconds. Its pose and gestures mirror your visible bodily motion without duplicating speech, light or effects. NEW when you perform actual self-powered movement, it translates by the same vector, segment by segment, preserving its offset; a segment that would move it outside sixty feet, through an actual solid barrier or out of caster line of effect leaves it at its last legal image position. It then keeps mimicking in place until a later legal segment; it banks no missed movement. Forced displacement and teleportation do not translate it. It has no independent move command or initiative budget. Once on your own regular turn, spend an available Bonus Action to exchange your actual position with the clone’s current depicted position. Both positions must still be perceived and within sixty feet/line of effect, the arrival must legally fit your actual full body and carried noncreature gear, and actual relocation prohibitions must permit it. NEW supported destinations are required unless you already have a legal flight/hover or other support mode for that actual arrival. The swap is instantaneous, has no path traversal/opportunity attack and moves no carried creature or mount. The new image occupies your old location; it does not trigger a second translation. Commit the Bonus Action and the character-wide Illusory Clone swap allowance before resolving an eligible swap; later prevention refunds neither. The allowance is once per numbered round across casts, owners of copied permission and extra turns; outside initiative use the continuing six-second action budget and preserve the open allowance on transition. Casting can be followed by a swap if the real Bonus Action remains. The clone can be scrutinized/contradicted under the shared illusion rules. It supplies no Mirror Image random interception, mis-targeting requirement, invisibility, attack defense or ability to swap in response to a hit. Suppression prevents visual operation and swapping, while maintaining the last position, original clock and spent swap history; resumption does not catch up movement.
+
+Applicable shared clauses: IP14-SOURCE1-casting, IP14-SOURCE1-clocks, IP14-SOURCE1-identityAndMultiplicity, IP14-SOURCE1-perceptionAndIllusions, IP14-SOURCE1-hardControlAndMovement.
+
+## Greater Phantom Steed
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 4 | 10 | 7 |
+| Crimson Agent | Illusion | 4 | 11 | 7 |
+| Monk | Illusion | 4 | 18 | 7 |
+| Mirrorsage | Illusion | 4 | 10 | 7 |
+| Thief | Illusion | 4 | 18 | 7 |
+| Wizard | Illusion | 4 | 7 | 7 |
+
+Action; range 60 feet; V/S/F. KEEP creation of a phantom steed with special abilities. NEW create one Large quadruped in a perceived unoccupied supported ten-foot space with line of effect; replace Instantaneous with concentration up to one hour. Complete profile: AC 14, normal HP 20, walking Speed 60 feet, body mass 1,000 pounds, ordinary sight/hearing, saves current original-owner PB and other checks +0. It understands actual conveyed owner commands, but has no speech, remote senses, telepathy, attacks, spellcasting, equipment proficiencies, damage resistance or condition immunity. One willing Small/Medium rider; maximum combined real rider/tack/cargo 350 pounds and 35 Load, satisfying both limits and actual body fit. It creates no saddle/tack; ordinary bareback mounting/dismounting from within five feet costs half the rider’s current walking Speed in movement expenditure, needs a legal destination and cannot be voluntarily done at Speed 0. NEW choose exactly one special mode on casting, fixed for this instance: (A) Water Tread, walking on the actual surface of ordinary liquid water as support; (B) Surefoot, ignore only movement-cost doubling from mundane loose rubble or vegetation underfoot; or (C) Winged, a 40-foot flying Speed without hover. Water Tread does not protect a submerged/dismounted rider, traverse lava, still waves, ignore hazards or supply a bridge for anyone else. Surefoot grants no climb/burrow, safe footing, immunity to traps, magical terrain or falling. Winged grants actual flight only while eligible and active; rider/cargo weight still applies and lost support uses normal Falling. Different movement modes share actual spent movement, without a fresh budget on switching. A legal shared Bonus Action command authorizes movement and one nonoffensive Dash, Dodge or Disengage in its attached phase. No offensive permission, autonomous travel, free creation movement or rider Action is added. Outside initiative account for actual repeated control, terrain, elapsed moving time and ordinary expedition rules; no automatic superior miles-per-hour rate follows from its tactical Speed. It needs no food, water, sleep or breath, but the rider does, and it grants no safe Rest or Supply. A later acquired source-qualified HP modifier follows the actual ledger and never refills a damaged mount merely by changing capacity. At zero HP, concentration end, expiry or qualifying removal it ends under ordinary source cleanup; actual rider/cargo remain in place. NEW IP14-STEED-SUPPRESS-13, for Greater Phantom Steed only: full suppression of the creating source is also an ending event for this instance rather than a pause. When full creating-source suppression actually applies, end the steed once; rider, tack and cargo remain at their actual positions and ordinary support/Falling is evaluated from that state. Narrow or local suppression that does not fully suppress the creating source follows the suppressor's actual scope and does not invoke this endpoint. This is a source-specific lifecycle choice, not an inheritance or widening of AC5-ANTIMAGIC-SUMMON-01 or AC6-SUMMON-SUPPRESS-01, and no other summon, mount or magical body gains it. Real damage/healing never renews its duration, command history or special-mode choice. No corpse, tack, feather, meat, harvest or permanent animal is produced.
+
+NEW IP14-STEED-LOAD-02, for this Greater Phantom Steed proposal only: keep actual rider body mass in the350lb physical total. For this mount’s35-Load admission, count its one Small rider’s body as3Load or one Medium rider’s body as6Load, borrowing those fixed body-burden values explicitly as NEW rider accounting, not claiming the casualty rule already defines every mounted passenger. Count tack, carried gear and cargo separately once using each actual printed Load, or pounds/10 only for an item with known weight and no printed Load. Rider body mass is never divided by10 to obtain this mount burden. Ordinary Burdened applies at or above17.5 positive Load and at most35:walking60 becomes50 and Winged40 becomes30; above either350lb or35Load no rider/cargo combination is admitted. Actual fit and lawful custody still apply. No other mount, casualty or item is amended.
+
+Applicable shared clauses: IP14-SOURCE1-casting, IP14-SOURCE1-clocks, IP14-SOURCE1-identityAndMultiplicity, IP14-SOURCE1-perceptionAndIllusions, IP14-SOURCE1-hardControlAndMovement, IP14-SOURCE1-assetsAndControl, IP14-SOURCE1-damageHealingAndCosts.
+
+## Shadow Step
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 4 | 10 | 7 |
+| Crimson Agent | Illusion | 4 | 11 | 7 |
+| Monk | Illusion | 4 | 18 | 7 |
+| Mirrorsage | Illusion | 4 | 10 | 7 |
+| Thief | Illusion | 4 | 18 | 7 |
+| Wizard | Illusion | 4 | 7 | 7 |
+
+Action; range 60 feet; V/S/F; Instantaneous. KEEP teleportation between areas of darkness. NEW the sole recipient is the caster. At commitment and resolution your whole occupied body must lie in actual darkness, and one perceived destination within sixty feet must contain your whole arriving body in actual darkness. Dim light alone fails this predicate. Ordinary darkness and magical darkness both qualify as illumination states only where their actual effects establish darkness; that does not grant the senses to perceive a destination inside them. Perception must identify the actual legal space through an independently sufficient current sense; a guessed square, remembered unseen room, magical aura or claimed shadow is insufficient. NEW like the reviewed Elemental Displacement destination exception, no clear physical path or intervening line of effect is required to an actually perceived destination; a transparent physical barrier may be bypassed if no actual ward prohibits that relocation. No cross-plane route or unseen endpoint is created. Arrival must be unoccupied, contain your actual body and legal carried noncreature property, and have actual support or your independently functioning movement/support mode; this card disallows deliberately unsupported arrivals without one. No other creature, mount or grappled target travels. You spend no Speed and provoke no ordinary opportunity attack; actual restraints/relocation prohibitions retain their scopes, and breaking a maintained grapple relationship uses its own rules. If darkness, perception, occupancy or another required fact fails after commitment, the paid cast moves nothing and does not select a replacement space. It grants no Invisible condition, silence, attack damage rider, new Action, return journey or renewed movement/Reaction budget. The Monk Hero Shadow Step and Oracle Arch Shadow Step remain separate class techniques with their own actual prices, activation, range and riders.
+
+Applicable shared clauses: IP14-SOURCE1-casting, IP14-SOURCE1-clocks, IP14-SOURCE1-identityAndMultiplicity, IP14-SOURCE1-perceptionAndIllusions, IP14-SOURCE1-hardControlAndMovement.
+
+## True Seeing
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 6 | 16 | 13 |
+| Cleric | Divination | 6 | 11 | 13 |
+| Crimson Agent | Illusion | 6 | 19 | 13 |
+| Mirrorsage | Divination | 6 | 16 | 13 |
+| Shaman | Divination | 6 | 16 | 13 |
+| Wizard | Divination | 6 | 11 | 13 |
+
+KEEP both source placements, Action, 60 feet, V/S/F and concentration up to one minute. NEW choose one willing creature, including yourself, perceived within 60 feet and line of effect. The casting range selects that recipient; a separate NEW 60-foot sensory extent moves with its actual body. Combine both preserved placements' explicit benefits into this single identity: darkness, all illusions, invisibility, shapechanges and transmutations. This proposed union does not grant an unacquired school or class mode. There is no save for a willing recipient, and the benefit requires no continuing range tether to the caster.
+
+Within the extent and actual unobstructed sensory path, the recipient sees normally through ordinary or magical darkness, sees actually Invisible creatures/objects, and perceives sensory illusions as identifiable false overlays. Darkness removal is observer-specific and casts no light for others. It does not penetrate actual opaque barriers, physical smoke/fog or opaque mundane material. Blinded or missing usable sight still prevents sight; darkness alone is bypassed, not the Blinded condition. Normal hearing or another genuinely functioning sense can identify an illusory sound/tactile impression whose actual apparent source lies within the extent and accessible sensory path, without gaining hearing while Deafened or receiving messages through walls. An existing remote sensor does not acquire this effect or move its extent; its own express sharing rules must supply any separate permission.
+
+NEW the recipient sees the underlying original appearance beneath an actually operative shapechange/transmutation, including an ongoing permanent form spell. The body remains in its current mechanical form with its actual HP, anatomy, equipment and permissions. This reveals appearance only, not a name, history, alignment, motives, creature statistics, identity documents or lost earlier transformations. A completed instantaneous conversion that now leaves ordinary matter supplies no ongoing false form to pierce. Seeing an original silhouette does not find hidden objects inside the body or restore missing matter. Physical concealment/Hidden still needs ordinary detection; an invisible creature is not automatically found through cover. Once genuinely seen, its Invisible-specific unseen modifiers are bypassed for this observer within the benefit's scope.
+
+For current visual illusions, this is conclusive personal identification without an examination Action. Identification removes only perception-dependent deception and any consequence whose own source explicitly ends on disbelief. It does not dispel the source for other observers or cancel an independently specified psychic packet, fear relation or compulsion. NEW explicit bridge to the unadopted Mental Prison proposal: a recipient seeing through its own subjective prison leaves that illusion mentally; the prison's one still-live ordinary exit packet resolves under its own rule, rather than treating True Seeing as antimagic. Greater Phantasmal Killer's independent damage proposal and Spectral Army's explicit detonation remain capable of damage. These cross-proposal choices await joint review. Concentration ending, expiry, actual removal or recipient death ends this sight. Suppression suspends it while the clock continues. Separate True Seeing sources add no range and retain independent endings; renewed paid casts grant no new knowledge beyond present actual perception.
+
+Applicable shared clauses: IP14-SOURCE2-casting, IP14-SOURCE2-geometry, IP14-SOURCE2-clocks, IP14-SOURCE2-illusions, IP14-SOURCE2-damageAndControl, IP14-SOURCE2-identity.
+
+## Mass Mirage
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 5 | 13 | 10 |
+| Crimson Agent | Illusion | 5 | 15 | 10 |
+| Mirrorsage | Illusion | 5 | 13 | 10 |
+| Wizard | Illusion | 5 | 9 | 10 |
+
+Action; select up to six distinct perceived creatures within60feet and line of effect, including self; V/S/F. KEEP individual appearances as others including voice and silhouette. NEW one-hour nonconcentration lifetime instead of undefined instantaneous permanence. A willing recipient accepts; an unwilling one makes CHA, success preventing only its own shell. Choose each disguise independently before saves; no replacement target after a save. Use the shared real-body/visual-disbelief shell and actual recorded appearance. NEW voice overlay changes the recipient's own actual utterance to the chosen audible qualities/known imitation while it speaks; choose from voice samples actually heard by the caster, or a designed generic ordinary voice. It transmits only words/sounds the recipient genuinely produces and understands when understanding is required; no unknown passwords, language, memories, perfect authentication or supernatural voice power. A sampled individual can be imitated plausibly, but ordinary social verification/context and investigation still apply. No greater-than-normal shout volume, speech while unable to speak, replacement verbal spell component or bypass of Silence. A listener can use Action INT/Investigation vs original DC when actual vocal evidence creates uncertainty; success recognizes this voice overlay, not the recipient's undisclosed true identity. Silence/Deafened or visual-only illusion penetration affects only its actual sensory channel; voice recognition does not automatically supply an unseen real face. Each recipient can spend its own Action dismissing its shell; caster can spend an Action ending selected still-live shells without remote sensory information. One Mass Mirage shell per recipient across casters; a newly accepted/failed-save established shell replaces only that named-family shell. Other illusion families retain their real rules; NEW where visual/voice overlays conflict, the most recently established operative covering shell supplies that channel, with no additive convincingness and older clocks continuing. An ended covering shell can expose a still-existing older different-family shell. Suppression, target death, expiry and applicable removal act independently per target and never reveal all other recipients or alter physical statistics.
+
+Applicable shared clauses: IP14-SOURCE3-casting, IP14-SOURCE3-snapshots, IP14-SOURCE3-clocks, IP14-SOURCE3-control, IP14-SOURCE3-damage, IP14-SOURCE3-disguises.
+
+## Echofield
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 5 | 13 | 10 |
+| Crimson Agent | Illusion | 5 | 15 | 10 |
+| Mirrorsage | Illusion | 5 | 13 | 10 |
+| Wizard | Illusion | 5 | 9 | 10 |
+
+Action; perceived center within60feet and line of effect; V/S/F. KEEP random sound repetition, stealth-impossible clause and enemy confusion. NEW fixed20-foot-radius sphere, no concentration,60-second lifetime in place of undefined instantaneous persistence. Record only real non-Echofield audible sound that occurs inside and reaches the center through an actual sound path during this cast; retain the last six one-second snippets for at most six seconds. On creation and each +6-second pulse before expiry, choose uniformly among eligible stored snippets using one neutral die with as many faces as snippets, replay it once from a uniformly selected one of the six fixed five-foot-offset points north/east/south/west/up/down from center. Missing/occluded point supplies no replay, not a reroll. With no recorded sound, no snippet is replayed. Volume is the lesser of the original sound and an ordinary shout; do not synthesize unknown speech, time before casting, private remote sounds or supernatural verbal components. The recorder does not give the caster playback access at distance. NEW to give the absolute stealth clause a finite real benefit, every actually exposed creature body inside emits a faint nonspeech resonant rustle from its own occupied position while the field operates, even if otherwise motionless or ordinarily silent. This is an explicit additional illusory sound, not a pulse from hidden lungs or a diagnostic of creature type. A creature with functioning hearing and a real unobstructed sound path within30feet of that rustle can locate its occupied position for hearing-based awareness: the emitter cannot maintain Hidden from that observer by Stealth while that audible exposure persists. This never supplies sight, true identity, precise anatomy, a path through total sound isolation, or location outside actual audible range. Invisibility and actual darkness still deny sight unless a real sense overcomes them. Once this particular observer learns the emitter’s location from the audible rustle, the current Core Invisible-specific attack advantage/disadvantage ends for that observer; remaining Invisible alone cannot restore it. Independent darkness, smoke, blindness or a different qualifying concealment retains only its own actual modifiers. Knowing position never satisfies a sight-required target predicate. Deafened observers, actual Silence around emitter/listener/path, sound-proof barriers and qualifying suppression defeat this auditory exposure; visual hiding from a nonhearing observer remains possible. This expressly bounded interpretation of stealth-impossible needs joint approval, rather than an omniscient reveal. NEW enemy confusion is a soft hearing-dependent modifier: at the first exposure when a currently perceived designated hostile can hear field noise, make WIS. Failure gives disadvantage on its attack rolls and hearing-dependent WIS/Perception checks only while it remains inside and can hear the field; success makes it immune to this cast's confusion. No Confusion spell table, forced attack/movement, Action loss or hard guard. At each exposed regular END repeat WIS; success ends that cast's confusion permanently. Other real advantage can cancel normally. Exiting, deafness, Silence or suppression removes the current modifier without resetting its stored failed result or fixed expiry. Record entry/escape once per creature/cast; extra turns grant no new save. One field per caster; successful replacement ends its previous field; different fields keep separate records without stacked dice. All replay and generated rustle sounds are tagged to this source and cannot enter any Echofield recorder, preventing feedback loops. No real vibration damage, speech authentication, hidden roster delivered to caster or sound-generated casting trigger is created.
+
+NEW IP14-ECHO-RNG-08, only for Echofield: the authoritative engine records only actually audible eligible non-Echofield sound at its center after this cast arms. Form completed one-second acoustic snippets from an actual sound event without using display frames; an incomplete second is not a stored snippet. Each snippet carries its actual acoustic-arrival completion time, immutable authoritative sound-event sequence and per-event snippet ordinal. At each pulse, first process eligible sound completions at that timestamp, then discard completions at or before pulseTime−6 seconds, and retain at most the latest six by that stable tuple. The eligible selection list is those retained records in ascending tuple order. This explicitly defines simultaneous-event ordering without sorting by hidden creature names or frame rate. Source expiry at60 precedes a pulse there. Initial creation has no pre-cast recording. Empty eligible list produces no snippet or origin draw. For a nonempty list generate exactly one private uniform integer1..N for the snippet and one private uniform integer1..6 for origin, ordered north/east/south/west/up/down, then resolve real acoustic eligibility from that chosen source point. A blocked/missing chosen origin consumes those draws but produces no replay, without a reroll or another source point. N=1 is a deterministic one-option selection operation; no source can turn it into a new random choice. Generated replay/rustle remains ineligible to every Echofield recorder. These engine draws and stored sounds are not newly presented to caster/controllers, nor added to the accepted five-entry DE4 presentation whitelist. Ordinary genuinely heard output supplies only its actual acoustic information. No draw sequence, buffer count or sound-event ID is exposed as a hidden-roster diagnostic. This is scoped NEW ordering/RNG authorship requiring actual GPT concurrence, not an already implemented audio engine.
+
+Applicable shared clauses: IP14-SOURCE3-casting, IP14-SOURCE3-snapshots, IP14-SOURCE3-clocks, IP14-SOURCE3-control, IP14-SOURCE3-damage.
+
+## Seeming
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 5 | 13 | 10 |
+| Crimson Agent | Illusion | 5 | 15 | 10 |
+| Mirrorsage | Illusion | 5 | 13 | 10 |
+| Wizard | Illusion | 5 | 9 | 10 |
+
+Action; V/S/F; KEEP any number of creatures and60-foot range. NEW choose one finite snapshot of any number of distinct personally perceived creatures within60feet and caster line of effect at commitment, including self, with no six-target cap, future enrollment or unlimited remote recipients. Each willing target accepts; each unwilling target makes CHA, success preventing only its own shell. Set each desired appearance before saves. NEW lasts eight actual hours, no concentration, rather than treating instantaneous metadata as unexplained permanent appearance. Use the shared physical-body/visual-disbelief shell. This spell changes appearance only: it grants no voice overlay, language, scent, tactile disguise, transformed anatomy, magical credential, new equipment or actual identity. A whispered password in the wrong real voice remains wrong. Each recipient can use its Action to end its own shell; caster can use an Action ending selected still-live shells without remote feedback. One Seeming shell per recipient across casters, replaced only by an actually established new one, with no age/HP/resource reset. Different-family visual overlays use the shared latest-operative-channel arbitration; original independent clocks continue and may remain after a covering layer ends. A touch contradiction or successful actual Action INT/Investigation reveals that recipient's illusion only to that observer; other recipients remain independently affected. A qualifying true-sight ability bypasses only the portion its actual scope covers. Death/expiry/applicable removal or voluntary dismissal ends a recipient's shell; moving beyond60feet does not. Suppression preserves the eight-hour deadline and does not force the real body to change.
+
+Applicable shared clauses: IP14-SOURCE3-casting, IP14-SOURCE3-snapshots, IP14-SOURCE3-clocks, IP14-SOURCE3-control, IP14-SOURCE3-damage, IP14-SOURCE3-disguises.
+
+## Dream
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 5 | 13 | 10 |
+| Crimson Agent | Illusion | 5 | 15 | 10 |
+| Mirrorsage | Illusion | 5 | 13 | 10 |
+| Wizard | Illusion | 5 | 9 | 10 |
+
+Action; one perceived creature within60feet and line of effect; V/S/F; choose Message or Nightmare before payment. KEEP sleeping target and actual60-foot range rather than importing worldwide contact. NEW require actual sleep at resolution, whether ordinary sleep or a source explicitly causing sleep; unconsciousness alone, death, trance that does not sleep, and an awake unresponsive target do not qualify. Hidden sleep state resolves after a legal paid commitment with no success/failure diagnostic. Both modes enter only that target's subjective dream for at most six elapsed seconds; waking or a source that actually prevents the dream experience ends presentation. No dream plane, soul journey, private memory extraction, caster dream sight or reply channel exists. Message: deliver up to25spoken words chosen at casting in a language the caster knows, as a dream message identifiable to the recipient as a magical intrusion from an unverified apparent speaker. Actual recipient comprehension is required for semantic meaning; it grants no translation or guaranteed true authentication. NEW no save for that noncompulsive informational message; waking afterward permits ordinary recollection but neither perfect memory nor forced belief. Recipient can decline to engage, with no later queued delivery. Nightmare: describe one finite frightening sensory scene from the caster's knowledge; do not read the sleeper's actual worst fear. The sleeper makes WIS. Success prevents nightmare and its proposed rider; failure experiences that scene while asleep and receives NEW one shaken-dream entitlement: disadvantage on its next WIS ability check made within one elapsed hour from resolution, consumed when that actual check is declared even if advantage cancels or the result would be unchanged. It affects no attacks, saves, passive-score arithmetic, damage, spells, sleep eligibility, rest reward, Exhaustion or compulsory action. The scene need not wake the sleeper and supplies no special waking action; ordinary natural sleep can end voluntarily as normal, whereas magically caused sleep retains its actual awakening rules. That ending stops the presentation but not an already established finite rider. One unspent Dream rider per recipient across casters; a later failed save adds no new rider or deadline refresh while one remains. A spent/expired rider can be established by a genuinely new paid successful cast, without a queue or old missed effect. Qualifying mental/illusion immunity applies in its actual scope; no fear condition is imposed, so Frightened-only immunity alone is not a substitute. One active Dream presentation per recipient; a new actually established presentation replaces the previous one without refunding resources or a rider. No concentration; target death/applicable removal clears rider. Suppression during a WIS-check opportunity means this dormant rider does not contribute or spend, but its original hour continues. Rest or initiative changes do not extend either endpoint. A heard dream message or frightening story does not constitute a social command, consent, true prophecy or cosmology evidence.
+
+Applicable shared clauses: IP14-SOURCE3-casting, IP14-SOURCE3-snapshots, IP14-SOURCE3-clocks, IP14-SOURCE3-control, IP14-SOURCE3-damage.
+
+## Spectral Army
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 6 | 16 | 13 |
+| Crimson Agent | Illusion | 6 | 19 | 13 |
+| Mirrorsage | Illusion | 6 | 16 | 13 |
+| Wizard | Illusion | 6 | 11 | 13 |
+
+KEEP five ghostly soldiers, all fake, 6d6 area psychic when attacked, Action, 60 feet, V/S/F and concentration up to one minute. NEW place exactly five distinct stationary images at five declared perceived points within range/line of effect. Each fits one 5-foot cube and depicts one humanoid-shaped spectral soldier chosen from appearances the caster actually knows. Images may occupy physically empty space without support, but not overlap one another or solid matter at creation. They are neither actual creatures nor objects with HP; occupied image space supplies no collision, cover, support, flanking body, corpse or inventory. They make only a simple repeated visible noninformational motion and no sound, attack, autonomous choice or sensory report. No movement/retarget command is added after casting.
+
+NEW IP14-IMAGE-TARGET-09: each image is a specific legal apparent target for an ordinary weapon or unarmed attack selected as part of the attacker’s actual Attack Action, with apparent AC10 solely to resolve that real attempt. This exception does not waive a spell, class technique, creature-only profiled strike, opportunity-attack trigger or other special source’s actual target/trigger predicates. Another attack source needs an express permission that actually admits this noncreature/nonobject image; the phrase attack roll alone is insufficient. After a genuine committed attack against it survives interruption and resolves its attack roll, hit or miss, that image is consumed and detonates exactly once. Mark it consumed before resolving the blast. The attacking action/ammunition/command costs remain real; no weapon-hit, damage-dealt, on-kill or creature-hit benefit arises against the image, even on an apparent hit. An attack canceled before its roll does not trigger it. An area damage effect without an actual attack roll targeting the image does not count as an attack for this trigger. Passing through, examination, speech and ordinary physical contradiction do not detonate it. The fake soldiers cannot attack one another.
+
+NEW IP14-SPECTRAL-HIDDEN-TARGET-13, only for an unrecognized Spectral Army image and only to avoid turning hidden actual creature eligibility into a free identity oracle: when a source requires one perceived creature and the acting controller has not personally identified that image as false, the apparent soldier may be selected as an apparent candidate and that source's otherwise legal Action, cost, components and cadence may commit. This does not make the image a creature and does not satisfy the source at resolution. After commitment and ordinary cast-interruption processing, revalidate actual creature eligibility before any spell attack, save or source-effect roll. Actual noncreature ineligibility ends that paid attempt with no target effect and no special failure-reason or true-identity diagnostic. A controller that has already identified the image as false has no such apparent-candidate permission. This bridge is confined to creature-targeted attempts against these five images; it does not modify ordinary casting globally, grant creature-only effects to images, waive a different target predicate, or count as the qualifying ordinary Attack Action attack roll required to detonate one.
+
+The blast is a 10-foot-radius sphere centered on the consumed image's actual anchor, affecting every real creature in it with anchor line of effect, including the caster and allies. Each makes WIS; failure takes the shared rolled 6d6 psychic, success half rounded down. No object damage or other condition is added. This is explicitly magical psychic damage independent of believing the visual disguise: True Seeing or successful examination reveals the image without granting damage immunity. Actual psychic or broader applicable magical defenses still work. No blast can trigger another image, because it is not an attack roll and images are not its creature recipients. A single roll has one attacked image; a genuine multiattack can consume separate images only through separate real attack rolls. An already-queued attack against a now-consumed image fails against that missing target without a replacement image or refund unless its own actual source permits retargeting.
+
+Deliberate qualifying ordinary Attack Action attacks by the caster or allies are legal and retain actual action/ammunition costs. An actually commanded companion may attack an image only if its genuine action/profile satisfies IP14-IMAGE-TARGET-09; a printed creature-only Slam or a source giving no actual Attack Action does not acquire an exception. Any eligible companion attempt still spends the real command/offense costs. There is no hidden enemy gate. The images themselves have no companion turn or command allowance; their automatic reactions to real attacks spend their finite discharge entitlement, not an invented creature attack. Maximum five detonations per cast, each consuming one of the actual five images. Disbelief alone neither consumes nor rearms an image. Suppression makes an affected image and its trigger unavailable; retained undischarged images can resume before original expiry, with no explosion for an attack while suppressed. Concentration loss, expiry, removal or voluntary concentration ending erases remaining images without detonating them. One active army per caster; a genuinely formed new army replaces the old without detonating it, while ordinary concentration commitment can already have ended the old one.
+
+NEW IP14-SPECTRAL-ROOT-08, only for Spectral Army: each actually triggered image discharge is a distinct later damage activation. The original caster is the damage dealer; the image has no creature dealer identity and the triggering attacker does not become the blast dealer. After the real attack roll resolves, consume the one image discharge entitlement, resolve actual manifestation prevention and snapshot its genuinely eligible recipients. One shared6d6 pool supplies that manifested discharge; each actual recipient application receives its own new damage root, using the original caster’s actual Null Veil state at that discharge-root creation. Any genuine later transfer/descendant keeps that flag; later caster toggles do not rewrite those roots. A second image’s distinct later discharge evaluates the then-current caster state independently. No root or damage is created for an erased, suppressed or pre-manifestation-prevented discharge. The shared pool is a private engine operation and grants no additional DE4 information-presentation entry. This is an explicit NEW per-card delayed-discharge mapping parallel to the accepted source-specific field/attack mappings; it does not redefine older ongoing effects or make an image a summon creature.
+
+Applicable shared clauses: IP14-SOURCE2-casting, IP14-SOURCE2-geometry, IP14-SOURCE2-clocks, IP14-SOURCE2-illusions, IP14-SOURCE2-damageAndControl, IP14-SOURCE2-identity.
+
+## Reality Fracture
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 6 | 16 | 13 |
+| Crimson Agent | Illusion | 6 | 19 | 13 |
+| Mirrorsage | Illusion | 6 | 16 | 13 |
+| Wizard | Illusion | 6 | 11 | 13 |
+
+KEEP Action, 60 feet, V/S/F, concentration up to one minute and a field where all creatures see different illusions. NEW choose a perceived center within range and line of effect; establish one stationary 20-foot-radius sphere with center line of effect. Every creature inside that can actually use sight is eligible, including caster and allies. On creation, and on a creature's first later eligible entry or first acquisition of sight while inside, it makes INT. Success gives personal identification of this entire cast and immunity to its visual penalties on later entries. Failure gives that creature a private false visual rendering while inside the field. Blind creatures receive no visual effect and no fabricated scene; the first later use of sight within the still-active field is their initial eligibility event.
+
+NEW at casting the caster chooses one bounded theme from known imagery, such as ruined hall, overgrown grove or mirrored chamber. For each failed observer, the Director selects a distinct arrangement of that theme's colors, surface textures and harmless apparent furnishings. This produces genuinely different perceptions without retrieving private memories or reporting the scene to the caster. Actual creatures that this observer can otherwise visually perceive retain individually distinguishable moving silhouettes and real positions; no silhouette is drawn for a body absent from that observer’s genuine visual information, including an Invisible body whose position is known but which the observer still cannot see; the effect does not impersonate specific allies, erase creatures, reveal Hidden creatures, conceal a real trap automatically or manufacture an unobstructed targeting path. It supplies no sound, smell, tactile sensation, darkness, solid barrier, light or extra information outside the field.
+
+The finite gameplay effect is disadvantage on attack rolls that rely on vision to locate a target inside the field, and on sight-based INT/WIS ability checks examining its contents. A failed observer inside the field can still actually see legal targets through the distortion; no Blinded condition, automatic target illegality, saving-throw penalty, forced attack, changed faction belief or Action loss is imposed. Nonvisual senses function under their actual scope. Ordinary advantage/disadvantage combination applies once even with several active fields; multiple disadvantage sources do not multiply dice. An observer outside the sphere sees the undistorted real scene, while an affected observer inside sees only the part inside this field distorted. Leaving immediately suspends its perception and penalties without ending the cast; reentering resumes the same observer's record, not a new save or newly invented scene.
+
+An affected observer can personally examine this visual overlay using the shared LR-G07 Action/Investigation procedure. Success identifies this entire cast for that observer and removes its penalty thereafter. Personally witnessing a conclusive physical contradiction of the chosen scene also identifies the overlay; mere tactile contact with a surface whose only false property is color is not automatically a contradiction. True Seeing inside its actual scope supplies identification; communicating a warning to somebody else does not do so. None of these facts alters another recipient's scene or grants the caster hidden knowledge. No independent damage or control component survives identification because this proposal supplies only visual distortion. Suppression suspends an affected portion/recipient while the original deadline and saved identification histories continue; an initially unevaluated recipient first exposed after suppression gets its one initial INT save then. Concentration ending, expiry or actual source removal ends the field. One field per caster; a new formed field replaces that caster's prior field under ordinary concentration rules.
+
+Applicable shared clauses: IP14-SOURCE2-casting, IP14-SOURCE2-geometry, IP14-SOURCE2-clocks, IP14-SOURCE2-illusions, IP14-SOURCE2-damageAndControl, IP14-SOURCE2-identity.
+
+## Programmed Illusion
+
+| Class | School | Rank | Minimum class level | Base RP |
+|---|---|---:|---:|---:|
+| Bard | Illusion | 6 | 16 | 13 |
+| Crimson Agent | Illusion | 6 | 19 | 13 |
+| Mirrorsage | Illusion | 6 | 16 | 13 |
+| Wizard | Illusion | 6 | 11 | 13 |
+
+KEEP Action, 60 feet, V/S/F and concentration up to one minute. NEW declare one fixed 20-foot cube whose center is perceived within range/line of effect, one trigger observation point inside that cube, one finite observable trigger condition and one predetermined performance lasting at most 30 seconds. The entire spell's 60-second maximum starts at casting resolution, not at triggering. The armed image/sound is absent; the trigger remains an ongoing spell for an actually qualifying removal source, without being a creature or independent mind. NEW IP14-ARMED-DETECTION-09: this card grants no automatic visible aura, perception of its hidden anchor, or exception to a detector’s own perceived-target predicate. Current Detect Magic can outline only a genuinely eligible perceived active creature/object/effect within its actual30ft and line/defense conditions; the armed program alone supplies no sensory output satisfying that predicate. An actually perceived running performance is an active effect for that ordinary detection scope. A different source expressly detecting hidden active triggers retains only its own scope. No general dormant-magic detection, trigger password, script, owner identity or remote report is granted. Arming occurs after the cast resolves; a condition already genuinely true at that first observation may trigger immediately, but no event from before arming is replayed.
+
+The trigger can observe ordinary visible shapes/motion or audible sounds within 30 feet of its fixed observation point through actual optical/acoustic paths. It has ordinary sight/hearing only, no darkvision, invisible detection, thoughts, alignment, secret names, creature-type diagnostic, knowledge of events through opaque walls or prediction. A simple conjunction of at most three such directly observable predicates can define the condition. A spoken password matches its declared audible pattern; a copied/imitated matching sound can satisfy it, and it does not identify the speaker's hidden legal identity. The condition is evaluated continuously as real eligible observations occur, not as free Perception checks against hidden facts. If an observation is genuinely unavailable or ambiguous, it cannot confirm the predicate; the caster receives no remote status or explanation.
+
+On the first confirmed trigger, mark the one firing spent before beginning the recorded visual/audio performance. Simultaneous matching events still produce one firing. The performance stays inside the original cube and follows a fully predeclared finite sequence, using only known appearance/content or an actual literal sound sample. It can show moving creatures/objects and speech no louder than ordinary conversation through real acoustic paths; it creates no illumination, tangible heat, smell, support, cover, physical creature, damage, Action or spellcasting origin. It is not intelligent, adaptive dialogue and cannot answer an unrecorded question. The caster cannot amend its condition/script or move its anchor after casting. A new paid cast is required for a different program.
+
+End the performance at the earlier of its declared length or the original spell deadline. It does not loop, rearm, become permanent or get a fresh minute. LR-G07 examination/contradiction and True Seeing reveal its false sensory content for the actual observer but do not automatically stop other observers hearing/seeing it or dispel its trigger. Suppression makes affected sensory output and trigger observation unavailable. Events occurring wholly during suppression are missed, never queued. A persistent state still genuinely true when observation resumes may satisfy an unspent trigger then, with only original time remaining. Once fired, elapsed performance time continues through suppression; on resumption only the still-current remaining part can appear, with no replay. Concentration ending, removal or expiry cancels the dormant/fired program without executing an untriggered performance. One active Programmed Illusion per caster, with actual concentration commitment and replacement rules; no soldier, inventory, collectible recording object or future alarm service is created.
+
+Applicable shared clauses: IP14-SOURCE2-casting, IP14-SOURCE2-geometry, IP14-SOURCE2-clocks, IP14-SOURCE2-illusions, IP14-SOURCE2-damageAndControl, IP14-SOURCE2-identity.
+
+## Shared procedures by source and applicable spell
+
+The following clauses apply only to their listed spells. Each spell’s complete procedure controls its expressly stated local exception. Clauses about other named spells supply no additional ability.
+
+### IP14-SOURCE1-casting
+
+Applies to: greater-invisibility, hallucinatory-terrain, mind-maze, illusory-clone, greater-phantom-steed, shadow-step.
+
+KEEP each actual class access row, rank 4/base 7 RP, minimum class level and repertoire. All thirteen use Action and V/S/F; Summon Corpse Golem preserves V/S/M/F with the existing unpriced material-or-focus alternative. The ordinary casting engine, actual hand/voice/focus requirements, RP discounts and surcharges, Dissonance/Refrain and source hooks apply. Observable legality precedes commitment; hidden defenses or concealed ineligibility give no free diagnostic or refund. Commit the actual Action, costs and cadence before the counter window. A concentration cast displaces incompatible old concentration at commitment even if countered. Attack modifier is actual source PB plus casting modifier; save DC is 8 plus those values. Saves are binary, without natural-die degree shifts. No generic upcast, level scaling, extra turn or unacquired source is supplied.
+
+### IP14-SOURCE1-clocks
+
+Applies to: greater-invisibility, hallucinatory-terrain, mind-maze, illusory-clone, greater-phantom-steed, shadow-step.
+
+NEW for these cards, durations expressed in minutes/hours use absolute elapsed deadlines from resolution: one minute is sixty seconds and one hour is 3,600 seconds. Expiry precedes a use scheduled at exactly that deadline. A hostile one-round rider uses the first future target regular END excluding the in-progress turn; N future target-end installments use precisely N such endpoints. Outside initiative use the stated 6N seconds. Preserve the chosen virtual marker or absolute deadline through reordering, extra turns, absence, entry and exit from initiative. NEW attached-asset bridge for Mind Maze and Leeching Plague: if the recipient has only a real original-owner attached phase, use its next future attached-phase END excluding a phase already underway; if it has no real turn/phase, use six-second END-only checkpoints. Mapping a checkpoint supplies no ordinary turn, Action, death save, refresh or extra tick. Due effects run before their own ending cleanup. Suppressed scheduled installments are spent without effect; they never accumulate.
+
+### IP14-SOURCE1-identityAndMultiplicity
+
+Applies to: greater-invisibility, hallucinatory-terrain, mind-maze, illusory-clone, greater-phantom-steed, shadow-step.
+
+NEW explicit group default: one active instance per original caster per ordinary spell ID; a successfully established replacement ends only that caster’s old active instance. An invalid or countered nonconcentration cast leaves the old instance, while ordinary concentration displacement still happens at commitment. A successfully resisted cast establishes nothing and does not replace an old nonconcentration rider. Different owners keep separate source records and endpoints, with stated same-family caps and the existing strongest same-stat flat-bonus rules. Do not generalize that bonus rule into a universal strongest-effect rule. Each record retains caster, class, rank, cast ID, snapshotted spell DC, recipients/anchor, actual history and ending. Transfer, form change or a new database ID cannot rearm it. Nonconcentration voluntary dismissal here requires the original caster’s Action and perception/line of effect to the recipient or anchor within original range; completed instantaneous consequences cannot be recalled.
+
+### IP14-SOURCE1-perceptionAndIllusions
+
+Applies to: greater-invisibility, hallucinatory-terrain, mind-maze, illusory-clone, greater-phantom-steed, shadow-step.
+
+KEEP actual sight, hearing, Hidden, cover and Invisible rules. Ordinary invisibility does not hide location automatically. Once an observer knows location, it loses only Invisible-specific attack advantage/disadvantage; sight-required targeting still requires actual sight. Resolve a revealing attack first, then give location knowledge only to observers perceiving its evidence. Alternate senses work only within their real scope. NEW apply the current LR-G07 examination procedure to these new visual illusions: an Action with a relevant accessible sense permits INT (Investigation) against the creating spell’s snapshotted DC, using Core degrees/natural shifts then collapsing Success/Critical Success versus Failure/Critical Failure. Failure permits another attempt only with genuinely new evidence or method. Conclusive personally witnessed physical contradiction identifies the false part without a roll. A warning enables examination but does not globally identify the spell for everybody. Images add no actual cover, collision, support, light, sound, creature body, remote senses or inventory unless expressly supplied below. No compelled belief, automatic disguise success or knowledge of hidden terrain is granted.
+
+### IP14-SOURCE1-hardControlAndMovement
+
+Applies to: greater-invisibility, hallucinatory-terrain, mind-maze, illusory-clone, greater-phantom-steed, shadow-step.
+
+KEEP the source-character/target/encounter hard-denial allowance shared across that owner’s effects. A whole-Action/turn denial spends it only when established; resistance, immunity or an already-used allowance supplies no invented fallback. Soft Speed effects, an obstacle and a numeric attack/save penalty do not themselves spend it. Teleportation relocates without spending Speed, traversing the path or provoking ordinary opportunity attacks. Speed 0 alone is not a relocation prohibition; an actual teleport/relocation prohibition still applies. Verify whole body, actual legal cargo, occupancy and destination before resolution. Only actual carried noncreature belongings travel unless a card expressly permits passengers; another creature, grappled victim, carried living body or mount stays with its own real position/support. No route between planes, custody bypass, resource refill or returned movement budget is implied.
+
+### IP14-SOURCE1-assetsAndControl
+
+Applies to: greater-phantom-steed.
+
+KEEP the real owner-wide one command and one offensive companion/device allowance per numbered round. Commands use the owner’s Bonus Action on their regular turn, actual audible/visible communication within sixty feet, and execute in the attached phase after that whole turn. No immediate creation movement/attack and no extra-turn refresh. An issued command survives later owner incapacity only while the actual source and other eligibility survive. Uncommanded assets can move defensively and Dodge, subject to conditions. Current owner-source PB supplies saves; specified base HP/AC remain fixed except genuinely acquired source-qualified modifiers. No borrowed monster abilities or unstated condition/damage immunity. For the two NEW summoned bodies below and Bone Cage only, full suppression of that creating source ends that body/structure immediately rather than storing an intangible replacement. Actual riders or narrowly scoped suppression still affect only their own scope. Ending drops actual cargo/riders at their actual locations with ordinary support/Falling; it creates no salvage, corpse, duplicate equipment or reappearance. This explicit NEW ending rule does not amend other summons.
+
+### IP14-SOURCE1-damageHealingAndCosts
+
+Applies to: greater-phantom-steed.
+
+KEEP typed damage defenses, actual prevention/sharing, buffers, life-state rules, Wounds and concentration. Save-half floors before the relevant defenses. Numeric actualDamageDealt is temporary HP absorbed plus actual normal HP lost, excluding overkill and prevented HP-floor loss. For a permitted drain sum eligible terminal recipient branches once, never both a split parent and its children; apply the card’s narrower funding predicate before its final half/floor. HP restoration uses actual healing restrictions and maximums and grants no automatic Wound cure, resurrection or resource refresh. Direct HP payment is separate from damage: no resistance, buffer, transfer, Wound/damage trigger or damage-derived refund. It must be paid from real normal HP under the card’s explicit floor. No necrotic, shadow, plague or soul name creates an unprinted condition, material, pool or setting fact.
+
+### IP14-SOURCE2-casting
+
+Applies to: true-seeing, spectral-army, reality-fracture, programmed-illusion.
+
+Retain every actual rank-six/base 13 RP class access row and school: Illusion ordinarily Wizard 11, Bard/Mirrorsage 16, Crimson Agent 19; Necromancy Cleric/Druid/Wizard 11, Shaman 16, Crimson Agent 19. True Seeing retains its separate actual Divination/Illusion rows. All retain Action, range 60 feet and V/S/F except Invisible Tide range 30 feet and Blood Fog/Circle of Death V/S/M-or-F. For those two use the existing unpriced ordinary material/focus alternative, without inventing a consumed reagent or price. Actual repertoire, source ability, components, RP modifiers, Dissonance/Refrain, concentration transitions and interrupt rules apply. A legal cast commits before hidden eligibility and its counter window. No failed-cast refund, automatic upcast or level scaling. DC is 8 + actual PB + actual class modifier; spell attack is PB + that modifier. Binary spell saves remain distinct from four-degree ability tasks.
+
+### IP14-SOURCE2-geometry
+
+Applies to: true-seeing, spectral-army, reality-fracture, programmed-illusion.
+
+Declare modes, legal perceived centers and named targets before hidden resolution. Caster-to-center/target line of effect is required; areas also require center-to-recipient line of effect. An indiscriminate area does not require separately seeing each recipient and includes allies/self unless its card says otherwise. Fixed spheres have their stated three-dimensional radii, not diameter or distance from the caster. Opaque physical barriers remain real. A subjective enemy predicate uses the caster's actual existing knowledge and hostility toward that creature, not secret alignment, allegiance or an extra detection sense. An already-known enemy can be affected while currently unseen; an entirely unknown creature is not automatically classified as hostile by this spell.
+
+### IP14-SOURCE2-clocks
+
+Applies to: true-seeing, spectral-army, reality-fracture, programmed-illusion.
+
+NEW cohort bindings: one minute is 60 elapsed seconds from resolution. Expiry wins at its exact deadline. Regular START/END means the actual ordinary turn, never an extra turn. END-only ending saves include a current regular turn's upcoming END; outside initiative they occur every six seconds after application and the first unresolved opportunity maps to the next actual regular END on entering initiative. Original deadlines and spent events persist through initiative changes, absence and suppression. A companion-only recipient uses its actual original-owner regular attached phase START/END for an expressly assigned spell tick/save, without generating a regular turn, refresh or death save; if that phase is absent use the original six-second spell-only schedule. This NEW bridge supplies only the card's due effect/save, never a companion Action. Compelled movement uses only a real available movement phase. Suppressed opportunities are lost, not queued; resumption grants no immediate periodic packet.
+
+### IP14-SOURCE2-illusions
+
+Applies to: true-seeing, spectral-army, reality-fracture, programmed-illusion.
+
+Use the current LR-G07 procedure for a sensory image: a personally accessible relevant sense and an Action permit INT (Investigation) against the original spell DC, with Core task degrees/natural shifts. Success/Critical Success identifies that illusion for that observer. A failed investigation needs genuinely new evidence or method before retry. Conclusive personally witnessed physical contradiction reveals the contradicted false content; a warning alone does not globally reveal it. Informed observers perceive through the identified false sensory overlay using their actual senses. No image creates physical cover, support, material, creature HP, inventory, remote senses, knowledge or an Action unless explicitly authored below. A damaging magical component can remain after its sensory depiction is identified when the specific proposal expressly separates them. This last distinction and True Seeing interfaces require joint agreement.
+
+### IP14-SOURCE2-damageAndControl
+
+Applies to: true-seeing, spectral-army, reality-fracture, programmed-illusion.
+
+Apply actual typed defenses, damage sharing, temporary HP, HP prevention/floors, Instant Death, Wounds, concentration and death in their reviewed order. actualDamageDealt is real temporary HP absorbed plus ordinary HP lost, excluding overkill and duplicate parent/child transfer amounts. Ordinary healing keeps current maximum, Critical ceiling, modifiers and prohibitions. Claim the combined source-character/target/encounter hard-control allowance only on actual establishment of a whole-Action/turn component; no refund on ending/replacement/suppression. No postponed application or invented fallback when initial admission fails. Actual component immunities retain their scope: Fear-only immunity is not universal mental immunity, and creature type alone supplies none. Compelled conduct uses existing safe-route/resource/secret/oath restrictions and Compelled Budget Arbitration: earliest real instruction, one actual budget, compatible demands share one execution.
+
+### IP14-SOURCE2-identity
+
+Applies to: true-seeing, spectral-army, reality-fracture, programmed-illusion.
+
+Keep actual physical body, source owner, controller, originating spell, current HP, inventory and all histories distinct. A conjured body provides no corpse, harvest or transferable intrinsic gear. A converted real corpse is consumed once and never becomes fresh raising/recipe fuel by destruction, release or renaming. Actual carried gear stays real and changes custody only through physical actions. No new resurrection permission, soul capture, afterlife destination, planar route or identity lore follows from a spell name. Mechanical creature type is not a decision about cosmology.
+
+### IP14-SOURCE3-casting
+
+Applies to: mass-mirage, echofield, seeming, dream.
+
+KEEP each actual rank-five/base10RP class-access row, minimum class level, repertoire and casting ability. All use V/S/F, Action and60-foot range except Mental Bomb keeps Reaction and20-foot casting-point range. Actual components/hands/voice/focus, legal commitment, RP/strain surcharge, Dissonance/Refrain and the Counterspell window apply. A legal attempted cast pays before hidden eligibility and countering; counter/failure refunds nothing and restores no displaced concentration. Only the explicitly stated spells require concentration. Save DC=8+actual total PB+actual source casting modifier; Investigation uses an actual Core task check against that DC, not a save. No generic upcast, automatic cantrip/rank scaling, substitute class levels, missing RP pool or new access is granted.
+
+### IP14-SOURCE3-snapshots
+
+Applies to: mass-mirage, echofield, seeming, dream.
+
+Choose all visible/perceived legal named targets, ordered lists, modes, centers, commands and appearances at commitment before hidden results. Recheck actual geometry and eligibility at resolution. Actual creature identity, current body/type/CR/HP, line of effect, cover and sensory gates control. A named-target spell requires perception and caster line of effect unless an exact exception is stated; ordinary area snapshots include unperceived bodies inside center line of effect. Hidden ineligibility spends an otherwise legal cast without furnishing a diagnostic. Enemy selection here means currently perceived creatures the caster affirmatively regards as hostile from available information, not a detector of true affiliation. Specific indiscriminate areas include allies. No flavor supplies real objects, extra bodies, terrain, damage, blindfolds or private memories.
+
+### IP14-SOURCE3-clocks
+
+Applies to: mass-mirage, echofield, seeming, dream.
+
+NEW minute-long proposals use a recorded absolute60-second deadline from resolution, including in initiative; expiry takes precedence at that deadline. Longer hour/day durations use actual elapsed campaign seconds, never a calendar label or a rest counter. Preserve original regular START/END identities through initiative transitions; extra turns do not add orders, saves or allowances. Suppression preserves costs, source identity, original expiry and spent history, skips ineligible execution without catch-up, and cannot revive an ended application. Scheduled repeat saves remain available during suppression when the procedure provides them; they are not additional casts. No ongoing range tether is added to established target-attached spells unless expressly stated. An ended/dead target creature ends its attached magical applications; reaching0HP without death alone does not.
+
+### IP14-SOURCE3-control
+
+Applies to: mass-mirage, echofield, seeming, dream.
+
+KEEP actual condition components and the source-character/target/encounter shared hard-control allowance. Successful establishment of whole-Action/turn control or Paralyzed/Unconscious claims it once; immunity/prevention or prior history prevents that hard component without banking it. Charmed-only immunity does not block a distinct non-Charmed effect; actual broader defenses retain their scope. Compelled ordinary movement can provoke ordinary opportunity attacks and spends real remaining movement. No missing Action, extra turn, Bonus Action, Reaction, owner command budget or new movement mode is created. Use reviewed earliest-specific-instruction priority, then stable application/ID ties; compatible demands may share only the same genuine execution. Costs, ownership, actual absolute prohibitions and limited resources remain real.
+
+### IP14-SOURCE3-damage
+
+Applies to: mass-mirage, echofield, seeming, dream.
+
+Resolve each simultaneous area damage roll once, then each recipient save and typed defenses separately. Half-save damage rounds down before later resistance rounding. Actual resolved damage, temporary HP, HP floors, concentration, Wounds, life states and terminal causal branches use the reviewed rules. A zero numeric HP loss does not necessarily mean a zero pre-temp-HP damage packet. A separately stated condition/compulsion is not removed by psychic resistance/immunity alone. Save damage has no attack critical; no copied/replayed sound or image is a spell cast, material lot, companion attack or resource-generating event.
+
+### IP14-SOURCE3-disguises
+
+Applies to: mass-mirage, seeming.
+
+NEW shared Mass Mirage/Seeming shell: each recipient keeps its real body, size category, footprint, anatomy, reach, carrying, equipment, HP and abilities. Apparent clothing/possessions must fit the actual body and same mechanical size category; no functional limb, actual concealment from nonsight senses, cover, line-of-effect barrier or credential is created. No imported one-foot height restriction. Real worn/carried objects have an appearance overlay only while possessed; leaving possession ends that object's overlay, with no delayed disguise attached to the dropped object. Later real form changes retain the chosen appearance only where it fits; unsupported portions cease until the body again supports them, with no forced reversion or expiry reset. True sight and actual illusion-ignoring senses apply within their real scopes. Direct physical contradiction reveals the shell to that observer, and an observer can spend an Action on INT/Investigation vs original DC to recognize it; success makes this cast's shell transparent to that observer, not everyone. A failed unchanged inspection supplies no new evidence for repeated retries. Recognition grants neither magic removal nor secret true identity/lore. Appearance alone does not guarantee a social outcome.
+
+## Authority routing
+
+Only spells[].procedure and its listed sharedRuleIds are the selected complete current rules. Actual Part5 question/case dispositions resolve frozen pending labels. Exact source-specific exceptions override their contrary earlier proposal text only for the named card. Earlier records, questions, statuses and replaced procedures remain history. Accepted external interfaces retain their actual scopes; no other pending card or class access is approved by inclusion.
+
+## Actual question dispositions
+
+### id
+
+DD-IP14-PART5-QUESTION-DISPOSITIONS-01
+
+### questionCount
+
+16
+
+### dispositions
+
+#### id
+
+IP14-Q01
+
+#### spells
+
+greater-invisibility
+
+#### submittedQuestion
+
+Confirm willing recipient, original gear only, minute concentration and full attack/action exemption while retaining Core observer-known Invisible modifiers and real sight requirements. Original and current IN4-01-A/B include actual Minor Illusion concentration replacement and Lesser Antimagic.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Greater Invisibility procedure and both cases are source-consistent within accepted casting, concentration, Invisible and observer-known-location scopes.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/0/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md
+
+##### section
+
+Invisible
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Hide/Search and unseen attacks, lines168-180
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/0/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json
+
+##### section
+
+Complete Lesser Antimagic procedure and AC5-ANTIMAGIC-IO-04
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json
+
+##### pointer
+
+/spells/510/operational
+
+#### id
+
+IP14-Q02
+
+#### spells
+
+hallucinatory-terrain
+
+#### submittedQuestion
+
+Confirm perceived center150, maximum horizontal span150/radius75 and vertical30, one-hour concentration, static terrain-only appearance, actual cover/support and per-observer contradiction. Decide the current source-specific continuous geometry without silently replacing every historical grid template.
+
+#### disposition
+
+ACCEPT_SOURCE_SCOPED
+
+#### rationale
+
+Accept radius75/max horizontal span150 and ±30 vertical bound as Hallucinatory Terrain-only geometry. Do not globalize to historical grids.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/1/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Hide/Search and unseen attacks, lines168-180
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/1/workedCases/1
+
+#### id
+
+IP14-Q03
+
+#### spells
+
+mind-maze
+
+#### submittedQuestion
+
+Confirm custom one-future-round denial, exact unavailable commitments, retained required saves/passives/concentration, no imported Stunned, shared hard guard and attached-phase bridge. Resolve IP14-COMMIT-INTERRUPT-03: ordinary Ready is trigger-first and current concrete case releases after completed attack; the old mid-resolution attack premise remains conditional, not a granted interrupt.
+
+#### disposition
+
+ACCEPT_WITH_CONDITIONAL_PRESERVED
+
+#### rationale
+
+Accept custom one-future-round denial and hard guard. Ordinary Ready remains trigger-first; lawful current case releases after the completed attack. The older mid-resolution premise remains conditional only.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/2
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/2
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/2/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/8
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/2/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/36
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/1
+
+##### role
+
+ordinary Ready trigger-first
+
+#### id
+
+IP14-Q04
+
+#### spells
+
+illusory-clone
+
+#### submittedQuestion
+
+Confirm bounded mirrored movement, own-regular-turn Bonus Action swap and character-wide numbered-round allowance across replacements/extra turns, legal supported arrival, actual gear only and no Mirror Image interception. Conditional late-prevention/extra-turn fixtures supply no new independent event source.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Accept bounded clone movement/swap, supported arrival, real gear and no Mirror Image interception. Extra-turn/late-prevention branches do not create independent event sources.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/3
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/3
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/3/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Movement ledger, teleportation and actual opportunity attacks
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/3/workedCases/1
+
+#### id
+
+IP14-Q05
+
+#### spells
+
+greater-phantom-steed
+
+#### submittedQuestion
+
+Decide all three exclusive specialties, actual command/attached phase, temporary body and finite endings. Explicitly disposition NEW IP14-STEED-LOAD-02:350lb actual capacity separate from35Load;Small/Medium riderbody3/6Load is proposed rider accounting, not inherited casualty authority. Burdened at17.5 reducesWinged40→30/walk60→50. Separately decide original NEW full-source suppression ending versus pause; current real Lesser Antimagic/Falling and replacement cases preserve source history.
+
+#### disposition
+
+ACCEPT_AFTER_EXACT_REPAIR
+
+#### rationale
+
+Accept all three Steed modes and IP14-STEED-LOAD-02. Accept full-source suppression as a NEW Steed-only ending event, not AC5/AC6 shared-pause inheritance; repair /spells/4/procedure accordingly.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/4
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/4
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/4/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md
+
+##### section
+
+Carrying and Load
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/4/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/2
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/36
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/31
+
+##### role
+
+AC5 summon suppression; explicit no automatic extension
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/52
+
+##### role
+
+AC6 three-profile same-body suppression; explicit source scope
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/14
+
+##### role
+
+Carrying and Load
+
+#### id
+
+IP14-Q06
+
+#### spells
+
+shadow-step
+
+#### submittedQuestion
+
+Confirm whole-body physical darkness at both ends, actual destination perception,60ft, no intervening path/LoE requirement only for this source, legal supported arrival and no passengers/class-technique import. Actual Darkvision changes perceived light but not physical darkness and does not penetrate magical darkness. Conditional postcommit-light sources are not newly granted.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Accept whole-body physical darkness at origin/destination, actual destination perception, caster-only transport, no intervening path/LoE only for this source, normal support/grapple consequences.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/5
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/5
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/5/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Movement ledger, teleportation and actual opportunity attacks
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json
+
+##### pointer
+
+/spells/75/operationalCandidate
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md
+
+##### section
+
+Grappled
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md
+
+##### section
+
+Size and occupied space; actual Medium5x5 footprint; measured height remains fixture input.
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/5/workedCases/1
+
+#### id
+
+IP14-Q07
+
+#### spells
+
+true-seeing
+
+#### submittedQuestion
+
+Decide the preserved two-placement union, recipient-centered60ft and observer-only darkness/invisibility/illusion/original-appearance scope without wall/fog/Blinded bypass or secret identity. Decide explicit Mental Prison exit bridge using full actual pending record and N29:entry28 and exit24 remain two packets, not one52Wound event. This conference does not approve the full separate Mental Prison source.
+
+#### disposition
+
+ACCEPT_TRUE_SEEING_ONLY_CONDITIONAL_BRIDGE
+
+#### rationale
+
+Accept both preserved True Seeing placement benefits as one identity while retaining each class's actual school access. Accept appearance-only transformation limits and the exact conditional Mental Prison departure bridge. Do not approve Mental Prison or Control15.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/6
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/0/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md
+
+##### section
+
+Invisible
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/0/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json
+
+##### pointer
+
+/spells/74/operationalCandidate
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_rank6.json
+
+##### pointer
+
+/records/4
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/5
+
+#### id
+
+IP14-Q08
+
+#### spells
+
+mass-mirage
+
+#### submittedQuestion
+
+Confirm up-to-six snapshot, willing/CHA admission, one-hour nonconcentration shells, sampled actual voice only, no password/language/credential, per-channel latest-operative overlap and independent recipients. Review full shared disguise/custody clauses and IL5-01-A/B.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Accept Mass Mirage six-target snapshot, willing/CHA admission, one-hour nonconcentration shell, sampled/generic actual voice limits and channel-specific overlap.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/7
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/7
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/7/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### section
+
+Full preserved shared Mass Mirage/Seeming disguise shell
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/7/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Available actions: Help; Core task check distinction
+
+#### id
+
+IP14-Q09
+
+#### spells
+
+echofield
+
+#### submittedQuestion
+
+Decide bounded20ft/60sec field,30ft actual rustle hearing exposure, Core observer-known Invisible exception and soft enemy modifier with own END saves. Review NEW IP14-ECHO-RNG-08: completed one-second snippets, stable authoritative tuple, window(t−6,t], latest six, private snippet/origin choices, one-option determinism, no empty draws/feedback/hidden roster/Fate disclosure. Actual Silence counterpart remains20ft radius/range20/concentration60, not generic sound suppression everywhere.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Accept bounded Echofield, audible rustle position-awareness limit, soft hearing-dependent confusion and IP14-ECHO-RNG-08. Engine RNG/snippet roster remains private and adds no sixth DE4 presentation.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/9
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/8
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/9/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/9/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json
+
+##### pointer
+
+/spells/25/operationalCandidate
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md
+
+##### section
+
+Invisible and Deafened
+
+#### id
+
+IP14-Q10
+
+#### spells
+
+seeming
+
+#### submittedQuestion
+
+Confirm finite any-number perceived snapshot,8-hour nonconcentration, no six-cap/late enrollment, visual-only shells and actual inventory/body, personal recognition, nonresetting clock. The old one-hour suppression example remains conditional; current source-grounded fixture uses real60-second Lesser Antimagic instead of silently extending its duration.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Accept Seeming finite any-number snapshot, eight-hour nonconcentration visual shells, no later enrollment, observer-specific recognition and nonresetting suppression clock.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/9
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/11/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### section
+
+Full preserved shared Mass Mirage/Seeming disguise shell
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/11/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/36
+
+#### id
+
+IP14-Q11
+
+#### spells
+
+dream
+
+#### submittedQuestion
+
+Confirm actual-sleep predicate, range60,6-second25-word message/no response or private diagnosis, and Nightmare next-WIS-ability-check entitlement only. Actual Help cancellation still consumes that declared check use; one cross-caster pending rider does not refresh. No sleep hours, rest reward, Exhaustion, memory/soul/plane or true prophecy grant.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Accept actual-sleep predicate, six-second/25-word Message, no reply/diagnostic, and one nonrefreshing next-WIS-ability-check Nightmare entitlement.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/13
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/10
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/13/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/13/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Available actions: Help; Core task check distinction
+
+#### id
+
+IP14-Q12
+
+#### spells
+
+spectral-army
+
+#### submittedQuestion
+
+Decide five finite stationary fake images, apparentAC10 and10ft6d6psychic burst on actual qualifying attack roll hit or miss. Explicitly decide NEW IP14-IMAGE-TARGET-09, narrowing to actual ordinary weapon/unarmed Attack Action rather than waiving creature-only spell/class/profile targets. Actual Ray of Frost counterexampleN31 preserves hidden-eligibility costs/no diagnostic. Decide NEW IP14-SPECTRAL-ROOT-08: originalcaster dealer and per-recipient roots for each separate later image discharge using current dealerNull, private sharedpool, no imagecreature/procs/chain explosions. Earlier broader companion sentence is preserved.
+
+#### disposition
+
+ACCEPT_AFTER_EXACT_REPAIR
+
+#### rationale
+
+Accept five stationary images, IP14-IMAGE-TARGET-09 and IP14-SPECTRAL-ROOT-08. Add IP14-SPECTRAL-HIDDEN-TARGET-13 so N31's unknown creature-target attempt has explicit postcommit eligibility semantics without making images creatures or widening ordinary casting.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/2
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/2/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/9
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/50
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/2/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json
+
+##### pointer
+
+/spells/411/operational
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/0
+
+##### role
+
+ordinary casting precommit legal-target baseline
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/100
+
+##### role
+
+accepted source-specific hidden-classification postcommit precedent; not inherited globally
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/9
+
+##### role
+
+Null root provenance
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/50
+
+##### role
+
+accepted source-specific dealer mapping precedent
+
+#### id
+
+IP14-Q13
+
+#### spells
+
+reality-fracture
+
+#### submittedQuestion
+
+Confirm each actual sighted observer receives one INT admission, private bounded-theme scene and finite vision-dependent disadvantage, without hidden-body silhouettes or false physical cover. Personal Investigation/True Seeing recognition and entry histories remain observer-specific; ordinary warning does not identify for all. Explicit no-baseline-unseen silhouette completion requires concurrence.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Accept one observer-specific INT admission, bounded private visual themes, no unseen-body silhouette completion, finite vision-dependent disadvantage and personal recognition/history.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/4
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/12
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/4/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md
+
+##### section
+
+Invisible
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Unseen attacks and observer-known Invisible exception
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/4/workedCases/1
+
+#### id
+
+IP14-Q14
+
+#### spells
+
+programmed-illusion
+
+#### submittedQuestion
+
+Confirm finite20ftcube, ordinary30ft observation, at most3 directlyobservable conjunctive predicates, one firing, predeclared≤30sec script clipped by original60sec concentration. Actual suppression loses events and preserves elapsed playback; original password and persistent-state scenarios are independent program alternatives. Decide NEW IP14-ARMED-DETECTION-09 and actual Detect MagicN30: no automatic hiddenanchor/dormant aura or script/identity disclosure before an actually perceived eligible active effect.
+
+#### disposition
+
+ACCEPT
+
+#### rationale
+
+Accept bounded Programmed Illusion trigger/performance lifecycle, three observable conjunctive predicates maximum, one firing, lost suppressed events, no playback reset and IP14-ARMED-DETECTION-09.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/5
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/13
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/5/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/5/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/36
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json
+
+##### pointer
+
+/spells/216/operational
+
+#### id
+
+IP14-Q15
+
+#### spells
+
+greater-invisibility
+
+hallucinatory-terrain
+
+mind-maze
+
+illusory-clone
+
+greater-phantom-steed
+
+shadow-step
+
+true-seeing
+
+mass-mirage
+
+echofield
+
+seeming
+
+dream
+
+spectral-army
+
+reality-fracture
+
+programmed-illusion
+
+#### submittedQuestion
+
+Verify sharedContractRouting10 and complete procedure precedence, actual access/school/RP/Wizard first-matrix cadence, geometry, ordinary control/Null/damage rules and source-specific suppression/clocks. Preserve every original text/record and28case IDs. Explicitly distinguish conditional branch obligations from proven full-source encounter reachability; all are authored expectations, not engine executions.
+
+#### disposition
+
+ACCEPT_AFTER_TWO_EXACT_REPAIRS
+
+#### rationale
+
+Shared routing/precedence is acceptable after the two procedure repairs. All 28 preserved original scenarios and complete current cases remain; conditional obligations stay conditional. No runtime execution is implied.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/0/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md
+
+##### section
+
+Invisible
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Hide/Search and unseen attacks, lines168-180
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/0/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json
+
+##### section
+
+Complete Lesser Antimagic procedure and AC5-ANTIMAGIC-IO-04
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json
+
+##### pointer
+
+/spells/510/operational
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/1/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/1/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/2
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/2
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/2/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json
+
+##### pointer
+
+/engine/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/8
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/2/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/36
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/3
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/3
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/3/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Movement ledger, teleportation and actual opportunity attacks
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/3/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/4
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/4
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/4/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md
+
+##### section
+
+Carrying and Load
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/4/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/2
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/5
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/5
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/5/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json
+
+##### pointer
+
+/spells/75/operationalCandidate
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md
+
+##### section
+
+Grappled
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md
+
+##### section
+
+Size and occupied space; actual Medium5x5 footprint; measured height remains fixture input.
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json
+
+##### pointer
+
+/records/5/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/6
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/0/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/0/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json
+
+##### pointer
+
+/spells/74/operationalCandidate
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_rank6.json
+
+##### pointer
+
+/records/4
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/5
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/7
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/7
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/7/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### section
+
+Full preserved shared Mass Mirage/Seeming disguise shell
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/7/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Available actions: Help; Core task check distinction
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/9
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/8
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/9/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/9/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json
+
+##### pointer
+
+/spells/25/operationalCandidate
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md
+
+##### section
+
+Invisible and Deafened
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/9
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/11/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/11/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/13
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/10
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/13/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/13/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/2
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/11
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/2/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/9
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json
+
+##### pointer
+
+/entries/50
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/2/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json
+
+##### pointer
+
+/spells/411/operational
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/4
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/12
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/4/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md
+
+##### section
+
+Unseen attacks and observer-known Invisible exception
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/4/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/5
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json
+
+##### pointer
+
+/spells/13
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/5/workedCases/0
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json
+
+##### pointer
+
+/records/5/workedCases/1
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json
+
+##### pointer
+
+/spells/216/operational
+
+#### id
+
+IP14-Q16
+
+#### spells
+
+creation
+
+#### submittedQuestion
+
+Creation is deliberately excluded from these14. Full original record and source audit remain preserved for separate systemic economy/material/crafting review. Do not infer acceptance of permanent100lb/5ftcube/10gp vegetable matter, food utility or sale/recipe semantics in this illusion conference.
+
+#### disposition
+
+HOLD_SEPARATE
+
+#### rationale
+
+Creation remains outside this 14-identity conference. Preserve its complete record for the separate economy/material/crafting review; no Creation semantics are accepted by association.
+
+#### sourceRefs
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json
+
+##### pointer
+
+/records/12
+
+## Source convergence
+
+### frozenConferenceArchive
+
+#### path
+
+docs/audit/2026-10-08/full-game/DD_Illusion_Perception_14_Conference_12.zip
+
+#### bytes
+
+6026932
+
+#### sha256
+
+625b1be66eafe2dce1ce43d5d53900de98bfe66d0aa96a679276edc2554276ab
+
+### acceptedContextArchive
+
+#### path
+
+docs/audit/2026-10-08/full-game/DD_Control_Illusion_Current_Acceptance_Context_01.zip
+
+#### bytes
+
+1818434
+
+#### sha256
+
+b6c44900551f63abbee02d29256aade0477f9990e547a50c53447ef272de14ca
+
+### frozenConferenceSourceCount
+
+72
+
+### acceptedContextSourceCount
+
+34
+
+### currentIndex
+
+#### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json
+
+#### bytes
+
+484779
+
+#### sha256
+
+6f9b86e21f6a69c7ba2469aba89d5907aa08da567226a2c4bd3ced9e09409857
+
+### originalCounts
+
+#### reviewed
+
+480
+
+#### pending
+
+368
+
+### currentCounts
+
+#### reviewed
+
+525
+
+#### pending
+
+323
+
+### currentRepresentationCounts
+
+#### preservedLegacyOperationalRecords
+
+276
+
+#### completeReviewedStandaloneProcedures
+
+249
+
+### completeMembershipChanges
+
+#### id
+
+mental-bomb
+
+#### before
+
+##### id
+
+mental-bomb
+
+##### name
+
+Mental Bomb
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/358
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+mental-bomb
+
+##### name
+
+Mental Bomb
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/14
+
+##### wholeCardPointer
+
+/spells/14
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/358
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/14/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+synaptic-static
+
+#### before
+
+##### id
+
+synaptic-static
+
+##### name
+
+Synaptic Static
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/361
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+synaptic-static
+
+##### name
+
+Synaptic Static
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/17
+
+##### wholeCardPointer
+
+/spells/17
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/361
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/17/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+inferno-wave
+
+#### before
+
+##### id
+
+inferno-wave
+
+##### name
+
+Inferno Wave
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/450
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+inferno-wave
+
+##### name
+
+Inferno Wave
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/0
+
+##### wholeCardPointer
+
+/spells/0
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/450
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/0/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+orb-of-annihilation
+
+#### before
+
+##### id
+
+orb-of-annihilation
+
+##### name
+
+Orb of Annihilation
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/451
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+orb-of-annihilation
+
+##### name
+
+Orb of Annihilation
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/0
+
+##### wholeCardPointer
+
+/spells/0
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/451
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/0/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+freezing-rain
+
+#### before
+
+##### id
+
+freezing-rain
+
+##### name
+
+Freezing Rain
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/452
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+freezing-rain
+
+##### name
+
+Freezing Rain
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/1
+
+##### wholeCardPointer
+
+/spells/1
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/452
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/1/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+voltaic-detonation
+
+#### before
+
+##### id
+
+voltaic-detonation
+
+##### name
+
+Voltaic Detonation
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/453
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+voltaic-detonation
+
+##### name
+
+Voltaic Detonation
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/1
+
+##### wholeCardPointer
+
+/spells/1
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/453
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/1/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+ice-storm
+
+#### before
+
+##### id
+
+ice-storm
+
+##### name
+
+Ice Storm
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/454
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+ice-storm
+
+##### name
+
+Ice Storm
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/2
+
+##### wholeCardPointer
+
+/spells/2
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/454
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/2/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+wall-of-fire
+
+#### before
+
+##### id
+
+wall-of-fire
+
+##### name
+
+Wall of Fire
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/455
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+wall-of-fire
+
+##### name
+
+Wall of Fire
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/3
+
+##### wholeCardPointer
+
+/spells/3
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/455
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/3/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+vitriolic-sphere
+
+#### before
+
+##### id
+
+vitriolic-sphere
+
+##### name
+
+Vitriolic Sphere
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/456
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+vitriolic-sphere
+
+##### name
+
+Vitriolic Sphere
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/4
+
+##### wholeCardPointer
+
+/spells/4
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/456
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/4/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+storm-sphere
+
+#### before
+
+##### id
+
+storm-sphere
+
+##### name
+
+Storm Sphere
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/457
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+storm-sphere
+
+##### name
+
+Storm Sphere
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/5
+
+##### wholeCardPointer
+
+/spells/5
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/457
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/5/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+flame-typhoon
+
+#### before
+
+##### id
+
+flame-typhoon
+
+##### name
+
+Flame Typhoon
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/458
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+flame-typhoon
+
+##### name
+
+Flame Typhoon
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/6
+
+##### wholeCardPointer
+
+/spells/6
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/458
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/6/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+frozen-tomb
+
+#### before
+
+##### id
+
+frozen-tomb
+
+##### name
+
+Frozen Tomb
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/459
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+frozen-tomb
+
+##### name
+
+Frozen Tomb
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/2
+
+##### wholeCardPointer
+
+/spells/2
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/459
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/2/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+meteor-spear
+
+#### before
+
+##### id
+
+meteor-spear
+
+##### name
+
+Meteor Spear
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/460
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+meteor-spear
+
+##### name
+
+Meteor Spear
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/3
+
+##### wholeCardPointer
+
+/spells/3
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/460
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/3/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+arc-surge
+
+#### before
+
+##### id
+
+arc-surge
+
+##### name
+
+Arc Surge
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/461
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+arc-surge
+
+##### name
+
+Arc Surge
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/4
+
+##### wholeCardPointer
+
+/spells/4
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/461
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/4/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+cone-of-cold
+
+#### before
+
+##### id
+
+cone-of-cold
+
+##### name
+
+Cone of Cold
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/462
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+cone-of-cold
+
+##### name
+
+Cone of Cold
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/5
+
+##### wholeCardPointer
+
+/spells/5
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/462
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/5/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+immolation
+
+#### before
+
+##### id
+
+immolation
+
+##### name
+
+Immolation
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/463
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+immolation
+
+##### name
+
+Immolation
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/7
+
+##### wholeCardPointer
+
+/spells/7
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/463
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/7/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+destructive-wave
+
+#### before
+
+##### id
+
+destructive-wave
+
+##### name
+
+Destructive Wave
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/464
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+destructive-wave
+
+##### name
+
+Destructive Wave
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/6
+
+##### wholeCardPointer
+
+/spells/6
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/464
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/6/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+solar-flare
+
+#### before
+
+##### id
+
+solar-flare
+
+##### name
+
+Solar Flare
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/465
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+solar-flare
+
+##### name
+
+Solar Flare
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/7
+
+##### wholeCardPointer
+
+/spells/7
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/465
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/7/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+arcane-mortar
+
+#### before
+
+##### id
+
+arcane-mortar
+
+##### name
+
+Arcane Mortar
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/467
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+arcane-mortar
+
+##### name
+
+Arcane Mortar
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/8
+
+##### wholeCardPointer
+
+/spells/8
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/467
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/8/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+sonic-collapse
+
+#### before
+
+##### id
+
+sonic-collapse
+
+##### name
+
+Sonic Collapse
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/468
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+sonic-collapse
+
+##### name
+
+Sonic Collapse
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/9
+
+##### wholeCardPointer
+
+/spells/9
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/468
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/9/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+chain-lightning
+
+#### before
+
+##### id
+
+chain-lightning
+
+##### name
+
+Chain Lightning
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/469
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+chain-lightning
+
+##### name
+
+Chain Lightning
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/8
+
+##### wholeCardPointer
+
+/spells/8
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/469
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/8/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+sunbeam
+
+#### before
+
+##### id
+
+sunbeam
+
+##### name
+
+Sunbeam
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/471
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+sunbeam
+
+##### name
+
+Sunbeam
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/9
+
+##### wholeCardPointer
+
+/spells/9
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/471
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/9/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+freezing-sphere
+
+#### before
+
+##### id
+
+freezing-sphere
+
+##### name
+
+Freezing Sphere
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/472
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+freezing-sphere
+
+##### name
+
+Freezing Sphere
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/10
+
+##### wholeCardPointer
+
+/spells/10
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/472
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/10/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+elemental-devastation
+
+#### before
+
+##### id
+
+elemental-devastation
+
+##### name
+
+Elemental Devastation
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/481
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+elemental-devastation
+
+##### name
+
+Elemental Devastation
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/20
+
+##### wholeCardPointer
+
+/spells/20
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/481
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/20/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+supernova-lance
+
+#### before
+
+##### id
+
+supernova-lance
+
+##### name
+
+Supernova Lance
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/482
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+supernova-lance
+
+##### name
+
+Supernova Lance
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/21
+
+##### wholeCardPointer
+
+/spells/21
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/482
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/21/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+crystalline-flash
+
+#### before
+
+##### id
+
+crystalline-flash
+
+##### name
+
+Crystalline Flash
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/484
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+crystalline-flash
+
+##### name
+
+Crystalline Flash
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/22
+
+##### wholeCardPointer
+
+/spells/22
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/484
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/22/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+sunburst
+
+#### before
+
+##### id
+
+sunburst
+
+##### name
+
+Sunburst
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/485
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+sunburst
+
+##### name
+
+Sunburst
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/23
+
+##### wholeCardPointer
+
+/spells/23
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/485
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/23/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+horrid-wilting
+
+#### before
+
+##### id
+
+horrid-wilting
+
+##### name
+
+Horrid Wilting
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/487
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+horrid-wilting
+
+##### name
+
+Horrid Wilting
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/19
+
+##### wholeCardPointer
+
+/spells/19
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/487
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/19/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+veil-of-terror
+
+#### before
+
+##### id
+
+veil-of-terror
+
+##### name
+
+Veil of Terror
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/550
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+veil-of-terror
+
+##### name
+
+Veil of Terror
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/15
+
+##### wholeCardPointer
+
+/spells/15
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/550
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/15/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+phantom-swarm
+
+#### before
+
+##### id
+
+phantom-swarm
+
+##### name
+
+Phantom Swarm
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/552
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+phantom-swarm
+
+##### name
+
+Phantom Swarm
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/16
+
+##### wholeCardPointer
+
+/spells/16
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/552
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/16/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+greater-phantasmal-killer
+
+#### before
+
+##### id
+
+greater-phantasmal-killer
+
+##### name
+
+Greater Phantasmal Killer
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/556
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+greater-phantasmal-killer
+
+##### name
+
+Greater Phantasmal Killer
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/19
+
+##### wholeCardPointer
+
+/spells/19
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/556
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/19/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+invisible-tide
+
+#### before
+
+##### id
+
+invisible-tide
+
+##### name
+
+Invisible Tide
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/558
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+invisible-tide
+
+##### name
+
+Invisible Tide
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/17
+
+##### wholeCardPointer
+
+/spells/17
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/558
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/17/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+leeching-plague
+
+#### before
+
+##### id
+
+leeching-plague
+
+##### name
+
+Leeching Plague
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/633
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+leeching-plague
+
+##### name
+
+Leeching Plague
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/10
+
+##### wholeCardPointer
+
+/spells/10
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/633
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/10/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+aura-of-dread
+
+#### before
+
+##### id
+
+aura-of-dread
+
+##### name
+
+Aura of Dread
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/634
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+aura-of-dread
+
+##### name
+
+Aura of Dread
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/11
+
+##### wholeCardPointer
+
+/spells/11
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/634
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/11/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+blight
+
+#### before
+
+##### id
+
+blight
+
+##### name
+
+Blight
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/636
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+blight
+
+##### name
+
+Blight
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/11
+
+##### wholeCardPointer
+
+/spells/11
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/636
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/11/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+shadow-of-moil
+
+#### before
+
+##### id
+
+shadow-of-moil
+
+##### name
+
+Shadow of Moil
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/638
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+shadow-of-moil
+
+##### name
+
+Shadow of Moil
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/18
+
+##### wholeCardPointer
+
+/spells/18
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/638
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/18/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+mass-decay
+
+#### before
+
+##### id
+
+mass-decay
+
+##### name
+
+Mass Decay
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/641
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+mass-decay
+
+##### name
+
+Mass Decay
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/13
+
+##### wholeCardPointer
+
+/spells/13
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/641
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/13/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+enervation
+
+#### before
+
+##### id
+
+enervation
+
+##### name
+
+Enervation
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/645
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+enervation
+
+##### name
+
+Enervation
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/14
+
+##### wholeCardPointer
+
+/spells/14
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/645
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/14/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+blood-fog
+
+#### before
+
+##### id
+
+blood-fog
+
+##### name
+
+Blood Fog
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/649
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+blood-fog
+
+##### name
+
+Blood Fog
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/12
+
+##### wholeCardPointer
+
+/spells/12
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/649
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/12/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+soulfire-nova
+
+#### before
+
+##### id
+
+soulfire-nova
+
+##### name
+
+Soulfire Nova
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/651
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+soulfire-nova
+
+##### name
+
+Soulfire Nova
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/12
+
+##### wholeCardPointer
+
+/spells/12
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/651
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/12/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+circle-of-death
+
+#### before
+
+##### id
+
+circle-of-death
+
+##### name
+
+Circle of Death
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/653
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+circle-of-death
+
+##### name
+
+Circle of Death
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/13
+
+##### wholeCardPointer
+
+/spells/13
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/653
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/13/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+wail-of-the-damned
+
+#### before
+
+##### id
+
+wail-of-the-damned
+
+##### name
+
+Wail of the Damned
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/657
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+wail-of-the-damned
+
+##### name
+
+Wail of the Damned
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/18
+
+##### wholeCardPointer
+
+/spells/18
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/657
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/18/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+death-tide
+
+#### before
+
+##### id
+
+death-tide
+
+##### name
+
+Death Tide
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/682
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+death-tide
+
+##### name
+
+Death Tide
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/damage_control_25_reviewed_10.json
+
+##### procedurePointer
+
+/spells/24
+
+##### wholeCardPointer
+
+/spells/24
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/682
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/24/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+###### bytes
+
+7597
+
+###### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+#### id
+
+crystalline-growth
+
+#### before
+
+##### id
+
+crystalline-growth
+
+##### name
+
+Crystalline Growth
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/732
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+crystalline-growth
+
+##### name
+
+Crystalline Growth
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/15
+
+##### wholeCardPointer
+
+/spells/15
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/732
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/15/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+#### id
+
+rift-spiral
+
+#### before
+
+##### id
+
+rift-spiral
+
+##### name
+
+Rift Spiral
+
+##### authoredStatus
+
+pending-authored-procedure
+
+##### procedureFile
+
+catalog.json
+
+##### procedurePointer
+
+null
+
+##### wholeCardPointer
+
+/spells/823
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+#### after
+
+##### id
+
+rift-spiral
+
+##### name
+
+Rift Spiral
+
+##### authoredStatus
+
+reviewed-authored-operational-playtest
+
+##### procedureFile
+
+../spell_candidates/persistent_damage_20_reviewed_07.json
+
+##### procedurePointer
+
+/spells/16
+
+##### wholeCardPointer
+
+/spells/16
+
+##### sourceStatus
+
+blocked-pending-operational-review
+
+##### priorCatalogSelectionStatusUnchanged
+
+true
+
+##### sourceCatalogWholeCardPointer
+
+/spells/823
+
+##### wholeCardIdField
+
+id
+
+##### procedureTextPointer
+
+/spells/16/procedure
+
+##### sharedRulesPointer
+
+/sharedRules
+
+##### manuscript
+
+../../../docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### runtimeSelectionEnabled
+
+false
+
+##### completeEnvelopeBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### authoredAcceptanceReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+###### bytes
+
+8279
+
+###### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+##### historicalCandidateLabelsPreserved
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+### actualAcceptedApplications
+
+#### source
+
+##### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_APPLICATION_RECEIPT.json
+
+##### bytes
+
+7597
+
+##### sha256
+
+f41382d33632b5e09df57433743bc1260b345ca174e6cec1d5ac6b2022983759
+
+#### completeReceipt
+
+##### recordedAtUtc
+
+2026-10-18T06:58:06.597386+00:00
+
+##### reviewId
+
+DD-DAMAGE-CONTROL25-EXACT-REBOUND10-REVIEW
+
+##### status
+
+exact-authored-acceptance-applied
+
+##### developmentDirection
+
+video-game-only
+
+##### acceptanceAuthority
+
+###### path
+
+docs/audit/2026-10-08/full-game/damage-control25-exact10-review/REVIEW.json
+
+###### bytes
+
+133595
+
+###### sha256
+
+6fae6a68500d942f872cb0c1e490cc18c9ac5babfe7e7c19744cbbd3a74728fb
+
+##### acceptanceArchive
+
+###### path
+
+docs/audit/2026-10-08/full-game/DD_Damage_Control_25_Exact_Rebound_10_Review.zip
+
+###### bytes
+
+42399
+
+###### sha256
+
+17833f27e7b5b2f189045266a460236dc5bdf90466b615eeab5678990e5ccc8e
+
+##### reviewedArchive
+
+###### path
+
+docs/audit/2026-10-08/full-game/DD_Damage_Control_25_Exact_Rebound_10.zip
+
+###### bytes
+
+7210323
+
+###### sha256
+
+5a90689dfed6b2ab7f27082d82f02230710f2e758533cd95a1e7cea8bd86db15
+
+##### actualNativeFinal
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT_REBOUND_10_ACTUAL_GPT_FINAL.json
+
+###### bytes
+
+18935
+
+###### sha256
+
+9e8a00183b33223536696c4aba4d6714a96003d642cb5d3ef064275eab0aeb18
+
+##### actualReturnReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/DAMAGE_CONTROL_25_EXACT10_RETURN_RECEIPT.json
+
+###### bytes
+
+6192
+
+###### sha256
+
+daadd6c56e498017bb3286fcb2f28a9cd8abd54128586d5011799fbb3536dac8
+
+##### acceptedArtifactBindings
+
+###### name
+
+CASEBOOK.json
+
+###### archivePath
+
+current/CASEBOOK.json
+
+###### bytes
+
+853823
+
+###### sha256
+
+43063a0ea4a0f9631863d1e07aa25416f40bc7db7e03a6722ffff431feb4ae36
+
+###### name
+
+DIRECTOR_REVIEW.md
+
+###### archivePath
+
+current/DIRECTOR_REVIEW.md
+
+###### bytes
+
+486407
+
+###### sha256
+
+37f16e78ea7700e2b383b938447c1f51fbf907e9040c746eb15a14eea64548f8
+
+###### name
+
+EVIDENCE_MANIFEST.json
+
+###### archivePath
+
+current/EVIDENCE_MANIFEST.json
+
+###### bytes
+
+1286
+
+###### sha256
+
+5303ec635b93227531c8f677a3f517fb88d773160096801116669a03a6626eaf
+
+###### name
+
+LOCAL_REVIEW_NOTES.md
+
+###### archivePath
+
+current/LOCAL_REVIEW_NOTES.md
+
+###### bytes
+
+1926
+
+###### sha256
+
+ae11bba933774fc657d9e0337493857fd5e2293dd5be97a86436c19740216a3f
+
+###### name
+
+PLAYER_CHAPTER.md
+
+###### archivePath
+
+current/PLAYER_CHAPTER.md
+
+###### bytes
+
+93292
+
+###### sha256
+
+13cdc73ce73b9cd7c1e0c274bcf3e63a6e5285af5c79b1621f6567f981bfaa16
+
+###### name
+
+REGISTER.json
+
+###### archivePath
+
+current/REGISTER.json
+
+###### bytes
+
+24770
+
+###### sha256
+
+e12ea5a629bf8d853cb2fa95d517e8a9c454aa9fd87dd81fac5d5d63019cba7a
+
+###### name
+
+SOURCE_HASHES.json
+
+###### archivePath
+
+current/SOURCE_HASHES.json
+
+###### bytes
+
+17009
+
+###### sha256
+
+11426f55c1b1d02560ea9e517179960e85485aedcab2cd7d60a5c789b9193135
+
+###### name
+
+SPELLS_MODEL.json
+
+###### archivePath
+
+current/SPELLS_MODEL.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### acceptedSpellIds
+
+orb-of-annihilation
+
+voltaic-detonation
+
+frozen-tomb
+
+meteor-spear
+
+arc-surge
+
+cone-of-cold
+
+destructive-wave
+
+solar-flare
+
+chain-lightning
+
+sunbeam
+
+freezing-sphere
+
+blight
+
+soulfire-nova
+
+circle-of-death
+
+mental-bomb
+
+veil-of-terror
+
+phantom-swarm
+
+invisible-tide
+
+wail-of-the-damned
+
+horrid-wilting
+
+elemental-devastation
+
+supernova-lance
+
+crystalline-flash
+
+sunburst
+
+death-tide
+
+##### completeEnvelope
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+##### canonicalCopies
+
+###### source
+
+###### path
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/SPELLS_MODEL.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+###### destination
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### bytes
+
+700963
+
+###### sha256
+
+3f278d1bb2414fcc9ff294973f3f4aaa0668f9bca83d5f04191a9a8d1e205185
+
+###### byteIdentical
+
+true
+
+###### source
+
+###### path
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/CASEBOOK.json
+
+###### bytes
+
+853823
+
+###### sha256
+
+43063a0ea4a0f9631863d1e07aa25416f40bc7db7e03a6722ffff431feb4ae36
+
+###### destination
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### bytes
+
+853823
+
+###### sha256
+
+43063a0ea4a0f9631863d1e07aa25416f40bc7db7e03a6722ffff431feb4ae36
+
+###### byteIdentical
+
+true
+
+###### source
+
+###### path
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/PLAYER_CHAPTER.md
+
+###### bytes
+
+93292
+
+###### sha256
+
+13cdc73ce73b9cd7c1e0c274bcf3e63a6e5285af5c79b1621f6567f981bfaa16
+
+###### destination
+
+###### path
+
+DescentReviewChanges/ReviewBible/docs/spells/candidates/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+###### bytes
+
+93292
+
+###### sha256
+
+13cdc73ce73b9cd7c1e0c274bcf3e63a6e5285af5c79b1621f6567f981bfaa16
+
+###### byteIdentical
+
+true
+
+###### source
+
+###### path
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/DIRECTOR_REVIEW.md
+
+###### bytes
+
+486407
+
+###### sha256
+
+37f16e78ea7700e2b383b938447c1f51fbf907e9040c746eb15a14eea64548f8
+
+###### destination
+
+###### path
+
+DescentReviewChanges/ReviewBible/docs/director-only/spells/DAMAGE_CONTROL_25_REVIEWED_10.md
+
+###### bytes
+
+486407
+
+###### sha256
+
+37f16e78ea7700e2b383b938447c1f51fbf907e9040c746eb15a14eea64548f8
+
+###### byteIdentical
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/damage_control_25_reviewed_10.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/damage_control_25_cases_10.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/damage-control25-exact-rebound-10/REGISTER.json
+
+##### sourceFiles
+
+77
+
+##### placements
+
+26
+
+##### currentCases
+
+70
+
+##### preservedHistoricalScenarios
+
+36
+
+##### sourceSnapshotDriftSincePreparation
+
+##### driftPolicy
+
+Original supplied source bytes remain in the accepted input ZIP. Current receipt records live discovery independently; no old snapshot is silently treated as current.
+
+##### authoredCountsBefore
+
+###### reviewed
+
+480
+
+###### pending
+
+368
+
+##### authoredCountsAfter
+
+###### reviewed
+
+505
+
+###### pending
+
+343
+
+##### standaloneAfter
+
+229
+
+##### indexUpdateIsSeparatelyVerifiedLocalApplication
+
+true
+
+##### normalization
+
+None; exact payloads preserve historical pending labels. This actual final and application receipt establish bounded authored acceptance.
+
+##### catalogBindingUnchanged
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json
+
+###### bytes
+
+4945319
+
+###### sha256
+
+f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8
+
+##### runtimeSelectionEnabled
+
+false
+
+##### runtimeImplemented
+
+false
+
+##### runtimeTestsExecuted
+
+0
+
+##### humanPlaytested
+
+false
+
+##### numericalBalanceApproved
+
+false
+
+##### cosmologyCanonModified
+
+false
+
+##### domainGatesChanged
+
+false
+
+##### sourceInformationDeleted
+
+0
+
+##### pushed
+
+false
+
+#### source
+
+##### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_APPLICATION_RECEIPT.json
+
+##### bytes
+
+8279
+
+##### sha256
+
+b0f08ab0b9722a309770e7a50281fe212849c9091abc2922a04fda5796d7093a
+
+#### completeReceipt
+
+##### recordedAtUtc
+
+2026-10-18T07:31:24.619494+00:00
+
+##### reviewId
+
+DD-PERSISTENT-DAMAGE20-EXACT-REBOUND-07-REVIEW
+
+##### status
+
+exact-authored-acceptance-applied
+
+##### developmentDirection
+
+video-game-only
+
+##### acceptanceAuthority
+
+###### path
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact07-review/REVIEW.json
+
+###### bytes
+
+108780
+
+###### sha256
+
+25c780a47ac985adfb9fb14145865e1253a6494502fd73ca20ab3a111e514a25
+
+##### acceptanceArchive
+
+###### path
+
+docs/audit/2026-10-08/full-game/DD_Persistent_Damage_20_Exact_Rebound_07_Review.zip
+
+###### bytes
+
+47448
+
+###### sha256
+
+25b2b40fab9677f69c8231681a2ced54b69fa34560520e72d3821fd99deda63e
+
+##### reviewedArchive
+
+###### path
+
+docs/audit/2026-10-08/full-game/DD_Persistent_Damage_20_Exact_Rebound_07.zip
+
+###### bytes
+
+9176080
+
+###### sha256
+
+871496c6b9aa845d70956027851f5279da143c97245aeb6a8c889c09a87d8ef9
+
+##### actualNativeFinal
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT_REBOUND_07_ACTUAL_GPT_FINAL.json
+
+###### bytes
+
+18367
+
+###### sha256
+
+2a82280fc4b52d4725af0c35b367ea2991c24bbcfbfbf0c2fd1578f7f3c8f960
+
+##### actualReturnReceipt
+
+###### path
+
+docs/audit/2026-10-08/full-game/PERSISTENT_DAMAGE_20_EXACT07_RETURN_RECEIPT.json
+
+###### bytes
+
+6212
+
+###### sha256
+
+685b9c194487de65665a2d2d206a6aaf106a1448091aa10a4c9923920338ab76
+
+##### acceptedArtifactBindings
+
+###### name
+
+CASEBOOK.json
+
+###### bytes
+
+277122
+
+###### sha256
+
+8c9fd45b1abadc7f3c6b15fcd513f4cc996de6615ecb1e3fc665bee7f5cbbb3f
+
+###### archivePath
+
+current/CASEBOOK.json
+
+###### name
+
+DIRECTOR_REVIEW.md
+
+###### bytes
+
+505240
+
+###### sha256
+
+952ded98134e58787e97c81f54b1ff6b4b2e23c3372d4c82620c96726ea1ae31
+
+###### archivePath
+
+current/DIRECTOR_REVIEW.md
+
+###### name
+
+EVIDENCE_MANIFEST.json
+
+###### bytes
+
+1287
+
+###### sha256
+
+6b9dfad226f15525ef447ef3177e72395ae27e7b585d1e3a7797d4be6fc202a5
+
+###### archivePath
+
+current/EVIDENCE_MANIFEST.json
+
+###### name
+
+LOCAL_REVIEW_NOTES.md
+
+###### bytes
+
+1944
+
+###### sha256
+
+ae92c0876d22c118592b70c786394912286c1be918d326c21474593e389a866a
+
+###### archivePath
+
+current/LOCAL_REVIEW_NOTES.md
+
+###### name
+
+PLAYER_CHAPTER.md
+
+###### bytes
+
+100325
+
+###### sha256
+
+d3feaf8b4a6c6ffa729fd9287252cdf214a54f392d917340ee79585070109a9d
+
+###### archivePath
+
+current/PLAYER_CHAPTER.md
+
+###### name
+
+REGISTER.json
+
+###### bytes
+
+3273
+
+###### sha256
+
+b1d3e9cd4129d2d9bada0dabc199c62a0979fe07c534cabc06ac07ec4aa54929
+
+###### archivePath
+
+current/REGISTER.json
+
+###### name
+
+SOURCE_HASHES.json
+
+###### bytes
+
+18731
+
+###### sha256
+
+a2c494fb7ff11e57bdaac370cf65e052ec22452786e2cddb1db6d0253c8427e6
+
+###### archivePath
+
+current/SOURCE_HASHES.json
+
+###### name
+
+SPELLS_MODEL.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+###### archivePath
+
+current/SPELLS_MODEL.json
+
+##### acceptedSpellIds
+
+inferno-wave
+
+freezing-rain
+
+ice-storm
+
+wall-of-fire
+
+vitriolic-sphere
+
+storm-sphere
+
+flame-typhoon
+
+immolation
+
+arcane-mortar
+
+sonic-collapse
+
+leeching-plague
+
+aura-of-dread
+
+blood-fog
+
+mass-decay
+
+enervation
+
+crystalline-growth
+
+rift-spiral
+
+synaptic-static
+
+shadow-of-moil
+
+greater-phantasmal-killer
+
+##### completeEnvelope
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+##### canonicalCopies
+
+###### source
+
+###### path
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/SPELLS_MODEL.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+###### destination
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### bytes
+
+849980
+
+###### sha256
+
+0601bba2d5ece6d12c0c27b3dcca656e7da8bfba7f1a47b5c647d1e03007b55d
+
+###### byteIdentical
+
+true
+
+###### source
+
+###### path
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/CASEBOOK.json
+
+###### bytes
+
+277122
+
+###### sha256
+
+8c9fd45b1abadc7f3c6b15fcd513f4cc996de6615ecb1e3fc665bee7f5cbbb3f
+
+###### destination
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### bytes
+
+277122
+
+###### sha256
+
+8c9fd45b1abadc7f3c6b15fcd513f4cc996de6615ecb1e3fc665bee7f5cbbb3f
+
+###### byteIdentical
+
+true
+
+###### source
+
+###### path
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/PLAYER_CHAPTER.md
+
+###### bytes
+
+100325
+
+###### sha256
+
+d3feaf8b4a6c6ffa729fd9287252cdf214a54f392d917340ee79585070109a9d
+
+###### destination
+
+###### path
+
+DescentReviewChanges/ReviewBible/docs/spells/candidates/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+###### bytes
+
+100325
+
+###### sha256
+
+d3feaf8b4a6c6ffa729fd9287252cdf214a54f392d917340ee79585070109a9d
+
+###### byteIdentical
+
+true
+
+###### source
+
+###### path
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/DIRECTOR_REVIEW.md
+
+###### bytes
+
+505240
+
+###### sha256
+
+952ded98134e58787e97c81f54b1ff6b4b2e23c3372d4c82620c96726ea1ae31
+
+###### destination
+
+###### path
+
+DescentReviewChanges/ReviewBible/docs/director-only/spells/PERSISTENT_DAMAGE_20_REVIEWED_07.md
+
+###### bytes
+
+505240
+
+###### sha256
+
+952ded98134e58787e97c81f54b1ff6b4b2e23c3372d4c82620c96726ea1ae31
+
+###### byteIdentical
+
+true
+
+##### caseSourceReferenceAliases
+
+###### SPELLS_MODEL.json
+
+DescentReviewChanges/ReviewBible/data/public/spell_candidates/persistent_damage_20_reviewed_07.json
+
+###### CASEBOOK.json
+
+DescentReviewChanges/ReviewBible/data/playtest/spell_candidates/persistent_damage_20_cases_07.json
+
+###### REGISTER.json
+
+docs/audit/2026-10-08/full-game/persistent-damage20-exact-rebound-07/REGISTER.json
+
+##### sourceFiles
+
+84
+
+##### placements
+
+21
+
+##### currentCases
+
+57
+
+##### preservedHistoricalScenarios
+
+40
+
+##### sourceSnapshotDriftSincePreparation
+
+###### reviewedFrozenSource
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json
+
+###### bytes
+
+417473
+
+###### sha256
+
+12986b17144d516d716e4c1c777c738cafb89d7f6296ae858240f2aada85d44a
+
+###### currentLiveBinding
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json
+
+###### bytes
+
+454483
+
+###### sha256
+
+ab74238705cf03b10705de96c649f7afb132e312b21f3c85e6946620c7295f72
+
+###### preservedInArchive
+
+sources/DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json
+
+##### driftPolicy
+
+Only live membership changed through independently verified damage25 application. All84 frozen sources remain exact in the accepted archive; other83 still match live. Do not replace505/343 live baseline with480/368 historical snapshot.
+
+##### authoredCountsBefore
+
+###### reviewed
+
+505
+
+###### pending
+
+343
+
+##### authoredCountsAfter
+
+###### reviewed
+
+525
+
+###### pending
+
+323
+
+##### standaloneBefore
+
+229
+
+##### standaloneAfter
+
+249
+
+##### indexUpdateIsSeparatelyVerifiedLocalApplication
+
+true
+
+##### normalization
+
+None; exact payloads retain historical pending labels, with actual exact acceptance and application in separate receipts.
+
+##### catalogBindingUnchanged
+
+###### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json
+
+###### bytes
+
+4945319
+
+###### sha256
+
+f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8
+
+##### runtimeSelectionEnabled
+
+false
+
+##### runtimeImplemented
+
+false
+
+##### runtimeTestsExecuted
+
+0
+
+##### humanPlaytested
+
+false
+
+##### numericalBalanceApproved
+
+false
+
+##### cosmologyCanonModified
+
+false
+
+##### domainGatesChanged
+
+false
+
+##### sourceInformationDeleted
+
+0
+
+##### pushed
+
+false
+
+### sourceDrift
+
+#### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json
+
+#### frozen
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json
+
+##### bytes
+
+417473
+
+##### sha256
+
+12986b17144d516d716e4c1c777c738cafb89d7f6296ae858240f2aada85d44a
+
+#### current
+
+##### path
+
+DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json
+
+##### bytes
+
+484779
+
+##### sha256
+
+6f9b86e21f6a69c7ba2469aba89d5907aa08da567226a2c4bd3ced9e09409857
+
+#### path
+
+DescentReviewChanges/ReviewBible/docs/DEVELOPMENT_DIRECTION.md
+
+#### frozen
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/DEVELOPMENT_DIRECTION.md
+
+##### bytes
+
+5543
+
+##### sha256
+
+5fb0176c92d8fe70c7e601582edd016b9e41dd7051b915e4a6003f05fd8b7197
+
+#### current
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/DEVELOPMENT_DIRECTION.md
+
+##### bytes
+
+20102
+
+##### sha256
+
+3d3474cd003655402eedc1848c1c549d1464e6923bbe395adba95b95b79cbf2a
+
+### acceptedContextNavigationDrift
+
+#### path
+
+DescentReviewChanges/ReviewBible/docs/DEVELOPMENT_DIRECTION.md
+
+#### frozen
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/DEVELOPMENT_DIRECTION.md
+
+##### bytes
+
+8351
+
+##### sha256
+
+1f0466192362d6757fa469ed79614f0c00c638e30eb140ab666af7ec98e4b9a2
+
+#### current
+
+##### path
+
+DescentReviewChanges/ReviewBible/docs/DEVELOPMENT_DIRECTION.md
+
+##### bytes
+
+20102
+
+##### sha256
+
+3d3474cd003655402eedc1848c1c549d1464e6923bbe395adba95b95b79cbf2a
+
+#### meaning
+
+Current development navigation only; all operative accepted-context sources remain exact.
+
+### driftMeaning
+
+The conference retains its480/368 index; the separately submitted accepted-context supplement supplies the45 actual accepted identities and current525/323/249 index. Current DEVELOPMENT_DIRECTION navigation has progressed; no rule source or any of these14 pending entries changed.
+
+### currentAcceptedAuthorityPolicy
+
+The accepted supplement and its exact named receipts/models govern current DamageControl25/Persistent20 use. Historical pending comparisons remain evidence. Greater Phantasmal Killer is accepted only in Persistent20 scope; Mental Prison and Control15 remain pending.
+
+## Remaining gates and conditions
+
+### holds
+
+#### id
+
+HOLD-CREATION
+
+#### status
+
+HOLD_SEPARATE
+
+#### detail
+
+Creation remains pending separate economy/material/crafting review.
+
+#### id
+
+HOLD-MENTAL-PRISON
+
+#### status
+
+HOLD_PENDING
+
+#### detail
+
+Mental Prison remains pending. Only N29's exact conditional composition is accepted if that preserved procedure later becomes operative.
+
+#### id
+
+HOLD-CONTROL15
+
+#### status
+
+HOLD_PENDING
+
+#### detail
+
+Control15 is not approved by association.
+
+#### id
+
+HOLD-MIND-MAZE-MID-RESOLUTION
+
+#### status
+
+CONDITIONAL_ONLY
+
+#### detail
+
+Historical mid-resolution premise remains conditional; ordinary Ready does not grant it. The separate after-attack Ready case is lawful.
+
+#### id
+
+HOLD-RUNTIME
+
+#### status
+
+NOT_EXECUTED
+
+#### detail
+
+No engine/runtime test was executed by this semantic conference.
+
+#### id
+
+HOLD-HUMAN
+
+#### status
+
+SEPARATE_GATE
+
+#### detail
+
+Human gameplay/playtest remains separate.
+
+#### id
+
+HOLD-BALANCE
+
+#### status
+
+SEPARATE_GATE
+
+#### detail
+
+Numerical balance remains separate.
+
+#### id
+
+HOLD-COSMOLOGY
+
+#### status
+
+SEPARATE_GATE
+
+#### detail
+
+Cosmology canon remains separate.
+
+#### id
+
+HOLD-DOMAIN-WHOLE-GAME-RELEASE
+
+#### status
+
+SEPARATE_GATE
+
+#### detail
+
+75-domain closure, whole-game completion and release remain separate.
+
+### originalScenarios
+
+28
+
+### currentCases
+
+28
+
+### supplementalCases
+
+3
+
+### conditionalCasePolicy
+
+Semantic acceptance preserves every conditional premise. A pending counterpart, a historical mid-resolution interrupt premise or an unspecified event source is not proven executable content. N29 remains conditional Mental Prison composition; Mind Maze ordinary Ready occurs after the actual completed attack.
+
+### runtimeImplemented
+
+false
+
+### runtimeTestsExecuted
+
+0
+
+### humanPlaytested
+
+false
+
+### numericalBalanceApproved
+
+false
+
+### cosmologyCanonModified
+
+false
+
+### domainGatesDistinct
+
+75
+
+### wholeGameComplete
+
+false
+
+### releaseApproved
+
+false
+
+### sourceInformationDeleted
+
+0
+
+## Complete current cases
+
+```json
+[
+  {
+    "id": "IN4-01-A",
+    "spellId": "greater-invisibility",
+    "originalTextUnchanged": "IN4-01-A: Bea receives the spell at t=0 with her worn armor and bow. She attacks at t=8; the revealing attack resolves before an observing guard learns her location. She remains Invisible, but that guard gains no continuing Invisible-specific disadvantage merely from her unseen appearance. The fired arrow becomes visible when released.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Full pending spell-cast fixture followed by an explicitly pre-admitted ordinary bow attack; this vector tests observer timing and item custody, not weapon acquisition.",
+    "initialState": {
+      "castAt": 0,
+      "recipient": "Willing ordinary synthetic Bea within30ft, already wearing armor and carrying bow/ammunition legally; no defenses or other concealment.",
+      "observer": "Guard can perceive the subsequent bow attack evidence, has no qualifying invisibility sight and initially does not know Bea’s location.",
+      "bowAttackAt": 8,
+      "bowAttack": "Separately legal ordinary ranged attack against guard AC14; actual attack modifier+5, no independent advantage/disadvantage, ammunition1 available.",
+      "d20Faces": [
+        4,
+        12
+      ]
+    },
+    "actionsAndResolution": [
+      "Wizard7 pays7 RP24→17, first matrix baseD0, establishes concentration and Invisible until60.",
+      "At t8 pre-attack information gives Invisible-derived advantage:choose12+5=17, hit AC14 under the already admitted weapon attack. Its normal damage is outside this visibility vector.",
+      "Fired arrow leaves possession and is visible immediately. After the revealing attack, this guard learns location; Bea remains Invisible but loses only Invisible-derived attack modifiers against that observer.",
+      "A different observer that perceived no revealing evidence learns nothing. Subsequent sight-required spells still cannot select Bea on location knowledge alone."
+    ],
+    "expectedFinalState": {
+      "RP": 17,
+      "sourceExpiry": 60,
+      "BeaInvisible": true,
+      "guardKnowsLocation": true,
+      "guardSeesBea": false,
+      "InvisibleDerivedModifiersAgainstGuard": false,
+      "arrowInvisible": false,
+      "unobservingOtherControllerKnowledgeChanged": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/0/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "section": "Invisible"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Hide/Search and unseen attacks, lines168-180"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-01-B",
+    "spellId": "greater-invisibility",
+    "originalTextUnchanged": "IN4-01-B: At t=20 Bea picks up a visible key; it remains visible. Full effect suppression at t=30 suspends her concealment until t=40, but the original t=60 deadline and the guard’s knowledge persist. If the original caster starts another concentration spell at t=45, this record ends even if that new spell is countered.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Full source/cure/independent suppression cast sequence; key pickup and observer knowledge are declared ordinary physical facts.",
+    "initialState": {
+      "sourceCastAt": 0,
+      "keyPickupAt": 20,
+      "key": "Visible ordinary external key not in initial gear set",
+      "suppression": "Independent Wizard9 with legally acquired/prepared Lesser Antimagic; INT18/PB4, usableV/S/F, cost10 RP32→22, first matrix baseD0. At30 manifests legal10ft-radius local suppression around Bea, original expiry90. Concentration voluntarily ends40.",
+      "replacementAt": 45
+    },
+    "actionsAndResolution": [
+      "Greater Invisibility Wizard7 originally paid7 RP24→17; picked-up key stays visible at20.",
+      "Lesser Antimagic suspends operative concealment30–40, with the original60 deadline still running; it is rank-unlimited local suppression. Ended suppression restores only still-eligible original gear/body expression, never the new key. Guard knowledge stays known.",
+      "At45 the original Wizard commits a separately acquired/prepared Minor Illusion sound mode:rank0/0RP, normal V/S, legal sound anchor within30, distinct first matrix. Its new concentration displaces Greater Invisibility at commitment.",
+      "No Counterspell is assumed or required. A separately legal counter would not restore displaced concentration."
+    ],
+    "expectedFinalState": {
+      "WizardRP": 17,
+      "suppressionWizardRP": 22,
+      "keyAlwaysVisible": true,
+      "GreaterInvisibilityEndedAt": 45,
+      "guardKnowledgeRetained": true,
+      "newMinorIllusionConcentration": true
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/0/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "section": "Invisible"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+        "section": "Complete Lesser Antimagic procedure and AC5-ANTIMAGIC-IO-04"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "pointer": "/spells/510/operational"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-02-A",
+    "spellId": "hallucinatory-terrain",
+    "originalTextUnchanged": "IN4-02-A: A perceived natural ten-foot pit lies inside the chosen footprint. It is painted as ordinary ground, but a pole passes through the false surface and reveals that contradiction to its observer. Stepping there still invokes the real fall; successful Investigation creates neither support nor a safe route.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Full pending terrain-image cast plus physical contradiction. A hypothetical step has the existing Falling procedure as a conditional consequence; no fall damage is invented.",
+    "initialState": {
+      "castAt": 0,
+      "center": [
+        40,
+        0,
+        0
+      ],
+      "radius": 30,
+      "verticalRange": [
+        -10,
+        10
+      ],
+      "realPit": "Visible natural10ft-wide pit with actual depth10 and actual legal terrain geometry known at cast. False visual ordinary ground covers only its perceived footprint.",
+      "observer": "Standing safely beside pit, functioning sight, actual pole held lawfully; personally observes pole pass through false surface at5."
+    },
+    "actionsAndResolution": [
+      "Wizard7 pays7 RP24→17,DC15; concentration deadline3600. Image supplies no mechanical support.",
+      "Personally witnessed conclusive pole contradiction identifies this false surface without an Investigation draw or automatic warning to unseen observers.",
+      "Observer remains supported. If a later independent movement actually steps into the unsupported pit, ordinary Falling starts from its true height; the image supplies no route, floor or damage immunity."
+    ],
+    "expectedFinalState": {
+      "RP": 17,
+      "oneObserverIdentified": true,
+      "investigationDraws": 0,
+      "actualPitDepth": 10,
+      "observerHPChanged": false,
+      "newSupportCreated": false,
+      "actualFallOccurredInThisVector": false,
+      "conditionalFutureFallNotPrevented": true
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/1/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Hide/Search and unseen attacks, lines168-180"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-02-B",
+    "spellId": "hallucinatory-terrain",
+    "originalTextUnchanged": "IN4-02-B: The center is 150 feet away and the chosen radius is 75 feet, giving a 150-foot span rather than a 150-foot radius. A wagon entering the area remains visible. A real stone wall remains a physical and sight barrier even if its surface has been painted with a grass-like appearance.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Full pending geometry fixture under explicit continuous digital interpretation; no global replacement of accepted historical grid templates.",
+    "initialState": {
+      "center": [
+        150,
+        0,
+        0
+      ],
+      "caster": [
+        0,
+        0,
+        0
+      ],
+      "radius": 75,
+      "heightBound": 30,
+      "fullInitialTerrainPerceptionAndCenterLoE": true,
+      "wagonAt": 10,
+      "wagon": "Actual independent vehicle enters; vehicle remains mechanically and visibly itself.",
+      "wall": "Actual opaque solid natural stone face present at composition; painted grass-like without removing collision or sight barrier."
+    },
+    "actionsAndResolution": [
+      "Wizard7 pays7 RP, center exactly150 feet is in range; authoring option uses maximum150 horizontal span, not150 radius.",
+      "Footprint extendsx75..225:only center targeting range is bounded150; the75radius itself does not silently become smaller at the far edge.",
+      "Wagon is not terrain and remains visible. Real stone remains opaque/solid even where its actual surface looks grassy. A falsely depicted boulder on empty terrain adds no actual cover/collision."
+    ],
+    "expectedFinalState": {
+      "RP": 17,
+      "centerDistance": 150,
+      "diameter": 150,
+      "xExtent": [
+        75,
+        225
+      ],
+      "realWallBlocksSight": true,
+      "realWallBlocksLoE": true,
+      "wagonConcealed": false,
+      "fakeBoulderPhysicalCover": false,
+      "sourceExpiry": 3600
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/1/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Hide/Search and unseen attacks, lines168-180"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN6-01-A",
+    "spellId": "true-seeing",
+    "originalTextUnchanged": "IN6-01-A: A willing ally 45 feet away receives True Seeing. It can see an actually exposed Invisible foe 50 feet from its own body in magical darkness; the caster's later distance is irrelevant. A second foe behind a stone wall is not revealed. The recipient gains neither a new targeting line through that wall nor the foe's name or alignment, and ordinary companions receive no shared sight.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 11,
+      "HeroPath": "Spellbinder",
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Divination",
+      "actualSpellRank": 6,
+      "actualBaseRpCost": 13,
+      "maximumLegalRank": 6,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 40,
+      "RPPaid": 13,
+      "RPAfter": 27,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Hero"
+    },
+    "scope": "Full pending True Seeing/G.Sight composition. The magical-darkness comparison is conditional on an independently admitted real darkness source; this fixture grants no new darkness spell.",
+    "initialState": {
+      "castAt": 0,
+      "recipientDistance": 45,
+      "recipient": "Willing actual ally with usable eyes and no Blinded; no shared-senses feature.",
+      "invisibleFoe": "An independently willing foe was previously given Greater Invisibility by another legal Wizard7:rank4cost7RP24→17,deadline58,concentration intact. Foe is50ft from recipient in unobstructed visual region.",
+      "secondFoe": "Behind an actual opaque stone wall.",
+      "darknessBranch": "Compare ordinary darkness to an independently operative actual magical-darkness illumination state without any extra Blinded record; source admission is a stated precondition."
+    },
+    "actionsAndResolution": [
+      "Wizard11 pays13 RP40→27; first distinct prepared rank6 matrix adds0baseD, concentration until60. Recipient-centered60ft sense covers foe50feet away.",
+      "Proposed two-placement union sees the exposed Invisible body through either stated darkness state; it produces no shared light or remote senses. Actual wall excludes second foe.",
+      "Moving caster beyond60 later does not end the established recipient-centered sense. Another companion without sharing gains no automatic sight; recipient death/actual suppression would follow the source’s own endpoint."
+    ],
+    "expectedFinalState": {
+      "RP": 27,
+      "recipientSenseRadius": 60,
+      "exposedFoeVisuallyPerceived": true,
+      "behindWallFoeRevealed": false,
+      "newNameOrAlignmentKnown": false,
+      "secondCompanionGainedSight": false,
+      "TrueSeeingExpiry": 60,
+      "ordinaryTargetLoENotExtended": true
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/6"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "pointer": "/records/0/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "section": "Invisible"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN6-01-B",
+    "spellId": "true-seeing",
+    "originalTextUnchanged": "IN6-01-B: A creature in an operative transformed body is seen as both its current form and its underlying original appearance. Its current mechanical form and HP remain. Seeing through an ongoing private Mental Prison is the proposed mental departure and can trigger that prison's one live exit packet; it does not suppress that payload. An instantaneous rock-to-mud result does not reveal a complete geological history.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 11,
+      "HeroPath": "Spellbinder",
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Divination",
+      "actualSpellRank": 6,
+      "actualBaseRpCost": 13,
+      "maximumLegalRank": 6,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 40,
+      "RPPaid": 13,
+      "RPAfter": 27,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Hero"
+    },
+    "scope": "Actual accepted Alter Self provides a concrete operative appearance adaptation. Original Mental Prison/instantaneous-material examples are retained as separate conditional interface obligations, not falsely counted as executed encounters.",
+    "initialState": {
+      "TrueSeeingCastAt": 0,
+      "alterSelfCaster": "Separate Wizard3 Abjuration-specialized INT18, genuine Alter Self rank2 Transmutation acquired/prepared, usableV/S/F; casts at-2 paying3 RP10→7,first matrix baseD0,concentration expiry58.",
+      "alterSelfChoice": "Appearance changes actual hair/coloration and one local facial proportion by5%, within actual anatomy/10%limit; same Medium body,HP20/20 and equipment unchanged.",
+      "observer": "True Seeing recipient with actual unobstructed visual access within60.",
+      "mentalPrisonBranch": "A separate real pending Mental Prison would need its own admission, remaining exit entitlement and agreed True Seeing bridge; not supplied or approved here.",
+      "instantMatterBranch": "A genuine completed instantaneous ordinary rock-to-mud result is a conditional composition precondition, not a newly granted conversion spell."
+    },
+    "actionsAndResolution": [
+      "True Seeing Wizard11 pays13 RP40→27 and maintains concentration. Proposed union presents actual current adapted appearance with underlying original appearance.",
+      "Alter Self remains operative:hair/proportion adaptation,HP20,anatomy and its58deadline are unchanged; identification neither dispels it nor changes identity records.",
+      "Original Mental Prison departure/one-live-exit-packet option remains explicitly pending for joint disposition. No damage result or automatic release is fabricated from this appearance example.",
+      "A completed ordinary-matter conversion has no ongoing false-form record to pierce; the sense supplies no geological or earlier transformation history."
+    ],
+    "expectedFinalState": {
+      "TrueSeeingRP": 27,
+      "AlterSelfRP": 7,
+      "adaptedHP": 20,
+      "adaptationStillActive": true,
+      "adaptationExpiry": 58,
+      "originalAppearanceVisibleOnlyToAuthorizedObserver": true,
+      "identityNameLearned": false,
+      "mentalPrisonOutcomeProven": false,
+      "instantMatterHistoryRecovered": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/6"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "pointer": "/records/0/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+        "pointer": "/spells/74/operationalCandidate"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-05-A",
+    "spellId": "greater-phantom-steed",
+    "originalTextUnchanged": "IN4-05-A: A 170-pound rider, 25 pounds of gear and 10-pound tack total 205 pounds and 20.5 Load, within both capacities. Winged mode supplies Fly 40, but mounting and the owner’s actual command still precede the attached movement. The casting Action itself grants no immediate forty-foot flight.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Pending complete source-cast and rider-capacity fixture under explicit NEW IP14-STEED-LOAD-02; no other mount rules amended.",
+    "initialState": {
+      "castAt": 0,
+      "mount": "Legal Large actual body in supported unoccupied10ft footprint within60/LoE; Winged chosen,AC14HP20,walk60Fly40noHover,deadline3600. WizardAbjuration specialization gives no ConjurationHP modifier.",
+      "rider": "Medium ordinary declared rider body170lb,walkingSpeed30,actual25lb gear and10lb tack with no printed Load; real adjacent5ft legal mount access.",
+      "baselineLedgers": "Owner Action andBA available,shared command unused; rider ordinary movement unspent30.",
+      "repertoire": "Greater Phantom Steed actually acquired and prepared atWizard7."
+    },
+    "actionsAndResolution": [
+      "Wizard7 commits Action/cost7 RP24→17,first distinct matrix baseD0,concentration until3600. Creation supplies no free movement.",
+      "Physical burden170+25+10=205lb. Under the proposed rider option:body6+gear2.5+tack1=9.5Load,below17.5,so noBurdened. The original20.5Load calculation is retained as history and is not silently reused.",
+      "A genuinely available rider movement opportunity spends15 of its30movement cost to mount;15 remains. No rider Action or newmovement is invented.",
+      "Only a separately valid owner regular-turnBA command can authorize ordinary attached-phase travel; maximum40 actual flight feet here if allmovement conditions remain legal. Mounting and ownercommand checkpoints may occur on different actual turns; castcreation never bypasses them.",
+      "Independent capacity branch adds140lb actual ordinary cargo withoutprintedLoad:345lb and23.5Load,still admissible butBurdened. WingedSpeed becomes30 andwalking50. Movementmode switching retains spent cost."
+    ],
+    "expectedFinalState": {
+      "RP": 17,
+      "mountHP": 20,
+      "originalPhysicalLb": 205,
+      "originalProposedLoad": 9.5,
+      "riderMovementCost": 15,
+      "riderRemainingMovement": 15,
+      "immediateCastFlight": 0,
+      "unburdenedWingedSpeed": 40,
+      "extraCargoPhysicalLb": 345,
+      "extraCargoLoad": 23.5,
+      "extraCargoWingedSpeed": 30,
+      "newInfiniteCarryingPermission": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/4"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/4/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+        "section": "Carrying and Load"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-05-B",
+    "spellId": "greater-phantom-steed",
+    "originalTextUnchanged": "IN4-05-B: A Winged steed is forty feet above actual ground when full source suppression ends it. Rider and saddlebags remain at that height and use the existing Falling procedure; they are neither silently lowered nor deleted. A replacement costs a new legal cast and inherits the owner’s already spent command/offense history for that round.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Explicitly conditional on retaining this mount’s earlier NEW end-on-full-source-suppression option. Independent replacement branch supplies actual same-turn command/commitment sequence; no pause policy is silently chosen.",
+    "initialState": {
+      "source": "Legal previously cast Winged Greater Phantom Steed,Wizard7 original7RP24→17,concentration intact,actualdeadline3600,originalbodyHP20.",
+      "rider": "Synthetic significant ordinary riderHP100/100,noWounds,noTempHP,noresistance/noHover/norescue,nootherdamage; actual feet40ft above legal supportingground.",
+      "fullSuppressionAt": 20,
+      "suppressor": "Independent Wizard9,standing on a real supported40ft tower platform within10ft of chosen fieldcenter; Lesser Antimagic genuinely acquired/prepared,V/S/Fusable,Action/cost10RP32→22,first distinct matrixD0,concentration60sec. Entire steed body lies inside its real10ft sphere; outside caster alone is not the suppression test.",
+      "initiative": "Suppression resolves in slotK ofround4. That same slotKends at26 inround5; no reorder/extra-turn changes the fixedmarker.",
+      "allActualInterveningRescueOpportunities": "Passed without an independently legal intervention; nofreeactionisgranted.",
+      "impact2d6": [
+        3,
+        4
+      ]
+    },
+    "actionsAndResolution": [
+      "Under the separately pending end-on-suppression choice, actual creating-source suppression ends the mount at t=20 without damage or salvage. The real rider, tack and cargo remain at their actual positions.",
+      "The rider enters Falling immediately but does not immediately descend. The accepted Fall Marker is the end of slot K in the following regular round. Every participant retains its normal opportunity before that marker; the fixture assumes no successful intervention.",
+      "At t=26 descend 40 feet, within the ordinary 300-foot step limit, and land. Impact is min(10, floor(40/20)) = 2d6. Faces [3,4] give 7 bludgeoning damage: HP 100 to 93. Positive falling damage leaves the rider Prone. No Wound threshold or zero-HP state is reached.",
+      "Independent grounded replacement branch: before any suppression, the owner on its own regular turn first spends its Bonus Action to command the old steed, then uses its available Action to cast the replacement Greater Phantom Steed. The repeated matrix costs 7 RP, leaving 10 from 17. Base Dissonance 1 plus Refrain 1 yields Dissonance 2 after commitment. Concentration displaces the old source before the counter window. The new body has HP 20 and its own deadline, but the already spent command allowance stays spent. The old pending command does not transfer, and no new Bonus Action is granted."
+    ],
+    "expectedFinalState": {
+      "suppressionBranch": {
+        "mountEndedAt": 20,
+        "riderPositionAt20Height": 40,
+        "firstDescentAt": 26,
+        "descentFeet": 40,
+        "impactDice": 2,
+        "damage": 7,
+        "riderHP": 93,
+        "riderProne": true,
+        "tackOrCargoDeleted": false,
+        "corpseOrSalvageCreated": false,
+        "suppressorRP": 22
+      },
+      "independentReplacementBranch": {
+        "ownerRP": 10,
+        "Dissonance": 2,
+        "newSteedHP": 20,
+        "newCommandGranted": false,
+        "oldPendingCommandTransferred": false
+      }
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/4"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/4/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/2"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/36"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IL5-01-A",
+    "spellId": "mass-mirage",
+    "originalTextUnchanged": "IL5-01-A: Six legal recipients are selected; five accept and one unwilling creature succeeds CHA. Five distinct disguises appear for their original hour, with no seventh replacement. One leaves range afterward and retains its shell, but dropping a disguised carried item ends that item's overlay immediately.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 9,
+      "stage": "Arch Arcanist",
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 5,
+      "actualBaseRpCost": 10,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 32,
+      "RPPaid": 10,
+      "RPAfter": 22,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete pending source cast and per-recipient shell/custody fixture; no social authentication or transformed inventory is inferred.",
+    "initialState": {
+      "castAt": 0,
+      "targets": "Six distinct genuinely perceived ordinary Medium recipients within60ft and caster LoE; each declared appearance fits its actual body/size. Five willing, sixth unwilling CHA modifier+1. No source defenses.",
+      "sixthSaveFace": 15,
+      "laterEvents": "Recipient1 walks beyond60ft at30; recipient2 drops its real initially possessed dagger at40 using a legal release. No extra action is supplied."
+    },
+    "actionsAndResolution": [
+      "Wizard9 pays10 RP32→22, first distinct prepared matrix baseD0, DC16. Nonconcentration source deadline3600.",
+      "Five willing recipients accept. Sixth15+1=16 succeeds CHA; no sixth shell and no seventh replacement enrollment.",
+      "Recipient1 keeps its existing shell after leaving range. Recipient2's actual dagger loses only its item overlay on leaving possession at40; its body shell and other legally held gear remain.",
+      "All original body sizes, mass, HP, inventory ownership and item usefulness remain actual. The drop creates no duplicate dagger or separate magical item."
+    ],
+    "expectedFinalState": {
+      "RP": 22,
+      "Dissonance": 0,
+      "activeShells": 5,
+      "sixthAffected": false,
+      "seventhReplacementAllowed": false,
+      "expiry": 3600,
+      "outOfRangeShellRetained": true,
+      "droppedDaggerDisguised": false,
+      "realDaggerCount": 1
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/7"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "pointer": "/records/7/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IL5-01-B",
+    "spellId": "mass-mirage",
+    "originalTextUnchanged": "IL5-01-B: A shell resembles a heard captain's voice and silhouette. The recipient still cannot answer an unknown password or speak a language it does not know. A listener recognizes the voice overlay on an actual DC16Investigation success; this does not grant sight through a wall or expose the other five recipients.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 9,
+      "stage": "Arch Arcanist",
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 5,
+      "actualBaseRpCost": 10,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 32,
+      "RPPaid": 10,
+      "RPAfter": 22,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete voice/visual channel fixture using a real Investigation task; appearance recognition does not create unseen identity knowledge.",
+    "initialState": {
+      "castAt": 0,
+      "recipient": "Willing Medium ally30ft away. Caster has personally heard captain's mundane voice and seen silhouette; ally knows Common but no other claimed language and does not know the private password.",
+      "observer": "At20ft from ally with functioning hearing and clear real acoustic path through doorway. Actual opaque wall blocks visual path; ordinary conversation arrives, no Silence. Observer INT/Investigation total modifier+4, Action available, relevant new vocal evidence.",
+      "taskDie": 12
+    },
+    "actionsAndResolution": [
+      "Wizard9 pays10 RP32→22, baseD0, establishes one-hour shell with sampled ordinary voice; no verbal-component substitution or amplification.",
+      "Ally speaks only actual known words. The sample supplies neither password nor unknown-language competence; recognition is not perfect voice authentication.",
+      "Observer spends Action to investigate actual vocal inconsistency:12+4=16 againstDC16, ordinary Success with no natural1/20 shift. It recognizes the voice overlay for this observer.",
+      "No visual sense passes the real wall; true face, undisclosed name and other recipients remain unknown. Identification does not globally dispel the shell or alter its3600 deadline."
+    ],
+    "expectedFinalState": {
+      "RP": 22,
+      "InvestigationTotal": 16,
+      "recognizedVoiceOverlay": true,
+      "wallBypassed": false,
+      "trueFaceSeen": false,
+      "passwordLearned": false,
+      "newLanguageGranted": false,
+      "otherRecipientsRevealed": false,
+      "shellDispelled": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/7"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "pointer": "/records/7/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Available actions: Help; Core task check distinction"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IL5-05-A",
+    "spellId": "seeming",
+    "originalTextUnchanged": "IL5-05-A: Twelve genuinely perceived candidates fit within60feet/line of effect. Ten accept and two unwilling targets save; ten shells establish, rather than an invented six-creature maximum. A thirteenth arrival later gains nothing. Their real sizes, carried mass and expedition roster records remain unchanged.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 9,
+      "stage": "Arch Arcanist",
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 5,
+      "actualBaseRpCost": 10,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 32,
+      "RPPaid": 10,
+      "RPAfter": 22,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete finite twelve-target snapshot retaining the printed any-number promise; no future enrollment or six-target cap.",
+    "initialState": {
+      "castAt": 0,
+      "targets": "Exactly12 distinct personally perceived living ordinary recipients, legal caster LoE, all within60ft at commitment and resolution. Ten willing; two unwilling with CHA modifiers+0 and+2, faces16 and14. Each appearance fits actual body/same size category.",
+      "laterArrivalAt": 20,
+      "laterArrival": "Thirteenth creature enters the original region after resolution."
+    },
+    "actionsAndResolution": [
+      "Wizard9 pays10 RP32→22, baseD0, DC16. One finite initial ordered target list and all appearances fixed before saves.",
+      "Both unwilling totals16 succeed; exactly10 willing shells establish. All others remain unchanged. No replacement target is selected.",
+      "At20 the thirteenth creature gains nothing. The established10 shell deadlines remain28800; actual size, body mass, carried mass, custody and expedition roster remain unchanged."
+    ],
+    "expectedFinalState": {
+      "RP": 22,
+      "selectedRecipients": 12,
+      "establishedShells": 10,
+      "successfulCHA": [
+        16,
+        16
+      ],
+      "lateEnrollment": false,
+      "expiry": 28800,
+      "physicalOrRosterRecordsChanged": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/9"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "pointer": "/records/11/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IL5-05-B",
+    "spellId": "seeming",
+    "originalTextUnchanged": "IL5-05-B: A disguised speaker still uses its actual voice. An observer who physically touches an apparent cloak where no real fabric exists recognizes that recipient's shell, without dispelling the other nine. At28,800elapsed seconds the original eight-hour shell expires even if it spent an hour suppressed.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 9,
+      "stage": "Arch Arcanist",
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 5,
+      "actualBaseRpCost": 10,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 32,
+      "RPPaid": 10,
+      "RPAfter": 22,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete personal contradiction and elapsed-deadline fixture. A real one-minute antimagic interval is used; the original one-hour suppression comparison remains conditional on a genuine hour-long source.",
+    "initialState": {
+      "castAt": 0,
+      "source": "Ten willing targets independently admitted as in IL5-05-A; no saves needed in this independent branch.",
+      "contradictionAt": 20,
+      "observer": "Functioning actual touch/sight witnesses its own hand pass through an apparent extra cloak fold where no real fabric exists; no forced contact action or permission is supplied.",
+      "actualSuppression": "Independent Wizard9 genuinely acquires/prepares Lesser Antimagic, pays10 RP32→22 at100, usableV/S/F, first matrixD0; valid10ft sphere covers recipient1. Maintains concentration until its actual160 deadline.",
+      "originalOneHourSuppressionBranch": "Conditional: an independently valid complete source must actually suppress this shell for3600 seconds. This vector does not grant a one-hour Lesser Antimagic duration."
+    },
+    "actionsAndResolution": [
+      "Seeming Wizard9 pays10 RP32→22, baseD0. Speech remains actual voice; this proposal adds no voice channel.",
+      "At20 conclusive personal contradiction recognizes only recipient1's false shell for that observer without an Investigation draw; the other9 shells remain independently unknown. No condition or HP changes.",
+      "Actual Lesser Antimagic suppresses recipient1 from100 through160; its original28800 deadline runs continuously. Unsuppression at160 restores eligible sensory expression, not a new8-hour duration.",
+      "At28800 expiry takes precedence and ends all still-live original shells. Conditional original-hour branch also expires at28800, if its stated real suppression source is independently supplied."
+    ],
+    "expectedFinalState": {
+      "RP": 22,
+      "suppressionWizardRP": 22,
+      "actualSuppressionSeconds": 60,
+      "personalRecognitionOnly": true,
+      "automaticInvestigationDraws": 0,
+      "voiceChanged": false,
+      "originalExpiry": 28800,
+      "deadlineAfterActualSuppression": 28800,
+      "conditionalHourSuppressionDoesNotRefresh": true,
+      "oneHourSuppressionSourceProvenHere": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/9"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "pointer": "/records/11/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/36"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IL5-07-A",
+    "spellId": "dream",
+    "originalTextUnchanged": "IL5-07-A: A genuinely sleeping creature40feet away can receive a25-word known-language message through the normal legal line of effect. An awake creature pretending to sleep gets no message, but the paid caster receives no diagnostic that distinguishes pretense from an actual defense or failed reception. No reply or long-distance channel opens.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 9,
+      "stage": "Arch Arcanist",
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 5,
+      "actualBaseRpCost": 10,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 32,
+      "RPPaid": 10,
+      "RPAfter": 22,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Independent actual-sleep and concealed-pretense branches with identical paid-caster information; subjective delivery is not a remote diagnostic.",
+    "initialState": {
+      "castAt": 0,
+      "target": "One perceived ordinary creature40ft away, clear LoE; no applicable mental defense. BranchS genuinely natural sleep; branchP secretly awake and pretending. Outer observed posture identical, sleep state genuinely hidden.",
+      "message": "Meet us at the old bridge after sunrise. Bring your own supplies and wait beside the western gate until the watch captain signals safe passage.",
+      "language": "Caster and genuine sleeper both actually know Common; no translation required.",
+      "mode": "Message selected before payment."
+    },
+    "actionsAndResolution": [
+      "Each independent branch uses Wizard9 Action, actualV/S/F and10RP32→22, first matrixD0; no concentration, no additional spell or query.",
+      "BranchS receives the25-word subjective message over no more than6 elapsed seconds while actual sleep continues. Apparent sender is unverified; no forced belief or perfect memory.",
+      "BranchP receives nothing because sleep predicate fails. Paid caster obtains no success/failure diagnostic distinguishing pretense, immunity or failed reception.",
+      "No reply, dream sight, memory extraction, soul/plane route or later queued delivery appears. Recipient may decline to engage; ordinary later recollection is not a guaranteed record."
+    ],
+    "expectedFinalState": {
+      "RPPerBranch": 22,
+      "messageWords": 25,
+      "branchSReceived": true,
+      "branchPReceived": false,
+      "maximumPresentationSeconds": 6,
+      "casterCanDistinguishBranches": false,
+      "replyChannel": false,
+      "queuedDelivery": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/10"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "pointer": "/records/13/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IL5-07-B",
+    "spellId": "dream",
+    "originalTextUnchanged": "IL5-07-B: A sleeper fails WIS against Nightmare. It later awakens and makes a WIS/Survival check within the original hour; the one disadvantage rider is consumed, even when another source's advantage cancels it. No sleep hours, HP or long-rest reward are automatically removed, and an older unspent rider cannot be refreshed by another caster.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 9,
+      "stage": "Arch Arcanist",
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 5,
+      "actualBaseRpCost": 10,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 32,
+      "RPPaid": 10,
+      "RPAfter": 22,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete Nightmare entitlement, real Help advantage cancellation, and independent second-caster nonrefresh fixture.",
+    "initialState": {
+      "castAt": 0,
+      "target": "Actual natural sleeper40ft away, perceived/LoE, WISsave modifier+1 and face7, no broader immunity. HP40/40, noWounds, noExhaustion.",
+      "wakeAt": 10,
+      "survivalCheck": "At120 target is awake and performs one actually warranted WIS/Survival task,modifier+3,DC12. An adjacent capable ally already spent its Action on physically possible assistance identifying real tracks; check occurs before that helper's next regular START.",
+      "checkDieAfterCancellation": 10,
+      "otherCasterAt": 30,
+      "otherCaster": "Independent Wizard9 legally acquired/prepared Dream Nightmare, Action/V/S/F,10RP32→22,first matrixD0; target has genuinely gone back to natural sleep before30 and fails its second WISsave8+1=9.",
+      "ordinaryWakeAgainAt": 40
+    },
+    "actionsAndResolution": [
+      "Original Wizard9 pays10 RP32→22, DC16, baseD0. Target7+1=8 fails; original subjective scene lasts at most6 and creates one next-WIS-ability-check entitlement with fixed3600 deadline.",
+      "At30 second caster's genuine failed-save Nightmare may establish its own short presentation, but the already unspent cross-caster rider is neither duplicated nor refreshed. Its deadline stays3600, not3630.",
+      "The real Help Action supplies advantage to the relevant upcoming Survival task before helper's next START. At120 declaring that check consumes the original rider even though its disadvantage cancels advantage. Roll one actuald20:10+3=13 meetsDC12; no natural shift.",
+      "The check is an ability task, not a save or passive score. HP,Exhaustion,sleep-hours and rest rewards are not automatically changed by this spell. No second queued rider remains."
+    ],
+    "expectedFinalState": {
+      "originalCasterRP": 22,
+      "secondCasterRP": 22,
+      "firstSaveTotal": 8,
+      "secondSaveTotal": 9,
+      "unrefreshedDeadline": 3600,
+      "actualTaskDice": 1,
+      "SurvivalTotal": 13,
+      "taskSuccess": true,
+      "riderSpentAt": 120,
+      "remainingDreamRiders": 0,
+      "HP": 40,
+      "Exhaustion": 0,
+      "restRewardAutomaticallyDenied": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/10"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "pointer": "/records/13/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Available actions: Help; Core task check distinction"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN6-06-A",
+    "spellId": "programmed-illusion",
+    "originalTextUnchanged": "IN6-06-A: A program resolves at second 0 with a 30-second performance and a trigger when a visible person crosses the marked doorway. The first confirmed crossing occurs at second 50. The program can play only ten remaining seconds, ending at second 60; it does not receive a fresh 30-second performance or minute. Two simultaneous people crossing still trigger only that one firing.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 11,
+      "stage": "Hero Spellbinder",
+      "HeroPath": "Spellbinder",
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 6,
+      "actualBaseRpCost": 13,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 40,
+      "RPPaid": 13,
+      "RPAfter": 27,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete one-fire fixed program with two simultaneous visible crossings; no new observation sense or cast is implied.",
+    "initialState": {
+      "castAt": 0,
+      "geometry": "Perceived fixed20ft cube centered30ft from caster with LoE. Trigger observation point lies inside, with ordinary visible doorway5ft away, genuine lighting and clear optical path.",
+      "trigger": "First visible person crossing the marked doorway after arming.",
+      "script": "Known nonadaptive visual greeting and ordinary conversational audio, predeclared30sec sequence wholly within cube.",
+      "crossingsAt": 50,
+      "crossings": "Two genuinely visible people cross simultaneously; neither Hidden/Invisible and no ambiguous perception."
+    },
+    "actionsAndResolution": [
+      "Wizard11 pays13 RP40→27, first distinct matrixD0, actualV/S/F; concentration and entire source deadline60. No output exists before triggering.",
+      "At50 one confirmed trigger sets firingSpent before playback. Both matching crossings share that one state, so no second instance fires.",
+      "Only min(30,60−50)=10 seconds of performance can occur; expiry at60 ends it before an event at exactly60. No fresh30-second or60-second clock starts.",
+      "There is no adaptive reply, remote report, creature/body, real light, item or spellcasting origin."
+    ],
+    "expectedFinalState": {
+      "RP": 27,
+      "sourceDeadline": 60,
+      "firingCount": 1,
+      "playbackStartedAt": 50,
+      "actualPlaybackSeconds": 10,
+      "playbackEndedAt": 60,
+      "rearmed": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/13"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "pointer": "/records/5/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN6-06-B",
+    "spellId": "programmed-illusion",
+    "originalTextUnchanged": "IN6-06-B: A password is spoken entirely while the trigger is suppressed and is therefore missed. Suppression later ends with 18 seconds left. A different declared persistent visual condition that is still truly observable may now trigger an unspent program, but the missed sound is not replayed. A copied voice can match the recorded sound without proving the speaker's identity or granting the caster a remote report.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 11,
+      "stage": "Hero Spellbinder",
+      "HeroPath": "Spellbinder",
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 6,
+      "actualBaseRpCost": 13,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 40,
+      "RPPaid": 13,
+      "RPAfter": 27,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Two independent program specifications preserve the original missed-password and persistent-state branches; one program is not silently given an OR or a second trigger.",
+    "initialState": {
+      "castAt": 0,
+      "programA": "Fixed cube/observation point as IN6-06-A; sole declared trigger is audible known password pattern. No visual alternative.",
+      "programB": "Independent alternative cast with sole declared trigger: ordinary visible red-cloaked figure standing in that actual doorway. No password required. This is not the same cast asA.",
+      "suppressor": "Independent Wizard9 genuinely acquired/prepared Lesser Antimagic, pays10RP32→22 at10 withV/S/F,first matrixD0 and valid10ft sphere covering entire observation point/image locus. It could last until70, but caster legally ends concentration at42.",
+      "passwordAt": 20,
+      "visualState": "In branchB the actual ordinarily visible red cloak is continuously present at42 and optical path/light permit confirmation.",
+      "laterMimic": "In branchA an actual ordinary speaker who has heard the password reproduces the matching audible pattern at45 through a real sound path; this is a genuine new sound, not a replay from suppression."
+    },
+    "actionsAndResolution": [
+      "Each program branch independently pays Wizard11 13RP40→27,first matrixD0,concentration originaldeadline60. Suppression10–42 makes observations unavailable without extending deadline.",
+      "Password at20 is missed. At42 branchA remains armed with18sec left and produces no sound from the old event. BranchB can observe its continuously true independently declared visual state now, spends its one firing and clips a30sec performance to18sec.",
+      "At45 branchA hears the genuine new matching imitation and spends its one firing; performance is clipped to15sec. Matching known sound proves no hidden identity. Neither branch sends caster a remote success report.",
+      "Both finish at60; no suppressed playback, extra firing, inventory recording object or fresh clock is granted."
+    ],
+    "expectedFinalState": {
+      "RPPerProgramBranch": 27,
+      "suppressorRPPerBranch": 22,
+      "suppressionEndsAt": 42,
+      "timeLeftAt42": 18,
+      "branchAFiredFromMissedEvent": false,
+      "branchAActualNewTriggerAt": 45,
+      "branchAPlaybackSeconds": 15,
+      "branchBTriggerAt": 42,
+      "branchBPlaybackSeconds": 18,
+      "eachFiringCount": 1,
+      "sourceExpiry": 60,
+      "speakerIdentityAuthenticated": false,
+      "remoteCasterReport": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/13"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "pointer": "/records/5/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/36"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-04-A",
+    "spellId": "illusory-clone",
+    "originalTextUnchanged": "IN4-04-A: The clone appears twenty feet east of Arin. Arin walks ten feet north; if the corresponding image segment is legal, it also moves ten feet north. Arin then spends his Bonus Action to swap. His old space now contains only the image, his actual carried bow moves once, and no second body or new movement budget exists.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Complete cast, finite actual movement and own-turn swap. A legally carried bow is ordinary gear, not a cloned attack or second inventory.",
+    "initialState": {
+      "castAt": 0,
+      "round": 6,
+      "casterOrigin": [
+        0,
+        0,
+        0
+      ],
+      "imageOrigin": [
+        20,
+        0,
+        0
+      ],
+      "geometry": "Supported unobstructed ordinary level ground. Actual Medium caster and legal gear fit both locations; LoE and perception hold throughout.",
+      "ledgers": "Own regular turn, Action and Bonus Action available, walkingSpeed30 and spentMovement0; character-wide round6 swap allowance unused.",
+      "gear": "One actual lawfully carried bow; no other creature or mount is carried."
+    },
+    "actionsAndResolution": [
+      "Wizard7 commits Action/V/S/F and7RP24→17, first distinct prepared matrixD0, concentration until60. Clone appears20ft east, with no HP, attack, inventory, senses or defensive interception.",
+      "Caster walks10ft north using10 actual ordinary movement. Legal image translation mirrors the10ft vector:caster(0,10,0),image(20,10,0). Spent movement stays10.",
+      "Caster on same regular turn commits its real Bonus Action and round6 swap allowance. Arrival remains perceived, within20ft, supported and legal. Caster moves to(20,10,0), image to(0,10,0).",
+      "Swap spends no further Speed, creates no path traversal/opportunity attack and performs no second mirrored translation. Real bow changes position once with its owner; image depicts it without an inventory item."
+    ],
+    "expectedFinalState": {
+      "RP": 17,
+      "Dissonance": 0,
+      "casterPosition": [
+        20,
+        10,
+        0
+      ],
+      "imagePosition": [
+        0,
+        10,
+        0
+      ],
+      "spentMovement": 10,
+      "remainingMovement": 20,
+      "BonusActionSpent": true,
+      "round6SwapSpent": true,
+      "realBowCount": 1,
+      "realBodyCount": 1,
+      "imageHP": null,
+      "sourceExpiry": 60
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/3"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/3/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Movement ledger, teleportation and actual opportunity attacks"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-04-B",
+    "spellId": "illusory-clone",
+    "originalTextUnchanged": "IN4-04-B: Arin has swapped in round 6. An extra turn or replacement clone cannot supply another round-6 swap. If an actual obstruction makes the destination illegal before resolution, the committed allowance stays spent. A later enemy attack is resolved against its genuinely selected legal target; the clone provides no random interception.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Independent ledger and later-prevention branches; conditional extra-turn/obstruction premises grant no new source or event hook.",
+    "initialState": {
+      "baseline": "Original Wizard7 clone established earlier with7RP24→17 and original deadline60. Caster has already spent a valid round6 swap; no generic Reaction swap exists.",
+      "replacementBranch": "On its genuine round6 regular turn caster already used its BA to swap, then commits its still-available Action to cast a replacement clone.",
+      "conditionalExtraTurn": "If an independently authorized effect supplies a round6 extra turn, its actual source must be supplied separately; the clone grants none and its own-regular-turn predicate still applies.",
+      "latePreventionBranch": "Independent branch begins with round6 swap unused and all commitment prerequisites legal. A genuinely sourced intervening event makes the chosen destination illegal after BA/allowance commitment. This vector tests failure handling, not an invented barrier reaction.",
+      "enemyAttackBranch": "Later independent already legally selected ordinary attack against the real caster, AC14, modifier+5, die9; no other advantage/disadvantage or defense."
+    },
+    "actionsAndResolution": [
+      "Replacement branch commits7RP17→10. Same prepared matrix has actual base1 plus Refrain1, takingD0→2; old concentration ends at commitment. A genuinely established new clone retains the already-used character-wide round6 swap ledger and grants no BA.",
+      "Any independently granted extra turn or replacement identity leaves round6 swap spent. No round7 refresh is prematurely granted.",
+      "In independent late-prevention branch, real BA and swap allowance were already committed; failed arrival moves nothing and refunds neither. New legal space is not automatically selected.",
+      "The pre-admitted later attack rolls9+5=14 againstAC14 and hits its genuine real target. No random interception draw or illusory second target is inserted. This case does not claim damage or HP consequences beyond the admitted attack result."
+    ],
+    "expectedFinalState": {
+      "replacementRP": 10,
+      "replacementDissonance": 2,
+      "replacementGrantsNewSwap": false,
+      "replacementGrantsBA": false,
+      "conditionalExtraTurnRefreshesSwap": false,
+      "latePreventionMovesCaster": false,
+      "latePreventionRefunds": false,
+      "enemyAttackTotal": 14,
+      "enemyAttackHit": true,
+      "randomInterceptionDraws": 0
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/3"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/3/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Movement ledger, teleportation and actual opportunity attacks"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-06-A",
+    "spellId": "shadow-step",
+    "originalTextUnchanged": "IN4-06-A: The caster stands wholly in darkness and can actually see a dark landing forty-five feet away using a sufficient existing sense. The space fits and is supported. One paid Action moves the caster and legally held gear, spending no Speed; a grappled creature stays behind and the real grapple relationship is reevaluated.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 21,
+      "RPPaid": 7,
+      "RPAfter": 14,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist",
+      "earlierActualSpell": {
+        "id": "darkvision",
+        "rank": 2,
+        "school": "Transmutation",
+        "RPBefore": 24,
+        "RPPaid": 3,
+        "RPAfter": 21,
+        "castAt": -6,
+        "expiry": 3594,
+        "concentration": false,
+        "firstDistinctMatrixDissonance": 0
+      }
+    },
+    "scope": "Complete actual Darkvision and Shadow Step composition. Main branch uses caster as the grappled body so both hands retain ordinary casting eligibility; original carried-victim implication is a separately scoped custody condition.",
+    "initialState": {
+      "castAt": 0,
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "destination": [
+        45,
+        0,
+        0
+      ],
+      "illumination": "Whole actual body at origin and destination lies in ordinary physical darkness. Genuine prior Darkvision60 lets caster perceive the landing as dim; it changes visual perception, not physical illumination. No magical darkness or new sense is assumed.",
+      "geometry": "Coordinates are occupied-body centers. Actual Medium caster and ordinary Medium grappler each have a 5x5ft footprint and measured height6ft (half-extents2.5,2.5,3). Supporting level floor is z=-3. Caster begins(0,0,0), grappler(0,5,0); their boundaries touch at y=2.5 without overlapping interiors, within the actual5ft grapple reach. Arrival(45,0,0) fits the caster and legal carried noncreature gear in real unoccupied supported space. Transparent glass occupies x20..20.25,y-10..10,z-3..10; it does not obscure the landing but would block an ordinary physical path. No relocation ward exists. The45ft destination is within both actual ranges; this spell-specific path exception remains proposed.",
+      "grapple": "Caster is in a preexisting ordinary Grappled relationship held by the distinct ordinary Medium body at(0,5,0), with actual reach5ft. Caster Speed0; no separate restraint or teleport prohibition. Both caster hands satisfy actual S/F. The grappler is an independent body and does not travel.",
+      "originalVictimBranch": "If caster instead maintains a grapple on another creature, the actual free-hand/focus prerequisites must independently hold; that creature still never becomes authorized carried cargo.",
+      "grapplerPosition": [
+        0,
+        5,
+        0
+      ],
+      "bodyGeometry": {
+        "casterHalfExtents": [
+          2.5,
+          2.5,
+          3
+        ],
+        "grapplerHalfExtents": [
+          2.5,
+          2.5,
+          3
+        ],
+        "supportFloorZ": -3,
+        "initialWholeBodyGap": 0,
+        "finalWholeBodyGap": 40,
+        "actualGrappleReach": 5,
+        "measuredHeightIsFixtureInput": true
+      }
+    },
+    "actionsAndResolution": [
+      "At−6 Wizard7 used a genuine acquired/prepared rank2 Darkvision Action/V/S/F on willing self:3RP24→21, first distinct matrixD0; no concentration, deadline3594, ordinary darkness only.",
+      "At0 actual Shadow Step Action/V/S/F pays7RP21→14, distinct prepared matrix firstuseD0. Both physical darkness predicates, actual arrival perception, supported fit and no ward hold.",
+      "Under this pending spell's explicit destination path exception, transparent intervening glass does not prevent the45ft relocation. This is source-specific new authorship, not a global teleport rule.",
+      "Actual caster and lawful noncreature belongings arrive once at(45,0,0). Speed0 does not prohibit this teleport; no Speed is spent and no ordinary opportunity attack occurs. The distinct grappler stays at(0,5,0). After arrival, the nearest distance between their actual occupied boxes is40ft, exceeding its ordinary5ft grapple reach, so that relationship ends. Neither creature occupied the other creature’s body before or after the move.",
+      "No second body, unseen destination, invisibility, damage rider, new budget or class-technique permission is supplied."
+    ],
+    "expectedFinalState": {
+      "RP": 14,
+      "Dissonance": 0,
+      "DarkvisionExpiry": 3594,
+      "casterPosition": [
+        45,
+        0,
+        0
+      ],
+      "otherCreaturePosition": [
+        0,
+        5,
+        0
+      ],
+      "speedSpentByTeleport": 0,
+      "grappleEndedByReach": true,
+      "ordinaryOpportunityAttackTriggered": false,
+      "InvisibleGranted": false,
+      "newActionGranted": false,
+      "finalWholeBodyGap": 40,
+      "bodiesOverlap": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/5"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/5/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Movement ledger, teleportation and actual opportunity attacks"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+        "pointer": "/spells/75/operationalCandidate"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "section": "Grappled"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+        "section": "Size and occupied space; actual Medium5x5 footprint; measured height remains fixture input."
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-06-B",
+    "spellId": "shadow-step",
+    "originalTextUnchanged": "IN4-06-B: The destination is only dimly lit, or magical darkness prevents every actual sense from perceiving its legal space. The attempt is observably illegal before commitment. If a real light is introduced only after a legal cast commits, resolution fails without refund or automatic search for another dark square.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 21,
+      "RPPaid": 7,
+      "RPAfter": 14,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist",
+      "earlierActualSpell": {
+        "id": "darkvision",
+        "rank": 2,
+        "school": "Transmutation",
+        "RPBefore": 24,
+        "RPPaid": 3,
+        "RPAfter": 21,
+        "castAt": -6,
+        "expiry": 3594,
+        "concentration": false,
+        "firstDistinctMatrixDissonance": 0
+      }
+    },
+    "scope": "Independent legality and postcommit-prevention branches; an unsourced new light action is not granted by this example.",
+    "initialState": {
+      "priorDarkvision": "Same actual rank2 self Darkvision preparation as IN4-06-A;RP21 before proposed Shadow Step, ordinary darkness sight60 and no magical-darkness penetration.",
+      "branchD": "Origin physicallydark; destination physicallydim, though clearly perceived. This is a known failed required illumination predicate.",
+      "branchM": "Origin physicallydark; actual magical darkness at destination defeats every actual current sense. This is a conditional independently operative darkness source, not a newly authored spell identity. Caster cannot perceive legal landing.",
+      "branchL": "Initially ordinarydark legalperceived supportedlanding45ft away. A real independently legal intervening light operation is assumed to change physical destination illumination only after Shadow Step commitment; no new Action/Reaction source is furnished here."
+    },
+    "actionsAndResolution": [
+      "BranchD orM is observably illegal before Shadow Step commitment:decline cast, no Shadow Step Action/7RP/strain spent. Earlier Darkvision costs remain paid, RP21. Mere recollection or aura does not replace current landing perception.",
+      "BranchL legally commits Action and7RP21→14,firstdistinctmatrixD0. At resolution whole arrival is no longer in physical darkness, so spell moves nothing. No refund or automatic dark-square search occurs.",
+      "Darkvision does not turn physicallydim light back into darkness and does not penetrate the branchM magical darkness. No generic counter-light immunity follows from the title."
+    ],
+    "expectedFinalState": {
+      "branchDShadowStepCommitted": false,
+      "branchMShadowStepCommitted": false,
+      "branchDAndMRP": 21,
+      "branchLCommitted": true,
+      "branchLRP": 14,
+      "branchLCasterMoved": false,
+      "replacementDestinationSelected": false,
+      "magicalDarknessPenetrationGranted": false,
+      "conditionalLateLightSourceProvenHere": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/5"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/5/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Movement ledger, teleportation and actual opportunity attacks"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+        "pointer": "/spells/75/operationalCandidate"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-03-A",
+    "spellId": "mind-maze",
+    "originalTextUnchanged": "IN4-03-A: Mind Maze resolves during Lio’s round-3 turn after he committed an attack. He fails WIS with an unused hard-control allowance. The committed attack finishes, but he cannot spend a later Bonus Action or resume voluntary movement. The state persists through his round-4 regular END; an extra turn before that does not release him.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 24,
+      "RPPaid": 7,
+      "RPAfter": 17,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Concrete ordinary Ready release follows the completed observable attack. Original mid-resolution committed-attack branch is preserved as conditional and remains an explicit source-review obligation; generic Ready does not grant that interrupt.",
+    "initialState": {
+      "prepare": "Wizard7 has an actual regular round3 turn before Lio. Action available, Reaction available, no old concentration or Reaction prohibition. Readies Mind Maze with perceivable trigger: Lio completes its ordinary bow shot.",
+      "target": "Lio within30ft/perceived/LoE at release, WISsave+1, no applicable broader immunity, caster-to-Lio hard guard unused. A separately legal ordinary bow attack is observed to completion on Lio's round3 regular turn. Lio has not yet used its BA or remaining movement.",
+      "saveDie": 9,
+      "originalMidResolutionPremise": "An independent source must actually permit resolution after attack commitment but before that attack completes. No such interrupt source is established by the old sentence or ordinary Ready. If independently legal, Mind Maze does not cancel the committed attack."
+    },
+    "actionsAndResolution": [
+      "Wizard7 spends Action at preparation, pays7RP24→17,first matrixD0, actualV/S/F, counter window at preparation. Held Mind Maze requires concentration despite the released spell being nonconcentration. Ready expiry is caster's next regular START.",
+      "Lio's actual bow shot completes first. Then Wizard spends its real Reaction, rechecks target/range/LoE and releases without a second cost, cast or counter window. Save9+1=10 failsDC15; guard unused, so lost-round rider establishes. Hold concentration ends after release.",
+      "The rider prevents Lio's later new BA, Reaction and voluntary movement commitments on the remainder of round3 and through its next future regular END inround4. It neither rewinds the completed bow attack nor refunds spent movement.",
+      "Required saves and permitted speech/passives still function. No Stunned/Incapacitated/Paralyzed or automatic concentration loss is added. Any actually sourced extra turn before the endpoint gains no new permission and does not shorten it.",
+      "Original mid-resolution branch is not claimed to be reachable through this Ready. If a real separate interrupt is later identified, an already legally committed attack finishes under the unchanged proposed procedure."
+    ],
+    "expectedFinalState": {
+      "RP": 17,
+      "ReactionSpent": true,
+      "heldConcentrationEndedOnRelease": true,
+      "WISsaveTotal": 10,
+      "hardGuardConsumed": true,
+      "endMarker": "Lio next future regular END,round4",
+      "completedAttackRewound": false,
+      "remainingMovementRefunded": false,
+      "newBAAllowedWhileOperative": false,
+      "StunnedApplied": false,
+      "originalMidAttackInterruptSourceProven": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/2"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/2/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/8"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN4-03-B",
+    "spellId": "mind-maze",
+    "originalTextUnchanged": "IN4-03-B: The same caster previously established a hard-denial effect on Lio this encounter. A new failed WIS save does not establish Mind Maze or invent a -1 fallback. Against another legal target, suppression can temporarily permit normal available actions, but never restores the already consumed hard-control allowance.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 7,
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 3,
+      "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 4,
+      "actualBaseRpCost": 7,
+      "maximumLegalRank": 4,
+      "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+      "RPBefore": 17,
+      "RPPaid": 7,
+      "RPAfter": 10,
+      "saveDC": 15,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 2,
+      "firstDistinctPreparedMatrixThisEncounter": false,
+      "RefrainExtra": 1,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false,
+      "stage": "Arch Arcanist"
+    },
+    "scope": "Actual repeated same-source cast after an earlier ended Mind Maze, plus independent suppression branch using an actual paid Lesser Antimagic source.",
+    "initialState": {
+      "priorHistory": "Same Wizard7 successfully established an earlier Mind Maze on Lio inround1,paid7RP24→17,baseD0. It ended at Lio's round2 regular END; original source-character/target/encounter guard remains spent.",
+      "currentCast": "At Wizard's round3 regular turn, Lio within30ft/perceived/LoE, WIS+1,die6,no immunity. No new concentration or old hold.",
+      "independentOtherTargetBranch": "Reset to an independent scene: same legal Wizard7 startingRP24 uses first Mind Maze on a different unused-guard targetM, WIS+1,die6. Application resolves before M's upcoming regular turn; endpoint M's next future regular END.",
+      "suppression": "Independent Wizard9 with genuine Lesser Antimagic access/preparation, usableV/S/F and availableAction pays10RP32→22,first matrixD0. Its genuine10ft local sphere coversM after application and before M's upcoming regular START. Maintains concentration through M's END; no out-of-range caster-only cancellation assumed."
+    },
+    "actionsAndResolution": [
+      "Repeated Wizard7 cast pays7RP17→10 and base1+Refrain1=>D2. Lio6+1=7 failsDC15, but previously used guard blocks the entire lost-round state. No invented−1 or fallback rider appears.",
+      "Independent other-target scene pays7RP24→17,D0; M fails7 againstDC15 and new guard is consumed. Actual Lesser Antimagic then suppresses M's attached lost-round expression in its local field.",
+      "At M's genuine upcoming regular turn, suppressed rider does not prevent normal otherwise legal actions. It grants no extra budget, resets no previously spent resource and does not erase its guard history.",
+      "The original futureEND endpoint expires while suppression is still active. Ending the antimagic afterward cannot resurrect Mind Maze or rearm the used guard."
+    ],
+    "expectedFinalState": {
+      "repeatedCasterRP": 10,
+      "repeatedDissonance": 2,
+      "repeatedSaveTotal": 7,
+      "repeatedRiderEstablished": false,
+      "fallbackPenalty": null,
+      "independentCasterRP": 17,
+      "suppressorRP": 22,
+      "suppressedTargetGetsOnlyOrdinaryBudgets": true,
+      "originalEndpointStillExpires": true,
+      "guardRefundedBySuppression": false,
+      "riderReturnsAfterExpiry": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/2"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+        "pointer": "/records/2/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/8"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/36"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN6-05-A",
+    "spellId": "reality-fracture",
+    "originalTextUnchanged": "IN6-05-A: Three sighted creatures inside the sphere fail INT and each sees a different overgrown-hall arrangement. An ally succeeds and sees the actual room. One failed observer attacks a genuinely visible foe inside the sphere with disadvantage; the image supplies no physical cover. An observer standing outside sees the real scene and receives no penalty simply for looking into it.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 11,
+      "stage": "Hero Spellbinder",
+      "HeroPath": "Spellbinder",
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 6,
+      "actualBaseRpCost": 13,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 40,
+      "RPPaid": 13,
+      "RPAfter": 27,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete private-scene and genuine-perception fixture; admitted attack resolves ordinary disadvantage without a hidden-body silhouette.",
+    "initialState": {
+      "castAt": 0,
+      "field": "Perceived center30ft from caster,20ft radius, clear centerLoE. Caster outside field; four ordinary sighted bodiesA/B/C/D inside, all actually eligible. Chosen known overgrown-hall theme.",
+      "initialINTs": {
+        "A": [
+          5,
+          1
+        ],
+        "B": [
+          8,
+          2
+        ],
+        "C": [
+          11,
+          0
+        ],
+        "D": [
+          14,
+          2
+        ]
+      },
+      "privateScenes": "A sees vines on north wall,B sees differing harmless leaf-colored furniture,C sees overgrowth on floor. Contents drawn only from chosen theme and actually accessible underlying scene; no memories read.",
+      "attack": "A makes a separately legal attack against genuinely visible foeB inside; modifier+5,AC14,disadvantagefaces[8,17], no independent advantage.",
+      "outsideObserver": "O remains outside the sphere and looks into it; ordinary actual sight is unobstructed.",
+      "hiddenBodyCondition": "If another body is genuinely visually unperceived, including Invisible with location known, its underlying absence from this observer's visual information remains. This branch grants no new invisibility cast."
+    },
+    "actionsAndResolution": [
+      "Wizard11 pays13RP40→27,first matrixD0,DC16; concentration originaldeadline60. A6,B10,C11 fail; D16 succeeds and personally identifies this cast.",
+      "A/B/C receive distinct private visual arrangements within the bounded theme;D sees actual scene. No player/controller receives another's scene or a private fact through this procedure.",
+      "A's pre-admitted vision-dependent attack uses lower8+5=13, missesAC14. No physical cover, collision or added target body comes from the rendered furnishings.",
+      "O outside field receives no field penalty merely for looking in. Actual hidden/Invisible visually unperceived bodies remain without silhouettes; known location alone does not become sight."
+    ],
+    "expectedFinalState": {
+      "RP": 27,
+      "failedObservers": [
+        "A",
+        "B",
+        "C"
+      ],
+      "identifiedObservers": [
+        "D"
+      ],
+      "privateScenes": 3,
+      "attackTotal": 13,
+      "attackHit": false,
+      "physicalCoverCreated": false,
+      "outsideObserverPenalized": false,
+      "unperceivedBodyRevealed": false,
+      "sourceExpiry": 60
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/12"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "pointer": "/records/4/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "section": "Invisible"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+        "section": "Unseen attacks and observer-known Invisible exception"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN6-05-B",
+    "spellId": "reality-fracture",
+    "originalTextUnchanged": "IN6-05-B: A failed observer spends an Action, succeeds on Investigation against DC 16 and identifies this cast. Leaving and reentering later does not demand another save or restore its penalty. Another failed observer merely hears the warning and can investigate on its own; it gains no automatic shared success. The caster never learns either observer's private memories or exact imagined arrangement.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 11,
+      "stage": "Hero Spellbinder",
+      "HeroPath": "Spellbinder",
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 6,
+      "actualBaseRpCost": 13,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 40,
+      "RPPaid": 13,
+      "RPAfter": 27,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete personal Investigation and preserved entry history; no global identification or scene disclosure.",
+    "initialState": {
+      "castAt": 0,
+      "source": "Same legal rank6 field geometry and complete independent cast fixture as IN6-05-A; observersA/B fail initialINT checks6 and10 againstDC16.",
+      "examinationAt": 12,
+      "A": "Available Action, functional sight and genuinely relevant accessible scene evidence; Investigationmodifier+4,die12.",
+      "movement": "A uses later actual legal movement to leave at18 and reenter at24, both before deadline60. No teleport/extra movement is granted.",
+      "B": "Hears A's mundane warning at13 but takes no Investigation Action and witnesses no conclusive contradiction."
+    },
+    "actionsAndResolution": [
+      "Wizard11 originally pays13RP40→27,baseD0,concentration until60.",
+      "At12 A spends real Action and rolls12+4=16 againstDC16, ordinary Success without natural shift. It personally identifies this entire cast and loses its visual penalty.",
+      "A's departure and reentry retain that same source/observer record: no repeat initialINT save, no new private scene and no restored penalty.",
+      "B's warning permits its own examination but grants no automatic success or additional Action. B remains affected while inside until its own identification/expiry/removal. Caster learns no observer memory or private scene through these events."
+    ],
+    "expectedFinalState": {
+      "RP": 27,
+      "AInvestigationTotal": 16,
+      "AIdentified": true,
+      "AInitialSaveCount": 1,
+      "AReentryPenalty": false,
+      "BIdentifiedByWarning": false,
+      "BAffectedWhileInside": true,
+      "casterReceivedMemories": false,
+      "casterReceivedPrivateScene": false,
+      "sourceExpiry": 60
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/12"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "pointer": "/records/4/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IL5-03-A",
+    "spellId": "echofield",
+    "originalTextUnchanged": "IL5-03-A: The field holds three eligible one-second snippets and the neutral1d3selects the second; one allowed origin replays it at no more than its real volume. A generated replay is tagged ineligible for every Echofield recorder, so overlapping fields cannot multiply it into infinite echoes or verbal spell casts.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 9,
+      "stage": "Arch Arcanist",
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 5,
+      "actualBaseRpCost": 10,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 32,
+      "RPPaid": 10,
+      "RPAfter": 22,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete actual cast and finite private buffer/RNG fixture under explicit NEW IP14-ECHO-RNG-08; no sixth Fate disclosure entry.",
+    "initialState": {
+      "castAt": 0,
+      "center": [
+        30,
+        0,
+        0
+      ],
+      "geometry": "Perceived center within60 and LoE; fixed20ft sphere. No actual Silence or acoustic barrier on the chosen replay path.",
+      "sounds": [
+        {
+          "completedAt": 3,
+          "eventSequence": 10,
+          "snippetOrdinal": 1,
+          "content": "Actual known one-second spoken yes, center audibly receives it."
+        },
+        {
+          "completedAt": 4,
+          "eventSequence": 11,
+          "snippetOrdinal": 1,
+          "content": "Actual one-second bell tone, center audibly receives it."
+        },
+        {
+          "completedAt": 5,
+          "eventSequence": 12,
+          "snippetOrdinal": 1,
+          "content": "Actual one-second wood knock, center audibly receives it."
+        }
+      ],
+      "pulseAt": 6,
+      "privateSelection": 2,
+      "privateOrigin": 2,
+      "nextPulseAt": 12,
+      "noNewEligibleSoundsAfter5": true
+    },
+    "actionsAndResolution": [
+      "Wizard9 pays10RP32→22,first distinct matrixD0,DC16; field deadline60, no concentration. Initial empty recording creates neither draw nor replay.",
+      "At6 window(0,6] retains three completed snippets in order3/4/5. Private1d3 result2 selects actual bell tone; private1d6 result2 selects east offset5ft, actualpoint(35,0,0). Both draws are consumed once.",
+      "Replay volume cannot exceed original bell or ordinary shout. All emitted replay/rustle is source-tagged ineligible to this or another field, so no recursive capture or verbal spell operation follows.",
+      "At12 window(6,12] contains none of these old snippets. With no new sounds, no snippet/origin draw occurs; no stale sound is replayed. No buffer/roll information is separately disclosed."
+    ],
+    "expectedFinalState": {
+      "RP": 22,
+      "firstPulseAt0Draws": 0,
+      "at6EligibleSnippets": 3,
+      "at6SelectedEventSequence": 11,
+      "at6Origin": [
+        35,
+        0,
+        0
+      ],
+      "at6PrivateChoiceOperations": 2,
+      "at12EligibleSnippets": 0,
+      "at12ChoiceOperations": 0,
+      "replaysEnterRecorder": false,
+      "newSpellCastFromReplay": false,
+      "newFateDisclosureEntry": false,
+      "sourceExpiry": 60
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/8"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "pointer": "/records/9/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IL5-03-B",
+    "spellId": "echofield",
+    "originalTextUnchanged": "IL5-03-B: An invisible creature20feet from a hearing observer inside an unobstructed sound path emits the proposed rustle; its position is audible and Stealth cannot make it Hidden from that observer. It remains unseen. A Deafened observer learns no position from that sound, and a real Silence zone prevents both exposure and hearing-dependent confusion.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 9,
+      "stage": "Arch Arcanist",
+      "HeroPath": null,
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 5,
+      "actualBaseRpCost": 10,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 32,
+      "RPPaid": 10,
+      "RPAfter": 22,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete hearing-location/soft-confusion fixture with actual acquired Silence counterpart; ordinary Invisible never becomes sight.",
+    "initialState": {
+      "castAt": 0,
+      "field": "Center30ft from caster,20ft sphere, realLoE. Initially no Silence.",
+      "invisibleBody": "Independent legal Greater Invisibility supplied by a separate Wizard7 who pays7RP24→17,firstmatrixD0,concentration deadline59 fromcast−1; willing ordinary body20ft from hearing observerH, genuinely insideEchofield. It is visually unseen and initiallyHidden fromH; actual acousticpath unobstructed.",
+      "observers": "H has functioning hearing and is20ft from emitter. D is actually Deafened and hears none. Caster has no remote hearing or newly granted hidden-roster access.",
+      "confusedEnemy": "Separate genuinely perceived designated hostileE hears actual field noise inside, WIS+1 face7; no immunity.",
+      "silence": "At10 independent Wizard3 with real acquired/prepared Silence, actualV/S/F outside any prior acoustic block, pays3RP10→7,firstmatrixD0. Chooses a legalcenter20ft away; actual20ft sphere covers emitter,H andE. Concentration ends20 before natural70 expiry.",
+      "endingSave": "After20 E is again exposed/hearing; at its genuine regularEND WIS+1 face15 meets16."
+    },
+    "actionsAndResolution": [
+      "Echofield Wizard9 pays10RP32→22,DC16,D0; fixeddeadline60. H hears real proposedrustle and knows emitter's occupiedposition; that body cannot remainHidden fromH by Stealth while this audibleexposure persists. D learns no location from sound.",
+      "Body remainsInvisible and genuinelyunseen toH. BecauseH knowslocation, Invisible-onlyattackmodifiers end forH; Invisible alone cannot restore them. Actual independent darkness/smoke/Blinded still retain their own scopes. Sight-required targeting remains unavailable.",
+      "E fails7+1=8 vs16 and receives only the proposed hearing-dependent attack/hearing-check disadvantage while exposed. No ordinary Confusion spell table, compulsoryattack, Actionloss or hardguard is supplied.",
+      "Actual Silence10–20 blocks sound generation/paths in its sphere; H receives no new exposure sound there and E's hearing-dependent modifier is inactive. Existing ordinary knowledge is not erased, and the stored failedrecord/deadline is not refreshed.",
+      "After20 genuine hearing/exposure returns before60; E's failedrecord can supply its modifier again. At actualregularEND15+1=16 succeeds and permanently ends this cast's modifier forE. No extra-turn save or generic immunity to all other fields follows."
+    ],
+    "expectedFinalState": {
+      "EchofieldRP": 22,
+      "GreaterInvisibilityRP": 17,
+      "SilenceRP": 7,
+      "HKnowsLocation": true,
+      "HActuallySeesInvisibleBody": false,
+      "DRevealedBySound": false,
+      "InvisibleOnlyModifiersAgainstH": false,
+      "EInitialSave": 8,
+      "EFinalSave": 16,
+      "EConfusionEndedBySave": true,
+      "SilenceErasesKnowledge": false,
+      "newHardControlAllowanceConsumed": false,
+      "EchofieldExpiry": 60
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/8"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+        "pointer": "/records/9/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+        "pointer": "/spells/25/operationalCandidate"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+        "section": "Invisible and Deafened"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN6-03-A",
+    "spellId": "spectral-army",
+    "originalTextUnchanged": "IN6-03-A: An ally spends a real ranged attack and ammunition against one image, rolls below apparent AC 10, and still triggers its single blast after that attack roll. Three creatures are inside the 10-foot sphere. A shared roll of 23 produces 23 on a failed WIS save or 11 on success, before each recipient's defenses. Four undischarged images remain; the blast does not trigger them.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 11,
+      "stage": "Hero Spellbinder",
+      "HeroPath": "Spellbinder",
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 6,
+      "actualBaseRpCost": 13,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 40,
+      "RPPaid": 13,
+      "RPAfter": 27,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete five-image spell plus pre-admitted ordinary bow attack. The image-specific target exception and later-discharge root choice remain explicit NEW proposals.",
+    "initialState": {
+      "castAt": 0,
+      "caster": [
+        0,
+        0,
+        0
+      ],
+      "anchors": [
+        [
+          30,
+          0,
+          0
+        ],
+        [
+          38,
+          5,
+          0
+        ],
+        [
+          45,
+          0,
+          0
+        ],
+        [
+          50,
+          5,
+          0
+        ],
+        [
+          55,
+          0,
+          0
+        ]
+      ],
+      "geometry": "Five distinct nonoverlapping5ft imagecubes in empty space, each perceived within60/LoE. Three real creaturesA/B/C inside firstanchor10ft blast withanchorLoE; no other real recipient qualifies. Images are not creature recipients.",
+      "attacker": "Real ally legally holds ordinary bow and one ammunition, real AttackAction available, chosen firstimage in range/LoE under this proposal's ordinary-attack target exception. Modifier+5,die2, apparentAC10. No automatic hit benefit is supplied.",
+      "blast6d6": [
+        3,
+        4,
+        5,
+        2,
+        3,
+        6
+      ],
+      "targets": "A/B/C ordinary living HP100/100 each, noTempHP/Wounds/resistance or special source, WISsave modifiers+1/+2/+5 withfaces7/14/9. Caster has no operativeNull atdischarge.",
+      "sourceDeadline": 60
+    },
+    "actionsAndResolution": [
+      "Wizard11 pays13RP40→27,firstdistinctmatrixD0,DC16;concentration until60. None of fiveimages acts or suppliescompanion/weapon inventory.",
+      "Ally commits actualAction/ammunition, rolls2+5=7 againstapparentAC10, misses. The actualattackroll still consumes firstimage beforeblast; no weapon-hit/damage-dealt/on-kill hook arises againstimage.",
+      "UnderIP14-SPECTRAL-ROOT-08 this one laterdischarge usesoriginalcasterasdealer. Oneprivate shared6d6 pool totals23. Three actualrecipient roots snapshot thatcaster's currentNull=false, and independent saves resolve8fail/16success/14fail.",
+      "A takes23, Bfloor(23/2)=11, C23;HP77/89/77. None crosses halfmaxWound threshold orzero. Anyrequired laterconcentration handling would retainactualsource; theseordinarytargets have none.",
+      "Fourundischarged imagesremain. Even the second image within the blast hasnocreaturetarget, noattackrollagainst it, andnochain detonation. Maximumremainingdischarges4."
+    ],
+    "expectedFinalState": {
+      "RP": 27,
+      "attackTotal": 7,
+      "apparentAttackHit": false,
+      "ammunitionSpent": 1,
+      "consumedImages": 1,
+      "sharedDamage": 23,
+      "targetSaveTotals": [
+        8,
+        16,
+        14
+      ],
+      "targetDamage": [
+        23,
+        11,
+        23
+      ],
+      "targetHP": [
+        77,
+        89,
+        77
+      ],
+      "newWoundSaves": 0,
+      "remainingImages": 4,
+      "blastTriggeredOtherImage": false,
+      "newPrivatePoolPresentation": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "pointer": "/records/2/workedCases/0"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/9"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/50"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IN6-03-B",
+    "spellId": "spectral-army",
+    "originalTextUnchanged": "IN6-03-B: A True Seeing observer knows all five soldiers are images and can deliberately attack one. Identification prevents deception but not this explicitly separate psychic blast. Walking through another image does not detonate it. Ending concentration removes the four unused images quietly, with no corpse, loot, queued explosion or reusable discharge bank.",
+    "sourceActor": {
+      "class": "Wizard",
+      "classLevel": 11,
+      "stage": "Hero Spellbinder",
+      "HeroPath": "Spellbinder",
+      "INT": 18,
+      "CON": 14,
+      "PB": 4,
+      "schoolSpecialization": "Abjuration; no optional modifier invoked",
+      "actualSpellSchool": "Illusion",
+      "actualSpellRank": 6,
+      "actualBaseRpCost": 13,
+      "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+      "RPBefore": 40,
+      "RPPaid": 13,
+      "RPAfter": 27,
+      "saveDC": 16,
+      "DissonanceBefore": 0,
+      "DissonanceAfter": 0,
+      "firstDistinctPreparedMatrixThisEncounter": true,
+      "RefrainExtra": 0,
+      "availableActionCommitted": true,
+      "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+      "concentrationBefore": null,
+      "NullAtCast": false,
+      "optionalFeatureModifiersInvoked": false
+    },
+    "scope": "Complete independent pending True Seeing composition distinguishes illusion identification from separate damage and actualimage consumption.",
+    "initialState": {
+      "castAt": 0,
+      "army": "Same fivelegalfixedanchors and originalcasteroutsideblast as IN6-03-A; originalconcentration deadline60.",
+      "observerSource": "SeparateWizard11 genuinelyacquired/prepared pendingTrueSeeing:at−1 pays13RP40→27,firstmatrixD0,usableV/S/F;willingobserverwithin60,originaldeadline59. Actualunobstructedvisualaccess placesallfiveimageswithinrecipient60sense. This is pendingcohortcomposition, not a claim TrueSeeing is alreadyaccepted.",
+      "observerAttack": "At5 informedobserver legallyspends availableordinaryAttackAction/ammunition againstoneimage underSpectralArmy's NEWtargetexception;modifier+5,die18. It issole actualcreaturerecipient inthatblast,HP100/100,noTempHP/Wounds/resistance, WIS+4,die12.",
+      "blast6d6": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "movementAt": 8,
+      "movement": "Observeruses5ftofgenuinelyavailableordinarymovement towalkthroughanotherimage;noactualsolidbarrier.",
+      "endConcentrationAt": 10,
+      "casterNullAtDischarge": false
+    },
+    "actionsAndResolution": [
+      "SpectralArmyWizard11 pays13RP40→27,baseD0; fiveimagesestablish. ProposedTrueSeeing withinactualscope identifiesallfiveasfalsewithoutdispellingseparate damage entitlement.",
+      "At5 deliberateattack18+5=23 meetsapparentAC10, butimageisnotanactualcreature/object hit. Oneimageisconsumed;actualshared6d6=21. Save12+4=16 succeedsDC16;half floors10, HP100→90, noWound. Identification suppliesno psychicimmunity.",
+      "At8 ordinarywalkingthroughasecondimage makesnorealattackroll; itcontradictsimageappearance butconsumesnodischarge andproducesnodamage. Fourimagesstillremain.",
+      "Originalcastervoluntarilyendsconcentrationat10. Allfourremainingimageserasequietly withtheirunusedentitlements. No corpse,loot,queuedblast,newinventoryor reusable dischargebank remains."
+    ],
+    "expectedFinalState": {
+      "armyCasterRP": 27,
+      "TrueSeeingCasterRP": 27,
+      "identifiedImageCount": 5,
+      "attackTotal": 23,
+      "sharedDamage": 21,
+      "successfulSaveDamage": 10,
+      "observerHP": 90,
+      "afterWalkUndischargedImages": 4,
+      "concentrationEndedAt": 10,
+      "finalImages": 0,
+      "extraWalkBlast": false,
+      "queuedBlastsAfterEnding": 0,
+      "lootCreated": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+        "pointer": "/records/2/workedCases/1"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+        "pointer": "/engine/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/9"
+      }
+    ],
+    "runtimeExecuted": false
+  }
+]
+```
+
+## Complete supplemental cases
+
+```json
+[
+  {
+    "id": "IP14-N29",
+    "spellIds": [
+      "true-seeing"
+    ],
+    "scope": "Full actual pending Mental Prison/True Seeing source composition; each remains unadopted and no generic antimagic behavior is inferred.",
+    "sourceActors": {
+      "MentalPrison": "Wizard11 ArchArcanist/HeroSpellbinder,Abjuration specialization,INT18/PB4,DC16,real Enchantment placementrank6 acquired/prepared,Action/V/S/F,13RP40→27,first distinctmatrixD0,concentration original0–60.",
+      "TrueSeeing": "Independent Wizard11 same legal ability/source prerequisites with actual TrueSeeing placementrank6,13RP40→27,D0 at6,concentration deadline66. Target willingly consented in advance to this assistance; no compelled consent is inferred."
+    },
+    "initialState": {
+      "target": "Ordinary livingHP100/100,noTempHP/Wounds/mentaldefense/psychicresistance,notconcentrating. Perceivedwithin30/LoE tobothcasters;actualopaqueobjectsabsent.",
+      "initialINT": {
+        "face": 7,
+        "modifier": 1,
+        "DC": 16
+      },
+      "entry5d10": [
+        6,
+        6,
+        6,
+        5,
+        5
+      ],
+      "exit5d10": [
+        5,
+        5,
+        5,
+        5,
+        4
+      ],
+      "NullState": "Both actual damage events use a non-Null originalMentalPrisondealer; changing-Null mapping for that separate spell is not decided here."
+    },
+    "actionsAndResolution": [
+      "At0 MentalPrison paidcast resolves failedINT8<16. Its explicitbound targetoccupiedbox+5ft admits the subjective prison andoneentry5d10=28,HP100→72. Source usesrealconcentration;5d10 entry isnotanadditional10d10 event.",
+      "At6 real independentTrueSeeing paidcast reaches willingrecipient. Its proposed source-specific bridge identifies recipient's own subjective enclosure and ends that mentalstate; itdoesnot suppressMentalPrison likeantimagic.",
+      "Mark the one liveexitentitlement spent before independently rolledexit5d10=24,HP72→48. Both28 and24 are belowhalf100 and neitherreaches0, so noCoreWoundsave. The sum52 acrossdifferent events doesnot becomeone52damagepacket.",
+      "Prison ends withatmostoneentry/oneexit. No newlocation,forcedmovement,soulroute orpostmortempacket iscreated;TrueSeeingcontinuesuntil66 subjecttoitsownrules."
+    ],
+    "expectedFinalState": {
+      "MentalPrisonCasterRP": 27,
+      "TrueSeeingCasterRP": 27,
+      "entryDamage": 28,
+      "exitDamage": 24,
+      "totalAcrossTwoEvents": 52,
+      "targetHP": 48,
+      "damageEvents": 2,
+      "newWoundSaves": 0,
+      "exitEntitlementRemaining": 0,
+      "prisonEnded": true,
+      "TrueSeeingExpiry": 66,
+      "MentalPrisonAdoptedByFixture": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/6"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_rank6.json",
+        "pointer": "/records/4"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+        "pointer": "/entries/5"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IP14-N30",
+    "spellIds": [
+      "programmed-illusion"
+    ],
+    "scope": "Actual Detect Magic source boundary under explicit pending IP14-ARMED-DETECTION-09.",
+    "sourceActors": {
+      "program": "Wizard11 actual ProgrammedIllusionrank6,13RP40→27,DC16,D0,realV/S/FandAction,concentration deadline60;ordinary visiblecrossingtrigger and30sec knownscript.",
+      "detector": "IndependentWizard1 with genuineprepared/acquiredDetectMagic,rank1Divination,RP4,INT16/PB2,Action/V/S/F,2RP4→2,firstdistinctmatrixD0,concentration up to600sec from1. No specialhidden-trigger detector."
+    },
+    "initialState": {
+      "programAt": 0,
+      "DetectMagicAt": 1,
+      "geometry": "Detector has normaleyes/LoE and iswithin20ft of programcube/observationpoint. Beforeperformance no independentvisible/audibleactiveeffect orotherperceptionrevealsarmedanchor.",
+      "actualCrossingAt": 20,
+      "focusActionAt": 26,
+      "focusAction": "A real availableAction laterthanDetectMagiccast;no extraActiongranted."
+    },
+    "actionsAndResolution": [
+      "Programarmsat0 withoutimage/sound;DetectMagicpaidcastat1 suppliesonlyitsactualperceivedactiveaurapredicate. Underpending09 no automaticarmedanchor/aura orscript/owner/passwordreadoutiscreated.",
+      "At20 genuinelyobserveddoorcrossingfiresprogramonce. Actual visibleperformance within30ft isnow a perceivedactiveeffect;DetectMagiccanoutlineitsactiveaura throughrealLoE.",
+      "At26 detectorusesrealActiontofocusonthataura;unprotectedbroadIllusioncategoryonly. Itlearnsnoexactspellname/rank/owner/script/password orothershiddenfacts.",
+      "Performanceendsat50=min(20+30,60);DetectMagicdoesnotextend/rearmit. This doesnotgrant detectionofotherdormantmagic."
+    ],
+    "expectedFinalState": {
+      "programRP": 27,
+      "detectorRP": 2,
+      "armedAnchorAutomaticallyRevealed": false,
+      "visiblePerformanceAuraDetected": true,
+      "focusedCategory": "Illusion",
+      "secretTriggerOrOwnerRevealed": false,
+      "performanceEnd": 50,
+      "newGlobalDetectionPermission": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/13"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "pointer": "/spells/216/operational"
+      }
+    ],
+    "runtimeExecuted": false
+  },
+  {
+    "id": "IP14-N31",
+    "spellIds": [
+      "spectral-army"
+    ],
+    "scope": "Actual creature-only Ray of Frost cannot use the ordinary Attack Action image exception; no free hidden-eligibility diagnostic.",
+    "sourceActors": {
+      "army": "Wizard11 genuinepaid SpectralArmy13RP40→27,D0,concentration active,oneactual imagewithin5ft ofRaycaster.",
+      "ray": "Wizard1 withactualacquired/preparedRayofFrost rank0Evocation,Action/V/S usable,RP4 unchanged0cost,firstdistinctmatrixD0. Currentactualrange10ft, oneperceivedcreature;no specialimage-target permission."
+    },
+    "initialState": {
+      "branchK": "Caster has genuinely identifiedtheimageasfalse; noactualcreaturethere.",
+      "branchU": "Independent casterdoesnotknowimageisfalse;apparentbodyiswithin5ft/perceived/LoE. Hiddenactualnoncreatureeligibilityisnotafreeprecommitdiagnostic.",
+      "ordinaryWeaponComparison": "A separately genuine ordinaryAttackActionweaponattack maytargettheimageunder09,usingactualcosts;this grantsRaynoeligibility."
+    },
+    "actionsAndResolution": [
+      "BranchK hasobservablyillegalcreaturetargetbeforeRaycommitment; noAction/cadence/rollspent. Knownimagecannotserveascreatureforspellattack.",
+      "BranchU maymakeotherwiselegalapparentpaidcommitment:Actionspent,0RP,firstmatrixD0,normalV/S. Resolutionfindsnoactualcreaturerecipient beforetherealspellattackroll,soRaycreatesnoattackroll/damage/Speedrider. No specialtrueidentityorhiddenfailure-reasonreportisgranted.",
+      "Neitherbranchproduces theactualqualifyingordinaryAttackActionrollneededbySpectralArmy;imageisnotconsumed, no6d6blast. Thisdoesnotrefundthehiddenfailurecommitmentorcreateweapon-hitbenefits."
+    ],
+    "expectedFinalState": {
+      "knownBranchActionSpent": false,
+      "unknownBranchActionSpent": true,
+      "rayRPBothBranches": 4,
+      "rayAttackRolls": 0,
+      "imageDischarges": 0,
+      "newDamageRoots": 0,
+      "privateIdentityDiagnostic": false,
+      "spellTargetPredicateBypassed": false
+    },
+    "sourceRefs": [
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+        "pointer": "/spells/11"
+      },
+      {
+        "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+        "pointer": "/spells/411/operational"
+      }
+    ],
+    "runtimeExecuted": false
+  }
+]
+```
+
+## Original scenario texts, unchanged
+
+```json
+[
+  {
+    "spellId": "greater-invisibility",
+    "id": "IN4-01-A",
+    "exactOriginalText": "IN4-01-A: Bea receives the spell at t=0 with her worn armor and bow. She attacks at t=8; the revealing attack resolves before an observing guard learns her location. She remains Invisible, but that guard gains no continuing Invisible-specific disadvantage merely from her unseen appearance. The fired arrow becomes visible when released.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/0/workedCases/0"
+    }
+  },
+  {
+    "spellId": "greater-invisibility",
+    "id": "IN4-01-B",
+    "exactOriginalText": "IN4-01-B: At t=20 Bea picks up a visible key; it remains visible. Full effect suppression at t=30 suspends her concealment until t=40, but the original t=60 deadline and the guard’s knowledge persist. If the original caster starts another concentration spell at t=45, this record ends even if that new spell is countered.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/0/workedCases/1"
+    }
+  },
+  {
+    "spellId": "hallucinatory-terrain",
+    "id": "IN4-02-A",
+    "exactOriginalText": "IN4-02-A: A perceived natural ten-foot pit lies inside the chosen footprint. It is painted as ordinary ground, but a pole passes through the false surface and reveals that contradiction to its observer. Stepping there still invokes the real fall; successful Investigation creates neither support nor a safe route.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/1/workedCases/0"
+    }
+  },
+  {
+    "spellId": "hallucinatory-terrain",
+    "id": "IN4-02-B",
+    "exactOriginalText": "IN4-02-B: The center is 150 feet away and the chosen radius is 75 feet, giving a 150-foot span rather than a 150-foot radius. A wagon entering the area remains visible. A real stone wall remains a physical and sight barrier even if its surface has been painted with a grass-like appearance.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/1/workedCases/1"
+    }
+  },
+  {
+    "spellId": "mind-maze",
+    "id": "IN4-03-A",
+    "exactOriginalText": "IN4-03-A: Mind Maze resolves during Lio’s round-3 turn after he committed an attack. He fails WIS with an unused hard-control allowance. The committed attack finishes, but he cannot spend a later Bonus Action or resume voluntary movement. The state persists through his round-4 regular END; an extra turn before that does not release him.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/2/workedCases/0"
+    }
+  },
+  {
+    "spellId": "mind-maze",
+    "id": "IN4-03-B",
+    "exactOriginalText": "IN4-03-B: The same caster previously established a hard-denial effect on Lio this encounter. A new failed WIS save does not establish Mind Maze or invent a -1 fallback. Against another legal target, suppression can temporarily permit normal available actions, but never restores the already consumed hard-control allowance.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/2/workedCases/1"
+    }
+  },
+  {
+    "spellId": "illusory-clone",
+    "id": "IN4-04-A",
+    "exactOriginalText": "IN4-04-A: The clone appears twenty feet east of Arin. Arin walks ten feet north; if the corresponding image segment is legal, it also moves ten feet north. Arin then spends his Bonus Action to swap. His old space now contains only the image, his actual carried bow moves once, and no second body or new movement budget exists.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/3/workedCases/0"
+    }
+  },
+  {
+    "spellId": "illusory-clone",
+    "id": "IN4-04-B",
+    "exactOriginalText": "IN4-04-B: Arin has swapped in round 6. An extra turn or replacement clone cannot supply another round-6 swap. If an actual obstruction makes the destination illegal before resolution, the committed allowance stays spent. A later enemy attack is resolved against its genuinely selected legal target; the clone provides no random interception.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/3/workedCases/1"
+    }
+  },
+  {
+    "spellId": "greater-phantom-steed",
+    "id": "IN4-05-A",
+    "exactOriginalText": "IN4-05-A: A 170-pound rider, 25 pounds of gear and 10-pound tack total 205 pounds and 20.5 Load, within both capacities. Winged mode supplies Fly 40, but mounting and the owner’s actual command still precede the attached movement. The casting Action itself grants no immediate forty-foot flight.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/4/workedCases/0"
+    }
+  },
+  {
+    "spellId": "greater-phantom-steed",
+    "id": "IN4-05-B",
+    "exactOriginalText": "IN4-05-B: A Winged steed is forty feet above actual ground when full source suppression ends it. Rider and saddlebags remain at that height and use the existing Falling procedure; they are neither silently lowered nor deleted. A replacement costs a new legal cast and inherits the owner’s already spent command/offense history for that round.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/4/workedCases/1"
+    }
+  },
+  {
+    "spellId": "shadow-step",
+    "id": "IN4-06-A",
+    "exactOriginalText": "IN4-06-A: The caster stands wholly in darkness and can actually see a dark landing forty-five feet away using a sufficient existing sense. The space fits and is supported. One paid Action moves the caster and legally held gear, spending no Speed; a grappled creature stays behind and the real grapple relationship is reevaluated.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/5/workedCases/0"
+    }
+  },
+  {
+    "spellId": "shadow-step",
+    "id": "IN4-06-B",
+    "exactOriginalText": "IN4-06-B: The destination is only dimly lit, or magical darkness prevents every actual sense from perceiving its legal space. The attempt is observably illegal before commitment. If a real light is introduced only after a legal cast commits, resolution fails without refund or automatic search for another dark square.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+      "pointer": "/records/5/workedCases/1"
+    }
+  },
+  {
+    "spellId": "true-seeing",
+    "id": "IN6-01-A",
+    "exactOriginalText": "IN6-01-A: A willing ally 45 feet away receives True Seeing. It can see an actually exposed Invisible foe 50 feet from its own body in magical darkness; the caster's later distance is irrelevant. A second foe behind a stone wall is not revealed. The recipient gains neither a new targeting line through that wall nor the foe's name or alignment, and ordinary companions receive no shared sight.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+      "pointer": "/records/0/workedCases/0"
+    }
+  },
+  {
+    "spellId": "true-seeing",
+    "id": "IN6-01-B",
+    "exactOriginalText": "IN6-01-B: A creature in an operative transformed body is seen as both its current form and its underlying original appearance. Its current mechanical form and HP remain. Seeing through an ongoing private Mental Prison is the proposed mental departure and can trigger that prison's one live exit packet; it does not suppress that payload. An instantaneous rock-to-mud result does not reveal a complete geological history.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+      "pointer": "/records/0/workedCases/1"
+    }
+  },
+  {
+    "spellId": "mass-mirage",
+    "id": "IL5-01-A",
+    "exactOriginalText": "IL5-01-A: Six legal recipients are selected; five accept and one unwilling creature succeeds CHA. Five distinct disguises appear for their original hour, with no seventh replacement. One leaves range afterward and retains its shell, but dropping a disguised carried item ends that item's overlay immediately.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+      "pointer": "/records/7/workedCases/0"
+    }
+  },
+  {
+    "spellId": "mass-mirage",
+    "id": "IL5-01-B",
+    "exactOriginalText": "IL5-01-B: A shell resembles a heard captain's voice and silhouette. The recipient still cannot answer an unknown password or speak a language it does not know. A listener recognizes the voice overlay on an actual DC16Investigation success; this does not grant sight through a wall or expose the other five recipients.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+      "pointer": "/records/7/workedCases/1"
+    }
+  },
+  {
+    "spellId": "echofield",
+    "id": "IL5-03-A",
+    "exactOriginalText": "IL5-03-A: The field holds three eligible one-second snippets and the neutral1d3selects the second; one allowed origin replays it at no more than its real volume. A generated replay is tagged ineligible for every Echofield recorder, so overlapping fields cannot multiply it into infinite echoes or verbal spell casts.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+      "pointer": "/records/9/workedCases/0"
+    }
+  },
+  {
+    "spellId": "echofield",
+    "id": "IL5-03-B",
+    "exactOriginalText": "IL5-03-B: An invisible creature20feet from a hearing observer inside an unobstructed sound path emits the proposed rustle; its position is audible and Stealth cannot make it Hidden from that observer. It remains unseen. A Deafened observer learns no position from that sound, and a real Silence zone prevents both exposure and hearing-dependent confusion.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+      "pointer": "/records/9/workedCases/1"
+    }
+  },
+  {
+    "spellId": "seeming",
+    "id": "IL5-05-A",
+    "exactOriginalText": "IL5-05-A: Twelve genuinely perceived candidates fit within60feet/line of effect. Ten accept and two unwilling targets save; ten shells establish, rather than an invented six-creature maximum. A thirteenth arrival later gains nothing. Their real sizes, carried mass and expedition roster records remain unchanged.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+      "pointer": "/records/11/workedCases/0"
+    }
+  },
+  {
+    "spellId": "seeming",
+    "id": "IL5-05-B",
+    "exactOriginalText": "IL5-05-B: A disguised speaker still uses its actual voice. An observer who physically touches an apparent cloak where no real fabric exists recognizes that recipient's shell, without dispelling the other nine. At28,800elapsed seconds the original eight-hour shell expires even if it spent an hour suppressed.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+      "pointer": "/records/11/workedCases/1"
+    }
+  },
+  {
+    "spellId": "dream",
+    "id": "IL5-07-A",
+    "exactOriginalText": "IL5-07-A: A genuinely sleeping creature40feet away can receive a25-word known-language message through the normal legal line of effect. An awake creature pretending to sleep gets no message, but the paid caster receives no diagnostic that distinguishes pretense from an actual defense or failed reception. No reply or long-distance channel opens.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+      "pointer": "/records/13/workedCases/0"
+    }
+  },
+  {
+    "spellId": "dream",
+    "id": "IL5-07-B",
+    "exactOriginalText": "IL5-07-B: A sleeper fails WIS against Nightmare. It later awakens and makes a WIS/Survival check within the original hour; the one disadvantage rider is consumed, even when another source's advantage cancels it. No sleep hours, HP or long-rest reward are automatically removed, and an older unspent rider cannot be refreshed by another caster.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+      "pointer": "/records/13/workedCases/1"
+    }
+  },
+  {
+    "spellId": "spectral-army",
+    "id": "IN6-03-A",
+    "exactOriginalText": "IN6-03-A: An ally spends a real ranged attack and ammunition against one image, rolls below apparent AC 10, and still triggers its single blast after that attack roll. Three creatures are inside the 10-foot sphere. A shared roll of 23 produces 23 on a failed WIS save or 11 on success, before each recipient's defenses. Four undischarged images remain; the blast does not trigger them.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+      "pointer": "/records/2/workedCases/0"
+    }
+  },
+  {
+    "spellId": "spectral-army",
+    "id": "IN6-03-B",
+    "exactOriginalText": "IN6-03-B: A True Seeing observer knows all five soldiers are images and can deliberately attack one. Identification prevents deception but not this explicitly separate psychic blast. Walking through another image does not detonate it. Ending concentration removes the four unused images quietly, with no corpse, loot, queued explosion or reusable discharge bank.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+      "pointer": "/records/2/workedCases/1"
+    }
+  },
+  {
+    "spellId": "reality-fracture",
+    "id": "IN6-05-A",
+    "exactOriginalText": "IN6-05-A: Three sighted creatures inside the sphere fail INT and each sees a different overgrown-hall arrangement. An ally succeeds and sees the actual room. One failed observer attacks a genuinely visible foe inside the sphere with disadvantage; the image supplies no physical cover. An observer standing outside sees the real scene and receives no penalty simply for looking into it.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+      "pointer": "/records/4/workedCases/0"
+    }
+  },
+  {
+    "spellId": "reality-fracture",
+    "id": "IN6-05-B",
+    "exactOriginalText": "IN6-05-B: A failed observer spends an Action, succeeds on Investigation against DC 16 and identifies this cast. Leaving and reentering later does not demand another save or restore its penalty. Another failed observer merely hears the warning and can investigate on its own; it gains no automatic shared success. The caster never learns either observer's private memories or exact imagined arrangement.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+      "pointer": "/records/4/workedCases/1"
+    }
+  },
+  {
+    "spellId": "programmed-illusion",
+    "id": "IN6-06-A",
+    "exactOriginalText": "IN6-06-A: A program resolves at second 0 with a 30-second performance and a trigger when a visible person crosses the marked doorway. The first confirmed crossing occurs at second 50. The program can play only ten remaining seconds, ending at second 60; it does not receive a fresh 30-second performance or minute. Two simultaneous people crossing still trigger only that one firing.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+      "pointer": "/records/5/workedCases/0"
+    }
+  },
+  {
+    "spellId": "programmed-illusion",
+    "id": "IN6-06-B",
+    "exactOriginalText": "IN6-06-B: A password is spoken entirely while the trigger is suppressed and is therefore missed. Suppression later ends with 18 seconds left. A different declared persistent visual condition that is still truly observable may now trigger an unspent program, but the missed sound is not replayed. A copied voice can match the recorded sound without proving the speaker's identity or granting the caster a remote report.",
+    "sourceReference": {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+      "pointer": "/records/5/workedCases/1"
+    }
+  }
+]
+```
+
+## Actual complete case review
+
+```json
+{
+  "id": "DD-IP14-PART5-CASE-REVIEW-01",
+  "preservedOriginalScenarioCount": 28,
+  "currentCaseCount": 28,
+  "supplementalCaseCount": 3,
+  "originalTextExactMatchCount": 28,
+  "runtimeExecuted": false,
+  "currentCases": [
+    {
+      "id": "IN4-01-A",
+      "spellId": "greater-invisibility",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Persistent invisibility survives attacking; fired arrow becomes visible; observer knowledge can remove only Invisible-specific attack modifiers for that observer without supplying sight.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/0/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Invisible"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Hide/Search and unseen attacks, lines168-180"
+        }
+      ],
+      "completeOriginalScenario": "IN4-01-A: Bea receives the spell at t=0 with her worn armor and bow. She attacks at t=8; the revealing attack resolves before an observing guard learns her location. She remains Invisible, but that guard gains no continuing Invisible-specific disadvantage merely from her unseen appearance. The fired arrow becomes visible when released.",
+      "completeCurrentCase": {
+        "id": "IN4-01-A",
+        "spellId": "greater-invisibility",
+        "originalTextUnchanged": "IN4-01-A: Bea receives the spell at t=0 with her worn armor and bow. She attacks at t=8; the revealing attack resolves before an observing guard learns her location. She remains Invisible, but that guard gains no continuing Invisible-specific disadvantage merely from her unseen appearance. The fired arrow becomes visible when released.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Full pending spell-cast fixture followed by an explicitly pre-admitted ordinary bow attack; this vector tests observer timing and item custody, not weapon acquisition.",
+        "initialState": {
+          "castAt": 0,
+          "recipient": "Willing ordinary synthetic Bea within30ft, already wearing armor and carrying bow/ammunition legally; no defenses or other concealment.",
+          "observer": "Guard can perceive the subsequent bow attack evidence, has no qualifying invisibility sight and initially does not know Bea’s location.",
+          "bowAttackAt": 8,
+          "bowAttack": "Separately legal ordinary ranged attack against guard AC14; actual attack modifier+5, no independent advantage/disadvantage, ammunition1 available.",
+          "d20Faces": [
+            4,
+            12
+          ]
+        },
+        "actionsAndResolution": [
+          "Wizard7 pays7 RP24→17, first matrix baseD0, establishes concentration and Invisible until60.",
+          "At t8 pre-attack information gives Invisible-derived advantage:choose12+5=17, hit AC14 under the already admitted weapon attack. Its normal damage is outside this visibility vector.",
+          "Fired arrow leaves possession and is visible immediately. After the revealing attack, this guard learns location; Bea remains Invisible but loses only Invisible-derived attack modifiers against that observer.",
+          "A different observer that perceived no revealing evidence learns nothing. Subsequent sight-required spells still cannot select Bea on location knowledge alone."
+        ],
+        "expectedFinalState": {
+          "RP": 17,
+          "sourceExpiry": 60,
+          "BeaInvisible": true,
+          "guardKnowsLocation": true,
+          "guardSeesBea": false,
+          "InvisibleDerivedModifiersAgainstGuard": false,
+          "arrowInvisible": false,
+          "unobservingOtherControllerKnowledgeChanged": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/0/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+            "section": "Invisible"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Hide/Search and unseen attacks, lines168-180"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-01-B",
+      "spellId": "greater-invisibility",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Later key is not retroactively concealed; actual Lesser Antimagic suppresses only while operative; new concentration ends the old at commitment without refund/restoration.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/0/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Invisible"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "section": "Complete Lesser Antimagic procedure and AC5-ANTIMAGIC-IO-04"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/510/operational"
+        }
+      ],
+      "completeOriginalScenario": "IN4-01-B: At t=20 Bea picks up a visible key; it remains visible. Full effect suppression at t=30 suspends her concealment until t=40, but the original t=60 deadline and the guard’s knowledge persist. If the original caster starts another concentration spell at t=45, this record ends even if that new spell is countered.",
+      "completeCurrentCase": {
+        "id": "IN4-01-B",
+        "spellId": "greater-invisibility",
+        "originalTextUnchanged": "IN4-01-B: At t=20 Bea picks up a visible key; it remains visible. Full effect suppression at t=30 suspends her concealment until t=40, but the original t=60 deadline and the guard’s knowledge persist. If the original caster starts another concentration spell at t=45, this record ends even if that new spell is countered.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Full source/cure/independent suppression cast sequence; key pickup and observer knowledge are declared ordinary physical facts.",
+        "initialState": {
+          "sourceCastAt": 0,
+          "keyPickupAt": 20,
+          "key": "Visible ordinary external key not in initial gear set",
+          "suppression": "Independent Wizard9 with legally acquired/prepared Lesser Antimagic; INT18/PB4, usableV/S/F, cost10 RP32→22, first matrix baseD0. At30 manifests legal10ft-radius local suppression around Bea, original expiry90. Concentration voluntarily ends40.",
+          "replacementAt": 45
+        },
+        "actionsAndResolution": [
+          "Greater Invisibility Wizard7 originally paid7 RP24→17; picked-up key stays visible at20.",
+          "Lesser Antimagic suspends operative concealment30–40, with the original60 deadline still running; it is rank-unlimited local suppression. Ended suppression restores only still-eligible original gear/body expression, never the new key. Guard knowledge stays known.",
+          "At45 the original Wizard commits a separately acquired/prepared Minor Illusion sound mode:rank0/0RP, normal V/S, legal sound anchor within30, distinct first matrix. Its new concentration displaces Greater Invisibility at commitment.",
+          "No Counterspell is assumed or required. A separately legal counter would not restore displaced concentration."
+        ],
+        "expectedFinalState": {
+          "WizardRP": 17,
+          "suppressionWizardRP": 22,
+          "keyAlwaysVisible": true,
+          "GreaterInvisibilityEndedAt": 45,
+          "guardKnowledgeRetained": true,
+          "newMinorIllusionConcentration": true
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/0/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+            "section": "Invisible"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+            "section": "Complete Lesser Antimagic procedure and AC5-ANTIMAGIC-IO-04"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+            "pointer": "/spells/510/operational"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-02-A",
+      "spellId": "hallucinatory-terrain",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. False terrain never creates support; pole contradiction identifies the overlay personally. The preserved future fall is conditional only; this case does not fabricate a fall event.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/1/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Hide/Search and unseen attacks, lines168-180"
+        }
+      ],
+      "completeOriginalScenario": "IN4-02-A: A perceived natural ten-foot pit lies inside the chosen footprint. It is painted as ordinary ground, but a pole passes through the false surface and reveals that contradiction to its observer. Stepping there still invokes the real fall; successful Investigation creates neither support nor a safe route.",
+      "completeCurrentCase": {
+        "id": "IN4-02-A",
+        "spellId": "hallucinatory-terrain",
+        "originalTextUnchanged": "IN4-02-A: A perceived natural ten-foot pit lies inside the chosen footprint. It is painted as ordinary ground, but a pole passes through the false surface and reveals that contradiction to its observer. Stepping there still invokes the real fall; successful Investigation creates neither support nor a safe route.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Full pending terrain-image cast plus physical contradiction. A hypothetical step has the existing Falling procedure as a conditional consequence; no fall damage is invented.",
+        "initialState": {
+          "castAt": 0,
+          "center": [
+            40,
+            0,
+            0
+          ],
+          "radius": 30,
+          "verticalRange": [
+            -10,
+            10
+          ],
+          "realPit": "Visible natural10ft-wide pit with actual depth10 and actual legal terrain geometry known at cast. False visual ordinary ground covers only its perceived footprint.",
+          "observer": "Standing safely beside pit, functioning sight, actual pole held lawfully; personally observes pole pass through false surface at5."
+        },
+        "actionsAndResolution": [
+          "Wizard7 pays7 RP24→17,DC15; concentration deadline3600. Image supplies no mechanical support.",
+          "Personally witnessed conclusive pole contradiction identifies this false surface without an Investigation draw or automatic warning to unseen observers.",
+          "Observer remains supported. If a later independent movement actually steps into the unsupported pit, ordinary Falling starts from its true height; the image supplies no route, floor or damage immunity."
+        ],
+        "expectedFinalState": {
+          "RP": 17,
+          "oneObserverIdentified": true,
+          "investigationDraws": 0,
+          "actualPitDepth": 10,
+          "observerHPChanged": false,
+          "newSupportCreated": false,
+          "actualFallOccurredInThisVector": false,
+          "conditionalFutureFallNotPrevented": true
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/1/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Hide/Search and unseen attacks, lines168-180"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-02-B",
+      "spellId": "hallucinatory-terrain",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Source-specific continuous radius75/maximum-span150 and ±30 vertical bound are accepted for this spell only; real wall/collision/cover remain, false boulder grants none.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/1/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Hide/Search and unseen attacks, lines168-180"
+        }
+      ],
+      "completeOriginalScenario": "IN4-02-B: The center is 150 feet away and the chosen radius is 75 feet, giving a 150-foot span rather than a 150-foot radius. A wagon entering the area remains visible. A real stone wall remains a physical and sight barrier even if its surface has been painted with a grass-like appearance.",
+      "completeCurrentCase": {
+        "id": "IN4-02-B",
+        "spellId": "hallucinatory-terrain",
+        "originalTextUnchanged": "IN4-02-B: The center is 150 feet away and the chosen radius is 75 feet, giving a 150-foot span rather than a 150-foot radius. A wagon entering the area remains visible. A real stone wall remains a physical and sight barrier even if its surface has been painted with a grass-like appearance.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Full pending geometry fixture under explicit continuous digital interpretation; no global replacement of accepted historical grid templates.",
+        "initialState": {
+          "center": [
+            150,
+            0,
+            0
+          ],
+          "caster": [
+            0,
+            0,
+            0
+          ],
+          "radius": 75,
+          "heightBound": 30,
+          "fullInitialTerrainPerceptionAndCenterLoE": true,
+          "wagonAt": 10,
+          "wagon": "Actual independent vehicle enters; vehicle remains mechanically and visibly itself.",
+          "wall": "Actual opaque solid natural stone face present at composition; painted grass-like without removing collision or sight barrier."
+        },
+        "actionsAndResolution": [
+          "Wizard7 pays7 RP, center exactly150 feet is in range; authoring option uses maximum150 horizontal span, not150 radius.",
+          "Footprint extendsx75..225:only center targeting range is bounded150; the75radius itself does not silently become smaller at the far edge.",
+          "Wagon is not terrain and remains visible. Real stone remains opaque/solid even where its actual surface looks grassy. A falsely depicted boulder on empty terrain adds no actual cover/collision."
+        ],
+        "expectedFinalState": {
+          "RP": 17,
+          "centerDistance": 150,
+          "diameter": 150,
+          "xExtent": [
+            75,
+            225
+          ],
+          "realWallBlocksSight": true,
+          "realWallBlocksLoE": true,
+          "wagonConcealed": false,
+          "fakeBoulderPhysicalCover": false,
+          "sourceExpiry": 3600
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/1/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Hide/Search and unseen attacks, lines168-180"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN6-01-A",
+      "spellId": "true-seeing",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. True Seeing bypasses actual darkness/invisibility only within unobstructed sensory scope; a real opaque wall remains blocking. Conditional magical-darkness setup is not promoted into a new source.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/6"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+          "pointer": "/records/0/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Invisible"
+        }
+      ],
+      "completeOriginalScenario": "IN6-01-A: A willing ally 45 feet away receives True Seeing. It can see an actually exposed Invisible foe 50 feet from its own body in magical darkness; the caster's later distance is irrelevant. A second foe behind a stone wall is not revealed. The recipient gains neither a new targeting line through that wall nor the foe's name or alignment, and ordinary companions receive no shared sight.",
+      "completeCurrentCase": {
+        "id": "IN6-01-A",
+        "spellId": "true-seeing",
+        "originalTextUnchanged": "IN6-01-A: A willing ally 45 feet away receives True Seeing. It can see an actually exposed Invisible foe 50 feet from its own body in magical darkness; the caster's later distance is irrelevant. A second foe behind a stone wall is not revealed. The recipient gains neither a new targeting line through that wall nor the foe's name or alignment, and ordinary companions receive no shared sight.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "HeroPath": "Spellbinder",
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Divination",
+          "actualSpellRank": 6,
+          "actualBaseRpCost": 13,
+          "maximumLegalRank": 6,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Hero"
+        },
+        "scope": "Full pending True Seeing/G.Sight composition. The magical-darkness comparison is conditional on an independently admitted real darkness source; this fixture grants no new darkness spell.",
+        "initialState": {
+          "castAt": 0,
+          "recipientDistance": 45,
+          "recipient": "Willing actual ally with usable eyes and no Blinded; no shared-senses feature.",
+          "invisibleFoe": "An independently willing foe was previously given Greater Invisibility by another legal Wizard7:rank4cost7RP24→17,deadline58,concentration intact. Foe is50ft from recipient in unobstructed visual region.",
+          "secondFoe": "Behind an actual opaque stone wall.",
+          "darknessBranch": "Compare ordinary darkness to an independently operative actual magical-darkness illumination state without any extra Blinded record; source admission is a stated precondition."
+        },
+        "actionsAndResolution": [
+          "Wizard11 pays13 RP40→27; first distinct prepared rank6 matrix adds0baseD, concentration until60. Recipient-centered60ft sense covers foe50feet away.",
+          "Proposed two-placement union sees the exposed Invisible body through either stated darkness state; it produces no shared light or remote senses. Actual wall excludes second foe.",
+          "Moving caster beyond60 later does not end the established recipient-centered sense. Another companion without sharing gains no automatic sight; recipient death/actual suppression would follow the source’s own endpoint."
+        ],
+        "expectedFinalState": {
+          "RP": 27,
+          "recipientSenseRadius": 60,
+          "exposedFoeVisuallyPerceived": true,
+          "behindWallFoeRevealed": false,
+          "newNameOrAlignmentKnown": false,
+          "secondCompanionGainedSight": false,
+          "TrueSeeingExpiry": 60,
+          "ordinaryTargetLoENotExtended": true
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/6"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+            "pointer": "/records/0/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+            "section": "Invisible"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN6-01-B",
+      "spellId": "true-seeing",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Ongoing shapechange/transmutation exposes original appearance without reverting mechanics. The Mental Prison branch is conditional on that separate pending procedure and grants no full Mental Prison acceptance.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/6"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+          "pointer": "/records/0/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+          "pointer": "/spells/74/operationalCandidate"
+        }
+      ],
+      "completeOriginalScenario": "IN6-01-B: A creature in an operative transformed body is seen as both its current form and its underlying original appearance. Its current mechanical form and HP remain. Seeing through an ongoing private Mental Prison is the proposed mental departure and can trigger that prison's one live exit packet; it does not suppress that payload. An instantaneous rock-to-mud result does not reveal a complete geological history.",
+      "completeCurrentCase": {
+        "id": "IN6-01-B",
+        "spellId": "true-seeing",
+        "originalTextUnchanged": "IN6-01-B: A creature in an operative transformed body is seen as both its current form and its underlying original appearance. Its current mechanical form and HP remain. Seeing through an ongoing private Mental Prison is the proposed mental departure and can trigger that prison's one live exit packet; it does not suppress that payload. An instantaneous rock-to-mud result does not reveal a complete geological history.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "HeroPath": "Spellbinder",
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Divination",
+          "actualSpellRank": 6,
+          "actualBaseRpCost": 13,
+          "maximumLegalRank": 6,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Hero"
+        },
+        "scope": "Actual accepted Alter Self provides a concrete operative appearance adaptation. Original Mental Prison/instantaneous-material examples are retained as separate conditional interface obligations, not falsely counted as executed encounters.",
+        "initialState": {
+          "TrueSeeingCastAt": 0,
+          "alterSelfCaster": "Separate Wizard3 Abjuration-specialized INT18, genuine Alter Self rank2 Transmutation acquired/prepared, usableV/S/F; casts at-2 paying3 RP10→7,first matrix baseD0,concentration expiry58.",
+          "alterSelfChoice": "Appearance changes actual hair/coloration and one local facial proportion by5%, within actual anatomy/10%limit; same Medium body,HP20/20 and equipment unchanged.",
+          "observer": "True Seeing recipient with actual unobstructed visual access within60.",
+          "mentalPrisonBranch": "A separate real pending Mental Prison would need its own admission, remaining exit entitlement and agreed True Seeing bridge; not supplied or approved here.",
+          "instantMatterBranch": "A genuine completed instantaneous ordinary rock-to-mud result is a conditional composition precondition, not a newly granted conversion spell."
+        },
+        "actionsAndResolution": [
+          "True Seeing Wizard11 pays13 RP40→27 and maintains concentration. Proposed union presents actual current adapted appearance with underlying original appearance.",
+          "Alter Self remains operative:hair/proportion adaptation,HP20,anatomy and its58deadline are unchanged; identification neither dispels it nor changes identity records.",
+          "Original Mental Prison departure/one-live-exit-packet option remains explicitly pending for joint disposition. No damage result or automatic release is fabricated from this appearance example.",
+          "A completed ordinary-matter conversion has no ongoing false-form record to pierce; the sense supplies no geological or earlier transformation history."
+        ],
+        "expectedFinalState": {
+          "TrueSeeingRP": 27,
+          "AlterSelfRP": 7,
+          "adaptedHP": 20,
+          "adaptationStillActive": true,
+          "adaptationExpiry": 58,
+          "originalAppearanceVisibleOnlyToAuthorizedObserver": true,
+          "identityNameLearned": false,
+          "mentalPrisonOutcomeProven": false,
+          "instantMatterHistoryRecovered": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/6"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+            "pointer": "/records/0/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+            "pointer": "/spells/74/operationalCandidate"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-05-A",
+      "spellId": "greater-phantom-steed",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Three exclusive modes and IP14-STEED-LOAD-02 are accepted. 350 lb and 35 Load are separate caps; Medium body=6 Load only for this mount accounting; 23.5 Load is Burdened, reducing Winged40→30 and walk60→50.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/4"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/4/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "section": "Carrying and Load"
+        }
+      ],
+      "completeOriginalScenario": "IN4-05-A: A 170-pound rider, 25 pounds of gear and 10-pound tack total 205 pounds and 20.5 Load, within both capacities. Winged mode supplies Fly 40, but mounting and the owner’s actual command still precede the attached movement. The casting Action itself grants no immediate forty-foot flight.",
+      "completeCurrentCase": {
+        "id": "IN4-05-A",
+        "spellId": "greater-phantom-steed",
+        "originalTextUnchanged": "IN4-05-A: A 170-pound rider, 25 pounds of gear and 10-pound tack total 205 pounds and 20.5 Load, within both capacities. Winged mode supplies Fly 40, but mounting and the owner’s actual command still precede the attached movement. The casting Action itself grants no immediate forty-foot flight.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Pending complete source-cast and rider-capacity fixture under explicit NEW IP14-STEED-LOAD-02; no other mount rules amended.",
+        "initialState": {
+          "castAt": 0,
+          "mount": "Legal Large actual body in supported unoccupied10ft footprint within60/LoE; Winged chosen,AC14HP20,walk60Fly40noHover,deadline3600. WizardAbjuration specialization gives no ConjurationHP modifier.",
+          "rider": "Medium ordinary declared rider body170lb,walkingSpeed30,actual25lb gear and10lb tack with no printed Load; real adjacent5ft legal mount access.",
+          "baselineLedgers": "Owner Action andBA available,shared command unused; rider ordinary movement unspent30.",
+          "repertoire": "Greater Phantom Steed actually acquired and prepared atWizard7."
+        },
+        "actionsAndResolution": [
+          "Wizard7 commits Action/cost7 RP24→17,first distinct matrix baseD0,concentration until3600. Creation supplies no free movement.",
+          "Physical burden170+25+10=205lb. Under the proposed rider option:body6+gear2.5+tack1=9.5Load,below17.5,so noBurdened. The original20.5Load calculation is retained as history and is not silently reused.",
+          "A genuinely available rider movement opportunity spends15 of its30movement cost to mount;15 remains. No rider Action or newmovement is invented.",
+          "Only a separately valid owner regular-turnBA command can authorize ordinary attached-phase travel; maximum40 actual flight feet here if allmovement conditions remain legal. Mounting and ownercommand checkpoints may occur on different actual turns; castcreation never bypasses them.",
+          "Independent capacity branch adds140lb actual ordinary cargo withoutprintedLoad:345lb and23.5Load,still admissible butBurdened. WingedSpeed becomes30 andwalking50. Movementmode switching retains spent cost."
+        ],
+        "expectedFinalState": {
+          "RP": 17,
+          "mountHP": 20,
+          "originalPhysicalLb": 205,
+          "originalProposedLoad": 9.5,
+          "riderMovementCost": 15,
+          "riderRemainingMovement": 15,
+          "immediateCastFlight": 0,
+          "unburdenedWingedSpeed": 40,
+          "extraCargoPhysicalLb": 345,
+          "extraCargoLoad": 23.5,
+          "extraCargoWingedSpeed": 30,
+          "newInfiniteCarryingPermission": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/4"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/4/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+            "section": "Carrying and Load"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-05-B",
+      "spellId": "greater-phantom-steed",
+      "disposition": "PASS_AFTER_EXACT_PROCEDURE_REPAIR",
+      "rationale": "PASS AFTER /spells/4/procedure repair. Full creating-source suppression ends this Steed by explicit source-specific rule; rider then loses support and normal Falling yields the preserved 40-foot 2d6=7/Prone result. No AC5/AC6 summon-pause inheritance is claimed.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/4"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/4/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/2"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/36"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        }
+      ],
+      "completeOriginalScenario": "IN4-05-B: A Winged steed is forty feet above actual ground when full source suppression ends it. Rider and saddlebags remain at that height and use the existing Falling procedure; they are neither silently lowered nor deleted. A replacement costs a new legal cast and inherits the owner’s already spent command/offense history for that round.",
+      "completeCurrentCase": {
+        "id": "IN4-05-B",
+        "spellId": "greater-phantom-steed",
+        "originalTextUnchanged": "IN4-05-B: A Winged steed is forty feet above actual ground when full source suppression ends it. Rider and saddlebags remain at that height and use the existing Falling procedure; they are neither silently lowered nor deleted. A replacement costs a new legal cast and inherits the owner’s already spent command/offense history for that round.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Explicitly conditional on retaining this mount’s earlier NEW end-on-full-source-suppression option. Independent replacement branch supplies actual same-turn command/commitment sequence; no pause policy is silently chosen.",
+        "initialState": {
+          "source": "Legal previously cast Winged Greater Phantom Steed,Wizard7 original7RP24→17,concentration intact,actualdeadline3600,originalbodyHP20.",
+          "rider": "Synthetic significant ordinary riderHP100/100,noWounds,noTempHP,noresistance/noHover/norescue,nootherdamage; actual feet40ft above legal supportingground.",
+          "fullSuppressionAt": 20,
+          "suppressor": "Independent Wizard9,standing on a real supported40ft tower platform within10ft of chosen fieldcenter; Lesser Antimagic genuinely acquired/prepared,V/S/Fusable,Action/cost10RP32→22,first distinct matrixD0,concentration60sec. Entire steed body lies inside its real10ft sphere; outside caster alone is not the suppression test.",
+          "initiative": "Suppression resolves in slotK ofround4. That same slotKends at26 inround5; no reorder/extra-turn changes the fixedmarker.",
+          "allActualInterveningRescueOpportunities": "Passed without an independently legal intervention; nofreeactionisgranted.",
+          "impact2d6": [
+            3,
+            4
+          ]
+        },
+        "actionsAndResolution": [
+          "Under the separately pending end-on-suppression choice, actual creating-source suppression ends the mount at t=20 without damage or salvage. The real rider, tack and cargo remain at their actual positions.",
+          "The rider enters Falling immediately but does not immediately descend. The accepted Fall Marker is the end of slot K in the following regular round. Every participant retains its normal opportunity before that marker; the fixture assumes no successful intervention.",
+          "At t=26 descend 40 feet, within the ordinary 300-foot step limit, and land. Impact is min(10, floor(40/20)) = 2d6. Faces [3,4] give 7 bludgeoning damage: HP 100 to 93. Positive falling damage leaves the rider Prone. No Wound threshold or zero-HP state is reached.",
+          "Independent grounded replacement branch: before any suppression, the owner on its own regular turn first spends its Bonus Action to command the old steed, then uses its available Action to cast the replacement Greater Phantom Steed. The repeated matrix costs 7 RP, leaving 10 from 17. Base Dissonance 1 plus Refrain 1 yields Dissonance 2 after commitment. Concentration displaces the old source before the counter window. The new body has HP 20 and its own deadline, but the already spent command allowance stays spent. The old pending command does not transfer, and no new Bonus Action is granted."
+        ],
+        "expectedFinalState": {
+          "suppressionBranch": {
+            "mountEndedAt": 20,
+            "riderPositionAt20Height": 40,
+            "firstDescentAt": 26,
+            "descentFeet": 40,
+            "impactDice": 2,
+            "damage": 7,
+            "riderHP": 93,
+            "riderProne": true,
+            "tackOrCargoDeleted": false,
+            "corpseOrSalvageCreated": false,
+            "suppressorRP": 22
+          },
+          "independentReplacementBranch": {
+            "ownerRP": 10,
+            "Dissonance": 2,
+            "newSteedHP": 20,
+            "newCommandGranted": false,
+            "oldPendingCommandTransferred": false
+          }
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/4"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/4/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/2"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/36"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IL5-01-A",
+      "spellId": "mass-mirage",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Snapshot is up to six; willing targets accept, unwilling targets use CHA; there is no seventh enrollment. Dropped real gear remains real/visible.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/7"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "pointer": "/records/7/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+        }
+      ],
+      "completeOriginalScenario": "IL5-01-A: Six legal recipients are selected; five accept and one unwilling creature succeeds CHA. Five distinct disguises appear for their original hour, with no seventh replacement. One leaves range afterward and retains its shell, but dropping a disguised carried item ends that item's overlay immediately.",
+      "completeCurrentCase": {
+        "id": "IL5-01-A",
+        "spellId": "mass-mirage",
+        "originalTextUnchanged": "IL5-01-A: Six legal recipients are selected; five accept and one unwilling creature succeeds CHA. Five distinct disguises appear for their original hour, with no seventh replacement. One leaves range afterward and retains its shell, but dropping a disguised carried item ends that item's overlay immediately.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 9,
+          "stage": "Arch Arcanist",
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 5,
+          "actualBaseRpCost": 10,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 32,
+          "RPPaid": 10,
+          "RPAfter": 22,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete pending source cast and per-recipient shell/custody fixture; no social authentication or transformed inventory is inferred.",
+        "initialState": {
+          "castAt": 0,
+          "targets": "Six distinct genuinely perceived ordinary Medium recipients within60ft and caster LoE; each declared appearance fits its actual body/size. Five willing, sixth unwilling CHA modifier+1. No source defenses.",
+          "sixthSaveFace": 15,
+          "laterEvents": "Recipient1 walks beyond60ft at30; recipient2 drops its real initially possessed dagger at40 using a legal release. No extra action is supplied."
+        },
+        "actionsAndResolution": [
+          "Wizard9 pays10 RP32→22, first distinct prepared matrix baseD0, DC16. Nonconcentration source deadline3600.",
+          "Five willing recipients accept. Sixth15+1=16 succeeds CHA; no sixth shell and no seventh replacement enrollment.",
+          "Recipient1 keeps its existing shell after leaving range. Recipient2's actual dagger loses only its item overlay on leaving possession at40; its body shell and other legally held gear remain.",
+          "All original body sizes, mass, HP, inventory ownership and item usefulness remain actual. The drop creates no duplicate dagger or separate magical item."
+        ],
+        "expectedFinalState": {
+          "RP": 22,
+          "Dissonance": 0,
+          "activeShells": 5,
+          "sixthAffected": false,
+          "seventhReplacementAllowed": false,
+          "expiry": 3600,
+          "outOfRangeShellRetained": true,
+          "droppedDaggerDisguised": false,
+          "realDaggerCount": 1
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/7"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "pointer": "/records/7/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IL5-01-B",
+      "spellId": "mass-mirage",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Voice overlay can use actual sampled/generic utterance only and cannot confer password, language, credential or sight through a wall; recognition is observer/channel specific.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/7"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "pointer": "/records/7/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Available actions: Help; Core task check distinction"
+        }
+      ],
+      "completeOriginalScenario": "IL5-01-B: A shell resembles a heard captain's voice and silhouette. The recipient still cannot answer an unknown password or speak a language it does not know. A listener recognizes the voice overlay on an actual DC16Investigation success; this does not grant sight through a wall or expose the other five recipients.",
+      "completeCurrentCase": {
+        "id": "IL5-01-B",
+        "spellId": "mass-mirage",
+        "originalTextUnchanged": "IL5-01-B: A shell resembles a heard captain's voice and silhouette. The recipient still cannot answer an unknown password or speak a language it does not know. A listener recognizes the voice overlay on an actual DC16Investigation success; this does not grant sight through a wall or expose the other five recipients.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 9,
+          "stage": "Arch Arcanist",
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 5,
+          "actualBaseRpCost": 10,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 32,
+          "RPPaid": 10,
+          "RPAfter": 22,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete voice/visual channel fixture using a real Investigation task; appearance recognition does not create unseen identity knowledge.",
+        "initialState": {
+          "castAt": 0,
+          "recipient": "Willing Medium ally30ft away. Caster has personally heard captain's mundane voice and seen silhouette; ally knows Common but no other claimed language and does not know the private password.",
+          "observer": "At20ft from ally with functioning hearing and clear real acoustic path through doorway. Actual opaque wall blocks visual path; ordinary conversation arrives, no Silence. Observer INT/Investigation total modifier+4, Action available, relevant new vocal evidence.",
+          "taskDie": 12
+        },
+        "actionsAndResolution": [
+          "Wizard9 pays10 RP32→22, baseD0, establishes one-hour shell with sampled ordinary voice; no verbal-component substitution or amplification.",
+          "Ally speaks only actual known words. The sample supplies neither password nor unknown-language competence; recognition is not perfect voice authentication.",
+          "Observer spends Action to investigate actual vocal inconsistency:12+4=16 againstDC16, ordinary Success with no natural1/20 shift. It recognizes the voice overlay for this observer.",
+          "No visual sense passes the real wall; true face, undisclosed name and other recipients remain unknown. Identification does not globally dispel the shell or alter its3600 deadline."
+        ],
+        "expectedFinalState": {
+          "RP": 22,
+          "InvestigationTotal": 16,
+          "recognizedVoiceOverlay": true,
+          "wallBypassed": false,
+          "trueFaceSeen": false,
+          "passwordLearned": false,
+          "newLanguageGranted": false,
+          "otherRecipientsRevealed": false,
+          "shellDispelled": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/7"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "pointer": "/records/7/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Available actions: Help; Core task check distinction"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IL5-05-A",
+      "spellId": "seeming",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Seeming takes a finite any-number snapshot at commitment, not a six-target cap or future enrollment; each unwilling target independently saves.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/9"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "pointer": "/records/11/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+        }
+      ],
+      "completeOriginalScenario": "IL5-05-A: Twelve genuinely perceived candidates fit within60feet/line of effect. Ten accept and two unwilling targets save; ten shells establish, rather than an invented six-creature maximum. A thirteenth arrival later gains nothing. Their real sizes, carried mass and expedition roster records remain unchanged.",
+      "completeCurrentCase": {
+        "id": "IL5-05-A",
+        "spellId": "seeming",
+        "originalTextUnchanged": "IL5-05-A: Twelve genuinely perceived candidates fit within60feet/line of effect. Ten accept and two unwilling targets save; ten shells establish, rather than an invented six-creature maximum. A thirteenth arrival later gains nothing. Their real sizes, carried mass and expedition roster records remain unchanged.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 9,
+          "stage": "Arch Arcanist",
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 5,
+          "actualBaseRpCost": 10,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 32,
+          "RPPaid": 10,
+          "RPAfter": 22,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete finite twelve-target snapshot retaining the printed any-number promise; no future enrollment or six-target cap.",
+        "initialState": {
+          "castAt": 0,
+          "targets": "Exactly12 distinct personally perceived living ordinary recipients, legal caster LoE, all within60ft at commitment and resolution. Ten willing; two unwilling with CHA modifiers+0 and+2, faces16 and14. Each appearance fits actual body/same size category.",
+          "laterArrivalAt": 20,
+          "laterArrival": "Thirteenth creature enters the original region after resolution."
+        },
+        "actionsAndResolution": [
+          "Wizard9 pays10 RP32→22, baseD0, DC16. One finite initial ordered target list and all appearances fixed before saves.",
+          "Both unwilling totals16 succeed; exactly10 willing shells establish. All others remain unchanged. No replacement target is selected.",
+          "At20 the thirteenth creature gains nothing. The established10 shell deadlines remain28800; actual size, body mass, carried mass, custody and expedition roster remain unchanged."
+        ],
+        "expectedFinalState": {
+          "RP": 22,
+          "selectedRecipients": 12,
+          "establishedShells": 10,
+          "successfulCHA": [
+            16,
+            16
+          ],
+          "lateEnrollment": false,
+          "expiry": 28800,
+          "physicalOrRosterRecordsChanged": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/9"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "pointer": "/records/11/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IL5-05-B",
+      "spellId": "seeming",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Personal contradiction can identify one shell; actual Lesser Antimagic suppression does not reset the eight-hour clock. Historical longer-suppression language remains conditional rather than rewriting Lesser Antimagic.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/9"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "pointer": "/records/11/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/36"
+        }
+      ],
+      "completeOriginalScenario": "IL5-05-B: A disguised speaker still uses its actual voice. An observer who physically touches an apparent cloak where no real fabric exists recognizes that recipient's shell, without dispelling the other nine. At28,800elapsed seconds the original eight-hour shell expires even if it spent an hour suppressed.",
+      "completeCurrentCase": {
+        "id": "IL5-05-B",
+        "spellId": "seeming",
+        "originalTextUnchanged": "IL5-05-B: A disguised speaker still uses its actual voice. An observer who physically touches an apparent cloak where no real fabric exists recognizes that recipient's shell, without dispelling the other nine. At28,800elapsed seconds the original eight-hour shell expires even if it spent an hour suppressed.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 9,
+          "stage": "Arch Arcanist",
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 5,
+          "actualBaseRpCost": 10,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 32,
+          "RPPaid": 10,
+          "RPAfter": 22,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete personal contradiction and elapsed-deadline fixture. A real one-minute antimagic interval is used; the original one-hour suppression comparison remains conditional on a genuine hour-long source.",
+        "initialState": {
+          "castAt": 0,
+          "source": "Ten willing targets independently admitted as in IL5-05-A; no saves needed in this independent branch.",
+          "contradictionAt": 20,
+          "observer": "Functioning actual touch/sight witnesses its own hand pass through an apparent extra cloak fold where no real fabric exists; no forced contact action or permission is supplied.",
+          "actualSuppression": "Independent Wizard9 genuinely acquires/prepares Lesser Antimagic, pays10 RP32→22 at100, usableV/S/F, first matrixD0; valid10ft sphere covers recipient1. Maintains concentration until its actual160 deadline.",
+          "originalOneHourSuppressionBranch": "Conditional: an independently valid complete source must actually suppress this shell for3600 seconds. This vector does not grant a one-hour Lesser Antimagic duration."
+        },
+        "actionsAndResolution": [
+          "Seeming Wizard9 pays10 RP32→22, baseD0. Speech remains actual voice; this proposal adds no voice channel.",
+          "At20 conclusive personal contradiction recognizes only recipient1's false shell for that observer without an Investigation draw; the other9 shells remain independently unknown. No condition or HP changes.",
+          "Actual Lesser Antimagic suppresses recipient1 from100 through160; its original28800 deadline runs continuously. Unsuppression at160 restores eligible sensory expression, not a new8-hour duration.",
+          "At28800 expiry takes precedence and ends all still-live original shells. Conditional original-hour branch also expires at28800, if its stated real suppression source is independently supplied."
+        ],
+        "expectedFinalState": {
+          "RP": 22,
+          "suppressionWizardRP": 22,
+          "actualSuppressionSeconds": 60,
+          "personalRecognitionOnly": true,
+          "automaticInvestigationDraws": 0,
+          "voiceChanged": false,
+          "originalExpiry": 28800,
+          "deadlineAfterActualSuppression": 28800,
+          "conditionalHourSuppressionDoesNotRefresh": true,
+          "oneHourSuppressionSourceProvenHere": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/9"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "pointer": "/records/11/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "section": "Full preserved shared Mass Mirage/Seeming disguise shell"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/36"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IL5-07-A",
+      "spellId": "dream",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Message mode requires actual sleep, is capped at 25 words/6 seconds, creates no reply, authentication, compulsion or free hidden-sleep diagnostic.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/10"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "pointer": "/records/13/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        }
+      ],
+      "completeOriginalScenario": "IL5-07-A: A genuinely sleeping creature40feet away can receive a25-word known-language message through the normal legal line of effect. An awake creature pretending to sleep gets no message, but the paid caster receives no diagnostic that distinguishes pretense from an actual defense or failed reception. No reply or long-distance channel opens.",
+      "completeCurrentCase": {
+        "id": "IL5-07-A",
+        "spellId": "dream",
+        "originalTextUnchanged": "IL5-07-A: A genuinely sleeping creature40feet away can receive a25-word known-language message through the normal legal line of effect. An awake creature pretending to sleep gets no message, but the paid caster receives no diagnostic that distinguishes pretense from an actual defense or failed reception. No reply or long-distance channel opens.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 9,
+          "stage": "Arch Arcanist",
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 5,
+          "actualBaseRpCost": 10,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 32,
+          "RPPaid": 10,
+          "RPAfter": 22,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Independent actual-sleep and concealed-pretense branches with identical paid-caster information; subjective delivery is not a remote diagnostic.",
+        "initialState": {
+          "castAt": 0,
+          "target": "One perceived ordinary creature40ft away, clear LoE; no applicable mental defense. BranchS genuinely natural sleep; branchP secretly awake and pretending. Outer observed posture identical, sleep state genuinely hidden.",
+          "message": "Meet us at the old bridge after sunrise. Bring your own supplies and wait beside the western gate until the watch captain signals safe passage.",
+          "language": "Caster and genuine sleeper both actually know Common; no translation required.",
+          "mode": "Message selected before payment."
+        },
+        "actionsAndResolution": [
+          "Each independent branch uses Wizard9 Action, actualV/S/F and10RP32→22, first matrixD0; no concentration, no additional spell or query.",
+          "BranchS receives the25-word subjective message over no more than6 elapsed seconds while actual sleep continues. Apparent sender is unverified; no forced belief or perfect memory.",
+          "BranchP receives nothing because sleep predicate fails. Paid caster obtains no success/failure diagnostic distinguishing pretense, immunity or failed reception.",
+          "No reply, dream sight, memory extraction, soul/plane route or later queued delivery appears. Recipient may decline to engage; ordinary later recollection is not a guaranteed record."
+        ],
+        "expectedFinalState": {
+          "RPPerBranch": 22,
+          "messageWords": 25,
+          "branchSReceived": true,
+          "branchPReceived": false,
+          "maximumPresentationSeconds": 6,
+          "casterCanDistinguishBranches": false,
+          "replyChannel": false,
+          "queuedDelivery": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/10"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "pointer": "/records/13/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IL5-07-B",
+      "spellId": "dream",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. One failed Nightmare creates one next-WIS-ability-check entitlement; Help cancels disadvantage normally but declaration still consumes it. Cross-caster failure cannot refresh a pending rider.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/10"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "pointer": "/records/13/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Available actions: Help; Core task check distinction"
+        }
+      ],
+      "completeOriginalScenario": "IL5-07-B: A sleeper fails WIS against Nightmare. It later awakens and makes a WIS/Survival check within the original hour; the one disadvantage rider is consumed, even when another source's advantage cancels it. No sleep hours, HP or long-rest reward are automatically removed, and an older unspent rider cannot be refreshed by another caster.",
+      "completeCurrentCase": {
+        "id": "IL5-07-B",
+        "spellId": "dream",
+        "originalTextUnchanged": "IL5-07-B: A sleeper fails WIS against Nightmare. It later awakens and makes a WIS/Survival check within the original hour; the one disadvantage rider is consumed, even when another source's advantage cancels it. No sleep hours, HP or long-rest reward are automatically removed, and an older unspent rider cannot be refreshed by another caster.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 9,
+          "stage": "Arch Arcanist",
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 5,
+          "actualBaseRpCost": 10,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 32,
+          "RPPaid": 10,
+          "RPAfter": 22,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete Nightmare entitlement, real Help advantage cancellation, and independent second-caster nonrefresh fixture.",
+        "initialState": {
+          "castAt": 0,
+          "target": "Actual natural sleeper40ft away, perceived/LoE, WISsave modifier+1 and face7, no broader immunity. HP40/40, noWounds, noExhaustion.",
+          "wakeAt": 10,
+          "survivalCheck": "At120 target is awake and performs one actually warranted WIS/Survival task,modifier+3,DC12. An adjacent capable ally already spent its Action on physically possible assistance identifying real tracks; check occurs before that helper's next regular START.",
+          "checkDieAfterCancellation": 10,
+          "otherCasterAt": 30,
+          "otherCaster": "Independent Wizard9 legally acquired/prepared Dream Nightmare, Action/V/S/F,10RP32→22,first matrixD0; target has genuinely gone back to natural sleep before30 and fails its second WISsave8+1=9.",
+          "ordinaryWakeAgainAt": 40
+        },
+        "actionsAndResolution": [
+          "Original Wizard9 pays10 RP32→22, DC16, baseD0. Target7+1=8 fails; original subjective scene lasts at most6 and creates one next-WIS-ability-check entitlement with fixed3600 deadline.",
+          "At30 second caster's genuine failed-save Nightmare may establish its own short presentation, but the already unspent cross-caster rider is neither duplicated nor refreshed. Its deadline stays3600, not3630.",
+          "The real Help Action supplies advantage to the relevant upcoming Survival task before helper's next START. At120 declaring that check consumes the original rider even though its disadvantage cancels advantage. Roll one actuald20:10+3=13 meetsDC12; no natural shift.",
+          "The check is an ability task, not a save or passive score. HP,Exhaustion,sleep-hours and rest rewards are not automatically changed by this spell. No second queued rider remains."
+        ],
+        "expectedFinalState": {
+          "originalCasterRP": 22,
+          "secondCasterRP": 22,
+          "firstSaveTotal": 8,
+          "secondSaveTotal": 9,
+          "unrefreshedDeadline": 3600,
+          "actualTaskDice": 1,
+          "SurvivalTotal": 13,
+          "taskSuccess": true,
+          "riderSpentAt": 120,
+          "remainingDreamRiders": 0,
+          "HP": 40,
+          "Exhaustion": 0,
+          "restRewardAutomaticallyDenied": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/10"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "pointer": "/records/13/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Available actions: Help; Core task check distinction"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN6-06-A",
+      "spellId": "programmed-illusion",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Program has one firing, simultaneous matching observations still consume one firing, and the playback is clipped by the original 60-second source deadline.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/13"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+          "pointer": "/records/5/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        }
+      ],
+      "completeOriginalScenario": "IN6-06-A: A program resolves at second 0 with a 30-second performance and a trigger when a visible person crosses the marked doorway. The first confirmed crossing occurs at second 50. The program can play only ten remaining seconds, ending at second 60; it does not receive a fresh 30-second performance or minute. Two simultaneous people crossing still trigger only that one firing.",
+      "completeCurrentCase": {
+        "id": "IN6-06-A",
+        "spellId": "programmed-illusion",
+        "originalTextUnchanged": "IN6-06-A: A program resolves at second 0 with a 30-second performance and a trigger when a visible person crosses the marked doorway. The first confirmed crossing occurs at second 50. The program can play only ten remaining seconds, ending at second 60; it does not receive a fresh 30-second performance or minute. Two simultaneous people crossing still trigger only that one firing.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "stage": "Hero Spellbinder",
+          "HeroPath": "Spellbinder",
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 6,
+          "actualBaseRpCost": 13,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete one-fire fixed program with two simultaneous visible crossings; no new observation sense or cast is implied.",
+        "initialState": {
+          "castAt": 0,
+          "geometry": "Perceived fixed20ft cube centered30ft from caster with LoE. Trigger observation point lies inside, with ordinary visible doorway5ft away, genuine lighting and clear optical path.",
+          "trigger": "First visible person crossing the marked doorway after arming.",
+          "script": "Known nonadaptive visual greeting and ordinary conversational audio, predeclared30sec sequence wholly within cube.",
+          "crossingsAt": 50,
+          "crossings": "Two genuinely visible people cross simultaneously; neither Hidden/Invisible and no ambiguous perception."
+        },
+        "actionsAndResolution": [
+          "Wizard11 pays13 RP40→27, first distinct matrixD0, actualV/S/F; concentration and entire source deadline60. No output exists before triggering.",
+          "At50 one confirmed trigger sets firingSpent before playback. Both matching crossings share that one state, so no second instance fires.",
+          "Only min(30,60−50)=10 seconds of performance can occur; expiry at60 ends it before an event at exactly60. No fresh30-second or60-second clock starts.",
+          "There is no adaptive reply, remote report, creature/body, real light, item or spellcasting origin."
+        ],
+        "expectedFinalState": {
+          "RP": 27,
+          "sourceDeadline": 60,
+          "firingCount": 1,
+          "playbackStartedAt": 50,
+          "actualPlaybackSeconds": 10,
+          "playbackEndedAt": 60,
+          "rearmed": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/13"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+            "pointer": "/records/5/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN6-06-B",
+      "spellId": "programmed-illusion",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Independent programs are not an OR trigger. Suppressed observations are lost; a persistent state can trigger on resume; fired playback time continues during suppression with no replay.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/13"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+          "pointer": "/records/5/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/36"
+        }
+      ],
+      "completeOriginalScenario": "IN6-06-B: A password is spoken entirely while the trigger is suppressed and is therefore missed. Suppression later ends with 18 seconds left. A different declared persistent visual condition that is still truly observable may now trigger an unspent program, but the missed sound is not replayed. A copied voice can match the recorded sound without proving the speaker's identity or granting the caster a remote report.",
+      "completeCurrentCase": {
+        "id": "IN6-06-B",
+        "spellId": "programmed-illusion",
+        "originalTextUnchanged": "IN6-06-B: A password is spoken entirely while the trigger is suppressed and is therefore missed. Suppression later ends with 18 seconds left. A different declared persistent visual condition that is still truly observable may now trigger an unspent program, but the missed sound is not replayed. A copied voice can match the recorded sound without proving the speaker's identity or granting the caster a remote report.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "stage": "Hero Spellbinder",
+          "HeroPath": "Spellbinder",
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 6,
+          "actualBaseRpCost": 13,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Two independent program specifications preserve the original missed-password and persistent-state branches; one program is not silently given an OR or a second trigger.",
+        "initialState": {
+          "castAt": 0,
+          "programA": "Fixed cube/observation point as IN6-06-A; sole declared trigger is audible known password pattern. No visual alternative.",
+          "programB": "Independent alternative cast with sole declared trigger: ordinary visible red-cloaked figure standing in that actual doorway. No password required. This is not the same cast asA.",
+          "suppressor": "Independent Wizard9 genuinely acquired/prepared Lesser Antimagic, pays10RP32→22 at10 withV/S/F,first matrixD0 and valid10ft sphere covering entire observation point/image locus. It could last until70, but caster legally ends concentration at42.",
+          "passwordAt": 20,
+          "visualState": "In branchB the actual ordinarily visible red cloak is continuously present at42 and optical path/light permit confirmation.",
+          "laterMimic": "In branchA an actual ordinary speaker who has heard the password reproduces the matching audible pattern at45 through a real sound path; this is a genuine new sound, not a replay from suppression."
+        },
+        "actionsAndResolution": [
+          "Each program branch independently pays Wizard11 13RP40→27,first matrixD0,concentration originaldeadline60. Suppression10–42 makes observations unavailable without extending deadline.",
+          "Password at20 is missed. At42 branchA remains armed with18sec left and produces no sound from the old event. BranchB can observe its continuously true independently declared visual state now, spends its one firing and clips a30sec performance to18sec.",
+          "At45 branchA hears the genuine new matching imitation and spends its one firing; performance is clipped to15sec. Matching known sound proves no hidden identity. Neither branch sends caster a remote success report.",
+          "Both finish at60; no suppressed playback, extra firing, inventory recording object or fresh clock is granted."
+        ],
+        "expectedFinalState": {
+          "RPPerProgramBranch": 27,
+          "suppressorRPPerBranch": 22,
+          "suppressionEndsAt": 42,
+          "timeLeftAt42": 18,
+          "branchAFiredFromMissedEvent": false,
+          "branchAActualNewTriggerAt": 45,
+          "branchAPlaybackSeconds": 15,
+          "branchBTriggerAt": 42,
+          "branchBPlaybackSeconds": 18,
+          "eachFiringCount": 1,
+          "sourceExpiry": 60,
+          "speakerIdentityAuthenticated": false,
+          "remoteCasterReport": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/13"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+            "pointer": "/records/5/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/36"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-04-A",
+      "spellId": "illusory-clone",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Clone mirrors bounded self-powered movement only; the Bonus Action exchange uses real legal arrival and preserves actual gear/body distinction.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/3"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/3/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Movement ledger, teleportation and actual opportunity attacks"
+        }
+      ],
+      "completeOriginalScenario": "IN4-04-A: The clone appears twenty feet east of Arin. Arin walks ten feet north; if the corresponding image segment is legal, it also moves ten feet north. Arin then spends his Bonus Action to swap. His old space now contains only the image, his actual carried bow moves once, and no second body or new movement budget exists.",
+      "completeCurrentCase": {
+        "id": "IN4-04-A",
+        "spellId": "illusory-clone",
+        "originalTextUnchanged": "IN4-04-A: The clone appears twenty feet east of Arin. Arin walks ten feet north; if the corresponding image segment is legal, it also moves ten feet north. Arin then spends his Bonus Action to swap. His old space now contains only the image, his actual carried bow moves once, and no second body or new movement budget exists.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Complete cast, finite actual movement and own-turn swap. A legally carried bow is ordinary gear, not a cloned attack or second inventory.",
+        "initialState": {
+          "castAt": 0,
+          "round": 6,
+          "casterOrigin": [
+            0,
+            0,
+            0
+          ],
+          "imageOrigin": [
+            20,
+            0,
+            0
+          ],
+          "geometry": "Supported unobstructed ordinary level ground. Actual Medium caster and legal gear fit both locations; LoE and perception hold throughout.",
+          "ledgers": "Own regular turn, Action and Bonus Action available, walkingSpeed30 and spentMovement0; character-wide round6 swap allowance unused.",
+          "gear": "One actual lawfully carried bow; no other creature or mount is carried."
+        },
+        "actionsAndResolution": [
+          "Wizard7 commits Action/V/S/F and7RP24→17, first distinct prepared matrixD0, concentration until60. Clone appears20ft east, with no HP, attack, inventory, senses or defensive interception.",
+          "Caster walks10ft north using10 actual ordinary movement. Legal image translation mirrors the10ft vector:caster(0,10,0),image(20,10,0). Spent movement stays10.",
+          "Caster on same regular turn commits its real Bonus Action and round6 swap allowance. Arrival remains perceived, within20ft, supported and legal. Caster moves to(20,10,0), image to(0,10,0).",
+          "Swap spends no further Speed, creates no path traversal/opportunity attack and performs no second mirrored translation. Real bow changes position once with its owner; image depicts it without an inventory item."
+        ],
+        "expectedFinalState": {
+          "RP": 17,
+          "Dissonance": 0,
+          "casterPosition": [
+            20,
+            10,
+            0
+          ],
+          "imagePosition": [
+            0,
+            10,
+            0
+          ],
+          "spentMovement": 10,
+          "remainingMovement": 20,
+          "BonusActionSpent": true,
+          "round6SwapSpent": true,
+          "realBowCount": 1,
+          "realBodyCount": 1,
+          "imageHP": null,
+          "sourceExpiry": 60
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/3"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/3/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Movement ledger, teleportation and actual opportunity attacks"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-04-B",
+      "spellId": "illusory-clone",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. The numbered-round swap allowance is character-wide and is not refreshed by replacement/extra turns. Late prevention spends the already committed allowance/cost; conditional extra-turn facts grant no source.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/3"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/3/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Movement ledger, teleportation and actual opportunity attacks"
+        }
+      ],
+      "completeOriginalScenario": "IN4-04-B: Arin has swapped in round 6. An extra turn or replacement clone cannot supply another round-6 swap. If an actual obstruction makes the destination illegal before resolution, the committed allowance stays spent. A later enemy attack is resolved against its genuinely selected legal target; the clone provides no random interception.",
+      "completeCurrentCase": {
+        "id": "IN4-04-B",
+        "spellId": "illusory-clone",
+        "originalTextUnchanged": "IN4-04-B: Arin has swapped in round 6. An extra turn or replacement clone cannot supply another round-6 swap. If an actual obstruction makes the destination illegal before resolution, the committed allowance stays spent. A later enemy attack is resolved against its genuinely selected legal target; the clone provides no random interception.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Independent ledger and later-prevention branches; conditional extra-turn/obstruction premises grant no new source or event hook.",
+        "initialState": {
+          "baseline": "Original Wizard7 clone established earlier with7RP24→17 and original deadline60. Caster has already spent a valid round6 swap; no generic Reaction swap exists.",
+          "replacementBranch": "On its genuine round6 regular turn caster already used its BA to swap, then commits its still-available Action to cast a replacement clone.",
+          "conditionalExtraTurn": "If an independently authorized effect supplies a round6 extra turn, its actual source must be supplied separately; the clone grants none and its own-regular-turn predicate still applies.",
+          "latePreventionBranch": "Independent branch begins with round6 swap unused and all commitment prerequisites legal. A genuinely sourced intervening event makes the chosen destination illegal after BA/allowance commitment. This vector tests failure handling, not an invented barrier reaction.",
+          "enemyAttackBranch": "Later independent already legally selected ordinary attack against the real caster, AC14, modifier+5, die9; no other advantage/disadvantage or defense."
+        },
+        "actionsAndResolution": [
+          "Replacement branch commits7RP17→10. Same prepared matrix has actual base1 plus Refrain1, takingD0→2; old concentration ends at commitment. A genuinely established new clone retains the already-used character-wide round6 swap ledger and grants no BA.",
+          "Any independently granted extra turn or replacement identity leaves round6 swap spent. No round7 refresh is prematurely granted.",
+          "In independent late-prevention branch, real BA and swap allowance were already committed; failed arrival moves nothing and refunds neither. New legal space is not automatically selected.",
+          "The pre-admitted later attack rolls9+5=14 againstAC14 and hits its genuine real target. No random interception draw or illusory second target is inserted. This case does not claim damage or HP consequences beyond the admitted attack result."
+        ],
+        "expectedFinalState": {
+          "replacementRP": 10,
+          "replacementDissonance": 2,
+          "replacementGrantsNewSwap": false,
+          "replacementGrantsBA": false,
+          "conditionalExtraTurnRefreshesSwap": false,
+          "latePreventionMovesCaster": false,
+          "latePreventionRefunds": false,
+          "enemyAttackTotal": 14,
+          "enemyAttackHit": true,
+          "randomInterceptionDraws": 0
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/3"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/3/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Movement ledger, teleportation and actual opportunity attacks"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-06-A",
+      "spellId": "shadow-step",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Current12's repaired fixture has two real nonoverlapping Medium bodies whose boundaries only touch; destination gap is 40 ft > 5 ft reach, so caster-only teleport lawfully ends the grapple.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/5"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/5/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Movement ledger, teleportation and actual opportunity attacks"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+          "pointer": "/spells/75/operationalCandidate"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Grappled"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+          "section": "Size and occupied space; actual Medium5x5 footprint; measured height remains fixture input."
+        }
+      ],
+      "completeOriginalScenario": "IN4-06-A: The caster stands wholly in darkness and can actually see a dark landing forty-five feet away using a sufficient existing sense. The space fits and is supported. One paid Action moves the caster and legally held gear, spending no Speed; a grappled creature stays behind and the real grapple relationship is reevaluated.",
+      "completeCurrentCase": {
+        "id": "IN4-06-A",
+        "spellId": "shadow-step",
+        "originalTextUnchanged": "IN4-06-A: The caster stands wholly in darkness and can actually see a dark landing forty-five feet away using a sufficient existing sense. The space fits and is supported. One paid Action moves the caster and legally held gear, spending no Speed; a grappled creature stays behind and the real grapple relationship is reevaluated.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 21,
+          "RPPaid": 7,
+          "RPAfter": 14,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist",
+          "earlierActualSpell": {
+            "id": "darkvision",
+            "rank": 2,
+            "school": "Transmutation",
+            "RPBefore": 24,
+            "RPPaid": 3,
+            "RPAfter": 21,
+            "castAt": -6,
+            "expiry": 3594,
+            "concentration": false,
+            "firstDistinctMatrixDissonance": 0
+          }
+        },
+        "scope": "Complete actual Darkvision and Shadow Step composition. Main branch uses caster as the grappled body so both hands retain ordinary casting eligibility; original carried-victim implication is a separately scoped custody condition.",
+        "initialState": {
+          "castAt": 0,
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "destination": [
+            45,
+            0,
+            0
+          ],
+          "illumination": "Whole actual body at origin and destination lies in ordinary physical darkness. Genuine prior Darkvision60 lets caster perceive the landing as dim; it changes visual perception, not physical illumination. No magical darkness or new sense is assumed.",
+          "geometry": "Coordinates are occupied-body centers. Actual Medium caster and ordinary Medium grappler each have a 5x5ft footprint and measured height6ft (half-extents2.5,2.5,3). Supporting level floor is z=-3. Caster begins(0,0,0), grappler(0,5,0); their boundaries touch at y=2.5 without overlapping interiors, within the actual5ft grapple reach. Arrival(45,0,0) fits the caster and legal carried noncreature gear in real unoccupied supported space. Transparent glass occupies x20..20.25,y-10..10,z-3..10; it does not obscure the landing but would block an ordinary physical path. No relocation ward exists. The45ft destination is within both actual ranges; this spell-specific path exception remains proposed.",
+          "grapple": "Caster is in a preexisting ordinary Grappled relationship held by the distinct ordinary Medium body at(0,5,0), with actual reach5ft. Caster Speed0; no separate restraint or teleport prohibition. Both caster hands satisfy actual S/F. The grappler is an independent body and does not travel.",
+          "originalVictimBranch": "If caster instead maintains a grapple on another creature, the actual free-hand/focus prerequisites must independently hold; that creature still never becomes authorized carried cargo.",
+          "grapplerPosition": [
+            0,
+            5,
+            0
+          ],
+          "bodyGeometry": {
+            "casterHalfExtents": [
+              2.5,
+              2.5,
+              3
+            ],
+            "grapplerHalfExtents": [
+              2.5,
+              2.5,
+              3
+            ],
+            "supportFloorZ": -3,
+            "initialWholeBodyGap": 0,
+            "finalWholeBodyGap": 40,
+            "actualGrappleReach": 5,
+            "measuredHeightIsFixtureInput": true
+          }
+        },
+        "actionsAndResolution": [
+          "At−6 Wizard7 used a genuine acquired/prepared rank2 Darkvision Action/V/S/F on willing self:3RP24→21, first distinct matrixD0; no concentration, deadline3594, ordinary darkness only.",
+          "At0 actual Shadow Step Action/V/S/F pays7RP21→14, distinct prepared matrix firstuseD0. Both physical darkness predicates, actual arrival perception, supported fit and no ward hold.",
+          "Under this pending spell's explicit destination path exception, transparent intervening glass does not prevent the45ft relocation. This is source-specific new authorship, not a global teleport rule.",
+          "Actual caster and lawful noncreature belongings arrive once at(45,0,0). Speed0 does not prohibit this teleport; no Speed is spent and no ordinary opportunity attack occurs. The distinct grappler stays at(0,5,0). After arrival, the nearest distance between their actual occupied boxes is40ft, exceeding its ordinary5ft grapple reach, so that relationship ends. Neither creature occupied the other creature’s body before or after the move.",
+          "No second body, unseen destination, invisibility, damage rider, new budget or class-technique permission is supplied."
+        ],
+        "expectedFinalState": {
+          "RP": 14,
+          "Dissonance": 0,
+          "DarkvisionExpiry": 3594,
+          "casterPosition": [
+            45,
+            0,
+            0
+          ],
+          "otherCreaturePosition": [
+            0,
+            5,
+            0
+          ],
+          "speedSpentByTeleport": 0,
+          "grappleEndedByReach": true,
+          "ordinaryOpportunityAttackTriggered": false,
+          "InvisibleGranted": false,
+          "newActionGranted": false,
+          "finalWholeBodyGap": 40,
+          "bodiesOverlap": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/5"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/5/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Movement ledger, teleportation and actual opportunity attacks"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+            "pointer": "/spells/75/operationalCandidate"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+            "section": "Grappled"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+            "section": "Size and occupied space; actual Medium5x5 footprint; measured height remains fixture input."
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-06-B",
+      "spellId": "shadow-step",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Dim light is not physical darkness; magical darkness supplies no perception by itself. A genuinely authored late-light event may invalidate the paid destination, but the conditional premise does not invent that event.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/5"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/5/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Movement ledger, teleportation and actual opportunity attacks"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+          "pointer": "/spells/75/operationalCandidate"
+        }
+      ],
+      "completeOriginalScenario": "IN4-06-B: The destination is only dimly lit, or magical darkness prevents every actual sense from perceiving its legal space. The attempt is observably illegal before commitment. If a real light is introduced only after a legal cast commits, resolution fails without refund or automatic search for another dark square.",
+      "completeCurrentCase": {
+        "id": "IN4-06-B",
+        "spellId": "shadow-step",
+        "originalTextUnchanged": "IN4-06-B: The destination is only dimly lit, or magical darkness prevents every actual sense from perceiving its legal space. The attempt is observably illegal before commitment. If a real light is introduced only after a legal cast commits, resolution fails without refund or automatic search for another dark square.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 21,
+          "RPPaid": 7,
+          "RPAfter": 14,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist",
+          "earlierActualSpell": {
+            "id": "darkvision",
+            "rank": 2,
+            "school": "Transmutation",
+            "RPBefore": 24,
+            "RPPaid": 3,
+            "RPAfter": 21,
+            "castAt": -6,
+            "expiry": 3594,
+            "concentration": false,
+            "firstDistinctMatrixDissonance": 0
+          }
+        },
+        "scope": "Independent legality and postcommit-prevention branches; an unsourced new light action is not granted by this example.",
+        "initialState": {
+          "priorDarkvision": "Same actual rank2 self Darkvision preparation as IN4-06-A;RP21 before proposed Shadow Step, ordinary darkness sight60 and no magical-darkness penetration.",
+          "branchD": "Origin physicallydark; destination physicallydim, though clearly perceived. This is a known failed required illumination predicate.",
+          "branchM": "Origin physicallydark; actual magical darkness at destination defeats every actual current sense. This is a conditional independently operative darkness source, not a newly authored spell identity. Caster cannot perceive legal landing.",
+          "branchL": "Initially ordinarydark legalperceived supportedlanding45ft away. A real independently legal intervening light operation is assumed to change physical destination illumination only after Shadow Step commitment; no new Action/Reaction source is furnished here."
+        },
+        "actionsAndResolution": [
+          "BranchD orM is observably illegal before Shadow Step commitment:decline cast, no Shadow Step Action/7RP/strain spent. Earlier Darkvision costs remain paid, RP21. Mere recollection or aura does not replace current landing perception.",
+          "BranchL legally commits Action and7RP21→14,firstdistinctmatrixD0. At resolution whole arrival is no longer in physical darkness, so spell moves nothing. No refund or automatic dark-square search occurs.",
+          "Darkvision does not turn physicallydim light back into darkness and does not penetrate the branchM magical darkness. No generic counter-light immunity follows from the title."
+        ],
+        "expectedFinalState": {
+          "branchDShadowStepCommitted": false,
+          "branchMShadowStepCommitted": false,
+          "branchDAndMRP": 21,
+          "branchLCommitted": true,
+          "branchLRP": 14,
+          "branchLCasterMoved": false,
+          "replacementDestinationSelected": false,
+          "magicalDarknessPenetrationGranted": false,
+          "conditionalLateLightSourceProvenHere": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/5"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/5/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Movement ledger, teleportation and actual opportunity attacks"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+            "pointer": "/spells/75/operationalCandidate"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-03-A",
+      "spellId": "mind-maze",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Ordinary Ready is trigger-first: the completed bow shot happens before Mind Maze releases. The historical mid-resolution premise remains conditional and is not converted into an interrupt permission.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/2"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/2/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/8"
+        }
+      ],
+      "completeOriginalScenario": "IN4-03-A: Mind Maze resolves during Lio’s round-3 turn after he committed an attack. He fails WIS with an unused hard-control allowance. The committed attack finishes, but he cannot spend a later Bonus Action or resume voluntary movement. The state persists through his round-4 regular END; an extra turn before that does not release him.",
+      "completeCurrentCase": {
+        "id": "IN4-03-A",
+        "spellId": "mind-maze",
+        "originalTextUnchanged": "IN4-03-A: Mind Maze resolves during Lio’s round-3 turn after he committed an attack. He fails WIS with an unused hard-control allowance. The committed attack finishes, but he cannot spend a later Bonus Action or resume voluntary movement. The state persists through his round-4 regular END; an extra turn before that does not release him.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 24,
+          "RPPaid": 7,
+          "RPAfter": 17,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Concrete ordinary Ready release follows the completed observable attack. Original mid-resolution committed-attack branch is preserved as conditional and remains an explicit source-review obligation; generic Ready does not grant that interrupt.",
+        "initialState": {
+          "prepare": "Wizard7 has an actual regular round3 turn before Lio. Action available, Reaction available, no old concentration or Reaction prohibition. Readies Mind Maze with perceivable trigger: Lio completes its ordinary bow shot.",
+          "target": "Lio within30ft/perceived/LoE at release, WISsave+1, no applicable broader immunity, caster-to-Lio hard guard unused. A separately legal ordinary bow attack is observed to completion on Lio's round3 regular turn. Lio has not yet used its BA or remaining movement.",
+          "saveDie": 9,
+          "originalMidResolutionPremise": "An independent source must actually permit resolution after attack commitment but before that attack completes. No such interrupt source is established by the old sentence or ordinary Ready. If independently legal, Mind Maze does not cancel the committed attack."
+        },
+        "actionsAndResolution": [
+          "Wizard7 spends Action at preparation, pays7RP24→17,first matrixD0, actualV/S/F, counter window at preparation. Held Mind Maze requires concentration despite the released spell being nonconcentration. Ready expiry is caster's next regular START.",
+          "Lio's actual bow shot completes first. Then Wizard spends its real Reaction, rechecks target/range/LoE and releases without a second cost, cast or counter window. Save9+1=10 failsDC15; guard unused, so lost-round rider establishes. Hold concentration ends after release.",
+          "The rider prevents Lio's later new BA, Reaction and voluntary movement commitments on the remainder of round3 and through its next future regular END inround4. It neither rewinds the completed bow attack nor refunds spent movement.",
+          "Required saves and permitted speech/passives still function. No Stunned/Incapacitated/Paralyzed or automatic concentration loss is added. Any actually sourced extra turn before the endpoint gains no new permission and does not shorten it.",
+          "Original mid-resolution branch is not claimed to be reachable through this Ready. If a real separate interrupt is later identified, an already legally committed attack finishes under the unchanged proposed procedure."
+        ],
+        "expectedFinalState": {
+          "RP": 17,
+          "ReactionSpent": true,
+          "heldConcentrationEndedOnRelease": true,
+          "WISsaveTotal": 10,
+          "hardGuardConsumed": true,
+          "endMarker": "Lio next future regular END,round4",
+          "completedAttackRewound": false,
+          "remainingMovementRefunded": false,
+          "newBAAllowedWhileOperative": false,
+          "StunnedApplied": false,
+          "originalMidAttackInterruptSourceProven": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/2"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/2/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/8"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN4-03-B",
+      "spellId": "mind-maze",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Shared hard-denial guard is consumed only on genuine establishment; a later blocked rider has no fallback. Lesser Antimagic can suppress the live rider while its clock and guard history continue.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/2"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+          "pointer": "/records/2/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/8"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/36"
+        }
+      ],
+      "completeOriginalScenario": "IN4-03-B: The same caster previously established a hard-denial effect on Lio this encounter. A new failed WIS save does not establish Mind Maze or invent a -1 fallback. Against another legal target, suppression can temporarily permit normal available actions, but never restores the already consumed hard-control allowance.",
+      "completeCurrentCase": {
+        "id": "IN4-03-B",
+        "spellId": "mind-maze",
+        "originalTextUnchanged": "IN4-03-B: The same caster previously established a hard-denial effect on Lio this encounter. A new failed WIS save does not establish Mind Maze or invent a -1 fallback. Against another legal target, suppression can temporarily permit normal available actions, but never restores the already consumed hard-control allowance.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 7,
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 3,
+          "schoolSpecialization": "Abjuration; actual source school remains its recorded school",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 4,
+          "actualBaseRpCost": 7,
+          "maximumLegalRank": 4,
+          "spellbookAndMatrix": "Actual legal level-up acquisition and prepared matrix for this identity; no assumed access merely from available RP",
+          "RPBefore": 17,
+          "RPPaid": 7,
+          "RPAfter": 10,
+          "saveDC": 15,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 2,
+          "firstDistinctPreparedMatrixThisEncounter": false,
+          "RefrainExtra": 1,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands/voice/focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false,
+          "stage": "Arch Arcanist"
+        },
+        "scope": "Actual repeated same-source cast after an earlier ended Mind Maze, plus independent suppression branch using an actual paid Lesser Antimagic source.",
+        "initialState": {
+          "priorHistory": "Same Wizard7 successfully established an earlier Mind Maze on Lio inround1,paid7RP24→17,baseD0. It ended at Lio's round2 regular END; original source-character/target/encounter guard remains spent.",
+          "currentCast": "At Wizard's round3 regular turn, Lio within30ft/perceived/LoE, WIS+1,die6,no immunity. No new concentration or old hold.",
+          "independentOtherTargetBranch": "Reset to an independent scene: same legal Wizard7 startingRP24 uses first Mind Maze on a different unused-guard targetM, WIS+1,die6. Application resolves before M's upcoming regular turn; endpoint M's next future regular END.",
+          "suppression": "Independent Wizard9 with genuine Lesser Antimagic access/preparation, usableV/S/F and availableAction pays10RP32→22,first matrixD0. Its genuine10ft local sphere coversM after application and before M's upcoming regular START. Maintains concentration through M's END; no out-of-range caster-only cancellation assumed."
+        },
+        "actionsAndResolution": [
+          "Repeated Wizard7 cast pays7RP17→10 and base1+Refrain1=>D2. Lio6+1=7 failsDC15, but previously used guard blocks the entire lost-round state. No invented−1 or fallback rider appears.",
+          "Independent other-target scene pays7RP24→17,D0; M fails7 againstDC15 and new guard is consumed. Actual Lesser Antimagic then suppresses M's attached lost-round expression in its local field.",
+          "At M's genuine upcoming regular turn, suppressed rider does not prevent normal otherwise legal actions. It grants no extra budget, resets no previously spent resource and does not erase its guard history.",
+          "The original futureEND endpoint expires while suppression is still active. Ending the antimagic afterward cannot resurrect Mind Maze or rearm the used guard."
+        ],
+        "expectedFinalState": {
+          "repeatedCasterRP": 10,
+          "repeatedDissonance": 2,
+          "repeatedSaveTotal": 7,
+          "repeatedRiderEstablished": false,
+          "fallbackPenalty": null,
+          "independentCasterRP": 17,
+          "suppressorRP": 22,
+          "suppressedTargetGetsOnlyOrdinaryBudgets": true,
+          "originalEndpointStillExpires": true,
+          "guardRefundedBySuppression": false,
+          "riderReturnsAfterExpiry": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/2"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank4.json",
+            "pointer": "/records/2/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/8"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/36"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN6-05-A",
+      "spellId": "reality-fracture",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Each sighted observer receives one admission record and private bounded theme; only genuinely visible bodies retain silhouettes. Penalty is finite vision-dependent disadvantage, not target illegality or control.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/12"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+          "pointer": "/records/4/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Invisible"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Unseen attacks and observer-known Invisible exception"
+        }
+      ],
+      "completeOriginalScenario": "IN6-05-A: Three sighted creatures inside the sphere fail INT and each sees a different overgrown-hall arrangement. An ally succeeds and sees the actual room. One failed observer attacks a genuinely visible foe inside the sphere with disadvantage; the image supplies no physical cover. An observer standing outside sees the real scene and receives no penalty simply for looking into it.",
+      "completeCurrentCase": {
+        "id": "IN6-05-A",
+        "spellId": "reality-fracture",
+        "originalTextUnchanged": "IN6-05-A: Three sighted creatures inside the sphere fail INT and each sees a different overgrown-hall arrangement. An ally succeeds and sees the actual room. One failed observer attacks a genuinely visible foe inside the sphere with disadvantage; the image supplies no physical cover. An observer standing outside sees the real scene and receives no penalty simply for looking into it.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "stage": "Hero Spellbinder",
+          "HeroPath": "Spellbinder",
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 6,
+          "actualBaseRpCost": 13,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete private-scene and genuine-perception fixture; admitted attack resolves ordinary disadvantage without a hidden-body silhouette.",
+        "initialState": {
+          "castAt": 0,
+          "field": "Perceived center30ft from caster,20ft radius, clear centerLoE. Caster outside field; four ordinary sighted bodiesA/B/C/D inside, all actually eligible. Chosen known overgrown-hall theme.",
+          "initialINTs": {
+            "A": [
+              5,
+              1
+            ],
+            "B": [
+              8,
+              2
+            ],
+            "C": [
+              11,
+              0
+            ],
+            "D": [
+              14,
+              2
+            ]
+          },
+          "privateScenes": "A sees vines on north wall,B sees differing harmless leaf-colored furniture,C sees overgrowth on floor. Contents drawn only from chosen theme and actually accessible underlying scene; no memories read.",
+          "attack": "A makes a separately legal attack against genuinely visible foeB inside; modifier+5,AC14,disadvantagefaces[8,17], no independent advantage.",
+          "outsideObserver": "O remains outside the sphere and looks into it; ordinary actual sight is unobstructed.",
+          "hiddenBodyCondition": "If another body is genuinely visually unperceived, including Invisible with location known, its underlying absence from this observer's visual information remains. This branch grants no new invisibility cast."
+        },
+        "actionsAndResolution": [
+          "Wizard11 pays13RP40→27,first matrixD0,DC16; concentration originaldeadline60. A6,B10,C11 fail; D16 succeeds and personally identifies this cast.",
+          "A/B/C receive distinct private visual arrangements within the bounded theme;D sees actual scene. No player/controller receives another's scene or a private fact through this procedure.",
+          "A's pre-admitted vision-dependent attack uses lower8+5=13, missesAC14. No physical cover, collision or added target body comes from the rendered furnishings.",
+          "O outside field receives no field penalty merely for looking in. Actual hidden/Invisible visually unperceived bodies remain without silhouettes; known location alone does not become sight."
+        ],
+        "expectedFinalState": {
+          "RP": 27,
+          "failedObservers": [
+            "A",
+            "B",
+            "C"
+          ],
+          "identifiedObservers": [
+            "D"
+          ],
+          "privateScenes": 3,
+          "attackTotal": 13,
+          "attackHit": false,
+          "physicalCoverCreated": false,
+          "outsideObserverPenalized": false,
+          "unperceivedBodyRevealed": false,
+          "sourceExpiry": 60
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/12"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+            "pointer": "/records/4/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+            "section": "Invisible"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+            "section": "Unseen attacks and observer-known Invisible exception"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN6-05-B",
+      "spellId": "reality-fracture",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Investigation/contradiction/True Seeing recognition is personal; leave/re-enter resumes the observer record and ordinary warning does not identify for others.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/12"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+          "pointer": "/records/4/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        }
+      ],
+      "completeOriginalScenario": "IN6-05-B: A failed observer spends an Action, succeeds on Investigation against DC 16 and identifies this cast. Leaving and reentering later does not demand another save or restore its penalty. Another failed observer merely hears the warning and can investigate on its own; it gains no automatic shared success. The caster never learns either observer's private memories or exact imagined arrangement.",
+      "completeCurrentCase": {
+        "id": "IN6-05-B",
+        "spellId": "reality-fracture",
+        "originalTextUnchanged": "IN6-05-B: A failed observer spends an Action, succeeds on Investigation against DC 16 and identifies this cast. Leaving and reentering later does not demand another save or restore its penalty. Another failed observer merely hears the warning and can investigate on its own; it gains no automatic shared success. The caster never learns either observer's private memories or exact imagined arrangement.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "stage": "Hero Spellbinder",
+          "HeroPath": "Spellbinder",
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 6,
+          "actualBaseRpCost": 13,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete personal Investigation and preserved entry history; no global identification or scene disclosure.",
+        "initialState": {
+          "castAt": 0,
+          "source": "Same legal rank6 field geometry and complete independent cast fixture as IN6-05-A; observersA/B fail initialINT checks6 and10 againstDC16.",
+          "examinationAt": 12,
+          "A": "Available Action, functional sight and genuinely relevant accessible scene evidence; Investigationmodifier+4,die12.",
+          "movement": "A uses later actual legal movement to leave at18 and reenter at24, both before deadline60. No teleport/extra movement is granted.",
+          "B": "Hears A's mundane warning at13 but takes no Investigation Action and witnesses no conclusive contradiction."
+        },
+        "actionsAndResolution": [
+          "Wizard11 originally pays13RP40→27,baseD0,concentration until60.",
+          "At12 A spends real Action and rolls12+4=16 againstDC16, ordinary Success without natural shift. It personally identifies this entire cast and loses its visual penalty.",
+          "A's departure and reentry retain that same source/observer record: no repeat initialINT save, no new private scene and no restored penalty.",
+          "B's warning permits its own examination but grants no automatic success or additional Action. B remains affected while inside until its own identification/expiry/removal. Caster learns no observer memory or private scene through these events."
+        ],
+        "expectedFinalState": {
+          "RP": 27,
+          "AInvestigationTotal": 16,
+          "AIdentified": true,
+          "AInitialSaveCount": 1,
+          "AReentryPenalty": false,
+          "BIdentifiedByWarning": false,
+          "BAffectedWhileInside": true,
+          "casterReceivedMemories": false,
+          "casterReceivedPrivateScene": false,
+          "sourceExpiry": 60
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/12"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+            "pointer": "/records/4/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IL5-03-A",
+      "spellId": "echofield",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. IP14-ECHO-RNG-08 uses completed one-second snippets, stable completion/sequence/ordinal ordering, latest-six window, private snippet/origin draws, no empty draw, no reroll, no feedback and no DE4 sixth presentation.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/8"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "pointer": "/records/9/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        }
+      ],
+      "completeOriginalScenario": "IL5-03-A: The field holds three eligible one-second snippets and the neutral1d3selects the second; one allowed origin replays it at no more than its real volume. A generated replay is tagged ineligible for every Echofield recorder, so overlapping fields cannot multiply it into infinite echoes or verbal spell casts.",
+      "completeCurrentCase": {
+        "id": "IL5-03-A",
+        "spellId": "echofield",
+        "originalTextUnchanged": "IL5-03-A: The field holds three eligible one-second snippets and the neutral1d3selects the second; one allowed origin replays it at no more than its real volume. A generated replay is tagged ineligible for every Echofield recorder, so overlapping fields cannot multiply it into infinite echoes or verbal spell casts.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 9,
+          "stage": "Arch Arcanist",
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 5,
+          "actualBaseRpCost": 10,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 32,
+          "RPPaid": 10,
+          "RPAfter": 22,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete actual cast and finite private buffer/RNG fixture under explicit NEW IP14-ECHO-RNG-08; no sixth Fate disclosure entry.",
+        "initialState": {
+          "castAt": 0,
+          "center": [
+            30,
+            0,
+            0
+          ],
+          "geometry": "Perceived center within60 and LoE; fixed20ft sphere. No actual Silence or acoustic barrier on the chosen replay path.",
+          "sounds": [
+            {
+              "completedAt": 3,
+              "eventSequence": 10,
+              "snippetOrdinal": 1,
+              "content": "Actual known one-second spoken yes, center audibly receives it."
+            },
+            {
+              "completedAt": 4,
+              "eventSequence": 11,
+              "snippetOrdinal": 1,
+              "content": "Actual one-second bell tone, center audibly receives it."
+            },
+            {
+              "completedAt": 5,
+              "eventSequence": 12,
+              "snippetOrdinal": 1,
+              "content": "Actual one-second wood knock, center audibly receives it."
+            }
+          ],
+          "pulseAt": 6,
+          "privateSelection": 2,
+          "privateOrigin": 2,
+          "nextPulseAt": 12,
+          "noNewEligibleSoundsAfter5": true
+        },
+        "actionsAndResolution": [
+          "Wizard9 pays10RP32→22,first distinct matrixD0,DC16; field deadline60, no concentration. Initial empty recording creates neither draw nor replay.",
+          "At6 window(0,6] retains three completed snippets in order3/4/5. Private1d3 result2 selects actual bell tone; private1d6 result2 selects east offset5ft, actualpoint(35,0,0). Both draws are consumed once.",
+          "Replay volume cannot exceed original bell or ordinary shout. All emitted replay/rustle is source-tagged ineligible to this or another field, so no recursive capture or verbal spell operation follows.",
+          "At12 window(6,12] contains none of these old snippets. With no new sounds, no snippet/origin draw occurs; no stale sound is replayed. No buffer/roll information is separately disclosed."
+        ],
+        "expectedFinalState": {
+          "RP": 22,
+          "firstPulseAt0Draws": 0,
+          "at6EligibleSnippets": 3,
+          "at6SelectedEventSequence": 11,
+          "at6Origin": [
+            35,
+            0,
+            0
+          ],
+          "at6PrivateChoiceOperations": 2,
+          "at12EligibleSnippets": 0,
+          "at12ChoiceOperations": 0,
+          "replaysEnterRecorder": false,
+          "newSpellCastFromReplay": false,
+          "newFateDisclosureEntry": false,
+          "sourceExpiry": 60
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/8"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "pointer": "/records/9/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IL5-03-B",
+      "spellId": "echofield",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Audible rustle can establish position knowledge without sight; Deafened/Silence defeat the acoustic channel; confusion is soft and hearing-dependent with regular-END saves.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/8"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+          "pointer": "/records/9/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+          "pointer": "/spells/25/operationalCandidate"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Invisible and Deafened"
+        }
+      ],
+      "completeOriginalScenario": "IL5-03-B: An invisible creature20feet from a hearing observer inside an unobstructed sound path emits the proposed rustle; its position is audible and Stealth cannot make it Hidden from that observer. It remains unseen. A Deafened observer learns no position from that sound, and a real Silence zone prevents both exposure and hearing-dependent confusion.",
+      "completeCurrentCase": {
+        "id": "IL5-03-B",
+        "spellId": "echofield",
+        "originalTextUnchanged": "IL5-03-B: An invisible creature20feet from a hearing observer inside an unobstructed sound path emits the proposed rustle; its position is audible and Stealth cannot make it Hidden from that observer. It remains unseen. A Deafened observer learns no position from that sound, and a real Silence zone prevents both exposure and hearing-dependent confusion.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 9,
+          "stage": "Arch Arcanist",
+          "HeroPath": null,
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 5,
+          "actualBaseRpCost": 10,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 32,
+          "RPPaid": 10,
+          "RPAfter": 22,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete hearing-location/soft-confusion fixture with actual acquired Silence counterpart; ordinary Invisible never becomes sight.",
+        "initialState": {
+          "castAt": 0,
+          "field": "Center30ft from caster,20ft sphere, realLoE. Initially no Silence.",
+          "invisibleBody": "Independent legal Greater Invisibility supplied by a separate Wizard7 who pays7RP24→17,firstmatrixD0,concentration deadline59 fromcast−1; willing ordinary body20ft from hearing observerH, genuinely insideEchofield. It is visually unseen and initiallyHidden fromH; actual acousticpath unobstructed.",
+          "observers": "H has functioning hearing and is20ft from emitter. D is actually Deafened and hears none. Caster has no remote hearing or newly granted hidden-roster access.",
+          "confusedEnemy": "Separate genuinely perceived designated hostileE hears actual field noise inside, WIS+1 face7; no immunity.",
+          "silence": "At10 independent Wizard3 with real acquired/prepared Silence, actualV/S/F outside any prior acoustic block, pays3RP10→7,firstmatrixD0. Chooses a legalcenter20ft away; actual20ft sphere covers emitter,H andE. Concentration ends20 before natural70 expiry.",
+          "endingSave": "After20 E is again exposed/hearing; at its genuine regularEND WIS+1 face15 meets16."
+        },
+        "actionsAndResolution": [
+          "Echofield Wizard9 pays10RP32→22,DC16,D0; fixeddeadline60. H hears real proposedrustle and knows emitter's occupiedposition; that body cannot remainHidden fromH by Stealth while this audibleexposure persists. D learns no location from sound.",
+          "Body remainsInvisible and genuinelyunseen toH. BecauseH knowslocation, Invisible-onlyattackmodifiers end forH; Invisible alone cannot restore them. Actual independent darkness/smoke/Blinded still retain their own scopes. Sight-required targeting remains unavailable.",
+          "E fails7+1=8 vs16 and receives only the proposed hearing-dependent attack/hearing-check disadvantage while exposed. No ordinary Confusion spell table, compulsoryattack, Actionloss or hardguard is supplied.",
+          "Actual Silence10–20 blocks sound generation/paths in its sphere; H receives no new exposure sound there and E's hearing-dependent modifier is inactive. Existing ordinary knowledge is not erased, and the stored failedrecord/deadline is not refreshed.",
+          "After20 genuine hearing/exposure returns before60; E's failedrecord can supply its modifier again. At actualregularEND15+1=16 succeeds and permanently ends this cast's modifier forE. No extra-turn save or generic immunity to all other fields follows."
+        ],
+        "expectedFinalState": {
+          "EchofieldRP": 22,
+          "GreaterInvisibilityRP": 17,
+          "SilenceRP": 7,
+          "HKnowsLocation": true,
+          "HActuallySeesInvisibleBody": false,
+          "DRevealedBySound": false,
+          "InvisibleOnlyModifiersAgainstH": false,
+          "EInitialSave": 8,
+          "EFinalSave": 16,
+          "EConfusionEndedBySave": true,
+          "SilenceErasesKnowledge": false,
+          "newHardControlAllowanceConsumed": false,
+          "EchofieldExpiry": 60
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/8"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_illusion_rank5.json",
+            "pointer": "/records/9/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+            "pointer": "/spells/25/operationalCandidate"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+            "section": "Invisible and Deafened"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN6-03-A",
+      "spellId": "spectral-army",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. A genuine ordinary Attack Action weapon roll hit or miss consumes one image; one private shared 6d6 pool resolves recipient-specific WIS applications and damage roots; no Wound event is fabricated and no chain detonation occurs.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+          "pointer": "/records/2/workedCases/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/9"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/50"
+        }
+      ],
+      "completeOriginalScenario": "IN6-03-A: An ally spends a real ranged attack and ammunition against one image, rolls below apparent AC 10, and still triggers its single blast after that attack roll. Three creatures are inside the 10-foot sphere. A shared roll of 23 produces 23 on a failed WIS save or 11 on success, before each recipient's defenses. Four undischarged images remain; the blast does not trigger them.",
+      "completeCurrentCase": {
+        "id": "IN6-03-A",
+        "spellId": "spectral-army",
+        "originalTextUnchanged": "IN6-03-A: An ally spends a real ranged attack and ammunition against one image, rolls below apparent AC 10, and still triggers its single blast after that attack roll. Three creatures are inside the 10-foot sphere. A shared roll of 23 produces 23 on a failed WIS save or 11 on success, before each recipient's defenses. Four undischarged images remain; the blast does not trigger them.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "stage": "Hero Spellbinder",
+          "HeroPath": "Spellbinder",
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 6,
+          "actualBaseRpCost": 13,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete five-image spell plus pre-admitted ordinary bow attack. The image-specific target exception and later-discharge root choice remain explicit NEW proposals.",
+        "initialState": {
+          "castAt": 0,
+          "caster": [
+            0,
+            0,
+            0
+          ],
+          "anchors": [
+            [
+              30,
+              0,
+              0
+            ],
+            [
+              38,
+              5,
+              0
+            ],
+            [
+              45,
+              0,
+              0
+            ],
+            [
+              50,
+              5,
+              0
+            ],
+            [
+              55,
+              0,
+              0
+            ]
+          ],
+          "geometry": "Five distinct nonoverlapping5ft imagecubes in empty space, each perceived within60/LoE. Three real creaturesA/B/C inside firstanchor10ft blast withanchorLoE; no other real recipient qualifies. Images are not creature recipients.",
+          "attacker": "Real ally legally holds ordinary bow and one ammunition, real AttackAction available, chosen firstimage in range/LoE under this proposal's ordinary-attack target exception. Modifier+5,die2, apparentAC10. No automatic hit benefit is supplied.",
+          "blast6d6": [
+            3,
+            4,
+            5,
+            2,
+            3,
+            6
+          ],
+          "targets": "A/B/C ordinary living HP100/100 each, noTempHP/Wounds/resistance or special source, WISsave modifiers+1/+2/+5 withfaces7/14/9. Caster has no operativeNull atdischarge.",
+          "sourceDeadline": 60
+        },
+        "actionsAndResolution": [
+          "Wizard11 pays13RP40→27,firstdistinctmatrixD0,DC16;concentration until60. None of fiveimages acts or suppliescompanion/weapon inventory.",
+          "Ally commits actualAction/ammunition, rolls2+5=7 againstapparentAC10, misses. The actualattackroll still consumes firstimage beforeblast; no weapon-hit/damage-dealt/on-kill hook arises againstimage.",
+          "UnderIP14-SPECTRAL-ROOT-08 this one laterdischarge usesoriginalcasterasdealer. Oneprivate shared6d6 pool totals23. Three actualrecipient roots snapshot thatcaster's currentNull=false, and independent saves resolve8fail/16success/14fail.",
+          "A takes23, Bfloor(23/2)=11, C23;HP77/89/77. None crosses halfmaxWound threshold orzero. Anyrequired laterconcentration handling would retainactualsource; theseordinarytargets have none.",
+          "Fourundischarged imagesremain. Even the second image within the blast hasnocreaturetarget, noattackrollagainst it, andnochain detonation. Maximumremainingdischarges4."
+        ],
+        "expectedFinalState": {
+          "RP": 27,
+          "attackTotal": 7,
+          "apparentAttackHit": false,
+          "ammunitionSpent": 1,
+          "consumedImages": 1,
+          "sharedDamage": 23,
+          "targetSaveTotals": [
+            8,
+            16,
+            14
+          ],
+          "targetDamage": [
+            23,
+            11,
+            23
+          ],
+          "targetHP": [
+            77,
+            89,
+            77
+          ],
+          "newWoundSaves": 0,
+          "remainingImages": 4,
+          "blastTriggeredOtherImage": false,
+          "newPrivatePoolPresentation": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+            "pointer": "/records/2/workedCases/0"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/9"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/50"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IN6-03-B",
+      "spellId": "spectral-army",
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. True Seeing identifies false images but does not erase the spell's independently specified psychic discharge; walking/examination does not detonate; concentration ending erases remaining images.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+          "pointer": "/records/2/workedCases/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/9"
+        }
+      ],
+      "completeOriginalScenario": "IN6-03-B: A True Seeing observer knows all five soldiers are images and can deliberately attack one. Identification prevents deception but not this explicitly separate psychic blast. Walking through another image does not detonate it. Ending concentration removes the four unused images quietly, with no corpse, loot, queued explosion or reusable discharge bank.",
+      "completeCurrentCase": {
+        "id": "IN6-03-B",
+        "spellId": "spectral-army",
+        "originalTextUnchanged": "IN6-03-B: A True Seeing observer knows all five soldiers are images and can deliberately attack one. Identification prevents deception but not this explicitly separate psychic blast. Walking through another image does not detonate it. Ending concentration removes the four unused images quietly, with no corpse, loot, queued explosion or reusable discharge bank.",
+        "sourceActor": {
+          "class": "Wizard",
+          "classLevel": 11,
+          "stage": "Hero Spellbinder",
+          "HeroPath": "Spellbinder",
+          "INT": 18,
+          "CON": 14,
+          "PB": 4,
+          "schoolSpecialization": "Abjuration; no optional modifier invoked",
+          "actualSpellSchool": "Illusion",
+          "actualSpellRank": 6,
+          "actualBaseRpCost": 13,
+          "actualAcquisition": "Identity genuinely acquired and matrix prepared through legal Wizard repertoire; RP alone grants no access.",
+          "RPBefore": 40,
+          "RPPaid": 13,
+          "RPAfter": 27,
+          "saveDC": 16,
+          "DissonanceBefore": 0,
+          "DissonanceAfter": 0,
+          "firstDistinctPreparedMatrixThisEncounter": true,
+          "RefrainExtra": 0,
+          "availableActionCommitted": true,
+          "usableComponents": "Actual V/S/F with lawful hands, voice and focus",
+          "concentrationBefore": null,
+          "NullAtCast": false,
+          "optionalFeatureModifiersInvoked": false
+        },
+        "scope": "Complete independent pending True Seeing composition distinguishes illusion identification from separate damage and actualimage consumption.",
+        "initialState": {
+          "castAt": 0,
+          "army": "Same fivelegalfixedanchors and originalcasteroutsideblast as IN6-03-A; originalconcentration deadline60.",
+          "observerSource": "SeparateWizard11 genuinelyacquired/prepared pendingTrueSeeing:at−1 pays13RP40→27,firstmatrixD0,usableV/S/F;willingobserverwithin60,originaldeadline59. Actualunobstructedvisualaccess placesallfiveimageswithinrecipient60sense. This is pendingcohortcomposition, not a claim TrueSeeing is alreadyaccepted.",
+          "observerAttack": "At5 informedobserver legallyspends availableordinaryAttackAction/ammunition againstoneimage underSpectralArmy's NEWtargetexception;modifier+5,die18. It issole actualcreaturerecipient inthatblast,HP100/100,noTempHP/Wounds/resistance, WIS+4,die12.",
+          "blast6d6": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "movementAt": 8,
+          "movement": "Observeruses5ftofgenuinelyavailableordinarymovement towalkthroughanotherimage;noactualsolidbarrier.",
+          "endConcentrationAt": 10,
+          "casterNullAtDischarge": false
+        },
+        "actionsAndResolution": [
+          "SpectralArmyWizard11 pays13RP40→27,baseD0; fiveimagesestablish. ProposedTrueSeeing withinactualscope identifiesallfiveasfalsewithoutdispellingseparate damage entitlement.",
+          "At5 deliberateattack18+5=23 meetsapparentAC10, butimageisnotanactualcreature/object hit. Oneimageisconsumed;actualshared6d6=21. Save12+4=16 succeedsDC16;half floors10, HP100→90, noWound. Identification suppliesno psychicimmunity.",
+          "At8 ordinarywalkingthroughasecondimage makesnorealattackroll; itcontradictsimageappearance butconsumesnodischarge andproducesnodamage. Fourimagesstillremain.",
+          "Originalcastervoluntarilyendsconcentrationat10. Allfourremainingimageserasequietly withtheirunusedentitlements. No corpse,loot,queuedblast,newinventoryor reusable dischargebank remains."
+        ],
+        "expectedFinalState": {
+          "armyCasterRP": 27,
+          "TrueSeeingCasterRP": 27,
+          "identifiedImageCount": 5,
+          "attackTotal": 23,
+          "sharedDamage": 21,
+          "successfulSaveDamage": 10,
+          "observerHP": 90,
+          "afterWalkUndischargedImages": 4,
+          "concentrationEndedAt": 10,
+          "finalImages": 0,
+          "extraWalkBlast": false,
+          "queuedBlastsAfterEnding": 0,
+          "lootCreated": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_necromancy_rank6.json",
+            "pointer": "/records/2/workedCases/1"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+            "pointer": "/engine/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/9"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    }
+  ],
+  "supplementalCases": [
+    {
+      "id": "IP14-N29",
+      "spellIds": [
+        "true-seeing"
+      ],
+      "disposition": "PASS_CONDITIONAL_COMPOSITION_ONLY",
+      "rationale": "PASS_CONDITIONAL_COMPOSITION_ONLY. If the complete pending Mental Prison procedure is the one in force, True Seeing identifies the subjective prison and counts as mental departure, resolving the one live exit packet. Entry28 and exit24 remain distinct damage events, so their sum52 is not one Wound packet. This does not accept Mental Prison or Control15.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/6"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_rank6.json",
+          "pointer": "/records/4"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+          "pointer": "/entries/5"
+        }
+      ],
+      "completeCurrentCase": {
+        "id": "IP14-N29",
+        "spellIds": [
+          "true-seeing"
+        ],
+        "scope": "Full actual pending Mental Prison/True Seeing source composition; each remains unadopted and no generic antimagic behavior is inferred.",
+        "sourceActors": {
+          "MentalPrison": "Wizard11 ArchArcanist/HeroSpellbinder,Abjuration specialization,INT18/PB4,DC16,real Enchantment placementrank6 acquired/prepared,Action/V/S/F,13RP40→27,first distinctmatrixD0,concentration original0–60.",
+          "TrueSeeing": "Independent Wizard11 same legal ability/source prerequisites with actual TrueSeeing placementrank6,13RP40→27,D0 at6,concentration deadline66. Target willingly consented in advance to this assistance; no compelled consent is inferred."
+        },
+        "initialState": {
+          "target": "Ordinary livingHP100/100,noTempHP/Wounds/mentaldefense/psychicresistance,notconcentrating. Perceivedwithin30/LoE tobothcasters;actualopaqueobjectsabsent.",
+          "initialINT": {
+            "face": 7,
+            "modifier": 1,
+            "DC": 16
+          },
+          "entry5d10": [
+            6,
+            6,
+            6,
+            5,
+            5
+          ],
+          "exit5d10": [
+            5,
+            5,
+            5,
+            5,
+            4
+          ],
+          "NullState": "Both actual damage events use a non-Null originalMentalPrisondealer; changing-Null mapping for that separate spell is not decided here."
+        },
+        "actionsAndResolution": [
+          "At0 MentalPrison paidcast resolves failedINT8<16. Its explicitbound targetoccupiedbox+5ft admits the subjective prison andoneentry5d10=28,HP100→72. Source usesrealconcentration;5d10 entry isnotanadditional10d10 event.",
+          "At6 real independentTrueSeeing paidcast reaches willingrecipient. Its proposed source-specific bridge identifies recipient's own subjective enclosure and ends that mentalstate; itdoesnot suppressMentalPrison likeantimagic.",
+          "Mark the one liveexitentitlement spent before independently rolledexit5d10=24,HP72→48. Both28 and24 are belowhalf100 and neitherreaches0, so noCoreWoundsave. The sum52 acrossdifferent events doesnot becomeone52damagepacket.",
+          "Prison ends withatmostoneentry/oneexit. No newlocation,forcedmovement,soulroute orpostmortempacket iscreated;TrueSeeingcontinuesuntil66 subjecttoitsownrules."
+        ],
+        "expectedFinalState": {
+          "MentalPrisonCasterRP": 27,
+          "TrueSeeingCasterRP": 27,
+          "entryDamage": 28,
+          "exitDamage": 24,
+          "totalAcrossTwoEvents": 52,
+          "targetHP": 48,
+          "damageEvents": 2,
+          "newWoundSaves": 0,
+          "exitEntitlementRemaining": 0,
+          "prisonEnded": true,
+          "TrueSeeingExpiry": 66,
+          "MentalPrisonAdoptedByFixture": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/6"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/enchantment_rank6.json",
+            "pointer": "/records/4"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_04.json",
+            "pointer": "/entries/5"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IP14-N30",
+      "spellIds": [
+        "programmed-illusion"
+      ],
+      "disposition": "PASS_SEMANTIC",
+      "rationale": "PASS. Armed Programmed Illusion emits no sensory output and therefore supplies no automatic Detect Magic target/anchor. A perceived running performance is an active effect in Detect Magic's actual scope; focused information remains broad Illusion only.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/13"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/216/operational"
+        }
+      ],
+      "completeCurrentCase": {
+        "id": "IP14-N30",
+        "spellIds": [
+          "programmed-illusion"
+        ],
+        "scope": "Actual Detect Magic source boundary under explicit pending IP14-ARMED-DETECTION-09.",
+        "sourceActors": {
+          "program": "Wizard11 actual ProgrammedIllusionrank6,13RP40→27,DC16,D0,realV/S/FandAction,concentration deadline60;ordinary visiblecrossingtrigger and30sec knownscript.",
+          "detector": "IndependentWizard1 with genuineprepared/acquiredDetectMagic,rank1Divination,RP4,INT16/PB2,Action/V/S/F,2RP4→2,firstdistinctmatrixD0,concentration up to600sec from1. No specialhidden-trigger detector."
+        },
+        "initialState": {
+          "programAt": 0,
+          "DetectMagicAt": 1,
+          "geometry": "Detector has normaleyes/LoE and iswithin20ft of programcube/observationpoint. Beforeperformance no independentvisible/audibleactiveeffect orotherperceptionrevealsarmedanchor.",
+          "actualCrossingAt": 20,
+          "focusActionAt": 26,
+          "focusAction": "A real availableAction laterthanDetectMagiccast;no extraActiongranted."
+        },
+        "actionsAndResolution": [
+          "Programarmsat0 withoutimage/sound;DetectMagicpaidcastat1 suppliesonlyitsactualperceivedactiveaurapredicate. Underpending09 no automaticarmedanchor/aura orscript/owner/passwordreadoutiscreated.",
+          "At20 genuinelyobserveddoorcrossingfiresprogramonce. Actual visibleperformance within30ft isnow a perceivedactiveeffect;DetectMagiccanoutlineitsactiveaura throughrealLoE.",
+          "At26 detectorusesrealActiontofocusonthataura;unprotectedbroadIllusioncategoryonly. Itlearnsnoexactspellname/rank/owner/script/password orothershiddenfacts.",
+          "Performanceendsat50=min(20+30,60);DetectMagicdoesnotextend/rearmit. This doesnotgrant detectionofotherdormantmagic."
+        ],
+        "expectedFinalState": {
+          "programRP": 27,
+          "detectorRP": 2,
+          "armedAnchorAutomaticallyRevealed": false,
+          "visiblePerformanceAuraDetected": true,
+          "focusedCategory": "Illusion",
+          "secretTriggerOrOwnerRevealed": false,
+          "performanceEnd": 50,
+          "newGlobalDetectionPermission": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/13"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+            "pointer": "/spells/216/operational"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    },
+    {
+      "id": "IP14-N31",
+      "spellIds": [
+        "spectral-army"
+      ],
+      "disposition": "PASS_AFTER_EXACT_PROCEDURE_REPAIR",
+      "rationale": "PASS_AFTER_EXACT_PROCEDURE_REPAIR. Known false image cannot satisfy a creature target and cannot commit. Unknown apparent soldier may commit under the new local bridge, then actual noncreature eligibility fails before any attack roll with no diagnostic; no image discharges.",
+      "runtimeExecuted": false,
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+          "pointer": "/spells/11"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/411/operational"
+        }
+      ],
+      "completeCurrentCase": {
+        "id": "IP14-N31",
+        "spellIds": [
+          "spectral-army"
+        ],
+        "scope": "Actual creature-only Ray of Frost cannot use the ordinary Attack Action image exception; no free hidden-eligibility diagnostic.",
+        "sourceActors": {
+          "army": "Wizard11 genuinepaid SpectralArmy13RP40→27,D0,concentration active,oneactual imagewithin5ft ofRaycaster.",
+          "ray": "Wizard1 withactualacquired/preparedRayofFrost rank0Evocation,Action/V/S usable,RP4 unchanged0cost,firstdistinctmatrixD0. Currentactualrange10ft, oneperceivedcreature;no specialimage-target permission."
+        },
+        "initialState": {
+          "branchK": "Caster has genuinely identifiedtheimageasfalse; noactualcreaturethere.",
+          "branchU": "Independent casterdoesnotknowimageisfalse;apparentbodyiswithin5ft/perceived/LoE. Hiddenactualnoncreatureeligibilityisnotafreeprecommitdiagnostic.",
+          "ordinaryWeaponComparison": "A separately genuine ordinaryAttackActionweaponattack maytargettheimageunder09,usingactualcosts;this grantsRaynoeligibility."
+        },
+        "actionsAndResolution": [
+          "BranchK hasobservablyillegalcreaturetargetbeforeRaycommitment; noAction/cadence/rollspent. Knownimagecannotserveascreatureforspellattack.",
+          "BranchU maymakeotherwiselegalapparentpaidcommitment:Actionspent,0RP,firstmatrixD0,normalV/S. Resolutionfindsnoactualcreaturerecipient beforetherealspellattackroll,soRaycreatesnoattackroll/damage/Speedrider. No specialtrueidentityorhiddenfailure-reasonreportisgranted.",
+          "Neitherbranchproduces theactualqualifyingordinaryAttackActionrollneededbySpectralArmy;imageisnotconsumed, no6d6blast. Thisdoesnotrefundthehiddenfailurecommitmentorcreateweapon-hitbenefits."
+        ],
+        "expectedFinalState": {
+          "knownBranchActionSpent": false,
+          "unknownBranchActionSpent": true,
+          "rayRPBothBranches": 4,
+          "rayAttackRolls": 0,
+          "imageDischarges": 0,
+          "newDamageRoots": 0,
+          "privateIdentityDiagnostic": false,
+          "spellTargetPredicateBypassed": false
+        },
+        "sourceRefs": [
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/illusion_perception_14_current_10.json",
+            "pointer": "/spells/11"
+          },
+          {
+            "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+            "pointer": "/spells/411/operational"
+          }
+        ],
+        "runtimeExecuted": false
+      }
+    }
+  ]
+}
+```
+

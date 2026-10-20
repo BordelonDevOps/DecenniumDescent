@@ -1,0 +1,125 @@
+# Hush-Broker Scriptor
+
+**Family:** Hush-Broker
+**Knowledge status:** Professional Record with Deep Reports
+**Publication classification:** Licensed expedition reference
+**Dungeon range:** T3-T5, Floors 21-50
+**Primary source:** Contraband contracts, Pact Court testimony, and interdicted ledgers
+**Reliability:** High through Floor 30; moderate below
+**Encounter role:** Brute or anchor
+
+## What It Is
+
+Hush-Broker Scriptor writes terms into objects, witnesses, and wounds. It prefers controlled panic to open slaughter, because a frightened survivor can sign, testify, carry debt, or lead the Broker to a more valuable target.
+
+## What Experienced Expeditions Notice
+
+Blank spaces in ledgers; bells wrapped in cloth; witnesses who repeat the same sentence word for word; quarantine marks that do not match local practice; doors that open only after someone states a name. Different witnesses remember the same sound differently.
+
+## Creature Knowledge
+
+Use **Religion** unless the Director approves a more specific approach.
+
+| Result | Information Learned |
+|---|---|
+| DC 13 | Creature family, usual habitat, and dominant attack type. |
+| DC 17 | The first reliable counter and the sign that its strongest ability is ready. |
+| DC 21 | Its defining tactical weakness, safe harvest method, and likely retreat condition. |
+
+## Knowledge Status and Reliability
+
+**Status:** Professional Record with Deep Reports  
+**Primary source:** Contraband contracts, Pact Court testimony, and interdicted ledgers  
+**Reliability:** High through Floor 30; moderate below  
+**Last confirmed:** Current upper-range reports; older deep reports  
+**Confirmed range:** Floors 21-30  
+**Rumored range:** Floors 31-50
+
+### Unsettling Evidence
+
+Recovered contracts use the words petition, prisoner, and fulfillment in mutually contradictory ways. Goblin copies are the oldest surviving versions and differ by only one or two words per generation. The field record preserves the contradiction but does not present a hidden cosmology as established fact.
+
+### Deep-Record Warning
+
+Exact numbers and tactics below reflect the best reconstruction available to licensed expeditions. The Director may vary phases, recharge signs, or retreat behavior to reflect incomplete in-world knowledge and changes between Openings.
+
+## Stat Block
+
+**Medium Fiend, Lawful Evil**  
+**Challenge** 9 (5000 XP budget) · **Dungeon Range** T3-T5 · **Floors** 21-50
+**Armor** 16 · **Hit Points** 314 · **Speed** 40 ft.
+
+| STR | DEX | CON | INT | WIS | CHA |
+|---:|---:|---:|---:|---:|---:|
+| 13 (+1) | 14 (+2) | 16 (+3) | 14 (+2) | 13 (+1) | 17 (+3) |
+
+**Resistances** fire, necrotic  
+**Immunities** None  
+**Condition Immunities** frightened  
+**Tactical Vulnerability** destroyed or invalidated contract seals  
+**Save DC** 15  
+
+### Traits
+
+**Contract-Bound.** A visible seal or written clause empowers one of its attacks; destroying or invalidating it suppresses that feature until the end of the next round.
+
+### Actions
+
+**Multiattack.** The creature makes 3 attacks using the actions below.
+
+**Clause Cut.** *Attack:* +7 to hit, one target. *Hit:* 2d10+8 psychic damage (average 19).
+
+**Binding Script.** *Attack:* +7 to hit, one target. *Hit:* 2d10+7 force damage (average 18).
+
+## How It Fights
+
+It opens with **Clause Cut** against the target most capable of controlling its movement. It uses **Binding Script** to punish anyone who tries to stabilize that target. It keeps a witness, hostage, or written object between itself and the Expedition and withdraws into jurisdiction rather than dying for pride.
+
+## How to Defeat It
+
+**Prepare Before Contact**
+
+- Prepare resistance or mitigation for psychic, force damage.
+- Carry blank witness cards and refuse unexamined aid.
+
+**Combat Priority**
+
+Destroy or isolate the seal-bearing implement, then pressure the Broker away from witnesses.
+
+**Exploit**
+
+The defining weakness is **destroyed or invalidated contract seals**. Treat this as an encounter solution rather than an automatic damage vulnerability. Successful Research, Recon, or Resource actions should make the exploit easier or safer.
+
+**Withdraw When**
+
+Withdraw or change the objective when its full multiattack reaches the support line. A failed retreat against this creature usually costs more than abandoning the immediate treasure.
+
+## Habitat, Goals, and Lair
+
+Broker sites are legal terrain as much as physical terrain. Seals, witness circles, sample cabinets, toll chains, and written names can become hazards. Destroying the room may activate clauses rather than end them.
+
+Hush-Brokers are fiendish intermediaries who convert fear, silence, quarantine, and contract language into enforceable power. They prefer an Expedition that survives indebted to them over one that dies free.
+
+They bargain sincerely inside the exact wording they offer. Precision protects an Expedition better than moral outrage.
+
+## Treasure and Harvest
+
+**Harvest skill:** Religion · **Harvest DC:** 15 · **Base time:** 2 hours  
+
+| Component | Tier | Drop / Value |
+|---|---:|---|
+| fiendish ichor | 1 | 85%, 19 gp base |
+| clawed hoof | 2 | 71%, 38 gp base |
+| brimstone bone | 3 | 56%, 76 gp base |
+
+**Known recipe links:** Minor Resonance Distillate, Refined Graveburst Flask, Superior Graveward Draught, Superior Graveward Draught — Fiendish Ichor.
+
+Broker remains contain contract ash, hush-salt, branded vellum, black bile, and court seals. Unlicensed possession can be treated as proof of a stolen debt.
+
+## Variants and Encounter Use
+
+Change the contract object, emergency being exploited, and enforcement role. A weaker Broker with a stronger legal position can be more dangerous than an elite combatant.
+
+
+---
+*Compiled from the cited expedition records. Uncertain claims are preserved rather than silently reconciled.*
