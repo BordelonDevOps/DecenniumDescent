@@ -1,0 +1,109 @@
+{
+  "id": "DD-COPY-INTEGRATION-EXACT-CODE-OPERATIONS-01",
+  "operationCount": 11,
+  "fileCount": 4,
+  "format": "Exact UTF-8 text-span replacements. Each before occurs exactly once in its sequential current source. Full files are supplied in baseline/ and proposed/. No fuzzy matching or in-place application.",
+  "operations": [
+    {
+      "id": "CFI-OP-01",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+      "symbol": "CopyCaptures.__init__/reactions/bind_reaction_account/snapshot",
+      "finding": "CFI-01",
+      "before": "        self.reactions = 1; self.epoch = 0\n\n    def snapshot(self):\n        return deepcopy({k: v for k, v in self.__dict__.items() if k not in {'acquired', 'witnesses'}})\n",
+      "after": "        self._reaction_account = None; self._reaction_field = None\n        self._reaction_legality = None; self._local_reactions = 1; self.epoch = 0\n\n    @property\n    def reactions(self):\n        \"\"\"CFI-01: a bound class uses its existing Reaction account, not a copy.\"\"\"\n        if self._reaction_account is None:\n            return self._local_reactions\n        value = self._reaction_account[self._reaction_field]\n        if self._reaction_field == 'reaction':\n            if type(value) is not bool:\n                raise ValueError('Canonical singular Reaction must remain Boolean')\n            return int(value)\n        return integer(value, 'canonical remaining Reactions')\n\n    @reactions.setter\n    def reactions(self, value):\n        integer(value, 'remaining Reactions')\n        if self._reaction_account is None:\n            self._local_reactions = value\n        elif self._reaction_field == 'reaction':\n            if value > 1:\n                raise ValueError('Boolean Reaction account cannot represent extra Reactions')\n            self._reaction_account[self._reaction_field] = bool(value)\n        else:\n            self._reaction_account[self._reaction_field] = value\n\n    def bind_reaction_account(self, account, field, legal_now):\n        \"\"\"Bind before capture/turn history; never copy, merge or refill a budget.\n\n        The callback is a pure current legality query from the actual class/body\n        adapter. No capture, Reaction refresh or additional allowance is granted.\n        \"\"\"\n        if self._reaction_account is not None:\n            raise ValueError('Reaction account is already bound; no ledger substitution')\n        if self.events or self.regular_turns or self.extra_turns or self.current_turn is not None:\n            raise ValueError('Bind the real Reaction account before capture/turn history')\n        if not isinstance(account, dict) or field not in {'reaction', 'reactions'} or not callable(legal_now):\n            raise ValueError('Explicit existing Reaction account and current legality query required')\n        value = account.get(field)\n        if field == 'reaction':\n            if type(value) is not bool:\n                raise ValueError('Existing singular Reaction account must be Boolean')\n        else:\n            integer(value, 'existing counted Reaction account')\n        self._reaction_account = account; self._reaction_field = field\n        self._reaction_legality = legal_now\n\n    def snapshot(self):\n        hidden = {'acquired', 'witnesses', '_reaction_account', '_reaction_field',\n                  '_reaction_legality', '_local_reactions'}\n        result = deepcopy({k: v for k, v in self.__dict__.items() if k not in hidden})\n        result['reactions'] = self.reactions\n        result['reactionBinding'] = {'linked': self._reaction_account is not None,\n                                     'field': self._reaction_field}\n        return result\n"
+    },
+    {
+      "id": "CFI-OP-02",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+      "symbol": "CopyCaptures.start_regular",
+      "finding": "CFI-05",
+      "before": "        if actual_new_regular_start is not True or turn in self.regular_turns or not turn or self.current_turn is not None:\n",
+      "after": "        if actual_new_regular_start is not True or turn in self.regular_turns or turn in self.extra_turns or not turn or self.current_turn is not None:\n"
+    },
+    {
+      "id": "CFI-OP-03",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+      "symbol": "CopyCaptures.capture",
+      "finding": "CFI-01",
+      "before": "            if geometry['sourceCreatureDistance'] > 60 or not geometry['lineOfEffect'] or not geometry['actualReactionLegal'] or self.reactions < 1:\n                raise ValueError('Echo needs actual within60ft line of effect and legal available Reaction')\n",
+      "after": "            if geometry['sourceCreatureDistance'] > 60 or not geometry['lineOfEffect'] or not geometry['actualReactionLegal'] or self.reactions < 1:\n                raise ValueError('Echo needs actual within60ft line of effect and legal available Reaction')\n            if self._reaction_legality is not None and self._reaction_legality() is not True:\n                raise ValueError('The linked owner cannot currently commit this capture Reaction')\n"
+    },
+    {
+      "id": "CFI-OP-04",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+      "symbol": "CopyReleases.__init__/preflight",
+      "finding": "CFI-02",
+      "before": "        if not isinstance(captures, CopyCaptures):\n            raise ValueError('Actual paid acquisitions and source-qualified captures required')\n        self.captures = captures; self.owner = owner; self.pool = pool; self.cadence = cadence\n",
+      "after": "        if not isinstance(captures, CopyCaptures):\n            raise ValueError('Actual paid acquisitions and source-qualified captures required')\n        # CFI-02: all supported routes share one actual concentration ledger.\n        # Rebuilding this adapter must not refresh its owner-round cap or receipts.\n        # Migration/save-load remains separate; reuse the registered adapter.\n        registered = getattr(concentration, '_feat_copy_engine_owners', set())\n        if owner in registered:\n            raise ValueError('One canonical feat-copy engine per owner; reuse the existing adapter')\n        self.captures = captures; self.owner = owner; self.pool = pool; self.cadence = cadence\n"
+    },
+    {
+      "id": "CFI-OP-05",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+      "symbol": "CopyReleases.__init__/registration",
+      "finding": "CFI-02",
+      "before": "        self.casts = {}; self.release_rounds = set()\n        self._pool()\n",
+      "after": "        self.casts = {}; self.release_rounds = set()\n        self._pool()\n        concentration._feat_copy_engine_owners = registered\n        registered.add(owner)\n"
+    },
+    {
+      "id": "CFI-OP-06",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "symbol": "CopyPayloadWorld.advance",
+      "finding": "CFI-03",
+      "before": "        for e in self.effects.values():\n            if e['active']:require(e['owner'] in by_owner and by_owner[e['owner']].world is self,'All live source engines required for expiry')\n        self.now=marker\n",
+      "after": "        for e in self.effects.values():\n            if e['active']:require(e['owner'] in by_owner and by_owner[e['owner']].world is self,'All live source engines required for expiry')\n        for engine in releases:\n            validate = getattr(engine.lifecycle.ledger, 'validate_current', None)\n            if validate: validate()\n        self.now=marker\n"
+    },
+    {
+      "id": "CFI-OP-07",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "symbol": "CopyPayloadReleases.__init__/validate-before-registration",
+      "finding": "CFI-02",
+      "before": "        super().__init__(captures,owner,pool,cadence,concentration)\n        require(isinstance(world,CopyPayloadWorld) and owner in world.actors,'Canonical recipient world required')\n",
+      "after": "        require(isinstance(world,CopyPayloadWorld) and owner in world.actors,'Canonical recipient world required')\n        super().__init__(captures,owner,pool,cadence,concentration)\n"
+    },
+    {
+      "id": "CFI-OP-08",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "symbol": "CopyPayloadReleases._owner_can_resolve/resolve",
+      "finding": "CFI-03",
+      "before": "    def resolve(self,event,*,countered=False,rolls=None):\n        require(type(countered) is bool,'Actual counter result required')\n",
+      "after": "    def _owner_can_resolve(self):\n        return all(self.world.actors[self.owner][k] is True\n                   for k in ['magicAllowed', 'conscious', 'canAct'])\n\n    def resolve(self,event,*,countered=False,rolls=None):\n        require(type(countered) is bool,'Actual counter result required')\n        # CFI-03: reject unintegrated native concentration drift before any\n        # payload, buffer, clock or lifecycle mutation. Do not overwrite it.\n        validate = getattr(self.lifecycle.ledger, 'validate_current', None)\n        if validate: validate()\n"
+    },
+    {
+      "id": "CFI-OP-09",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "symbol": "CopyPayloadReleases.resolve/current-body-hook",
+      "finding": "CFI-03",
+      "before": "        owner_state=self.world.actors[self.owner]\n        if countered or state['state']=='ended' or not all(owner_state[k] is True for k in ['magicAllowed','conscious','canAct']):\n",
+      "after": "        if countered or state['state']=='ended' or not self._owner_can_resolve():\n"
+    },
+    {
+      "id": "CFI-OP-10",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+      "symbol": "ClassCopyCommit.commit/selected-profile",
+      "finding": "CFI-04",
+      "before": "        selected = record['component']\n        if c.witnesses.select(selected['sourceEvent'], selected['profile']) != selected:\n",
+      "after": "        selected = record['component']\n        if selected['profile'] == 'step' and isinstance(self.lifecycle.ledger, ShamanConcentrationBridge):\n            # CFI-04: the copy world has a 3-D pose; the linked native Shaman\n            # uses a separate scalar pose for aura/cast queries. No approved\n            # atomic pose mapping is supplied. Reject before payment instead\n            # of moving one view and granting ordinary vent at the old pose.\n            raise ValueError('Linked Shaman Step requires a canonical cross-world position adapter')\n        if c.witnesses.select(selected['sourceEvent'], selected['profile']) != selected:\n"
+    },
+    {
+      "id": "CFI-OP-11",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+      "symbol": "ClassCopyPayloadReleases.__init__/live-owner-queries",
+      "finding": "CFI-01/CFI-03",
+      "before": "    def __init__(self, captures, owner, pool, cadence, concentration, world, *, echoes=None, action_account=None):\n        self.echoes = echoes; self.action_account = action_account\n        super().__init__(captures, owner, pool, cadence, concentration, world)\n\n    def snapshot(self):\n",
+      "after": "    def __init__(self, captures, owner, pool, cadence, concentration, world, *, echoes=None, action_account=None):\n        # Validate the link before registering this owner or changing captures.\n        if not isinstance(action_account, dict):\n            raise ValueError('Actual canonical class Action/Reaction account required')\n        fields = [k for k in ('reaction', 'reactions') if k in action_account]\n        if len(fields) != 1:\n            raise ValueError('One explicit canonical Reaction field required; no duplicate budgets')\n        field = fields[0]; value = action_account[field]\n        if field == 'reaction':\n            if type(value) is not bool:\n                raise ValueError('Actual Boolean Reaction account required')\n        else:\n            integer(value, 'actual counted Reaction account')\n        if (captures._reaction_account is not None or captures.events\n                or captures.regular_turns or captures.extra_turns or captures.current_turn is not None):\n            raise ValueError('Create the class link before capture/turn history; no late budget merging')\n        self.echoes = echoes; self.action_account = action_account\n        super().__init__(captures, owner, pool, cadence, concentration, world)\n        captures.bind_reaction_account(action_account, field, self._capture_reaction_legal)\n\n    def _capture_reaction_legal(self):\n        actor = self.world.actors[self.owner]\n        if not actor['conscious'] or not actor['canAct'] or not self.world.reaction_allowed(self.owner):\n            return False\n        body = self.action_account.get('body')\n        return body is None or (body['conscious'] and body['canAct'] and body['reactionLegal'])\n\n    def _owner_can_resolve(self):\n        # Components already performed at commitment are not performed again.\n        # Consult the linked body for surviving-caster eligibility, not the old\n        # copy-world snapshot alone. General body-end processing is still open.\n        body = self.action_account.get('body')\n        return super()._owner_can_resolve() and (body is None or\n            body['conscious'] is True and body['canAct'] is True)\n\n    def snapshot(self):\n"
+    }
+  ],
+  "ruleJsonOperationCount": 0,
+  "scope": "Four reference Python files only. The prior 22-operation rule proposal is preserved separately and unchanged."
+}

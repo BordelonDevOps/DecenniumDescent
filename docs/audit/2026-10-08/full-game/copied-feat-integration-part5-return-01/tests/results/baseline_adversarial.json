@@ -1,0 +1,229 @@
+{
+  "scope": "Isolated delivered/proposed reference-module regression tests; no game engine/runtime/human/balance execution. In-memory archive path relocation only.",
+  "sourceRoot": "/mnt/data/copy_review_work/merged",
+  "testsRun": 47,
+  "failures": 22,
+  "errors": 10,
+  "results": [
+    {
+      "id": "__main__.Regressions.test_actual_somatic_loss_after_commit_not_a_second_component_payment",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_bad_pool_constructor_does_not_reserve_owner",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_bad_world_constructor_does_not_reserve_owner",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_binding_reaction_adopts_spent_without_refill",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 208, in fn\n    m=P.make();c=m.captures;a={field:value};c.bind_reaction_account(a,field,lambda:True)\n                                            ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'CopyCaptures' object has no attribute 'bind_reaction_account'\n"
+    },
+    {
+      "id": "__main__.Regressions.test_binding_reactions_adopts_spent_without_refill",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 208, in fn\n    m=P.make();c=m.captures;a={field:value};c.bind_reaction_account(a,field,lambda:True)\n                                            ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'CopyCaptures' object has no attribute 'bind_reaction_account'\n"
+    },
+    {
+      "id": "__main__.Regressions.test_counted_reaction_link_does_not_coerce_boolean",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 149, in test_counted_reaction_link_does_not_coerce_boolean\n    with self.assertRaises(ValueError):c.bind_reaction_account({'reactions':True},'reactions',lambda:True)\n                                       ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'CopyCaptures' object has no attribute 'bind_reaction_account'\n"
+    },
+    {
+      "id": "__main__.Regressions.test_different_owners_can_share_actual_concentration_ledger",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_distinct_extra_then_distinct_regular_remains_legal",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_existing_owner_cap_survives_concentration_end",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 59, in test_existing_owner_cap_survives_concentration_end\n    self.unchanged_error(m,lambda:CopyPayloadReleases(m.captures,m.owner,m.pool,m.cadence,m.lifecycle.ledger,m.world))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_extra_turn_event_cannot_be_replayed_as_regular",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 68, in test_extra_turn_event_cannot_be_replayed_as_regular\n    self.unchanged_error(m,lambda:c.start_regular('extra1',1,1,actual_new_regular_start=True))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_integrated_concentration_end_remains_final",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_invalid_reaction_link_field_does_not_mutate",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 139, in test_invalid_reaction_link_field_does_not_mutate\n    with self.assertRaises(ValueError):c.bind_reaction_account({'rp':5},'rp',lambda:True)\n                                       ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'CopyCaptures' object has no attribute 'bind_reaction_account'\n"
+    },
+    {
+      "id": "__main__.Regressions.test_linked_body_canAct_false_blocks_echo_capture",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 198, in fn2\n    self.unchanged_error(m,lambda:F.capture_class(m,'mend',sid='eldritch_echo'))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_linked_body_canAct_false_blocks_payload_once",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 192, in fn\n    s.actors['owner']['body'][field]=False;r=m.resolve('cast')\n                                             ~~~~~~~~~^^^^^^^^\n  File \"/mnt/data/copy_review_work/merged/DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py\", line 233, in resolve\n    result=self._payload(event,cast,selection,eligible,rolls)\n  File \"/mnt/data/copy_review_work/merged/DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py\", line 249, in _payload\n    require(set(rolls)==required,'Exact native-copy and target RNG required')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/merged/DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py\", line 22, in require\n    if not value:raise ValueError(message)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Exact native-copy and target RNG required\n"
+    },
+    {
+      "id": "__main__.Regressions.test_linked_body_conscious_false_blocks_echo_capture",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 198, in fn2\n    self.unchanged_error(m,lambda:F.capture_class(m,'mend',sid='eldritch_echo'))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_linked_body_conscious_false_blocks_payload_once",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 192, in fn\n    s.actors['owner']['body'][field]=False;r=m.resolve('cast')\n                                             ~~~~~~~~~^^^^^^^^\n  File \"/mnt/data/copy_review_work/merged/DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py\", line 233, in resolve\n    result=self._payload(event,cast,selection,eligible,rolls)\n  File \"/mnt/data/copy_review_work/merged/DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py\", line 249, in _payload\n    require(set(rolls)==required,'Exact native-copy and target RNG required')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/merged/DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py\", line 22, in require\n    if not value:raise ValueError(message)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Exact native-copy and target RNG required\n"
+    },
+    {
+      "id": "__main__.Regressions.test_linked_native_reaction_prohibition",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 203, in capture_body_reaction\n    self.unchanged_error(m,lambda:F.capture_class(m,'mend',sid='eldritch_echo'))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_linked_shaman_step_rejected_before_payment",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 83, in test_linked_shaman_step_rejected_before_payment\n    self.unchanged_error(m,lambda:m.declare('cast','capture',permission='pending',grant_id='Shaman/class-engine',frame=frame,selection=sel))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_actual_reaction_denial_blocks_echo",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 172, in denied\n    self.unchanged_error(m,lambda:F.capture_class(m,'mend',sid='eldritch_echo'))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_actual_reaction_spend_blocks_echo",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 166, in native_debit\n    self.unchanged_error(m,lambda:F.capture_class(m,'mend',sid='eldritch_echo'))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_actual_regular_start_refreshes",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_duplicate_adapter_rejected",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 184, in multiple\n    m,s=make();self.unchanged_error(m,lambda:ClassCopyPayloadReleases(m.captures,m.owner,m.pool,m.cadence,m.lifecycle.ledger,m.world,echoes=m.echoes,action_account=m.action_account))\n               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_echo_debits_actual_reaction",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 163, in echo_debit\n    self.assertEqual(m.captures.reactions,0);self.assertEqual(int(m.action_account[field]),0)\n                                             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\n"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_extra_turn_does_not_refresh",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 176, in extra\n    self.assertEqual(int(m.action_account[field]),0);self.assertEqual(c.reactions,0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\n"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_invalid_component_atomic",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_mimicry_does_not_spend_reaction",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_mirrorsage_step_keeps_disclosed_coordinate_only_slice",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_reaction_link_cannot_be_rebound",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 132, in test_reaction_link_cannot_be_rebound\n    m=P.make();c=m.captures;a={'reaction':False};c.bind_reaction_account(a,'reaction',lambda:True)\n                                                 ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'CopyCaptures' object has no attribute 'bind_reaction_account'\n"
+    },
+    {
+      "id": "__main__.Regressions.test_reaction_link_has_no_late_ledger_merge",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 128, in test_reaction_link_has_no_late_ledger_merge\n    with self.assertRaises(ValueError):c.bind_reaction_account(account,'reaction',lambda:True)\n                                       ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'CopyCaptures' object has no attribute 'bind_reaction_account'\n"
+    },
+    {
+      "id": "__main__.Regressions.test_regular_turn_event_cannot_be_replayed_as_extra",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_same_owner_adapter_cannot_reset_release_cap",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 34, in test_same_owner_adapter_cannot_reset_release_cap\n    self.unchanged_error(m,lambda:CopyPayloadReleases(m.captures,m.owner,m.pool,m.cadence,m.lifecycle.ledger,m.world))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_same_owner_new_capture_wrapper_cannot_reset_release_cap",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 42, in test_same_owner_new_capture_wrapper_cannot_reset_release_cap\n    self.unchanged_error(m,lambda:CopyPayloadReleases(c,m.owner,m.pool,m.cadence,m.lifecycle.ledger,m.world))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_same_owner_plain_commit_adapter_cannot_bypass_payload_adapter",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 38, in test_same_owner_plain_commit_adapter_cannot_bypass_payload_adapter\n    self.unchanged_error(m,lambda:CopyReleases(m.captures,m.owner,m.pool,m.cadence,m.lifecycle.ledger))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_actual_reaction_denial_blocks_echo",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 172, in denied\n    self.unchanged_error(m,lambda:F.capture_class(m,'mend',sid='eldritch_echo'))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_actual_reaction_spend_blocks_echo",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 166, in native_debit\n    self.unchanged_error(m,lambda:F.capture_class(m,'mend',sid='eldritch_echo'))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_actual_regular_start_refreshes",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_concentration_drift_blocks_counter_cleanup",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 105, in test_shaman_concentration_drift_blocks_counter_cleanup\n    self.unchanged_error(m,lambda:m.resolve('cast',countered=True))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_concentration_drift_blocks_payload_without_overwrite",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 98, in test_shaman_concentration_drift_blocks_payload_without_overwrite\n    self.unchanged_error(m,lambda:m.resolve('cast',rolls={'nativeDice':[4,4]}))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_concentration_drift_blocks_world_expiry_before_clock_mutation",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 112, in test_shaman_concentration_drift_blocks_world_expiry_before_clock_mutation\n    self.unchanged_error(m,lambda:m.world.advance(Fraction(4000),[m]))\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_duplicate_adapter_rejected",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 184, in multiple\n    m,s=make();self.unchanged_error(m,lambda:ClassCopyPayloadReleases(m.captures,m.owner,m.pool,m.cadence,m.lifecycle.ledger,m.world,echoes=m.echoes,action_account=m.action_account))\n               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 29, in unchanged_error\n    with self.assertRaises(ValueError):fn()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_echo_debits_actual_reaction",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 163, in echo_debit\n    self.assertEqual(m.captures.reactions,0);self.assertEqual(int(m.action_account[field]),0)\n                                             ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_extra_turn_does_not_refresh",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 176, in extra\n    self.assertEqual(int(m.action_account[field]),0);self.assertEqual(c.reactions,0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\n"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_invalid_component_atomic",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_shaman_mimicry_does_not_spend_reaction",
+      "status": "PASS"
+    },
+    {
+      "id": "__main__.Regressions.test_singular_link_rejects_invented_second_reaction",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 153, in test_singular_link_rejects_invented_second_reaction\n    m=P.make();c=m.captures;a={'reaction':True};c.bind_reaction_account(a,'reaction',lambda:True)\n                                                ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'CopyCaptures' object has no attribute 'bind_reaction_account'\n"
+    },
+    {
+      "id": "__main__.Regressions.test_singular_reaction_link_does_not_coerce_nonboolean",
+      "status": "ERROR",
+      "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/copy_review_work/test_copy_review_regressions.py\", line 144, in test_singular_reaction_link_does_not_coerce_nonboolean\n    with self.assertRaises(ValueError):c.bind_reaction_account({'reaction':1},'reaction',lambda:True)\n                                       ^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'CopyCaptures' object has no attribute 'bind_reaction_account'\n"
+    },
+    {
+      "id": "__main__.Regressions.test_unlinked_shaman_step_keeps_disclosed_coordinate_only_slice",
+      "status": "PASS"
+    }
+  ]
+}

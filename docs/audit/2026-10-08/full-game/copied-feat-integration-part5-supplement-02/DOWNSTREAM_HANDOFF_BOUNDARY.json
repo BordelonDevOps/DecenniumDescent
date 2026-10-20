@@ -1,0 +1,78 @@
+{
+  "interface": "CopyPayloadWorld.advance(now, releases) returns list of existing source-owned BufferLedger expiry instruction dictionaries, [] when none.",
+  "completedByThisSupplement": "The copy-world boundary no longer destroys instructions by ignoring the underlying return. Positive capture of the exact original instruction is tested.",
+  "notCompleted": [
+    "Oracle acquisition or granting a previously nonexistent Overflowing Light buffer",
+    "Source/target condition eligibility and actual zero-or-one condition selection/removal",
+    "Production source-owned dispatch receipt, acknowledgment, retries, save/load and crash recovery",
+    "Complete event scheduling/phase ownership or changes to independent expiry ordering",
+    "Active next-healing source consumption"
+  ],
+  "consumerObligation": "Collect the nonempty result and hand it to the real source/target handler. Do not call expire again to recover it; do not change the source to feat-copy; do not expose internal source/grant identifiers as a player information channel.",
+  "existingCallerAudit": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_fixtures.py",
+      "sha256": "7e82a060bce710660a67a8c9a14ee865310d18c0ab6696395815e030390b331c",
+      "line": 56,
+      "completeLine": "        m.world.advance(Fraction(36061, 10) if shaman else Fraction(61, 10), [m])",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payload_fixtures.py",
+      "sha256": "7133eb198f7e7a40599dc988abe138b2025f330b012858f268fac1a830c7f84d",
+      "line": 87,
+      "completeLine": "        m.world.advance(Fraction(61,10),[m])",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_feat335_copy_payloads_01.py",
+      "sha256": "b83936b97fd777e8939543c96af377ae0e41a593cd044362af6438fe5657aa3c",
+      "line": 143,
+      "completeLine": "    m=paid('ward');m.resolve('cast',rolls={'nativeDice':[6,6]});m.world.advance(Fraction(179,10),[m])",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_feat335_copy_payloads_01.py",
+      "sha256": "b83936b97fd777e8939543c96af377ae0e41a593cd044362af6438fe5657aa3c",
+      "line": 145,
+      "completeLine": "    m.world.advance(18,[m]);check('Ward/exact-deadline',m.world.buffers.amount('target')==0 and not m.lifecycle.ledger.current)",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_feat335_copy_payloads_01.py",
+      "sha256": "b83936b97fd777e8939543c96af377ae0e41a593cd044362af6438fe5657aa3c",
+      "line": 157,
+      "completeLine": "    m.world.advance(Fraction(121,10),[m]);m.world.actors['owner']['inProgressRegularEnd']=Fraction(49,4)",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_feat335_copy_payloads_01.py",
+      "sha256": "b83936b97fd777e8939543c96af377ae0e41a593cd044362af6438fe5657aa3c",
+      "line": 173,
+      "completeLine": "    m.world.advance(ClockMarker(Fraction(33,4),10),[m]);check('Hindrance/through-end-effects',not m.world.reaction_allowed('target'))",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_feat335_copy_payloads_01.py",
+      "sha256": "b83936b97fd777e8939543c96af377ae0e41a593cd044362af6438fe5657aa3c",
+      "line": 174,
+      "completeLine": "    m.world.advance(turn_end_deadline(Fraction(33,4)),[m]);check('Hindrance/after-end-expiry',m.world.reaction_allowed('target') and m.world.speed('target')==30)",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_feat335_copy_payloads_01.py",
+      "sha256": "b83936b97fd777e8939543c96af377ae0e41a593cd044362af6438fe5657aa3c",
+      "line": 187,
+      "completeLine": "    m=paid('boon');m.resolve('cast');m.world.advance(Fraction(49,4),[m]);check('Boon/next-future-end-not-current',m.world.ac('target')==13)",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/tools/validate_feat335_copy_payloads_01.py",
+      "sha256": "b83936b97fd777e8939543c96af377ae0e41a593cd044362af6438fe5657aa3c",
+      "line": 188,
+      "completeLine": "    m.world.advance(turn_end_deadline(Fraction(49,4)),[m]);check('Boon/exact-next-end',m.world.ac('target')==12)",
+      "scope": "existing explicit fixture/validator call; no production expiry-event dispatch receiver established"
+    }
+  ],
+  "whyNoCallerPatchHere": "Delivered callsites are finite fixtures/validators without a supplied production condition-choice receiver. Inventing such a receiver would exceed this targeted correction. The regression fixtures emit no lost Oracle instruction; the new positive test explicitly captures it."
+}

@@ -1,0 +1,244 @@
+{
+  "findingCount": 5,
+  "sourceRuleChanges": 0,
+  "findings": [
+    {
+      "id": "CFI-01",
+      "category": "REFERENCE_INTEGRATION_DEFECT",
+      "title": "Echo capture and actual class Reaction were separate budgets",
+      "before": "For the same actor, Echo capture decrements CopyCaptures.reactions only. A linked Shaman still has reactions=1, and the Mirrorsage shared action pool still has reaction=True. The old package tests do not test this interaction.",
+      "after": "Bind capture to the supplied existing counted Shaman or Boolean Mirrorsage Reaction field before any turn/capture history. Read and debit that same field; query current body/world Reaction legality. Binding never refills or merges histories. A real regular start refreshes, an extra turn does not.",
+      "scope": "Eldritch Echo capture Reaction only. Mimicry still consumes no Reaction. No additional Reaction, general scheduler or class-specific capture entitlement is granted.",
+      "evidence": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+        "symbol": "CopyCaptures.capture",
+        "startLine": 105,
+        "endLine": 157,
+        "bytes": 11062,
+        "sha256": "29b62bb38b61a8f0f774df98782dd3218f53f274a8945dc23d0f6f8cb6cbf8aa"
+      },
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+          "pointer": "/rules/7",
+          "bytes": 56098,
+          "sha256": "27ca6a8f2be07660a7c3a131e4cdf83c2abcf1176561f7c6a051fff9e226bcfb"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyPayloadReleases.__init__",
+          "startLine": 100,
+          "endLine": 102,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "SharedClassWallet",
+          "startLine": 150,
+          "endLine": 170,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "testPrefixes": [
+        "test_shaman_",
+        "test_mirrorsage_",
+        "test_binding_",
+        "test_reaction_link",
+        "test_linked_native_reaction",
+        "test_linked_body_"
+      ]
+    },
+    {
+      "id": "CFI-02",
+      "category": "REFERENCE_STATE_OWNERSHIP_DEFECT",
+      "title": "Reconstructing an adapter with the same canonical ledger resets its local cap",
+      "before": "An adapted Mend can be committed, then a second CopyPayloadReleases on the same owner/captures/RP/cadence/world/concentration can commit another in the same numbered round because release_rounds is freshly empty. The reproduced RP sequence is44→42→40.",
+      "after": "Register one copy engine per owner on the supplied canonical concentration ledger, after successful constructor validation. Reject additional direct/payload/class wrappers using it; reuse the original adapter and its receipts. A failed pool/world constructor does not reserve an owner.",
+      "scope": "This is a finite adapter invariant, not serialization, reload recovery or protection against a caller supplying a different falsely labelled canonical ledger. Persistent authoritative owner identities remain a runtime requirement.",
+      "evidence": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+        "symbol": "CopyReleases.__init__",
+        "startLine": 142,
+        "endLine": 149,
+        "bytes": 13155,
+        "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+      },
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+          "pointer": "/rules/7",
+          "bytes": 56098,
+          "sha256": "27ca6a8f2be07660a7c3a131e4cdf83c2abcf1176561f7c6a051fff9e226bcfb"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+          "symbol": "CopyPayloadWorld.advance",
+          "startLine": 91,
+          "endLine": 103,
+          "bytes": 22515,
+          "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        }
+      ],
+      "testPrefixes": [
+        "test_same_owner",
+        "test_bad_",
+        "test_existing_owner",
+        "test_different_owners"
+      ]
+    },
+    {
+      "id": "CFI-03",
+      "category": "REFERENCE_LIVE_STATE_DEFECT_WITH_RETAINED_ADAPTER_GAP",
+      "title": "Postcommit native body/concentration changes were ignored",
+      "before": "The existing class commitment validates native Shaman state, but payload resolution later relies only on the copy-world snapshot. Actual body unconscious after commitment still permits Mend30→32. Direct native concentration displacement after Ward commitment still grants4temporaryHP while native and bridge burdens disagree.",
+      "after": "At resolution consult the actual linked body conscious/canAct state in addition to existing world eligibility; a blocked paid payload consumes no RNG and refunds nothing. Before payload/counter cleanup and world-clock mutation, run the bridge existing validate_current() and reject unintegrated concentration drift without overwriting it.",
+      "scope": "No automatic synchronization, unknown-source cleanup, actor death transition or general concentration solver is implemented. Rejected concentration drift must be reconciled by the actual source adapter. V/S already performed at commitment are not re-required at payload time.",
+      "evidence": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+        "symbol": "CopyPayloadReleases.resolve",
+        "startLine": 209,
+        "endLine": 237,
+        "bytes": 22515,
+        "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+      },
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ClassCopyCommit.commit",
+          "startLine": 28,
+          "endLine": 95,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ShamanConcentrationBridge",
+          "startLine": 110,
+          "endLine": 147,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_release.py",
+          "symbol": "CopyConcentration",
+          "startLine": 54,
+          "endLine": 131,
+          "bytes": 13155,
+          "sha256": "ce41ffeed640e95ba3fae6567002bea09cc646d21a6176a0f99539f7e8cb7f18"
+        },
+        {
+          "path": "docs/audit/2026-10-08/full-game/feat335-copy-release-source-addendum-01/FEAT335_COPY_RELEASE_SOURCE_ADDENDUM_01.json",
+          "pointer": "/decisions/1",
+          "bytes": 10469,
+          "sha256": "667141a1116129f9213ff53387c713f66c05b6d31efad324b0ab251a943c843b"
+        }
+      ],
+      "testPrefixes": [
+        "test_shaman_concentration",
+        "test_integrated_concentration",
+        "test_actual_somatic",
+        "test_linked_body_"
+      ]
+    },
+    {
+      "id": "CFI-04",
+      "category": "MISSING_WORLD_POSITION_ADAPTER_GUARD",
+      "title": "True linked Shaman Step moves only one position view",
+      "before": "With actual native totem at5ft and native caster at0, a legal copy-world teleport to[-15,0,0] leaves native caster at0. Native aura querying still qualifies the old5ft relation instead of reflecting the20ft separation.",
+      "after": "Fail closed before any commitment/payment for Step specifically when using ShamanConcentrationBridge. Do not guess a mapping from 3-D CopyWorld position to the native scalar position/aura model.",
+      "scope": "This blocks an unsupported reference integration path, not the printed Step benefit or Shaman eligibility. All seven bounded contracts remain. The original Shaman/step fixture uses the unlinked finite class pool and remains a valid coordinate-only test; Mirrorsage coordinate-only Step remains likewise limited.",
+      "evidence": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+        "symbol": "CopyPayloadReleases._payload",
+        "startLine": 239,
+        "endLine": 316,
+        "bytes": 22515,
+        "sha256": "c53e48e9be34798f9053f07fa55e07169ec3117ad7fd7c8f6731074747455455"
+      },
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_release.py",
+          "symbol": "ShamanConcentrationBridge",
+          "startLine": 110,
+          "endLine": 147,
+          "bytes": 9978,
+          "sha256": "80a571d5aa76d19d8c4dfb120ebf2bb96c73cd0848556320066d5ed584d183c1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_class_fixtures.py",
+          "symbol": "ClassCopyFixtures.shaman",
+          "startLine": 60,
+          "endLine": 80,
+          "bytes": 6518,
+          "sha256": "7e82a060bce710660a67a8c9a14ee865310d18c0ab6696395815e030390b331c"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/di7_shaman_transactions.py",
+          "symbol": "ShamanTransactions._qualifying_aura",
+          "startLine": 81,
+          "endLine": 87,
+          "bytes": 16872,
+          "sha256": "46743a653bb28ce228005eae29ae21e7bcb3af83bf71bf988a76abfcbc1e790b"
+        }
+      ],
+      "testPrefixes": [
+        "test_linked_shaman_step",
+        "test_unlinked_shaman_step",
+        "test_mirrorsage_step"
+      ]
+    },
+    {
+      "id": "CFI-05",
+      "category": "REFERENCE_EVENT_ID_INVARIANT",
+      "title": "An extra-turn ID could be reused as a regular-start ID",
+      "before": "start_extra rejects regular and extra history, but start_regular checks only regular_turns. A closed extra-turn event can be replayed as an alleged new regular start, updating ordinal and refreshing Reaction.",
+      "after": "The existing regular-start validation also rejects IDs already present in extra_turns, before mutation. Distinct lawful regular and extra events remain legal.",
+      "scope": "Defensive identity consistency in the finite timeline. It does not authenticate arbitrary caller assertions of actual turns or supply an extra-turn source.",
+      "evidence": {
+        "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+        "symbol": "CopyCaptures.start_regular",
+        "startLine": 66,
+        "endLine": 78,
+        "bytes": 11062,
+        "sha256": "29b62bb38b61a8f0f774df98782dd3218f53f274a8945dc23d0f6f8cb6cbf8aa"
+      },
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_capture.py",
+          "symbol": "CopyCaptures.start_extra",
+          "startLine": 80,
+          "endLine": 85,
+          "bytes": 11062,
+          "sha256": "29b62bb38b61a8f0f774df98782dd3218f53f274a8945dc23d0f6f8cb6cbf8aa"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/feat_candidates/exact_01/shared_rules.json",
+          "pointer": "/rules/7",
+          "bytes": 56098,
+          "sha256": "27ca6a8f2be07660a7c3a131e4cdf83c2abcf1176561f7c6a051fff9e226bcfb"
+        }
+      ],
+      "testPrefixes": [
+        "test_extra_turn_event",
+        "test_regular_turn_event",
+        "test_distinct_extra"
+      ]
+    }
+  ],
+  "notSelectedAsDefect": [
+    {
+      "probe": "Capture rank ceiling through a temporarily suppressed paid feat-only credential",
+      "reason": "The sources distinguish permanent acquisition/ceiling credentials from current release availability. The supplied release path already checks operative feat availability. No new active-at-capture credential rule is inferred from the raw probe."
+    }
+  ]
+}

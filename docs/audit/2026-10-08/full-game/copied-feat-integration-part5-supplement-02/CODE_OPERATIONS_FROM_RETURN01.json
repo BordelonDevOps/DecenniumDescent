@@ -1,0 +1,44 @@
+{
+  "id": "DD-COPY-TARGETED-SUPPLEMENT-02-OPERATIONS",
+  "format": "Exact full UTF-8 spans, each occurring once in its sequential source. Full file bytes are bound separately. No fuzzy matching or project application.",
+  "operationCount": 3,
+  "fileCount": 1,
+  "baseline": {
+    "bytes": 22991,
+    "sha256": "35e746cfe14b88073539eac763c063c5d05d630bc582ebd0c1187c6aba80f1e3"
+  },
+  "successor": {
+    "bytes": 23519,
+    "sha256": "2b45d33ff0bdc6230aa4fbfd563f59bc0e2537616210ade940d2dd22954ccc1d"
+  },
+  "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+  "operations": [
+    {
+      "id": "CFI02-OP-01",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "symbol": "CopyPayloadWorld.advance",
+      "finding": "CFI-07",
+      "before": "    def advance(self, now, releases):\n        marker=clock_marker(now);require(marker>=self.now,'World time cannot move backward')\n        # Bound all live copy sources to the same shared ledgers.\n        by_owner={r.owner:r for r in releases}\n        require(len(by_owner)==len(releases),'One copy engine per owner required')\n        for e in self.effects.values():\n            if e['active']:require(e['owner'] in by_owner and by_owner[e['owner']].world is self,'All live source engines required for expiry')\n        for engine in releases:\n            validate = getattr(engine.lifecycle.ledger, 'validate_current', None)\n            if validate: validate()\n        self.now=marker\n        for effect in list(self.effects.values()):\n            if effect['active'] and marker>=effect['deadline']:\n                engine=by_owner[effect['owner']]\n                engine.lifecycle.end_at_deadline(effect['cast'],actual_source_deadline=True)\n        self.buffers.expire(marker);self.projection()\n",
+      "after": "    def advance(self, now, releases):\n        \"\"\"Advance supplied clocks and return source-owned expiry instructions.\n\n        The caller must route every returned instruction to the actual source/\n        target condition-choice adapter. This is an internal event handoff, not\n        Oracle acquisition, automatic cleansing, or durable delivery/acknowledgment.\n        An ignored instruction cannot be recovered by expiring the grant again.\n        \"\"\"\n        marker=clock_marker(now);require(marker>=self.now,'World time cannot move backward')\n        # Bound all live copy sources to the same shared ledgers.\n        by_owner={r.owner:r for r in releases}\n        require(len(by_owner)==len(releases),'One copy engine per owner required')\n        for e in self.effects.values():\n            if e['active']:require(e['owner'] in by_owner and by_owner[e['owner']].world is self,'All live source engines required for expiry')\n        for engine in releases:\n            validate = getattr(engine.lifecycle.ledger, 'validate_current', None)\n            if validate: validate()\n        self.now=marker\n        for effect in list(self.effects.values()):\n            if effect['active'] and marker>=effect['deadline']:\n                engine=by_owner[effect['owner']]\n                engine.lifecycle.end_at_deadline(effect['cast'],actual_source_deadline=True)\n        instructions=self.buffers.expire(marker);self.projection()\n        return instructions\n"
+    },
+    {
+      "id": "CFI02-OP-02",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "symbol": "CopyPayloadReleases.declare",
+      "finding": "CFI-06",
+      "before": "                require(not any(r.next_healing for r in actor['healingReductions']),'Next-healing consumption needs its source-owned adapter')\n",
+      "after": "                require(not any(r.present and not r.suppressed and r.next_healing for r in actor['healingReductions']),'Next-healing consumption needs its source-owned adapter')\n"
+    },
+    {
+      "id": "CFI02-OP-03",
+      "kind": "replace-exact-text",
+      "path": "DescentReviewChanges/ReviewBible/tools/feat335_copy_payloads.py",
+      "symbol": "CopyPayloadReleases._payload",
+      "finding": "CFI-06",
+      "before": "            require(not any(r.next_healing for r in world.actors[eligible[0]]['healingReductions']),'New next-healing source needs its actual consumption adapter')\n",
+      "after": "            require(not any(r.present and not r.suppressed and r.next_healing for r in world.actors[eligible[0]]['healingReductions']),'New next-healing source needs its actual consumption adapter')\n"
+    }
+  ]
+}

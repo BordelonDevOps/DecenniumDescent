@@ -1,0 +1,85 @@
+{
+  "provenance": "Three complete diagnostic objects supplied inline in the current user message; this is not the complete byte-identical local receipt02.",
+  "reportedReceipt02Sha256": "0466048ecc6d473815ecccba357f16fd08ce91e8561f33df1f46a29311c423ac",
+  "rawReceiptByteVerification": "NOT_POSSIBLE_FROM_INLINE_EXCERPT; raw local receipt not provided",
+  "reportedLocalPreflight": {
+    "filename": "COPIED_FEAT_PART5_RETURN_01_LOCAL_PREFLIGHT.json",
+    "bytes": 14719,
+    "sha256": "495bc852003045bc333efd5e1589d5fcef8c42d45b3188f0acc36914e77e8c12",
+    "verifiedHere": false
+  },
+  "cases": [
+    {
+      "id": "LOCAL-COPY-INACTIVE-MEND-ABSENT",
+      "status": "defect-reproduced",
+      "premise": "Existing paid Wizard Mend fixture with an explicitly absent or suppressed prior next-healing reducer; valid pending paid declaration and nativeDice [4,4].",
+      "reducer": {
+        "application_id": "old",
+        "group": "actual-reducer",
+        "kind": "flat",
+        "value": 1,
+        "present": false,
+        "suppressed": false,
+        "next_healing": true
+      },
+      "expectedByExistingHealingHelper": {
+        "hp": 32,
+        "nextHealingCandidates": []
+      },
+      "actual": {
+        "hp": 30,
+        "error": "New next-healing source needs its actual consumption adapter",
+        "failureAtomic": true
+      },
+      "finding": "The copy adapter rejects every next_healing record without filtering present/suppressed state. Existing healing arithmetic correctly ignores the inactive record. Active next-healing consumption remains a separate explicitly unimplemented adapter."
+    },
+    {
+      "id": "LOCAL-COPY-INACTIVE-MEND-SUPPRESSED",
+      "status": "defect-reproduced",
+      "premise": "Existing paid Wizard Mend fixture with an explicitly absent or suppressed prior next-healing reducer; valid pending paid declaration and nativeDice [4,4].",
+      "reducer": {
+        "application_id": "old",
+        "group": "actual-reducer",
+        "kind": "flat",
+        "value": 1,
+        "present": true,
+        "suppressed": true,
+        "next_healing": true
+      },
+      "expectedByExistingHealingHelper": {
+        "hp": 32,
+        "nextHealingCandidates": []
+      },
+      "actual": {
+        "hp": 30,
+        "error": "New next-healing source needs its actual consumption adapter",
+        "failureAtomic": true
+      },
+      "finding": "The copy adapter rejects every next_healing record without filtering present/suppressed state. Existing healing arithmetic correctly ignores the inactive record. Active next-healing consumption remains a separate explicitly unimplemented adapter."
+    },
+    {
+      "id": "LOCAL-COPY-SHARED-BUFFER-EXPIRY-01",
+      "status": "defect-reproduced",
+      "premise": "A conditionally already legally established Oracle Overflowing Light buffer shares the canonical BufferLedger with the copy world:5 temporary HP, remaining at its supplied actual deadline12, with its actual source-specific overflowing-cleanse rider. This fixture does not implement Oracle acquisition or grant a new cleanse.",
+      "expectedNaturalExpiryInstructions": [
+        {
+          "sourceId": "oracle.supplement.life.overflowing-light",
+          "grantId": "actual-prior-overflow",
+          "target": "target",
+          "chooseUpTo": 1,
+          "eligibleConditions": [
+            "Frightened",
+            "Poisoned",
+            "Staggered"
+          ]
+        }
+      ],
+      "actualAdvanceReturn": null,
+      "secondExpiryInstructions": [],
+      "finalGrantState": "natural-expiry",
+      "finalTempHp": 0,
+      "finding": "CopyPayloadWorld.advance discards the existing BufferLedger.expire return value after it irreversibly ends the shared buffer. The real expiry benefit cannot be recovered by a later expiry call.",
+      "qualification": "The proper downstream receiver must still choose/apply an actually eligible condition removal. This diagnosis proves instruction loss, not a missing free automatic cleanse."
+    }
+  ]
+}

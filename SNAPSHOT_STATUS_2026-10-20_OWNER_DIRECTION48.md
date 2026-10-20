@@ -1,0 +1,13 @@
+# Decennium Descent development backup —20 October2026
+
+This backup preserves saved work after ccb9047a76e9807250feee6d72285c268957d20b through [checkpoint48](docs/audit/2026-10-08/full-game/ACTIVE_AUTHORING_CHECKPOINT_GPT_OWNER_DIRECTION_48.json). Applied accounting remains525 reviewed/323 pending/249 standalone/173 interfaces;39 accepted spell identities remain unapplied. The owner's implementation reservation remains in force.
+
+The [new decision ledger](docs/audit/2026-10-08/full-game/PERTINENT_GPT_DECISIONS_2026_10_20_01.json) preserves actual discussions in Calibration Review Part5 and Unity Development Setup. Owner direction is an SNES-style CRPG combining direct-control exploration, deep tactical combat and companion-driven crafting/research/gathering, with sustained AI engineering and rules oversight and the owner retaining design authority. Shared Unity/C# simulation and a connected first playable loop are GPT architecture recommendations; exact time, traversal and implementation choices remain distinct.
+
+The owner confirmed shared24-hour Mass Suggestion without an added consumed reagent and consistent True Seeing benefits across legitimate access. GPT's delegated Soulburn/Grand Reservoir recovery choice remains scoped. Copied-feat Ready now spends applicable allowances only at preparation; the old both-round proposal is superseded. GPT received the exact successor request; no rule changes have been applied.
+
+The complete copied-feat Return01 and Supplement02 archives are preserved. Local verification passed108 and156 integrity/source/text checks respectively. Supplement02 corrects inactive healing-reducer rejection and preserves shared-buffer expiry instructions in proposed helper code. Active-source consumption and downstream choice/removal still require implementation. GPT-reported executable results are distinguished from our local text verification; no downloaded code was run.
+
+The rank9 psychic/fear7 source packet retains84 complete sources,10 placements,23 unselected questions and303 source checks. Queue39 groups234 pending identities in37 groups, leaving89 ungrouped rank9 identities. Source preparation does not approve mechanics or cosmology.
+
+The [manifest](docs/audit/2026-10-20/github-snapshot-owner-direction48/manifest.json) records hashed sources and established locally retained exclusions. All prior tracked Git entries remain; no deletions or force push. Private configuration, unrelated browser captures, imported assets, external reference books and mixed immutable archives remain local under the existing backup policy. All75-domain, engine/runtime, human-play, balance, cosmology, whole-game and release gates remain separate.
