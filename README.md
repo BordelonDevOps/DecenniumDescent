@@ -1,4 +1,4 @@
-> **Latest development backup — 20 October 2026:** Work through checkpoint 57 is preserved. Four new rank-9 review packets cover 26 identities; their proposed decisions remain unselected. Applied counts remain 525 reviewed / 323 pending, with249 standalone procedures,173 interfaces and39 accepted-but-unapplied identities. See [snapshot status](SNAPSHOT_STATUS_2026-10-20_MEMORY_DENIAL57.md). Earlier notices remain history.
+> **Latest development backup — 20 October 2026:** Work through checkpoint 61 is preserved. The Rank 8 damage review has eight outstanding local findings; two new rank-9 source packets remain undecided. Applied counts remain 525 reviewed / 323 pending, with 249 standalone procedures, 173 interfaces and 39 accepted-but-unapplied identities. See [snapshot status](SNAPSHOT_STATUS_2026-10-20_PLANAR_GATES61.md). Earlier notices remain history.
 
 > **Recovered working root — 2026-10-08:** Start with [START_HERE.md](START_HERE.md) for the current books, preserved history and completion status. This folder contains approved V6 plus unpromoted review work; older release claims below must be read in that context.
 
