@@ -1,0 +1,1 @@
+Six complete rank9 memory/denial identities, six placements, 28 unselected questions, eight applied counterparts and five full pending comparison archives. Five tierC and one tierB; all16 actual class payloads and manifest preserved. Source-only conference; no procedure or runtime adoption.

@@ -1,0 +1,3167 @@
+{
+  "id": "DE4-EXACT-CASEBOOK-07",
+  "status": "37 authored source-grounded cases; not engine execution",
+  "input": {
+    "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+    "bytes": 663165,
+    "sha256": "a3bbdc441b5d561a048326c20d7087d4b216c9e2adc34d9ac129c3e7fc16e864"
+  },
+  "cases": [
+    {
+      "id": "DE4-N01",
+      "spellId": "fate-reversal",
+      "title": "One guard for one whole advantage attack",
+      "initialState": "Caster A has an operative unused Fate Reversal at t0, expiring60, actual available Reaction. Another caster B has a legal Mark Omen on targetT. B makes its own legal advantage attack at t6; visible faces[4,17],modifier+7,T AC18. Both source preflights are legal; B has earlier actual initiative. A already actually perceives B, target T and the declared ordinary attack. The original d20 result presentation in this fixture is granted by NEW DE4-PRESENTATION-06/OVERT-ATTACK, not by engine/debug access.",
+      "actionsAndResolution": [
+        "B commits Mark Omen first with no extra Action/Reaction and reserves DE4-GUARD-01. Replace both d20s with[6,9],select9,total16,miss.",
+        "A's later declaration against the same original/replacement lineage is barred before payment: permission and Reaction remain. No second full pair is rolled. B's ammunition/original attack cost was paid only once.",
+        "A later separate eligible d20 event before60 can use A's permission normally; the rejected declaration neither resets nor extends it."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true,
+        "markOmenUse": 1,
+        "fateReversalUse": 0,
+        "fateReversalReaction": 0
+      },
+      "clockLedger": {
+        "permissionCreated": 0,
+        "expires": 60,
+        "attack": 6
+      },
+      "geometryLedger": {
+        "A_to_rollGeneratorB": 30,
+        "clearLoE": true
+      },
+      "outcome": "The proposed common guard prevents competing sources from rerolling the same original event twice.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/0/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/220"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/222"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Reaction refresh and actual interrupt ordering"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open.",
+      "presentationAuthority": {
+        "policyId": "DE4-PRESENTATION-06",
+        "entryId": "OVERT-ATTACK",
+        "status": "NEW PROPOSAL, not frozen accepted visibility authority"
+      }
+    },
+    {
+      "id": "DE4-N02",
+      "spellId": "fate-reversal",
+      "title": "Shared damage and generator protection",
+      "initialState": "An operative Fate Coin holder H is outside Seal Vision and perceives Wizard W at20ft clearLoE. W, also outside Seal, casts actual Burning Hands and its public shared3d6 fire roll is[2,4,6]. Two failed-save recipients are in the cone; only recipientR1 is inside Seal Vision. Neither is otherwise fire-resistant. H actually perceives both W and the manifested cone. The shared original faces are available under NEW DE4-PRESENTATION-06/BURNING-HANDS-DAMAGE; this is an explicit proposed presentation grant, not an inference from the adjective public.",
+      "actionsAndResolution": [
+        "Fate Reversal cannot alter this damage roll at all; it is not an attack/save/check d20, so no Reversal permission or Reaction commits.",
+        "Under the proposed Seal locus rule, the actual roll-generator W is unprotected; protecting R1 does not recategorize the original Evocation damage or split the shared roll.",
+        "H uses the actual Coin Reaction, replaces the2 with5 and recomputes shared total15. Both failed-save recipients take the same15 before their own defenses; no separate reroll was made for R2. The Coin guard covers that damage event only."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true,
+        "fateReversalUse": 0,
+        "fateCoinUse": 1,
+        "H_Reaction": 1
+      },
+      "clockLedger": {
+        "damageReroll": "before any damage consequences"
+      },
+      "geometryLedger": {
+        "H_to_W": 20,
+        "coneTargets": 2
+      },
+      "outcome": "Fate Reversal eligibility and a protected recipient do not manufacture per-target shared damage results.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/0/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/220"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/222"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Reaction refresh and actual interrupt ordering"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/43"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/0"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open.",
+      "presentationAuthority": {
+        "policyId": "DE4-PRESENTATION-06",
+        "entryId": "BURNING-HANDS-DAMAGE",
+        "status": "NEW PROPOSAL, not frozen accepted visibility authority"
+      }
+    },
+    {
+      "id": "DE4-N03",
+      "spellId": "seal-vision",
+      "title": "Body intersection, remote caster and real suppression",
+      "initialState": "Seal Vision area center(0,0),radius20,deadline60; its caster is at(30,0). Medium T has a five-foot footprint and center(21,0), with part of body inside and centerLoE. T has one still-live Divination Aspect buff and a separate non-Divination Spell Resistance buff.",
+      "actionsAndResolution": [
+        "T is protected by this proposed any-body-intersection rule. Its Aspect component is suspended; Spell Resistance remains unless another actual suppressor covers it.",
+        "Move T to(23,0),entire footprint outside. The still-live Aspect resumes for its original remaining duration; neither source re-casts or refills a stat/resource.",
+        "In an independent branch the remote Seal caster steps into a separate Antimagic field at(40,0) that reaches neither the Seal area expression nor T. Caster entry alone does not globally suppress the distant Seal. Actual affected loci still govern."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "sealDeadline": 60,
+        "buffDeadlines": "unchanged"
+      },
+      "geometryLedger": {
+        "T_beforeCenter": [
+          21,
+          0
+        ],
+        "T_afterCenter": [
+          23,
+          0
+        ],
+        "bodyWidth": 5
+      },
+      "outcome": "Geometry is explicit and remote concentration ownership is not an invented global suppression channel.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/1/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/3"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/6"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N04",
+      "spellId": "seal-vision",
+      "title": "Protected operator versus protected original event",
+      "initialState": "H holds a physical live Fate Coin AC10HP1 with deadline3600, inside an operative Seal area. A separate Fate Reversal caster F is outside all Seals with an operative permission until60 and available Reaction. Creature G inside Seal generates an actual d20 check, face12+3=15. G makes an actually requested nonsecret ordinary check. The same player controls G and F and receives G's private complete-result view under NEW DE4-PRESENTATION-06/OWN-REQUESTED-CHECK. F still independently perceives G within the stated range and LoE. A different multiplayer controller does not inherit that private view.",
+      "actionsAndResolution": [
+        "H's Coin use is unavailable while its magical expression is suppressed. It remains the same physical coin,HP1,custody and deadline; no use/Reaction/guard commits.",
+        "F perceives G within30ft clearLoE and satisfies its own Reversal preflight. If F legally commits to this protected original event under the explicit proposed paid-block rule, permission/Reaction/common guard are spent but the Divination alteration is blocked: retain original12+3=15,with no replacement dice.",
+        "Overlapping Seal fields do not suppress one another. Ordinary observers and independent readable surroundings are unaffected; no hidden cause/roster is reported by a blocked magical inquiry."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true,
+        "H_coinUses": 0,
+        "H_Reactions": 0,
+        "F_permissionUses": 1,
+        "F_Reactions": 1
+      },
+      "clockLedger": {
+        "coinDeadline": 3600,
+        "reversalDeadline": 60
+      },
+      "geometryLedger": {
+        "F_to_G": 30,
+        "clearLoE": true
+      },
+      "outcome": "This is a NEW explicit paid-block/locus adjudication for joint review, not an assumed earlier guard rule.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/1/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/43"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/222"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/3"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/6"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open.",
+      "presentationAuthority": {
+        "policyId": "DE4-PRESENTATION-06",
+        "entryId": "OWN-REQUESTED-CHECK",
+        "status": "NEW PROPOSAL, not frozen accepted visibility authority"
+      }
+    },
+    {
+      "id": "DE4-N05",
+      "spellId": "aspect-of-insight",
+      "title": "Cap20 and an actual rest-snapshotted reserve",
+      "initialState": "Druid10 has current INT19,WIS20,M5 and a Buffer Reserve already recorded after its last beneficial Long Rest at2*10+5=25,currently17. An eligible caster applies Aspect; no rest occurs.",
+      "actionsAndResolution": [
+        "INT becomes20,modifier+5 instead of+4. WIS20 is already at this spell's cap and receives no increase; its modifier remains+5.",
+        "Current Buffer remains17 and the recorded rest snapshot remains25. No shift use, Form Surge, prepared spell, permanent prerequisite or repertoire is granted.",
+        "On expiry INT returns19; no HP damage/healing, RP refund or repeated rest happens. WIS and the existing reserve stay unchanged."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "durationSeconds": 60,
+        "restEvents": 0
+      },
+      "geometryLedger": {
+        "targetWithin60": true,
+        "clearLoE": true
+      },
+      "outcome": "The source grants a temporary score bonus, not a recovery event.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/2/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+          "section": "Ability scores, derived values and acquisition"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+          "section": "Actual class foundations"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/3"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/engine"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N06",
+      "spellId": "aspect-of-insight",
+      "title": "New-cast DC versus existing applying DC",
+      "initialState": "Wizard7 has INT18/PB3,spell DC15,mental save advantage from one independent valid source, and an existing spell application that recorded DC15. Aspect raises INT20; WIS is below20. A second equal Aspect exists from another caster.",
+      "actionsAndResolution": [
+        "Identical flat score bonuses do not add to+4: effective INT20,modifier+5. A genuinely new eligible spell uses DC16; the old application's recorded DC15 is unchanged.",
+        "Mental-save advantage remains one advantage. An actual disadvantage makes one ordinary d20 roll despite two advantage sources.",
+        "Suppress one of the equal Aspect applications while the other remains operative: no stat drop. When both are inactive/ended, INT18 returns. No new prepared slot, spell knowledge or automatic pool refill was granted."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "oldDcSnapshot": 15,
+        "newCastDc": 16,
+        "eachDeadline": "original"
+      },
+      "geometryLedger": {
+        "sameWillingTarget": true
+      },
+      "outcome": "Each actual statistic follows its own source timing, with no duplicate bonus or save dice.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/2/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+          "section": "Ability scores, derived values and acquisition"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_FOUNDATION_TABLES.md",
+          "section": "Actual class foundations"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/3"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N07",
+      "spellId": "locate-creature",
+      "title": "One remote bearing and no hidden reason",
+      "initialState": "The caster knows one actual individual T by reliable identity. At resolution T is on the same actual plane three miles away behind ordinary stone, still the same identity after a disguise/body transformation. T has no applicable information protection.",
+      "actionsAndResolution": [
+        "The express remote sense ignores originating wall LoE and returns only direction/vertical bearing, not distance, room, route, HP or a visible destination.",
+        "Separate fixtures at the same read checkpoint replace T with its corpse, an actually source-ended summon, an active Banishment-cell occupant, or a protected subject. Each yields No Bearing under its own actual reason, with no reason disclosed.",
+        "A later ordinary movement of an eligible T is not tracked. A fresh legal paid cast is needed for a new snapshot."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "read": "one resolution snapshot",
+        "trackingDuration": 0
+      },
+      "geometryLedger": {
+        "eligibleTargetDistanceFeet": 15840,
+        "maximumFeet": 26400,
+        "ordinaryStoneBlocks": false
+      },
+      "outcome": "Continuing identity and actual information scope determine the single bearing.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/3/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/235"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/228"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/43"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N08",
+      "spellId": "locate-creature",
+      "title": "Ended exile with a placement conflict",
+      "initialState": "T's ordinary Banishment cell has actually ended. Physical obstruction prevents every permitted return footprint, so accepted BAN-CONFLICT-04 records T's AnchorReference on the original plane one mile from the locator; T is still living and unprotected by an applicable information ward.",
+      "actionsAndResolution": [
+        "Apply this spell's same-plane range/predicate read to the actual logical AnchorReference and return bearing under its express remote-sense permission.",
+        "T gains no occupied footprint, adjacency, cover, support, sight, path or successful placement. The locator gains no automatic ordinary attack target or route.",
+        "T's real clocks and independent source-permitted conflict actions continue. Removing the obstruction triggers only the actual accepted placement recheck; this inquiry neither cures nor prolongs the conflict."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "cellStatus": "ended before inquiry",
+        "ordinaryClocks": "continue"
+      },
+      "geometryLedger": {
+        "referenceDistanceFeet": 5280,
+        "occupiedFootprint": false
+      },
+      "outcome": "Logical source-test location is distinct from physical placement, without inventing untargetability or a body.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/3/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/235"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/228"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/43"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N09",
+      "spellId": "faction-secrets",
+      "title": "Established institutional fact versus private thought",
+      "initialState": "Use an actual known canonical faction F; this fixture adds no new faction identity. Director records already contain one nonpublic warehouse relocation order responsive to the caster's concrete logistics subject. An officer also has a separately protected private suspicion, not an institutional record.",
+      "actionsAndResolution": [
+        "The inquiry returns the established relocation fact, within its actual unprotected content. It does not disclose the officer's private suspicion or label which hidden detail was protected.",
+        "An equivalent logistics inquiry by another caster or rewording under unchanged records returns the same stable selected fact.",
+        "Learning it grants no membership, standing, alliedStatus, invocation permission, public announcement or power to issue orders."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "institutionalSnapshot": "current resolution",
+        "equivalentQueryKey": "stable until underlying facts change"
+      },
+      "geometryLedger": {
+        "selfInquiry": "no fictitious60ft representative"
+      },
+      "outcome": "Useful institutional knowledge is preserved without manufacturing a secret or credential.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/4/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/244"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/225"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/236"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/7"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PART05_PLAYER.md",
+          "section": "Current faction/reputation and social boundaries"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N10",
+      "spellId": "faction-secrets",
+      "title": "No responsive secret",
+      "initialState": "The exact known faction exists, but the specified concrete institutional subject has no established responsive nonpublic fact. No member/representative is physically near the caster.",
+      "actionsAndResolution": [
+        "Return Indeterminate; the Director does not invent a secret, hidden roster, protected identity or new doctrine to satisfy a paid spell.",
+        "The source's proposed Self inquiry needs no representative, so absence of a nearby member is not separately disclosed or treated as a new range failure.",
+        "Costs remain spent. A later genuine new established institutional fact may change a later paid answer; rephrasing alone does not."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "effect": "instantaneous",
+        "futureRead": "new actual paid cast"
+      },
+      "geometryLedger": {
+        "representativeRequired": false
+      },
+      "outcome": "Missing information stays missing without revealing why.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/4/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/244"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/225"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/236"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/7"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PART05_PLAYER.md",
+          "section": "Current faction/reputation and social boundaries"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N11",
+      "spellId": "alignment-forecast",
+      "title": "Forecast portal creation eligibility, without inventing a traveler alignment gate",
+      "initialState": "Independent branches start with F, a Cleric7 who actually knows/prepares Alignment Forecast, 21RP and no current price modifier; T is a Wizard9 who actually knows/prepares accepted Alignment Portal and has20RP. T has underlying LawfulEvil and another caster's live Alignment Lock snapshotNeutralGood, with known absolute expiry t30. Both axes and the relevant timing are established and unprotected. Actual different destination plane P/site S is personally known and its established Portal compatibility record admits NeutralGood only. Its clear supported portalPose and the valid clear supported origin pose are already recorded. At t10 F perceives T at20ft with clear LoE. All branches below are independent; one paid Forecast per branch, no accumulation of casts or resources between alternatives.",
+      "actionsAndResolution": [
+        "Branch A asks about T creating a NEW Portal at t20 to reach P/S. F pays7RP,21→14. The supported t20 effective alignment is NeutralGood and the actual compatibility predicate passes. Forecast returns Favored for the alignment contribution only. If that stated cast actually occurs with all other prerequisites still legal, T pays10RP,20→10, forming the portal at t20 with deadline t80.",
+        "Branch B instead asks about T creating a NEW Portal at t40. F independently pays7RP,21→14. The known t30 Lock expiry exposes T's actual underlying LawfulEvil, which the recorded site does not admit. Forecast returns Opposed. At the actual known-ineligible t40 preflight T cannot begin that portal cast and spends no10RP; no portal forms. This is not a claim that Forecast itself spends T's resources or guarantees future behavior.",
+        "Branch C already has the legally formed Branch-A portal, snapshotNeutralGood and fixed deadline t80. At t30 the Lock expires; the portal remains. T's supported legal physical crossing at t40 is NOT barred by now being LawfulEvil: accepted Alignment Portal has no later traveler-alignment gate. On ordinary clear ground a fitting Medium T uses5 movement through the5x8ft aperture, subject to actual whole-body/ward checks. A new Forecast inquiry about that crossing returns Unaffected for the proposed alignment-change obstruction because that obstruction does not exist; it does not guarantee unrelated transit legality.",
+        "Only Favored/Opposed/Unaffected is delivered by the relevant inquiry, not axes, destination coordinates, hidden identities or the causal explanation. Unknown/protected premises would instead require Indeterminate under the procedure. The Portal branches correct only a proposed later traveler-alignment gate. They do not invalidate the separate preserved DE4-06-A scenario involving an actual alignment-based entry ward; that obligation is demonstrated in Branch D below.",
+        "Branch D is independent and restores DE4-06-A using actual Alignment Sanctuary Abjuration3, not a Portal traveler gate. At t0 a different Wizard5 with INT16/PB3, Evocation school specialization, actual Sanctuary preparation, 15RP and canonical LawfulGood pays Action/V/S/F/5RP,15→10, to establish a supported fixed10ft-radius/10ft-high Sanctuary with DC14 and absolute expiry t60. T is still under the separately maintained NeutralGood Lock until t30 and then actually LawfulEvil. F at t10 independently pays Forecast7RP,21→14, and asks about T entering this ward at t40. Its known Good/Evil opposition at t40 creates the actual WIS entry gate, so Forecast returns Opposed for that alignment contribution, not failure, DC, axes or the ward identity. This remains a forecast, not a simulated future save. If that chosen entry later actually occurs at t40 with these same predicates, T rolls natural8+WIS0=8 versus DC14 and is stopped immediately outside the ward boundary; the established save window persists to T's next regular START, with no repeated save before then. No attack or hard-control claim is created."
+      ],
+      "costLedger": {
+        "forecastPerIndependentBranch": {
+          "before": 21,
+          "cost": 7,
+          "after": 14
+        },
+        "portalCreationAt20": {
+          "before": 20,
+          "cost": 10,
+          "after": 10
+        },
+        "knownIllegalPortalCreationAt40": {
+          "before": 20,
+          "cost": 0,
+          "after": 20
+        },
+        "existingPortalCrossingMovement": 5,
+        "branchD_sanctuary": {
+          "wizardLevel": 5,
+          "school": "Abjuration",
+          "rank": 3,
+          "before": 15,
+          "cost": 5,
+          "after": 10,
+          "activation": "Action",
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "EvocationSpecializationDoesNotBoostAbjuration": true,
+          "DC": 14,
+          "INTmodifier": 3,
+          "PB": 3
+        },
+        "branchD_forecast": {
+          "before": 21,
+          "cost": 7,
+          "after": 14,
+          "oneSeparateInquiry": true
+        }
+      },
+      "clockLedger": {
+        "inquiry": 10,
+        "compatibleCreation": 20,
+        "lockExpiry": 30,
+        "incompatibleCreationOrExistingPortalCrossing": 40,
+        "existingPortalDeadline": 80,
+        "branchD": {
+          "wardApplication": 0,
+          "inquiry": 10,
+          "lockExpiry": 30,
+          "attemptedEntry": 40,
+          "targetNextRegularStart": 42,
+          "wardAbsoluteExpiry": 60,
+          "noFutureSaveAtInquiry": true
+        }
+      },
+      "geometryLedger": {
+        "forecastRange": 20,
+        "forecastLoE": true,
+        "portalApertureFeet": [
+          5,
+          8
+        ],
+        "originAndDestination": "actual clear supported recorded poses on different planes; Medium body fits; no active blocker",
+        "branchD": {
+          "plane": "one already-established ordinary plane; no named cosmology chosen",
+          "wardCenter": [
+            0,
+            0,
+            0
+          ],
+          "wardRadiusFt": 10,
+          "wardHeightFt": 10,
+          "wardSourceCasterPosition": [
+            0,
+            -20,
+            0
+          ],
+          "forecastCasterPosition": [
+            20,
+            -20,
+            0
+          ],
+          "targetAtInquiry": [
+            20,
+            0,
+            0
+          ],
+          "forecastRangeFt": 20,
+          "LoE": "clear open ground",
+          "TcurrentFootprint": "Medium 5x5;6ft occupied height",
+          "entryAttempt": "T approaches from east; starts with west face x=10.5 outside the ward, tests entry before west face would cross x=10. No boundary entry on the failed save.",
+          "targetEntryMoveBudgetAvailableFt": 30,
+          "failedBoundaryCrossingMovementSpentFt": 0,
+          "priorApproach": "not assumed free; this fixture starts at its stated outside boundary position"
+        }
+      },
+      "outcome": "Caster compatibility is checked for formation. A known Lock expiry can change new-cast eligibility, but cannot invent a later traveler gate or close an established portal. An actual Alignment Sanctuary entry ward still supports the preserved generic ward forecast; its Opposition need not make entry impossible.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/5/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+          "pointer": "/cards/5"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/329"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/6"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/7"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/237"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/15/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/15/completeSourceAndAccess/classAccess"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/45/operational",
+          "role": "Actual Alignment Sanctuary opposed-entry WIS gate, fixed snapshot and finite cadence",
+          "authority": "supplied source"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N12",
+      "spellId": "alignment-forecast",
+      "title": "Unknown premise is not Unaffected",
+      "initialState": "A concrete intended action and goal are named, but a necessary alignment axis or a relevant future voluntary choice is genuinely undefined or protected. The spell supplies no broader prediction source.",
+      "actionsAndResolution": [
+        "Return Indeterminate, without inventing Neutral, guessing a moral doctrine, or disclosing which actor/axis is hidden.",
+        "In a separate fully established fixture with no material alignment-dependent interaction, return Unaffected; those are different premises and not a way to diagnose hidden protection.",
+        "Changing voluntary plans can invalidate the practical forecast without retroactively changing its recorded answer. Equivalent unchanged queries remain stable."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "actionBeginning": "within next minute",
+        "consequenceWindowSeconds": 3600
+      },
+      "geometryLedger": {
+        "actorPerceivedWithin60": true
+      },
+      "outcome": "A bounded alignment forecast does not become omniscience or moral compulsion.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/5/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/divination_rank7_exact_01.json",
+          "pointer": "/cards/5"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/329"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/6"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/7"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/237"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N13",
+      "spellId": "resonance-divination",
+      "title": "Actual Wizard Dispel expenditure, separate Oracle RC and item charge",
+      "initialState": "Wizard7 W has12 current ordinary RP, INT18/PB3, actual acquired Arch Dispel Magic /cards/19 ready with Recharge0, an available Action and no price modifier or blocking strain. W actually possesses the unique bonded Shard Pendant of Xi, with its legal item-bound charge1. An independently cast reviewed Light is active on a nonliving1lb stone fitting a1ft cube at20ft, unoccluded and perceived; its one-hour deadline has not elapsed. The Light is rank0 and no Seal, suppression or other nondispel protection applies. On the later inquiry turn F is a Cleric7 with acquired/prepared Resonance Divination,14RP and no price modifier, perceiving W at20ft/clear LoE. Independent comparison fixtures use Oracle6 O with its actual5RC and no RP pool, and a Wizard with a genuinely defined current RP pool0.",
+      "actionsAndResolution": [
+        "W spends the actual Dispel Action and3RP:12→9, applies rank3 spell cadence under its actual class engine and sets that card's Recharge2. Its single perceived ongoing target is the rank0 Light, so its own automatic rank≤3 termination ends that Light. No check, borrowed ordinary Dispel price, item charge or invented RP expenditure is used.",
+        "On F's later actual turn after that completed event, F pays7RP,14→7, and reads W's exact ordinary RP9 at resolution. Xi charge1 is a separate actual item ledger, so the answer is9, never10. The inquiry reveals no item inventory, class, maximum, spending history or recharge counter and consumes no Xi charge.",
+        "In the separate Oracle6 fixture, F's lawful paid inquiry reports Indeterminate: the Oracle's actual5RC are not an ordinary RP pool. No multiclass or dual-resource Wizard/Oracle is fabricated. The separate readable actual RP0 fixture reports exactly0. Independent branches do not share F's spent RP/cadence.",
+        "If actual information protection defeats the read, the result is Indeterminate without exposing the reason. These fixtures create no new pool, charge, refill or continuing feed."
+      ],
+      "costLedger": {
+        "wizardDispel": {
+          "before": 12,
+          "cost": 3,
+          "after": 9,
+          "rank": 3,
+          "rechargeAfterUse": 2
+        },
+        "reader": {
+          "before": 14,
+          "cost": 7,
+          "after": 7
+        },
+        "separateLedgers": {
+          "wizardXiItemCharge": 1,
+          "independentOracle6RC": 5,
+          "oracleRP": "absent"
+        }
+      },
+      "clockLedger": {
+        "dispel": "W prior completed regular-turn Action",
+        "read": "later F regular-turn Action; one resolution snapshot",
+        "light": "ended before its original3600-second deadline; no reset"
+      },
+      "geometryLedger": {
+        "dispelTargetRangeFeet": 20,
+        "lightStonePounds": 1,
+        "lightStoneCubeFeet": 1,
+        "inquiryTargetRangeFeet": 20,
+        "clearLoE": true
+      },
+      "outcome": "The actual3RP spell reduces the Wizard ledger12→9. Oracle RC and the unique relic charge stay separate, with zero distinguished from no RP pool.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/6/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/211"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/246"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+          "section": "Actual resource identities and cast sequence"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/19"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/authored_review_index.json",
+          "pointer": "/entries/782"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/candidate_low_rank_136.json",
+          "pointer": "/spells/32/operationalCandidate"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/782"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "section": "Shard Pendant of Xi: actual one item-bound charge"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N14",
+      "spellId": "resonance-divination",
+      "title": "Existing cantrip exactness and actual range",
+      "initialState": "An unprotected creature with a real RP ledger is ordinarily visible at45ft with clearLoE; a second fixture places the same creature at25ft. Both sources use their actual known/access prerequisites.",
+      "actionsAndResolution": [
+        "At45ft the reviewed Resonance Sight30ft scope does not reach it, while a legal Resonance Divination60ft snapshot can read exact currentRP.",
+        "At25ft the current cantrip already supplies exact RP under its own source; the rank4 source does not claim exclusive exactness or secretly weaken the cantrip.",
+        "Actual Protection from Scrying blocks the information read where applicable; proposed Seal Vision also blocks this actual Divination component. Report the source's neutral unavailable result without identifying the protection."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "eachRead": "current actual resolution"
+      },
+      "geometryLedger": {
+        "rangeComparisonsFeet": [
+          45,
+          25
+        ],
+        "cantripLimit": 30,
+        "rank4Limit": 60
+      },
+      "outcome": "Keep the printed high-rank source and acknowledge its limited comparative distinction for joint balance discussion.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/6/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/211"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/246"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+          "section": "Actual resource identities and cast sequence"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N15",
+      "spellId": "dominate-person",
+      "title": "An actual Humanoid Champion and one pending command",
+      "initialState": "Accepted Faction Champion is an actual temporary Humanoid with its original owner's attached phase. Owner O has legally paid one BA command and reserved the one offense for this same Champion this phase. Eligible dominator D is on the same plane, conscious, and its failed WIS application established with an unused hard guard.",
+      "actionsAndResolution": [
+        "At that real attached-phase opportunity D may issue a legal ordinary attack order using only its known target information. Reuse this same pending Champion execution reservation; do not pay or invent a second owner BA/offense.",
+        "The actual Champion profile/owner attack values remain. No RP/recharge ability, new target sight, independent turn or second action is supplied.",
+        "Separate fixtures with the command reserved for another companion, already spent execution, or no currently supplied source-owner phase yield no new Champion execution. An END-only repeat save can occur only under the proposed explicit source-only bridge."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true,
+        "originalOwnerPaidBA": 1,
+        "extraBA": 0,
+        "extraOffense": 0
+      },
+      "clockLedger": {
+        "opportunity": "actual original-owner regular attached phase"
+      },
+      "geometryLedger": {
+        "D_and_targetSamePlane": true
+      },
+      "outcome": "Domination changes an actual permitted command, not the owner's resource or action economy.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/7/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/340"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/12"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/14"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+          "section": "Instruction arbitration and companion bridge"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "section": "Actual communication channels and no implicit senses"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N16",
+      "spellId": "dominate-person",
+      "title": "Different-controller replacement and independent same-caster concentration loss",
+      "initialState": "D1,D2,D3 are actual Wizard7 casters with acquired/prepared Dominate Person, INT18/PB3, spellDC15, available casting Actions and sufficient actual RP. T is a perceived Humanoid within60ft/LoE, no relevant immunity/protection, WIS save modifier0. In this same encounter D2 previously established Dominate Person on T at t-12, spending its D2/T hard guard, then voluntarily ended that concentration at t-6. D1 legally established its own application at t0, spending D1/T guard and7RP from14→7; it remains concentrated, original deadline t60. All required intervening END saves fail. D2 has7RP remaining after its earlier cast, D3 has14RP and unused D3/T hard guard. All relevant pre-cast Dissonance remains below the actual Limit9; ordinary new cadence/repeat history is still applied, not reset. Branches below are independent where described.",
+      "actionsAndResolution": [
+        "At t6 D2 pays7RP,7→0. If T rolls16, the save succeeds and no new control establishes. In the independent failed-save branch T rolls10; D2/T history already blocks a second hard component, so no new control establishes. Either outcome leaves D1's still-live concentration/application and original t60 deadline intact: D2 committed no action that displaces D1's concentration slot.",
+        "At t12 a separately eligible D3 pays7RP,14→7; T rolls8 against15. With D3/T guard unused, its hard component genuinely establishes, spends that guard and replaces the old same-spell D1 control. D3 has a new t72 maximum and its own saves. No old guard, RP, resolved order or source clock is refunded. Ending D1's last remaining effect ends that old concentration normally.",
+        "Independent same-caster branch from the t0 state: D1 recasts at t6, paying its remaining7RP. Ordinary new concentration commitment ends D1's old control BEFORE the new save. A new success or failed-save guard block establishes no replacement; old control does not return. This branch has no still-live old application to preserve.",
+        "For any later genuine order opportunity, the proposed same-plane conscious issuance channel applies. Different planes prevent a new order; no location/sensory feed or cross-plane network is added."
+      ],
+      "costLedger": {
+        "D1Initial": {
+          "before": 14,
+          "cost": 7,
+          "after": 7
+        },
+        "D2NewAttempt": {
+          "before": 7,
+          "cost": 7,
+          "after": 0
+        },
+        "D3NewAttempt": {
+          "before": 14,
+          "cost": 7,
+          "after": 7
+        },
+        "independentD1Recast": {
+          "before": 7,
+          "cost": 7,
+          "after": 0
+        }
+      },
+      "clockLedger": {
+        "oldD1Application": 0,
+        "oldD1Maximum": 60,
+        "differentD2Attempt": 6,
+        "successfulD3Replacement": 12,
+        "newD3Maximum": 72,
+        "independentSelfRecast": 6
+      },
+      "geometryLedger": {
+        "actualHumanoidTarget": true,
+        "rangeAtEachCastFeet": "≤60",
+        "perceivedAndClearLoE": true
+      },
+      "outcome": "Failed establishment by another controller does not replace D1. D1's own ordinary recast ends old concentration at commitment even when its new control fails.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/7/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/340"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/12"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/14"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+          "section": "Instruction arbitration and companion bridge"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "section": "Actual communication channels and no implicit senses"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "section": "Legal casting sequence: concentration commitment before resolution; shared hard-control history"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N17",
+      "spellId": "mass-pacify",
+      "title": "An actual committed miss releases pacification",
+      "initialState": "T has a live failed-save Mass Pacify. Creature A can legally attack T at this moment and commits a new ordinary attack after pacification established. A rolls natural4+5=9 againstAC16.",
+      "actionsAndResolution": [
+        "Pacification on T ends at the qualifying later committed-attack event; the attack's subsequent miss does not restore it.",
+        "A separate declaration rejected before commitment for a known illegal target/range is not an attack and ends nothing.",
+        "An attack already committed before pacification, a later attack on T's ally, or a prior ongoing nonattack damage packet does not satisfy this ending predicate. Keep other recipients' histories separate."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "application": "before qualifying new attack commitment"
+      },
+      "geometryLedger": {
+        "A_to_T": "legal actual attack geometry"
+      },
+      "outcome": "The spell's narrow endpoint is an actual attack event, not every declaration or injury.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/8/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/335"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/319"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Attack actions versus nonattack effects"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N18",
+      "spellId": "mass-pacify",
+      "title": "A legal no-attack damage spell remains possible",
+      "initialState": "Pacified Wizard W knows/prepared actual Burning Hands, has its real Action/RP/components and sees a legal cone of targets. No independent restriction prohibits casting. Mass Pacify is still live and has not been ended by an attack against W.",
+      "actionsAndResolution": [
+        "Burning Hands is a saving-throw spell with no attack roll, so this proposed attack-only prohibition does not block it merely because it harms creatures.",
+        "Pay its actual base2RP and normal cadence. Failed DEX targets receive a shared3d6=10fire before their own defenses; no attack event was invented.",
+        "Mass Pacify on W remains until its own endpoint or a real qualifying attack against W. No friendliness, treaty, consent or safe nonhostile behavior was granted."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true,
+        "separateBurningHandsBaseRp": 2
+      },
+      "clockLedger": {
+        "pacifyDeadline": "unchanged"
+      },
+      "geometryLedger": {
+        "actualConeRequired": true
+      },
+      "outcome": "This intentionally narrow high-rank behavior requires explicit joint source/value approval.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/8/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/335"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/319"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Attack actions versus nonattack effects"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N19",
+      "spellId": "confusion",
+      "title": "Finite perceived-only random target",
+      "initialState": "Confused T has an available ordinary Action and a legal ordinary melee attack. At its future regular START the behavior engine d4=3. Perceived legal other-creature set sorted by fixed encounterID is[A_friend,B_enemy,C_enemy]; no unperceived U is included. An eligible Coin holder sees the actual event within20ft/LoE and has a free hand/Reaction. The same player controls the affected creature T and Coin holder H. The finite behavior/selection results are privately presented by NEW DE4-PRESENTATION-06/CONFUSION-BEHAVIOR; H independently perceives T within Coin range and LoE. Other controllers receive no private candidate list or raw results.",
+      "actionsAndResolution": [
+        "Privately presented engine uniform d3=2 initially selects B. Before that selection consequences, the holder uses one actual Coin and rerolls the same d3 to1, selecting A from the unchanged set.",
+        "T makes exactly one ordinary legal attack against A using its actual ordinary method and ammunition if required. No extra attack sequence, resource ability or hidden candidate is supplied.",
+        "With an empty legal set in an independent fixture, no target die or attack occurs and no alternate behavior is rerolled. The already-established hard guard remains spent even if an independent behavior d4 result would allow agency."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true,
+        "coinUses": 1,
+        "holderReactions": 1,
+        "ordinaryActionsConsumed": 1
+      },
+      "clockLedger": {
+        "behavior": "future regular START after ordinary processing"
+      },
+      "geometryLedger": {
+        "holderToEventFeet": 20,
+        "perceivedCandidates": 3
+      },
+      "outcome": "Random selection is finite and a legal die replacement keeps the original candidate list.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/9/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/222"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/220"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Actual movement cost and regular-turn budgets"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open.",
+      "presentationAuthority": {
+        "policyId": "DE4-PRESENTATION-06",
+        "entryId": "CONFUSION-BEHAVIOR",
+        "status": "NEW PROPOSAL, not frozen accepted visibility authority"
+      }
+    },
+    {
+      "id": "DE4-N20",
+      "spellId": "confusion",
+      "title": "Half-Speed budget and additive terrain",
+      "initialState": "T has current walkingSpeed30, no movement already spent, and a real safe northward squeezing route through difficult terrain. Its behavior d4=4 and fixed direction d8=1 select north; the aperture is a source-legal one-size squeeze with adequate actual height/support.",
+      "actionsAndResolution": [
+        "The movement branch supplies at most halfSpeed=15 of the actual ordinary movement budget, not15feet of free path.",
+        "Each foot costs difficult2+squeeze1=3; a5foot step costs15. T moves exactly one legal5foot step north and has no remaining budget in this forced branch.",
+        "Its Action remains under its ordinary agency. If an earlier actual instruction had consumed that movement allowance, this instruction could not reset it; if no safe legal route existed, no unsupported step or rerolled direction would occur."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "opportunity": "one actual future regular START"
+      },
+      "geometryLedger": {
+        "speed": 30,
+        "branchBudget": 15,
+        "costPerFoot": 3,
+        "distanceMoved": 5
+      },
+      "outcome": "Terrain and squeezing consume one real movement budget.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/9/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/222"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/220"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Actual movement cost and regular-turn budgets"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N21",
+      "spellId": "erase-emotion",
+      "title": "Mooncursed temporary-HP Howl is not healing or fear",
+      "initialState": "Druid10 in actual Mooncursed has unspent once-per-shift Howl,FormSurge1,BufferReserve20, and an operative Erase Emotion prohibiting its fear outputs. Three actual allies within30ft are eligible for the temporary-HP Howl choice. Rolled2d8 total6 is the actual offer per recipient.",
+      "actionsAndResolution": [
+        "The nonfear choice is legal: spend1FormSurge and the complete offered18Buffer across the three recipients,leaving2,even where a stronger existing tempHP shield wins.",
+        "It gives the actual temporaryHP only; no ordinary healing or new form is created. The fear choice is unavailable, but bite,resistance and actual full-moon damage remain under their own sources.",
+        "Once-per-shift usage is spent; suppression/expiry/recasting Erase Emotion does not refill reserve or Howl."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true,
+        "formSurgeSpent": 1,
+        "bufferBefore": 20,
+        "bufferSpent": 18,
+        "bufferAfter": 2
+      },
+      "clockLedger": {
+        "howlPerShift": "spent",
+        "eraseDeadline": "original"
+      },
+      "geometryLedger": {
+        "allies": 3,
+        "actualRange": 30
+      },
+      "outcome": "Apply the real card's components and full offer cost rather than a suggestive rage/healing label.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/10/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/cards/27"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+          "pointer": "/cards/8"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/108"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/111"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N22",
+      "spellId": "erase-emotion",
+      "title": "Divine Fury keeps nonfear benefits",
+      "initialState": "Oracle6 has actually selected Battle Divine Fury,RC2available,normal BA and a legal weapon attack sequence. Erase Emotion is operative. Divine Fury is activated for2RC; later in its real two-round duration an actual qualifying weapon attack critically hits.",
+      "actionsAndResolution": [
+        "The actual nonfear Fury damage/flatDR/possible BA attack benefits remain within their printed once-per-turn and real BA limits. The initial2RC is fully spent; no discounted mixed activation is invented.",
+        "The critical Frightened output is prohibited and creates no new fear component on this target. No extra save is rolled for an output that never legally applies.",
+        "An independent old Frightened record previously inflicted on another creature remains governed by that source's own clock/saves; it is not remotely cured. Fury of the Host is not suppressed merely because of its title."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true,
+        "divineFuryRC": 2
+      },
+      "clockLedger": {
+        "divineFuryRounds": 2,
+        "oldOtherFear": "original duration"
+      },
+      "geometryLedger": {
+        "weaponAttack": "actual legal source geometry"
+      },
+      "outcome": "Prevent exact fear components while preserving the paid mixed ability's other components.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/10/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/cards/27"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+          "pointer": "/cards/8"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/108"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/oracle.json",
+          "pointer": "/cards/111"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N23",
+      "spellId": "compulsion",
+      "title": "A fixed direction and an actually remaining budget",
+      "initialState": "T has walkingSpeed30 and an earlier compatible mandatory movement instruction already consumed15 of the same actual opportunity budget. Compulsion's direction is east on the current application plane; the safe east route is difficult terrain with a legal squeeze.",
+      "actionsAndResolution": [
+        "At its sole execution opportunity only15 movement remains. Cap the branch atmin(30,15)=15; each foot costs3,so move one legal5foot step east.",
+        "No Dash,Action loss,teleport,source-owner BA or second budget is supplied. The instruction then expires regardless of remaining nominal30foot source language.",
+        "If T was instead on another plane at this sole opportunity, the stored local world direction supplies no executable cross-plane route; the instruction expires without waiting for return."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "opportunities": 1,
+        "priorMovementSpent": 15
+      },
+      "geometryLedger": {
+        "remainingBudget": 15,
+        "costPerFoot": 3,
+        "distance": 5,
+        "direction": "application-plane east"
+      },
+      "outcome": "Compulsion spends what actually remains and does not invent geometry or postponed movement.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/11/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/12"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "section": "Actual communication channels and no implicit senses"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/222"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/220"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Actual movement cost and regular-turn budgets"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N24",
+      "spellId": "compulsion",
+      "title": "Finite expiry with an actually disabled drone and a separately absent-phase boundary",
+      "initialState": "Actual Tinker5 INT18/PB3 has one owned Anacite Drone, AC17/HP14, ground-supported at a clear position, and4RP. The Drone is a Construct with the printed poison/psychic immunity and no charm; Compulsion is a movement instruction, not Charmed or psychic damage, so those facts alone do not exclude it. Tinker has the actual selected Field Repair card. Its regular turn runs t0..2, next t6..8, then t12..14; attached phases follow each complete turn. At t0.5 Tinker uses its actual available once/short-rest Bonus Action vent, routing2 current Dissonance into its own active drone5ft away: Dissonance2→0 and the device is disabled under the actual engine. At t2.5 Wizard7 with INT18/PB3, actual prepared Compulsion,14RP and no price modifier targets the perceived drone20ft away with clear LoE. Drone uses its actual owner-PB save modifier+3; natural7 gives10 againstDC15. Field Repair has Recharge0 initially and is not used before t12.5; ordinary starts keep its zero counter at zero. The Tinker has a free hand and actual unobstructed physical contact with the adjacent Drone at the repair operation. Wizard has Abjuration specialization, so its Enchantment Compulsion gets no specialist DC bonus; no other DC modifier applies.",
+      "actionsAndResolution": [
+        "Wizard pays7RP,14→7. The failed save establishes one instruction due at the original attached-phase boundary t8, after the next not-yet-started Tinker regular turn. Tinker does not repair it on that t6..8 turn. This spell supplies no unwilling owner BA or command and no replacement phase.",
+        "At actual phase t8 the still-disabled drone cannot move under its real vent-disability source. The Compulsion eligibility/movement check executes once and spends0 movement, then the instruction expires immediately after that check at t8. It does not add an attack, offense, Reaction or second phase.",
+        "At t12.5 the Tinker actually touches that same adjacent disabled Drone, checks the selected Field Repair counter is0, and spends its available Action plus1RP,4→3. Set Field Repair Recharge2. Its explicit protected-vent repair interface clears the disability. HP remains14/14: any nominal repair roll is capped to0 actual HP restored. No expired Compulsion, spent vent use, old owner command, ammunition or duration is restored; this use cannot reset its own Recharge2.",
+        "Separate negative scheduling branch, explicitly conditional rather than a claim that venting deletes phases: if an actual independently established lifecycle supplies NO phase at the recorded t8 boundary, DE4-COMPULSION-EXPIRY-03 performs expiry-only bookkeeping at t8 and grants no execution. A phase restored at t8.1 cannot replay it. This branch defines the missing-phase contract; it does not invent a named source that removed the phase.",
+        "Separate no-schedule fallback: an otherwise valid attached-target instruction established at t100 with no original owner schedule records expiry106. If no independently lawful phase occurs before or at106, it expires at106 without movement; later source activity grants no retry. A concrete available phase earlier in that window may consume the same instruction only once under its real remaining budget."
+      ],
+      "costLedger": {
+        "tinkerVent": {
+          "bonusActions": 1,
+          "shortRestUses": 1,
+          "dissonanceBefore": 2,
+          "dissonanceAfter": 0,
+          "rp": 0
+        },
+        "compulsion": {
+          "rpBefore": 14,
+          "cost": 7,
+          "after": 7
+        },
+        "laterActualRepair": {
+          "actions": 1,
+          "rpBefore": 4,
+          "cost": 1,
+          "after": 3,
+          "rechargeBefore": 0,
+          "rechargeAfter": 2,
+          "touchRequired": true,
+          "touchConfirmed": true
+        },
+        "compulsionOwnerCommandCost": 0
+      },
+      "clockLedger": {
+        "vent": 0.5,
+        "application": 2.5,
+        "originalOwnerNextStart": 6,
+        "originalOwnerPhaseMarker": 8,
+        "instructionExpiry": "t8 immediately after its sole check; expiry-only if phase absent",
+        "laterRepair": 12.5,
+        "separateNoScheduleApplication": 100,
+        "separateNoScheduleExpiry": 106
+      },
+      "geometryLedger": {
+        "droneGroundSupported": true,
+        "droneHP": 14,
+        "ventRangeFeet": 5,
+        "compulsionRangeFeet": 20,
+        "realPhaseMovementWhileDisabled": 0,
+        "conditionalMissingPhaseBranch": "no fabricated source trigger or independent turn",
+        "repairActualTouch": true,
+        "repairAdjacentWithinFiveFeet": true,
+        "repairLineUnobstructed": true
+      },
+      "outcome": "The real disability case expires after one zero-movement check. The explicit missing-phase and no-schedule branches expire at finite markers without inventing an execution event.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/11/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/340"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/12"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/14"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+          "section": "Instruction arbitration and companion bridge"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/banishment_reviewed_04.json",
+          "pointer": "/spells/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/LANGUAGE_COMMUNICATION_PLAYTEST.md",
+          "section": "Actual communication channels and no implicit senses"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+          "pointer": "/engine/1"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+          "pointer": "/engine/7"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/tinker.json",
+          "pointer": "/cards/7"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Time and event ordering: preserved original markers"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONTROL_STATES_PLAYTEST.md",
+          "section": "Typed (seconds,phase) expiry ordering"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/DE4-COMPULSION-EXPIRY-03"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/9",
+          "role": "Actual Abjuration specialization; no Enchantment specialist DC bonus"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open.",
+      "testVectors": [
+        {
+          "id": "DE4-N24-DISABLED-DRONE-04",
+          "scope": "Concrete existing vent disability plus proposed finite Compulsion expiry; not the separately conditional missing-phase branch.",
+          "initialState": {
+            "tinker": {
+              "classLevel": 5,
+              "intelligence": 18,
+              "pb": 3,
+              "rp": 4,
+              "maximumRp": 6,
+              "dissonance": 2,
+              "ventShortRestUsesAvailable": 1,
+              "fieldRepairSelected": true,
+              "fieldRepairRecharge": 0
+            },
+            "drone": {
+              "identity": "D",
+              "hp": 14,
+              "maxHp": 14,
+              "ac": 17,
+              "saveModifier": 3,
+              "disabled": false,
+              "groundSupported": true
+            },
+            "wizard": {
+              "classLevel": 7,
+              "intelligence": 18,
+              "pb": 3,
+              "specialization": "Abjuration",
+              "rp": 14,
+              "spell": "compulsion",
+              "school": "Enchantment",
+              "dc": 15,
+              "prepared": true
+            },
+            "originalOwnerTurnStarts": [
+              0,
+              6,
+              12,
+              18,
+              24
+            ],
+            "attachedPhaseMarkers": [
+              2,
+              8,
+              14,
+              20,
+              26
+            ],
+            "actualRepairTouchAt12_5": true
+          },
+          "rng": {
+            "compulsionWisD20": 7,
+            "repairNominal2d8IfEvaluated": [
+              2,
+              3
+            ]
+          },
+          "operations": [
+            {
+              "at": 0.5,
+              "operation": "Tinker protected vent; BA and one short-rest use",
+              "expected": {
+                "dissonance": 0,
+                "ventShortRestUsesAvailable": 0,
+                "droneDisabled": true,
+                "tinkerRp": 4
+              }
+            },
+            {
+              "at": 2.5,
+              "operation": "Wizard Compulsion; Action,7RP; WIS7+3=10 versus15 fails",
+              "expected": {
+                "wizardRp": 7,
+                "pendingInstruction": true,
+                "originalOpportunity": 8
+              }
+            },
+            {
+              "at": 8,
+              "operation": "Sole attached-phase movement check, then expiry",
+              "expected": {
+                "droneDisabled": true,
+                "movementSpent": 0,
+                "pendingInstruction": false,
+                "extraActions": 0
+              }
+            },
+            {
+              "at": 12.5,
+              "operation": "Actual touch, selected Field Repair Recharge0, Action and1RP",
+              "expected": {
+                "tinkerRp": 3,
+                "fieldRepairRecharge": 2,
+                "droneDisabled": false,
+                "droneHp": 14,
+                "actualHpRestored": 0,
+                "pendingInstruction": false
+              }
+            },
+            {
+              "at": 18,
+              "operation": "Next regular Tinker START recharge tick",
+              "expected": {
+                "fieldRepairRecharge": 1
+              }
+            },
+            {
+              "at": 24,
+              "operation": "Following regular Tinker START recharge tick",
+              "expected": {
+                "fieldRepairRecharge": 0
+              }
+            }
+          ],
+          "expectedFinalState": {
+            "sameDroneIdentity": "D",
+            "droneHp": 14,
+            "droneDisabled": false,
+            "tinkerRp": 3,
+            "wizardRp": 7,
+            "ventShortRestUsesAvailable": 0,
+            "compulsionMovement": 0,
+            "pendingInstruction": false,
+            "replayedCommands": 0,
+            "fieldRepairRechargeAt24": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "DE4-N25",
+      "spellId": "phantasmal-killer",
+      "title": "Legal Monk Illusion recast preserves old Null provenance; separate Wizard Enchantment test",
+      "initialState": "Independent branch A uses Monk18 C, DEX18/PB6/S4, ordinary spellDC18, current/maxRP18, Dissonance0, no previous spell name and actually learned Phantasmal Killer through the Monk Illusion access at rank4. C has an already-established unsuppressed Null Veil. No optional cost or DC modifier applies; an ordinary spell does not gain a Monk technique Ki reduction. Target T is an ordinary living creature at100/100HP with WIS save+0, no psychic/fear defense, no temporary HP and no healing blocker or relevant wound. H is a conscious capable helper holding one actual NULL-ANTIDOTE-DOSE, has an available hand/Action, and can feed willing C. All are ground-supported, same plane, with clear LoE. C,H,T have ordered regular slots[0,2],[2,4],[4,6], repeating every6seconds. Casting at t0 or12 occurs after that caster START processing. No one voluntarily moves or interrupts. Branch B is a separate Wizard7 W, INT18/PB3, Abjuration specialization, spellDC15,14 currentRP of24 maximum, prepared Enchantment Phantasmal Killer, no modifier and no Null Veil, facing an independent100HP target immune only to Frightened.",
+      "actionsAndResolution": [
+        "Branch A t0: C spends its real Action and7RP,18→11. Initial WIS9 failsDC18. Create Illusion applicationA/rootR with actual caster Null snapshot true, maximum t60, and establish the independent damage and fear components. Engine RNG4d10[3,4,5,6]=18 resolves once: T100→82HP. Mark numbered-round1 exposure used. Ordinary cast cadence increases Dissonance0→1; Ki is untouched.",
+        "At t3 H uses its own Action, available hand and actual accessible dose to feed willing C within5ft; dose1→0 and C Null Veil ends immediately. This is consumable administration, not a second spell or concentration replacement. RootR remains Null-marked. At T START4 the round1 exposure is already used, so no second packet. T END6 WIS8 fails18, maintaining both components.",
+        "At T START10 in numbered round2, rootR supplies4d10[3,4,5,6]=18 and remains nullNonlethal=true despite purge. T82→64HP. T END12 WIS7 fails18 before the next C turn starts. No fictitious packet occurs at t6, which is C START, not T START.",
+        "At t12 after its real START, C casts the same legally accessible Illusion mode again: Action and7RP,11→4. New concentration commitment ends applicationA; it does not wait for the save and cannot be restored by a later failure. This repeat adds base1 plus Refrain1, Dissonance1→3, below Limit12 before payment. WIS6 fails18. Create applicationB/rootS, caster currently unVeiled, nullNonlethal=false, maximum t72. Round3 has no prior exposure, so4d10[3,4,5,6]=18 resolves T64→46 and spends round3 exposure. OldR remains historical with true; no historical flag is rewritten. T START16 cannot generate a second round3 packet. The new ordinary packet is not a claim that this46HP target dies.",
+        "Independent branch B t0: actual Wizard7 W can use Enchantment, not the Monk Illusion placement. Pay7RP,14→7. Initial WIS9 fails15. Create distinct unVeiled rootW, resolve4d10[3,4,5,6]=18 once, target100→82HP. Its actual fear-only immunity prevents Frightened without preventing the independent damage. No ongoing fear application remains and no repeat damage/save is queued. Wizard first-distinct prepared-family exemption sets baseD0; no Refrain, generic Ki discount, cross-branch resource sharing or dual-school access is invented.",
+        "Both branches retain their separate target identities and RNG streams. Allocating a root alone causes no damage, kill, Wound, resource grant or claimed round exposure. Branch A deals at most18 in a packet against maximum100HP and never reaches0; no Wound threshold or death-save event is reached in this fixture."
+      ],
+      "costLedger": {
+        "monkFirstCast": {
+          "rank": 4,
+          "before": 18,
+          "cost": 7,
+          "after": 11,
+          "dissonanceBefore": 0,
+          "dissonanceAfter": 1
+        },
+        "monkRecast": {
+          "rank": 4,
+          "before": 11,
+          "cost": 7,
+          "after": 4,
+          "precastDissonance": 1,
+          "limit": 12,
+          "baseD": 1,
+          "refrain": 1,
+          "dissonanceAfter": 3
+        },
+        "helperDose": {
+          "action": 1,
+          "doseBefore": 1,
+          "doseAfter": 0,
+          "rangeMaximumFeet": 5
+        },
+        "independentWizardEnchantment": {
+          "rank": 4,
+          "before": 14,
+          "cost": 7,
+          "after": 7,
+          "dc": 15,
+          "firstDistinctBaseD": 0
+        }
+      },
+      "clockLedger": {
+        "schedulePeriodSeconds": 6,
+        "casterStarts": [
+          0,
+          6,
+          12
+        ],
+        "helperStarts": [
+          2,
+          8,
+          14
+        ],
+        "targetStarts": [
+          4,
+          10,
+          16
+        ],
+        "targetEnds": [
+          6,
+          12,
+          18
+        ],
+        "castAfterStart": 0,
+        "actualCasterPurge": 3,
+        "oldRootPacket": 10,
+        "newSameMonkIllusionCastAfterStart": 12,
+        "originalMaximum": 60,
+        "newMaximum": 72,
+        "round1NoSecondPacketAt": 4,
+        "round3NoSecondPacketAt": 16,
+        "independentWizardCastAfterStart": 0
+      },
+      "geometryLedger": {
+        "bodyAabbsFeet": {
+          "C": [
+            [
+              -1,
+              -1,
+              0
+            ],
+            [
+              1,
+              1,
+              6
+            ]
+          ],
+          "H": [
+            [
+              2,
+              -1,
+              0
+            ],
+            [
+              4,
+              1,
+              6
+            ]
+          ],
+          "T": [
+            [
+              19,
+              -1,
+              0
+            ],
+            [
+              21,
+              1,
+              6
+            ]
+          ]
+        },
+        "casterTargetReferencePointDistanceFeet": 20,
+        "nearestBodyDistanceFeet": 18,
+        "castRangeFeet": 60,
+        "helperCasterNearestBodyDistanceFeet": 1,
+        "doseWithinFiveFeet": true,
+        "actualWillingDoseContact": true,
+        "clearLoE": true,
+        "allGroundSupported": true,
+        "independentWizardGeometry": "same clear20ft relative caster/target fixture; separate identities, no simultaneous other branch"
+      },
+      "outcome": "The legal Monk recast demonstrates old Null-root persistence and a genuinely new unVeiled root without fabricating cross-school access. The separate legal Wizard branch preserves Enchantment single-packet and fear-only immunity behavior. Both skipped duplicate START exposures are explicit.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/12/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/10"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "section": "Creation-time damage roots and Null lifecycle"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "section": "Death saves, Stable recovery and damage at zero"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/engine/0"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/rpByClassLevel/17"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/maxSpellRankByClassLevel/17"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/9",
+          "role": "Actual Abjuration specialization; no Enchantment specialist DC bonus"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/rpByClassLevel/6"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/12/completeSourceAndAccess/classAccess"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ITEM_PROCEDURES.md",
+          "section": "Opening consumable administration rule"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Time and event ordering"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+          "section": "Resolve a cast at the table"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11",
+          "role": "First distinct prepared Wizard matrix family has zero base Dissonance; no Refrain exemption"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open.",
+      "testVectors": [
+        {
+          "id": "DE4-N25-MONK-ILLUSION-04",
+          "initialState": {
+            "casterClass": "Monk",
+            "classLevel": 18,
+            "ability": "DEX",
+            "abilityScore": 18,
+            "pb": 6,
+            "school": "Illusion",
+            "rank": 4,
+            "rp": 18,
+            "maxRp": 18,
+            "dissonance": 0,
+            "lastSpellName": null,
+            "nullVeil": true,
+            "targetHp": 100,
+            "targetMaxHp": 100,
+            "targetWisModifier": 0,
+            "helperAntidoteDoses": 1,
+            "helperDoseLegal": true,
+            "concentration": null
+          },
+          "rng": {
+            "initialSaveD20": 9,
+            "endSaveAt6": 8,
+            "endSaveAt12": 7,
+            "recastSaveD20": 6,
+            "damageDiceByEvent": {
+              "0": [
+                3,
+                4,
+                5,
+                6
+              ],
+              "10": [
+                3,
+                4,
+                5,
+                6
+              ],
+              "12": [
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          },
+          "operations": [
+            {
+              "at": 0,
+              "operation": "Action cast after regular START",
+              "expected": {
+                "rp": 11,
+                "dissonance": 1,
+                "root": "R",
+                "rootNull": true,
+                "concentration": "A",
+                "targetHp": 82,
+                "exposureUsedRound": 1
+              }
+            },
+            {
+              "at": 3,
+              "operation": "Helper administers actual Bittersap dose",
+              "expected": {
+                "casterNullVeil": false,
+                "rootRNull": true,
+                "doseRemaining": 0,
+                "concentration": "A"
+              }
+            },
+            {
+              "at": 4,
+              "operation": "Target START round1",
+              "expected": {
+                "newPackets": 0,
+                "targetHp": 82
+              }
+            },
+            {
+              "at": 6,
+              "operation": "Target END repeat save before following C START",
+              "expected": {
+                "saveTotal": 8,
+                "dc": 18,
+                "applicationAActive": true
+              }
+            },
+            {
+              "at": 10,
+              "operation": "Target START round2 periodic packet",
+              "expected": {
+                "root": "R",
+                "rootNull": true,
+                "targetHp": 64,
+                "exposureUsedRound": 2
+              }
+            },
+            {
+              "at": 12,
+              "phase": "target-END",
+              "operation": "Repeat save before C next START",
+              "expected": {
+                "saveTotal": 7,
+                "applicationAActive": true
+              }
+            },
+            {
+              "at": 12,
+              "phase": "caster-after-START-cast-commit",
+              "operation": "Same Monk casts same Illusion; replace concentration before save",
+              "expected": {
+                "rp": 4,
+                "dissonance": 3,
+                "applicationAActive": false,
+                "oldRootRHistoricalNull": true
+              }
+            },
+            {
+              "at": 12,
+              "phase": "new-cast-resolution",
+              "operation": "WIS6 fails18; new rootS and round3 packet",
+              "expected": {
+                "concentration": "B",
+                "root": "S",
+                "rootNull": false,
+                "targetHp": 46,
+                "exposureUsedRound": 3
+              }
+            },
+            {
+              "at": 16,
+              "operation": "Target START round3",
+              "expected": {
+                "newPackets": 0,
+                "targetHp": 46
+              }
+            }
+          ],
+          "expectedFinalState": {
+            "casterRp": 4,
+            "casterDissonance": 3,
+            "casterNullVeil": false,
+            "rootRHistoricalNull": true,
+            "rootSNull": false,
+            "targetHp": 46,
+            "targetFrightened": true,
+            "concentration": "B",
+            "oldApplicationEndedAt": 12,
+            "newApplicationMaximum": 72,
+            "helperDoseRemaining": 0,
+            "totalDamagePackets": 3,
+            "woundsAdded": 0,
+            "deathSaves": 0
+          }
+        },
+        {
+          "id": "DE4-N25-WIZARD-ENCHANTMENT-04",
+          "independentBranch": true,
+          "initialState": {
+            "casterClass": "Wizard",
+            "classLevel": 7,
+            "ability": "INT",
+            "abilityScore": 18,
+            "pb": 3,
+            "specialization": "Abjuration",
+            "school": "Enchantment",
+            "rank": 4,
+            "prepared": true,
+            "rp": 14,
+            "maxRp": 24,
+            "dissonance": 0,
+            "firstDistinctFamily": true,
+            "nullVeil": false,
+            "targetHp": 100,
+            "targetMaxHp": 100,
+            "targetWisModifier": 0,
+            "targetFearImmune": true,
+            "targetPsychicImmune": false
+          },
+          "rng": {
+            "initialSaveD20": 9,
+            "damageDice": [
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "operations": [
+            {
+              "at": 0,
+              "operation": "Legal Action Enchantment cast",
+              "expected": {
+                "rp": 7,
+                "dc": 15,
+                "saveTotal": 9,
+                "saveFails": true,
+                "root": "W",
+                "rootNull": false,
+                "damage": 18,
+                "targetHp": 82,
+                "fearEstablished": false,
+                "ongoingApplication": false
+              }
+            }
+          ],
+          "expectedFinalState": {
+            "casterRp": 7,
+            "casterDissonance": 0,
+            "targetHp": 82,
+            "damagePackets": 1,
+            "targetFrightened": false,
+            "ongoingApplication": false,
+            "repeatDamageQueued": 0,
+            "repeatSavesQueued": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "DE4-N26",
+      "spellId": "phantasmal-killer",
+      "title": "Real death save before one periodic packet",
+      "initialState": "Significant living NPC T begins its regular turn at0HP,Dying,with one failed and zero successful death saves. Two live Illusion applications have due packets this round; the older eligible root is Null-marked. T has psychic immunity in one separate comparison and fear immunity in another.",
+      "actionsAndResolution": [
+        "Normal START death save natural10 records one success before later spell START packets. Choose only the earliest eligible Illusion damage source for this round-family opportunity; shared4d10=14 from that source reaches the actual damage pipeline.",
+        "With no psychic immunity, the Null packet at already-Dying0 preserves existing success1/failure1 and does not create a Wound/InstantDeath or reset Stable history. The second Illusion source cannot deliver a second family pulse this round.",
+        "Psychic immunity instead prevents that damage but does not automatically cure a separately operative fear. Fear immunity blocks/suppresses only its actual condition and not the independent psychic damage. A scheduled packet suppressed by actual source suppression is lost, not banked for resumption; a companion-only phase would not have created this real death save."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "regularStartOrder": [
+          "death save",
+          "scheduled spell packet"
+        ],
+        "roundFamilyPulses": 1
+      },
+      "geometryLedger": {
+        "recipientLifecycle": "actual independent significant NPC"
+      },
+      "outcome": "Actual life sequencing and independent component defenses remain intact.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/12/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/10"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "section": "Creation-time damage roots and Null lifecycle"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "section": "Death saves, Stable recovery and damage at zero"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Incapacitated and Frightened actual mechanics"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Start/end absolute and virtual clocks"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/14"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N27",
+      "spellId": "charm-monster",
+      "title": "Prevention versus temporary HP",
+      "initialState": "T is Charmed by C under this spell. C legally hits T for8post-defense damage. In fixtureA an actual Resonance Barrier pure-prevention pool8 consumes the whole packet; in fixtureB no such pool exists but T has tempHP10. This is the first eligible C-damage event in the numbered round.",
+      "actionsAndResolution": [
+        "FixtureA: prevention reduces packet to0 before tempHP; no damage-triggered Charm Monster save occurs,though the actual periodic END save remains.",
+        "FixtureB: positive packet8 reaches the pre-temp checkpoint,so the one damage-triggered save occurs after the already-established hit consequences even though tempHP becomes2 and normalHP does not drop.",
+        "The same positivity rules hold when this damage is Null nonlethal. A pure transferred branch retains its root and actual no-second-defense rule; do not fabricate another8damage event by observing it twice."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "damageSaveLimit": "first qualifying event this round",
+        "endSave": "still original schedule"
+      },
+      "geometryLedger": {
+        "source": "actual caster C"
+      },
+      "outcome": "TempHP absorption and pure prevention are different events for the stated save trigger.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/13/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/5"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+          "section": "Root lineage, mitigation, prevention, transfer and tempHP"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "section": "Null changes damage endpoints, not damage existence"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N28",
+      "spellId": "charm-monster",
+      "title": "Two independent relations and real recognition",
+      "initialState": "T has separate live Charm Monster relations from C1 and C2. At a legal damage event T actually recognizes attackerA as C1's ally but has no such actual knowledge about a C2 relationship. This fixture grants no hidden faction lookup.",
+      "actionsAndResolution": [
+        "A's positive qualifying damage triggers the stated C1-relation save; it does not manufacture a C2 ally classification from a Director-only roster.",
+        "If T succeeds that C1 save,only C1's application ends. C2's independently scheduled relation and END save remain,without doubled attitude or numeric advantage.",
+        "T retains actual memories,grievances,beliefs and choices. Neither relation supplies automatic contract/spell consent,truth,orders,membership,standing or resource spending."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "C1_and_C2": "independent original clocks"
+      },
+      "geometryLedger": {
+        "allyRecognition": "target actual knowledge at event"
+      },
+      "outcome": "A relationship-specific damage trigger stays separate from institutional allied status.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/13/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/5"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+          "section": "Root lineage, mitigation, prevention, transfer and tempHP"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "section": "Null changes damage endpoints, not damage existence"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N29",
+      "spellId": "overwhelming-grief",
+      "title": "Actual immunity and an actual nonlethal ending hit",
+      "initialState": "FixtureA target has a real source granting immunity to Incapacitated at application; fixtureB has a genuinely established grief application and no such immunity. Caster's WIS-target save DC is actually recorded15. In B a later real positive Null-marked packet5 reaches the pre-temp checkpoint.",
+      "actionsAndResolution": [
+        "A: failed initial WIS cannot establish actual Incapacitated against the immunity. There is no grief fallback or deferred application, and no invented successful control claim.",
+        "B: establishment already spent its hard allowance and ended applicable existing concentration. The later positive5damage ends grief under its exact endpoint even if tempHP absorbs it or Null prevents lethal consequences.",
+        "Ending restores neither lost concentration nor spent actions/resources and does not retroactively change that attack's hit/critical determination. A zero packet after pure prevention would not end it."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "griefMaximum": 60,
+        "damageEnding": "after actual qualifying hit consequences"
+      },
+      "geometryLedger": {
+        "initialTargetWithin60": true
+      },
+      "outcome": "Use the real named condition and damage endpoint without granting generic emotion immunity or recovery.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/14/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/5"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/DAMAGE_SHARING_PLAYTEST.md",
+          "section": "Root lineage, mitigation, prevention, transfer and tempHP"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "section": "Null changes damage endpoints, not damage existence"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Incapacitated and Frightened actual mechanics"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Start/end absolute and virtual clocks"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/14"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/10"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N30",
+      "spellId": "overwhelming-grief",
+      "title": "Source-only saves with no extra turn",
+      "initialState": "An owner-attached eligible creature has grief application at t0 with original60-second cap. Its actual lifecycle currently supplies no regular owner-attached phase. Proposed END-only fallback saves are due at6,12,18 and so on while it remains a live eligible target.",
+      "actionsAndResolution": [
+        "Resolve only those source-specific WIS saves; they supply no independent START/END turn,recharge,Reaction,death save,command or offensive allowance.",
+        "If a genuine lifecycle phase resumes before the next unresolved save, map that next save to the next actual regular attached-phase end without replaying an already completed save or resetting the original60-second cap.",
+        "If the actual creature source ends before that point, its application ends with that real identity; no save schedule recreates the disappeared body. Additional turns and suppression/resumption do not duplicate opportunities."
+      ],
+      "costLedger": {
+        "ordinaryRank4BaseRp": 7,
+        "actualClassAccessAndRepertoireRequired": true,
+        "noAssumedDiscountOrPoolGrant": true
+      },
+      "clockLedger": {
+        "established": 0,
+        "absoluteEnd": 60,
+        "fallbackSeconds": [
+          6,
+          12,
+          18
+        ]
+      },
+      "geometryLedger": {
+        "actualLifecycle": "owner-attached, phase temporarily absent"
+      },
+      "outcome": "The explicit save bridge does not become a combat scheduler or resurrection permission.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/14/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "section": "Incapacitated and Frightened actual mechanics"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "section": "Start/end absolute and virtual clocks"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/14"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank5_reviewed_05.json",
+          "pointer": "/spells/10"
+        }
+      ],
+      "status": "Complete local authored adjudication example under explicitly proposed DE4 rules; actual joint review, runtime and human validation remain open."
+    },
+    {
+      "id": "DE4-N31",
+      "spellId": "fate-reversal",
+      "title": "Digital Coin component versus complete Reversal and shared result",
+      "initialState": {
+        "eventId": "damage-1",
+        "lineageId": "damage-1",
+        "source": "one eligible ordinary shared damage pool",
+        "generatorPerceived": true,
+        "distanceFeet": 20,
+        "lineOfEffect": true,
+        "allOriginalComponentsAvailableToHolder": true,
+        "componentIds": [
+          "d0",
+          "d1",
+          "d2"
+        ],
+        "faces": [
+          2,
+          4,
+          6
+        ],
+        "dieSides": [
+          6,
+          6,
+          6
+        ],
+        "modifier": 0,
+        "recipients": [
+          "A",
+          "B"
+        ],
+        "holderCoinUses": 1,
+        "holderReactionAvailable": true,
+        "guardSpent": false
+      },
+      "operation": {
+        "permission": "Fate Coin",
+        "selectedComponentId": "d1",
+        "replacementRng": [
+          1
+        ]
+      },
+      "expectedIntermediateStates": [
+        {
+          "guardSpent": true,
+          "coinUses": 0,
+          "holderReactionAvailable": false,
+          "replacementDrawCount": 1
+        }
+      ],
+      "expectedFinalState": {
+        "faces": [
+          2,
+          1,
+          6
+        ],
+        "sharedTotal": 9,
+        "recipientOriginalPacketAmounts": {
+          "A": 9,
+          "B": 9
+        },
+        "replacementLineageId": "damage-1",
+        "newOriginalRollEvents": 0,
+        "fateReversalEligibleForDamage": false
+      },
+      "scope": "The original source supplies one shared pool, before recipient defenses; no new damage spell is invented.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/DE4-RNG-05"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+          "pointer": "/spells/13/procedure"
+        }
+      ],
+      "status": "Unadopted authored deterministic test vector; no executed game engine."
+    },
+    {
+      "id": "DE4-N32",
+      "spellId": "fate-reversal",
+      "title": "Hidden RNG and total-only disclosure provide no reroll entitlement",
+      "initialState": {
+        "eventId": "hidden-1",
+        "engineKnowsFaces": [
+          3,
+          17
+        ],
+        "playerKnowsEvent": false,
+        "holderCoinUses": 1,
+        "holderReactionAvailable": true,
+        "guardSpent": false
+      },
+      "operation": {
+        "attempt": "engine finds hidden event; player has no source visibility grant"
+      },
+      "expectedFinalState": {
+        "promptOffered": false,
+        "coinUses": 1,
+        "holderReactionAvailable": true,
+        "guardSpent": false,
+        "replacementDrawCount": 0,
+        "hiddenEventDisclosed": false
+      },
+      "branches": [
+        {
+          "initialStateOverride": {
+            "playerKnowsEvent": true,
+            "playerKnowsOnlyTotal": 20,
+            "allFacesAvailable": false
+          },
+          "expected": "A total alone supplies no individual component choice or complete-result-set permission; no spend and no hidden component disclosure."
+        }
+      ],
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/DE4-RNG-05"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+          "pointer": "/spells/13/procedure"
+        }
+      ],
+      "status": "Unadopted authored deterministic test vector; no executed game engine."
+    },
+    {
+      "id": "DE4-N33",
+      "spellId": "seal-vision",
+      "title": "Accepted Globe and both Nexus schools retain their exact scopes",
+      "initialState": {
+        "planeId": "fixture-P",
+        "targetBodyAabb": [
+          [
+            4,
+            -1,
+            0
+          ],
+          [
+            6,
+            1,
+            2
+          ]
+        ],
+        "globe": {
+          "center": [
+            0,
+            0,
+            1
+          ],
+          "radiusFeet": 10,
+          "rank": 6,
+          "operative": true
+        },
+        "sealCasterAabb": [
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ],
+        "clearLineOfEffect": true,
+        "targetWilling": true,
+        "existingDivination6Nexus": {
+          "rank": 6,
+          "school": "Divination",
+          "targetEligible": true,
+          "bonus": 2
+        },
+        "existingConjuration8Nexus": {
+          "rank": 8,
+          "school": "Conjuration",
+          "targetOnItsDestinationPlane": true,
+          "targetEligible": true,
+          "bonus": 2
+        },
+        "bothNexusesHaveIndependentLiveCasters": true
+      },
+      "operation": {
+        "spell": "Seal Vision creature mode",
+        "rank": 4,
+        "origin": "inside Globe",
+        "target": "actual target body",
+        "lawfulPaidCommitment": true
+      },
+      "expectedFinalState": {
+        "sealApplicationBlockedByGlobe": false,
+        "divination6LocalInsightSuppressed": true,
+        "conjuration8LocalInsightSuppressedBySeal": false,
+        "nextEligibleRollNexusFamilyBonus": 2,
+        "globeEnded": false,
+        "nexusParentsEnded": false,
+        "planeIntrinsicAlignmentChanged": false
+      },
+      "branches": [
+        {
+          "initialStateOverride": {
+            "sealCasterAabb": [
+              [
+                20,
+                -1,
+                0
+              ],
+              [
+                22,
+                1,
+                2
+              ]
+            ]
+          },
+          "expected": "Outside-origin rank4 Seal fails to establish on the Globe-protected target after lawful payment; both existing Nexus bonuses remain eligible but their family still contributes only +2 total."
+        }
+      ],
+      "scope": "Source-composition fixture for already established lawful Nexus parents and their actual different schools. It grants no class access, plane roster or free portal formation.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/DE4-RNG-05"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+          "pointer": "/spells/13/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/1/procedure"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+          "pointer": "/spells/0/procedure"
+        }
+      ],
+      "status": "Unadopted authored deterministic test vector; no executed game engine."
+    },
+    {
+      "id": "DE4-N34",
+      "spellId": "fate-reversal",
+      "title": "Original Nexus modifier snapshot persists through replacement",
+      "initialState": {
+        "originalEventId": "attack-34",
+        "lineageId": "attack-34",
+        "kind": "attack",
+        "originalD20Faces": [
+          7,
+          11
+        ],
+        "advantage": true,
+        "baseModifier": 7,
+        "eligibleNexusBonusAtEventCreation": 2,
+        "originalTotalModifier": 9,
+        "targetAC": 22,
+        "allFacesAvailableToReverser": true,
+        "reverserReactionAvailable": true,
+        "reversalPermissionUses": 1,
+        "guardSpent": false,
+        "generatorPerceivedWithin60WithLoE": true
+      },
+      "operation": {
+        "beforeReplacement": "Nexus ends; this does not create a new attack event",
+        "permission": "Fate Reversal",
+        "replacementRng": [
+          4,
+          14
+        ]
+      },
+      "expectedFinalState": {
+        "replacementD20Faces": [
+          4,
+          14
+        ],
+        "selectedFace": 14,
+        "retainedOriginalTotalModifier": 9,
+        "finalTotal": 23,
+        "hit": true,
+        "guardSpent": true,
+        "reversalPermissionUses": 0,
+        "reverserReactionAvailable": false,
+        "originalAttackCount": 1,
+        "replacementDrawCount": 2,
+        "newAttackCostTransactions": 0
+      },
+      "scope": "Reversal remains pending; creation-time Nexus modifier retention is already accepted. This is an isolated modifier/replacement composition, not execution of a source-qualified interrupt ending Nexus. Its visibility input is conditional on an actual authorized presentation entry such as proposed DE4-PRESENTATION-06/OVERT-ATTACK; allFacesAvailableToReverser alone is not such authority. No Nexus-ending interrupt, event visibility, class access or setup costs are established by this vector.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/DE4-RNG-05"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank6_reviewed_06.json",
+          "pointer": "/spells/13/procedure"
+        }
+      ],
+      "status": "Unadopted authored deterministic test vector; no executed game engine."
+    },
+    {
+      "id": "DE4-N35",
+      "spellId": "mass-pacify",
+      "title": "Pacification blocks a compelled attack without creating a fallback budget",
+      "status": "NEW_REVIEW_AUTHORED_EXAMPLE_NOT_EXECUTED_NOT_ADOPTED",
+      "addressesFinding": "DE4-F02",
+      "initialState": "Two different Wizard7 casters P and D each have INT18/PB3, Abjuration specialization, actual prepared Mass Pacify (P) or Dominate Person (D),14RP,0Dissonance and no concentration. DC15 for these Enchantment spells; first different prepared family has0base Dissonance, with no Refrain. T is an actual Humanoid significant NPC with WIS0, an ordinary unexpended Action, ordinary melee attack and no relevant immunity. R is a different adjacent creature. No creature has committed an attack against T since the pacification. The source-character/target/encounter hard-control allowance of D is unused.",
+      "actionsAndResolution": [
+        "At t0 P commits Action/V/S/F/7RP,14→7, selects visible center T within30ft and ordinarily identifies T as an enemy. T WIS8 fails DC15. One Mass Pacify application establishes, concentration deadline60. No hidden enemies are invented.",
+        "At t2 D separately commits Action/V/S/F/7RP,14→7, to legal Dominate Person within60ft. T WIS9 fails DC15; D establishes and claims its actual hard-control allowance. D concentration deadline62. P concentration is independent and remains.",
+        "At T regular START t4, D is conscious on the same actual plane and issues the one opportunity order to make its ordinary melee attack against adjacent R. The corrected attack prohibition is absolute for new attacks, including compelled ones. The attack cannot commit. Under actual compelled-budget arbitration an impossible instruction claims no Action/ammunition and does not become an alternative attack or free action.",
+        "T can choose its ordinary Dodge Action at t4.5 because no other rule prevents it; this is its existing Action, not a compelled replacement. No attack against T has committed, so pacification has not ended.",
+        "At affected END t6 T repeats WIS12 versus DC15 and fails Dominate Person. Both real applications continue with their own original clocks. The expired turn-specific attack order is not banked."
+      ],
+      "costLedger": {
+        "P": {
+          "RPbefore": 14,
+          "spent": 7,
+          "after": 7,
+          "Action": 1,
+          "baseDissonance": 0
+        },
+        "D": {
+          "RPbefore": 14,
+          "spent": 7,
+          "after": 7,
+          "Action": 1,
+          "baseDissonance": 0
+        },
+        "T": {
+          "compelledAttackActionSpent": 0,
+          "ammoSpent": 0,
+          "ordinaryChosenDodgeAction": 1
+        },
+        "P_and_D_differentOwners": true
+      },
+      "clockLedger": {
+        "regularSlots": {
+          "P": [
+            0,
+            2
+          ],
+          "D": [
+            2,
+            4
+          ],
+          "T": [
+            4,
+            6
+          ]
+        },
+        "PacifyDeadline": 60,
+        "DominateDeadline": 62,
+        "TrepeatSaveAt": 6
+      },
+      "geometryLedger": {
+        "positionsFeet": {
+          "P": [
+            0,
+            0
+          ],
+          "D": [
+            0,
+            10
+          ],
+          "T": [
+            20,
+            0
+          ],
+          "R": [
+            25,
+            0
+          ]
+        },
+        "allBodies": "Medium 5x5,6ft tall;grounded;clear LoE",
+        "P_to_T": 20,
+        "D_to_T": "sqrt(500)=22.3607 ft",
+        "T_to_R": "adjacent normal melee reach"
+      },
+      "outcome": "Removing voluntarily closes an unprinted control bypass without expanding Mass Pacify to ban nonattack harm, movement or all Actions.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/8/completeSourceAndAccess/source/original/description",
+          "role": "Printed cannot attack unless attacked",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/7/procedure",
+          "role": "Pending Dominate Person ordinary Action and opportunity",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/ENCHANTMENT_CONTROL_INTEGRATION_PLAYTEST.md",
+          "lineStart": 5,
+          "lineEnd": 28,
+          "role": "Absolute restrictions and impossible-instruction arbitration",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "lineStart": 161,
+          "lineEnd": 184,
+          "role": "Actual voluntary/forced distinction is material",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/9",
+          "role": "Abjuration specialization does not add to these Enchantment DCs",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11",
+          "role": "First different prepared-family base-Dissonance exception",
+          "authority": "supplied source"
+        }
+      ],
+      "priorCurrentVersion": null
+    },
+    {
+      "id": "DE4-N36",
+      "spellId": "phantasmal-killer",
+      "title": "New Stable deadline, later ordinary damage, real START death saves and independent summon expiry",
+      "status": "NEW_REVIEW_AUTHORED_EXAMPLE_NOT_EXECUTED_NOT_ADOPTED",
+      "addressesFinding": "DE4-F04",
+      "initialState": "Two independent branches below; no state or resources carry between them. Branch A uses Monk18 C with DEX18/PB6,18RP,0Dissonance, actual Illusion4 Phantasmal Killer repertoire, Veil already operative, and no price modifiers. DC18, Dissonance limit12. T is designated significant living NPC with death saves, HP10/max100, WIS0, no tempHP, Wounds, psychic/fire immunity or resistance. A is Wizard7 INT18/PB3, Abjuration specialization,20RP/0Dissonance, actual Burning Hands preparation, no Veil and no concentration. Branch B uses the same legal Monk fixture freshly reset; a separately owned actual Water Pet is created beforehand as specified.",
+      "actionsAndResolution": [
+        "A/t0: C commits Phantasmal Killer Action/V/S/F/7RP,18→11; base Dissonance0→1, no Refrain. T WIS9 fails DC18. Failed-save Illusion damage-component establishment creates root R with C as dealer and creationNull=true. Immediate4d10 faces[2,3,4,5]=14 reaches0 from10. Qualifying Null produces Stable0/Unconscious/Prone and resets success/failure counters to0. Roll Stable d4=2 hours exactly once; absolute recovery deadline7200. No Wound or Instant Death from this qualifying packet.",
+        "A/t4: T regular START finds Stable; no death save. Round1 Illusion exposure was used by t0 initial packet, so no second packet. At END t6 T WIS6 fails18; application continues.",
+        "A/t8: Wizard A uses Action/V/S/F on the real east-facing15ft Burning Hands cone. Pay2RP20→18; first prepared family base-Dissonance0, no Refrain. T is Unconscious and automatically fails actual DEX save.3d6[1,1,1]=3 non-Null fire damage breaks Stable, cancels deadline7200, and at existing0 adds one failed death save. No critical attack exists: this is save-based damage, not an attack.3 is below max100 Instant Death and half-max50 Wound thresholds.",
+        "A/t10: Before periodic spell damage, actual regular-START death save natural10 gives success1 with failure1 retained. Then the round2 scheduled Illusion packet4d10[2,3,4,5]=14 still uses R creationNull=true and preserves Dying0 plus those counters; it does not make the already-Dying target newly Stable or create a recovery deadline. At END t12 T WIS7 fails18.",
+        "A/t14: A recasts Burning Hands with actual2RP18→16. Base1 plus consecutive same-family Refrain1 raises Dissonance0→2, below limit9. Unconscious T automatically fails DEX;3d6[1,1,1]=3 ordinary damage at0 raises failures1→2, successes1 unchanged. No other threshold is reached.",
+        "A/t16: Actual regular-START death save natural2 raises failures2→3: T dies before the later START-damage phase. Death ends the corresponding Phantasmal Killer application. There is no third Illusion packet, no restored Stable timer, and no RP refund. This is a real life-order example, not a simulation execution.",
+        "B/t-55: independently reset Wizard7 owner O has Water Pet actually prepared,20RP and no concentration, casts Action/V/S/F/7RP20→13 outside initiative, and creates the exact supported Medium Water Pet AC14/HP35 with original60-second absolute deadline t5. Source-owner PB3 is used for its saves. No new creature profile or natural/soul identity is authored.",
+        "B/t0: fresh Monk C casts the same legal Illusion Phantasmal Killer7RP18→11,D0→1; Pet WIS natural7+ownerPB3=10 failsDC18. Root R2 is Null at creation.4d10[10,10,10,10]=40 leaves that same finite Pet body NullDisabled0; its expiry stays t5. It gets no creature death-save or Stable recovery clock. The Pet was fully present and perceivable when the spell targeted it.",
+        "B/t4: its owner-linked phase exists after owner O regular turn[2,4], but no actions/movement are available to a Disabled Pet. This is not a new independent turn. The round1 initial Phantasmal Killer exposure is already spent, so no extra packet is manufactured. The separately required source-only END WIS save rolls natural6+PB3=9 and fails18; it grants no Action, Reaction, death save or recharge.",
+        "B/t5: Water Pet original source expiry ends the body independently of Null and the still-existing Monk concentration. Phantasmal Killer ends for that now-ended creature identity. No source-only save or later pulse recreates it. With no real loose cargo declared, nothing remains except ordinary application history."
+      ],
+      "costLedger": {
+        "branchA": {
+          "Monk": {
+            "RPbefore": 18,
+            "spent": 7,
+            "after": 11,
+            "DissonanceAfter": 1
+          },
+          "Wizard": {
+            "RPbefore": 20,
+            "casts": [
+              {
+                "t": 8,
+                "cost": 2,
+                "after": 18,
+                "DissonanceAfter": 0
+              },
+              {
+                "t": 14,
+                "cost": 2,
+                "after": 16,
+                "DissonanceAfter": 2
+              }
+            ]
+          }
+        },
+        "branchB": {
+          "WaterPetOwner": {
+            "t": -55,
+            "RPbefore": 20,
+            "cost": 7,
+            "after": 13
+          },
+          "Monk": {
+            "RPbefore": 18,
+            "cost": 7,
+            "after": 11,
+            "DissonanceAfter": 1
+          }
+        },
+        "branchesIndependent": true
+      },
+      "clockLedger": {
+        "branchA": {
+          "regularSlots": {
+            "C": [
+              0,
+              2
+            ],
+            "A": [
+              2,
+              4
+            ],
+            "T": [
+              4,
+              6
+            ]
+          },
+          "repeatEachSeconds": 6,
+          "PKoriginalMax": 60,
+          "StableRollHours": 2,
+          "StableDeadlineCreatedAt0": 7200,
+          "StableDeadlineCanceledAt": 8,
+          "STARTs": [
+            4,
+            10,
+            16
+          ],
+          "PKopportunities": [
+            0,
+            4,
+            10,
+            16
+          ],
+          "resolvedPKpackets": [
+            0,
+            10
+          ],
+          "deathEndsApplicationAt": 16
+        },
+        "branchB": {
+          "WaterPetEstablished": -55,
+          "WaterPetExpiry": 5,
+          "MonkPKestablished": 0,
+          "actualOwnerRegularSlot": [
+            2,
+            4
+          ],
+          "actualPetPhaseBegins": 4,
+          "PKinitialRoundExposureAlreadySpent": true,
+          "bodyEndCancelsFuturePulses": 5
+        }
+      },
+      "geometryLedger": {
+        "branchA": {
+          "C": [
+            0,
+            0,
+            0
+          ],
+          "A": [
+            15,
+            0,
+            0
+          ],
+          "T": [
+            25,
+            0,
+            0
+          ],
+          "anatomy": "Medium5x5x6;clear grounded bodies",
+          "BurningHands": "15ft east cone from A; T center10ft away/body wholly inside cone; C west and excluded",
+          "PKrange": 25
+        },
+        "branchB": {
+          "C": [
+            0,
+            0,
+            0
+          ],
+          "Pet": [
+            25,
+            0,
+            0
+          ],
+          "Owner": [
+            25,
+            10,
+            0
+          ],
+          "bodies": "actual Medium supported footprints;clear LoE and creation/target ranges"
+        }
+      },
+      "outcome": "The new Stable recovery clock is actually created and canceled; ordinary damage and death saves remain lethal while descendants of the earlier Null root remain nonlethal. A different finite-summon branch ends on its original source deadline despite NullDisabled0. Neither branch grants a new global timing rule.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/spells/12/procedure",
+          "role": "Two actual Phantasmal Killer modes, exposure and death ordering",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/DE4-NIGHTMARE-ROOT-02",
+          "role": "Pending root snapshot rule",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/newCompanionPulseBinding",
+          "role": "Pending owner-phase pulse bridge",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/newEndSaveBinding",
+          "role": "Pending source-only save bridge",
+          "authority": "PENDING Current05 authorship, not accepted authority"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/engine/0",
+          "role": "Monk DEX casting",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/rpByClassLevel/17",
+          "role": "Monk18 real RP18",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/monk.json",
+          "pointer": "/maxSpellRankByClassLevel/17",
+          "role": "Monk18 actual rank4",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/9",
+          "role": "Abjuration chosen, no Evocation specialization",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/11",
+          "role": "Actual Wizard Dissonance exception",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/426/operational",
+          "role": "Actual Burning Hands15ft3d6DEX",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_candidates/abjuration_conjuration_rank4_reviewed_03.json",
+          "pointer": "/spells/8/procedure",
+          "role": "Water Pet HP35/NullDisabled0/real finite expiry",
+          "authority": "supplied source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md",
+          "lineStart": 719,
+          "lineEnd": 729,
+          "role": "Unconscious auto STR/DEX failure",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md",
+          "lineStart": 35,
+          "lineEnd": 58,
+          "role": "Damage at0, death-save order and Stable d4 recovery",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md",
+          "lineStart": 45,
+          "lineEnd": 68,
+          "role": "Actual START/END and absolute clocks",
+          "authority": "supplied governing source"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/docs/mechanics/COSMOLOGY_EPILOGUE_RELIC_NULL_PLAYTEST.md",
+          "section": "Creation-time damage roots and Null recipient lifecycle",
+          "role": "No refreshed root, Dying preservation and finite-body exception",
+          "authority": "accepted supplied source"
+        }
+      ],
+      "priorCurrentVersion": null
+    },
+    {
+      "id": "DE4-N37",
+      "spellId": "fate-reversal",
+      "title": "Burning Hands visible operation does not report hidden occupancy",
+      "status": "NEW proposed source-operation/presentation composition; not runtime execution",
+      "initialState": {
+        "source": "actual catalog Burning Hands /spells/426/operational",
+        "cast": "one genuinely paid legal cast, operative manifestation; original caster/known cone perceived by controller H; no new cast or class access granted by fixture",
+        "originalFaces": [
+          2,
+          4,
+          6
+        ],
+        "authorizedView": "DE4-PRESENTATION-06/BURNING-HANDS-DAMAGE",
+        "recipientBranches": [
+          "empty eligible set",
+          "one entirely hidden eligible target",
+          "one known plus one hidden eligible target"
+        ],
+        "H": "independently legal Coin holder with hand, Reaction, actual perception/range/LoE and unspent lineage"
+      },
+      "operation": {
+        "committedCoinChoice": "component0",
+        "replacementFace": 5
+      },
+      "expected": {
+        "eachBranchOriginalDrawCount": 3,
+        "eachBranchPublishedOriginalFaces": [
+          2,
+          4,
+          6
+        ],
+        "eachBranchReplacementDrawCount": 1,
+        "eachBranchPublishedFinalFaces": [
+          5,
+          4,
+          6
+        ],
+        "eachBranchSharedTotal": 15,
+        "eachBranchCoinConsumed": true,
+        "eachBranchReactionConsumed": true,
+        "eachBranchGuardSpent": true,
+        "emptyBranchDamageRecipients": 0,
+        "emptyBranchDamageOrHitHooks": 0,
+        "recipientListOrSaveResultsInPresentation": false,
+        "hiddenRecipientExistenceFromOperationPresentation": false
+      },
+      "negativeBranch": "If prevented before actual cone manifestation there is no original damage operation or reroll event. No substitute operation is fabricated.",
+      "scope": "NEW per-source generation timing to be explicitly agreed; other spells and hidden world events unchanged.",
+      "sourceRefs": [
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/director/spell_proposals/divination_enchantment_rank4_current_07.json",
+          "pointer": "/sharedRules/DE4-PRESENTATION-06"
+        },
+        {
+          "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+          "pointer": "/spells/426/operational"
+        }
+      ]
+    }
+  ],
+  "historicalOriginalTexts": [
+    {
+      "id": "DE4-01-A",
+      "spellId": "fate-reversal",
+      "originalText": "An attack made with advantage rolls 4 and 17. A legal Fate Reversal replaces both dice, rather than choosing only the 17, and uses the new selected face even if worse."
+    },
+    {
+      "id": "DE4-01-B",
+      "spellId": "fate-reversal",
+      "originalText": "If Fate Coin already used the shared allowance on that roll’s lineage, Fate Reversal cannot spend another Reaction or permission to reroll it."
+    },
+    {
+      "id": "DE4-02-A",
+      "spellId": "seal-vision",
+      "originalText": "An existing Soul Mark remains recorded but gives no protected bearing. After the seal ends it can resume only if its original deadline and identity still permit."
+    },
+    {
+      "id": "DE4-02-B",
+      "spellId": "seal-vision",
+      "originalText": "A protected creature’s ordinary visible body remains visible. An unclassified class sense is not blocked merely because its description resembles divination."
+    },
+    {
+      "id": "DE4-03-A",
+      "spellId": "aspect-of-insight",
+      "originalText": "INT 17 becomes 19: its modifier changes from +3 to +4. A dependent spell DC rises by 1, not 2, while current RP stays unchanged."
+    },
+    {
+      "id": "DE4-03-B",
+      "spellId": "aspect-of-insight",
+      "originalText": "INT 22 remains 22. Two Aspects do not make it 26 or reduce it to the cap."
+    },
+    {
+      "id": "DE4-04-A",
+      "spellId": "locate-creature",
+      "originalText": "An identified creature four miles away behind ordinary walls gives a readable upward/northeast bearing if no actual protection applies."
+    },
+    {
+      "id": "DE4-04-B",
+      "spellId": "locate-creature",
+      "originalText": "No Bearing does not establish that a target is dead; protected, ambiguous and out-of-range subjects give the same answer."
+    },
+    {
+      "id": "DE4-05-A",
+      "spellId": "faction-secrets",
+      "originalText": "An established unprotected secret route used by a faction can supply one concrete route fact for a matching inquiry; a generic public motto does not satisfy that inquiry."
+    },
+    {
+      "id": "DE4-05-B",
+      "spellId": "faction-secrets",
+      "originalText": "Rephrasing the same question does not rotate through coequal hidden facts. A new subject can be asked with a new paid cast."
+    },
+    {
+      "id": "DE4-06-A",
+      "spellId": "alignment-forecast",
+      "originalText": "An established readable alignment-based ward would hinder the declared attempt to enter: Opposed describes that contribution without identifying the ward or promising failure."
+    },
+    {
+      "id": "DE4-06-B",
+      "spellId": "alignment-forecast",
+      "originalText": "If the required alignment interaction is undefined, the answer is Indeterminate, not a newly invented moral ruling or automatic Unaffected."
+    },
+    {
+      "id": "DE4-07-A",
+      "spellId": "resonance-divination",
+      "originalText": "If you begin with 11 RP and pay the base 7 to inspect yourself, with no other intervening change, the snapshot is 4 RP."
+    },
+    {
+      "id": "DE4-07-B",
+      "spellId": "resonance-divination",
+      "originalText": "A readable pool at 0 reports 0. An unreadable or nonexistent pool reports Indeterminate, and does not reveal why."
+    },
+    {
+      "id": "DE4-08-A",
+      "spellId": "dominate-person",
+      "originalText": "A controlled humanoid with an ordinary two-attack Attack Action can use that actual sequence, but cannot be forced to spend a charged smite or RP."
+    },
+    {
+      "id": "DE4-08-B",
+      "spellId": "dominate-person",
+      "originalText": "A Humanoid companion receives no independent extra turn. Redirection uses its existing owner-linked phase and structural allowances; an unavailable phase grants no execution."
+    },
+    {
+      "id": "DE4-09-A",
+      "spellId": "mass-pacify",
+      "originalText": "An enemy misses an affected creature with a newly committed weapon attack. That creature’s pacification ends at attack commitment despite the miss."
+    },
+    {
+      "id": "DE4-09-B",
+      "spellId": "mass-pacify",
+      "originalText": "An insult or an attack against its ally does not release this spell. A nonattack damaging power remains outside its deliberately narrower prohibition, a balance distinction requiring joint review."
+    },
+    {
+      "id": "DE4-10-A",
+      "spellId": "confusion",
+      "originalText": "A Monk using the Illusion placement must place the center within 10 feet and include all eligible occupants; Wizard Enchantment access does not grant that area mode."
+    },
+    {
+      "id": "DE4-10-B",
+      "spellId": "confusion",
+      "originalText": "Rolling the attack branch without an available ordinary Action produces no attack and no new roll. The spell does not refund its already established hard-control history."
+    },
+    {
+      "id": "DE4-11-A",
+      "spellId": "erase-emotion",
+      "originalText": "A Warrior’s solely fear-producing Intimidating Presence cannot activate. A Mooncursed nonfear Howl option remains available at its real cost."
+    },
+    {
+      "id": "DE4-11-B",
+      "spellId": "erase-emotion",
+      "originalText": "Divine Fury retains its ordinary nonfear benefits, but its new Frightened rider cannot trigger while its owner is affected. Existing fear on another creature keeps its own history."
+    },
+    {
+      "id": "DE4-12-A",
+      "spellId": "compulsion",
+      "originalText": "A creature with 20 feet of remaining movement can be compelled to use at most those 20 feet, not an extra 30."
+    },
+    {
+      "id": "DE4-12-B",
+      "spellId": "compulsion",
+      "originalText": "A known lethal drop blocks that route. The spell grants neither hovering nor a substitute teleport, and does not wait indefinitely for a path to open."
+    },
+    {
+      "id": "DE4-13-A",
+      "spellId": "phantasmal-killer",
+      "originalText": "A target immune only to Frightened can still take the independently failed-save psychic damage. Enchantment deals it once; Illusion can repeat within its actual pulse limit."
+    },
+    {
+      "id": "DE4-13-B",
+      "spellId": "phantasmal-killer",
+      "originalText": "An Illusion application deals its initial packet, then the target acts later in that numbered round. It receives no second packet that round merely for reaching its regular START."
+    },
+    {
+      "id": "DE4-14-A",
+      "spellId": "charm-monster",
+      "originalText": "A creature immune to Charmed gets no separate friendly attitude from a failed roll. A valid friendly relation still cannot force it to surrender a key."
+    },
+    {
+      "id": "DE4-14-B",
+      "spellId": "charm-monster",
+      "originalText": "Two qualifying damage packets in the same round grant only the first damage-based save from this application; its scheduled END save remains separate."
+    },
+    {
+      "id": "DE4-15-A",
+      "spellId": "overwhelming-grief",
+      "originalText": "An initially failed WIS save establishes Incapacitated and ends ordinary concentration. Removing grief later does not restore that concentration."
+    },
+    {
+      "id": "DE4-15-B",
+      "spellId": "overwhelming-grief",
+      "originalText": "Calm Emotions alone does not erase Incapacitated. A positive qualifying damage packet ends this grief application, even if temporary HP absorbs the damage."
+    }
+  ],
+  "historicalOriginalSharedProposal": {
+    "status": "UNADOPTED AND UNSENT. Fifteen proposed mechanical procedures with complete originals and current comparisons. No public spell, class access, review count, source book or cosmology is changed. All added procedures are explicit NEW proposals, not approval or runtime evidence.",
+    "casting": "All fifteen retain Action and V/S/F. Use the actual casting class’s rank, school, minimum class level, independently acquired repertoire and base RP price. A legal cast commits costs, concentration transitions and ordinary Dissonance/Refrain before interruption. Failure, immunity, missing information and countering give no refund or restoration of old concentration. Use actual casting ability + PB for attacks and 8 + PB + that modifier for save DC; ordinary saves are binary. No generic upcast, additional Action or inferred class-card access.",
+    "time": "Unless a card states otherwise, a minute ends at the caster’s tenth future original regular-start marker, excluding a start underway, or after 60 elapsed seconds if begun outside initiative. Retain original virtual markers or absolute deadlines through reorder, extra turns, absence and travel. Suppression never pauses a clock, refunds spent history or replays an application. Later saved-against casts do not dispel an older valid application. Extra turns do not supply extra periodic pulses, order opportunities or repeat saves.",
+    "information": "Use actual established facts and each information protection’s real subject and generating-source scope. Hidden unprotected facts can be read; missing facts are not invented. An unavailable answer does not identify the hidden reason. Ordinary observed outcomes and inferences remain possible. No new faction roster, plane, moral axis, cosmic force, secret doctrine or guaranteed destiny is authored. The pending expedition reputation verdict is not presumed.",
+    "control": "A successfully established hard whole-Action/turn component spends the shared source-character/target/encounter guard once. Its continued valid duration does not claim a new allowance each turn. Initial prevention leaves no banked component; later suppression retains the existing clock and spent history. A blocked component gets no unprinted fallback. Actual component immunities remain separate; creature type alone is no blanket mental immunity. Limited attack or movement restrictions do not become whole-Action denial merely because alternatives are unattractive.",
+    "newControlBindings": "NEW binding for Dominate Person and Confusion: use the reviewed Enchantment compelled-budget arbitration and shared six-second outside-initiative control cycle, preserving already spent budgets on entry to real initiative. A valid order/table instruction receives its priority timestamp when issued or generated at that opportunity; simultaneous instructions use application order then stable source ID. A losing instruction gets no second budget and does not erase an earlier mandate. Actual ordinary Attack Actions use native attacks unless the card expressly limits them to one. Only actual required ordinary ammunition can be compelled; no optional finite resource, spell/RP, recharge, charge, special expendable ammunition, permanent property surrender, protected secret, knowing binding-oath violation, direct self-harm or knowingly suicidal route can be forced. Bonus Actions, Reactions and extra Actions remain target-controlled. Hostile conduct uses ordinary initiative before execution, never a free virtual pre-initiative attack.",
+    "newCompanionBinding": "NEW for an actually eligible Humanoid under Dominate Person, or any eligible Confusion target, using an owner-attached companion chassis: use the actual original-owner regular attached phase, original profile and structural command/offense caps. No independent turn, dominator companion allowance or unwilling owner Bonus Action is created. A pending command reservation can be redirected only for this same companion in this same phase, under the reviewed Dominate Beast bridge; spent or another companion’s reservation cannot be stolen. A repeat WIS save occurs at the end of that real regular attached phase even when no instruction executed; this source-specific checkpoint adds no ordinary START/END, recharge or other condition tick. If no such phase is currently supplied, only an END-only six-second save schedule continues, with no orders/actions. On transitioning to actual phases, map the next unresolved save to the next regular phase end, preserve resolved saves and the original maximum, and never replay an opportunity. This extension is proposed explicitly; it is not already conferred by Dominate Beast.",
+    "newEndSaveBinding": "NEW: Overwhelming Grief, Charm Monster, Erase Emotion and Phantasmal Killer use affected regular-END saves, including an affected current turn, without extra-turn saves. Outside initiative their first END-only save is at application +6 seconds and then each six seconds. On entering initiative map the next unresolved save to the next actual regular END, retain completed saves and the original absolute maximum, and do not add an immediate transition save. For an owner-attached target, use its actual regular attached-phase end with the same END-only fallback/transition above, granting no actions. Dominate Person and Confusion instead use their shared behavior cycle and companion binding.",
+    "newCompanionPulseBinding": "NEW for Illusion Phantasmal Killer on an owner-attached companion: its periodic packet uses the beginning of the actual original-owner regular attached phase, after that phase’s required processing, under the same once-per-numbered-round exposure. It creates no independent START or other start-trigger event. If no actual phase exists, use only the six-second damage schedule and original deadline, granting no actions. Transition to a real phase maps the next unresolved pulse opportunity without replaying an initial or completed pulse. Its separately scheduled repeat save still follows the END-only bridge."
+  },
+  "historicalOriginalIssues": [
+    "Fate Reversal proposes extending the currently two-spell Mark Omen/Fate Coin guard. Adoption would require an explicit shared-rule amendment, not an implied change from this index.",
+    "Seal Vision deliberately protects against noninformational Divination too, while Protection from Scrying remains information-only. Its self-protection exemption requires joint review.",
+    "Resonance Sight is currently a reviewed cantrip with exact RP aura information. Resonance Divination preserves its source rank and 60-foot snapshot but has a substantial overlap; do not describe the lower spell as merely qualitative.",
+    "Dominate Person full control remains bounded by current agency and resource rules. The proposed companion repeat-save bridge and Confusion table are new authoring, not existing approved behavior.",
+    "Mass Pacify uses the narrower actual-attack category and per-target attacked release, unlike Group Pacify’s broader harm/provocation. Its breadth and rank value need explicit discussion.",
+    "Confusion keeps Enchantment and Illusion target/range modes separate. The concentration requirement and Illusion duration/save are added explicitly.",
+    "Phantasmal Killer keeps Enchantment initial damage separate from Illusion recurring damage. Fear immunity does not remove independently established damage; current fear geometry and information limits remain.",
+    "Erase Emotion targets actual rage-state/Frightened-generating components, including parts of mixed abilities. No source is classified by a suggestive name alone."
+  ],
+  "referenceResolution": "The sourceBindings are frozen before-source evidence, not a claim that all stay current after integration. Current rule references to a changed target resolve the proposedFile named in INTEGRATION_PLAN. Historical/original/source-preservation fields retain frozen before bytes. Current07 self-references resolve the complete immutable Current07 input included among sources. All unchanged source paths resolve their exact frozen bytes."
+}
