@@ -1,0 +1,483 @@
+{
+  "id": "RD8-LOCAL59-FINDINGS-03",
+  "findingsCount": 8,
+  "findings": [
+    {
+      "id": "RD8-LOCAL59-01",
+      "completeSubmittedFinding": {
+        "id": "RD8-LOCAL59-01",
+        "priority": 2,
+        "status": "CORRECTION_REQUIRED",
+        "caseIds": [
+          "RD8-03-B"
+        ],
+        "title": "Ready Soul Pyre omits the self-damage concentration save",
+        "evidence": {
+          "casePointer": "/allCases/5",
+          "casterDamage": 32,
+          "CONBonus": 2,
+          "requiredDC": 16,
+          "readyAuthority": "## Ready\n\nSpend an Action to declare a perceivable trigger and one legal Action-time action or movement. It expires next regular own-turn start. **NEW:** only one pending Ready per creature; replacing it loses the prior setup and any paid held-spell costs. No Bonus Action/Reaction ability, long ritual or multi-minute activity can be prepared by generic Ready.\n\nThe trigger happens first, then the readied response immediately follows before later events, unless a specific effect explicitly interrupts. On release spend the normal Reaction and recheck target, range, sight/perception, line of effect, ammunition and other prerequisites. An invalid or declined occurrence spends no release resource; the Ready can wait for another valid occurrence before expiry. This does not undo setup costs. Once released, it is consumed.\n\nFor ordinary nonspell actions, feature/ammunition costs are paid on release unless text charges setup. A readied **Attack Action** gets its legally available ordinary attack count; a feature limited to your own turn does not thereby work off-turn. Core Overwatch is explicitly one ranged attack, not that full Attack Action and not Soldier's distinct engine.\n\nA readied spell is actually **cast at preparation**: choose spell/mode, verify legality, pay RP/material/other costs, provide components, resolve Dissonance/Refrain and cast-trigger effects once. Counterspell/cast-interruption opportunity occurs then, not again at release. Every held spell requires concentration, even ordinarily non-concentration spells; incompatible prior concentration ends. Lost concentration loses the held spell and costs. NEW: select the legal target/area point at release and recheck legality without repaying. At release the hold continues as ordinary spell concentration if required, otherwise ends after resolution. Expired/replaced/countered held spells do not refund paid costs.\n\nReady movement grants a separate current-Speed budget on release, pays terrain costs and can provoke ordinary opportunity attacks. It grants no extra Action, Bonus Action or interaction.\n\nFocused stance's Reaction restriction also blocks an ordinary Ready release; Ready does not create a Counterspell exception. Holding a spell does not waive any current Reaction prohibition.\n\n**Spell-effect duration begins at release.** Its normal duration is anchored when the effect manifests, while Ready expiry and held concentration already run from preparation. A source explicitly tying a particular consequence to casting/preparation retains that consequence's stated clock. No casting cost, Refrain, Dissonance or cast trigger occurs a second time merely from release.\n\n",
+          "concentrationAuthority": "## Targets, concentration and control\n\nUnless expressly stated, perceive the target, remain within range and have line of effect; total cover blocks targeting. “Ally” includes self unless it says OTHER. A list cannot contain a creature twice. Select up to the printed limit; an empty target list is not a valid way to farm activation benefits. Zones remain at their chosen point unless described as an aura; allies can leave and lose their benefits. An aura requires its owner conscious unless the card supplies a bounded exception. An effect ending at “end next turn” means the affected creature's next turn only when the card says target's; otherwise the user's.\n\nOne concentration slot for all spells, Chants, Veinweaves, forms or zones that require concentration. Starting another ends the old before the new effect resolves, except for an explicit limited linked-effect rule. Damage prompts CON save against max(10, floor(damage/2)); incapacitation or a failed save ends concentration. The round-down convention is a deliberate pilot interpretation. Concentration does not demand a Bonus Action unless maintenance says so. For a paid 3-pulse effect, start is pulse 1; pay maintenance on each of the next 2 regular turns by turn end for pulses 2/3. Missing payment ends it at that turn's end; otherwise it ends at start of turn 4. No repeated start triggers on maintenance.\n\nForced movement does not provoke opportunity attacks unless explicitly stated, cannot place a creature inside solid matter, and stops at an obstacle. Grapples use the card's save/DC, can be escaped with an Action and STR(Athletics) or DEX(Acrobatics) against that DC, and end beyond reach. A root sets Speed 0 but does not remove Actions. Slows reduce Speed to minimum 0. Silence blocks verbal spells/audible abilities, not all thought or all class features. Charmed effects never determine a player's beliefs; use only the printed action restrictions.\n\nNo repeated hard denial without a new save and cost. For this class suite, a creature can suffer **Stunned, compelled loss of its whole Action/turn, or equivalent hard denial from a given character at most once per encounter**, across that character's class features; later such riders fail while damage and soft riders resolve normally. Record source and target. This draft guard is broader than the older Oracle-only ceiling and is an explicit balance proposal. Reaction denial, Speed reduction, penalties and Frightened do not count as whole-turn loss. Do not silently waive boss immunities, legendary defenses or anatomy.\n\n",
+          "localDamageClause": "MODEL/selectedSharedRules/2: damage to a concentrating creature invokes its actual concentration procedure.",
+          "observed": "The main case retains paid Ready concentration through instantaneous resolution, includes the caster taking32, then ends the hold; no concentration RNG or outcome is supplied."
+        },
+        "requestedCorrection": "Supply the actual DC16 CON save and resulting state before end-of-resolution cleanup. Include a failure branch and explicitly resolve what happens to the already-created instantaneous blast and spent corpse without a global Ready change. A passing main roll can preserve the intended damage totals; do not silently remove held concentration before resolution."
+      },
+      "disposition": "CONFIRMED_DEFECT_WITH_NEW_PYRE_ONLY_COMPLETION",
+      "answer": "Ready concentration was still live when the caster took32. DC16 CON is mandatory. Add main14+2=16 success and independent13+2=15 failure, ordered before the carrier. Failure ends the hold immediately, but a new explicitly Soul-Pyre-only rule completes the already-created instantaneous blast without re-consuming/refunding fuel. Pre-creation loss remains no blast/no consumption. No global Ready change.",
+      "successorModelPointers": [
+        "/records/2/procedure",
+        "/currentVectors/5",
+        "/reviewQuestionDispositions02/7",
+        "/reviewQuestionDispositions02/8"
+      ],
+      "sourceRefs": [
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+          "pointer": "/entries/1/exactAuthority",
+          "reason": "Nonconcentration Ready holds until after resolution.",
+          "bytes": 1038128,
+          "sha256": "a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+          "pointer": "/entries/8/exactAuthority",
+          "reason": "Damage concentration CON max10/floorhalf; failure immediate.",
+          "bytes": 1038128,
+          "sha256": "a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567"
+        },
+        {
+          "path": "history/return01/MODEL.json",
+          "pointer": "/selectedSharedRules/2",
+          "reason": "Actual concentration applies to damaging events.",
+          "bytes": 1673824,
+          "sha256": "df8dd333da82c14178d21657e0702671506e1c30d3ed87d5204993ef8061bc90"
+        },
+        {
+          "path": "history/return01/MODEL.json",
+          "pointer": "/records/2/procedure",
+          "reason": "Prior atomic corpse/blast transaction; completion after failure is NEW here.",
+          "bytes": 1673824,
+          "sha256": "df8dd333da82c14178d21657e0702671506e1c30d3ed87d5204993ef8061bc90"
+        }
+      ],
+      "disagreement": null,
+      "newAuthorship": "READY SELF-DAMAGE / CREATED BLAST — NEW RD8-PYRE-READY-BATCH-03, only for Soul Pyre: ordinary Ready concentration continues through this instantaneous resolution. Loss of that concentration before the valid fuel-consumption/blast-creation checkpoint prevents creating the blast and consumes no corpse; already paid preparation costs remain spent. Once that checkpoint has actually consumed the fuel, frozen the recipients and created their roots, resolve the already-created instantaneous blast once in the scene's fixed recipient order. If its own damage reaches the concentrating caster, make the actual CON concentration save immediately after that damage/life processing, before continuing to later recipients: DC max(10, floor(resolved event damage/2)), with the caster's actual modifiers and features. Success retains the hold until end-of-resolution cleanup. Failure ends the hold immediately, without delaying unrelated concentration/life consequences, but does not unconsume the corpse, cancel or resample the already-created instantaneous blast, erase completed damage or create another root/roll/payment. A later recipient still uses its actual current existence and defenses. At completion clear any surviving hold once; a hold already ended by failure is not ended or released a second time. This is a new Soul-Pyre-only completion of its existing atomic blast transaction, not a global Ready or all-instantaneous-spells exception, and it changes neither Incendiary Cloud's nor the Wall's separately named batch rule.",
+      "runtimeTest": false
+    },
+    {
+      "id": "RD8-LOCAL59-02",
+      "completeSubmittedFinding": {
+        "id": "RD8-LOCAL59-02",
+        "priority": 2,
+        "status": "CORRECTION_REQUIRED",
+        "caseIds": [
+          "RD8-06-B-COVER"
+        ],
+        "title": "The actual stone screen does not block the claimed line of effect",
+        "evidence": {
+          "casePointer": "/allCases/11/independentBranches/1",
+          "screen": {
+            "minimum": [
+              5,
+              32,
+              0
+            ],
+            "maximum": [
+              15,
+              34,
+              25
+            ]
+          },
+          "origin": [
+            0,
+            30,
+            0
+          ],
+          "legalBodyWitness": [
+            10,
+            40,
+            20
+          ],
+          "segmentIntersectsScreen": false,
+          "analyticProof": "Along this ray at y32..34, x2..4 and z4..8. The screen starts at x5, so the ray misses it. The witness lies in the Hawk body and in the wall quarter-cylinder."
+        },
+        "requestedCorrection": "Bind actual screen dimensions that block every relevant origin-to-body witness while leaving the Ram eligible, or revise the branch outcome. Do not override the supplied coordinates with coversHawkRelevantPaths=true. Do not claim complete visual occlusion unless the actual wall-image sight paths are also blocked; blocked LoE alone suffices for non-admission."
+      },
+      "disposition": "CONFIRMED_GEOMETRY_DEFECT",
+      "answer": "Original screen x5..15 misses the legal ray. Replace minimum x with0.5 and prove all base-to-Hawk body points blocked at y33; Ram's negative-x witness stays clear. Do not use coversHawkRelevantPaths as authority or claim complete visual occlusion.",
+      "successorModelPointers": [
+        "/currentVectors/11/independentBranches/1"
+      ],
+      "sourceRefs": [
+        {
+          "path": "history/return01/MODEL.json",
+          "pointer": "/records/5/procedure",
+          "reason": "Same witness must satisfy sweep and real line of effect.",
+          "bytes": 1673824,
+          "sha256": "df8dd333da82c14178d21657e0702671506e1c30d3ed87d5204993ef8061bc90"
+        },
+        {
+          "path": "history/return01/CASE_DISPOSITIONS.json",
+          "pointer": "/allCases/11/independentBranches/1",
+          "reason": "Actual original screen and original branch.",
+          "bytes": 633833,
+          "sha256": "f37d4602cd3e5ada38b05cef480cc7a37ebc3a78dec8677f60be23413f52967b"
+        }
+      ],
+      "disagreement": null,
+      "newAuthorship": null,
+      "runtimeTest": false
+    },
+    {
+      "id": "RD8-LOCAL59-03",
+      "completeSubmittedFinding": {
+        "id": "RD8-LOCAL59-03",
+        "priority": 2,
+        "status": "SOURCE_RECONCILIATION_REQUIRED",
+        "caseIds": [
+          "RD8-04-B-DISPEL"
+        ],
+        "title": "Greater Dispel branch does not bind its complete captured source set",
+        "evidence": {
+          "casePointer": "/allCases/7/independentBranches/2",
+          "baseline": "CloudA and CloudB have the same center [18,0,3] and radius20; both can still exist before7.2. The branch only introduces a dispeller, one face17 and an otherwise-lawful later Action.",
+          "authority": "Action; casting-point range 30 feet; V/S/F; base 10 RP; Instantaneous. Choose one perceived center within 30 feet. At resolution take one immutable snapshot of every ongoing independently addressable magical effect application having an affected body, discrete anchor/object effect, or freestanding area portion inside the 30-foot-radius sphere and center line of effect. Allies are included. Individual effect perception is not required; no numerical cap or selective post-result omission exists.\n\nEligible ordinary spell applications retain their original generating rank. Rank 0-5 ends automatically. Rank 6-9 requires one check per original generating cast using the caster's actual spellcasting ability + PB against DC 10 + 2×recorded rank. Reuse that one roll for all captured applications from the same generating cast. Apply current Core task degrees/natural shifts. A nonspell magical component is eligible only if its own source explicitly supplies a dispel interface/rank/DC; never assign rank 0 by appearance or RP cost.\n\nCapture is fixed before any endings. If a captured Wall of Force ends and reveals another effect behind it, that effect is not added. A captured indivisible wall/field ends as one effect on successful/automatic dispel; recipient-specific applications from one cast end only where captured unless their real parent dependency says ending one ends all. Suppressed-but-still-existing records can be dispelled if this cast itself can reach them. Completed instantaneous consequences, permanent matter, class engines, permanent item enchantments and explicitly nondispellable effects are outside scope.\n\nThis is distinct from Wizard class Dispel Magic `/cards/19`: that class spell costs 3 RP, range 60, Recharge 2, auto through rank 3, and uses INT+PB vs DC 10+rank above 3. Sigil Authority `/cards/22` names Counterspell and Dispel Magic only and does not modify Greater Dispel. Xi remains its own consent-based branch-ending source and grants no Greater Dispel permission.",
+          "observed": "The branch concludes one named cloud ends and mentions another uncaptured cloud, without removing/repositioning the coincident second cloud, fixing the exact Action time/center, or supplying its independent generating-cast check."
+        },
+        "requestedCorrection": "Bind the actual time, legal dispeller opportunity/location, area center, all extant captured applications and one rank8 check per generating cast. Either preserve both co-located clouds and resolve both, or explicitly make this an independently reset one-cloud fixture. No selective Greater Dispel omission."
+      },
+      "disposition": "CONFIRMED_SOURCE_CONTRADICTION",
+      "answer": "Both co-located independently generated clouds are extant and eligible at the supplied new3.2 resolution. Greater Dispel must capture both before endings, with one rank8 check per cast. Give a complete separate Wizard15, actual regular3..4 slot, V/S/F Action10RP and25-foot center range. Faces17/18 plus9 succeed26/27 versus26; both fields end. No Sigil bonus or ArcaneFeedback; no selective omission.",
+      "successorModelPointers": [
+        "/currentVectors/7/independentBranches/2"
+      ],
+      "sourceRefs": [
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+          "pointer": "/entries/40/exactAuthority",
+          "reason": "Complete immutable capture; separate generating-cast checks; Greater Dispel exclusions.",
+          "bytes": 1038128,
+          "sha256": "a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/60",
+          "reason": "ArcaneFeedback trigger is Counterspell, not Greater Dispel.",
+          "bytes": 100635,
+          "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+        },
+        {
+          "path": "history/return01/MODEL.json",
+          "pointer": "/completeAcceptedCounterparts/10",
+          "reason": "Complete actual Greater Dispel counterpart.",
+          "bytes": 1673824,
+          "sha256": "df8dd333da82c14178d21657e0702671506e1c30d3ed87d5204993ef8061bc90"
+        }
+      ],
+      "disagreement": null,
+      "newAuthorship": null,
+      "runtimeTest": false
+    },
+    {
+      "id": "RD8-LOCAL59-04",
+      "completeSubmittedFinding": {
+        "id": "RD8-LOCAL59-04",
+        "priority": 2,
+        "status": "CORRECTION_REQUIRED",
+        "caseIds": [
+          "RD8-03-B",
+          "RD8-03-B-COUNTER",
+          "RD8-03-B-CONSUMER",
+          "RD8-03-B-OUTOFRANGE"
+        ],
+        "title": "Ready carrier and corpse inputs contradict their own complete fixture",
+        "evidence": {
+          "carrierSTR": 18,
+          "carrierSTRSave": 0,
+          "carrierWounds": 0,
+          "corpseActorAnchor": [
+            10,
+            0,
+            1
+          ],
+          "geometryInitialCorpseAnchor": [
+            10,
+            0,
+            2
+          ]
+        },
+        "requestedCorrection": "Set the natural STR save to+4 unless an actual source supplies a different value, and use one explicit held-body anchor consistently. Reconcile all baseline/branch mirrors. Preserve legal150lb corpse plus gear carrying and the actual release anchor."
+      },
+      "disposition": "CONFIRMED_FIXTURE_CONTRADICTIONS",
+      "answer": "STR18 supplies natural+4; no supplied penalty changes it. Use one actual carried-corpse anchor [10,0,2], moved to[15,0,2], including branch baselines. Preserve150lb body plus10lb other gear:160<=270lb and8<=18Load. Out-of-range branch explicitly moves to[25,0,2].",
+      "successorModelPointers": [
+        "/currentVectors/5/actorSheets",
+        "/currentVectors/5/geometry",
+        "/currentVectors/5/independentBranches"
+      ],
+      "sourceRefs": [
+        {
+          "path": "history/return01/CASE_DISPOSITIONS.json",
+          "pointer": "/allCases/5",
+          "reason": "Original contradictory STR/anchor inputs.",
+          "bytes": 633833,
+          "sha256": "f37d4602cd3e5ada38b05cef480cc7a37ebc3a78dec8677f60be23413f52967b"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+          "pointer": "/entries/14/exactAuthority",
+          "reason": "Pounds and Load independently enforced.",
+          "bytes": 1038128,
+          "sha256": "a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/engine/0",
+          "reason": "Own ability scores/saves retained.",
+          "bytes": 88119,
+          "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+        }
+      ],
+      "disagreement": null,
+      "newAuthorship": null,
+      "runtimeTest": false
+    },
+    {
+      "id": "RD8-LOCAL59-05",
+      "completeSubmittedFinding": {
+        "id": "RD8-LOCAL59-05",
+        "priority": 2,
+        "status": "FIXTURE_CORRECTION_REQUIRED",
+        "caseIds": [
+          "RD8-01-B",
+          "RD8-02-A",
+          "RD8-04-A-IMMUNE",
+          "RD8-05-B",
+          "RD8-06-B"
+        ],
+        "title": "Copied actor templates retain incompatible form or progression facts",
+        "evidence": {
+          "DruidForms": "Hawk/Bear target sheets still claim can actually speak, one actual free hand and held focus, while the Druid engine prohibits Base-form speech, melds gear and prohibits casting before18. The Ironhorn form also cannot cast at15; its speech exception is distinct.",
+          "Wizard7": "anchorCaster inRD8-05-B has hero Spellbinder even though Wizard engine permits Hero paths only at10; it is an Arch Arcanist at7.",
+          "Ashen": "The fire-immunity branch supplies a full Storm target with lightning/thunder resistance, plus an outer Circle=Ashen Grove override. Its concrete replacement must not retain unrelated Storm grants.",
+          "HawkOrigin": "Hawk sheets bind height2 with footZ20 but a nominal spellOriginZ23; it is unused by these target-only cases, so state whether it is unavailable/nonoperative rather than presenting it as a current usable casting source."
+        },
+        "requestedCorrection": "Reconcile complete form, school/path and component metadata with actual acquired sources, including copied branch sheets. Keep target damage/posture outcomes where unchanged; do not create new forms, casting permissions or dual Circle ownership."
+      },
+      "disposition": "CONFIRMED_FORM_AND_PROGRESSION_METADATA_DEFECTS",
+      "answer": "Reconcile all17 supplied Hawk/Bear/Ironhorn form sheets: Base no speech, Arch speech distinct, no form casting at15, melded gear unavailable and old helper spell origin nonoperative. All9 Wizard7 anchor sheets are Arch with no Hero. Ashen is a full one-Circle replacement with actual fire grants, not Storm resistances plus a flag.",
+      "successorModelPointers": [
+        "/currentVectors/1",
+        "/currentVectors/2",
+        "/currentVectors/6/independentBranches/1",
+        "/currentVectors/9",
+        "/currentVectors/11"
+      ],
+      "sourceRefs": [
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/engine/0",
+          "reason": "Retained own stats, anatomy and melded gear.",
+          "bytes": 88119,
+          "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/engine/3",
+          "reason": "Base/Arch speech; casting18; existing concentration.",
+          "bytes": 88119,
+          "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/cards/9",
+          "reason": "Actual Beast Spells level18.",
+          "bytes": 88119,
+          "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/cards/53",
+          "reason": "Ashen Fire Affinity.",
+          "bytes": 88119,
+          "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+          "pointer": "/cards/58",
+          "reason": "Ashen Master of Ash.",
+          "bytes": 88119,
+          "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/engine/1",
+          "reason": "Wizard Hero10 vs Arch3..9.",
+          "bytes": 100635,
+          "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+          "pointer": "/cards/57",
+          "reason": "Actual Arcane Ward selection/default, retained without an invented Hero grant.",
+          "bytes": 100635,
+          "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+        }
+      ],
+      "disagreement": null,
+      "newAuthorship": null,
+      "runtimeTest": false
+    },
+    {
+      "id": "RD8-LOCAL59-06",
+      "completeSubmittedFinding": {
+        "id": "RD8-LOCAL59-06",
+        "priority": 2,
+        "status": "OPPORTUNITY_CLARIFICATION_REQUIRED",
+        "caseIds": [
+          "RD8-04-A-ENTRY"
+        ],
+        "title": "Off-turn voluntary departure lacks the stated legal opportunity",
+        "evidence": {
+          "mainTargetStarts": [
+            2,
+            8,
+            14,
+            20
+          ],
+          "casterSlot": [
+            0,
+            2
+          ],
+          "branchMovement": "Leaves at7, reenters at9; a separate extra-turn opportunity is supplied only at10.",
+          "qualification": "The conditional branch qualifies the extra turn at10, not ordinary movement at7 during the caster next regular slot."
+        },
+        "requestedCorrection": "Provide an actual source-qualified movement opportunity at7, or use a legal movement sequence on the target turn after8, with explicit positions/distance and remaining budget. Preserve the purpose: no entry/extra-turn pulse or exposure reset."
+      },
+      "disposition": "CLARIFICATION_REQUIRED_MOVEMENT_PREMISE_REPAIRED",
+      "answer": "The existing branch did not supply an actual off-turn movement source at7. Do not invent one. Move11feet out and11back during actual target regular8..10 turn, with8feet remaining. Neither entry nor the separately conditional extra turn at10 creates damage or resets exposure. Next real pulse12 yields HP9. No general turn scheduler is implemented.",
+      "successorModelPointers": [
+        "/currentVectors/6/independentBranches/0"
+      ],
+      "sourceRefs": [
+        {
+          "path": "history/return01/CASE_DISPOSITIONS.json",
+          "pointer": "/allCases/6/geometry",
+          "reason": "Actual supplied regular STARTs.",
+          "bytes": 633833,
+          "sha256": "f37d4602cd3e5ada38b05cef480cc7a37ebc3a78dec8677f60be23413f52967b"
+        },
+        {
+          "path": "history/return01/MODEL.json",
+          "pointer": "/records/3/procedure",
+          "reason": "Only source pulses, no entry/extra-turn pulse.",
+          "bytes": 1673824,
+          "sha256": "df8dd333da82c14178d21657e0702671506e1c30d3ed87d5204993ef8061bc90"
+        }
+      ],
+      "disagreement": null,
+      "newAuthorship": null,
+      "runtimeTest": false
+    },
+    {
+      "id": "RD8-LOCAL59-07",
+      "completeSubmittedFinding": {
+        "id": "RD8-LOCAL59-07",
+        "priority": 3,
+        "status": "TEXT_CORRECTION_REQUIRED",
+        "caseIds": [
+          "RD8-01-B-STRAIN-BLOCK"
+        ],
+        "title": "Blocked-strain qualification retains the wrong starting value",
+        "evidence": {
+          "actorDissonance": 17,
+          "changedInput": 17,
+          "qualificationText": "Dissonance11 and preceding first use of this name are supplied chronological character state..."
+        },
+        "requestedCorrection": "Change this branch qualification to17; retain the valid limit11+6 bar, no payment, and all original history."
+      },
+      "disposition": "CONFIRMED_TEXT_DEFECT",
+      "answer": "Qualification now says Dissonance17, not11. Limit11 +6=17 bars ordinary ranked casting; no actual exception is granted. Supplied blocked state and no-payment outcome unchanged.",
+      "successorModelPointers": [
+        "/currentVectors/1/independentBranches/4/qualification"
+      ],
+      "sourceRefs": [
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+          "pointer": "/entries/0/exactAuthority",
+          "reason": "Precast limit+6 blocked ranked-casting rule.",
+          "bytes": 1038128,
+          "sha256": "a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567"
+        },
+        {
+          "path": "history/return01/CASE_DISPOSITIONS.json",
+          "pointer": "/allCases/1",
+          "reason": "Actual strain branch state17.",
+          "bytes": 633833,
+          "sha256": "f37d4602cd3e5ada38b05cef480cc7a37ebc3a78dec8677f60be23413f52967b"
+        }
+      ],
+      "disagreement": null,
+      "newAuthorship": null,
+      "runtimeTest": false
+    },
+    {
+      "id": "RD8-LOCAL59-08",
+      "completeSubmittedFinding": {
+        "id": "RD8-LOCAL59-08",
+        "priority": 3,
+        "status": "TIMING_CLARIFICATION_REQUIRED",
+        "caseIds": [
+          "RD8-06-A",
+          "RD8-06-B",
+          "RD8-06-B-NEWOBSERVER"
+        ],
+        "title": "Wall establishment time should be explicit in the finite clock fixture",
+        "evidence": {
+          "commitAt": 1,
+          "collapseConsequencesAt": 1.1,
+          "recordedDeadline": 61,
+          "procedure": "Concentration up to60seconds from establishment; immediate collapse when the spell manifests."
+        },
+        "requestedCorrection": "Name the actual manifestation/establishment timestamp separately from prospective concentration commitment, and derive every deadline from it. If establishment is1.0 and subsequent resolution1.1, state that; if establishment is1.1, deadline is61.1. Do not reset duration at later observation, suppression or release bookkeeping."
+      },
+      "disposition": "CLARIFICATION_SELECTED_ESTABLISHMENT_1_1",
+      "answer": "Both prior timestamp interpretations were possible until manifestation was explicit. Select commitment1, manifestation1.1, nominal expiry61.1; supplied voluntary ending5 still wins. Payment's prospective burden has no established visual deadline yet. Update both full cases, all branch clocks and new-observer terminal; no deadline reset or new duration mechanic.",
+      "successorModelPointers": [
+        "/currentVectors/10",
+        "/currentVectors/11"
+      ],
+      "sourceRefs": [
+        {
+          "path": "history/return01/MODEL.json",
+          "pointer": "/records/5/procedure",
+          "reason": "Sixty seconds from establishment.",
+          "bytes": 1673824,
+          "sha256": "df8dd333da82c14178d21657e0702671506e1c30d3ed87d5204993ef8061bc90"
+        },
+        {
+          "path": "local_evidence/sources/DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+          "pointer": "/entries/1/exactAuthority",
+          "reason": "Effect clock separated from preparation/hold clock.",
+          "bytes": 1038128,
+          "sha256": "a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567"
+        },
+        {
+          "path": "history/return01/CASE_DISPOSITIONS.json",
+          "pointer": "/allCases/10",
+          "reason": "Original commitment1/consequences1.1/deadline61.",
+          "bytes": 633833,
+          "sha256": "f37d4602cd3e5ada38b05cef480cc7a37ebc3a78dec8677f60be23413f52967b"
+        }
+      ],
+      "disagreement": null,
+      "newAuthorship": null,
+      "runtimeTest": false
+    }
+  ],
+  "summary": "Six confirmed defects; two clarification requests resolved without treating ambiguity as a pre-existing new rule. One new Pyre-only completion.",
+  "wholeCohortReopened": false,
+  "rulesApplied": 0
+}

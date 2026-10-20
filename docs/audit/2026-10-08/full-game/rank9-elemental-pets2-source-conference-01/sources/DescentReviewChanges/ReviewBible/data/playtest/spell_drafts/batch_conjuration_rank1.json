@@ -1,0 +1,1204 @@
+{
+  "status": "PLAYTEST — REVIEWED / MANUSCRIPT-APPROVED; three required textual repairs applied; runtime and balance validation pending",
+  "scope": "Twelve ordinary rank-1 Conjuration identities; twelve placements/Core blocks and all seven source class-access rows retained. Authored tabletop procedures; no runtime/balance/whole-game approval.",
+  "reviewEvidence": [
+    "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+    "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+  ],
+  "spells": [
+    {
+      "id": "burning-sands",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One creature you can perceive within range.",
+      "duration": "Damage is instantaneous. The slow expires after end-trigger resolution at the target's first future regular-turn end; an in-progress current turn's end does not count. Preserve that virtual marker through initiative changes or absence. Outside initiative use application +6 seconds, preserving that absolute deadline on initiative entry.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Deal the printed fire damage automatically to the legal target, using ordinary defenses. The target then makes a Dexterity save against your spell DC solely against the slow; success prevents the slow and does not halve the fire damage.",
+      "effect": "Deal 2d6 fire damage. On a failed Dexterity save, halve the target's Speed for the stated one-round duration. Use the existing soft-control procedure: evaluate each adverse slow against the same pre-control Speed and use the lowest result; do not multiply repeated halves. Movement already spent is not undone.",
+      "scaling": "None.",
+      "limitations": "This creates no ongoing sand/fire field, Burn, Prone, difficult terrain, blind condition, object damage or whole-Action/turn denial. The damage and soft-control rider are separate; immunity to the damage does not by itself waive the slow save. Independent slow records keep their own endpoints and obey CONTROL_STATES_PLAYTEST.md. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S/F, 2d6 fire plus save-or-half-movement. CONFLICT RULING: unlike Shockwave, the source does not give a half-damage save; its save gates only the movement rider. NEW: one creature, Dexterity, exact hostile next-end clock and proportional soft-control interface.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 121,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Burning Sands",
+            "effect": "2d6 fire + target must save or have movement halved.",
+            "source_paragraph": 9131,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Appropriate saving throw",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Burning Sands",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "2d6 fire + target must save or have movement halved."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "shockwave",
+      "activation": "Action",
+      "rangeFeet": 15,
+      "targets": "Every creature, allies included, in a line beginning at the edge of your space: 15 feet long, 5 feet wide and 5 feet high. On a standard 5-foot grid choose three contiguous squares in one straight line, excluding your origin square.",
+      "duration": "Instantaneous",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Each affected creature makes a Dexterity save against your spell DC. Roll one shared 1d10 lightning damage: failure takes full damage; success takes floor(damage/2), followed by that creature's ordinary defenses.",
+      "effect": "Project the bounded lightning line in the chosen direction. Evaluate line of effect and applicable cover from its origin; total cover excludes a creature. An eligible ally cannot be selectively excluded.",
+      "scaling": "None.",
+      "limitations": "The line adds no thunder damage, deafening, push, chaining through metal or water, terrain electrification, automatic object damage or persistent field. Geometry outside a square grid remains the printed 15-by-5-by-5-foot line, with placement agreed before saves; changing the measurement method grants no larger area. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/15-foot line/V/S/F/instantaneous, 1d10 lightning and Dexterity half. NEW: exact width/height, three-square template, shared roll and ally/cover boundaries.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 122,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Shockwave",
+            "effect": "1d10 lightning in a 15-ft line; DEX save for half.",
+            "source_paragraph": 9132,
+            "casting_time": "1 action",
+            "range": "15 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Dexterity save",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Shockwave",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "1d10 lightning in a 15-ft line; DEX save for half."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "summon-mod-rod",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "Conjure one Tiny, one-handed magical rod into your free hand or a willing creature's free hand you perceive within range.",
+      "duration": "Concentration, up to 1 minute. If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if concentration ends, the spell is ended, or the rod reaches 0 HP.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic creation after a legal surviving cast. Activation is a separate Action by a bearer holding the rod with an actual RP pool. Before activating verify its unused charge and both daily-use records; an illegal activation spends nothing.",
+      "effect": "The rod weighs 1 pound, has AC 12 and 3 HP, and has one charge. At activation start spend that charge, the original caster's Mod Rod supply use and the bearer's Mod Rod receipt use. These are separate character-wide records across all classes/copies/rods; each refreshes only at that character's actual beneficial completed long rest. At resolution restore 2 RP to the bearer, capped at actual maximum. A full pool is legal and may yield 0 while spending the charge and both records. The rod becomes inert after this activation and remains until its spell ends.",
+      "scaling": "None.",
+      "limitations": "No exact interrupt that prevents activation resolution refunds charge, Action or either committed daily use. The bearer must not have spent a receipt use since their last beneficial long rest; the original caster must not have spent a supply use since theirs. A spent but prevented/zero-recovery use still blocks another activation. One active rod per caster; it can be handed or dropped using ordinary interactions. Casting itself is not daily-limited: a lost unused rod can be replaced by paying a new cast, but replacement cannot reset supply/receipt records. Cost discounts, aliases, copies, class changes, new recipients and different casters cannot bypass their relevant character-wide ledgers. No extra RP pool, Dissonance/Refrain reset, other-resource recovery, saleable material, crafting ingredient or permanent wealth. At 0 HP or spell end it disappears, including any unused charge. This is an HP object, not an Integrity object. Apply only damage/effects whose actual rules can affect this object; no HP/Integrity conversion, automatic creature condition, unstated resistance or immunity is supplied. An effect requiring an organic creature cannot affect it merely because it has HP. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "SOURCE CONFLICT: Core V2 explicitly restores 2 RP; V6/catalog say 1 RP. Choose Core's 2 RP under the manifest's spellcasting precedence; retain both originals. PRESERVED: Action/30 feet/V/S/F/concentration 1 minute and finite daily recovery. NEW: physical stats/custody, separate Action activation, one charge, caster supply and recipient receipt ledgers resetting only on beneficial long rests (subject to shared one-per-24-hours rest cadence), begin-activation spending and zero/interrupt behavior. Wording uses spent uses, not successful benefits, to avoid refunding an interrupted activation.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 124,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Summon Mod Rod",
+            "effect": "Create a rod that restores 2 RP to its bearer once per day.",
+            "source_paragraph": 9134,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Restoration",
+              "Summoning"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Summon Mod Rod",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Creates a rod that restores 1 Resonance Point, 1/day."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "summon-minor-weapon",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature's free hand you perceive within range, including your own, or one unoccupied space you perceive within range.",
+      "duration": "Concentration, up to 1 minute. If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if concentration ends or the weapon reaches 0 HP.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic weapon creation; no attack is included in casting. Subsequent attacks use the wielder's ordinary Strength weapon attack and Strength damage modifier, with PB only if actually proficient with simple melee weapons.",
+      "effect": "Conjure one spectral, one-handed simple melee weapon. Choose bludgeoning, piercing or slashing at creation; its base damage is 1d6 of that fixed type and its printed reach is 5 feet. Attacks count as magical weapon attacks while retaining the chosen physical damage type. It can be used for ordinary Attack Actions, an actual Extra Attack, opportunity attacks and weapon riders whose own eligibility accepts this weapon. It weighs 3 pounds and has AC 15 and 5 HP.",
+      "scaling": "None.",
+      "limitations": "It has no Finesse, Light, Heavy, Reach, Thrown, Versatile, ranged, ammunition or other unstated weapon property. Its appearance supplies no named weapon proficiency or property beyond the printed simple-melee profile. Anatomy, hands and actual weapon-use restrictions still apply. It may be handed, dropped or disarmed normally and persists where left until spell end or 0 HP, when it disappears. One weapon from this spell per caster. It is not autonomous, floating, a spell attack, a free attack on creation, ammunition, saleable commodity, permanent inventory or crafting material. This is an HP object, not an Integrity object. Apply only damage/effects whose actual rules can affect this object; no HP/Integrity conversion, automatic creature condition, unstated resistance or immunity is supplied. An effect requiring an organic creature cannot affect it merely because it has HP. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S/F/concentration 1 minute and spectral melee weapon dealing 1d6. NEW: wielded one-handed simple weapon, fixed chosen physical type, Strength/proficiency interface, 5-foot profile reach, magical-weapon qualification, ordinary weapon action/rider interactions. Exact-card completion adds 3-pound/AC15/HP5 physical handling and explicitly no unstated weapon properties.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 125,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Summon Minor Weapon",
+            "effect": "Create a spectral melee weapon: 1d6 damage.",
+            "source_paragraph": 9135,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Summoning"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Summon Minor Weapon",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Create a spectral melee weapon: 1d6 damage."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "flame-armor",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One willing creature you can perceive within range, including yourself.",
+      "duration": "Concentration, up to 1 minute. If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if concentration ends.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic ward application. Whenever a creature actually resolves a melee attack roll against the protected target while this ward is active, queue the stated retaliation once that attack finishes, hit or miss. A mere declaration canceled before any roll does not qualify.",
+      "effect": "The target gains +2 AC, subject to the strongest applicable flat-AC-bonus rule. A qualifying melee attacker takes 1 fire damage after its attack finishes, including normal damage/interception/concentration/death resolution. This queued retaliation is captured when the attack roll resolves against the active ward; a later ending caused by that attack does not erase the already queued packet. A reach attack remains melee. The limit is once per protected-target/attacking-creature/numbered-round across Flame Armor applications; replacement or another caster does not reset that round record.",
+      "scaling": "None.",
+      "limitations": "Only one Flame Armor can affect a target across all casters. A successful replacement ends the prior application and releases only its old concentration dependency. Retaliation is a new damage packet, not an attack or hit by the protected creature. Apply ordinary defenses, temporary HP, concentration checks and death consequences. This packet cannot start another Flame Armor, reflection/retaliation chain, resource gain, copied damage, derived healing, free Action/attack or generic on-hit rider unless an exact source explicitly names this retaliation. No Burn, illumination, heat aura or armor object is created. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: +2 AC and 1 fire to melee attackers, Action/30 feet/V/S/F. CONFLICT RULING: concentration up to 1 minute and willing ward target replace mismatched Instantaneous/Spell-attack metadata. NEW: hit-or-miss roll trigger, after-attack packet, per-attacker/round limit and anti-chain rules. Exact-card completion captures an earned retaliation before attack-caused concentration loss and preserves the protected-target/attacker round cap across replacement.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 126,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Flame Armor",
+            "effect": "+2 AC; melee attackers take 1 fire damage.",
+            "source_paragraph": 9136,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Spell attack",
+            "tags": [
+              "Damage"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Flame Armor",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "+2 AC; melee attackers take 1 fire damage."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "heat-metal-conjured",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One perceived metal weapon or metal suit/piece of armor within range. A nonmetal weapon/armor does not qualify merely because it has a small metal fitting. A weapon/armor primarily made of metal qualifies whether mundane, magical or conjured.",
+      "duration": "Concentration, up to 1 minute. If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if concentration ends or the target item ceases to exist.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic application; no save or immediate cast-resolution damage. Its periodic pulse deals 1d6 fire to the creature currently wearing or holding the item at a legal pulse marker, subject to ordinary defenses.",
+      "effect": "In initiative, the first possible pulse is the first future regular-start marker of a creature actually wearing/holding the item after application. Thereafter pulse at the first regular-start of a current wearer/holder in each numbered round, at most once per item per numbered round across all applications/casters. Replacing the application or handing the same item to another creature does not reset this item/round record. No user at a possible marker means no damage and no stored catch-up pulse. Outside initiative, the first pulse is application+6 seconds and then at most once each 6 seconds while actually used; preserve the next not-before deadline through initiative changes, and never award an extra pulse merely by entering or leaving initiative. Whenever this spell deals a pulse, record a next-pulse-not-before deadline 6 elapsed seconds after that pulse. No later pulse from this spell on this physical item can occur before that deadline, even if initiative begins, ends or is reordered. In initiative, after that deadline, the first otherwise eligible current-user regular-start in a numbered round may pulse, subject to the shared item/round guard. Leaving initiative preserves the same deadline; the first outside-initiative pulse cannot occur before it. Entering or leaving initiative never resets either the deadline or a spent item/round allowance. The physical item retains this deadline across replacement applications/casters just as it retains the shared round allowance. For a newly cast application with no preserved deadline, the first-future-user-start rule controls in initiative; outside initiative the initial deadline is application +6 seconds.",
+      "scaling": "None.",
+      "limitations": "Only one Heat Metal (Conjured) application per physical item across all casters; successful replacement ends the prior one and releases its old concentration dependency. The first qualifying actual wearer/holder at a legal marker is the sole recipient of that pulse; ties use the current initiative order, or outside initiative a fixed order agreed before resolution. Mere touching by another creature is not wearing/holding use. Dropping, legally doffing, melding or losing actual item use prevents damage while that state lasts without ending concentration or resetting the spell clock. A later user may take a later legal pulse. Normal armor removal time and legal custody still apply. No forced drop, disadvantage, Bonus Action pulse, Burn, ignition, object damage or additional condition. Supernatural damaging heat ends with the spell; no residual damage clock. Recasting does not produce an instant pulse or erase a spent item/round allowance. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S/F, armor/weapon deals 1d6 fire to its user each round. CONFLICT RULING: Conjured describes conjured heat, not a restriction to summoned items; finite concentration 1 minute replaces Instantaneous metadata. NEW: no save/immediate pulse, actual metal/use, future user-start timing, shared item/round guard through replacement and handling changes, finite elapsed-time pulse clock. Numeric source duration and periodic rules were missing; these are provisional authoring completions.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 127,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Heat Metal (Conjured)",
+            "effect": "Target's armor or weapon deals 1d6 fire to user each round.",
+            "source_paragraph": 9137,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Damage",
+              "Summoning"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Heat Metal (Conjured)",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Target's armor or weapon deals 1d6 fire to user each round."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "conjure-rope",
+      "activation": "Action",
+      "rangeFeet": 50,
+      "targets": "One unoccupied space you perceive within range, initially containing the conjured rope as a coil.",
+      "duration": "10 minutes (600 seconds) after application; preserve this absolute deadline through initiative changes.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic creation. A command is a separate Bonus Action in initiative while you are within 50 feet of the rope and have line of effect to the portion you command. Outside initiative, each brief command and its operation takes one 6-second interval; commands cannot be multiplied at zero elapsed time.",
+      "effect": "Create one 50-foot physical magical rope weighing 10 pounds, with AC 11 and 5 HP for the entire rope, not per segment. It supports at most 300 pounds total static load, including creatures and carried gear, when actually secured to a real support that can bear the load. Each command can coil/uncoil; slither up to 20 feet along existing supporting surfaces; tie or untie itself around an unattended object or actual fixed anchor within 5 feet of part of the rope; form/loosen a simple loop or knot; or draw in its own loose slack. Its actual length, unobstructed path and slack must permit the operation. Afterward it stays physically arranged and can be used as ordinary rope even outside command range.",
+      "scaling": "None.",
+      "limitations": "One rope per caster; a successful new application ends the old. It cannot create an anchor, fly, levitate, attack, automatically grapple/Restrain a resisting creature, haul or forcibly move a creature/load, operate weapons/traps, or secure unlimited cargo with one command. Tightening or drawing slack cannot lift/drag an attached load for free. Ordinary climbing, knot/support and cargo interactions remain required as appropriate. The command uses the available Bonus Action and grants no additional action or companion-command budget. A commanded untie can remove support, after which ordinary Falling applies. Exceeding 300 pounds causes immediate failure/disappearance rather than a discretionary caster veto; count actual load including applicable mass changes and gear. At 0 HP, spell end or overload the whole rope vanishes and unsupported loads fall. Cutting it into pieces cannot duplicate HP or leave persistent rope/material. It is not saleable or reusable crafting stock. This is an HP object, not an Integrity object. Apply only damage/effects whose actual rules can affect this object; no HP/Integrity conversion, automatic creature condition, unstated resistance or immunity is supplied. An effect requiring an organic creature cannot affect it merely because it has HP. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/50 feet/V/S/F and 50-foot rope obeying commands; 10-pound mass matches V6 ordinary hempen rope evidence. NEW: 10-minute nonconcentration duration, exact command actions/6-second outside cadence, 20-foot supported movement, 300-pound load, AC11/HP5 single-object profile and actual support/cargo limits. Instantaneous metadata is reconciled as creation of a finite object.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 128,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Conjure Rope",
+            "effect": "Create 50 ft of magical rope that obeys commands.",
+            "source_paragraph": 9138,
+            "casting_time": "1 action",
+            "range": "50 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Conjure Rope",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Create 50 ft of magical rope that obeys commands."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "summon-familiar",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One unoccupied space you can perceive within range.",
+      "duration": "Concentration, up to 1 minute. If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if concentration ends or the familiar reaches 0 HP.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "No initial roll. At creation choose acid, cold, fire, lightning or thunder and either a melee attack of reach 5 feet or a ranged attack of range 30 feet; both choices remain fixed. Its commanded attack uses your actual casting-class spell attack bonus.",
+      "effect": "Summon a Small elemental: AC 12+floor(PB/2), HP 2 times your casting class level, walking Speed 30 feet, saves equal to your PB, other checks +0, ordinary sight/hearing only. It understands your spoken commands without a speaking language or telepathy. Its one attack deals S d6 of the chosen elemental type on a hit, with no added ability damage modifier. S is 1/2/3/4 at casting-class levels 1/5/11/17. It acts immediately after you. Within 60 feet and able to perceive your command, your Bonus Action can command movement plus its one attack or another basic legal action. Without command it may defensively move and Dodge.",
+      "scaling": "Only the expressly printed companion profile scales: AC with PB, HP with this casting class level and damage S d6 at class levels 1/5/11/17. No generic upcast or other scaling.",
+      "limitations": "It shares the owner-wide one Bonus Action companion command and one damaging companion action per numbered round across all companions. Only one Summon Familiar from this spell per caster; it disappears at 0 HP or concentration end. Find Familiar remains a separate spell identity, repertoire selection and source, never automatic alias access. No unstated flight, extraordinary senses, elemental resistance/immunity, telepathy, spell delivery, Help-based automatic advantage, independent casting, autonomous damage, free healing/resummon, loot, corpse, wages or resource/death triggers. A replacement pays a full new cast. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S/F/concentration 1 minute and small elemental companion. NEW: explicit standard-derived profile, five elemental choices, fixed melee/ranged mode, ordinary senses/command comprehension, owner command budget and anti-loop limitations. It is distinct from the reviewed spirit Find Familiar and specifically statted Summon Fire Pet.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 129,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Summon Familiar",
+            "effect": "Call a small elemental creature to serve as companion.",
+            "source_paragraph": 9139,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Summon Familiar",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Call a small elemental creature to serve as companion."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "resonance-bridge",
+      "activation": "Action",
+      "rangeFeet": 15,
+      "targets": "Two perceived points on real, approximately horizontal immobile supports, at most 15 feet apart and each within 15 feet of you. The supports must accommodate one horizontal deck, with its full proposed span in line of effect and legal space.",
+      "duration": "Concentration, up to 1 minute. If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if concentration ends, a required support is lost, the bridge reaches 0 HP or it overloads.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Verify both actual supports, full-span line of effect and no initial creature/solid-object intersection before casting. Automatic creation after a legal surviving cast; no attack or save.",
+      "effect": "Create a fixed horizontal solid-energy bridge between the supports, at most 15 feet long, 5 feet wide and 6 inches thick. It has AC 15 and 20 HP and can support at most 1,000 pounds total live load. Count the actual mass of every supported creature, cargo and carried equipment, including melded gear when another structure supports it and actual mass-changing effects such as Petrified. It provides support across its actual span and only cover its real geometry supplies.",
+      "scaling": "None.",
+      "limitations": "At 0 HP, overload, spell/concentration end or loss of a required support, the bridge disappears; unsupported occupants and objects follow ordinary Falling. Simultaneous entry exceeding its total 1,000-pound capacity completes and immediately collapses it; the caster cannot veto hostile/forced entry to prevent overload. It cannot move, recenter, tilt, become vertical, fly, act as a mobile shield, guillotine or crushing surface, or be created through a creature. It supplies no ramp, additional span, generated building material or permanent structure. One bridge per caster through normal concentration. This is an HP object, not an Integrity object. Apply only damage/effects whose actual rules can affect this object; no HP/Integrity conversion, automatic creature condition, unstated resistance or immunity is supplied. An effect requiring an organic creature cannot affect it merely because it has HP. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/15 feet/V/S/F and a 15-foot solid energy bridge. NEW: two real immobile supports, full-span legal geometry, 5-foot width/6-inch thickness, concentration 1 minute, 1,000-pound load, AC15/HP20 and ordinary collapse/Falling. Exact-card completion specifies that loss of either support collapses the bridge. Instantaneous metadata is reconciled as finite creation.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 132,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Resonance Bridge",
+            "effect": "Create a 15-ft bridge of solid energy.",
+            "source_paragraph": 9142,
+            "casting_time": "1 action",
+            "range": "15 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Resonance"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Resonance Bridge",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Create a 15-ft bridge of solid energy."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "faction-messenger",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One unoccupied space you can perceive within range; designate one canonical factionId, one specific intended recipient identified by name or reliable description and reasonably believed to belong, and one physical destination known to you within 300 feet where you expect that recipient.",
+      "duration": "Concentration, up to 1 minute. If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if concentration ends or the courier reaches 0 HP.",
+      "concentration": true,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic summoning; no reputation or Faction Seal invocation gate. Supply one brief spoken message no longer than ordinarily spoken during one Action, using an actual language. Initial delivery instruction is included in casting; no extra initial command is required.",
+      "effect": "Summon a Small courier: AC 12+floor(PB/2), HP 2 times casting class level, walking Speed 30 feet, saves PB, other checks +0, ordinary sight/hearing, no attack. It understands your delivery instructions and reproduces the exact message once but has no general speaking language/telepathy or translation ability. It acts immediately after you, moving toward the supplied destination by an ordinary route it can perceive and legally use. At that location, if it can ordinarily recognize/reach the intended recipient and the recipient is actually a member of the designated faction, it audibly delivers the message once, then remains harmless at that location until expiry. Hearing and language comprehension remain normal.",
+      "scaling": "Only explicit profile scaling: AC with PB, HP with casting class level, saves with PB. Speed, duration, destination distance and message capacity do not scale.",
+      "limitations": "Delivery fails if the intended recipient is not actually a member, cannot be found at the designated location by ordinary senses, or cannot be legally reached before expiry. The spell supplies no magical identity authentication, membership report, hidden location, substitute member, unknown coordinates, scouting report, failure reason or return message. Disguises/concealment can prevent ordinary recognition; the courier does not pierce them. Observers may draw ordinary deductions from actual delivery/events. Later route changes or mundane instructions cost your Bonus Action in initiative, share the global companion-command budget, and require it within 60 feet and able to perceive your spoken command. It cannot be retargeted to a new recipient or given a second message. It has no damaging/control action and neither spends nor grants the damaging-companion allowance. It may carry only its message and optionally one supplied mundane paper note of at most 1 pound; no money, weapons, consumables, magic items, freight, autonomous investigation or economic labor. It cannot fly or teleport. One courier per caster; at 0 HP or spell end it vanishes without corpse/resources. A supplied ordinary paper note is not duplicated or destroyed by the summon: it remains with the recipient if handed over, otherwise drops at the courier's location under ordinary support/Falling rules. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling. A description must identify one intended creature well enough that an ordinary observer using only the supplied description and currently perceivable facts could distinguish that creature from other creatures at the destination. If multiple creatures fit the description equally and the courier has no ordinary basis to distinguish the intended recipient, it delivers to none; the spell provides no magical tie-breaker or identity revelation.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S/F/concentration 1 minute and small creature delivering a message to a faction member. NEW: specific recipient/known destination within 300 feet, ordinary routing and recognition, profile, one-action speech, initial delivery movement exception, later command interface, optional finite paper custody and no membership/location oracle. No positive-standing gate is invented.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 133,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Faction Messenger",
+            "effect": "Summon a small creature that can deliver a message to a faction member.",
+            "source_paragraph": 9143,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Concentration, up to 1 minute",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning",
+              "Faction"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Faction Messenger",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Summon a small creature that can deliver a message to a faction member."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "alignment-essence",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One free hand of yours, or an unoccupied supporting surface you perceive within range, for one sealed single-dose vial.",
+      "duration": "Unused vial lasts 10 minutes (600 seconds) from creation. Legal whole-dose consumption before that deadline replaces it with a 1-minute visible result on the same empty vial, expiring 60 seconds after consumption. Preserve each actual deadline through initiative changes. No concentration.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic creation. A creature can spend an Action voluntarily drinking the entire dose. This spell grants no forced-feeding permission and no save. If another exact source legally causes full forced ingestion within one Action, the same resolution applies. Mere external contact does nothing.",
+      "effect": "After one creature consumes the entire intact dose in that Action, its current actual canonical Lawful/Neutral/Chaotic and Good/Neutral/Evil axes appear as plainly readable symbols on the empty vial for 1 minute. Each unrecorded/unknown axis reads Indeterminate; a known other axis is still reported. This snapshots the actual alignment at consumption, not future changes. The liquid disappears on consumption, while the empty vial remains to show the result and vanishes when that result ends. A viewer must ordinarily see and understand the symbols; the spell grants no remote message or language knowledge. The vial weighs one quarter pound, has AC 10 and 1 HP.",
+      "scaling": "None.",
+      "limitations": "One vial or result-vial per caster; successful recasting ends the prior one. Splitting, mixing, diluting, sampling or sharing the dose makes all remaining liquid inert and gives no result; inert vial/liquid vanish at the original creation deadline. A broken/destroyed vial ends its remaining dose or result and all conjured matter vanishes. The spell uses actual individual records, not inferred faction/species/ancestry/reputation/disguise/conduct/personality. Explicit protection of alignment information can block/restrict the affected report; display Indeterminate for a protected axis, without identifying the cause or overriding the protection. It reveals no soul state, memory, class, oath validity, intent, crime, secret faction or future morality and neither changes alignment nor compels behavior. No saleable potion, reagent, permanent sample, nutritional supply or crafting matter. This is an HP object, not an Integrity object. Apply only damage/effects whose actual rules can affect this object; no HP/Integrity conversion, automatic creature condition, unstated resistance or immunity is supplied. An effect requiring an organic creature cannot affect it merely because it has HP. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S/F and a vial revealing the consuming creature's alignment. NEW: voluntary whole-dose Action or separately authorized forced ingestion, 10-minute unused life, public exact two-axis/Indeterminate result, one-vial cap and native object stats. SOURCE-CONFERENCE TEXT REPAIR PROPOSED: its 1-minute vial display conflicts with immediate vial disappearance after resolution. Keep the empty vial for that result minute and remove only consumed liquid immediately; the consumed result phase has its own +60-second deadline. Both creation/source originals remain preserved.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 134,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Alignment Essence",
+            "effect": "Conjure a vial of liquid that reveals a creature's alignment when consumed.",
+            "source_paragraph": 9144,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Summoning",
+              "Detection",
+              "Alignment"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Alignment Essence",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Conjure a vial of liquid that reveals a creature's alignment when consumed."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    },
+    {
+      "id": "corruption-sensor",
+      "activation": "Action",
+      "rangeFeet": 30,
+      "targets": "One free hand of yours, or an unoccupied supporting surface you perceive within range, for a Tiny handheld sensor.",
+      "duration": "If applied in initiative, expires at the caster's tenth future regular-start marker after application; preserve that virtual phase through initiative changes, departure or death. Outside initiative, expires 60 seconds after application and preserves that absolute deadline on entering initiative. An already-passed start never counts. Ends earlier if the spell is ended or the sensor reaches 0 HP.",
+      "concentration": false,
+      "components": [
+        "V",
+        "S",
+        "F"
+      ],
+      "resolution": "Automatic creation. Continually evaluate only the sensor's current 10-foot-radius area with line of effect from its own position; no attack/save and no detection through total cover.",
+      "effect": "The sensor weighs 1 pound, has AC 12 and 3 HP. While any creature, object, area or active effect in its sensing area has an explicit current canonical Corruption record/tag/state, it repeatedly beeps; otherwise it is silent. Beeps follow ordinary hearing, audible out to 30 feet, and change with actual occupancy as sources or sensor move. More qualifying sources do not change the beep's rate, volume or information. Ordinary interactions can pick up, carry, hand over or place the sensor. When the detection predicate changes from false to true, the sensor emits one beep immediately, then one brief beep each elapsed second while the predicate remains true. It stops immediately when the predicate becomes false. The cadence is fixed and conveys no additional information. These are informational sounds, not separate mechanical actions or damage events.",
+      "scaling": "None.",
+      "limitations": "One sensor per caster; successful recasting ends the older one. Only binary nearby presence is reported, with no magical direction, distance, count, identity, severity, source, numeric Corruption value, hidden consequence, cure, alignment, disease, poison or statistics. Do not infer a Corruption record from species, faction, appearance, school or damage type. Observers can move it and draw mundane deductions from its real binary signals. Suppression disables sense and beep while applicable, without resetting the duration; no deferred beep backlog is stored. At 0 HP or spell end it disappears. No remote receiver, network, telemetry, saleable machinery, resource generation, protection or cleansing effect. This is an HP object, not an Integrity object. Apply only damage/effects whose actual rules can affect this object; no HP/Integrity conversion, automatic creature condition, unstated resistance or immunity is supplied. An effect requiring an organic creature cannot affect it merely because it has HP. A successful new application owns its own endpoint; stale cleanup of an older application cannot end its replacement. A countered cast creates no replacement. Starting a concentration spell still ends the caster's incompatible prior concentration before interruption. Known/prepared access, actual class rank/level, components, line of effect, RP and other costs, Dissonance/Refrain, class hooks and interruption follow SPELL_INTEGRATION_RULES.md. Total cover blocks direct targeting and originating line of effect. No automatic upcast or level scaling unless this card explicitly prints companion-profile scaling.",
+      "designNotes": "PRESERVED: Action/30 feet/V/S/F and a device beeping near Corruption. NEW: finite 1-minute duration/no concentration in place of Instantaneous metadata, Tiny/1-pound/AC12/HP3 profile, 10-foot LoE radius, 30-foot ordinary audible range, current canonical predicate, movable binary signal and suppression handling.",
+      "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+      "sourceCoreEntries": [
+        {
+          "index": 135,
+          "original": {
+            "school": "Conjuration",
+            "level": 1,
+            "name": "Corruption Sensor",
+            "effect": "Create a device that beeps when corruption is nearby.",
+            "source_paragraph": 9145,
+            "casting_time": "1 action",
+            "range": "30 feet",
+            "duration": "Instantaneous",
+            "components": "V, S, F",
+            "resolution": "Automatic or opposed as described",
+            "tags": [
+              "Corruption"
+            ],
+            "rp_cost": 2
+          }
+        }
+      ],
+      "sourcePlacements": [
+        {
+          "name": "Corruption Sensor",
+          "school": "Conjuration",
+          "level": 1,
+          "summary": "Create a device that beeps when corruption is nearby."
+        }
+      ],
+      "classAccessEvidence": {
+        "Dragoon": {
+          "rank": 1,
+          "minimumClassLevel": 3,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Druid": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Mage": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Ranger": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Shaman": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Tinker": {
+          "rank": 1,
+          "minimumClassLevel": 2,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        },
+        "Wizard": {
+          "rank": 1,
+          "minimumClassLevel": 1,
+          "school": "Conjuration",
+          "baseRpCost": 2
+        }
+      },
+      "sourceReview": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_SOURCE_CONFERENCE.md",
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ],
+      "reviewEvidence": [
+        "docs/audit/2026-10-08/full-game/GPT_CONJURATION_RANK1_EXACT_REVIEW.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,931 @@
+{
+  "id": "RANK8-DAMAGE6-PART5-SEMANTIC-REVIEW-59",
+  "recordedAtUtc": "2026-10-20T18:15:01.889411+00:00",
+  "verdict": "REQUIRES_BOUNDED_CORRECTIONS_AND_GPT_RECONCILIATION_NOT_ACCEPTED",
+  "package": {
+    "path": "docs/audit/2026-10-08/full-game/DD_Rank8_Damage_6_Part5_Conference_Return_01.zip",
+    "bytes": 4912092,
+    "sha256": "119bfa063012d4c8c870ad6385c680a7c00c153d778c83bad08ae9895ff935d0"
+  },
+  "model": {
+    "path": "docs/audit/2026-10-08/full-game/rank8-damage6-part5-conference-return-01/MODEL.json",
+    "bytes": 1673824,
+    "sha256": "df8dd333da82c14178d21657e0702671506e1c30d3ed87d5204993ef8061bc90"
+  },
+  "cases": {
+    "path": "docs/audit/2026-10-08/full-game/rank8-damage6-part5-conference-return-01/CASE_DISPOSITIONS.json",
+    "bytes": 633833,
+    "sha256": "f37d4602cd3e5ada38b05cef480cc7a37ebc3a78dec8677f60be23413f52967b"
+  },
+  "priorIntegrityReceipt": {
+    "path": "docs/audit/2026-10-08/full-game/RANK8_DAMAGE6_PART5_RETURN_01_LOCAL_PREFLIGHT.json",
+    "bytes": 65090,
+    "sha256": "9ec0894d98a53f3cfc532debc691d0bd0dbe58022e497f11cbf6ef84df0e4ffd"
+  },
+  "reviewCoverage": {
+    "sixCompleteProceduresAndSixSharedClausesRead": true,
+    "sixNativeAndCoreRowsAndClassAccessCompared": true,
+    "questionDispositionsRead": 20,
+    "mainCasesRead": 12,
+    "independentBranchesRead": 41,
+    "inheritedInterfaces": "Bound current accepted contracts reused; targeted full Ready, concentration, Wounds, Falling, Prone, carrying, Greater Dispel and class-feature text inspected. This does not reopen every accepted source or certify all global engine interactions."
+  },
+  "diagnosticChecks": [
+    {
+      "check": "Exact case mirrors",
+      "actual": "MODEL/currentVectors",
+      "expected": "CASE_DISPOSITIONS/allCases: full equality tested",
+      "passed": true
+    },
+    {
+      "check": "RD8-01-A/arithmetic/0 typed",
+      "actual": {
+        "fire": 12,
+        "piercing": 22
+      },
+      "expected": {
+        "fire": 12,
+        "piercing": 22
+      },
+      "passed": true
+    },
+    {
+      "check": "RD8-01-A/arithmetic/0 total",
+      "actual": 34,
+      "expected": 34,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-A/arithmetic/1",
+      "actual": 71,
+      "expected": 71,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-A/arithmetic/2 typed",
+      "actual": {
+        "fire": 5,
+        "piercing": 10
+      },
+      "expected": {
+        "fire": 5,
+        "piercing": 10
+      },
+      "passed": true
+    },
+    {
+      "check": "RD8-01-A/arithmetic/2 total",
+      "actual": 15,
+      "expected": 15,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-A/rng/0",
+      "actual": 11,
+      "expected": 11,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-A/rng/1",
+      "actual": 27,
+      "expected": 27,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-A/rng/2",
+      "actual": 23,
+      "expected": 23,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-B/arithmetic/0 typed",
+      "actual": {
+        "fire": 10,
+        "piercing": 10
+      },
+      "expected": {
+        "fire": 10,
+        "piercing": 10
+      },
+      "passed": true
+    },
+    {
+      "check": "RD8-01-B/arithmetic/0 total",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-B/arithmetic/1",
+      "actual": 88,
+      "expected": 88,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-B/rng/0",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-B/rng/1",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "check": "RD8-01-B/rng/2",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "check": "RD8-02-A/arithmetic/0",
+      "actual": [
+        0,
+        0,
+        20
+      ],
+      "expected": [
+        0,
+        0,
+        20
+      ],
+      "passed": true
+    },
+    {
+      "check": "RD8-02-A/arithmetic/1",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "check": "RD8-02-A/rng/0",
+      "actual": 11,
+      "expected": 11,
+      "passed": true
+    },
+    {
+      "check": "RD8-02-A/rng/1",
+      "actual": 40,
+      "expected": 40,
+      "passed": true
+    },
+    {
+      "check": "RD8-02-A/rng/2",
+      "actual": 12,
+      "expected": 12,
+      "passed": true
+    },
+    {
+      "check": "RD8-02-B/arithmetic/0",
+      "actual": 41,
+      "expected": 41,
+      "passed": true
+    },
+    {
+      "check": "RD8-02-B/arithmetic/1",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "check": "RD8-02-B/rng/0",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "check": "RD8-02-B/rng/1",
+      "actual": 41,
+      "expected": 41,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/0 typed",
+      "actual": {
+        "fire": 7,
+        "necrotic": 15
+      },
+      "expected": {
+        "fire": 7,
+        "necrotic": 15
+      },
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/0 total",
+      "actual": 22,
+      "expected": 22,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/1 typed",
+      "actual": {
+        "fire": 7,
+        "necrotic": 8
+      },
+      "expected": {
+        "fire": 7,
+        "necrotic": 8
+      },
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/1 total",
+      "actual": 15,
+      "expected": 15,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/2",
+      "actual": 76,
+      "expected": 76,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/3",
+      "actual": 83,
+      "expected": 83,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/4",
+      "actual": 93,
+      "expected": 93,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/5 typed",
+      "actual": {
+        "fire": 7,
+        "necrotic": 16
+      },
+      "expected": {
+        "fire": 7,
+        "necrotic": 16
+      },
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/5 total",
+      "actual": 23,
+      "expected": 23,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/6 typed",
+      "actual": {
+        "fire": 6,
+        "necrotic": 16
+      },
+      "expected": {
+        "fire": 6,
+        "necrotic": 16
+      },
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/arithmetic/6 total",
+      "actual": 22,
+      "expected": 22,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/rng/0",
+      "actual": 15,
+      "expected": 15,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/rng/1",
+      "actual": 17,
+      "expected": 17,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/rng/2",
+      "actual": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/rng/3",
+      "actual": 7,
+      "expected": 7,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-A/rng/4",
+      "actual": 19,
+      "expected": 19,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-B/rng/0",
+      "actual": 15,
+      "expected": 15,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-B/rng/1",
+      "actual": 17,
+      "expected": 17,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-B/rng/2",
+      "actual": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "check": "RD8-03-B/rng/3",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/arithmetic/0",
+      "actual": [
+        64,
+        44,
+        9,
+        0
+      ],
+      "expected": [
+        64,
+        44,
+        9,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/arithmetic/1",
+      "actual": 70,
+      "expected": 70,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/arithmetic/2",
+      "actual": 11,
+      "expected": 11,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/0",
+      "actual": 44,
+      "expected": 44,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/1",
+      "actual": 40,
+      "expected": 40,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/2",
+      "actual": 35,
+      "expected": 35,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/3",
+      "actual": 30,
+      "expected": 30,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/4",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/5",
+      "actual": 11,
+      "expected": 11,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/6",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/7",
+      "actual": 19,
+      "expected": 19,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/8",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/9",
+      "actual": 20,
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-A/rng/10",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-B/arithmetic/0",
+      "actual": [
+        68,
+        68,
+        32
+      ],
+      "expected": [
+        68,
+        68,
+        32
+      ],
+      "passed": true
+    },
+    {
+      "check": "RD8-04-B/arithmetic/1",
+      "actual": 72,
+      "expected": 72,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-B/rng/0",
+      "actual": 40,
+      "expected": 40,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-B/rng/1",
+      "actual": 36,
+      "expected": 36,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-B/rng/2",
+      "actual": 8,
+      "expected": 8,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-B/rng/3",
+      "actual": 7,
+      "expected": 7,
+      "passed": true
+    },
+    {
+      "check": "RD8-04-B/rng/4",
+      "actual": 12,
+      "expected": 12,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-A/arithmetic/0",
+      "actual": 46,
+      "expected": 46,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-A/arithmetic/1",
+      "actual": [
+        15,
+        15,
+        15
+      ],
+      "expected": [
+        15,
+        15,
+        15
+      ],
+      "passed": true
+    },
+    {
+      "check": "RD8-05-A/arithmetic/2",
+      "actual": 62,
+      "expected": 62,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-A/rng/0",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-A/rng/1",
+      "actual": 46,
+      "expected": 46,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-A/rng/2",
+      "actual": 11,
+      "expected": 11,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-B/arithmetic/0",
+      "actual": 62,
+      "expected": 62,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-B/arithmetic/1",
+      "actual": [
+        23,
+        23
+      ],
+      "expected": [
+        23,
+        23
+      ],
+      "passed": true
+    },
+    {
+      "check": "RD8-05-B/arithmetic/2",
+      "actual": 85,
+      "expected": 85,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-B/arithmetic/3",
+      "actual": 69,
+      "expected": 69,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-B/rng/0",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "check": "RD8-05-B/rng/1",
+      "actual": 46,
+      "expected": 46,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-A/arithmetic/0",
+      "actual": 79,
+      "expected": 79,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-A/arithmetic/1",
+      "actual": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-A/arithmetic/2",
+      "actual": [
+        15,
+        15
+      ],
+      "expected": [
+        15,
+        15
+      ],
+      "passed": true
+    },
+    {
+      "check": "RD8-06-A/rng/0",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-A/rng/1",
+      "actual": 29,
+      "expected": 29,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-A/rng/2",
+      "actual": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/arithmetic/0",
+      "actual": 76,
+      "expected": 76,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/arithmetic/1",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/arithmetic/2",
+      "actual": 72,
+      "expected": 72,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/arithmetic/3",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/arithmetic/4",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/rng/0",
+      "actual": 7,
+      "expected": 7,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/rng/1",
+      "actual": 13,
+      "expected": 13,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/rng/2",
+      "actual": 32,
+      "expected": 32,
+      "passed": true
+    },
+    {
+      "check": "RD8-06-B/rng/3",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "check": "Claimed stone-screen occlusion of legal Hawk witness",
+      "actual": false,
+      "expected": true,
+      "passed": false
+    },
+    {
+      "check": "Ready Pyre has a supplied caster concentration RNG result",
+      "actual": false,
+      "expected": true,
+      "passed": false
+    },
+    {
+      "check": "Ready carrier natural STR save matches score18 and zero Wounds",
+      "actual": 0,
+      "expected": 4,
+      "passed": false
+    },
+    {
+      "check": "Ready corpse initial anchor agrees across complete inputs",
+      "actual": [
+        10,
+        0,
+        1
+      ],
+      "expected": [
+        10,
+        0,
+        2
+      ],
+      "passed": false
+    }
+  ],
+  "diagnosticCheckCount": 96,
+  "diagnosticFailures": 4,
+  "findings": [
+    {
+      "id": "RD8-LOCAL59-01",
+      "priority": 2,
+      "status": "CORRECTION_REQUIRED",
+      "caseIds": [
+        "RD8-03-B"
+      ],
+      "title": "Ready Soul Pyre omits the self-damage concentration save",
+      "evidence": {
+        "casePointer": "/allCases/5",
+        "casterDamage": 32,
+        "CONBonus": 2,
+        "requiredDC": 16,
+        "readyAuthority": "## Ready\n\nSpend an Action to declare a perceivable trigger and one legal Action-time action or movement. It expires next regular own-turn start. **NEW:** only one pending Ready per creature; replacing it loses the prior setup and any paid held-spell costs. No Bonus Action/Reaction ability, long ritual or multi-minute activity can be prepared by generic Ready.\n\nThe trigger happens first, then the readied response immediately follows before later events, unless a specific effect explicitly interrupts. On release spend the normal Reaction and recheck target, range, sight/perception, line of effect, ammunition and other prerequisites. An invalid or declined occurrence spends no release resource; the Ready can wait for another valid occurrence before expiry. This does not undo setup costs. Once released, it is consumed.\n\nFor ordinary nonspell actions, feature/ammunition costs are paid on release unless text charges setup. A readied **Attack Action** gets its legally available ordinary attack count; a feature limited to your own turn does not thereby work off-turn. Core Overwatch is explicitly one ranged attack, not that full Attack Action and not Soldier's distinct engine.\n\nA readied spell is actually **cast at preparation**: choose spell/mode, verify legality, pay RP/material/other costs, provide components, resolve Dissonance/Refrain and cast-trigger effects once. Counterspell/cast-interruption opportunity occurs then, not again at release. Every held spell requires concentration, even ordinarily non-concentration spells; incompatible prior concentration ends. Lost concentration loses the held spell and costs. NEW: select the legal target/area point at release and recheck legality without repaying. At release the hold continues as ordinary spell concentration if required, otherwise ends after resolution. Expired/replaced/countered held spells do not refund paid costs.\n\nReady movement grants a separate current-Speed budget on release, pays terrain costs and can provoke ordinary opportunity attacks. It grants no extra Action, Bonus Action or interaction.\n\nFocused stance's Reaction restriction also blocks an ordinary Ready release; Ready does not create a Counterspell exception. Holding a spell does not waive any current Reaction prohibition.\n\n**Spell-effect duration begins at release.** Its normal duration is anchored when the effect manifests, while Ready expiry and held concentration already run from preparation. A source explicitly tying a particular consequence to casting/preparation retains that consequence's stated clock. No casting cost, Refrain, Dissonance or cast trigger occurs a second time merely from release.\n\n",
+        "concentrationAuthority": "## Targets, concentration and control\n\nUnless expressly stated, perceive the target, remain within range and have line of effect; total cover blocks targeting. “Ally” includes self unless it says OTHER. A list cannot contain a creature twice. Select up to the printed limit; an empty target list is not a valid way to farm activation benefits. Zones remain at their chosen point unless described as an aura; allies can leave and lose their benefits. An aura requires its owner conscious unless the card supplies a bounded exception. An effect ending at “end next turn” means the affected creature's next turn only when the card says target's; otherwise the user's.\n\nOne concentration slot for all spells, Chants, Veinweaves, forms or zones that require concentration. Starting another ends the old before the new effect resolves, except for an explicit limited linked-effect rule. Damage prompts CON save against max(10, floor(damage/2)); incapacitation or a failed save ends concentration. The round-down convention is a deliberate pilot interpretation. Concentration does not demand a Bonus Action unless maintenance says so. For a paid 3-pulse effect, start is pulse 1; pay maintenance on each of the next 2 regular turns by turn end for pulses 2/3. Missing payment ends it at that turn's end; otherwise it ends at start of turn 4. No repeated start triggers on maintenance.\n\nForced movement does not provoke opportunity attacks unless explicitly stated, cannot place a creature inside solid matter, and stops at an obstacle. Grapples use the card's save/DC, can be escaped with an Action and STR(Athletics) or DEX(Acrobatics) against that DC, and end beyond reach. A root sets Speed 0 but does not remove Actions. Slows reduce Speed to minimum 0. Silence blocks verbal spells/audible abilities, not all thought or all class features. Charmed effects never determine a player's beliefs; use only the printed action restrictions.\n\nNo repeated hard denial without a new save and cost. For this class suite, a creature can suffer **Stunned, compelled loss of its whole Action/turn, or equivalent hard denial from a given character at most once per encounter**, across that character's class features; later such riders fail while damage and soft riders resolve normally. Record source and target. This draft guard is broader than the older Oracle-only ceiling and is an explicit balance proposal. Reaction denial, Speed reduction, penalties and Frightened do not count as whole-turn loss. Do not silently waive boss immunities, legendary defenses or anatomy.\n\n",
+        "localDamageClause": "MODEL/selectedSharedRules/2: damage to a concentrating creature invokes its actual concentration procedure.",
+        "observed": "The main case retains paid Ready concentration through instantaneous resolution, includes the caster taking32, then ends the hold; no concentration RNG or outcome is supplied."
+      },
+      "requestedCorrection": "Supply the actual DC16 CON save and resulting state before end-of-resolution cleanup. Include a failure branch and explicitly resolve what happens to the already-created instantaneous blast and spent corpse without a global Ready change. A passing main roll can preserve the intended damage totals; do not silently remove held concentration before resolution."
+    },
+    {
+      "id": "RD8-LOCAL59-02",
+      "priority": 2,
+      "status": "CORRECTION_REQUIRED",
+      "caseIds": [
+        "RD8-06-B-COVER"
+      ],
+      "title": "The actual stone screen does not block the claimed line of effect",
+      "evidence": {
+        "casePointer": "/allCases/11/independentBranches/1",
+        "screen": {
+          "minimum": [
+            5,
+            32,
+            0
+          ],
+          "maximum": [
+            15,
+            34,
+            25
+          ]
+        },
+        "origin": [
+          0,
+          30,
+          0
+        ],
+        "legalBodyWitness": [
+          10,
+          40,
+          20
+        ],
+        "segmentIntersectsScreen": false,
+        "analyticProof": "Along this ray at y32..34, x2..4 and z4..8. The screen starts at x5, so the ray misses it. The witness lies in the Hawk body and in the wall quarter-cylinder."
+      },
+      "requestedCorrection": "Bind actual screen dimensions that block every relevant origin-to-body witness while leaving the Ram eligible, or revise the branch outcome. Do not override the supplied coordinates with coversHawkRelevantPaths=true. Do not claim complete visual occlusion unless the actual wall-image sight paths are also blocked; blocked LoE alone suffices for non-admission."
+    },
+    {
+      "id": "RD8-LOCAL59-03",
+      "priority": 2,
+      "status": "SOURCE_RECONCILIATION_REQUIRED",
+      "caseIds": [
+        "RD8-04-B-DISPEL"
+      ],
+      "title": "Greater Dispel branch does not bind its complete captured source set",
+      "evidence": {
+        "casePointer": "/allCases/7/independentBranches/2",
+        "baseline": "CloudA and CloudB have the same center [18,0,3] and radius20; both can still exist before7.2. The branch only introduces a dispeller, one face17 and an otherwise-lawful later Action.",
+        "authority": "Action; casting-point range 30 feet; V/S/F; base 10 RP; Instantaneous. Choose one perceived center within 30 feet. At resolution take one immutable snapshot of every ongoing independently addressable magical effect application having an affected body, discrete anchor/object effect, or freestanding area portion inside the 30-foot-radius sphere and center line of effect. Allies are included. Individual effect perception is not required; no numerical cap or selective post-result omission exists.\n\nEligible ordinary spell applications retain their original generating rank. Rank 0-5 ends automatically. Rank 6-9 requires one check per original generating cast using the caster's actual spellcasting ability + PB against DC 10 + 2×recorded rank. Reuse that one roll for all captured applications from the same generating cast. Apply current Core task degrees/natural shifts. A nonspell magical component is eligible only if its own source explicitly supplies a dispel interface/rank/DC; never assign rank 0 by appearance or RP cost.\n\nCapture is fixed before any endings. If a captured Wall of Force ends and reveals another effect behind it, that effect is not added. A captured indivisible wall/field ends as one effect on successful/automatic dispel; recipient-specific applications from one cast end only where captured unless their real parent dependency says ending one ends all. Suppressed-but-still-existing records can be dispelled if this cast itself can reach them. Completed instantaneous consequences, permanent matter, class engines, permanent item enchantments and explicitly nondispellable effects are outside scope.\n\nThis is distinct from Wizard class Dispel Magic `/cards/19`: that class spell costs 3 RP, range 60, Recharge 2, auto through rank 3, and uses INT+PB vs DC 10+rank above 3. Sigil Authority `/cards/22` names Counterspell and Dispel Magic only and does not modify Greater Dispel. Xi remains its own consent-based branch-ending source and grants no Greater Dispel permission.",
+        "observed": "The branch concludes one named cloud ends and mentions another uncaptured cloud, without removing/repositioning the coincident second cloud, fixing the exact Action time/center, or supplying its independent generating-cast check."
+      },
+      "requestedCorrection": "Bind the actual time, legal dispeller opportunity/location, area center, all extant captured applications and one rank8 check per generating cast. Either preserve both co-located clouds and resolve both, or explicitly make this an independently reset one-cloud fixture. No selective Greater Dispel omission."
+    },
+    {
+      "id": "RD8-LOCAL59-04",
+      "priority": 2,
+      "status": "CORRECTION_REQUIRED",
+      "caseIds": [
+        "RD8-03-B",
+        "RD8-03-B-COUNTER",
+        "RD8-03-B-CONSUMER",
+        "RD8-03-B-OUTOFRANGE"
+      ],
+      "title": "Ready carrier and corpse inputs contradict their own complete fixture",
+      "evidence": {
+        "carrierSTR": 18,
+        "carrierSTRSave": 0,
+        "carrierWounds": 0,
+        "corpseActorAnchor": [
+          10,
+          0,
+          1
+        ],
+        "geometryInitialCorpseAnchor": [
+          10,
+          0,
+          2
+        ]
+      },
+      "requestedCorrection": "Set the natural STR save to+4 unless an actual source supplies a different value, and use one explicit held-body anchor consistently. Reconcile all baseline/branch mirrors. Preserve legal150lb corpse plus gear carrying and the actual release anchor."
+    },
+    {
+      "id": "RD8-LOCAL59-05",
+      "priority": 2,
+      "status": "FIXTURE_CORRECTION_REQUIRED",
+      "caseIds": [
+        "RD8-01-B",
+        "RD8-02-A",
+        "RD8-04-A-IMMUNE",
+        "RD8-05-B",
+        "RD8-06-B"
+      ],
+      "title": "Copied actor templates retain incompatible form or progression facts",
+      "evidence": {
+        "DruidForms": "Hawk/Bear target sheets still claim can actually speak, one actual free hand and held focus, while the Druid engine prohibits Base-form speech, melds gear and prohibits casting before18. The Ironhorn form also cannot cast at15; its speech exception is distinct.",
+        "Wizard7": "anchorCaster inRD8-05-B has hero Spellbinder even though Wizard engine permits Hero paths only at10; it is an Arch Arcanist at7.",
+        "Ashen": "The fire-immunity branch supplies a full Storm target with lightning/thunder resistance, plus an outer Circle=Ashen Grove override. Its concrete replacement must not retain unrelated Storm grants.",
+        "HawkOrigin": "Hawk sheets bind height2 with footZ20 but a nominal spellOriginZ23; it is unused by these target-only cases, so state whether it is unavailable/nonoperative rather than presenting it as a current usable casting source."
+      },
+      "requestedCorrection": "Reconcile complete form, school/path and component metadata with actual acquired sources, including copied branch sheets. Keep target damage/posture outcomes where unchanged; do not create new forms, casting permissions or dual Circle ownership."
+    },
+    {
+      "id": "RD8-LOCAL59-06",
+      "priority": 2,
+      "status": "OPPORTUNITY_CLARIFICATION_REQUIRED",
+      "caseIds": [
+        "RD8-04-A-ENTRY"
+      ],
+      "title": "Off-turn voluntary departure lacks the stated legal opportunity",
+      "evidence": {
+        "mainTargetStarts": [
+          2,
+          8,
+          14,
+          20
+        ],
+        "casterSlot": [
+          0,
+          2
+        ],
+        "branchMovement": "Leaves at7, reenters at9; a separate extra-turn opportunity is supplied only at10.",
+        "qualification": "The conditional branch qualifies the extra turn at10, not ordinary movement at7 during the caster next regular slot."
+      },
+      "requestedCorrection": "Provide an actual source-qualified movement opportunity at7, or use a legal movement sequence on the target turn after8, with explicit positions/distance and remaining budget. Preserve the purpose: no entry/extra-turn pulse or exposure reset."
+    },
+    {
+      "id": "RD8-LOCAL59-07",
+      "priority": 3,
+      "status": "TEXT_CORRECTION_REQUIRED",
+      "caseIds": [
+        "RD8-01-B-STRAIN-BLOCK"
+      ],
+      "title": "Blocked-strain qualification retains the wrong starting value",
+      "evidence": {
+        "actorDissonance": 17,
+        "changedInput": 17,
+        "qualificationText": "Dissonance11 and preceding first use of this name are supplied chronological character state..."
+      },
+      "requestedCorrection": "Change this branch qualification to17; retain the valid limit11+6 bar, no payment, and all original history."
+    },
+    {
+      "id": "RD8-LOCAL59-08",
+      "priority": 3,
+      "status": "TIMING_CLARIFICATION_REQUIRED",
+      "caseIds": [
+        "RD8-06-A",
+        "RD8-06-B",
+        "RD8-06-B-NEWOBSERVER"
+      ],
+      "title": "Wall establishment time should be explicit in the finite clock fixture",
+      "evidence": {
+        "commitAt": 1,
+        "collapseConsequencesAt": 1.1,
+        "recordedDeadline": 61,
+        "procedure": "Concentration up to60seconds from establishment; immediate collapse when the spell manifests."
+      },
+      "requestedCorrection": "Name the actual manifestation/establishment timestamp separately from prospective concentration commitment, and derive every deadline from it. If establishment is1.0 and subsequent resolution1.1, state that; if establishment is1.1, deadline is61.1. Do not reset duration at later observation, suppression or release bookkeeping."
+    }
+  ],
+  "findingsCount": 8,
+  "sourceBindings": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/director/spell_review/accepted_interface_registry_06.json",
+      "bytes": 1038128,
+      "sha256": "a08f8040c2ad5eaff08668376d15155f926f909c4b63a30461d55449e18aa567"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/wizard.json",
+      "bytes": 100635,
+      "sha256": "8ab2f4f43bcbced418fb266e5bd3216cff491b0c442c16f93438bd3556672c8b"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json",
+      "bytes": 88119,
+      "sha256": "581bd030286dc91e17792e9724e942b99d7e7d97ce6f6a3dfacc4f37f5113b8f"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "bytes": 156208,
+      "sha256": "b695808e3ad03411f0c482af40da964c8d2bac3235eb7c5f8953d27ed73a11b7"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "bytes": 81863,
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89"
+    }
+  ],
+  "protectedFilesChecked": 44,
+  "sourceInformationDeleted": 0,
+  "downloadedCodeExecuted": false,
+  "canonicalChanges": 0,
+  "newAcceptedIdentities": 0,
+  "acceptedButUnappliedUnchanged": 39,
+  "appliedCountsUnchanged": {
+    "reviewed": 525,
+    "pending": 323,
+    "standalone": 249,
+    "interfaces": 173
+  },
+  "scope": "Independent authored semantic review and isolated arithmetic/geometry diagnostics. Four deliberately exposed diagnostic failures document concrete gaps; numerical successes do not prove production engine behavior. No downloaded test script run; no runtime/human/balance/cosmology/release acceptance.",
+  "nextConference": "Prepare this bounded correction request; deliver after the currently responding Rank7IdentityCasting5 conference without interrupting it."
+}
