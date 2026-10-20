@@ -1,0 +1,1 @@
+Seven full death/recovery identities,ten placements,22 unselected questions,eight applied counterparts,complete original lore and owner decisions. One tierB,six tierC. All sources preserved. Source-only conference,not procedure/vector/runtime/cosmology adoption.

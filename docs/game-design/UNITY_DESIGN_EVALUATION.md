@@ -1,5 +1,9 @@
 # Decennium Descent game design evaluation for Unity
 
+> **Current owner direction — 20 October 2026:** The later [GPT decision ledger](../audit/2026-10-08/full-game/PERTINENT_GPT_DECISIONS_2026_10_20_01.json) governs: a video-game-only, SNES-style Unity CRPG combining direct-control exploration (running, jumping and mapped interactions), deep tactical combat, and crafting/research/companion resource assignments. AI provides continuing engineering and rules-review support; the owner retains design authority.
+>
+> The 17 October evaluation below is preserved history. Its party-command recommendation and statements that visual style/control direction are wholly undecided are superseded by that later direction. Exact camera, traversal, clock conversion, combat transition, cooperative details and first playable scope still require reconciliation. GPT’s shared C# simulation architecture is a proposal, not an implemented engine. [SOURCE_EVIDENCE.json](SOURCE_EVIDENCE.json) continues to describe the [unchanged original assessment](../audit/2026-10-08/full-game/navigation-before-rank9-defense-form-50/UNITY_DESIGN_EVALUATION.md). No gameplay rules are implemented by this notice.
+
 17 October 2026 · Design evaluation · Owner and development reference
 
 **Unity is decided. How the game plays is the decision now.** The camera, control model, visual style, platforms, multiplayer model and first playable scope remain open. The earlier Windows / 3D / overhead-camera question is retained for discussion; no answer is assumed.
